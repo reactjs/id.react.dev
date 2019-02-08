@@ -1,8 +1,8 @@
 ---
-title: Declarative
+title: Deklaratif
 order: 0
 ---
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+React membuat proses pembuatan UI interaktif menjadi lebih mudah. Desain tampilan sederhana untuk setiap *state* di aplikasi anda, dan React akan secara efisien menmperbarui dan me-*render* hanya komponen yang diperlukan ketika data anda berubah.
 
-Declarative views make your code more predictable and easier to debug.
+Tampilan yang deklaratif membuat jalannya kode anda menjadi lebih terprediksi dan lebih mudah untuk di debug.

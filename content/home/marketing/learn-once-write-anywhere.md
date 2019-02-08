@@ -1,8 +1,8 @@
 ---
-title: Learn Once, Write Anywhere
+title: Belajar Sekali, Tulis Dimana saja
 order: 2
 ---
 
-We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+Kami tidak berasumsi mengenai teknologi lain apa yang anda gunakan di dalam stak anda, jadi anda dapat mengembangkan fitur baru menggunakan React tanpa menulis ulang kode yang sudah ada.
 
-React can also render on the server using Node and power mobile apps using [React Native](https://facebook.github.io/react-native/).
+React juga dapat digunakan untuk me-*render* di server menggunakan Node dan menulis aplikasi ponsel menggunakan [React Native](https://facebook.github.io/react-native/).
