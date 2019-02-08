@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "Tutorial: Pengantar React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,97 +12,99 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+Tutorial ini tidak mengasumsikan setiap pengetahuan React yang ada. 
+
 This tutorial doesn't assume any existing React knowledge.
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## Sebelum Kita Memulai Tutorial {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React apps, and mastering it will give you a deep understanding of React.
+Kita akan membangun sebuah *game* kecil sepanjang tutorial ini. **Anda bisa jadi tergoda untuk melewati tutorial ini karena Anda membuat *game* bukan pekerjaan utama Anda -- Namun, luangkan waktu untuk mencobanya.** Teknik-teknik yang akan dipelajari pada tutorial ini adalah hal-hal dasar yang digunakan untuk membangun aplikasi React. Dengan menguasai teknik-teknik tersebut, Anda akan memehami React secara mendalam.
 
->Tip
+>Tips
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+> Tutorial ini didesain untuk orang yang lebih suka **belajar dengan mempraktikan**. Jika Anda lebih suka belajar mempelajari konsep dari bawah ke atas, lihat [panduan langkah demi langkah](/docs/hello-world.html) kami. Anda akan menyadari bahwa tutorial dan panduan akan saling melengkapi.
 
-The tutorial is divided into several sections:
+Tutorial ini akan dibagi ke beberapa bagian:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [Mempersiapkan Tutorial](#setup-for-the-tutorial) merupakan **titik awal** Anda untuk mengikuti tutorial.
+* [Ikhtisar](#overview) bagian ini berisi **hal-hal mendasar** React: komponen, *props*, dan *state*.
+* [Menyelesaikan Permainan](#completing-the-game) bagian ini berisi **teknik-teknik yang paling umum** pada pengembangan aplikasi React.
+* [Menambahkan Penjelajahan Waktu](#adding-time-travel) bagian ini akan memberikan **wawasan yang mendalam** pada kekuatan unik dari React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+Anda tidak perlu menyelesaikan semua bagian sekaligus untuk mendapatkan pembelajaran dari tutorial ini. Cobalah mengerjakan semampu Anda walaupun hanya satu atau dua bagian.
 
-It's fine to copy and paste code as you're following along the tutorial, but we recommend to type it by hand. This will help you develop a muscle memory and a stronger understanding.
+Tidak masalah jika Anda melakukan *copy*+*paste* kode selama menjalani tutorial. Namun, kami merekomendasikan untuk tetap mengetik ulang. Mengetik ulang akan membantu Anda mengembangkan ingatan otot dan pemahaman yang lebih kuat.
 
-### What Are We Building? {#what-are-we-building}
+### Apa yang Kita Kembangkan? {#what-are-we-building}
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+Dalam tutorial ini, kami akan menunjukan cara membuat permainan *tic-tac-toe* interaktif menggunakan React.
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Anda dapat melihat gambaran aplikasi yang akan kita buat disini: **[Hasil Akhir](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Jika kode tersebut tidak masuk akal untuk Anda atau Anda tidak akrab dengan sintaks kode tersebut, jangan khawatir! Tujuan dari tutorial ini adalah untuk membantu Anda mengerti React dan sintaksnya.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and is updated as the game progresses.
+Kami merekomendasikan Anda untuk mencari tahu tentang permainan *tic-tac-toe* sebelum melanjutkan tutorial ini. Salah satu fitur yang akan Anda lihat adalah adanya daftar bernomor di sebelah kanan *board* permainan. Daftar ini memberikan semua riwayat langkah yang sudah terjadi dalam permainan dan terus diperbarui selama permainan berlangsung.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Anda bisa menutup laman permainan *tic-tac-toe* setelah Anda paham dengan permainan tersebut. Kita akan memulai dari templat sederhana. Langkah selanjutnya adalah mempersiapkan Anda sehingga Anda dapat memulai mengembangkan permainan *tic-tac-toe*.
 
-### Prerequisites {#prerequisites}
+### Prasyarat {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+Kami mengasumsikan bahwa Anda memiliki pemahaman akan HTML dan JavaScript, namun Anda seharusnya tetap dapat mengikuti tutorial ini jika Anda memiliki pemahaman pada bahasa pemrograman lainnya. Kami juga berasumsi bahwa Anda memiliki pemahaman dengan konsep pemrograman seperti fungsi, object, *array*, dan kelas.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+Jika Anda memerlukan ulasan tentang JavaScript, kami merekomendasikan [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga jika kita menggunakan beberapa fiture dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), *[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)*, dan *[`const`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) *statements*. Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat kode ES6 di-*compile* menjadi apa.
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+## Mempersiapkan Tutorial {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+Ada dua cara untuk menyelesaikan tutorial ini: Anda dapat menulis kode pada *browser* Anda atau mempersiapan *local development environment* pada komputer Anda.
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+### Persiapan Cara 1: Menulis Kode pada Browser {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+Ini adalah cara tercepat untuk memulai!
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+Pertama, buka **[kode permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** ini pada *tab* baru. *Tab* baru tersebut seharusnya menunjukan *board* permainan *tic-tac-toe* yang kosong dan kode React. Kita akan mengedit kode React tersebut pada tutorial ini.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+Anda dapat melewati cara kedua untuk persiapan dan menuju ke bagian [Ikhtisar](#overview) untuk mendapatkan ikhtisar dari React.
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
+### Persiapan Cara 2: Local Development Environment {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+Cara ini murni opsional dan tidak wajib pada tutorial ini!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Opsional: Instruksi untuk mengikuti secara lokal menggunakan editor teks pilihan Anda</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+Persiapan ini membutuhkan lebih banyak langkah tetapi membuat Anda dapat menyelesaikan tutorial ini menggunakan editor text pilihan Anda. Berikut adalah beberapa langkah yang harus diikuti:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. Pastikan Anda sudah meng-*install* [Node.js](https://nodejs.org/en/) versi terbaru.
+2. Ikuti [langkah instalasi Create React App](/docs/create-a-new-react-app.html#create-react-app) untuk membuat *project* baru.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Hapus semua file pada folder `src/` dari *project* baru Anda.
 
-> Note: **don't delete the entire `src` folder, just the original source files inside it.**.  We'll replace the default source files with examples for this project in the next step.
+> Catatan: **jangan hapus folder `src`, hanya *file-file* yang ada di dalamnya.** Kita akan menggantikan *file-file* tersebut dengan contoh-contoh yang akan diberikan melalui tutorial ini.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# Jika Anda menggunakan Mac atau Linux:
 rm -f *
 
-# Or, if you're on Windows:
+# Atau jika Anda menggunakan Windows:
 del *
 
-# Then, switch back to the project folder
+# Kemudian, kembali ke folder project
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Tambahan file bernama `index.css` ke dalam folder `src/` dengan [kode CSS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Tambahkan file bernama `index.js` ke dalam folder `src/` dengan [kode JS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. Tambahkan 3 baris kode berikut pada bagian paling atas `index.js` di dalam folder `src/`:
 
 ```js
 import React from 'react';
@@ -110,15 +112,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+Jika Anda menjalankan `npm start` pada folder *project* Anda dan mengakses `http://localhost:3000` pada *browser* Anda, Anda akan melihat *board tic-tac-toe* yang kosong.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/docs/editors/) untuk mengkonfigurasi *syntax highlighting* untuk editor Anda.
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### Tolong, Saya Memiliki Hambatan! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+Jika Anda memiliki hambatan, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban atau tetap memiliki hambatan, maka silahkan mengajukan *issue*. Kami akan membantu Anda.
 
 ## Overview {#overview}
 
