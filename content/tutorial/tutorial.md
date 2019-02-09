@@ -12,9 +12,7 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-Tutorial ini tidak mengasumsikan setiap pengetahuan React yang ada. 
-
-This tutorial doesn't assume any existing React knowledge.
+Tutorial ini tidak mengasumsikan setiap pengetahuan tentang React yang sudah ada. 
 
 ## Sebelum Kita Memulai Tutorial {#before-we-start-the-tutorial}
 
@@ -122,22 +120,22 @@ Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/do
 
 Jika Anda memiliki hambatan, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban atau tetap memiliki hambatan, maka silahkan mengajukan *issue*. Kami akan membantu Anda.
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-Now that you're set up, let's get an overview of React!
+Sekarang karena Anda sudah siap, mari mempelajari ikhtisar dari React!
 
-### What Is React? {#what-is-react}
+### Apa Itu React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+React adalah *library* JavaScript yang deklaratif, efisien, dan fleksible untuk membangun antarmuka pengguna. React memungkinkan Anda untuk membuat antarmuka kompleks dari kumpulan kode yang kecil dan terisolasi yang disebut "komponen".
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+React memiliki beberapa jenis komponen, tetapi kita akan memulai dengan subkelas `React.Component`:
 
 ```javascript
 class ShoppingList extends React.Component {
   render() {
     return (
       <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
+        <h1>Daftar Belanja untuk {this.props.name}</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -148,14 +146,14 @@ class ShoppingList extends React.Component {
   }
 }
 
-// Example usage: <ShoppingList name="Mark" />
+// Contoh Penggunaan: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+Kita akan membahas *tag* aneh yang seperti XML sesaat lagi. Kita menggunakan komponen untuk memberi tahu React apa yang ingin kita lihat pada layar. Ketika data kita berubah, React akan memperbarui dan me-*render* ulang komponen kita dengan efisien.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+Di sini, ShoppingList adalah **kelas komponen React** atau **tipe komponen React**. Sebuah komponen dapat menerima parameter yang disebut dengan `props` (singkatan dari `properties`) dan mengembalikan sebuah hirarki dari tampilan-tampilan yang akan ditampilkan via *method* `render`.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+*Method* `render` mengembalikan sebuah *deskripsi* dari benda yang Anda akan lihat pada layar. React mengambil deskripsi tersebut dan menampilkan hasilnya ke layar. Secara khusus, `render` mengembalikan **elemen React**, yang merupakan deskripsi ringan tentang apa yang harus di-`render`. Kebanyakan React *developer* menggunakan sintaks khusus yang disebut "JSX" yang memudahkan struktur dari React mudah untuk ditulis. Sintaks `<div />` akan diubah menjadi `React.createElement('div')` pada saat *build*. Contoh di atas sama dengan sintaks berikut:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -164,33 +162,33 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[Lihat versi expanded lengkap.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+Jika Anda penasaran, `createElement()` dideskripsikan dengan lebih rinci pada bagian [referensi API](/docs/react-api.html#createelement), tetapi kita tidak akan menggunakannya pada tutorial ini. Kita akan tetap menggunakan JSX.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+JSX hadir dengan kekuatan penuh dari JavaScript. Anda dapat menulis *setiap* ekspresi JavaScript di antara tanda kurung kurawal di dalam JSX. Setiap elemen React adalah objek JavaScript yang dapat Anda simpan di dalam variabel atau Anda *passing* ke seputar program Anda.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+Komponen `ShoppingList` di atas hanya me-*render* komponen DOM *built-in* seperti `<div />` dan `<li />`. Namun, Anda juga dapat membuat dan me-*render* komponen React Anda sendiri. Contohnya, kita dapat mengacu ke seluruh daftar belanja di atas dengan menuliskan `<ShoppingList />`. Setiap komponen React terenkapsulasi dan dapat beroperasi secara mandiri. Hal ini memungkinkan Anda untuk membangun sebuah antarmuka pengguna yang kompleks dari komponen sederhana.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## Melihat Kode Permulaan {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan]](#setup-option-2-local-development-environment)).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+Kode Permulaan ini berdasarkan pada aplikasi yang akan kita buat. Kami sudah menyediakan *style CSS* sehingga Anda bisa fokus mempelajari React dan memprogram permainan *tic-tac-toe*.
 
-By inspecting the code, you'll notice that we have three React components:
+Dengan melihat kode permulaan, Anda akan melihat bahwa kita memiliki tiga komponen React:
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+Komponen Square akan me-*render* sebuah `<button>` dan komponen Board akan me-*render* 9 persegi. Komponen Game akan me-*render* sebuah *board* dengan nilai sementara yang akan kita ganti nanti. Saat ini belum ada komponen interaktif.
 
-### Passing Data Through Props {#passing-data-through-props}
+### Passing Data Melalui Props {#passing-data-through-props}
 
-Just to get our feet wet, let's try passing some data from our Board component to our Square component.
+Untuk memulai mendalami React, mari kita mencoba untuk mem-*passing* data dari komponen Board ke komponen Square kita.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+Di dalam *method* `renderSquare` Board, ubah kodenya sehingga Square menerima *prop* bernama `value`:
 
 ```js{3}
 class Board extends React.Component {
@@ -199,7 +197,7 @@ class Board extends React.Component {
   }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+Ubah *method* `render` sehingga dapat menampilkan nilai dari `value` dengan mengganti `{/* TODO */}` dengan `{this.props.value}`:
 
 ```js{5}
 class Square extends React.Component {
@@ -213,22 +211,22 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+Sebelum:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+Sesudah: Anda seharusnya dapat melihat angka dari setiap persegi pada keluaran yang telah di-*render*.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+Selamat! Anda baru saja "memberikan sebuah *prop*" dari komponen Board ke komponen Square. *Passing props* adalah cara informasi dapat mengalir dalam aplikasi React dari *parent* ke *children*.
 
-### Making an Interactive Component {#making-an-interactive-component}
+### Membuat Komponen Interaktif {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it. 
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Mari mengisi komponen Square dengan sebuah "X" ketika kita mengklik komponen tersebut.
+Pertama, ubah *button tag* yang dikembalikan dari fungsi `render()` komponen Square menjadi:
 
 ```javascript{4}
 class Square extends React.Component {
@@ -242,11 +240,11 @@ class Square extends React.Component {
 }
 ```
 
-If we click on a Square now, we should get an alert in our browser.
+Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browser* kita.
 
->Note
+>Catatan
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>Untuk mempercepat proses mengetik dan menghindari [perilaku membingungkan `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), kita akan menggunakan [sintaks arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) untuk setiap *event handler* yang akan kita buat:
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -260,13 +258,13 @@ If we click on a Square now, we should get an alert in our browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. It only fires after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>Perhatikan bahwa dengan `onClick={() => alert('click')}`, kita memberikan *sebuah fungsi* sebagai `onClick` *prop*. Fungsi tersebut hanya dieksekusi setelah klik. Lupa untuk menulis `() =>` dan menulis `onClick={alert('click')}` adalah kesalahan yang sering terjadi. Hal tersebut menyebabkan fungsi akan terus dijalankan setiap komponen di-*render* ulang.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Selanjutnya, kita ingin agar komponen Square "mengingat" bahwa komponen tersebut sudah diklik dan mengisinya dengan "X". Untuk "mengingat" sesuatu, komponen menggunakan **_state_**.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+Komponen React dapat memiliki *state* dengan mendefinisikan `this.state` pada konstruktornya. `this.state` harus dianggap *private* oleh komponen React tempat ia didefinisikan. Mari menyimpan nilai Square saat ini pada `this.state` dan mengubahnya ketika Square diklik.
 
-First, we'll add a constructor to the class to initialize the state:
+Pertama, kita akan menambahkan konstruktor pada kelas untuk menginisialisasi *state*:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -287,17 +285,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>Catatan
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>Pada [kelas JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), Anda harus selalu memanggil `super` ketika mendefinisikan konstruktor dari sebuah subkelas. Semua kelas komponen React yang memiliki `konstruktor` harus dimulai dengan `super(props)` *call*.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Sekarang kita akan mengubah *method* `render` Square untuk menampilkan nilai *state* saat ini ketika diklik:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `() => alert()` event handler with `() => this.setState({value: 'X'})`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* Mengganti `this.props.value` dengan `this.state.value` di dalam `<button>` *tag*.
+* Mengganti *event handler* `() => alert()` dengan `() => this.setState({value: 'X'})`.
+* Pisahkan *props* `className` dan `onClick` pada baris yang berbeda agar lebih mudah dibaca.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+Setelah perubahan di atas, *tag* `<button>` yang dikembalikan dari *method* `render` Square akan terlihat seperti ini:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -321,28 +319,29 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Dengan memanggil `this.setState` dari `onClick` *handler* pada *method* `render` Square, kita akan memberi tahu React untuk me-*render* ulang Square setiap `<button>` diklik. Setelah *update* terjadi, `this.state.value` dari Square akan menjadi `'X'`, jadi kita akan melihat `X` pada *board* permainan. Jika Anda mengklik salah satu Square, maka akan muncul `X`.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Ketika Anda memanggil `setState` di sebuah component, React akan memperbarui komponen *child* di dalamnya secara otomatis.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### Developer Tools {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+Ekstensi React Devtools untuk [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) dan [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+memungkinkan Anda untuk melihat *component tree* dari React dengan menggunakan *developer tools browser* Anda.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+React Devtools memungkinkan Anda untuk mengecek *props* dan *state* komponen React Anda.
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka *developer tools* dan *tab* React akan muncul sebagai *tab* terakhir di sebalah kanan.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**Walaupun demikian, perlu diperhatikan bahwa ada beberapa langkah tambahan untuk membuat aplikasi Anda bekerja dengan CodePen:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Masuk atau daftar dan konfirmasi email Anda (diperlukan untuk mencegah *spam*)
+2. Klik tombol "Fork".
+3. Klik "Change View" dan pilih "Debug mode".
+4. Pada *tab* yang terbuka, *devtools* saat ini seharusnya memiliki *tab* React.
 
 ## Completing the Game {#completing-the-game}
 
