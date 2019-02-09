@@ -343,19 +343,19 @@ Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun 
 3. Klik "Change View" dan pilih "Debug mode".
 4. Pada *tab* yang terbuka, *devtools* saat ini seharusnya memiliki *tab* React.
 
-## Completing the Game {#completing-the-game}
+## Menyelesaikan Permainan {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+Sekarang kita sudah memiliki blok-blok dasar untuk membangun permainan *tic-tac-toe*. Untuk menyelesaikan permainan ini, kita memerlukan penempatan alternatif "X" dan "O" pada *board* dan kita memerlukan cara untuk menentukan pemenangnya.
 
-### Lifting State Up {#lifting-state-up}
+### Menaikkan State {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+Saat ini, setiap komponen Square mengurus *state* dari game. Untuk menentukan pemenang, kita akan mengurus nilai dari setiap 9 persegi di satu lokasi.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+Kita dapat memikirkan Board seharusnya cukup mengambil *state* setiap Square. Walaupun pendekatan ini mungkin di React, tetapi kami tidak menyarankannya karena kodenya akan sulit untuk dimengerti, rentan terhadap *bugs*, dan sulit untuk di-*refactor*. Sebagai gantinya, pendekatan terbaik untuk adalah untuk menyimpan *state* dari permainan pada komponen Board. Komponen Board dapat memberitahu setiap Square untuk menampilkan data dengan memberikannya melalui *prop* [seperti yang kita lakukan saat kita memberikan angka ke setiap Square](#passing-data-through-props).
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**Untuk mengambil data dari beberapa *child* atau membuat dua komponen *child* berkomunikasi satu sama lain, Anda perlu mendeklarasikan *state* pada komponen *parent*. Komponen *parent* dapat memberikan *state* ke *child* dengan menggunakan *props*. Pola ini dapat membuat komponen-komponen *child* tetap sinkron satu sama lain dan dengan komponen *parent*.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
+Menaikkan *state* ke komponen *parent* lazim ketika me-*refactor* komponen React. Mari memanfaatkan kesempatan ini untuk mencobanya. Kita akan menambahkan konstruktor ke Board dan menginisialisasi *state* dari Board berisi array dengan 9 *null*. Sembilan nilai ini melambangkan 9 persegi:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -397,7 +397,7 @@ class Board extends React.Component {
 }
 ```
 
-When we fill the board in later, the board will look something like this:
+Ketika kita mengisi *board* permainan, *board* akan terlihat seperti ini:
 
 ```javascript
 [
@@ -407,7 +407,7 @@ When we fill the board in later, the board will look something like this:
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+*Method* `renderSquare` dari Board saat ini terlihat seperti ini:
 
 ```javascript
   renderSquare(i) {
@@ -415,9 +415,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+Awalnya, kita [memberikan `value` *prop*](#passing-data-through-props) dari Board untuk menampilkan angka 0 sampai 8 di setiap Square. Pada langkah berbeda sebelumnya, kita menggantikan angka dengan "X" yang [ditentukan oleh *state* dari Square itu sendiri](#making-an-interactive-component). Ini sebabnya Square saat ini mengabaikan `value` *prop* yang diberikan oleh Board.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+Sekarang kita akan menggunakan mekanisme pemberian *prop* lagi. Kita akan memodifikasi Board untuk memberi instruksi pada setiap Square untuk mengubah nilai saat ini (`'X'`, `'O'`, atau `null`). Kita sudah mendefinisikan *array* `squares` pada konstruktor Board dan kita akan memodifikasi *method* `renderSquare` Board untuk membaca dari state:
 
 ```javascript{2}
   renderSquare(i) {
@@ -425,13 +425,13 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Setiap Square akan menerima *prop* `value` yang dapat berupa `'X'`, `'O'`, atau `null` untuk persegi kosong.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+Selanjutnya, kita perlu mengubah perilaku Square saat diklik. Komponen Board saat ini mengatur persegi mana yang sedang diisi. Kita perlu memikirkan sebuah cara agar Square dapat memperbarui *state* dari Board. Karena *state* dianggap sebagai *private* di dalam komponen, kita tidak dapat mengubah *state* Board melalui Square secara langsung.
 
-To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
+Untuk mempertahankan *state privacy* dari Board, kita akan memberikan sebuah fungsi dari Board ke Square. Fungsi ini akan dipanggil ketika komponen Square diklik. Kita akan mengubah *method* `renderSquare` di dalam Board menjadi:
 
 ```javascript{5}
   renderSquare(i) {
@@ -444,17 +444,17 @@ To maintain the Board's state's privacy, we'll pass down a function from the Boa
   }
 ```
 
->Note
+>Catatan
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Kita membagi elemen yang dikembalikan menjadi beberapa baris agar lebih mudah dibaca. Kami juga menambahkan tanda kurung sehingga JavaScript tidak menyisipkan titik koma setelah `return` dan merusak kode kita.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+Sekarang kita memberikan dua *prop* dari Board ke Square: `value` dan `onClick`. *Prop* `onClick` adalah sebuah fungsi yang dapat dipanggil oleh Square ketika diklik. Kita akan membuat perubahan berikut pada Square:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* Mengganti `this.state.value` dengan `this.props.vaue` pada *method* `render` Square.
+* Mengganti `this.setState()` dengan `this.props.onClick()` pada *method* `render` Square.
+* Menghapus `konstruktor` Square karena Square sudah tidak menyimpan *state* dari permainan.
 
-After these changes, the Square component looks like this:
+Setelah perubahan tersebut, komponen Square akan terlihat seperti ini:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -471,19 +471,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+Ketika sebuah Square diklik, fungsi `onClick` yang disediakan oleh Board akan dipanggil. Berikut adalah ulasan bagaimana kita dapat memperoleh hasil saat ini:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes.
+1. *Prop* `onClick` pada *built-in DOM* komponen `<button>` memberi tahu React untuk menyiapkan *click event listener*.
+2. Ketika tombol diklik, React akan memanggil *event handler* `onClick` yang sudah didefinisikan pada *method* `render()` Square.
+3. *Event handler* ini memanggil `this.props.onClick()`. *Prop* `onClick` dari Square ditentukan oleh Board.
+4. Karena Board memberikan `onClick={() => this.handleClick(i)}` ke Square, Square memanggil `this.handleClick(i)` ketika diklik.
+5. Kita belum mendefinisikan *method* `handleClick()`, sehingga kode kita akan *crash*.
 
->Note
+>Catatan
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could name the Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>Atribut `onClick` pada elemen DOM `<button>` memiliki arti khusus untuk React karena merupakan komponen *built-in*. Untuk komponen komponen *custom* seperti Square, penamaan bersifat bebas. Kita dapat menamakan prop `onClick` Square atau `handleClick` Board dengan nama lain. Namun demikian, dalam React, hal ini adalah sebuah konvensi untuk menggunakan penamaan `on[Event]` pada *props* yang merepresentasikan *event* dan `handle[Event]` untuk *method* yang menangani *event* tersebut.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+Ketika kita mencoba untuk mengklik sebuah kotak, kita seharusnya akan mendapatkan sebuah pesan *error* karena kita belum mendefinisikan `handleClick`. Sekarang kita akan menambahkan `handleClick` pada kelas Board:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -536,63 +536,63 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+Setelah perubahan ini, kita dapat mengklik Square kembali untuk mengisinya. Tetapi, sekarang *state* disimpan pada komponen Board, bukan pada setiap komponen Square. Ketika *state* Board berubah, komponen Square akan di-*render* ulang secara otomatis. Dengan menyimpan *state* dari setiap persegi pada komponen Board, kita dapat menentukan pemenangnya pada tahap berikutnya.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+Karena komponen Square tidak lagi mengatur *state*, komponen Square menerima nilai dari komponen Board dan memberikan informasi ke komponen Board ketika diklik. Dalam istilah React, komponen Square sekarang disebut dengan **controlled components**. Komponen Board memiliki kontrol penuh pada komponen Square.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+Perhatikan bahwa di dalam `handleClick`, kita memanggil `.slice()` untuk membuat kopi *array `squares`* untuk memodifikasinya sebagai ganti dari memodifikasi *array* yang ada. Kami akan menjelaskan mengapa kita membuat kopi dari *array `squares`* di bagian selanjutnya.
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### Mengapa Immutablility Itu Penting {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+Pada contoh kode sebelumnya, kami menyarankan Anda untuk menggunakan `.slice()` untuk membuat kopi dari *array `squares`* untuk memodifikasinya sebagai ganti dari memodifikasi *array* yang ada. Kita akan berdiksui soal *immutability* dan mengapa *immutability* penting untuk dipelajari.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+Secara umum, ada dua pendekatan untuk mengubah data. Pendekatan pertama adalah untuk me-*mutate* data dengan mengubah nilai dari data secara langsung. Pendekatan kedua adalah dengan mengganti data dengan kopi baru yang memiliki perubahan yang diinginkan.
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### Perubahan Data dengan Mutation {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// Sekarang player adalah {score: 2, name: 'Jeff'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### Perubahan Data Tanpa Mutation {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// Sekarang player tidak berubah, tetapi newPlayer adalah {score: 2, name: 'Jeff'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Atau jika Anda menggunakan sintaks object spread, Anda dapat menuliskan:
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+Hasil akhir dari kedua pendekatan sama. Namun dengan tidak melakukan *mutate* (atau mengganti data di dalamnya) secara langsung, kita mendapatkan keuntungan sebagai berikut.
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### Fitur Kompleks Menjadi Lebih Sederhana {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+*Immutability* membuat fitur kompleks menjadi lebih mudah untuk diimplementasikan. Nanti pada tutorial ini juga, kita akan mengimplementasikan fitur "penjelajahan waktu" yang memungkinkan kita untuk mengulas riwayat permainan *tic-tac-toe* kita dan "lompat kembali" ke langkah sebelumnya. Fungsionalitas ini tidak spesifik ke permainan -- sebuah kemampuan untuk *undo* dan *redo* beberapa aksi adalah kebutuhan yang umum dalam sebuah aplikasi. Mari kita mencoba untuk menyimpan riwayat permainan sebelumnya utuh dan menggunakannya kembali kemudian.
 
-#### Detecting Changes {#detecting-changes}
+#### Mendeteksi Perubahan {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+Mendeteksi perubahan pada objek *mutable* sulit karena mereka dimodifikasi secara langsung. Deteksi ini membutuhkan objek *mutable* tersebut dibandingkan dengan beberapa kopi sebelumnya dari dirinya dan seluruh melintasi seluruh *object tree*.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+Mendeteksi perubahan pada objek *immutable* dianggap lebih mudah. Jika objek *immutable* yang ditunjuk berbeda dengan objek sebelumnya, maka objeknya sudah berubah.
 
-#### Determining When to Re-render in React {#determining-when-to-re-render-in-react}
+#### Menentukan Waktu Untuk Melakukan Render Ulang di React {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+Keuntungan utama dari *immutability* adalah membantu Anda untuk membuat *pure component* di React. Data yang *immutable* dapat dengan mudah memastikan apakah perubahan sudah terjadi, yang juga membantu untuk menentukan apakah komponen perlu di-*render* ulang.  
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+Anda dapat mempelajari `shouldComponentUpdate()` lebih lanjut dan bagaimana cara membuat *pure components* dengan membaca [Optimisasi Performa](/docs/optimizing-performance.html#examples).
 
 ### Function Components {#function-components}
 
-We'll now change the Square to be a **function component**.
+Sekarang kita akan mengganti Square menjadi **function component**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+Dalam React, **function component** adalah cara lebih mudah untuk menulis komponen yang hanya memerlukan *method* `render` dan tidak memiliki *state*. Sebagai ganti menulis kelas yang merupakan turunan dari `React.Component`, kita dapat menulis sebuah fungsi yang menerima `props` sebagai masukan dan mengembalikan apa yang harus di-*render*. Menulis *function component* lebih tidak jemu dibanding menulis kelas dan banya komponen dapat ditulis dengan cara ini.
 
-Replace the Square class with this function:
+Ganti kelas Square dengan fungsi berikut:
 
 ```javascript
 function Square(props) {
@@ -604,13 +604,13 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+Kita sudah mengganti `this.props` dengan `props` saat muncul.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[Lihat kode lengkap sampai saat ini](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>Catatan
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a function component we don't need to worry about `this`.
+>Ketika mengubah Square menjadi *function component*, kita juga mengubah `onClick={() => this.props.onClick()}` menjadi lebih pendek `onClick={props.onClick}` (perhatikan hilangnya tanda kurung pada *kedua* sisi). Pada kelas, kita menggunakan *arrow function* untuk mengakses nilai `this` yang benar, tetapi di *function component* kita tidak perlu mengkhawatirkan `this`.
 
 ### Taking Turns {#taking-turns}
 
