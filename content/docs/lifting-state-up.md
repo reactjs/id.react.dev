@@ -1,6 +1,6 @@
 ---
 id: lifting-state-up
-title: Lifting State Up
+title: Mengangkat Ke Atas
 permalink: docs/lifting-state-up.html
 prev: forms.html
 next: composition-vs-inheritance.html
@@ -9,24 +9,24 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
+Seringkali, beberapa komponen perlu mencerminkan perubahan data yang sama. Kami menyarankan mengangkat `state` bersama ke modul utama terdekat. Mari kita lihat bagaimana ini bekerja dalam aksi.
 
-In this section, we will create a temperature calculator that calculates whether the water would boil at a given temperature.
+Di bagian ini, kami akan membuat kalkulator suhu yang menghitung apakah air akan mendidih pada suhu tertentu.
 
-We will start with a component called `BoilingVerdict`. It accepts the `celsius` temperature as a prop, and prints whether it is enough to boil the water:
+Kami akan memulai dengan komponen bernama `BoilingVerdict`. Ini menerima `celsius` suhu sebagai `props`, dan mencetak apakah itu cukup untuk merebus air:
 
 ```js{3,5}
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
-    return <p>The water would boil.</p>;
+    return <p>Air akan mendidih.</p>;
   }
-  return <p>The water would not boil.</p>;
+  return <p>Air tidak akan mendidih.</p>;
 }
 ```
 
-Next, we will create a component called `Calculator`. It renders an `<input>` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
+Selanjutnya, kita akan membuat komponen bernama `Calculator`. Ini membuat `<input>` yang memungkinkan anda memasukan suhu, dan menyimpan nilainya di `this.state.temperature`.
 
-Additionally, it renders the `BoilingVerdict` for the current input value.
+Selain itu, ini membuat `BoilingVerdict` untuk nilai input saat ini.
 
 ```js{5,9,13,17-21}
 class Calculator extends React.Component {
@@ -44,7 +44,7 @@ class Calculator extends React.Component {
     const temperature = this.state.temperature;
     return (
       <fieldset>
-        <legend>Enter temperature in Celsius:</legend>
+        <legend>Masukan suhu dalam Celcius:</legend>
         <input
           value={temperature}
           onChange={this.handleChange} />
@@ -56,13 +56,13 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Adding a Second Input {#adding-a-second-input}
+## Menambahkan Input Kedua {#adding-a-second-input}
 
-Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
+Persyaratan baru kami adalah bahwa, selain input Celcius, kami memberikan input Fahrenheit dan mereka tetap sinkron.
 
-We can start by extracting a `TemperatureInput` component from `Calculator`. We will add a new `scale` prop to it that can either be `"c"` or `"f"`:
+Kita bisa memulai dengan mengekstraksi komponen `TemperatureInput` dari `Calculator`. Kami akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -86,7 +86,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Masukan temperatur dalam {scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -95,7 +95,7 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-We can now change the `Calculator` to render two separate temperature inputs:
+Kita sekarang dapat mengubah `Calculator` untuk membuat dua input suhu terpisah:
 
 ```js{5,6}
 class Calculator extends React.Component {
@@ -110,15 +110,15 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-We have two inputs now, but when you enter the temperature in one of them, the other doesn't update. This contradicts our requirement: we want to keep them in sync.
+Kami memiliki dua input sekarang, tetapi ketika anda memasukkan suhu di salah satu dari mereka, yang lain tidak memperbarui. Ini bertentangan dengan persyaratan kami: kami ingin tetap menyinkronkannya.
 
-We also can't display the `BoilingVerdict` from `Calculator`. The `Calculator` doesn't know the current temperature because it is hidden inside the `TemperatureInput`.
+Kami juga tidak dapat menampilkan `BoilingVerdict` dari `Calculator`. `Calculator` tidak tahu suhu saat ini karena tersembunyi di dalam `TemperatureInput`.
 
-## Writing Conversion Functions {#writing-conversion-functions}
+## Penulisan Fungsi Konversi {#writing-conversion-functions}
 
-First, we will write two functions to convert from Celsius to Fahrenheit and back:
+Pertama, kita akan menulis dua fungsi untuk mengkonversi dari Celcius ke Fahrenheit dan kembali:
 
 ```js
 function toCelsius(fahrenheit) {
@@ -130,9 +130,9 @@ function toFahrenheit(celsius) {
 }
 ```
 
-These two functions convert numbers. We will write another function that takes a string `temperature` and a converter function as arguments and returns a string. We will use it to calculate the value of one input based on the other input.
+Dua fungsi ini mengkonversi angka. Kami akan menulis fungsi lain yang menggunakan fungsi *string* `temperature` dan fungsi konverter sebagai argumen dan mengembalikan string. Kami akan menggunakannya untuk menghitung nilai dari suatu input bersarakan input lainnya.
 
-It returns an empty string on an invalid `temperature`, and it keeps the output rounded to the third decimal place:
+Ini mengembalikan string kosong pada `temperature` yang tidak valid, dan itu membuat *output* dibulatkan ke tempat desimal ketiga:
 
 ```js
 function tryConvert(temperature, convert) {
@@ -146,11 +146,11 @@ function tryConvert(temperature, convert) {
 }
 ```
 
-For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
+Misalnya, `tryConvert('abc', toCelsius)` mengembalikan string kosong, dan `tryConvert('10.22', toFahrenheit)` mengembalikan `'50.396'`.
 
-## Lifting State Up {#lifting-state-up}
+## Mengangkat Ke Atas {#lifting-state-up}
 
-Currently, both `TemperatureInput` components independently keep their values in the local state:
+Saat ini, kedua komponen `TemperatureInput` secara independen menjaga nilainya di `state` lokal:
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -166,46 +166,46 @@ class TemperatureInput extends React.Component {
 
   render() {
     const temperature = this.state.temperature;
-    // ...  
+    // ...
 ```
 
-However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
+Namun, kami ingin kedua input selaras satu sama lain. Ketika kami memperbarui input Celcius, input Fahrenheit harus mencerminkan suhu yang dikonversi, dan sebaliknya.
 
-In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called "lifting state up". We will remove the local state from the `TemperatureInput` and move it into the `Calculator` instead.
+Dalam React, state bersama dicapai dengan memindahkannya ke module utama terdekat dari komponen yang membutuhkannya. Ini disebut "mengangkat keadaan". Kami akan menghapus state lokal dari `TemperatureInput` dan memindahkannya ke `Calculator` sebagai gantinya.
 
-If the `Calculator` owns the shared state, it becomes the "source of truth" for the current temperature in both inputs. It can instruct them both to have values that are consistent with each other. Since the props of both `TemperatureInput` components are coming from the same parent `Calculator` component, the two inputs will always be in sync.
+Jika `Calculator` memiliki state bersama, itu menjadi "sumber kebenaran" untuk suhu saat ini di kedua input. Ini dapat menginstruksikan mereka berdua untuk memiliki nilai yang konsisten satu sama lain. Karena kedua `props` pada komponen `TemperatureInput` berasal dari koponen `Calculator` induk yang sama, kedua input akan selalu sinkron.
 
-Let's see how this works step by step.
+Mari kita lihat bagaimana ini bekerja selangkah demi selangkah.
 
-First, we will replace `this.state.temperature` with `this.props.temperature` in the `TemperatureInput` component. For now, let's pretend `this.props.temperature` already exists, although we will need to pass it from the `Calculator` in the future:
+Pertama, kita akan ganti `this.state.temperature` dengan `this.props.temperature` di komponen `TemperatureInput`. Untuk saat ini, mari kita berpura-pura `this.props.temperature` sudah ada, meskipun kita harus meneruskannya dari `Calculator`:
 
 ```js{3}
   render() {
-    // Before: const temperature = this.state.temperature;
+    // Sebelum: const temperature = this.state.temperature;
     const temperature = this.props.temperature;
     // ...
 ```
 
-We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
+Kita tahu bahwa [props hanya bisa dibaca](/docs/components-and-props.html#props-are-read-only). Ketika `temperature` berada di state lokal, `TemperatureInput` hanya bisa memanggil `this.setState()` untuk mengubahnya. Namun, sekarang bahwa `temperature` berasal dari induknya sebagai `props`, `TemperatureInput` tidak memiliki kendali atasnya.
 
-In React, this is usually solved by making a component "controlled". Just like the DOM `<input>` accepts both a `value` and an `onChange` prop, so can the custom `TemperatureInput` accept both `temperature` and `onTemperatureChange` props from its parent `Calculator`.
+Dalam React, ini biasanya diselesaikan dengan membuat komponen "dikendalikan". Sama seperti *DOM* `<input>` menerima kedua `value` dan `onChange` prop, begitu juga dapat menyesuaikan `TemperatureInput` menerima kedua `temperature` dan `onTemperatureChange` props dari `Calculator` sebagai induknya.
 
-Now, when the `TemperatureInput` wants to update its temperature, it calls `this.props.onTemperatureChange`:
+Sekarang, ketika `TemperatureInput` ingin memperbarui suhunya, ia memanggil `this.props.onTemperatureChange`:
 
 ```js{3}
   handleChange(e) {
-    // Before: this.setState({temperature: e.target.value});
+    // Sebelum: this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
     // ...
 ```
 
->Note:
+>Catatan:
 >
->There is no special meaning to either `temperature` or `onTemperatureChange` prop names in custom components. We could have called them anything else, like name them `value` and `onChange` which is a common convention.
+>Tidak ada arti khusus untuk salah satu `temperature` atau `onTemperatureChange` nama prop dalam komponen khusus. Kita bisa memanggil mereka apapun, seperti memberi nama mereka `value` dan `onChange` yang merupakan konvensi umum.
 
-The `onTemperatureChange` prop will be provided together with the `temperature` prop by the parent `Calculator` component. It will handle the change by modifying its own local state, thus re-rendering both inputs with the new values. We will look at the new `Calculator` implementation very soon.
+`onTemperatureChange` prop akan diberikan bersama-sama dengan `temperature` prop oleh induk komponen `Calculator`. Ini akan menangani perubahan dengan memodifikasi state lokalnya sendiri, sehingga *render* ulang kedua input dengan nilai - nilai baru. Kami akan segera melihat implementasi `Calculator` yang baru.
 
-Before diving into the changes in the `Calculator`, let's recap our changes to the `TemperatureInput` component. We have removed the local state from it, and instead of reading `this.state.temperature`, we now read `this.props.temperature`. Instead of calling `this.setState()` when we want to make a change, we now call `this.props.onTemperatureChange()`, which will be provided by the `Calculator`:
+Sebelum menyelam ke perubahan di `Calculator`, mari kita rekap perubahan kita ke komponen `TemperatureInput`. Kami telah menghapus state lokal dari situ, dan alih-alih membaca `this.state.temperature`, kami sekarang membaca `this.props.temperature`. Alih-alih memanggil `this.setState()` saat kami ingin melakukan perubahan, kami sekarang memanggil `this.props.onTemperatureChange()`, yang akan disediakan oleh `Calculator`:
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -223,7 +223,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Masukan temperatur dalam {scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -232,11 +232,11 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-Now let's turn to the `Calculator` component.
+Sekarang mari kita beralih ke komponen `Calculator`.
 
-We will store the current input's `temperature` and `scale` in its local state. This is the state we "lifted up" from the inputs, and it will serve as the "source of truth" for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.
+Kami akan menyimpan input `temperature` saat ini dan `scale` dalam state lokal. Ini adalah kondisi yang kita "angkat" dari input, dan itu akan berfungsi sebagai "sumber kebenaran" untuk keduanya. Ini adalah representasi minimal dari semua data yang perlu kita ketahui untuk membuat kedua input.
 
-For example, if we enter 37 into the Celsius input, the state of the `Calculator` component will be:
+Misalnya, jika kita memasukkan 37 ke dalam input Celcius, state pada komponen `Calculator` akan menjadi:
 
 ```js
 {
@@ -245,7 +245,7 @@ For example, if we enter 37 into the Celsius input, the state of the `Calculator
 }
 ```
 
-If we later edit the Fahrenheit field to be 212, the state of the `Calculator` will be:
+Jika nanti kami mengubah bidang Fahrenheit menjadi 212, state pada `Calculator` akan menjadi:
 
 ```js
 {
@@ -254,9 +254,9 @@ If we later edit the Fahrenheit field to be 212, the state of the `Calculator` w
 }
 ```
 
-We could have stored the value of both inputs but it turns out to be unnecessary. It is enough to store the value of the most recently changed input, and the scale that it represents. We can then infer the value of the other input based on the current `temperature` and `scale` alone.
+Kami bisa menyimpan nilai dari kedua input tetapi tidak perlu. Cukup untuk menyimpan nilai input yang terakhir diubuah, dan skala yang diwakilinya. Kita kemudian dapat menyimpulkan nilai input lain berdasarkan arus `temperature` dan `scale` sendiri.
 
-The inputs stay in sync because their values are computed from the same state:
+Input tetap sinkron karena nilainya dihitung dari state yang sama:
 
 ```js{6,10,14,18-21,27-28,31-32,34}
 class Calculator extends React.Component {
@@ -299,32 +299,32 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
+Sekarang, tidak peduli yang input berubah, `this.state.temperature` dan `this.state.scale` dalam `Calculator` mendapatkan pembaruan. Salah satu input mendapatkan nilai apa adanya, sehingga setiap input pengguna dipertahankan, dan nilai input lainnya selalu dihitung ulang berdasarkan input.
 
-Let's recap what happens when you edit an input:
+Mari kita rekap apa yang terjadi ketika anda mengubah input:
 
-* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.
-* The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
-* When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
-* Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
-* React calls the `Calculator` component's `render` method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
-* React calls the `render` methods of the individual `TemperatureInput` components with their new props specified by the `Calculator`. It learns what their UI should look like.
-* React calls the `render` method of the `BoilingVerdict` component, passing the temperature in Celsius as its props.
-* React DOM updates the DOM with the boiling verdict and to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
+* React memanggil fungsi yang spesifik `onChange` pada DOM `<input>`. Dalam kasus kami, ini adalah metode `handleChange` dalam komponen `TemperatureInput`.
+* Metode `handleChange` dalam komponen `TemperatureInput` memanggil `this.props.onTemperatureChange()` dengan nilai baru. Itu merupakan `props`, termasuk `onTemperatureChange`, disediakan oleh komponen induknya, `Calculator`.
+* Ketika sebelumnya di render, `Calculator` telah ditentukan bahwa `onTemperatureChange` dari Celcius `TemperatureInput` adalah metode `Calculator`'s `handleCelsiusChange`, dan `onTemperatureChange` dari Fahrenheit `TemperatureInput` adalah metode `Calculator`'s `handleFahrenheitChange`. Jadi salah satu dari dua metode `Calculator` dipanggil tergantung pada input yang kami ubah.
+* Di dalam metode ini, komponen `Calculator` meminta React untuk mengulang render dengan memanggil `this.setState()` dengan nilai input baru dan skala input saat ini yang baru saja kita ubah.
+* React memanggil komponen `Calculator` metode `render` untuk mempelajari seperti apa tampilan UI. Nilai kedua input dihitung berdasarkan suhu saat ini dan skala aktif. Konversi suhu dilakukan di sini.
+* React memanggil metode `render` pada komponen individu `TemperatureInput` dengan props baru yang ditentukan oleh `Calculator`. Ia mempelajari seperti apa tampilan UI mereka.
+* React memanggil metode `render` pada komponen `BoilingVerdict`, melewati suhu dalam Celcius sebagai props.
+* React DOM memperbarui dengan vonis didih dan untuk mencocokan nilai input yang diinginkan. Input yang baru saja kami ubah menerima nilainya saat ini, dan input lainnya diperbarui kesuhu setelah konversi.
 
-Every update goes through the same steps so the inputs stay in sync.
+Setiap pembaruan melewati langkah yang sama sehinhha input tetap sinkron.
 
-## Lessons Learned {#lessons-learned}
+## Pelajaran yang Dipetik {#lessons-learned}
 
-There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the [top-down data flow](/docs/state-and-lifecycle.html#the-data-flows-down).
+Seharusnya ada "sumber kebenaran" tunggal untuk setiap data yang berubah dalam aplikasi React. Biasanya, state ditambahkan pertama kali ke komponen yang membutuhkannya untuk *rendering*. Kemudian, jika komponen lain juga membutuhkannya, anda dapat mengangkat ke modul utama terdekat. Alih-alih mencoba menyinkronkan keadaan antara komponen yang berbeda, anda harus mengandalkan [aliran data dari atas kebawah](/docs/state-and-lifecycle.html#the-data-flows-down).
 
-Lifting state involves writing more "boilerplate" code than two-way binding approaches, but as a benefit, it takes less work to find and isolate bugs. Since any state "lives" in some component and that component alone can change it, the surface area for bugs is greatly reduced. Additionally, you can implement any custom logic to reject or transform user input.
+Pengangkatan `state` melibatkan penulisan lebih banyak kode "*boilerplate*" daripada pendekatan pengikatan dua arah, tetapi sebagai manfaat, dibutuhkan lebih sedikit pekerjaan untuk menemukan dan mengisolasi bug. Karena keadaan apa pun "hidup" di beberapa komponen dan komponen itu sendiri dapat mengubahnya, area permukaan untuk bug sangat berkurang. Selain itu, anda dapat menerapkan logika khusus apa pun untuk menolak atau mengubah input pengguna.
 
-If something can be derived from either props or state, it probably shouldn't be in the state. For example, instead of storing both `celsiusValue` and `fahrenheitValue`, we store just the last edited `temperature` and its `scale`. The value of the other input can always be calculated from them in the `render()` method. This lets us clear or apply rounding to the other field without losing any precision in the user input.
+Jika sesuatu dapat diturunkan dari `props` atau `state`, itu mungkin tidak boleh di `state`. Sebagai contoh, alih-alih menyimpan keduanya `celsiusValue` dan `fahrenheitValue`, kami menyimpan hanya yang terakhir diubah `temperature` dan itu `scale`. Nilai input lain selalu dapat dihitung dari mereka dalam metode `render()`. Ini memungkinkan kami menghapus atau menerapkan pembulatan ke bidang lain tanpa kehilangan ketepatan dalam input pengguna.
 
-When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+Ketika anda melihat sesuatu yang salah di UI, anda dapat menggunakan [Alat Pengembang React](https://github.com/facebook/react-devtools) untuk memeriksa props dan geser *tree* sampai anda menemukan komponen yang bertanggung jawab untuk memperbarui state. Ini memungkinkan anda melacak bug ke sumbernya:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 
