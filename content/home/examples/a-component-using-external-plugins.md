@@ -4,4 +4,4 @@ order: 3
 domid: markdown-example
 ---
 
-React cukup fleksibel dan menyediakan *hooks* yang mempermudah Anda untuk berinteraksi dengan *library* dan *framework* lain. Contoh ini menggunakan **remarkable**, sebuah *library* Markdown eksternal, untuk mengkonversi nilai dari `<textarea>` secara *real-time*.
+React memungkinkan Anda untuk berinteraksi dengan *library* dan *framework* lain. Contoh ini menggunakan **remarkable**, sebuah *library* Markdown eksternal, untuk mengkonversi nilai dari `<textarea>` secara *real-time*.
