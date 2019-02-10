@@ -51,15 +51,16 @@ The documentation is divided into several sections with a different tone and pur
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fixed header logo on Android`) to stage and commit your changes
 1. `git push my-fork-name the-name-of-my-branch`
-1. Go to the [reactjs.org repo](https://github.com/reactjs/reactjs.org) and you should see recently pushed branches.
+1. Go to the [id.reactjs.org repo](https://github.com/reactjs/id.reactjs.org) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
 
 ## Translation
 
-If you are interesting in translating `reactjs.org`, please join the Crowdin.
+If you are interesting in translating `reactjs.org`, please see the current translation efforts at [isreactreadyyet.com](https://www.isreactreadyyet.com).
 
-* [Crowdin - React](https://crowdin.com/project/react)
+
+If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 
 ## Troubleshooting
 
