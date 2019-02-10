@@ -82,7 +82,7 @@ npx create-react-app my-app
 
 3. Hapus semua file pada folder `src/` dari *project* baru Anda.
 
-> Catatan: **jangan hapus folder `src`, hanya *file-file* yang ada di dalamnya.** Kita akan menggantikan *file-file* tersebut dengan contoh-contoh yang akan diberikan melalui tutorial ini.
+> Catatan: **jangan hapus seluruh folder `src`, cukup *file-file* yang ada di dalamnya saja.** Kita akan menggantikan *file-file* tersebut dengan contoh-contoh yang akan diberikan melalui tutorial ini.
 
 ```bash
 cd my-app
