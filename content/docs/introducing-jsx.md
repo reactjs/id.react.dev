@@ -103,7 +103,7 @@ const element = <img src={user.avatarUrl}></img>;
 
 Jangan letakan tanda kutip di sekitar kurung kurawal saat menyematkan ekspresi JavaScript di dalam atribut. Anda bisa menggunakan tanda kutip (untuk nilai string) atau kurung kurawal (untuk ekspresi), tetapi jangan menggunakan keduanya dalam atribut yang sama.
 
->**Peringantan:**
+>**Peringatan:**
 >
 >Karena JSX lebih dekat ke JavaScript daripada ke HTML, React DOM menggunakan `camelCase` sebagai konvensi penamaan alih-alih menggunakan konvensi penamaan atribut HTML.
 >
