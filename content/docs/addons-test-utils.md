@@ -1,27 +1,27 @@
 ---
 id: test-utils
-title: Test Utilities
+title: Utilitas Tes
 permalink: docs/test-utils.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Pengimporan**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
-var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
+var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 ```
 
-## Overview {#overview}
+## Ikhtisar {#ikhtisar}
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
+`ReactTestUtils` mempermudah kita melakukan tes pada komponen React dengan _framework_ tes pilihan Anda. Di Facebook kami menggunakan [Jest](https://facebook.github.io/jest/) untuk tes javascript yang tidak merepotkan. Belajar cara mulai menggunakan Jest melalui _website_ Jest [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
 
-> Note:
+> Catatan:
 >
-> We recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to enable and encourage writing tests that use your components as the end users do.
+> Kami menyarankan Anda untuk menggunakan [`react-testing-library`](https://git.io/react-testing-library) yang didesain untuk memungkinkan dan mendorong penulisan tes yang menggunakan komponen seperti pengguna.
 >
-> Alternatively, Airbnb has released a testing utility called [Enzyme](http://airbnb.io/enzyme/), which makes it easy to assert, manipulate, and traverse your React Components' output.
+> Pilihan lain, Airbnb telah merilis utilitas tes bernama [Enzyme](http://airbnb.io/enzyme/), yang mempermudah kita dalam menyatakan, memanipulasi, dan melewati keluaran dari komponen React Anda.
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -40,17 +40,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## Reference {#reference}
+## Referensi {#referensi}
 
 ### `act()` {#act}
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
+Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang melakukan _rendering_ komponen tersebut dan lakukan pembaruan di dalam panggilan `act()`. Hal ini membuat tes Anda berjalan menyerupai bagaimana React bekerja di _browser_.
 
->Note
+>Catatan
 >
->If you use `react-test-renderer`, it also provides an `act` export that behaves the same way.
+>Jika Anda menggunakan `react-test-renderer`, `react-test-renderer` juga menyediakan sebuah `act` ekspor yang sama.
 
-For example, let's say we have this `Counter` component:
+Sebagai contoh, katakanlah kita punya `Counter` komponen:
 
 ```js
 class App extends React.Component {
@@ -83,7 +83,7 @@ class App extends React.Component {
 }
 ```
 
-Here is how we can test it:
+Ini adalah contoh bagaimana kita bisa tes komponen ini:
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
+Jangan lupa dalam mengirim perihal DOM hanya dapat dilakukan ketika penampung DOM sudah ditambahkan ke `document`. Anda dapat menggunakan penunjang seperti [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) untuk mengurangi kode _boilerplate_.
 
 * * *
 
@@ -135,11 +135,11 @@ mockComponent(
 )
 ```
 
-Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ berguna yang memperbolehkan komponen tersebut untuk digunakan sebagai komponen React tiruan. Sebagai ganti dari _rendering_ seperti biasa, komponen tiruan ini akan menjadi `<div>` simpel (atau tag lain jika `mockTagName` disediakan) yang menampung anak komponen yang disediakan.
 
-> Note:
+> Catatan:
 >
-> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/test-utils.html#shallow-rendering) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [shallow rendering](/docs/test-utils.html#shallow-rendering) atau [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 
@@ -149,7 +149,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 isElement(element)
 ```
 
-Returns `true` if `element` is any React element.
+Mengembalikan `true` jika `element` adalah sebuah React elemen.
 
 * * *
 
@@ -162,7 +162,7 @@ isElementOfType(
 )
 ```
 
-Returns `true` if `element` is a React element whose type is of a React `componentClass`.
+Mengembalikan `true` jika `element` adalah sebuah React elemen yang memiliki tipe dari React `componentClass`.
 
 * * *
 
@@ -172,7 +172,7 @@ Returns `true` if `element` is a React element whose type is of a React `compone
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
+Mengembalikan `true` jika `instance` adalah sebuah komponen DOM (seperti sebuah `<div>` atau `<span>`).
 
 * * *
 
@@ -182,7 +182,7 @@ Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
 isCompositeComponent(instance)
 ```
 
-Returns `true` if `instance` is a user-defined component, such as a class or a function.
+Mengembalikan `true` jika `instance` adalah sebuah komponen yang ditetapkan oleh pengguna, seperti sebuah kelas atau sebuah fungsi.
 
 * * *
 
@@ -195,7 +195,7 @@ isCompositeComponentWithType(
 )
 ```
 
-Returns `true` if `instance` is a component whose type is of a React `componentClass`.
+Mengembalikan `true` jika `instance` adalah sebuah komponen yang memiliki tipe dari React `componentClass`.
 
 * * *
 
@@ -208,7 +208,7 @@ findAllInRenderedTree(
 )
 ```
 
-Traverse all components in `tree` and accumulate all components where `test(component)` is `true`. This is not that useful on its own, but it's used as a primitive for other test utils.
+Melewati semua komponen dalam `tree` dan mengumpulkan semua komponen yang `test(component)` adalah `true`. Ini tidak begitu bermanfaat dengan dirinya sendiri, tetapi digunakan sebagai primitif untuk alat uji lainnya.
 
 * * *
 
@@ -221,7 +221,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the class name matching `className`.
+Mencari semua DOM elemen dalam _rendered tree_ yang merupakan komponen DOM yang memiliki nama kelas sama dengan `className`.
 
 * * *
 
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+Seperti [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
 
 * * *
 
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the tag name matching `tagName`.
+Mencari semua DOM elemen dalam _rendered tree_ yang merupakan komponen DOM dengan nama label yang sama dengan `tagName`.
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+Seperti [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
 
 * * *
 
@@ -273,7 +273,7 @@ scryRenderedComponentsWithType(
 )
 ```
 
-Finds all instances of components with type equal to `componentClass`.
+Mencari semua instansi dari komponen dengan tipe yang sama dengan `componentClass`.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
+Sama seperti [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
 
 ***
 
@@ -296,16 +296,16 @@ Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) bu
 renderIntoDocument(element)
 ```
 
-Render a React element into a detached DOM node in the document. **This function requires a DOM.** It is effectively equivalent to:
+Menggambar sebuah elemen React ke dalam sebuah DOM _node_ terpisah dalam _document_. **Fungsi ini membutuhkan sebuah DOM.** Secara efektif hal ini sama dengan:
 
 ```js
 const domContainer = document.createElement('div');
 ReactDOM.render(element, domContainer);
 ```
 
-> Note:
+> Catatan:
 >
-> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+> Anda harus memiliki `window`, `window.document` dan `window.document.createElement` tersedia secara global **sebelum** Anda import `React`. Jika tidak React akan berpikir tidak dapat mengakses DOM dan _method-method_ seperti `setState` tidak akan bekerja.
 
 * * *
 
@@ -320,11 +320,11 @@ Simulate.{eventName}(
 )
 ```
 
-Simulate an event dispatch on a DOM node with optional `eventData` event data.
+Mensimulasikan pengiriman sebuah perihal pada suatu DOM _node_ dengan pilihan `eventData` _event_ data.
 
-`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+`Simulate` memiliki sebuah _method_ untuk [every event that React understands](/docs/events.html#supported-events).
 
-**Clicking an element**
+**Mengklik sebuah elemen**
 
 ```javascript
 // <button ref={(node) => this.button = node}>...</button>
@@ -332,7 +332,7 @@ const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
-**Changing the value of an input field and then pressing ENTER.**
+**Mengubah nilai dari sebuah bidang masukan lalu menekan ENTER.**
 
 ```javascript
 // <input ref={(node) => this.textInput = node} />
@@ -342,8 +342,8 @@ ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 ```
 
-> Note
+> Catatan
 >
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+> Anda harus menyediakan _event_ properti yang Anda gunakan dalam komponen (contoh keyCode, which, dll...) karena React tidak membuat _event_ tersebut untuk Anda.
 
 * * *
