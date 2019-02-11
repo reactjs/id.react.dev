@@ -17,7 +17,7 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
 
 Ketika menulis _unit tests_ untuk React, _shallow rendering_ akan sangat membantu Anda. _Shallow rendering_ memungkinkan Anda untuk melakukan _render_ suatu komponen “sedalam satu level” dan melakukan pengujian dari hasil kembalian _render method_ komponen tersebut. Hasil _render method_ tidak akan memperdulikan sifat (_behavior_) dari komponen-komponen yang ada di dalamnya, karena komponen-komponen tersebut tidak ter-_render_. Proses ini tidak memerlukan DOM.
 
-Sebagai contoh, jika Anda memiliki komponen seperti berikut::
+Sebagai contoh, jika Anda memiliki komponen seperti berikut:
 
 ```javascript
 function MyComponent() {
