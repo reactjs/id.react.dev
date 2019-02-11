@@ -10,13 +10,13 @@ next: thinking-in-react.html
 
 React memiliki model/gaya komposisi yang cukup *powerful*, dan kami merekomendasikan penggunaan komposisi dibandingkan pewarisan (*inheritance*) untuk menggunakan kembali kode antar komponen.
 
-Pada bagian ini, kita akan melihat beberapa kasus di mana para pengembang yang baru mengenal React sering kali akan mencoba menerapkan pewarisan, dan menunjukkan bagaimana kita dapat menyelesaikan kasus-kasus tersebut dengan komposisi.
+Pada bagian ini, kita akan melihat beberapa kasus di mana para pengembang yang baru mengenal React sering kali akan mencoba menerapkan pewarisan, dan kami akan menunjukkan bagaimana kita dapat menyelesaikan kasus-kasus tersebut dengan komposisi.
 
 ## Kontainmen {#containment}
 
-Beberapa komponen tidak serta-merta mengetahui komponen anak mereka (*children*) ketika mereka didefinisikan. Kasus ini sering kali terjadi untuk komponen seperti `Sidebar` atau `Dialog` yang merepresentasikan komponen "kotak" biasa.
+Beberapa komponen tidak serta-merta mengetahui komponen anak mereka (*children*) ketika mereka didefinisikan. Kasus ini umum terjadi khususnya untuk komponen seperti `Sidebar` atau `Dialog` yang merepresentasikan komponen "kotak" biasa.
 
-Kami merekomendasikan komponen-komponen seperti ini untuk menggunakan *prop* spesial bernama `children` untuk menambahkan elemen-elemen anak secara langsung di keluaran mereka:
+Kami merekomendasikan komponen-komponen seperti ini untuk menggunakan *props* spesial bernama `children` untuk menambahkan elemen-elemen anak secara langsung di keluaran mereka:
 
 ```js{4}
 function FancyBorder(props) {
@@ -35,10 +35,10 @@ function WelcomeDialog() {
   return (
     <FancyBorder color="blue">
       <h1 className="Dialog-title">
-        Welcome
+        Selamat Datang
       </h1>
       <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
+        Terima kasih telah mengunjungi pesawat luar angkasa kami!
       </p>
     </FancyBorder>
   );
@@ -47,7 +47,7 @@ function WelcomeDialog() {
 
 **[Coba di CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-Apapun yang berada di dalam tag JSX `<FancyBorder>` akan dioper ke komponen `FancyBorder` sebagai *prop* `children`. Karena `FancyBorder` me-*render* `{props.children}` di dalam sebuah `<div>`, elemen yang dioper tersebut akan muncul di hasil keluaran akhirnya.
+Apapun yang berada di dalam tag JSX `<FancyBorder>` akan dioper ke komponen `FancyBorder` sebagai *props* `children`. Karena `FancyBorder` me-*render* `{props.children}` di dalam sebuah `<div>`, elemen yang dioper tersebut akan muncul di hasil keluaran akhirnya.
 
 Walaupun kasus seperti ini jarang terjadi, terkadang Anda mungkin membutuhkan beberapa "lubang" di dalam sebuah komponen. Dalam kasus seperti ini Anda dapat menggunakan konvensi anda sendiri alih-alih menggunakan `children`:
 
@@ -80,13 +80,13 @@ function App() {
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-Elemen-elemen React seperti `<Contacts />` dan `<Chat />` sebenarnya hanya objek biasa, oleh karenanya Anda dapat mengoper mereka sebagai *prop* selayaknya data lain. Pendekatan ini mungkin mengingatkan Anda dengan "slot" di *library* lain namun tidak ada batasan apapun mengenai apa yang dapat Anda oper sebagai *prop* di React.
+Elemen-elemen React seperti `<Contacts />` dan `<Chat />` sebenarnya hanya objek biasa, oleh karenanya Anda dapat mengoper mereka sebagai *props* selayaknya data lain. Pendekatan ini mungkin mengingatkan Anda dengan "slot" di *library* lain namun tidak ada batasan apapun mengenai apa yang dapat Anda oper sebagai *props* di React.
 
 ## Spesialisasi {#specialization}
 
-Terkadang kita menganggap komponen sebagai "kasus spesial" dari komponen lainnya. Sebagai contoh, kita dapat menganggap sebuah komponen `WelcomeDialog` sebagai kasus spesial dari `Dialog`.
+Terkadang kita menganggap beberapa komponen sebagai "kasus spesial" dari komponen lainnya. Sebagai contoh, kita dapat menganggap sebuah komponen `WelcomeDialog` sebagai kasus spesial dari `Dialog`.
 
-Di React, kasus seperti ini juga dapat diselesaikan dengan komposisi, di mana sebuah komponen yang lebih "spesifik" me-*render* sebuah komponen yang lebih "umum" dan mengkonfigurasinya menggunakan *prop*:
+Di React, kasus seperti ini juga dapat diselesaikan dengan komposisi, di mana sebuah komponen yang lebih "spesifik" me-*render* sebuah komponen yang lebih "umum" dan mengkonfigurasinya menggunakan *props*:
 
 ```js{5,8,16-18}
 function Dialog(props) {
@@ -105,8 +105,8 @@ function Dialog(props) {
 function WelcomeDialog() {
   return (
     <Dialog
-      title="Welcome"
-      message="Thank you for visiting our spacecraft!" />
+      title="Selamat Datang"
+      message="Terima kasih telah mengunjungi pesawat luar angkasa kami!" />
   );
 }
 ```
@@ -140,12 +140,12 @@ class SignUpDialog extends React.Component {
 
   render() {
     return (
-      <Dialog title="Mars Exploration Program"
-              message="How should we refer to you?">
+      <Dialog title="Program Eksplorasi Mars"
+              message="Bagaimana kami memanggil anda?">
         <input value={this.state.login}
                onChange={this.handleChange} />
         <button onClick={this.handleSignUp}>
-          Sign Me Up!
+          Daftarkan Saya!
         </button>
       </Dialog>
     );
@@ -156,7 +156,7 @@ class SignUpDialog extends React.Component {
   }
 
   handleSignUp() {
-    alert(`Welcome aboard, ${this.state.login}!`);
+    alert(`Selamat Datang, ${this.state.login}!`);
   }
 }
 ```
@@ -165,8 +165,8 @@ class SignUpDialog extends React.Component {
 
 ## Lalu Bagaimana Dengan Pewarisan? {#so-what-about-inheritance}
 
-Di Facebook, kami telah menggunakan React untuk ribuan komponen, dan kami belum menemukan satupun kasus di mana kami merekomendasikan pembuatan komponen secara pewarisan.
+Di Facebook, kami telah menggunakan React untuk ribuan komponen, dan kami belum menemukan satu pun kasus di mana kami merekomendasikan pembuatan komponen secara pewarisan.
 
-*Prop* dan komposisi memberikan Anda semua fleksibilitas yang Anda butuhkan untuk mengkustomisasi tampilan dan perilaku sebuah komponen secara eksplisit dan aman. Perlu diingat bahwa komponen dapat menerima *prop* apapun, termasuk nilai-nilai primitif, elemen React, atau fungsi.
+*props* dan komposisi memberikan Anda semua fleksibilitas yang Anda butuhkan untuk mengkustomisasi tampilan dan perilaku sebuah komponen secara eksplisit dan aman. Perlu diingat bahwa komponen dapat menerima *props* apapun, termasuk nilai-nilai primitif, elemen React, atau fungsi.
 
 Jika Anda berniat untuk menggunakan kembali fungsionalitas yang bersifat non-antarmuka pengguna, kami menyarankan agar Anda mengekstraknya ke dalam sebuah modul JavaScript terpisah. Komponen kemudian dapat mengimpornya untuk menggunakan fungsi, objek, atau kelas tersebut, tanpa perlu mewarisinya.
