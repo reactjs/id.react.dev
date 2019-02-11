@@ -10,7 +10,7 @@ Jika Anda memuat React dari sebuah `<script>` *tag*, API-API tingkat atas ini te
 
 ## Ikhtisar {#overview}
 
-Paket `react-dom` menyediakan metode-methode spesifik DOM yang dapat digunakan di tingkat atas aplikasi Anda, juga sebagai jalan untuk keluar dari React *model* jika diperlukan. Pada umumnya komponen-komponen Anda tidak memerlukan modul ini.
+Paket `react-dom` menyediakan metode-metode spesifik DOM yang dapat digunakan di tingkat atas aplikasi Anda, juga sebagai jalan untuk keluar dari React *model* jika diperlukan. Pada umumnya komponen-komponen Anda tidak memerlukan modul ini.
 
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
@@ -20,7 +20,7 @@ Paket `react-dom` menyediakan metode-methode spesifik DOM yang dapat digunakan d
 
 ### Dukungan Browser {#browser-support}
 
-React mendukung semua browser populer, termasuk Internet Explorer 9 dan setelahnya, meskipun [memerlukan beberapa polyfills](/docs/javascript-environment-requirements.html) untuk browser-browser kuno seperti IE 9 dan IE 10.
+React mendukung semua browser populer, termasuk Internet Explorer 9 dan setelahnya, meskipun [memerlukan beberapa *polyfills*](/docs/javascript-environment-requirements.html) untuk browser-browser kuno seperti IE 9 dan IE 10.
 
 > Catatan
 >
@@ -36,7 +36,7 @@ React mendukung semua browser populer, termasuk Internet Explorer 9 dan setelahn
 ReactDOM.render(element, container[, callback])
 ```
 
-Me-*render* sebuah elemen React ke dalam DOM di dalam `container` yang diberikan dan memulangkan sebuah [referensi](/docs/more-about-refs.html) kepada komponen (atau memulangkan `null` untuk [stateless components](/docs/components-and-props.html#functional-and-class-components)).
+Me-*render* sebuah elemen React ke dalam DOM di dalam `container` yang diberikan dan mengembalikan sebuah [referensi](/docs/more-about-refs.html) kepada komponen (atau memulangkan `null` untuk [stateless components](/docs/components-and-props.html#functional-and-class-components)).
 
 Jika elemen React tersebut sebelumnya di-*render* ke dalam `container`, ini akan memperbaruinya dan hanya mengubah DOM seperlunya untuk memperlihatkan elemen React terbaru.
 
@@ -44,11 +44,11 @@ Jika *callback* fakultatif diberikan, *callback* ini akan dijalankan setelah kom
 
 > Catatan:
 >
-> `ReactDOM.render()` mengendalikan isi dari *container node* yang Anda berikan. Semua elemen-elemen DOM yang ada di dalam diganti pada saat dipanggil pertama kali. Panggilan-panggilan berikutnya menggunakan algoritma perbedaan DOM untuk pembaruan yang efisien.
+> `ReactDOM.render()` mengendalikan isi dari *container node* yang Anda berikan. Semua elemen-elemen DOM yang ada di dalam diganti pada saat dipanggil pertama kali. Panggilan-panggilan berikutnya menggunakan algoritma pembeda DOM dari React untuk pembaruan yang efisien.
 >
-> `ReactDOM.render()` tidak memodifikasi *container node* (hanya memodifikasi anak-anak dari *container*). Adalah mungkin untuk memasukkan sebuah komponen ke dalam sebuah *DOM node* yang ada tanpa menimpa anak-anaknya.
+> `ReactDOM.render()` tidak memodifikasi *container node* (hanya memodifikasi anak-anak dari *container*). Hal tersebut memungkinkan kita untuk memasukkan sebuah komponen ke dalam sebuah *DOM node* yang ada tanpa menimpa anak-anaknya.
 >
-> `ReactDOM.render()` pada saat ini memulangkan sebuah referensi ke *root* `ReactComponent` *instance*. Tetapi, menggunakan hasil fungsi ini adalah kuno
+> `ReactDOM.render()` pada saat ini mengembalikan sebuah referensi ke *root* `ReactComponent` *instance*. Tetapi, menggunakan hasil fungsi ini adalah kuno
 > dan harus dihindari karena React versi-versi berikutnya mungkin akan me-*render* komponen-komponen secara *asynchronous* dalam beberapa situasi tertentu. Jika Anda memerlukan referensi ke *root* `ReactComponent` *instance*, solusi yang disarankan adalah dengan melampirkan sebuah
 > [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) ke elemen dasar.
 >
@@ -95,7 +95,7 @@ ReactDOM.findDOMNode(component)
 ```
 Jika komponen ini telah dipasang ke dalam DOM, memulangkan elemen DOM asli browser yang terkait. Metode ini berguna untuk membaca nilai keluar dari DOM, seperti nilai-nilai form field dan melakukan pengukuran DOM. **Pada umumnya, Anda dapat melampirkan sebuah referensi ke *DOM node* dan menghindari penggunaan `findDOMNode` sepenuhnya.**
 
-Ketika sebuah komponen me-render menjadi `null` atau `false`, `findDOMNode` memulangkan `null`. Ketika sebuah komponen me-*render* menjadi sebuah teks, `findDOMNode` memulangkan sebuah *DOM node* teks dengan nilai tersebut sebagai isi. Dimulai dari React 16, sebuah komponen dapat memulangkan sebuah fragmen dengan banyak anak, dimana `findDOMNode` akan memulangkan *DOM node* yang sesuai dengan anak pertama yang tidak kosong.
+Ketika sebuah komponen me-*render* menjadi `null` atau `false`, `findDOMNode` memulangkan `null`. Ketika sebuah komponen me-*render* menjadi sebuah teks, `findDOMNode` memulangkan sebuah *DOM node* teks dengan nilai tersebut sebagai isi. Dimulai dari React 16, sebuah komponen dapat memulangkan sebuah fragmen dengan banyak anak, dimana `findDOMNode` akan memulangkan *DOM node* yang sesuai dengan anak pertama yang tidak kosong.
 
 > Catatan:
 >
