@@ -1,15 +1,15 @@
 ---
 id: lists-and-keys
-title: Lists dan Key
+title: Lists dan Keys
 permalink: docs/lists-and-keys.html
 prev: conditional-rendering.html
 next: forms.html
 ---
 
-Pertama-tama, mari kita tinjau kembali bagaimana anda dapat mentransformasi list di JavaScript.
+Pertama-tama, mari kita tinjau kembali bagaimana anda dapat mentransformasi *list* di JavaScript.
 
 Jika melihat kode di bawah, kita menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk mengambil array `numbers` dan menggandakan nilainya.
-Kita akan menaruh array baru yang dikembalikan oleh `map()` ke dalam sebuah variabel `doubled` dan me-log-nya:
+Kita akan menaruh array baru yang dikembalikan oleh `map()` ke dalam sebuah variabel `doubled` dan me-*log*-nya:
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
@@ -17,13 +17,14 @@ const doubled = numbers.map((number) => number * 2);
 console.log(doubled);
 ```
 
-Kode ini akan me-log `[2,4,6,8,10]` ke dalam console.
+Kode ini akan me-*log* `[2,4,6,8,10]` ke dalam konsol.
 
-In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical.
+<!-- In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical. -->
+Di React, mengubah array ke dalam *list* [elemen](/docs/rendering-elements.html) kurang lebih sama.
 
-### Me-render Banyak Komponen {#rendering-multiple-components}
+### Me-*render* Banyak Komponen {#rendering-multiple-components}
 
-Anda dapat membangun koleksi beberapa elemen dan [menyertakannya dalam JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) menggunakan tanda kurung kurawal `{}`.
+Anda dapat membangun koleksi dari beberapa elemen dan [menyertakannya dalam JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) menggunakan tanda kurung kurawal `{}`.
 
 Di bawah ini, kita loop melalui array `numbers` menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) JavaScript.
 Kita akan mengembalikan elemen `<li>` untuk setiap item.
@@ -36,7 +37,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-Kita akan menyertakan seluruh array `listItems` ke dalam elemen `<ul>`, dan [me-render-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+Kita akan menyertakan seluruh array `listItems` ke dalam elemen `<ul>`, dan [me-*render*-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
 ReactDOM.render(
@@ -47,13 +48,13 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
 
-Kode ini akan menampilkan sebuah list bullet dari angka 1 sampai 5
+Kode ini akan menampilkan sebuah *list* bullet dari angka 1 sampai 5
 
-### List Komponen Dasar {#basic-list-component}
+### *List* Komponen Dasar {#basic-list-component}
 
-Biasanya anda akan me-render list di dalam sebuah [component](/docs/components-and-props.html).
+Biasanya anda akan me-*render* *list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
-Kita bisa merefaktor contoh sebelumnya kedalam sebuah komponen yang menerima array `numbers` dan mengeluarkan sebuah list elemen yang tidak berurutan 
+Kita bisa merefaktor contoh sebelumnya kedalam sebuah komponen yang menerima array `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan 
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -73,9 +74,9 @@ ReactDOM.render(
 );
 ```
 
-Ketika anda menjalankan code ini, anda akan mendapatkan peringatan bahwa key harus disediakan untuk item di dalam list. Sebuah "key" adalah atribut string spesial yang perlu anda sertakan dalam pembuatan list elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya
+Ketika anda menjalankan code ini, anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk item di dalam *list*. Sebuah "*key*" adalah atribut string spesial yang perlu anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya
 
-Mari kita sertakan `key` ke dalam list item kita pada `numbers.map()` dan memperbaiki masalah key yang hilang.
+Mari kita sertakan `*key*` ke dalam *list* item kita pada `numbers.map()` dan memperbaiki masalah *key* yang hilang.
 
 ```javascript{4}
 function NumberList(props) {
@@ -99,9 +100,9 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Keys {#keys}
+## *Key* {#keys}
 
-Key membantu React untuk mengidentifikasi item mana yang telah diubah, ditambahkan, atau dihilangkan. Key harus diberikan di dalam elemen yang terdapat di dalam sebuah array untuk memberikan elemen tersebut identitas yang stabil:
+*Key* membantu React untuk mengidentifikasi item mana yang telah diubah, ditambahkan, atau dihilangkan. *Key* harus diberikan di dalam elemen yang terdapat di dalam sebuah array untuk memberikan elemen tersebut identitas yang stabil:
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
@@ -112,7 +113,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-Cara terbaik untuk menentukan key yang akan digunakan adalah menggunakan string unik untuk mengidentifikasikan item dalam sebuah list dari item-item lain yang menjadi saudaranya. Seringkali anda akan menggunakan ID dari data anda sebagai key:
+Cara terbaik untuk menentukan *key* yang akan digunakan adalah menggunakan string unik untuk mengidentifikasikan item dalam sebuah *list* dari item-item lain yang menjadi saudaranya. Seringkali anda akan menggunakan ID dari data anda sebagai *key*:
 
 ```js{2}
 const todoItems = todos.map((todo) =>
@@ -122,7 +123,7 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-Ketika anda tidak memiliki ID yang stabil untuk me-render item, anda bisa menggunakan index dari item sebagai key sebagai key untuk pilihan terakhir:
+Ketika anda tidak memiliki ID yang stabil untuk me-*render* item, anda bisa menggunakan index dari item sebagai *key* sebagai *key* untuk pilihan terakhir:
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
@@ -134,24 +135,23 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Kami tidak merekomendasikan menggunakan indeks untuk key jika urutan item nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan state komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan index sebagai key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan key pada list item maka React secara bawaan akan menggunakan indeks sebagai key.
+Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan item nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan state komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan index sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list* item maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
-Berikut adalah [penjelasan lebih dalam tentang kenapa key sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika anda tertarik untuk belajar lebih lanjut.
+Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika anda tertarik untuk belajar lebih lanjut.
 
-### Mengextrak Komponen dengan Key {#extracting-components-with-keys}
+### Mengekstrak Komponen dengan *Key* {#extracting-components-with-keys}
 
-Key hanya akan di gunakan di konteks array yang mengurung item dengan key tersebut
+*Key* hanya akan di gunakan di konteks array yang mengurung item dengan *key* tersebut
 
-Sebagai contoh, jika anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan key pada elemen `<ListItem />` di dalam array daripada di elemen `<li>` yang ada pada `ListItem`. 
+Sebagai contoh, jika anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan *key* pada elemen `<ListItem />` di dalam array daripada di elemen `<li>` yang ada pada `ListItem`. 
 
-**Contoh: Penggunaan Key yang Salah**
+**Contoh: Penggunaan *Key* yang Salah**
 
 ```javascript{4,5,14,15}
 function ListItem(props) {
   const value = props.value;
   return (
-    // Wrong! There is no need to specify the key here:
-    // Salah! Tidak diperlukan untuk menentukan key disini:
+    // Salah! Tidak diperlukan untuk menentukan *key* disini:
     <li key={value.toString()}>
       {value}
     </li>
@@ -161,8 +161,7 @@ function ListItem(props) {
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    // Wrong! The key should have been specified here:
-    // Salah! Key seharusnya ditentukan disini:
+    // Salah! *Key* seharusnya ditentukan disini:
     <ListItem value={number} />
   );
   return (
@@ -179,20 +178,18 @@ ReactDOM.render(
 );
 ```
 
-**Contoh: Penggunaan Key yang Benar**
+**Contoh: Penggunaan *Key* yang Benar**
 
 ```javascript{2,3,9,10}
 function ListItem(props) {
-  // Correct! There is no need to specify the key here:
-  // Betul! Karena tidak perlu menentukan key disini:
+  // Betul! Karena tidak perlu menentukan *key* disini:
   return <li>{props.value}</li>;
 }
 
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    // Correct! Key should be specified inside the array.
-    // Betul! Key harus ditentukan di dalam array
+    // Betul! *Key* harus ditentukan di dalam array
     <ListItem key={number.toString()}
               value={number} />
   );
@@ -212,12 +209,12 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
-Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan membutuhkan key.
+Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan membutuhkan *key*.
 
-### Key Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
+### *Key* Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
 
 
-Key digunakan didalam array harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan key yang sama ketika kita menghasilkan dua array yang berbeda:
+Key digunakan didalam array harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan *key* yang sama ketika kita menghasilkan dua array yang berbeda:
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -257,7 +254,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-Key berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen anda. Jika anda membutuhkan nilai yang sama di dalam komponen anda, oper secara eksplisit sebagai sebuah prop dengan nama yang berbeda:
+*Key* berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen anda. Jika anda membutuhkan nilai yang sama di dalam komponen anda, oper secara eksplisit sebagai sebuah prop dengan nama yang berbeda:
 
 ```js{3,4}
 const content = posts.map((post) =>
