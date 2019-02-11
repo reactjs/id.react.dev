@@ -141,7 +141,7 @@ class LoggingButton extends React.Component {
 
 Masalah pada sintaks tersebut adalah callback yang berbeda dibuat setiap kali `LoggingButton` di-*render*. Dalam banyak kasus, hal ini tidak masalah. Akan tetapi, jika callback tersebut mengoperkan sebagai props kepada komponen yang lebih rendah, maka komponen tersebut mungkin akan melakukan ekstra *render* ulang. Kita umumnya merekomendasikan *binding* dilakukan pada *constructor* atau menggunakan sintaks *class fields*, untuk menghindari masalah kinerja seperti ini.
 
-## Mengoper Argumen kedalam Penanganan Event {#passing-arguments-to-event-handlers}
+## Mengoper Argumen Kedalam Penanganan Event {#passing-arguments-to-event-handlers}
 
 Di dalam perulangan biasanya ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan baris ID, maka salah satu dari kedua dapat dijalankan.
 
