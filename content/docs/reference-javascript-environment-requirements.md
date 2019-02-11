@@ -1,6 +1,6 @@
 ---
 id: javascript-environment-requirements
-title: Kebutuhan Minimum JavaScript
+title: Kebutuhan Lingkungan JavaScript
 layout: docs
 category: Reference
 permalink: docs/javascript-environment-requirements.html
