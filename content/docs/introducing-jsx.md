@@ -14,15 +14,15 @@ const element = <h1>Hello, world!</h1>;
 
 Sintaks *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks extensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa template, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
+Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *template*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
-JSX akan menghasilkan *elemen* React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, anda akan menemukan dasar-dasar JSX yang anda butuhkan untuk memulai.
+JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, anda akan menemukan dasar-dasar JSX yang anda butuhkan untuk memulai.
 
 ### Mengapa JSX? {#why-jsx}
 
 React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan logika antarmuka pengguna lainnya. bagaimana *events* akan ditangani, bagaimana *state* berubah seiring dengan waktu, dan bagaimana data disiapkan untuk di tampilkan.
 
-Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika anda merasa belum nyaman menempatkan markup di `JavaScript`, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan anda.
+Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika anda merasa belum nyaman menempatkan *markup* di `JavaScript`, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan anda.
 
 React [tidak mengharuskan](/docs/react-without-jsx.html) anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
 
@@ -111,7 +111,7 @@ Jangan letakan tanda kutip di sekitar kurung kurawal saat menyematkan ekspresi J
 
 ### Menspesifikasikan Elemen Anak dengan JSX {#specifying-children-with-jsx}
 
-JIka tag bersifat kosong (tidak memiliki elemen anak), anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
+Jika tag bersifat kosong (tidak memiliki elemen anak), anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Secara default, React DOM [*meng-escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-render mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjek apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan di rubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+Secara default, React DOM [*meng-escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-render mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan di rubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX Merepresentasikan Obyek {#jsx-represents-objects}
 
@@ -177,7 +177,7 @@ const element = {
 
 Obyek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang anda ingin lihat di layar. React membaca obyek-obyek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
 
-Kita akan mengeksplorasi rendering pada elemen React ke DOM dalam bagian berikutnya.
+Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berikutnya.
 
 >**Saran:**
 >
