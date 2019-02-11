@@ -24,7 +24,7 @@ ReactDOM.render(
 ```
 
 React juga membutuhkan `requestAnimationFrame` (termasuk di lingkungan test).
-Kamu dapat menggunakan package [raf](https://www.npmjs.com/package/raf) untuk mendukung `requestAnimationFrame`:
+Kamu dapat menggunakan *package* [raf](https://www.npmjs.com/package/raf) untuk mendukung `requestAnimationFrame`:
 
 ```js
 import 'raf/polyfill';
