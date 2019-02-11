@@ -26,7 +26,7 @@ Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup*
 
 React [tidak mengharuskan](/docs/react-without-jsx.html) anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
 
-With that out of the way, mari kita mulai!
+Setelah anda memahaminya, mari kita mulai!
 
 ### Menyematkan Ekspresi *(Expressions)* di JSX {#embedding-expressions-in-jsx}
 
