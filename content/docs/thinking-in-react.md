@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 React, menurut opini kami, adalah cara paling terdepan dalam membangun sebuah aplikasi web JavaScript yang besar dan cepat. React dapat mengatasi masalah skalabilitas dengan sangat baik untuk kami di Facebook dan Instagram.
 
-Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi Anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
+Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
 
 ## Mulailah Dengan Sebuah Rancang Bangun {#start-with-a-mock}
 
@@ -125,7 +125,7 @@ Mari kita jalankan strategi ini di aplikasi kita:
   * Komponen pemilik bersama dalam hal ini adalah `FilterableProductTable`.
   * Akan menjadi masuk akal secara konsep apabila teks pencarian dan nilai checkbox untuk berada di `FilterableProductTable`
 
-Bagus, jadi kita telah menentukan bahwa state kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan state awal dari aplikasi Anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan props tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
+Bagus, jadi kita telah menentukan bahwa state kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan state awal dari aplikasi anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan props tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
 
 Anda akan mulai dapat melihat bagaimana aplikasi anda bekerja: ubah `filterText` menjadi `"ball"` lalu muat ulang aplikasi anda. Anda akan melihat tabel data telah diperbarui dengan benar.
 
@@ -135,7 +135,7 @@ Anda akan mulai dapat melihat bagaimana aplikasi anda bekerja: ubah `filterText`
 
 Sejauh ini, kita telah membangun sebuah aplikasi yang telah secara benar di-render sebagai fungsi dari props dan state yang mengalir ke bawah seiring hierarki. Sekarang saatnya untuk mendukung aliran data ke arah sebaliknya: komponen form yang berada di bawah hirarki perlu untuk meng-update state di `FilterableProductTable`.
 
-React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemahaman bagaimana aplikasi Anda bekerja, namun cara ini membuat perlunya pengetikan yang sedikit lebih banyak daripada metode *two-way data binding* tradisional.
+React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemahaman bagaimana aplikasi anda bekerja, namun cara ini membuat perlunya pengetikan yang sedikit lebih banyak daripada metode *two-way data binding* tradisional.
 
 Jika anda mencoba untuk mengetik atau mencentang checkbox di versi saat ini, anda akan melihat bahwa React tidak memperdulikan input yang anda lakukan. Hal ini memang disengaja, karena kita telah menentukan prop `value` dari `input` agar selalu setara dengan `state` yang dioper dari `FilterableProductTable`.
 
