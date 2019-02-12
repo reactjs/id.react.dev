@@ -59,7 +59,7 @@ Ini akan merusak tautan di atas.
 
 ### Teks dalam Blok Kode
 
-Anda dapat menerjemahkan teks di dalam string & komentar kode, namun berhati-hatilah supaya tidak dengan sengaja menerjemahkan bagian dari kode!
+Anda dapat menerjemahkan teks di dalam string & komentar kode, namun berhati-hatilah supaya tidak menerjemahkan bagian dari kode secara tidak sengaja!
 
 Contoh:
 
