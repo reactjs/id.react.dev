@@ -15,7 +15,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 ## Ikhtisar {#ikhtisar}
 
-`ReactTestUtils` mempermudah kita melakukan tes pada komponen React dengan _framework_ tes pilihan Anda. Di Facebook kami menggunakan [Jest](https://facebook.github.io/jest/) untuk tes javascript yang tidak merepotkan. Belajar cara mulai menggunakan Jest melalui _website_ Jest [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
+`ReactTestUtils` mempermudah kita melakukan tes pada komponen React dengan _framework_ tes pilihan Anda. Di Facebook kami menggunakan [Jest](https://facebook.github.io/jest/) untuk tes JavaScript yang tidak merepotkan. Belajar cara mulai menggunakan Jest melalui situs Jest [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
 
 > Catatan:
 >
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Seperti [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
+Seperti [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 * * *
 
