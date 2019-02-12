@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Seperti [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
+Seperti [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Sama seperti [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar protes jika ada lebih dari satu yang cocok.
+Sama seperti [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 ***
 
