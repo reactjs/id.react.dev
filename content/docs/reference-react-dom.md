@@ -10,7 +10,7 @@ Jika Anda memuat React dari sebuah `<script>` *tag*, API-API tingkat atas ini te
 
 ## Ikhtisar {#overview}
 
-Paket `react-dom` menyediakan metode-metode spesifik DOM yang dapat digunakan di tingkat atas aplikasi Anda, juga sebagai jalan untuk keluar dari React *model* jika diperlukan. Pada umumnya komponen-komponen Anda tidak memerlukan modul ini.
+*Package* `react-dom` menyediakan metode-metode spesifik DOM yang dapat digunakan di tingkat atas aplikasi Anda, juga sebagai jalan untuk keluar dari React *model* jika diperlukan. Pada umumnya komponen-komponen Anda tidak memerlukan modul ini.
 
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
@@ -18,13 +18,13 @@ Paket `react-dom` menyediakan metode-metode spesifik DOM yang dapat digunakan di
 - [`findDOMNode()`](#finddomnode)
 - [`createPortal()`](#createportal)
 
-### Dukungan Browser {#browser-support}
+### Dukungan *Browser* {#browser-support}
 
-React mendukung semua browser populer, termasuk Internet Explorer 9 dan setelahnya, meskipun [memerlukan beberapa *polyfills*](/docs/javascript-environment-requirements.html) untuk browser-browser kuno seperti IE 9 dan IE 10.
+React mendukung semua *browser* populer, termasuk Internet Explorer 9 dan setelahnya, meskipun [memerlukan beberapa *polyfills*](/docs/javascript-environment-requirements.html) untuk *browser*-*browser* kuno seperti IE 9 dan IE 10.
 
 > Catatan
 >
-> Kami tidak mendukung browser-browser kuno yang tidak mendukung metode-metode ES5, tapi Anda mungkin menemukan bahwa aplikasi-aplikasi Anda ternyata dapat berjalan di browser-browser kuno jika *polyfills* seperti [es5-shim dan es5-sham](https://github.com/es-shims/es5-shim) disertakan di halaman web. Kami tidak dapat membantu Anda jika Anda melakukan ini.
+> Kami tidak mendukung *browser*-*browser* kuno yang tidak mendukung metode-metode ES5, tapi Anda mungkin menemukan bahwa aplikasi-aplikasi Anda ternyata dapat berjalan di *browser*-*browser* kuno jika *polyfills* seperti [es5-shim dan es5-sham](https://github.com/es-shims/es5-shim) disertakan di halaman web. Kami tidak dapat membantu Anda jika Anda melakukan ini.
 
 * * *
 
@@ -36,11 +36,11 @@ React mendukung semua browser populer, termasuk Internet Explorer 9 dan setelahn
 ReactDOM.render(element, container[, callback])
 ```
 
-Me-*render* sebuah elemen React ke dalam DOM di dalam `container` yang diberikan dan mengembalikan sebuah [referensi](/docs/more-about-refs.html) kepada komponen (atau memulangkan `null` untuk [stateless components](/docs/components-and-props.html#functional-and-class-components)).
+Me-*render* sebuah elemen React ke dalam DOM di dalam `container` yang diberikan dan mengembalikan sebuah [referensi](/docs/more-about-refs.html) kepada komponen (atau mengembalikan `null` untuk [stateless components](/docs/components-and-props.html#functional-and-class-components)).
 
 Jika elemen React tersebut sebelumnya di-*render* ke dalam `container`, ini akan memperbaruinya dan hanya mengubah DOM seperlunya untuk memperlihatkan elemen React terbaru.
 
-Jika *callback* fakultatif diberikan, *callback* ini akan dijalankan setelah komponen di-*render* atau diperbarui.
+Jika *callback* opsional diberikan, *callback* ini akan dijalankan setelah komponen di-*render* atau diperbarui.
 
 > Catatan:
 >
