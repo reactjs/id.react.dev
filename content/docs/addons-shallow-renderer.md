@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**Mengimpor**
+**Cara Import**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
