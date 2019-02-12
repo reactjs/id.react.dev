@@ -28,7 +28,7 @@ React [tidak mengharuskan](/docs/react-without-jsx.html) anda untuk menggunakan 
 
 Setelah anda memahaminya, mari kita mulai!
 
-### Menyematkan Ekspresi *(Expressions)* di JSX {#embedding-expressions-in-jsx}
+### Menyematkan Ekspresi di JSX {#embedding-expressions-in-jsx}
 
 Dalam contoh di bawah ini, kita mendeklarasikan variabel bernama `name` dan kemudian menggunakannya di dalam JSX dengan cara membungkusnya di dalam tanda kurung kurawal *(curly braces)*:
 
