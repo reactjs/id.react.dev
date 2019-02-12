@@ -1,25 +1,26 @@
 ---
 id: test-renderer
-title: Test Renderer
+title: Uji Renderer
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Pengimporan**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
-const TestRenderer = require('react-test-renderer'); // ES5 with npm
+const TestRenderer = require('react-test-renderer'); // ES5 dengan npm
 ```
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-This package provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
 
-Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
+*Package* ini menyediakan *renderer* React  yang dapat digunakan untuk me-*render* komponen React menjadi objek JavaScript murni, tanpa bergantung pada DOM atau bahasa *native* pada telepon seluler.
 
-Example:
+Pada dasarnya, *package* ini membuat kemudahan untuk mengambil potret awal dari hierarki tampilan *platform* (mirip dengan pohon DOM) yang di-*render* oleh React DOM atau komponen React Native tanpa menggunakan *browser* atau [jsdom](https://github.com/tmpvar/jsdom).
+
+Contoh:
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -38,9 +39,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Anda dapat menggunakan fitur pengujian potret awal dari Jest untuk menyimpan salinan pohon JSON ke *file* secara otomatis dan memeriksa bahwa pengujian Anda tidak berubah: [Pelajari lebih lanjut](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
-You can also traverse the output to find specific nodes and make assertions about them.
+Anda juga dapat melewati ke bagian keluaran untuk menemukan *node* tertentu dan membuat pernyataan tentang *node - node* tersebut.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -94,7 +95,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## Reference {#reference}
+## Referensi {#reference}
 
 ### `TestRenderer.create()` {#testrenderercreate}
 
@@ -102,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
+Membuat *instance* `TestRenderer` dengan mengoper elemen React. Hal ini tidak menggunakan DOM asli, tetapi masih sepenuhnya me-*render* pohon komponen ke dalam memori sehingga Anda dapat membuat sebuah pernyataan. *Instance* yang dihasilkan memiliki *method* dan *property* sebagai berikut.
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 
@@ -110,7 +111,7 @@ Create a `TestRenderer` instance with the passed React element. It doesn't use t
 testRenderer.toJSON()
 ```
 
-Return an object representing the rendered tree. This tree only contains the platform-specific nodes like `<div>` or `<View>` and their props, but doesn't contain any user-written components. This is handy for [snapshot testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Pohon ini hanya berisi *node* *platform* khusus seperti `<div>` atau `<View>` dan beserta *props*-nya, tetapi tidak mengandung komponen yang dibuat oleh pengguna. Hal ini berguna untuk [pengujian potret](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -118,7 +119,7 @@ Return an object representing the rendered tree. This tree only contains the pla
 testRenderer.toTree()
 ```
 
-Return an object representing the rendered tree. Unlike `toJSON()`, the representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
+Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Tidak seperti `toJSON ()`, representasinya lebih detail daripada yang dihasilkan oleh `toJSON ()`, dan termasuk komponen yang dibuat pengguna. Anda mungkin tidak memerlukan *method* ini kecuali Anda sedang membuat *library* pernyataan sendiri di atas uji *renderer*.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -126,7 +127,7 @@ Return an object representing the rendered tree. Unlike `toJSON()`, the represen
 testRenderer.update(element)
 ```
 
-Re-render the in-memory tree with a new root element. This simulates a React update at the root. If the new element has the same type and key as the previous element, the tree will be updated; otherwise, it will re-mount a new tree.
+Me-*render* ulang pohon dalam memori dengan elemen *root* baru. Hal Ini mensimulasikan pembaruan React di *root*. Jika elemen baru memiliki tipe dan *key* yang sama dengan elemen sebelumnya, struktur pohon akan diperbarui; jika tidak, akan memasang ulang pohon yang baru.
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
@@ -134,7 +135,7 @@ Re-render the in-memory tree with a new root element. This simulates a React upd
 testRenderer.unmount()
 ```
 
-Unmount the in-memory tree, triggering the appropriate lifecycle events.
+Melepas pohon dalam memori, memicu siklus hidup *event* yang sesuai.
 
 ### `testRenderer.getInstance()` {#testrenderergetinstance}
 
@@ -142,7 +143,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
+Menghasilkan *instance* yang sesuai dengan elemen *root*, jika tersedia. Hal ini tidak akan berfungsi jika elemen *root* adalah *function component*, karena *function component* tidak memiliki *instance*.
 
 ### `testRenderer.root` {#testrendererroot}
 
@@ -150,7 +151,7 @@ Return the instance corresponding to the root element, if available. This will n
 testRenderer.root
 ```
 
-Returns the root "test instance" object that is useful for making assertions about specific nodes in the tree. You can use it to find other "test instances" deeper below.
+Menghasilkan objek *root* "uji *instance*"  yang berguna untuk membuat pernyataan tentang *node* tertentu di pohon. Anda dapat menggunakannya untuk menemukan "uji *instance*" lainnya secara lebih dalam di bawah ini.
 
 ### `testInstance.find()` {#testinstancefind}
 
@@ -158,7 +159,7 @@ Returns the root "test instance" object that is useful for making assertions abo
 testInstance.find(test)
 ```
 
-Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
+Menemukan turunan tunggal uji *instance* yang mana `test(testInstance)` menghasilkan nilai `true`. Jika `test(testInstance)` tidak menghasilkan nilai `true` untuk satu uji *instance*, hal ini akan melemparkan *error*.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -166,7 +167,7 @@ Find a single descendant test instance for which `test(testInstance)` returns `t
 testInstance.findByType(type)
 ```
 
-Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
+Menemukan turunan tunggal uji *instance* dengan berdasarkan `type` yang disediakan. Jika tidak ada satupun uji *instance* dengan `type` yang disediakan, hal ini akan melemparkan *error*.
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -174,7 +175,7 @@ Find a single descendant test instance with the provided `type`. If there is not
 testInstance.findByProps(props)
 ```
 
-Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
+Menemukan turunan tunggal uji *instance* dengan berdasarkan `props` yang disediakan. Jika tidak ada satupun uji *instance* dengan `props` yang disediakan, hal ini akan melemparkan *error*.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -182,7 +183,7 @@ Find a single descendant test instance with the provided `props`. If there is no
 testInstance.findAll(test)
 ```
 
-Find all descendant test instances for which `test(testInstance)` returns `true`.
+Menemukan semua turunan uji *instance* yang mana `test(testInstance)` menghasilkan nilai `true`.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -190,7 +191,7 @@ Find all descendant test instances for which `test(testInstance)` returns `true`
 testInstance.findAllByType(type)
 ```
 
-Find all descendant test instances with the provided `type`.
+Menemukan semua turunan uji *instance* dengan berdasarkan `type` yang disediakan.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -198,7 +199,7 @@ Find all descendant test instances with the provided `type`.
 testInstance.findAllByProps(props)
 ```
 
-Find all descendant test instances with the provided `props`.
+Menemukan semua turunan uji *instance* dengan berdasarkan `props` yang disediakan.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -206,7 +207,7 @@ Find all descendant test instances with the provided `props`.
 testInstance.instance
 ```
 
-The component instance corresponding to this test instance. It is only available for class components, as function components don't have instances. It matches the `this` value inside the given component.
+*Instance* dari komponen yang ada di uji *instance*. Hanya tersedia untuk *class component*, karena *function component* tidak memiliki *instance*. Hal Ini sama dengan nilai `this` di dalam komponen yang diberikan.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -214,7 +215,7 @@ The component instance corresponding to this test instance. It is only available
 testInstance.type
 ```
 
-The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
+Jenis dari komponen yang ada di uji *instance*. Sebagai contoh, komponen `<Button />` memiliki tipe `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -222,7 +223,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
+*Props* yang ada di uji *instance*. Sebagai contoh, komponen `<Button size="small" />` memiliki `{size: 'small'}` sebagai *props*.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -230,7 +231,7 @@ The props corresponding to this test instance. For example, a `<Button size="sma
 testInstance.parent
 ```
 
-The parent test instance of this test instance.
+Induk uji *instance* dari uji *instance* ini.
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -238,13 +239,13 @@ The parent test instance of this test instance.
 testInstance.children
 ```
 
-The children test instances of this test instance.
+Anak uji *instance* dari uji *instance* ini.
 
-## Ideas {#ideas}
+## Gagasan {#ideas}
 
-You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
-`createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component that relies on refs.
+Anda dapat mengoper *function* `createNodeMock` ke ` TestRenderer.create` sebagai opsinya, yang memungkinkan untuk referensi tiruan yang sudah diubah.
+`createNodeMock` menerima elemen tersebut dan harus menghasilkan objek referensi tiruan.
+Hal Ini berguna ketika Anda menguji sebuah komponen yang bergantung pada referensi.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -268,7 +269,7 @@ TestRenderer.create(
   {
     createNodeMock: (element) => {
       if (element.type === 'input') {
-        // mock a focus function
+        // tiruan function focus
         return {
           focus: () => {
             focused = true;
