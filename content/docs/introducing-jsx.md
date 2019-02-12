@@ -14,7 +14,7 @@ const element = <h1>Hello, world!</h1>;
 
 Sintaks *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *template*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
+Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
 JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, anda akan menemukan dasar-dasar JSX yang anda butuhkan untuk memulai.
 
@@ -76,7 +76,7 @@ Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwaji
 
 Setelah dikompilasi, Ekspresi JSX akan menjadi panggilan fungsi JavaScript biasa dan menjadi obyek JavaScript.
 
-Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan `for` *loops*, memasukkannya ke dalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
+Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan perulangan `for`, memasukkannya ke dalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
 
 ```js{3,5}
 function getGreeting(user) {
@@ -111,13 +111,13 @@ Jangan letakan tanda kutip di sekitar kurung kurawal saat menyematkan ekspresi J
 
 ### Menspesifikasikan Elemen Anak dengan JSX {#specifying-children-with-jsx}
 
-Jika tag bersifat kosong (tidak memiliki elemen anak), anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
+Jika *tag* bersifat kosong (tidak memiliki elemen anak), anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-Tag JSX dimungkinkan untuk memiliki elemen anak:
+*Tag* JSX dimungkinkan untuk memiliki elemen anak:
 
 ```js
 const element = (
@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Secara default, React DOM [*meng-escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-render mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan di rubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+Secara default, React DOM [meng-*escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan di rubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX Merepresentasikan Obyek {#jsx-represents-objects}
 
@@ -162,7 +162,7 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari bug namun pada dasarnya akan membuat obyek seperti ini:
+`React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat obyek seperti ini:
 
 ```js
 // Note: this structure is simplified
