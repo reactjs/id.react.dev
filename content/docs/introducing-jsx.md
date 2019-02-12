@@ -74,7 +74,7 @@ Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwaji
 
 ### JSX adalah Ekspresi Juga {#jsx-is-an-expression-too}
 
-Setelah dikompilasi, Ekspresi JSX akan menjadi panggilan fungsi JavaScript biasa dan menjadi obyek JavaScript.
+Setelah dikompilasi, Ekspresi JSX akan menjadi panggilan fungsi JavaScript biasa dan menjadi objek JavaScript.
 
 Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan perulangan `for`, memasukkannya ke dalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
 
@@ -138,9 +138,9 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Secara default, React DOM [meng-*escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan di rubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+Secara default, React DOM [meng-*escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
-### JSX Merepresentasikan Obyek {#jsx-represents-objects}
+### JSX Merepresentasikan Objek {#jsx-represents-objects}
 
 Babel akan meng-*compile* JSX menjadi pemanggilan `React.createElement()`.
 
@@ -162,7 +162,7 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat obyek seperti ini:
+`React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat objek seperti ini:
 
 ```js
 // Note: this structure is simplified
@@ -175,7 +175,7 @@ const element = {
 };
 ```
 
-Obyek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang anda ingin lihat di layar. React membaca obyek-obyek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
+Objek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang anda ingin lihat di layar. React membaca objek-objek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
 
 Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berikutnya.
 
