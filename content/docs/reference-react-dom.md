@@ -80,7 +80,7 @@ Ingat untuk berhati-hati dalam hal *user experience* pada saat koneksi lambat. K
 ReactDOM.unmountComponentAtNode(container)
 ```
 
-Membuang sebuah komponen React terpasang dari DOM dan membersihkan *event handlers* dan *state* terkait. Jika tidak terdapat komponen yang terpasang di dalam *container*, memanggil *function* ini tidak melakukan apa-apa. Memulangkan `true` jika sebuah komponen dicabut dan `false` jika tidak ada komponen yang dicabut.
+Membuang sebuah komponen React yang terpasang dari DOM dan membersihkan *event handlers* dan *state* terkait. Jika tidak terdapat komponen yang terpasang di dalam *container*, memanggil *function* ini tidak melakukan apa-apa. Mengembalikan `true` jika sebuah komponen dicabut dan `false` jika tidak ada komponen yang dicabut.
 
 * * *
 
@@ -93,9 +93,9 @@ Membuang sebuah komponen React terpasang dari DOM dan membersihkan *event handle
 ```javascript
 ReactDOM.findDOMNode(component)
 ```
-Jika komponen ini telah dipasang ke dalam DOM, memulangkan elemen DOM asli browser yang terkait. Metode ini berguna untuk membaca nilai keluar dari DOM, seperti nilai-nilai form field dan melakukan pengukuran DOM. **Pada umumnya, Anda dapat melampirkan sebuah referensi ke *DOM node* dan menghindari penggunaan `findDOMNode` sepenuhnya.**
+Jika komponen ini telah dipasang ke dalam DOM, mengembalikan elemen DOM asli *browser* yang terkait. Metode ini berguna untuk membaca nilai keluar dari DOM, seperti nilai-nilai form field dan melakukan pengukuran DOM. **Pada umumnya, Anda dapat melampirkan sebuah referensi ke *DOM node* dan menghindari penggunaan `findDOMNode` sepenuhnya.**
 
-Ketika sebuah komponen me-*render* menjadi `null` atau `false`, `findDOMNode` memulangkan `null`. Ketika sebuah komponen me-*render* menjadi sebuah teks, `findDOMNode` memulangkan sebuah *DOM node* teks dengan nilai tersebut sebagai isi. Dimulai dari React 16, sebuah komponen dapat memulangkan sebuah fragmen dengan banyak anak, dimana `findDOMNode` akan memulangkan *DOM node* yang sesuai dengan anak pertama yang tidak kosong.
+Ketika sebuah komponen me-*render* menjadi `null` atau `false`, `findDOMNode` mengembalikan `null`. Ketika sebuah komponen me-*render* menjadi sebuah teks, `findDOMNode` mengembalikan sebuah *DOM node* teks dengan nilai tersebut sebagai isi. Dimulai dari React 16, sebuah komponen dapat mengembalikan sebuah fragmen dengan banyak anak, dimana `findDOMNode` akan mengembalikan *DOM node* yang sesuai dengan anak pertama yang tidak kosong.
 
 > Catatan:
 >
