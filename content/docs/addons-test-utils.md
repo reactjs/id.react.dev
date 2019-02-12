@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**Pengimporan**
+**Cara Import**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
