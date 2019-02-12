@@ -16,9 +16,9 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Komponen mempermudah anda untuk memecah UI menjadi bagian tersendiri, potongan yang bisa digunakan kembali, dan berpikir tentang setiap potongan di dalam lingkungan.
+Komponen mempermudah anda untuk memecah UI menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
 
-Secara konsep, komponen mirip dengan fungsi di Javascript. Mereka menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element react yang mendeskripsikan apa yang seharusnya tampil di layar.
+Secara konsep, komponen mirip dengan fungsi di Javascript. Komponen menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element react yang mendeskripsikan apa yang seharusnya tampil di layar.
 
 ## Fungsi dan Komponen Kelas {#function-and-class-components}
 
@@ -31,7 +31,7 @@ function Welcome(props) {
 }
 ```
 
-Fungsi ini adalah komponen React yang benar karena menerima sebuah *"props"*
+Fungsi ini adalah komponen React yang sah karena menerima sebuah *"props"*
 tunggal (yang bertindak sebagai *props*) atau argumen objek dengan data dan kembalian
 sebuah Elemen React. Kita menyebut komponen karena itu benar - benear merupakan fungsi
 Javascript.
@@ -46,11 +46,11 @@ class Welcome extends React.Component {
 }
 ```
 
-Kedua komponen di atas mempunyai nilai yang sama dalam sudut pandang React.
+Dari sudut pandang React, kedua komponen di atas mempunyai nilai yang sama.
 
-Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai disitu, kita akan menggunakan fungsi komponen untuk mempersingkat mereka.
+Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai disini, kita akan menggunakan komponen fungsional untuk mempersingkatnya.
 
-## Me-render sebuah Komponen {#rendering-a-component}
+## Me-*render* sebuah Komponen {#rendering-a-component}
 
 Sebelumnya, kita hanya menemui elemen React yang mewakili tag DOM:
 
@@ -65,11 +65,11 @@ oleh pengguna:
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
 Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh
-pengguna,
+pengguna, komponen mengoper atribut JSX ke dalam komponen ini sebagai
+*single-object*.
 
-Sebagai contoh, kode ini akan me-render "Hello, Sara" pada halaman:
+Sebagai contoh, kode ini akan me-*render* "Hello, Sara" pada halaman:
 
 ```js{1,5}
 function Welcome(props) {
@@ -105,11 +105,10 @@ Mari merangkum apa yang terjadi pada contoh kali ini:
 
 ## Menyusun Komponen {#composing-components}
 
-Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.
-Komponen dapat merujuk ke komponen lain pada akhirnya. Ini memungkinkan kita untuk menggunakan
-abstraksi dari komponen yang sama untuk semua level detail. Sebuah tombol,
-sebuah formulir, sebuah dialog, sebuah tampilan: di dalam aplikasi React,  semua
-... dalam bentuk komponen.
+Komponen dapat merujuk ke komponen lain pada output mereka. Ini memungkinkan kita untuk menggunakan
+abstraksi dari komponen yang sama untuk semua tingkat detail. Sebuah tombol,
+sebuah *form*, sebuah dialog, sebuah tampilan: di dalam aplikasi React, semua
+itu dinyatakan dalam bentuk komponen.
 
 Sebagai contoh, kita dapat membuat sebuah komponen `App` yang mencetak `Welcome`
 berkali - kali.
@@ -140,7 +139,7 @@ ReactDOM.render(
 Secara khusus, aplikasi React yang baru mempunyai sebuah komponen `App` pada
 bagian paling atas. Namun, jika anda mengintegrasi React kedalam aplikasi yang
 ada, anda mungkin akan memulai secara *bottom-up* dengan komponen yang kecil
-seperti `Button` dan secara bertahap bekerja kedalam hierarki paling atas.
+seperti `Button` dan secara bertahap kedalam hierarki paling atas.
 
 ## Mengekstraksi Komponen {#extracting-components}
 
@@ -195,13 +194,11 @@ function Avatar(props) {
 }
 ```
 
-The `Avatar` doesn't need to know that it is being rendered inside a `Comment`. This is why we have given its prop a more generic name: `user` rather than `author`.
-`Avatar` tidak perlu mengetahu bahwa komponen ini di render dalam sebuah
+`Avatar` tidak perlu tahu bahwa komponen ini di *render* di dalam sebuah
 `Comment`. Ini mengapa kita harus memberikan *prop* lebih umum seperti: `user`
 daripada `author`.
 
-Kami merekomendasikan penamaan *prop* from the component's own point of view
-daripada konteks bagaimana komponen tersebut digunakan.
+Kami merekomendasikan penamaan *prop* melalui sudut pandang component itu sendiri daripada konteks bagaimana komponen tersebut digunakan.
 
 Kita sekarang dapat sedikit menyederhanakan `Comment`:
 
@@ -226,7 +223,7 @@ function Comment(props) {
 }
 ```
 
-Selanjutnya, kita akan mengekstraksi sebuah komponen `UserInfo` yang me-render
+Selanjutnya, kita akan mengekstraksi sebuah komponen `UserInfo` yang me-*render*
 sebuah komponen `Avatar` di sebelah nama pengguna:
 
 ```js{3-8}
@@ -263,16 +260,16 @@ function Comment(props) {
 [](codepen://components-and-props/extracting-components-continued)
 
 Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada
-awalnya, namun mempunyai palet dari komponen yang bisa digunakan kembali akan
+awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan
 terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika
-pada bagian dari UI digunakan beberapa kali (Button, Panel, Avatar), atau yang cukup
+pada bagian dari UI digunakan beberapa kali (*Button*, *Panel*, *Avatar*), atau yang cukup
 kompleks (App, FeedStory, Comment), ini merupakan kandidat yang bagus untuk
 dijadikan sebagai komponen yang dapat digunakan kembali.
 
-## Props hanya Read-Only {#props-are-read-only}
+## Props adalah *Read-Only* {#props-are-read-only}
 
 Apakah anda mendeklarasikan sebuah komponen [sebagai sebuah fungsi atau sebuah
-kelas](#function-and-class-components), jangan pernah mengganti properti nya sendiri. it must never modify its own props. Pertimbangkan fungsi `sum` ini:
+kelas](#function-and-class-components), jangan pernah mengganti properti nya sendiri. Pertimbangkan fungsi `sum` ini:
 
 ```js
 function sum(a, b) {
@@ -280,7 +277,7 @@ function sum(a, b) {
 }
 ```
 
-Fungsi seperti itu disebut ["pure"](https://en.wikipedia.org/wiki/Pure_function)
+Fungsi seperti itu disebut ["*pure*"](https://en.wikipedia.org/wiki/Pure_function)
 karena mereka tidak mencoba untuk mengganti masukan mereka, dan selalu
 mengembalikan hasil yang sama untuk setiap masukan yang sama.
 
@@ -295,7 +292,7 @@ function withdraw(account, amount) {
 
 React sangat fleksibel namun memiliki suatu peraturan yang ketat:
 
-**Semua komponen React harus bertindak seperti fungsi yang murni dengan
-menghargai properti mereka.**
+**Semua komponen React harus bertindak seperti fungsi yang murni
+sehubungan dengan properti mereka.**
 
 Tentu saja, UI dari aplikasi akan dinamis dan selalu berganti. Di [sesi selanjutnya](), kita akan memperkenalkan sebuah konsep baru tentang "state". State memperbolehkan komponen React untuk mengganti keluaran mereka secara berkala untuk merespon aksi dari pengguna, respon dari jaringan, dan yang lainnya, tanpa melanggar aturan.
