@@ -9,7 +9,8 @@ Untuk menjalankan situs id.reactjs.org secara lokal, ikuti langkah-langkah berik
 1. Unduh dan instalasi [Git](), [Node.js](), dan [Yarn]().
 2. Buatlah *fork* dari repositori id.reactjs.org di akun anda, kemudian *clone* repositori tersebut.
 3. Jalankan `yarn` di terminal untuk menginstalasi dependensi yang dibutuhkan.
-4. Jalankan `yarn dev` untuk menjalankan *server* lokal. Buka alamat `localhost:8000` dalam peramban web anda.
+4. Jalankan `yarn dev` untuk menjalankan *server* lokal.
+5. Buka alamat `localhost:8000` dalam peramban web anda.
 
 Konten dari situs id.reactjs.org terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.reactjs.org dalam program penyunting teks anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
 
