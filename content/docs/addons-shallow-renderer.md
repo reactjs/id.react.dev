@@ -51,13 +51,13 @@ Saat ini _shallow testing_ masih memiliki beberapa keterbatasan, salah satunya b
 
 > Catatan:
 >
-> Kami juga menyarankan Anda untuk membaca Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) yang menyediakan _higher-level_ API yang lebih baik untuk fungsionalitas serupa.
+> Kami juga menyarankan Anda untuk membaca [API Shallow Rendering](http://airbnb.io/enzyme/docs/api/shallow.html) oleh Enzyme yang menyediakan API tingkat atas (_higher-level API_) yang lebih baik untuk fungsionalitas serupa.
 
 ## Referensi {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-Anda dapat menggambarkan `shallowRenderer` sebagai “tempat” _render_ suatu komponen yang sedang Anda uji, juga sebagai tempat di mana Anda bisa mengekstrak keluaran dari komponen tersebut.
+Anda dapat membayangkan `shallowRenderer` sebagai “tempat” untuk me-_render_ suatu komponen yang sedang Anda uji, juga sebagai tempat di mana Anda bisa mengekstrak keluaran dari komponen tersebut.
 
 `shallowRenderer.render()` merupakan _method_ yang serupa dengan [`ReactDOM.render()`](/docs/react-dom.html#render) tetapi tidak membutuhkan DOM dan hanya melakukan _render_ sedalam satu level. Hal tersebut membuat Anda dapat menguji suatu komponen secara terisolasi, tidak menghiraukan implementasi komponen lain yang ada di dalamnya.
 
