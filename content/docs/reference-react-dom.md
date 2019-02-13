@@ -93,7 +93,7 @@ Membuang sebuah komponen React yang terpasang dari DOM dan membersihkan *event h
 ```javascript
 ReactDOM.findDOMNode(component)
 ```
-Jika komponen ini telah terpasang ke dalam DOM, mengembalikan elemen DOM asli *browser* yang terkait. Metode ini berguna untuk membaca nilai hasil dari DOM, seperti nilai-nilai isian form dan hasil perhitungan DOM. **Pada umumnya, Anda dapat melampirkan sebuah referensi ke *DOM node* dan menghindari penggunaan `findDOMNode` sepenuhnya.**
+Jika komponen ini telah terpasang ke dalam DOM, mengembalikan elemen DOM asli *browser* yang terkait. Metode ini berguna untuk membaca nilai hasil dari DOM, seperti nilai-nilai isian form dan melakukan pengukuran DOM. **Pada umumnya, Anda dapat melampirkan sebuah referensi ke *DOM node* dan menghindari penggunaan `findDOMNode` sepenuhnya.**
 
 Ketika sebuah komponen me-*render* menjadi `null` atau `false`, `findDOMNode` mengembalikan `null`. Ketika sebuah komponen me-*render* menjadi sebuah teks, `findDOMNode` mengembalikan sebuah *DOM node* teks dengan nilai teks tersebut sebagai isinya. Dimulai dari React 16, sebuah komponen dapat mengembalikan sebuah fragmen dengan banyak anak, dimana `findDOMNode` akan mengembalikan *DOM node* yang sesuai dengan anak pertama yang tidak kosong.
 
