@@ -21,7 +21,7 @@ Kode ini akan me-*log* `[2,4,6,8,10]` ke dalam konsol.
 
 Di React, mengubah senarai ke dalam *list* [elemen](/docs/rendering-elements.html) kurang lebih sama.
 
-### Me-*render* Banyak Komponen {#rendering-multiple-components}
+### Me-render Banyak Komponen {#rendering-multiple-components}
 
 Anda dapat membangun koleksi dari beberapa elemen dan [menyertakannya dalam JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) menggunakan tanda kurung kurawal `{}`.
 
@@ -49,11 +49,11 @@ ReactDOM.render(
 
 Kode ini akan menampilkan sebuah *list bullet* dari angka 1 sampai 5.
 
-### *List* Komponen Dasar {#basic-list-component}
+### List Komponen Dasar {#basic-list-component}
 
 Biasanya anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
-Kita bisa merefaktor contoh sebelumnya kedalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan. 
+Kita bisa merefaktor contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan. 
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -75,7 +75,7 @@ ReactDOM.render(
 
 Ketika anda menjalankan kode ini, anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya.
 
-Mari kita sertakan `*key*` ke dalam *list* item kita pada `numbers.map()` dan memperbaiki masalah *key* yang hilang.
+Mari kita sertakan `*key*` ke dalam *list item* kita pada `numbers.map()` dan memperbaiki masalah *key* yang hilang.
 
 ```javascript{4}
 function NumberList(props) {
@@ -99,7 +99,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## *Key* {#keys}
+## Key {#keys}
 
 *Key* membantu React untuk mengidentifikasi *item* mana yang telah diubah, ditambahkan, atau dihilangkan. *Key* harus diberikan di dalam elemen yang terdapat di dalam sebuah senarai untuk memberikan elemen tersebut identitas yang stabil:
 
@@ -122,25 +122,25 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-Ketika anda tidak memiliki ID yang stabil untuk me-*render item*, anda bisa menggunakan index dari *item* sebagai *key* untuk pilihan terakhir:
+Ketika anda tidak memiliki ID yang stabil untuk me-*render item*, anda bisa menggunakan indexs dari *item* sebagai *key* untuk pilihan terakhir:
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
-  // Hanya lakukan ini jika item tidak memiliki ID yang stabil
+  // Hanya lakukan ini jika *item* tidak memiliki ID yang stabil
   <li key={index}>
     {todo.text}
   </li>
 );
 ```
 
-Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan state komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan index sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
+Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indexs sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
 Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika anda tertarik untuk belajar lebih lanjut.
 
-### Mengekstrak Komponen dengan *Key* {#extracting-components-with-keys}
+### Mengekstrak Komponen dengan Key {#extracting-components-with-keys}
 
-*Key* hanya akan di gunakan di konteks senarai yang mengurung *item* dengan *key* tersebut.
+*Key* hanya perlu digunakan di dalam konteks senarai yang mengurung *item* dengan *key* tersebut.
 
 Sebagai contoh, jika anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
 
@@ -210,7 +210,7 @@ ReactDOM.render(
 
 Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan membutuhkan *key*.
 
-### *Key* Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
+### Key Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
 
 
 *Key* digunakan didalam senarai harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan *key* yang sama ketika kita menghasilkan dua senarai yang berbeda:
@@ -253,7 +253,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-*Key* berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen anda. Jika anda membutuhkan nilai yang sama di dalam komponen anda, oper secara eksplisit sebagai sebuah prop dengan nama yang berbeda:
+*Key* berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen anda. Jika anda membutuhkan nilai yang sama di dalam komponen anda, oper secara eksplisit sebagai sebuah *props* dengan nama yang berbeda:
 
 ```js{3,4}
 const content = posts.map((post) =>
@@ -268,7 +268,7 @@ Dengan contoh di atas, komponen `Post` dapat membaca `props.id`, bukan `props.ke
 
 ### Menanamkan map() pada JSX {#embedding-map-in-jsx}
 
-Pada contoh diatas kita mendeklarasikan variabel terpisah `listItems` dan memasukkannya ke dalam JSX:
+Pada contoh di atas kita mendeklarasikan variabel terpisah `listItems` dan memasukkannya ke dalam JSX:
 
 ```js{3-6}
 function NumberList(props) {
@@ -285,7 +285,7 @@ function NumberList(props) {
 }
 ```
 
-JSX memperbolehkan [menanamkan ekspresi](/docs/introducing-jsx.html#embedding-expressions-in-jsx) di dalam tanda kurung kurawal oleh karenanya kita dapat memasukkan hasil `map()` secaran inline:
+JSX memperbolehkan [menanamkan ekspresi](/docs/introducing-jsx.html#embedding-expressions-in-jsx) di dalam tanda kurung kurawal oleh karenanya kita dapat memasukkan hasil `map()` secara *inline*:
 
 ```js{5-8}
 function NumberList(props) {
