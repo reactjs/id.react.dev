@@ -9,7 +9,7 @@ next: rendering-elements.html
 Cobalah lihat deklarasi variabel dibawah ini:
 
 ```js
-const element = <h1>Hello, world!</h1>;
+const element = <h1>Halo, Dunia!</h1>;
 ```
 
 Sintaks *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
@@ -33,8 +33,8 @@ Setelah anda memahaminya, mari kita mulai!
 Dalam contoh di bawah ini, kita mendeklarasikan variabel bernama `name` dan kemudian menggunakannya di dalam JSX dengan cara membungkusnya di dalam tanda kurung kurawal *(curly braces)*:
 
 ```js{1,2}
-const name = 'Josh Perez';
-const element = <h1>Hello, {name}</h1>;
+const name = 'Budi';
+const element = <h1>Halo, {name}</h1>;
 
 ReactDOM.render(
   element,
@@ -52,13 +52,13 @@ function formatName(user) {
 }
 
 const user = {
-  firstName: 'Harper',
-  lastName: 'Perez'
+  firstName: 'Budi',
+  lastName: 'Mahardika'
 };
 
 const element = (
   <h1>
-    Hello, {formatName(user)}!
+    Halo, {formatName(user)}!
   </h1>
 );
 
@@ -81,9 +81,9 @@ Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan pe
 ```js{3,5}
 function getGreeting(user) {
   if (user) {
-    return <h1>Hello, {formatName(user)}!</h1>;
+    return <h1>Halo, {formatName(user)}!</h1>;
   }
-  return <h1>Hello, Stranger.</h1>;
+  return <h1>Halo, Orang Asing.</h1>;
 }
 ```
 
@@ -122,8 +122,8 @@ const element = <img src={user.avatarUrl} />;
 ```js
 const element = (
   <div>
-    <h1>Hello!</h1>
-    <h2>Good to see you here.</h2>
+    <h1>Halo!</h1>
+    <h2>Senang melihatmu di sini.</h2>
   </div>
 );
 ```
@@ -134,7 +134,7 @@ Anda dapat menanamkan input pengguna di JSX dengan aman:
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// Ini aman:
 const element = <h1>{title}</h1>;
 ```
 
@@ -149,7 +149,7 @@ Dua contoh ini akan menghasilkan hal yang sama:
 ```js
 const element = (
   <h1 className="greeting">
-    Hello, world!
+    Halo, Dunia!
   </h1>
 );
 ```
@@ -158,19 +158,19 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  'Hello, world!'
+  'Halo, Dunia!'
 );
 ```
 
 `React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat objek seperti ini:
 
 ```js
-// Note: this structure is simplified
+// Catatan: struktur ini sudah disederhanakan
 const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world!'
+    children: 'Halo, Dunia!'
   }
 };
 ```
