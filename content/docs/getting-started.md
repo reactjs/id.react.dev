@@ -18,27 +18,27 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and related resources.
+Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber - sumber terkait.
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** adalah sebuah *JavaScript library* untuk membangun tampilan user (*user interfaces*). Pelajari apa sebenarnya React itu di [*homepage* kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
 
 ---
 
-- [Try React](#try-react)
-- [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
-- [Versioned Documentation](#versioned-documentation)
-- [Something Missing?](#something-missing)
+- [Coba React](#coba-react)
+- [Pelajari React](#pelajari-react)
+- [Tetap Terinformasi](#tetap-terinformasi)
+- [Dokumentasi Berversi](#dokumentasi-berversi)
+- [Sesuatu Hilang?](#sesuatu-hilang)
 
-## Try React {#try-react}
+## Coba React {#coba-react}
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktif ke sebuah laman *HTML* sederhana, atau memulai sebuah aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
 
-### Online Playgrounds {#online-playgrounds}
+### *Online Playgrounds* {#online-playgrounds}
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+Jika anda tertarik bermain dengan React, anda dapat menggunakan sebuah *online code playground*. Coba sebuah *Hello World template* di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
 
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+Jika kamu memilih untuk menggunakan *text editor* sendiri, kamu juga dapat [Unduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit, dan buka itu dari *local filesystem* pada peramban anda. Itu melakukan sebuah *runtime code transformation* yang lambat, jadi kami merekomendasikan menggunakan ini untuk demo sederhana.
 
 ### Add React to a Website {#add-react-to-a-website}
 
@@ -117,10 +117,10 @@ You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitt
 
 Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
 
-## Versioned Documentation {#versioned-documentation}
+## Dokumentasi Berversi {#dokumentasi-berversi}
 
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation [on a separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+Dokumentasi ini selali mencerminkan versi stabil terbaru dari React. Sejak React 16, Anda dapat menemukan versi dokumentasi yang lebih lama [pada halaman terpisah](/versions). Perhatikan dokumentasi untuk versi yang lama adalah *snapshotted* pada saat rilis, dan tidak diperbaharui.
 
-## Something Missing? {#something-missing}
+## Sesuatu Hilang? {#sesuatu-hilang}
 
-If something is missing in the documentation or if you found some part confusing, please [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). We love hearing from you!
+Jika ada sesuatu yang hilang di dalam dokumentasi atau  jika anda menemukan bagian yang membingungkan, Mohon [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
