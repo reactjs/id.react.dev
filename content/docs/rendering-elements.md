@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: Rendering Elements
+title: Me-render Elemen
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
@@ -8,68 +8,68 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
-Elements are the smallest building blocks of React apps.
+Elemen adalah blok terkecil pada aplikasi React.
 
-An element describes what you want to see on the screen:
+Sebuah elemen menggambarkan apa yang ingin Anda lihat pada layar:
 
 ```js
-const element = <h1>Hello, world</h1>;
+const element = <h1>Halo dunia</h1>;
 ```
 
-Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
+Tidak seperti elemen DOM, elemen React merupakan objek biasa dan mudah dibuat. React DOM mangatur pembaruan DOM agar sesuai dengan elemen React.
 
->**Note:**
+>**Catatan:**
 >
->One might confuse elements with a more widely known concept of "components". We will introduce components in the [next section](/docs/components-and-props.html). Elements are what components are "made of", and we encourage you to read this section before jumping ahead.
+>Mungkin akan sedikit membingungkan antara elemen dengan konsep yang lebih dikenali yaitu "komponen". Kami akan memperkenalkan komponen di [bagian berikutnya](/docs/components-and-props.html). Elemen adalah "bahan dasar" komponen dan kami menyarankan Anda untuk membaca bagian ini sebelum melompat ke bagian berikutnya.
 
-## Rendering an Element into the DOM {#rendering-an-element-into-the-dom}
+## Me-render elemen ke dalam DOM {#rendering-an-element-into-the-dom}
 
-Let's say there is a `<div>` somewhere in your HTML file:
+Sebagai contoh terdapat sebuah `<div>` di suatu tempat di *file* HTML Anda:
 
 ```html
 <div id="root"></div>
 ```
 
-We call this a "root" DOM node because everything inside it will be managed by React DOM.
+Kita menyebut ini sebagai *node DOM* "akar" karena semua yang berada di dalamnya nanti akan diatur oleh React DOM.
 
-Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
+Aplikasi yang dibuat dengan React biasanya memiliki satu *node DOM* akar. Jika Anda mengintegrasikan React ke dalam aplikasi yang sudah ada, Anda dapat memiliki *node DOM* akar yang terisolasi sebanyak yang Anda inginkan.
 
-To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
+Untuk me-*render* sebuah elemen React ke dalam sebuah *node DOM* akar, oper keduanya ke `ReactDOM.render()`:
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+[Coba di CodePen](codepen://rendering-elements/render-an-element)
 
-It displays "Hello, world" on the page.
+Kode di atas akan menampilkan "Halo dunia" pada laman.
 
-## Updating the Rendered Element {#updating-the-rendered-element}
+## Memperbarui Elemen yang Telah Di-render {#updating-the-rendered-element}
 
-React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+Elemen React bersifat [*immutable*](https://en.wikipedia.org/wiki/Immutable_object). Setelah Anda membuat sebuah elemen, Anda tidak dapat mengubah elemen anak atau atributnya. Sebuah elemen mirip dengan sebuah *frame* dalam film: elemen merepresentasikan antarmuka pengguna pada satu titik waktu tertentu.
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `ReactDOM.render()`.
+Dengan pengetahuan kita sejauh ini, satu-satunya jalan untuk memperbarui antarmuka pengguna adalah dengan membuat sebuah elemen baru dan mengopernya ke `ReactDOM.render()`.
 
-Consider this ticking clock example:
+Perhatikan contoh jam berdetak di bawah ini:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+[Coba di CodePen](codepen://rendering-elements/update-rendered-element)
 
-It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callback* [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
->**Note:**
+>**Catatan:**
 >
->In practice, most React apps only call `ReactDOM.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>Dalam praktiknya, sebagian besar aplikasi React hanya memanggil `ReactDOM.render()` sekali saja. Pada bagian berikutnya kita akan mempelajari bagaimana kode ini dapat dienkapsulasi ke dalam [*stateful components*](/docs/state-and-lifecycle.html).
 >
->We recommend that you don't skip topics because they build on each other.
+>Kami menyarankan agar Anda tidak melewati satu topik karena topik-topik ini berhubungan satu dengan lainnya.
 
-## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
+## React Hanya Memperbarui Apa yang Diperlukan {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+React DOM membandingkan antara elemen dan elemen anaknya dengan elemen sebelumnya dan hanya mengaplikasikan perbaruan DOM yang diperlukan untuk menyelaraskan DOM ke *state* yang diinginkan.
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](codepen://rendering-elements/update-rendered-element) dengan peralatan dari *browser*:
 
-![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
+![Inspektor DOM menunjukkan pembaruan yang bersifat *granular*](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents has changed gets updated by React DOM.
+Walaupun kita membuat sebuah elemen yang mendeskripsikan struktur antarmuka pengguna secara keseluruhan dalam setiap detiknya, hanya *node* teks yang kontennya mengalami perubahanlah yang akan diperbarui oleh React DOM.
 
-In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.
+Menurut pengalaman kami, dengan hanya memikirkan tentang bagaimana antarmuka pengguna seharusnya terlihat pada saat tertentu daripada bagaimana ia berubah seiring waktu akan dapat mengeliminasi banyak *bug*.
