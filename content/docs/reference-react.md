@@ -13,35 +13,35 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
-`React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
+`React` merupakan _entry point_ untuk menggunakan _library_ React. Apabila anda mengimpor React menggunakan _tag_ `<script>`, _API_ tingkat atas ini tersedia pada `React` _global_. Apabila anda menggunakan _ES6_ dengan _npm_, anda dapat mengimpor React dengan menuliskan `import React from 'react'`. Apabila anda menggunakan _ES5_ dengan _npm_, anda dapat mengimpor React dengan menuliskan `var React = require('react')`.
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-### Components {#components}
+### Komponen {#components}
 
-React components let you split the UI into independent, reusable pieces, and think about each piece in isolation. React components can be defined by subclassing `React.Component` or `React.PureComponent`.
+Komponen React membuat anda dapat memisah antarmuka pengguna menjadi independen, dapat digunakan kembali, dan dapat dipikirkan setiap bagiannya secara terpisah. Komponen React dapat didefinisikan dengan melakukan _subclassing_ pada kelas  `React.Component` atau `React.PureComponent`.
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-If you don't use ES6 classes, you may use the `create-react-class` module instead. See [Using React without ES6](/docs/react-without-es6.html) for more information.
+Apabila anda tidak menggunakan kelas _ES6_, anda dapat menggunakan modul `create-react-class`. Kunjungi [Menggunakan React Tanpa ES6](/docs/react-without-es6.html) untuk informasi selengkapnya.
 
-React components can also be defined as functions which can be wrapped:
+Komponen React juga dapat didefinisikan sebagai fungsi yang dapat dibungkus:
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements {#creating-react-elements}
+### Membuat Elemen React {#creating-react-elements}
 
-We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI should look like. Each JSX element is just syntactic sugar for calling [`React.createElement()`](#createelement). You will not typically invoke the following methods directly if you are using JSX.
+Kami menyarankan untuk [menggunakan JSX](/docs/introducing-jsx.html) untuk mendeskripsikan bagaimana tampilan antarmuka pengguna anda seharusnya terlihat. Setiap elemen JSX merupakan _syntactic sugar_ untuk memanggil [`React.createElement()`](#createelement). Anda tidak perlu memanggil _method_ berikut secara langsung apabila anda menggunakan JSX.
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-See [Using React without JSX](/docs/react-without-jsx.html) for more information.
+Kunjungi [Menggunakan React tanpa JSX](/docs/react-without-jsx.html) untuk informasi selengkapnya.
 
-### Transforming Elements {#transforming-elements}
+### Mengubah Elemen {#transforming-elements}
 
-`React` provides several APIs for manipulating elements:
+`React` menyediakan beberapa _API_ untuk memanipulasi elemen:
 
 - [`cloneElement()`](#cloneelement)
 - [`isValidElement()`](#isvalidelement)
@@ -49,7 +49,7 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Fragments {#fragments}
 
-`React` also provides a component for rendering multiple elements without a wrapper.
+`React` juga menyediakan komponen untuk me-_render_ lebih dari satu elemen tanpa perlu menggunakan pembungkus.
 
 - [`React.Fragment`](#reactfragment)
 
@@ -60,14 +60,14 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Suspense {#suspense}
 
-Suspense lets components "wait" for something before rendering. Today, Suspense only supports one use case: [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will support other use cases like data fetching.
+_Suspense_ membuat komponen dapat "menunggu" sesuatu sebelum melakukan _rendering_. Untuk saat ini, _Suspense_ hanya mendukung satu kasus: [membuat komponen secara dinamis menggunakan `React.lazy`](/docs/code-splitting.html#reactlazy). Pada masa yang akan datang, _Suspense_ akan mendukung kasus lain seperti pengambilan data.
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
 ### Hooks {#hooks}
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+_Hooks_ merupakan fitur baru pada React 16.8. _Hook_ membuat anda dapat menggunakan _state_ dan fitur React lain tanpa menuliskan sebuah kelas. _Hooks_ memiliki [bagian dokumentasi tersendiri](/docs/hooks-intro.html) dan terpisah dengan referensi _API_:
 
 - [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)
@@ -84,11 +84,11 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 * * *
 
-## Reference {#reference}
+## Referensi {#reference}
 
 ### `React.Component` {#reactcomponent}
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
+`React.Component` merupakan kelas pokok untuk komponen React ketika didefinisikan menggunakan [kelas ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
 ```javascript
 class Greeting extends React.Component {
@@ -98,21 +98,21 @@ class Greeting extends React.Component {
 }
 ```
 
-See the [React.Component API Reference](/docs/react-component.html) for a list of methods and properties related to the base `React.Component` class.
+Kunjungi [Referensi API React.Component](/docs/react-component.html) untuk melihat daftar _method_ dan _property_ yang berhubungan dengan kelas `React.Component`.
 
 * * *
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison. 
+`React.PureComponent` mirip dengan [`React.Component`](#reactcomponent). Perbedaannya adalah [`React.Component`](#reactcomponent) tidak mengimplementasikan [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), sedangkan `React.PureComponent` mengimplementasikannya dengan perbandingan _props_ dan _state_ yang sederhana. 
 
-If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
+Apabila fungsi `render()` pada komponen React anda me-_render_ hasil yang sama dengan _props_ dan _state_ yang sama juga, anda dapat menggunakan `React.PureComponent` untuk meningkatkan kinerja komponen pada kasus tertentu.
 
-> Note
+> Catatan
 >
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+> `shouldComponentUpdate()` pada `React.PureComponent` hanya membandingkan objek secara sederhana (_shallow compare_). Apabila objek tersebut berisi struktur data yang rumit, bisa jadi hal ini akan menghasilkan _false-negative_ pada perbandingan yang lebih jauh. Gunakan `PureComponent` hanya ketika anda memiliki _props_ dan _state_ yang sederhana, atau gunakan [`forceUpdate()`](/docs/react-component.html#forceupdate) saat anda tahu bahwa ada perubahan pada struktur data yang dalam. Atau, cobalah untuk menggunakan [objek tetap (immutable object)](https://facebook.github.io/immutable-js/) untuk mempercepat proses perbandingan data bersarang.
 >
-> Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
+> Selain itu, `shouldComponentUpdate()` pada `React.PureComponent` melompati proses pembaruan _props_ pada seluruh komponen dibawahnya. Jadi pastikan semua _child component_ juga "pure".
 
 * * *
 
@@ -124,11 +124,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
+`React.memo` merupakan [higher order component](/docs/higher-order-components.html). Hal ini mirip dengan [`React.PureComponent`](#reactpurecomponent) tapi digunakan untuk _function component_ daripada _class component_.
 
-If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+Apabila _function component_ anda me-_render_ hasil yang sama dengan _props_ yang sama juga, anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara mengingat (_memorizing_) hasil _render_-nya. Ini artinya React akan melompati proses _rendering_ komponen, dan menggunakan hasil _render_ terakhir.
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+Secara _default_ `React.memo` hanya akan membandingkan objek yang kompleks pada objek _props_ secara sederhana (_shallow comparison_). Apabila anda ingin membuat perbandingan sendiri, anda juga dapat memberikan fungsi perbandingan _custom_ pada argumen kedua.
 
 ```javascript
 function MyComponent(props) {
@@ -144,11 +144,11 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.
+_Method_ ini hanya digunakan sebagai **[optimasi kinerja](/docs/optimizing-performance.html).** Jangan menggunakannya untuk "mencegah" _render_, karena dapat menyebabkan _bug_.
 
-> Note
+> Catatan
 >
-> Unlike the [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method on class components, the `areEqual` function returns `true` if the props are equal and `false` if the props are not equal. This is the inverse from `shouldComponentUpdate`.
+> Tidak seperti _method_ [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) pada _class component_, fungsi `areEqual` mengembalikan nilai `true` apabila _props_ bernilai sama dan `false` Apabila _props_ tidak sama. Ini merupakan kebalikan dari `shouldComponentUpdate`.
 
 * * *
 
@@ -162,9 +162,9 @@ React.createElement(
 )
 ```
 
-Create and return a new [React element](/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+Membuat dan mengembalikan [elemen React](/docs/rendering-elements.html) baru berdasarkan _type_ yang diberikan. Argumen _type_ dapat diisi dengan nama _tag_ berupa _string_ (seperti `'div'` atau `'span'`), [komponen React](/docs/components-and-props.html) (kelas atau fungsi), atau [fragment React](#reactfragment).
 
-Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `React.createElement()`. You will not typically invoke `React.createElement()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+Kode yang ditulis dengan [JSX](/docs/introducing-jsx.html) akan dikonversi menggunakan `React.createElement()`. Anda tidak perlu menggunakan `React.createElement()` secara langsung apabila anda menggunakan JSX. Kunjungi [React tanpa JSX](/docs/react-without-jsx.html) untuk informasi selengkapnya.
 
 * * *
 
@@ -178,17 +178,17 @@ React.cloneElement(
 )
 ```
 
-Clone and return a new React element using `element` as the starting point. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved.
+Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang diberikan. Elemen yang dihasilkan akan memiliki _props_ dari elemen asli (elemen yang di-_clone_) dengan tambahan _props_ baru yang diberikan. _Children_ baru yang dimasukkan sebagai argumen akan menggantikan _children_ yang sudah ada. Sedangkan `key` dan `ref` dari elemen asli akan tetap dipertahankan.
 
-`React.cloneElement()` is almost equivalent to:
+`React.cloneElement()` mirip dengan:
 
 ```js
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element.
+Namun, `React.cloneElement()` tetap mempertahankan `ref`. Ini artinya apabila anda mendapatkan _child_ yang memiliki `ref`, anda tidak akan mencurinya secara tidak sengaja dari _ancestor_. Anda akan mendapatkan `ref` yang sama yang dilampirkan ke elemen yang baru.
 
-This API was introduced as a replacement of the deprecated `React.addons.cloneWithProps()`.
+_API_ ini dikenalkan sebagai pengganti dari `React.addons.cloneWithProps()`.
 
 * * *
 
@@ -198,11 +198,11 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 React.createFactory(type)
 ```
 
-Return a function that produces React elements of a given type. Like [`React.createElement()`](#createElement), the type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+Mengembalikan fungsi yang akan menghasilkan elemen React berdasarkan _type_ yang diberikan. Seperti [`React.createElement()`](#createElement), argumen _type_ dapat diisi dengan nama _tag_ berupa string (seperti `'div'` atau `'span'`), [komponen React](/docs/components-and-props.html) (kelas atau fungsi), atau [fragment React](#reactfragment).
 
-This helper is considered legacy, and we encourage you to either use JSX or use `React.createElement()` directly instead.
+_Helper_ ini dianggap _legacy_, dan kami menganjurkan anda untuk menggunakan JSX atau `React.createElement()` secara langsung.
 
-You will not typically invoke `React.createFactory()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+Anda tidak perlu menggunakan `React.createFactory()` secara langsung apabila anda menggunakan JSX. Kunjungi [React Tanpa JSX](/docs/react-without-jsx.html) untuk informasi selengkapnya.
 
 * * *
 
@@ -212,13 +212,13 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 React.isValidElement(object)
 ```
 
-Verifies the object is a React element. Returns `true` or `false`.
+Memeriksa apakah objek yang diberikan merupakan elemen React atau tidak. Mengembalikan `true` atau `false`.
 
 * * *
 
 ### `React.Children` {#reactchildren}
 
-`React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
+`React.Children` memberikan utilitas untuk berurusan dengan struktur data `this.props.children`.
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -226,11 +226,11 @@ Verifies the object is a React element. Returns `true` or `false`.
 React.Children.map(children, function[(thisArg)])
 ```
 
-Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is an array it will be traversed and the function will be called for each child in the array. If children is `null` or `undefined`, this method will return `null` or `undefined` rather than an array.
+Menjalankan fungsi sejumlah _child_ yang berada pada `children` dengan `this` yang diisikan ke `thisArg`. Apabila `children` merupakan senarai, maka fungsi tersebut akan dijalankan sejumlah _child_ yang ada pada senarai tersebut. Apabila children bernilai `null` atau `undefined`, _method_ ini akan mengembalikan nilai `null` atau `undefined` daripada senarai.
 
-> Note
+> Catatan
 >
-> If `children` is a `Fragment` it will be treated as a single child and not traversed.
+> Apabila `children` merupakan `Fragment` maka `children` tersebut akan dianggap sebagai satu _child_ dan tidak akan diproses.
 
 #### `React.Children.forEach` {#reactchildrenforeach}
 
@@ -238,7 +238,7 @@ Invokes a function on every immediate child contained within `children` with `th
 React.Children.forEach(children, function[(thisArg)])
 ```
 
-Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
+Mirip dengan [`React.Children.map()`](#reactchildrenmap) namun tidak mengembalikan senarai.
 
 #### `React.Children.count` {#reactchildrencount}
 
@@ -246,7 +246,7 @@ Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
 React.Children.count(children)
 ```
 
-Returns the total number of components in `children`, equal to the number of times that a callback passed to `map` or `forEach` would be invoked.
+Mengembalikan jumlah total komponen yang berada di dalam `children`, jumlah total yang dihasilkan sama dengan berapa kali sebuah _callback_ yang dioper ke `map` atau `forEach` akan dijalankan.
 
 #### `React.Children.only` {#reactchildrenonly}
 
@@ -254,11 +254,11 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws an error.
+Memeriksa apakah `children` yang diberikan hanya memiliki satu _child_ (elemen React) dan mengembalikannya. Jika tidak _method_ ini akan melempar _error_.
 
-> Note:
+> Catatan:
 >
->`React.Children.only()` does not accept the return value of [`React.Children.map()`](#reactchildrenmap) because it is an array rather than a React element.
+>`React.Children.only()` mengembalikan nilai yang berbeda dengan [`React.Children.map()`](#reactchildrenmap) karena `React.Children.map()` mengembalikan senarai dan bukan elemen React.
 
 #### `React.Children.toArray` {#reactchildrentoarray}
 
@@ -266,17 +266,17 @@ Verifies that `children` has only one child (a React element) and returns it. Ot
 React.Children.toArray(children)
 ```
 
-Returns the `children` opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice `this.props.children` before passing it down.
+Mengembalikan struktur data `children` sebagai senarai _flat_ dengan _key_ yang diberikan pada setiap _child_. Sangat berguna apabila anda ingin memanipulasi kumpulan _children_ pada _method_ _render_ anda, terutama apabila anda ingin mengurutkan atau memotong `this.props.children` sebelum menurunkannya.
 
-> Note:
+> Catatan:
 >
-> `React.Children.toArray()` changes keys to preserve the semantics of nested arrays when flattening lists of children. That is, `toArray` prefixes each key in the returned array so that each element's key is scoped to the input array containing it.
+> `React.Children.toArray()` merubah _key_ untuk mempertahankan semantik dari senarai bersarang ketika meratakan (_flattening_) daftar _children_. Itu artinya, `toArray` menambahkan prefiks di setiap key pada senarai yang dikembalikan sehingga setiap _key_ elemen mencakup senarai masukan yang mengandungnya.
 
 * * *
 
 ### `React.Fragment` {#reactfragment}
 
-The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
+Komponen `React.Fragment` membuat anda dapat mengembalikan lebih dari satu elemen pada _method_ `render()` tanpa membuat elemen _DOM_ tambahan:
 
 ```javascript
 render() {
@@ -289,51 +289,51 @@ render() {
 }
 ```
 
-You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
+Anda juga dapat menggunakannya dengan menuliskan `<></>`. Untuk informasi selengkapnya, kunjungi [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
 
 
 ### `React.createRef` {#reactcreateref}
 
-`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+`React.createRef` membuat sebuah [ref](/docs/refs-and-the-dom.html) yang dapat dilampirkan ke elemen React melalaui atribut ref.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
+`React.forwardRef` membuat komponen React yang dapat meneruskan atribut [ref](/docs/refs-and-the-dom.html) yang diterima ke komponen lain yang berada di bawahnya. teknik ini jarang digunakan tapi sangat berguna pada dua skenario berikut:
 
-* [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
-* [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
+* [Meneruskan ref ke komponen DOM](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+* [Meneruskan ref ke higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` accepts a rendering function as an argument. React will call this function with `props` and `ref` as two arguments. This function should return a React node.
+`React.forwardRef` menerima fungsi _rendering_ sebagai argumen. React akan memanggil fungsi ini dengan `props` dan `ref` sebagai dua argumen. Fungsi ini akan mengembalikan _node_ React.
 
 `embed:reference-react-forward-ref.js`
 
-In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function passes the `ref` to the `<button ref={ref}>` element.
+Pada contoh diatas, React mengoper `ref` yang diberikan ke elemen `<FancyButton ref={ref}>` sebagai argumen kedua ke fungsi _rendering_ yang berada pada pemanggilan `React.forwardRef`. Fungsi rendering ini mengoper `ref` ke elemen `<button ref={ref}>`.
 
-As a result, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
+Hasilnya, setelah React melampirkan ref tersebut, `ref.current` akan menunjuk ke instansi elemen DOM `<button>` secara langsung.
 
-For more information, see [forwarding refs](/docs/forwarding-refs.html).
+Untuk informasi selengkapnya, kunjungi [meneruskan ref](/docs/forwarding-refs.html).
 
 ### `React.lazy` {#reactlazy}
 
-`React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
+`React.lazy()` membuat anda dapat mendefinisikan komponen yang akan dimuat secara dinamis. Ini membantu mengurangi ukuran _bundle_ untuk menunda pemuatan komponen yang tidak digunakan saat _render_ pertama.
 
-You can learn how to use it from our [code splitting documentation](/docs/code-splitting.html#reactlazy). You might also want to check out [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) explaining how to use it in more detail.
+Anda dapat belajar cara menggunakan `React.lazy()`  dari [dokumentasi pembagian kode](/docs/code-splitting.html#reactlazy) kami. Anda mungkin juga ingin melihat [artikel ini](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) yang menjelaskan cara menggunakan `React.lazy()` secara lebih detail.
 
 ```js
 // This component is loaded dynamically
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
+Perhatikan bahwa untuk me-_render_ komponen `lazy`, anda membutuhkan komponen `<React.Suspense>` yang berada pada posisi yang lebih tinggi di dalam pohon _rendering_. Ini merupakan cara bagaimana anda menentukan indikator pemuatan.
 
-> **Note**
+> **Catatan**
 >
-> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
+> Menggunakan `React.lazy` dengan impor yang dinamis membutuhkan _Promises_ tersedia pada _environment_ JS. Ini membutuhkan _polyfill_ pada IE11 ke bawah.
 
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` let you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+`React.Suspense` membuat anda dapat menentukan indikator pemuatan apabila beberapa komponen di bawahnya belum siap untuk di-_render_. Saat ini, komponen _lazy loading_ merupakan satu - satunya kasus yang didukung `<React.Suspense>`:
 
 ```js
 // This component is loaded dynamically
@@ -351,10 +351,10 @@ function MyComponent() {
 }
 ```
 
-It is documented in our [code splitting guide](/docs/code-splitting.html#reactlazy). Note that `lazy` components can be deep inside the `Suspense` tree -- it doesn't have to wrap every one of them. The best practice is to place `<Suspense>` where you want to see a loading indicator, but to use `lazy()` wherever you want to do code splitting.
+Hal itu didokumentasikan pada [panduan pembagian kode](/docs/code-splitting.html#reactlazy) kami. Perhatikan bahwa komponen `lazy` dapat berada jauh di dalam pohon `Suspense` -- komponen tersebut tidak perlu dibungkus secara satu per satu. Sangat disarankan untuk meletakkan `<Suspense>` dimana anda ingin melihat indikator pemuatan, akan tetapi untuk menggunakan `lazy()` dimanapun anda ingin melakukan pembagian kode.
 
-While this is not supported today, in the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+Meskipun hal ini tidak didukung untuk saat ini, pada masa yang akan datang kami berencana untuk membuat `Suspense` dapat menangani lebih banyak skenario seperti pengambilan data. Anda dapat membaca tentang hal ini pada [roadmap kami](/blog/2018/11/27/react-16-roadmap.html).
 
 >Note:
 >
->`React.lazy()` and `<React.Suspense>` are not yet supported by `ReactDOMServer`. This is a known limitation that will be resolved in the future.
+>`React.lazy()` dan `<React.Suspense>` belum didukung oleh `ReactDOMServer`. Ini merupakan batasan yang akan diselesaikan pada masa yang akan datang.
