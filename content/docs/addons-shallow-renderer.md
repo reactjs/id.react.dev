@@ -10,7 +10,7 @@ category: Reference
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 dengan npm
 ```
 
 ## Ikhtisar {#overview}
@@ -35,7 +35,7 @@ Kemudian Anda dapat melakukan pengujian:
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// pada pengujian Anda:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
