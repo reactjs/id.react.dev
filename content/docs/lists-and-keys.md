@@ -51,7 +51,7 @@ Kode ini akan menampilkan sebuah *list bullet* dari angka 1 sampai 5.
 
 ### List Komponen Dasar {#basic-list-component}
 
-Biasanya anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
+Biasanya Anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
 Kita bisa merefaktor contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan. 
 
@@ -73,7 +73,7 @@ ReactDOM.render(
 );
 ```
 
-Ketika anda menjalankan kode ini, anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya.
+Ketika Anda menjalankan kode ini, Anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu Anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya.
 
 Mari kita sertakan `*key*` ke dalam *list item* kita pada `numbers.map()` dan memperbaiki masalah *key* yang hilang.
 
@@ -112,7 +112,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-Cara terbaik untuk menentukan *key* yang akan digunakan adalah menggunakan *string* unik untuk mengidentifikasikan *item* dalam sebuah *list* dari *list item* lain yang menjadi saudaranya. Seringkali anda akan menggunakan ID dari data anda sebagai *key*:
+Cara terbaik untuk menentukan *key* yang akan digunakan adalah menggunakan *string* unik untuk mengidentifikasikan *item* dalam sebuah *list* dari *list item* lain yang menjadi saudaranya. Seringkali Anda akan menggunakan ID dari data Anda sebagai *key*:
 
 ```js{2}
 const todoItems = todos.map((todo) =>
@@ -122,7 +122,7 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-Ketika anda tidak memiliki ID yang stabil untuk me-*render item*, anda bisa menggunakan indexs dari *item* sebagai *key* untuk pilihan terakhir:
+Ketika Anda tidak memiliki ID yang stabil untuk me-*render item*, Anda bisa menggunakan indeks dari *item* sebagai *key* untuk pilihan terakhir:
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
@@ -134,7 +134,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indexs sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
+Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
 Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika anda tertarik untuk belajar lebih lanjut.
 
@@ -142,7 +142,7 @@ Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/
 
 *Key* hanya perlu digunakan di dalam konteks senarai yang mengurung *item* dengan *key* tersebut.
 
-Sebagai contoh, jika anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
+Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
 
 **Contoh: Penggunaan *Key* yang Salah**
 
@@ -253,7 +253,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-*Key* berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen anda. Jika anda membutuhkan nilai yang sama di dalam komponen anda, oper secara eksplisit sebagai sebuah *props* dengan nama yang berbeda:
+*Key* berfungsi sebagai petunjuk bagi React namun mereka tidak akan muncul di komponen Anda. Jika Anda membutuhkan nilai yang sama di dalam komponen Anda, oper secara eksplisit sebagai sebuah *props* dengan nama yang berbeda:
 
 ```js{3,4}
 const content = posts.map((post) =>
@@ -304,4 +304,4 @@ function NumberList(props) {
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Terkadang penulisan seperti ini akan menghasilkan kode yang lebih jelas, namun cara seperti ini juga dapat disalahgunakan.
-Seperti di JavaScript, menjadi pilihan anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah di baca penting bagi anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
+Seperti di JavaScript, menjadi pilihan Anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah di baca penting bagi anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
