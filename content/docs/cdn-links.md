@@ -13,14 +13,14 @@ React dan ReactDOM tersedia melalui CDN.
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-Versi di atas hanya dimaksudkan untuk pengembangan dan tidak cocok untuk produksi. Versi produksi React yang telah diperkecil dan dioptimalkan tersedia di:
+Versi di atas hanya dimaksudkan untuk lingkungan pengembangan dan tidak cocok untuk lingkungan produksi. Versi React yang telah diperkecil dan dioptimalkan untuk lingkungan produksi tersedia di:
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ```
 
-Untuk memuat versi spesifik dari `react` dan `react-dom`, ganti `16` dengan nomor versi.
+Untuk memuat versi spesifik dari `react` dan `react-dom`, ganti `16` dengan nomor versi yang sesuai.
 
 ### Mengapa Atribut `crossorigin`? {#why-the-crossorigin-attribute}
 
@@ -34,4 +34,4 @@ Kami juga merekomendasikan untuk memverifikasi bahwa CDN yang Anda gunakan menet
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
-Hal ini memungkinkan [pengalaman penanganan kesalahan](/blog/2017/07/26/error-handling-in-react-16.html) di React 16 dan yang lebih baru.
+Hal ini dapat membuat [pengalaman penanganan kesalahan](/blog/2017/07/26/error-handling-in-react-16.html) yang lebih baik di React versi 16 dan versi yang lebih baru.
