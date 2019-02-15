@@ -60,10 +60,10 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Anda menekan sebanyak ${this.state.count} kali`;
   }
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Anda menekan sebanyak ${this.state.count} kali`;
   }
   handleClick() {
     this.setState(state => ({
@@ -73,9 +73,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>Anda telah menekan sebanyak {this.state.count} kali</p>
         <button onClick={this.handleClick}>
-          Click me
+          Tekan aku
         </button>
       </div>
     );
@@ -103,22 +103,22 @@ afterEach(() => {
   container = null;
 });
 
-it('can render and update a counter', () => {
-  // Test first render and componentDidMount
+it('bisa render dan memperbarui counter', () => {
+  // Tes render pertama dan componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
-  expect(label.textContent).toBe('You clicked 0 times');
-  expect(document.title).toBe('You clicked 0 times');
+  expect(label.textContent).toBe('Anda menekan sebanyak 0 kali');
+  expect(document.title).toBe('Anda menekan sebanyak 0 kali');
 
-  // Test second render and componentDidUpdate
+  // Test render kedua dan componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
-  expect(label.textContent).toBe('You clicked 1 times');
-  expect(document.title).toBe('You clicked 1 times');
+  expect(label.textContent).toBe('Anda menekan sebanyak 1 kali');
+  expect(document.title).toBe('Anda menekan sebanyak 1 kali');
 });
 ```
 
@@ -337,7 +337,7 @@ ReactTestUtils.Simulate.click(node);
 ```javascript
 // <input ref={(node) => this.textInput = node} />
 const node = this.textInput;
-node.value = 'giraffe';
+node.value = 'jerapah';
 ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 ```
