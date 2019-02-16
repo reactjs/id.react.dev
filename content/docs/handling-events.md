@@ -37,7 +37,7 @@ Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk menc
 </a>
 ```
 
-Di React, dapat dilakukan seperti ini:
+Sedangkan pada React, contoh tersebut dapat ditulis sebagai berikut:
 
 ```js{2-5,8}
 function ActionLink() {
