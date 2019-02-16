@@ -10,7 +10,7 @@ redirect_from:
 
 Menangani sebuah *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaks:
 
-* *Events* pada React biasanya dituliskan dalam bentuk camelCase, dan bukan lowercase.
+* *Events* pada React biasanya ditulis dalam bentuk *camelCase*, bukan *lowercase*.
 * Dengan JSX Anda dapat mengoper *function* sebagai *event handler*, bukan sebagai *string*.
 
 Sebagai contoh pada HTML berikut ini:
