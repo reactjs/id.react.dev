@@ -96,7 +96,7 @@ ReactDOM.render(
 
 Anda harus berhati-hati terhadap makna dari `this` pada JSX *callbacks*. Dalam JavaScript, *class method* tidak [terikat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) secara bawaan. Jika Anda lupa untuk melakukan *binding* `this.handleClick` dan mengoperkan pada `onClick`, maka `this` akan menjadi `undefined` ketika sebuah *function* telah dipanggil. 
 
-Ini bukan *behavior* pada React secara spesifik, ini merupakan bagian dari [bagaimana sebuah *functions* itu bekerja pada JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Pada umumnya jika Anda mereferensi sebuah *method* tanpa `()`, seperti `onClick={this.handleClick}`, maka Anda harus melakukan *binding* terhadap *method* tersebut.
+Ini bukan *behavior* yang spesifik pada React, tetapi ini merupakan bagian dari [bagaimana *functions* dalam JavaScript bekerja](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Pada umumnya jika Anda mendefinisikan sebuah *method* tanpa diakhiri dengan `()`, seperti `onClick={this.handleClick}`, maka Anda harus melakukan *binding* terhadap *method* tersebut.
 
 Jika memanggil `bind` menggangu Anda, ada dua cara untuk mengatasi ini. Jika Anda menggunakan sintaks eksperimental [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/), Anda dapat menggunakan *class fields* untuk melakukan *binding* terhadap *callbacks*:
 
