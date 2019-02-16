@@ -10,10 +10,10 @@ redirect_from:
 
 Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaks:
 
-* *Events* pada React biasanya dituliskan dalam bentuk camelCase, dan bukan lowercase.
-* Dengan JSX Anda dapat mengoper sebuah *function* sebagai *event handler*, dan bukan sebuah *string*.
+* *Events* pada React biasanya ditulis dalam bentuk *camelCase*, bukan *lowercase*.
+* Dengan JSX Anda dapat mengoper *function* sebagai *event handler*, bukan sebagai *string*.
 
-Sebagai contoh pada HTML:
+Sebagai contoh pada HTML berikut ini:
 
 ```html
 <button onclick="activateLasers()">
@@ -21,7 +21,7 @@ Sebagai contoh pada HTML:
 </button>
 ```
 
-sedikit berbeda pada React:
+sedikit berbeda dengan React:
 
 ```js{1}
 <button onClick={activateLasers}>
@@ -29,7 +29,7 @@ sedikit berbeda pada React:
 </button>
 ```
 
-Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan pada React. Anda harus memanggil `preventDefault` secara eksplisit. Seperti contoh, pada HTML untuk mencegah *link behavior* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
+Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan React. Anda harus memanggil `preventDefault` secara eksplisit. Sebagai contoh, pada HTML untuk mencegah agar *link* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
 
 ```html
 <a href="#" onclick="console.log('The link was clicked.'); return false">
@@ -37,7 +37,7 @@ Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk menc
 </a>
 ```
 
-Di React, dapat dilakukan seperti ini:
+Sedangkan pada React, contoh tersebut dapat ditulis sebagai berikut:
 
 ```js{2-5,8}
 function ActionLink() {
@@ -96,9 +96,9 @@ ReactDOM.render(
 
 Anda harus berhati-hati terhadap makna dari `this` pada JSX *callbacks*. Dalam JavaScript, *class method* tidak [terikat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) secara bawaan. Jika Anda lupa untuk melakukan *binding* `this.handleClick` dan mengoperkan pada `onClick`, maka `this` akan menjadi `undefined` ketika sebuah *function* telah dipanggil. 
 
-Ini bukan *behavior* pada React secara spesifik, ini merupakan bagian dari [bagaimana sebuah *functions* itu bekerja pada JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Pada umumnya jika Anda mereferensi sebuah *method* tanpa `()`, seperti `onClick={this.handleClick}`, maka Anda harus melakukan *binding* terhadap *method* tersebut.
+Ini bukan *behavior* yang spesifik pada React, tetapi ini merupakan bagian dari [bagaimana *functions* dalam JavaScript bekerja](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Pada umumnya jika Anda mendefinisikan sebuah *method* tanpa diakhiri dengan `()`, seperti `onClick={this.handleClick}`, maka Anda harus melakukan *binding* terhadap *method* tersebut.
 
-Jika memanggil `bind` menggangu Anda, ada dua cara untuk mengatasi ini. Jika Anda menggunakan sintaks eksperimental [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/), Anda dapat menggunakan *class fields* untuk melakukan *binding* terhadap *callbacks*:
+Jika Anda tidak terbiasa menggunakan `bind`, ada dua cara untuk mengatasi ini. Jika Anda menggunakan sintaks eksperimental [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/), Anda dapat menggunakan *class fields* untuk melakukan *binding* terhadap *callbacks*:
 
 ```js{2-6}
 class LoggingButton extends React.Component {
