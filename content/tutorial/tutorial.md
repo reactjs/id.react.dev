@@ -20,7 +20,7 @@ Kita akan membangun sebuah gim kecil sepanjang tutorial ini. **Anda bisa jadi te
 
 >Tips
 >
-> Tutorial ini didesain untuk orang yang lebih suka **belajar dengan mempraktikkan**. Jika Anda lebih suka belajar mempelajari konsep dari tingkat dasar sampai tingkat lanjut, lihat [panduan langkah demi langkah](/docs/hello-world.html) kami. Anda akan menyadari bahwa tutorial dan panduan akan saling melengkapi.
+>Tutorial ini didesain untuk orang yang lebih suka **belajar dengan mempraktikkan**. Jika Anda lebih suka mempelajari konsep dari tingkat dasar sampai tingkat lanjut, lihat [panduan langkah demi langkah](/docs/hello-world.html) kami. Anda akan menyadari bahwa tutorial dan panduan akan saling melengkapi.
 
 Tutorial ini akan dibagi menjadi beberapa bagian:
 
@@ -45,9 +45,9 @@ Anda bisa menutup laman permainan *tic-tac-toe* setelah Anda paham dengan permai
 
 ### Prasyarat {#prerequisites}
 
-Kami mengasumsikan bahwa Anda memiliki pemahaman akan HTML dan JavaScript, namun Anda seharusnya tetap dapat mengikuti tutorial ini jika Anda memiliki pemahaman pada bahasa pemrograman lainnya. Kami juga berasumsi bahwa Anda memiliki pemahaman dengan konsep pemrograman seperti fungsi, objek, senarai, dan pada tingkat yang lebih rendah, kelas.
+Kami mengasumsikan bahwa Anda memiliki pemahaman akan HTML dan JavaScript, namun Anda seharusnya tetap dapat mengikuti tutorial ini jika Anda memiliki pemahaman pada bahasa pemrograman lainnya. Kami juga berasumsi bahwa Anda memiliki pemahaman akan konsep pemrograman seperti fungsi, objek, senarai, dan pada tingkat yang lebih rendah, kelas.
 
-Jika Anda memerlukan pengingat tentang JavaScript, kami merekomendasikan Anda untuk membaca [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga bahwa kita menggunakan beberapa fitur dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), *[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)*, dan *[`const`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) *statements*. Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat hasil kompilasi kode ES6.
+Jika Anda memerlukan pengingat tentang JavaScript, kami merekomendasikan Anda untuk membaca [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga bahwa kita menggunakan beberapa fitur dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *statement* *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), *[`let`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), dan *[`const`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat hasil kompilasi kode ES6.
 
 ## Mempersiapkan Tutorial {#setup-for-the-tutorial}
 
@@ -98,7 +98,7 @@ del *
 cd ..
 ```
 
-4. Tambahan *file* bernama `index.css` ke dalam folder `src/` dengan [kode CSS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Tambahkan *file* bernama `index.css` ke dalam folder `src/` dengan [kode CSS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
 5. Tambahkan *file* bernama `index.js` ke dalam folder `src/` dengan [kode JS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
@@ -172,7 +172,7 @@ Komponen `ShoppingList` di atas hanya me-*render* komponen DOM *built-in* sepert
 
 ## Melihat Kode Permulaan {#inspecting-the-starter-code}
 
-Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan]](#setup-option-2-local-development-environment)).
+Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan](#setup-option-2-local-development-environment)).
 
 Kode Permulaan ini berdasarkan pada aplikasi yang akan kita buat. Kami sudah menyediakan *style CSS* sehingga Anda bisa fokus mempelajari React dan memprogram permainan *tic-tac-toe*.
 
@@ -244,7 +244,7 @@ Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browse
 
 >Catatan
 >
->Untuk mempercepat proses mengetik dan menghindari [perilaku membingungkan `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), kita akan menggunakan [sintaks arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) untuk setiap *event handler* yang akan kita buat:
+>Untuk mempercepat proses mengetik dan menghindari [perilaku membingungkan `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), kita akan menggunakan [sintaks *arrow function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) untuk setiap *event handler* yang akan kita buat:
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -780,7 +780,7 @@ Sebagai latihan terakhir, mari kita membuat permainan kita dapat "kembali" ke la
 
 Jika kita melakukan *mutate* pada senarai `squares`, mengimplementasikan penjelajahan waktu akan sangat sulit.
 
-Tetapi, kita menggunakan `slice()` untuk membuat kopi baru dari senarai `squares` setelah setiap langkah dan [memperlakukannya sebagai immutable](#why-immutability-is-important). Hal ini akan membuat kita dapat menyimpan setiap versi sebelumnya dari senarai `squares` dan melakukan navigasi di antara giliran-giliran yang sudah terjadi.
+Tetapi, kita menggunakan `slice()` untuk membuat kopi baru dari senarai `squares` setelah setiap langkah dan [memperlakukannya sebagai *immutable*](#why-immutability-is-important). Hal ini akan membuat kita dapat menyimpan setiap versi sebelumnya dari senarai `squares` dan melakukan navigasi di antara giliran-giliran yang sudah terjadi.
 
 Kita akan menyimpan riwayat senarai `squares` pada senarai lain yang bernama `history`. Senarai `history` menggambarkan semua *state* dari Board dari awal hingga akhir, dan memiliki bentuk seperti ini:
 
@@ -1008,7 +1008,7 @@ Karena kita merekam riwayat permainan *tic-tac-toe*, sekarang kita dapat menampi
 
 Kita mengetahui sebelumnya bahwa elemen React adalah object *first-class* JavaScript; kita dapat mengoperkannya ke manapun pada aplikasi kita. Untuk me-*render* banyak elemen React, kita dapat menggunakan senarai berisi elemen React.
 
-Di JavaScript, senarai memiliki [method `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) yang sering digunakan untuk melakukan pemetaan data ke data lain, contohnya:
+Di JavaScript, senarai memiliki [*method* `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) yang sering digunakan untuk melakukan pemetaan data ke data lain, contohnya:
 
 ```js
 const numbers = [1, 2, 3];
