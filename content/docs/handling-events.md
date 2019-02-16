@@ -21,7 +21,7 @@ Sebagai contoh pada HTML berikut ini:
 </button>
 ```
 
-sedikit berbeda pada React:
+sedikit berbeda dengan React:
 
 ```js{1}
 <button onClick={activateLasers}>
