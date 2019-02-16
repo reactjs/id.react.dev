@@ -29,7 +29,7 @@ sedikit berbeda dengan React:
 </button>
 ```
 
-Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan pada React. Anda harus memanggil `preventDefault` secara eksplisit. Seperti contoh, pada HTML untuk mencegah *link behavior* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
+Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan React. Anda harus memanggil `preventDefault` secara eksplisit. Sebagai contoh, pada HTML untuk mencegah agar *link* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
 
 ```html
 <a href="#" onclick="console.log('The link was clicked.'); return false">
