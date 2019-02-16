@@ -8,10 +8,10 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-Menangani sebuah *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaks:
+Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaks:
 
 * *Events* pada React biasanya dituliskan dalam bentuk camelCase, dan bukan lowercase.
-* Dengan JSX Anda dapat oper sebuah *function* sebagai *event handler*, dan bukan sebuah *string*.
+* Dengan JSX Anda dapat mengoper sebuah *function* sebagai *event handler*, dan bukan sebuah *string*.
 
 Sebagai contoh pada HTML:
 
