@@ -17,7 +17,7 @@ Sebagai contoh pada HTML:
 
 ```html
 <button onclick="activateLasers()">
-  Activate Lasers
+  Aktivasi Laser
 </button>
 ```
 
@@ -25,7 +25,7 @@ sedikit berbeda pada React:
 
 ```js{1}
 <button onClick={activateLasers}>
-  Activate Lasers
+  Aktivasi Laser
 </button>
 ```
 
@@ -43,12 +43,12 @@ Di React, dapat dilakukan seperti ini:
 function ActionLink() {
   function handleClick(e) {
     e.preventDefault();
-    console.log('The link was clicked.');
+    console.log('Tautan diklik.');
   }
 
   return (
     <a href="#" onClick={handleClick}>
-      Click me
+      Klik Saya
     </a>
   );
 }
@@ -111,14 +111,14 @@ class LoggingButton extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        Click me
+        Klik Saya
       </button>
     );
   }
 }
 ```
 
-sintaks ini telah diakfifkan secara bawaan pada [Create React App](https://github.com/facebookincubator/create-react-app).
+Sintaks ini telah diakfifkan secara bawaan pada [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Jika Anda tidak menggunakan sintaks *class fields*, Anda dapat menggunakan [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) pada *callback*:
 
@@ -132,14 +132,14 @@ class LoggingButton extends React.Component {
     // Sintaks ini memastikan `this` telah terikat dalam handleClick.
     return (
       <button onClick={(e) => this.handleClick(e)}>
-        Click me
+        Klik Saya
       </button>
     );
   }
 }
 ```
 
-Masalah pada sintaks tersebut adalah callback yang berbeda dibuat setiap kali `LoggingButton` di-*render*. Dalam banyak kasus, hal ini tidak masalah. Akan tetapi, jika callback tersebut mengoperkan sebagai props kepada komponen yang lebih rendah, maka komponen tersebut mungkin akan melakukan ekstra *render* ulang. Kita umumnya merekomendasikan *binding* dilakukan pada *constructor* atau menggunakan sintaks *class fields*, untuk menghindari masalah kinerja seperti ini.
+Masalah pada sintaks tersebut adalah *callback* yang berbeda dibuat setiap kali `LoggingButton` di-*render*. Dalam banyak kasus, hal ini tidak masalah. Akan tetapi, jika callback tersebut mengoperkan sebagai *props* kepada komponen yang lebih rendah, maka komponen tersebut mungkin akan melakukan ekstra *render* ulang. Kita umumnya merekomendasikan *binding* dilakukan pada *constructor* atau menggunakan sintaks *class fields*, untuk menghindari masalah kinerja seperti ini.
 
 ## Mengoper Argumen Kedalam Penanganan Event {#passing-arguments-to-event-handlers}
 
