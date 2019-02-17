@@ -16,7 +16,7 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Komponen mempermudah anda untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
+Komponen mempermudah Anda untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
 
 Secara konsep, komponen mirip dengan fungsi di Javascript. Komponen menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element React yang mendeskripsikan apa yang seharusnya tampil di layar.
 
@@ -31,10 +31,7 @@ function Welcome(props) {
 }
 ```
 
-Fungsi ini adalah komponen React yang sah karena menerima sebuah *"props"*
-tunggal (yang bertindak sebagai *props*) atau argumen objek dengan data dan kembalian
-sebuah Elemen React. Kita menyebut komponen karena itu benar - benear merupakan fungsi
-Javascript.
+Fungsi ini adalah komponen React yang sah karena menerima sebuah *"props"* tunggal (yang bertindak sebagai *props*) atau argumen objek dengan data dan kembalian sebuah Elemen React. Kita menyebut komponen karena itu benar - benar merupakan fungsi Javascript.
 
 Anda juga dapat menggunakan sebuah [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) untuk mendefinisikan sebuah komponen:
 
@@ -137,7 +134,7 @@ ReactDOM.render(
 [](codepen://components-and-props/composing-components)
 
 Secara khusus, aplikasi React yang baru mempunyai sebuah komponen `App` pada
-bagian paling atas. Namun, jika anda mengintegrasi React kedalam aplikasi yang
+bagian paling atas. Namun, jika Anda mengintegrasi React kedalam aplikasi yang
 ada, Anda mungkin akan memulai secara *bottom-up* dengan komponen yang kecil
 seperti `Button` dan secara bertahap kedalam hierarki paling atas.
 
@@ -268,7 +265,7 @@ dijadikan sebagai komponen yang dapat digunakan kembali.
 
 ## Props bersifat *Read-Only* {#props-are-read-only}
 
-Apakah anda mendeklarasikan sebuah komponen [sebagai sebuah fungsi atau sebuah
+Apakah Anda mendeklarasikan sebuah komponen [sebagai sebuah fungsi atau sebuah
 kelas](#function-and-class-components), jangan pernah mengganti properti nya sendiri. Pertimbangkan fungsi `sum` ini:
 
 ```js
