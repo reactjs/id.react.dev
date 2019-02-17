@@ -55,7 +55,7 @@ function onClick(event) {
   //Tidak akan berfungsi. this.state.clickEvent hanya berisi nilai kosong.
   this.setState({clickEvent: event});
 
-  // Anda masih dapat mengekspor sifat event.
+  // Anda masih dapat mengekspor atribut event.
   this.setState({eventType: event.type});
 }
 ```
@@ -99,7 +99,7 @@ Nama-nama _event_:
 onCopy onCut onPaste
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -115,7 +115,7 @@ Nama-nama _event_:
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 string data
@@ -132,7 +132,7 @@ Nama-nama _event_:
 onKeyDown onKeyPress onKeyUp
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -149,7 +149,7 @@ boolean shiftKey
 number which
 ```
 
-_Property_ `key` dapat diisi dengan nilai apapun yang terdokumentasi dalam [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+Atribut `key` dapat diisi dengan nilai apapun yang terdokumentasi dalam [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
 
 * * *
 
@@ -163,7 +163,7 @@ onFocus onBlur
 
 _Event_ fokus bekerja untuk semua elemen-elemen di React DOM, tidak hanya untuk elemen-elemen _form_.
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -195,7 +195,7 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 
 Tidak seperti _bubbling_ pada umumnya, _event_ `onMouseEnter` dan `onMouseLeave` berkembang dari elemen yang keluar sampai elemen yang masuk dan tidak memiliki fase _capture_.
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -227,9 +227,9 @@ onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 
 Tidak seperti _bubbling_ pada umumnya, _event_ `onPointerEnter` dan `onPointerLeave` berkembang dari elemen yang keluar sampai elemen yang masuk dan tidak memiliki fase _capture_.
 
-Sifat-sifat:
+Atribut-atribut:
 
-Seperti yang didefinisikan dalam [W3 spec](https://www.w3.org/TR/pointerevents/), _event_ penunjuk pointer events mengembangkan _event_ [Mouse Events](#mouse-events) dengan sifat-sifat ini:
+Seperti yang didefinisikan dalam [W3 spec](https://www.w3.org/TR/pointerevents/), _event_ penunjuk pointer events mengembangkan _event_ [Mouse Events](#mouse-events) dengan atribut-atribut ini:
 
 ```javascript
 number pointerId
@@ -270,7 +270,7 @@ Nama-nama _event_:
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -293,7 +293,7 @@ Nama-nama _event_:
 onScroll
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 number detail
@@ -310,7 +310,7 @@ Nama-nama _event_:
 onWheel
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 number deltaMode
@@ -352,7 +352,7 @@ Nama-nama _event_:
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 string animationName
@@ -370,7 +370,7 @@ Nama-nama _event_:
 onTransitionEnd
 ```
 
-Sifat-sifat:
+Atribut-atribut:
 
 ```javascript
 string propertyName
