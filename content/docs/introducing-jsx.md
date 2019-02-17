@@ -12,9 +12,9 @@ Cobalah lihat deklarasi variabel dibawah ini:
 const element = <h1>Halo, Dunia!</h1>;
 ```
 
-Sintaks *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
+Sintaksis *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
+Sintaksis ini di kenal dengan sebutan JSX, dan sintaksis ini adalah sebuah sintaksis ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
 JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, anda akan menemukan dasar-dasar JSX yang anda butuhkan untuk memulai.
 
@@ -181,4 +181,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berik
 
 >**Saran:**
 >
->Kami merokemendasikan anda untuk mencari [skema sintaks "Babel"](http://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
+>Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](http://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
