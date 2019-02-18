@@ -8,7 +8,7 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaks:
+Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaksis:
 
 * *Events* pada React biasanya ditulis dalam bentuk *camelCase*, bukan *lowercase*.
 * Dengan JSX Anda dapat mengoper *function* sebagai *event handler*, bukan sebagai *string*.
@@ -54,7 +54,7 @@ function ActionLink() {
 }
 ```
 
-Disini, `e` adalah sebuah event tiruan. React mendefinisikan event tiruan ini berdasarkan [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), jadi Anda tidak perlu kuatir akan kesesuaian antar lintar browser. Lihat referensi pada [`SyntheticEvent`](/docs/events.html) untuk paduan belajar lebih jauh.
+Di sini, `e` adalah sebuah *event* tiruan. React mendefinisikan event tiruan ini berdasarkan [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), jadi Anda tidak perlu khawatir akan kesesuaian antar lintas *browser*. Lihat referensi pada [`SyntheticEvent`](/docs/events.html) untuk panduan belajar lebih jauh.
 
 Ketika menggunakan React, pada umumnya Anda tidak perlu memanggil `addEventListener` untuk menambahkan *listener* pada elemen DOM setelah dibuat. Sebagai gantinya, cukup berikan *listener* ketika elemen pertama kali di-*render*.
 
@@ -98,12 +98,12 @@ Anda harus berhati-hati terhadap makna dari `this` pada JSX *callbacks*. Dalam J
 
 Ini bukan *behavior* yang spesifik pada React, tetapi ini merupakan bagian dari [bagaimana *functions* dalam JavaScript bekerja](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Pada umumnya jika Anda mendefinisikan sebuah *method* tanpa diakhiri dengan `()`, seperti `onClick={this.handleClick}`, maka Anda harus melakukan *binding* terhadap *method* tersebut.
 
-Jika Anda tidak terbiasa menggunakan `bind`, ada dua cara untuk mengatasi ini. Jika Anda menggunakan sintaks eksperimental [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/), Anda dapat menggunakan *class fields* untuk melakukan *binding* terhadap *callbacks*:
+Jika Anda tidak terbiasa menggunakan `bind`, ada dua cara untuk mengatasi ini. Jika Anda menggunakan sintaksis eksperimental [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/), Anda dapat menggunakan *class fields* untuk melakukan *binding* terhadap *callbacks*:
 
 ```js{2-6}
 class LoggingButton extends React.Component {
-  // Sintaks ini memastikan `this` telah terikat dalam handleClick.
-  // Peringatan: Ini adalah *eksperimental* sintaks.
+  // Sintaksis ini memastikan `this` telah terikat dalam handleClick.
+  // Peringatan: Ini adalah eksperimental sintaksis.
   handleClick = () => {
     console.log('this is:', this);
   }
@@ -118,9 +118,9 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Sintaks ini telah diakfifkan secara bawaan pada [Create React App](https://github.com/facebookincubator/create-react-app).
+Sintaksis ini telah diakfifkan secara bawaan pada [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Jika Anda tidak menggunakan sintaks *class fields*, Anda dapat menggunakan [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) pada *callback*:
+Jika Anda tidak menggunakan sintaksis *class fields*, Anda dapat menggunakan [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) pada *callback*:
 
 ```js{7-9}
 class LoggingButton extends React.Component {
@@ -129,7 +129,7 @@ class LoggingButton extends React.Component {
   }
 
   render() {
-    // Sintaks ini memastikan `this` telah terikat dalam handleClick.
+    // Sintaksis ini memastikan `this` telah terikat dalam handleClick.
     return (
       <button onClick={(e) => this.handleClick(e)}>
         Klik Saya
@@ -139,9 +139,9 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Masalah pada sintaks tersebut adalah *callback* yang berbeda dibuat setiap kali `LoggingButton` di-*render*. Dalam banyak kasus, hal ini tidak masalah. Akan tetapi, jika callback tersebut mengoperkan sebagai *props* kepada komponen yang lebih rendah, maka komponen tersebut mungkin akan melakukan ekstra *render* ulang. Kita umumnya merekomendasikan *binding* dilakukan pada *constructor* atau menggunakan sintaks *class fields*, untuk menghindari masalah kinerja seperti ini.
+Masalah pada sintaksis tersebut adalah *callback* yang berbeda dibuat setiap kali `LoggingButton` di-*render*. Dalam banyak kasus, hal ini tidak masalah. Akan tetapi, jika callback tersebut mengoperkan sebagai *props* kepada komponen yang lebih rendah, maka komponen tersebut mungkin akan melakukan ekstra *render* ulang. Kita umumnya merekomendasikan *binding* dilakukan pada *constructor* atau menggunakan sintaksis *class fields*, untuk menghindari masalah kinerja seperti ini.
 
-## Mengoper Argumen Kedalam Penanganan Event {#passing-arguments-to-event-handlers}
+## Mengoper Argumen ke dalam Penanganan Event {#passing-arguments-to-event-handlers}
 
 Di dalam perulangan biasanya ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan baris ID, maka salah satu dari kedua dapat dijalankan:
 
