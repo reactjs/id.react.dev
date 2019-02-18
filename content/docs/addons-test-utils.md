@@ -44,7 +44,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 ### `act()` {#act}
 
-Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang melakukan _rendering_ komponen tersebut dan lakukan pembaruan di dalam panggilan `act()`. Hal ini membuat tes anda berjalan menyerupai bagaimana React bekerja di _browser_.
+Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang me-*render* komponen tersebut dan lakukan pembaruan di dalam panggilan `act()`. Hal ini membuat tes anda berjalan menyerupai bagaimana React bekerja di peramban.
 
 >Catatan
 >
@@ -83,7 +83,7 @@ class App extends React.Component {
 }
 ```
 
-Ini adalah contoh bagaimana kita bisa tes komponen ini:
+Ini adalah contoh bagaimana kita bisa menguji komponen ini:
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -104,7 +104,7 @@ afterEach(() => {
 });
 
 it('bisa render dan memperbarui counter', () => {
-  // Tes render pertama dan componentDidMount
+  // Uji render pertama dan componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -113,7 +113,7 @@ it('bisa render dan memperbarui counter', () => {
   expect(label.textContent).toBe('Anda menekan sebanyak 0 kali');
   expect(document.title).toBe('Anda menekan sebanyak 0 kali');
 
-  // Test render kedua dan componentDidUpdate
+  // Uji render kedua dan componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
@@ -135,7 +135,7 @@ mockComponent(
 )
 ```
 
-Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ berguna yang memperbolehkan komponen tersebut untuk digunakan sebagai komponen React tiruan. Sebagai ganti dari _rendering_ seperti biasa, komponen tiruan ini akan menjadi `<div>` simpel (atau tag lain jika `mockTagName` disediakan) yang menampung anak komponen yang disediakan.
+Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ berguna yang memperbolehkan komponen tersebut untuk digunakan sebagai komponen React tiruan. Sebagai ganti dari _rendering_ seperti biasa, komponen tiruan ini akan menjadi `<div>` sederhana (atau tag lain jika `mockTagName` disediakan) yang menampung anak komponen yang disediakan.
 
 > Catatan:
 >
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Seperti [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
+Seperti [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) tetapi mengharapkan satu hasil dan mengembalikan satu hasil tersebut atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Seperti [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
+Seperti [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) tetapi mengharapkan satu hasil dan mengembalikan satu hasil tersebut atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Sama seperti [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) tetapi mengharapkan satu hasil, dan mengembalikan satu hasil tersebut, atau melempar _exception_ jika ada lebih dari satu yang cocok.
+Sama seperti [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) tetapi mengharapkan satu hasil dan mengembalikan satu hasil tersebut atau melempar _exception_ jika ada lebih dari satu yang cocok.
 
 ***
 
@@ -324,7 +324,7 @@ Mensimulasikan pengiriman sebuah perihal pada suatu DOM _node_ dengan pilihan `e
 
 `Simulate` memiliki sebuah _method_ untuk [every event that React understands](/docs/events.html#supported-events).
 
-**Mengklik sebuah elemen**
+**Klik sebuah elemen**
 
 ```javascript
 // <button ref={(node) => this.button = node}>...</button>
