@@ -1,31 +1,31 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX dan API
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### Bagaimana cara membuat panggilan AJAX? {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Anda bisa menggunakan semua AJAX *library* yang anda inginkan seperti halnya dengan React. Salah satu diantaranya yang populer yaitu [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), dan *browser* yang ter-integrasi [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### Dimana komponen *lifecycle* harus menggunakan panggilan AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+Anda seharusnya dapat mengisi data melalui panggilan AJAX di dalam [`componentDidMount`](/docs/react-component.html#mounting) *lifecycle method*. Disini anda juga bisa menggunakan `setState` untuk memperbarui komponen anda ketika data telah diterima.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### Contoh: Penggunaan AJAX yang ditentukan ke *state* lokal {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+Komponen dibawah menunjukan cara membuat panggilan di AJAX  `componentDidMount` untuk mengisi komponen *state* lokal  .
 
-The example API returns a JSON object like this:
+Contoh penggunaan API yang dikembalikan ke objek JSON seperti ini:
 
 ```
 {
   "items": [
-    { "id": 1, "name": "Apples",  "price": "$2" },
-    { "id": 2, "name": "Peaches", "price": "$5" }
-  ] 
+    { "id": 1, "nama": "apel",  "harga": "$2" },
+    { "id": 2, "nama": "pear", "harga": "$5" }
+  ]
 }
 ```
 
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // catatan: sangatlah penting untuk mengatasi kesalahan disini
+        // sebagai gantinya catch() block so that we don't swallow
+        // pengencualian dari bugs yang sebenarnya didalam komponen-komponen.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -72,8 +72,8 @@ class MyComponent extends React.Component {
       return (
         <ul>
           {items.map(item => (
-            <li key={item.name}>
-              {item.name} {item.price}
+            <li key={item.nama}>
+              {item.nama} {item.harga}
             </li>
           ))}
         </ul>
