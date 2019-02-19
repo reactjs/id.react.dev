@@ -1,6 +1,6 @@
 ---
 id: lifting-state-up
-title: Mengangkat State ke Atas
+title: Memindahkan State ke Atas
 permalink: docs/lifting-state-up.html
 prev: forms.html
 next: composition-vs-inheritance.html
@@ -9,7 +9,7 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Seringkali, beberapa komponen perlu mencerminkan perubahan data yang sama. Kami menyarankan mengangkat `state` bersama ke modul utama terdekat. Mari kita lihat bagaimana ini bekerja dalam aksi.
+Seringkali, beberapa komponen perlu mencerminkan perubahan data yang sama. Kami menyarankan untuk memindah `state` yang digunakan bersama tersebut ke modul _parent_ terdekat yang dimiliki komponen-komponen terkait. Mari kita lihat bagaimana ini bekerja dalam aksi.
 
 Di bagian ini, kita akan membuat kalkulator suhu yang menghitung apakah air akan mendidih pada suhu tertentu.
 
@@ -56,13 +56,13 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
 ## Menambahkan Masukan Kedua {#adding-a-second-input}
 
 Syarat baru dari kita adalah selain masukan Celcius, kita juga memberikan masukan Fahrenheit, dan kedua masukan tersebut harus tetap sinkron.
 
-Kita bisa memulai dengan mengekstraksi komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
+Kita bisa memulai dengan mengeluarkan komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -110,9 +110,9 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-Kita memiliki dua masukan sekarang, tetapi ketika Anda memasukkan suhu di salah satunya, yang lain tidak ter-*update*. Ini bertentangan dengan persyaratan kita: kita ingin tetap menyinkronkannya.
+Kita memiliki dua masukan sekarang, tetapi ketika Anda memasukkan suhu di salah satunya, yang lain tidak ter-*update*. Ini bertentangan dengan syarat kita: kita ingin tetap menyinkronkannya.
 
 Kita juga tidak dapat menampilkan `BoilingVerdict` dari `Calculator`. `Calculator` tidak tahu suhu saat ini karena suhu tersebut tersembunyi di dalam `TemperatureInput`.
 
@@ -299,7 +299,7 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
 Sekarang, tidak peduli apabila masukan berubah, `this.state.temperature` dan `this.state.scale` dalam `Calculator` akan ter-*update*. Salah satu masukan mendapatkan nilai apa adanya, sehingga setiap masukan pengguna dipertahankan, dan nilai masukan lainnya selalu dihitung ulang berdasarkan masukan.
 
@@ -307,7 +307,7 @@ Mari kita rekap apa yang terjadi ketika Anda mengubah masukan:
 
 * React memanggil fungsi yang spesifik `onChange` pada DOM `<input>`. Dalam kasus kita, ini adalah metode `handleChange` dalam komponen `TemperatureInput`.
 * Metode `handleChange` dalam komponen `TemperatureInput` memanggil `this.props.onTemperatureChange()` dengan nilai baru. Itu merupakan *props*, termasuk `onTemperatureChange`, disediakan oleh komponen induknya, `Calculator`.
-* Ketika sebelumnya di render, `Calculator` telah ditentukan bahwa `onTemperatureChange` dari Celcius `TemperatureInput` adalah metode `Calculator` `handleCelsiusChange`, dan `onTemperatureChange` dari Fahrenheit `TemperatureInput` adalah metode `Calculator` `handleFahrenheitChange`. Jadi salah satu dari dua metode `Calculator` dipanggil tergantung pada masukan yang kita ubah.
+* Ketika sebelumnya di *render*, `Calculator` telah ditentukan bahwa `onTemperatureChange` dari Celcius `TemperatureInput` adalah metode `Calculator` `handleCelsiusChange`, dan `onTemperatureChange` dari Fahrenheit `TemperatureInput` adalah metode `Calculator` `handleFahrenheitChange`. Jadi salah satu dari dua metode `Calculator` dipanggil tergantung pada masukan yang kita ubah.
 * Di dalam metode ini, komponen `Calculator` meminta React untuk mengulang *render* dengan memanggil `this.setState()` dengan nilai masukan baru dan skala masukan saat ini yang baru saja kita ubah.
 * React memanggil komponen `Calculator` metode `render` untuk mempelajari seperti apa tampilan UI. Nilai kedua masukan dihitung berdasarkan suhu saat ini dan skala aktif. Konversi suhu dilakukan di sini.
 * React memanggil metode `render` pada komponen individu `TemperatureInput` dengan *props* baru yang ditentukan oleh `Calculator`. Ia mempelajari seperti apa tampilan UI mereka.
