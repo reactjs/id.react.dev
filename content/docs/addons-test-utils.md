@@ -139,7 +139,8 @@ Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ be
 
 > Catatan:
 >
-> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [shallow rendering](/docs/test-utils.html#shallow-rendering) atau [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+
+> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [shallow rendering](/docs/shallow-renderer.html) atau [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 
