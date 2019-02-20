@@ -18,7 +18,7 @@ next: state-and-lifecycle.html
 
 Komponen mempermudah Anda untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
 
-Secara konsep, komponen mirip dengan fungsi di Javascript. Komponen menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element React yang mendeskripsikan apa yang seharusnya tampil di layar.
+Secara konsep, komponen mirip dengan fungsi pada Javascript. Komponen menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element React yang mendeskripsikan apa yang seharusnya tampil pada layar.
 
 ## Fungsi dan Komponen Kelas {#function-and-class-components}
 
