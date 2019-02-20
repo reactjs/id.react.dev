@@ -55,7 +55,7 @@ Sebelumnya, kita hanya menemui elemen React yang mewakili *tag* DOM:
 const element = <div />;
 ```
 
-Namun, elemen juga dapat mewakilkan komponen yang di definisikan
+Namun, elemen juga dapat mewakilkan komponen yang didefinisikan
 oleh pengguna:
 
 ```js
@@ -66,7 +66,7 @@ Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh
 pengguna, komponen mengoper atribut JSX ke dalam komponen ini sebagai
 *single-object*.
 
-Sebagai contoh, kode ini akan me-*render* "Halo, Sara" pada halaman:
+Sebagai contoh, kode ini akan me-*render* "Halo, Sara" pada laman:
 
 ```js{1,5}
 function Welcome(props) {
@@ -82,7 +82,7 @@ ReactDOM.render(
 
 [](codepen://components-and-props/rendering-a-component)
 
-Mari merangkum apa yang terjadi pada contoh kali ini:
+Mari merangkum apa yang terjadi pada contoh berikut:
 
 1. Kita memanggil `ReactDOM.render()` dengan elemen `<Welcome name="Sara" />`.
 2. React memanggil komponen `Welcome` dengan `{name: 'Sara'}` sebagai
@@ -266,7 +266,7 @@ dijadikan sebagai komponen yang dapat digunakan kembali.
 ## Props bersifat *Read-Only* {#props-are-read-only}
 
 Apakah Anda mendeklarasikan sebuah komponen [sebagai sebuah fungsi atau sebuah
-kelas](#function-and-class-components), jangan pernah mengganti properti nya sendiri. Pertimbangkan fungsi `sum` ini:
+kelas](#function-and-class-components), jangan pernah mengganti propertinya sendiri. Pertimbangkan fungsi `sum` ini:
 
 ```js
 function sum(a, b) {
@@ -275,10 +275,10 @@ function sum(a, b) {
 ```
 
 Fungsi seperti itu disebut ["*pure*"](https://en.wikipedia.org/wiki/Pure_function)
-karena mereka tidak mencoba untuk mengganti masukan mereka, dan selalu
+karena mereka tidak mencoba untuk mengganti masukan mereka dan selalu
 mengembalikan hasil yang sama untuk setiap masukan yang sama.
 
-Sebaliknya, fungsi dibawah bukan merupakan fungsi yang murni karna itu telah
+Sebaliknya, fungsi dibawah bukan merupakan fungsi yang murni karena hal itu telah
 mengubah masukannya:
 
 ```js
