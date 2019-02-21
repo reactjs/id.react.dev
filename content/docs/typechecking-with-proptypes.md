@@ -1,6 +1,6 @@
 ---
 id: typechecking-with-proptypes
-title: Typechecking With PropTypes
+title: Pengecekan Tipe Dengan PropTypes
 permalink: docs/typechecking-with-proptypes.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
@@ -8,11 +8,11 @@ redirect_from:
 
 > Note:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` sudah dipindahkan ke paket yang berbeda sejak React v15.5. Silakan gunakan [pustaka `prop-types`](https://www.npmjs.com/package/prop-types).
 >
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
+>Kami menyediakan [*codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) untuk melakukan konversi secara otomatis.
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+Dengan berkembangnya aplikasi kita, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, kita dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -30,11 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
+`PropTypes` mengirimkan berbagai jenis validator yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, kita menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
 ### PropTypes {#proptypes}
 
-Here is an example documenting the different validators provided:
+Berikut contoh mendokumentasikan berbagai validator yang berbeda yang sudah disediakan:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -119,9 +119,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child {#requiring-single-child}
+### Membutuhkan Satu Komponen Anak {#requiring-single-child}
 
-With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
+Dengan menggunakan `PropTypes.element` kita dapat menentukan hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -143,9 +143,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values {#default-prop-values}
+### Nilai Prop Default {#default-prop-values}
 
-You can define default values for your `props` by assigning to the special `defaultProps` property:
+Kita dapat mendefinisikan nilai default untuk `props` dengan menambahkan properti khusus `defaultProps`:
 
 ```javascript
 class Greeting extends React.Component {
@@ -168,7 +168,7 @@ ReactDOM.render(
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+Jika kamu menggunakan alat transformasi Babel seperti [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , kamu dapat mendeklarasikan `defaultProps` sebagai properti tidak bergerak dalam komponen kelas React. Sintaks ini belum final dan akan membutuhkan tahapan kompilasi untuk berjalan di browser. Informasi lebih lanjut, silakan lihat [proposal class fields](https://github.com/tc39/proposal-class-fields).
 
 ```javascript
 class Greeting extends React.Component {
@@ -184,4 +184,4 @@ class Greeting extends React.Component {
 }
 ```
 
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+Properti `defaultProps` akan digunakan untuk memastikan bahwa `this.props.name` akan memiliki sebuah nilai jika tidak ada nilai yang diberikan oleh komponen induknya. Proses pengecekan tipe `propTypes` akan dijalankan setelah `defaultProps` berjalan, sehingga proses pengecekan tipe juga akan berlaku untuk `defaultProps`.
