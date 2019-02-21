@@ -73,7 +73,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             })}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Channels</MetaTitle>
+            <MetaTitle onDark={true}>Kanal</MetaTitle>
             <ExternalFooterLink
               href="https://github.com/facebook/react"
               target="_blank"
@@ -90,7 +90,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               href="https://discuss.reactjs.org"
               target="_blank"
               rel="noopener">
-              Discussion Forum
+              Forum Diskusi
             </ExternalFooterLink>
             <ExternalFooterLink
               href="https://discord.gg/0ZcbPKXt5bZjGY5n"
@@ -118,7 +118,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             </ExternalFooterLink>
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Community</MetaTitle>
+            <MetaTitle onDark={true}>Komunitas</MetaTitle>
             {sectionListCommunity.map(section => (
               <FooterLink
                 to={`/community/${section.items[0].id}.html`}
@@ -128,11 +128,11 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>More</MetaTitle>
+            <MetaTitle onDark={true}>Lainnya</MetaTitle>
             <FooterLink to="/tutorial/tutorial.html">Tutorial</FooterLink>
             <FooterLink to="/blog/">Blog</FooterLink>
             <FooterLink to="/acknowledgements.html">
-              Acknowledgements
+              Ucapan Terima Kasih
             </FooterLink>
             <ExternalFooterLink
               href="https://facebook.github.io/react-native/"
@@ -179,7 +179,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            {`Copyright © ${new Date().getFullYear()} Facebook Inc.`}
+            {`Hak Cipta © ${new Date().getFullYear()} Facebook Inc.`}
           </p>
         </section>
       </div>
