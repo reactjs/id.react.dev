@@ -32,7 +32,7 @@ Komponen React juga dapat didefinisikan sebagai fungsi yang dapat dibungkus:
 
 ### Membuat Elemen React {#creating-react-elements}
 
-Kami menyarankan untuk [menggunakan JSX](/docs/introducing-jsx.html) untuk mendeskripsikan bagaimana tampilan antarmuka pengguna anda seharusnya terlihat. Setiap elemen JSX merupakan _syntactic sugar_ untuk memanggil [`React.createElement()`](#createelement). Anda tidak perlu memanggil _method_ berikut secara langsung apabila Anda menggunakan JSX.
+Kami menyarankan untuk [menggunakan JSX](/docs/introducing-jsx.html) untuk mendeskripsikan bagaimana tampilan antarmuka pengguna Anda seharusnya terlihat. Setiap elemen JSX merupakan _syntactic sugar_ untuk memanggil [`React.createElement()`](#createelement). Anda tidak perlu memanggil _method_ berikut secara langsung apabila Anda menggunakan JSX.
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
@@ -106,7 +106,7 @@ Kunjungi [Referensi API React.Component](/docs/react-component.html) untuk melih
 
 `React.PureComponent` mirip dengan [`React.Component`](#reactcomponent). Perbedaannya adalah [`React.Component`](#reactcomponent) tidak mengimplementasikan [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), sedangkan `React.PureComponent` mengimplementasikannya dengan perbandingan _props_ dan _state_ secara dangkal (_shallow_). 
 
-Apabila fungsi `render()` pada komponen React anda me-_render_ hasil yang sama dengan _props_ dan _state_ yang sama juga, Anda dapat menggunakan `React.PureComponent` untuk meningkatkan kinerja komponen pada kasus tertentu.
+Apabila fungsi `render()` pada komponen React Anda me-_render_ hasil yang sama dengan _props_ dan _state_ yang sama juga, Anda dapat menggunakan `React.PureComponent` untuk meningkatkan kinerja komponen pada kasus tertentu.
 
 > Catatan
 >
@@ -126,7 +126,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 `React.memo` merupakan sebuah [_higher order component_](/docs/higher-order-components.html). Ia mirip dengan [`React.PureComponent`](#reactpurecomponent) tapi alih - alih untuk _class component_ ia digunakan untuk _function component_.
 
-Apabila _function component_ anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
+Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
 
 Secara bawaan `React.memo` hanya akan membandingkan objek yang kompleks pada objek _props_ secara dangkal (_shallow comparison_). Apabila Anda ingin membuat perbandingan sendiri, Anda juga dapat memberikan fungsi pembanding _custom_ sebagai argumen kedua.
 
@@ -266,7 +266,7 @@ Memeriksa apakah `children` yang diberikan hanya memiliki satu _child_ (elemen R
 React.Children.toArray(children)
 ```
 
-Mengembalikan struktur data `children` sebagai senarai datar dengan _key_ yang diberikan pada setiap _child_. Sangat berguna apabila Anda ingin memanipulasi kumpulan _children_ pada _method_ _render_ anda, terutama apabila Anda ingin mengurutkan atau memotong `this.props.children` sebelum menurunkannya.
+Mengembalikan struktur data `children` sebagai senarai datar dengan _key_ yang diberikan pada setiap _child_. Sangat berguna apabila Anda ingin memanipulasi kumpulan _children_ pada _method_ _render_ Anda, terutama apabila Anda ingin mengurutkan atau memotong `this.props.children` sebelum menurunkannya.
 
 > Catatan:
 >
