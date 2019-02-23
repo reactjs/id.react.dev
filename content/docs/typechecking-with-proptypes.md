@@ -12,7 +12,7 @@ redirect_from:
 >
 >Kami menyediakan [*codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) untuk melakukan konversi secara otomatis.
 
-Dengan berkembangnya aplikasi kita, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, kita dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
+Dengan berkembangnya aplikasi anda, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, anda dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -30,7 +30,7 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` mengirimkan berbagai jenis validator yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, kita menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
+`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
 ### PropTypes {#proptypes}
 
@@ -40,8 +40,8 @@ Berikut contoh mendokumentasikan berbagai validator yang berbeda yang sudah dise
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // You can declare that a prop is a specific JS type. By default, these
-  // are all optional.
+  // Anda dapat menyatakan bahwa sebuah prop adalah tipe khusus yang berasal dari JS. Secara default, 
+  // hal ini sifatnya opsional.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
   optionalFunc: PropTypes.func,
@@ -50,50 +50,50 @@ MyComponent.propTypes = {
   optionalString: PropTypes.string,
   optionalSymbol: PropTypes.symbol,
 
-  // Anything that can be rendered: numbers, strings, elements or an array
-  // (or fragment) containing these types.
+  // Apapun dapat di-render: numbers, strings, elements ataupun sebuah array
+  // (atau fragmen) yang mengandung tipe-tipe tersebut.
   optionalNode: PropTypes.node,
 
-  // A React element.
+  // Sebuah elemen React.
   optionalElement: PropTypes.element,
 
-  // You can also declare that a prop is an instance of a class. This uses
-  // JS's instanceof operator.
+  // Anda dapat juga menyatakan bahwa sebuah prop adalah instance dari sebuah kelas. Ini menggunakan
+  // operator instanceof dari JS.
   optionalMessage: PropTypes.instanceOf(Message),
 
-  // You can ensure that your prop is limited to specific values by treating
-  // it as an enum.
+  // Anda dapat memastikan bahwa prop anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
+  // sebagai sebuah enum.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
-  // An object that could be one of many types
+  // Sebuah objek dapat memiliki satu dari banyak tipe-tipe
   optionalUnion: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.instanceOf(Message)
   ]),
 
-  // An array of a certain type
+  // Sebuah array dari tipe tertentu
   optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
 
-  // An object with property values of a certain type
+  // Sebuah objek dengan nilai properti dari tipe tertentu
   optionalObjectOf: PropTypes.objectOf(PropTypes.number),
 
-  // An object taking on a particular shape
+  // Sebuah objek yang menerima bentuk tertentu
   optionalObjectWithShape: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
 
-  // You can chain any of the above with `isRequired` to make sure a warning
-  // is shown if the prop isn't provided.
+  // Anda dapat merangkai dari contoh diatas dengan `isRequired` untuk memastikan sebuah peringatan
+  // akan muncul jika sebuah prop tidak disertakan.
   requiredFunc: PropTypes.func.isRequired,
 
-  // A value of any data type
+  // Sebuah nilai dari tipe data apapun
   requiredAny: PropTypes.any.isRequired,
 
-  // You can also specify a custom validator. It should return an Error
-  // object if the validation fails. Don't `console.warn` or throw, as this
-  // won't work inside `oneOfType`.
+  // Anda dapat juga menentukan validator khusus. Akan menghasilkan objek Error
+  // jika validasi gagal. Jangan `console.warn` atau `throw`, hal seperti ini
+  // tidak akan berfungsi jika didalam `oneOfType`.
   customProp: function(props, propName, componentName) {
     if (!/matchme/.test(props[propName])) {
       return new Error(
@@ -103,11 +103,11 @@ MyComponent.propTypes = {
     }
   },
 
-  // You can also supply a custom validator to `arrayOf` and `objectOf`.
-  // It should return an Error object if the validation fails. The validator
-  // will be called for each key in the array or object. The first two
-  // arguments of the validator are the array or object itself, and the
-  // current item's key.
+  // Anda dapat juga menyediakan sebuah validator tambahan ke `arrayOf` dan `objectOf`.
+  // Hal ini sebaiknya menghasilkan objek Error jika validasi gagal. Validator
+  // akan dipanggil untuk setiap nilai didalam array atau objek. Dua pertama
+  // dari argumen validator adalah array atau objek itu sendiri, dan
+  // identitas dari nilai saat itu.
   customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
     if (!/matchme/.test(propValue[key])) {
       return new Error(
@@ -121,14 +121,14 @@ MyComponent.propTypes = {
 
 ### Membutuhkan Satu Komponen Anak {#requiring-single-child}
 
-Dengan menggunakan `PropTypes.element` kita dapat menentukan hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
+Dengan menggunakan `PropTypes.element` anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
 
 ```javascript
 import PropTypes from 'prop-types';
 
 class MyComponent extends React.Component {
   render() {
-    // This must be exactly one element or it will warn.
+    // Harus memiliki hanya satu elemen atau akan diberi peringatan.
     const children = this.props.children;
     return (
       <div>
@@ -143,9 +143,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Nilai Prop Default {#default-prop-values}
+### Nilai Default Prop {#default-prop-values}
 
-Kita dapat mendefinisikan nilai default untuk `props` dengan menambahkan properti khusus `defaultProps`:
+Anda dapat mendefinisikan nilai *default* untuk `props` dengan menambahkan properti khusus `defaultProps`:
 
 ```javascript
 class Greeting extends React.Component {
@@ -156,19 +156,19 @@ class Greeting extends React.Component {
   }
 }
 
-// Specifies the default values for props:
+// Menentukan nilai default dari props:
 Greeting.defaultProps = {
   name: 'Stranger'
 };
 
-// Renders "Hello, Stranger":
+// Render "Hello, Stranger":
 ReactDOM.render(
   <Greeting />,
   document.getElementById('example')
 );
 ```
 
-Jika kamu menggunakan alat transformasi Babel seperti [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , kamu dapat mendeklarasikan `defaultProps` sebagai properti tidak bergerak dalam komponen kelas React. Sintaks ini belum final dan akan membutuhkan tahapan kompilasi untuk berjalan di browser. Informasi lebih lanjut, silakan lihat [proposal class fields](https://github.com/tc39/proposal-class-fields).
+Jika kamu menggunakan alat transformasi Babel seperti [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , kamu dapat mendeklarasikan `defaultProps` sebagai properti *static* dalam komponen kelas React. Sintaks ini belum final dan akan membutuhkan tahapan kompilasi untuk berjalan di browser. Informasi lebih lanjut, silakan lihat [proposal class fields](https://github.com/tc39/proposal-class-fields).
 
 ```javascript
 class Greeting extends React.Component {
