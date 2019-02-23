@@ -22,24 +22,24 @@ Halaman ini menjelaskan beberapa *toolchains* yang bisa membantu menyelesaikan t
 
 ## Anda Mungkin Tidak Butuh Toolchains{#you-might-not-need-a-toolchain}
 
-Jika Anda tidak mengalami masalah yang dijelaskan di atas atau belum merasa nyaman menggunakan *tools* dari JavaScript, pertimbangkan untuk [menambahkan React sebagai *tag* `<script>` biasa pada halaman HTML](/docs/add-react-to-a-website.html). Anda dapat melakukan itu [dengan JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+Jika Anda tidak mengalami masalah yang dijelaskan di atas atau belum nyaman menggunakan *tools* dari JavaScript, pertimbangkan untuk [menambahkan React sebagai *tag* `<script>` biasa pada halaman HTML](/docs/add-react-to-a-website.html). Anda dapat melakukan itu [dengan JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
-Cara tersebut juga merupakan **cara termudah untuk mengintegrasikan React ke dalam situs yang sudah ada.** Anda bisa menambah *Toolchains* yang lebih besar kapanpun Anda inginkan jika Anda merasa itu dapat membantu!
+Cara tersebut juga merupakan **cara termudah mengintegrasikan React ke dalam situs yang sudah ada.** Anda bisa menambah *Toolchains* yang lebih besar kapanpun Anda inginkan jika Anda merasa itu dapat membantu!
 
 ## Toolchains Yang Direkomendasikan {#recommended-toolchains}
 
 Tim React sangat merekomendasikan solusi ini:
 
 - Jika Anda **Sedang belajar React** atau **membuat Aplikasi [satu halaman](/docs/glossary.html#single-page-application) baru,** cobalah [Create React App](#create-react-app).
-- Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan server Node.js,** cobalah [Next.js](#nextjs).(#nextjs).
+- Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan *server* Node.js,** cobalah [Next.js](#nextjs).(#nextjs).
 - Jika Anda sedang membangun sebuah **situs statis yang berorientasi pada konten,** cobalah [Gatsby](#gatsby).
 - Jika Anda sedang membangun sebuah ***library* komponen** atau **menggabungkannya dengan basis kode yang sudah ada,** cobalah [*toolchains* yang lebih fleksibel](#more-flexible-toolchains).
 
 ### Create React App {#create-react-app}
 
-[Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan lingkungan ini merupakan cara terbaik untuk mulai membangun **sebuah aplikasi [satu halaman](/docs/glossary.html#single-page-application)** di React.
+[Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [satu halaman](/docs/glossary.html#single-page-application)** di React.
 
-Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda akan membutuhkan Node >= 6 dan npm >= 5.2 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
+Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 6 dan npm >= 5.2 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
 
 ```bash
 npx create-react-app my-app
@@ -51,13 +51,13 @@ npm start
 >
 >`npx` pada baris pertama bukanlah salah ketik --itu adalah [*package runner tool* yang tersedia bersamaan dengan npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
-Create React App tidak mengatur bagian *backend* ataupun basis data; namun hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
+Create React App tidak mengatur bagian *backend* ataupun basis data; tapi hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
 
-Ketika Anda siap untuk melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app-) dan [Petunjuk Pengguna](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) Create React App.
+Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app-) dan [Petunjuk Pengguna](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) Create React App.
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) adalah *framework* populer dan ringan untuk aplikasi statis dan aplikasi yang di-*render* di server. Next.js dibangun menggunakan React. Framework ini sudah mengatasi masalah ***styling*** dan ***routing***, dan mengasumsikan bahwa Anda menggunakan [Node.js](https://nodejs.org/) sebagai lingkungan server anda.
+[Next.js](https://nextjs.org/) adalah *framework* populer dan ringan untuk aplikasi statis dan aplikasi yang di-*render* di *server*. Next.js dibangun menggunakan React. Framework ini sudah mengatasi masalah ***styling*** dan ***routing***, dan mengasumsikan bahwa Anda menggunakan [Node.js](https://nodejs.org/) sebagai lingkungan *server* anda.
 
 Pelajari Next.js dari [dokumentasi resminya](https://nextjs.org/learn/).
 
@@ -71,24 +71,24 @@ Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan 
 
 *Toolchains* berikut menawarkan fleksibilitas dan berbagai pilihan. Kami merekomendasikan ini untuk pengguna yang lebih berpengalaman:
 
-- **[Neutrino](https://neutrinojs.org/)** mengkombinasikan keunggulan [webpack](https://webpack.js.org/) dengan kemudahan pengaturan awal, termasuk pengaturan awal untuk [Aplikasi React](https://neutrinojs.org/packages/react/) dan [komponen React](https://neutrinojs.org/packages/react-components/).
+- **[Neutrino](https://neutrinojs.org/)** mengombinasikan keunggulan [Webpack](https://webpack.js.org/) dengan kemudahan pengaturan awal, termasuk pengaturan awal [Aplikasi React](https://neutrinojs.org/packages/react/) dan [komponen React](https://neutrinojs.org/packages/react-components/).
 
-- **[nwb](https://github.com/insin/nwb)** sangat baik untuk [mempublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
+- **[nwb](https://github.com/insin/nwb)** sangat baik dalam [memublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
 
 - **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** adalah *framework* yang me-*render* di server dan tidak membutuhkan konfigurasi, namun menyediakan fleksibilitas yang lebih dibanding dengan Next.js.
+- **[Razzle](https://github.com/jaredpalmer/razzle)** adalah *framework* yang me-*render* di *server* dan tidak membutuhkan konfigurasi, namun menyediakan fleksibilitas lebih dibanding Next.js.
 
 ## Membuat Toolchains dari Awal{#creating-a-toolchain-from-scratch}
 
 Sebuah *Toolchains* yang dibuat menggunakan JavaScript biasanya terdiri dari:
 
-* Sebuah ***package manager***, seperti [Yarn](https://yarnpkg.com/) atau [npm](https://www.npmjs.com/). *Package manager* memberikan keuntungan berupa ekosistem yang luas dari paket - paket pihak ketiga, dan Anda dapat memasang atau memperbarui paket tersebut dengan mudah.
+* Sebuah ***package manager***, seperti [Yarn](https://yarnpkg.com/) atau [npm](https://www.npmjs.com/). *Package manager* memberikan keuntungan berupa ekosistem yang luas dari paket-paket pihak ketiga, dan Anda dapat memasang atau memperbarui paket tersebut dengan mudah.
 
-* Sebuah ***bundler***, seperti [webpack](https://webpack.js.org/) atau [Parcel](https://parceljs.org/). *Bundler* membantu Anda menuliskan kode modular dan menyatukannya menjadi paket - paket kecil untuk mengoptimalkan waktu pemuatan.
+* Sebuah ***bundler***, seperti [Webpack](https://webpack.js.org/) atau [Parcel](https://parceljs.org/). *Bundler* membantu Anda menuliskan kode modular dan menyatukannya menjadi paket-paket kecil untuk mengoptimalkan waktu pemuatan.
 
 * Sebuah ***compiler*** seperti [Babel](http://babeljs.io/). *Compiler* membantu Anda menulis kode JavaScript yang lebih modern agar dapat bekerja pada *browser* yang lebih lama.
 
-Jika Anda lebih suka untuk membuat *Toolchains* JavaScript anda sendiri dari awal, [silahkan cek petunjuk ini](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) yang membuat ulang beberapa fungsi dari Create React App.
+Jika Anda lebih suka membuat *Toolchains* JavaScript anda sendiri dari awal, [silahkan cek petunjuk ini](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) yang membuat ulang beberapa fungsi dari Create React App.
 
-Jangan lupa untuk memastikan *toolchains* buatan anda [sudah diatur untuk tahap produksi dengan benar](/docs/optimizing-performance.html#use-the-production-build).
+Jangan lupa memastikan *toolchains* buatan anda [sudah diatur untuk tahap produksi dengan benar](/docs/optimizing-performance.html#use-the-production-build).
