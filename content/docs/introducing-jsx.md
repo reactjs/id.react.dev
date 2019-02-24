@@ -70,11 +70,7 @@ ReactDOM.render(
 
 [Coba di CodePen](codepen://introducing-jsx)
 
-<<<<<<< HEAD
-Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](http://stackoverflow.com/q/2846283).
-=======
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
 ### JSX adalah Ekspresi Juga {#jsx-is-an-expression-too}
 
@@ -142,11 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-<<<<<<< HEAD
-Secara default, React DOM [meng-*escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
-=======
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+Secara default, React DOM [meng-*escape*](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX Merepresentasikan Objek {#jsx-represents-objects}
 
@@ -189,8 +181,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berik
 
 >**Saran:**
 >
-<<<<<<< HEAD
->Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](http://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
-=======
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+>Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
