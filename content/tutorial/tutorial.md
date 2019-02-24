@@ -225,13 +225,8 @@ Selamat! Anda baru saja "mengoperkan sebuah *prop*" dari komponen Board ke kompo
 
 ### Membuat Komponen Interaktif {#making-an-interactive-component}
 
-<<<<<<< HEAD
 Mari mengisi komponen Square dengan sebuah "X" ketika kita mengklik komponen tersebut.
 Pertama, ubah *button tag* yang dikembalikan dari fungsi `render()` komponen Square menjadi:
-=======
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ```javascript{4}
 class Square extends React.Component {
