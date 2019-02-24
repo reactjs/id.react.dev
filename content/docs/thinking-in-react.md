@@ -106,11 +106,7 @@ Jadi, *state* kita adalah:
 
 ## Langkah 4: Identifikasi Dimana *State* Anda Berada {#step-4-identify-where-your-state-should-live}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="http://codepen.io">CodePen</a>.</p>
-=======
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="https://codepen.io">CodePen</a>.</p>
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 OK, jadi kita sudah mengindentifikasi set minimal dari *state* aplikasi kita. Selanjutnya, kita perlu mengidentifikasi komponen mana yang memutasi, atau *memiliki* *state* tersebut.
 
@@ -135,11 +131,7 @@ Anda akan mulai dapat melihat bagaimana aplikasi anda bekerja: ubah `filterText`
 
 ## Langkah 5: Tambahkan Aliran Data Sebaliknya {#step-5-add-inverse-data-flow}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="http://codepen.io">CodePen</a>.</p>
-=======
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="https://codepen.io">CodePen</a>.</p>
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 Sejauh ini, kita telah membangun sebuah aplikasi yang telah secara benar di-*render* sebagai fungsi dari *props* dan *state* yang mengalir ke bawah seiring hierarki. Sekarang saatnya untuk mendukung aliran data ke arah sebaliknya: komponen form yang berada di bawah hirarki perlu untuk memperbarui *state* di `FilterableProductTable`.
 
