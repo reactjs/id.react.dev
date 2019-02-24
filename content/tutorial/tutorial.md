@@ -1013,7 +1013,7 @@ Di JavaScript, senarai memiliki [*method* `map()`](https://developer.mozilla.org
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 Dengan menggunakan *method* `map`, kita dapat memetakan riwayat langkah kita ke elemen React yang melambangkan tombol pada layar dan menampilkan daftar tombol untuk "melompat" ke langkah sebelumnya.
 
