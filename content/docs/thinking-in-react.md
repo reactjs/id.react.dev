@@ -61,11 +61,7 @@ Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturny
 
 ## Langkah 2: Buat Versi Statis di React {#step-2-build-a-static-version-in-react}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="http://codepen.io">CodePen</a>.</p>
-=======
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="https://codepen.io">CodePen</a>.</p>
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 Setelah kita memiliki hierarki komponen, saatnya mengimplementasikan aplikasi anda. Cara termudah adalah membuat versi aplikasi anda yang menerima model data dan me-*render* UI tanpa ada interaktifitas yang terjadi. Memisahkan proses ini adalah jalan yang terbaik karena membuat versi statis membutuhkan banyak mengetik dan tanpa berpikir, dan menambahkan interaktifitas membutuhkan banyak berpikir namun tidak terlalu banyak mengetik. Kita akan segera tahu alasannya.
