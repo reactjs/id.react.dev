@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Thinking in React
+title: Cara Berpikir Dengan React
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
@@ -8,17 +8,17 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
+React, menurut opini kami, adalah cara paling terdepan dalam membangun sebuah aplikasi web JavaScript yang besar dan cepat. React dapat mengatasi masalah skalabilitas dengan sangat baik untuk kami di Facebook dan Instagram.
 
-One of the many great parts of React is how it makes you think about apps as you build them. In this document, we'll walk you through the thought process of building a searchable product data table using React.
+Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi Anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
 
-## Start With A Mock {#start-with-a-mock}
+## Mulailah Dengan Sebuah Rancang Bangun {#start-with-a-mock}
 
-Imagine that we already have a JSON API and a mock from our designer. The mock looks like this:
+Bayangkan kita telah memiliki sebuah API JSON dan sebuah rancang bangun dari desainer. Rancang bangun kita terlihat seperti ini:
 
 ![Mockup](../images/blog/thinking-in-react-mock.png)
 
-Our JSON API returns some data that looks like this:
+API JSON kita akan mengembalikan beberapa data yang akan terlihat seperti ini:
 
 ```
 [
@@ -31,27 +31,27 @@ Our JSON API returns some data that looks like this:
 ];
 ```
 
-## Step 1: Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
+## Langkah 1: Bagi Antaramuka Pengguna Menjadi Sebuah Hierarki Komponen {#step-1-break-the-ui-into-a-component-hierarchy}
 
-The first thing you'll want to do is to draw boxes around every component (and subcomponent) in the mock and give them all names. If you're working with a designer, they may have already done this, so go talk to them! Their Photoshop layer names may end up being the names of your React components!
+Langkah pertama yang akan Anda lakukan adalah menggambar kotak-kotak untuk setiap komponen (dan subkomponen) di rancang bangun dan memberikan mereka masing-masing sebuah nama. Jika Anda bekerja dengan desainer, mungkin mereka telah melakukan ini, jadi cobalah tanya mereka! Nama *layer* pada berkas Photoshop mereka bisa menjadi nama bagi komponen React Anda!
 
-But how do you know what should be its own component? Just use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+Namun bagaimana Anda mengetahui bagian mana yang harus menjadi komponen sendiri? Anda dapat menggunakan teknik yang sama untuk memutuskan jika Anda harus membuat sebuah fungsi atau obyek. Salah satu dari teknik tersebut adalah [*single responsibility principle*](https://en.wikipedia.org/wiki/Single_responsibility_principle), yang berarti secara ideal, sebuah komponen hanya dapat melakukan satu hal. Jika pada akhirnya komponen tersebut berkembang, maka ia harus dibagi kembali menjadi subkomponen yang lebih kecil.
 
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*, which means the work of separating your UI into components is often trivial. Just break it up into components that represent exactly one piece of your data model.
+Karena Anda seringkali akan menampilkan sebuah model data JSON kepada pengguna, Anda akan menemukan bahwa jika model Anda dibangun dengan benar, maka antaramuka pengguna (dan demikian juga struktur komponen Anda) akan dapat menyesuaikan dengan baik. Ini karena antaramuka pengguna dan model data cenderung mengikuti *arsitektur informasi* yang sama, yang berarti memisahkan antaramuka pengguna Anda ke dalam komponen-komponen seringkali sangat mudah. Bagi saja komponen-komponen Anda untuk merepresentasikan satu bagian dari model data Anda.
 
 ![Component diagram](../images/blog/thinking-in-react-components.png)
 
-You'll see here that we have five components in our simple app. We've italicized the data each component represents.
+Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi simpel kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
 
-  1. **`FilterableProductTable` (orange):** contains the entirety of the example
-  2. **`SearchBar` (blue):** receives all *user input*
-  3. **`ProductTable` (green):** displays and filters the *data collection* based on *user input*
-  4. **`ProductCategoryRow` (turquoise):** displays a heading for each *category*
-  5. **`ProductRow` (red):** displays a row for each *product*
+  1. **`FilterableProductTable` (oranye):** berisi keseluruhan dari contoh ini
+  2. **`SearchBar` (biru):** menerima semua *masukan pengguna*
+  3. **`ProductTable` (hijau):** menampilkan dan memfilter *koleksi data* berdasarkan *masukan pengguna*
+  4. **`ProductCategoryRow` (biru muda):** menampilkan judul untuk setiap *kategori*
+  5. **`ProductRow` (merah):** menampilkan sebuah baris untuk setiap *produk*
 
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (i.e. if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
+Jika Anda melihat `ProductTable`, Anda akan menemukan bahwa judul tabel (berisi label "Name" dan "Price") bukan merupakan komponen yang berdiri sendiri. Sebenarnya ini adalah masalah preferensi, dan akan terdapat argumen yang akan dibuat bagaimanapun juga. Di contoh ini, kita membuatnya sebagai bagian dari `ProductTable` karena ia adalah bagian dari proses *render* *koleksi data*, yang merupakan tanggung jawab dari `ProductTable`. Namun, jika judul tabel ini berkembang menjadi lebih rumit (mis. jika kita akan menambahkan fungsi sorting), akan menjadi masuk akal untuk membuatnya dalam komponen `ProductTableHeader` yang terpisah.
 
-Now that we've identified the components in our mock, let's arrange them into a hierarchy. This is easy. Components that appear within another component in the mock should appear as a child in the hierarchy:
+Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturnya dalam sebuah hierarki. Ini mudah. Komponen yang berada di dalam komponen dalam rancang bangun kita harusnya akan muncul sebagai komponen anak dalam hierarki kita:
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -59,90 +59,90 @@ Now that we've identified the components in our mock, let's arrange them into a 
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Build A Static Version in React {#step-2-build-a-static-version-in-react}
+## Langkah 2: Buat Versi Statis di React {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Now that you have your component hierarchy, it's time to implement your app. The easiest way is to build a version that takes your data model and renders the UI but has no interactivity. It's best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We'll see why.
+Setelah kita memiliki hierarki komponen, saatnya mengimplementasikan aplikasi Anda. Cara termudah adalah membuat versi aplikasi Anda yang menerima model data dan me-*render* UI tanpa ada interaktifitas yang terjadi. Memisahkan proses ini adalah jalan yang terbaik karena membuat versi statis membutuhkan banyak mengetik dan tanpa berpikir, dan menambahkan interaktifitas membutuhkan banyak berpikir namun tidak terlalu banyak mengetik. Kita akan segera tahu alasannya.
 
-To build a static version of your app that renders your data model, you'll want to build components that reuse other components and pass data using *props*. *props* are a way of passing data from parent to child. If you're familiar with the concept of *state*, **don't use state at all** to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.
+Untuk membuat versi statis dari aplikasi Anda yang me-*render* model data, Anda akan membangun komponen yang menggunakan kembali komponen lain dan mengoper data menggunakan *props*. *props* adalah sebuah cara untuk mengoper data dari komponen induk ke komponen anak. Jika Anda telah familiar dengan konsep *state*, **jangan menggunakan *state* sama sekali** untuk membangun versi statis ini. *State* disediakan hanya untuk interaktifitas, yang berarti, data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi yang Anda buat, Anda belum membutuhkannya.
 
-You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
+Anda dapat membangun dari atas ke bawah atau dari bawah ke atas. Maksudnya, Anda dapat mulai membangun komponen teratas dari hierarki (mis. memulai dari `FilterableProductTable`) atau dari komponen terbawah (`ProductRow`). Dalam contoh simpel, biasanya lebih mudah membangun dari atas ke bawah, dan dalam proyek yang lebih besar, biasanya lebih mudah membangun dari bawah ke atas dan menambahkan tes dalam prosesnya.
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. It's easy to see how your UI is updated and where to make changes since there's nothing complicated going on. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+Pada akhir langkah ini, Anda akan memiliki sebuah *library* dari komponen pakai ulang yang akan me-*render* model data Anda. Komponen-komponen tersebut hanya akan memiliki method `render()` karena mereka adalah versis statis dari aplikasi Anda. Komponen di atas hierarki (`FilterableProductTable`) akan mengambil model data sebagai sebuah prop. Jika Anda membuat perubahan pada model data dan memanggil kembali `ReactDOM.render()`, UI akan diperbarui secara otomatis. Akan mudah untuk melihat bagaimana UI Anda diperbarui dan dimana untuk melakukan perubahan karena tidak ada hal rumit yang terjadi. Konsep **one-way data flow** (disebut juga *one-way binding*) dari React membuat segalanya modular dan cepat.
 
-Simply refer to the [React docs](/docs/) if you need help executing this step.
+Silakan merujuk pada [dokumentasi React](/docs/) jika Anda memerlukan bantuan dalam melakukan langkah ini.
 
-### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
+### Sedikit Selingan: *Props* vs *State* {#a-brief-interlude-props-vs-state}
 
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/interactivity-and-dynamic-uis.html) if you aren't sure what the difference is.
+Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk memahami perbedaan keduanya; baca [dokumentasi React](/docs/interactivity-and-dynamic-uis.html) jika Anda belum yakin apa perbedaan mereka.
 
-## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
+## Langkah 3: Identifikasi Representasi Minimal (namun komplit) dari *State* UI {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React makes this easy with **state**.
+Untuk membuat UI Anda interaktif, Anda harus bisa melakukan perubahan terhadap model data Anda. React membuat langkah ini mudah dengan **state**.
 
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, just keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, simply take the length of the TODO items array.
+Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah array dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari array item TODO.
 
-Think of all of the pieces of data in our example application. We have:
+Pikirkan bagian-bagian data yang ada dalam aplikasi kita. Kita memiliki:
 
-  * The original list of products
-  * The search text the user has entered
-  * The value of the checkbox
-  * The filtered list of products
+  * Daftar produk
+  * Teks pencarian yang dimasukkan oleh pengguna
+  * Nilai dari checkbox
+  * Daftar produk yang telah difilter
 
-Let's go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+Mari kita telaah satu per satu dan tentukan yang mana merupakan *state*. Jawab tiga pertanyaan berikut mengenai setiap bagian data:
 
-  1. Is it passed in from a parent via props? If so, it probably isn't state.
-  2. Does it remain unchanged over time? If so, it probably isn't state.
-  3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+  1. Apakah data tersebut dioper dari komponen induk melalui *props*? Jika ya, mungkin data tersebut bukan *state*.
+  2. Apakah data tersebut tidak berubah seiring waktu? Jika ya, mungkin data tersebut bukan *state*.
+  3. Apakah Anda dapat menghitungnya berdasarkan *state* atau *props* lain di dalam komponen Anda? Jika ya, data tersebut bukanlah *state*.
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+Daftar produk dioper ke dalam komponen melalui *props*, jadi data tersebut bukan *state*. Teks pencarian dan nilai checkbox bisa menjadi *state* karena data tersebut berubah seiring waktu dan tidak dapat dihitung dari apapun. Dan akhirnya, daftar produk yang telah difilter bukan merupakan *state* karena data tersebut dapat dihitung dengan menggabungkan daftar produk dengan teks pencarian dan nilai checkbox.
 
-So finally, our state is:
+Jadi, *state* kita adalah:
 
-  * The search text the user has entered
-  * The value of the checkbox
+  * Teks pencarian yang dimasukkan oleh pengguna
+  * Nilai dari checkbox
 
-## Step 4: Identify Where Your State Should Live {#step-4-identify-where-your-state-should-live}
+## Langkah 4: Identifikasi Dimana *State* Anda Berada {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
-OK, so we've identified what the minimal set of app state is. Next, we need to identify which component mutates, or *owns*, this state.
+OK, jadi kita sudah mengindentifikasi set minimal dari *state* aplikasi kita. Selanjutnya, kita perlu mengidentifikasi komponen mana yang memutasi, atau *memiliki* *state* tersebut.
 
-Remember: React is all about one-way data flow down the component hierarchy. It may not be immediately clear which component should own what state. **This is often the most challenging part for newcomers to understand,** so follow these steps to figure it out:
+Perlu diingat: Prinsip dasar React adalah aliran data satu arah yang mengalir ke bawah sejalan dengan hierarki komponen. Bisa jadi menentukan komponen mana yang harus menyimpan *state* yang mana tidak dapat dilakukan secara langsung. **Ini seringkali adalah bagian paling menantang bagi pendatang baru untuk dipahami,** jadi ikuti langkah-langkah berikut untuk mengetahuinya:
 
-For each piece of state in your application:
+Untuk setiap bagian *state* dari aplikasi Anda:
 
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.
+  * Identifikasi setiap komponen yang me-*render* sesuatu berdasarkan *state* tersebut.
+  * Temukan sebuah komponen yang menjadi pemilik bersama dari *state* (sebuah komponen di atas komponen-komponen yang membutuhkan *state* tersebut di hirarki).
+  * Antara komponen pemilik bersama atau komponen lain di atas hierarkilah yang seharusnya memiliki *state* tersebut.
+  * Jika Anda tidak dapat menemukan sebuah komponen yang masuk akal untuk memiliki *state* tersebut, buatlah sebuah komponen yang bertugas hanya untuk menyimpan *state* dan menambahkannya dimanapun di hirarki di atas komponen-komponen pemilik bersama.
 
-Let's run through this strategy for our application:
+Mari kita jalankan strategi ini di aplikasi kita:
 
-  * `ProductTable` needs to filter the product list based on state and `SearchBar` needs to display the search text and checked state.
-  * The common owner component is `FilterableProductTable`.
-  * It conceptually makes sense for the filter text and checked value to live in `FilterableProductTable`
+  * `ProductTable` akan perlu memfilter daftar produk berdasarkan *state* dan `SearchBar` perlu menampilkan teks pencarian dan *state* dari checkbox.
+  * Komponen pemilik bersama dalam hal ini adalah `FilterableProductTable`.
+  * Akan menjadi masuk akal secara konsep apabila teks pencarian dan nilai checkbox untuk berada di `FilterableProductTable`
 
-Cool, so we've decided that our state lives in `FilterableProductTable`. First, add an instance property `this.state = {filterText: '', inStockOnly: false}` to `FilterableProductTable`'s `constructor` to reflect the initial state of your application. Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as a prop. Finally, use these props to filter the rows in `ProductTable` and set the values of the form fields in `SearchBar`.
+Bagus, jadi kita telah menentukan bahwa *state* kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan *state* awal dari aplikasi Anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan *props* tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
 
-You can start seeing how your application will behave: set `filterText` to `"ball"` and refresh your app. You'll see that the data table is updated correctly.
+Anda akan mulai dapat melihat bagaimana aplikasi Anda bekerja: ubah `filterText` menjadi `"ball"` lalu muat ulang aplikasi Anda. Anda akan melihat tabel data telah diperbarui dengan benar.
 
-## Step 5: Add Inverse Data Flow {#step-5-add-inverse-data-flow}
+## Langkah 5: Tambahkan Aliran Data Sebaliknya {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
-So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy. Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+Sejauh ini, kita telah membangun sebuah aplikasi yang telah secara benar di-*render* sebagai fungsi dari *props* dan *state* yang mengalir ke bawah seiring hierarki. Sekarang saatnya untuk mendukung aliran data ke arah sebaliknya: komponen form yang berada di bawah hirarki perlu untuk memperbarui *state* di `FilterableProductTable`.
 
-React makes this data flow explicit to make it easy to understand how your program works, but it does require a little more typing than traditional two-way data binding.
+React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemahaman bagaimana aplikasi Anda bekerja, namun cara ini membuat perlunya pengetikan yang sedikit lebih banyak daripada metode *two-way data binding* tradisional.
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+Jika Anda mencoba untuk mengetik atau mencentang checkbox di versi saat ini, Anda akan melihat bahwa React tidak memperdulikan input yang Anda lakukan. Hal ini memang disengaja, karena kita telah menentukan prop `value` dari `input` agar selalu setara dengan `state` yang dioper dari `FilterableProductTable`.
 
-Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+Mari kita berpikir mengenai apa yang sebenarnya kita inginkan terjadi. Kita ingin untuk memastikan bahwa ketika pengguna mengubah form, kita memperbarui *state* untuk merefleksikan input dari pengguna. Karena komponen hanya diperbolehkan untuk memperbarui *state* mereka sendiri, `FilterableProductTable` akan mengalirkan *callback* ke `SearchBar` yang kemudian akan dipanggil kapanpun *state* harus diperbarui. Kita dapat menggunakan event `onChange` pada input untuk mengetahui kapan harus memanggil *callback*. *Callback* yang dioper oleh `FilterableProductTable` akan memanggil `setState()`, dan aplikasi akan diperbarui.
 
-Though this sounds complex, it's really just a few lines of code. And it's really explicit how your data is flowing throughout the app.
+Mungkin terdengar kompleks, namun ini hanya memerlukan beberapa baris kode. Dan bagaimana data Anda mengalir ke keseluruhan aplikasi dapat terlihat secara eksplisit.
 
-## And That's It {#and-thats-it}
+## Dan Selesai! {#and-thats-it}
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's extremely easy to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+Mudah-mudahan, contoh di atas memberi Anda gambaran mengenai bagaimana cara berpikir dalam membangun komponen dan aplikasi menggunakan React. Walaupun mungkin memerlukan sedikit pengetikan daripada biasanya, perlu diingat bahwa kode akan jauh lebih sering dibaca daripada ditulis, jadi akan sangat mudah untuk membaca kode yang modular dan eksplisit ini. Saat Anda mulai membangun *library* komponen-komponen yang cukup besar, Anda akan mulai menyukai keeksplisitan dan modularitasnya, dan dengan penggunaan ulang kode, jumlah baris kode Anda akan mulai berkurang. :)
