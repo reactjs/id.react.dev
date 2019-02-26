@@ -37,6 +37,7 @@ Tim React sangat merekomendasikan solusi ini:
 
 ### Create React App {#create-react-app}
 
+
 [Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [satu halaman](/docs/glossary.html#single-page-application)** di React.
 
 Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 6 dan npm >= 5.2 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
@@ -86,6 +87,7 @@ Sebuah *Toolchains* yang dibuat menggunakan JavaScript biasanya terdiri dari:
 * Sebuah ***package manager***, seperti [Yarn](https://yarnpkg.com/) atau [npm](https://www.npmjs.com/). *Package manager* memberikan keuntungan berupa ekosistem yang luas dari paket-paket pihak ketiga, dan Anda dapat memasang atau memperbarui paket tersebut dengan mudah.
 
 * Sebuah ***bundler***, seperti [Webpack](https://webpack.js.org/) atau [Parcel](https://parceljs.org/). *Bundler* membantu Anda menuliskan kode modular dan menyatukannya menjadi paket-paket kecil untuk mengoptimalkan waktu pemuatan.
+
 
 * Sebuah ***compiler*** seperti [Babel](http://babeljs.io/). *Compiler* membantu Anda menulis kode JavaScript yang lebih modern agar dapat bekerja pada *browser* yang lebih lama.
 
