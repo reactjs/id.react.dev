@@ -89,7 +89,7 @@ _Event handler_ dibawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaft
 
 * * *
 
-## Reference {#reference}
+## Referensi {#reference}
 
 ### Clipboard Events {#clipboard-events}
 
