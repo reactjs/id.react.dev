@@ -248,7 +248,7 @@ Catatan untuk dukungan lintas _browser_:
 
 _Event_ penunjuk belum didukung oleh semua browser (saat penulisan artikel ini, _browser_ yang mendukung terdiri atas: Chrome, Firefox, Edge, dan Internet Explorer). React tidak mengisi dukungan untuk _browser_ lain karena akan meningkatkan ukuran berkas `react-dom` secara signifikan.
 
-Jika aplikasi Anda memerlukan _event_ pointer, kami merekomendasikan Anda menambah _event_ penunjuk dari pihak ketiga.
+Jika aplikasi Anda memerlukan _pointer event_ , kami merekomendasikan Anda untuk menambah _polyfill_ untuk _pointer event_ dari pihak ketiga.
 
 * * *
 
