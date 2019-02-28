@@ -44,12 +44,12 @@ Dengan demikian, _event_ tersebut tidak dapat diakses secara asinkron.
 ```javascript
 function onClick(event) {
   console.log(event); // => objek yang dikosongkan.
-  console.log(event.type); // => "klik"
-  const eventType = event.type; // => "klik"
+  console.log(event.type); // => "click"
+  const eventType = event.type; // => "click"
 
   setTimeout(function() {
     console.log(event.type); // => null
-    console.log(eventType); // => "klik"
+    console.log(eventType); // => "click"
   }, 0);
 
   //Tidak akan berfungsi. this.state.clickEvent hanya berisi nilai kosong.
