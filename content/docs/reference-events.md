@@ -225,7 +225,7 @@ onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-Tidak seperti _bubbling_ pada umumnya, _event_ `onPointerEnter` dan `onPointerLeave` berkembang dari elemen yang keluar sampai elemen yang masuk dan tidak memiliki fase _capture_.
+Tidak seperti _bubbling_ pada umumnya, _event_ `onPointerEnter` dan `onPointerLeave` berkembang dari elemen yang ditinggalkan sampai elemen yang dimasuki dan tidak memiliki fase _capture_.
 
 Atribut-atribut:
 
