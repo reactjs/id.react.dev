@@ -33,7 +33,7 @@ string type
 
 > Catatan:
 >
-> Sejak v0.14, mengembalikan nilai `false` dari _event handler_ tidak akan menghentikan propagasi _event_. Sebagai gantinya, `e.stopPropagation()` atau `e.preventDefault()` perlu dipanggil secara manual.
+> Sejak v0.14, mengembalikan nilai `false` dari _event handler_ tidak akan menghentikan propagasi _event_. Sebagai gantinya, `e.stopPropagation()` atau `e.preventDefault()` perlu dipanggil secara manual, seperlunya.
 
 ### Event Pooling {#event-pooling}
 
