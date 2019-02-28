@@ -66,7 +66,7 @@ function onClick(event) {
 
 ## Supported Events {#supported-events}
 
-React menormalisasikan _event_ agar memiliki isi yang sama dalam seluruh _browser_.
+React menormalisasi _event_ agar memiliki properti yang sama di lintas _browser_.
 
 _Event handler_ dibawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaftarkan sebuah _event handler_ dalam fase _capture_, tambahkan `Capture` pada nama _event_; contohnya, gunakan `onClickCapture` untuk menangani _event_ klik dalam fase _capture_ sebagai ganti `onClick`.
 
