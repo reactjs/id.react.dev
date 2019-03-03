@@ -9,21 +9,21 @@ permalink: docs/glossary.html
 
 ## Aplikasi Single-page {#single-page-application}
 
-Aplikasi _Single-page_ adalah jenis aplikasi web yang memuat sebuah halaman HTML dan seluruh aset yang diperlukannya (seperti Javascript dan CSS) untuk dapat berjalan. Seluru interaksi yang terjadi pada halaman yang telah dimuat maupun halaman lainnya yang berhubungan, tidak memerlukan tambahan pengambilan data ke server, yang berarti halaman tidak perlu dimuat ulang.
+Aplikasi _Single-page_ adalah jenis aplikasi web yang memuat sebuah halaman HTML dan seluruh aset yang diperlukannya (seperti Javascript dan CSS) untuk dapat berjalan. Seluruh interaksi yang terjadi pada halaman yang telah dimuat maupun halaman lainnya yang berhubungan, tidak memerlukan tambahan pengambilan data ke server, yang berarti halaman tidak perlu dimuat ulang.
 
 Aplikasi _Single-page_ tidak harus dibangun menggunakan React. React dapat digunakan untuk meningkatkan bagian-bagian tertentu dari halaman yang telah ada untuk meningkatkan interaktivitas halaman tersebut. Kode yang ditulis dalam React dapat berjalan dengan aman dengan jenis lainnnya yang di _render_ pada _server_, seperti PHP, atau _library_ lain yang ada di sisi _client_. Faktanya, dengan cara inilah Facebook menggunakan React.
 
-## ES6, ES2015, ES2016, etc {#es6-es2015-es2016-etc}
+## ES6, ES2015, ES2016, dsb {#es6-es2015-es2016-etc}
 
-Semua akronim diatas merujuk pada versi terbaru dari standar Spesifikasi bahasa ECMAScript, yang merupakan implementasi dari bahasa JavaScript Versi ES6 (dikenal juga sebagai ES2015), yang mencakup tambahan dari versi sebelumnya seperti : _Arrow Function_, kelas, _template literals_, deklarasi variabel dengan let dan const. Anda dapat mempelajarinya lebih dalam tiap versinya melalui [tautan ini](https://en.wikipedia.org/wiki/ECMAScript#Versions)
+Semua akronim diatas merujuk pada versi terbaru dari standar Spesifikasi bahasa ECMAScript, yang merupakan implementasi dari bahasa JavaScript Versi ES6 (dikenal juga sebagai ES2015), yang mencakup tambahan dari versi sebelumnya seperti : _Arrow Function_, kelas, _template literals_, deklarasi variabel dengan `let` dan `const`. Anda dapat mempelajarinya lebih dalam tiap versinya melalui [tautan ini](https://en.wikipedia.org/wiki/ECMAScript#Versions)
 
 ## Kompiler {#compilers}
 
-Sebuah kompiler JavaScript mengambil, dan mengubah kode JavaScript, dan mengembalikannya kedalam format yang berbeda. Kasus paling umum penggunaan compiler adalah saat sintaksis ES6 diubah untuk dapat dimengerti oleh peramban tipe lama. [Babel](https://babeljs.io/) adalah salah satu jenis kompiler yang sering digunakan dengan React.
+Sebuah kompiler JavaScript menerima kode JavaScript, mengubahnya, dan mengembalikannya kedalam format yang berbeda. Kasus paling umum penggunaan compiler adalah saat sintaksis ES6 diubah untuk dapat dimengerti oleh peramban tipe lama. [Babel](https://babeljs.io/) adalah salah satu jenis kompiler yang sering digunakan dengan React.
 
 ## Bundler {#bundlers}
 
-Bundler menggunakan kode JavaScript dan CSS yang ditulis di modul terpisah, dan menggabungkannya menjadi beberapa file yang lebih optimal untuk dijalankan oleh peramban. Bundler yang sering digunakan React meliputi [Webpack](https://webpack.js.org/) dan [Browserify](http://browserify.org/)
+_Bundler_ menggunakan kode JavaScript dan CSS yang ditulis di modul terpisah, dan menggabungkannya menjadi beberapa file yang lebih optimal untuk dijalankan oleh peramban. _Bundler_ yang sering digunakan React meliputi [Webpack](https://webpack.js.org/) dan [Browserify](http://browserify.org/)
 
 ## Manajer Paket {#package-managers}
 
@@ -37,7 +37,7 @@ CDN adalah singkatan dari Content Delivery Network. CDN menyediakan konten yang 
 
 JSX adalah sintaksis ekstensi untuk JavaScript. JSX mirip dengan bahasa _template_, namum memiliki kekuatan penuh atas bahasa JavaScript. JSX dijalankan menjadi format `React.createElement()` yang mengembalikan objek JavaScript baru berupa "Elemen React". Untuk mendapatkan penjelasan dasar mengenai mengenai JSX dapat melihat [dokumentasi JSX](/docs/introducing-jsx.html), atau mengenai JSX dengan lebih mendalam [di sini](https://reactjs.org/docs/introducing-jsx.html)
 
-Tidak seperti dalam HTML, React DOM menggunakan format camelCase untuk penamaan atributnya. Sebagai contoh, `tabindex` menjadi `tabIndex` di JSX. Atribut `class` juga ditulis sebagai `className` karena `class` adalah nama yang telah dipesan dalam JavaScript.
+Tidak seperti dalam HTML, React DOM menggunakan format _camelCase_ untuk penamaan atributnya. Sebagai contoh, `tabindex` menjadi `tabIndex` di JSX. Atribut `class` juga ditulis sebagai `className` karena `class` adalah nama yang telah dipesan dalam JavaScript.
 
 
 ```js
@@ -148,23 +148,21 @@ Sebuah "key" adalah karakter spesial yang perlu disertakan saat membuat kumpulan
 
 Keys hanya perlu bersifat unik dengan elemen lainnya dalam array yag sama. Keys tidak perlu unik diseluruh aplikasi atau bahkan didalam komponen yang sama.
 
-Jangan mengoper nilai `Math.random()` sebagai key. Penting untuk diingat bahwa key harus memiliki "identitas yang stabil" walau melalui dirender ulang, sehingga React dapat mentukan kapan sebuah item ditambah, dihapus, atau diurutkan. Secara ideal, key harus tersusun dari data Anda yang bersifat unik dan stabil, seperti `post.id`.
+Jangan mengoper nilai `Math.random()` sebagai key. Penting untuk diingat bahwa key harus memiliki "identitas yang stabil" walau melalui _di-render_ ulang, sehingga React dapat mentukan kapan sebuah item ditambah, dihapus, atau diurutkan. Secara ideal, key harus tersusun dari data Anda yang bersifat unik dan stabil, seperti `post.id`.
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
 React mendukung atribut spesial yang dapat dilampirkan di komponen apapun. Atribut `ref` dapat terdiri dari sebuah objek yang dibuat oleh [`React.createRef()` function](/docs/react-api.html#reactcreateref) atau oleh sebuah _callback function_, atau _string_ (di API _legacy_). Disaat `ref` adalah sebuah _callback function_, fungsi tersebut dapat menerima argumen berupa elemen DOM atau sebuah kelas (bergantung pada tipe elemen). Hal ini dapat memberikan Anda akses langsung pada elemen DOM atau komponen yang berhubungan.
 
-Gunakan refs dengan bijak. Jika anda merasa sering menggunakan refs untuk "melakukan suatu hal", pertimbangkan untuk lebih familier dengan [aliran data top-down](/docs/lifting-state-up.html).
+Gunakan refs-and dengan bijak. Jika anda merasa sering menggunakan refs untuk "melakukan suatu hal", pertimbangkan untuk lebih familier dengan [aliran data _top-down_](/docs/lifting-state-up.html).
 
 ## [Event](/docs/handling-events.html) {#events}
 
-Handling events with React elements has some syntactic differences:
+Menangani _event_ dengan Elemen React memiliki perbedaan secara sintaksis:
 
-Menangani event dengan Elemen React memiliki perbedaan secara sintaksis:
-
-* _Event handler_ pada React ditulis menggunakan camelCase, bukan sebagaii huruf kecil.
+* _Event handler_ pada React ditulis menggunakan camelCase, bukan sebagai huruf kecil.
 * Dengan JSX, Anda mengoper sebuah fungsi sebagai _event handler_, bukan sebagai string.
 
 ## [Rekonsiliasi](/docs/reconciliation.html) {#reconciliation}
 
-Disaat sebuah _props_ atau _state_ dari sebuah komponen mengalami perubahan, React dapat memutuskan apakah hal tersebut memerlukan pembaruan DOM, dengan cara membandingkan elemen komponen yang dikembalikan dengan komponen yang telah dirender sebelumnya. Jika keduanya berbeda, React akan memperbaharui DOM. Proses ini disebut dengan istilah "rekonsiliasi".
+Disaat sebuah _props_ atau _state_ dari sebuah komponen mengalami perubahan, React dapat memutuskan apakah hal tersebut memerlukan pembaruan DOM, dengan cara membandingkan elemen komponen yang dikembalikan dengan komponen yang telah _di-render_ sebelumnya. Jika keduanya berbeda, React akan memperbarui DOM. Proses ini disebut dengan istilah "rekonsiliasi".
