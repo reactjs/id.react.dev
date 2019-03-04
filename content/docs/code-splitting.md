@@ -92,7 +92,7 @@ Jika menggunakan [Babel](https://babeljs.io/), Anda perlu memastikan apakah Babe
 
 Fungsi `React.lazy` memungkinkan Anda melakukan *render* hasil impor dinamis sebagai component biasa.
 
-**Before:**
+**Sebelum:**
 
 ```js
 import KomponenLain from './KomponenLain';
@@ -106,7 +106,7 @@ function KomponenSaya() {
 }
 ```
 
-**After:**
+**Sesudah:**
 
 ```js
 const KomponenLain = React.lazy(() => import('./KomponenLain'));
