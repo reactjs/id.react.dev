@@ -6,9 +6,9 @@ next: hooks-rules.html
 prev: hooks-intro.html
 ---
 
-*Hooks* adalah tambahan baru di React 16.8. *Hooks* membiarkan anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
+*Hooks* adalah tambahan baru di React 16.8. *Hooks* memungkinkan Anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
 
-*Effect Hook* memungkinkan anda melakukan *side effects* didalam function components:
+*Effect Hook* memungkinkan Anda melakukan efek samping (*side effects*) didalam *function components*:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -16,9 +16,9 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Mirip dengan componentDidMount dan componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
+    // Memperbarui judul dokumen menggunakan API browser
     document.title = `You clicked ${count} times`;
   });
 
@@ -33,25 +33,25 @@ function Example() {
 }
 ```
 
-Potongan code diatas berdasarkan pada [contoh counter dari halaman sebelumnya](/docs/hooks-state.html), tapi kita menambahkan fitur baru didalamnya: kita mengatur *document title* untuk pesan khusus termasuk dari jumlah klik.
+Potongan code diatas berdasarkan pada [contoh *counter* dari halaman sebelumnya](/docs/hooks-state.html), tetapi kita menambahkan fitur baru didalamnya: kita akan mengisi judul dokumen dengan pesan kustom termasuk dari jumlah klik.
 
-Pengambilan data, pengaturan subscription , dan perubahan manual DOM di dalam React components adalah beberapa contoh dari *side effects*. apakah anda terbiasa menyebut memanggil operasi ini dengan sebutan "side effects" (atau hanya "effects"), anda mungkin pernah melakukannya didalam komponen anda sebelumnya.
+Pengambilan data, pengaturan berlangganan(*subscription*) , dan perubahan manual DOM di dalam komponen React adalah beberapa contoh dari efek samping. Apakah Anda terbiasa menyebut memanggil operasi ini dengan sebutan efek samping (atau hanya "efek (*effects*)") atau tidak, Anda mungkin pernah melakukannya di dalam komponen Anda sebelumnya.
 
 >Tip
 >
->Jika anda familiar dengan *React class lifecycle methods*, anda dapat berpikir bahwa `useEffect` Hook seperti `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` yang menjadi satu.
+>Jika Anda familiar dengan *React class lifecycle methods*, Anda dapat menganggap *Hook* `useEffect` sebagai`componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` yang disatukan.
 
-Disana terdapat 2 macam jenis *side effects* didalam React components: yang tidak membutuhkan pembersihan, dan yang membutuhkan pembersihan. Mari lihat perbedaan ini lebih rinci.
+Terdapat 2 macam jenis efek samping didalam komponen React: yang tidak membutuhkan pembersihan, dan yang membutuhkan pembersihan. Mari lihat perbedaannya secara lebih detail.
 
 ## Effects Tanpa Pembersihan {#effects-without-cleanup}
 
-Terkadang, kita ingin **menjalankan beberapa kode tambahan setelah React memperbarui DOM.** Permintaan jaringan, Mutasi DOM manual, dan pencatatan adalah contoh umum dari *effects* yang tidak membutuhkan pembersihan. Kita mengatakan seperti itu karena kita dapat menjalankannya dan langsung melupakanya. Mari kita bandingkan bagaimana *classes* dan *Hooks* memungkinkan kita mengekspresikan *side effects* seperti itu.
+Terkadang, kita ingin **menjalankan beberapa kode tambahan setelah React memperbarui DOM.** Permintaan jaringan, mutasi DOM manual, dan pencatatan adalah contoh umum dari *effects* yang tidak membutuhkan pembersihan. Kita mengatakan seperti itu karena kita dapat menjalankannya dan langsung melupakannya. Mari kita bandingkan bagaimana *kelas* dan *Hooks* memungkinkan kita mengekspresikan efek samping (*side effects*) seperti itu.
 
 ### Contoh Menggunakan Classes {#example-using-classes}
 
-Didalam *React class components*, *`render`* *method* itu sendiri tidak boleh ada *side effects*. itu akan menjadi terlalu awal -- kita terkadang ingin melakukan sebuah *effects* setelah React memperbarui DOM.
+Di dalam sebuah *class components* React, *method* *`render`* itu sendiri tidak seharusnya menyebabkan efek samping. Efek samping akan dijalankan terlalu awal -- kita biasanya ingin melakukan sebuah efek setelah React memperbarui DOM.
 
-Inilah kenapa didalam *React classes*, kita meletakkan *side effects* didalam `componentDidMount` dan `componentDidUpdate`. Kembali ke contoh kita, berikut adalah *React counter class component* yang memperbarui judul dokumen setelah React membuat perubahan pada DOM:
+Inilah kenapa didalam kelas *React*, kita meletakkan efek samping didalam `componentDidMount` dan `componentDidUpdate`. Kembali ke contoh kita, berikut adalah *class component counter* React yang memperbarui judul dokumen setelah React membuat perubahan pada DOM:
 
 ```js{9-15}
 class Example extends React.Component {
@@ -85,13 +85,13 @@ class Example extends React.Component {
 
 Perhatikan bagaimana **kita dapat menduplikasi kode antara dua *lifecycle methods* didalam *class*.**
 
-Ini karena dalam banyak kasus kita ingin melakukan *side effect* yang sama terlepas dari apakah komponen baru saja dipasang, atau jika sudah diperbarui. Secara konseptual, kami ingin itu terjadi setelah setiap render -- tapi *React class components* tidak memiliki  *method* seperti itu. Kami bisa menyalin dua *method* terpisah tetapi kami masih harus memanggilnya di dua tempat.
+Ini karena dalam banyak kasus kita ingin melakukan efek samping yang sama terlepas dari apakah komponen baru saja dipasang, atau jika sudah diperbarui. Secara konsep, kita ingin hal ini terjadi setelah setiap *render* -- tetapi *class component* React tidak memiliki  *method* seperti ini. Kita bisa menyalin dua *method* terpisah tetapi kita masih harus memanggilnya di dua tempat.
 
 Sekarang mari kita lihat bahwa kita dapat melakukan hal yang sama dengan `useEffect` *Hook*.
 
 ### Contoh Menggunakan Hooks {#example-using-hooks}
 
-Kita telah melihat contoh ini dibagian atas halaman ini , tapi mari kita lihat lebih dekat lagi dibawah ini:
+Kita telah melihat contoh ini di bagian atas halaman ini , tapi mari kita lihat lebih dekat lagi dibawah ini:
 
 ```js{1,6-8}
 import React, { useState, useEffect } from 'react';
@@ -114,7 +114,7 @@ function Example() {
 }
 ```
 
-**Apa yang dilakukan `useEffect`?** dengan menggunakan Hook ini, anda mengatakan kepada *React* bahwa komponen anda butuh menjalakan sestuatu setelah *render*. React akan mengingat fungsi yang anda berikan (kita akan menyebutnya sebagai "*effect*"), dan panggil itu nanti setelah DOM melakukan pembaruan. Di dalam *effect*, kita menentukan *document title*, tapi kita bisa juga melakukan pengambilan data atau memanggil beberapa API imperatif lainnya.
+**Apa yang dilakukan `useEffect`?** dengan menggunakan Hook ini, anda mengatakan kepada *React* bahwa komponen anda butuh menjalankan sestuatu setelah *render*. React akan mengingat fungsi yang anda berikan (kita akan menyebutnya sebagai "*effect*"), dan panggil itu nanti setelah DOM melakukan pembaruan. Di dalam *effect*, kita menentukan *document title*, tapi kita bisa juga melakukan pengambilan data atau memanggil beberapa API imperatif lainnya.
 
 **Kenapa `useEffect` dipanggil didalam komponen?** Meletakkan `useEffect` di dalam komponen memberikan kita akses *`count` state variable* (atau props apapun) langsung dari *effect*. Kita tidak membutuhkan API khusus untuk membacanya -- itu sudah dalam lingkup *function*. Hooks merangkul penutup JavaScript dan menghindari memperkenalkan APIs React-khusus dimana JavaScript sudah menyediakan solusinya.
 
@@ -133,7 +133,7 @@ function Example() {
   });
 ```
 
-kita mendeklarasikan *`count` state variable*, lalu kita memberitahu pada *React* kita perlu menggunakan *effect*. Kita memberikan *function* kepada `useEffect` *Hook*. *Function* ini kita berikan *kepada* *effect* kita. didalam *effect* kita, kita mengatur judul dokumen menggunakan `document.title` browser API. Kita dapat membaca  `count` terakhir di dalam *effect* karena berada dalam lingkup fungsi kita. Ketika *React renders* komponen kita, itu akan mengingatkan *effect*  yang kita gunakan, lalu menjalankan *effect* setelah memperbarui DOM. Ini terjadi untuk setiap *render*, termasuk yang pertama di *render*.
+Kita mendeklarasikan *`count` state variable*, lalu kita memberitahu pada *React* kita perlu menggunakan *effect*. Kita memberikan *function* kepada `useEffect` *Hook*. *Function* ini kita berikan *kepada* *effect* kita. didalam *effect* kita, kita mengatur judul dokumen menggunakan `document.title` browser API. Kita dapat membaca  `count` terakhir di dalam *effect* karena berada dalam lingkup fungsi kita. Ketika *React renders* komponen kita, itu akan mengingatkan *effect*  yang kita gunakan, lalu menjalankan *effect* setelah memperbarui DOM. Ini terjadi untuk setiap *render*, termasuk yang pertama di *render*.
 
 Pengembang JavaScript yang berpengalaman mungkin memperhatikan bahwa *function* yang kita berikan kepada `useEffect` akan berbeda setiap render. Ini disengajai. Faktanya, inilah yang memungkinkan kita membaca nilai `count` dari dalam *effect* tanpa mengkhawatikan tentang getting stale. Setiap kali kita mengulangi-*render*, kita menjadwalkan *effect* yang berbeda, menggantikan yang sebelumnya. Di satu sisi, inilah yang membuat *effects* berjalan lebih dari bagian hasil render -- setiap *effect* memiliki render tertentu. Kita akan melihat lebih jelas mengapa itu sangat berguna [nanti pada halaman ini](#explanation-why-effects-run-on-each-update).
 
@@ -143,7 +143,7 @@ Pengembang JavaScript yang berpengalaman mungkin memperhatikan bahwa *function* 
 
 ## Effects dengan Pembersihan {#effects-with-cleanup}
 
-Sebelumnya, kita melihat bagaimana cara mengeskpresikan *side effects* yang tidak membutuhkan pembersihan. Namun, beberapa *effects* bisa melakukannya. Sebagai contoh, **kita mungkin ingin mengatur *subscription*** ke beberapa sumber data eksternal. dalam hal ini, penting untuk membersihkan agar tidak menyebabkan kebocoran memori! Mari kita bandingkan bagaimana kita melakukannya dengan *classes* dan dengan *Hooks*.
+Sebelumnya, kita melihat bagaimana cara mengeskpresikan efek samping (*side effects*) yang tidak membutuhkan pembersihan. Namun, beberapa *effects* bisa melakukannya. Sebagai contoh, **kita mungkin ingin mengatur *subscription*** ke beberapa sumber data eksternal. dalam hal ini, penting untuk membersihkan agar tidak menyebabkan kebocoran memori! Mari kita bandingkan bagaimana kita melakukannya dengan *classes* dan dengan *Hooks*.
 
 ### Contoh Menggunakan Classes {#example-using-classes-1}
 
@@ -233,7 +233,7 @@ function FriendStatus(props) {
 
 ## Recap {#recap}
 
-Kita telah belajar bahwa `useEffect` memungkinkan kita mengekspresikan berbagai jenis *side effects* setelah komponen di *renders*. Beberapa *effects* mungkin membutuhkan pembersihan maka mereka mengembalikan sebuah *function*:
+Kita telah belajar bahwa `useEffect` memungkinkan kita mengekspresikan berbagai jenis efek samping (*side effects*) setelah komponen di *renders*. Beberapa *effects* mungkin membutuhkan pembersihan maka mereka mengembalikan sebuah *function*:
 
 ```js
   useEffect(() => {
