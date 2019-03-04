@@ -32,7 +32,7 @@ Kita akan mulai belajar tentang *Hooks* dengan membandingkan kode berikut dengan
 
 ## Contoh Kelas yang Setara {#equivalent-class-example}
 
-Apabila Anda telah menggunakan kelas di React sebelumnya, berikut merupakan contoh yang familiar:
+Apabila Anda telah menggunakan kelas di React sebelumnya, potongan kode di bawah ini seharusnya terlihat familier:
 
 ```js
 class Example extends React.Component {
@@ -62,7 +62,7 @@ class Example extends React.Component {
 >
 >Anda mungkin berfikir kenapa kita menggunakan pembilang dibandingkan dengan menggunakan contoh yang lebih realistis. Ini membantu kita untuk fokus kepada API ketika kita masih belajar tentang *Hooks*.
 
-## *Hooks* dan *Function Components* {#hooks-and-function-components}
+## Hooks dan Function Components {#hooks-and-function-components}
 
 Sebagai pengingat, *function components* di React terlihat seperti ini:
 
@@ -134,9 +134,9 @@ function Example() {
 
 **Apa yang kita berikan ke `useState` sebagai sebuah argumen?** Satu-satunya argumen *Hook* `useState()` adalah *state* awal. Tidak seperti kelas, *state* tidak harus berbentuk sebuah objek. Kita dapat menyimpan angka atau *string* jika hanya itu yang kita butuhkan. Seperti di contoh, kita hanya membutuhkan angka untuk berapa kali klik dilakukan oleh user, jadi berikan `0` sebagai *state* awal untuk variabel kita. (Apabila kita ingin menyimpan dua nilai yang berbeda di dalam *state*, kita akan memanggil `useState()` dua kali.)
 
-**Apa yang dikembalikan `useState`?** Ini mengembalikan sepasang nilai: *state* saat ini dan fungsi untuk melakukan pembaruan. Inilah kenapa kita menulis `const [count, setCount] = useState()`. Hal ini sama dengan `this.state.count` dan `this.setState` di dalam sebuah kelas, namun Anda mendapatinya sepasang. Jika Anda tidak akrab dengan sintaks yang kami gunakan, kita akan kembali ke sana [di bagian bawah halaman ini](/docs/hooks-state.html#tip-what-do-square-brackets-mean).
+**Apa yang dikembalikan `useState`?** Ini mengembalikan sepasang nilai: *state* saat ini dan fungsi untuk melakukan pembaruan. Inilah kenapa kita menulis `const [count, setCount] = useState()`. Hal ini sama dengan `this.state.count` dan `this.setState` di dalam sebuah kelas, namun Anda mendapatinya sepasang. Jika Anda tidak akrab dengan sintaksis yang kami gunakan, kita akan kembali ke sana [di bagian bawah halaman ini](/docs/hooks-state.html#tip-what-do-square-brackets-mean).
 
-Sekarang kita tahu apa yang dilakukan *Hook* `useState`, contoh berikut akan lebih masuk akal:
+Sekarang kita tahu apa yang dilakukan *Hook* `useState`, contoh kode berikut akan lebih masuk akal:
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -146,13 +146,13 @@ function Example() {
   const [count, setCount] = useState(0);
 ```
 
-Kita mendeklarasikan sebuah *state* disebut `count`, dan memberinya nilai `0`. React akan mengingat nilai saat ini di setiap *render* ulang, dan memberikan nilai terbaru ke fungsi kita. Jika kita ingin melakukan pembaruan nilai `count`, kita dapat memanggil `setCount`.
+Kita mendeklarasikan sebuah *state* bernama `count`, dan memberinya nilai `0`. React akan mengingat nilai saat ini di setiap *render* ulang, dan memberikan nilai terbaru ke fungsi kita. Jika kita ingin melakukan pembaruan nilai `count`, kita dapat memanggil `setCount`.
 
 >Catatan
 >
 >Anda mungkin berfikir: kenapa `useState` tidak diberi nama `createState`?
 >
->"Create" tidak cukup akurat karena *state* hanya dibuat saat pertama kali komponen di-*render*. Pada *render* selanjutnya, `useState` memberi kita *state* saat ini. Sebaliknya, itu tidak akan menjadi *state* sama sekali! Itu juga alasan kenapa penamaan pada *Hooks* dimulai dengan `use`. Kita akan belajar kenapa itu nanti di [Aturan *Hooks*](/docs/hooks-rules.html).
+>"Create" tidak cukup akurat karena *state* hanya dibuat saat pertama kali komponen di-*render*. Pada *render* selanjutnya, `useState` memberi kita *state* saat ini. Jika tidak, itu tidak akan menjadi *state* sama sekali! Itu juga alasan kenapa penamaan pada *Hooks* dimulai dengan `use`. Kita akan mempelajari alasannya di [Aturan *Hooks*](/docs/hooks-rules.html).
 
 ## Membaca *State* {#reading-state}
 
@@ -213,10 +213,10 @@ Mari sekarang **rekap apa yang kita pelajari baris demi baris** dan cek pemahama
 ```
 
 * **Baris 1:** Kita mengimpor *Hook* `useState` dari React. Ini memungkinkan kita dapat menyimpan *state* lokal di dalam sebuah *function component*.
-* **Baris 4:** Di dalam komponen `Example`, kita mendeklarasikan sebuah variabel *state* baru dengan memanggil *Hook* `useState`. Ini mengembalikan sepasang nilai yang kita beri nama sendiri. Kita memanggil variable kita dengan `count` karena menyimpan angka berapa kali klik pada tombol dilakukan. Kita menginisialisasi nilai nol dengan memberi `0` sebagai argumen satu-satunya `useState`. Item kedua yang dikembalikan adalah sebuah fungsi. Ini memungkinkan kita melakukan pembaruan nilai `count` jadi kita menamainya `setCount`.
+* **Baris 4:** Di dalam komponen `Example`, kita mendeklarasikan sebuah variabel *state* baru dengan memanggil *Hook* `useState`. Ini mengembalikan sepasang nilai yang kita beri nama sendiri. Kita memberi nama variable tersebut dengan `count` karena menyimpan angka berapa kali klik pada tombol dilakukan. Kita menginisialisasi nilai nol dengan memberi `0` sebagai argumen satu-satunya `useState`. Item kedua yang dikembalikan adalah sebuah fungsi. Ini memungkinkan kita melakukan pembaruan nilai `count` jadi kita menamainya `setCount`.
 * **Baris 9:** Ketika pengguna melakukan klik, kita memanggil `setCount` dengan nilai baru. React akan melakukan *render* ulang komponen `Example` dengan nilai `count` yang baru.
 
-Ini mungkin tampak seperti banyak yang harus dilakukan pada awalnya. Jangan terburu-buru! Jika Anda tersesat dalam penjelasannya, lihat kembali kode di atas dan coba untuk membacanya dari atas ke bawah. Kita percaya ketika Anda mencoba "melupakan" bagaimana *state* bekerja di dalam kelas, dan dengan melihat kode ini dengan mata yang segar, ini akan masuk akal.
+Ini mungkin tampak seperti banyak yang harus dilakukan pada awalnya. Jangan terburu-buru! Jika Anda tersesat dalam penjelasannya, lihat kembali kode di atas dan coba untuk membacanya dari atas ke bawah. Kami berjanji ketika Anda mencoba "melupakan" bagaimana *state* bekerja di dalam kelas, dan dengan melihat kode ini dengan mata yang segar, ini akan menjadi masuk akal.
 
 ### Tip: Apa arti tanda kurung siku?{#tip-what-do-square-brackets-mean}
 
@@ -232,7 +232,7 @@ Nama-nama di sebelah kiri bukan bagian dari React API. Anda bisa memberi nama va
   const [fruit, setFruit] = useState('banana');
 ```
 
-Sintaks JavaScript ini dipanggil ["destruksi senarai"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). Ini berarti kita membuat dua variabel `fruit` dan `setFruit`, di mana `fruit` adalah nilai pertama yang dikembalikan oleh `useState`, dan `setFruit` adalah yang kedua. Ini sama dengan kode berikut:
+Sintaksis JavaScript ini dipanggil [*array destructuring*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). Sintaksis ini berarti kita membuat dua variabel `fruit` dan `setFruit`, di mana `fruit` adalah nilai pertama yang dikembalikan oleh `useState`, dan `setFruit` adalah yang kedua. Ini sama dengan kode berikut:
 
 ```js
   var fruitStateVariable = useState('banana'); // Mengembalikan sepasang item
@@ -240,7 +240,7 @@ Sintaks JavaScript ini dipanggil ["destruksi senarai"](https://developer.mozilla
   var setFruit = fruitStateVariable[1]; // Item kedua di pasangan
 ```
 
-Ketika kita mendeklarasi sebuah variabel *state* dengan `useState`, ini mengembalikan sepasang item - sebuah senarai dengan dua buah item. Item pertama adalah nilai saat ini dan yang kedua adalah fungsi yang memungkinkan kita untuk melakukan pembaruan nilai tersebut. Menggunakan `[0]` dan `[1]` untuk mengaksesnya akan sedikit membingungkan karena mereka memiliki arti yang spesifik. Inilah kenapa kami lebih memilih menggunakan destruksi senarai.
+Ketika kita mendeklarasi sebuah variabel *state* dengan `useState`, ini mengembalikan sepasang item - sebuah senarai dengan dua buah item. Item pertama adalah nilai saat ini dan yang kedua adalah fungsi yang memungkinkan kita untuk melakukan pembaruan nilai tersebut. Menggunakan `[0]` dan `[1]` untuk mengaksesnya akan sedikit membingungkan karena mereka memiliki arti yang spesifik. Inilah kenapa kami lebih memilih menggunakan *array destructuring*.
 
 >Catatan
 >
@@ -258,7 +258,7 @@ function ExampleWithManyStates() {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 ```
 
-Di dalam komponen di atas, kita memiliki `age`, `fruit`, dan `todos` sebagai variabel lokal dan kita dapat melakukan pembaruan secara individu.
+Di dalam komponen di atas, kita memiliki `age`, `fruit`, dan `todos` sebagai variabel lokal, dan kita dapat melakukan pembaruan secara individu.
 
 ```js
   function handleOrangeClick() {
