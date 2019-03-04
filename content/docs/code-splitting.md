@@ -4,7 +4,7 @@ title: Code-Splitting
 permalink: docs/code-splitting.html
 ---
 
-## Bundling {#bundling}
+## Bundel {#bundling}
 Kebanyakan aplikasi React akan "membundel" *file* menggunakan alat bantu seperti [Webpack](https://webpack.js.org/) atau [Browserify](http://browserify.org/). Pembundelan ini adalah sebuah proses yang menelusuri sejumlah *file* yang terimpor dan digabungkan menjadi sebuah file: sebuah "bundel". Bundel ini kemudian dapat digunakan dalam halaman web untuk memuat keseluruhan aplikasi sekaligus.
 
 #### Contoh {#example}
