@@ -6,7 +6,7 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
-Pertama-tama, mari kita tinjau kembali bagaimana anda dapat mentransformasi *list* di JavaScript.
+Pertama-tama, mari kita tinjau kembali bagaimana Anda dapat mentransformasi *list* di JavaScript.
 
 Jika melihat kode di bawah, kita menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk mengambil senarai `numbers` dan menggandakan nilainya.
 Kita akan menaruh senarai baru yang dikembalikan oleh `map()` ke dalam sebuah variabel `doubled` dan me-*log*-nya:
@@ -53,7 +53,7 @@ Kode ini akan menampilkan sebuah *list bullet* dari angka 1 sampai 5.
 
 Biasanya Anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
-Kita bisa merefaktor contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan. 
+Kita bisa melalukan *refaktor* contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -134,15 +134,15 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
+Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika Anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
-Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika anda tertarik untuk belajar lebih lanjut.
+Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika Anda tertarik untuk belajar lebih lanjut.
 
 ### Mengekstrak Komponen dengan Key {#extracting-components-with-keys}
 
 *Key* hanya perlu digunakan di dalam konteks senarai yang mengurung *item* dengan *key* tersebut.
 
-Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
+Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, Anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
 
 **Contoh: Penggunaan *Key* yang Salah**
 
@@ -150,7 +150,7 @@ Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracti
 function ListItem(props) {
   const value = props.value;
   return (
-    // Salah! Tidak diperlukan untuk menentukan *key* disini:
+    // Salah! Tidak diperlukan untuk menentukan *key* di sini:
     <li key={value.toString()}>
       {value}
     </li>
@@ -160,7 +160,7 @@ function ListItem(props) {
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    // Salah! *Key* seharusnya ditentukan disini:
+    // Salah! *Key* seharusnya ditentukan di sini:
     <ListItem value={number} />
   );
   return (
@@ -181,7 +181,7 @@ ReactDOM.render(
 
 ```javascript{2,3,9,10}
 function ListItem(props) {
-  // Benar! Karena tidak perlu menentukan *key* disini:
+  // Benar! Karena tidak perlu menentukan *key* di sini:
   return <li>{props.value}</li>;
 }
 
@@ -304,4 +304,4 @@ function NumberList(props) {
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Terkadang penulisan seperti ini akan menghasilkan kode yang lebih jelas, namun cara seperti ini juga dapat disalahgunakan.
-Seperti di JavaScript, menjadi pilihan Anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah di baca penting bagi anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
+Seperti di JavaScript, menjadi pilihan Anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah dibaca penting bagi Anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
