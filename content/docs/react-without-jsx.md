@@ -4,11 +4,11 @@ title: React Without JSX
 permalink: docs/react-without-jsx.html
 ---
 
-JSX is not a requirement for using React. Using React without JSX is especially convenient when you don't want to set up compilation in your build environment.
+JSX bukan persyaratan untuk menggunakan React. Menggunakan React tanpa JSX sangat cocok ketika Anda tidak ingin mengatur kompilasi di lingkungan pembangunan Anda.
 
-Each JSX element is just syntactic sugar for calling `React.createElement(component, props, ...children)`. So, anything you can do with JSX can also be done with just plain JavaScript.
+Setiap elemen hanyalah _syntactic sugar_ untuk pemanggilan  `React.createElement(component, props, ...children)`. Jadi, apa pun yang dapat Anda lakukan dengan JSX juga dapat dilakukan hanya dengan JavaScript biasa.
 
-For example, this code written with JSX:
+Misalnya, kode ini ditulis dengan JSX:
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-can be compiled to this code that does not use JSX:
+Dapat dikompilasi dengan kode dibawah ini untuk yang tidak menggunakan JSX:
 
 ```js
 class Hello extends React.Component {
@@ -38,11 +38,11 @@ ReactDOM.render(
 );
 ```
 
-If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+Jika Anda ingin tahu lebih lanjut untuk melihat banyak contoh tentang bagaimana JSX dikonversi ke JavaScript, Anda dapat mencobanya di [the online Babel compiler](babel://jsx-simple-example).
 
-The component can either be provided as a string, or as a subclass of `React.Component`, or a plain function for stateless components.
+Komponen dapat diberikan sebagai string, atau sebagai subkelas dari `React.Component`, atau fungsi murni untuk komponen _stateless_.
 
-If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
+Jika Anda terlalu lelah mengetik `React.createElement` satu pola umum adalah dengan menggunakan pintasan:
 
 ```js
 const e = React.createElement;
@@ -53,7 +53,7 @@ ReactDOM.render(
 );
 ```
 
-If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
+Jika Anda menggunakan pintasan `React.createElement`, akan lebih mudah menggunakan React tanpa JSX.
 
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
+Atau, Anda dapat merujuk ke proyek komunitas seperti [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) dan[`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) yang menawarkan _terser syntax_.
 
