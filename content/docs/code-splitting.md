@@ -95,12 +95,12 @@ Fungsi `React.lazy` memungkinkan Anda melakukan *render* hasil impor dinamis seb
 **Sebelum:**
 
 ```js
-import KomponenLain from './KomponenLain';
+import OtherComponent from './OtherComponent';
 
-function KomponenSaya() {
+function MyComponent() {
   return (
     <div>
-      <KomponenLain />
+      <OtherComponent />
     </div>
   );
 }
@@ -109,33 +109,33 @@ function KomponenSaya() {
 **Sesudah:**
 
 ```js
-const KomponenLain = React.lazy(() => import('./KomponenLain'));
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
-function KomponenSaya() {
+function MyComponent() {
   return (
     <div>
-      <KomponenLain />
+      <OtherComponent />
     </div>
   );
 }
 ```
 
-Dengan menggunakan cara ini, bundel yang mengandung `KomponenLain` akan termuat secara otomatis ketika komponen ini ter-*render*.
+Dengan menggunakan cara ini, bundel yang mengandung `OtherComponent` akan termuat secara otomatis ketika komponen ini ter-*render*.
 
 `React.lazy` membutuhkan sebuah fungsi yang harus memanggil *dynamic* `import()`. Fungsi ini harus mengembalikan sebuah `Promise` yang menghasilkan modul dengan ekspor `default` yang mengandung sebuah komponen React.
 
 ### Suspense {#suspense}
 
-Jika modul yang mengandung `KomponenLain` belum dimuat ketika `KomponenSaya` ter-*render*, kita perlu memunculkan sebuah konten pengganti selama kita menunggu bundel tersebut untuk dimuat - misalnya memunculkan indikator *loading*. Hal ini bisa dicapai dengan menggunakan komponen `Suspense`.
+Jika modul yang mengandung `OtherComponent` belum dimuat ketika `MyComponent` ter-*render*, kita perlu memunculkan sebuah konten pengganti selama kita menunggu bundel tersebut untuk dimuat - misalnya memunculkan indikator *loading*. Hal ini bisa dicapai dengan menggunakan komponen `Suspense`.
 
 ```js
-const KomponenLain = React.lazy(() => import('./KomponenLain'));
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
-function KomponenSaya() {
+function MyComponent() {
   return (
     <div>
       <Suspense fallback={<div>Sedang memuat...</div>}>
-        <KomponenLain />
+        <OtherComponent />
       </Suspense>
     </div>
   );
@@ -144,16 +144,16 @@ function KomponenSaya() {
 *Props* `fallback` dapat diisi dengan elemen React apapun yang ingin Anda tampilkan selama menunggu komponen untuk dimuat. Anda bisa menggunakan komponen `Suspense` dimanapun di atas komponen yang dimuat secara *lazy*. Anda bahkan dapat membungkus beberapa komponen *lazy* dengan sebuah komponen *Suspense*.
 
 ```js
-const KomponenLain = React.lazy(() => import('./KomponenLain'));
-const KomponenBerbeda = React.lazy(() => import('./KomponenBerbeda'));
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
-function KomponenSaya() {
+function MyComponent() {
   return (
     <div>
       <Suspense fallback={<div>Sedang memuat...</div>}>
         <section>
-          <KomponenLain />
-          <KomponenBerbeda />
+          <OtherComponent />
+          <AnotherComponent />
         </section>
       </Suspense>
     </div>
@@ -166,20 +166,20 @@ function KomponenSaya() {
 Jika sebuah modul gagal dimuat (misalnya karena kesalahan jaringan), maka sebuah *error* akan terpicu. Anda dapat menangani *error* tersebut untuk menampilkan *user experience* yang baik dan memungkinkan pembenahan kembali dengan menggunakan [Batasan *Error*](/docs/error-boundaries.html). Ketika Anda telah membuat batasan *error*, Anda dapat menggunakannya pada komponen *lazy* untuk memunculkan tampilan *error* khusus ketika terjadi kesalahan jaringan.
 
 ```js
-import BatasanErrorSaya from './BatasanErrorSaya';
-const KomponenLain = React.lazy(() => import('./KomponenLain'));
-const KomponenBerbeda = React.lazy(() => import('./KomponenBerbeda'));
+import MyErrorBoundary from './MyErrorBoundary';
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
-const KomponenSaya = () => (
+const MyComponent = () => (
   <div>
-    <BatasanErrorSaya>
+    <MyErrorBoundary>
       <Suspense fallback={<div>Sedang memuat...</div>}>
         <section>
-          <KomponenLain />
-          <KomponenBerbeda />
+          <OtherComponent />
+          <AnotherComponent />
         </section>
       </Suspense>
-    </BatasanErrorSaya>
+    </MyErrorBoundary>
   </div>
 );
 ```
@@ -217,17 +217,17 @@ const App = () => (
 
 ```js
 // KumpulanKomponen.js
-export const KomponenSaya = /* ... */;
+export const MyComponent = /* ... */;
 export const KomponenTidakTerpakai = /* ... */;
 ```
 
 ```js
-// KomponenSaya.js
-export { KomponenSaya as default } from "./KumpulanKomponen.js";
+// MyComponent.js
+export { MyComponent as default } from "./KumpulanKomponen.js";
 ```
 
 ```js
 // AplikasiSaya.js
 import React, { lazy } from 'react';
-const KomponenSaya = lazy(() => import("./KomponenSaya.js"));
+const MyComponent = lazy(() => import("./MyComponent.js"));
 ```
