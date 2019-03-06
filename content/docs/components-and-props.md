@@ -17,6 +17,8 @@ next: state-and-lifecycle.html
 ---
 
 Komponen mempermudah Anda untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
+Halaman ini memberikan pengantar tentang ide komponen. Anda dapat menemukan
+[rujukan API komponen terperinci di sini](/docs/react-component.html)
 
 Secara konsep, komponen mirip dengan fungsi pada Javascript. Komponen menerima beberapa masukan (biasa disebut *"props"*) dan mengembalikan element React yang mendeskripsikan apa yang seharusnya tampil pada layar.
 
