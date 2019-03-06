@@ -27,17 +27,17 @@ _Bundler_ menggunakan kode JavaScript dan CSS yang ditulis di modul terpisah, da
 
 ## Manajer Paket {#package-managers}
 
-Manajer paket adalah alat yang digunakan untuk mengatur dan mengelola dependensi pada project Anda. [npm](https://www.npmjs.com/) dan [Yarn](http://yarnpkg.com/) adalah manajer paket yang paling sering digunakan pada aplikasi React dimana keduanya adalah klien yang memiliki registri paket npm yang sama.
+Manajer paket adalah alat yang digunakan untuk mengatur dan mengelola dependensi pada proyek Anda. [npm](https://www.npmjs.com/) dan [Yarn](http://yarnpkg.com/) adalah manajer paket yang paling sering digunakan pada aplikasi React dimana keduanya adalah klien yang memiliki registri paket npm yang sama.
 
 ## CDN {#cdn}
 
-CDN adalah singkatan dari Content Delivery Network. CDN menyediakan konten yang statis dan di-_cache_ dari jaringan server diseluruh dunia.
+CDN adalah singkatan dari _Content Delivery Network_. CDN menyediakan konten yang statis dan di-_cache_ dari jaringan server di seluruh dunia.
 
 ## JSX {#jsx}
 
-JSX adalah sintaksis ekstensi untuk JavaScript. JSX mirip dengan bahasa _template_, namum memiliki kekuatan penuh atas bahasa JavaScript. JSX dijalankan menjadi format `React.createElement()` yang mengembalikan objek JavaScript baru berupa "Elemen React". Untuk mendapatkan penjelasan dasar mengenai mengenai JSX dapat melihat [dokumentasi JSX](/docs/introducing-jsx.html), atau mengenai JSX dengan lebih mendalam [di sini](https://reactjs.org/docs/introducing-jsx.html)
+JSX adalah sintaksis ekstensi untuk JavaScript. JSX mirip dengan bahasa _template_, namun memiliki kekuatan penuh atas bahasa JavaScript. JSX akan dikompilasi ke pemanggilan `React.createElement()` yang mengembalikan objek JavaScript biasa bernama "React elements". Untuk mendapatkan penjelasan dasar mengenai mengenai JSX dapat melihat [dokumentasi JSX](/docs/introducing-jsx.html), atau mengenai JSX dengan lebih mendalam [di sini](https://reactjs.org/docs/introducing-jsx.html)
 
-Tidak seperti dalam HTML, React DOM menggunakan format _camelCase_ untuk penamaan atributnya. Sebagai contoh, `tabindex` menjadi `tabIndex` di JSX. Atribut `class` juga ditulis sebagai `className` karena `class` adalah nama yang telah dipesan dalam JavaScript.
+Alih-alih menggunakan nama atribut HTML, React DOM menggunakan konvensi penamaan *camelCase* untuk penamaan atributnya. Sebagai contoh, `tabindex` menjadi `tabIndex` di JSX. Atribut `class` juga ditulis sebagai `className` karena `class` adalah nama yang telah dipesan dalam JavaScript.
 
 
 ```js
@@ -50,7 +50,7 @@ ReactDOM.render(
 
 ## [Elemen](/docs/rendering-elements.html) {#elements}
 
-React Elemen adalah bagian pembangun aplikasi React. Beberapa orang bisa jadi salah mengartikan elemen sebagai istilah 'komponen' yang lebih dikenal luas. Sebuah elemen menjelaskan apa yang ingin Anda tampilkan di layar. Elemen React tidak dapat diubah (immutable).
+Elemen React adalah bagian pembangun aplikasi React. Beberapa orang bisa jadi salah mengartikan elemen sebagai istilah 'komponen' yang lebih dikenal luas. Sebuah elemen menjelaskan apa yang ingin Anda tampilkan di layar. Elemen React tidak dapat diubah (*immutable*).
 
 ```js
 const element = <h1>Hai, dunia</h1>;
@@ -78,14 +78,14 @@ class Welcome extends React.Component {
 }
 ```
 
-Komponen dapat dipecah menjadi beberapa bagian fungsi berbeda yang dapat digunakan dengan komponen lainnya. Komponen dapat mengembalikan array, string, angka, maupun mengembalikan komponen lainnya. Aturan dasar yang praktis yaitu, jika ada bagian dari antarmuka Anda yang digunakan beberapa kali (Tombol, Panel, Avatar), atau cukup kompleks untuk berdiri dengan sendirinya (App, FeedStory, Komentar), akan lebih baik jika bagian tersebut menggunakan Reusable Component. Nama komponen juga harus selalu diawali dengan huruf kapital (`<Wrapper/>` **bukan** `<wrapper/>`). Lihat [dokumentasi](https://reactjs.org/docs/components-and-props.html#rendering-a-component) untuk penjelasan mengenai cara melakukan _render_ komponen.
+Komponen dapat dipecah menjadi beberapa bagian fungsi berbeda yang dapat digunakan dengan komponen lainnya. Komponen dapat mengembalikan senarai, _string_, angka, maupun mengembalikan komponen lainnya. Aturan dasar yang praktis yaitu, jika ada bagian dari antarmuka Anda yang digunakan beberapa kali (Tombol, Panel, Avatar), atau cukup kompleks untuk berdiri dengan sendirinya (App, FeedStory, Komentar), komponen-komponen tersebut adalah kandidat yang cocok untuk dijadikan komponen yang dapat digunakan kembali (*reusable component*). Nama komponen juga harus selalu diawali dengan huruf kapital (`<Wrapper/>` **bukan** `<wrapper/>`). Lihat [dokumentasi](https://reactjs.org/docs/components-and-props.html#rendering-a-component) untuk penjelasan mengenai cara melakukan _render_ komponen.
 
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
 `props` adalah masukan dari komponen React. `props` adalah data yang dioper dari _parent component_ ke _child component_-nya.
 
-Perlu diingat bahwa `props` adalah _readonly_, sehingga nilainya tidak dapat diubah melalui cara apapun:
+Perlu diingat bahwa `props` bersifat _readonly_, sehingga nilainya tidak dapat diubah melalui cara apapun:
 
 ```js
 // Wrong!
@@ -122,15 +122,15 @@ class Welcome extends React.Component {
 
 ### [`state`](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) {#state}
 
-Sebuah komponen membutuhkan `state` saat sebuah data yang berhubungan dengannya berubah sewaktu-waktu. Sebagia contoh, sebuah komponen `Checkbox` dapat membutuhkan _state_ `isChecked`, dan sebuah komponen `NewsFeed` bisa jadi selalu membutuhkan _state_ `fetchedPost` terbaru.
+Sebuah komponen membutuhkan `state` saat sebuah data yang berhubungan dengannya berubah sewaktu-waktu. Sebagai contoh, sebuah komponen `Checkbox` dapat membutuhkan _state_ `isChecked`, dan sebuah komponen `NewsFeed` bisa jadi selalu membutuhkan _state_ `fetchedPost` terbaru.
 
 Perbedaan paling penting diantara `state` dan `props` adalah `props` dioper melalui _parent component_, sedangkan `state` diatur oleh komponen itu sendiri. Sebuah komponen tidak dapat mengubah `props`, tetapi dapat mengubah `state`. Untuk melakukannya, komponen tersebut harus memanggil fungsi `this.setState()`. Hanya komponen yang didefinisikan sebagai kelas yang dapat memiliki _state_.
 
-Untuk setiap bagian data yang berubah, harus terdapat satu komponen yang 'memiliki' data tersebut sebagai _state_ di dalamnya. Jangan mencoba untuk melakukan sinkronisasi _state_ pada dua komponen yang berbeda. Sebaliknya, [lift it up](/docs/lifting-state-up.html), atau angkat nilainya ke arah pendahulunya yang terdekat, kemudian oper sebagai _props_ untuk kedua komponen tersebut.
+Untuk setiap bagian data yang berubah, harus terdapat satu komponen yang 'memiliki' data tersebut sebagai _state_ di dalamnya. Jangan mencoba untuk melakukan sinkronisasi _state_ pada dua komponen yang berbeda. Sebaliknya, [angkat nilainya ke atas](/docs/lifting-state-up.html), kemudian oper sebagai _props_ untuk kedua komponen tersebut.
 
-## [Metode Lifecycle](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
-Metode lifecycle adalah fungsionalitas khusus yang dijalankan selama fase tertentu dalam sebuah komponen. Terdapat beberapa metode yang tersedia saat komponen dibuat dan dimasukkan kedalam DOM ([mounting](/docs/react-component.html#mounting)), saat komponen diperbarui, dan saat komponen dilepas atau dihapus dari DOM.
+_Lifecycle Methods_ adalah fungsionalitas khusus yang dijalankan selama fase tertentu dalam sebuah komponen. Terdapat beberapa metode yang tersedia saat komponen dibuat dan dimasukkan kedalam DOM ([mounting](/docs/react-component.html#mounting)), saat komponen diperbarui, dan saat komponen dilepas atau dihapus dari DOM.
 
  ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
 
@@ -138,17 +138,17 @@ React memiliki dua pendekatan berbeda untuk mengatur masukan formulir.
 
 Sebuah elemen masukan formulir yang nilainya diatur oleh React disebut sebagai *_controlled component*. Saat seorang pengguna memasukkan data kedalam _controlled component_, sebuah _event handler_ terpicu, dan kode Anda yang selanjutnya menentukan apakah masukan valid atau tidak (dengan cara merender ulang dengan nilai yang telah diperbarui). Jika Anda tidak merender ulang, maka nilai formulir tidak akan berubah.
 
-Sebuah *uncontrolled component* bekerja seperti hal yang dilakukan elemen formulir diluar React. Disaat pengguna memasukkan data kedalam formulir (melalui kotak input, _dropdown_, dll) nilai yang telah diperbarui akan digunakan tanpa React perlu melakukan apapun. Bagaimanapun, hal ini berari Anda tidak dapat memaksa sebuah bidang masukan unntuk memiliki nilai tertentu.
+Sebuah *uncontrolled component* bekerja seperti hal yang dilakukan elemen formulir diluar React. Disaat pengguna memasukkan data kedalam formulir (melalui kotak input, _dropdown_, dll) nilai yang telah diperbarui akan digunakan tanpa React perlu melakukan apapun. Namun, hal ini berarti Anda tidak dapat memaksa sebuah bidang masukan unntuk memiliki nilai tertentu.
 
 Dalam banyak kasus, Anda harus menggunakan _controlled components_.
 
 ## [Keys](/docs/lists-and-keys.html) {#keys}
 
-Sebuah "key" adalah karakter spesial yang perlu disertakan saat membuat kumpulan elemen dalam bentuk array. Key membantu React untuk mengidentifikasi bagian mana yang telah diubah, ditambah, atau dihilangkan. Keys harus diberikan pada elemen dalam sebuah array untuk memberikan identitas yang stabil pada elemen tersebut.
+Sebuah "*key*" adalah atribut *string* spesial yang perlu disertakan saat membuat kumpulan elemen dalam bentuk senarai. Key membantu React untuk mengidentifikasi bagian mana yang telah diubah, ditambah, atau dihilangkan. *Keys* harus diberikan pada elemen dalam sebuah senarai untuk memberikan identitas yang stabil pada elemen tersebut.
 
-Keys hanya perlu bersifat unik dengan elemen lainnya dalam array yag sama. Keys tidak perlu unik diseluruh aplikasi atau bahkan didalam komponen yang sama.
+*Keys* hanya perlu bersifat unik dengan elemen lainnya dalam senarai yag sama. *Keys* tidak perlu bersifat unik di seluruh aplikasi atau bahkan di dalam komponen yang sama.
 
-Jangan mengoper nilai `Math.random()` sebagai key. Penting untuk diingat bahwa key harus memiliki "identitas yang stabil" walau melalui _di-render_ ulang, sehingga React dapat mentukan kapan sebuah item ditambah, dihapus, atau diurutkan. Secara ideal, key harus tersusun dari data Anda yang bersifat unik dan stabil, seperti `post.id`.
+Jangan mengoper nilai `Math.random()` sebagai key. Penting untuk diingat bahwa key harus memiliki "identitas yang stabil" walau melalui _di-render_ ulang, sehingga React dapat menentukan kapan sebuah item ditambah, dihapus, atau diurutkan. Secara ideal, key harus tersusun dari data Anda yang bersifat unik dan stabil, seperti `post.id`.
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
@@ -160,8 +160,8 @@ Gunakan refs-and dengan bijak. Jika anda merasa sering menggunakan refs untuk "m
 
 Menangani _event_ dengan Elemen React memiliki perbedaan secara sintaksis:
 
-* _Event handler_ pada React ditulis menggunakan camelCase, bukan sebagai huruf kecil.
-* Dengan JSX, Anda mengoper sebuah fungsi sebagai _event handler_, bukan sebagai string.
+* _Event handler_ pada React ditulis menggunakan *camelCase*, bukan sebagai huruf kecil.
+* Dengan JSX, Anda mengoper sebuah fungsi sebagai _event handler_, bukan sebagai _string_.
 
 ## [Rekonsiliasi](/docs/reconciliation.html) {#reconciliation}
 
