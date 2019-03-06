@@ -62,7 +62,7 @@ class Calculator extends React.Component {
 
 Syarat baru dari kita adalah selain masukan Celcius, kita juga memberikan masukan Fahrenheit, dan kedua masukan tersebut harus tetap sinkron.
 
-Kita bisa memulai dengan mengeluarkan komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
+Kita dapat memulai dengan mengeluarkan komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -116,7 +116,7 @@ Kita memiliki dua masukan sekarang, tetapi ketika Anda memasukkan suhu di salah 
 
 Kita juga tidak dapat menampilkan `BoilingVerdict` dari `Calculator`. `Calculator` tidak tahu suhu saat ini karena suhu tersebut tersembunyi di dalam `TemperatureInput`.
 
-## Penulisan Fungsi Konversi {#writing-conversion-functions}
+## Menulis Fungsi Konversi {#writing-conversion-functions}
 
 Pertama, kita akan menulis dua fungsi untuk mengkonversi suhu dari Celsius ke Fahrenheit dan sebaliknya:
 
@@ -130,7 +130,7 @@ function toFahrenheit(celsius) {
 }
 ```
 
-Dua fungsi ini dapat mengkonversi angka. Kita akan menulis fungsi lain yang menggunakan fungsi *string* `temperature` dan fungsi konverter sebagai argumen dan mengembalikan string. Kita akan menggunakannya untuk menghitung nilai dari suatu masukan bersarakan masukan lainnya.
+Dua fungsi ini akan mengkonversi angka. Kita akan menulis fungsi lain yang menggunakan fungsi *string* `temperature` dan fungsi konverter sebagai argumen dan mengembalikan string. Kita akan menggunakannya untuk menghitung nilai dari suatu masukan bersarakan masukan lainnya.
 
 Ini mengembalikan *string* kosong pada `temperature` yang tidak valid, dan itu membuat keluaran dibulatkan ke tempat desimal ketiga:
 
@@ -148,7 +148,7 @@ function tryConvert(temperature, convert) {
 
 Misalnya, `tryConvert('abc', toCelsius)` menghasilkan *string* kosong, dan `tryConvert('10.22', toFahrenheit)` menghasilkan `'50.396'`.
 
-## Mengangkat Ke Atas {#lifting-state-up}
+## Memindahkan State ke Atas {#lifting-state-up}
 
 Saat ini, kedua komponen `TemperatureInput` secara independen menyimpan nilainya di `state` lokal:
 
@@ -171,9 +171,9 @@ class TemperatureInput extends React.Component {
 
 Namun, kita ingin kedua masukan selaras satu sama lain. Ketika kita memperbarui masukan Celcius, masukan Fahrenheit harus mencerminkan suhu yang dikonversi, dan sebaliknya.
 
-Dalam React, *state* bersama dicapai dengan memindahkannya ke modul utama terdekat dari komponen yang membutuhkannya. Ini disebut "mengangkat keadaan". Kita akan menghapus *state* lokal dari `TemperatureInput` dan memindahkannya ke `Calculator` sebagai gantinya.
+Dalam React, *state* bersama dicapai dengan memindahkannya ke komponen induk bersama terdekat dari komponen yang membutuhkannya. Ini disebut "memindahkan *state* ke atas". Kita akan menghapus *state* lokal dari `TemperatureInput` dan memindahkannya ke `Calculator` sebagai gantinya.
 
-Jika `Calculator` memiliki *state* bersama, itu menjadi "sumber kebenaran" untuk suhu saat ini di kedua masukan. Ini dapat menginstruksikan mereka berdua untuk memiliki nilai yang konsisten satu sama lain. Karena kedua `props` pada komponen `TemperatureInput` berasal dari koponen `Calculator` induk yang sama, kedua masukan akan selalu sinkron.
+Jika `Calculator` memiliki *state* bersama, *state* tersebut akan menjadi "sumber kebenaran" untuk suhu saat ini di kedua masukan. Ini dapat menginstruksikan kedua input untuk memiliki nilai yang konsisten satu sama lain. Karena kedua `props` pada komponen `TemperatureInput` berasal dari komponen `Calculator` induk yang sama, kedua masukan akan selalu sinkron.
 
 Mari kita lihat bagaimana ini bekerja selangkah demi selangkah.
 
@@ -186,7 +186,7 @@ Pertama, kita akan ganti `this.state.temperature` dengan `this.props.temperature
     // ...
 ```
 
-Kita tahu bahwa [*props* hanya bisa dibaca](/docs/components-and-props.html#props-are-read-only). Ketika `temperature` berada di *state* lokal, `TemperatureInput` hanya bisa memanggil `this.setState()` untuk mengubahnya. Namun, sekarang bahwa `temperature` berasal dari induknya sebagai `props`, `TemperatureInput` tidak memiliki kendali atasnya.
+Kita tahu bahwa [*props* bersifat *read-only*](/docs/components-and-props.html#props-are-read-only). Ketika `temperature` berada di *state* lokal, `TemperatureInput` bisa memanggil `this.setState()` untuk mengubahnya. Namun, karena sekarang `temperature` berasal dari induknya sebagai sebuah `prop`, `TemperatureInput` tidak memiliki kendali atasnya.
 
 Dalam React, ini biasanya diselesaikan dengan membuat komponen "dikendalikan". Sama seperti *DOM* `<input>` menerima kedua `value` dan `onChange` *prop*, begitu juga dapat menyesuaikan `TemperatureInput` menerima kedua `temperature` dan `onTemperatureChange` *props* dari `Calculator` sebagai induknya.
 
@@ -203,9 +203,9 @@ Sekarang, ketika `TemperatureInput` ingin memperbarui suhunya, ia memanggil `thi
 >
 >Tidak ada arti khusus untuk salah satu `temperature` atau `onTemperatureChange` nama *prop* dalam komponen khusus. Kita bisa memanggil mereka apapun, seperti memberi nama mereka `value` dan `onChange` yang merupakan konvensi umum.
 
-`onTemperatureChange` *prop* akan diberikan bersama-sama dengan `temperature` *prop* oleh induk komponen `Calculator`. Ini akan menangani perubahan dengan memodifikasi *state* lokal sendiri, sehingga menampilkan ulang kedua masukan dengan nilai - nilai baru. Kita akan segera melihat implementasi `Calculator` yang baru.
+*Prop* `onTemperatureChange` akan diberikan bersama-sama dengan  *prop* `temperature` oleh komponen induk `Calculator`. Fungsi ini akan menangani perubahan dengan memodifikasi *state* lokalnya sendiri, sehingga menampilkan ulang kedua masukan dengan nilai-nilai baru. Kita akan segera melihat implementasi `Calculator` yang baru.
 
-Sebelum melihat ke perubahan di `Calculator`, mari kita rekap perubahan kita ke komponen `TemperatureInput`. Kita telah menghapus *state* lokal dari situ, dan alih-alih membaca `this.state.temperature`, kita sekarang membaca `this.props.temperature`. Alih-alih memanggil `this.setState()` saat kita ingin melakukan perubahan, kita sekarang memanggil `this.props.onTemperatureChange()`, yang akan disediakan oleh `Calculator`:
+Sebelum melihat perubahan di `Calculator`, mari kita rekap perubahan kita ke komponen `TemperatureInput`. Kita telah menghapus *state* lokal darinya, dan alih-alih membaca `this.state.temperature`, kita sekarang membaca `this.props.temperature`. Alih-alih memanggil `this.setState()` saat kita ingin melakukan perubahan, kita sekarang memanggil `this.props.onTemperatureChange()`, yang akan disediakan oleh `Calculator`:
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -245,7 +245,7 @@ Misalnya, jika kita memasukkan 37 ke dalam masukan Celcius, *state* pada kompone
 }
 ```
 
-Jika nanti kita mengubah bidang Fahrenheit menjadi 212, state pada `Calculator` akan menjadi:
+Jika nanti kita mengubah kolom Fahrenheit menjadi 212, state pada `Calculator` akan menjadi:
 
 ```js
 {
@@ -301,30 +301,30 @@ class Calculator extends React.Component {
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Sekarang, tidak peduli apabila masukan berubah, `this.state.temperature` dan `this.state.scale` dalam `Calculator` akan ter-*update*. Salah satu masukan mendapatkan nilai apa adanya, sehingga setiap masukan pengguna dipertahankan, dan nilai masukan lainnya selalu dihitung ulang berdasarkan masukan.
+Sekarang, tidak peduli apabila masukan berubah, `this.state.temperature` dan `this.state.scale` dalam `Calculator` akan diperbarui. Salah satu masukan mendapatkan nilai apa adanya, sehingga setiap masukan pengguna dipertahankan, dan nilai masukan lainnya selalu dihitung ulang berdasarkan masukan.
 
 Mari kita rekap apa yang terjadi ketika Anda mengubah masukan:
 
-* React memanggil fungsi yang spesifik `onChange` pada DOM `<input>`. Dalam kasus kita, ini adalah metode `handleChange` dalam komponen `TemperatureInput`.
+* React memanggil fungsi yang disebut `onChange` pada DOM `<input>`. Dalam kasus kita, ini adalah metode `handleChange` dalam komponen `TemperatureInput`.
 * Metode `handleChange` dalam komponen `TemperatureInput` memanggil `this.props.onTemperatureChange()` dengan nilai baru. Itu merupakan *props*, termasuk `onTemperatureChange`, disediakan oleh komponen induknya, `Calculator`.
-* Ketika sebelumnya di *render*, `Calculator` telah ditentukan bahwa `onTemperatureChange` dari Celcius `TemperatureInput` adalah metode `Calculator` `handleCelsiusChange`, dan `onTemperatureChange` dari Fahrenheit `TemperatureInput` adalah metode `Calculator` `handleFahrenheitChange`. Jadi salah satu dari dua metode `Calculator` dipanggil tergantung pada masukan yang kita ubah.
+* Ketika sebelumnya di-*render*, `Calculator` telah menentukan bahwa `onTemperatureChange` dari `TemperatureInput` Celcius adalah metode `handleCelsiusChange` milik `Calculator`, dan `onTemperatureChange` dari `TemperatureInput` Fahrenheit adalah metode `handleFahrenheitChange` milik `Calculator`. Jadi salah satu dari dua metode `Calculator` dipanggil tergantung pada masukan yang kita ubah.
 * Di dalam metode ini, komponen `Calculator` meminta React untuk mengulang *render* dengan memanggil `this.setState()` dengan nilai masukan baru dan skala masukan saat ini yang baru saja kita ubah.
-* React memanggil komponen `Calculator` metode `render` untuk mempelajari seperti apa tampilan UI. Nilai kedua masukan dihitung berdasarkan suhu saat ini dan skala aktif. Konversi suhu dilakukan di sini.
-* React memanggil metode `render` pada komponen individu `TemperatureInput` dengan *props* baru yang ditentukan oleh `Calculator`. Ia mempelajari seperti apa tampilan UI mereka.
+* React memanggil komponen `Calculator` metode `render` untuk mempelajari seperti apa tampilan antarmuka pengguna. Nilai kedua masukan dihitung berdasarkan suhu saat ini dan skala aktif. Konversi suhu dilakukan di sini.
+* React memanggil metode `render` pada komponen `TemperatureInput` individual dengan *props* baru yang ditentukan oleh `Calculator`. Mreka kemduain mempelajari seperti apa tampilan antarmuka pengguna mereka.
 * React memanggil metode `render` pada komponen `BoilingVerdict`, melewati suhu dalam Celcius sebagai *props*.
-* React DOM memperbarui dengan vonis didih dan untuk mencocokan nilai masukan yang diinginkan. Masukan yang baru saja kita ubah menerima nilainya saat ini, dan masukan lainnya diperbarui kesuhu setelah konversi.
+* React DOM memperbarui dengan vonis didih dan untuk mencocokan nilai masukan yang diinginkan. Masukan yang baru saja kita ubah menerima nilainya saat ini, dan masukan lainnya diperbarui ke suhu setelah konversi.
 
 Setiap pembaruan melewati langkah yang sama sehingga masukan tetap sinkron.
 
 ## Pelajaran yang Dipetik {#lessons-learned}
 
-Seharusnya ada "sumber kebenaran" tunggal untuk setiap data yang berubah dalam aplikasi React. Biasanya, *state* ditambahkan pertama kali ke komponen yang membutuhkannya untuk *rendering*. Kemudian, jika komponen lain juga membutuhkannya, Anda dapat mengangkat ke modul utama terdekat. Alih-alih mencoba menyinkronkan keadaan antara komponen yang berbeda, Anda harus mengandalkan [aliran data dari atas kebawah](/docs/state-and-lifecycle.html#the-data-flows-down).
+Seharusnya ada "sumber kebenaran" tunggal untuk setiap data yang berubah dalam aplikasi React. Biasanya, *state* ditambahkan pertama kali ke komponen yang membutuhkannya untuk di-*render*. Kemudian, jika komponen lain juga membutuhkannya, Anda dapat memindahkan *state* ke komponen induk bersama terdekat. Alih-alih mencoba menyinkronkan *state* antara komponen yang berbeda, Anda harus mengandalkan [aliran data dari atas kebawah](/docs/state-and-lifecycle.html#the-data-flows-down).
 
-Pengangkatan *state* melibatkan penulisan lebih banyak kode "*boilerplate*" daripada pendekatan pengikatan dua arah, tetapi sebagai manfaat, dibutuhkan lebih sedikit pekerjaan untuk menemukan dan mengisolasi *bug*. Karena keadaan apa pun "hidup" di beberapa komponen dan komponen itu sendiri dapat mengubahnya, area permukaan untuk bug sangat berkurang. Selain itu, Anda dapat menerapkan logika khusus apa pun untuk menolak atau mengubah masukan pengguna.
+Pengangkatan *state* melibatkan penulisan lebih banyak kode "*boilerplate*" daripada pendekatan pengikatan dua arah, tetapi sebagai manfaat, dibutuhkan lebih sedikit pekerjaan untuk menemukan dan mengisolasi *bug*. Karena tiap *state* akan "hidup" di sebuah komponen dan hanya komponen itu sendiri yang dapat mengubahnya, area permukaan untuk *bug* akan sangat berkurang. Selain itu, Anda dapat menerapkan logika khusus apa pun untuk menolak atau mengubah masukan pengguna.
 
-Jika sesuatu dapat diturunkan dari *props* atau *state*, itu mungkin tidak boleh di *state*. Sebagai contoh, alih-alih menyimpan keduanya `celsiusValue` dan `fahrenheitValue`, kita menyimpan hanya yang terakhir diubah `temperature` dan itu *scale*. Nilai masukan lain selalu dapat dihitung dari mereka dalam metode `render()`. Ini memungkinkan kita menghapus atau menerapkan pembulatan ke bidang lain tanpa kehilangan ketepatan dalam masukan pengguna.
+Jika sesuatu dapat diturunkan dari *props* atau *state*, hal itu mungkin tidak sebaiknya berada di *state*. Sebagai contoh, alih-alih menyimpan keduanya `celsiusValue` dan `fahrenheitValue`, kita menyimpan hanya `temperature` yang terakhir diubah dan `scale`-nya. Nilai dari masukan lain selalu dapat dihitung dari kedua nilai tersebut dalam metode `render()`. Ini memungkinkan kita menghapus atau menerapkan pembulatan ke masukan lain tanpa kehilangan ketepatan pada masukan pengguna.
 
-Ketika Anda melihat sesuatu yang salah di UI, Anda dapat menggunakan [Alat Pengembang React](https://github.com/facebook/react-devtools) untuk memeriksa *props* dan geser *tree* sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
+Ketika Anda melihat sesuatu yang salah di antarmuka pengguna, Anda dapat menggunakan [Alat Pengembang React](https://github.com/facebook/react-devtools) untuk memeriksa *props* dan menelusuri *tree* komponen anda ke atas sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 
