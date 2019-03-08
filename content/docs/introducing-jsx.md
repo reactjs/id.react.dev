@@ -1,40 +1,40 @@
 ---
 id: introducing-jsx
-title: Introducing JSX
+title: Memperkenalkan JSX
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Consider this variable declaration:
+Cobalah lihat deklarasi variabel dibawah ini:
 
 ```js
-const element = <h1>Hello, world!</h1>;
+const element = <h1>Halo, Dunia!</h1>;
 ```
 
-This funny tag syntax is neither a string nor HTML.
+Sintaksis *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.
+Sintaksis ini di kenal dengan sebutan JSX, dan sintaksis ini adalah sebuah sintaksis ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan Anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
-JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
+JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, Anda akan menemukan dasar-dasar JSX yang Anda butuhkan untuk memulai.
 
-### Why JSX? {#why-jsx}
+### Mengapa JSX? {#why-jsx}
 
-React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan logika antarmuka pengguna lainnya. bagaimana *events* akan ditangani, bagaimana *state* berubah seiring dengan waktu, dan bagaimana data disiapkan untuk di tampilkan.
 
-Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika Anda merasa belum nyaman menempatkan *markup* di `JavaScript`, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan Anda.
 
-React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
+React [tidak mengharuskan](/docs/react-without-jsx.html) Anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
 
-With that out of the way, let's get started!
+Setelah Anda memahaminya, mari kita mulai!
 
-### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
+### Menyematkan Ekspresi di JSX {#embedding-expressions-in-jsx}
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+Dalam contoh di bawah ini, kita mendeklarasikan variabel bernama `name` dan kemudian menggunakannya di dalam JSX dengan cara membungkusnya di dalam tanda kurung kurawal *(curly braces)*:
 
 ```js{1,2}
-const name = 'Josh Perez';
-const element = <h1>Hello, {name}</h1>;
+const name = 'Budi';
+const element = <h1>Halo, {name}</h1>;
 
 ReactDOM.render(
   element,
@@ -42,9 +42,9 @@ ReactDOM.render(
 );
 ```
 
-You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+Anda dapat menyematkan semua [ekspresi *JavaScript*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) yang valid di dalam tanda kurung kurawal di JSX. Sebagai contoh, `2 + 2`, `user.firstName`, atau `formatName(user)` adalah ekspresi JavaScript yang valid.
 
-In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
+Pada contoh di bawah ini, kami menyematkan hasil memanggil fungsi JavaScript, `formatName(user)`, kedalam elemen `<h1>`.
 
 ```js{12}
 function formatName(user) {
@@ -52,13 +52,13 @@ function formatName(user) {
 }
 
 const user = {
-  firstName: 'Harper',
-  lastName: 'Perez'
+  firstName: 'Budi',
+  lastName: 'Mahardika'
 };
 
 const element = (
   <h1>
-    Hello, {formatName(user)}!
+    Halo, {formatName(user)}!
   </h1>
 );
 
@@ -68,88 +68,88 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx)
+[Coba di CodePen](codepen://introducing-jsx)
 
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](http://stackoverflow.com/q/2846283).
+Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### JSX adalah Ekspresi Juga {#jsx-is-an-expression-too}
 
-After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+Setelah dikompilasi, Ekspresi JSX akan menjadi panggilan fungsi JavaScript biasa dan menjadi objek JavaScript.
 
-This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
+Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan perulangan `for`, memasukkannya ke dalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
 
 ```js{3,5}
 function getGreeting(user) {
   if (user) {
-    return <h1>Hello, {formatName(user)}!</h1>;
+    return <h1>Halo, {formatName(user)}!</h1>;
   }
-  return <h1>Hello, Stranger.</h1>;
+  return <h1>Halo, Orang Asing.</h1>;
 }
 ```
 
-### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
+### Menentukan Atribut dengan JSX {#specifying-attributes-with-jsx}
 
-You may use quotes to specify string literals as attributes:
+Anda dapat menggunakan tanda kutip untuk menentukan *string* literal sebagai atribut:
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+Anda juga dapat menggunakan kurung kurawal untuk menyematkan ekspresi JavaScript di dalam atribut:
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
+Jangan letakan tanda kutip di sekitar kurung kurawal saat menyematkan ekspresi JavaScript di dalam atribut. Anda bisa menggunakan tanda kutip (untuk nilai string) atau kurung kurawal (untuk ekspresi), tetapi jangan menggunakan keduanya dalam atribut yang sama.
 
->**Warning:**
+>**Peringatan:**
 >
->Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>Karena JSX lebih dekat ke JavaScript daripada ke HTML, React DOM menggunakan `camelCase` sebagai konvensi penamaan alih-alih menggunakan konvensi penamaan atribut HTML.
 >
->For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
+>Sebagai contoh, `class` akan menjadi [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) di JSX, dan `tabindex` akan menjadi [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
 
-### Specifying Children with JSX {#specifying-children-with-jsx}
+### Menspesifikasikan Elemen Anak dengan JSX {#specifying-children-with-jsx}
 
-If a tag is empty, you may close it immediately with `/>`, like XML:
+Jika *tag* bersifat kosong (tidak memiliki elemen anak), Anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-JSX tags may contain children:
+*Tag* JSX dimungkinkan untuk memiliki elemen anak:
 
 ```js
 const element = (
   <div>
-    <h1>Hello!</h1>
-    <h2>Good to see you here.</h2>
+    <h1>Halo!</h1>
+    <h2>Senang melihatmu di sini.</h2>
   </div>
 );
 ```
 
-### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
+### JSX Mencegah Serangan Injeksi {#jsx-prevents-injection-attacks}
 
-It is safe to embed user input in JSX:
+Anda dapat menanamkan input pengguna di JSX dengan aman:
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// Ini aman:
 const element = <h1>{title}</h1>;
 ```
 
-By default, React DOM [escapes](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+Secara default, React DOM [meng-*escape*](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
-### JSX Represents Objects {#jsx-represents-objects}
+### JSX Merepresentasikan Objek {#jsx-represents-objects}
 
-Babel compiles JSX down to `React.createElement()` calls.
+Babel akan meng-*compile* JSX menjadi pemanggilan `React.createElement()`.
 
-These two examples are identical:
+Dua contoh ini akan menghasilkan hal yang sama:
 
 ```js
 const element = (
   <h1 className="greeting">
-    Hello, world!
+    Halo, Dunia!
   </h1>
 );
 ```
@@ -158,27 +158,27 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  'Hello, world!'
+  'Halo, Dunia!'
 );
 ```
 
-`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:
+`React.createElement()` melakukan serangkaian pengecekan yang membantu Anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat objek seperti ini:
 
 ```js
-// Note: this structure is simplified
+// Catatan: struktur ini sudah disederhanakan
 const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world!'
+    children: 'Halo, Dunia!'
   }
 };
 ```
 
-These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
+Objek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang Anda ingin lihat di layar. React membaca objek-objek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
 
-We will explore rendering React elements to the DOM in the next section.
+Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berikutnya.
 
->**Tip:**
+>**Saran:**
 >
->We recommend using the ["Babel" language definition](http://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+>Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.

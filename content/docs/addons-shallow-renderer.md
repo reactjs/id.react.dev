@@ -53,6 +53,7 @@ Saat ini _shallow testing_ masih memiliki beberapa keterbatasan, salah satunya b
 >
 > Kami juga menyarankan Anda untuk membaca [API Shallow Rendering](http://airbnb.io/enzyme/docs/api/shallow.html) oleh Enzyme yang menyediakan _API_ tingkat atas (_higher-level API_) yang lebih baik untuk fungsionalitas serupa.
 
+
 ## Referensi {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
