@@ -33,7 +33,7 @@ function Welcome(props) {
 }
 ```
 
-Fungsi ini adalah komponen React yang sah karena menerima sebuah *"props"* tunggal (yang bertindak sebagai *props*) atau argumen objek dengan data dan kembalian sebuah Elemen React. Kita menyebut komponen karena itu benar - benar merupakan fungsi Javascript.
+Fungsi ini adalah komponen React yang sah karena menerima sebuah *"props"* tunggal (yang bertindak sebagai *props*) atau argumen objek dengan data dan kembalian sebuah elemen React. Kita menyebut komponen karena itu benar-benar merupakan fungsi Javascript.
 
 Anda juga dapat menggunakan sebuah [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) untuk mendefinisikan sebuah komponen:
 
@@ -47,7 +47,7 @@ class Welcome extends React.Component {
 
 Dari sudut pandang React, kedua komponen di atas mempunyai nilai yang sama.
 
-Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai disini, kita akan menggunakan komponen fungsional untuk mempersingkatnya.
+Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai di sini, kita akan menggunakan komponen fungsional untuk mempersingkatnya.
 
 ## Merender sebuah Komponen {#rendering-a-component}
 
@@ -100,7 +100,7 @@ Mari merangkum apa yang terjadi pada contoh berikut:
 >`<Welcome />` merepresentasikan sebuah komponen dan membutuhkan Welcome to be
 >in scope.
 >
->Anda dapat membaca lebih lanjut tentang alasan dibalik Konvensi tersebut [disini.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
+>Anda dapat membaca lebih lanjut tentang alasan dibalik Konvensi tersebut [di sini.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
 
 ## Menyusun Komponen {#composing-components}
 
@@ -110,7 +110,7 @@ sebuah *form*, sebuah dialog, sebuah tampilan: di dalam aplikasi React, semua
 itu dinyatakan dalam bentuk komponen.
 
 Sebagai contoh, kita dapat membuat sebuah komponen `App` yang mencetak `Welcome`
-berkali - kali.
+berkali-kali.
 
 ```js{8-10}
 function Welcome(props) {
@@ -261,7 +261,7 @@ function Comment(props) {
 Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada
 awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan
 terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika
-pada bagian dari UI digunakan beberapa kali (*Button*, *Panel*, *Avatar*), atau yang cukup
+pada bagian dari antarmuka pengguna digunakan beberapa kali (*Button*, *Panel*, *Avatar*), atau yang cukup
 kompleks (App, FeedStory, Comment), ini merupakan kandidat yang bagus untuk
 dijadikan sebagai komponen yang dapat digunakan kembali.
 
@@ -294,4 +294,4 @@ React sangat fleksibel namun memiliki suatu peraturan yang ketat:
 **Semua komponen React harus bertindak seperti fungsi yang murni
 sehubungan dengan properti mereka.**
 
-Tentu saja, UI dari aplikasi akan dinamis dan selalu berganti. Di [sesi selanjutnya](), kita akan memperkenalkan sebuah konsep baru tentang *"state"*. *State* memperbolehkan komponen React untuk mengganti keluaran mereka secara berkala untuk merespon aksi dari pengguna, respon dari jaringan, dan yang lainnya, tanpa melanggar aturan.
+Tentu saja, antarmuka pengguna dari aplikasi akan dinamis dan selalu berganti. Di [sesi selanjutnya](), kita akan memperkenalkan sebuah konsep baru tentang *"state"*. *State* memperbolehkan komponen React untuk mengganti keluaran mereka secara berkala untuk merespon aksi dari pengguna, respon dari jaringan, dan yang lainnya, tanpa melanggar aturan.
