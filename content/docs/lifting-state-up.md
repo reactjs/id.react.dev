@@ -18,9 +18,9 @@ Kita akan memulai dengan komponen bernama `BoilingVerdict`. Komponen tersebut ak
 ```js{3,5}
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
-    return <p>The water would boil.</p>;
+    return <p>Air akan mendidih.</p>;
   }
-  return <p>The water would not boil.</p>;
+  return <p>Air tidak akan mendidih.</p>;
 }
 ```
 
@@ -62,7 +62,7 @@ class Calculator extends React.Component {
 
 Syarat baru dari kita adalah selain masukan Celcius, kita juga memberikan masukan Fahrenheit, dan kedua masukan tersebut harus tetap sinkron.
 
-Kita dapat memulai dengan mengeluarkan komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan `scale` *prop* baru untuk dapat berupa `"c"` atau `"f"`:
+Kita dapat memulai dengan mengeluarkan komponen `TemperatureInput` dari `Calculator`. Kita akan menambahkan *prop* `scale` baru pada komponen tersebut yang dapat bernilai `"c"` atau `"f"`:
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -86,7 +86,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Masukkan temperatur dalam skala {scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -112,7 +112,7 @@ class Calculator extends React.Component {
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-Kita memiliki dua masukan sekarang, tetapi ketika Anda memasukkan suhu di salah satunya, yang lain tidak ter-*update*. Ini bertentangan dengan syarat kita: kita ingin tetap menyinkronkannya.
+Kita memiliki dua masukan sekarang, tetapi ketika Anda memasukkan suhu di salah satunya, yang lain tidak diperbarui. Ini bertentangan dengan syarat kita: kita ingin tetap menyinkronkannya.
 
 Kita juga tidak dapat menampilkan `BoilingVerdict` dari `Calculator`. `Calculator` tidak tahu suhu saat ini karena suhu tersebut tersembunyi di dalam `TemperatureInput`.
 
@@ -223,7 +223,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Masukkan temperatur dalam skala {scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -324,7 +324,7 @@ Pengangkatan *state* melibatkan penulisan lebih banyak kode "*boilerplate*" dari
 
 Jika sesuatu dapat diturunkan dari *props* atau *state*, hal itu mungkin tidak sebaiknya berada di *state*. Sebagai contoh, alih-alih menyimpan keduanya `celsiusValue` dan `fahrenheitValue`, kita menyimpan hanya `temperature` yang terakhir diubah dan `scale`-nya. Nilai dari masukan lain selalu dapat dihitung dari kedua nilai tersebut dalam metode `render()`. Ini memungkinkan kita menghapus atau menerapkan pembulatan ke masukan lain tanpa kehilangan ketepatan pada masukan pengguna.
 
-Ketika Anda melihat sesuatu yang salah di antarmuka pengguna, Anda dapat menggunakan [Alat Pengembang React](https://github.com/facebook/react-devtools) untuk memeriksa *props* dan menelusuri *tree* komponen anda ke atas sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
+Ketika Anda melihat sesuatu yang salah di antarmuka pengguna, Anda dapat menggunakan [Alat Pengembang React](https://github.com/facebook/react-devtools) untuk memeriksa *props* dan menelusuri *tree* komponen Anda ke atas sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 
