@@ -62,7 +62,7 @@ function onClick(event) {
 
 > Catatan:
 >
-> Jika Anda ingin mengakses isi _event_ secara asinkron, Anda perlu memanggil fungsi `event.persist()` dalam _event_, yang akan mengeluarkan _synthetic event_ dari kumpulan sehingga acuan terhadap _event_ tersebut dapat dipertahankan melalui kode pengguna.
+> Jika Anda ingin mengakses isi _event_ secara asinkron, Anda perlu memanggil fungsi `event.persist()` dalam _event_, yang akan mengeluarkan _synthetic event_ dari kumpulan(*pool*) sehingga acuan terhadap _event_ tersebut dapat dipertahankan melalui kode pengguna.
 
 ## Supported Events {#supported-events}
 
