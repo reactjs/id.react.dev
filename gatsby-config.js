@@ -121,11 +121,11 @@ module.exports = {
                     title: edge.node.frontmatter.title,
                     description: edge.node.html,
                     date: require('moment')(edge.node.fields.date).format(
-                      'MMMM DD, YYYY, h:mm A',
+                      'MMMM DD, YYYY, h:mm A'
                     ),
                     url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                     guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  },
+                  }
                 );
               });
             },
