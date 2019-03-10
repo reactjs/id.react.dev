@@ -68,7 +68,7 @@ function onClick(event) {
 
 React menormalisasi _event_ agar memiliki properti yang sama di lintas _browser_.
 
-_Event handler_ dibawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaftarkan sebuah _event handler_ dalam fase _capture_, tambahkan `Capture` pada nama _event_; contohnya, gunakan `onClickCapture` untuk menangani _event_ klik dalam fase _capture_ sebagai ganti `onClick`.
+_Event handler_ di bawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaftarkan sebuah _event handler_ dalam fase _capture_, tambahkan `Capture` pada nama _event_; contohnya, alih-alih menggunakan `onClick` gunakan `onClickCapture` untuk menangani _event_ klik dalam fase _capture_.
 
 - [Clipboard Events](#clipboard-events)
 - [Composition Events](#composition-events)
