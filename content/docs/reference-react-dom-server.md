@@ -51,7 +51,7 @@ ReactDOMServer.renderToStaticMarkup(elemen)
 
 Sama seperti [`renderToString`](#rendertostring), bedanya *method* ini tidak membuat atribut DOM tambahan yang digunakan React secara internal, seperti `data-reactroot`. Metode ini bermanfaat jika Anda ingin menggunakan React untuk menghasilkan halaman statis yang simpel, dikarenakan menghapus beberapa atribut tambahan bisa menghemat beberapa *byte*.
 
-Jika Anda berencana untuk menggunakan React di dalam klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di dalam server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di klien.
+Jika Anda berencana untuk menggunakan React di sisi klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di sisi server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di sisi klien.
 
 * * *
 
@@ -81,7 +81,7 @@ ReactDOMServer.renderToStaticNodeStream(elemen)
 Sama seperti [`renderToNodeStream`](#rendertonodestream), bedanya *method* ini tidak membuat atribut DOM tambahan yang digunakan React secara internal, seperti `data-reactroot`. Metode ini bermanfaat jika Anda ingin menggunakan React untuk menghasilkan halaman statis yang simpel, dikarenakan menghapus beberapa atribut tambahan bisa menghemat beberapa *byte*.
 Hasil keluaran HTML yang dikembalikan oleh *stream* ini sama persis dengan yang dikembalikan oleh [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup).
 
-Jika Anda berencana untuk menggunakan React di klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di dalam server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di dalam klien.
+Jika Anda berencana untuk menggunakan React di sisi klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di sisi server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di sisi klien.
 
 > Catatan:
 >
