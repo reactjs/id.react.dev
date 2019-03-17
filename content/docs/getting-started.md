@@ -34,7 +34,7 @@ Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber - sumber terk
 
 React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktif ke sebuah laman *HTML* sederhana, atau memulai sebuah aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
 
-### *Online Playgrounds* {#online-playgrounds}
+### Online Playgrounds {#online-playgrounds}
 
 Jika anda tertarik bermain dengan React, anda dapat menggunakan sebuah *online code playground*. Coba sebuah *Hello World template* di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
 
