@@ -28,9 +28,9 @@ function Example() {
 }
 ```
 
-Kita akan mulai belajar tentang *Hooks* dengan membandingkan kode berikut dengan contoh kelas yang setara.
+Kita akan mulai belajar tentang *Hooks* dengan membandingkan kode berikut dengan contoh yang sama dengan kelas.
 
-## Contoh Kelas yang Setara {#equivalent-class-example}
+## Contoh Kelas yang Sama {#equivalent-class-example}
 
 Apabila Anda telah menggunakan kelas di React sebelumnya, potongan kode di bawah ini seharusnya terlihat familier:
 
@@ -60,7 +60,7 @@ class Example extends React.Component {
 
 >Catatan
 >
->Anda mungkin berfikir kenapa kita menggunakan pembilang dibandingkan dengan menggunakan contoh yang lebih realistis. Ini membantu kita untuk fokus kepada API ketika kita masih belajar tentang *Hooks*.
+>Anda mungkin berfikir kenapa kita menggunakan *counter* dibandingkan dengan menggunakan contoh yang lebih realistis. Ini membantu kita untuk fokus kepada API ketika kita masih belajar tentang *Hooks*.
 
 ## Hooks dan Function Components {#hooks-and-function-components}
 
@@ -120,7 +120,7 @@ class Example extends React.Component {
   }
 ```
 
-Di dalam sebuah *function component*, kita tidak memiliki `this`, jadi kita tidak bisa menetapkan atau membaca `this.state`. Sebagai gantinya, kita dapat memanggil *Hook* `useState` secara langsung di dalam komponen kita:
+Di dalam sebuah *function component*, kita tidak memiliki `this`, jadi kita tidak bisa menulis atau membaca `this.state`. Sebagai gantinya, kita dapat memanggil *Hook* `useState` secara langsung di dalam komponen kita:
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -156,7 +156,7 @@ Kita mendeklarasikan sebuah *state* bernama `count`, dan memberinya nilai `0`. R
 
 ## Membaca *State* {#reading-state}
 
-Ketika kita ingin menampilkan jumlah pembilang saat ini di dalam sebuah kelas, kita membaca `this.state.count`:
+Ketika kita ingin menampilkan jumlah *count* saat ini di dalam sebuah kelas, kita membaca `this.state.count`:
 
 ```js
   <p>Anda menekan sebanyak {this.state.count} kali</p>
@@ -232,7 +232,7 @@ Nama-nama di sebelah kiri bukan bagian dari React API. Anda bisa memberi nama va
   const [fruit, setFruit] = useState('banana');
 ```
 
-Sintaksis JavaScript ini dipanggil [*array destructuring*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). Sintaksis ini berarti kita membuat dua variabel `fruit` dan `setFruit`, di mana `fruit` adalah nilai pertama yang dikembalikan oleh `useState`, dan `setFruit` adalah yang kedua. Ini sama dengan kode berikut:
+Sintaksis JavaScript ini dikenal dengan [*array destructuring*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). Sintaksis ini berarti kita membuat dua variabel `fruit` dan `setFruit`, di mana `fruit` adalah nilai pertama yang dikembalikan oleh `useState`, dan `setFruit` adalah yang kedua. Ini sama dengan kode berikut:
 
 ```js
   var fruitStateVariable = useState('banana'); // Mengembalikan sepasang item
