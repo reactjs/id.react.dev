@@ -8,7 +8,7 @@ category: FAQ
 
 ### Perlukah saya menggunakan JSX pada React? {#do-i-need-to-use-jsx-with-react}
 
-Tidak! Silahkan lihat ["React Tanpa JSX"](/docs/react-without-jsx.html) untuk lebih lanjut.
+Tidak! Silahkan lihat ["React Tanpa JSX"](/docs/react-without-jsx.html) untuk mempelajari lebih lanjut.
 
 ### Perlukah saya menggunakan ES6 (+) pada React? {#do-i-need-to-use-es6--with-react}
 
