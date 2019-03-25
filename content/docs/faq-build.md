@@ -6,11 +6,11 @@ layout: docs
 category: FAQ
 ---
 
-### Perlukah saya menggunakan JSX pada React? {#do-i-need-to-use-jsx-with-react}
+### Perlukah saya menggunakan JSX dengan React? {#do-i-need-to-use-jsx-with-react}
 
 Tidak! Silahkan lihat ["React Tanpa JSX"](/docs/react-without-jsx.html) untuk mempelajari lebih lanjut.
 
-### Perlukah saya menggunakan ES6 (+) pada React? {#do-i-need-to-use-es6--with-react}
+### Perlukah saya menggunakan ES6 (+) dengan React? {#do-i-need-to-use-es6--with-react}
 
 Tidak! Silakan lihat ["React Tanpa ES6"](/docs/react-without-es6.html) untuk mempelajari lebih lanjut.
 
@@ -26,7 +26,7 @@ Tidak! Silakan lihat ["React Tanpa ES6"](/docs/react-without-es6.html) untuk mem
 ```jsx
 <div>
   {/* Juga bekerja untuk
-  multi-baris komentar */}
+  komentar multi-baris */}
   Halo, {name}!
 </div>
 ```
