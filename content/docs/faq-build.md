@@ -12,7 +12,7 @@ Tidak! Silahkan lihat ["React Tanpa JSX"](/docs/react-without-jsx.html) untuk me
 
 ### Perlukah saya menggunakan ES6 (+) pada React? {#do-i-need-to-use-es6--with-react}
 
-Tidak! Silakan lihat ["React Tanpa ES6"](/docs/react-without-es6.html) untuk lebih lanjut.
+Tidak! Silakan lihat ["React Tanpa ES6"](/docs/react-without-es6.html) untuk mempelajari lebih lanjut.
 
 ### Bagaimana cara menulis komentar di JSX? {#how-can-i-write-comments-in-jsx}
 
