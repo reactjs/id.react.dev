@@ -72,8 +72,6 @@ Untuk mengimplementasikan ini, kita perlu untuk menambahkan _"state"_ ke kompone
 
 _State_ mirip dengan _props_, tetapi bersifat pribadi dan sepenuhnya dikendalikan oleh komponen.
 
-Kami [menyebutkan sebelumnya](/docs/components-and-props.html#functional-and-class-components) jika komponen didefinisikan sebagai kelas yang mempunyai fitur tambahan. _Local State_ juga persis seperti itu: fitur yang hanya tersedia untuk kelas.
-
 ## Mengubah Sebuah Fungsi ke Sebuah Kelas {#converting-a-function-to-a-class}
 
 Anda bisa mengubah sebuah _function component_ seperti `Clock` ke sebuah kelas dalam lima langkah:
