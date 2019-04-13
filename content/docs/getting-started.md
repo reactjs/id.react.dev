@@ -32,7 +32,7 @@ Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber-sumber terkai
 
 ## Coba React {#coba-react}
 
-React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktif ke sebuah laman *HTML* sederhana, atau memulai sebuah aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
+React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktivitas ke sebuah laman HTML sederhana, atau memulai sebuah aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
 
 ### Online Playgrounds {#online-playgrounds}
 
