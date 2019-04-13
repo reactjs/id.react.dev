@@ -18,7 +18,7 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber - sumber terkait.
+Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
 
 **React** adalah sebuah *JavaScript library* untuk membangun tampilan user (*user interfaces*). Pelajari apa sebenarnya React itu di [Laman Beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
 
