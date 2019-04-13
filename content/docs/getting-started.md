@@ -55,7 +55,7 @@ Saat aplikasi Anda bertumbuh, Anda mungkin ingin mempertimbangkan pengaturan yan
 Orang-orang data ke React dari latar belakang yang berbeda dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
 
 * Jika anda lebih suka **belajar sambil melakukan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
-* Jika anda lebih suka **belajar konsep langkah demi langkah**, mulai dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
+* Jika anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
 
 Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan beberapa kesabaran, anda akan bertahan. With practice and some patience, you *will* get the hang of it.
 
