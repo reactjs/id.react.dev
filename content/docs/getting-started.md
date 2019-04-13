@@ -42,7 +42,7 @@ Jika anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [meng
 
 ### Tambahkan React ke sebuah Website {#add-react-to-a-website}
 
-Anda dapat [menambahkan React ke sebuah laman HTML dalam satu menit](/docs/add-react-to-a-website.html). Anda juga dapat secara bertahap memperluas kehadirannya, atau menyimpannya di beberapa *widget dynamic*.
+Anda dapat [menambahkan React ke sebuah laman HTML dalam satu menit](/docs/add-react-to-a-website.html). Anda juga dapat secara bertahap memperluas kehadirannya, atau menyimpannya di beberapa *widget* dinamis.
 
 ### Buat sebuah Aplikasi React Baru {#create-a-new-react-app}
 
