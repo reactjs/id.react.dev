@@ -38,7 +38,7 @@ React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat mengguna
 
 Jika anda tertarik bermain dengan React, anda dapat menggunakan sebuah *online code playground*. Coba sebuah *Hello World template* di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
 
-Jika anda memilih untuk menggunakan *text editor* sendiri, anda juga dapat [Unduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit, dan buka itu dari *local filesystem* pada peramban anda. Itu melakukan perubahan *runtime code* yang lambat, jadi kami merekomendasikan menggunakan ini untuk demo sederhana.
+Jika anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 
 ### Tambahkan React ke sebuah Website {#add-react-to-a-website}
 
