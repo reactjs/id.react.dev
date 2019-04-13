@@ -20,7 +20,7 @@ redirect_from:
 
 Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
 
-**React** adalah sebuah *JavaScript library* untuk membangun tampilan user (*user interfaces*). Pelajari apa sebenarnya React itu di [Laman Beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
+**React** adalah sebuah *library* JavaScript untuk membangun antarmuka pengguna (*user interface*). Pelajari apa sebenarnya React itu di [beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
 
 ---
 
