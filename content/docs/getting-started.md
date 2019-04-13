@@ -119,7 +119,7 @@ Tidak setiap rilis React mendapatkan posting sendiri pada blog, tapi anda dapat 
 
 ## Dokumentasi Berversi {#dokumentasi-berversi}
 
-Dokumentasi ini selali mencerminkan versi stabil terbaru dari React. Sejak React 16, Anda dapat menemukan versi dokumentasi yang lebih lama [pada halaman terpisah](/versions). Perhatikan dokumentasi untuk versi yang lama adalah *snapshotted* pada saat rilis, dan tidak diperbaharui.
+Dokumentasi ini selalu mencerminkan versi stabil terbaru dari React. Sejak React 16, Anda dapat menemukan versi dokumentasi yang lebih lama [pada halaman terpisah](/versions). Perhatikan dokumentasi untuk versi yang lama adalah *snapshotted* pada saat rilis, dan tidak diperbaharui.
 
 ## Sesuatu Hilang? {#sesuatu-hilang}
 
