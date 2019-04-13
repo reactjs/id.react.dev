@@ -52,7 +52,7 @@ Saat aplikasi Anda bertumbuh, Anda mungkin ingin mempertimbangkan pengaturan yan
 
 ## Belajar React {#belajar-react}
 
-Orang orang data ke React dari latar belakang yang berbeda dan dengan cara belajar yang berbeda. Apakah anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
+Orang-orang data ke React dari latar belakang yang berbeda dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
 
 * Jika anda lebih suka **belajar sambil melakukan**, mulai dengan [tutorial praktis](/tutorial/tutorial.html) kami.
 * Jika anda lebih suka **belajar konsep langkah demi langkah**, mulai dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
