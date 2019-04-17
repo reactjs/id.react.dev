@@ -76,11 +76,11 @@ _State_ mirip dengan _props_, tetapi bersifat pribadi dan sepenuhnya dikendalika
 
 Anda bisa mengubah sebuah _function component_ seperti `Clock` ke sebuah kelas dalam lima langkah:
 
-1. Buat sebuah [kelas ES6](https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Classes), dengan nama yang sama, yang meng-_extends_ `React.Component`.
+1. Buat sebuah [kelas ES6](https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Classes), dengan nama yang sama, yang diturunkan dari `React.Component`.
 
-2. Tambah sebuah _method_ kosong disitu yang bernama `render()`.
+2. Tambah sebuah _method_ kosong yang bernama `render()`.
 
-3. Pindah isi fungsi ke dalam _method_ `render()`.
+3. Pindahkan isi fungsi ke dalam _method_ `render()`.
 
 4. Ganti `props` dengan `this.props` di dalam `render()`.
 
@@ -246,9 +246,9 @@ _Method_ `componentDidMount()` berjalan setelah hasil komponen sudah ter-_render
 
 Perhatikan bagaimana kami menyimpan _ID_ pengatur _timer_ langsung di `this`.
 
-Ketika `this.props` diatur oleh React sendiri dan `this.state` punya arti spesial, Anda dapat dengan bebas untuk menambah bidang tambahan di kelas secara manual jika Anda butuh untuk menyimpan sesuatu yang tidak ikut berpartisipasi di alur data (seperti _ID timer_).
+Ketika `this.props` diatur oleh React sendiri dan `this.state` punya arti spesial, Anda dapat dengan bebas untuk menambah _field_ tambahan di kelas secara manual jika Anda butuh untuk menyimpan sesuatu yang tidak ikut berpartisipasi di alur data (seperti _ID timer_).
 
-Kita akan membongkar _timer_ di _method lifecycle_ `componentWillUnmount()`:
+Kita akan menghapus _timer_ di _method lifecycle_ `componentWillUnmount()`:
 
 ```js{2}
   componentWillUnmount() {
@@ -312,9 +312,9 @@ Mari kita rekap dengan cepat apa yang terjadi dan urutan _method_ yang dipanggil
 
 3) Ketika hasil `Clock` dimasukkan ke dalam _DOM_, React memanggil _method lifecycle_ `componentDidMount()`. Didalamnya, komponen `Clock` menyuruh _browser_ untuk mengatur sebuah _timer_ untuk memanggil _method_ `tick()` milik komponen sekali per detik.
 
-4) Setiap detik _browser_ memanggil _method_ `tick()`. Didalamnya, komponen `Clock` menjadwal pembaruan _UI_ dengan memanggil `setState()` dengan sebuah obyek berisi waktu sekarang. Berkat panggilan `setState()`, React tau _state_ sudah terubah, dan memanggil _method_ `render()` lain untuk belajar apa yang harusnya ada di layar. Kali ini, `this.state.date` di `render()` _method_ akan berbeda, dan jadi hasil _render_ akan mencakup waktu yang diperbarui. React telah memperbarui _DOM_ dengan sesuai.
+4) Setiap detik _browser_ memanggil _method_ `tick()`. Didalamnya, komponen `Clock` menjadwal pembaruan _UI_ dengan memanggil `setState()` dengan sebuah obyek berisi waktu sekarang. Berkat panggilan `setState()`, React mengetahui _state_ sudah berubah, dan memanggil _method_ `render()` lagi untuk mempelajari apa yang harusnya ada di layar. Kali ini, `this.state.date` di `render()` _method_ akan berbeda, dan jadi hasil _render_ akan mencakup waktu yang diperbarui. React telah memperbarui _DOM_ dengan sesuai.
 
-5) Jika komponen `Clock` pernah terhapus dari _DOM_, React memanggil _method lifecycle_ `componentWillUnmount()` jadi  _timer_ akan berhenti.
+5) Jika komponen `Clock` dihapus dari _DOM_, React memanggil _method lifecycle_ `componentWillUnmount()` jadi  _timer_ akan berhenti.
 
 ## Menggunakan _State_ Dengan Benar {#using-state-correctly}
 
@@ -329,7 +329,7 @@ Sebagai contoh, ini tidak akan me-_render_ komponen :
 this.state.comment = 'Halo';
 ```
 
-Sebagai gantinya, pakai `setState()`:
+Sebagai gantinya, gunakan `setState()`:
 
 ```js
 // Benar
@@ -340,9 +340,9 @@ Satu-satunya tempat di mana Anda dapat menetapkan `this.state` adalah di konstru
 
 ### Pembaruan _State_ Mungkin _Asynchronous_ {#state-updates-may-be-asynchronous}
 
-React dapat mengelompokkan beberapa panggilan `setState ()`  menjadi satu pembaruan untuk kinerja.
+React dapat mengelompokkan beberapa panggilan `setState()`  menjadi satu untuk kinerja lebih baik.
 
-Karena `this.props` dan `this.state` mungkin diperbarui secara _asynchronous_, Anda seharusnya tidak mengandalkan nilai-nilai mereka untuk menghitung _State_ berikutnya.
+Karena `this.props` dan `this.state` mungkin diperbarui secara _asynchronous_, Anda seharusnya tidak mengandalkan nilai-nilai tersebut untuk menghitung _State_ berikutnya.
 
 Sebagai contoh, kode ini mungkin gagal untuk memperbarui penghitung:
 
@@ -353,7 +353,7 @@ this.setState({
 });
 ```
 
-Untuk memperbaikinya, pakai bentuk kedua dari `setState()` yang menerima fungsi rather daripada sebuah object. Fungsi itu akan menerima _state_ sebelumnya sebagai argumen pertama, dan _props_ pada waktu itu pembaruanya di terapkan ke argumen kedua:
+Untuk memperbaikinya, pakai bentuk kedua dari `setState()` yang menerima fungsi daripada sebuah objek. Fungsi itu akan menerima _state_ sebelumnya sebagai argumen pertama, dan _props_ pada waktu itu pembaruanya di terapkan ke argumen kedua:
 
 ```js
 // Correct
@@ -362,7 +362,7 @@ this.setState((state, props) => ({
 }));
 ``` 
 
-Kita menggunakan [_arrow function_](https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Functions/Arrow_functions) diatas, tapi itu juga berkerja dengan fungsi biasa:
+Kita menggunakan [_arrow function_](https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Functions/Arrow_functions) diatas, tetapi juga bisa menggunakan fungsi biasa:
 
 ```js
 // Benar
