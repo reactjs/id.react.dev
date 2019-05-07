@@ -198,7 +198,7 @@ _API_ ini dikenalkan sebagai pengganti dari `React.addons.cloneWithProps()`.
 React.createFactory(type)
 ```
 
-Mengembalikan fungsi yang akan menghasilkan elemen React berdasarkan _type_ yang diberikan. Seperti [`React.createElement()`](#createElement), argumen _type_ dapat diisi dengan nama _tag_ berupa string (seperti `'div'` atau `'span'`), [komponen React](/docs/components-and-props.html) (kelas atau fungsi), atau [fragment React](#reactfragment).
+Mengembalikan fungsi yang akan menghasilkan elemen React berdasarkan _type_ yang diberikan. Seperti [`React.createElement()`](#createelement), argumen _type_ dapat diisi dengan nama _tag_ berupa string (seperti `'div'` atau `'span'`), [komponen React](/docs/components-and-props.html) (kelas atau fungsi), atau [fragment React](#reactfragment).
 
 _Helper_ ini dianggap _legacy_, dan Kami menganjurkan Anda untuk menggunakan JSX atau `React.createElement()` secara langsung.
 
