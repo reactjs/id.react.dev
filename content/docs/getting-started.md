@@ -61,7 +61,7 @@ Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Denga
 
 ### Contoh Pertama {#first-examples}
 
-[Laman Beranda React](/) berisi beberapa contoh kecil React dengan sebuah *live editor*. contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+[Beranda React](/) berisi beberapa contoh kecil React dengan sebuah *live editor*. Bahkan jika Anda tidak mengetahui apapun tentang React sebelumnya, cobalah untuk mengubah kodenya dan lihat hasilnya secara langsung.
 
 ### React untuk Pemula {#react-for-beginners}
 
