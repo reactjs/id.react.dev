@@ -109,7 +109,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 [Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi *React*. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
-## Tetap terinformasi {#staying-informed}
+## Tetap Terinformasi {#staying-informed}
 
 [React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim *React*. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu di sana.
 
