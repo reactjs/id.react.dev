@@ -111,7 +111,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 ## Tetap terinformasi {#staying-informed}
 
-[React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim *React*. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu disana.
+[React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim *React*. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu di sana.
 
 Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
