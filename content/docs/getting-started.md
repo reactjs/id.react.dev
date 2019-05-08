@@ -69,7 +69,7 @@ Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar
 
 ### React untuk Designers {#react-for-designers}
 
-Jika anda datang dari latar belakang desain, [Sumber daya ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
+Jika anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
 
 ### Sumber Daya JavaScript {#javascript-resources}
 
@@ -91,7 +91,7 @@ Jika anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan kon
 
 ### Berpikir dalam React {#thinking-in-react}
 
-Banyak user - user React Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
+Banyak user-user React yang membaca kredit [Thinking in React](/docs/thinking-in-react.html) sebagai momen dimana React akhirnya "clicked" untuk mereka. Ini mungkin panduan React tertua tetapi masih relevan.
 
 ### Rekomendasi Kursus {#recommended-courses}
 
@@ -99,19 +99,19 @@ Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentas
 
 ### Konsep Lanjutan {#advanced-concepts}
 
-Setelah Anda merasa nyaman dengan [Konsep Utama](/docs/hello-world.html) dan bermain dengan *React*, Anda mungkin tertarik dengan topik yang lebih lanjut. Bagian ini akan memperkenalkan Anda pada fitur React yang *powerful*, tetapi kurang umum digunakan seperti [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Setelah Anda merasa nyaman dengan [konsep utama](/docs/hello-world.html) dan bermain dengan React, Anda mungkin tertarik dengan topik yang lebih lanjut. Bagian ini akan memperkenalkan Anda pada fitur React yang *powerful*, tetapi kurang umum digunakan seperti [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
 
 ### Referensi API {#api-reference}
 
-Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *React API*.  This documentation section is useful when you want to learn more details about a particular React API. Misalnya, [`React.Component` API reference](/docs/react-component.html) dapat memberi anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
+Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *React API*.  Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
-[Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi *React*. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
+[Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
 ## Tetap terinformasi {#staying-informed}
 
-[React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim *React*. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu disana.
+[React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim React. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu disana.
 
 Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
