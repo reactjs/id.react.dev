@@ -83,7 +83,7 @@ Kami sarankan untuk menggunakan [ikhtisar JavaScript ini](https://developer.mozi
 
 ### Tutorial Praktis {#practical-tutorial}
 
-Jika anda lebih suka **belajar dengan mempraktikkan** cek [tutorial](/tutorial/tutorial.html) kami. Dalam tutorial ini, kami membuat game tic-tac-toe game dengan React. Anda mungkin tergoda untuk melewati karena Anda tidak membuat game -- tetapi beri kesempatan. Teknik yang anda pelajari dalam tutorial ini sangat penting untuk membangun aplikasi *apa saja* dengan React, dan menguasainya akan memberi Anda pemahaman yang lebih dalam.
+Jika Anda lebih suka **belajar dengan mempraktikkan** periksa [tutorial](/tutorial/tutorial.html) kami. Dalam tutorial ini, kami membuat game tic-tac-toe dengan React. Anda mungkin tergoda untuk melewati karena Anda tidak membuat game -- tetapi berikanlah kesempatan untuk mencoba. Teknik yang akan Anda pelajari dalam tutorial ini sangat penting untuk membangun aplikasi *apapun* dengan React, dan menguasainya akan memberi Anda pemahaman yang lebih dalam.
 
 ### Panduan langkah demi langkah {#step-by-step-guide}
 
