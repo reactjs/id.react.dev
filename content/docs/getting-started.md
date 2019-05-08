@@ -123,4 +123,4 @@ Dokumentasi ini selalu mencerminkan versi stabil terbaru dari React. Sejak React
 
 ## Ada yang Hilang? {#ada-yang-hilang}
 
-Jika ada sesuatu yang hilang di dalam dokumentasi atau  jika anda menemukan bagian yang membingungkan, Mohon [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
+Jika ada sesuatu yang hilang di dalam dokumentasi atau  jika anda menemukan bagian yang membingungkan, Mohon untuk [mengajukan file issue pada dokumentasi repositori](https://github.com/reactjs/reactjs.org/issues/new) dengan saran Anda untuk peningkatan, atau tweet di akun [@reactjs account](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
