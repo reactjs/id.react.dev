@@ -99,7 +99,7 @@ Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentas
 
 ### Konsep Lanjutan {#advanced-concepts}
 
-Setelah Anda merasa nyaman dengan [Konsep Utama](#main-concepts) dan bermain dengan *React*, Anda mungkin tertarik dengan topik yang lebih lanjut. Bagian ini akan memperkenalkan Anda pada fitur React yang *powerful*, tetapi kurang umum digunakan seperti [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Setelah Anda merasa nyaman dengan [Konsep Utama](/docs/hello-world.html) dan bermain dengan *React*, Anda mungkin tertarik dengan topik yang lebih lanjut. Bagian ini akan memperkenalkan Anda pada fitur React yang *powerful*, tetapi kurang umum digunakan seperti [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
 
 ### Referensi API {#api-reference}
 
@@ -115,7 +115,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
-Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react).
+Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
 
 ## Dokumentasi Berversi {#dokumentasi-berversi}
 
