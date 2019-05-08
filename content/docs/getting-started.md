@@ -28,7 +28,7 @@ Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber-sumber terkai
 - [Belajar React](#belajar-react)
 - [Tetap Terinformasi](#tetap-terinformasi)
 - [Dokumentasi Berversi](#dokumentasi-berversi)
-- [Sesuatu Hilang?](#sesuatu-hilang)
+- [Ada yang Hilang?](#ada-yang-hilang)
 
 ## Coba React {#coba-react}
 
@@ -121,6 +121,6 @@ Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapa
 
 Dokumentasi ini selalu mencerminkan versi stabil terbaru dari React. Sejak React 16, Anda dapat menemukan versi dokumentasi yang lebih lama [pada halaman terpisah](/versions). Perhatikan dokumentasi untuk versi yang lama adalah *snapshotted* pada saat rilis, dan tidak diperbaharui.
 
-## Sesuatu Hilang? {#sesuatu-hilang}
+## Ada yang Hilang? {#ada-yang-hilang}
 
 Jika ada sesuatu yang hilang di dalam dokumentasi atau  jika anda menemukan bagian yang membingungkan, Mohon [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
