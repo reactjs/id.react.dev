@@ -69,25 +69,25 @@ Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar
 
 ### React untuk Designers {#react-for-designers}
 
-Jika anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
+Jika Anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
 
 ### Sumber Daya JavaScript {#javascript-resources}
 
-Dokumentasi React mengasumsikan anda sudah terbiasa dengan *programming* menggunakan bahasa Javascript. Anda tidak harus ahli, tetapi ini akan lebih susah untuk belajar React dan Javascript di waktu yang sama.
+Dokumentasi React mengasumsikan Anda sudah terbiasa dengan pemrograman menggunakan bahasa JavaScript. Anda tidak harus ahli, tetapi ini akan lebih sulit untuk belajar React dan JavaScript di waktu yang bersamaan.
 
-Kami sarankan gunakan [ikhtisar Javascript ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk cek kemampuan pengetahuan anda. Ini akan membutuhkan waktu sekitar 30 menit sampai dengan satu jam tetapi anda akan merasa percaya diri untuk belajar React.
+Kami sarankan untuk menggunakan [ikhtisar JavaScript ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk memeriksa tingkatan pengetahuan Anda. Ini akan membutuhkan waktu sekitar 30 menit sampai dengan satu jam tetapi Anda akan merasa lebih percaya diri untuk belajar React.
 
 >Tip
 >
->Ketika anda bingung dengan sesuatu pada Javascript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) dan [javascript.info](http://javascript.info/) adalah website yang bagus untuk anda cek. Ada juga [forum bantuan komunitas](/community/support.html) dimana anda dapat meminta bantuan.
+>Ketika Anda dibingungkan oleh sesuatu pada JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) dan [javascript.info](http://javascript.info/) adalah _website_ yang bagus untuk Anda periksa. Ada juga [forum bantuan komunitas](/community/support.html) dimana Anda dapat meminta bantuan.
 
 ### Tutorial Praktis {#practical-tutorial}
 
-Jika anda lebih suka **belajar dengan mempraktikkan** cek [tutorial](/tutorial/tutorial.html) kami. Dalam tutorial ini, kami membuat game tic-tac-toe game dengan React. Anda mungkin tergoda untuk melewati karena Anda tidak membuat game -- tetapi beri kesempatan. Teknik yang anda pelajari dalam tutorial ini sangat penting untuk membangun aplikasi *apa saja* dengan React, dan menguasainya akan memberi Anda pemahaman yang lebih dalam.
+Jika Anda lebih suka **belajar dengan mempraktikkan** periksa [tutorial](/tutorial/tutorial.html) kami. Dalam tutorial ini, kami membuat game tic-tac-toe dengan React. Anda mungkin tergoda untuk melewati karena Anda tidak membuat game -- tetapi berikanlah kesempatan untuk mencoba. Teknik yang akan Anda pelajari dalam tutorial ini sangat penting untuk membangun aplikasi *apapun* dengan React, dan menguasainya akan memberi Anda pemahaman yang lebih dalam.
 
-### Panduan langkah demi langkah {#step-by-step-guide}
+### Panduan Langkah demi Langkah {#step-by-step-guide}
 
-Jika anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab berikutnya di dalamnya terbuat dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga anda tidak akan kehilangan apapun saat anda melanjutkan.
+Jika Anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab berikutnya di dalamnya terbuat dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga Anda tidak akan kehilangan apapun saat Anda melanjutkan belajarnya.
 
 ### Berpikir dalam React {#thinking-in-react}
 
@@ -95,7 +95,7 @@ Banyak user-user React yang membaca kredit [Thinking in React](/docs/thinking-in
 
 ### Rekomendasi Kursus {#recommended-courses}
 
-Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentasi resmi. Kami memelihara [daftar sumber daya yang umum di rekomendasikan](/community/courses.html), beberapa diantaranya gratis.
+Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentasi resmi. Kami memelihara [daftar sumber daya rekomendasi yang umum](/community/courses.html), beberapa di antaranya gratis.
 
 ### Konsep Lanjutan {#advanced-concepts}
 
@@ -109,11 +109,11 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 [Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
-## Tetap terinformasi {#staying-informed}
+## Tetap Terinformasi {#staying-informed}
 
 [React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim React. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu disana.
 
-Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
+Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi Anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
 Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
 
