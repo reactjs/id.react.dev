@@ -57,15 +57,15 @@ Orang-orang data ke React dari latar belakang yang berbeda dan dengan cara belaj
 * Jika anda lebih suka **belajar sambil melakukan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
 * Jika anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
 
-Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan beberapa kesabaran, anda akan bertahan. With practice and some patience, you *will* get the hang of it.
+Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan kesabaran, Anda akan bertahan.
 
 ### Contoh Pertama {#first-examples}
 
-[Laman Beranda React](/) berisi beberapa contoh kecil React dengan sebuah *live editor*. contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+[Beranda React](/) berisi beberapa contoh kecil React dengan sebuah *live editor*. Bahkan jika Anda tidak mengetahui apapun tentang React sebelumnya, cobalah untuk mengubah kodenya dan lihat hasilnya secara langsung.
 
 ### React untuk Pemula {#react-for-beginners}
 
-Jika anda merasa dokumentasi React terlalu sulit untuk anda ikuti, cek [ikhtisar React ini oleh Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Ini memperkenalkan konsep terpenting React secara terperinci, mudah untuk pemula. Setelah selesai, coba dokumentasi yang lain! 
+Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar React ini oleh Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Ini memperkenalkan konsep terpenting React secara terperinci, mudah untuk pemula. Setelah selesai, cobalah dokumentasi yang lain! 
 
 ### React untuk Designers {#react-for-designers}
 
