@@ -79,7 +79,7 @@ Kami sarankan untuk menggunakan [ikhtisar JavaScript ini](https://developer.mozi
 
 >Tip
 >
->Ketika anda bingung dengan sesuatu pada Javascript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) dan [javascript.info](http://javascript.info/) adalah website yang bagus untuk anda cek. Ada juga [forum bantuan komunitas](/community/support.html) dimana anda dapat meminta bantuan.
+>Ketika Anda dibingungkan oleh sesuatu pada JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) dan [javascript.info](http://javascript.info/) adalah _website_ yang bagus untuk Anda periksa. Ada juga [forum bantuan komunitas](/community/support.html) dimana Anda dapat meminta bantuan.
 
 ### Tutorial Praktis {#practical-tutorial}
 
