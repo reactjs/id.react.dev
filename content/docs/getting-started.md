@@ -95,7 +95,7 @@ Banyak user - user React Many React users credit reading [Thinking in React](/do
 
 ### Rekomendasi Kursus {#recommended-courses}
 
-Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentasi resmi. Kami memelihara [daftar sumber daya yang umum di rekomendasikan](/community/courses.html), beberapa diantaranya gratis.
+Terkadang orang mencari buku dan video kursus lebih membantu daripada dokumentasi resmi. Kami memelihara [daftar sumber daya rekomendasi yang umum](/community/courses.html), beberapa di antaranya gratis.
 
 ### Konsep Lanjutan {#advanced-concepts}
 
