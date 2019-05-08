@@ -107,7 +107,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
-[Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi *React*. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
+[Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan Anda lihat pada dokumentasi *React*. Ada juga bagian FAQ yang didedikasikan pertanyaan dan jawaban singkatnya tentang topik umum, termasuk [membuat AJAX *request*](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
 ## Tetap Terinformasi {#staying-informed}
 
