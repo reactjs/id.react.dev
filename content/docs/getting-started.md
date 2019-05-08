@@ -65,7 +65,7 @@ Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Denga
 
 ### React untuk Pemula {#react-for-beginners}
 
-Jika anda merasa dokumentasi React terlalu sulit untuk anda ikuti, cek [ikhtisar React ini oleh Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Ini memperkenalkan konsep terpenting React secara terperinci, mudah untuk pemula. Setelah selesai, coba dokumentasi yang lain! 
+Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar React ini oleh Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Ini memperkenalkan konsep terpenting React secara terperinci, mudah untuk pemula. Setelah selesai, cobalah dokumentasi yang lain! 
 
 ### React untuk Designers {#react-for-designers}
 
