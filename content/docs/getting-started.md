@@ -57,7 +57,7 @@ Orang-orang data ke React dari latar belakang yang berbeda dan dengan cara belaj
 * Jika anda lebih suka **belajar sambil melakukan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
 * Jika anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
 
-Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan beberapa kesabaran, anda akan bertahan. With practice and some patience, you *will* get the hang of it.
+Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan kesabaran, Anda akan bertahan.
 
 ### Contoh Pertama {#first-examples}
 
