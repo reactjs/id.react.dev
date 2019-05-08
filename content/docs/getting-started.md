@@ -87,7 +87,7 @@ Jika Anda lebih suka **belajar dengan mempraktikkan** periksa [tutorial](/tutori
 
 ### Panduan Langkah demi Langkah {#step-by-step-guide}
 
-Jika anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab berikutnya di dalamnya terbuat dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga anda tidak akan kehilangan apapun saat anda melanjutkan.
+Jika Anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab berikutnya di dalamnya terbuat dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga Anda tidak akan kehilangan apapun saat Anda melanjutkan belajarnya.
 
 ### Berpikir dalam React {#thinking-in-react}
 
