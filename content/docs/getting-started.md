@@ -113,7 +113,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 [React blog](/blog/) adalah sumber resmi untuk pembaruan dari tim *React*. Apapun yang penting, termasuk catatan rilis atau pemberitahuan penghentian, akan di posting terlebih dahulu di sana.
 
-Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
+Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi Anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
 Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
 
