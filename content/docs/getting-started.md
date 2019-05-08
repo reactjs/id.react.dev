@@ -73,7 +73,7 @@ Jika Anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfor
 
 ### Sumber Daya JavaScript {#javascript-resources}
 
-Dokumentasi React mengasumsikan anda sudah terbiasa dengan *programming* menggunakan bahasa Javascript. Anda tidak harus ahli, tetapi ini akan lebih susah untuk belajar React dan Javascript di waktu yang sama.
+Dokumentasi React mengasumsikan Anda sudah terbiasa dengan pemrograman menggunakan bahasa JavaScript. Anda tidak harus ahli, tetapi ini akan lebih sulit untuk belajar React dan JavaScript di waktu yang bersamaan.
 
 Kami sarankan gunakan [ikhtisar Javascript ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk cek kemampuan pengetahuan anda. Ini akan membutuhkan waktu sekitar 30 menit sampai dengan satu jam tetapi anda akan merasa percaya diri untuk belajar React.
 
