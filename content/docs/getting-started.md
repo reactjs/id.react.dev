@@ -18,50 +18,50 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-Laman ini adalah sebuah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
+Laman ini adalah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
 
-**React** adalah sebuah *library* JavaScript untuk membangun antarmuka pengguna (*user interface*). Pelajari apa sebenarnya React itu di [beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
+**React** adalah *library* JavaScript untuk membangun antarmuka pengguna (*user interface*). Pelajari apa sebenarnya React itu di [beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
 
 ---
 
-- [Coba React](#coba-react)
-- [Belajar React](#belajar-react)
-- [Tetap Terinformasi](#tetap-terinformasi)
-- [Dokumentasi Berversi](#dokumentasi-berversi)
-- [Ada yang Hilang?](#ada-yang-hilang)
+- [Coba React](#try-react)
+- [Belajar React](#learn-react)
+- [Tetap Terinformasi](#staying-informed)
+- [Dokumentasi Berversi](#versioned-documentation)
+- [Ada yang Hilang?](#something-missing)
 
-## Coba React {#coba-react}
+## Coba React {#try-react}
 
-React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktivitas ke sebuah laman HTML sederhana, atau memulai sebuah aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
+React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktivitas ke laman HTML sederhana, atau memulai aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
 
 ### Online Playgrounds {#online-playgrounds}
 
-Jika anda tertarik bermain dengan React, Anda dapat menggunakan sebuah *online code playground*. Coba sebuah *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
+Jika anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
 
 Jika anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 
-### Tambahkan React ke sebuah Website {#add-react-to-a-website}
+### Tambahkan React ke Website {#add-react-to-a-website}
 
-Anda dapat [menambahkan React ke sebuah laman HTML dalam satu menit](/docs/add-react-to-a-website.html). Anda juga dapat secara bertahap memperluas kehadirannya, atau menyimpannya di beberapa *widget* dinamis.
+Anda dapat [menambahkan React ke laman HTML dalam satu menit](/docs/add-react-to-a-website.html). Anda juga dapat secara bertahap memperluas kehadirannya, atau menyimpannya di beberapa *widget* dinamis.
 
-### Buat sebuah Aplikasi React Baru {#create-a-new-react-app}
+### Buat Aplikasi React Baru {#create-a-new-react-app}
 
-Ketika memulai sebuah proyek React, [sebuah laman HTML sederhana dengan *script tags*](/docs/add-react-to-a-website.html) mungkin masih menjadi pilihan terbaik. Itu hanya membutuhkan waktu semenit untuk memulai!
+Ketika memulai proyek React,  laman HTML sederhana dengan *script tags*](/docs/add-react-to-a-website.html) mungkin masih menjadi pilihan terbaik. Hanya membutuhkan waktu semenit untuk memulai!
 
 Saat aplikasi Anda bertumbuh, Anda mungkin ingin mempertimbangkan pengaturan yang lebih terintegrasi. Ada [beberapa JavaScript *toolchain*](/docs/create-a-new-react-app.html) yang kami rekomendasikan untuk aplikasi besar. Masing-masing dari mereka dapat bekerja dengan sedikit atau tanpa konfigurasi dan memungkinkan Anda mendapatkan keuntungan penuh dari ekosistem React.
 
-## Belajar React {#belajar-react}
+## Belajar React {#learn-react}
 
-Orang-orang data ke React dari latar belakang yang berbeda dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
+Orang datang menggunakan React dari berbagai latar belakang dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
 
-* Jika anda lebih suka **belajar sambil melakukan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
+* Jika anda lebih suka **belajar dengan mempraktikkan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
 * Jika anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
 
-Seperti halnya teknologi yang tidak dikenal, React memiliki kurva belajar. Dengan latihan dan kesabaran, Anda akan bertahan.
+Seperti halnya teknologi yang tidak dikenal, React memiliki kurva pembelajaran. Dengan latihan dan kesabaran, Anda dapat menguasainya.
 
 ### Contoh Pertama {#first-examples}
 
-[Beranda React](/) berisi beberapa contoh kecil React dengan sebuah *live editor*. Bahkan jika Anda tidak mengetahui apapun tentang React sebelumnya, cobalah untuk mengubah kodenya dan lihat hasilnya secara langsung.
+[Beranda React](/) berisi beberapa contoh kecil React dengan *live editor*. Bahkan jika Anda tidak mengetahui apapun tentang React sebelumnya, cobalah untuk mengubah kodenya dan lihat hasilnya secara langsung.
 
 ### React untuk Pemula {#react-for-beginners}
 
@@ -107,7 +107,7 @@ Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
-[Glosari](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
+[Glosarium](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
 ## Tetap Terinformasi {#staying-informed}
 
@@ -117,10 +117,10 @@ Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitte
 
 Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
 
-## Dokumentasi Berversi {#dokumentasi-berversi}
+## Dokumentasi Berversi {#versioned-documentation}
 
 Dokumentasi ini selalu mencerminkan versi stabil terbaru dari React. Sejak React 16, Anda dapat menemukan versi dokumentasi yang lebih lama [pada halaman terpisah](/versions). Perhatikan dokumentasi untuk versi yang lama adalah *snapshotted* pada saat rilis, dan tidak diperbaharui.
 
-## Ada yang Hilang? {#ada-yang-hilang}
+## Ada yang Hilang? {#something-missing}
 
 Jika ada sesuatu yang hilang di dalam dokumentasi atau  jika anda menemukan bagian yang membingungkan, Mohon untuk [mengajukan file issue pada dokumentasi repositori](https://github.com/reactjs/reactjs.org/issues/new) dengan saran Anda untuk peningkatan, atau tweet di akun [@reactjs account](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
