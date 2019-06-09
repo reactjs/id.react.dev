@@ -67,13 +67,13 @@ Seperti halnya teknologi yang tidak dikenal, React memiliki kurva pembelajaran. 
 
 Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar React ini oleh Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Ini memperkenalkan konsep terpenting React secara terperinci, mudah untuk pemula. Setelah selesai, cobalah dokumentasi yang lain! 
 
-### React untuk Designers {#react-for-designers}
+### React untuk Desainer {#react-for-designers}
 
 Jika Anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
 
 ### Sumber Daya JavaScript {#javascript-resources}
 
-Dokumentasi React mengasumsikan Anda sudah terbiasa dengan pemrograman menggunakan bahasa JavaScript. Anda tidak harus ahli, tetapi ini akan lebih sulit untuk belajar React dan JavaScript di waktu yang bersamaan.
+Dokumentasi React mengasumsikan Anda sudah terbiasa dengan pemrograman menggunakan bahasa JavaScript. Anda tidak harus ahli, tetapi akan lebih sulit untuk belajar React dan JavaScript di waktu yang bersamaan.
 
 Kami sarankan untuk menggunakan [ikhtisar JavaScript ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk memeriksa tingkatan pengetahuan Anda. Ini akan membutuhkan waktu sekitar 30 menit sampai dengan satu jam tetapi Anda akan merasa lebih percaya diri untuk belajar React.
 
@@ -87,11 +87,11 @@ Jika Anda lebih suka **belajar dengan mempraktikkan** periksa [tutorial](/tutori
 
 ### Panduan Langkah demi Langkah {#step-by-step-guide}
 
-Jika Anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab berikutnya di dalamnya terbuat dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga Anda tidak akan kehilangan apapun saat Anda melanjutkan belajarnya.
+Jika Anda lebih suka untuk **belajar konsep langkah demi langkah**, [panduan konsep utama](/docs/hello-world.html) adalah tempat terbaik untuk memulai. Setiap bab lanjutan di dalamnya dibangun dari pengetahuan yang diperkenalkan pada bab sebelumnya sehingga Anda tidak akan kehilangan apapun saat Anda belajar.
 
 ### Berpikir dalam React {#thinking-in-react}
 
-Banyak user-user React yang membaca kredit [Thinking in React](/docs/thinking-in-react.html) sebagai momen dimana React akhirnya "clicked" untuk mereka. Ini mungkin panduan React tertua tetapi masih relevan.
+Banyak pengguna React mengakui membaca [Thinking in React](/docs/thinking-in-react.html) sebagai momen dimana React akhirnya "clicked" untuk mereka. Ini mungkin panduan React yang paling tua tetapi masih relevan.
 
 ### Rekomendasi Kursus {#recommended-courses}
 
