@@ -85,6 +85,7 @@ class Foo extends Component {
 >
 >Menggunakan arrow function di dalam method render akan menyebabkan program membuat fungsi baru setiap kali component ter-render. Hal ini akan berpengaruh terhadap performa (akan dibahas di bagian selanjutnya)
 
+
 ### Apakah tidak ada masalah menggunakan arrow function di metode render {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
 Secara umum tidak ada masalah, dan terkadang inilah cara termudah untuk melewatkan parameter pada fungsi callback.
@@ -110,6 +111,7 @@ Melakukan binding pada method membantu kita untuk memastikan bahwa contoh kode k
 Pada React, biasanya Anda hanya perlu melakukan binding method jika method tersebut diberikan pada komponen lain. Sebagai contoh, `<button onClick={this.handleClick}>` melewatkan `this.handleClick` pada komponen button, sehingga Anda perlu melakukan binding. Adapun demikian, kita tidak perlu melakukan binding method `render` atau binding method-method bawaan lainnya (lifecycle method) karena kita tidak melewatkan method-method tersebut pada komponen lain.
 
 [Artikel oleh Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) menjelaskan apa itu binding, dan bagaimana cara kerja fungsi di dalam JavaScript secara detail.
+
 
 ### Mengapa fungsi saya dijalankan setiap kali component di-render (bukan saat event terkait)? {#why-is-my-function-being-called-every-time-the-component-renders}
 

@@ -49,7 +49,7 @@ function WelcomeDialog() {
 
 Apapun yang berada di dalam tag JSX `<FancyBorder>` akan dioper ke komponen `FancyBorder` sebagai *props* `children`. Karena `FancyBorder` me-*render* `{props.children}` di dalam sebuah `<div>`, elemen yang dioper tersebut akan muncul di hasil keluaran akhirnya.
 
-Walaupun kasus seperti ini jarang terjadi, terkadang Anda mungkin membutuhkan beberapa "lubang" di dalam sebuah komponen. Dalam kasus seperti ini Anda dapat menggunakan konvensi anda sendiri alih-alih menggunakan `children`:
+Walaupun kasus seperti ini jarang terjadi, terkadang Anda mungkin membutuhkan beberapa "lubang" di dalam sebuah komponen. Dalam kasus seperti ini Anda dapat menggunakan konvensi Anda sendiri alih-alih menggunakan `children`:
 
 ```js{5,8,18,21}
 function SplitPane(props) {
@@ -141,7 +141,7 @@ class SignUpDialog extends React.Component {
   render() {
     return (
       <Dialog title="Program Eksplorasi Mars"
-              message="Bagaimana kami memanggil anda?">
+              message="Bagaimana kami memanggil Anda?">
         <input value={this.state.login}
                onChange={this.handleChange} />
         <button onClick={this.handleSignUp}>
