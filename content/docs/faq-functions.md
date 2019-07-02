@@ -354,4 +354,4 @@ class ScrollListener extends React.Component {
 
 #### Menguji pembatasan rate {#testing-your-rate-limiting}
 
-Saat menguji apakah pembatasan rate yang anda terapkan sudah bekerja dengan baik, maka sangat membantu jika kita bisa melakukan fitur `fast forward`. Jika anda menggunakan [`jest`](https://facebook.github.io/jest/) maka anda bisa menggunakan [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) untuk melakukan `fast forward`. Jika anda menggunakan `requestAnimationFrame` maka [`raf-stub`](https://github.com/alexreardon/raf-stub) juga akan berguna untuk mengendalikan jumlah frame per detik.
+Saat menguji apakah pembatasan _rate_ yang Anda terapkan sudah bekerja dengan baik, akan sangat membantu jika kita bisa mempercepat waktu. Jika Anda menggunakan [`jest`](https://facebook.github.io/jest/) maka Anda bisa menggunakan [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) untuk mempercepat waktu. Jika anda menggunakan pelambatan `requestAnimationFrame` maka [`raf-stub`](https://github.com/alexreardon/raf-stub) juga akan berguna untuk mengendalikan jumlah _frame_ per detik.
