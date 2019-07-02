@@ -14,7 +14,7 @@ Anda bisa melakukannya dengan cara meletakkan __event handlers__ dan fungsi-fung
 <button onClick={this.handleClick}>
 ```
 
-Jika Anda butuh untuk mengakses parent component pada handler tersebut, maka anada juga harus mem-bind fungsi tersebut pada component instance (akan dibahas di bagian selanjutnya)
+Jika Anda butuh akses ke _parent component_ pada _handler_ tersebut, maka Anda juga harus mem-_bind_ fungsi tersebut pada _component instance_ (lihat di bawah).
 
 ### Bagaimana saya mem-bind fungsi ke sebuah component instance {#how-do-i-bind-a-function-to-a-component-instance}
 
