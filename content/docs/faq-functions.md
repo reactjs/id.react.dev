@@ -6,9 +6,9 @@ layout: docs
 category: FAQ
 ---
 
-### Bagaimana saya mengoper event handler (seperti onClick) pada sebuah komponen? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component }
+### Bagaimana saya mengoper event handler (seperti onClick) ke sebuah komponen? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component }
 
-Anda bisa melakukannya dengan cara meletakkan event handlers dan fungsi-fungsi lain sebagai props untuk child components:
+Anda bisa melakukannya dengan cara meletakkan __event handlers__ dan fungsi-fungsi lain sebagai props untuk child components:
 
 ```jsx
 <button onClick={this.handleClick}>
@@ -16,7 +16,7 @@ Anda bisa melakukannya dengan cara meletakkan event handlers dan fungsi-fungsi l
 
 Jika Anda butuh untuk mengakses parent component pada handler tersebut, maka anada juga harus mem-bind fungsi tersebut pada component instance (akan dibahas di bagian selanjutnya)
 
-### Bagaimana saya mem-bind fungsi pada sebuah component instance {#how-do-i-bind-a-function-to-a-component-instance}
+### Bagaimana saya mem-bind fungsi ke sebuah component instance {#how-do-i-bind-a-function-to-a-component-instance}
 
 Ada beberapa cara untuk membuat fungsi memiliki akses terhadap atribut komponen seperti `this.props` dan `this.state`, bergantung pada syntax mana dan build steps seperti apa yang Anda gunakan.
 
