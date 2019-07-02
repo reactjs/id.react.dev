@@ -1,12 +1,12 @@
 ---
 id: faq-functions
-title: Melewatkan fungsi-fungsi ke dalam komponen
+title: Mengoper fungsi-fungsi ke dalam komponen
 permalink: docs/faq-functions.html
 layout: docs
 category: FAQ
 ---
 
-### Bagaimana saya melewatkan event handler (seperti onClick) pada sebuah komponen? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component }
+### Bagaimana saya mengoper event handler (seperti onClick) pada sebuah komponen? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component }
 
 Anda bisa melakukannya dengan cara meletakkan event handlers dan fungsi-fungsi lain sebagai props untuk child components:
 
@@ -88,7 +88,7 @@ class Foo extends Component {
 
 ### Apakah tidak ada masalah menggunakan arrow function di metode render {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
-Secara umum tidak ada masalah, dan terkadang inilah cara termudah untuk melewatkan parameter pada fungsi callback.
+Secara umum tidak ada masalah, dan terkadang inilah cara termudah untuk mengoper parameter pada fungsi callback.
 
 Adapun demikian, jika Anda menemukan masalah dengan performa program, anda perlu melakukan optimasi.
 
@@ -108,14 +108,14 @@ method();
 
 Melakukan binding pada method membantu kita untuk memastikan bahwa contoh kode kedua akan berjalan persis seperti contoh kode pertama.
 
-Pada React, biasanya Anda hanya perlu melakukan binding method jika method tersebut diberikan pada komponen lain. Sebagai contoh, `<button onClick={this.handleClick}>` melewatkan `this.handleClick` pada komponen button, sehingga Anda perlu melakukan binding. Adapun demikian, kita tidak perlu melakukan binding method `render` atau binding method-method bawaan lainnya (lifecycle method) karena kita tidak melewatkan method-method tersebut pada komponen lain.
+Pada React, biasanya Anda hanya perlu melakukan binding method jika method tersebut diberikan pada komponen lain. Sebagai contoh, `<button onClick={this.handleClick}>` mengoper `this.handleClick` pada komponen button, sehingga Anda perlu melakukan binding. Adapun demikian, kita tidak perlu melakukan binding method `render` atau binding method-method bawaan lainnya (lifecycle method) karena kita tidak mengoper method-method tersebut pada komponen lain.
 
 [Artikel oleh Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) menjelaskan apa itu binding, dan bagaimana cara kerja fungsi di dalam JavaScript secara detail.
 
 
 ### Mengapa fungsi saya dijalankan setiap kali component di-render (bukan saat event terkait)? {#why-is-my-function-being-called-every-time-the-component-renders}
 
-Pastikan anda tidak menjalankan fungsi saat melewatkannya pada component (Perhatikan tanda kurungnya):
+Pastikan anda tidak menjalankan fungsi saat mengopernya pada component (Perhatikan tanda kurungnya):
 
 ```jsx
 render() {
@@ -124,7 +124,7 @@ render() {
 }
 ```
 
-Cara yang benar untuk melewatkan fungsi adalah sebagai berikut (tanpa tanda kurung):
+Cara yang benar untuk mengoper fungsi adalah sebagai berikut (tanpa tanda kurung):
 
 ```jsx
 render() {
@@ -133,9 +133,9 @@ render() {
 }
 ```
 
-### Bagaimana saya melewatkan parameter pada sebuah event handler atau callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
+### Bagaimana saya mengoper parameter pada sebuah event handler atau callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
-Anda bisa menggunakan arrow function untuk membungkus event handler dan melewatkan parameter:
+Anda bisa menggunakan arrow function untuk membungkus event handler dan mengoper parameter:
 
 ```jsx
 <button onClick={() => this.handleClick(id)} />
@@ -147,7 +147,7 @@ Hal tersebut sama dengan melakukan `.bind`:
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
-#### Contoh: Melewatkan parameter menggunakan arrow function {#example-passing-params-using-arrow-functions}
+#### Contoh: Mengoper parameter menggunakan arrow function {#example-passing-params-using-arrow-functions}
 
 ```jsx
 const A = 65 // ASCII character code
@@ -181,7 +181,7 @@ class Alphabet extends React.Component {
 }
 ```
 
-#### Contoh: Melewatkan parameter menggunakan data-attributes {#example-passing-params-using-data-attributes}
+#### Contoh: Mengoper parameter menggunakan data-attributes {#example-passing-params-using-data-attributes}
 
 Cara yang lain, anda bisa memakai DOM API untuk menyimpan data yang dibutuhkan untuk event handler. Pertimbagnkan cara ini jika anda harus mengoptimasi element dalam jumlah besar atau anda harus merender struktur tree yang tergantung pada pengecekan kesamaan React.PureComponent
 
