@@ -311,7 +311,7 @@ class Searchbox extends React.Component {
 
 >**Catatan:**
 >
->Dengan menggunakan teknik ini, maka browser hanya akan mengolah perubahan terakhir dalam satu frame. Anda dapat melihat contoh detail optimasinya di [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
+>Dengan menggunakan teknik ini, maka peramban hanya akan mengolah perubahan terakhir dalam satu _frame_. Anda dapat melihat contoh detil optimasinya di [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
 
 ```jsx
 import rafSchedule from 'raf-schd';
