@@ -20,7 +20,7 @@ Jika Anda butuh akses ke _parent component_ pada _handler_ tersebut, maka Anda j
 
 Ada beberapa cara untuk membuat fungsi memiliki akses terhadap atribut komponen seperti `this.props` dan `this.state`, tergantung pada sintaksis mana dan _build steps_ seperti apa yang Anda gunakan.
 
-#### Binding di dalam Constructor (ES2015) {#bind-in-constructor-es2015}
+#### _Bind_ di dalam Konstruktor (ES2015) {#bind-in-constructor-es2015}
 
 ```jsx
 class Foo extends Component {
