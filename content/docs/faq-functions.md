@@ -51,7 +51,7 @@ class Foo extends Component {
 }
 ```
 
-#### Binding di dalam Method Render {#bind-in-render}
+#### _Bind_ di dalam _Render_ {#bind-in-render}
 
 ```jsx
 class Foo extends Component {
