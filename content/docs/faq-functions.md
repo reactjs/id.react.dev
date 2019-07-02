@@ -66,7 +66,7 @@ class Foo extends Component {
 
 >Catatan:**
 >
->Menggunakan `Function.prototype.bind` di dalam method render akan menyebabkan program membuat fungsi baru setiap kali component ter-render. Hal ini akan berpengaruh terhadap performa (akan dibahas di bagian selanjutnya)
+>Menggunakan `Function.prototype.bind` di dalam _render_ akan membuat fungsi baru setiap kali komponen ter-_render_, yang akan mempengaruhi performa (lihat di bawah).
 
 #### Arrow Function dalam Method Render {#arrow-function-in-render}
 
