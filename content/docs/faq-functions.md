@@ -18,7 +18,7 @@ Jika Anda butuh akses ke _parent component_ pada _handler_ tersebut, maka Anda j
 
 ### Bagaimana saya mem-bind fungsi ke sebuah component instance {#how-do-i-bind-a-function-to-a-component-instance}
 
-Ada beberapa cara untuk membuat fungsi memiliki akses terhadap atribut komponen seperti `this.props` dan `this.state`, bergantung pada syntax mana dan build steps seperti apa yang Anda gunakan.
+Ada beberapa cara untuk membuat fungsi memiliki akses terhadap atribut komponen seperti `this.props` dan `this.state`, tergantung pada sintaksis mana dan _build steps_ seperti apa yang Anda gunakan.
 
 #### Binding di dalam Constructor (ES2015) {#bind-in-constructor-es2015}
 
