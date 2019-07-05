@@ -16,7 +16,11 @@ Tutorial ini tidak membutuhkan pengetahuan tentang React sebelumnya.
 
 ## Sebelum Kita Memulai Tutorial {#before-we-start-the-tutorial}
 
+<<<<<<< HEAD
 Kita akan membangun sebuah gim kecil sepanjang tutorial ini. **Anda bisa jadi tergoda untuk melewati tutorial ini karena Anda tidak benar-benar membuat gim -- namun luangkanlah sedikit waktu untuk mencobanya.** Teknik-teknik yang akan Anda pelajari pada tutorial ini adalah hal-hal dasar yang digunakan untuk membangun aplikasi React, dan menguasai teknik-teknik tersebut akan memberikan pemahaman terhadap React secara lebih mendalam.
+=======
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+>>>>>>> 06a029d53d7ee7e5e717dd39450ac6af1ff554e5
 
 >Tips
 >
