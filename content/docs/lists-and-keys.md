@@ -36,7 +36,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-Kita akan menyertakan seluruh senarai `listItems` ke dalam elemen `<ul>`, dan [me-*render*-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+Kita akan menyertakan seluruh senarai `listItems` ke dalam elemen `<ul>` dan [me-*render*-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
 ReactDOM.render(
@@ -49,7 +49,7 @@ ReactDOM.render(
 
 Kode ini akan menampilkan sebuah *list bullet* dari angka 1 sampai 5.
 
-### List Komponen Dasar {#basic-list-component}
+### Daftar Komponen Dasar {#basic-list-component}
 
 Biasanya Anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
@@ -136,7 +136,7 @@ const todoItems = todos.map((todo, index) =>
 
 Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika Anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
-Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika Anda tertarik untuk belajar lebih lanjut.
+Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika Anda tertarik untuk mempelajari lebih lanjut.
 
 ### Mengekstrak Komponen dengan Key {#extracting-components-with-keys}
 
@@ -304,4 +304,4 @@ function NumberList(props) {
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Terkadang penulisan seperti ini akan menghasilkan kode yang lebih jelas, namun cara seperti ini juga dapat disalahgunakan.
-Seperti di JavaScript, menjadi pilihan Anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah dibaca penting bagi Anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
+Seperti di JavaScript, menjadi pilihan Anda apakah mengekstrak sebuah variabel tersendiri agar lebih mudah di baca penting bagi Anda. Perlu diingat bahwa jika di dalam `map()` terdapat banyak perulangan, bisa jadi ini adalah saat yang tepat untuk [mengekstrak sebuah komponen](/docs/components-and-props.html#extracting-components).
