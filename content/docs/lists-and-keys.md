@@ -53,7 +53,7 @@ Kode ini akan menampilkan sebuah *list bullet* dari angka 1 sampai 5.
 
 Biasanya Anda akan me-*render list* di dalam sebuah [komponen](/docs/components-and-props.html).
 
-Kita bisa melalukan *refaktor* contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan.
+Kita bisa me-refaktor contoh sebelumnya ke dalam sebuah komponen yang menerima senarai `numbers` dan mengeluarkan sebuah *list* elemen yang tidak berurutan.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
