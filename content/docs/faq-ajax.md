@@ -16,9 +16,9 @@ Anda sebaiknya mengisi data melalui panggilan AJAX pada *lifecycle method* [`com
 
 ### Contoh: Menggunakan hasil AJAX untuk mengisi *state* lokal {#example-using-ajax-results-to-set-local-state}
 
-Komponen dibawah menunjukan cara membuat panggilan di AJAX  `componentDidMount` untuk mengisi komponen *state* lokal  .
+Komponen dibawah menunjukkan cara menggunakan panggilan AJAX pada `componentDidMount` untuk mengisi *state* komponen lokal.
 
-Contoh penggunaan API yang dikembalikan ke objek JSON seperti ini:
+Contoh API dibawah ini menghasilkan objek JSON sebagai berikut:
 
 ```
 {
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // catatan: sangatlah penting untuk mengatasi kesalahan disini
-        // sebagai gantinya catch() block so that we don't swallow
-        // pengencualian dari bugs yang sebenarnya didalam komponen-komponen.
+        // Catatan: sangatlah penting untuk mengatasi error disini
+        // alih-alih menggunakan blok catch() sehingga kita tidak menenggelamkan
+        // exception dari bug yang sebenarnya terjadi di komponen
         (error) => {
           this.setState({
             isLoaded: true,
