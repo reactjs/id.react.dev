@@ -10,9 +10,9 @@ category: FAQ
 
 Anda bisa menggunakan *library* AJAX apa saja yang anda inginkan dengan React. Beberapa yang populer yaitu [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), dan [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) bawaan *browser*.
 
-### Dimana komponen *lifecycle* harus menggunakan panggilan AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### Pada *lifecycle* komponen mana seharusnya membuat panggilan AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-Anda seharusnya dapat mengisi data melalui panggilan AJAX di dalam [`componentDidMount`](/docs/react-component.html#mounting) *lifecycle method*. Disini anda juga bisa menggunakan `setState` untuk memperbarui komponen anda ketika data telah diterima.
+Anda sebaiknya mengisi data melalui panggilan AJAX pada *lifecycle method* [`componentDidMount`](/docs/react-component.html#mounting). Dengan begitu Anda dapat menggunakan `setState` untuk memperbarui komponen Anda ketika data telah diterima.
 
 ### Contoh: Menggunakan hasil AJAX untuk mengisi *state* lokal {#example-using-ajax-results-to-set-local-state}
 
