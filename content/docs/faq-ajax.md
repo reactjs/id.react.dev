@@ -8,7 +8,7 @@ category: FAQ
 
 ### Bagaimana cara membuat panggilan AJAX? {#how-can-i-make-an-ajax-call}
 
-Anda bisa menggunakan semua AJAX *library* yang anda inginkan seperti halnya dengan React. Salah satu diantaranya yang populer yaitu [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), dan *browser* yang ter-integrasi [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Anda bisa menggunakan *library* AJAX apa saja yang anda inginkan dengan React. Beberapa yang populer yaitu [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), dan [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) bawaan *browser*.
 
 ### Dimana komponen *lifecycle* harus menggunakan panggilan AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
