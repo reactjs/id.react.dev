@@ -73,7 +73,7 @@ ReactDOM.render(
 );
 ```
 
-Ketika Anda menjalankan kode ini, Anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu Anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan kenapa ini penting di bagian berikutnya.
+Ketika Anda menjalankan kode ini, Anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu Anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan mengapa ini penting di bagian berikutnya.
 
 Mari kita sertakan `*key*` ke dalam *list item* kita pada `numbers.map()` dan memperbaiki masalah *key* yang hilang.
 
@@ -142,7 +142,7 @@ Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/
 
 *Key* hanya perlu digunakan di dalam konteks senarai yang mengurung *item* dengan *key* tersebut.
 
-Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, Anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`. 
+Sebagai contoh, jika Anda [mengekstrak](/docs/components-and-props.html#extracting-components) sebuah komponen `ListItem`, Anda harus menyimpan *key* pada elemen `<ListItem />` di dalam senarai daripada di elemen `<li>` yang ada pada `ListItem`.
 
 **Contoh: Penggunaan *Key* yang Salah**
 
