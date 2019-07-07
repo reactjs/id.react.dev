@@ -14,7 +14,7 @@ Anda bisa menggunakan *library* AJAX apa saja yang anda inginkan dengan React. B
 
 Anda seharusnya dapat mengisi data melalui panggilan AJAX di dalam [`componentDidMount`](/docs/react-component.html#mounting) *lifecycle method*. Disini anda juga bisa menggunakan `setState` untuk memperbarui komponen anda ketika data telah diterima.
 
-### Contoh: Penggunaan AJAX yang ditentukan ke *state* lokal {#example-using-ajax-results-to-set-local-state}
+### Contoh: Menggunakan hasil AJAX untuk mengisi *state* lokal {#example-using-ajax-results-to-set-local-state}
 
 Komponen dibawah menunjukan cara membuat panggilan di AJAX  `componentDidMount` untuk mengisi komponen *state* lokal  .
 
