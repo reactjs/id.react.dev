@@ -18,11 +18,11 @@ import React, { useState, useEffect } from 'react';
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -44,11 +44,11 @@ import React, { useState, useEffect } from 'react';
 function FriendListItem(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -79,11 +79,11 @@ import React, { useState, useEffect } from 'react';
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
@@ -201,7 +201,7 @@ Kustom Hook menawarkan fleksibelitas berbagi logika yang tidak mungkin di kompon
 
 Cobalah untuk tidak menambahkan abstraksi terlalu dini. Sekarang komponen fungsi dapat berbuat lebih banyak, sangat mungkin bahwa rata-rata komponen fungsi dalam basis kode anda akan menjadi lebih lama. Ini normal -- jangan merasa seperti anda *harus* segera membaginya menjadi Hook. Tapi kami juga menganjurkan anda untuk mulai menemukan *case* dimana Hook kustom dapat menyembunyikan logika kompleks di belakang antarmuka yang sederhana, atau membantu mengurai komponen yang berantakan.
 
-Misalnya, mungkin Anda memiliki komponen kompleks yang berisi banyak status lokal yang dikelola secara *ad-hoc*. `useState` tidak membuat pemusatan logika pembaruan menjadi lebih mudah sehingga anda dapat memilih untuk menuliskannya sebagai [Redux](https://redux.js.org/) reducer:
+Misalnya, mungkin Anda memiliki komponen kompleks yang berisi banyak status lokal yang dikelola secara *ad-hoc*. `useState` tidak membuat pemusatan logika pembaruan menjadi lebih mudah sehingga Anda mungkin memilih untuk menuliskannya sebagai *reducer* di [Redux](https://redux.js.org/):
 
 ```js
 function todosReducer(state, action) {
