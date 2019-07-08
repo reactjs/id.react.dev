@@ -70,9 +70,9 @@ React menyediakan beberapa *Hooks* bawaan seperti `useState`. Anda dapat membuat
 
 ## ⚡️ Hook Effect {#effect-hook}
 
-Anda tentunya pernah melakukan pengambilan data,  berlangganan data (*subscription*), atau secara manual mengubah DOM dari komponen React sebelumnya. Kami menyebut operasi-operasi seperti ini "efek samping (*side effects*)" (atau singkatnya "efek (*effects*)")  karena dapat mempengaruhi komponen lain dan tidak dapat dilakukan pada saat proses *render*.
+Anda tentunya pernah melakukan pengambilan data, berlangganan data (*subscription*), atau secara manual mengubah DOM dari komponen React sebelumnya. Kami menyebut operasi-operasi seperti ini "efek samping (*side effects*)" (atau singkatnya "efek (*effects*)")  karena dapat mempengaruhi komponen lain dan tidak dapat dilakukan pada saat proses *render*.
 
-Hook Effect, `useEffect`, menambahkan kemampuan untuk melakukan "efek samping" dari sebuah *function component*. *Hook* ini memiliki fungsi yang sama dengan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` pada kelas React, tetapi disatukan menjadi satu API. (Kami akan memberi beberapa contoh perbandingan `useEffect` dengan metode ini pada [Menggunakan Hook Effect](/docs/hooks-effect.html).)
+*Effect Hook*, `useEffect`, menambahkan kemampuan untuk melakukan "efek samping" dari sebuah *function component*. *Hook* ini memiliki fungsi yang sama dengan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` pada kelas React, tetapi disatukan menjadi satu API. (Kami akan memberi beberapa contoh perbandingan `useEffect` dengan metode ini pada [Menggunakan Hook Effect](/docs/hooks-effect.html).)
 
 Sebagai contoh, komponen berikut menetapkan judul dokumen setelah React memperbarui DOM:
 
@@ -164,7 +164,7 @@ function FriendStatusWithCounter(props) {
 *Hooks* merupakan fungsi JavaScript, tetapi memberlakukan dua aturan tambahan:
 
 * Hanya panggil *Hooks* pada **tingkat teratas**. Jangan panggil *Hooks* di dalam perulangan, kondisi, atau fungsi bertingkat.
-* Hanya panggil *Hooks* dari **fungsi komponen React**. Jangan memanggil *Hooks* dari fungsi JavaScript biasa. (Hanya ada satu tempat yang diperbolehkan untuk memanggil *Hooks* -- *Hooks* buatan Anda sendiri. Kita akan belajar tentang hal tersebut sebentar lagi.)
+* Hanya panggil *Hooks* dari **komponen fungsi React**. Jangan memanggil *Hooks* dari fungsi JavaScript biasa. (Hanya ada satu tempat yang diperbolehkan untuk memanggil *Hooks* -- *Hooks* buatan Anda sendiri. Kita akan belajar tentang hal tersebut sebentar lagi.)
 
 Kami menyediakan [*linter plugin*](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memaksa aturan-aturan ini secara otomatis. Kami memahami aturan-aturan ini mungkin tampak membatasi atau membingungkan pada awalnya, tetapi mereka sangat penting untuk membuat *Hooks* berfungsi dengan baik.
 
