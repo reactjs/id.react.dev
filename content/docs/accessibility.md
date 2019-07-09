@@ -247,7 +247,7 @@ Pola ini umumnya diimplementasikan dengan menempelkan _event_ `click` pada obyek
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
@@ -287,7 +287,7 @@ constructor(props) {
             <li>Opsi 2</li>
             <li>Opsi 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -347,13 +347,13 @@ class BlurExample extends React.Component {
                 aria-expanded={this.state.isOpen}>
           Pilih salah satu opsi
         </button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Opsi 1</li>
             <li>Opsi 2</li>
             <li>Opsi 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -481,7 +481,7 @@ Harap perhatikan bahwa kombinasi _browser_ / pembaca layar berpengaruh. Anda dis
 
 Berikut ini panduan untuk menggunakan NVDA dengan baik:
 
-- [WebAIM - Menggunakab NVDA untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/nvda/)
+- [WebAIM - Menggunakan NVDA untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/nvda/)
 - [Deque - Pintasan _Keyboard_ NVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
 #### VoiceOver di Safari {#voiceover-in-safari}

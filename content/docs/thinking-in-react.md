@@ -41,7 +41,7 @@ Karena Anda seringkali akan menampilkan sebuah model data JSON kepada pengguna, 
 
 ![Component diagram](../images/blog/thinking-in-react-components.png)
 
-Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi simpel kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
+Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
 
   1. **`FilterableProductTable` (oranye):** berisi keseluruhan dari contoh ini
   2. **`SearchBar` (biru):** menerima semua *masukan pengguna*
@@ -61,7 +61,7 @@ Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturny
 
 ## Langkah 2: Buat Versi Statis di React {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 Setelah kita memiliki hierarki komponen, saatnya mengimplementasikan aplikasi Anda. Cara termudah adalah membuat versi aplikasi Anda yang menerima model data dan me-*render* UI tanpa ada interaktifitas yang terjadi. Memisahkan proses ini adalah jalan yang terbaik karena membuat versi statis membutuhkan banyak mengetik dan tanpa berpikir, dan menambahkan interaktifitas membutuhkan banyak berpikir namun tidak terlalu banyak mengetik. Kita akan segera tahu alasannya.
@@ -82,7 +82,7 @@ Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk mema
 
 Untuk membuat UI Anda interaktif, Anda harus bisa melakukan perubahan terhadap model data Anda. React membuat langkah ini mudah dengan **state**.
 
-Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah array dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari array item TODO.
+Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah senarai dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari senarai item TODO.
 
 Pikirkan bagian-bagian data yang ada dalam aplikasi kita. Kita memiliki:
 
@@ -106,7 +106,7 @@ Jadi, *state* kita adalah:
 
 ## Langkah 4: Identifikasi Dimana *State* Anda Berada {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 OK, jadi kita sudah mengindentifikasi set minimal dari *state* aplikasi kita. Selanjutnya, kita perlu mengidentifikasi komponen mana yang memutasi, atau *memiliki* *state* tersebut.
 
@@ -131,7 +131,7 @@ Anda akan mulai dapat melihat bagaimana aplikasi Anda bekerja: ubah `filterText`
 
 ## Langkah 5: Tambahkan Aliran Data Sebaliknya {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 Sejauh ini, kita telah membangun sebuah aplikasi yang telah secara benar di-*render* sebagai fungsi dari *props* dan *state* yang mengalir ke bawah seiring hierarki. Sekarang saatnya untuk mendukung aliran data ke arah sebaliknya: komponen form yang berada di bawah hirarki perlu untuk memperbarui *state* di `FilterableProductTable`.
 
@@ -140,8 +140,6 @@ React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemaha
 Jika Anda mencoba untuk mengetik atau mencentang checkbox di versi saat ini, Anda akan melihat bahwa React tidak memperdulikan input yang Anda lakukan. Hal ini memang disengaja, karena kita telah menentukan prop `value` dari `input` agar selalu setara dengan `state` yang dioper dari `FilterableProductTable`.
 
 Mari kita berpikir mengenai apa yang sebenarnya kita inginkan terjadi. Kita ingin untuk memastikan bahwa ketika pengguna mengubah form, kita memperbarui *state* untuk merefleksikan input dari pengguna. Karena komponen hanya diperbolehkan untuk memperbarui *state* mereka sendiri, `FilterableProductTable` akan mengalirkan *callback* ke `SearchBar` yang kemudian akan dipanggil kapanpun *state* harus diperbarui. Kita dapat menggunakan event `onChange` pada input untuk mengetahui kapan harus memanggil *callback*. *Callback* yang dioper oleh `FilterableProductTable` akan memanggil `setState()`, dan aplikasi akan diperbarui.
-
-Mungkin terdengar kompleks, namun ini hanya memerlukan beberapa baris kode. Dan bagaimana data Anda mengalir ke keseluruhan aplikasi dapat terlihat secara eksplisit.
 
 ## Dan Selesai! {#and-thats-it}
 
