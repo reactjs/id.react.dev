@@ -52,7 +52,7 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  //Tidak akan berfungsi. this.state.clickEvent hanya berisi nilai kosong.
+  // Tidak akan berfungsi. this.state.clickEvent hanya berisi nilai kosong.
   this.setState({clickEvent: event});
 
   // Anda masih dapat mengekspor atribut event.
