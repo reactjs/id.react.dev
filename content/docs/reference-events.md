@@ -229,7 +229,7 @@ Tidak seperti _bubbling_ pada umumnya, _event_ `onPointerEnter` dan `onPointerLe
 
 Atribut-atribut:
 
-Seperti yang didefinisikan dalam [W3 spec](https://www.w3.org/TR/pointerevents/), _event_ penunjuk pointer events mengembangkan _event_ [Mouse Events](#mouse-events) dengan atribut-atribut ini:
+Seperti yang didefinisikan dalam [W3 spec](https://www.w3.org/TR/pointerevents/), _event_ penunjuk _pointer events_ mengembangkan _event_ [Mouse Events](#mouse-events) dengan atribut-atribut ini:
 
 ```javascript
 number pointerId
