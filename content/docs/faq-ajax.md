@@ -51,7 +51,7 @@ class MyComponent extends React.Component {
           });
         },
         // Catatan: sangatlah penting untuk mengatasi error disini
-        // alih-alih menggunakan blok catch() sehingga kita tidak menenggelamkan
+        // daripada menggunakan blok catch() sehingga kita tidak menenggelamkan
         // exception dari bug yang sebenarnya terjadi di komponen
         (error) => {
           this.setState({
