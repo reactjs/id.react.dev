@@ -8,7 +8,7 @@ permalink: warnings/dont-call-proptypes.html
 >
 > `React.PropTypes` telah dipindahkan kedalam *package* yang berbeda sejak React v15.5. Silahkan gunakan [*library* `prop-types` sebagai gantinya](https://www.npmjs.com/package/prop-types).
 >
->Kami menyediakan [sebuah *codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) untuk mengotomatisasi pembicaraan.
+>Kami menyediakan [sebuah *codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) untuk mengotomatisasi perpindahan.
 
 Pada sebuah rilis besar React dimasa depan, kode yang menerapkan validasi fungsi-fungsi PropType akan dihilangkan di *production*. Segera sesudah ini terjadi, semua kode yang memanggil fungsi-fungsi ini secara manual (yang tidak dihilangkan di *production*) akan melempar sebuah *error*.
 
