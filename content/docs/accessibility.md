@@ -463,9 +463,15 @@ Anda juga dapat menggunakan modul [react-axe](https://github.com/dylanb/react-ax
 
 Di beberapa _browser_, kita dapat dengan mudah melihat informasi aksesibilitas untuk masing-masing elemen di pohon aksesibilitas:
 
+<<<<<<< HEAD
 - [Menggunakan Pemeriksa Aksesibilitas di Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
 - [Mengaktifkan Pemeriksa Aksesibilitas di Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
 - [Menggunakan Pemeriksa Aksesibilitas di Safari OS X](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+=======
+- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [Using the Accessibility Inspector in Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
+- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+>>>>>>> 4af9f2dcd1014c18ea6ce98794ba0d63874ac9d2
 
 ### Pembaca layar {#screen-readers}
 
