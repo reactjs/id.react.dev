@@ -8,7 +8,7 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-Pada React, Anda dapat membuat komponen berbeda yang mencakup perilaku yang dibutuhkan. Lalu, Anda dapat merender hanya beberapa bagian saja, berdasarkan _state_ dari aplikasi Anda.
+Pada React, Anda dapat membuat komponen berbeda yang mencakup perilaku yang dibutuhkan. Lalu, Anda dapat me-*render* hanya beberapa bagian saja, berdasarkan _state_ dari aplikasi Anda.
 
 Render Bersyarat pada React berfungsi sama halnya dengan operator bersyarat pada Javascript. Gunakan JavaScript operator seperti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) atau [operator bersyarat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) untuk membuat representasi elemen dari _state_ saat ini, dan React akan memperbarui UI sesuai dengan _state_ tersebut.
 
@@ -42,13 +42,13 @@ ReactDOM.render(
 );
 ```
 
-[**Coba di Codepen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-Contoh di atas merender komponen greeting yang berbeda berdasarkan nilai prop `isLoggedIn`.
+Contoh di atas me-*render* komponen greeting yang berbeda berdasarkan nilai *prop* `isLoggedIn`.
 
 ### Variabel Elemen {#element-variables}
 
-Anda dapat memakai variabel untuk menyimpan element. Hal ini akan membantu anda merender beberapa bagian pada komponen secara kondisional sementara output lainnya tidak berubah.
+Anda dapat memakai variabel untuk menyimpan element. Hal ini akan membantu anda me-*render* beberapa bagian pada komponen secara kondisional sementara output lainnya tidak berubah.
 
 Perhatikan dua komponen baru yang merepresentasikan tombol Logout dan Login:
 
@@ -72,7 +72,7 @@ function LogoutButton(props) {
 
 Pada contoh dibawah, kita akan membuat sebuah [komponen _stateful_](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) `LoginControl`.
 
-Itu akan merender salah satu dari `<LoginButton />` atau `<LogoutButton />` berdasarkan _state_ saat ini. Itu juga akan merender `<Greeting />` dari contoh sebelumnya:
+`LoginControl` akan me-*render* salah satu dari `<LoginButton />` atau `<LogoutButton />` berdasarkan _state_ saat ini. Itu juga akan me-*render* `<Greeting />` dari contoh sebelumnya:
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -116,13 +116,13 @@ ReactDOM.render(
 );
 ```
 
-[**Coba di Codepen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-Saat mendeklarasikan sebuah variabel dan  menggunakan statement `if` merupakan cara yang baik merender komponen secara kondisional, terkadang Anda mungkin ingin memakai sintaksis pendek. Ada beberapa cara _iniline_ bersyarat pada JSX, dijelaskan dibawah.
+Saat mendeklarasikan sebuah variabel dan  menggunakan statement `if` merupakan cara yang baik me-*render* komponen secara kondisional, terkadang Anda mungkin ingin memakai sintaksis pendek. Ada beberapa cara _inline_ bersyarat pada JSX, dijelaskan dibawah.
 
 ### Inline If dengan Operator Logis && {#inline-if-with-logical--operator}
 
-Anda mungkin [menyisipkan ekspresi pada JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) dengan cara membungkusnya ke dalam kurung kurawal. Juga memasukan operator logis `&&`. Itu dapat berguna untuk memasukan elemen secara kondisional:
+Anda dapat [menyisipkan ekspresi apapun pada JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) dengan cara membungkusnya ke dalam kurung kurawal. Juga memasukan operator logis `&&`. Kurung kurawal dapat berguna untuk memasukan elemen secara kondisional:
 
 ```js{6-10}
 function Mailbox(props) {
@@ -146,17 +146,17 @@ ReactDOM.render(
 );
 ```
 
-[**Coba di Codepen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-Itu akan bekerja karena dalam JavaScript, `true && expression` selalu mengevaluasi `true`, dan `false && expression` selalu mengevaluasi `false`.
+Ekspresi diatas akan bekerja karena dalam JavaScript, `true && expression` selalu mengevaluasi `true`, dan `false && expression` selalu mengevaluasi `false`.
 
-Oleh karenanya, jika kondisi `true`, elemen tepat setelah `&&` akan muncul pada _output_. jika `false`, React akan mengabaikannya.
+Maka dari itu, jika kondisi `true`, elemen tepat setelah `&&` akan muncul pada _output_. jika `false`, React akan mengabaikannya.
 
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
-Metode lain untuk merender _inline_ elemen secara kondisional ialah menggunakan operator kondisional JavaScript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+Metode lain untuk me-*render* _inline_ elemen secara kondisional ialah menggunakan operator kondisional JavaScript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-Pada contoh di bawah, kita memakainya untuk merender sebuah _small block_ dari text secara kondisional.
+Pada contoh di bawah, kita menggunakan untuk me-*render* sebagian kecil dari teks secara kondisional.
 
 ```javascript{5}
 render() {
@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-Itu juga dapat digunakan untuk ekspresi yang lebih besar meski terlihat kurang jelas apa yang terjadi:
+Ekspresi diatas juga dapat digunakan untuk ekspresi yang lebih besar meski terlihat kurang jelas apa yang terjadi:
 
 ```js{5,7,9}
 render() {
@@ -186,13 +186,13 @@ render() {
 }
 ```
 
-Seperti pada Javascript, Terserah pada Anda untuk memilih gaya yang sesuai dengan apa yang anda dan tim anda rasa lebih mudah dibaca. Ingat juga bahwa saat kondisi menjadi terlalu kompleks, waktu yang tepat untuk [mengekstark sebuah komponen](/docs/components-and-props.html#extracting-components).
+Seperti pada Javascript, Terserah pada Anda untuk memilih gaya yang sesuai dengan apa yang Anda dan tim Anda rasa lebih mudah untuk dibaca. Diingat juga bahwa saat kondisi menjadi terlalu kompleks, mungkin saat tepat untuk [mengekstark sebuah komponen](/docs/components-and-props.html#extracting-components).
 
 ### Mencegah Komponen dari Rendering {#preventing-component-from-rendering}
 
-Dalam kasus yang jarang terjadi, Anda mungkin ingin komponen menyembunyikan dirinya sendiri meskipun komponen itu dirender oleh komponen lain. Untuk melakukan ini, kembalikan `null` daripada merender _output_.
+Pada kasus yang jarang terjadi, Anda mungkin ingin komponen menyembunyikan dirinya sendiri meskipun komponen itu di-*render* oleh komponen lain. Untuk melakukan ini, kembalikan `null` melainkan hasil output `render`.
 
-Pada contoh di bawah, `<WarningBanner />` dirender berdasarkan nilai dari _prop_ yang bernama `warn`. Jika nilai dari _prop_ `false`, maka komponen tidak dirender.
+Pada contoh dibawah, `<WarningBanner />` di-*render* berdasarkan nilai dari _prop_ yang bernama `warn`. Jika nilai dari _prop_ `false`, maka komponen tidak di-*render*.
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -238,6 +238,6 @@ ReactDOM.render(
 );
 ```
 
-[**Coba di Codepen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
 Mengembalikan `null` dari metode `render` pada komponen tidak akan berdampak pada kerja metode siklus hidup komponen. Contohnya `componentDidUpdate` akan tetap dijalankan.
