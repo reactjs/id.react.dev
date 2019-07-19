@@ -72,7 +72,7 @@ function LogoutButton(props) {
 
 Pada contoh dibawah, kita akan membuat sebuah [komponen _stateful_](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) `LoginControl`.
 
-`LoginControl` akan me-*render* salah satu dari `<LoginButton />` atau `<LogoutButton />` berdasarkan _state_ saat ini. Itu juga akan me-*render* `<Greeting />` dari contoh sebelumnya:
+Komponen `LoginControl` akan me-*render* salah satu dari `<LoginButton />` atau `<LogoutButton />` berdasarkan _state_ saat ini. Komponen `LoginControl` juga akan me-*render* `<Greeting />` dari contoh sebelumnya:
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
