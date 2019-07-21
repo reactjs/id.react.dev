@@ -69,7 +69,7 @@ Jika Anda merasa dokumentasi React terlalu sulit untuk Anda ikuti, cek [ikhtisar
 
 ### React untuk Desainer {#react-for-designers}
 
-Jika Anda datang dari latar belakang desain, [sumber-sumber ini](http://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
+Jika Anda datang dari latar belakang desain, [sumber-sumber ini](https://reactfordesigners.com/) adalah tempat yang bagus untuk memulai.
 
 ### Sumber Daya JavaScript {#javascript-resources}
 
