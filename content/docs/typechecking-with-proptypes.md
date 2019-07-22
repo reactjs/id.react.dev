@@ -57,8 +57,16 @@ MyComponent.propTypes = {
   // Sebuah elemen React.
   optionalElement: PropTypes.element,
 
+<<<<<<< HEAD
   // Anda dapat juga menyatakan bahwa sebuah prop adalah instance dari sebuah kelas. Ini menggunakan
   // operator instanceof dari JS.
+=======
+  // A React element type (ie. MyComponent).
+  optionalElementType: PropTypes.elementType,
+  
+  // You can also declare that a prop is an instance of a class. This uses
+  // JS's instanceof operator.
+>>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
   optionalMessage: PropTypes.instanceOf(Message),
 
   // Anda dapat memastikan bahwa prop anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
