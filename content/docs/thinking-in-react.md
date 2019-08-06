@@ -76,7 +76,7 @@ Silakan merujuk pada [dokumentasi React](/docs/) jika Anda memerlukan bantuan da
 
 ### Sedikit Selingan: *Props* vs *State* {#a-brief-interlude-props-vs-state}
 
-Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk memahami perbedaan keduanya; baca [dokumentasi React](/docs/interactivity-and-dynamic-uis.html) jika Anda belum yakin apa perbedaan mereka.
+Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk memahami perbedaan keduanya; baca [dokumentasi React](/docs/interactivity-and-dynamic-uis.html) jika Anda belum yakin apa perbedaan mereka. Lihat juga [FAQ: Apakah perbedaan dari *state* dan *props*?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## Langkah 3: Identifikasi Representasi Minimal (namun komplit) dari *State* UI {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
