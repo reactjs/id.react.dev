@@ -4,17 +4,17 @@ layout: single
 permalink: warnings/dont-call-proptypes.html
 ---
 
-> Note:
+> Catatan:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` telah dipindahkan kedalam *package* yang berbeda sejak React v15.5. Silahkan gunakan [*library* `prop-types` sebagai gantinya](https://www.npmjs.com/package/prop-types).
 >
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
+>Kami menyediakan [sebuah *codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) untuk mengotomatisasi perpindahan.
 
-In a future major release of React, the code that implements PropType validation functions will be stripped in production. Once this happens, any code that calls these functions manually (that isn't stripped in production) will throw an error.
+Pada sebuah rilis besar React dimasa depan, kode yang menerapkan validasi fungsi-fungsi PropType akan dihilangkan di *production*. Segera sesudah ini terjadi, semua kode yang memanggil fungsi-fungsi ini secara manual (yang tidak dihilangkan di *production*) akan melempar sebuah *error*.
 
-### Declaring PropTypes is still fine {#declaring-proptypes-is-still-fine}
+### Deklarasi PropTypes masih baik-baik saja {#declaring-proptypes-is-still-fine}
 
-The normal usage of PropTypes is still supported:
+Penggunaan normal dari PropTypes masih didukung:
 
 ```javascript
 Button.propTypes = {
@@ -22,11 +22,11 @@ Button.propTypes = {
 };
 ```
 
-Nothing changes here.
+Tidak ada yang berubah disini.
 
-### Don’t call PropTypes directly {#dont-call-proptypes-directly}
+### Jangan memanggil PropTypes secara langsung {#dont-call-proptypes-directly}
 
-Using PropTypes in any other way than annotating React components with them is no longer supported:
+Menggunakan PropTypes dengan cara selain menambahkan catatan pada komponen-komponen React tidak lagi didukung:
 
 ```javascript
 var apiShape = PropTypes.shape({
@@ -34,17 +34,17 @@ var apiShape = PropTypes.shape({
   statusCode: PropTypes.number.isRequired
 }).isRequired;
 
-// Not supported!
+// Tidak didukung!
 var error = apiShape(json, 'response');
 ```
 
-If you depend on using PropTypes like this, we encourage you to use or create a fork of PropTypes (such as [these](https://github.com/aackerman/PropTypes) [two](https://github.com/developit/proptypes) packages).
+Jika anda terpaksa menggunakan PropTypes seperti ini, kami menyarankan anda sebaiknya menggunakan atau membuat sebuah *fork* dari PropTypes (seperti *package* [ini](https://github.com/aackerman/PropTypes) dan [ini](https://github.com/developit/proptypes)).
 
-If you don't fix the warning, this code will crash in production with React 16.
+Jika anda mengabaikan peringatan, kode ini akan *crash* di *production* dengan React 16.
 
-### If you don't call PropTypes directly but still get the warning {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
+### Jika anda tidak memanggil PropTypes secara langsung tetapi tetap mendapatkan peringatan  {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
-Inspect the stack trace produced by the warning. You will find the component definition responsible for the PropTypes direct call. Most likely, the issue is due to third-party PropTypes that wrap React’s PropTypes, for example:
+Periksa *stack trace* yang dihasilkan oleh peringatan. Anda akan menemukan definisi komponen yang bertanggung jawab memanggil PropTypes langsung. Biasanya, masalah ini disebabkan oleh PropTypes pihak ketiga yang membungkus PropTypes milik React, contohnya:
 
 ```js
 Button.propTypes = {
@@ -55,13 +55,13 @@ Button.propTypes = {
 }
 ```
 
-In this case, `ThirdPartyPropTypes.deprecated` is a wrapper calling `PropTypes.bool`. This pattern by itself is fine, but triggers a false positive because React thinks you are calling PropTypes directly. The next section explains how to fix this problem for a library implementing something like `ThirdPartyPropTypes`. If it's not a library you wrote, you can file an issue against it.
+Dalam kasus ini, `ThirdPartyPropTypes.deprecated` adalah pembungkus yang memanggil `PropTypes.bool`. Pola ini sendiri tidak masalah, tetapi memicu berbagai peringatan yang salah karena React berpikir anda memanggil PropTypes langsung. Bagian selanjutnya menjelaskan bagaimana memperbaiki masalah ini untuk *library* yang menerapkan sesuatu seperti `ThirdPartyPropTypes`. Jika ini bukan sebuah *library* yang anda tulis, anda dapat mengajukan *issue* terhadapnya.
 
-### Fixing the false positive in third party PropTypes {#fixing-the-false-positive-in-third-party-proptypes}
+### Memperbaiki salah positif di PropTypes pihak ketiga {#fixing-the-false-positive-in-third-party-proptypes}
 
-If you are an author of a third party PropTypes library and you let consumers wrap existing React PropTypes, they might start seeing this warning coming from your library. This happens because React doesn't see a "secret" last argument that [it passes](https://github.com/facebook/react/pull/7132) to detect manual PropTypes calls.
+Jika anda adalah penulis dari *library* PropTypes pihak ketiga dan anda memperbolehkan pengguna membungkus *React PropTypes* yang ada, mereka mungkin berpikir peringatan ini datang dari *library* anda. Ini terjadi karena React tidak melihat sebuah argumen "rahasia" terakhir yang [melewati](https://github.com/facebook/react/pull/7132) untuk mendeteksi pemanggilan-pemanggilan PropTypes secara manual.
 
-Here is how to fix it. We will use `deprecated` from [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) as an example. The current implementation only passes down the `props`, `propName`, and `componentName` arguments:
+Ini cara memberbaikinya. Kita akan menggunakan `deprecated` dari [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) sebagai sebuah contoh. Implementasi sekarang hanya meneruskan argumen-argumen `props`, `propName`, dan `componentName`:
 
 ```javascript
 export default function deprecated(propType, explanation) {
@@ -79,7 +79,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-In order to fix the false positive, make sure you pass **all** arguments down to the wrapped PropType. This is easy to do with the ES6 `...rest` notation:
+Untuk memperbaiki salah positif, pastikan anda meneruskan **semua** argumen-argumen ke PropType yang terbungkus. Ini mudah dilakukan dengan notasi ES6 `...rest`:
 
 ```javascript
 export default function deprecated(propType, explanation) {
@@ -97,4 +97,4 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-This will silence the warning.
+Ini akan menghilangkan peringatan.

@@ -53,7 +53,7 @@ Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang me-*render* kompo
 Sebagai contoh, katakanlah kita punya `Counter` komponen:
 
 ```js
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {count: 0};
