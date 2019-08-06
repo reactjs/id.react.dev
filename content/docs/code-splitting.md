@@ -5,6 +5,7 @@ permalink: docs/code-splitting.html
 ---
 
 ## Bundel {#bundling}
+
 Kebanyakan aplikasi React akan "membundel" *file* menggunakan alat bantu seperti [Webpack](https://webpack.js.org/) atau [Browserify](http://browserify.org/). Pembundelan ini adalah sebuah proses yang menelusuri sejumlah *file* yang terimpor dan digabungkan menjadi sebuah file: sebuah "bundel". Bundel ini kemudian dapat digunakan dalam halaman web untuk memuat keseluruhan aplikasi sekaligus.
 
 #### Contoh {#example}
@@ -13,14 +14,14 @@ Kebanyakan aplikasi React akan "membundel" *file* menggunakan alat bantu seperti
 
 ```js
 // app.js
-import { tambah } from './math.js';
+import { add } from './math.js';
 
-console.log(tambah(16, 26)); // 42
+console.log(add(16, 26)); // 42
 ```
 
 ```js
 // math.js
-export function tambah(a, b) {
+export function add(a, b) {
   return a + b;
 }
 ```
@@ -28,11 +29,11 @@ export function tambah(a, b) {
 **Bundel:**
 
 ```js
-function tambah(a, b) {
+function add(a, b) {
   return a + b;
 }
 
-console.log(tambah(16, 26)); // 42
+console.log(add(16, 26)); // 42
 ```
 
 > Catatan:
@@ -61,16 +62,16 @@ Cara terbaik untuk memperkenalkan *code-splitting* ke dalam aplikasi Anda adalah
 **Sebelum:**
 
 ```js
-import { tambah } from './math';
+import { add } from './math';
 
-console.log(tambah(16, 26));
+console.log(add(16, 26));
 ```
 
 **Sesudah:**
 
 ```js
 import("./math").then(math => {
-  console.log(math.tambah(16, 26));
+  console.log(math.add(16, 26));
 });
 ```
 > Catatan:
@@ -216,7 +217,7 @@ const App = () => (
 `React.lazy` sementara ini hanya dapat digunakan untuk modul dengan ekspor `default`. Jika modul yang ingin Anda impor menggunakan *named exports* (ekspor modul yang diberi nama dan tidak menggunakan *default*), Anda dapat membuat modul perantara yang mengekspor ulang modul tersebut sebagai *default*. Cara ini memastikan proses *treeshaking* tetap berjalan dan tidak mengikutsertakan komponen yang tidak terpakai.
 
 ```js
-// KumpulanKomponen.js
+// ManyComponents.js
 export const MyComponent = /* ... */;
 export const MyUnusedComponent = /* ... */;
 ```
