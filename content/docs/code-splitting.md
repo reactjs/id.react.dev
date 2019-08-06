@@ -218,16 +218,16 @@ const App = () => (
 ```js
 // KumpulanKomponen.js
 export const MyComponent = /* ... */;
-export const KomponenTidakTerpakai = /* ... */;
+export const MyUnusedComponent = /* ... */;
 ```
 
 ```js
 // MyComponent.js
-export { MyComponent as default } from "./KumpulanKomponen.js";
+export { MyComponent as default } from "./ManyComponents.js";
 ```
 
 ```js
-// AplikasiSaya.js
+// MyApp.js
 import React, { lazy } from 'react';
 const MyComponent = lazy(() => import("./MyComponent.js"));
 ```
