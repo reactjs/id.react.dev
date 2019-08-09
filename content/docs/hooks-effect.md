@@ -3,7 +3,7 @@ id: hooks-state
 title: Using the Effect Hook
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
-prev: hooks-intro.html
+prev: hooks-state.html
 ---
 
 *Hooks* adalah tambahan baru di React 16.8. *Hooks* memungkinkan Anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
@@ -198,17 +198,17 @@ Mari kita lihat bagaimana kita dapat menulis komponen ini dengan *Hooks*.
 
 Anda mungkin akan berpikir bahwa kita memerlukan *effect* terpisah untuk melakukan pembersihan. Tapi kode untuk menambah dan menghapus *subscription* sangat erat terkait sehingga `useEffect` didesain agar bisa untuk bersama sama. Jika *effect* anda mengembalikan sebuah *function*, React akan menjalakannya ketika sudah saat untuk melakukan pembersihan:
 
-```js{10-16}
+```js{6-16}
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -237,6 +237,10 @@ Kita telah belajar bahwa `useEffect` memungkinkan kita mengekspresikan berbagai 
 
 ```js
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -316,15 +320,15 @@ function FriendStatusWithCounter(props) {
 
   const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
   // ...
 }
 ```
@@ -394,6 +398,7 @@ Sekarang coba perhatikan versi komponen ini yang menggunakan *Hooks*:
 function FriendStatus(props) {
   // ...
   useEffect(() => {
+    // ...
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -449,8 +454,12 @@ Ketika kita me-*render* dengan `count` diperbarui ke `6`, React akan membandingk
 
 Ini juga bekerja untuk *effects* yang menggunakan fase pembersihan:
 
-```js{6}
+```js{10}
 useEffect(() => {
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
   ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -465,6 +474,9 @@ Kedepannya, Argumen kedua mungkin ditambahkan secara otomatis oleh *build-time t
 >Jika anda menggunakan pengoptimasian ini, pastikan *array* memasukkan **nilai apapun dari lingkup luar yang berubah setiap saat dan yang digunakan oleh effect**. Jika tidak,kode anda akan menjadi acuan nilai dari *renders* sebelumnya. Kita juga akan berdiskusi  tentang membahas optimasi yang lain di [Hooks API reference](/docs/hooks-reference.html).
 >
 >Jika anda ingin menjalankan *effect* dan membersihkannya hanya sekali saja (saat pemasangan dan pelepasan), anda dapat memberikan array kosong (`[]`) sebagai argument kedua. Ini memberi tahu React bahwa *effect* anda tidak bergantung pada *nilai* apapun dari props atau state, sehingga *effect* itu tidak perlu untuk dijalankan kembali. Ini tidak ditangani sebagai  kasus tertentu -- melainkan itu mengikuti langsung dari cara input array bekerja. Ketika kita memberikan `[]` kepada yang biasa kita sebut `componentDidMount` dan `componentWillUnmount` mental model, kami sarankan untuk tidak menjadikannya kebiasaan karena menyebabkan bug, [seperti yang sudah pernah dibahas diatas](#explanation-why-effects-run-on-each-update). Jangan lupa bahwa React menolak untuk menjalankan `useEffect` hingga browser telah selesai dijalnkan, jadi melakukan pekerjaan ekstra tidak akan menjadi masalah.
+>
+>Kita merekomendasikan menggunakan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai aturan dari package [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Akan diperingatkan ketika depedensi ditentukan dengan cara yang salah dan menyarankan perbaikan.
+
 
 ## Langkah Selanjutnya {#next-steps}
 

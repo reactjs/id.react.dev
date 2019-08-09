@@ -1,31 +1,31 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX dan API
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### Bagaimana cara membuat panggilan AJAX? {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Anda bisa menggunakan *library* AJAX apa saja yang anda inginkan dengan React. Beberapa yang populer yaitu [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), dan [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) bawaan *browser*.
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### Pada *lifecycle* komponen mana seharusnya membuat panggilan AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+Anda sebaiknya mengisi data melalui panggilan AJAX pada *lifecycle method* [`componentDidMount`](/docs/react-component.html#mounting). Dengan begitu Anda dapat menggunakan `setState` untuk memperbarui komponen Anda ketika data telah diterima.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### Contoh: Menggunakan hasil AJAX untuk mengisi *state* lokal {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+Komponen dibawah menunjukkan cara menggunakan panggilan AJAX pada `componentDidMount` untuk mengisi *state* komponen lokal.
 
-The example API returns a JSON object like this:
+Contoh API dibawah ini menghasilkan objek JSON sebagai berikut:
 
 ```
 {
   "items": [
-    { "id": 1, "name": "Apples",  "price": "$2" },
-    { "id": 2, "name": "Peaches", "price": "$5" }
-  ] 
+    { "id": 1, "nama": "apel",  "harga": "$2" },
+    { "id": 2, "nama": "pear", "harga": "$5" }
+  ]
 }
 ```
 
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // Catatan: sangatlah penting untuk mengatasi error disini
+        // daripada menggunakan blok catch() sehingga kita tidak menenggelamkan
+        // exception dari bug yang sebenarnya terjadi di komponen
         (error) => {
           this.setState({
             isLoaded: true,
@@ -72,8 +72,8 @@ class MyComponent extends React.Component {
       return (
         <ul>
           {items.map(item => (
-            <li key={item.name}>
-              {item.name} {item.price}
+            <li key={item.nama}>
+              {item.nama} {item.harga}
             </li>
           ))}
         </ul>

@@ -6,13 +6,13 @@ layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+Panduan ini mendokumentasikan pembungkus `SyntheticEvent` yang merupakan bagian dari sistem _event_ yang dimiliki oleh React. Silahkan melihat panduan bagian [Handling Events](/docs/handling-events.html) untuk mempelajarinya lebih lanjut.
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+*Event handler* Anda akan dioperkan `SyntheticEvent`, sebuah pembungkus lintas _browser_ yang membungkus _event_ bawaan _browser_. `SyntheticEvent` memiliki antarmuka yang sama dengan _event_ bawaan _browser_, termasuk `stopPropagation()` dan `preventDefault()`, bedanya _event_ ini bekerja secara seragam untuk lintas _browser_.
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+Jika untuk alasan tertentu Anda memerlukan _event_ bawaan dari _browser_, gunakan atribut `nativeEvent` untuk mengaksesnya. Setiap objek `SyntheticEvent` memiliki atribut-atribut berikut:
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> Catatan:
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> Sejak v0.14, mengembalikan nilai `false` dari _event handler_ tidak akan menghentikan propagasi _event_. Sebagai gantinya, `e.stopPropagation()` atau `e.preventDefault()` perlu dipanggil secara manual, seperlunya.
 
 ### Event Pooling {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+`SyntheticEvent` dikumpulkan. Hal ini berarti objek `SyntheticEvent` akan digunakan kembali dan isi objek akan dikosongkan setelah _callback_ untuk _event_ tersebut dipanggil.
+Hal ini dilakukan untuk mengoptimalkan kinerja.
+Dengan demikian, _event_ tersebut tidak dapat diakses secara asinkron.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => objek yang dikosongkan.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,23 +52,23 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // Tidak akan berfungsi. this.state.clickEvent hanya berisi nilai kosong.
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // Anda masih dapat mengekspor atribut event.
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> Catatan:
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> Jika Anda ingin mengakses isi _event_ secara asinkron, Anda perlu memanggil fungsi `event.persist()` dalam _event_, yang akan mengeluarkan _synthetic event_ dari kumpulan(*pool*) sehingga acuan terhadap _event_ tersebut dapat dipertahankan melalui kode pengguna.
 
 ## Supported Events {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+React menormalisasi _event_ agar memiliki properti yang sama di lintas _browser_.
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+_Event handler_ di bawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaftarkan sebuah _event handler_ dalam fase _capture_, tambahkan `Capture` pada nama _event_; contohnya, alih-alih menggunakan `onClick`, gunakan `onClickCapture` untuk menangani _event_ klik dalam fase _capture_.
 
 - [Clipboard Events](#clipboard-events)
 - [Composition Events](#composition-events)
@@ -89,17 +89,17 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 
 * * *
 
-## Reference {#reference}
+## Referensi {#reference}
 
 ### Clipboard Events {#clipboard-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -109,13 +109,13 @@ DOMDataTransfer clipboardData
 
 ### Composition Events {#composition-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 string data
@@ -126,13 +126,13 @@ string data
 
 ### Keyboard Events {#keyboard-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -149,21 +149,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+Atribut `key` dapat diisi dengan nilai apapun yang terdokumentasi dalam [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
 
 * * *
 
 ### Focus Events {#focus-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+_Event_ fokus bekerja untuk semua elemen-elemen di React DOM, tidak hanya untuk elemen-elemen _form_.
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -173,19 +173,19 @@ DOMEventTarget relatedTarget
 
 ### Form Events {#form-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+Untuk informasi lebih mengenai _event_ `onChange`, lihat [Forms](/docs/forms.html).
 
 * * *
 
 ### Mouse Events {#mouse-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +193,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Tidak seperti _bubbling_ pada umumnya, _event_ `onMouseEnter` dan `onMouseLeave` berkembang dari elemen yang keluar sampai elemen yang masuk dan tidak memiliki fase _capture_.
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -218,18 +218,18 @@ boolean shiftKey
 
 ### Pointer Events {#pointer-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Tidak seperti _bubbling_ pada umumnya, _event_ `onPointerEnter` dan `onPointerLeave` berkembang dari elemen yang ditinggalkan sampai elemen yang dimasuki dan tidak memiliki fase _capture_.
 
-Properties:
+Atribut-atribut:
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+Seperti yang didefinisikan dalam [W3 spec](https://www.w3.org/TR/pointerevents/), _event_ penunjuk _pointer events_ mengembangkan _event_ [Mouse Events](#mouse-events) dengan atribut-atribut ini:
 
 ```javascript
 number pointerId
@@ -244,17 +244,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+Catatan untuk dukungan lintas _browser_:
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+_Pointer event_ belum didukung oleh semua _browser_ (saat penulisan artikel ini, _browser_ yang telah mendukung adalah: Chrome, Firefox, Edge, dan Internet Explorer). React tidak serta-merta memberikan dukungan untuk _browser_ lain karena akan meningkatkan ukuran bundel `react-dom` secara signifikan.
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+Jika aplikasi Anda memerlukan _pointer event_, kami merekomendasikan Anda untuk menambah _polyfill_ untuk _pointer event_ dari pihak ketiga.
 
 * * *
 
 ### Selection Events {#selection-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onSelect
@@ -264,13 +264,13 @@ onSelect
 
 ### Touch Events {#touch-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 boolean altKey
@@ -287,13 +287,13 @@ DOMTouchList touches
 
 ### UI Events {#ui-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onScroll
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 number detail
@@ -304,13 +304,13 @@ DOMAbstractView view
 
 ### Wheel Events {#wheel-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onWheel
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 number deltaMode
@@ -323,7 +323,7 @@ number deltaZ
 
 ### Media Events {#media-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -336,7 +336,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 ### Image Events {#image-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onLoad onError
@@ -346,13 +346,13 @@ onLoad onError
 
 ### Animation Events {#animation-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 string animationName
@@ -364,13 +364,13 @@ float elapsedTime
 
 ### Transition Events {#transition-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+Atribut-atribut:
 
 ```javascript
 string propertyName
@@ -382,7 +382,7 @@ float elapsedTime
 
 ### Other Events {#other-events}
 
-Event names:
+Nama-nama _event_:
 
 ```
 onToggle
