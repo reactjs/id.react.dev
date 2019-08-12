@@ -49,7 +49,7 @@ Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Ka
   4. **`ProductCategoryRow` (biru muda):** menampilkan judul untuk setiap *kategori*
   5. **`ProductRow` (merah):** menampilkan sebuah baris untuk setiap *produk*
 
-Jika Anda melihat `ProductTable`, Anda akan menemukan bahwa judul tabel (berisi label "Name" dan "Price") bukan merupakan komponen yang berdiri sendiri. Sebenarnya ini adalah masalah preferensi, dan akan terdapat argumen yang akan dibuat bagaimanapun juga. Di contoh ini, kita membuatnya sebagai bagian dari `ProductTable` karena ia adalah bagian dari proses *render* *koleksi data*, yang merupakan tanggung jawab dari `ProductTable`. Namun, jika judul tabel ini berkembang menjadi lebih rumit (mis. jika kita akan menambahkan fungsi sorting), akan menjadi masuk akal untuk membuatnya dalam komponen `ProductTableHeader` yang terpisah.
+Jika Anda melihat `ProductTable`, Anda akan menemukan bahwa judul tabel (berisi label "Name" dan "Price") bukan merupakan komponen yang berdiri sendiri. Sebenarnya ini adalah masalah preferensi, dan akan terdapat argumen yang akan dibuat bagaimanapun juga. Di contoh ini, kita membuatnya sebagai bagian dari `ProductTable` karena ia adalah bagian dari proses me-*render* *koleksi data*, yang merupakan tanggung jawab dari `ProductTable`. Namun, jika judul tabel ini berkembang menjadi lebih rumit (mis. jika kita akan menambahkan fungsi *sorting*), akan menjadi masuk akal untuk membuatnya dalam komponen `ProductTableHeader` yang terpisah.
 
 Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturnya dalam sebuah hierarki. Ini mudah. Komponen yang berada di dalam komponen dalam rancang bangun kita harusnya akan muncul sebagai komponen anak dalam hierarki kita:
 
