@@ -122,13 +122,8 @@ it('bisa render dan memperbarui counter', () => {
 });
 ```
 
-<<<<<<< HEAD
-Jangan lupa dalam mengirim perihal DOM hanya dapat dilakukan ketika penampung DOM sudah ditambahkan ke `document`. Anda dapat menggunakan penunjang seperti [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) untuk mengurangi kode _boilerplate_.
-=======
-- Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a library like [React Testing Library](https://testing-library.com/react) to reduce the boilerplate code.
-
-- The [`recipes`](/docs/testing-recipes.html) document contains more details on how `act()` behaves, with examples and usage.
->>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
+- Jangan lupa bahwa mengirim *event* DOM hanya dapat dilakukan ketika penampung DOM sudah ditambahkan ke `document`. Anda dapat menggunakan *library* seperti [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) untuk mengurangi kode _boilerplate_.
+- Dokumen [`recipes`](/docs/testing-recipes.html) berisi lebih detil mengenai cara kerja `act()`, lengkap dengan contoh dan cara penggunaan.
 
 * * *
 
