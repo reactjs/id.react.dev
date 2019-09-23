@@ -97,37 +97,19 @@ Fungsi `React.lazy` memungkinkan Anda melakukan *render* hasil impor dinamis seb
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 **Sesudah:**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-Dengan menggunakan cara ini, bundel yang mengandung `OtherComponent` akan termuat secara otomatis ketika komponen ini ter-*render*.
+Dengan menggunakan cara ini, bundel yang mengandung `OtherComponent` akan termuat secara otomatis ketika komponen ini ter-*render* pertama kalinya.
 
 `React.lazy` membutuhkan sebuah fungsi yang harus memanggil *dynamic* `import()`. Fungsi ini harus mengembalikan sebuah `Promise` yang menghasilkan modul dengan ekspor `default` yang mengandung sebuah komponen React.
 
-### Suspense {#suspense}
-
-Jika modul yang mengandung `OtherComponent` belum dimuat ketika `MyComponent` ter-*render*, kita perlu memunculkan sebuah konten pengganti selama kita menunggu bundel tersebut untuk dimuat - misalnya memunculkan indikator *loading*. Hal ini bisa dicapai dengan menggunakan komponen `Suspense`.
+Komponen *lazy* kemudian akan ter-*render* di dalam sebuah komponen `Suspense`, yang membuat kita dapat memunculkan sebuah komponen pengganti (misalnya memunculkan indikator *loading*) selagi kita menunggu komponen *lazy* selesai dimuat.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
