@@ -334,11 +334,7 @@ memungkinkan Anda untuk melihat pohon komponen dari React dengan menggunakan per
 
 React Devtools memungkinkan Anda untuk mengecek *props* dan *state* dari komponen React Anda.
 
-<<<<<<< HEAD
-Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka perangkat pengembang dan *tab* React akan muncul sebagai *tab* terakhir di sebalah kanan.
-=======
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka perangkat pengembang dan *tab* React ("⚛️ Components" and "⚛️ Profiler") akan muncul sebagai *tab* terakhir di sebalah kanan. Gunakan "⚛️ Components" untuk menginspeksi pohon komponen.
 
 **Walaupun demikian, perlu diperhatikan bahwa ada beberapa langkah tambahan untuk membuat aplikasi Anda bekerja dengan CodePen:**
 
