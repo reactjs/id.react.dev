@@ -22,7 +22,7 @@ Anda kemungkinan menggunakan versi `react-dom` (< 16.8.0) atau `react-native` (<
 
 ## Melanggar Aturan Hooks {#breaking-the-rules-of-hooks}
 
-Anda hanya dapat memanggil Hooks **saat React mer-_render_ fungsional komponen**:
+Anda hanya dapat memanggil Hooks **saat React me-_render_ fungsional komponen**:
 
 * ✅ Panggil pada tingkatan atas dalam badan fungsional komponen.
 * ✅ Panggil pada tingkatan atas dalam badan [custom Hook](/docs/hooks-custom.html).
@@ -45,11 +45,11 @@ function useWindowWidth() {
 
 Untuk menghindari kebingungan, Pemanggilan Hooks tidak didukung pada kasus-kasus berikut:
 
-* 🔴 Jangan panggil Hooks di dalam komponen berbasi kelas.
-* 🔴 Jangan panggil Hooks di penangan event.
-* 🔴 Jangan panggil Hooks di dalam fungsi yang dilewatkan pada `useMemo`, `useReducer`, atau `useEffect`.
+* 🔴 Jangan panggil Hooks di dalam komponen kelas.
+* 🔴 Jangan panggil Hooks di *event handler*.
+* 🔴 Jangan panggil Hooks di dalam fungsi yang dioper pada `useMemo`, `useReducer`, atau `useEffect`.
 
-Jika anda melanggar aturan-aturan tersebut, anda kemungkinan mendapatkan galat
+Jika anda melanggar aturan-aturan tersebut, anda kemungkinan mendapatkan galat seperti berikut.
 
 ```js{3-4,11-12,20-21}
 function Bad1() {
@@ -78,7 +78,7 @@ class Bad3 extends React.Component {
 }
 ```
 
-Anda dapat menggunakan [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memunculkan beberapa kesalahan di atas.
+Anda dapat menggunakan [plugin `eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memunculkan beberapa kesalahan di atas.
 
 >Catatan
 >
@@ -87,15 +87,15 @@ Anda dapat menggunakan [`eslint-plugin-react-hooks` plugin](https://www.npmjs.co
 
 ## React Ganda{#duplicate-react}
 
-Agar Hooks bekerja, `react` _import_ dari aplikasi Anda perlu menemukan modul yang sama dengan `react` _import_ dari dalam paket `react-dom`.
+Agar Hooks bekerja, _import_ `react` dari aplikasi Anda perlu menemukan modul yang sama dengan _import_ `react` dari dalam *package* `react-dom`.
 
-Jika kedua `react` _imports_ menemukan dua _exports_ obyek yang berbeda, Anda akan melihat peringatan tersebut. Hal ini bisa saja terjadi jika Anda **secara tidak sengaja menggunakan dua salinan** dari paket `react`.
+Jika kedua _import_ `react` tersebut menemukan dua _export_ obyek yang berbeda, Anda akan melihat peringatan tersebut. Hal ini bisa saja terjadi jika Anda **secara tidak sengaja menggunakan dua salinan** dari *package* `react`.
 
 Jika anda menggunakan _Node_ untuk pengelolaan paket, Anda dapat mejalankan perintah ini di dalam berkas proyek Anda:
 
     npm ls react
 
-Jika anda menemukan lebih dari satu React, Anda perlu temukan kenapa hal ini terjadi dan perbaiki _dependency tree_ Anda. Contohnya, kemungkinan _library_ yang anda gunakan, menentukan `react` secara salah sebagai _dependency_ (daripada _peer dependency_). Sampai pustaka tersebut diperbaik, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) dapat menjadi salah satu solusi.
+Jika anda menemukan lebih dari satu React, Anda perlu temukan kenapa hal ini terjadi dan perbaiki _dependency tree_ Anda. Contohnya, kemungkinan _library_ yang anda gunakan, menentukan `react` secara salah sebagai _dependency_ (daripada _peer dependency_). Sampai _library_ tersebut diperbaik, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) dapat menjadi salah satu solusi.
 
 Anda juga dapat mencoba men-_debug_ masalah ini dengan cara menambahkan beberapa _logs_ dan memuat ulang _development server_ Anda:
 
