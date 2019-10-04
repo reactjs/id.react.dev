@@ -3,37 +3,37 @@ title: Unknown Prop Warning
 layout: single
 permalink: warnings/unknown-prop.html
 ---
-The unknown-prop warning will fire if you attempt to render a DOM element with a prop that is not recognized by React as a legal DOM attribute/property. You should ensure that your DOM elements do not have spurious props floating around.
+Peringatan *unknown-prop* akan muncul jika Anda mencoba me-*render* sebuah elemen DOM dengan *prop* yang tidak dikenali oleh React sebagai sebuah atribut/properti DOM yang valid.
 
-There are a couple of likely reasons this warning could be appearing:
+Ada beberapa penyebab yang memungkinkan munculnya peringatan ini:
 
-1. Are you using `{...this.props}` or `cloneElement(element, this.props)`? Your component is transferring its own props directly to a child element (eg. [transferring props](/docs/transferring-props.html)). When transferring props to a child component, you should ensure that you are not accidentally forwarding props that were intended to be interpreted by the parent component.
+1. Apakah Anda menggunakan `{...this.props}` atau `cloneElement(element, this.props)`? Komponen Anda mengirimkan *props*-nya sendiri langsung ke elemen turunannya (misalnya [mengirimkan *props*](/docs/transferring-props.html)). Ketika mengirimkan *props* ke elemen turunan, Anda harus memastikan Anda tidak secara tidak sengaja meneruskan *props* yang dimaksudkan untuk diinterpretasikan oleh elemen induknya.
 
-2. You are using a non-standard DOM attribute on a native DOM node, perhaps to represent custom data. If you are trying to attach custom data to a standard DOM element, consider using a custom data attribute as described [on MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
+2. Anda menggunakan sebuah atribut DOM yang bukan merupakan atribut standar pada sebuah *node* DOM bawaan, mungkin untuk merepresentasikan suatu data *custom*. Jika Anda sedang berusaha melampirkan data *custom* pada sebuah elemen DOM standar, pertimbangkanlah untuk menggunakan sebuah atribut data *custom* sebagaimana dijelaskan [di MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using*data*attributes).
 
-3. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React. However, React currently strips all unknown attributes, so specifying them in your React app will not cause them to be rendered.
+3. React belum mengenali atribut yang Anda spesifikasikan. Hal ini kemungkinan akan diperbaiki pada versi React yang akan datang. Namun, untuk saat ini React akan menghilangkan semua atribut yang tidak dikenali, sehingga menspesifikasikan atribut-atribut tersebut pada aplikasi React Anda tidak akan membuat atribut-atribut tersebut di-*render*.
 
-4. You are using a React component without an upper case. React interprets it as a DOM tag because [React JSX transform uses the upper vs. lower case convention to distinguish between user-defined components and DOM tags](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+4. Anda menggunakan sebuah komponen React tanpa *uppercase*. React merepresentasikan komponen tersebut sebagai sebuah *tag* DOM karena [proses transformasi React JSX menggunakan konvensi *upper* versus *lower case* untuk membedakan antara komponen yang dibuat oleh pengguna dengan *tag* DOM](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
 ---
 
-To fix this, composite components should "consume" any prop that is intended for the composite component and not intended for the child component. Example:
+Untuk memperbaiki hal ini, komponen-komponen komposit harus "mengonsumsi" semua *prop* yang dimaksudkan untuk komponen komposit tersebut dan bukannya untuk komponen turunannya. Contoh:
 
-**Bad:** Unexpected `layout` prop is forwarded to the `div` tag.
+**Buruk:** *Prop* `layout` tiba-tiba diteruskan ke *tag* `div`.
 
 ```js
 function MyDiv(props) {
   if (props.layout === 'horizontal') {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // BURUK! Karena Anda tahu pasti bahwa "layout" bukan merupakan prop yang dimengerti oleh <div>.
     return <div {...props} style={getHorizontalStyle()} />
   } else {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // BURUK! Karena Anda tahu pasti bahwa "layout" bukan merupakan prop yang dimengerti oleh <div>.
     return <div {...props} style={getVerticalStyle()} />
   }
 }
 ```
 
-**Good:** The spread operator can be used to pull variables off props, and put the remaining props into a variable.
+**Baik:** *Spread operator* dapat digunakan untuk mengekstrak variabel-variabel dari objek *props*, dan menyimpan *props* yang tersisa ke dalam sebuah variabel.
 
 ```js
 function MyDiv(props) {
@@ -46,7 +46,7 @@ function MyDiv(props) {
 }
 ```
 
-**Good:** You can also assign the props to a new object and delete the keys that you're using from the new object. Be sure not to delete the props from the original `this.props` object, since that object should be considered immutable.
+**Baik:** Anda dapat juga menempatkan *props* pada sebuah objek baru dan menghapus sebagian *key* yang telah Anda gunakan dari objek baru tersebut. Pastikan Anda tidak menghapus *props* dari objek `this.props` yang asli karena objek tersebut seharusnya dianggap *immutable*.
 
 ```js
 function MyDiv(props) {
