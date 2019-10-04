@@ -116,11 +116,7 @@ Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/do
 
 ### Tolong, Saya Mengalami Masalah! {#help-im-stuck}
 
-<<<<<<< HEAD
-Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
-=======
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/reactiflux) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
 
 ## Ikhtisar {#overview}
 
