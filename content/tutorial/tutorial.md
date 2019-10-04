@@ -116,7 +116,7 @@ Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/do
 
 ### Tolong, Saya Mengalami Masalah! {#help-im-stuck}
 
-Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
+Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/reactiflux) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
 
 ## Ikhtisar {#overview}
 
