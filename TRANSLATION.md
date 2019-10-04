@@ -28,7 +28,7 @@ Referensi panduan penulisan Bahasa Indonesia lainnya yang dapat digunakan adalah
 
 * [Pedoman Umum Ejaan Bahasa Indonesia (PUEBI)](https://puebi.readthedocs.io/en/latest/)
 * [Kamus Besar Bahasa Indonesia (KBBI)](https://kbbi.kemdikbud.go.id/)
-* [RSNI3 8527:2018 - Glosarium Istilah Teknologi Informasi](https://github.com/jk8s/sig-docs-id-localization-how-tos/blob/master/resources/RSNI-glossarium.pdf)
+* [RSNI3 8527:2018 - Glosarium Istilah Teknologi Informasi](https://github.com/jk8s/sig-docs-id/raw/master/resources/RSNI-glossarium.pdf)
 
 ### *Heading ID*
 
