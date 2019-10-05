@@ -4,7 +4,8 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+Pola umum dalam React adalah agar komponen mengembalikan banyak elemen. Fragmen memungkinkan anda mengelompokkan daftar komponen-komponen tanpa menambahkan node tambahan ke DOM.
+
 
 ```js
 render() {
@@ -18,11 +19,12 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them.
+Ada juga [sintaks pendek](#short-syntax) untuk mendeklarasikannya.
 
-## Motivation {#motivation}
+## Motivasi {#motivation}
 
-A common pattern is for a component to return a list of children. Take this example React snippet:
+Pola umum pada komponen adalah mengembalikan daftar komponen-komponen. Ambil potongan contoh react ini: 
+
 
 ```jsx
 class Table extends React.Component {
@@ -38,7 +40,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />` perlu mengembalikan beberapa `<td>` elemen agar HTML yang diberikan menjadi benar. Jika div induk digunakan di dalam `render()` dari `<Columns />`, maka HTML yang dihasilkan tidak benar.
 
 ```jsx
 class Columns extends React.Component {
@@ -53,7 +55,7 @@ class Columns extends React.Component {
 }
 ```
 
-results in a `<Table />` output of:
+menghasilkan keluaran `<Table />` dari:
 
 ```jsx
 <table>
@@ -66,9 +68,9 @@ results in a `<Table />` output of:
 </table>
 ```
 
-Fragments solve this problem.
+Fragmen memecahkan masalah ini
 
-## Usage {#usage}
+## Penggunaan {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -83,7 +85,7 @@ class Columns extends React.Component {
 }
 ```
 
-which results in a correct `<Table />` output of:
+yang menghasilkan keluaran `<Table />` yang benar:
 
 ```jsx
 <table>
@@ -94,9 +96,9 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-### Short Syntax {#short-syntax}
+### Sintaks Pendek {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+Ada yang baru, sintaks yang lebih pendek dapat anda gunakan untuk mendeklarasikan fragmen. seperti tag kosong:
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -111,18 +113,18 @@ class Columns extends React.Component {
 }
 ```
 
-You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
+Anda dapat menggunakan `<></>` dengan cara yang sama anda akan menggunakan elemen lain kecuali itu tidak medukung *key* atau atribut.
 
 ### Keyed Fragments {#keyed-fragments}
 
-Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+Fragmen dideklarasikan dengan eksplisit `<React.Fragment>` sintaks mungkin memiliki *key*. Kasus penggunaan untuk ini adalah memetakan koleksi ke array fragmen -- untuk contoh, untuk membuat daftar deskripsi:
 
 ```jsx
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Without the `key`, React will fire a key warning
+        // Tanpa sebuah `key`, React akan mengeluarkan peringatan
         <React.Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -133,8 +135,9 @@ function Glossary(props) {
 }
 ```
 
-`key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
+`key` adalah satu-satunya atribut yang dapat dteruskan ke `Fragment`. Dimasa mendatang, kami dapat menambahkan dukungan untuk atribut tambahan, seperti *event handlers*.
 
-### Live Demo {#live-demo}
+### Demo langsung {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+Anda dapat mencoba sintaks JSX fragmen baru dengan ini [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+
