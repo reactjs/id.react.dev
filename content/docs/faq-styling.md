@@ -6,9 +6,9 @@ layout: docs
 category: FAQ
 ---
 
-### How do I add CSS classes to components? {#how-do-i-add-css-classes-to-components}
+### Bagaimana saya menambahkan kelas CSS ke komponen? {#how-do-i-add-css-classes-to-components}
 
-Pass a string as the `className` prop:
+Melewatkan sebuah string sebagai properti `className`:
 
 ```jsx
 render() {
@@ -16,7 +16,7 @@ render() {
 }
 ```
 
-It is common for CSS classes to depend on the component props or state:
+Merupakan hal yang umum bagi kelas CSS untuk bergantung pada properti komponen atau _state_:
 
 ```jsx
 render() {
@@ -32,20 +32,20 @@ render() {
 >
 >If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) package can simplify it.
 
-### Can I use inline styles? {#can-i-use-inline-styles}
+### Dapatkah saya menggunakan _inline styles_? {#can-i-use-inline-styles}
 
-Yes, see the docs on styling [here](/docs/dom-elements.html#style).
+Ya, lihat dokumen untuk _styling_ [disini](/docs/dom-elements.html#style).
 
-### Are inline styles bad? {#are-inline-styles-bad}
+### Apakah _inline styles_ buruk? {#are-inline-styles-bad}
 
-CSS classes are generally better for performance than inline styles.
+Performa kelas CSS biasanya lebih baik daripada _inline styles._
 
-### What is CSS-in-JS? {#what-is-css-in-js}
+### Apa yang dimaksud dengan CSS-in-JS? {#what-is-css-in-js}
 
-"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files. Read a comparison of CSS-in-JS libraries [here](https://github.com/MicheleBertoli/css-in-js).
+"CSS-in-JS" mengacu kepada pola dimana CSS disusun menggunakan JavaScript bukannya didefinisikan di luar arsip.[disini](https://github.com/MicheleBertoli/css-in-js).
 
-_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, a good starting point is to define your styles in a separate `*.css` file as usual and refer to them using [`className`](/docs/dom-elements.html#classname).
+_Perhatikan bahwa fungsi ini bukan bagian dari React, tetapi disediakan oleh library dari pihak ketiga._ React tidak memiliki pendapat tentang bagaimana style didefinisikan; jika ragu, titik awal yang baik adalah mendefinisikan style anda secara terpisah dalam file `*.css` seperti biasa dan arahkan ke mereka menggunakan [`className`](/docs/dom-elements.html#classname).
 
-### Can I do animations in React? {#can-i-do-animations-in-react}
+### Dapatkah saya membuat animasi di React?{#can-i-do-animations-in-react}
 
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion), for example.
+React dapat digunakan untuk menggerakkan animasi. Lihat [React Transition Group](https://reactcommunity.org/react-transition-group/) dan [React Motion](https://github.com/chenglou/react-motion), untuk contoh.

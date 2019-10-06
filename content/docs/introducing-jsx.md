@@ -12,21 +12,21 @@ Cobalah lihat deklarasi variabel dibawah ini:
 const element = <h1>Halo, Dunia!</h1>;
 ```
 
-Sintaks *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
+Sintaksis *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-Sintaks ini di kenal dengan sebutan JSX, dan sintaks ini adalah sebuah sintaks ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
+Sintaksis ini di kenal dengan sebutan JSX, dan sintaksis ini adalah sebuah sintaksis ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan Anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
-JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, anda akan menemukan dasar-dasar JSX yang anda butuhkan untuk memulai.
+JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, Anda akan menemukan dasar-dasar JSX yang Anda butuhkan untuk memulai.
 
 ### Mengapa JSX? {#why-jsx}
 
 React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan logika antarmuka pengguna lainnya. bagaimana *events* akan ditangani, bagaimana *state* berubah seiring dengan waktu, dan bagaimana data disiapkan untuk di tampilkan.
 
-Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika anda merasa belum nyaman menempatkan *markup* di `JavaScript`, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan anda.
+Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika Anda merasa belum nyaman menempatkan *markup* di `JavaScript`, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan Anda.
 
-React [tidak mengharuskan](/docs/react-without-jsx.html) anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
+React [tidak mengharuskan](/docs/react-without-jsx.html) Anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
 
-Setelah anda memahaminya, mari kita mulai!
+Setelah Anda memahaminya, mari kita mulai!
 
 ### Menyematkan Ekspresi di JSX {#embedding-expressions-in-jsx}
 
@@ -70,7 +70,7 @@ ReactDOM.render(
 
 [Coba di CodePen](codepen://introducing-jsx)
 
-Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](http://stackoverflow.com/q/2846283).
+Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
 ### JSX adalah Ekspresi Juga {#jsx-is-an-expression-too}
 
@@ -111,7 +111,7 @@ Jangan letakan tanda kutip di sekitar kurung kurawal saat menyematkan ekspresi J
 
 ### Menspesifikasikan Elemen Anak dengan JSX {#specifying-children-with-jsx}
 
-Jika *tag* bersifat kosong (tidak memiliki elemen anak), anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
+Jika *tag* bersifat kosong (tidak memiliki elemen anak), Anda bisa saja menutupnya secara langsung dengan `/>`, seperti XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Secara default, React DOM [meng-*escape*](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+Secara default, React DOM [meng-*escape*](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX Merepresentasikan Objek {#jsx-represents-objects}
 
@@ -162,7 +162,7 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` melakukan serangkaian pengecekan yang membantu anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat objek seperti ini:
+`React.createElement()` melakukan serangkaian pengecekan yang membantu Anda menulis kode yang bebas dari *bug* namun pada dasarnya akan membuat objek seperti ini:
 
 ```js
 // Catatan: struktur ini sudah disederhanakan
@@ -175,10 +175,10 @@ const element = {
 };
 ```
 
-Objek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang anda ingin lihat di layar. React membaca objek-objek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
+Objek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang Anda ingin lihat di layar. React membaca objek-objek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
 
 Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berikutnya.
 
 >**Saran:**
 >
->Kami merokemendasikan anda untuk mencari [skema sintaks "Babel"](http://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
+>Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.

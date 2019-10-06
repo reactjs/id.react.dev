@@ -1,6 +1,6 @@
 ---
 id: typechecking-with-proptypes
-title: Typechecking With PropTypes
+title: Pengecekan Tipe Dengan PropTypes
 permalink: docs/typechecking-with-proptypes.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
@@ -8,11 +8,11 @@ redirect_from:
 
 > Note:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` sudah dipindahkan ke paket yang berbeda sejak React v15.5. Silakan gunakan [pustaka `prop-types`](https://www.npmjs.com/package/prop-types).
 >
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
+>Kami menyediakan [*codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) untuk melakukan konversi secara otomatis.
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+Dengan berkembangnya aplikasi anda, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, anda dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -30,18 +30,18 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
+`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
 ### PropTypes {#proptypes}
 
-Here is an example documenting the different validators provided:
+Berikut contoh mendokumentasikan berbagai validator yang berbeda yang sudah disediakan:
 
 ```javascript
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // You can declare that a prop is a specific JS type. By default, these
-  // are all optional.
+  // Anda dapat menyatakan bahwa sebuah prop adalah tipe khusus yang berasal dari JS. Secara default,
+  // hal ini sifatnya opsional.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
   optionalFunc: PropTypes.func,
@@ -50,50 +50,59 @@ MyComponent.propTypes = {
   optionalString: PropTypes.string,
   optionalSymbol: PropTypes.symbol,
 
-  // Anything that can be rendered: numbers, strings, elements or an array
-  // (or fragment) containing these types.
+  // Apapun dapat di-render: numbers, strings, elements ataupun sebuah array
+  // (atau fragmen) yang mengandung tipe-tipe tersebut.
   optionalNode: PropTypes.node,
 
-  // A React element.
+  // Sebuah elemen React.
   optionalElement: PropTypes.element,
 
-  // You can also declare that a prop is an instance of a class. This uses
-  // JS's instanceof operator.
+  // Sebuah tipe elemen React. (contoh: MyComponent).
+  optionalElementType: PropTypes.elementType,
+
+  // Anda dapat juga menyatakan bahwa sebuah prop adalah instance dari sebuah kelas. Ini menggunakan
+  // operator instanceof dari JS.
   optionalMessage: PropTypes.instanceOf(Message),
 
-  // You can ensure that your prop is limited to specific values by treating
-  // it as an enum.
+  // Anda dapat memastikan bahwa prop anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
+  // sebagai sebuah enum.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
-  // An object that could be one of many types
+  // Sebuah objek dapat memiliki satu dari banyak tipe-tipe.
   optionalUnion: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.instanceOf(Message)
   ]),
 
-  // An array of a certain type
+  // Sebuah array dari tipe tertentu.
   optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
 
-  // An object with property values of a certain type
+  // Sebuah objek dengan nilai properti dari tipe tertentu.
   optionalObjectOf: PropTypes.objectOf(PropTypes.number),
 
-  // An object taking on a particular shape
+  // Sebuah objek yang menerima bentuk tertentu.
   optionalObjectWithShape: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
 
-  // You can chain any of the above with `isRequired` to make sure a warning
-  // is shown if the prop isn't provided.
+  // Sebuah objek dengan peringatan pada properti ekstra.
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),
+
+  // Anda dapat merangkai dari contoh diatas dengan `isRequired` untuk memastikan sebuah peringatan
+  // akan muncul jika sebuah prop tidak disertakan.
   requiredFunc: PropTypes.func.isRequired,
 
-  // A value of any data type
+  // Sebuah nilai dari tipe data apapun.
   requiredAny: PropTypes.any.isRequired,
 
-  // You can also specify a custom validator. It should return an Error
-  // object if the validation fails. Don't `console.warn` or throw, as this
-  // won't work inside `oneOfType`.
+  // Anda dapat juga menentukan validator khusus. Akan menghasilkan objek Error
+  // jika validasi gagal. Jangan `console.warn` atau `throw`, hal seperti ini
+  // tidak akan berfungsi jika didalam `oneOfType`.
   customProp: function(props, propName, componentName) {
     if (!/matchme/.test(props[propName])) {
       return new Error(
@@ -103,11 +112,11 @@ MyComponent.propTypes = {
     }
   },
 
-  // You can also supply a custom validator to `arrayOf` and `objectOf`.
-  // It should return an Error object if the validation fails. The validator
-  // will be called for each key in the array or object. The first two
-  // arguments of the validator are the array or object itself, and the
-  // current item's key.
+  // Anda dapat juga menyediakan sebuah validator tambahan ke `arrayOf` dan `objectOf`.
+  // Hal ini sebaiknya menghasilkan objek Error jika validasi gagal. Validator
+  // akan dipanggil untuk setiap nilai didalam array atau objek. Dua pertama
+  // dari argumen validator adalah array atau objek itu sendiri, dan
+  // identitas dari nilai saat itu.
   customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
     if (!/matchme/.test(propValue[key])) {
       return new Error(
@@ -119,16 +128,16 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child {#requiring-single-child}
+### Membutuhkan Satu Komponen Anak {#requiring-single-child}
 
-With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
+Dengan menggunakan `PropTypes.element` anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
 
 ```javascript
 import PropTypes from 'prop-types';
 
 class MyComponent extends React.Component {
   render() {
-    // This must be exactly one element or it will warn.
+    // Harus memiliki hanya satu elemen atau akan diberi peringatan.
     const children = this.props.children;
     return (
       <div>
@@ -143,9 +152,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values {#default-prop-values}
+### Nilai Default Prop {#default-prop-values}
 
-You can define default values for your `props` by assigning to the special `defaultProps` property:
+Anda dapat mendefinisikan nilai *default* untuk `props` dengan menambahkan properti khusus `defaultProps`:
 
 ```javascript
 class Greeting extends React.Component {
@@ -156,19 +165,19 @@ class Greeting extends React.Component {
   }
 }
 
-// Specifies the default values for props:
+// Menentukan nilai default dari props:
 Greeting.defaultProps = {
   name: 'Stranger'
 };
 
-// Renders "Hello, Stranger":
+// Render "Hello, Stranger":
 ReactDOM.render(
   <Greeting />,
   document.getElementById('example')
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+Jika kamu menggunakan alat transformasi Babel seperti [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , kamu dapat mendeklarasikan `defaultProps` sebagai properti *static* dalam komponen kelas React. Sintaks ini belum final dan akan membutuhkan tahapan kompilasi untuk berjalan di browser. Informasi lebih lanjut, silakan lihat [proposal class fields](https://github.com/tc39/proposal-class-fields).
 
 ```javascript
 class Greeting extends React.Component {
@@ -184,4 +193,4 @@ class Greeting extends React.Component {
 }
 ```
 
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+Properti `defaultProps` akan digunakan untuk memastikan bahwa `this.props.name` akan memiliki sebuah nilai jika tidak ada nilai yang diberikan oleh komponen induknya. Proses pengecekan tipe `propTypes` akan dijalankan setelah `defaultProps` berjalan, sehingga proses pengecekan tipe juga akan berlaku untuk `defaultProps`.

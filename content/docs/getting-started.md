@@ -36,7 +36,7 @@ React has been designed from the start for gradual adoption, and **you can use a
 
 ### Online Playgrounds {#online-playgrounds}
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
 
 If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
 
@@ -69,7 +69,7 @@ If you feel that the React documentation goes at a faster pace than you're comfo
 
 ### React for Designers {#react-for-designers}
 
-If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
+If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
 
 ### JavaScript Resources {#javascript-resources}
 
@@ -79,7 +79,7 @@ We recommend going through [this JavaScript overview](https://developer.mozilla.
 
 >Tip
 >
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+>Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
 
 ### Practical Tutorial {#practical-tutorial}
 
@@ -99,7 +99,7 @@ Sometimes people find third-party books and video courses more helpful than the 
 
 ### Advanced Concepts {#advanced-concepts}
 
-Once you're comfortable with the [main concepts](#main-concepts) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
 
 ### API Reference {#api-reference}
 
@@ -115,7 +115,7 @@ The [React blog](/blog/) is the official source for the updates from the React t
 
 You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitter, but you won't miss anything essential if you only read the blog.
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
 
 ## Versioned Documentation {#versioned-documentation}
 
