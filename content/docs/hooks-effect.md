@@ -3,12 +3,12 @@ id: hooks-state
 title: Using the Effect Hook
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
-prev: hooks-intro.html
+prev: hooks-state.html
 ---
 
 *Hooks* adalah tambahan baru di React 16.8. *Hooks* memungkinkan Anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
 
-*Effect Hook* memungkinkan Anda melakukan efek samping (*side effects*) didalam *function components*:
+*Effect Hook* memungkinkan Anda melakukan efek samping (*side effects*) didalam *function component*:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -35,7 +35,7 @@ function Example() {
 
 Potongan code diatas berdasarkan pada [contoh *counter* dari halaman sebelumnya](/docs/hooks-state.html), tetapi kita menambahkan fitur baru didalamnya: kita akan mengisi judul dokumen dengan pesan kustom termasuk dari jumlah klik.
 
-Pengambilan data, pengaturan berlangganan(*subscription*) , dan perubahan manual DOM di dalam komponen React adalah beberapa contoh dari efek samping. Apakah Anda terbiasa menyebut memanggil operasi ini dengan sebutan efek samping (atau hanya "efek (*effects*)") atau tidak, Anda mungkin pernah melakukannya di dalam komponen Anda sebelumnya.
+Pengambilan data, pengaturan berlangganan (*subscription*) , dan perubahan manual DOM di dalam komponen React adalah beberapa contoh dari efek samping. Apakah Anda terbiasa menyebut memanggil operasi ini dengan sebutan efek samping (atau hanya "efek (*effects*)") atau tidak, Anda mungkin pernah melakukannya di dalam komponen Anda sebelumnya.
 
 >Tip
 >
@@ -49,7 +49,7 @@ Terkadang, kita ingin **menjalankan beberapa kode tambahan setelah React memperb
 
 ### Contoh Menggunakan Classes {#example-using-classes}
 
-Di dalam sebuah *class components* React, *method* *`render`* itu sendiri tidak seharusnya menyebabkan efek samping. Efek samping akan dijalankan terlalu awal -- kita biasanya ingin melakukan sebuah efek setelah React memperbarui DOM.
+Di dalam sebuah *class components* React, *method* `render` itu sendiri tidak seharusnya menyebabkan efek samping. Efek samping akan dijalankan terlalu awal -- kita biasanya ingin melakukan sebuah efek setelah React memperbarui DOM.
 
 Inilah kenapa didalam kelas *React*, kita meletakkan efek samping didalam `componentDidMount` dan `componentDidUpdate`. Kembali ke contoh kita, berikut adalah *class component counter* React yang memperbarui judul dokumen setelah React membuat perubahan pada DOM:
 
@@ -116,9 +116,9 @@ function Example() {
 
 **Apa yang dilakukan `useEffect`?** dengan menggunakan Hook ini, anda mengatakan kepada *React* bahwa komponen anda butuh menjalankan sestuatu setelah *render*. React akan mengingat fungsi yang anda berikan (kita akan menyebutnya sebagai "*effect*"), dan panggil itu nanti setelah DOM melakukan pembaruan. Di dalam *effect*, kita menentukan *document title*, tapi kita bisa juga melakukan pengambilan data atau memanggil beberapa API imperatif lainnya.
 
-**Kenapa `useEffect` dipanggil didalam komponen?** Meletakkan `useEffect` di dalam komponen memberikan kita akses *`count` state variable* (atau props apapun) langsung dari *effect*. Kita tidak membutuhkan API khusus untuk membacanya -- itu sudah dalam lingkup *function*. Hooks merangkul penutup JavaScript dan menghindari memperkenalkan APIs React-khusus dimana JavaScript sudah menyediakan solusinya.
+**Kenapa `useEffect` dipanggil didalam komponen?** Meletakkan `useEffect` di dalam komponen memberikan kita akses kepada variabel *state* `count` (atau *props* apapun) langsung dari *effect*. Kita tidak membutuhkan API khusus untuk membacanya -- itu sudah dalam lingkup *function*. Hooks merangkul penutup JavaScript dan menghindari memperkenalkan APIs React-khusus dimana JavaScript sudah menyediakan solusinya.
 
-**Apakah `useEffect` berjalan setiap setelah render?** Ya! Secara standar, itu berjalan baik setelah pertama kali render *dan* setiap setelah pembaruan. (Kita akan bicarakan nanti tentang [bagimana cara menyesuaikannya](#tip-optimizing-performance-by-skipping-effects).) alih-alih berpikir dalam hal "pemasangan" dan "pembaruan", anda mungkin lebih mudah berpikir bawah *effects* terjadi "setelah *render*". React menjamin bahwa DOM telah diperbarui pada saat menjalankan *effects*.
+**Apakah `useEffect` berjalan setiap setelah render?** Ya! Secara standar, `useEffect` berjalan setelah pertama kali render *dan* setiap setelah pembaruan. (Kita akan bicarakan nanti tentang [bagimana cara menyesuaikannya](#tip-optimizing-performance-by-skipping-effects).) alih-alih berpikir dalam hal "pemasangan" dan "pembaruan", anda mungkin lebih mudah berpikir bawah *effects* terjadi "setelah *render*". React menjamin bahwa DOM telah diperbarui pada saat menjalankan *effects*.
 
 ### Penjelasan Lebih Detail {#detailed-explanation}
 
@@ -198,17 +198,17 @@ Mari kita lihat bagaimana kita dapat menulis komponen ini dengan *Hooks*.
 
 Anda mungkin akan berpikir bahwa kita memerlukan *effect* terpisah untuk melakukan pembersihan. Tapi kode untuk menambah dan menghapus *subscription* sangat erat terkait sehingga `useEffect` didesain agar bisa untuk bersama sama. Jika *effect* anda mengembalikan sebuah *function*, React akan menjalakannya ketika sudah saat untuk melakukan pembersihan:
 
-```js{10-16}
+```js{6-16}
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -237,6 +237,10 @@ Kita telah belajar bahwa `useEffect` memungkinkan kita mengekspresikan berbagai 
 
 ```js
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -316,15 +320,15 @@ function FriendStatusWithCounter(props) {
 
   const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
   // ...
 }
 ```
@@ -333,7 +337,7 @@ function FriendStatusWithCounter(props) {
 
 ### Penjelasan: Mengapa *Effects* Berjalan di Setiap Pembaruan {#explanation-why-effects-run-on-each-update}
 
-Jika anda terbiasa menggunakan *classes*, anda mungkin bertanya-tanya mengapa fase pembersihan *effect* cleaup terjadi setelah setiap render ulang, dan tidak hanya sekali selama pelepasan. Mari kita lihat contoh praktis kenapa desain ini membatu kita membuat komponen dengan bug lebih sedikit.
+Jika anda terbiasa menggunakan *classes*, anda mungkin bertanya-tanya mengapa fase pembersihan *effect* cleaup terjadi setelah setiap *render* ulang, dan tidak hanya sekali selama pelepasan. Mari kita lihat contoh praktis kenapa desain ini membatu kita membuat komponen dengan *bug* lebih sedikit.
 
 [Sebelumnya dihalaman ini](#example-using-classes-1), kita memperkenalkan sebuah contoh komponen `FriendStatus` yang menampilkan apakah seorang teman sedang online atau tidak. *Class* kita membacah `friend.id` dari `this.props`, *subscribes* ke status teman setelah melakukan pemasangan pada komponen, dan *unsubscribes* selama pelepasan:
 
@@ -353,7 +357,7 @@ Jika anda terbiasa menggunakan *classes*, anda mungkin bertanya-tanya mengapa fa
   }
 ```
 
-**Tapi apa yang terjadi jika `friend` prop berubah** saat komponen sudah ada di layar? Komponen kita akan terus menampilkan status online teman yang berbeda. Ini adalah bug. Kita juga akan menyebabkan kebocoran memory atau kerusakan saat pelepasan karena pemanggilan unsubscribe akan menggunakan *ID* teman yang salah.
+**Tapi apa yang terjadi jika *props* `friend` berubah** saat komponen sudah ada di layar? Komponen kita akan terus menampilkan status online teman yang berbeda. Ini adalah bug. Kita juga akan menyebabkan kebocoran memory atau kerusakan saat pelepasan karena pemanggilan unsubscribe akan menggunakan *ID* teman yang salah.
 
 Dalam *class component*, kita perlu menambahkan`componentDidUpdate` untuk menangani kasus ini:
 
@@ -386,7 +390,7 @@ Dalam *class component*, kita perlu menambahkan`componentDidUpdate` untuk menang
   }
 ```
 
-Lupa untuk menangani `componentDidUpdate` dengan benar adalah sumber bug yang umum di applikasi *React*.
+Lupa untuk menangani `componentDidUpdate` dengan benar adalah sumber bug yang umum di applikasi React.
 
 Sekarang coba perhatikan versi komponen ini yang menggunakan *Hooks*:
 
@@ -394,6 +398,7 @@ Sekarang coba perhatikan versi komponen ini yang menggunakan *Hooks*:
 function FriendStatus(props) {
   // ...
   useEffect(() => {
+    // ...
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -401,7 +406,7 @@ function FriendStatus(props) {
   });
 ```
 
-Itu tidak memmbiarkan dari bug ini. (Tapi kita juga tidak melakukan perubahan apapun terhadapnya.)
+Komponen ini tidak akan mengalami *bug* ini. (Tapi kita juga tidak melakukan perubahan apapun terhadapnya.)
 
 Tidak ada kode spesial untuk menangani pembaruan karena `useEffect` menanganinnya secara *default*. Membersihkan *effects* sebelumnya sebelum menerapkan *effects* selanjutnya. Untuk menggambarkan hal ini, berikut adalah urutan pemanggilan *subscribe* dan pemanggilan unsubscribe yang dapat dihasilkan komponen ini dari waktu ke waktu:
 
@@ -449,8 +454,12 @@ Ketika kita me-*render* dengan `count` diperbarui ke `6`, React akan membandingk
 
 Ini juga bekerja untuk *effects* yang menggunakan fase pembersihan:
 
-```js{6}
+```js{10}
 useEffect(() => {
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
   ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -465,6 +474,9 @@ Kedepannya, Argumen kedua mungkin ditambahkan secara otomatis oleh *build-time t
 >Jika anda menggunakan pengoptimasian ini, pastikan *array* memasukkan **nilai apapun dari lingkup luar yang berubah setiap saat dan yang digunakan oleh effect**. Jika tidak,kode anda akan menjadi acuan nilai dari *renders* sebelumnya. Kita juga akan berdiskusi  tentang membahas optimasi yang lain di [Hooks API reference](/docs/hooks-reference.html).
 >
 >Jika anda ingin menjalankan *effect* dan membersihkannya hanya sekali saja (saat pemasangan dan pelepasan), anda dapat memberikan array kosong (`[]`) sebagai argument kedua. Ini memberi tahu React bahwa *effect* anda tidak bergantung pada *nilai* apapun dari props atau state, sehingga *effect* itu tidak perlu untuk dijalankan kembali. Ini tidak ditangani sebagai  kasus tertentu -- melainkan itu mengikuti langsung dari cara input array bekerja. Ketika kita memberikan `[]` kepada yang biasa kita sebut `componentDidMount` dan `componentWillUnmount` mental model, kami sarankan untuk tidak menjadikannya kebiasaan karena menyebabkan bug, [seperti yang sudah pernah dibahas diatas](#explanation-why-effects-run-on-each-update). Jangan lupa bahwa React menolak untuk menjalankan `useEffect` hingga browser telah selesai dijalnkan, jadi melakukan pekerjaan ekstra tidak akan menjadi masalah.
+>
+>Kita merekomendasikan menggunakan aturan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dari package [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Ini akan memperingatkan ketika depedensi ditentukan dengan cara yang salah dan menyarankan perbaikan.
+
 
 ## Langkah Selanjutnya {#next-steps}
 
