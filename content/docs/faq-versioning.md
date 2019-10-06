@@ -10,11 +10,13 @@ React mengikuti prinsip-prinsip [*semantic versioning* (semver)](https://semver.
 
 Yang artinya dengan nomor versi **x.y.z**:
 
+* Ketika merilis **perbaikan *bug* yang serius**, kita membuat sebuah **rilis *patch*** dengan mengubah nomor **z** (misal: 15.6.2 menjadi 15.6.3).
+* Ketika merilis **fitur-fitur baru** atau **perbaikan *non-critical***, kita membuat sebuah **rilis minor** dengan mengubah nomor **y** (misal: 15.6.2 menjadi 15.7.0).
 * Ketika merilis **perubahan besar**, kita membuat **rilis mayor** dengan mengubah nomor **x** (misal: 15.6.2 menjadi 16.0.0). 
-* Ketika merilis **fitur-fitur baru**, kita membuat sebuah **rilis minor** dengan mengubah nomor **y** (misal: 15.6.2 menjadi 15.7.0).
-* Ketika merilis **perbaikan *bug***, kita membuat sebuah **rilis *patch*** dengan mengubah nomor **z** (misal: 15.6.2 menjadi 15.6.3).
 
 Rilis mayor dapat juga mengandung fitur-fitur baru, dan rilis apa pun dapat menyertakan perbaikan *bug*.
+
+Rilis minor merupakan jenis rilis yang paling umum.
 
 ### Perubahan Besar {#breaking-changes}
 
@@ -46,3 +48,17 @@ Secara umum, kami tidak mengubah nomor versi mayor untuk perubahan-perubahan:
 Kebijakan ini dirancang untuk menjadi pragmatis: tentu saja, kami tidak ingin membuat Anda sakit kepala. Jika kami mengubah versi mayor untuk semua perubahan ini, kami akan berakhir dengan merilis versi mayor lebih banyak dan tentunya mengakibatkan lebih banyak *versioning pain* untuk komunitas. Hal ini juga dapat berarti kami tidak dapat membuat kemajuan dalam mengembangkan React secepat yang kami inginkan.
 
 Maka dari itu, jika kami menyangka bahwa perubahan pada daftar ini akan mengakibatkan permasalahan yang luas pada komunitas, kami akan tetap melakukan yang terbaik untuk menyediakan jalur migrasi secara bertahap.
+
+### Jika Sebuah Rilis Minor Tidak Menyertakan Fitur Baru, Mengapa Hal Ini Sebuah *Patch*? {#minors-versus-patches}
+
+Sangat dimungkinkan bahwa sebuah rilis minor tidak terdapat fitur baru. [Hal ini diperbolehkan oleh *semver*](https://semver.org/#spec-item-7), yang menyebutkan **"[sebuah versi minor] DAPAT ditambahkan apabila fungsional baru yang substansial atau perbaikan diperkenalkan dalam kode pribadi. Hal ini TERMASUK perubahan level *patch*"**
+
+Bagaimanapun, hal ini menimbulkan pertanyaan mengapa rilis-rilis ini tidak diversikan sebagai *patch* saja.
+
+Jawabannya adalah bahwa perubahan apapun pada React (atau perangkat lunak lainnya) membawa risiko rusak dalam hal-hal yang tidak terduga. Bayangkan sebuah skenario dimana sebuah rilis *patch* yang memperbaiki sebuah *bug* secara tidak sengaja menimbulkan *bug* yang berbeda. Hal ini bukan saja akan mengganggu pengembang, tetapi juga merusak kepercayaan dirinya pada rilis *patch* di kemudian hari. Sangat disesalkan jika melakukan perubahan untuk sebuah *bug* yang jarang ditemui dalam praktik sehari-hari.
+
+Kami punya rekam jejak yang cukup baik untuk menjaga rilisan React yang bebas *bug*, tapi rilis *patch* juga mempunyai tingkat keandalan yang lebih tinggi karena kebanyakan pengembang berasumsi rilis *patch* dapat diadopsi tanpa menimbulkan konsekuensi yang merugikan.
+
+Untuk alasan-alasan tersebut, kami menyimpan rilis *patch* hanya untuk *bug* yang paling *serius* dan kerentanan keamanan.
+
+Jika sebuah rilis menyertakan perubahan-perubahan tidak penting - seperti refaktor internal, perubahan pada detail implementasi, peningkatan performa, atau perbaikan *bug* secara minor - kami akan mengubah versi minornya bahkan jika tidak ada fitur baru. 
