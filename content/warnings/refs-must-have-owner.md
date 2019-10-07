@@ -4,46 +4,45 @@ layout: single
 permalink: warnings/refs-must-have-owner.html
 ---
 
-You are probably here because you got one of the following error messages:
+Anda berada disini kemungkinan karena mendapati salah satu pesan kesalahan (_error_) berikut:
 
 *React 16.0.0+*
-> Warning:
+> _Warning:_
 >
-> Element ref was specified as a string (myRefName) but no owner was set. You may have multiple copies of React loaded. (details: https://fb.me/react-refs-must-have-owner).
+> _Element ref was specified as a string (myRefName) but no owner was set. You may have multiple copies of React loaded. (details: https://fb.me/react-refs-must-have-owner)_.
 
-*earlier versions of React*
-> Warning:
+*React versi sebelumnya*
+> _Warning:_
 >
-> addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded.
+> _addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded._
 
-This usually means one of three things:
+Biasanya ini terjadi karena salah satu dari tiga hal berikut:
 
-- You are trying to add a `ref` to a function component.
-- You are trying to add a `ref` to an element that is being created outside of a component's render() function.
-- You have multiple (conflicting) copies of React loaded (eg. due to a misconfigured npm dependency)
+- Anda mencoba untuk menambahkan `ref` pada sebuah _function component_.
+- Anda mencoba menambahkan `ref` pada sebuah elemen yang dibuat diluar fungsi `render()` komponen tersebut.
+- Anda memuat beberapa salinan React yang saling bertentangan (misalnya dikarenakan kesalahan konfigurasi dependensi npm).
 
-## Refs on Function Components {#refs-on-function-components}
+## _Refs_ pada _Function Components_ {#refs-on-function-components}
 
-If `<Foo>` is a function component, you can't add a ref to it:
-
+Jika `<Foo>` merupakan sebuah _function component_, Anda tidak dapat menambahkan _ref_ padanya.
 ```js
-// Doesn't work if Foo is a function!
+// Tidak akan bekerja jika Foo adalah sebuah fungsi!
 <Foo ref={foo} />
 ```
 
-If you need to add a ref to a component, convert it to a class first, or consider not using refs as they are [rarely necessary](/docs/refs-and-the-dom.html#when-to-use-refs).
+Jika anda perlu menambahkan _ref_ pada sebuah komponen, ubahlah komponen tersebut menjadi kelas terlebih dahulu, atau pertimbangkan untuk tidak menggunakan _ref_ karena biasanya _ref_ [jarang diperlukan](/docs/refs-and-the-dom.html#when-to-use-refs).
 
 ## Strings Refs Outside the Render Method {#strings-refs-outside-the-render-method}
 
-This usually means that you're trying to add a ref to a component that doesn't have an owner (that is, was not created inside of another component's `render` method). For example, this won't work:
+## _String Ref_ Berada Diluar _Method Render_ {#strings-refs-outside-the-render-method}
 
+Biasanya ini terjadi ketika Anda mencoba untuk menambahkan _ref_ pada komponen yang tidak ada pemiliknya (yaitu komponen yang tidak dibuat didalam _method_ `render` komponen lain). Contohnya, kode ini tidak bisa jalan:
 ```js
-// Doesn't work!
+// Tidak bisa jalan!
 ReactDOM.render(<App ref="app" />, el);
 ```
 
-Try rendering this component inside of a new top-level component which will hold the ref. Alternatively, you may use a callback ref:
-
+Cobalah untuk me-_render_ komponen ini didalam sebuah komponen dengan level lebih tinggi yang dapat memuat _ref_-nya. Sebagai alternatif, Anda dapat menggunakan _callback ref_:
 ```js
 let app;
 ReactDOM.render(
@@ -54,10 +53,10 @@ ReactDOM.render(
 );
 ```
 
-Consider if you [really need a ref](/docs/refs-and-the-dom.html#when-to-use-refs) before using this approach.
+Coba pertimbangkan apakah Anda [benar-benar membutuhkan _ref_](/docs/refs-and-the-dom.html#when-to-use-refs) sebelum menggunakan pendekatan ini.
 
-## Multiple copies of React {#multiple-copies-of-react}
+## Beberapa salinan React {#multiple-copies-of-react}
 
-Bower does a good job of deduplicating dependencies, but npm does not. If you aren't doing anything (fancy) with refs, there is a good chance that the problem is not with your refs, but rather an issue with having multiple copies of React loaded into your project. Sometimes, when you pull in a third-party module via npm, you will get a duplicate copy of the dependency library, and this can create problems.
+Bower bekerja dengan baik dalam mengurangi duplikasi dependensi, namun tidak dengan npm. Jika Anda tidak melakukan sesuatu yang aneh-aneh dengan _ref_, kemungkinan permasalahannya tidak terletak pada _ref_, melainkan pada beberapa salinan React yang dimuat didalam proyek Anda. Terkadang jika Anda melakukan penarikan modul pihak ketiga melalui npm, Anda akan mendapatkan duplikasi salinan dari _library_ dependensi, dan ini akan menjadi masalah.
 
-If you are using npm... `npm ls` or `npm ls react` might help illuminate.
+Jika Anda menggunakan npm... `npm ls` atau `npm ls react` mungkin dapat membantu mencerahkan.
