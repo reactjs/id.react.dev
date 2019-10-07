@@ -32,8 +32,6 @@ Jika `<Foo>` merupakan sebuah _function component_, Anda tidak dapat menambahkan
 
 Jika anda perlu menambahkan _ref_ pada sebuah komponen, ubahlah komponen tersebut menjadi kelas terlebih dahulu, atau pertimbangkan untuk tidak menggunakan _ref_ karena biasanya _ref_ [jarang diperlukan](/docs/refs-and-the-dom.html#when-to-use-refs).
 
-## Strings Refs Outside the Render Method {#strings-refs-outside-the-render-method}
-
 ## _String Ref_ Berada Diluar _Method Render_ {#strings-refs-outside-the-render-method}
 
 Biasanya ini terjadi ketika Anda mencoba untuk menambahkan _ref_ pada komponen yang tidak ada pemiliknya (yaitu komponen yang tidak dibuat didalam _method_ `render` komponen lain). Contohnya, kode ini tidak bisa jalan:
@@ -42,7 +40,7 @@ Biasanya ini terjadi ketika Anda mencoba untuk menambahkan _ref_ pada komponen y
 ReactDOM.render(<App ref="app" />, el);
 ```
 
-Cobalah untuk me-_render_ komponen ini didalam sebuah komponen dengan level lebih tinggi yang dapat memuat _ref_-nya. Sebagai alternatif, Anda dapat menggunakan _callback ref_:
+Cobalah untuk me-_render_ komponen ini didalam sebuah komponen dengan level yang lebih tinggi untuk memuat _ref_-nya. Sebagai alternatif, Anda dapat menggunakan _callback ref_:
 ```js
 let app;
 ReactDOM.render(
@@ -57,6 +55,6 @@ Coba pertimbangkan apakah Anda [benar-benar membutuhkan _ref_](/docs/refs-and-th
 
 ## Beberapa salinan React {#multiple-copies-of-react}
 
-Bower bekerja dengan baik dalam mengurangi duplikasi dependensi, namun tidak dengan npm. Jika Anda tidak melakukan sesuatu yang aneh-aneh dengan _ref_, kemungkinan permasalahannya tidak terletak pada _ref_, melainkan pada beberapa salinan React yang dimuat didalam proyek Anda. Terkadang jika Anda melakukan penarikan modul pihak ketiga melalui npm, Anda akan mendapatkan duplikasi salinan dari _library_ dependensi, dan ini akan menjadi masalah.
+Bower bekerja dengan baik dalam mengurangi duplikasi dependensi, namun tidak dengan npm. Jika Anda tidak melakukan sesuatu yang aneh-aneh dengan _ref_, kemungkinan permasalahannya tidak terletak pada _ref_, melainkan pada beberapa salinan React yang dimuat didalam proyek Anda. Terkadang jika Anda menarik modul dari pihak ketiga melalui npm, Anda akan mendapatkan duplikasi salinan dari _library_ dependensi, dan ini akan menjadi masalah.
 
 Jika Anda menggunakan npm... `npm ls` atau `npm ls react` mungkin dapat membantu mencerahkan.
