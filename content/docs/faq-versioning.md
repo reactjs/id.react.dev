@@ -28,7 +28,7 @@ Sebaliknya, kami merilis fitur-fitur baru dalam versi-versi kecil. Yang artinya 
 
 Karena kami mengubah React setiap waktu, kami mengupayakan untuk meminimalisasi usaha yang dibutuhkan untuk memanfaatkan fitur-fitur baru. Ketika memungkinkan, kami akan tetap menjaga agar API yang lama tetap berfungsi, bahkan jika itu berarti menaruhnya dalam *package* terpisah. Misalnya, [*mixins* sudah tidak disarankan selama bertahun-tahun](/blog/2016/07/13/mixins-considered-harmful.html) tetapi masih didukung hingga sekarang [melalui *create-react-class*](/docs/react-without-es6.html#mixins) dan banyak basis kode yang tetap menggunakannya dalam kode *legacy* yang stabil.
 
-Lebih dari satu juta pengembang menggunakan React, secara kolektif merawat jutaan komponen. Basis kode Facebook sendiri mempunyai lebih dari 50,000 komponen. Yang artinya kami harus membuatnya semudah mungkin untuk meng-*upgrade* versi React yang baru; jika kami membuat perubahan-perubahan besar tanpa jalur migrasi, banyak orang akan terjebak pada versi yang lama. Kami menguji jalur-jalur pembaruan ini di Facebook sendiri - jika tim kami yang kurang dari 10 orang dapat memperbarui 50,000+ komponen sendiri, kami berharap pembaruannya dapat dikelola oleh semua orang yang menggunakan React. Dalam beberapa kasus, kami menulis [skrip otomatis](https://github.com/reactjs/react-codemod) untuk memperbarui sintaks komponen, yang kemudian kami sertakan dalam rilis *open-source* untuk digunakan semua orang.
+Lebih dari satu juta pengembang menggunakan React, secara kolektif merawat jutaan komponen. Basis kode Facebook sendiri mempunyai lebih dari 50,000 komponen. Yang artinya kami harus membuatnya semudah mungkin untuk memperbarui versi React yang baru; jika kami membuat perubahan-perubahan besar tanpa jalur migrasi, banyak orang akan terjebak pada versi yang lama. Kami menguji jalur-jalur pembaruan ini di Facebook sendiri - jika tim kami yang kurang dari 10 orang dapat memperbarui 50,000+ komponen sendiri, kami berharap pembaruannya dapat dikelola oleh semua orang yang menggunakan React. Dalam beberapa kasus, kami menulis [skrip otomatis](https://github.com/reactjs/react-codemod) untuk memperbarui sintaks komponen, yang kemudian kami sertakan dalam rilis *open-source* untuk digunakan semua orang.
 
 ### Pembaruan Bertahap melalui Peringatan {#gradual-upgrades-via-warnings}
 
@@ -41,7 +41,7 @@ Peringatan *development* tidak akan memengaruhi perilaku *runtime* aplikasi Anda
 Secara umum, kami tidak mengubah nomor versi mayor untuk perubahan-perubahan:
 
 * **Peringatan pengembangan.** Dikarenakan hal-hal ini tidak memengaruhi perilaku produksi, kami dapat menambahkan peringatan-peringatan baru atau mengubah peringatan-peringatan yang telah ada di antara versi mayor. Bahkan, inilah yang memungkinkan kami untuk memperingatkan tentang perubahan yang akan datang.
-* ***API* yang diawali dengan `unstable_.`** Hal ini disediakan sebagai fitur eksperimental yang *API*-nya belum kami yakini. Dengan merilisnya dengan prefiks `unstable_`, kami dapat beralih lebih cepat dan mendapatkan *API* yang stabil dengan segera.
+* **API yang diawali dengan `unstable_.`** Hal ini disediakan sebagai fitur eksperimental yang API-nya belum kami yakini. Dengan merilisnya dengan prefiks `unstable_`, kami dapat beralih lebih cepat dan mendapatkan API yang stabil dengan segera.
 * **Versi *alpha* dan *canary* dari React.** Kami menyediakan versi alfa dari React sebagai sebuah cara untuk mengetes fitur baru lebih awal, akan tetapi kami butuh fleksibilitas untuk melakukan perubahan-perubahan berdasarkan hal yang kami pelajari dari waktu alfa. Jika Anda menggunakan versi ini, catat bahwa *API*-nya dapat berubah sebelum *stable release*.
 * ***API* dan data struktur internal yang tidak terdokumentasi.** Jika Anda mengakses nama properti internal seperti `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` atau `__reactInternalInstance$uk43rzhitjg`, tidak ada jaminan. Kami tidak bertanggung jawab atas apapun.
 
@@ -49,7 +49,7 @@ Kebijakan ini dirancang untuk menjadi pragmatis: tentu saja, kami tidak ingin me
 
 Maka dari itu, jika kami menyangka bahwa perubahan pada daftar ini akan mengakibatkan permasalahan yang luas pada komunitas, kami akan tetap melakukan yang terbaik untuk menyediakan jalur migrasi secara bertahap.
 
-### Jika Sebuah Rilis Minor Tidak Menyertakan Fitur Baru, Mengapa Hal Ini Sebuah *Patch*? {#minors-versus-patches}
+### Jika Sebuah Rilis Minor Tidak Menyertakan Fitur Baru, Mengapa Tidak Dijadikan Rilis *Patch*? {#minors-versus-patches}
 
 Sangat dimungkinkan bahwa sebuah rilis minor tidak terdapat fitur baru. [Hal ini diperbolehkan oleh *semver*](https://semver.org/#spec-item-7), yang menyebutkan **"[sebuah versi minor] DAPAT ditambahkan apabila fungsional baru yang substansial atau perbaikan diperkenalkan dalam kode pribadi. Hal ini TERMASUK perubahan level *patch*"**
 
