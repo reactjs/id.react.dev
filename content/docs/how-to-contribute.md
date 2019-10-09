@@ -11,9 +11,9 @@ redirect_from:
 
 React is one of Facebook's first open source projects that is both under very active development and is also being used to ship code to everybody on [facebook.com](https://www.facebook.com). We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
-### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+### [Kode Etik](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Facebook telah mengadopsi [Persetujuan Kontributor](https://www.contributor-covenant.org/) sebagai Kode Etiknya, dan kami berharap peserta proyek mengikutinya. Dimohon untuk membaca [keseluruhannya](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) agar Anda dapat memahami tindakan apa yang akan dan tidak akan ditoleransi.
 
 ### Open Development {#open-development}
 
