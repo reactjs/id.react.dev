@@ -1,6 +1,6 @@
 ---
 id: how-to-contribute
-title: How to Contribute
+title: Cara Berkontribusi
 layout: contributing
 permalink: docs/how-to-contribute.html
 next: codebase-overview.html
@@ -15,9 +15,9 @@ React is one of Facebook's first open source projects that is both under very ac
 
 Facebook telah mengadopsi [Persetujuan Kontributor](https://www.contributor-covenant.org/) sebagai Kode Etiknya, dan kami berharap peserta proyek mengikutinya. Dimohon untuk membaca [keseluruhannya](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) agar Anda dapat memahami tindakan apa yang akan dan tidak akan ditoleransi.
 
-### Open Development {#open-development}
+### Pengembangan Terbuka {#open-development}
 
-All work on React happens directly on [GitHub](https://github.com/facebook/react). Both core team members and external contributors send pull requests which go through the same review process.
+Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://github.com/facebook/react). Baik anggota tim inti dan kontributor eksternal mengirimkan *pull requests* yang akan melewati proses peninjauan yang sama.
 
 ### Semantic Versioning {#semantic-versioning}
 
@@ -25,8 +25,11 @@ React follows [semantic versioning](https://semver.org/). We release patch versi
 
 Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
-### Branch Organization {#branch-organization}
+### Pengaturan Cabang {#branch-organization}
 
+Ajukan semua perubahan secara langsung pada [`cabang master`](https://github.com/facebook/react/tree/master). Kami tidak menggunakan cabang terpisah untuk pengembangan atau rilis yang akan datang. Kami mengupayakan yang terbaik untuk menjaga `master` dalam kondisi yang baik, dengan lulus semua tes.
+
+Kode yang tiba di `master` harus kompatibel dengan rilis terakhir yang stabil. 
 Submit all changes directly to the [`master branch`](https://github.com/facebook/react/tree/master). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
 
 Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
@@ -39,13 +42,17 @@ Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://gi
 
 React's build system will strip out disabled feature branches before publishing. A continuous integration job runs on every commit to check for changes in bundle size. You can use the change in size as a signal that a feature was gated correctly.
 
-### Bugs {#bugs}
+### Bug {#bugs}
 
-#### Where to Find Known Issues {#where-to-find-known-issues}
+#### Mencari Isu yang Diketahui {#where-to-find-known-issues}
+
+Kami menggunakan [Isu GitHub](https://github.com/facebook/react/issues) untuk bug publik. Kami sangat memperhatikan hal ini dan berusaha menjelaskan ketika kami sedang melakukan perbaikan secara internal. Sebelum mengajukan tugas baru, coba pastikan bahwa masalahmu belum pernah ada sebelumnya.
 
 We are using [GitHub Issues](https://github.com/facebook/react/issues) for our public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn't already exist.
 
 #### Reporting New Issues {#reporting-new-issues}
+
+Cara terbaik untuk memperbaiki bug Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mula yang baik.
 
 The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
@@ -60,7 +67,7 @@ Facebook has a [bounty program](https://www.facebook.com/whitehat/) for the safe
 
 There is also [an active community of React users on the Discord chat platform](https://www.reactiflux.com/) in case you need help with React.
 
-### Proposing a Change {#proposing-a-change}
+### Mengajukan Perubahan {#proposing-a-change}
 
 If you intend to change the public API, or make any non-trivial changes to the implementation, we recommend [filing an issue](https://github.com/facebook/react/issues/new). This lets us reach an agreement on your proposal before you put significant effort into it.
 
@@ -95,13 +102,21 @@ The core team is monitoring for pull requests. We will review your pull request 
 9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
 10. If you haven't already, complete the CLA.
 
-### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
+### Perjanjian Lisensi Kontributor (CLA) {#contributor-license-agreement-cla}
+
+Agar dapat menyetujui *pull request* Anda, Anda perlu melengkapi CLA. Anda hanya perlu melakukan ini sekali, jadi apabila anda pernah melakukan hal ini untuk proyek sumber terbuka Facebook yang lain. Jika ini adalah pertama kalinya anda mengirimkan *pull request*, beritahu kamu bahwa Anda telah melengkapi CLA Anda, dan kami akan memeriksa kembali dengan nama pengguna GitHub anda.
+
+**[Lengkapi CLA Anda di sini.](https://code.facebook.com/cla)**
 
 In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you've done this for another Facebook open source project, you're good to go. If you are submitting a pull request for the first time, just let us know that you have completed the CLA and we can cross-check with your GitHub username.
 
 **[Complete your CLA here.](https://code.facebook.com/cla)**
 
 ### Contribution Prerequisites {#contribution-prerequisites}
+
+* Anda telah memasang [Node](https://nodejs.org) pada v8.0.0+ dan Yarn](https://yarnpkg.com/en/) pada v1.2.0+.
+* 
+* 
 
 * You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
 * You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
@@ -154,31 +169,34 @@ You can check the status of your code styling by simply running `yarn linc`.
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
 
-### Introductory Video {#introductory-video}
+### Video Pengantar {#introductory-video}
+
+Anda mungkin tertarik untuk menonton [video singkat ini](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 menit) yang memberikan pengantar tentang bagaimana cara berkontribusi pada React.
 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
 
-#### Video highlights: {#video-highlights}
-- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Building and testing React locally
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Creating and sending pull requests
-- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organizing code
+#### Video yang Penting: {#video-highlights}
+- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Membangun dan menguji React secara lokal
+- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Membuat dan mengirimkan *pull request*
+- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Mengorganisir kode
 - [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
+- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Menambahkan fitur baru React
 
 For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
-### Request for Comments (RFC) {#request-for-comments-rfc}
+### Meminta Komentar (RFC) {#request-for-comments-rfc}
 
+Banyak perubahan, termasuk perbaikan bug dan penyempurnaan dokumentasi dapat diimplementasi dan ditinjau melalui alur *pull request* GitHub pada umumnya.
+
+Namum beberapa perubahan cukup "substansial", dan kami meminta agar perubahan tersebut dimasukkan ke dalam proses desain dan menciptakan kesepakatan di antara tim inti React.
+
+Proses RFC (meminta komentar) dimaksudkan untuk menyediakan jalur yang konsisten dan terkontrol untuk fitur baru yang akan masuk ke dalam proyek. Anda dapat berkontribusi dengan mengunjungi [repositori rfcs](https://github.com/reactjs/rfcs).
 Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
 
-Some changes though are "substantial", and we ask that these be put through a bit of a design process and produce a consensus among the React core team.
+### Lisensi {#license}
 
-The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the project. You can contribute by visiting the [rfcs repository](https://github.com/reactjs/rfcs).
+Dengan berkontribusi pada React, Anda menyetujui bahwa kontribusi Anda akan dilisensikan di bawah lisensi MIT.
 
-### License {#license}
+### Selanjutnya Apa? {#what-next}
 
-By contributing to React, you agree that your contributions will be licensed under its MIT license.
-
-### What Next? {#what-next}
-
-Read the [next section](/docs/codebase-overview.html) to learn how the codebase is organized.
+Bacalah [bab berikutnya](/docs/codebase-overview.html) untuk mempelajari bagaimana basis kode ini diorganisir.
