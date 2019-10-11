@@ -1,80 +1,80 @@
 ---
 id: hooks-overview
-title: Hooks at a Glance
+title: Sekilas tentang Hooks
 permalink: docs/hooks-overview.html
 next: hooks-state.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* merupakan penambahan baru pada React 16.8. *Hooks* memungkinkan Anda menggunakan *state* dan fitur React lainnya tanpa membuat sebuah kelas.
 
-Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a yellow box like this:
+*Hooks* merupakan fitur yang [*backwards-compatible*](/docs/hooks-intro.html#no-breaking-changes). Laman ini menyediakan ikhtisar mengenai *Hooks* untuk pengguna React yang berpengalaman. Laman ini merupakan ikhtisar yang singkat. Jika Anda kurang paham, carilah kotak kuning seperti di bawah ini:
 
->Detailed Explanation
+>Penjelasan Detail
 >
->Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
+>Baca laman [Motivasi](/docs/hooks-intro.html#motivation) untuk mengetahui kenapa kami mengenalkan *Hooks* pada React.
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ Setiap bagian diakhiri dengan kotak kuning seperti ini.** Kotak tersebut menghubungkan ke penjelasan yang lebih terperinci.
 
-## 📌 State Hook {#state-hook}
+## 📌 Hook State {#state-hook}
 
-This example renders a counter. When you click the button, it increments the value:
+Contoh berikut me-*render* sebuah penghitung. Jika tombol di klik, nilai akan bertambah:
 
 ```js{1,4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Deklarasi sebuah variabel state baru, dimana akan dinamakan "count"
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Anda klik sebanyak {count} kali</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Klik saya
       </button>
     </div>
   );
 }
 ```
 
-Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
+Disini, `useState` merupakan *Hook* (akan dibahas apa artinya sebentar lagi). `useState` di panggil dalam *function component* untuk menambahkan suatu *state* lokal. React akan menyimpan *state* antar *render*. `useState` memberikan dua hal: nilai *state* saat ini dan fungsi untuk memperbarui nilai tersebut. Anda dapat memanggil fungsi ini dari sebuah *event handler* atau dimanapun. Hal ini serupa dengan `this.setState` pada kelas, tetapi tidak menggabungkan `state` lama dan baru menjadi satu. (Akan kami berikan contoh perbandingan `useState` dengan `this.state` pada [Menggunakan Hook State](/docs/hooks-state.html).)
 
-The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
+Satu-satunya argumen pada `useState` yaitu nilai awal *state*. Pada contoh diatas, nilainya `0` karena penghitung mulai dari nol. Perlu diketahui bahwa tidak seperti `this.state`, *state* disini tidak harus berupa objek -- meskipun bisa jadi apapun yang diinginkan. Argumen nilai awal *state* hanya digunakan pada saat *render* pertama.
 
-#### Declaring multiple state variables {#declaring-multiple-state-variables}
+#### Mendeklarasikan beberapa variabel state {#declaring-multiple-state-variables}
 
-You can use the State Hook more than once in a single component:
+Anda dapat menggunakan *Hook* untuk *state* lebih dari sekali pada satu komponen:
 
 ```js
-function ExampleWithManyStates() {
-  // Declare multiple state variables!
+function ContohDenganBanyakState() {
+  // Deklarasi banyak variabel state!
   const [age, setAge] = useState(42);
-  const [fruit, setFruit] = useState('banana');
-  const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+  const [fruit, setFruit] = useState('pisang');
+  const [todos, setTodos] = useState([{ text: 'Belajar Hooks' }]);
   // ...
 }
 ```
 
-The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) syntax lets us give different names to the state variables we declared by calling `useState`. These names aren't a part of the `useState` API. Instead, React assumes that if you call `useState` many times, you do it in the same order during every render. We'll come back to why this works and when this is useful later.
+Sintaksis [*array destructuring*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) memungkinkan untuk memberi nama yang berbeda pada variabel *state* yang dideklarasikan dengan memanggil `useState`. Nama-nama tersebut bukan bagian dari API `useState`. React mengasumsikan jika Anda memanggil `useState` berkali-kali, Anda melakukannya dalam urutan yang sama saat setiap *render*. Kami akan kembali membahas kenapa ini berfungsi dan kapan ini berguna kedepannya.
 
-#### But what is a Hook? {#but-what-is-a-hook}
+#### Tetapi Apa itu Hook? {#but-what-is-a-hook}
 
-Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
+*Hooks* merupakan fungsi yang memungkinkan Anda untuk "mengaitkan" *state* dan fitur-fitur *lifecycle* React dari *function component*. *Hooks* tidak dapat berfungsi didalam kelas -- *Hooks* memungkinkan menggunakan React tanpa kelas. (Kami [tidak merekomendasikan](/docs/hooks-intro.html#gradual-adoption-strategy) membuat ulang komponen yang sudah ada tetapi Anda dapat menggunakan *Hooks* untuk komponen yang baru jika diinginkan.)
 
-React provides a few built-in Hooks like `useState`. You can also create your own Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
+React menyediakan beberapa *Hooks* bawaan seperti `useState`. Anda dapat membuat *Hooks* sendiri untuk menggunakan ulang *stateful behavior* antara komponen yang berbeda. Kami akan membahas *Hooks* bawaan terlebih dahulu.
 
->Detailed Explanation
+>Penjelasan Detail
 >
->You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
+>Anda dapat mempelajari lebih lanjut mengenai *Hook* State pada laman khusus: [Menggunakan Hook State](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook {#effect-hook}
+## ⚡️ Hook Effect {#effect-hook}
 
-You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
+Anda tentunya pernah melakukan pengambilan data, berlangganan data (*subscription*), atau secara manual mengubah DOM dari komponen React sebelumnya. Kami menyebut operasi-operasi seperti ini "efek samping (*side effects*)" (atau singkatnya "efek (*effects*)")  karena dapat mempengaruhi komponen lain dan tidak dapat dilakukan pada saat proses *render*.
 
-The Effect Hook, `useEffect`, adds the ability to perform side effects from a function component. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API. (We'll show examples comparing `useEffect` to these methods in [Using the Effect Hook](/docs/hooks-effect.html).)
+*Effect Hook*, `useEffect`, menambahkan kemampuan untuk melakukan "efek samping" dari sebuah *function component*. *Hook* ini memiliki fungsi yang sama dengan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` pada kelas React, tetapi disatukan menjadi satu API. (Kami akan memberi beberapa contoh perbandingan `useEffect` dengan metode ini pada [Menggunakan Hook Effect](/docs/hooks-effect.html).)
 
-For example, this component sets the document title after React updates the DOM:
+Sebagai contoh, komponen berikut menetapkan judul dokumen setelah React memperbarui DOM:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -82,26 +82,26 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Sama seperti componentDidMount dan componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
+    // Memperbarui judul dokumen menggunakan API browser
+    document.title = `Anda klik sebanyak ${count} kali`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Anda klik sebanyak {count} kali</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Klik saya
       </button>
     </div>
   );
 }
 ```
 
-When you call `useEffect`, you're telling React to run your "effect" function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render -- *including* the first render. (We'll talk more about how this compares to class lifecycles in [Using the Effect Hook](/docs/hooks-effect.html).)
+Pada saat memanggil `useEffect`, Anda memerintah React untuk menjalankan fungsi "efek" setelah membersihkan perubahan pada DOM. Efek dideklarasikan di dalam komponen sehingga mereka akan mendapat akses pada *prop* dan *state* komponen tersebut. Secara bawaan, React menjalankan efek setelah setiap *render* -- termasuk pada *render* pertama. (Akan kami bahas lebih banyak mengenai bagaimana hal ini jika di bandingkan dengan *lifecycle* pada kelas React di [Menggunakan Hook Effect](/docs/hooks-effect.html).)
 
-Effects may also optionally specify how to "clean up" after them by returning a function. For example, this component uses an effect to subscribe to a friend's online status, and cleans up by unsubscribing from it:
+Efek juga secara opsional menentukan bagaimana cara "membersihkan" setelahnya dengan memberikan sebuah fungsi. Sebagai contoh, komponen berikut menggunakan sebuah efek untuk berlangganan atau memperoleh status *online* teman, dan "membersihkan" dengan berhenti berlangganan (*unsubscribe*) darinya:
 
 ```js{10-16}
 import React, { useState, useEffect } from 'react';
@@ -128,15 +128,15 @@ function FriendStatus(props) {
 }
 ```
 
-In this example, React would unsubscribe from our `ChatAPI` when the component unmounts, as well as before re-running the effect due to a subsequent render. (If you want, there's a way to [tell React to skip re-subscribing](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects) if the `props.friend.id` we passed to `ChatAPI` didn’t change.)
+Pada contoh diatas, React akan berhenti berlangganan dari `ChatAPI` pada saat komponen dilepas, serta saat sebelum menjalankan kembali efeknya karena *render* berikutnya. (Jika diinginkan, ada cara untuk [memberitahu React untuk melewati proses berlangganan ulang](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects) jika `props.friend.id` yang diteruskan kepada `ChatAPI` tidak berubah.)
 
-Just like with `useState`, you can use more than a single effect in a component:
+Sama seperti `useState`, Anda dapat menggunakan lebih dari satu efek didalam komponen:
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Anda klik sebanyak ${count} kali`;
   });
 
   const [isOnline, setIsOnline] = useState(null);
@@ -153,32 +153,32 @@ function FriendStatusWithCounter(props) {
   // ...
 ```
 
-Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
+*Hooks* memungkinkan untuk menata atau mengatur efek samping pada suatu komponen dengan bagian-bagian mana yang terkait (seperti menambah dan menghapus suatu *subscription*), daripada memaksa pemisahan pada *lifecycle method*.
 
->Detailed Explanation
+>Penjelasan Detail
 >
->You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
+>Anda dapat belajar lebih lanjut mengenai `useEffect` pada laman khusus: [Menggunakan Hook Effect](/docs/hooks-effect.html).
 
-## ✌️ Rules of Hooks {#rules-of-hooks}
+## ✌️ Peraturan Hooks {#rules-of-hooks}
 
-Hooks are JavaScript functions, but they impose two additional rules:
+*Hooks* merupakan fungsi JavaScript, tetapi memberlakukan dua aturan tambahan:
 
-* Only call Hooks **at the top level**. Don’t call Hooks inside loops, conditions, or nested functions.
-* Only call Hooks **from React function components**. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks -- your own custom Hooks. We'll learn about them in a moment.)
+* Hanya panggil *Hooks* pada **tingkat teratas**. Jangan panggil *Hooks* di dalam perulangan, kondisi, atau fungsi bertingkat.
+* Hanya panggil *Hooks* dari **komponen fungsi React**. Jangan memanggil *Hooks* dari fungsi JavaScript biasa. (Hanya ada satu tempat yang diperbolehkan untuk memanggil *Hooks* -- *Hooks* buatan Anda sendiri. Kita akan belajar tentang hal tersebut sebentar lagi.)
 
-We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically. We understand these rules might seem limiting or confusing at first, but they are essential to making Hooks work well.
+Kami menyediakan [*linter plugin*](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memaksa aturan-aturan ini secara otomatis. Kami memahami aturan-aturan ini mungkin tampak membatasi atau membingungkan pada awalnya, tetapi mereka sangat penting untuk membuat *Hooks* berfungsi dengan baik.
 
->Detailed Explanation
+>Penjelasan Detail
 >
->You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
+>Anda dapat belajar lebih lanjut mengenai aturan-aturan tersebut pada laman khusus: [Peraturan Hooks](/docs/hooks-rules.html).
 
-## 💡 Building Your Own Hooks {#building-your-own-hooks}
+## 💡 Membangun Hooks Anda Sendiri {#building-your-own-hooks}
 
-Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
+Terkadang, kita ingin menggunakan kembali logika *stateful* antar komponen. Secara tradisional, ada dua solusi populer untuk masalah ini: [*higher-order component*](/docs/higher-order-components.html) dan [*render props*](/docs/render-props.html). *Hooks* kustom memungkinkan anda melakukan ini, tanpa menambahkan komponen lain pada *tree* komponen Anda.
 
-Earlier on this page, we introduced a `FriendStatus` component that calls the `useState` and `useEffect` Hooks to subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
+Sebelumnya pada laman ini, kami mengenalkan komponen `FriendStatus` yang memanggil *Hooks* `useState` dan `useEffect` untuk berlangganan status *online* teman. Katakanlah kita juga ingin menggunakan kembali logika berlangganan ini pada komponen lain.
 
-First, we'll extract this logic into a custom Hook called `useFriendStatus`:
+Pertama, kita akan mengekstrak logika ini ke dalam *Hook* kustom yang disebut `useFriendStatus`:
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -201,10 +201,9 @@ function useFriendStatus(friendID) {
 }
 ```
 
-It takes `friendID` as an argument, and returns whether our friend is online.
+`friendID` dibutuhkan sebagai argumen, dan memberikan apakah teman tersebut sedang online.
 
-Now we can use it from both components:
-
+Sekarang kita bisa menggunakannya dari kedua komponen:
 
 ```js{2}
 function FriendStatus(props) {
@@ -229,19 +228,19 @@ function FriendListItem(props) {
 }
 ```
 
-The state of these components is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+*State* dari komponen-komponen tersebut sepenuhnya independen. *Hooks* merupakan salah satu cara untuk menggunakan ulang *stateful logic*, bukan *state* itu sendiri. Faktanya, setiap panggilan kepada sebuah *Hook* memiliki *state* yang sepenuhnya terisolasi -- sehingga Anda dapat menggunakan *Hook* kustom yang sama dua kali dalam satu komponen.
 
-Custom Hooks are more of a convention than a feature. If a function's name starts with "`use`" and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+*Hook* kustom merupakan sebuah konvensi daripada sebuah fitur. Jika suatu nama fungsi dimulai dengan "`use`" dan memanggil *Hooks* lainnya, kami menganggapnya sebagai *Hook* kustom. Konvensi penamaan `useSomething` merupakan cara dari *linter plugin* kami dapat menemukan kesalahan (*bug*) dalam kode yang menggunakan *Hooks*.
 
-You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. We are excited to see what custom Hooks the React community will come up with.
+Anda dapat menulis *Hooks* kustom yang mencakup berbagai studi kasus seperti penanganan *form*, animasi, perolehan data deklaratif, *timer*, dan mungkin banyak lagi yang belum kami pertimbangkan. Kami senang melihat *Hooks* kustom apa saja yang akan dibuat oleh komunitas React.
 
->Detailed Explanation
+>Penjelasan Detail
 >
->You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
+>Anda dapat belajar lebih lanjut mengenai *Hooks* kustom pada laman khusus: [Membangun Hooks Anda Sendiri](/docs/hooks-custom.html).
 
-## 🔌 Other Hooks {#other-hooks}
+## 🔌 Hooks Lainnya {#other-hooks}
 
-There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
+Ada beberapa *Hooks* bawaan yang kurang umum yang mungkin berguna bagi Anda. Contohnya, [`useContext`](/docs/hooks-reference.html#usecontext) memungkinkan untuk berlangganan atau memperoleh *context* React tanpa perlu menulis sintaksis bersarang:
 
 ```js{2,3}
 function Example() {
@@ -251,7 +250,7 @@ function Example() {
 }
 ```
 
-And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
+Dan [`useReducer`](/docs/hooks-reference.html#usereducer) memungkinkan Anda mengelola *state* lokal komponen yang kompleks menggunakan sebuah *reducer*:
 
 ```js{2}
 function Todos() {
@@ -259,14 +258,14 @@ function Todos() {
   // ...
 ```
 
->Detailed Explanation
+>Penjelasan Detail
 >
->You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
+>Anda dapat belajar lebih lanjut mengenai semua *Hooks* bawaan pada laman khusus: [Referensi API Hooks](/docs/hooks-reference.html).
 
-## Next Steps {#next-steps}
+## Langkah Selanjutnya {#next-steps}
 
-Phew, that was fast! If some things didn't quite make sense or you'd like to learn more in detail, you can read the next pages, starting with the [State Hook](/docs/hooks-state.html) documentation.
+Wah, cepat sekali! Jika ada beberapa bagian yang kurang Anda pahami atau Anda ingin belajar lebih detail, Anda dapat membaca laman berikutnya, dimulai dari dokumentasi [State Hook](/docs/hooks-state.html).
 
-You can also check out the [Hooks API reference](/docs/hooks-reference.html) and the [Hooks FAQ](/docs/hooks-faq.html).
+Anda juga dapat baca [referensi API Hooks](/docs/hooks-reference.html) dan [FAQ Hooks](/docs/hooks-faq.html).
 
-Finally, don't miss the [introduction page](/docs/hooks-intro.html) which explains *why* we're adding Hooks and how we'll start using them side by side with classes -- without rewriting our apps.
+Terakhir, jangan melewatkan [laman pengantar](/docs/hooks-intro.html) yang menjelaskan *mengapa* kami menambahkan *Hooks* dan bagaimana kita akan mulai menggunakannya berdampingan dengan kelas -- tanpa perlu menulis ulang aplikasi.

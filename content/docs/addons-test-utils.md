@@ -122,7 +122,8 @@ it('bisa render dan memperbarui counter', () => {
 });
 ```
 
-Jangan lupa dalam mengirim perihal DOM hanya dapat dilakukan ketika penampung DOM sudah ditambahkan ke `document`. Anda dapat menggunakan penunjang seperti [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) untuk mengurangi kode _boilerplate_.
+- Jangan lupa bahwa mengirim *event* DOM hanya dapat dilakukan ketika penampung DOM sudah ditambahkan ke `document`. Anda dapat menggunakan *library* seperti [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) untuk mengurangi kode _boilerplate_.
+- Dokumen [`recipes`](/docs/testing-recipes.html) berisi lebih detil mengenai cara kerja `act()`, lengkap dengan contoh dan cara penggunaan.
 
 * * *
 
@@ -140,7 +141,7 @@ Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ be
 > Catatan:
 >
 
-> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [shallow rendering](/docs/shallow-renderer.html) atau [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 

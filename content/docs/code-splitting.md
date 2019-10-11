@@ -4,15 +4,11 @@ title: Code-Splitting
 permalink: docs/code-splitting.html
 ---
 
-## Bundling {#bundling}
+## Bundel {#bundling}
 
-Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
-Bundling is the process of following imported files and merging them into a
-single file: a "bundle". This bundle can then be included on a webpage to load
-an entire app at once.
+Kebanyakan aplikasi React akan "membundel" *file* menggunakan alat bantu seperti [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) atau [Browserify](http://browserify.org/). Pembundelan ini adalah sebuah proses yang menelusuri sejumlah *file* yang terimpor dan digabungkan menjadi sebuah file: sebuah "bundel". Bundel ini kemudian dapat digunakan dalam halaman web untuk memuat keseluruhan aplikasi sekaligus.
 
-#### Example {#example}
+#### Contoh {#example}
 
 **App:**
 
@@ -30,7 +26,7 @@ export function add(a, b) {
 }
 ```
 
-**Bundle:**
+**Bundel:**
 
 ```js
 function add(a, b) {
@@ -40,44 +36,29 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Note:
+> Catatan:
 >
-> Your bundles will end up looking a lot different than this.
+> Bundel Anda akan terlihat sangat berbeda dari contoh yang ada.
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
+Jika Anda menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), atau alat bantu lain yang serupa, maka Anda akan sudah mempunyai pengaturan Webpack bawaan dari alat bantu tersebut untuk membundel aplikasi Anda. 
 
-If you aren't, you'll need to setup bundling yourself. For example, see the
-[Installation](https://webpack.js.org/guides/installation/) and
-[Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
-Webpack docs.
+Jika tidak, maka Anda perlu untuk membuat sendiri pengaturan pembundelan. Sebagai contoh, Anda bisa melihat panduan pengaturan Webpack di
+[Installation](https://webpack.js.org/guides/installation/) dan
+[Getting Started](https://webpack.js.org/guides/getting-started/).
 
 ## Code Splitting {#code-splitting}
 
-Bundling is great, but as your app grows, your bundle will grow too. Especially
-if you are including large third-party libraries. You need to keep an eye on
-the code you are including in your bundle so that you don't accidentally make
-it so large that your app takes a long time to load.
+Bundel adalah hal yang bagus, namun seiring berkembangnya aplikasi Anda, ukuran bundel Anda akan membesar juga. Terutama jika Anda menggunakan *library* dari pihak ketiga. Anda perlu untuk sangat memperhatikan kode yang akan dimasukkan ke dalam bundel sehingga Anda tidak secara tidak sengaja menjadikannya berukuran sangat besar sehingga butuh waktu lama untuk memuat aplikasi anda.
 
-To avoid winding up with a large bundle, it's good to get ahead of the problem
-and start "splitting" your bundle.
- [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
-supported by bundlers like Webpack and Browserify (via
-[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
-multiple bundles that can be dynamically loaded at runtime.
+Untuk menghindari masalah dengan bundel yang besar, ada baiknya Anda melakukan penanggulangan awal dan mulai untuk "memecah" bundel Anda. *Code-Splitting* adalah sebuah fitur yang didukung oleh *bundler* semacam [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) dan Browserify (menggunakan [factor-bundle](https://github.com/browserify/factor-bundle)) yang memungkinkan pembuatan banyak bundel yang dapat dimuat secara dinamis saat *runtime*.
 
-Code-splitting your app can help you "lazy-load" just the things that are
-currently needed by the user, which can dramatically improve the performance of
-your app. While you haven't reduced the overall amount of code in your app,
-you've avoided loading code that the user may never need, and reduced the amount
-of code needed during the initial load.
+*Code-splitting* pada aplikasi Anda dapat dimanfaatkan untuk melakukan *"lazy-load"* untuk memuat hanya hal-hal yang sedang dibutuhkan oleh pengguna saja, yang dapat meningkatkan performa aplikasi Anda secara drastis. Jumlah kode pada aplikasi Anda memang tidak berkurang, namun Anda telah mengurangi proses untuk memuat kode yang bahkan tidak dibutuhkan  oleh pengguna, serta mengurangi jumlah kode yang dimuat pada proses inisialisasi awal.
 
 ## `import()` {#import}
 
-The best way to introduce code-splitting into your app is through the dynamic
-`import()` syntax.
+Cara terbaik untuk memperkenalkan *code-splitting* ke dalam aplikasi Anda adalah dengan menggunakan sintaks *dynamic* `import()`.
 
-**Before:**
+**Sebelum:**
 
 ```js
 import { add } from './math';
@@ -85,55 +66,49 @@ import { add } from './math';
 console.log(add(16, 26));
 ```
 
-**After:**
+**Sesudah:**
 
 ```js
 import("./math").then(math => {
   console.log(math.add(16, 26));
 });
 ```
-
-> Note:
+> Catatan:
 >
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
+> Sintaks *dynamic* `import()` adalah sebuah
+> [proposal](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript) yang belum menjadi sebuah standar dalam bahasa pemrograman ini. Proposal ini diharapkan akan diterima dalam waktu dekat.
 
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya] (https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
-If you're setting up Webpack yourself, you'll probably want to read Webpack's
-[guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+Jika Anda membuat sendiri pengaturan Webpack Anda, Anda mungkin dapat melihat [panduan untuk melakukan *code-splitting* ini](https://webpack.js.org/guides/code-splitting/). Pengaturan Webpack Anda kira-kira akan terlihat mirip [seperti ini](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
-When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
-parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+Jika menggunakan [Babel](https://babeljs.io/), Anda perlu memastikan apakah Babel dapat membaca sintaks *dynamic import* ini namun tidak mengubahnya. Untuk itu Anda memerlukan [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import). 
 
 ## `React.lazy` {#reactlazy}
 
-> Note:
+> Catatan:
 >
-> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
+> `React.lazy` dan *Suspense* belum tersedia untuk aplikasi yang melakukan *render* di *server*. Jika Anda ingin melakukan *code-splitting* di aplikasi yang melakukan *render* di *server*, kami menyarankan untuk menggunakan [Loadable Components](https://github.com/smooth-code/loadable-components). Di *library* tersebut disediakan [panduan untuk memecah bundel untuk aplikasi yang melakukan *render* di server](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
 
-The `React.lazy` function lets you render a dynamic import as a regular component.
+Fungsi `React.lazy` memungkinkan Anda melakukan *render* hasil impor dinamis sebagai component biasa.
 
-**Before:**
+**Sebelum:**
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-**After:**
+**Sesudah:**
+
+```js
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+```
+
+Dengan menggunakan cara ini, bundel yang mengandung `OtherComponent` akan termuat secara otomatis ketika komponen ini ter-*render* pertama kalinya.
+
+`React.lazy` membutuhkan sebuah fungsi yang harus memanggil *dynamic* `import()`. Fungsi ini harus mengembalikan sebuah `Promise` yang menghasilkan modul dengan ekspor `default` yang mengandung sebuah komponen React.
+
+Komponen *lazy* kemudian akan ter-*render* di dalam sebuah komponen `Suspense`, yang membuat kita dapat memunculkan sebuah komponen pengganti (misalnya memunculkan indikator *loading*) selagi kita menunggu komponen *lazy* selesai dimuat.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -141,35 +116,14 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 function MyComponent() {
   return (
     <div>
-      <OtherComponent />
-    </div>
-  );
-}
-```
-
-This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
-
-`React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
-
-### Suspense {#suspense}
-
-If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
-
-```js
-const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Sedang memuat...</div>}>
         <OtherComponent />
       </Suspense>
     </div>
   );
 }
 ```
-
-The `fallback` prop accepts any React elements that you want to render while waiting for the component to load. You can place the `Suspense` component anywhere above the lazy component. You can even wrap multiple lazy components with a single `Suspense` component.
+*Props* `fallback` dapat diisi dengan elemen React apapun yang ingin Anda tampilkan selama menunggu komponen untuk dimuat. Anda bisa menggunakan komponen `Suspense` dimanapun di atas komponen yang dimuat secara *lazy*. Anda bahkan dapat membungkus beberapa komponen *lazy* dengan sebuah komponen *Suspense*.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -178,7 +132,7 @@ const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 function MyComponent() {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Sedang memuat...</div>}>
         <section>
           <OtherComponent />
           <AnotherComponent />
@@ -189,9 +143,9 @@ function MyComponent() {
 }
 ```
 
-### Error boundaries {#error-boundaries}
+### Batasan *Error* {#error-boundaries}
 
-If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with [Error Boundaries](/docs/error-boundaries.html). Once you've created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there's a network error.
+Jika sebuah modul gagal dimuat (misalnya karena kesalahan jaringan), maka sebuah *error* akan terpicu. Anda dapat menangani *error* tersebut untuk menampilkan *user experience* yang baik dan memungkinkan pembenahan kembali dengan menggunakan [Batasan *Error*](/docs/error-boundaries.html). Ketika Anda telah membuat batasan *error*, Anda dapat menggunakannya pada komponen *lazy* untuk memunculkan tampilan *error* khusus ketika terjadi kesalahan jaringan.
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
@@ -201,7 +155,7 @@ const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 const MyComponent = () => (
   <div>
     <MyErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Sedang memuat...</div>}>
         <section>
           <OtherComponent />
           <AnotherComponent />
@@ -212,19 +166,13 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting {#route-based-code-splitting}
+## *Code splitting* berdasarkan *route* {#route-based-code-splitting}
 
-Deciding where in your app to introduce code splitting can be a bit tricky. You
-want to make sure you choose places that will split bundles evenly, but won't
-disrupt the user experience.
+Tidak selalu mudah menentukan untuk mulai mengimplementasikan *code splitting* di aplikasi anda. Anda ingin memastikan di mana sebuah bundel dapat terbagi dengan baik tanpa mengganggu *user experience*.
 
-A good place to start is with routes. Most people on the web are used to
-page transitions taking some amount of time to load. You also tend to be
-re-rendering the entire page at once so your users are unlikely to be
-interacting with other elements on the page at the same time.
+Tempat awal yang baik untuk memulai adalah dari *route*. Kebanyakan orang yang menggunakan *web* sudah terbiasa dengan transisi antar halaman yang membutuhkan waktu untuk dimuat. Anda mungkin juga akan me-*render* ulang seluruh isi halaman sekaligus sehingga pengguna juga tidak akan berinteraksi dengan elemen lain pada halaman dalam waktu yang sama. 
 
-Here's an example of how to setup route-based code splitting into your app using
-libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+Berikut contoh bagaimana cara mengatur *code-splitting* berdasarkan *route* dengan `React.lazy` pada *library* semacam [React Router](https://reacttraining.com/react-router/).
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -235,7 +183,7 @@ const About = lazy(() => import('./routes/About'));
 
 const App = () => (
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Sedang memuat...</div>}>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/about" component={About}/>
@@ -247,7 +195,7 @@ const App = () => (
 
 ## Named Exports {#named-exports}
 
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
+`React.lazy` sementara ini hanya dapat digunakan untuk modul dengan ekspor `default`. Jika modul yang ingin Anda impor menggunakan *named exports* (ekspor modul yang diberi nama dan tidak menggunakan *default*), Anda dapat membuat modul perantara yang mengekspor ulang modul tersebut sebagai *default*. Cara ini memastikan proses *treeshaking* tetap berjalan dan tidak mengikutsertakan komponen yang tidak terpakai.
 
 ```js
 // ManyComponents.js
