@@ -40,7 +40,7 @@ Tim React sangat merekomendasikan solusi ini:
 
 [Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [satu halaman](/docs/glossary.html#single-page-application)** di React.
 
-Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 6 dan npm >= 5.2 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
+Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
 
 ```bash
 npx create-react-app my-app
@@ -54,7 +54,7 @@ npm start
 
 Create React App tidak mengatur bagian *backend* ataupun basis data; tapi hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
 
-Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app-) dan [Petunjuk Pengguna](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) Create React App.
+Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app--) dan [Petunjuk Pengguna](https://facebook.github.io/create-react-app/) Create React App.
 
 ### Next.js {#nextjs}
 

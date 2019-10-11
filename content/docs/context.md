@@ -15,6 +15,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
+  - [Context.displayName](#contextdisplayname)
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
@@ -54,7 +55,7 @@ For example, consider a `Page` component that passes a `user` and `avatarSize` p
 
 It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` prop:
+One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
 
 ```js
 function Page(props) {
@@ -68,7 +69,7 @@ function Page(props) {
 }
 
 // Now, we have:
-<Page user={user} />
+<Page user={user} avatarSize={avatarSize} />
 // ... which renders ...
 <PageLayout userLink={...} />
 // ... which renders ...
@@ -195,6 +196,20 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 > Note
 > 
 > For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+
+### `Context.displayName` {#contextdisplayname}
+
+Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+
+For example, the following component will appear as MyDisplayName in the DevTools:
+
+```js{2}
+const MyContext = React.createContext(/* some value */);
+MyContext.displayName = 'MyDisplayName';
+
+<MyContext.Provider> // "MyDisplayName.Provider" in DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
+```
 
 ## Examples {#examples}
 

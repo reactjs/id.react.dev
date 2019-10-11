@@ -3,12 +3,12 @@ id: hooks-state
 title: Using the Effect Hook
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
-prev: hooks-intro.html
+prev: hooks-state.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* adalah tambahan baru di React 16.8. *Hooks* memungkinkan Anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
 
-The *Effect Hook* lets you perform side effects in function components:
+*Effect Hook* memungkinkan Anda melakukan efek samping (*side effects*) didalam *function component*:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -16,9 +16,9 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Mirip dengan componentDidMount dan componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
+    // Memperbarui judul dokumen menggunakan API browser
     document.title = `You clicked ${count} times`;
   });
 
@@ -33,25 +33,25 @@ function Example() {
 }
 ```
 
-This snippet is based on the [counter example from the previous page](/docs/hooks-state.html), but we added a new feature to it: we set the document title to a custom message including the number of clicks.
+Potongan code diatas berdasarkan pada [contoh *counter* dari halaman sebelumnya](/docs/hooks-state.html), tetapi kita menambahkan fitur baru didalamnya: kita akan mengisi judul dokumen dengan pesan kustom termasuk dari jumlah klik.
 
-Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you're used to calling these operations "side effects" (or just "effects"), you've likely performed them in your components before.
+Pengambilan data, pengaturan berlangganan (*subscription*) , dan perubahan manual DOM di dalam komponen React adalah beberapa contoh dari efek samping. Apakah Anda terbiasa menyebut memanggil operasi ini dengan sebutan efek samping (atau hanya "efek (*effects*)") atau tidak, Anda mungkin pernah melakukannya di dalam komponen Anda sebelumnya.
 
 >Tip
 >
->If you're familiar with React class lifecycle methods, you can think of `useEffect` Hook as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined.
+>Jika Anda familiar dengan *React class lifecycle methods*, Anda dapat menganggap *Hook* `useEffect` sebagai`componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` yang disatukan.
 
-There are two common kinds of side effects in React components: those that don't require cleanup, and those that do. Let's look at this distinction in more detail.
+Terdapat 2 macam jenis efek samping didalam komponen React: yang tidak membutuhkan pembersihan, dan yang membutuhkan pembersihan. Mari lihat perbedaannya secara lebih detail.
 
-## Effects Without Cleanup {#effects-without-cleanup}
+## Effects Tanpa Pembersihan {#effects-without-cleanup}
 
-Sometimes, we want to **run some additional code after React has updated the DOM.** Network requests, manual DOM mutations, and logging are common examples of effects that don't require a cleanup. We say that because we can run them and immediately forget about them. Let's compare how classes and Hooks let us express such side effects.
+Terkadang, kita ingin **menjalankan beberapa kode tambahan setelah React memperbarui DOM.** Permintaan jaringan, mutasi DOM manual, dan pencatatan adalah contoh umum dari *effects* yang tidak membutuhkan pembersihan. Kita mengatakan seperti itu karena kita dapat menjalankannya dan langsung melupakannya. Mari kita bandingkan bagaimana *kelas* dan *Hooks* memungkinkan kita mengekspresikan efek samping (*side effects*) seperti itu.
 
-### Example Using Classes {#example-using-classes}
+### Contoh Menggunakan Classes {#example-using-classes}
 
-In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.
+Di dalam sebuah *class components* React, *method* `render` itu sendiri tidak seharusnya menyebabkan efek samping. Efek samping akan dijalankan terlalu awal -- kita biasanya ingin melakukan sebuah efek setelah React memperbarui DOM.
 
-This is why in React classes, we put side effects into `componentDidMount` and `componentDidUpdate`. Coming back to our example, here is a React counter class component that updates the document title right after React makes changes to the DOM:
+Inilah kenapa didalam kelas *React*, kita meletakkan efek samping didalam `componentDidMount` dan `componentDidUpdate`. Kembali ke contoh kita, berikut adalah *class component counter* React yang memperbarui judul dokumen setelah React membuat perubahan pada DOM:
 
 ```js{9-15}
 class Example extends React.Component {
@@ -83,15 +83,15 @@ class Example extends React.Component {
 }
 ```
 
-Note how **we have to duplicate the code between these two lifecycle methods in class.**
+Perhatikan bagaimana **kita dapat menduplikasi kode antara dua *lifecycle methods* didalam *class*.**
 
-This is because in many cases we want to perform the same side effect regardless of whether the component just mounted, or if it has been updated. Conceptually, we want it to happen after every render -- but React class components don't have a method like this. We could extract a separate method but we would still have to call it in two places.
+Ini karena dalam banyak kasus kita ingin melakukan efek samping yang sama terlepas dari apakah komponen baru saja dipasang, atau jika sudah diperbarui. Secara konsep, kita ingin hal ini terjadi setelah setiap *render* -- tetapi *class component* React tidak memiliki  *method* seperti ini. Kita bisa menyalin dua *method* terpisah tetapi kita masih harus memanggilnya di dua tempat.
 
-Now let's see how we can do the same with the `useEffect` Hook.
+Sekarang mari kita lihat bahwa kita dapat melakukan hal yang sama dengan `useEffect` *Hook*.
 
-### Example Using Hooks {#example-using-hooks}
+### Contoh Menggunakan Hooks {#example-using-hooks}
 
-We've already seen this example at the top of this page, but let's take a closer look at it:
+Kita telah melihat contoh ini di bagian atas halaman ini , tapi mari kita lihat lebih dekat lagi dibawah ini:
 
 ```js{1,6-8}
 import React, { useState, useEffect } from 'react';
@@ -114,15 +114,15 @@ function Example() {
 }
 ```
 
-**What does `useEffect` do?** By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our "effect"), and call it later after performing the DOM updates. In this effect, we set the document title, but we could also perform data fetching or call some other imperative API.
+**Apa yang dilakukan `useEffect`?** dengan menggunakan Hook ini, anda mengatakan kepada *React* bahwa komponen anda butuh menjalankan sestuatu setelah *render*. React akan mengingat fungsi yang anda berikan (kita akan menyebutnya sebagai "*effect*"), dan panggil itu nanti setelah DOM melakukan pembaruan. Di dalam *effect*, kita menentukan *document title*, tapi kita bisa juga melakukan pengambilan data atau memanggil beberapa API imperatif lainnya.
 
-**Why is `useEffect` called inside a component?** Placing `useEffect` inside the component lets us access the `count` state variable (or any props) right from the effect. We don't need a special API to read it -- it's already in the function scope. Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
+**Kenapa `useEffect` dipanggil didalam komponen?** Meletakkan `useEffect` di dalam komponen memberikan kita akses kepada variabel *state* `count` (atau *props* apapun) langsung dari *effect*. Kita tidak membutuhkan API khusus untuk membacanya -- itu sudah dalam lingkup *function*. Hooks merangkul penutup JavaScript dan menghindari memperkenalkan APIs React-khusus dimana JavaScript sudah menyediakan solusinya.
 
-**Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM has been updated by the time it runs the effects.
+**Apakah `useEffect` berjalan setiap setelah render?** Ya! Secara standar, `useEffect` berjalan setelah pertama kali render *dan* setiap setelah pembaruan. (Kita akan bicarakan nanti tentang [bagimana cara menyesuaikannya](#tip-optimizing-performance-by-skipping-effects).) alih-alih berpikir dalam hal "pemasangan" dan "pembaruan", anda mungkin lebih mudah berpikir bawah *effects* terjadi "setelah *render*". React menjamin bahwa DOM telah diperbarui pada saat menjalankan *effects*.
 
-### Detailed Explanation {#detailed-explanation}
+### Penjelasan Lebih Detail {#detailed-explanation}
 
-Now that we know more about effects, these lines should make sense:
+Sekarang kita tahu lebih banyak tentang *effects*, line ini seharusnya masuk akal:
 
 ```js
 function Example() {
@@ -131,23 +131,24 @@ function Example() {
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
+}
 ```
 
-We declare the `count` state variable, and then we tell React we need to use an effect. We pass a function to the `useEffect` Hook. This function we pass *is* our effect. Inside our effect, we set the document title using the `document.title` browser API. We can read the latest `count` inside the effect because it's in the scope of our function. When React renders our component, it will remember the effect we used, and then run our effect after updating the DOM. This happens for every render, including the first one.
+Kita mendeklarasikan *`count` state variable*, lalu kita memberitahu pada *React* kita perlu menggunakan *effect*. Kita memberikan *function* kepada `useEffect` *Hook*. *Function* ini kita berikan *kepada* *effect* kita. didalam *effect* kita, kita mengatur judul dokumen menggunakan `document.title` browser API. Kita dapat membaca  `count` terakhir di dalam *effect* karena berada dalam lingkup fungsi kita. Ketika *React renders* komponen kita, itu akan mengingatkan *effect*  yang kita gunakan, lalu menjalankan *effect* setelah memperbarui DOM. Ini terjadi untuk setiap *render*, termasuk yang pertama di *render*.
 
-Experienced JavaScript developers might notice that the function passed to `useEffect` is going to be different on every render. This is intentional. In fact, this is what lets us read the `count` value from inside the effect without worrying about it getting stale. Every time we re-render, we schedule a _different_ effect, replacing the previous one. In a way, this makes the effects behave more like a part of the render result -- each effect "belongs" to a particular render. We will see more clearly why this is useful [later on this page](#explanation-why-effects-run-on-each-update).
+Pengembang JavaScript yang berpengalaman mungkin memperhatikan bahwa *function* yang kita berikan kepada `useEffect` akan berbeda setiap render. Ini disengajai. Faktanya, inilah yang memungkinkan kita membaca nilai `count` dari dalam *effect* tanpa mengkhawatikan tentang getting stale. Setiap kali kita mengulangi-*render*, kita menjadwalkan *effect* yang berbeda, menggantikan yang sebelumnya. Di satu sisi, inilah yang membuat *effects* berjalan lebih dari bagian hasil render -- setiap *effect* memiliki render tertentu. Kita akan melihat lebih jelas mengapa itu sangat berguna [nanti pada halaman ini](#explanation-why-effects-run-on-each-update).
 
 >Tip
 >
->Unlike `componentDidMount` or `componentDidUpdate`, effects scheduled with `useEffect` don't block the browser from updating the screen. This makes your app feel more responsive. The majority of effects don't need to happen synchronously. In the uncommon cases where they do (such as measuring the layout), there is a separate [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Hook with an API identical to `useEffect`.
+>Tidak seperti `componentDidMount` atau `componentDidUpdate`, *effects* terjadwal dengan  `useEffect` tidak menghalangi browser dari memperbarui layar. Ini membuat applikasi anda merasa lebih responsif. sebagian besar effects tidak perlu terjadi *synchronously*. Dalam kasus yang tidak biasa dimana mereka melakukan (seperti pengukuran tata letak), ada *Hook* [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) yang terpisah dengan API identik dengan `useEffect`.
 
-## Effects with Cleanup {#effects-with-cleanup}
+## Effects dengan Pembersihan {#effects-with-cleanup}
 
-Earlier, we looked at how to express side effects that don't require any cleanup. However, some effects do. For example, **we might want to set up a subscription** to some external data source. In that case, it is important to clean up so that we don't introduce a memory leak! Let's compare how we can do it with classes and with Hooks.
+Sebelumnya, kita melihat bagaimana cara mengeskpresikan efek samping (*side effects*) yang tidak membutuhkan pembersihan. Namun, beberapa *effects* bisa melakukannya. Sebagai contoh, **kita mungkin ingin mengatur *subscription*** ke beberapa sumber data eksternal. dalam hal ini, penting untuk membersihkan agar tidak menyebabkan kebocoran memori! Mari kita bandingkan bagaimana kita melakukannya dengan *classes* dan dengan *Hooks*.
 
-### Example Using Classes {#example-using-classes-1}
+### Contoh Menggunakan Classes {#example-using-classes-1}
 
-In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`. For example, let's say we have a `ChatAPI` module that lets us subscribe to a friend's online status. Here's how we might subscribe and display that status using a class:
+Dalam *React class*, anda biasanya akan mengatur set subscription dalam `componentDidMount`, dan membersihkannya di `componentWillUnmount`. Sebagai contoh, Katakanlah kita mempunyai modul `ChatAPI` yang memungkinkan kita mengikuti status online seorang teman. Berikut cara kita mengikuti dan menampilkan status itu menggunakan *class*:
 
 ```js{8-26}
 class FriendStatus extends React.Component {
@@ -186,29 +187,29 @@ class FriendStatus extends React.Component {
 }
 ```
 
-Notice how `componentDidMount` and `componentWillUnmount` need to mirror each other. Lifecycle methods force us to split this logic even though conceptually code in both of them is related to the same effect.
+Perhatikan bagaimana `componentDidMount` dan `componentWillUnmount` perlu saling membutuhkan satu sama lain. *Lifecycle methods* memaksa kita untuk split membagi logika ini meskipun kedua kode tersebut secara konseptual terkait dengan *effect* yang sama.
 
->Note
+>Catatan
 >
->Eagle-eyed readers may notice that this example also needs a `componentDidUpdate` method to be fully correct. We'll ignore this for now but will come back to it in a [later section](#explanation-why-effects-run-on-each-update) of this page.
+>Pembaca mungkin melihat bahwa contoh ini juga membutuhkan `componentDidUpdate` *method* agar sepenuhnya benar. Kita akan mengabaikan ini untuk saat ini tapi akan kembali kesana [dibagian selanjutnya](#explanation-why-effects-run-on-each-update) dari halaman ini.
 
-### Example Using Hooks {#example-using-hooks-1}
+### Contoh Menggunakan Hooks {#example-using-hooks-1}
 
-Let's see how we could write this component with Hooks.
+Mari kita lihat bagaimana kita dapat menulis komponen ini dengan *Hooks*.
 
-You might be thinking that we'd need a separate effect to perform the cleanup. But code for adding and removing a subscription is so tightly related that `useEffect` is designed to keep it together. If your effect returns a function, React will run it when it is time to clean up:
+Anda mungkin akan berpikir bahwa kita memerlukan *effect* terpisah untuk melakukan pembersihan. Tapi kode untuk menambah dan menghapus *subscription* sangat erat terkait sehingga `useEffect` didesain agar bisa untuk bersama sama. Jika *effect* anda mengembalikan sebuah *function*, React akan menjalakannya ketika sudah saat untuk melakukan pembersihan:
 
-```js{10-16}
+```js{6-16}
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -223,20 +224,24 @@ function FriendStatus(props) {
 }
 ```
 
-**Why did we return a function from our effect?** This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it. This lets us keep the logic for adding and removing subscriptions close to each other. They're part of the same effect!
+**Kenapa kita mengembalikan sebuah fungsi dari *effect* kita?** Ini adalah sebuah mekanisme pembersihan untuk *effects*. Setiap *effect* dapat mengembalikan sebuah *function* setelah pembersihan. Ini memungkinkan kami tetap menjaga logika untuk menambah dan menghapus sebuah *subscriptions* yang dekat satu sama lain. Mereka adalah bagian dari *effect* yang sama!
 
-**When exactly does React clean up an effect?** React performs the cleanup when the component unmounts. However, as we learned earlier, effects run for every render and not just once. This is why React *also* cleans up effects from the previous render before running the effects next time. We'll discuss [why this helps avoid bugs](#explanation-why-effects-run-on-each-update) and [how to opt out of this behavior in case it creates performance issues](#tip-optimizing-performance-by-skipping-effects) later below.
+**Kapan tepatnya React membersihkan sebuah *effect*?** React menjalankan pembersihan ketika komponen dilepaskan. namun, apa yang kita pelajari diawal, *effects* berjalan untuk setiap render dan tidak hanya sekali. Inilah kenapa React *juga* membersihkan *effects* dari *render* sebelumnya, sebelum menjalankan *effects* di waktu yang berikutnya. Kami akan membahas [kenapa ini membantu dalam menghindari bugs](#explanation-why-effects-run-on-each-update) dan [bagaimana lebih memilih keluar dari kasus ini jika itu menciptakan masalah dalam performa](#tip-optimizing-performance-by-skipping-effects) nanti dibawah ini.
 
->Note
+>Catatan
 >
->We don't have to return a named function from the effect. We called it `cleanup` here to clarify its purpose, but you could return an arrow function or call it something different.
+>Kita tidak harus mengembalikan *function* yang disebutkan dari *effect*. Kita menyebutnya `cleanup` disini untuk memperjelas tujuannya, tapi anda dapat mengembalikan *arrow function* atau menyebutnya sesuatu yang berbeda.
 
 ## Recap {#recap}
 
-We've learned that `useEffect` lets us express different kinds of side effects after a component renders. Some effects might require cleanup so they return a function:
+Kita telah belajar bahwa `useEffect` memungkinkan kita mengekspresikan berbagai jenis efek samping (*side effects*) setelah komponen di *renders*. Beberapa *effects* mungkin membutuhkan pembersihan maka mereka mengembalikan sebuah *function*:
 
 ```js
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -244,7 +249,7 @@ We've learned that `useEffect` lets us express different kinds of side effects a
   });
 ```
 
-Other effects might not have a cleanup phase, and don't return anything.
+*Effects* lain mungkin tidak harus melakukan fase pembersihan, dan tidak mengembalikan apapun.
 
 ```js
   useEffect(() => {
@@ -252,21 +257,21 @@ Other effects might not have a cleanup phase, and don't return anything.
   });
 ```
 
-The Effect Hook unifies both use cases with a single API.
+*Effect Hook* menyatukan kedua *use cases* dengan satu API.
 
 -------------
 
-**If you feel like you have a decent grasp on how the Effect Hook works, or if you feel overwhelmed, you can jump to the [next page about Rules of Hooks](/docs/hooks-rules.html) now.**
+**Jika anda merasa memiliki pemahaman yang baik tentang  bagimana cara kerja *Effect Hook*, atau jika anda merasa kewalahan, anda dapat melompat ke [halaman selanjutnya tentang Aturean dari Hooks](/docs/hooks-rules.html) now.**
 
 -------------
 
-## Tips for Using Effects {#tips-for-using-effects}
+## Tips untuk Menggunakan Effects {#tips-for-using-effects}
 
-We'll continue this page with an in-depth look at some aspects of `useEffect` that experienced React users will likely be curious about. Don't feel obligated to dig into them now. You can always come back to this page to learn more details about the Effect Hook.
+Kita akan melanjutkan halaman ini dengan pandangan mendalam pada beberapa aspek `useEffect` bahwa pengguna dari React yang berpengalaman mungkin akan penasaran. Jangan merasa harus mengerti mereka sekarang. Anda dapat selalu kembali ke halaman ini untuk berlajar lebih lanjut dan detail tentang *Effect Hook*.
 
-### Tip: Use Multiple Effects to Separate Concerns {#tip-use-multiple-effects-to-separate-concerns}
+### Tip: Gunakan Banyak Effects untuk Memisahkan Masalah {#tip-use-multiple-effects-to-separate-concerns}
 
-One of the problems we outlined in the [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the counter and the friend status indicator logic from the previous examples:
+Salah satu masalah yang kita uraikan dalam [Motivasi](/docs/hooks-intro.html#complex-components-become-hard-to-understand) untuk *Hooks* adalah bahwa *class lifecycle methods* sering mengandung logika yang tidak terkait, tapi logika yang terkait akan dipecah menjadi beberapa *methods*. Berikut adalah komponen yang menggabungkan antara *counter* dan logika indikator status teman dari contoh sebelumnya:
 
 ```js
 class FriendStatusWithCounter extends React.Component {
@@ -303,9 +308,9 @@ class FriendStatusWithCounter extends React.Component {
   // ...
 ```
 
-Note how the logic that sets `document.title` is split between `componentDidMount` and `componentDidUpdate`. The subscription logic is also spread between `componentDidMount` and `componentWillUnmount`. And `componentDidMount` contains code for both tasks.
+Perhatikan bagimana logika tersebut menetapkan `document.title` dipisah antara `componentDidMount` dan `componentDidUpdate`. Logika *subscription* juga dipecah antara `componentDidMount` dan `componentWillUnmount`. dan `componentDidMount` berisi kode kedua tugas tersebut.
 
-So, how can Hooks solve this problem? Just like [you can use the *State* Hook more than once](/docs/hooks-state.html#tip-using-multiple-state-variables), you can also use several effects. This lets us separate unrelated logic into different effects:
+Jadi, bagaimana Hooks dapat mengatasi masalah ini? Sama seperti [anda dapat menggunakan *State* *Hook* lebih dari satu kali](/docs/hooks-state.html#tip-using-multiple-state-variables), anda juga dapat menggunakan beberapa *effects*. Ini memungkinkan kita memisahkan logika yang tidak terkait menjadi *effects* yang berbeda:
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
@@ -316,26 +321,26 @@ function FriendStatusWithCounter(props) {
 
   const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
   // ...
 }
 ```
 
-**Hooks lets us split the code based on what it is doing** rather than a lifecycle method name. React will apply *every* effect used by the component, in the order they were specified.
+**Hooks memungkinkan kita untuk membagi kode berdasarkan apa yang akan dilakukan** daripada *lifecycle method name*. React akan menerapkan *setiap* effect yang digunakan oleh komponen, sesuai urutannya.
 
-### Explanation: Why Effects Run on Each Update {#explanation-why-effects-run-on-each-update}
+### Penjelasan: Mengapa *Effects* Berjalan di Setiap Pembaruan {#explanation-why-effects-run-on-each-update}
 
-If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
+Jika anda terbiasa menggunakan *classes*, anda mungkin bertanya-tanya mengapa fase pembersihan *effect* cleaup terjadi setelah setiap *render* ulang, dan tidak hanya sekali selama pelepasan. Mari kita lihat contoh praktis kenapa desain ini membatu kita membuat komponen dengan *bug* lebih sedikit.
 
-[Earlier on this page](#example-using-classes-1), we introduced an example `FriendStatus` component that displays whether a friend is online or not. Our class reads `friend.id` from `this.props`, subscribes to the friend status after the component mounts, and unsubscribes during unmounting:
+[Sebelumnya dihalaman ini](#example-using-classes-1), kita memperkenalkan sebuah contoh komponen `FriendStatus` yang menampilkan apakah seorang teman sedang online atau tidak. *Class* kita membacah `friend.id` dari `this.props`, *subscribes* ke status teman setelah melakukan pemasangan pada komponen, dan *unsubscribes* selama pelepasan:
 
 ```js
   componentDidMount() {
@@ -353,9 +358,9 @@ If you're used to classes, you might be wondering why the effect cleanup phase h
   }
 ```
 
-**But what happens if the `friend` prop changes** while the component is on the screen? Our component would continue displaying the online status of a different friend. This is a bug. We would also cause a memory leak or crash when unmounting since the unsubscribe call would use the wrong friend ID.
+**Tapi apa yang terjadi jika *props* `friend` berubah** saat komponen sudah ada di layar? Komponen kita akan terus menampilkan status online teman yang berbeda. Ini adalah bug. Kita juga akan menyebabkan kebocoran memory atau kerusakan saat pelepasan karena pemanggilan unsubscribe akan menggunakan *ID* teman yang salah.
 
-In a class component, we would need to add `componentDidUpdate` to handle this case:
+Dalam *class component*, kita perlu menambahkan`componentDidUpdate` untuk menangani kasus ini:
 
 ```js{8-19}
   componentDidMount() {
@@ -386,14 +391,15 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   }
 ```
 
-Forgetting to handle `componentDidUpdate` properly is a common source of bugs in React applications.
+Lupa untuk menangani `componentDidUpdate` dengan benar adalah sumber bug yang umum di applikasi React.
 
-Now consider the version of this component that uses Hooks:
+Sekarang coba perhatikan versi komponen ini yang menggunakan *Hooks*:
 
 ```js
 function FriendStatus(props) {
   // ...
   useEffect(() => {
+    // ...
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -401,9 +407,9 @@ function FriendStatus(props) {
   });
 ```
 
-It doesn't suffer from this bug. (But we also didn't make any changes to it.)
+Komponen ini tidak akan mengalami *bug* ini. (Tapi kita juga tidak melakukan perubahan apapun terhadapnya.)
 
-There is no special code for handling updates because `useEffect` handles them *by default*. It cleans up the previous effects before applying the next effects. To illustrate this, here is a sequence of subscribe and unsubscribe calls that this component could produce over time:
+Tidak ada kode spesial untuk menangani pembaruan karena `useEffect` menanganinnya secara *default*. Membersihkan *effects* sebelumnya sebelum menerapkan *effects* selanjutnya. Untuk menggambarkan hal ini, berikut adalah urutan pemanggilan *subscribe* dan pemanggilan unsubscribe yang dapat dihasilkan komponen ini dari waktu ke waktu:
 
 ```js
 // Mount with { friend: { id: 100 } } props
@@ -421,11 +427,11 @@ ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // Run next effect
 ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Clean up last effect
 ```
 
-This behavior ensures consistency by default and prevents bugs that are common in class components due to missing update logic.
+Tindakan ini memastikan konsistensi secara default dan mencegah bugs yang biasanya ada di *class components* karena kesalahan logika pembaruan.
 
-### Tip: Optimizing Performance by Skipping Effects {#tip-optimizing-performance-by-skipping-effects}
+### Tip: Mengoptimalkan Performa dengan Melewati Effects {#tip-optimizing-performance-by-skipping-effects}
 
-In some cases, cleaning up or applying the effect after every render might create a performance problem. In class components, we can solve this by writing an extra comparison with `prevProps` or `prevState` inside `componentDidUpdate`:
+Dalam beberapa kasus, Pembersihan atau penerapan *effect* setelah setiap *render* memungkinkan dapat menimbulkan masalah pada performa. Dalam *class components*, kita dapat menyelesaikan ini dengan menulis perbandingan ekstra dengan `prevProps` atau `prevState` di dalam `componentDidUpdate`:
 
 ```js
 componentDidUpdate(prevProps, prevState) {
@@ -435,7 +441,7 @@ componentDidUpdate(prevProps, prevState) {
 }
 ```
 
-This requirement is common enough that it is built into the `useEffect` Hook API. You can tell React to *skip* applying an effect if certain values haven't changed between re-renders. To do so, pass an array as an optional second argument to `useEffect`:
+Kebutuhan ini cukup umum sehingga dibangun di `useEffect` *Hook API*. Anda dapat memberitahu React untuk *melewati* menerapkan *effect* jika nilai-nilai tertentu tidak ada yang berubah diantara yang di *renders* ulang. Untuk melakukannya, kirim *array* sebagai argumen opsiopan ke dua di `useEffect`:
 
 ```js{3}
 useEffect(() => {
@@ -443,14 +449,18 @@ useEffect(() => {
 }, [count]); // Only re-run the effect if count changes
 ```
 
-In the example above, we pass `[count]` as the second argument. What does this mean? If the `count` is `5`, and then our component re-renders with `count` still equal to `5`, React will compare `[5]` from the previous render and `[5]` from the next render. Because all items in the array are the same (`5 === 5`), React would skip the effect. That's our optimization.
+Contoh di atas, kita mengirim `[count]` sebagai argumen kedua. Apa artinya ini ? Jika `count` = `5`, lalu komponen kira me-*renders* ulang dengan `count` yang jumlahnya masih sama dengan `5`, React akan membandingkan `[5]` dari *render* sebelumnya dan `[5]` dari *render* selanjutnya. Karena semua item di dalam *array* adalah sama yaitu (`5 === 5`), React akan melewati effect. Itulah optimasi dari kita.
 
-When we render with `count` updated to `6`, React will compare the items in the `[5]` array from the previous render to items in the `[6]` array from the next render. This time, React will re-apply the effect because `5 !== 6`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
+Ketika kita me-*render* dengan `count` diperbarui ke `6`, React akan membandingkan item di dalam `[5]` *array* dari *render* sebelumnya kepada item di dalam `[6]` *array* dari *render* sesudahnya. Kali ini, React akan menerapkan kembali *effect* karena `5 !== 6`. jika ada beberapa item di dalam array, React akan menjalankan kembali *effect* bahkan jika hanya salah satu dari mereka yang berbeda.
 
-This also works for effects that have a cleanup phase:
+Ini juga bekerja untuk *effects* yang menggunakan fase pembersihan:
 
-```js{6}
+```js{10}
 useEffect(() => {
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
   ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -458,18 +468,21 @@ useEffect(() => {
 }, [props.friend.id]); // Only re-subscribe if props.friend.id changes
 ```
 
-In the future, the second argument might get added automatically by a build-time transformation.
+Kedepannya, Argumen kedua mungkin ditambahkan secara otomatis oleh *build-time transformation*.
 
->Note
+>Catatan
 >
->If you use this optimization, make sure the array includes **any values from the outer scope that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. We'll also discuss other optimization options in the [Hooks API reference](/docs/hooks-reference.html).
+>Jika anda menggunakan pengoptimasian ini, pastikan *array* memasukkan **nilai apapun dari lingkup luar yang berubah setiap saat dan yang digunakan oleh effect**. Jika tidak,kode anda akan menjadi acuan nilai dari *renders* sebelumnya. Kita juga akan berdiskusi  tentang membahas optimasi yang lain di [Hooks API reference](/docs/hooks-reference.html).
 >
->If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the inputs array always works. While passing `[]` is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, we suggest not making it a habit because it often leads to bugs, [as discussed above](#explanation-why-effects-run-on-each-update). Don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>Jika anda ingin menjalankan *effect* dan membersihkannya hanya sekali saja (saat pemasangan dan pelepasan), anda dapat memberikan array kosong (`[]`) sebagai argument kedua. Ini memberi tahu React bahwa *effect* anda tidak bergantung pada *nilai* apapun dari props atau state, sehingga *effect* itu tidak perlu untuk dijalankan kembali. Ini tidak ditangani sebagai  kasus tertentu -- melainkan itu mengikuti langsung dari cara input array bekerja. Ketika kita memberikan `[]` kepada yang biasa kita sebut `componentDidMount` dan `componentWillUnmount` mental model, kami sarankan untuk tidak menjadikannya kebiasaan karena menyebabkan bug, [seperti yang sudah pernah dibahas diatas](#explanation-why-effects-run-on-each-update). Jangan lupa bahwa React menolak untuk menjalankan `useEffect` hingga browser telah selesai dijalnkan, jadi melakukan pekerjaan ekstra tidak akan menjadi masalah.
+>
+>Kita merekomendasikan menggunakan aturan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dari package [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Ini akan memperingatkan ketika depedensi ditentukan dengan cara yang salah dan menyarankan perbaikan.
 
-## Next Steps {#next-steps}
 
-Congratulations! This was a long page, but hopefully by the end most of your questions about effects were answered. You've learned both the State Hook and the Effect Hook, and there is a *lot* you can do with both of them combined. They cover most of the use cases for classes -- and where they don't, you might find the [additional Hooks](/docs/hooks-reference.html) helpful.
+## Langkah Selanjutnya {#next-steps}
 
-We're also starting to see how Hooks solve problems outlined in [Motivation](/docs/hooks-intro.html#motivation). We've seen how effect cleanup avoids duplication in `componentDidUpdate` and `componentWillUnmount`, brings related code closer together, and helps us avoid bugs. We've also seen how we can separate effects by their purpose, which is something we couldn't do in classes at all.
+Selamat! Ini adalah halaman yang panjang, tapi semoga sebagian besar pertanyaan anda tentang *effect* telah dijawab dihalaman ini. Anda telah mempelajari tentang *State Hook * dan *Effect Hook*, dan ada *banyak* hal yang dapat anda lakukan dengan kedua hal tersebut. Mereka mencakup sebagian besar dari kasus penggunaan untuk classes -- maupun tidak, anda mungkin menemukan [Hooks tambahan](/docs/hooks-reference.html) yang sangat membantu.
 
-At this point you might be questioning how Hooks work. How can React know which `useState` call corresponds to which state variable between re-renders? How does React "match up" previous and next effects on every update? **On the next page we will learn about the [Rules of Hooks](/docs/hooks-rules.html) -- they're essential to making Hooks work.**
+Kita juga mulai melihat bagaimana Hooks menyelesaikan masalah yang diuraikan dalam [Motivation](/docs/hooks-intro.html#motivation). Kita juga telah melihat bagaimana *effect* pembersihan menghindari duplikasi di `componentDidUpdate` dan `componentWillUnmount`, membuat code tersebut lebih dekat, dan membatu kita menghindari bug. Kita juga telah melihat bagaimana kita dapat memisahkan sebuah *effects* agar bisa dikelompokkan berdasarkan tujuannya, dan hal itu adalah sesuatu yang tidak dapat kita lakukan di *classes* yang sama.
+
+Pada point ini kamu mungkin bertanya bagaimana cara *Hooks* bekerja. Bagaimana React tau bahwa `useState` memanggil menghubungi koresponden untuk menandai variabel state yang dirender ulang? Bagaimana cara React "mencocokan" sebelum dan sesudah *effects* pada setiap perubahan? **Pada selanjutnya kita akan belajar tentang [Rules of Hooks](/docs/hooks-rules.html) -- yang akan menjelaskan bagaimana *Hooks* bekerja.**

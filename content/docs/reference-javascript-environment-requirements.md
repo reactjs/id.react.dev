@@ -11,8 +11,8 @@ React 16 membutuhkan tipe data *collection* seperti [Map](https://developer.mozi
 Lingkungan untuk React 16 yang sudah ditambahkan *polyfill* menggunakan *core-js* untuk mendukung *browser* lama mungkin terlihat seperti berikut:
 
 ```js
-import 'core-js/es6/map';
-import 'core-js/es6/set';
+import 'core-js/es/map';
+import 'core-js/es/set';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
