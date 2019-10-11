@@ -68,23 +68,15 @@ Berikutnya, tambahkan tiga *tag* `<script>` ke laman HTML tepat sebelum penutup 
 
 ### Langkah 3: Buat Sebuah Komponen React {#step-3-create-a-react-component}
 
-<<<<<<< HEAD
 Buat sebuah berkas bernama `like_button.js` tepat disebelah berkas laman HTML Anda.
 
-Buka **[kode permulaan](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** dan *paste*-kan kode tersebut ke berkas yang baru saja Anda buat.
-=======
-Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+Buka **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** dan *paste*-kan kode tersebut ke berkas yang baru saja Anda buat.
 
 >Tip
 >
 >Kode ini mendefinisikan sebuah komponen React bernama `LikeButton`. Jangan khawatir jika Anda belum memahaminya -- kita akan membahas blok-blok pembangun React nantinya di [tutorial langsung](/tutorial/tutorial.html) dan [panduan konsep utama](/docs/hello-world.html). Untuk sekarang, mari kita fokus untuk membuatnya muncul di layar terlebih dahulu!
 
-<<<<<<< HEAD
-Setelah **[kode permulaan](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, tambahkan dua barus di bawah berkas `like_button.js`:
-=======
-After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+Setelah **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, tambahkan dua barus di bawah berkas `like_button.js`:
 
 ```js{3,4}
 // ... kode permulaan yang telah Anda paste ...
