@@ -50,8 +50,7 @@ Jika tidak, maka Anda perlu untuk membuat sendiri pengaturan pembundelan. Sebaga
 
 Bundel adalah hal yang bagus, namun seiring berkembangnya aplikasi Anda, ukuran bundel Anda akan membesar juga. Terutama jika Anda menggunakan *library* dari pihak ketiga. Anda perlu untuk sangat memperhatikan kode yang akan dimasukkan ke dalam bundel sehingga Anda tidak secara tidak sengaja menjadikannya berukuran sangat besar sehingga butuh waktu lama untuk memuat aplikasi anda.
 
-Untuk menghindari masalah dengan bundel yang besar, ada baiknya Anda melakukan penanggulangan awal dan mulai untuk "memecah" bundel Anda. [*Code-Splitting*](https://webpack.js.org/guides/code-splitting/) adalah sebuah fitur yang didukung oleh *bundler* semacam Webpack dan Browserify (menggunakan
-[factor-bundle](https://github.com/browserify/factor-bundle)) yang memungkinkan pembuatan banyak bundel yang dapat dimuat secara dinamis saat *runtime*.
+Untuk menghindari masalah dengan bundel yang besar, ada baiknya Anda melakukan penanggulangan awal dan mulai untuk "memecah" bundel Anda. *Code-Splitting* adalah sebuah fitur yang didukung oleh *bundler* semacam [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) dan Browserify (menggunakan [factor-bundle](https://github.com/browserify/factor-bundle)) yang memungkinkan pembuatan banyak bundel yang dapat dimuat secara dinamis saat *runtime*.
 
 *Code-splitting* pada aplikasi Anda dapat dimanfaatkan untuk melakukan *"lazy-load"* untuk memuat hanya hal-hal yang sedang dibutuhkan oleh pengguna saja, yang dapat meningkatkan performa aplikasi Anda secara drastis. Jumlah kode pada aplikasi Anda memang tidak berkurang, namun Anda telah mengurangi proses untuk memuat kode yang bahkan tidak dibutuhkan  oleh pengguna, serta mengurangi jumlah kode yang dimuat pada proses inisialisasi awal.
 
