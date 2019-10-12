@@ -18,9 +18,9 @@ Rilis mayor dapat juga mengandung fitur-fitur baru, dan rilis apa pun dapat meny
 
 Rilis minor merupakan jenis rilis yang paling umum.
 
-### Perubahan Besar {#breaking-changes}
+### Perubahan yang Merusak Kompatibilitas {#breaking-changes}
 
-Perubahan besar tidaklah nyaman untuk semua orang, maka dari itu kami mengupayakan untuk meminimalisasi jumlah rilis-rilis mayor - misalnya, React 15 dirilis pada bulan April 2016 dan React 16 dirilis pada bulan September 2017; React 17 belum diperkirakan hingga tahun 2019.
+Semua orang tidak menyukai perubahan-perubahan yang merusak kompatibilitas, maka dari itu kami mengupayakan untuk meminimalisasi jumlah rilis-rilis mayor - misalnya, React 15 dirilis pada bulan April 2016 dan React 16 dirilis pada bulan September 2017; React 17 belum diperkirakan hingga tahun 2019.
 
 Sebaliknya, kami merilis fitur-fitur baru dalam versi-versi kecil. Yang artinya rilis-rilis kecil tersebut seringkali lebih menarik dan lebih memikat dibandingkan perubahan-perubahan besar, meskipun namanya sederhana.
 
