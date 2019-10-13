@@ -7,34 +7,34 @@ redirect_from:
 next: testing-recipes.html
 ---
 
-You can test React components similar to testing other JavaScript code.
+Anda dapat men-_testing_ komponen React mirip dengan men-_testing_ kode JavaScript lainnya.
 
-There are a few ways to test React components. Broadly, they divide into two categories:
+Ada beberapa cara untuk men-_testing_ komponen pada React. Secara umum, dibagi menjadi dua kategori:
 
-* **Rendering component trees** in a simplified test environment and asserting on their output.
-* **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
+* **_Rendering component trees_** di dalam tes _environment_ yang sudah disederhanakan dan ditegaskan pada outputnya.
+* **Menjalankan aplikasi lengkap** di dalam _environment_ browser asli (juga dikenal sebagai tes “end-to-end”).
 
-This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of scope of this section.
+Bagian dokumentasi ini berfokus pada strategi tes untuk kasus pertama. Sementara tes _end-to-end_ secara menyeluruh bisa sangat berguna untuk mencegah regresi terhadap alur kerja yang penting, tes semacam itu tidak diperhatikan terutama pada komponen React, dan berada di luar cakupan bagian ini.
 
 ### Tradeoffs {#tradeoffs}
 
 
-When choosing testing tools, it is worth considering a few tradeoffs:
+Saat memilih _testing tools_, perlu mempertimbangkan beberapa _tradeoffs_:
 
-* **Iteration speed vs Realistic environment:** Some tools offer a very quick feedback loop between making a change and seeing the result, but don't model the browser behavior precisely. Other tools might use a real browser environment, but reduce the iteration speed and are flakier on a continuous integration server.
-* **How much to mock:** With components, the distinction between a "unit" and "integration" test can be blurry. If you're testing a form, should its test also test the buttons inside of it? Or should a button component have its own test suite? Should refactoring a button ever break the form test?
+* **Kecepatan Iterasi vs _environment_ yang Realistis:** Beberapa _tools_ menawarkan _feedback loop_ yang sangat cepat antar membuat sebuah perubahan dan melihat hasilnya, tetapi jangan memodelkan _behavior_ dari browser dengan tepat. _Tools_ lain mungkin menggunakan _environment_ browser yang asli, tetapi mengurangi kecepatan iterasi dan lebih _flakier_ pada server integrasi berkelanjutan.
+* **Seberapa banyak _mock_:** Dengan komponen, perbedaan antara tes "unit" dan tes "integrasi" bisa tidak sesuai. Jika Anda men-_testing_ sebuah form, haruskah tes yang dilakukan juga menguji tombol yang ada di dalamnya? Atau haruskah komponen memiliki rangkaian tes sendiri? Haruskah _refactoring_ pada tombol yang dapat merusak tes pada form?
 
-Different answers may work for different teams and products.
+Jawaban yang berbeda mungkin berlaku untuk tim & produk yang berbeda.
 
-### Recommended Tools {#tools}
+### _Tools_ yang direkomendasikan {#tools}
 
-**[Jest](https://facebook.github.io/jest/)** is a JavaScript test runner that lets you access the DOM via [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface). While jsdom is only an approximation of how the browser works, it is often good enough for testing React components. Jest provides a great iteration speed combined with powerful features like mocking [modules](/docs/testing-environments.html#mocking-modules) and [timers](/docs/testing-environments.html#mocking-timers) so you can have more control over how the code executes.
+**[Jest](https://facebook.github.io/jest/)** adalah _test runner_ pada JavaScript yang memungkinkan Anda dapat mengakses DOM melalui [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface). Sementara jsdom hanyalah perkiraan cara kerja browser, seringkali cukup baik men-_testing_ komponen pada React. Jest memberikan kecepatan iterasi yang bagus dikombinasikan dengan fitur-fitur yang _powerful_ seperti mocking [modules](/docs/testing-environments.html#mocking-modules) dan [timers](/docs/testing-environments.html#mocking-timers) sehingga Anda dapat memiliki kontrol lebih pada kode yang dijalankan.
 
-**[React Testing Library](https://testing-library.com/react)** is a set of helpers that let you test React components without relying on their implementation details. This approach makes refactoring a breeze and also nudges you towards best practices for accessibility. Although it doesn't provide a way to "shallowly" render a component without its children, a test runner like Jest lets you do this by [mocking](/docs/testing-recipes.html#mocking-modules).
+**[React Testing Library](https://testing-library.com/react)** adalah seperangkat _helpers_ yang memungkinakan Anda men-_testing_ komponen pada React tanpa bergantung pada detail implementasinya. Pendekatan ini membuat _refactoring_ menjadi mudah dan juga mendorong Anda untuk menerapkan _best practices_ untuk aksesbilitas. Mungkin tidak memberikan cara untuk  me-_render_ "shallowly" pada sebuah komponen tanpa _children_, _test runner_ seperti Jest yang memungkinkan Anda melakukan [mocking](/docs/testing-recipes.html#mocking-modules).
 
-### Learn More {#learn-more}
+### Pembelajaran lainnya {#learn-more}
 
-This section is divided in two pages:
+Bagian ini dibagi dalam dua halaman:
 
-- [Recipes](/docs/testing-recipes.html): Common patterns when writing tests for React components.
-- [Environments](/docs/testing-environments.html): What to consider when setting up a testing environment for React components.
+- [_Recipes_](/docs/testing-recipes.html): _Common patterns_ pada saat menulis tes pada komponen React.
+- [_Environments_](/docs/testing-environments.html): Apa yang harus dipertimbangkan ketika menyiapkan _testing environment_ untuk komponen React.
