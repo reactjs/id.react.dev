@@ -110,9 +110,9 @@ Jika Anda mengimplementasikan dengan naifnya, memasukan sebuah elemen di awal me
 
 React akan mengubah setiap *child* daripada menyadari itu dapat menjaga keutuhan sub-pohon `<li>Duke</li>` dan `<li>Villanova</li>`. Ketidakefisienan ini bisa menjadi masalah.
 
-### Kunci {#keys}
+### Key {#keys}
 
-Untuk mengatasi masalah ini, React mendukung atribut `key`. Saat *children* memiliki kunci, React menggunakan kunci untuk mencocokan *children* di dalam pohon yang asli dengan *children* di dalam pohon selanjutnya. Sebagai contoh, menambahkan `key` pada contoh tidak efisien kita diatas dapat membuat konversi pohon efisien:
+Untuk mengatasi masalah ini, React mendukung atribut `key`. Saat *children* memiliki *key*, React menggunakan *key* untuk mencocokan *children* di dalam pohon yang asli dengan *children* di dalam pohon selanjutnya. Sebagai contoh, menambahkan `key` pada contoh tidak efisien kita diatas dapat membuat konversi pohon efisien:
 
 ```xml
 <ul>
@@ -127,21 +127,21 @@ Untuk mengatasi masalah ini, React mendukung atribut `key`. Saat *children* memi
 </ul>
 ```
 
-Sekarang React tahu bahwa elemen dengan kunci `'2014'` adalah yang baru, dan elemen dengan kunci `'2015'` dan `'2016'` telah dipindahkan.
+Sekarang React tahu bahwa elemen dengan *key* `'2014'` adalah yang baru, dan elemen dengan *key* `'2015'` dan `'2016'` telah dipindahkan.
 
-Dalam prakteknya, menemukan sebuah kunci biasanya tidak sulit. Elemen yang akan Anda tampilkan mungkin sudah memiliki ID yang unik, jadi kuncinya bisa saja berasal dari data Anda: 
+Dalam prakteknya, menemukan sebuah *key* biasanya tidak sulit. Elemen yang akan Anda tampilkan mungkin sudah memiliki ID yang unik, jadi *key*-nya bisa saja berasal dari data Anda: 
 
 ```js
 <li key={item.id}>{item.name}</li>
 ```
 
-Saat itu bukan kasusnya, Anda dapat menambahkan properti ID baru pada model Anda atau *hash* beberapa bagian dari konten untuk menghasilkan sebuah kunci. Kunci hanya harus unik antar *sibling*, bukan unik secara global.
+Saat itu bukan kasusnya, Anda dapat menambahkan properti ID baru pada model Anda atau *hash* beberapa bagian dari konten untuk menghasilkan sebuah *key*. *Key* hanya harus unik antar *sibling*, bukan unik secara global.
 
-Sebagai pilihan terakhir, Anda dapat mengoper sebuah indeks *item* dalam senarai (*array*) sebagai kunci. Ini dapat bekerja dengan baik jika *item-item* tidak pernah diurutkan kembali, tetapi pengurutan kembali akan menjadi lambat.
+Sebagai pilihan terakhir, Anda dapat mengoper sebuah indeks *item* dalam senarai (*array*) sebagai *key*. Ini dapat bekerja dengan baik jika *item-item* tidak pernah diurutkan kembali, tetapi pengurutan kembali akan menjadi lambat.
 
-Pengurutan kembali juga dapat menyebabkan masalah dengan *state* komponen saat indeks digunakan sebagai kunci. *Instance* komponen diperbarui dan digunakan kembali berdasarkan kuncinya. Jika kunci adalah indeks, memindahkan sebuah *item* akan mengubahnya. Sebagai hasil, *state* komponen untuk hal seperti *uncontrolled input* dapat tercampur dan diperbarui dengan cara yang tidak terduga.
+Pengurutan kembali juga dapat menyebabkan masalah dengan *state* komponen saat indeks digunakan sebagai *key*. *Instance* komponen diperbarui dan digunakan kembali berdasarkan *key*-nya. Jika *key* adalah indeks, memindahkan sebuah *item* akan mengubahnya. Sebagai hasil, *state* komponen untuk hal seperti *uncontrolled input* dapat tercampur dan diperbarui dengan cara yang tidak terduga.
 
-[Disini](codepen://reconciliation/index-used-as-key) adalah contoh masalah yang dapat disebabkan oleh penggunaan indeks sebagai kunci pada CodePen, dan [disini](codepen://reconciliation/no-index-used-as-key) adalah versi terbaru dari contoh yang sama menunjukan bagaimana agar tidak menggunakan indeks sebagai kunci akan memperbaiki pengurutan kembali, penyortiran, dan masalah yang saling terkait ini.
+[Disini](codepen://reconciliation/index-used-as-key) adalah contoh masalah yang dapat disebabkan oleh penggunaan indeks sebagai *key* pada CodePen, dan [disini](codepen://reconciliation/no-index-used-as-key) adalah versi terbaru dari contoh yang sama menunjukan bagaimana agar tidak menggunakan indeks sebagai *key* akan memperbaiki pengurutan kembali, penyortiran, dan masalah yang saling terkait ini.
 
 ## Pengorbanan {#tradeoffs}
 
@@ -153,4 +153,4 @@ Karena React bergantung pada heuristik, jika asumsi dibelakang mereka tidak terp
 
 1. Algoritma tidak akan mencoba untuk mencocokan sub-pohon dari jenis komponen yang berbeda. Jika Anda melihat diri Anda sendiri bergantian antara dua jenis komponen dengan keluaran yang sangat mirip, Anda mungkin ingin untuk membuatnya menjadi jenis yang sama. Dalam prakteknya, Kita belum menemukan ini sebagai masalah.
 
-2. Kunci harus stabil, dapat diprediksi, dan unik. Kunci yang tidak stabil (seperti yang diproduksi oleh `Math.random()`) akan menyebabkan banyak *instance* komponen dan node DOM tidak perlu diciptakan kembali, yang dapat menyebabkan penurunan kinerja dan *state* hilang dalam komponen *child*.
+2. *Key* harus stabil, dapat diprediksi, dan unik. *Key* yang tidak stabil (seperti yang diproduksi oleh `Math.random()`) akan menyebabkan banyak *instance* komponen dan node DOM tidak perlu diciptakan kembali, yang dapat menyebabkan penurunan kinerja dan *state* hilang dalam komponen *child*.
