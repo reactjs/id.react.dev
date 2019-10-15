@@ -21,7 +21,7 @@ HTML form elemen bekerja sedikit berbeda dari DOM elemen lainnya di React, karen
 </form>
 ```
 
-Form ini memiliki perilaku default dari form HTML biasa yakni menuju ke page baru ketika user men-submit form tersebut. Jika anda menginginkan perilaku seperti ini di React, ini sebenarnya dapat bekerja. Namun di banyak kasus, akan lebih mudah untuk memiliki sebuah fungsi JavaScript yang menangani sebuah submisi dari sebuah form dan memiliki akses terhadap data yang dimasukkan pengguna ke dalam form. Cara standar untuk mencapai hal ini adalah dengan teknik yang disebut "*controlled component*".
+Form ini memiliki perilaku dasar dari form HTML biasa yakni menuju ke page baru ketika user men-submit form tersebut. Jika anda menginginkan perilaku seperti ini di React, ini sebenarnya dapat bekerja. Namun di banyak kasus, akan lebih mudah untuk memiliki sebuah fungsi JavaScript yang menangani sebuah submisi dari sebuah form dan memiliki akses terhadap data yang dimasukkan pengguna ke dalam form. Cara standar untuk mencapai hal ini adalah dengan teknik yang disebut "*controlled component*".
 
 ## Controlled Component {#controlled-components}
 
@@ -295,4 +295,4 @@ Terkadang akan menjadi sulit untuk menggunakan *controlled components*, karena a
 
 ## Solusi Selengkapnya {#fully-fledged-solutions}
 
-Jika anda mencari solusi komplit termasuk validasi, melacak *fields* yang dikunjungi, dan menangani form pengajuan, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Meski begitu, itu dibuat dengan prinsip yang sama dengan *controlled components* dan mengelola state — jadi jangan abai untuk mempelajarinya.
+Jika anda mencari solusi komplit termasuk validasi, melacak *fields* yang dikunjungi, dan menangani form submisi, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Meski begitu, itu dibuat dengan prinsip yang sama dengan *controlled components* dan mengelola state — jadi jangan lalai untuk mempelajarinya.
