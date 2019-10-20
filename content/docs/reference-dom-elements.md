@@ -14,34 +14,27 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
 React mengimplementasikan sistem DOM yang independen terhadap browser demi performa dan kompabilitas lintas browser. Kami mengambil kesempatan untuk membersihikan beberapa sisi kasar dalam implementasi browser DOM.
 
-In React, all DOM properties and attributes (including event handlers) should be camelCased. For example, the HTML attribute `tabindex` corresponds to the attribute `tabIndex` in React. The exception is `aria-*` and `data-*` attributes, which should be lowercased. For example, you can keep `aria-label` as `aria-label`.
-di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, anda dapat membiarkan `aria-label` sebagai `aria-label`.
+Di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, anda dapat membiarkan `aria-label` sebagai `aria-label`.
 
-## Differences In Attributes {#differences-in-attributes}
+## Perbedaan Atribut {#differences-in-attributes}
 
-There are a number of attributes that work differently between React and HTML:
 Terdapat beberapa atribut yang bekerja secara berbeda antara React dan HTML:
 
 ### checked {#checked}
 
-The `checked` attribute is supported by `<input>` components of type `checkbox` or `radio`. You can use it to set whether the component is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
-Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `radio`. Anda dapat menggunakannya untuk mengatur apakah komponen telah di cek. Hal ini bermanfaat untuk membuat komponen yang dikendalikan. `defaultChecked` adalah komponen yang tidak terkontrol, yang mana mengatur apakah komponen telah di cek ketika pertama kali dipasang.
+Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `radio`. Anda dapat menggunakannya untuk mengatur apakah komponen telah di cek. Hal ini bermanfaat untuk membangun komponen yang dikendalikan. `defaultChecked` adalah padanan yang tidak terkontrol, yang menetapkan apakah komponen telah dicek ketika pertama kali dipasang.
 
 ### className {#classname}
 
-To specify a CSS class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<a>`, and others.
-untuk menentukan kelas CSS, gunakan atribut `className`. Hal ini berlaku untuk seluruh DOM reguler dan elemen SVG seperti `<div>`, `<a>`, dan yang lainnya.
+Untuk menentukan kelas CSS, gunakan atribut `className`. Hal ini berlaku untuk seluruh DOM reguler dan elemen SVG seperti `<div>`, `<a>`, dan lainnya.
 
-If you use React with Web Components (which is uncommon), use the `class` attribute instead.
 Jika anda menggunakan React dengan Komponen Web (yang mana tidak lazim), sebagai gantinya gunakan atribut `class`.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
-`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka pengguna anda kepada serangan [scripting lintas-situs (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting). Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi jika anda harus mengetik `dangerouslySetInnerHTML` dan melewatkan sebuah objek dengan kunci `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
+`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka celah serangan [cross-site scripting (XSS)](https://id.wikipedia.org/wiki/XSS) kepada pengguna anda. Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi anda harus mengetik `dangerouslySetInnerHTML` dan memberikan sebuah objek dengan *key* `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
 
 ```js
 function buatMarkup() {
@@ -55,29 +48,22 @@ function KomponenSaya() {
 
 ### htmlFor {#htmlfor}
 
-Since `for` is a reserved word in JavaScript, React elements use `htmlFor` instead.
-Sejak `for` adalah kata yang sudah dipesan di JavaScript, elemen React menggunakan `htmlFor` sebagai gantinya.
+Karena `for` adalah kata khusus dalam JavaScript, elemen React menggunakan `htmlFor` sebagai gantinya.
 
 ### onChange {#onchange}
 
-The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
-*event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
+*Event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
 
 ### selected {#selected}
 
-The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
-Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya untuk mengatur apakah komponen ini dipilih. Hal ini bermanfaat untuk membuat komponen yang dapat diatur.
+Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya untuk mengatur apakah komponen ini telah dipilih. Hal ini bermanfaat untuk membangun komponen yang dapat diatur.
 
 ### style {#style}
 
->Note
->
->Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
 >Catatan
 >
 >Beberapa contoh dalam dokumentasi ini menggunakan `style` untuk kenyamanan, tetapi **menggunakan atribiut `style` sebagai sarana utama *styling* elemen secara umum sangat tidak disarankan.** Pada kebanyakan kasus, [`className`](#classname) harus digunakan untuk untuk merujuk kelas yang  ditentukan pada *stylesheet* CSS eksternal. `style` paling sering digunakan pada aplikasi React untuk menambahkan *style* yang dikomputasi secara dinamis ketika waktu render. Lihat juga [FAQ: Styling dan CSS](/docs/faq-styling.html).
 
-The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
 Atribut `style` menerima objek JavaScript dengan properti *camelCase* dibanding sebuah *string* CSS. Hal ini konsisten dengan properti javascript DOM `style`, ini lebih efisien, dan menghindari celah security XSS. Sebagai contoh:
 
 ```js
@@ -91,8 +77,7 @@ function komponenHaloDunia() {
 }
 ```
 
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
-Perhatikan bahwa gaya tidak diperbaiki secara otomatis. Untuk mendukung browser lama, Anda perlu menyediakan properti *style* yang sesuai:
+Perhatikan bahwa *style* tidak diperbaiki secara otomatis. Untuk mendukung browser lama, Anda perlu menyediakan properti *style* yang sesuai:
 
 ```js
 const divStyle = {
@@ -105,11 +90,9 @@ function KomponenDenganTransisi() {
 }
 ```
 
-Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
-Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
+*Style keys* diberi *camelCase* agar konsisten dengan mengakses properti pada *node* DOM dari JS (mis. `node.style.backgroundImage`). Awalan vendor [selain `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) harus dimulai dengan huruf kapital. inilah mengapa `WebkitTransition` memiliki awalan "W".
 
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
+React secara otomatis akan menambahkan akhiran "px" ke properti *style* *inline* numerik tertentu. Jika Anda ingin menggunakan satuan selain "px", tentukan nilainya sebagai *string* dengan satuan yang diinginkan. Sebagai contoh:
 
 ```js
 // Hasil *style*: '10px'
@@ -123,38 +106,37 @@ React will automatically append a "px" suffix to certain numeric inline style pr
 </div>
 ```
 
-Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
-Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+Tidak semua properti *style* dikonversi menjadi *string* pixel. Beberapa yang lain tetap tanpa unit (mis. `zoom`, `order`, `flex`). Daftar properti tanpa unit yang lengkap dapat dilihat [disini](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.
+Secara normal, ada sebuah peringatan ketika elemen dengan *children* juga ditandai sebagai `contentEditable`, karena ini tidak akan berfungsi. Atribut ini menyembunyikan peringatan tersebut. Jangan gunakan ini terkecuali jika anda membangun sebuah library seberti [Draft.js](https://facebook.github.io/draft-js/) yang mengatur `contentEditable` secara manual.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+Jika Anda menggunakan *rendering* sisi server React, biasanya ada peringatan ketika server dan klien membuat konten yang berbeda. Namun, pada beberapa kasus yang jarang terjadi, sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Sebagai contoh, *timestamps* diharapkan berbeda di server dan di klien.
 
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+Jika anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
-The `value` attribute is supported by `<input>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+Atribut `value` didukung oleh komponen `<input>` dan `<textarea>`. Anda dapat menggunakannya untuk mengatur nilai komponen. Ini berguna untuk membangun komponen yang dikendalikan. `defaultValue` adalah komponen yang tidak terkontrol, yang menetapkan nilai komponen saat pertama kali dipasang.
 
 ## All Supported HTML Attributes {#all-supported-html-attributes}
 
-As of React 16, any standard [or custom](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes are fully supported.
+Pada React 16, semua standar [atau *custom*](/blog/2017/09/08/dom-attributes-in-react-16.html) atribut DOM sepenuhnya didukung.
 
-React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, React uses the `camelCase` convention just like the DOM APIs:
+React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil baik *props* khusus dan yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
-<div className="Button" /> // Just like node.className DOM API
-<input readOnly={true} />  // Just like node.readOnly DOM API
+<div tabIndex="-1" />      // Sama seperti node.tabIndex DOM API
+<div className="Button" /> // Sama seperti node.className DOM API
+<input readOnly={true} />  // Sama seperti node.readOnly DOM API
 ```
 
-These props work similarly to the corresponding HTML attributes, with the exception of the special cases documented above.
+*Props* ini bekerja mirip dengan atribut HTML yang sesuai, dengan pengecualian pada kasus khusus yang didokumentasikan di atas.
 
-Some of the DOM attributes supported by React include:
+Beberapa atribut DOM yang didukung oleh React meliputi:
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -172,7 +154,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-Similarly, all SVG attributes are fully supported:
+Demikian pula, semua atribut SVG didukung sepenuhnya:
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
@@ -193,7 +175,7 @@ limitingConeAngle local markerEnd markerHeight markerMid markerStart
 markerUnits markerWidth mask maskContentUnits maskUnits mathematical mode
 numOctaves offset opacity operator order orient orientation origin overflow
 overlinePosition overlineThickness paintOrder panose1 pathLength
-patternContentUnits patternTransform patternUnits pointer*event*s points
+patternContentUnits patternTransform patternUnits pointerEvents points
 pointsAtX pointsAtY pointsAtZ preserveAlpha preserveAspectRatio primitiveUnits
 r radius refX refY renderingIntent repeatCount repeatDur requiredExtensions
 requiredFeatures restart result rotate rx ry scale seed shapeRendering slope
@@ -211,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-You may also use custom attributes as long as they're fully lowercase.
+Anda juga dapat menggunakan atribut khusus selama menggunakan huruf kecil sepenuhnya.
