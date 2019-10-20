@@ -15,56 +15,70 @@ redirect_from:
 ---
 
 React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
+React mengimplementasikan sistem DOM yang independen terhadap browser demi performa dan kompabilitas lintas browser. Kami mengambil kesempatan untuk membersihikan beberapa sisi kasar dalam implementasi browser DOM.
 
 In React, all DOM properties and attributes (including event handlers) should be camelCased. For example, the HTML attribute `tabindex` corresponds to the attribute `tabIndex` in React. The exception is `aria-*` and `data-*` attributes, which should be lowercased. For example, you can keep `aria-label` as `aria-label`.
+di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, anda dapat membiarkan `aria-label` sebagai `aria-label`.
 
 ## Differences In Attributes {#differences-in-attributes}
 
 There are a number of attributes that work differently between React and HTML:
+Terdapat beberapa atribut yang bekerja secara berbeda antara React dan HTML:
 
 ### checked {#checked}
 
 The `checked` attribute is supported by `<input>` components of type `checkbox` or `radio`. You can use it to set whether the component is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `radio`. Anda dapat menggunakannya untuk mengatur apakah komponen telah di cek. Hal ini bermanfaat untuk membuat komponen yang dikendalikan. `defaultChecked` adalah komponen yang tidak terkontrol, yang mana mengatur apakah komponen telah di cek ketika pertama kali dipasang.
 
 ### className {#classname}
 
 To specify a CSS class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<a>`, and others.
+untuk menentukan kelas CSS, gunakan atribut `className`. Hal ini berlaku untuk seluruh DOM reguler dan elemen SVG seperti `<div>`, `<a>`, dan yang lainnya.
 
 If you use React with Web Components (which is uncommon), use the `class` attribute instead.
+Jika anda menggunakan React dengan Komponen Web (yang mana tidak lazim), sebagai gantinya gunakan atribut `class`.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
 `dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
+`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka pengguna anda kepada serangan [scripting lintas-situs (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting). Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi jika anda harus mengetik `dangerouslySetInnerHTML` dan melewatkan sebuah objek dengan kunci `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
 
 ```js
-function createMarkup() {
-  return {__html: 'First &middot; Second'};
+function buatMarkup() {
+  return {__html: 'Pertama &middot; Kedua'};
 }
 
-function MyComponent() {
-  return <div dangerouslySetInnerHTML={createMarkup()} />;
+function KomponenSaya() {
+  return <div dangerouslySetInnerHTML={buatMarkup()} />;
 }
 ```
 
 ### htmlFor {#htmlfor}
 
 Since `for` is a reserved word in JavaScript, React elements use `htmlFor` instead.
+Sejak `for` adalah kata yang sudah dipesan di JavaScript, elemen React menggunakan `htmlFor` sebagai gantinya.
 
 ### onChange {#onchange}
 
 The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+*event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
 
 ### selected {#selected}
 
 The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
+Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya untuk mengatur apakah komponen ini dipilih. Hal ini bermanfaat untuk membuat komponen yang dapat diatur.
 
 ### style {#style}
 
 >Note
 >
 >Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+>Catatan
+>
+>Beberapa contoh dalam dokumentasi ini menggunakan `style` untuk kenyamanan, tetapi **menggunakan atribiut `style` sebagai sarana utama *styling* elemen secara umum sangat tidak disarankan.** Pada kebanyakan kasus, [`className`](#classname) harus digunakan untuk untuk merujuk kelas yang  ditentukan pada *stylesheet* CSS eksternal. `style` paling sering digunakan pada aplikasi React untuk menambahkan *style* yang dikomputasi secara dinamis ketika waktu render. Lihat juga [FAQ: Styling dan CSS](/docs/faq-styling.html).
 
 The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
+Atribut `style` menerima objek JavaScript dengan properti *camelCase* dibanding sebuah *string* CSS. Hal ini konsisten dengan properti javascript DOM `style`, ini lebih efisien, dan menghindari celah security XSS. Sebagai contoh:
 
 ```js
 const divStyle = {
@@ -72,40 +86,44 @@ const divStyle = {
   backgroundImage: 'url(' + imgUrl + ')',
 };
 
-function HelloWorldComponent() {
-  return <div style={divStyle}>Hello World!</div>;
+function komponenHaloDunia() {
+  return <div style={divStyle}>Halo Dunia!</div>;
 }
 ```
 
 Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+Perhatikan bahwa gaya tidak diperbaiki secara otomatis. Untuk mendukung browser lama, Anda perlu menyediakan properti *style* yang sesuai:
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+  WebkitTransition: 'all', // perhatikan 'W' kapital disini
+  msTransition: 'all' // 'ms' adalah satu-satunya vendor dengan awalan huruf kecil
 };
 
-function ComponentWithTransition() {
-  return <div style={divStyle}>This should work cross-browser</div>;
+function KomponenDenganTransisi() {
+  return <div style={divStyle}>Ini harusnya berfungsi lintas browser</div>;
 }
 ```
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
+Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
+React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
 React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
 
 ```js
-// Result style: '10px'
+// Hasil *style*: '10px'
 <div style={{ height: 10 }}>
-  Hello World!
+  Halo Dunia!
 </div>
 
-// Result style: '10%'
+// Hasil *style*: '10%'
 <div style={{ height: '10%' }}>
-  Hello World!
+  Halo Dunia!
 </div>
 ```
 
+Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
@@ -175,7 +193,7 @@ limitingConeAngle local markerEnd markerHeight markerMid markerStart
 markerUnits markerWidth mask maskContentUnits maskUnits mathematical mode
 numOctaves offset opacity operator order orient orientation origin overflow
 overlinePosition overlineThickness paintOrder panose1 pathLength
-patternContentUnits patternTransform patternUnits pointerEvents points
+patternContentUnits patternTransform patternUnits pointer*event*s points
 pointsAtX pointsAtY pointsAtZ preserveAlpha preserveAspectRatio primitiveUnits
 r radius refX refY renderingIntent repeatCount repeatDur requiredExtensions
 requiredFeatures restart result rotate rx ry scale seed shapeRendering slope
