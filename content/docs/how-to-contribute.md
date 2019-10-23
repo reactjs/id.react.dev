@@ -9,7 +9,7 @@ redirect_from:
   - "tips/introduction.html"
 ---
 
-React is one of Facebook's first open source projects that is both under very active development and is also being used to ship code to everybody on [facebook.com](https://www.facebook.com). We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
+React adalah salah satu proyek sumber terbuka pertama milik Facebook yang berada dalam pengembangan yang sangat aktif sekaligus digunakan untuk mengirimkan kode pada semua orang di [facebook.com](https://www.facebook.com). Kami masih berusaha memperbaiki kekusutan yang ada untuk membuat proses kontribusi semudah dan setransparan mungkin, tapi kami belum sampai di sana. Semoga dokumen ini membuat proses berkontribusi menjadi jelas dan menjawab beberapa pertanyaan yang mungkin Anda miliki.
 
 ### [Kode Etik](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
@@ -33,11 +33,11 @@ Kode yang tiba di `master` harus kompatibel dengan rilis terakhir yang stabil. K
 
 ### Bendera Fitur {#feature-flags}
 
-To keep the `master` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+Untuk menjaga cabang `master` pada keadaan dapat dirilis, perubahan yang merusak dan fitur eksperimental harus dipagari di balik bendera fitur.
 
-Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
+Bendera fitur didefinisikan pada [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Beberapa _build_ dari React mungkin menmerapkan kumpulan bendera fitur yang berbeda; misalnya, _build_ React Native dikonfigurasi secara berbeda dari React DOM. Bendera-bendera ini dapat ditemukan di [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Bendera fitur umumnya dibuat secara statis oleh Flow, sehingga Anda dapat menjalankan `yarn flow` untuk memastikan bahwa Anda telah membarui semua _file_ yang dibutuhkan.
 
-React's build system will strip out disabled feature branches before publishing. A continuous integration job runs on every commit to check for changes in bundle size. You can use the change in size as a signal that a feature was gated correctly.
+Sistem _build_ React akan menanggalkan cabang fitur yang dinonaktifkan sebelum diterbitkan. Sebuah tugas integrasi berkelanjutan _(continuous integration)_ berjalan pada setiap _commit_ untuk memeriksa perubahan ukuran bundel. Anda dapat menggunakan perubahan pada ukuran sebagai tanda bahwa sebuah fitur telah dipagari dengan baik.
 
 ### Bug {#bugs}
 
@@ -47,7 +47,7 @@ Kami menggunakan [Isu GitHub](https://github.com/facebook/react/issues) untuk bu
 
 #### Reporting New Issues {#reporting-new-issues}
 
-Cara terbaik untuk memperbaiki bug Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mula yang baik.
+Cara terbaik untuk memperbaiki bug Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mulai yang baik.
 
 #### Security Bugs {#security-bugs}
 
@@ -73,15 +73,15 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 **[Bagaimana Cara Berkontribusi pada Proyek Sumber Terbuka di GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
+Untuk membantu Anda mengumpulkan pengalaman dan lebih familiar dengan proses kontribusi kami, kami memiliki daftar **[isu pertama yang baik](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** berisi bug yang memiliki cakupan yang relatif terbatas. Ini adalah tempat yang baik untuk mulai.
+
+Jika Anda memutuskan untuk memperbaiki sebuah isu, pastikan Anda memeriksa utas komentar apabila seseorang sudah sedang mengerjakan perbaikannya. Jika tidak ada yang sedang mengerjakannya pada saat itu, tinggalkan komentar yang menyatakan bahwa Anda bermaksud untuk memperbaikinya, sehingga orang lain tidak mengerjakan hal yang sama.
+
+Jika seseorang mengambil sebuah isu, tetapi tidak dilanjutkan selama lebih dari 2 minggu, tidak apa-apa untuk mengambil alih isu tersebut, tapi Anda tetap sebaiknya meninggalkan komentar.
+
+### Mengirimkan _Pull Request_ {#sending-a-pull-request}
 
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
-
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
-
-If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take it over but you should still leave a comment.
-
-### Sending a Pull Request {#sending-a-pull-request}
 
 The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. For API changes we may need to fix our internal uses at Facebook.com, which could cause some delay. We'll do our best to provide updates and feedback throughout the process.
 
@@ -104,15 +104,11 @@ Agar dapat menyetujui *pull request* Anda, Anda perlu melengkapi CLA. Anda hanya
 
 **[Lengkapi CLA Anda di sini.](https://code.facebook.com/cla)**
 
-### Contribution Prerequisites {#contribution-prerequisites}
+### Prasyarat Kontribusi {#contribution-prerequisites}
 
 * Anda telah memasang [Node](https://nodejs.org) pada v8.0.0+ dan Yarn](https://yarnpkg.com/en/) pada v1.2.0+.
-* 
-* 
-
-* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with Git.
+* Anda telah memasang `gcc` atau dapat memasang _compiler_ jika dibutuhkan. Beberapa _dependency_ dapat membutuhkan tahapan kompilasi. Pada OS X, _Command Line Tools_ Xcode saja cukup. Pada Ubuntu, `apt-get install build-essential` akan memasang _package_ yang dibutuhkan. Perintah sejenis seharusnya dapat bekerja pada distro Linux lainnya. Windows akan membutuhkan beberapa langkah tambahan, lihat [instruksi pemasangan `node-gyp`](https://github.com/nodejs/node-gyp#installation) untuk informasi lebih lengkap.
+* Anda familiar dengan Git.
 
 ### Development Workflow {#development-workflow}
 
