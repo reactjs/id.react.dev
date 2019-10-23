@@ -333,11 +333,7 @@ Perhatikan bahwa untuk me-_render_ komponen `lazy`, Anda membutuhkan komponen `<
 
 ### `React.Suspense` {#reactsuspense}
 
-<<<<<<< HEAD
-`React.Suspense` membuat Anda dapat menentukan indikator pemuatan apabila beberapa komponen di bawahnya belum siap untuk di-_render_. Saat ini, komponen _lazy loading_ merupakan satu - satunya kasus penggunaan yang didukung `<React.Suspense>`:
-=======
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+`React.Suspense` membuat Anda dapat menentukan indikator pemuatan apabila beberapa komponen di bawahnya belum siap untuk di-_render_. Saat ini, komponen _lazy loading_ merupakan **satu-satunya** kasus penggunaan yang didukung `<React.Suspense>`:
 
 ```js
 // Komponen ini dimuat secara dinamis
