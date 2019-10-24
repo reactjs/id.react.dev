@@ -1,6 +1,6 @@
 ---
 id: hooks-faq
-title: *Hooks* FAQ
+title: Hooks FAQ
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
