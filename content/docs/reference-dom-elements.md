@@ -14,9 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React mengimplementasikan sistem DOM yang independen terhadap browser demi performa dan kompatibilitas lintas browser. Kami mengambil kesempatan untuk membersihkan beberapa sisi kasar dalam implementasi browser DOM.
+React mengimplementasikan sistem DOM yang independen terhadap peramban demi performa dan kompatibilitas lintas peramban. Kami mengambil kesempatan untuk membersihkan beberapa sisi kasar dalam implementasi DOM peramban.
 
-Di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, anda dapat membiarkan `aria-label` sebagai `aria-label`.
+Di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, Anda dapat membiarkan `aria-label` sebagai `aria-label`.
 
 ## Perbedaan Atribut {#differences-in-attributes}
 
@@ -30,19 +30,19 @@ Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `
 
 Untuk menentukan kelas CSS, gunakan atribut `className`. Hal ini berlaku untuk seluruh DOM reguler dan elemen SVG seperti `<div>`, `<a>`, dan lainnya.
 
-Jika anda menggunakan React dengan Komponen Web (yang mana tidak lazim), sebagai gantinya gunakan atribut `class`.
+Jika Anda menggunakan React dengan Komponen Web (yang mana tidak lazim), sebagai gantinya gunakan atribut `class`.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka celah serangan [*cross-site scripting* (XSS)](https://id.wikipedia.org/wiki/XSS) kepada pengguna anda. Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi anda harus mengetik `dangerouslySetInnerHTML` dan memberikan sebuah objek dengan *key* `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
+`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada DOM peramban. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka celah serangan [*cross-site scripting* (XSS)](https://id.wikipedia.org/wiki/XSS) kepada pengguna Anda. Sehingga, Anda dapat mengatur HTML secara langsung dari React, tetapi Anda harus mengetik `dangerouslySetInnerHTML` dan memberikan sebuah objek dengan *key* `__html`, untuk mengingatkan Anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
 
 ```js
-function buatMarkup() {
+function createMarkup() {
   return {__html: 'Pertama &middot; Kedua'};
 }
 
-function KomponenSaya() {
-  return <div dangerouslySetInnerHTML={buatMarkup()} />;
+function MyComponent() {
+  return <div dangerouslySetInnerHTML={createMarkup()} />;
 }
 ```
 
@@ -52,7 +52,7 @@ Karena `for` adalah kata khusus dalam JavaScript, elemen React menggunakan `html
 
 ### onChange {#onchange}
 
-*Event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir diubah/berubah, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
+*Event* `onChange` bertingkah sebagaimana yang Anda harapkan: kapanpun kolom sebuah formulir diubah/berubah, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku peramban yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
 
 ### selected {#selected}
 
@@ -77,7 +77,7 @@ function HelloWorldComponent() {
 }
 ```
 
-Perhatikan bahwa *style* tidak diperbaiki secara otomatis. Untuk mendukung browser lama, Anda perlu menyediakan properti *style* yang sesuai:
+Perhatikan bahwa *style* tidak diperbaiki secara otomatis. Untuk mendukung peramban lama, Anda perlu menyediakan properti *style* yang sesuai:
 
 ```js
 const divStyle = {
@@ -86,7 +86,7 @@ const divStyle = {
 };
 
 function ComponentWithTransition() {
-  return <div style={divStyle}>Ini harusnya berfungsi lintas browser</div>;
+  return <div style={divStyle}>Ini harusnya berfungsi lintas peramban</div>;
 }
 ```
 
@@ -110,13 +110,13 @@ Tidak semua properti *style* dikonversi menjadi *string* pixel. Beberapa yang la
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Secara normal, ada sebuah peringatan ketika elemen dengan *children* juga ditandai sebagai `contentEditable`, karena ini tidak akan berfungsi. Atribut ini menyembunyikan peringatan tersebut. Jangan gunakan ini terkecuali jika anda membangun sebuah library seberti [Draft.js](https://facebook.github.io/draft-js/) yang mengatur `contentEditable` secara manual.
+Secara normal, ada sebuah peringatan ketika elemen dengan *children* juga ditandai sebagai `contentEditable`, karena ini tidak akan berfungsi. Atribut ini menyembunyikan peringatan tersebut. Jangan gunakan ini terkecuali jika Anda membangun sebuah library seberti [Draft.js](https://facebook.github.io/draft-js/) yang mengatur `contentEditable` secara manual.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
 Jika Anda menggunakan *rendering* sisi server React, biasanya ada peringatan ketika server dan klien membuat konten yang berbeda. Namun, pada beberapa kasus yang jarang terjadi, sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Sebagai contoh, *timestamps* diharapkan berbeda di server dan di klien.
 
-Jika anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
+Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
