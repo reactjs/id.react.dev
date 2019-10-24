@@ -19,11 +19,11 @@ Facebook telah mengadopsi [Persetujuan Kontributor](https://www.contributor-cove
 
 Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://github.com/facebook/react). Baik anggota tim inti dan kontributor eksternal mengirimkan *pull requests* yang akan melewati proses peninjauan yang sama.
 
-### Semantic Versioning {#semantic-versioning}
+### Versi Semantik {#semantic-versioning}
 
-React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](https://reactjs.org/docs/faq-versioning.html).
+React mengikuti [versi semantik](https://semver.org/). Kami merilis versi _patch_ untuk perbaikan bug kritikal, versi minor untuk fitur baru atau perubahan yang tidak esensial, dan versi mayor untuk perubahan yang merusak. Ketika kami membuat perubahan yang merusak, kami juga memperkenalkan peringatan _deprecation_ pada versi minor sehingga pengguna kami mengetahui perubahan yang akan datang dan melakukan migrasi pada kode mereka terlebih dahilu. Pelajari lebih lanjut mengenai komitmen kami terhadap stabilitas dan migrasi inkremental di [kebijakan versi kami](https://reactjs.org/docs/faq-versioning.html).
 
-Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+Setiap perubahan signifikan didokumentasikan pada [_file changelog_](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
 ### Pengaturan Cabang {#branch-organization}
 
@@ -31,11 +31,11 @@ Ajukan semua perubahan secara langsung pada [`cabang master`](https://github.com
 
 Kode yang tiba di `master` harus kompatibel dengan rilis terakhir yang stabil. Kode tersebut boleh berisi fitur tambahan, tapi tidak boleh ada perubahan yang merusak. Kita harus bisa merilis versi minor yang baru dari  `master` setiap saat.
 
-### Bendera Fitur {#feature-flags}
+### _Flag_ Fitur {#feature-flags}
 
-Untuk menjaga cabang `master` pada keadaan dapat dirilis, perubahan yang merusak dan fitur eksperimental harus dipagari di balik bendera fitur.
+Untuk menjaga cabang `master` pada keadaan dapat dirilis, perubahan yang merusak dan fitur eksperimental harus dipagari di balik _flag_ fitur.
 
-Bendera fitur didefinisikan pada [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Beberapa _build_ dari React mungkin menmerapkan kumpulan bendera fitur yang berbeda; misalnya, _build_ React Native dikonfigurasi secara berbeda dari React DOM. Bendera-bendera ini dapat ditemukan di [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Bendera fitur umumnya dibuat secara statis oleh Flow, sehingga Anda dapat menjalankan `yarn flow` untuk memastikan bahwa Anda telah membarui semua _file_ yang dibutuhkan.
+_Flag_ fitur didefinisikan pada [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Beberapa _build_ dari React mungkin menmerapkan kumpulan _flag_ fitur yang berbeda; misalnya, _build_ React Native dikonfigurasi secara berbeda dari React DOM. _Flag_ ini dapat ditemukan di [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). _Flag_ fitur diberi tipe secara statis oleh Flow, sehingga Anda dapat menjalankan `yarn flow` untuk memastikan bahwa Anda telah membarui semua _file_ yang dibutuhkan.
 
 Sistem _build_ React akan menanggalkan cabang fitur yang dinonaktifkan sebelum diterbitkan. Sebuah tugas integrasi berkelanjutan _(continuous integration)_ berjalan pada setiap _commit_ untuk memeriksa perubahan ukuran bundel. Anda dapat menggunakan perubahan pada ukuran sebagai tanda bahwa sebuah fitur telah dipagari dengan baik.
 
@@ -49,7 +49,7 @@ Kami menggunakan [Isu GitHub](https://github.com/facebook/react/issues) untuk bu
 
 Cara terbaik untuk memperbaiki bug Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mulai yang baik.
 
-#### Security Bugs {#security-bugs}
+#### Bug Keamanan {#security-bugs}
 
 Facebook memiliki [program berhadiah](https://www.facebook.com/whitehat/) untuk melaporkan bug keamanan secara rahasia. Dengan pertimbangan itu, dimohon untuk tidak mengajukan isu publik; harap melewati proses yang telah dijelaskan pada halaman tersebut.
 
@@ -81,22 +81,20 @@ Jika seseorang mengambil sebuah isu, tetapi tidak dilanjutkan selama lebih dari 
 
 ### Mengirimkan _Pull Request_ {#sending-a-pull-request}
 
+Tim inti sedang memantau _pull request_. Kami akan meninjau _pull request_ Anda dan antara melakukan _merge_, meminta perubahan, atau menutupnya dengan penjelasan. Untuk perubahan API kami mungkin perlu memperbaiki pemakaian kami secara internal di Facebook.com, sehingga mungkin mengakibatkan penundaan. Kami akan berusaha sebaik mungkin untuk memberikan informasi terbaru dan umpan balik selama berlangsungnya proses.
 
+**Sebelum mengajukan _pull request_**, pastikan hal berikut telah diselesaikan:
 
-The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. For API changes we may need to fix our internal uses at Facebook.com, which could cause some delay. We'll do our best to provide updates and feedback throughout the process.
-
-**Before submitting a pull request,** please make sure the following is done:
-
-1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
-2. Run `yarn` in the repository root.
-3. If you've fixed a bug or added code that should be tested, add tests!
-4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
-7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
-8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-10. If you haven't already, complete the CLA.
+1. Fork [repositori](https://github.com/facebook/react) dan buat branch Anda dari `master`.
+2. Jalankan `yarn` pada induk repositori.
+3. Jika anda telah memperbaiki bug atau menambahkan kode yang perlu dites, tambahkan tes!
+4. Pastikan rangkaian tes berhasil (`yarn test`). Tip: `yarn test --watch TestName` sangat membantu dalam pengembangan.
+5. Jalankan `yarn test-prod` untuk mengetes pada lingkungan produksi. Ia mendukung opsi yang sama seperti `yarn test`.
+6. Jika anda membutuhkan _debugger_, jalankan `yarn debug-test --watch TestName`, buka `chrome://inspect`, dan tekan "Inspect".
+7. Format kode Anda dengan [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Pastikan kode Anda di-_lint_ (`yarn lint`). Tip: `yarn linc` untuk mengecek hanya _file_ yang berubah.
+9. Jalankan [Flow](https://flowtype.org/) untuk mengecek tipe (`yarn flow`).
+10. Jika belum, lengkapi CLA.
 
 ### Perjanjian Lisensi Kontributor (CLA) {#contributor-license-agreement-cla}
 
@@ -110,29 +108,29 @@ Agar dapat menyetujui *pull request* Anda, Anda perlu melengkapi CLA. Anda hanya
 * Anda telah memasang `gcc` atau dapat memasang _compiler_ jika dibutuhkan. Beberapa _dependency_ dapat membutuhkan tahapan kompilasi. Pada OS X, _Command Line Tools_ Xcode saja cukup. Pada Ubuntu, `apt-get install build-essential` akan memasang _package_ yang dibutuhkan. Perintah sejenis seharusnya dapat bekerja pada distro Linux lainnya. Windows akan membutuhkan beberapa langkah tambahan, lihat [instruksi pemasangan `node-gyp`](https://github.com/nodejs/node-gyp#installation) untuk informasi lebih lengkap.
 * Anda familiar dengan Git.
 
-### Development Workflow {#development-workflow}
+### Alur Kerja Pengembangan {#development-workflow}
 
-After cloning React, run `yarn` to fetch its dependencies.
-Then, you can run several commands:
+Setelah melakukan _cloning_ React, jalankan `yarn` untuk mengambil _dependencies_-nya.
+Kemudian, Anda dapat menjalankan beberapa perintah:
 
-* `yarn lint` checks the code style.
-* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
-* `yarn test` runs the complete test suite.
-* `yarn test --watch` runs an interactive test watcher.
-* `yarn test <pattern>` runs tests with matching filenames.
-* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
-* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
-* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
-* `yarn build` creates a `build` folder with all the packages.
-* `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
+* `yarn lint` memeriksa _style_ kode.
+* `yarn linc` seperti `yarn lint` tetapi lebih cepat karena ia hanya memeriksa _file_ yang berubah pada cabang Anda.
+* `yarn test` menjalankan seluruh rangkaian tes.
+* `yarn test --watch` menjalankan pemantau tes yang interaktif.
+* `yarn test <pattern>` menjalankan tes dengan nama _file_ yang sama.
+* `yarn test-prod` menjalankan tes pada lingkungan produksi. Ia mendukung semua opsi yang sama seperti `yarn test`.
+* `yarn debug-test` sama seperti `yarn test` tetapi dengan _debugger_. Buka `chrome://inspect` dan tekan "Inspect".
+* `yarn flow` menjalankan [Flow](https://flowtype.org/) untuk mengecek tipe.
+* `yarn build` membuat sebuah folder `build` dengan semua _package_.
+* `yarn build react/index,react-dom/index --type=UMD` membuat _build_ UMD yang terdiri hanya dari React dan ReactDOM.
 
-We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+Kami merekomendasikan menjalankan `yarn test` (atau variasi lainnya di atas) untuk memastikan Anda tidak menyebabkan regresi apapun selama Anda mengerjakan perubahan. Namun akan bermanfaat untuk mencoba _build_ React Anda pada proyek sesungguhnya.
 
-First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
+Pertama jalankan `yarn build`. Perintah ini akan menghasilkan bundel-bundel yang telah dibuat di folder `build`, serta mempersiapkan _package_ npm dalam `build/packages`.
 
-The easiest way to try your changes is to run `yarn build react/index,react-dom/index --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
+Cara termudah untuk mencoba perubahan Anda adalah dengan menjalankan `yarn build react/index,react-dom/index --type=UMD` kemudian membuka `fixtures/packaging/babel-standalone/dev.html`. _File_ ini telah menggunakan `react.development.js` dari folder `build` sehingga ia akan menangkap perubahan Anda.
 
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
+Jika Anda ingin mencoba perubahan Anda pada proyek React yang sudah ada, Anda bisa menyalin `build/dist/react.development.js`, `build/dist/react-dom.development.js`, atau produk _build_ lainnya ke dalam aplikasi Anda dan menggunakan mereka daripada versi stabilnya. Jika proyek Anda menggunakan React dari npm, Anda dapat menghapus `react` dan `react-dom` pada _dependencies_-nya dan menggunakan `yarn link` untuk mengarahkan mereka pada folder _build_ lokal Anda:
 
 ```sh
 cd ~/path_to_your_react_clone/build/node_modules/react
@@ -143,9 +141,9 @@ cd /path/to/your/project
 yarn link react react-dom
 ```
 
-Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
+Setiap kali Anda menjalankan `yarn build` pada folder React, versi terbaru akan muncul pada `node_modules` di proyek Anda. Anda dapat melakukan _rebuild_ proyek untuk mencoba perubahan Anda.
 
-We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
+Kami masih mengharuskan _pull request_ Anda berisi _unit test_ untuk setiap fungsionalitas baru. Dengan begitu, kami dapat memastikan bahwa kami tidak akan merusak kode Anda di kemudian hari.
 
 ### Panduan _Style_ {#style-guide}
 
