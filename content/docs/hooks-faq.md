@@ -912,7 +912,7 @@ Perlu diingat bahawa Anda masih bisa memilih antara mengoper *state* aplikasi se
 >
 >PErhatikan juga bahwa pola ini bisa menyebabkan masalah dalam [mode *concurrent*](/blog/2018/03/27/update-on-async-rendering.html). Kami berencana untuk menyediakan alternatif yang lebih ergonomis di masa yang akan datang, tapi solusi teraman sekarang adalah untuk selalu meng-invalidasi callback jika beberapa nilai bergantung pada perubahan.
 
-Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [*`useCallback*`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah contoh variabel](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
+Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [*`useCallback*`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah *instance variable*](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
 
 ```js {6,10}
 function Form() {
