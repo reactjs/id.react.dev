@@ -14,7 +14,7 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React mengimplementasikan sistem DOM yang independen terhadap browser demi performa dan kompabilitas lintas browser. Kami mengambil kesempatan untuk membersihikan beberapa sisi kasar dalam implementasi browser DOM.
+React mengimplementasikan sistem DOM yang independen terhadap browser demi performa dan kompatibilitas lintas browser. Kami mengambil kesempatan untuk membersihkan beberapa sisi kasar dalam implementasi browser DOM.
 
 Di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, anda dapat membiarkan `aria-label` sebagai `aria-label`.
 
@@ -24,7 +24,7 @@ Terdapat beberapa atribut yang bekerja secara berbeda antara React dan HTML:
 
 ### checked {#checked}
 
-Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `radio`. Anda dapat menggunakannya untuk mengatur apakah komponen telah di cek. Hal ini bermanfaat untuk membangun komponen yang dikendalikan. `defaultChecked` adalah padanan yang tidak terkontrol, yang menetapkan apakah komponen telah dicek ketika pertama kali dipasang.
+Atribut `checked` didukung oleh komponen `<input>` dengan tipe `checkbox` atau `radio`. Anda dapat menggunakannya untuk mengatur apakah komponen telah dicek. Hal ini bermanfaat untuk membangun komponen yang dikendalikan. `defaultChecked` adalah padanan yang tidak terkontrol, yang menetapkan apakah komponen telah dicek ketika pertama kali dipasang.
 
 ### className {#classname}
 
@@ -34,7 +34,7 @@ Jika anda menggunakan React dengan Komponen Web (yang mana tidak lazim), sebagai
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka celah serangan [cross-site scripting (XSS)](https://id.wikipedia.org/wiki/XSS) kepada pengguna anda. Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi anda harus mengetik `dangerouslySetInnerHTML` dan memberikan sebuah objek dengan *key* `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
+`dangerouslySetInnerHTML` adalah pengganti `innerHTML` milik React pada browser DOM. Secara umum, pengaturan HTML melalui kode memiliki resiko karena secara tidak sengaja sangat mudah untuk membuka celah serangan [*cross-site scripting* (XSS)](https://id.wikipedia.org/wiki/XSS) kepada pengguna anda. Sehingga, anda dapat mengatur HTML secara langsung dari React, tetapi anda harus mengetik `dangerouslySetInnerHTML` dan memberikan sebuah objek dengan *key* `__html`, untuk mengingatkan anda sendiri bahwa hal ini berbahaya. Sebagai contoh:
 
 ```js
 function buatMarkup() {
@@ -52,7 +52,7 @@ Karena `for` adalah kata khusus dalam JavaScript, elemen React menggunakan `html
 
 ### onChange {#onchange}
 
-*Event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
+*Event* `onChange` bertingkah sebagaimana yang anda harapkan: kapanpun kolom sebuah formulir diubah/berubah, *event* ini dieksekusi. Kami secara sengaja tidak menggunakan tingkah laku browser yang ada karena `onChange` adalah penamaan yang salah untuk tingkah laku ini dan React bergantung kepada *event* ini untuk menangani masukan pengguna secara *real time*.
 
 ### selected {#selected}
 
@@ -62,7 +62,7 @@ Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya 
 
 >Catatan
 >
->Beberapa contoh dalam dokumentasi ini menggunakan `style` untuk kenyamanan, tetapi **menggunakan atribiut `style` sebagai sarana utama *styling* elemen secara umum sangat tidak disarankan.** Pada kebanyakan kasus, [`className`](#classname) harus digunakan untuk untuk merujuk kelas yang  ditentukan pada *stylesheet* CSS eksternal. `style` paling sering digunakan pada aplikasi React untuk menambahkan *style* yang dikomputasi secara dinamis ketika waktu render. Lihat juga [FAQ: Styling dan CSS](/docs/faq-styling.html).
+>Beberapa contoh dalam dokumentasi ini menggunakan `style` untuk kenyamanan, tetapi **menggunakan atribut `style` sebagai sarana utama *styling* elemen secara umum sangat tidak disarankan.** Pada kebanyakan kasus, [`className`](#classname) harus digunakan untuk untuk merujuk kelas yang  ditentukan pada *stylesheet* CSS eksternal. `style` paling sering digunakan pada aplikasi React untuk menambahkan *style* yang dikomputasi secara dinamis ketika waktu render. Lihat juga [FAQ: Styling dan CSS](/docs/faq-styling.html).
 
 Atribut `style` menerima objek JavaScript dengan properti *camelCase* dibanding sebuah *string* CSS. Hal ini konsisten dengan properti javascript DOM `style`, ini lebih efisien, dan menghindari celah security XSS. Sebagai contoh:
 
@@ -72,7 +72,7 @@ const divStyle = {
   backgroundImage: 'url(' + imgUrl + ')',
 };
 
-function komponenHaloDunia() {
+function HelloWorldComponent() {
   return <div style={divStyle}>Halo Dunia!</div>;
 }
 ```
@@ -85,7 +85,7 @@ const divStyle = {
   msTransition: 'all' // 'ms' adalah satu-satunya vendor dengan awalan huruf kecil
 };
 
-function KomponenDenganTransisi() {
+function ComponentWithTransition() {
   return <div style={divStyle}>Ini harusnya berfungsi lintas browser</div>;
 }
 ```
@@ -129,9 +129,9 @@ Pada React 16, semua standar [atau *custom*](/blog/2017/09/08/dom-attributes-in-
 React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil baik *props* khusus dan yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
 ```js
-<div tabIndex="-1" />      // Sama seperti node.tabIndex DOM API
-<div className="Button" /> // Sama seperti node.className DOM API
-<input readOnly={true} />  // Sama seperti node.readOnly DOM API
+<div tabIndex="-1" />      // Sama seperti API DOM node.tabIndex
+<div className="Button" /> // Sama seperti API DOM node.className
+<input readOnly={true} />  // Sama seperti API DOM node.readOnly
 ```
 
 *Props* ini bekerja mirip dengan atribut HTML yang sesuai, dengan pengecualian pada kasus khusus yang didokumentasikan di atas.
