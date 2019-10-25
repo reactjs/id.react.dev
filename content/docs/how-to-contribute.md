@@ -152,7 +152,7 @@ Jalankan `yarn prettier` setelah melakukan perubahan apapun pada kode.
 Kemudian, _linter_ kami akan menangkap sebagian besar isu yang mungkin ada pada kode Anda.
 Anda dapat memeriksa status dari _style_ kode Anda secara mudah dengan menjalankan `yarn linc`.
 
-Bagaimanapun, tetap ada beberapa _style_ yang tidak dapat dideteksi oleh _linter_. Jika Anda ragu mengenai sesuatu, melihat [Panduan _Style_ Airbnb](https://github.com/airbnb/javascript) akan memandu anda ke arah yang tepat.
+Bagaimanapun, tetap ada beberapa _style_ yang tidak dapat dideteksi oleh _linter_. Jika Anda ragu mengenai sesuatu, melihat [Panduan _Style_ Airbnb](https://github.com/airbnb/javascript) akan memandu Anda ke arah yang tepat.
 
 ### Video Pengantar {#introductory-video}
 
