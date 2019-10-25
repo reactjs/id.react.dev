@@ -198,7 +198,7 @@ Dalam HTML, sebuah `<input type="file">` membiarkan pengguna untuk memilih satu 
 <input type="file" />
 ```
 
-Karena nilai yang dimiliki adalah hanya-baca, ini termasuk ke dalam ***uncontrolled*** *component* di React. Hal ini akan dibahas bersama dengan *uncontrolled components* lainnya [selanjutnya di dokumentasi](/docs/uncontrolled-components.html#the-file-input-tag).
+Karena nilai yang dimiliki adalah _read-only_, ini termasuk ke dalam _***uncontrolled*** component_ di React. Hal ini akan dibahas bersama dengan _uncontrolled component_ lainnya [selanjutnya di dokumentasi](/docs/uncontrolled-components.html#the-file-input-tag).
 
 ## Menangani Banyak Input {#handling-multiple-inputs}
 
