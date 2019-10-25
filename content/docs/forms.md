@@ -64,7 +64,7 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
 Karena atribut `value` telah kita set pada elemen form, nilai yang ditampilkan akan selalu sama dengan `this.state.value`, yang menjadikan React sebagai sumber kebenaran tunggal dari _state_. Dan karena `handleChange` dijalankan setiap ketikan untuk memperbarui _state_ React, nilai yang ditampilkan akan terbarui ketika pengguna mengetik.
 
@@ -178,7 +178,7 @@ class FlavorForm extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
 Secara keseluruhan, perubahan-perubahan ini membuat `<input type="text">`, `<textarea>`, dan `<select>` bekerja dengan cara yang mirip - mereka masing-masing menerima atribut `value` yang dapat Anda gunakan untuk mengimplementasikan _controlled component_.
 
@@ -254,7 +254,7 @@ class Reservation extends React.Component {
 }
 ```
 
-[**Cobalah di CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
 Perhatikan bagaimana kita meggunakan sintaks [_computed property name_](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) ES6 untuk mengubah _state_ dengan _key_ yang sesuai dengan nama dari masukan:
 
