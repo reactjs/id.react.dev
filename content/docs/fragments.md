@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-Salah satu pola umum pada React adalah mengembalikan banyak elemen sekaligus. *Fragments* memungkinkan Anda untuk mengelompokkan sejumlah elemen anak tanpa perlu menambahkan lagi *node* ekstra ke *DOM*.
+Salah satu pola umum pada React adalah mengembalikan banyak elemen sekaligus. *Fragments* memungkinkan Anda untuk mengelompokkan sejumlah elemen anak tanpa perlu menambahkan lagi *node* ekstra ke DOM.
 
 ```js
 render() {
@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` harus mengembalikan sejumlah elemen `<td>` untuk menghasilkan HTML dengan benar. Jika div induk digunakan didalam `render()` pada `<Columns />`, maka akan menghasilkan HTML yang tidak benar.
+`<Columns />` harus mengembalikan sejumlah elemen `<td>` untuk menghasilkan HTML dengan benar. Jika div induk digunakan di dalam `render()` pada `<Columns />`, maka akan menghasilkan HTML yang tidak benar.
 
 ```jsx
 class Columns extends React.Component {
@@ -137,4 +137,4 @@ function Glossary(props) {
 
 ### Demonstrasi Langsung {#live-demo}
 
-Anda dapat mencoba langsung sintaksis baru JSX *fragment* dengan ini [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+Anda dapat mencoba langsung sintaksis baru JSX *fragment* dengan [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) ini.
