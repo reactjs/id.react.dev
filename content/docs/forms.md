@@ -66,7 +66,7 @@ class NameForm extends React.Component {
 
 [**Cobalah di CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Karena atribut `value` telah kita set pada elemen form, nilai yang ditampilkan olehnya akan selalu sama dengan `this.state.value`, hal ini membuat React sebagai sumber kebenaran dari state. Dan karena `handleChange` dijalankan setiap ketikan untuk meng-update state React, nilai yang ditampilkan akan ter-update ketika pengguna mengetik.
+Karena atribut `value` telah kita set pada elemen form, nilai yang ditampilkan akan selalu sama dengan `this.state.value`, yang menjadikan React sebagai sumber kebenaran tunggal dari _state_. Dan karena `handleChange` dijalankan setiap ketikan untuk memperbarui _state_ React, nilai yang ditampilkan akan terbarui ketika pengguna mengetik.
 
 Dengan sebuah *controlled component*, setiap perubahan state akan memiliki sebuah fungsi *handler* yang terkait. Hal ini membuat lebih mudah untuk memodifikasi atau memvalidasi input pengguna. Sebagai contoh, jika kita ingin mengharuskan nama untuk seluruhnya ditulis dengan huruf kapital, kita dapat menuliskan `handleChange` sebagai:
 
