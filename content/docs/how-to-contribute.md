@@ -17,7 +17,7 @@ Facebook telah mengadopsi [Persetujuan Kontributor](https://www.contributor-cove
 
 ### Pengembangan Terbuka {#open-development}
 
-Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://github.com/facebook/react). Baik anggota tim inti dan kontributor eksternal mengirimkan *pull requests* yang akan melewati proses peninjauan yang sama.
+Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://github.com/facebook/react). Baik anggota tim inti dan kontributor eksternal mengirimkan _pull request_ yang akan melewati proses peninjauan yang sama.
 
 ### Versi Semantik {#semantic-versioning}
 
@@ -39,19 +39,19 @@ _Flag_ fitur didefinisikan pada [`packages/shared/ReactFeatureFlags.js`](https:/
 
 Sistem _build_ React akan menanggalkan cabang fitur yang dinonaktifkan sebelum diterbitkan. Sebuah tugas integrasi berkelanjutan _(continuous integration)_ berjalan pada setiap _commit_ untuk memeriksa perubahan ukuran bundel. Anda dapat menggunakan perubahan pada ukuran sebagai tanda bahwa sebuah fitur telah dipagari dengan baik.
 
-### Bug {#bugs}
+### _Bug_ {#bugs}
 
 #### Mencari Isu yang Diketahui {#where-to-find-known-issues}
 
-Kami menggunakan [Isu GitHub](https://github.com/facebook/react/issues) untuk bug publik. Kami sangat memperhatikan hal ini dan berusaha menjelaskan ketika kami sedang melakukan perbaikan secara internal. Sebelum mengajukan isu baru, coba pastikan bahwa masalahmu belum pernah ada sebelumnya.
+Kami menggunakan [GitHub Issues](https://github.com/facebook/react/issues) untuk bug publik. Kami sangat memperhatikan hal ini dan berusaha menjelaskan ketika kami sedang melakukan perbaikan secara internal. Sebelum mengajukan isu baru, coba pastikan bahwa masalahmu belum pernah ada sebelumnya.
 
 #### Reporting New Issues {#reporting-new-issues}
 
-Cara terbaik untuk memperbaiki bug Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mulai yang baik.
+Cara terbaik untuk memperbaiki _bug_ Anda adalah dengan menyediakan contoh kasus yang spesifik. [Templat JSFiddle](https://jsfiddle.net/Luktwrdm/) ini adalah titik mulai yang baik.
 
-#### Bug Keamanan {#security-bugs}
+#### _Bug_ Keamanan {#security-bugs}
 
-Facebook memiliki [program berhadiah](https://www.facebook.com/whitehat/) untuk melaporkan bug keamanan secara rahasia. Dengan pertimbangan itu, dimohon untuk tidak mengajukan isu publik; harap melewati proses yang telah dijelaskan pada halaman tersebut.
+Facebook memiliki [program berhadiah](https://www.facebook.com/whitehat/) untuk melaporkan _bug_ keamanan secara rahasia. Dengan pertimbangan itu, dimohon untuk tidak mengajukan isu publik; harap melewati proses yang telah dijelaskan pada laman tersebut.
 
 ### Bagaimana Cara Berhubungan {#how-to-get-in-touch}
 
@@ -62,18 +62,17 @@ Terdapat pula [komunitas aktif pengguna React pada platform komunikasi Discord](
 
 ### Mengajukan Perubahan {#proposing-a-change}
 
-Jika Anda berniat untuk mengubah API publik, atau mengajukan perubahan non-trivial pada implementasinya, kami merekomendasikan Anda untuk [mengajukan isu](https://github.com/facebook/react/issues/new). Ini memungkinkan kami untuk mencapai kesepakatan pada proposal Anda sebelum Anda mengerahkan usaha yang signifikan pada hal tersebut.
+Jika Anda berniat untuk mengubah API publik, atau mengajukan perubahan signifikan pada implementasinya, kami merekomendasikan Anda untuk [mengajukan isu](https://github.com/facebook/react/issues/new). Ini memungkinkan kami untuk mencapai kesepakatan pada proposal Anda sebelum Anda mengerahkan usaha yang signifikan pada hal tersebut.
 
-Jika Anda hanya memperbaiki sebuah bug, tidak masalah untuk langsung mengirimkan _pull request_, tetapi kami masih merekomendasikan untuk mengajukan isu yang menjelaskan apa yang Anda perbaiki. Ini sangat membantu apabila kami tidak menerima perbaikan itu secara spesifik, tetapi tetap ingin untuk memantau isu tersebut.
+Jika Anda hanya memperbaiki sebuah _bug_, tidak masalah untuk langsung mengirimkan _pull request_, tetapi kami masih merekomendasikan untuk mengajukan isu yang menjelaskan apa yang Anda perbaiki. Ini sangat membantu apabila kami tidak menerima perbaikan itu secara spesifik, tetapi tetap ingin untuk memantau isu tersebut.
 
-### Pull Request Pertama Anda {#your-first-pull-request}
+### _Pull Request_ Pertama Anda {#your-first-pull-request}
 
 Sedang mengerjakan _Pull Request_ pertama Anda? Anda dapat belajar bagaimana caranya dari seri video gratis ini:
-Working on your first Pull Request? You can learn how from this free video series:
 
 **[Bagaimana Cara Berkontribusi pada Proyek Sumber Terbuka di GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-Untuk membantu Anda mengumpulkan pengalaman dan lebih familiar dengan proses kontribusi kami, kami memiliki daftar **[isu pertama yang baik](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** berisi bug yang memiliki cakupan yang relatif terbatas. Ini adalah tempat yang baik untuk mulai.
+Untuk membantu Anda mengumpulkan pengalaman dan lebih familiar dengan proses kontribusi kami, kami memiliki daftar **[isu pertama yang baik](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** berisi _bug_ yang memiliki cakupan yang relatif terbatas. Ini adalah tempat yang baik untuk mulai.
 
 Jika Anda memutuskan untuk memperbaiki sebuah isu, pastikan Anda memeriksa utas komentar apabila seseorang sudah sedang mengerjakan perbaikannya. Jika tidak ada yang sedang mengerjakannya pada saat itu, tinggalkan komentar yang menyatakan bahwa Anda bermaksud untuk memperbaikinya, sehingga orang lain tidak mengerjakan hal yang sama.
 
@@ -87,7 +86,7 @@ Tim inti sedang memantau _pull request_. Kami akan meninjau _pull request_ Anda 
 
 1. Fork [repositori](https://github.com/facebook/react) dan buat branch Anda dari `master`.
 2. Jalankan `yarn` pada induk repositori.
-3. Jika anda telah memperbaiki bug atau menambahkan kode yang perlu dites, tambahkan tes!
+3. Jika anda telah memperbaiki _bug_ atau menambahkan kode yang perlu dites, tambahkan tes!
 4. Pastikan rangkaian tes berhasil (`yarn test`). Tip: `yarn test --watch TestName` sangat membantu dalam pengembangan.
 5. Jalankan `yarn test-prod` untuk mengetes pada lingkungan produksi. Ia mendukung opsi yang sama seperti `yarn test`.
 6. Jika anda membutuhkan _debugger_, jalankan `yarn debug-test --watch TestName`, buka `chrome://inspect`, dan tekan "Inspect".
@@ -98,7 +97,7 @@ Tim inti sedang memantau _pull request_. Kami akan meninjau _pull request_ Anda 
 
 ### Perjanjian Lisensi Kontributor (CLA) {#contributor-license-agreement-cla}
 
-Agar dapat menyetujui *pull request* Anda, Anda perlu melengkapi CLA. Anda hanya perlu melakukan ini sekali, jadi apabila anda pernah melakukan hal ini untuk proyek sumber terbuka Facebook yang lain. Jika ini adalah pertama kalinya anda mengirimkan *pull request*, beritahu kamu bahwa Anda telah melengkapi CLA Anda, dan kami akan memeriksa kembali dengan nama pengguna GitHub anda.
+Agar dapat menyetujui _pull request_ Anda, Anda perlu melengkapi CLA. Anda hanya perlu melakukan ini sekali, jadi apabila anda pernah melakukan hal ini untuk proyek sumber terbuka Facebook yang lain. Jika ini adalah pertama kalinya anda mengirimkan _pull request_, beritahu kamu bahwa Anda telah melengkapi CLA Anda, dan kami akan memeriksa kembali dengan nama pengguna GitHub anda.
 
 **[Lengkapi CLA Anda di sini.](https://code.facebook.com/cla)**
 
@@ -110,7 +109,7 @@ Agar dapat menyetujui *pull request* Anda, Anda perlu melengkapi CLA. Anda hanya
 
 ### Alur Kerja Pengembangan {#development-workflow}
 
-Setelah melakukan _cloning_ React, jalankan `yarn` untuk mengambil _dependencies_-nya.
+Setelah melakukan kloning React, jalankan `yarn` untuk mengambil _dependencies_-nya.
 Kemudian, Anda dapat menjalankan beberapa perintah:
 
 * `yarn lint` memeriksa _style_ kode.
@@ -161,16 +160,16 @@ Anda mungkin tertarik untuk menonton [video singkat ini](https://www.youtube.com
 
 #### Video yang Penting: {#video-highlights}
 - [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Membangun dan mengetes React secara lokal
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Membuat dan mengirimkan *pull request*
+- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Membuat dan mengirimkan _pull request_
 - [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Mengorganisir kode
 - [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Menambahkan fitur baru React
+- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Menambahkan fitur baru pada React
 
 Untuk gambaran realistik mengenai seperti apa _rasanya_ berkontribusi pada React untuk pertama kalinya, cek [acara ReactNYC yang menarik ini](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
 ### Meminta Komentar (RFC) {#request-for-comments-rfc}
 
-Banyak perubahan, termasuk perbaikan bug dan penyempurnaan dokumentasi dapat diimplementasi dan ditinjau melalui alur *pull request* GitHub pada umumnya.
+Banyak perubahan, termasuk perbaikan _bug_ dan penyempurnaan dokumentasi dapat diimplementasi dan ditinjau melalui alur _pull request_ GitHub pada umumnya.
 
 Namum beberapa perubahan cukup "substansial", dan kami meminta agar perubahan tersebut dimasukkan ke dalam proses desain dan menciptakan kesepakatan di antara tim inti React.
 
