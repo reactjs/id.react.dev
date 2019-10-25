@@ -86,7 +86,7 @@ Pada HTML, elemen `<textarea>` mendefinisikan teks di dalamnya sebagai elemen an
 </textarea>
 ```
 
-Di React, kita dapat menggunakan atribut `value` pada `<textarea>`. Dengan cara ini, sebuah form yang menggunakan `<textarea>` dapat ditulis dengan cara yang sangat mirip dengan sebuah form yang menggunakan input satu baris:
+Di React, `<textarea>` menggunakan atribut `value`. Dengan cara ini, sebuah form yang menggunakan `<textarea>` dapat ditulis dengan cara yang sangat mirip dengan sebuah form yang menggunakan masukan satu baris:
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
