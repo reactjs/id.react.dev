@@ -202,7 +202,7 @@ Karena nilai yang dimiliki adalah _read-only_, ini termasuk ke dalam _***uncontr
 
 ## Menangani Banyak Input {#handling-multiple-inputs}
 
-Ketika anda membutuhkan penanganan banyak elemen `input` terkontrol, anda dapat menambahkan atribut `name` pada setiap elemen dan membiarkan fungsi *handler* memilih apa yang harus dilakukan berdasarkan nilai dari `event.target.name`.
+Ketika Anda membutuhkan penanganan banyak elemen `input` terkontrol, Anda dapat menambahkan atribut `name` pada setiap elemen dan membiarkan fungsi _handler_ memilih apa yang harus dilakukan berdasarkan nilai dari `event.target.name`.
 
 Sebagai contoh:
 
@@ -256,7 +256,7 @@ class Reservation extends React.Component {
 
 [**Cobalah di CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Perhatikan bagaimana kita meggunakan sintaks [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) ES6 untuk meng-update state dengan *key* yang sesuai dengan nama dari input:
+Perhatikan bagaimana kita meggunakan sintaks [_computed property name_](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) ES6 untuk mengubah _state_ dengan _key_ yang sesuai dengan nama dari masukan:
 
 ```js{2}
 this.setState({
@@ -272,13 +272,13 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-Dan juga, karena `setState()` secara otomatis [menggabungkan state parsial ke state yang sufah ada](/docs/state-and-lifecycle.html#state-updates-are-merged), kita hanya perlu memanggilnya dengan bagian yang berubah saja.
+Dan juga, karena `setState()` secara otomatis [menggabungkan _state_ parsial ke _state_ yang sudah ada](/docs/state-and-lifecycle.html#state-updates-are-merged), kita hanya perlu memanggilnya dengan bagian yang berubah saja.
 
 ## Mengendalikan Masukkan Nilai Kosong {#controlled-input-null-value}
 
-Menentukan nilai prop pada [controlled component](/docs/forms.html#controlled-components) mencegah pengguna mengubah masukan kecuali jika anda menginginkannya. Jika anda telah menetapkan nilai `value` namun masukan masih dapat diedit, anda mungkin telah secara tidak sengaja menetapkan `value` ke `undefined` atau `null`.
+Menentukan nilai _prop_ pada [controlled component](/docs/forms.html#controlled-components) mencegah pengguna mengubah masukan kecuali Anda menginginkannya. Jika Anda telah menetapkan nilai `value` namun masukan masih dapat diubah, Anda mungkin telah secara tidak sengaja menetapkan `value` ke `undefined` atau `null`.
 
-Kode berikut menunjukkan contoh ini. (Mula-mula masukan terkunci tetapi menjadi dapat diedit setelah jeda singkat.)
+Kode berikut menunjukkan contoh ini. (Mula-mula masukan terkunci tetapi menjadi dapat diubah setelah jeda singkat.)
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
@@ -291,8 +291,8 @@ setTimeout(function() {
 
 ## Alternatif dari Controlled Components {#alternatives-to-controlled-components}
 
-Terkadang akan menjadi sulit untuk menggunakan *controlled components*, karena anda perlu menulis *event handler* untuk setiap cara data anda berubah dan menyalurkan semua state input melalui komponen React. Ini dapat menjadi sangat menjengkelkan ketika anda sedang mengkonversi basis kode yang sudah ada ke React, atau mengintegrasikan sebuah aplikasi React dengan sebuah *library* bukan-React. Pada situasi seperti ini, anda mungkin ingin menggunakan [uncontrolled components](/docs/uncontrolled-components.html), sebuah teknik alternatif untuk mengimplementasikan form input.
+Terkadang akan menjadi sulit untuk menggunakan _controlled components_, karena Anda perlu menulis _event handler_ untuk setiap cara data Anda berubah dan menyalurkan semua masukan _state_ melalui komponen React. Ini dapat menjadi sangat menjengkelkan ketika anda sedang mengkonversi basis kode yang sudah ada ke React, atau mengintegrasikan sebuah aplikasi React dengan sebuah _library_ bukan-React. Pada situasi seperti ini, Anda mungkin ingin menggunakan [uncontrolled components](/docs/uncontrolled-components.html), sebuah teknik alternatif untuk mengimplementasikan masukan form.
 
 ## Solusi Selengkapnya {#fully-fledged-solutions}
 
-Jika anda mencari solusi komplit termasuk validasi, melacak *fields* yang dikunjungi, dan menangani form submisi, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Meski begitu, itu dibuat dengan prinsip yang sama dengan *controlled components* dan mengelola state — jadi jangan lalai untuk mempelajarinya.
+Jika anda mencari solusi komplit termasuk validasi, melacak _fields_ yang dikunjungi, dan menangani pengiriman form, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Namun, itu dibuat dengan prinsip yang sama dengan _controlled components_ dan pengelolaan _state_ — jadi jangan lalai untuk mempelajarinya.
