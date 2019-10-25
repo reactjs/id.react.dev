@@ -29,7 +29,7 @@ Pada HTML, elemen form seperti `<input>`, `<textarea>`, dan `<select>` biasanya 
 
 Kita dapat menggabungkan keduanya dengan menggunakan state pada React sebagai "sumber kebenaran satu-satunya". Kemudian komponen React yang me-render sebuah form juga mengontrol apa yang terjadi dalam form tersebut pada input pengguna selanjutnya. Sebuah elemen from input yang nilainya dikontrol oleh React melalui cara seperti ini disebut sebagai "*controlled component*".
 
-Sebagai contoh, jika kita ingin membuat form pada contoh sebelumnya mencatat sebuah nama ketika nama di-submit, kita dapat menuliskan form sebagai sebuah *controlled component* berikut:
+Sebagai contoh, jika kita ingin membuat form pada contoh sebelumnya mencatat sebuah nama ketika nama dikirim, kita dapat menuliskan form sebagai sebuah _controlled component_:
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
