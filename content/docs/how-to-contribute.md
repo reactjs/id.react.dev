@@ -43,7 +43,7 @@ Sistem _build_ React akan menanggalkan cabang fitur yang dinonaktifkan sebelum d
 
 #### Mencari Isu yang Diketahui {#where-to-find-known-issues}
 
-Kami menggunakan [GitHub Issues](https://github.com/facebook/react/issues) untuk bug publik. Kami sangat memperhatikan hal ini dan berusaha menjelaskan ketika kami sedang melakukan perbaikan secara internal. Sebelum mengajukan isu baru, coba pastikan bahwa masalahmu belum pernah ada sebelumnya.
+Kami menggunakan [GitHub Issues](https://github.com/facebook/react/issues) untuk _bug_ publik. Kami sangat memperhatikan hal ini dan berusaha menjelaskan ketika kami sedang melakukan perbaikan secara internal. Sebelum mengajukan isu baru, coba pastikan bahwa masalahmu belum pernah ada sebelumnya.
 
 #### Reporting New Issues {#reporting-new-issues}
 
