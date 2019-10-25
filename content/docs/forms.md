@@ -78,7 +78,7 @@ handleChange(event) {
 
 ## Tag textarea {#the-textarea-tag}
 
-Pada HTML, sebuah elemen `<textarea>` mendefinisikan teks di dalamnya dengan menaruh teks sebagai elemen anaknya:
+Pada HTML, elemen `<textarea>` mendefinisikan teks di dalamnya sebagai elemen anaknya:
 
 ```html
 <textarea>
