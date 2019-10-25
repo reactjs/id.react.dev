@@ -180,7 +180,7 @@ class FlavorForm extends React.Component {
 
 [**Cobalah di CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Secara keseluruhan, perubahan-perubahan ini membuat `<input type="text">`, `<textarea>`, dan `<select>` semuanya bekerja dengan cara yang mirip - mereka masing-masing menerima atribut `value` yang dapat anda gunakan untuk mengimplementasikan *controlled component*.
+Secara keseluruhan, perubahan-perubahan ini membuat `<input type="text">`, `<textarea>`, dan `<select>` bekerja dengan cara yang mirip - mereka masing-masing menerima atribut `value` yang dapat Anda gunakan untuk mengimplementasikan _controlled component_.
 
 > Catatan
 >
