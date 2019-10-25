@@ -127,7 +127,7 @@ Perhatikan bahwa `this.state.value` diinisialisasi di constructor, sehingga text
 
 ## Tag select {#the-select-tag}
 
-Pada HTML, `<select>` membuat sebuah daftar *drop-down*. Sebagai contoh, HTML ini membuat sebuah daftar *drop-down* dari beberapa bumbu:
+Pada HTML, `<select>` membuat sebuah daftar _drop-down_. Sebagai contoh, HTML ini membuat sebuah daftar _drop-down_ dari beberapa bumbu:
 
 ```html
 <select>
