@@ -21,7 +21,7 @@ HTML form elemen bekerja sedikit berbeda dari DOM elemen lainnya di React, karen
 </form>
 ```
 
-Form ini memiliki perilaku dasar dari form HTML biasa yakni menuju ke page baru ketika user men-submit form tersebut. Jika anda menginginkan perilaku seperti ini di React, ini sebenarnya dapat bekerja. Namun di banyak kasus, akan lebih mudah untuk memiliki sebuah fungsi JavaScript yang menangani sebuah submisi dari sebuah form dan memiliki akses terhadap data yang dimasukkan pengguna ke dalam form. Cara standar untuk mencapai hal ini adalah dengan teknik yang disebut "*controlled component*".
+Form ini memiliki perilaku dasar dari form HTML biasa yakni menuju ke laman baru ketika user mengirim form tersebut. Jika Anda menginginkan perilaku seperti ini di React, ini sebenarnya dapat bekerja. Namun di banyak kasus, akan lebih mudah untuk memiliki sebuah fungsi JavaScript yang menangani sebuah submisi dari sebuah form dan memiliki akses terhadap data yang dimasukkan pengguna ke dalam form. Cara standar untuk mencapai hal ini adalah dengan teknik yang disebut "_controlled component_".
 
 ## Controlled Component {#controlled-components}
 
