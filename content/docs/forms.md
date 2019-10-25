@@ -138,7 +138,7 @@ Pada HTML, `<select>` membuat sebuah daftar _drop-down_. Sebagai contoh, HTML in
 </select>
 ```
 
-Perhatikan bahwa the opsi Coconut mula-mula dipilih, karena adanya atribut `selected`. Di React, daripada menggunakan atribut `selected`, kita menggunakan atribut `value` di tag `select`. Hal ini lebih nyaman dalam sebuah *controlled component* karena anda hanya perlu meng-updatenya di satu tempat saja. Sebagai contoh:
+Perhatikan bahwa opsi Coconut mula-mula dipilih, karena adanya atribut `selected`. Di React, alih-alih menggunakan atribut `selected`, kita menggunakan atribut `value` di tag `select`. Hal ini lebih mudah dalam sebuah _controlled component_ karena Anda hanya perlu mengubahnya di satu tempat saja. Sebagai contoh:
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
