@@ -1,64 +1,64 @@
 ---
 id: faq-versioning
-title: Versioning Policy
+title: Kebijakan Pemversian
 permalink: docs/faq-versioning.html
 layout: docs
 category: FAQ
 ---
 
-React follows [semantic versioning (semver)](https://semver.org/) principles.
+React mengikuti prinsip-prinsip [*semantic versioning* (semver)](https://semver.org/).
 
-That means that with a version number **x.y.z**:
+Yang artinya dengan nomor versi **x.y.z**:
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* Ketika merilis **perbaikan *bug* yang serius**, kita membuat sebuah **rilis *patch*** dengan mengubah nomor **z** (misal: 15.6.2 menjadi 15.6.3).
+* Ketika merilis **fitur-fitur baru** atau **perbaikan *non-critical***, kita membuat sebuah **rilis minor** dengan mengubah nomor **y** (misal: 15.6.2 menjadi 15.7.0).
+* Ketika merilis **perubahan besar**, kita membuat **rilis mayor** dengan mengubah nomor **x** (misal: 15.6.2 menjadi 16.0.0). 
 
-Major releases can also contain new features, and any release can include bug fixes.
+Rilis mayor dapat juga mengandung fitur-fitur baru, dan rilis apa pun dapat menyertakan perbaikan *bug*.
 
-Minor releases are the most common type of release.
+Rilis minor merupakan jenis rilis yang paling umum.
 
-### Breaking Changes {#breaking-changes}
+### Perubahan Tidak Kompatibel {#breaking-changes}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017; React 17 isn't expected until 2019.
+Semua orang tidak menyukai perubahan-perubahan yang merusak kompatibilitas, maka dari itu kami mengupayakan untuk meminimalisasi jumlah rilis-rilis mayor - misalnya, React 15 dirilis pada bulan April 2016 dan React 16 dirilis pada bulan September 2017; React 17 belum diperkirakan hingga tahun 2019.
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+Sebaliknya, kami merilis fitur-fitur baru dalam versi-versi kecil. Yang artinya rilis-rilis kecil tersebut seringkali lebih menarik dan lebih memikat dibandingkan perubahan-perubahan besar, meskipun namanya sederhana.
 
-### Commitment to Stability {#commitment-to-stability}
+### Komitmen terhadap Stabilitas {#commitment-to-stability}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+Karena kami mengubah React setiap waktu, kami mengupayakan untuk meminimalisasi usaha yang dibutuhkan untuk memanfaatkan fitur-fitur baru. Ketika memungkinkan, kami akan tetap menjaga agar API yang lama tetap berfungsi, bahkan jika itu berarti menaruhnya dalam *package* terpisah. Misalnya, [*mixins* sudah tidak disarankan selama bertahun-tahun](/blog/2016/07/13/mixins-considered-harmful.html) tetapi masih didukung hingga sekarang [melalui *create-react-class*](/docs/react-without-es6.html#mixins) dan banyak basis kode yang tetap menggunakannya dalam kode *legacy* yang stabil.
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+Lebih dari satu juta pengembang menggunakan React, secara kolektif merawat jutaan komponen. Basis kode Facebook sendiri mempunyai lebih dari 50,000 komponen. Yang artinya kami harus membuatnya semudah mungkin untuk memperbarui versi React yang baru; jika kami membuat perubahan-perubahan besar tanpa jalur migrasi, banyak orang akan terjebak pada versi yang lama. Kami menguji jalur-jalur pembaruan ini di Facebook sendiri - jika tim kami yang kurang dari 10 orang dapat memperbarui 50,000+ komponen sendiri, kami berharap pembaruannya dapat dikelola oleh semua orang yang menggunakan React. Dalam beberapa kasus, kami menulis [skrip otomatis](https://github.com/reactjs/react-codemod) untuk memperbarui sintaks komponen, yang kemudian kami sertakan dalam rilis *open-source* untuk digunakan semua orang.
 
-### Gradual Upgrades via Warnings {#gradual-upgrades-via-warnings}
+### Pembaruan Bertahap melalui Peringatan {#gradual-upgrades-via-warnings}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+*Development builds* dari React menyertakan banyak peringatan yang bermanfaat. Jika memungkinkan, kami menambahkan peringatan-peringatan sebagai persiapan untuk perubahan-perubahan besar yang akan datang. Dengan demikian, jika aplikasi Anda tidak memiliki peringatan pada rilis terbaru, maka akan kompatibel dengan rilis mayor selanjutnya. Hal ini memungkinkan Anda untuk memperbarui aplikasi Anda satu komponen pada satu waktu.
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+Peringatan *development* tidak akan memengaruhi perilaku *runtime* aplikasi Anda. Dengan demikian, Anda dapat merasa percaya diri bahwa aplikasi Anda akan berlaku sama antara *development* dan *production build* -- satu-satunya perbedaan adalah *production build* tidak akan me-*log* peringatan dan lebih efisien. (Jika kamu pernah melihat hal sebaliknya, tolong ajukan sebuah *issue*).
 
-### What Counts as a Breaking Change? {#what-counts-as-a-breaking-change}
+### Hal apa yang Terhitung sebagai Perubahan Besar? {#what-counts-as-a-breaking-change}
 
-In general, we *don't* bump the major version number for changes to:
+Secara umum, kami tidak mengubah nomor versi mayor untuk perubahan-perubahan:
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **Peringatan pengembangan.** Dikarenakan hal-hal ini tidak memengaruhi perilaku produksi, kami dapat menambahkan peringatan-peringatan baru atau mengubah peringatan-peringatan yang telah ada di antara versi mayor. Bahkan, inilah yang memungkinkan kami untuk memperingatkan tentang perubahan yang akan datang.
+* **API yang diawali dengan `unstable_.`** Hal ini disediakan sebagai fitur eksperimental yang API-nya belum kami yakini. Dengan merilisnya dengan prefiks `unstable_`, kami dapat beralih lebih cepat dan mendapatkan API yang stabil dengan segera.
+* **Versi *alpha* dan *canary* dari React.** Kami menyediakan versi alfa dari React sebagai sebuah cara untuk mengetes fitur baru lebih awal, akan tetapi kami butuh fleksibilitas untuk melakukan perubahan-perubahan berdasarkan hal yang kami pelajari dari waktu alfa. Jika Anda menggunakan versi ini, catat bahwa *API*-nya dapat berubah sebelum *stable release*.
+* ***API* dan data struktur internal yang tidak terdokumentasi.** Jika Anda mengakses nama properti internal seperti `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` atau `__reactInternalInstance$uk43rzhitjg`, tidak ada jaminan. Kami tidak bertanggung jawab atas apapun.
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+Kebijakan ini dirancang untuk menjadi pragmatis: tentu saja, kami tidak ingin membuat Anda sakit kepala. Jika kami mengubah versi mayor untuk semua perubahan ini, kami akan berakhir dengan merilis versi mayor lebih banyak dan tentunya mengakibatkan lebih banyak *versioning pain* untuk komunitas. Hal ini juga dapat berarti kami tidak dapat membuat kemajuan dalam mengembangkan React secepat yang kami inginkan.
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+Maka dari itu, jika kami menyangka bahwa perubahan pada daftar ini akan mengakibatkan permasalahan yang luas pada komunitas, kami akan tetap melakukan yang terbaik untuk menyediakan jalur migrasi secara bertahap.
 
-### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
+### Jika Sebuah Rilis Minor Tidak Menyertakan Fitur Baru, Mengapa Tidak Dijadikan Rilis *Patch*? {#minors-versus-patches}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+Sangat dimungkinkan bahwa sebuah rilis minor tidak terdapat fitur baru. [Hal ini diperbolehkan oleh *semver*](https://semver.org/#spec-item-7), yang menyebutkan **"[sebuah versi minor] DAPAT ditambahkan apabila fungsional baru yang substansial atau perbaikan diperkenalkan dalam kode pribadi. Hal ini TERMASUK perubahan level *patch*"**
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+Bagaimanapun, hal ini menimbulkan pertanyaan mengapa rilis-rilis ini tidak diversikan sebagai *patch* saja.
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+Jawabannya adalah bahwa perubahan apapun pada React (atau perangkat lunak lainnya) membawa risiko rusak dalam hal-hal yang tidak terduga. Bayangkan sebuah skenario dimana sebuah rilis *patch* yang memperbaiki sebuah *bug* secara tidak sengaja menimbulkan *bug* yang berbeda. Hal ini bukan saja akan mengganggu pengembang, tetapi juga merusak kepercayaan dirinya pada rilis *patch* di kemudian hari. Sangat disesalkan jika melakukan perubahan untuk sebuah *bug* yang jarang ditemui dalam praktik sehari-hari.
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+Kami punya rekam jejak yang cukup baik untuk menjaga rilisan React yang bebas *bug*, tapi rilis *patch* juga mempunyai tingkat keandalan yang lebih tinggi karena kebanyakan pengembang berasumsi rilis *patch* dapat diadopsi tanpa menimbulkan konsekuensi yang merugikan.
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+Untuk alasan-alasan tersebut, kami menyimpan rilis *patch* hanya untuk *bug* yang paling *serius* dan kerentanan keamanan.
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+Jika sebuah rilis menyertakan perubahan-perubahan tidak penting - seperti refaktor internal, perubahan pada detail implementasi, peningkatan performa, atau perbaikan *bug* secara minor - kami akan mengubah versi minornya bahkan jika tidak ada fitur baru. 
