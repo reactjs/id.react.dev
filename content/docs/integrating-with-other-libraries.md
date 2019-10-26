@@ -20,7 +20,7 @@ Untuk mendemonstrasikan ini, Ayo kita membuat sketsa pembungkus untuk sebuah plu
 
 Kita akan melampirkan [ref](/docs/refs-and-the-dom.html) kepada akar elemen DOM. Didalam `componentDidMount`, kita akan mendapat sebuah referensi kepada itu sehingga kita dapat menyampaikan itu kepada plugin jQuery.
 
-Untuk mencegah React dari menyentuh DOM setelah pemasangan, kita akan mengembalikan sebuah `<div />` kososng dari `render()` *method*.`<div />` elemen tidak memiliki properti atau *children*, sehingga React tidak memiliki alasan untuk memperbaruinya, meninggalkan plugin jQuery bebas untuk mengekelola bagian itu dari DOM:
+Untuk mencegah React menyentuh DOM setelah pemasangan, kami akan mengembalikan sebuah `<div />` kosong dari *method* `render()`. Elemen `<div />` tidak memiliki properti atau anak, sehingga React tidak memiliki alasan untuk memperbaruinya, meninggalkan *plugin* jQuery bebas untuk mengelola bagian itu dari DOM:
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
