@@ -122,9 +122,9 @@ Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memper
 
 Atribut `value` didukung oleh komponen `<input>` dan `<textarea>`. Anda dapat menggunakannya untuk mengatur nilai komponen. Ini berguna untuk membangun komponen yang dikendalikan. `defaultValue` adalah komponen yang tidak terkontrol, yang menetapkan nilai komponen saat pertama kali dipasang.
 
-## All Supported HTML Attributes {#all-supported-html-attributes}
+## Semua Atribut HTML yang Didukung {#all-supported-html-attributes}
 
-Pada React 16, semua standar [atau *custom*](/blog/2017/09/08/dom-attributes-in-react-16.html) atribut DOM sepenuhnya didukung.
+Pada React 16, semua atribut DOM standar [atau *custom*](/blog/2017/09/08/dom-attributes-in-react-16.html) sepenuhnya didukung.
 
 React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil baik *props* khusus dan yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
@@ -193,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-Anda juga dapat menggunakan atribut khusus selama menggunakan huruf kecil sepenuhnya.
+Anda juga dapat menggunakan atribut khusus selama hanya menggunakan huruf kecil.
