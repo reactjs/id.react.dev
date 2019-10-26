@@ -18,7 +18,7 @@ Cara termudah untuk menghindari konflik adalah mencegah komponen React terbarui.
 
 Untuk mendemonstrasikan ini, mari kita menggambarkan sebuah pembungkus untuk sebuah plugin generik jQuery.
 
-Kita akan melampirkan [ref](/docs/refs-and-the-dom.html) kepada akar elemen DOM. Didalam `componentDidMount`, kita akan mendapat sebuah referensi kepada itu sehingga kita dapat menyampaikan itu kepada plugin jQuery.
+Kita akan melampirkan [ref](/docs/refs-and-the-dom.html) kepada akar elemen DOM. Di dalam `componentDidMount`, kita akan mendapat sebuah referensi sehingga kita dapat menyampaikannya kepada _plugin_ jQuery.
 
 Untuk mencegah React menyentuh DOM setelah pemasangan, kami akan mengembalikan sebuah `<div />` kosong dari *method* `render()`. Elemen `<div />` tidak memiliki properti atau anak, sehingga React tidak memiliki alasan untuk memperbaruinya, meninggalkan *plugin* jQuery bebas untuk mengelola bagian itu dari DOM:
 
