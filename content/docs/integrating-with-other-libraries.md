@@ -249,7 +249,7 @@ ReactDOM.render(
 
 [**Coba ini di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Kamu dapat memiliki komponen terisolasi sebanyak yang kamu suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat anda mengonversi lebih banyak aplikasi ke React, kamu akan bisa mengkombinasikannya kepada komponen yang lebih besar, dan memindahkan beberapa dari `ReactDOM.render()` memanggil hirarki.
+Kamu dapat memiliki komponen yang terisolasi sebanyak yang kamu suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, kamu akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
 
 ### Menanamkan React didalam sebuah Tampilan Backbone {#embedding-react-in-a-backbone-view}
 
