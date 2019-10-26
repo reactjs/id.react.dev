@@ -347,7 +347,7 @@ class List extends React.Component {
 }
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
 
 ### Mengekstrak Data dari Model Backbone {#extracting-data-from-backbone-models}
 
