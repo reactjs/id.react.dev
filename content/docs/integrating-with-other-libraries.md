@@ -16,7 +16,7 @@ Cara termudah untuk menghindari konflik adalah mencegah komponen React memperbar
 
 ### Cara Pendekatan Masalah {#how-to-approach-the-problem}
 
-Untuk mendemonstrasikan ini, Ayo kita membuat sketsa pembungkus untuk sebuah plugin generik jQuery.
+Untuk mendemonstrasikan ini, mari kita menggambarkan sebuah pembungkus untuk sebuah plugin generik jQuery.
 
 Kita akan melampirkan [ref](/docs/refs-and-the-dom.html) kepada akar elemen DOM. Didalam `componentDidMount`, kita akan mendapat sebuah referensi kepada itu sehingga kita dapat menyampaikan itu kepada plugin jQuery.
 
