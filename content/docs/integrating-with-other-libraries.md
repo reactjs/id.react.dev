@@ -8,7 +8,7 @@ React dapat digunakan pada aplikasi peramban apapun. React juga dapat ditanamkan
 
 ## Integrasi dengan Plugin Manipulasi DOM {#integrating-with-dom-manipulation-plugins}
 
-React tidak akan menyadari perubahan yang dilakukan pada DOM diluar dari React. Ini menentukan pembaharuan berdasarkan representasi internal sendiri, dan jika node DOM yang sama dimanipulasi oleh *library* lain, React menjadi bingung dan tidak memiliki cara untuk memulihkan.
+React tidak akan menyadari perubahan yang dilakukan pada DOM diluar dari React. Ini menentukan pembaharuan berdasarkan representasi internal sendiri, dan jika *node* DOM yang sama dimanipulasi oleh *library* lain, React menjadi bingung dan tidak memiliki cara untuk memulihkannya.
 
 Ini tidak berarti tidak mungkin atau bahkan sulit untuk menggabungkan React dengan cara-cara lain untuk mempengaruhi DOM, Anda hanya perlu memperhatikan apa yang dilakukan oleh masing-masing.
 
