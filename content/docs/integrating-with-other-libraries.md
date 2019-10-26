@@ -14,7 +14,7 @@ Ini tidak berarti tidak mungkin atau bahkan sulit untuk menggabungkan React deng
 
 Cara termudah untuk menghindari konflik adalah mencegah komponen React memperbarui. Kamu dapat melakukannya dengan merender elemen-elemen yang React tidak punya alasan untuk diupdate, seperti sebuah `<div />` kosong.
 
-### Bagaimana cara mendekati masalah {#how-to-approach-the-problem}
+### Cara Pendekatan Masalah {#how-to-approach-the-problem}
 
 Untuk mendemonstrasikan ini, Ayo kita membuat sketsa pembungkus untuk sebuah plugin generik jQuery.
 
