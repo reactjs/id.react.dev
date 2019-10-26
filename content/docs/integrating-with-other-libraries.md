@@ -49,7 +49,7 @@ Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungk
 >
 >Hanya karena itu mungkin, bukan berarti itu adalah pendekatan terbaik untuk aplikasi React. Kami menganjurkan kamu untuk menggunakan komponen React saat kamu bisa. komponen React lebih mudah untuk digunakan ulang dalam aplikasi React, dan sering kali menyediakan kontrol yang lebih pada perilaku dan penampilannya.
 
-Pertama-tama, mari kita lihat pada apa yang Chosen lakukan pada DOM.
+Pertama-tama, mari kita lihat apa yang Chosen lakukan pada DOM.
 
 Jika kamu memanggilnya pada sebuah `<select>` node DOM, itu membaca attribut dari node DOM asli, menyembunyikannya dengan sebuah gaya inline, dan setelah itu tambahkan sebuah DOM node yang terpisah dengan representasi visualnya sendiri tepat setelah `<select>`. Setelah itu menembakan event jQuery untuk memberitahu kita tentang perubahannya.
 
