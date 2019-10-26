@@ -434,6 +434,6 @@ ReactDOM.render(
 );
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
 Teknik ini tidak terbatas pada Backbone. Kamu dapat menggunakan React dengan *library* model apapun dengan berlangganan pada perubahannya di metode *lifecycle*, dan, secara opsional, menyalin data pada *state* lokal React.
