@@ -12,7 +12,7 @@ React tidak akan menyadari perubahan yang dilakukan pada DOM diluar dari React. 
 
 Ini tidak berarti tidak mungkin atau bahkan sulit untuk menggabungkan React dengan cara-cara lain untuk mempengaruhi DOM, Anda hanya perlu memperhatikan apa yang dilakukan oleh masing-masing.
 
-Cara termudah untuk menghindari konflik adalah mencegah komponen React memperbarui. Kamu dapat melakukannya dengan merender elemen-elemen yang React tidak punya alasan untuk diupdate, seperti sebuah `<div />` kosong.
+Cara termudah untuk menghindari konflik adalah mencegah komponen React terbarui. Kamu dapat melakukannya dengan me-_render_ elemen-elemen yang React tidak punya alasan untuk mengubahnya, seperti sebuah `<div />` kosong.
 
 ### Cara Pendekatan Masalah {#how-to-approach-the-problem}
 
