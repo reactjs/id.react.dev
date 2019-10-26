@@ -275,7 +275,7 @@ const ParagraphView = Backbone.View.extend({
 });
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
 Ini juga penting bahwa kita juga dapat memanggil `ReactDOM.unmountComponentAtNode()` pada method `remove` sehingga React membatalkan *event handlers* registrasi dan sumber lainnya yang terkait dengan pohon komponen saat itu dicopot.
 
