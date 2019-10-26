@@ -85,7 +85,7 @@ class Chosen extends React.Component {
 }
 ```
 
-Lihat bagaimana kita membungkus `<select>` dalam sebuah ekstra `<div>`. Ini penting karena Chosen akan menambahkan DOM elemen lainnya tepat setelah `<select>` node yang kita berikan pada itu. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan update React tidak akan konflik dengan DOM node ekstra yang ditambahkan Chosen. Ini juga penting bahwa jika kamu memodifikasi DOM diluar alur React, kamu harus memastikan React tidak punya alasan untuk menyentuh DOM node tersebut.
+Lihat bagaimana kita membungkus `<select>` dalam sebuah `<div>` ekstra. Ini penting karena Chosen akan menambahkan elemen DOM lainnya tepat setelah *node* `<select>` yang kita berikan pada itu. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan pembaharuan React tidak akan konflik dengan ekstra *node* DOM yang ditambahkan Chosen. Ini juga penting bahwa jika kamu memodifikasi DOM di luar alur React, kamu harus memastikan React tidak punya alasan untuk menyentuh *node* DOM tersebut.
 
 Selanjutnya, kita akan mengimplementasikan *lifecycle method*. Kita akan menginisialisasi Chosen dengan ref kepada `<select>` node pada `componentDidMount`, dan merobohkannya dalam `componentWillUnmount`:
 
