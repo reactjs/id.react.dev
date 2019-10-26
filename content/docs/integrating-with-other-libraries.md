@@ -359,7 +359,7 @@ Cara ini, hanya *higher-order component* yang perlu tahu tentang internal model 
 
 Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita ubah *state* dengan atribut model saat ini. Akhirnya, kita pastikan jika _prop_ `model` itu sendiri berubah, kita tidak lupa untuk berhenti berlangganan dari model yang lama, dan berlangganan pada model yang baru.
 
-Cata bahwa contoh ini bukan berarti lengkap untuk bekerja dengan Backbone, tapi ini seharusnya memberi kamu sebuah gagasan tentang bagaimana cara mendekati ini dengan cara yang umum:
+Catat bahwa contoh ini tidak dimaksudkan sebagai contoh yang menyeluruh untuk bekerja dengan Backbone. Tapi ini seharusnya memberi kamu sebuah gagasan tentang bagaimana cara mendekatinya dengan cara yang umum:
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {
