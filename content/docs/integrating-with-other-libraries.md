@@ -131,7 +131,7 @@ handleChange(e) {
 }
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
 Akhirnya, tinggal satu hal lagi yang harus dilakukan. Di React, *props* bisa berganti seiring waktu. Contohnya, komponen `<Chosen>` dapat mengambil *children* yang berbeda jika komponen *parent* berganti *state*. Ini berarti pada poin integrasi ini sangatlah penting jika kita secara manual memperbarui DOM sebagai tanggapan pada pembaharuan prop, sejak kita tidak perlu membiarkan React mengatur DOM untuk kita.
 
