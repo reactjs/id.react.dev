@@ -198,7 +198,7 @@ Faktanya, inilah tepatnya bagaimana React digunakan di Facebook. Ini membuat kir
 
 ### Mengganti Rendering Berbasis String dengan React {#replacing-string-based-rendering-with-react}
 
-Sebuah pola yang umum di web aplikasi lama adalah untuk mendeskripsikan bingkah dari DOM sebagai string dan memasukannya kepada DOM seperti: `$el.html(htmlString)`. Poin ini dalam sebuah basis kode sempurna untuk memperkenalkan React. Cukup tulis ulang rendering berbasis string sebagai komponen React.
+Sebuah pola yang umum pada aplikasi peramban lama adalah untuk mendeskripsikan bingkah dari DOM sebagai *string* dan memasukannya kepada DOM seperti: `$el.html(htmlString)`. Poin ini dalam sebuah basis kode sempurna untuk memperkenalkan React. Cukup tulis ulang *rendering* berbasis *string* sebagai komponen React.
 
 Berikut adalah implementasi jQuery...
 
