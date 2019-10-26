@@ -357,7 +357,7 @@ Salah satu solusi untuk ini adalah untuk mengekstrak atribut model sebagai data 
 
 Cara ini, hanya *higher-order component* yang perlu tahu tentang internal model Backbone, dan sebagian besar komponen di aplikasi dapat tetap agnostik dari Backbone.
 
-Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita mengupdate *state* dengan atribut model saat ini. Akhirnya, kita memastikan jika prop `model` itu sendiri berubah, kami tidak akan lupa untuk berhenti berlangganan dengan model yang lama, dan berlangganan pada yang baru.
+Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita ubah *state* dengan atribut model saat ini. Akhirnya, kita pastikan jika _prop_ `model` itu sendiri berubah, kita tidak lupa untuk berhenti berlangganan dari model yang lama, dan berlangganan pada model yang baru.
 
 Cata bahwa contoh ini bukan berarti lengkap untuk bekerja dengan Backbone, tapi ini seharusnya memberi kamu sebuah gagasan tentang bagaimana cara mendekati ini dengan cara yang umum:
 
