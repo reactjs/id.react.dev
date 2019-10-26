@@ -281,7 +281,7 @@ Ini juga penting bahwa kita juga dapat memanggil `ReactDOM.unmountComponentAtNod
 
 Saat sebuah komponen dihapus *dari dalam* sebuah pohon React, pembersihan dilakukan secara otomatis, tapi karena kita menghapus seluruh pohon dengan tangan, kita harus memanggil method ini.
 
-## Integrasi degan Lapisan-Lapisan Model {#integrating-with-model-layers}
+## Integrasi dengan Lapisan Model {#integrating-with-model-layers}
 
 Meskipun pada umumnya ini dianjurkan untuk menggunakan aliran data searah seperti [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), atau [Redux](https://redux.js.org/), komopnen React juga dapat menggunakan lapisan model dari kerangkai kerja dan *library* lainnya.
 
