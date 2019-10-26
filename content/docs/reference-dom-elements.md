@@ -126,7 +126,7 @@ Atribut `value` didukung oleh komponen `<input>` dan `<textarea>`. Anda dapat me
 
 Pada React 16, semua atribut DOM standar [atau *custom*](/blog/2017/09/08/dom-attributes-in-react-16.html) sepenuhnya didukung.
 
-React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil baik *props* khusus dan yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
+React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil *props* khusus dan *props* yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
 ```js
 <div tabIndex="-1" />      // Sama seperti API DOM node.tabIndex
