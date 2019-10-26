@@ -1,6 +1,6 @@
 ---
 id: integrating-with-other-libraries
-title: Integrasi dengan library lain
+title: Integrasi dengan _Library_ Lain
 permalink: docs/integrating-with-other-libraries.html
 ---
 
