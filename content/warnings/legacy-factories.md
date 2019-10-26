@@ -4,7 +4,7 @@ layout: single
 permalink: warnings/legacy-factories.html
 ---
 
-Anda kemungkinan berada di sini karena kode anda memanggil komponen sebagai _function call_ biasa. Hal ini sekarang sudah usang:
+Anda kemungkinan berada di sini karena kode Anda memanggil komponen sebagai _function call_ biasa. Hal ini sekarang sudah usang:
 
 ```javascript
 var MyComponent = require('MyComponent');
@@ -44,7 +44,7 @@ Hal ini merupakan langkah pembaruan yang mudah jika Anda memiliki banyak _functi
 
 ## Komponen dinamis tanpa JSX {#dynamic-components-without-jsx}
 
-Jika anda mendapatkan komponen kelas dari sumber dinamis, tidaklah begitu perlu membuat _factory_ yang dipanggil secara langsung. Sebagai gantinya, Anda dapat saja membuat elemen pada baris yang sama:
+Jika anda mendapatkan komponen kelas dari sumber dinamis, tidaklah begitu perlu membuat _factory_ yang dipanggil secara langsung. Sebagai gantinya, Anda dapat saja membuat elemen _inline_:
 
 ```javascript
 var React = require('react');
