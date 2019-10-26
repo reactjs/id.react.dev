@@ -39,7 +39,7 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak plugin jQuery melampirkan pendengar event pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika plugin tidak menyediakan sebuah *method* untuk membersihkan, kamu mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar event apapun plugin didaftarkan untuk mencegah kebocoran memori.
+Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak *plugin* jQuery melampirkan pendengar *event* pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika *plugin* tidak menyediakan sebuah *method* untuk membersihkan, kamu mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar *event* apapun yang didaftarkan ke *plugin* untuk mencegah kebocoran memori.
 
 ### Integrasi dengan Plugin Chosen jQuery {#integrating-with-jquery-chosen-plugin}
 
