@@ -4,7 +4,7 @@ title: Integrasi dengan library lain
 permalink: docs/integrating-with-other-libraries.html
 ---
 
-React dapat digunakan pada web aplikasi apapun. Ini dapat ditanamkan pada aplikasi lain dan, dengan sedikit pemeliharaan, aplikasi lain dapat ditanamkan di React. Panduan ini akan memeriksa beberapa kasus penggunaan yang lebih umum, memfokuskan pada integrasi dengan [jQuery](https://jquery.com/) dan [Backbone](https://backbonejs.org/), tetapi ide yang sama dapat diterapkan untuk mengintegrasikan komponen dengan kode yang ada.
+React dapat digunakan pada aplikasi peramban apapun. React juga dapat ditanamkan di aplikasi lain, dan dengan sedikit pengaturan, aplikasi lain dapat ditanamkan di React. Panduan ini akan membahas beberapa kasus penggunaan yang lebih umum, memfokuskan pada integrasi dengan [jQuery](https://jquery.com/) dan [Backbone](https://backbonejs.org/), tetapi ide yang sama dapat diaplikasikan untuk mengintegrasikan komponen dengan kode yang ada.
 
 ## Integrasi dengan Plugin Manipulasi DOM {#integrating-with-dom-manipulation-plugins}
 
