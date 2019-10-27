@@ -31,13 +31,7 @@ Tutorial ini akan dibagi menjadi beberapa bagian:
 
 Anda tidak perlu menyelesaikan semua bagian sekaligus untuk mendapatkan pembelajaran dari tutorial ini. Cobalah mengerjakan semampu Anda -- walaupun hanya satu atau dua bagian.
 
-<<<<<<< HEAD
-Tidak masalah jika Anda melakukan *copy*+*paste* kode selama menjalani tutorial, tetapi kami merekomendasikan untuk tetap mengetik ulang. Mengetik ulang akan membantu Anda mengembangkan ingatan otot dan pemahaman yang lebih kuat.
-
 ### Apa yang Kita Kembangkan? {#what-are-we-building}
-=======
-### What Are We Building? {#what-are-we-building}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Dalam tutorial ini, kami akan menunjukkan cara membuat permainan *tic-tac-toe* interaktif menggunakan React.
 
@@ -51,7 +45,7 @@ Anda bisa menutup laman permainan *tic-tac-toe* setelah Anda paham dengan permai
 
 Kami mengasumsikan bahwa Anda memiliki pemahaman akan HTML dan JavaScript, namun Anda seharusnya tetap dapat mengikuti tutorial ini jika Anda memiliki pemahaman pada bahasa pemrograman lainnya. Kami juga berasumsi bahwa Anda memiliki pemahaman akan konsep pemrograman seperti fungsi, objek, senarai, dan pada tingkat yang lebih rendah, kelas.
 
-Jika Anda memerlukan pengingat tentang JavaScript, kami merekomendasikan Anda untuk membaca [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga bahwa kita menggunakan beberapa fitur dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *statement* *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), *[`let`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), dan *[`const`]*(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat hasil kompilasi kode ES6.
+Jika Anda memerlukan pengingat tentang JavaScript, kami merekomendasikan Anda untuk membaca [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga bahwa kita menggunakan beberapa fitur dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *statement* *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), dan [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat hasil kompilasi kode ES6.
 
 ## Mempersiapkan Tutorial {#setup-for-the-tutorial}
 
@@ -122,7 +116,7 @@ Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/do
 
 ### Tolong, Saya Mengalami Masalah! {#help-im-stuck}
 
-Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
+Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/reactiflux) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
 
 ## Ikhtisar {#overview}
 
@@ -190,13 +184,9 @@ Komponen Square akan me-*render* sebuah `<button>` dan komponen Board akan me-*r
 
 ### Mengoper Data Melalui Props {#passing-data-through-props}
 
-<<<<<<< HEAD
 Untuk memulai mendalami React, mari kita mencoba untuk mengoper data dari komponen Board ke komponen Square kita.
-=======
-To get our feet wet, let's try passing some data from our Board component to our Square component.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Kami menyarankan mengetik kode-kode berikut secara manual selama Anda mengikuti tutorial ini dan menghindari menggunakan *copy*/*paste*. Ini akan membantu mengembangkan memori otot Anda dan meningkatkan pemahaman Anda mengenai React.
 
 Di dalam *method* `renderSquare` Board, ubah kodenya untuk mengoperkan *prop* bernama `value` ke Square:
 
@@ -250,11 +240,7 @@ class Square extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
 Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browser* kita.
-=======
-If you click on a Square now, you should see an alert in your browser.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 >Catatan
 >
@@ -272,11 +258,7 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
-<<<<<<< HEAD
 >Perhatikan bahwa dengan `onClick={() => alert('click')}`, kita mengoperkan *sebuah fungsi* sebagai *prop* `onClick`. Fungsi tersebut hanya dieksekusi setelah klik. Lupa untuk menulis `() =>` dan menulis `onClick={alert('click')}` adalah kesalahan yang sering terjadi, dan menyebabkan fungsi akan terus dijalankan setiap komponen di-*render* ulang.
-=======
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Selanjutnya, kita ingin agar komponen Square "mengingat" bahwa komponen tersebut sudah diklik dan mengisinya dengan "X". Untuk "mengingat" sesuatu, komponen menggunakan **_state_**.
 
@@ -309,15 +291,9 @@ class Square extends React.Component {
 
 Sekarang kita akan mengubah *method* `render` Square untuk menampilkan nilai *state* saat ini ketika diklik:
 
-<<<<<<< HEAD
 * Mengganti `this.props.value` dengan `this.state.value` di dalam `<button>` *tag*.
-* Mengganti *event handler* `() => alert()` dengan `() => this.setState({value: 'X'})`.
+* Mengganti *event handler* `onClick={...}` dengan `onClick={() => this.setState({value: 'X'})}`.
 * Pisahkan *props* `className` dan `onClick` pada baris yang berbeda agar lebih mudah dibaca.
-=======
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Setelah perubahan di atas, *tag* `<button>` yang dikembalikan dari *method* `render` Square akan terlihat seperti ini:
 
@@ -358,7 +334,7 @@ memungkinkan Anda untuk melihat pohon komponen dari React dengan menggunakan per
 
 React Devtools memungkinkan Anda untuk mengecek *props* dan *state* dari komponen React Anda.
 
-Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka perangkat pengembang dan *tab* React akan muncul sebagai *tab* terakhir di sebalah kanan.
+Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka perangkat pengembang dan *tab* React ("⚛️ Components" and "⚛️ Profiler") akan muncul sebagai *tab* terakhir di sebalah kanan. Gunakan "⚛️ Components" untuk menginspeksi pohon komponen.
 
 **Walaupun demikian, perlu diperhatikan bahwa ada beberapa langkah tambahan untuk membuat aplikasi Anda bekerja dengan CodePen:**
 
@@ -379,13 +355,9 @@ Kita dapat memikirkan Board seharusnya cukup mengambil *state* setiap Square. Wa
 
 **Untuk mengambil data dari beberapa anak atau membuat dua komponen anak berkomunikasi satu sama lain, Anda perlu mendeklarasikan *state* pada komponen induk. Komponen induk dapat memberikan *state* ke anak dengan menggunakan *props*; pola ini dapat membuat komponen-komponen anak tetap sinkron satu sama lain dan dengan komponen induk.**
 
-<<<<<<< HEAD
-Menaikkan *state* ke komponen induk lazim ketika me-*refactor* komponen React. Mari memanfaatkan kesempatan ini untuk mencobanya. Kita akan menambahkan konstruktor ke Board dan menginisialisasi *state* dari Board berisi array dengan 9 *null*. Sembilan nilai ini melambangkan 9 persegi:
-=======
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+Menaikkan *state* ke komponen induk lazim ketika me-*refactor* komponen React. Mari memanfaatkan kesempatan ini untuk mencobanya.
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Kita akan menambahkan konstruktor ke Board dan menginisialisasi *state* dari Board berisi array dengan 9 *null*. Sembilan nilai ini melambangkan 9 persegi:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -401,11 +373,7 @@ class Board extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
-Ketika kita mengisi papan permainan nanti, papan akan terlihat seperti ini:
-=======
-When we fill the board in later, the `this.state.squares` array will look something like this:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Ketika kita mengisi papan permainan nanti, senarai `this.state.squares` akan terlihat seperti ini:
 
 ```javascript
 [
@@ -439,11 +407,7 @@ Setiap Square akan menerima *prop* `value` yang dapat berupa `'X'`, `'O'`, atau 
 
 Selanjutnya, kita perlu mengubah perilaku Square saat diklik. Komponen Board saat ini mengatur persegi yang sedang diisi. Kita perlu memikirkan sebuah cara agar Square dapat memperbarui *state* di Board. Karena *state* dianggap sebagai *private* di dalam suatu komponen, kita tidak dapat mengubah *state* Board melalui Square secara langsung.
 
-<<<<<<< HEAD
 Untuk mempertahankan *state privacy* dari Board, kita akan memberikan sebuah fungsi dari Board ke Square. Fungsi ini akan dipanggil ketika komponen Square diklik. Kita akan mengubah *method* `renderSquare` di dalam Board menjadi:
-=======
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript{5}
   renderSquare(i) {
@@ -485,27 +449,15 @@ class Square extends React.Component {
 
 Ketika sebuah Square diklik, fungsi `onClick` yang disediakan oleh Board akan dipanggil. Berikut adalah ulasan bagaimana kita dapat memperoleh hasil saat ini:
 
-<<<<<<< HEAD
 1. *Prop* `onClick` pada komponen *built-in DOM* `<button>` memberi tahu React untuk menyiapkan *event listener* klik.
 2. Ketika tombol diklik, React akan memanggil *event handler* `onClick` yang sudah didefinisikan pada *method* `render()` Square.
 3. *Event handler* ini memanggil `this.props.onClick()`. *Prop* `onClick` dari Square ditentukan oleh Board.
 4. Karena Board mengoperkan `onClick={() => this.handleClick(i)}` ke Square, Square memanggil `this.handleClick(i)` ketika diklik.
-5. Kita belum mendefinisikan *method* `handleClick()`, sehingga kode kita akan *crash*.
-=======
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+5. Kita belum mendefinisikan *method* `handleClick()`, sehingga kode kita akan *crash*. Ketika Anda mengeklik sebuah persegi, Anda akan melihat teks *error* berwarna merah yang bertuliskan semacam *"this.handleClick is not a function"*.
 
 >Catatan
 >
-<<<<<<< HEAD
 >Atribut `onClick` pada elemen DOM `<button>` memiliki arti khusus untuk React karena merupakan komponen *built-in*. Untuk komponen komponen *custom* seperti Square, penamaan bersifat bebas. Kita dapat menamakan prop `onClick` Square atau `handleClick` Board dengan nama lain. Namun demikian, dalam React, hal ini adalah sebuah konvensi untuk menggunakan penamaan `on[Event]` pada *props* yang merepresentasikan *event* dan `handle[Event]` untuk *method* yang menangani *event* tersebut.
-=======
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Ketika kita mencoba untuk mengklik salah satu Square, kita seharusnya akan mendapatkan sebuah pesan *error* karena kita belum mendefinisikan `handleClick`. Sekarang kita akan menambahkan `handleClick` pada kelas Board:
 
@@ -562,11 +514,7 @@ class Board extends React.Component {
 
 **[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-<<<<<<< HEAD
 Setelah perubahan ini, kita dapat mengklik Square kembali untuk mengisinya. Tetapi, sekarang *state* disimpan pada komponen Board, bukan pada setiap komponen Square. Ketika *state* Board berubah, komponen Square akan di-*render* ulang secara otomatis. Dengan menyimpan *state* dari setiap persegi pada komponen Board, kita dapat menentukan pemenangnya pada tahap berikutnya.
-=======
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Karena komponen Square tidak lagi mengatur *state*, komponen Square menerima nilai dari komponen Board dan memberikan informasi ke komponen Board ketika diklik. Dalam istilah React, komponen Square sekarang disebut dengan ***controlled components***. Komponen Board memiliki kontrol penuh pada komponen Square.
 
@@ -608,11 +556,7 @@ Mendeteksi perubahan pada objek *mutable* sulit karena mereka dimodifikasi secar
 
 Mendeteksi perubahan pada objek *immutable* dianggap lebih mudah. Jika objek *immutable* yang ditunjuk berbeda dengan objek sebelumnya, maka objeknya sudah berubah.
 
-<<<<<<< HEAD
 #### Menentukan Waktu Untuk Melakukan Render Ulang di React {#determining-when-to-re-render-in-react}
-=======
-#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Keuntungan utama dari *immutability* adalah membantu Anda untuk membuat *pure component* di React. Data yang *immutable* dapat dengan mudah memastikan apakah perubahan sudah terjadi, yang juga membantu untuk menentukan apakah komponen perlu di-*render* ulang.  
 
@@ -642,11 +586,7 @@ Kita sudah mengganti `this.props` dengan `props` saat muncul.
 
 >Catatan
 >
-<<<<<<< HEAD
 >Ketika mengubah Square menjadi *function component*, kita juga mengubah `onClick={() => this.props.onClick()}` menjadi lebih pendek `onClick={props.onClick}` (perhatikan hilangnya tanda kurung pada *kedua* sisi). Pada kelas, kita menggunakan *arrow function* untuk mengakses nilai `this` yang benar, tetapi di *function component* kita tidak perlu mengkhawatirkan `this`.
-=======
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ### Mengambil Giliran {#taking-turns}
 
@@ -678,13 +618,9 @@ Setiap pemain selesai dengan langkahnya, `xIsNext` (sebuah *boolean*) akan diuba
   }
 ```
 
-<<<<<<< HEAD
-Dengan perubahan ini, "X" dan "O" akan mendapatkan giliran setiap satu langkah selesai. Mari mengubah teks "status" pada `render` di Board, sehingga teks menampilkan pemain mana yang sedang mendapat giliran selanjutnya:
-=======
-With this change, "X"s and "O"s can take turns. Try it!
+Dengan perubahan ini, "X" dan "O" akan mendapatkan giliran setiap satu langkah selesai.
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Mari mengubah teks "status" pada `render` di Board, sehingga teks menampilkan pemain mana yang sedang mendapat giliran selanjutnya:
 
 ```javascript{2}
   render() {
@@ -755,11 +691,7 @@ class Board extends React.Component {
 
 ### Menentukan Pemenang {#declaring-a-winner}
 
-<<<<<<< HEAD
 Sekarang kita sudah menampilkan pemain mana yang akan mendapat giliran selanjutnya, kita juga perlu menampilkan sesuatu ketika permainan sudah dimenangkan oleh salah satu pemain dan tidak ada giliran lagi. Kita dapat menentukan pemenang dengan menambahkan fungsi berikut pada akhir file:
-=======
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript
 function calculateWinner(squares) {
@@ -783,13 +715,9 @@ function calculateWinner(squares) {
 }
 ```
 
-<<<<<<< HEAD
-Kita akan memanggil `caluclateWinner(squares)` pada fungsi `render` Board untuk mengecek adanya salah satu pemain yang sudah menang. Jika salah satu pemain sudah menang, kita dapat menampilkan teks seperti *"Winner: X"* atau *"Winner: O"*. Kita akan mengganti deklarasi `status` pada fungsi `render` Board dengan kode berikut:
-=======
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+Ketika diberi senarai dari kesembilan persegi, fungsi ini akan mengecek pemenang dan `'X'`, `'O'`, atau `null` sesuai dengan hasil.
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Kita akan memanggil `caluclateWinner(squares)` pada fungsi `render` Board untuk mengecek adanya salah satu pemain yang sudah menang. Jika salah satu pemain sudah menang, kita dapat menampilkan teks seperti *"Winner: X"* atau *"Winner: O"*. Kita akan mengganti deklarasi `status` pada fungsi `render` Board dengan kode berikut:
 
 ```javascript{2-8}
   render() {

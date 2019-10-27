@@ -1,26 +1,26 @@
 ---
 id: faq-functions
-title: Passing Functions to Components
+title: Mengoper fungsi-fungsi ke dalam komponen
 permalink: docs/faq-functions.html
 layout: docs
 category: FAQ
 ---
 
-### How do I pass an event handler (like onClick) to a component? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
+### Bagaimana saya mengoper event handler (seperti onClick) ke sebuah komponen? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component }
 
-Pass event handlers and other functions as props to child components:
+Anda bisa melakukannya dengan cara meletakkan __event handlers__ dan fungsi-fungsi lain sebagai props untuk child components:
 
 ```jsx
 <button onClick={this.handleClick}>
 ```
 
-If you need to have access to the parent component in the handler, you also need to bind the function to the component instance (see below).
+Jika Anda butuh akses ke _parent component_ pada _handler_ tersebut, maka Anda juga harus mem-_bind_ fungsi tersebut pada _component instance_ (lihat di bawah).
 
-### How do I bind a function to a component instance? {#how-do-i-bind-a-function-to-a-component-instance}
+### Bagaimana saya mem-bind fungsi ke sebuah component instance {#how-do-i-bind-a-function-to-a-component-instance}
 
-There are several ways to make sure functions have access to component attributes like `this.props` and `this.state`, depending on which syntax and build steps you are using.
+Ada beberapa cara untuk membuat fungsi memiliki akses terhadap atribut komponen seperti `this.props` dan `this.state`, tergantung pada sintaksis mana dan _build steps_ seperti apa yang Anda gunakan.
 
-#### Bind in Constructor (ES2015) {#bind-in-constructor-es2015}
+#### _Bind_ di dalam Konstruktor (ES2015) {#bind-in-constructor-es2015}
 
 ```jsx
 class Foo extends Component {
@@ -51,7 +51,7 @@ class Foo extends Component {
 }
 ```
 
-#### Bind in Render {#bind-in-render}
+#### _Bind_ di dalam _Render_ {#bind-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -64,11 +64,11 @@ class Foo extends Component {
 }
 ```
 
->**Note:**
+>Catatan:**
 >
->Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications (see below).
+>Menggunakan `Function.prototype.bind` di dalam _render_ akan membuat fungsi baru setiap kali komponen ter-_render_, yang akan mempengaruhi performa (lihat di bawah).
 
-#### Arrow Function in Render {#arrow-function-in-render}
+#### Arrow Function dalam Method Render {#arrow-function-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -81,19 +81,21 @@ class Foo extends Component {
 }
 ```
 
->**Note:**
+>Catatan:**
 >
->Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
+>Menggunakan arrow function di dalam method render akan menyebabkan program membuat fungsi baru setiap kali component ter-render. Hal ini akan berpengaruh terhadap performa (akan dibahas di bagian selanjutnya)
 
-### Is it OK to use arrow functions in render methods? {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
-Generally speaking, yes, it is OK, and it is often the easiest way to pass parameters to callback functions.
+### Apakah tidak ada masalah menggunakan arrow function di metode render {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
-If you do have performance issues, by all means, optimize!
+Secara umum tidak ada masalah, dan terkadang inilah cara termudah untuk mengoper parameter pada fungsi callback.
 
-### Why is binding necessary at all? {#why-is-binding-necessary-at-all}
+Adapun demikian, jika Anda menemukan masalah dengan performa program, anda perlu melakukan optimasi.
 
-In JavaScript, these two code snippets are **not** equivalent:
+
+### Mengapa binding diperlukan? {#why-is-binding-necessary-at-all}
+
+Dalam JavaScript, kedua contoh kode ini **tidak** sama (memiliki makna berbeda):
 
 ```js
 obj.method();
@@ -104,15 +106,16 @@ var method = obj.method;
 method();
 ```
 
-Binding methods helps ensure that the second snippet works the same way as the first one.
+Melakukan binding pada method membantu kita untuk memastikan bahwa contoh kode kedua akan berjalan persis seperti contoh kode pertama.
 
-With React, typically you only need to bind the methods you *pass* to other components. For example, `<button onClick={this.handleClick}>` passes `this.handleClick` so you want to bind it. However, it is unnecessary to bind the `render` method or the lifecycle methods: we don't pass them to other components.
+Pada React, biasanya Anda hanya perlu melakukan binding method jika method tersebut diberikan pada komponen lain. Sebagai contoh, `<button onClick={this.handleClick}>` mengoper `this.handleClick` pada komponen button, sehingga Anda perlu melakukan binding. Adapun demikian, kita tidak perlu melakukan binding method `render` atau binding method-method bawaan lainnya (lifecycle method) karena kita tidak mengoper method-method tersebut pada komponen lain.
 
-[This post by Yehuda Katz](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
+[Artikel oleh Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) menjelaskan apa itu binding, dan bagaimana cara kerja fungsi di dalam JavaScript secara detail.
 
-### Why is my function being called every time the component renders? {#why-is-my-function-being-called-every-time-the-component-renders}
 
-Make sure you aren't _calling the function_ when you pass it to the component:
+### Mengapa fungsi saya dijalankan setiap kali component di-render (bukan saat event terkait)? {#why-is-my-function-being-called-every-time-the-component-renders}
+
+Pastikan anda tidak menjalankan fungsi saat mengopernya pada component (Perhatikan tanda kurungnya):
 
 ```jsx
 render() {
@@ -121,7 +124,7 @@ render() {
 }
 ```
 
-Instead, *pass the function itself* (without parens):
+Cara yang benar untuk mengoper fungsi adalah sebagai berikut (tanpa tanda kurung):
 
 ```jsx
 render() {
@@ -130,21 +133,21 @@ render() {
 }
 ```
 
-### How do I pass a parameter to an event handler or callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
+### Bagaimana saya mengoper parameter pada sebuah event handler atau callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
-You can use an arrow function to wrap around an event handler and pass parameters:
+Anda bisa menggunakan arrow function untuk membungkus event handler dan mengoper parameter:
 
 ```jsx
 <button onClick={() => this.handleClick(id)} />
 ```
 
-This is equivalent to calling `.bind`:
+Hal tersebut sama dengan melakukan `.bind`:
 
 ```jsx
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
-#### Example: Passing params using arrow functions {#example-passing-params-using-arrow-functions}
+#### Contoh: Mengoper parameter menggunakan arrow function {#example-passing-params-using-arrow-functions}
 
 ```jsx
 const A = 65 // ASCII character code
@@ -178,9 +181,9 @@ class Alphabet extends React.Component {
 }
 ```
 
-#### Example: Passing params using data-attributes {#example-passing-params-using-data-attributes}
+#### Contoh: Mengoper parameter menggunakan data-attributes {#example-passing-params-using-data-attributes}
 
-Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
+Cara yang lain, anda bisa memakai DOM API untuk menyimpan data yang dibutuhkan untuk event handler. Pertimbagnkan cara ini jika anda harus mengoptimasi element dalam jumlah besar atau anda harus merender struktur tree yang tergantung pada pengecekan kesamaan React.PureComponent
 
 ```jsx
 const A = 65 // ASCII character code
@@ -218,23 +221,23 @@ class Alphabet extends React.Component {
 }
 ```
 
-### How can I prevent a function from being called too quickly or too many times in a row? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
+### Bagaimana saya menghindari sebuah fungsi dipanggil terlalu cepat atau terpanggil berkali-kali secara berurutan? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
-If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, then you can limit the rate at which callback is executed. This can be done by using:
+Jika anda memiliki event handler seperti `onClick` atau `onScroll` dan anda ingin mencegah callback dari event tersebut terpanggil terlalu cepat, maka anda dapat melakukan pembatasan kecepatan pemanggilan fungsi callback. Hal tersebut dapat dilakukan menggunakan:
 
-- **throttling**: sample changes based on a time based frequency (eg [`_.throttle`](https://lodash.com/docs#throttle))
-- **debouncing**: publish changes after a period of inactivity (eg [`_.debounce`](https://lodash.com/docs#debounce))
-- **`requestAnimationFrame` throttling**: sample changes based on [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) (eg [`raf-schd`](https://github.com/alexreardon/raf-schd))
+- **throttling**: Mengecek apakah ada perubahan dalam jangka waktu tertentu (contoh: [`_.throttle`](https://lodash.com/docs#throttle))
+- **debouncing**: Mempublish perubahan setelah tidak ada aktivitas selama beberapa waktu (contoh: [`_.debounce`](https://lodash.com/docs#debounce))
+- **`requestAnimationFrame` throttling**: Mengecek perubahan berdasarkan [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) (eg [`raf-schd`](https://github.com/alexreardon/raf-schd))
 
-See [this visualization](http://demo.nimius.net/debounce_throttle/) for a comparison of `throttle` and `debounce` functions.
+Silahkan melihat [gambar berikut](http://demo.nimius.net/debounce_throttle/) untuk mendapatkan perbandingan antara `throttle` dan `debounce`.
 
-> Note:
+> Catatan:
 >
-> `_.debounce`, `_.throttle` and `raf-schd` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function.
+> `_.debounce`, `_.throttle` dan `raf-schd` menyediakan metode `cancel` untuk membatalkan callback yang tertunda. Anda harus memanggil metode melalui `componentWillUnmount` _atau_ melakukan pengecekan untuk memastikan bahwa komponen yang dimasuksu masih dalam keadaan ter-mount selama penundaan eksekusi fungsi callback.
 
 #### Throttle {#throttle}
 
-Throttling prevents a function from being called more than once in a given window of time. The example below throttles a "click" handler to prevent calling it more than once per second.
+Teknik throttling mencegah sebuah fungsi terpanggil beberapa kali dalam jangka waktu tertentu. Sebagai contoh, berikut adalah contoh throttle pada handler "click" untuk mencegah pemanggilan lebih dari sekali dalam waktu satu detik.
 
 ```jsx
 import throttle from 'lodash.throttle';
@@ -262,7 +265,7 @@ class LoadMoreButton extends React.Component {
 
 #### Debounce {#debounce}
 
-Debouncing ensures that a function will not be executed until after a certain amount of time has passed since it was last called. This can be useful when you have to perform some expensive calculation in response to an event that might dispatch rapidly (eg scroll or keyboard events). The example below debounces text input with a 250ms delay.
+Teknik debouncing memastikan bahwa sebuah fungsi tidak akan dieksekusi setelah beberapa waktu sejak pemanggilan terakhir. Teknik ini akan berguna terutama jika kita harus melakukan perhitungan yang berat sebagai respon terhadap event yang terjadi berkali-kali dalam waktu yang singkat (misalnya scroll atau penekanan tombol keyboard). Berikut adalah contoh teknik debounce pada text input dengan penundaan sebesar 250 ms.
 
 ```jsx
 import debounce from 'lodash.debounce';
@@ -304,11 +307,11 @@ class Searchbox extends React.Component {
 
 #### `requestAnimationFrame` throttling {#requestanimationframe-throttling}
 
-[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a way of queuing a function to be executed in the browser at the optimal time for rendering performance. A function that is queued with `requestAnimationFrame` will fire in the next frame. The browser will work hard to ensure that there are 60 frames per second (60 fps). However, if the browser is unable to it will naturally *limit* the amount of frames in a second. For example, a device might only be able to handle 30 fps and so you will only get 30 frames in that second. Using `requestAnimationFrame` for throttling is a useful technique in that it prevents you from doing more than 60 updates in a second. If you are doing 100 updates in a second this creates additional work for the browser that the user will not see anyway.
+[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) adalah sebuah cara untuk mengantrikan fungsi sehingga bisa dieksekusi oleh browser secara optimal untuk rendering. Sebuah fungsi yang diantrikan menggunakan `requestAnimationFrame` akan dijalankan pada frame selanjutnya. Secara normal, browser akan bekerja untuk memastikan bahwa akan ada 60 frame dalam waktu satu detik (60 fps). Namun, jika browser tidak mampu memenuhi standar tersebut, maka browser akan *membatasi* jumlah frame dalam satu detik. Sebagai contoh, sebuah device mungkin hanya mampu untuk melayani 30 fps. Menggunakan `requestAnimationFrame` untuk throttling adalah teknik yang berguna untuk membatasi supaya tidak ada lebih dari 60 perubahan dalam satu detik. Jika anda melakukan 100 perubahan dalam satu detik, hal tersebut hanya akan membuat browser melakukan komputasi yang pada dasarnya tidak akan terlihat dari sisi user. Teknik throttling digunakan untuk mencegah hal tersebut.
 
->**Note:**
+>**Catatan:**
 >
->Using this technique will only capture the last published value in a frame. You can see an example of how this optimization works on [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
+>Dengan menggunakan teknik ini, maka peramban hanya akan mengolah perubahan terakhir dalam satu _frame_. Anda dapat melihat contoh detil optimasinya di [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
 
 ```jsx
 import rafSchedule from 'raf-schd';
@@ -349,6 +352,6 @@ class ScrollListener extends React.Component {
 }
 ```
 
-#### Testing your rate limiting {#testing-your-rate-limiting}
+#### Menguji pembatasan rate {#testing-your-rate-limiting}
 
-When testing your rate limiting code works correctly it is helpful to have the ability to fast forward time. If you are using [`jest`](https://facebook.github.io/jest/) then you can use [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) to fast forward time. If you are using `requestAnimationFrame` throttling then you may find [`raf-stub`](https://github.com/alexreardon/raf-stub) to be a useful tool to control the ticking of animation frames.
+Saat menguji apakah pembatasan _rate_ yang Anda terapkan sudah bekerja dengan baik, akan sangat membantu jika kita bisa mempercepat waktu. Jika Anda menggunakan [`jest`](https://facebook.github.io/jest/) maka Anda bisa menggunakan [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) untuk mempercepat waktu. Jika anda menggunakan pelambatan `requestAnimationFrame` maka [`raf-stub`](https://github.com/alexreardon/raf-stub) juga akan berguna untuk mengendalikan jumlah _frame_ per detik.
