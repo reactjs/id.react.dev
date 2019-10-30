@@ -18,13 +18,9 @@ Rilis mayor dapat juga mengandung fitur-fitur baru, dan rilis apa pun dapat meny
 
 Rilis minor merupakan jenis rilis yang paling umum.
 
-<<<<<<< HEAD
-### Perubahan Tidak Kompatibel {#breaking-changes}
-=======
-> This versioning policy does not apply to prerelease builds in the Next or Experimental channels. [Learn more about prereleases.](/docs/release-channels.html)
+> Kebijakan pemversian ini tidak berlaku untuk *prerelease* di kanal Next atau Experimental. [Learn more about *prerelease*.](/docs/release-channels.html)
 
-### Breaking Changes {#breaking-changes}
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
+### Perubahan Tidak Kompatibel {#breaking-changes}
 
 Semua orang tidak menyukai perubahan-perubahan yang merusak kompatibilitas, maka dari itu kami mengupayakan untuk meminimalisasi jumlah rilis-rilis mayor - misalnya, React 15 dirilis pada bulan April 2016 dan React 16 dirilis pada bulan September 2017; React 17 belum diperkirakan hingga tahun 2019.
 
