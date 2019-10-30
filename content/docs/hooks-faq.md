@@ -4,13 +4,13 @@ title: Hooks FAQ
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
-<!-- docs/hooks-faq.md ini diterjemahkan oleh dummyeuy (Muhammad Ghalib) -->
-*Hooks* adalah tambahan baru dalam React 16.8. React memungkikan anda untuk menggunakan *state* dan fitur-fitur React lainnya tanpa perlu menuliskan sebuah kelas. 
+
+*Hooks* adalah tambahan baru dalam React 16.8. React memungkinkan anda untuk menggunakan *state* dan fitur-fitur React lainnya tanpa perlu menuliskan sebuah kelas. 
 
 Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked questions*) tentang [*Hooks*](/docs/hooks-overview.html).
 
 <!--
-  jika Anda perlu me-egenerate ini, snippet dalam konsol devtools ini bisa membantu:
+  jika Anda perlu me-rgenerate ini, snippet dalam konsol devtools ini bisa membantu:
 
   $$('.anchor').map(a =>
     `${' '.repeat(2 * +a.parentNode.nodeName.slice(1))}` +
@@ -21,9 +21,9 @@ Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked q
 * **[Strategi Adopsi](#adoption-strategy)**
   * [Versi React mana yang termasuk *Hooks* di dalamnya?](#which-versions-of-react-include-hooks)
   * [Apakah perlu menulis ulang semua komponen kelas saya?](#do-i-need-to-rewrite-all-my-class-components)
-  * [Apa yang dapat saya lakukan dengn *Hooks* namun tidak bisa saya lakukan dengan kelas?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
+  * [Apa yang dapat saya lakukan dengan *Hooks* namun tidak bisa saya lakukan dengan kelas?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
   * [Seberapa banyak pengetahuan saya tentang React yang tetap relevan?](#how-much-of-my-react-knowledge-stays-relevant)
-  * [Haruskan saya menggunakan Hooks, kelas atau gabungan keduanya?](#should-i-use-hooks-classes-or-a-mix-of-both)
+  * [Haruskah saya menggunakan Hooks, kelas atau gabungan keduanya?](#should-i-use-hooks-classes-or-a-mix-of-both)
   * [Apakah *Hooks* mencakup seluruh kasus yang digunakan untuk kelas?](#do-hooks-cover-all-use-cases-for-classes)
   * [Apakah *Hooks* menggantikan *render props* dan *higher-order components*?](#do-hooks-replace-render-props-and-higher-order-components)
   * [Apa yang *Hooks* peruntukan untuk API populer seperti *Redux connect()* dan *React router*?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
@@ -77,7 +77,7 @@ Perhatikan bahwa **untuk menjalankan Hooks, semua *package* React perlu setidakn
 
 Tidak. [Tidak ada rencana](/docs/hooks-intro.html#gradual-adoption-strategy) untuk menghilangkan kelas dari React -- kita semua perlu mengirimkan produk baru dan tidak memiliki waktu untuk penulisan ulang. Kami rekomendasikan untuk mencoba *Hooks* dalam kode baru.
 
-### Apa yang dapat saya lakukan dengn *Hooks* namun tidak bisa saya lakukan dengan kelas? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
+### Apa yang dapat saya lakukan dengan *Hooks* namun tidak bisa saya lakukan dengan kelas? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
 Hooks menawarkan sebuah cara baru yang kuat dan ekpresif untuk menggunakan kembali fungsionalitas antara komponen. ["Buat Hooks-mu Sendiri"](/docs/hooks-custom.html) menyajikan sekilas apa saja yang mungkin dilakukan. [Artikel ini](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889), oleh seorang anggota inti tim React, menyelam lebih dalam lagi kemampuan-kemampuan baru yang dibuka oleh Hooks.
 
@@ -87,7 +87,7 @@ Hooks adalah cara yang lebih langsung untuk menggunakan fitur-fitur React yang s
 
 Hooks memiliki sebuah alur kurva pembelajarannya sendiri. Jika terdapat sesuatu yang hilang dalam dokumentasi ini, [ajukan isu](https://github.com/reactjs/reactjs.org/issues/new) dan kami akan coba membantu.
 
-### Haruskan saya menggunakan Hooks, kelas atau gabungan keduanya?{#should-i-use-hooks-classes-or-a-mix-of-both}
+### Haruskah saya menggunakan Hooks, kelas atau gabungan keduanya?{#should-i-use-hooks-classes-or-a-mix-of-both}
 
 Ketika Anda siap, kami menganjurkan Anda untuk mulai mencoba *Hooks* dalam komponen-komponen baru yang Anda tulis. Pastikan setiap orang dalam tim Anda siap dan tidak asing dengan dokumentasi ini. Kami tidak merekomendasikan menulis ulang kelas-kelas Anda yang sudah ada ke *Hooks* kecuali Anda sudah berencana menulis ulang (seperti, memperbaiki *bug*).
 
@@ -137,7 +137,7 @@ function Example() {
     <div>
       <p>Anda meng-klik sebanyak {count} kali</p>
       <button onClick={() => setCount(count + 1)}>
-        Klik sayaS
+        Klik saya
       </button>
     </div>
   );
@@ -219,7 +219,7 @@ Terdapat beberapa heuristik lagi, dan hal tersebut bisa saja berubah sepanjang w
 
 ### Bagaimana cara saya dapat memperoleh data dengan Hooks?{#how-can-i-do-data-fetching-with-hooks}
 
-Berikut ini sebuah [demo kecil](https://codesandbox.io/s/jvvkoo8pq3) untuk permulaan Anda. Untuk mempelajari lebih lanjut, lihat [attikel ini](https://www.robinwieruch.de/react-hooks-fetch-data/) tentang memperoleh (*fetching*) data dengan menggunakan Hooks.
+Berikut ini sebuah [demo kecil](https://codesandbox.io/s/jvvkoo8pq3) untuk permulaan Anda. Untuk mempelajari lebih lanjut, lihat [artikel ini](https://www.robinwieruch.de/react-hooks-fetch-data/) tentang memperoleh (*fetching*) data dengan menggunakan Hooks.
 
 ### Apakah ada hal seperti *instance variable*? {#is-there-something-like-instance-variables}
 
@@ -268,7 +268,7 @@ function Box() {
 }
 ```
 
-Sekarang umpamakan kita ingin menuliskan beberapa logika yang mana merubah `left` (sisi kiri) dan `top` (sisi atas) ketika pengguna menggerakan tetikusnya. Perhatikan bagaimana kita harus menggabungkan area-area inike dalam objek *state* sebelumnya secara manual:
+Sekarang umpamakan kita ingin menuliskan beberapa logika yang mana merubah `left` (sisi kiri) dan `top` (sisi atas) ketika pengguna menggerakan tetikusnya. Perhatikan bagaimana kita harus menggabungkan area-area ini ke dalam objek *state* sebelumnya secara manual:
 
 ```js {4,5}
   // ...
@@ -320,7 +320,7 @@ function useWindowPosition() {
 }
 ```
 
-Perhatikan bagaimana kita dapat memindahkan panggilan `useState` untuk *state variable* `position` serta efek yang terhubung ke dalam sebuah *custom Hook* tanpa merubah kodenya. Jika semua *state* ada dalams sebuah objek, mengekstrak *state* tersebut akan jadi lebih sulit.
+Perhatikan bagaimana kita dapat memindahkan panggilan `useState` untuk *state variable* `position` serta efek yang terhubung ke dalam sebuah *custom Hook* tanpa merubah kodenya. Jika semua *state* ada dalam sebuah objek, mengekstrak *state* tersebut akan jadi lebih sulit.
 
 Baik memasang semua *state* ke dalam sebuah panggilan `useState`, serta memiliki sebuah panggilan `useState` pada setiap area, keduanya sama-sama berfungsi. Komponen-komponen cenderung paling mudah dibaca ketika Anda menemukan keseimbangan antara (penerapan) kedua cara tersebut, dan kelompok yang terhubung dengan *state* ke dalam beberapa *state variable* independen. Jika logika *state* tersebut menjadi kompleks, kami rekomendasikan [mengelolanya dengan sebuah *reducer*](/docs/hooks-reference.html#usereducer) atau sebuah *custom Hook*.
 
@@ -328,7 +328,7 @@ Baik memasang semua *state* ke dalam sebuah panggilan `useState`, serta memiliki
 
 Ini adalah kasus penggunaan yang langka. Jika butuh, Anda bisa [gunakan sebuah *ref* yang bisa diubah-ubah](#is-there-something-like-instance-variables) menjadi secara manual menyetorkan nilai *boolean* sesuai dengan apakah Anda berada pada *render* pertama atau selanjutnya, kemudia memeriksa penandanya (*flag*) pada efek yang Anda buat. (Jika sering melakukan hal ini, ada baiknya Anda membuat sebuah *custom Hook*.)
 
-### Bagimana cara untuk mendapatkan kembali *prop* atau *state* sebelumnya? {#how-to-get-the-previous-props-or-state}
+### Bagaimana cara untuk mendapatkan kembali *prop* atau *state* sebelumnya? {#how-to-get-the-previous-props-or-state}
 
 Kini, Anda bisa melakukannya secara manual [dengan *ref*](#is-there-something-like-instance-variables):
 
@@ -415,11 +415,11 @@ Pada akhirnya, alasan lain Anda melihat *stale prop* atau *state* yakni jika And
 
 >Catatan
 >
->Kami menyediakan sebuah aturan *ESLint* [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari *package*[`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Itu akan memberi peringatakn ketika *dependency* keliru dispesifikasikan dan akan memberikan saran perbaikan.
+>Kami menyediakan sebuah aturan *ESLint* [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari *package*[`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Itu akan memberi peringatan ketika *dependency* keliru dispesifikasikan dan akan memberikan saran perbaikan.
 
 ### Bagaimana cara mengimplementasikan `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
 
-Ketika Anda mungkin [tidak memerlukannya](/blog/2018/06/07/you-probably-dont-need-derived-state.html), dalam kasus-kasus yang jarang yang jarang Anda alami (seperti mengimplementasikan sebuah komponen `<Transition>`), Anda bisa memperbarui *state* tepat saat proses *render*. React akan menjalankan ulang komponen tersebut dengan *state* yang sudah diperbarui tepat setelah keluar dari *render* pertama sehingga tidak akan memakan banyak ruang (*expensive*).
+Ketika Anda mungkin [tidak memerlukannya](/blog/2018/06/07/you-probably-dont-need-derived-state.html), dalam kasus-kasus yang jarang Anda alami (seperti mengimplementasikan sebuah komponen `<Transition>`), Anda bisa memperbarui *state* tepat saat proses *render*. React akan menjalankan ulang komponen tersebut dengan *state* yang sudah diperbarui tepat setelah keluar dari *render* pertama sehingga tidak akan memakan banyak ruang (*expensive*).
 
 Berikut ini, kita menyetorkan nilai sebelumnya dari *prop* `row` dalam sebuah *state variable* sehingga kita bisa bandingkan:
 
@@ -458,7 +458,7 @@ Coba hindari pola berikut ini sebisa mungkin.
 
 ### Bisakah saya membuat *ref* pada sebuah komponen fungsi? {#can-i-make-a-ref-to-a-function-component}
 
-Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos beberapa metode perintahpada sebuah *parent component* dengan menggunakan [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) *Hook*.
+Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos beberapa metode perintah pada sebuah *parent component* dengan menggunakan [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) *Hook*.
 
 ### Bagaimana cara mengukur *DOM node*? {#how-can-i-measure-a-dom-node}
 
@@ -485,7 +485,7 @@ function MeasureExample() {
 
 Kita tidak memilih `useRef` dalam contoh ini karena sebuah objek *ref* tidak memberitahukan kita tentang *perubahan* pada nilai *ref* yang sekarang. Menggunakan sebuah *callback ref* akan memastikan bahwa [walaupun jika sebuah *child component* menampilkan *node* yang diukur setelah ini](https://codesandbox.io/s/818zzk8m78) (sebagai contoh, dalam respon pada sebuah klik), kita masih akan dapat pemberitahuan tentang hal itu dalam *parent component* dan bisa memperbarui pengukurannya.
 
-Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `useCallback`. Ini memastikan bahwa *ref callback* tidak berubah di antara *render* ulang, serta agar React tidak akan memanggilkan tanpa sebab.
+Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `useCallback`. Ini memastikan bahwa *ref callback* tidak berubah di antara *render* ulang, serta agar React tidak akan memanggilnya tanpa sebab.
 
 Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
 
@@ -571,13 +571,13 @@ Tergantung pada kasus penggunaan Anda, terdapat beberapa pilihan lainnya sebagai
 
 >Catatan
 >
->Kami menyediakan aturan *ESLint* [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari *package* [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Itu akan mambantu Anda menemukan komponen yang tidak konsisten menangani pembaruan.
+>Kami menyediakan aturan *ESLint* [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari *package* [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Itu akan membantu Anda menemukan komponen yang tidak konsisten menangani pembaruan.
 
 Mari kita lihat mengapa hal ini penting.
 
 Jika Anda menspesifikasikan sebuah [daftar *dependency*](/docs/hooks-reference.html#conditionally-firing-an-effect) sebagai sebuah argumen terakhir untuk `useEffect`, `useMemo`, `useCallback`, atau `useImperativeHandle`, haruslah termasuk semua nilai yang digunakan di dalamnya yang ikut andil dalam *data flow* React. Itu termasuk *prop, state,* dan apapun yang berasal dari keduanya.
 
-Hal tersebut **hanya akan** aman untuk menghilangkan sebuah fungsi dari daftar *dependency* jika tidak terjadi apa-apa di dalamnya (atau fungsi lain yang terpanggil) yang merujuk pada *prop, state,* atau nilai yang berasl dari keduanya. Contoh berikut memiliki *bug*:
+Hal tersebut **hanya akan** aman untuk menghilangkan sebuah fungsi dari daftar *dependency* jika tidak terjadi apa-apa di dalamnya (atau fungsi lain yang terpanggil) yang merujuk pada *prop, state,* atau nilai yang berasal dari keduanya. Contoh berikut memiliki *bug*:
 
 ```js {5,12}
 function ProductPage({ productId }) {
@@ -596,7 +596,7 @@ function ProductPage({ productId }) {
 }
 ```
 
-**Rekomendasi perbaikannya adalah denganc ara memindahkan fungsi itu _di dalam_ efek yang Anda buat**. Perbaikan tersebut akan memudahkan untuk melihat *prop* atau *state* mana yang efek Anda gunakan, serta memastikan semuanya terdeklarasikan:
+**Rekomendasi perbaikannya adalah dengan cara memindahkan fungsi itu _di dalam_ efek yang Anda buat**. Perbaikan tersebut akan memudahkan untuk melihat *prop* atau *state* mana yang efek Anda gunakan, serta memastikan semuanya terdeklarasikan:
 
 ```js {5-10,13}
 function ProductPage({ productId }) {
@@ -648,7 +648,7 @@ Kita pindahkan fungsi dalam efek tersebut agar fungsi tersebut tidak perlu berad
 function ProductPage({ productId }) {
   // ✅ Dikemas dengan useCallback untuk menghindari berubah tiap kali render
   const fetchProduct = useCallback(() => {
-    // ... Melakukan sesuati dengan productId ...
+    // ... Melakukan sesuatu dengan productId ...
   }, [productId]); // ✅ Semua useCallback dependency terspesifikasikan
 
   return <ProductDetails fetchProduct={fetchProduct} />;
@@ -666,7 +666,7 @@ Perhatikan bahwa pada contoh di atas kita **perlu** untuk menjaga fungsi agar te
 
 ### Apa yang bisa saya lakukan jika *dependency* efek berganti terlalu sering berubah? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-Terkadang, efek Anda bisa jadi menggunakan *state* yang terlalu serung berubah. Anda mungkin berkeinginan untuk menghilangkan *state* itu dari daftar *dependency*, namun biasanya berujung pada *bug*:
+Terkadang, efek Anda bisa jadi menggunakan *state* yang terlalu sering berubah. Anda mungkin berkeinginan untuk menghilangkan *state* itu dari daftar *dependency*, namun biasanya berujung pada *bug*:
 
 ```js {6,9}
 function Counter() {
@@ -685,7 +685,7 @@ function Counter() {
 
 Kumpulan *dependency* yang kosong, `[]`, berarti bahwa efek tersebut hanya akan berjalan satu kali ketika komponen dimuat, dan tidak pada setiap kali *render* ulang. Masalahnya adalah di dalam `setInterval` callback*, nilai `count` tidaklah berubah, karena kita menciptakan sebuah pengakhiran dengan nilai `count` ditetapkan jadi `0` selayaknya ketika efek *callback* berjalan. Tiap detik, *callback* ini kemudian memanggil `setCount(0 + 1)`, jadi hitungan tersebut tidak pernah melebihi 1.
 
-Menspesifikasikan `[count]` sebagai sebauh daftar *dependency* dapat memperbaiki *bug*, tetapi juga bisa menyebabkan interval tersetel ulang (*reset*) pada setiap perubahan. Secara efektif, tiap `setInterval` akan mendapat satu kali kesempatan untuk mengeksekusi sebelum dikosongkan (mirip dengan `setTimeout`). Hal itu mungkin saja tidak diinginkan. Untuk memperbaikinya, kita bisa gunakan [bentuk pembaruan fungsional pada `setState`](/docs/hooks-reference.html#functional-updates). Hal tersebut membiarkan kita mespesifikasikan *bagaimana* *state* perlu berubah tanpa merujuk pada *state* yang *sekarang*:
+Menspesifikasikan `[count]` sebagai sebauh daftar *dependency* dapat memperbaiki *bug*, tetapi juga bisa menyebabkan interval tersetel ulang (*reset*) pada setiap perubahan. Secara efektif, tiap `setInterval` akan mendapat satu kali kesempatan untuk mengeksekusi sebelum dikosongkan (mirip dengan `setTimeout`). Hal itu mungkin saja tidak diinginkan. Untuk memperbaikinya, kita bisa gunakan [bentuk pembaruan fungsional pada `setState`](/docs/hooks-reference.html#functional-updates). Hal tersebut membiarkan kita menspesifikasikan *bagaimana* *state* perlu berubah tanpa merujuk pada *state* yang *sekarang*:
 
 ```js {6,9}
 function Counter() {
@@ -696,7 +696,7 @@ function Counter() {
       setCount(c => c + 1); // ✅ Ini tidak bergantung pada variabel `count` di luar,
     }, 1000);
     return () => clearInterval(id);
-  }, []); // ✅ Efek kita tidak menggunakan *variabel* apapun dalam lingkup componentW in the component scope
+  }, []); // ✅ Efek kita tidak menggunakan *variabel* apapun dalam lingkup komponen
 
   return <h1>{count}</h1>;
 }
@@ -706,9 +706,9 @@ function Counter() {
 
 Sekarang, `setInterval` callback* mengeksekusi satu kali tiap detik, namun tiap yang ada di dalamnya memanggil `setCount` bisa menggunakan nilai yang terbaru untuk `count` (disebut `c` dalam *callback* disini.)
 
-Dalam kasus-kasus yang lebih kompleks lagi (seperti halnya jika satu *state* bergantung pada *state*), cobalah untuk memindahkan logika pembaruan *state* keluar efek tersebut menggunakan [`useReducer` Hook*](/docs/hooks-reference.html#usereducer). [Artikel ini](https://adamrackis.dev/state-and-use-reducer/) menawarkan sebuah contoh bagaimna Anda daoat melakukan hal berikut ini. **Indentitas fungsi _`dispatch`_ dari _`useReducer`_ itu selalu stabil** — meskipun jika fungsi pengurangan (*reducer*) dideklarasikan dalam komponen serta membaca *prop*-nya.
+Dalam kasus-kasus yang lebih kompleks lagi (seperti halnya jika satu *state* bergantung pada *state*), cobalah untuk memindahkan logika pembaruan *state* keluar efek tersebut menggunakan [`useReducer` Hook*](/docs/hooks-reference.html#usereducer). [Artikel ini](https://adamrackis.dev/state-and-use-reducer/) menawarkan sebuah contoh bagaimana Anda daoat melakukan hal berikut ini. **Indentitas fungsi _`dispatch`_ dari _`useReducer`_ itu selalu stabil** — meskipun jika fungsi pengurangan (*reducer*) dideklarasikan dalam komponen serta membaca *prop*-nya.
 
-Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah, Anda bisa bisa [gunakan *ref*](/docs/hooks-faq.html#is-there-something-like-instance-variables) untuk menahan sebuah variabel yang berubah-ubah. Kemudian Anda bisa menulis dan membacanya. Contohny:
+Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah kelas, Anda bisa [gunakan *ref*](/docs/hooks-faq.html#is-there-something-like-instance-variables) untuk menahan sebuah variabel yang berubah-ubah. Kemudian Anda bisa menulis dan membacanya. Contohnya:
 
 ```js {2-6,10-11,16}
 function Example(props) {
@@ -758,7 +758,7 @@ Kode ini memanggil `computeExpensiveValue(a, b)`. Tapi jika *dependency* `[a, b]
 
 Ingat bahwa fungsi tersebut dioper ke `useMemo` berjalan selama proses *render*. Jangan lakukan hal apapun yang tidak se-normalnya Anda lakukan ketika proses *render*. Sebagai contoh, efek samping (*side effect*) sudah seharusnya berada dalam `useEffect`, bukan `useMemo`.
 
-**Anda bisa jadi mengandalkan _`useMemo`_ sebagai salah satu optimasi performa, bukan sebagai jeminan _semantic_.** Di masa yang akan datang, React bisa saja memilih untuk *"forget"* beberapa nilai-nilai hasil *memoize* sebelumnya dan menghitung ulang pada *render* selanjutnya, contohnya untuk mengosongkan memori dari komponen-komponen *offscreen*. Tulis kode Anda agar kode tersebut dapat terus berjalan tanpa `useMemo` — dan menambahkannya ke performa yang teroptimasi. (Untuk kasus yang langka ketika sebuah nilai harus *tidak pernah* dikomputasi ulang, Anda bisa [menginisiasi secara *lazy* *(initialize lazily)*](#how-to-create-expensive-objects-lazily) sebuah *ref*.)
+**Anda bisa jadi mengandalkan _`useMemo`_ sebagai salah satu optimasi performa, bukan sebagai jaminan _semantic_.** Di masa yang akan datang, React bisa saja memilih untuk *"forget"* beberapa nilai-nilai hasil *memoize* sebelumnya dan menghitung ulang pada *render* selanjutnya, contohnya untuk mengosongkan memori dari komponen-komponen *offscreen*. Tulis kode Anda agar kode tersebut dapat terus berjalan tanpa `useMemo` — dan menambahkannya ke performa yang teroptimasi. (Untuk kasus yang langka ketika sebuah nilai harus *tidak pernah* dikomputasi ulang, Anda bisa [menginisiasi secara *lazy* *(initialize lazily)*](#how-to-create-expensive-objects-lazily) sebuah *ref*.)
 
 Dengan mudah, `useMemo` juga memperbolehkan Anda untuk melewatkan sebuah *render* ulang yang *expensive* pada sebuah turunan (*child*):
 
@@ -777,11 +777,11 @@ function Parent({ a, b }) {
 }
 ```
 
-Perhatikan bahwa pendekatan ini tidak akan berhasil dalam sebuah pengulangan (*loop*) karena penggilan *Hook* [tidak bisa](/docs/hooks-rules.html) digantikan di dalam *loop*. Tapi Anda bisa mengekstrak komponen yang terpisah untuk daftar *item*, dan memanggil `useMemo` di sana.
+Perhatikan bahwa pendekatan ini tidak akan berhasil dalam sebuah pengulangan (*loop*) karena panggilan *Hook* [tidak bisa](/docs/hooks-rules.html) digantikan di dalam *loop*. Tapi Anda bisa mengekstrak komponen yang terpisah untuk daftar *item*, dan memanggil `useMemo` di sana.
 
 ### Bagaimana cara membuat objek *expensive* secara *lazy*? {#how-to-create-expensive-objects-lazily}
 
-`useMemo` mengizinkan Anda untuk [me-*memoize* sebuah perhitungan yang *expensive*](#how-to-memoize-calculations) jika *dependency*-nya sama. Bagiamanapun, itu hanya berfungsi sebagai sebuah penanda, dan tidak *menjamin* komputasi tersebut tidak akan diulang. Tapi terkadang Anda harus memastikan sebuah objek hanya diciptakan sekali.
+`useMemo` mengizinkan Anda untuk [me-*memoize* sebuah perhitungan yang *expensive*](#how-to-memoize-calculations) jika *dependency*-nya sama. Bagimanapun, itu hanya berfungsi sebagai sebuah penanda, dan tidak *menjamin* komputasi tersebut tidak akan diulang. Tapi terkadang Anda harus memastikan sebuah objek hanya diciptakan sekali.
 
 **Kasus penggunaan pertama yang umum yakni ketika menciptakan sebuah _initial state_ itu _expensive_:**
 
@@ -841,15 +841,15 @@ Ini menghindari pembuatan objek yang *expensive* hingga objek tersebut benar-ben
 
 Tidak. Dalam peramban-peramban modern, performa kasar penutupan (*closure*) dibandingkan dengan kelas tidaklah berbeda secara signifikan kecuali dalam skenario-skenario ekstrim.
 
-Sebagai tambahan, pertimbangkan bahwa desain *Hooks* itu lebih efision dalam beberapa hal:
+Sebagai tambahan, pertimbangkan bahwa desain *Hooks* itu lebih efisien dalam beberapa hal:
 
 * *Hooks* menghindari banyak awalan yang kelas butuhkan, seperti ongkos untuk membuat contoh kelas dan mengikat *event handler* di dalam konstruktor.
 
-* **Kode idiomatis yang menggunakan _Hooks_ tidak memerlukan _nesting_ pohon komponen mendalam** yang  lazim dalam basis kode yang mana menggunakan *higher-order component*, *render props*, dan *context*. Dengan pohon komponen yang lebih kecil, React jadi punya lebih sedikit tugas untuk dikerjakan.
+* **Kode idiomatis yang menggunakan _Hooks_ tidak memerlukan _nesting_ pohon komponen mendalam** yang lazim dalam basis kode yang mana menggunakan *higher-order component*, *render props*, dan *context*. Dengan pohon komponen yang lebih kecil, React jadi punya lebih sedikit tugas untuk dikerjakan.
 
-Secara tradisional, performa menyangkut seputarfugsi-fungsi *inline* React sudah dihubungkan dengan bagaimana cara untuk mengoper *callback* baru setiap *render* yang memotong optimasi `shouldComponentUpdate` dalam komponen turunan. *Hooks* mendekati masalah dari tiga sisi.
+Secara tradisional, performa menyangkut seputar fugsi-fungsi *inline* React sudah dihubungkan dengan bagaimana cara untuk mengoper *callback* baru setiap *render* yang memotong optimasi `shouldComponentUpdate` dalam komponen turunan. *Hooks* mendekati masalah dari tiga sisi.
 
-* *Hook* [`useCallback`](/docs/hooks-reference.html#usecallback) mengizinkan Anda untuk tetap menggunakan rujukan *callback* yang samadi antara *render* ulang sehingga `shouldComponentUpdate` akan terus bekerja:
+* *Hook* [`useCallback`](/docs/hooks-reference.html#usecallback) mengizinkan Anda untuk tetap menggunakan rujukan *callback* yang sama di antara *render* ulang sehingga `shouldComponentUpdate` akan terus bekerja:
 
     ```js {2}
     // Tidak akan berubah kecuali `a` atau `b` berubah
@@ -858,7 +858,7 @@ Secara tradisional, performa menyangkut seputarfugsi-fungsi *inline* React sudah
     }, [a, b]);
     ```
 
-* *Hook* [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) membuat jadi lebih mudah untuk untuk mengontrol ketika ada satu-satu pembaruan turunan (*children*), mengurangi kebutuhan untuk komponen murni.
+* *Hook* [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) membuat jadi lebih mudah untuk mengontrol ketika ada satu-satu pembaruan turunan (*children*), mengurangi kebutuhan untuk komponen murni.
 
 * Pada akhirnya, *Hook* [`useReducer`](/docs/hooks-reference.html#usereducer) mengurangi kebutuhan untuk mengoper *callback* secara mendalam, seperti yang dijelaskan di bawah ini.
 
@@ -872,7 +872,7 @@ Dalam pohon komponen yang luas, sebuah alternatif yang kami rekomendasikan adala
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
-  // Catatan: `dispatch` tidak akan berubah di anatra render ulang
+  // Catatan: `dispatch` tidak akan berubah di antara render ulang
   const [todos, dispatch] = useReducer(todosReducer);
 
   return (
@@ -986,7 +986,7 @@ Terdapat daftar internal dari *"memory cells"* yang berhubungkan dengan tiap kom
 
 *Hooks* mempersatukan ide-ide dari beberapa sumber berbeda:
 
-* Ekspirimen lama kami dengan API fungsional dalam repositori[*react-future*](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
+* Eksperimen lama kami dengan API fungsional dalam repositori[*react-future*](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
 * Eksperimen-eksperimen komunitas React dengan me-*render prop API*, termasuk [Reactions Component](https://github.com/reactions/component) dari [Ryan Florence](https://github.com/ryanflorence).
 * Pengajuan [kata kunci `adopt`](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) dari [Dominic Gannaway](https://github.com/trueadm) sebagai *sugar syntax* untuk me-*render* *prop*.
 * *State variable* dan *state cell* dalam [DisplayScript](http://displayscript.org/introduction.html).
