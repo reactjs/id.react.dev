@@ -21,7 +21,7 @@ React hampir tidak memiliki _dependency_ eksternal. Biasanya, `require()` mengac
 
 [Repositori fbjs](https://github.com/facebook/fbjs) ada karena React berbagi beberapa utilitas dengan _library_ seperti [Relay](https://github.com/facebook/relay), dan kami menjaga mereka tetap sinkron. Kami tidak bergantung pada modul-modul kecil yang ekuivalen pada ekosistem Node karena kami ingin _engineer_ Facebook dapat mengubahnya kapanpun dibutuhkan. Tidak ada satupun utilitas dalam fbjs yang dianggap sebagai API publik, dan hanya ditujukan untuk penggunaan oleh proyek Facebook seperti React.
 
-### Folder Teratas {#top-level-folders}
+### Folder Level Atas {#top-level-folders}
 
 Setelah melakukan kloning pada [repositori React](https://github.com/facebook/react), Anda akan melihat beberapa folder teratas di dalamnya:
 
@@ -33,11 +33,11 @@ Dokumentasi berada pada [repositori terpisah dari React](https://github.com/reac
 
 Ada beberapa folder teratas lainnya tetapi mereka sebagian besar digunakan untuk peralatan dan kemungkinan besar Anda tidak akan pernah menghadapi mereka ketika berkontribusi.
 
-### Colocated Tests {#colocated-tests}
+### Tes Kolokasi {#colocated-tests}
 
-We don't have a top-level directory for unit tests. Instead, we put them into a directory called `__tests__` relative to the files that they test.
+Kami tidak memiliki direktori level atas untuk tes unit. Sebagai gantinya, kami meletakkannya pada direktori bernama `__tests__`, relatif pada _file_ yang ditesnya.
 
-For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) is located in [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) right next to it.
+Misalnya, tes untuk [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) terletak tepat di sampingnya pada [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js).
 
 ### Peringatan dan _Invariant_ {#warnings-and-invariants}
 
@@ -83,31 +83,29 @@ invariant(
 
 **_Invariant_ dilontarkan ketika kondisi`invariant` adalah `false`.**
 
-"_Invariant_" hanya cara lain untuk mengatakan "kondisi ini selalu benar". Anda dapat m
+"_Invariant_" hanya cara lain untuk mengatakan "kondisi ini selalu benar". Anda dapat menganggapnya sebagai membuat _assertion_.
 
-"Invariant" is just a way of saying "this condition always holds true". You can think about it as making an assertion.
+Merupakan hal yang penting untuk menjaga perilaku versi pengembangan dan produksi tetap serupa, sehingga `invariant` dilontarkan baik di mode pengembangan dan produksi. Pesan eror secara otomatis diganti dengan kode eror pada mode produksi untuk menghindari mempengaruhi ukuran byte secara negatif.
 
-It is important to keep development and production behavior similar, so `invariant` throws both in development and in production. The error messages are automatically replaced with error codes in production to avoid negatively affecting the byte size.
+### Pengembangan dan Produksi {#development-and-production}
 
-### Development and Production {#development-and-production}
+Anda dapat menggunakan variabel pseudo-global `__DEV__` pada basis kode untuk menjaga blok kode yang ditujukan hanya pada mode pengembangan.
 
-You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
+Ia di-_inline_ pada tahap kompilasi, dan berubah menjadi pengecekan `process.env.NODE_ENV !== 'production'` pada _build_ CommonJS.
 
-It is inlined during the compile step, and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
-
-For standalone builds, it becomes `true` in the unminified build, and gets completely stripped out with the `if` blocks it guards in the minified build.
+Untuk _build_ yang berdiri sendiri, ia menjadi `true` pada _build_ yang tidak di -_minify_, dan dilepas seluruhnya dengan menggunakan blok `if` yang ia jaga pada _build_ yang di-_minify_.
 
 ```js
 if (__DEV__) {
-  // This code will only run in development.
+  // Kode ini hanya akan berjalan di mode.
 }
 ```
 
 ### Flow {#flow}
 
-We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
+Kami baru saja mulai memperkenalkan pengecekan [Flow](https://flow.org/) pada basis kode. _File_ yang ditandai dengan anotasi `@flow` pada komentar lisensi _header_ mengalami pengecekan tipe.
 
-We accept pull requests [adding Flow annotations to existing code](https://github.com/facebook/react/pull/7600/files). Flow annotations look like this:
+Kami menerima _pull request_ [menambahkan anotasi Flow pada kode yang sudah ada](https://github.com/facebook/react/pull/7600/files). Anotasi Flow terlihat seperti ini:
 
 ```js
 ReactRef.detachRefs = function(
@@ -118,20 +116,20 @@ ReactRef.detachRefs = function(
 }
 ```
 
-When possible, new code should use Flow annotations.
-You can run `yarn flow` locally to check your code with Flow.
+Bila mungkin, kode baru harus menggunakan anotasi Flow.
+Anda dapat menjalankan `yarn flow` secara lokal untuk mengecek kode Anda menggunakan Flow.
 
-### Dynamic Injection {#dynamic-injection}
+### Injeksi Dinamis {#dynamic-injection}
 
-React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
+React menggunakan injeksi dinamis pada sebagian modul. Walaupun selalu eksplisit, hal tersebut masih disayangkan karena menghalangi pemahaman terhadap kode. Alasan utama ia adalah karena React mulanya hanya mendukung DOM sebagai target. React Native dimulai sebagai _fork_ dari React. Kami perlu menambahkan injeksi dinamis agar React Native dapat melakukan _override_ pada beberapa perilaku.
 
-You may see modules declaring their dynamic dependencies like this:
+Anda mungkin melihat modul yang mendeklarasikan _dependency_ dinamis seperti ini:
 
 ```js
-// Dynamically injected
+// Diinjeksi secara dinamis
 var textComponentClass = null;
 
-// Relies on dynamically injected value
+// Bergantung pada nilai yang diinjeksi secara dinamis
 function createInstanceForText(text) {
   return new textComponentClass(text);
 }
@@ -139,7 +137,7 @@ function createInstanceForText(text) {
 var ReactHostComponent = {
   createInstanceForText,
 
-  // Provides an opportunity for dynamic injection
+  // Menyediakan kesempatan untuk injeksi dinamis
   injection: {
     injectTextComponentClass: function(componentClass) {
       textComponentClass = componentClass;
@@ -150,13 +148,13 @@ var ReactHostComponent = {
 module.exports = ReactHostComponent;
 ```
 
-The `injection` field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.
+_Field_ `injection` tidak ditangani secara khusus dengan cara apapun. Tapi menurut konvensi, modul ini perlu beberapa _dependency_ (agaknya spesifik pada platform tertentu) yang diinjeksi pada saat sedang berjalan (_runtime_).
 
-There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
+Terdapat beberapa poin untuk injeksi pada basis kode. Di waktu yang akan datang, kami berniat untuk menghilangkan mekanisme injeksi dinamis dan menghubungkan semua bagian secara statis selama proses _build_.
 
-### Multiple Packages {#multiple-packages}
+### _Multiple Package_ {#multiple-packages}
 
-React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
+React adalah sebuah [monorepo](https://danluu.com/monorepo/). Repositorinya berisi banyak _package_ terpisah sehingga perubahan mereka dapat dikoordinasikan bersama, dan isu-isu berada pada satu tempat.
 
 ### Inti React {#react-core}
 
