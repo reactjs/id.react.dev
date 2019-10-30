@@ -1,6 +1,6 @@
 ---
 id: codebase-overview
-title: Codebase Overview
+title: Gambaran Basis Kode
 layout: contributing
 permalink: docs/codebase-overview.html
 prev: how-to-contribute.html
@@ -9,29 +9,29 @@ redirect_from:
   - "contributing/codebase-overview.html"
 ---
 
-This section will give you an overview of the React codebase organization, its conventions, and the implementation.
+Bagian ini akan memberikan Anda gambaran mengenai penyusunan basis kode React, konvensi, serta implementasinya.
 
-If you want to [contribute to React](/docs/how-to-contribute.html) we hope that this guide will help you feel more comfortable making changes.
+Jika Anda ingin [berkontribusi pada React](/docs/how-to-contribute.html) kami berharap panduan ini akan membantu Anda merasa lebih nyaman dalam membuat perubahan.
 
-We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
+Kami tidak selalu merekomendasikan konvensi ini pada aplikasi React. Banyak di antaranya ada karena alasan historis dan mungkin berubah seiring berjalannya waktu.
 
-### External Dependencies {#external-dependencies}
+### _Dependency_ Eksternal {#external-dependencies}
 
-React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
+React hampir tidak memiliki _dependency_ eksternal. Biasanya, `require()` mengacu pada sebuah _file_ pada basis kode React sendiri. Bagaimanapun, ada sedikit pengecualian yang relatif langka.
 
-The [fbjs repository](https://github.com/facebook/fbjs) exists because React shares some small utilities with libraries like [Relay](https://github.com/facebook/relay), and we keep them in sync. We don't depend on equivalent small modules in the Node ecosystem because we want Facebook engineers to be able to make changes to them whenever necessary. None of the utilities inside fbjs are considered to be public API, and they are only intended for use by Facebook projects such as React.
+[Repositori fbjs](https://github.com/facebook/fbjs) ada karena React berbagi beberapa utilitas dengan _library_ seperti [Relay](https://github.com/facebook/relay), dan kami menjaga mereka tetap sinkron. Kami tidak bergantung pada modul-modul kecil yang ekuivalen pada ekosistem Node karena kami ingin _engineer_ Facebook dapat mengubahnya kapanpun dibutuhkan. Tidak ada satupun utilitas dalam fbjs yang dianggap sebagai API publik, dan hanya ditujukan untuk penggunaan oleh proyek Facebook seperti React.
 
-### Top-Level Folders {#top-level-folders}
+### Folder Teratas {#top-level-folders}
 
-After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
+Setelah melakukan kloning pada [repositori React](https://github.com/facebook/react), Anda akan melihat beberapa folder teratas di dalamnya:
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contains a few small React test applications for contributors.
-* `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
+* [`packages`](https://github.com/facebook/react/tree/master/packages) berisi metadata (seperti `package.json`) dan kode sumber (`src` subdirektori) untuk semua _package_ pada repositori React. **Jika perubahan Anda berkaitan dengan kode, subdirektori `src` dari setiap _package_ adalah dimana Anda akan menghabiskan sebagian besar waktu Anda.**
+* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) berisi beberapa aplikasi uji coba React untuk para kontributor.
+* `build` adalah _output build_ dari React. Ia tidak ada pada repositori tetapi akan muncul pada hasil klon React Anda setelah Anda [melakukan _build_](/docs/how-to-contribute.html#development-workflow) untuk pertama kali.
 
-The documentation is hosted [in a separate repository from React](https://github.com/reactjs/reactjs.org).
+Dokumentasi berada pada [repositori terpisah dari React](https://github.com/reactjs/reactjs.org).
 
-There are a few other top-level folders but they are mostly used for the tooling and you likely won't ever encounter them when contributing.
+Ada beberapa folder teratas lainnya tetapi mereka sebagian besar digunakan untuk peralatan dan kemungkinan besar Anda tidak akan pernah menghadapi mereka ketika berkontribusi.
 
 ### Colocated Tests {#colocated-tests}
 
@@ -39,24 +39,23 @@ We don't have a top-level directory for unit tests. Instead, we put them into a 
 
 For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) is located in [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) right next to it.
 
-### Warnings and Invariants {#warnings-and-invariants}
+### Peringatan dan _Invariant_ {#warnings-and-invariants}
 
-The React codebase uses the `warning` module to display warnings:
+Basis kode React menggunakan modul `warning` untuk menampilkan peringatan:
 
 ```js
 var warning = require('warning');
 
 warning(
   2 + 2 === 4,
-  'Math is not working today.'
+  'Matematika tidak berfungsi hari ini.'
 );
 ```
+**Peringatan ditampilkan ketika kondisi `warning` adalah `false`.**
 
-**The warning is shown when the `warning` condition is `false`.**
+Satu cara yang baik untuk mengingatnya adalah bahwa kondisi seharusnya merefleksikan keadaan yang normal daripada yang tidak.
 
-One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.
-
-It is a good idea to avoid spamming the console with duplicate warnings:
+Ini adalah ide yang bagus untuk menghindari men-spam konsol dengan peringatan yang sama:
 
 ```js
 var warning = require('warning');
@@ -65,24 +64,26 @@ var didWarnAboutMath = false;
 if (!didWarnAboutMath) {
   warning(
     2 + 2 === 4,
-    'Math is not working today.'
+    'Matematika tidak berfungsi hari ini.'
   );
   didWarnAboutMath = true;
 }
 ```
 
-Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use `invariant` module instead:
+Peringatan hanya diaktifkan pada mode pengembangan. Pada mode produksi, mereka dilepas seluruhnya. Jika Anda perlu melarang beberapa jalur kode untuk dijalankan, gunakan modul `invariant`:
 
 ```js
 var invariant = require('invariant');
 
 invariant(
   2 + 2 === 4,
-  'You shall not pass!'
+  'Anda tidak boleh lewat!'
 );
 ```
 
-**The invariant is thrown when the `invariant` condition is `false`.**
+**_Invariant_ dilontarkan ketika kondisi`invariant` adalah `false`.**
+
+"_Invariant_" hanya cara lain untuk mengatakan "kondisi ini selalu benar". Anda dapat m
 
 "Invariant" is just a way of saying "this condition always holds true". You can think about it as making an assertion.
 
@@ -157,70 +158,70 @@ There are multiple injection points in the codebase. In the future, we intend to
 
 React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
 
-### React Core {#react-core}
+### Inti React {#react-core}
 
-The "core" of React includes all the [top-level `React` APIs](/docs/top-level-api.html#react), for example:
+Inti dari React berisi semua [API level atas `React`](/docs/top-level-api.html#react), misalnya:
 
 * `React.createElement()`
 * `React.Component`
 * `React.Children`
 
-**React core only includes the APIs necessary to define components.** It does not include the [reconciliation](/docs/reconciliation.html) algorithm or any platform-specific code. It is used both by React DOM and React Native components.
+**Inti React hanya berisi API yang dibutuhkan untuk mendefinisikan komponen.** Ia tidak termasuk algoritma [_reconciliation_](/docs/reconciliation.html) atau kode spesifik platform lainnya. Ia digunakan oleh React DOM dan komponen React Native.
 
-The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
+Kode untuk inti React terletak di [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) pada diagram sumber. Ia tersedia pada npm sebagai _package_ [`react`](https://www.npmjs.com/package/react). _Build browser_ yang berdiri sendiri disebut `react.js`, dan ia mengekspor sebuah global yang disebut `React`.
 
-### Renderers {#renderers}
+### _Renderer_ {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
+React mulanya dibuat demi DOM tetapi kemudian diadaptasi untuk mendukung platform _native_ dengan [React Native](https://facebook.github.io/react-native/). Hal ini memperkenalkan konsep _renderer_ pada tim internal React.
 
-**Renderers manage how a React tree turns into the underlying platform calls.**
+**_Renderer_ mengatur bagaimana sebuah diagram React berubah menjadi panggilan platform yang mendasarinya**
 
-Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/master/packages/):
+_Renderer_ juga terletak pada [`packages/`](https://github.com/facebook/react/tree/master/packages/):
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
-* [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
-* [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
+* [_Renderer_ React DOM](https://github.com/facebook/react/tree/master/packages/react-dom) merender komponen React menuju DOM. Ia mengimplementasi [API `ReactDOM` level atas](/docs/react-dom.html) dan tersedia sebagai _package_ npm [`react-dom`](https://www.npmjs.com/package/react-dom). Ia juga bisa digunakan sebagai bundel _browser_ yang berdiri sendiri yang dikenal `react-dom.js` yang mengekspor sebuah global `ReactDOM`.
+* [_Renderer_ React Native](https://github.com/facebook/react/tree/master/packages/react-native-renderer) merender komponen React menuju tampilan _native_. Ia digunakan secara internal oleh React Native.
+* [_Renderer_ React Test](https://github.com/facebook/react/tree/master/packages/react-test-renderer) merender komponen React menuju diagram JSON. Ia digunakan oleh fitur [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) dari [Jest](https://facebook.github.io/jest) dan tersedia sebagai _package_ npm [react-test-renderer](https://www.npmjs.com/package/react-test-renderer).
 
-The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
+Satu-satunya _Renderer_ lain yang didukung secara resmi adalah [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). Ia dulu terletak pada [repositori GitHub](https://github.com/reactjs/react-art) terpisah tetapi kami memindahkannya pada diagram sumber _main_ sekarang.
 
->**Note:**
+>**Catatan:**
 >
->Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
+>Secara teknis [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) adalah sebuah lapisan yang sangat tipis yang mengajarkan React untuk berinteraksi dengan implementasi React Native. Kode spesifik platform yang sesungguhnya mengatur tampilan _native_ yang hidup di dalam [repositori React Native](https://github.com/facebook/react-native) bersama dengan komponennya.
 
-### Reconcilers {#reconcilers}
+### _Reconciler_ {#reconcilers}
 
-Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, lifecycle methods, and refs work consistently across platforms.
+Bahkan _renderer_ yang sangat berbeda seperti React DOM dan React Native perlu berbagi banyak logika. Khususnya, algoritma [_reconciliation_](/docs/reconciliation.html) harus semirip mungkin agar proses render deklaratif, komponen kustom, _state_, metode _lifecycle_, dan _refs_ bekerja secara konsisten antar platform.
 
-To solve this, different renderers share some code between them. We call this part of React a "reconciler". When an update such as `setState()` is scheduled, the reconciler calls `render()` on components in the tree and mounts, updates, or unmounts them.
+Untuk menyelesaikan hal ini, _renderer_ berbeda berbagi beberapa kode di antara mereka. Kami menyebut bagian React ini sebuah "_reconciler_". Ketika sebuah pembaruan seperti `setState()` dijadwalkan, _reconciler_ memanggil `render()` pada komponen di diagram, dan memasang, membarui, atau melepas mereka.
 
-Reconcilers are not packaged separately because they currently have no public API. Instead, they are exclusively used by renderers such as React DOM and React Native.
+_Reconciler_ tidak dipaketkan terpisah karena saat ini mereka tidak memiliki API publik. Sebagai gantinya, mereka digunakan secara eksklusif oleh _renderer_ seperti React DOM dan React Native.
 
-### Stack Reconciler {#stack-reconciler}
+### _Reconciler Stack_ {#stack-reconciler}
 
-The "stack" reconciler is the implementation powering React 15 and earlier. We have since stopped using it, but it is documented in detail in the [next section](/docs/implementation-notes.html).
+_Reconciler "stack"_ adalah implementasi yang menggerakan React 15 dan versi sebelumnya. Kami telah berhenti menggunakannya, tapi ia didokumentasikan dengan detil di [bagian berikutnya](/docs/implementation-notes.html)
 
-### Fiber Reconciler {#fiber-reconciler}
+### _Reconciler_ Fiber {#fiber-reconciler}
 
-The "fiber" reconciler is a new effort aiming to resolve the problems inherent in the stack reconciler and fix a few long-standing issues. It has been the default reconciler since React 16.
+_Reconciler_ "fiber" adalah usaha baru untuk menyelesaikan masalah yang melekat pada _reconciler stack_ dan memperbaiki beberapa isu yang telah lama ada. Ia telah menjadi _reconciler default_ sejak React 16.
 
-Its main goals are:
+Tujuan utamanya adalah:
 
-* Ability to split interruptible work in chunks.
-* Ability to prioritize, rebase and reuse work in progress.
-* Ability to yield back and forth between parents and children to support layout in React.
-* Ability to return multiple elements from `render()`.
-* Better support for error boundaries.
+* Kemampuan untuk membagi tugas yang dapat diinterupsi menjadi potongan kecil.
+* Kemampuan untuk memprioritaskan, _rebase_ dan menggunakan kembali tugas yang sedang berjalan.
+* Kemampuan untuk bolak-balik antara _parent_ dan _children_ untuk mendukung layout pada React.
+* Kemampuan untuk mengembalikan beberapa elemen dari `render()`.
+* Dukungan yang lebih baik untuk batasan eror.
 
-You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
+Anda dapat membaca lebih banyak mengenai Arsitektur React Fiber [di sini](https://github.com/acdlite/react-fiber-architecture) dan [di sini](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). Walaupun ia telah dikirimkan bersama dengan React 16, fitur-fitur _async_ belum diaktifkan secara _default_.
 
-Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Kode sumbernya terletak di [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 
-### Event System {#event-system}
+### Sistem _Event_ {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
+React menerapkan sebuah sistem _event_ sintetis yang agnostik terhadap _renderer_-nya dan bekerja dengan React DOM dan React Native. Kode sumbernya terletak di [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
 
-There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
+Terdapat sebuah [video dengan pembahasan mendalam mengenai kodenya](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 menit).
 
-### What Next? {#what-next}
+### Selanjutnya Apa? {#what-next}
 
-Read the [next section](/docs/implementation-notes.html) to learn about the pre-React 16 implementation of reconciler in more detail. We haven't documented the internals of the new reconciler yet.
+Bacalah [bagian berikutnya](/docs/implementation-notes.html) untuk mempelajari mengenai implementasi _reconciler_ sebelum React 16 secara lebih detil. Kami belum mendokumentasikan bagian internal dari _reconciler_ yang baru.
