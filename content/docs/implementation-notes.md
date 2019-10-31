@@ -55,7 +55,7 @@ Anda dapat membayangkan proses ini sebagai *pseudocode*:
 
 ```js
 function isClass(type) {
-  // React.Component *subclasses* memiliki *flag* ini
+  // Subkelas React.Component memiliki *flag* ini
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
