@@ -108,7 +108,7 @@ rootEl.appendChild(node);
 
 Mari kita rekap beberapa ide utama dalam contoh di atas:
 
-* Element React adalah objek polos yang mewakili jenis komponen(misalnya. `App`) dan *props*.
+* Elemen React adalah objek polos yang mewakili jenis komponen (mis. `App`) dan *props*.
 * Komponen yang ditentukan pengguna(misalnya. `App`) dapat berupa kelas atau fungsi tetapi semuanya merupakan elemen *"render to"*.
 * *"Mounting"* adalah proses rekursif yang membuat DOM atau diagram Native diberi element React tingkat atas (misalnya. `<App />`).
 
