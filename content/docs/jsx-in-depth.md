@@ -12,7 +12,7 @@ redirect_from:
   - "docs/jsx-in-depth-zh-CN.html"
   - "docs/jsx-in-depth-ko-KR.html"
 ---
-<!-- This jsx-in-depth.md` is translated by dummyeuy (Muhammad Ghalib) -->
+
 Pada dasarnya, JSX hnaya menyediakan sintaksis-sintaksis yang mudah ditulis dan dimengerti (*syntatic sugar*) untuk fungsi *`React.createElement(component, prop, ...children)`*. Kode JSX:
 
 ```js
