@@ -104,7 +104,7 @@ rootEl.appendChild(node);
 
 >**Catatan:**
 >
->Ini benar-benar *pseudo-code*. Itu tidak mirip dengan implementasi nyata. Itu juga akan menyebabkan *stack overflow* karena kita belum membahas kapan harus menghentikan rekursi.
+>Implementasi di atas benar-benar *pseudo-code*, dan tidak mirip dengan implementasi nyata. Implementasi ini juga akan menyebabkan *stack overflow* karena kita belum membahas kapan harus menghentikan rekursi.
 
 Mari kita rekap beberapa ide utama dalam contoh di atas:
 
