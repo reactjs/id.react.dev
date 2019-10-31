@@ -15,7 +15,7 @@ Ini sangat teknis dan mengasumsikan pemahaman yang kuat tentang API publik React
 
 Ini juga mengasumsikan pemahaman tentang [perbedaan antara komponen React, *instances* mereka, dan elemen](/blog/2015/12/18/react-components-elements-and-instances.html).
 
-*Stack reconciler* digunakan dalam React 15 dan sebelumnya. Terletak di [*src/renderers/shared/stack/reconciler*](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
+*Stack reconciler* digunakan dalam React 15 dan sebelumnya. Terletak di [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
 
 ### Video: Membangun React dari awal {#video-building-react-from-scratch}
 
