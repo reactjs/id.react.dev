@@ -141,7 +141,7 @@ Jika kami memperluas kode untuk menangani elemen *host*, akan terlihat seperti i
 
 ```js
 function isClass(type) {
-  // React.Component *subclasses* memiliki *flag* ini
+  // Subkelas React.Component memiliki *flag* ini
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
