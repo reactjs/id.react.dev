@@ -135,7 +135,7 @@ Jika elemen host memiliki *children*, *reconciler* secara rekursif me-*mount* me
 
 >**Catatan:**
 >
->*reconciler* sendiri tidak terikat dengan DOM. Hasil *mounting* yang tepat (kadang disebut *"image mount"* dalam *source code*) tergantung pada *renderer*, dan bisa menjadi *node* DOM (React DOM), *string* (Server React DOM), atau *number* mewakili tampilan asli (React Native).
+>*Reconciler* sendiri tidak terikat dengan DOM. Hasil *mounting* yang tepat (kadang disebut *"image mount"* dalam *source code*) tergantung pada *renderer*, dan bisa menjadi *node* DOM (React DOM), *string* (React DOM Server), atau *number* mewakili tampilan asli (React Native).
 
 Jika kami memperluas kode untuk menangani elemen *host*, akan terlihat seperti ini:
 
