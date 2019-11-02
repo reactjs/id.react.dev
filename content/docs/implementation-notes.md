@@ -244,7 +244,7 @@ Namun, implementasi kami di atas hanya tahu cara memasang diagram awal. Itu tida
 
 Basis kode *stack reconciler* memecahkan ini dengan membuat fungsi `mount()` menjadi *method* dan meletakannya di kelas. Ada beberapa kelemahan dari pendekatan ini, dan kita akan berada di arah yang berlawanan dalam [penulisan ulang *reconciler* yang sedang berlangsung](/docs/codebase-overview.html#fiber-reconciler). Namun demikian inilah cara kerjanya sekarang.
 
-Alih-alih memisahkan fungsi *`mountHost`* and *`mountComposite`*, kami akan membuat dua kelas: *`DOMComponent`* dan *`CompositeComponent`*.
+Alih-alih memisahkan fungsi `mountHost` dan `mountComposite`, kami akan membuat dua kelas: `DOMComponent` dan `CompositeComponent`.
 
 Kedua kelas memiliki *constructor* yang menerima *`element`*, serta *method* `mount()` yang mengembalikan *node* yang dipasang. Kami akan mengganti fungsi *`mount()`* tingkat atas dengan *factory* yang membuat kelas yang benar:
 
