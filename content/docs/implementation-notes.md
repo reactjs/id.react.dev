@@ -593,7 +593,7 @@ class CompositeComponent {
     // ...
 ```
 
-Selanjutnya, kita bisa melihat elemen `type` yang di*render*. Jika `type` belum berubah sejak *render* terakhir, komponen di bawah ini juga dapat diperbarui di tempat.
+Selanjutnya, kita bisa melihat elemen `type` yang di-*render*. Jika `type` belum berubah sejak *render* terakhir, komponen di bawah ini juga dapat diperbarui di tempat.
 
 Misalnya, jika ia mengembalikan `<Button color="red" />` pertama kalinya, dan `<Button color="blue" />` untuk kedua kalinya, kami hanya bisa memberi tahu *instance* internal terkait untuk `receive()` elemen selanjutnya:
 
