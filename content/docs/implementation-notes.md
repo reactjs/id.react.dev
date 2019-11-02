@@ -639,7 +639,7 @@ Sebagai gantinya, kita harus lepaskan *instance* internal yang ada dan pasang ya
 }
 ```
 
-Singkatnya, ketika komponen komposit menerima elemen baru, ia dapat mendelegasikan pembaruan ke *instance* internal yang di*render*, atau melepaskan dan pasang yang baru di tempatnya.
+Singkatnya, ketika komponen komposit menerima elemen baru, ia dapat mendelegasikan pembaruan ke *instance* internal yang di-*render*, atau melepaskan dan pasang yang baru di tempatnya.
 
 Ada kondisi lain di mana komponen akan dipasang kembali daripada menerima elemen, dan saat itulah elemen `key` telah berubah. Kami tidak membahas penanganan `key` dalam dokumen ini karena menambah kompleksitas pada tutorial yang sudah kompleks.
 
