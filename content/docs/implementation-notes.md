@@ -246,7 +246,7 @@ Basis kode *stack reconciler* memecahkan ini dengan membuat fungsi `mount()` men
 
 Alih-alih memisahkan fungsi `mountHost` dan `mountComposite`, kami akan membuat dua kelas: `DOMComponent` dan `CompositeComponent`.
 
-Kedua kelas memiliki *constructor* yang menerima *`element`*, serta *method* `mount()` yang mengembalikan *node* yang dipasang. Kami akan mengganti fungsi *`mount()`* tingkat atas dengan *factory* yang membuat kelas yang benar:
+Kedua kelas memiliki *constructor* yang menerima `element`, serta *method* `mount()` yang mengembalikan *node* yang dipasang. Kami akan mengganti fungsi `mount()` tingkat atas dengan *factory* yang membuat kelas yang benar:
 
 ```js
 function instantiateComponent(element) {
