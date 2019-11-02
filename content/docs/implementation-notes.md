@@ -722,7 +722,7 @@ Kami mengumpulkan operasi DOM pada *children* dalam daftar sehingga kami dapat m
     var operationQueue = [];
 
     // Catatan: bagian di bawah ini sangat disederhanakan!
-    // Itu tidak menangani pemesanan ulang, *children* dengan *holes*, atau kunci.
+    // Itu tidak menangani pemesanan ulang, *children* dengan *holes*, atau *key*.
     // Itu hanya ada untuk menggambarkan aliran keseluruhan, bukan spesifik.
 
     for (var i = 0; i < nextChildren.length; i++) {
