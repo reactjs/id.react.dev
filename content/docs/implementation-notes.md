@@ -357,7 +357,7 @@ class DOMComponent {
       }
     });
 
-    // Buat dan simpan children yang contained.
+    // Buat dan simpan children yang dibungkus.
     // Masing-masing dari mereka dapat menjadi DOMComponent atau CompositeComponent,
     // tergantung pada apakah tipe elemen adalah string atau fungsi.
     var renderedChildren = children.map(instantiateComponent);
