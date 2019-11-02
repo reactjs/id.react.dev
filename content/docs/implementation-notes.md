@@ -228,7 +228,7 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
-Ini bekerja tetapi masih jauh dari bagaimana *reconciler* benar-benar dilaksanakan. Bahan utama yang hilang adalah dukungan untuk pembaruan.
+Kode ini bekerja, tetapi masih jauh dari bagaimana *reconciler* benar-benar dilaksanakan. Bahan utama yang hilang adalah dukungan untuk pembaruan.
 
 ### Memperkenalkan Instance Internal {#introducing-internal-instances}
 
