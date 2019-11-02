@@ -393,7 +393,7 @@ Akibatnya, setiap *instance* internal, komposit atau *host*, sekarang menuju ke 
 }
 ```
 
-Dalam DOM anda hanya akan melihat `<div>`. Namun diagram *instance* internal berisi komposit dan *instance* internal *host*.
+Dalam DOM Anda hanya akan melihat `<div>`. Namun diagram *instance* internal berisi komposit dan *instance* internal *host*.
 
 *Instance* internal komposit perlu disimpan:
 
