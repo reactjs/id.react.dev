@@ -242,7 +242,7 @@ ReactDOM.render(<App />, rootEl);
 
 Namun, implementasi kami di atas hanya tahu cara memasang diagram awal. Itu tidak dapat melakukan pembaruan karena itu tidak menyimpan semua informasi yang diperlukan, seperti semua `publicInstance`, atau `node` DOM yang sesuai dengan komponen yang mana.
 
-Basis kode *stack reconciler* memecahkan ini dengan membuat fungsi *`mount()`* menjadi *method* dan meletakannya di kelas. Ada beberapa kelemahan dari pendekatan ini, dan kita akan berada di arah yang berlawanan dalam [penulisan ulang *reconciler* yang sedang berlangsung](/docs/codebase-overview.html#fiber-reconciler). Namun demikian inilah cara kerjanya sekarang.
+Basis kode *stack reconciler* memecahkan ini dengan membuat fungsi `mount()` menjadi *method* dan meletakannya di kelas. Ada beberapa kelemahan dari pendekatan ini, dan kita akan berada di arah yang berlawanan dalam [penulisan ulang *reconciler* yang sedang berlangsung](/docs/codebase-overview.html#fiber-reconciler). Namun demikian inilah cara kerjanya sekarang.
 
 Alih-alih memisahkan fungsi *`mountHost`* and *`mountComposite`*, kami akan membuat dua kelas: *`DOMComponent`* dan *`CompositeComponent`*.
 
