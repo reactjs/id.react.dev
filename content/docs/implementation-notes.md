@@ -650,7 +650,7 @@ class CompositeComponent {
   // ...
 
   getHostNode() {
-    // Tanyakan komponen yang di*render* untuk menyediakannya.
+    // Tanyakan komponen yang di-*render* untuk menyediakannya.
     // Ini akan menelusuri setiap komposit secara rekursif.
     return this.renderedComponent.getHostNode();
   }
