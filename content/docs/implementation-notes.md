@@ -610,7 +610,7 @@ Misalnya, jika ia mengembalikan `<Button color="red" />` pertama kalinya, dan `<
     // ...
 ```
 
-Namun, jika elemen yang di*render* berikutnya memiliki `type` yang berbeda dari elemen yang di*render* sebelumnya, kami tidak dapat memperbarui *instance* internal. Sebuah `<button>` tidak bisa "menjadi" sebuah `<input>`.
+Namun, jika elemen yang di-*render* berikutnya memiliki `type` yang berbeda dari elemen yang di-*render* sebelumnya, kami tidak dapat memperbarui *instance* internal. Sebuah `<button>` tidak bisa "menjadi" sebuah `<input>`.
 
 Sebagai gantinya, kita harus lepaskan *instance* internal yang ada dan pasang yang baru yang sesuai dengan tipe elemen yang di*render*. Sebagai contoh, inilah yang terjadi ketika komponen yang sebelumnya me*render* `<button />` me*render* `<input />`:
 
