@@ -121,7 +121,7 @@ Anda dapat menjalankan `yarn flow` secara lokal untuk mengecek kode Anda menggun
 
 ### Injeksi Dinamis {#dynamic-injection}
 
-React menggunakan injeksi dinamis pada sebagian modul. Walaupun selalu eksplisit, hal tersebut masih disayangkan karena menghalangi pemahaman terhadap kode. Alasan utama ia adalah karena React mulanya hanya mendukung DOM sebagai target. React Native dimulai sebagai _fork_ dari React. Kami perlu menambahkan injeksi dinamis agar React Native dapat melakukan _override_ pada beberapa perilaku.
+React menggunakan injeksi dinamis pada sebagian modul. Walaupun selalu eksplisit, hal tersebut masih disayangkan karena menghalangi pemahaman terhadap kode. Alasan utamanya adalah karena React mulanya hanya mendukung DOM sebagai target. React Native dimulai sebagai _fork_ dari React. Kami perlu menambahkan injeksi dinamis agar React Native dapat melakukan _override_ pada beberapa perilaku.
 
 Anda mungkin melihat modul yang mendeklarasikan _dependency_ dinamis seperti ini:
 
