@@ -97,7 +97,7 @@ Untuk _build_ yang berdiri sendiri, ia menjadi `true` pada _build_ yang tidak di
 
 ```js
 if (__DEV__) {
-  // Kode ini hanya akan berjalan di mode.
+  // Kode ini hanya akan berjalan di mode pengembangan.
 }
 ```
 
