@@ -91,7 +91,7 @@ Merupakan hal yang penting untuk menjaga perilaku versi pengembangan dan produks
 
 Anda dapat menggunakan variabel pseudo-global `__DEV__` pada basis kode untuk menjaga blok kode yang ditujukan hanya pada mode pengembangan.
 
-Ia di-_inline_ pada tahap kompilasi, dan berubah menjadi pengecekan `process.env.NODE_ENV !== 'production'` pada _build_ CommonJS.
+Variabel ini di-_inline_ pada tahap kompilasi, dan berubah menjadi pengecekan `process.env.NODE_ENV !== 'production'` pada _build_ CommonJS.
 
 Untuk _build_ yang berdiri sendiri, ia menjadi `true` pada _build_ yang tidak di -_minify_, dan dilepas seluruhnya dengan menggunakan blok `if` yang ia jaga pada _build_ yang di-_minify_.
 
