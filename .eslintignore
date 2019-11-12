@@ -8,3 +8,6 @@ public/*
 
 # Ignore examples
 examples/*
+
+# Ignore all javascript files in src folder for translation purposes
+src/components/*

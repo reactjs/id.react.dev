@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Pada dasarnya, JSX hnaya menyediakan sintaksis-sintaksis yang mudah ditulis dan dimengerti (*syntatic sugar*) untuk fungsi *`React.createElement(component, prop, ...children)`*. Kode JSX:
+Pada dasarnya, JSX hanya menyediakan sintaksis-sintaksis yang mudah ditulis dan dimengerti (*syntatic sugar*) untuk fungsi *`React.createElement(component, prop, ...children)`*. Kode JSX:
 
 ```js
 <MyButton color="blue" shadowSize={2}>
