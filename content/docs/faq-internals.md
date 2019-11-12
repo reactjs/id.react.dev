@@ -6,18 +6,18 @@ layout: docs
 category: FAQ
 ---
 
-### What is the Virtual DOM? {#what-is-the-virtual-dom}
+### Apa itu Virtual DOM? {#what-is-the-virtual-dom}
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or "virtual", representation of a UI is kept in memory and synced with the "real" DOM by a library such as ReactDOM. This process is called [reconciliation](/docs/reconciliation.html).
+*Virtual DOM* (VDOM) adalah sebuah konsep dalam pemrograman di mana representasi ideal atau "virtual" dari antarmuka pengguna disimpan dalam memori dan disinkronkan dengan *DOM* "yang sebenarnya" oleh *library* seperti ReactDOM. Proses ini disebut [*reconciliation*](/docs/reconciliation.html).
 
-This approach enables the declarative API of React: You tell React what state you want the UI to be in, and it makes sure the DOM matches that state. This abstracts out the attribute manipulation, event handling, and manual DOM updating that you would otherwise have to use to build your app.
+Pendekatan ini memungkinkan *API* deklaratif React: Anda cukup memberi tahu React *state* apa yang anda inginkan untuk antarmuka pengguna, dan React akan memastikan *DOM* sesuai dengan *state* yang anda inginkan. Hal ini menciptakan abstraksi yang memudahkan manipulasi atribut, *event handling*, dan pembaruan *DOM* yang seharusnya anda lakukan secara manual untuk membangun aplikasi anda.
 
-Since "virtual DOM" is more of a pattern than a specific technology, people sometimes say it to mean different things. In React world, the term "virtual DOM" is usually associated with [React elements](/docs/rendering-elements.html) since they are the objects representing the user interface. React, however, also uses internal objects called "fibers" to hold additional information about the component tree. They may also be considered a part of "virtual DOM" implementation in React.
+Karena "*virtual DOM*" lebih merupakan pola daripada sebuah teknologi, kadang orang mengatakan itu berarti hal yang berbeda. Di dunia React, istilah "*virtual DOM*" biasanya dikaitkan dengan [elemen React](/docs/rendering-elements.html) karena mereka adalah objek yang mewakili antarmuka pengguna. React juga menggunakan objek internal yang disebut "*fibers*" untuk menyimpan informasi tambahan tentang *component tree*. Mereka juga dapat dianggap sebagai bagian dari implementasi "*virtual DOM*" di React.
 
-### Is the Shadow DOM the same as the Virtual DOM? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
+### Apakah *Shadow DOM* sama dengan *Virtual DOM*? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
 
-No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+Tidak, mereka berbeda. *Shadow DOM* adalah teknologi peramban web yang dirancang untuk *scoping variables* dan CSS pada *web components*. *Virtual DOM* adalah konsep yang diimplementasikan oleh *library* JavaScript diatas *API* peramban web.
 
-### What is "React Fiber"? {#what-is-react-fiber}
+### Apa itu "*React Fiber*"? {#what-is-react-fiber}
 
-Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM. [Read more](https://github.com/acdlite/react-fiber-architecture).
+*Fiber* adalah *reconciliation engine* baru pada React 16. Tujuan utamanya ialah memungkinkan *incremental rendering* untuk *virtual DOM*. [Baca lebih lanjut](https://github.com/acdlite/react-fiber-architecture).
