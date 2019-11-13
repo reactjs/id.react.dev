@@ -27,7 +27,7 @@ Form ini memiliki perilaku dasar dari form HTML biasa yakni menuju ke laman baru
 
 Pada HTML, elemen form seperti `<input>`, `<textarea>`, dan `<select>` biasanya menyimpan _state_ mereka sendiri dan memperbaruinya berdasarkan masukan dari pengguna. Di React, _state_ yang dapat berubah seperti ini biasanya disimpan pada properti dari komponen, dan hanya akan diubah menggunakan [`setState()`](/docs/react-component.html#setstate).
 
-Kita dapat menggabungkan keduanya dengan menggunakan state pada React sebagai "sumber kebenaran satu-satunya". Kemudian komponen React yang me-render sebuah form juga mengontrol apa yang terjadi dalam form tersebut pada input pengguna selanjutnya. Sebuah elemen from input yang nilainya dikontrol oleh React melalui cara seperti ini disebut sebagai "*controlled component*".
+Kita dapat menggabungkan keduanya dengan menggunakan _state_ pada React sebagai "sumber kebenaran satu-satunya". Kemudian komponen React yang me-_render_ sebuah form juga mengontrol apa yang terjadi dalam form tersebut pada masukan pengguna selanjutnya. Sebuah elemen masukan form yang nilainya dikontrol oleh React melalui cara seperti ini disebut sebagai "_controlled component_".
 
 Sebagai contoh, jika kita ingin membuat form pada contoh sebelumnya mencatat sebuah nama ketika nama dikirim, kita dapat menuliskan form sebagai sebuah _controlled component_:
 
