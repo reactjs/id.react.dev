@@ -123,7 +123,7 @@ class EssayForm extends React.Component {
 }
 ```
 
-Perhatikan bahwa `this.state.value` diinisialisasi di constructor, sehingga textarea mula-mula akan memiliki teks di dalamnya.
+Perhatikan bahwa `this.state.value` diinisialisasi di constructor, sehingga area teks akan memiliki teks di dalamnya.
 
 ## Tag select {#the-select-tag}
 
