@@ -9,7 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-HTML form elemen bekerja sedikit berbeda dari DOM elemen lainnya di React, karena form elemen secara natural menyimpan beberapa state internal. Sebagai contoh, form ini pada HTML biasa menerima nama tunggal:
+Elemen form HTML bekerja sedikit berbeda dari elemen DOM lainnya di React, karena elemen form secara natural menyimpan beberapa _state_ internal. Sebagai contoh, form ini pada HTML biasa menerima nama tunggal:
 
 ```html
 <form>
