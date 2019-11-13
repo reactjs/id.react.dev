@@ -76,7 +76,7 @@ Anda mungkin akan menemukan bahwa menggunakan `act()` secara langsung adalah sed
 
 ---
 
-### *Rendering {#rendering}*
+### *Rendering* {#rendering}
 
 Secara umumn, anda ingin melakukan pengujian apakah sebuah komponen, dengan *props* tertentu di-*render* dengan benar.
 
@@ -337,7 +337,7 @@ it("should render contact information", () => {
 
 ---
 
-### *Events {#events}*
+### *Events* {#events}
 
 Kami menyarankan pengiriman *DOM events* sebenarnya dari elemen *DOM*, lalu melakukan *asserting* pada hasilnya. Dapat dilihat pada komponen `Toggle` berikut:
 
