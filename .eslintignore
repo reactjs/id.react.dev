@@ -1,3 +1,4 @@
+  
 node_modules/*
 
 # Ignore markdown files and examples
@@ -8,6 +9,3 @@ public/*
 
 # Ignore examples
 examples/*
-
-# Ignore all javascript files in src folder for translation purposes
-src/components/*
