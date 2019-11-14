@@ -1,57 +1,57 @@
 ---
 id: optimizing-performance
-title: Optimizing Performance
+title: Mengoptimalkan Performa
 permalink: docs/optimizing-performance.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
 
-Internally, React uses several clever techniques to minimize the number of costly DOM operations required to update the UI. For many applications, using React will lead to a fast user interface without doing much work to specifically optimize for performance. Nevertheless, there are several ways you can speed up your React application.
+Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM mahal yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antaramuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara Anda dapan mempercepat aplikasi React Anda.
 
-## Use the Production Build {#use-the-production-build}
+## Menggunakan Versi Produksi {#use-the-production-build}
 
-If you're benchmarking or experiencing performance problems in your React apps, make sure you're testing with the minified production build.
+Apabila Anda melakukan *benchmarking* atau mengalami masalah performa di aplikasi React Anda, pastikan Anda mencobanya dengan versi produksi yang telah *minified*.
 
-By default, React includes many helpful warnings. These warnings are very useful in development. However, they make React larger and slower so you should make sure to use the production version when you deploy the app.
+Secara *default*, React mengandung banyak pesan peringatan. Peringatan-peringatan ini sangat berguna dalam pengembangan aplikasi. Namun, pesan-pesan ini membuat React menjadi lebih besar dan lambat sehingga Anda harus memastikan menggunakan versi produksi ketika Anda men-*deploy* aplikasi.
 
-If you aren't sure whether your build process is set up correctly, you can check it by installing [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). If you visit a site with React in production mode, the icon will have a dark background:
+Jika Anda tidak yakin apakah proses *build* anda sudah diatur dengan benar atau belum, Anda bisa mengeceknya dengan menginstal [React Developer Tools untuk Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). Jika Anda mengunjungi situs yang menggunakan React dalam versi produksi, ikon ekstensi akan memiliki latar belakang gelap:
 
-<img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools on a website with production version of React">
+<img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools dalam situs dengan versi produksi React">
 
-If you visit a site with React in development mode, the icon will have a red background:
+Jika Anda mengunjungi situs yang menggunakan React dalam mode pengembangan, ikon ekstensi akan memiliki latar belakang merah:
 
-<img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools on a website with development version of React">
+<img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools dalam situs dengan versi pengembangan React.">
 
-It is expected that you use the development mode when working on your app, and the production mode when deploying your app to the users.
+Anda diharapkan menggunakan mode pengembangan ketika mengerjakan aplikasi Anda, dan mode produksi ketika men-*deploy* aplikasi Anda kepada pengguna.
 
-You can find instructions for building your app for production below.
+Anda dapat menemukan instruksi untuk membangun aplikasi Anda untuk mode produksi di bawah.
 
 ### Create React App {#create-react-app}
 
-If your project is built with [Create React App](https://github.com/facebookincubator/create-react-app), run:
+Jika proyek Anda dibangun menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), jalankan:
 
 ```
 npm run build
 ```
 
-This will create a production build of your app in the `build/` folder of your project.
+Ini akan membuat versi produksi untuk aplikasi Anda di dalam folder `build/` di proyek Anda.
 
-Remember that this is only necessary before deploying to production. For normal development, use `npm start`.
+Ingat bahwa ini hanya diperlukan sebelum men-*deploy* ke produksi. Untuk pengembangan normal, gunakan `npm start`.
 
-### Single-File Builds {#single-file-builds}
+### *Single-File Build* {#single-file-builds}
 
-We offer production-ready versions of React and React DOM as single files:
+Kami menyediakan versi siap produksi dari React dan React DOM sebagai *file* tunggal:
 
 ```html
 <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ```
 
-Remember that only React files ending with `.production.min.js` are suitable for production.
+Ingat bahwa hanya *file* React yang berakhir dengan `.production.min.js` yang layak digunakan untuk produksi.
 
 ### Brunch {#brunch}
 
-For the most efficient Brunch production build, install the [`terser-brunch`](https://github.com/brunch/terser-brunch) plugin:
+Untuk *build* produksi yang efisien menggunakan Brunch, instal *plugin* [`terser-brunch`](https://github.com/brunch/terser-brunch):
 
 ```
 # If you use npm
@@ -61,17 +61,17 @@ npm install --save-dev terser-brunch
 yarn add --dev terser-brunch
 ```
 
-Then, to create a production build, add the `-p` flag to the `build` command:
+Kemudian, untuk membuat *build* produksi, tambahkan *flag* `-p` ke *command* `build`:
 
 ```
 brunch build -p
 ```
 
-Remember that you only need to do this for production builds. You shouldn't pass the `-p` flag or apply this plugin in development, because it will hide useful React warnings and make the builds much slower.
+Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengoper *flag* `-p` atau mengaplikasikan *plugin* ini dalam pengembangan, karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
 ### Browserify {#browserify}
 
-For the most efficient Browserify production build, install a few plugins:
+Untuk *build* produksi yang efisien menggunakan Browserify, instal plugin-plugin berikut:
 
 ```
 # If you use npm
@@ -81,13 +81,13 @@ npm install --save-dev envify terser uglifyify
 yarn add --dev envify terser uglifyify 
 ```
 
-To create a production build, make sure that you add these transforms **(the order matters)**:
+Untuk membangun versi produksi, pastikan Anda menambahkan *transform* berikut **(urutan ini penting)**:
 
-* The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
-* The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
-* Finally, the resulting bundle is piped to [`terser`](https://github.com/terser-js/terser) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+* *Transform* [`envify`](https://github.com/hughsk/envify) memastikan pengaturan *build environment* telah tepat. Aplikasikan secara global (`-g`).
+* *Transform* [`uglifyify`](https://github.com/hughsk/uglifyify) menghapus *import-import* pengembangan. Aplikasikan secara global juga (`-g`).
+* Akhirnya, bundel akhir di-pipe ke [`terser`](https://github.com/terser-js/terser) untuk proses *mangling* ([baca alasannya](https://github.com/hughsk/uglifyify#motivationusage)).
 
-For example:
+Contoh:
 
 ```
 browserify ./index.js \
@@ -96,11 +96,11 @@ browserify ./index.js \
   | terser --compress --mangle > ./bundle.js
 ```
 
-Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
+Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengaplikasikan mengaplikasikan *plugin* ini dalam pengembangan, karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
 ### Rollup {#rollup}
 
-For the most efficient Rollup production build, install a few plugins:
+Untuk *build* produksi yang efisien menggunakan Rollup, instal plugin-plugin berikut:
 
 ```bash
 # If you use npm
@@ -110,11 +110,11 @@ npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugi
 yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
-To create a production build, make sure that you add these plugins **(the order matters)**:
+Untuk membangun versi produksi, pastikan Anda menambahkan plugin-plugin berikut **(urutan ini penting)**:
 
-* The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
-* The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
-* The [`terser`](https://github.com/TrySound/rollup-plugin-terser) plugin compresses and mangles the final bundle.
+* *Plugin* [`replace`](https://github.com/rollup/rollup-plugin-replace) memastikan pengaturan *build environment* telah tepat.
+* *Plugin* [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) mengaktifkan dukungan CommonJS di Rollup.
+* *Plugin* [`terser`](https://github.com/TrySound/rollup-plugin-terser) mengkompresikan dan melakukan proses *mangling* pada bundel akhir.
 
 ```js
 plugins: [
@@ -128,18 +128,18 @@ plugins: [
 ]
 ```
 
-For a complete setup example [see this gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
+[Lihat gist ini](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0) untuk contoh pengaturan lengkap.
 
-Remember that you only need to do this for production builds. You shouldn't apply the `terser` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengaplikasikan plugin `terser` atau plugin `replace` dengan *value* `'production'` dalam pengembangan karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
 ### webpack {#webpack}
 
->**Note:**
+>**Catatan:**
 >
->If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
->This section is only relevant if you configure webpack directly.
+>Jika Anda menggunakan Create React App, ikuti [instruksi di atas](#create-react-app).<br>
+>Bagian ini hanya relevan jika Anda melakukan konfigurasi webpack sendiri.
 
-Webpack v4+ will minify your code by default in production mode.
+Webpack v4+ akan me-*minify* kode Anda secara *default* di mode produksi.
 
 ```js
 const TerserPlugin = require('terser-webpack-plugin');
@@ -152,9 +152,9 @@ module.exports = {
 };
 ```
 
-You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production/).
+Anda dapat mempelajari ini lebih lanjut di [dokumentasi webpack](https://webpack.js.org/guides/production/).
 
-Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
+Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengaplikasikan `TerserPlugin` dalam pengembangan karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
 ## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
 
