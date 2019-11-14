@@ -21,7 +21,7 @@ Pada dasarnya, JSX hanya menyediakan sintaksis-sintaksis yang mudah ditulis dan 
 </MyButton>
 ```
 
-disusun(*compile*) menjadi:
+di-*compile* menjadi:
 
 ```js
 React.createElement(
@@ -47,7 +47,7 @@ React.createElement(
 )
 ```
 
-Jika Anda ingin menguji bagaimana JSX yang spesifik JSX dikonversi menjadi JavaScript, cobalah [*Babel compiler* daring](babel://jsx-simple-example) ini.
+Jika Anda ingin mencoba bagaimana JSX yang spesifik JSX dikonversi menjadi JavaScript, cobalah [*Babel compiler* daring](babel://jsx-simple-example) ini.
 
 ## Spesifikasi Jenis Elemen React {#specifying-the-react-element-type}
 
@@ -61,7 +61,7 @@ Semenjak JSX mengompilasi jadi panggilan-panggilan pada `React.createElement`, `
 
 Contohnya, kedua import tersebut dibutuhkan dalam kode ini, bahkan ketika `React` dan `CustomButton` tidak secara langsung mengacu dari JavaScript:
 
-```js {1,2,5}
+```js{1,2,5}
 import React from 'react';
 import CustomButton from './CustomButton';
 
@@ -73,11 +73,11 @@ function WarningButton() {
 
 Jika Anda tidak menggunakan sebuah *bundler* JavaScript dan memuat React dari penanda `<script>`, penanda tersebut sudah termasuk di dalam cakupan seperti halnya `React` secara global.
 
-### Menggunakan Notasi *Dot* untuk Jenis JSX {#using-dot-notation-for-jsx-type}
+### Menggunakan Notasi Titik untuk Jenis JSX {#using-dot-notation-for-jsx-type}
 
-Anda juga bisa merujuk pada sebuah komponen React menggunakan *dot-notation* dari dalam JSX. Ini memudahkan jika Anda memiliki sebuah modul tunggal yang mengekspor bnayak komponen React. Contohnya, jika `MyComponents.DatePicker` adalah sebuah komponen, Anda bisa menggunakannya langsung dari JSX dengan cara:
+Anda juga bisa merujuk pada sebuah komponen React menggunakan notasi titik dari dalam JSX. Ini memudahkan jika Anda memiliki sebuah modul tunggal yang mengekspor bnayak komponen React. Contohnya, jika `MyComponents.DatePicker` adalah sebuah komponen, Anda bisa menggunakannya langsung dari JSX dengan cara:
 
-```js {10}
+```js{10}
 import React from 'react';
 
 const MyComponents = {
@@ -91,15 +91,15 @@ function BlueDatePicker() {
 }
 ```
 
-### Komponen *User-Defined* Harus Di-Kapitalisasi {#user-defined-components-must-be-capitalized}
+### Komponen *User-Defined* Harus Dikapitalisasi {#user-defined-components-must-be-capitalized}
 
-Ketika sebuah tipe elemen dimulai dengan sebuah huruf kecil (*lowercase*), hal tersebut merujuk pada sebuah komponen *built-in* seperti `<div>` atau `<span>` dan menghasilkan sebuah *string* `'div'` atau `'span'` yang dioper ke `React.createElement`. Pengetikan yang dimulai dengan huruf kapital seperti `<Foo />` dikompilasi ke `React.createElement(Foo)` dan sesuai dengan sebuah komponen yang didefinisikan atau diimpor dalam *file* JavaScript Anda.
+Ketika sebuah tipe elemen dimulai dengan sebuah huruf kecil (*lowercase*), hal tersebut merujuk pada sebuah komponen bawaan seperti `<div>` atau `<span>` dan menghasilkan sebuah *string* `'div'` atau `'span'` yang dioper ke `React.createElement`. Pengetikan yang dimulai dengan huruf kapital seperti `<Foo />` dikompilasi ke `React.createElement(Foo)` dan sesuai dengan sebuah komponen yang didefinisikan atau diimpor dalam *file* JavaScript Anda.
 
-Kami merekomendasikan pemberian nama komponen dengan huruf kapital. Jika Andam memiliki sebuah komponen yang dimulai dengan sebuah huruf *lowercase*, serahkan komponen tersebut ke variabel yang dikapitalisasi sebelum menggunakannya dalam JSX.
+Kami merekomendasikan pemberian nama komponen dengan huruf kapital. Jika Anda memiliki sebuah komponen yang dimulai dengan sebuah huruf *lowercase*, serahkan komponen tersebut ke variabel yang dikapitalisasi sebelum menggunakannya dalam JSX.
 
 Sebagai contoh, kode ini tidak akan berjalan seperti yang diharapkan:
 
-```js {3,4,10,11}
+```js{3,4,10,11}
 import React from 'react';
 
 // Salah! Ini adalah sebuah komponen dan seharusnya dikapitalisasi:
@@ -116,7 +116,7 @@ function HelloWorld() {
 
 Untuk memperbaiki ini, kita akan menamakan ulang `hello` menjadi `Hello` dan menggunakan `<Hello />` ketika mengacu ke sana:
 
-```js {3,4,10,11}
+```js{3,4,10,11}
 import React from 'react';
 
 // Benar! Ini adalah sebuah komponen dan memang seharusnya dikapitalisasi:
@@ -135,7 +135,7 @@ function HelloWorld() {
 
 Anda tidak bisa menggunakan sebuah ekspresi umum sebagai jenis elemen React. Jika ingin menggunakan sebuah ekspresi umum untuk mengindikasikan jenis elemen, serahkan saja ekspresi umum tersebut ke variabel yang dikapitalisasi dahulu. Ini seringkali muncul ketika Anda ingin me-*render* sebuah komponen berbeda berdasarkan sebuah *prop*:
 
-```js {10,11}
+```js{10,11}
 import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
@@ -152,7 +152,7 @@ function Story(props) {
 
 Untuk memperbaiki ini, kita akan menyerahkan jenis tersebut ke sebuah variabel yang dikapitalisasi terlebih dahulu:
 
-```js {10-12}
+```js{10-12}
 import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
@@ -184,7 +184,7 @@ Untuk `MyComponent`, nilai `props.foo` akan menjadi `10` karena ekspresi `1 + 2 
 
 Pernyataan-pernyataan `if` dan pengulangan-pengulangan (*loop*) `for` bukanlah ekspresi dalam JavaScript, jadi hal-hal tersebut tidak bisa digunakan secara langsung dalam JSX. Sebagai gantinya, Anda bisa menempatkan ini di dalam kode yang melingkupi. Contohnya:
 
-```js {3-7}
+```js{3-7}
 function NumberDescriber(props) {
   let description;
   if (props.number % 2 == 0) {
@@ -216,11 +216,11 @@ Ketika Anda mengoper sebuah *string literal*, nilainya tidak luput dari HTML (*H
 <MyComponent message={'<3'} />
 ```
 
-Perilaku (*behavior*) biasanya tidak relevan. Dan hanya disebutkan di sini untuk melengkapi.
+Perilaku ini biasanya tidak relevan. Dan hanya disebutkan di sini untuk melengkapi.
 
-### Prop secara mendasar Diatur menjadi "True" {#props-default-to-true}
+### Nilai *Default* Prop adalah "True" {#props-default-to-true}
 
-If you pass no value for a prop, it defaults to `true`. These two JSX expressions are equivalent:
+Jika Anda tidak mengoper nilai apapun ke sebuah *prop*, nilai *default*-nya adalah 'true'. Kedua ekspresi JSX ini adalah sama:
 
 ```js
 <MyTextBox autocomplete />
@@ -228,13 +228,13 @@ If you pass no value for a prop, it defaults to `true`. These two JSX expression
 <MyTextBox autocomplete={true} />
 ```
 
-Secara umum, kami tidak merekomendasikan menggunakan cara ii karena bisa membingungkan Anda dengan [*shorthand* objek *ES6*](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` yang mana kependekan dari `{foo: foo}` ketimbang `{foo: true}`. *Behavior* ini demikian adanya karena cocok dengan *behavior*-nya HTML.
+Secara umum, kami tidak merekomendasikan menggunakan cara ini karena bisa membingungkan Anda dengan [*shorthand* objek *ES6*](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` yang merupakan kependekan dari `{foo: foo}` ketimbang `{foo: true}`. *Behavior* ini demikian adanya karena cocok dengan perilaku HTML.
 
 ### Menyebarkan Atribut {#spread-attributes}
 
 Jika Anda memiliki `props` sebagai sebuah objek, dan ingin mengopernya ke JSX, Anda bisa gunakan `...` sebagai sebuah operator "penyebaran" (*spread*) untuk mengoper ke objek *prop* yang utuh. Kedua komponen ini adalah sama:
 
-```js {7}
+```js{7}
 function App1() {
   return <Greeting firstName="Ben" lastName="Hector" />;
 }
@@ -247,7 +247,7 @@ function App2() {
 
 Anda juga bisa mengambil *prop* tertentu yang mana komponen Anda akan gunakan ketika mengoperkan semua *prop* lainnya menggunakan operator penyebaran.
 
-```js {2}
+```js{2}
 const Button = props => {
   const { kind, ...other } = props;
   const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
@@ -265,12 +265,12 @@ const App = () => {
 };
 ```
 
-Pada contoh di atas, *jenis* (`kind`) *prop* tersebut secara aman digunakan dan *tidak* dioper kepada elemen `<button>` dalam DOM.
+Pada contoh di atas, *prop* `kind` tersebut secara aman digunakan dan *tidak* dioper kepada elemen `<button>` dalam DOM.
 Semua *prop* lainnya dioper melalui objek `...other` membuat komponen ini begitu fleksibel. Anda bisa lihat bahwa komponen tersebut mengoper sebuah *prop* `onClick` dan *prop* `children`.
 
 Penyebaran atribut bisa berguna tetapi juga membuatnya mudah mengoper *prop* yang tidak perlu ke komponen-komponen yang tidak memperdulikan *prop* tersebut atau mengoper atribut-atribut HTML yang tidak valid ke DOM. Kami rekomendasikan menggunakan sintaks ini seperlunya.  
 
-## Turunan (*Children*) dalam JSX {#children-in-jsx}
+## *Children* dalam JSX {#children-in-jsx}
 
 Dalam ekspresi JSX yang mengandung penanda (*tag*) pembuka dan *tag* penutup, konten yang ada di antara penanda tersebut dioper sebagai *prop* khusus: `props.children`. Ada beberapa cara berbeda untuk mengoper turunan (*children*):
 
@@ -345,7 +345,7 @@ render() {
 }
 ```
 
-### Ekspresi JavaScript as Turunan (*Children*) {#javascript-expressions-as-children}
+### Ekspresi JavaScript sebagai *Children* {#javascript-expressions-as-children}
 
 Anda dapat mengoper ekspresi JavaScript apapun sebagai turunan, dengan cara memenyertakannya di antara `{}`. Sebagai contoh, ekspresi-ekspresi ini adalah sama:
 
@@ -357,7 +357,7 @@ Anda dapat mengoper ekspresi JavaScript apapun sebagai turunan, dengan cara meme
 
 Ini seringkali berguna untuk me-*render* sebuah daftar ekspresi JSX yang panjangnya dapat berubah-ubah. Contohnya, berikut ini me-*render* sebuah daftar HTML:
 
-```js {2,9}
+```js{2,9}
 function Item(props) {
   return <li>{props.message}</li>;
 }
@@ -374,7 +374,7 @@ function TodoList() {
 
 Ekspresi-ekspresi JavaScript juga dapat dicampurkan dengan jenis-jenis turunan lain. Ini seringkali berguna dalam pengganti *string template*:
 
-```js {2}
+```js{2}
 function Hello(props) {
   return <div>Hello {props.addressee}!</div>;
 }
@@ -384,7 +384,7 @@ function Hello(props) {
 
 Normalnya, ekspresi JavaScript dimasukkan ke dalam JSX akan ditaksir menjadis sebuah *string*, sebuah elemen React, atau menjadi daftar hal-hal semacam itu. Bagaimanapun, `props.children` bekerja seperti halnya *prop* apapun yang mana bisa mengoper jenis data apapun, tidak hanya jenis data yang React tahu bagaimana cara untuk me-*render*-nya. Contohnya, jika Anda memiliki sebuah komponen *custom*, Anda bisa melakukan *callback* pada komponen tersebut sebagai `props.children`:
 
-```js {4,13}
+```js{4,13}
 // Memanggil callback turunan numTimes untuk menghasilkan sebuah komponen berulang
 function Repeat(props) {
   let items = [];
@@ -425,7 +425,7 @@ Turunan dioper ke sebuah komponen *custom* bisa berarti apa saja, selama kompone
 
 Ini berguna untuk secara kondisional me-*render* elemen-elemen React. JSX ini me-*render* komponen `<Header />` hanya jika `showHeader` bernilai `true`:
 
-```js {2}
+```js{2}
 <div>
   {showHeader && <Header />}
   <Content />
@@ -444,7 +444,7 @@ Satu peringatan bahwa beberapa [nilai "salah"](https://developer.mozilla.org/en-
 
 Untuk memperbaiki ini, pastikan bahwa ekspresi sebelum `&&` adalah *boolean*:
 
-```js {2}
+```js{2}
 <div>
   {props.messages.length > 0 &&
     <MessageList messages={props.messages} />
@@ -454,7 +454,7 @@ Untuk memperbaiki ini, pastikan bahwa ekspresi sebelum `&&` adalah *boolean*:
 
 Sebaliknya, jika Anda ingin sebuah nilai seperti `false`, `true`, `null`, atau `undefined` untuk muncul di *output*, Anda harus [mengkonversinya menjadi sebuah *string*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) terlebih dahulu:
 
-```js {2}
+```js{2}
 <div>
   My JavaScript variable is {String(myVariable)}.
 </div>
