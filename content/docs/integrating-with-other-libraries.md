@@ -12,7 +12,7 @@ React tidak akan menyadari perubahan yang dilakukan pada DOM diluar dari React. 
 
 Ini tidak berarti tidak mungkin atau bahkan sulit untuk menggabungkan React dengan cara-cara lain untuk mempengaruhi DOM, Anda hanya perlu memperhatikan apa yang dilakukan oleh masing-masing.
 
-Cara termudah untuk menghindari konflik adalah mencegah komponen React terbarui. Kamu dapat melakukannya dengan me-_render_ elemen-elemen yang React tidak punya alasan untuk mengubahnya, seperti sebuah `<div />` kosong.
+Cara termudah untuk menghindari konflik adalah mencegah komponen React terbarui. Anda dapat melakukannya dengan me-_render_ elemen-elemen yang React tidak punya alasan untuk mengubahnya, seperti sebuah `<div />` kosong.
 
 ### Cara Pendekatan Masalah {#how-to-approach-the-problem}
 
@@ -20,7 +20,7 @@ Untuk mendemonstrasikan ini, mari kita menggambarkan sebuah pembungkus untuk seb
 
 Kita akan melampirkan [ref](/docs/refs-and-the-dom.html) kepada akar elemen DOM. Di dalam `componentDidMount`, kita akan mendapat sebuah referensi sehingga kita dapat menyampaikannya kepada _plugin_ jQuery.
 
-Untuk mencegah React menyentuh DOM setelah pemasangan, kami akan mengembalikan sebuah `<div />` kosong dari *method* `render()`. Elemen `<div />` tidak memiliki properti atau anak, sehingga React tidak memiliki alasan untuk memperbaruinya, meninggalkan *plugin* jQuery bebas untuk mengelola bagian itu dari DOM:
+Untuk mencegah React menyentuh DOM setelah pemasangan, kami akan mengembalikan sebuah `<div />` kosong dari *method* `render()`. Elemen `<div />` tidak memiliki properti atau anak, sehingga React tidak memiliki alasan untuk memperbaruinya, meninggalkan *plugin* jQuery bebas untuk mengelola bagian dari DOM tersebut:
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
@@ -39,7 +39,7 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak *plugin* jQuery melampirkan pendengar *event* pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika *plugin* tidak menyediakan sebuah *method* untuk membersihkan, kamu mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar *event* apapun yang didaftarkan ke *plugin* untuk mencegah kebocoran memori.
+Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak *plugin* jQuery melampirkan pendengar *event* pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika *plugin* tidak menyediakan sebuah *method* untuk membersihkan, anda mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar *event* apapun yang didaftarkan ke *plugin* untuk mencegah kebocoran memori.
 
 ### Integrasi dengan Plugin Chosen jQuery {#integrating-with-jquery-chosen-plugin}
 
@@ -51,7 +51,7 @@ Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungk
 
 Pertama-tama, mari kita lihat apa yang Chosen lakukan pada DOM.
 
-Jika Anda memanggilnya pada sebuah `<select>` node DOM, dia akan membaca attribut dari node DOM asli, menyembunyikannya dengan sebuah gaya _inline_, dan setelah itu menambahkan sebuah DOM node yang terpisah dengan representasi visualnya sendiri tepat setelah `<select>`. Setelah itu, dia akan memanggil _event_ jQuery untuk memberitahu kita tentang perubahannya.
+Jika Anda memanggilnya pada sebuah `<select>` node DOM, dia akan membaca attribut dari node DOM asli, menyembunyikannya dengan sebuah gaya _inline_, dan setelah itu menambahkan sebuah DOM node yang terpisah dengan representasi visualnya sendiri tepat setelah `<select>`. Setelahnya, dia akan memanggil _event_ jQuery untuk memberitahu kita tentang perubahannya.
 
 Anggaplah bahwa ini adalah API yang kita perjuangkan untuk komponen pembungkus `<Chosen>` React kita:
 
@@ -85,7 +85,7 @@ class Chosen extends React.Component {
 }
 ```
 
-Lihat bagaimana kita membungkus `<select>` dalam sebuah `<div>` ekstra. Ini penting karena Chosen akan menambahkan elemen DOM lainnya tepat setelah *node* `<select>` yang kita berikan pada itu. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan pembaharuan React tidak akan konflik dengan ekstra *node* DOM yang ditambahkan Chosen. Ini juga penting bahwa jika kamu memodifikasi DOM di luar alur React, kamu harus memastikan React tidak punya alasan untuk menyentuh *node* DOM tersebut.
+Lihat bagaimana kita membungkus `<select>` dalam sebuah `<div>` ekstra. Ini penting karena Chosen akan menambahkan elemen DOM lainnya tepat setelah *node* `<select>` yang kita berikan padanya. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan pembaharuan React tidak akan konflik dengan ekstra *node* DOM yang ditambahkan Chosen. Ini juga penting bahwa jika anda memodifikasi DOM di luar alur React, anda harus memastikan React tidak punya alasan untuk menyentuh *node* DOM tersebut.
 
 Selanjutnya, kita akan mengimplementasikan metode *lifecycle*. Kita akan menginisialisasi Chosen dengan _ref_ kepada _node_ `<select>` pada `componentDidMount`, dan menghancurkannya dalam `componentWillUnmount`:
 
@@ -249,7 +249,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Kamu dapat memiliki komponen yang terisolasi sebanyak yang kamu suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, kamu akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
+Anda dapat memiliki komponen yang terisolasi sebanyak yang anda suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, anda akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
 
 ### Menanamkan React dalam Tampilan Backbone {#embedding-react-in-a-backbone-view}
 
@@ -291,7 +291,7 @@ Cara termudah untuk menggunakan model [Backbone](https://backbonejs.org/) dan ko
 
 Komponen yang bertanggung jawab untuk me-_render_ model akan mendengarkan *event* `'change'`, sementara komponen yang bertanggung jawab untuk me-_render_ koleksi akan mendengarkan *event* `'add'` dan `'remove'`. Pada kedua kasus tersebut, panggil [`this.forceUpdate()`](/docs/react-component.html#forceupdate) untuk me-_render_ ulang komponen dengan data yang baru.
 
-In the example below, the `List` component renders a Backbone collection, using the `Item` component to render individual items.
+Pada contoh dibawah ini, komponen `List` me-_render_ sebuah koleksi backbone, menggunakan komponen `Item` untuk me-_render_ item individual.
 
 ```js{1,7-9,12,16,24,30-32,35,39,46}
 class Item extends React.Component {
@@ -359,7 +359,7 @@ Dengan ini, hanya *higher-order component* yang perlu tahu tentang model interna
 
 Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita ubah *state* dengan atribut model saat ini. Akhirnya, kita pastikan jika _prop_ `model` itu sendiri berubah, kita tidak lupa untuk berhenti berlangganan dari model yang lama, dan berlangganan pada model yang baru.
 
-Catat bahwa contoh ini tidak dimaksudkan sebagai contoh yang menyeluruh untuk bekerja dengan Backbone. Tapi ini seharusnya memberi kamu sebuah gagasan tentang bagaimana cara mendekatinya dengan cara yang umum:
+Catat bahwa contoh ini tidak dimaksudkan sebagai contoh yang menyeluruh untuk bekerja dengan Backbone. Tapi ini seharusnya memberi anda sebuah gagasan tentang bagaimana cara mendekatinya dengan cara yang umum:
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {
@@ -436,4 +436,4 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
-Teknik ini tidak terbatas pada Backbone. Kamu dapat menggunakan React dengan *library* model apapun dengan berlangganan pada perubahannya di metode *lifecycle*, dan, secara opsional, menyalin data pada *state* lokal React.
+Teknik ini tidak terbatas pada Backbone. Anda dapat menggunakan React dengan *library* model apapun dengan berlangganan pada perubahannya di metode *lifecycle*, dan, secara opsional, menyalin data pada *state* lokal React.
