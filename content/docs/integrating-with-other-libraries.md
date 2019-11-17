@@ -194,7 +194,7 @@ React dapat ditanamkan pada aplikasi lain karena kefleksiblelannya [`ReactDOM.re
 
 Meskipun React umum digunakan di *startup* untuk memuat komponen akar React tunggal pada DOM, `ReactDOM.render()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang dimana dapat sekecil tombol, atau sebesar sebuah aplikasi.
 
-Faktanya, inilah tepatnya bagaimana React digunakan di Facebook. Ini membuat kira menulis aplikasi pada React sepotong demi sepotong, dan mengkombinasikannya dengan templat yang dihasilkan server kami dan kode sisi klien lainnya.
+Faktanya, seperti inilah bagaimana React digunakan di Facebook. Ini membuat kita menulis aplikasi pada React sedikit demi sedikit, dan mengkombinasikannya dengan templat yang dihasilkan server kami dan kode sisi klien lainnya.
 
 ### Mengganti Rendering Berbasis String dengan React {#replacing-string-based-rendering-with-react}
 
