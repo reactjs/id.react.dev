@@ -43,7 +43,7 @@ Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `component
 
 ### Integrasi dengan Plugin Chosen jQuery {#integrating-with-jquery-chosen-plugin}
 
-Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungkus minimal untuk plugin [Chosen](https://harvesthq.github.io/chosen/), yang menambah masukan `<select>`.
+Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungkus minimal untuk _plugin_ [Chosen](https://harvesthq.github.io/chosen/), yang menambah masukan `<select>`.
 
 >**Catatan:**
 >
