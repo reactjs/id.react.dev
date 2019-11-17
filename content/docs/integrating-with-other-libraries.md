@@ -69,7 +69,7 @@ function Example() {
 
 Kita akan mengimplementasikannya sebagai sebuah [uncontrolled component](/docs/uncontrolled-components.html) untuk penyederhanaan.
 
-Pertama tama, kira akan membuat komponen kosong dengan sebuah *method* `render()` dimana kita mengembalikan `<select>` dibungkus didalam sebuah `<div>`:
+Pertama, kita akan membuat komponen kosong dengan sebuah metode `render()` di mana kita mengembalikan `<select>` yang dibungkus di dalam sebuah `<div>`:
 
 ```js{4,5}
 class Chosen extends React.Component {
