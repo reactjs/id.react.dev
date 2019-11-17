@@ -190,7 +190,7 @@ class Chosen extends React.Component {
 
 ## Integrasi dengan *Library* Tampilan lainnya {#integrating-with-other-view-libraries}
 
-React dapat ditanamkan pada aplikasi-aplikasi lainnya terima kasih pada kefleksiblelannya [`ReactDOM.render()`](/docs/react-dom.html#render).
+React dapat ditanamkan pada aplikasi lain karena kefleksiblelannya [`ReactDOM.render()`](/docs/react-dom.html#render).
 
 Meskipun React umum digunakan di *startup* untuk memuat komponen akar React tunggal pada DOM, `ReactDOM.render()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang dimana dapat sekecil tombol, atau sebesar sebuah aplikasi.
 
