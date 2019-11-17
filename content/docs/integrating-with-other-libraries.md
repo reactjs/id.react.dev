@@ -110,7 +110,7 @@ Catat bahwa React tidak memberikan arti khusus kepada *field* `this.el`. Ini han
 
 Ini cukup untuk mengambil komponen kita untuk di-_render_, tapi kita juga ingin diberitahu tentang perubahan nilai. Untuk melakukan ini, kita akan berlangganan pada jQuery _event_ `change` di `<select>` yang diatur oleh Chosen.
 
-Kita tidak akan mengoper `this.props.onChange` secara langsung pada Chosen karena *props* komponen mungkin berubah seiring waktu, dan itu termasuk *event handler*. Sebagai gantinya, kita akan mendeklarasikan sebuah method `handleChange()` yang memanggil `this.props.onChange`, dan berlangganan pada event `change` di jQuery:
+Kita tidak akan mengoper `this.props.onChange` secara langsung pada Chosen karena *props* komponen mungkin berubah seiring waktu, dan itu termasuk *event handler*. Sebagai gantinya, kita akan mendeklarasikan sebuah metode `handleChange()` yang memanggil `this.props.onChange`, dan berlangganan pada _event_ `change` di jQuery:
 
 ```js{5,6,10,14-16}
 componentDidMount() {
