@@ -102,7 +102,7 @@ componentWillUnmount() {
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
-Catat bahwa React tidak memberikan arti khusus kepada *field* `this.el`. Ini hanya berfungsi karena sebelumnya kita menugaskan *field* ini dari sebuah `ref` dalam method `render()`:
+Catat bahwa React tidak memberikan arti khusus kepada *field* `this.el`. Ini hanya berfungsi karena sebelumnya kita menugaskan *field* ini dari sebuah `ref` dalam metode `render()`:
 
 ```js
 <select className="Chosen-select" ref={el => this.el = el}>
