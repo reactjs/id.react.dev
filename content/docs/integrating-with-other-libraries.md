@@ -47,7 +47,7 @@ Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungk
 
 >**Catatan:**
 >
->Hanya karena itu mungkin, bukan berarti itu adalah pendekatan terbaik untuk aplikasi React. Kami menganjurkan kamu untuk menggunakan komponen React saat kamu bisa. komponen React lebih mudah untuk digunakan ulang dalam aplikasi React, dan sering kali menyediakan kontrol yang lebih pada perilaku dan penampilannya.
+>Hanya karena hal tersebut memungkinan, bukan berarti itu adalah pendekatan yang terbaik untuk aplikasi React. Kami menganjurkan Anda untuk menggunakan komponen React saat Anda bisa. Komponen React lebih mudah untuk digunakan ulang dalam aplikasi React, dan sering kali menyediakan kontrol yang lebih pada perilaku dan tampilannya.
 
 Pertama-tama, mari kita lihat apa yang Chosen lakukan pada DOM.
 
