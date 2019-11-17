@@ -135,7 +135,7 @@ handleChange(e) {
 
 Akhirnya, tinggal satu hal lagi yang harus dilakukan. Di React, *props* bisa berganti seiring waktu. Contohnya, komponen `<Chosen>` dapat mengambil *children* yang berbeda jika komponen *parent* berganti *state*. Ini berarti pada poin integrasi ini sangatlah penting jika kita secara manual memperbarui DOM sebagai tanggapan pada pembaharuan prop, sejak kita tidak perlu membiarkan React mengatur DOM untuk kita.
 
-Dokumentasi Chosen menyarankan bahwa kita menggunakan API `trigger()` jQuery untuk memberitahu tentang perubahan pada DOM elemen yang asli. Kita akan membiarkan React mengurus pembaharuan `this.props.children` didalam `<select>`, tapi kita juga akan menambahkan sebuah *lifecycle method* `componentDidUpdate()` yang memberitahu Chosen tentang perubahan didalam daftar *children*:
+Dokumentasi Chosen menyarankan kita untuk menggunakan API `trigger()` jQuery untuk memberitahu tentang perubahan pada DOM elemen yang asli. Kita akan membiarkan React mengurus pembaruan `this.props.children` di dalam `<select>`, tapi kita juga akan menambahkan sebuah metode *lifecycle* `componentDidUpdate()` yang memberitahu Chosen tentang perubahan di dalam daftar *children*:
 
 ```js{2,3}
 componentDidUpdate(prevProps) {
