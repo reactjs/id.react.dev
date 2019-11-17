@@ -1,6 +1,6 @@
 ---
 id: integrating-with-other-libraries
-title: Integrasi dengan _Library_ Lain
+title: Integrasi dengan Library Lain
 permalink: docs/integrating-with-other-libraries.html
 ---
 
@@ -192,15 +192,15 @@ class Chosen extends React.Component {
 
 React dapat ditanamkan pada aplikasi lain karena kefleksiblelannya [`ReactDOM.render()`](/docs/react-dom.html#render).
 
-Meskipun React umum digunakan di *startup* untuk memuat komponen akar React tunggal pada DOM, `ReactDOM.render()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang dimana dapat sekecil tombol, atau sebesar sebuah aplikasi.
+Meskipun React umum digunakan di *startup* untuk memuat komponen akar tunggal React pada DOM, `ReactDOM.render()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang di mana dapat berupa sekecil tombol, atau sebesar sebuah aplikasi.
 
 Faktanya, seperti inilah bagaimana React digunakan di Facebook. Ini membuat kita menulis aplikasi pada React sedikit demi sedikit, dan mengkombinasikannya dengan templat yang dihasilkan server kami dan kode sisi klien lainnya.
 
-### Mengganti Rendering Berbasis String dengan React {#replacing-string-based-rendering-with-react}
+### Mengganti _Rendering_ Berbasis _String_ dengan React {#replacing-string-based-rendering-with-react}
 
 Sebuah pola yang umum pada aplikasi peramban lama adalah untuk mendeskripsikan bingkah dari DOM sebagai *string* dan memasukannya kepada DOM seperti: `$el.html(htmlString)`. Poin ini dalam sebuah basis kode sempurna untuk memperkenalkan React. Cukup tulis ulang *rendering* berbasis *string* sebagai komponen React.
 
-Berikut adalah implementasi jQuery...
+Implementasi jQuery berikut ini...
 
 ```js
 $('#container').html('<button id="btn">Say Hello</button>');
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-Dari sini kamu dapat mulai memindahkan lebih banyak logika ke komponen dan mulai mengadopsi lebih banyak praktik React yang lebih umum. Contoh nya, dikomponen yang terbaik adalah tidak bergantung pada ID karena komopnent yang sama  dapat di render beberapa kali. Sebagai gantinya, kira dapat menggunakan [React event system](/docs/handling-events.html) dan meregistrasi *handler* klik langsung pada React `<button>` elemen:
+Dari sini Anda dapat mulai memindahkan lebih banyak logika ke komponen dan mulai mengadopsi lebih banyak praktik React yang lebih umum. Contohnya, dalam komponen yang terbaik adalah untuk tidak bergantung pada ID karena komopnen yang sama  dapat di-_render_ beberapa kali. Sebagai gantinya, kira dapat menggunakan [sistem _event_ React](/docs/handling-events.html) dan meregistrasi *handler* klik langsung pada elemen `<button>` React:
 
 ```js{2,6,9}
 function Button(props) {
@@ -247,15 +247,15 @@ ReactDOM.render(
 );
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
 Kamu dapat memiliki komponen yang terisolasi sebanyak yang kamu suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, kamu akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
 
 ### Menanamkan React dalam Tampilan Backbone {#embedding-react-in-a-backbone-view}
 
-Tampilan [Backbone](https://backbonejs.org/) secara khusus menggunakan string HTML, atau templat fungsi pembuat string, untuk membuat content untuk DOM elemen mereka. Proses ini, juga, dapat digantikan dengan merender sebuah komponen React.
+Tampilan [Backbone](https://backbonejs.org/) secara khusus menggunakan _string_ HTML, atau templat fungsi pembuat _string_, untuk membuat konten untuk elemen DOM mereka. Proses ini juga dapat digantikan dengan me-_render_ sebuah komponen React.
 
-Dibawah ini, kita dapat membuat sebuah tampilan Backbone yang dipanggil `ParagraphView`. Ini akan mengesampingkan fungsi `render()` Backbone untuk merender sebuah komponen `<Paragraph>` React pada DOM elemen yang disediakan oleh Backbone (`this.el`). Disini, juga, kita menggunakan [`ReactDOM.render()`](/docs/react-dom.html#render):
+Di bawah ini, kita dapat membuat sebuah tampilan Backbone bernama `ParagraphView`. Tampilan ini akan mengesampingkan fungsi `render()` Backbone untuk me-_render_ sebuah komponen `<Paragraph>` React pada elemen DOM yang disediakan oleh Backbone (`this.el`). Di sini kita juga menggunakan [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 ```js{1,5,8,12}
 function Paragraph(props) {
@@ -277,19 +277,19 @@ const ParagraphView = Backbone.View.extend({
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-Ini juga penting bahwa kita juga dapat memanggil `ReactDOM.unmountComponentAtNode()` pada method `remove` sehingga React membatalkan *event handlers* registrasi dan sumber lainnya yang terkait dengan pohon komponen saat itu dicopot.
+Adalah penting bahwa kita juga dapat memanggil `ReactDOM.unmountComponentAtNode()` pada metode `remove` sehingga React membatalkan *event handler* registrasi dan sumber lainnya yang terkait dengan pohon komponen saat dicopot.
 
-Saat sebuah komponen dihapus *dari dalam* sebuah pohon React, pembersihan dilakukan secara otomatis, tapi karena kita menghapus seluruh pohon dengan tangan, kita harus memanggil method ini.
+Saat sebuah komponen dihapus *dari dalam* sebuah pohon React, pembersihan dilakukan secara otomatis, tapi karena kita menghapus seluruh pohon secara manual, kita harus memanggil metode ini.
 
 ## Integrasi dengan Lapisan Model {#integrating-with-model-layers}
 
-Meskipun pada umumnya ini dianjurkan untuk menggunakan aliran data searah seperti [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), atau [Redux](https://redux.js.org/), komopnen React juga dapat menggunakan lapisan model dari kerangkai kerja dan *library* lainnya.
+Meskipun pada umumnya dianjurkan untuk menggunakan aliran data searah seperti [_state_ React](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), atau [Redux](https://redux.js.org/), komponen React juga dapat menggunakan lapisan model dari _framework_ dan *library* lainnya.
 
-### Menggunakan Model Backbone di Komponen-Komponen React {#using-backbone-models-in-react-components}
+### Menggunakan Model Backbone pada Komponen React {#using-backbone-models-in-react-components}
 
-Cara termudah untuk menggunakan model [Backbone](https://backbonejs.org/) dan koleksi-koleksi dari sebuah komponen React adalah dengan mendengar pada berbagai macam perubahan *event* dan secara manual memaksakan sebuah perubahan.
+Cara termudah untuk menggunakan model [Backbone](https://backbonejs.org/) dan koleksi dari sebuah komponen React adalah dengan mendengarkan berbagai macam perubahan *event* dan memaksakan sebuah perubahan secara manual.
 
-Komponen bertanggung jawab untuk merender model-model yang mau mendengar pada *event* `'change'`, Sementara komponen bertanggung jawab untuk merender koleksi-koleksi akan mendengarkan untuk *event* `'add'` dan `'remove'`. Pada kedua kasus tersebut, panggil [`this.forceUpdate()`](/docs/react-component.html#forceupdate) untuk merender ulang komponen dengan data yang baru.
+Komponen yang bertanggung jawab untuk me-_render_ model akan mendengarkan *event* `'change'`, sementara komponen yang bertanggung jawab untuk me-_render_ koleksi akan mendengarkan *event* `'add'` dan `'remove'`. Pada kedua kasus tersebut, panggil [`this.forceUpdate()`](/docs/react-component.html#forceupdate) untuk me-_render_ ulang komponen dengan data yang baru.
 
 In the example below, the `List` component renders a Backbone collection, using the `Item` component to render individual items.
 
@@ -351,11 +351,11 @@ class List extends React.Component {
 
 ### Mengekstrak Data dari Model Backbone {#extracting-data-from-backbone-models}
 
-Pendekatan diatas membutuhkan komponen React mu untuk sadar akan model dan koleksi Backbone. Jika kamu nantinya merencanakan untuk migrasi kepada solusi manajemen data lainnya, kamu mungkin akan memusatkan pengetahuan tentang Backbone di beberapa bagian kode yang memungkinkan.
+Pendekatan di atas membutuhkan komponen React Anda mengetahui model dan koleksi Backbone. Jika Anda nantinya merencanakan untuk melakukan migrasi ke solusi manajemen data lainnya, Anda mungkin ingin memusatkan pengetahuan tentang Backbone hanya di sebagian kecil kode.
 
-Salah satu solusi untuk ini adalah untuk mengekstrak atribut model sebagai data polos setiap kali itu berubah, dan menjaga logika ini pada satu tempat. Berikut ini adalah [a higher-order component](/docs/higher-order-components.html) yang mengekstrak seluruh atribut dari sebuah model Backbone pada *state*, Mengoper data pada komponen yang dibungkus.
+Salah satu solusi untuk ini adalah untuk mengekstrak atribut model sebagai data polos setiap kali terjadi perubahan, dan menjaga logika ini pada satu tempat. Berikut ini adalah _[higher-order component](/docs/higher-order-components.html)_ yang mengekstrak seluruh atribut dari sebuah model Backbone pada *state*, mengoper data pada komponen yang dibungkus.
 
-Cara ini, hanya *higher-order component* yang perlu tahu tentang internal model Backbone, dan sebagian besar komponen di aplikasi dapat tetap agnostik dari Backbone.
+Dengan ini, hanya *higher-order component* yang perlu tahu tentang model internal Backbone, dan sebagian besar komponen di aplikasi dapat tetap terpisah dari Backbone.
 
 Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita ubah *state* dengan atribut model saat ini. Akhirnya, kita pastikan jika _prop_ `model` itu sendiri berubah, kita tidak lupa untuk berhenti berlangganan dari model yang lama, dan berlangganan pada model yang baru.
 
