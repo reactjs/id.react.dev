@@ -51,7 +51,7 @@ Untuk contoh yang lebih konkret dari konsep-konsep ini, mari kita tulis pembungk
 
 Pertama-tama, mari kita lihat apa yang Chosen lakukan pada DOM.
 
-Jika kamu memanggilnya pada sebuah `<select>` node DOM, itu membaca attribut dari node DOM asli, menyembunyikannya dengan sebuah gaya inline, dan setelah itu tambahkan sebuah DOM node yang terpisah dengan representasi visualnya sendiri tepat setelah `<select>`. Setelah itu menembakan event jQuery untuk memberitahu kita tentang perubahannya.
+Jika Anda memanggilnya pada sebuah `<select>` node DOM, dia akan membaca attribut dari node DOM asli, menyembunyikannya dengan sebuah gaya _inline_, dan setelah itu menambahkan sebuah DOM node yang terpisah dengan representasi visualnya sendiri tepat setelah `<select>`. Setelah itu, dia akan memanggil _event_ jQuery untuk memberitahu kita tentang perubahannya.
 
 Mari sebutkan bahwa ini adalah API yang kita perjuangkan untuk komponen pembungkus `<Chosen>` React kita:
 
