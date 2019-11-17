@@ -67,7 +67,7 @@ function Example() {
 }
 ```
 
-Kita akan mengimplementasikannya sebagai sebuah [uncontrolled component](/docs/uncontrolled-components.html) untuk sederhananya.
+Kita akan mengimplementasikannya sebagai sebuah [uncontrolled component](/docs/uncontrolled-components.html) untuk penyederhanaan.
 
 Pertama tama, kira akan membuat komponen kosong dengan sebuah *method* `render()` dimana kita mengembalikan `<select>` dibungkus didalam sebuah `<div>`:
 
