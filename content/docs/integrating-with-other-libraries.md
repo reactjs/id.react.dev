@@ -186,7 +186,7 @@ class Chosen extends React.Component {
 }
 ```
 
-[**Coba ini di CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
 ## Integrasi dengan *Library* Tampilan lainnya {#integrating-with-other-view-libraries}
 
