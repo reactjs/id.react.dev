@@ -10,7 +10,7 @@ Pola pengujian umum untuk komponen React.
 
 > Catatan:
 >
-> Laman ini berasumsi anda menggunakan [Jest](https://jestjs.io/) sebagai *runner* pengujian. Apabila anda menggunakan *runner* pengujian yang berbeda, anda perlu menyesuaikan *API* yang digunakan, tetapi secara keseluruhan bentuk solusi kurang lebih akan sama. Baca lebih lanjut mengenai detil dalam mengatur *environment* pengujian pada laman [Environments Pengujian](/docs/testing-environments.html).
+> Laman ini berasumsi anda menggunakan [Jest](https://jestjs.io/) sebagai *runner* pengujian. Apabila anda menggunakan *runner* pengujian yang berbeda, anda perlu menyesuaikan API yang digunakan, tetapi secara keseluruhan bentuk solusi kurang lebih akan sama. Baca lebih lanjut mengenai detil dalam mengatur *environment* pengujian pada laman [Environments Pengujian](/docs/testing-environments.html).
 
 Pada laman ini, kami akan menggunakan *function components*. Walaupun begitu, strategi pengujian tidak bergantung pada detil implementasi, dan dapat bekerja dengan baik untuk *class components* juga.
 
@@ -29,7 +29,7 @@ Pada laman ini, kami akan menggunakan *function components*. Walaupun begitu, st
 
 ### Persiapan {#setup--teardown}
 
-Untuk setiap pengujian, Umumnya kita me-*render* pohon React ke sebuah elemen *DOM* yang terhubung dengan `document`. Ini penting agar pengujian dapat menerima *DOM events*. Setelah pengujian selesai, kita harus melakukan "Pembersihan" dan melepas pohon tersebut dari `document`.
+Untuk setiap pengujian, Umumnya kita me-*render* pohon React ke sebuah elemen DOM yang terhubung dengan `document`. Ini penting agar pengujian dapat menerima *event* DOM. Setelah pengujian selesai, kita harus melakukan "Pembersihan" dan melepas pohon tersebut dari `document`.
 
 Cara yang umum dilakukan adalah menggunakan pasangan blok `beforeEach` dan `afterEach` agar mereka terus berjalan dan memisahkan efek-efek dari sebuah pengujian hanya kepada pengujian tersebut.
 
@@ -57,7 +57,7 @@ Anda dapat menggunakan pola yang berbeda, namun ingatlah bahwa kita harus melaku
 
 ### `act()` {#act}
 
-Ketika menulis pengujian antarmuka pengguna, Pekerjaan-pekerjaan seperti *rendering*, *events* pengguna, atau pengambilan data dapat diperlakukan sebagai "unit-unit" dari interaksi dengan antarmuka pengguna. React menyediakan fungsi bantuan bernama `act()` yang memastikan semua pembaruan yang berhubungan dengan "unit-unit" tadi sudah diproses dan diterapkan ke *DOM* sebelum anda melakukan *assertion*.
+Ketika menulis pengujian antarmuka pengguna, Pekerjaan-pekerjaan seperti *rendering*, *events* pengguna, atau pengambilan data dapat diperlakukan sebagai "unit-unit" dari interaksi dengan antarmuka pengguna. React menyediakan fungsi bantuan bernama `act()` yang memastikan semua pembaruan yang berhubungan dengan "unit-unit" tadi sudah diproses dan diterapkan ke DOM sebelum anda melakukan *assertion*.
 
 ```js
 act(() => {
@@ -78,7 +78,7 @@ Anda mungkin akan menemukan bahwa menggunakan `act()` secara langsung adalah sed
 
 ### *Rendering* {#rendering}
 
-Secara umumn, anda ingin melakukan pengujian apakah sebuah komponen, dengan *props* tertentu di-*render* dengan benar.
+Secara umum, anda ingin melakukan pengujian apakah sebuah komponen, dengan *props* tertentu di-*render* dengan benar.
 
 ```jsx
 // hello.js
@@ -141,7 +141,7 @@ it("renders with or without a name", () => {
 
 ### Pengambilan Data {#data-fetching}
 
-Alih-alih melakukan pemanggilan ke *API* sebenarnya pada semua pengujian anda, anda dapat membuat *request* tiruan dengan data buatan. Pengambilan data tiruan "palsu" seperti ini mencegah pengujian yang berlapis-lapis karena ketiadaan *backend*, dan membuat pengujian-pengujian tersebut berjalan lebih cepat. Catatan: anda tetap dapat menjalankan bagian dari pengujian menggunakan *["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests)* *framework* yang memberitahu apakah aplikasi secara keseluruhan bekerja sama dengan baik.
+Alih-alih melakukan pemanggilan ke API sebenarnya pada semua pengujian anda, anda dapat membuat *request* tiruan dengan data buatan. Pengambilan data tiruan "palsu" seperti ini mencegah pengujian yang berlapis-lapis karena ketiadaan *backend*, dan membuat pengujian-pengujian tersebut berjalan lebih cepat. Catatan: anda tetap dapat menjalankan bagian dari pengujian menggunakan [*"end-to-end"*](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) *framework* yang memberitahu apakah aplikasi secara keseluruhan bekerja sama dengan baik.
 
 ```jsx
 // user.js
@@ -339,7 +339,7 @@ it("should render contact information", () => {
 
 ### *Events* {#events}
 
-Kami menyarankan pengiriman *DOM events* sebenarnya dari elemen *DOM*, lalu melakukan *asserting* pada hasilnya. Dapat dilihat pada komponen `Toggle` berikut:
+Kami menyarankan pengiriman *event* DOM sebenarnya dari elemen DOM, lalu melakukan *asserting* pada hasilnya. Dapat dilihat pada komponen `Toggle` berikut:
 
 ```jsx
 // toggle.js
@@ -416,11 +416,11 @@ it("changes value when clicked", () => {
 });
 ```
 
-*DOM events* yang berbeda dan properti-properti mereka dijabarkan di [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Perlu dicatat bahwa anda perlu mengoper `{ bubbles: true }` pada setiap *event* yang anda buat agar *event* tersebut dapat mencapai React *listener* karena React secara otomatis mendelegasikan *event-event*  itu ke dokumen.
+*Event* DOM yang berbeda dan properti-properti mereka dijabarkan di [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Perlu dicatat bahwa anda perlu mengoper `{ bubbles: true }` pada setiap *event* yang anda buat agar *event* tersebut dapat mencapai React *listener* karena React secara otomatis mendelegasikan *event-event*  itu ke dokumen.
 
 Catatan:
 >
-> *React Testing Library* menawarkan [bantuan-bantuan yang lebih ringkas](https://testing-library.com/docs/dom-testing-library/api-events) untuk melepaskan *event-event*.
+> React Testing Library menawarkan [bantuan-bantuan yang lebih ringkas](https://testing-library.com/docs/dom-testing-library/api-events) untuk melepaskan *event-event*.
 
 ---
 
@@ -545,7 +545,7 @@ Anda dapat menggunakan pengaturan waktu palsu hanya pada beberapa pengujian. Dia
 
 *Framework* seperti Jest juga dapat menyimpan *"snapshots"* data dengan [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). Dengan ini, kita dapat "menyimpan" keluaran komponen yang sudah ter-*render* dan memastikan perubahan pada komponen itu komit secara eksplisit seperti perubahan pada *snapshot*.
 
-Pada contoh ini, kita akan melakukan *render* komponen dan membentuk hasil *render HTML* dengan paket [`pretty`](https://www.npmjs.com/package/pretty), sebelum menyimpan sebagai *snapshot inline*:
+Pada contoh ini, kita akan melakukan *render* komponen dan membentuk hasil *render* HTML dengan paket [`pretty`](https://www.npmjs.com/package/pretty), sebelum menyimpan sebagai *snapshot inline*:
 
 ```jsx{29-31}
 // hello.test.js, again
