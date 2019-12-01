@@ -6,79 +6,79 @@ prev: testing.html
 next: testing-environments.html
 ---
 
-Common testing patterns for React components.
+Pola pengujian umum untuk komponen React.
 
-> Note:
+> Catatan:
 >
-> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
+> Laman ini berasumsi anda menggunakan [Jest](https://jestjs.io/) sebagai *runner* pengujian. Apabila anda menggunakan *runner* pengujian yang berbeda, anda perlu menyesuaikan API yang digunakan, tetapi secara keseluruhan bentuk solusi kurang lebih akan sama. Baca lebih lanjut mengenai detil dalam mengatur *environment* pengujian pada laman [Environments Pengujian](/docs/testing-environments.html).
 
-On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
+Pada laman ini, kami akan menggunakan *function components*. Walaupun begitu, strategi pengujian tidak bergantung pada detil implementasi, dan dapat bekerja dengan baik untuk *class components* juga.
 
-- [Setup/Teardown](#setup--teardown)
+- [Persiapan](#setup--teardown)
 - [`act()`](#act)
-- [Rendering](#rendering)
-- [Data Fetching](#data-fetching)
-- [Mocking Modules](#mocking-modules)
-- [Events](#events)
-- [Timers](#timers)
-- [Snapshot Testing](#snapshot-testing)
-- [Multiple Renderers](#multiple-renderers)
-- [Something Missing?](#something-missing)
+- [*Rendering*](#rendering)
+- [*Pengambilan Data*](#data-fetching)
+- [Modul-modul Tiruan](#mocking-modules)
+- [*Events*](#events)
+- [Pengatur Waktu](#timers)
+- [Pengujian *Snapshot*](#snapshot-testing)
+- [*Multiple Renderers*](#multiple-renderers)
+- [Ada yang kurang?](#something-missing)
 
 ---
 
-### Setup/Teardown {#setup--teardown}
+### Persiapan {#setup--teardown}
 
-For each test, we usually want to render our React tree to a DOM element that's attached to `document`. This is important so that it can receive DOM events. When the test ends, we want to "clean up" and unmount the tree from the `document`.
+Untuk setiap pengujian, Umumnya kita me-*render* pohon React ke sebuah elemen DOM yang terhubung dengan `document`. Ini penting agar pengujian dapat menerima *event* DOM. Setelah pengujian selesai, kita harus melakukan "Pembersihan" dan melepas pohon tersebut dari `document`.
 
-A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
+Cara yang umum dilakukan adalah menggunakan pasangan blok `beforeEach` dan `afterEach` agar mereka terus berjalan dan memisahkan efek-efek dari sebuah pengujian hanya kepada pengujian tersebut.
 
 ```jsx
 import { unmountComponentAtNode } from "react-dom";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
 });
 ```
 
-You may use a different pattern, but keep in mind that we want to execute the cleanup _even if a test fails_. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
+Anda dapat menggunakan pola yang berbeda, namun ingatlah bahwa kita harus melakukan pembersihan tadi _walaupun sebuah pengujian gagal_. Jika tidak, pengujian-pengujian akan menjadi "bocor", dan sebuah pengujian dapat mengubah perangai dari pengujian yang lain. Hal ini akan menyebabkan *debug* akan sulit dilakukan pada pengujian lain.
 
 ---
 
 ### `act()` {#act}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+Ketika menulis pengujian antarmuka pengguna, Pekerjaan-pekerjaan seperti *rendering*, *events* pengguna, atau pengambilan data dapat diperlakukan sebagai "unit-unit" dari interaksi dengan antarmuka pengguna. React menyediakan fungsi bantuan bernama `act()` yang memastikan semua pembaruan yang berhubungan dengan "unit-unit" tadi sudah diproses dan diterapkan ke DOM sebelum anda melakukan *assertion*.
 
 ```js
 act(() => {
-  // render components
+  // render komponen
 });
-// make assertions
+// buat assertions
 ```
 
-This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these guarantees.
+Fungsi ini membantu Anda melakukan pengujian-pengujian yang mendekati apa yang pengguna sebenarnya alami ketika menggunakan aplikasi. Selanjutnya dari contoh-contoh dibawah ini akan menggunakan `act()` untuk menjamin pendekatan tersebut.
 
-You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
+Anda mungkin akan menemukan bahwa menggunakan `act()` secara langsung adalah sedikit terlalu bertele-tele. Untuk menghindari beberapa *boilerplate*, anda dapat menggunakan sebuah *library* seperti [React Testing Library](https://testing-library.com/react), dimana fungsi-fungsi bantuannya dibungkus dengan `act()`.
 
-> Note:
+> Catatan:
 >
-> The name `act` comes from the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) pattern.
+> Nama `act` berasal dari pola [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert).
 
 ---
 
-### Rendering {#rendering}
+### *Rendering* {#rendering}
 
-Commonly, you might want to test whether a component renders correctly for given props. Consider a simple component that renders a message based on a prop:
+Secara umum, anda ingin melakukan pengujian apakah sebuah komponen, dengan *props* tertentu di-*render* dengan benar.
 
 ```jsx
 // hello.js
@@ -87,14 +87,14 @@ import React from "react";
 
 export default function Hello(props) {
   if (props.name) {
-    return <h1>Hello, {props.name}!</h1>;
+    return <h1>Halo, {props.name}!</h1>;
   } else {
-    return <span>Hey, stranger</span>;
+    return <span>Hai, orang asing</span>;
   }
 }
 ```
 
-We can write a test for this component:
+Kita dapat menulis sebuah pengujian untuk komponen ini:
 
 ```jsx{24-27}
 // hello.test.js
@@ -107,13 +107,13 @@ import Hello from "./hello";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -123,25 +123,25 @@ it("renders with or without a name", () => {
   act(() => {
     render(<Hello />, container);
   });
-  expect(container.textContent).toBe("Hey, stranger");
+  expect(container.textContent).toBe("Hai, orang asing");
 
   act(() => {
     render(<Hello name="Jenny" />, container);
   });
-  expect(container.textContent).toBe("Hello, Jenny!");
+  expect(container.textContent).toBe("Halo, Jenny!");
 
   act(() => {
     render(<Hello name="Margaret" />, container);
   });
-  expect(container.textContent).toBe("Hello, Margaret!");
+  expect(container.textContent).toBe("Halo, Margaret!");
 });
 ```
 
 ---
 
-### Data Fetching {#data-fetching}
+### Pengambilan Data {#data-fetching}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
+Alih-alih melakukan pemanggilan ke API sebenarnya pada semua pengujian anda, anda dapat membuat *request* tiruan dengan data buatan. Pengambilan data tiruan "palsu" seperti ini mencegah pengujian yang berlapis-lapis karena ketiadaan *backend*, dan membuat pengujian-pengujian tersebut berjalan lebih cepat. Catatan: anda tetap dapat menjalankan bagian dari pengujian menggunakan [*"end-to-end"*](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) *framework* yang memberitahu apakah aplikasi secara keseluruhan bekerja sama dengan baik.
 
 ```jsx
 // user.js
@@ -167,15 +167,15 @@ export default function User(props) {
   return (
     <details>
       <summary>{user.name}</summary>
-      <strong>{user.age}</strong> years old
+      <strong>{user.age}</strong> tahun
       <br />
-      lives in {user.address}
+      tinggal di {user.address}
     </details>
   );
 }
 ```
 
-We can write tests for it:
+Kita dapat menulis pengujian untuk ini:
 
 ```jsx{23-33,44-45}
 // user.test.js
@@ -187,13 +187,13 @@ import User from "./user";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -212,7 +212,7 @@ it("renders user data", async () => {
     })
   );
 
-  // Use the asynchronous version of act to apply resolved promises
+  // Gunakan versi asynchronous dari act untuk menerapkan resolved promises
   await act(async () => {
     render(<User id="123" />, container);
   });
@@ -221,18 +221,18 @@ it("renders user data", async () => {
   expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
   expect(container.textContent).toContain(fakeUser.address);
 
-  // remove the mock to ensure tests are completely isolated
+  // hapus tiruan untuk memastikan pengujian sepenuhnya terpisah
   global.fetch.mockRestore();
 });
 ```
 
 ---
 
-### Mocking Modules {#mocking-modules}
+### Modul-modul Tiruan {#mocking-modules}
 
-Some modules might not work well inside a testing environment, or may not be as essential to the test itself. Mocking out these modules with dummy replacements can make it easier to write tests for your own code.
+Beberapa modul mungkin tidak bekerja dengan baik didalam *environment* pengujian, atau mungkin tidak begitu penting bagi pengujian itu sendiri. Membuat tiruan modul-modul ini dengan modul-modul buatan dapat mempermudah penulisan pengujian untuk kode anda.
 
-Consider a `Contact` component that embeds a third-party `GoogleMap` component:
+Contohnya sebuah komponen `Contact` yang menanamkan komponen `GoogleMap` sebagai pihak ketiga:
 
 ```jsx
 // map.js
@@ -257,11 +257,11 @@ function Contact(props) {
   return (
     <div>
       <address>
-        Contact {props.name} via{" "}
+        Kontak {props.name} via{" "}
         <a data-testid="email" href={"mailto:" + props.email}>
           email
         </a>
-        or on their <a data-testid="site" href={props.site}>
+        atau pada <a data-testid="site" href={props.site}>
           website
         </a>.
       </address>
@@ -271,7 +271,7 @@ function Contact(props) {
 }
 ```
 
-If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
+Apabila kita tidak ingin memuat komponen ini kedalam pengujian kita, kita dapat melepas ketergantungan itu kepada komponen buatan, dan menjalankan pengujian kita:
 
 ```jsx{10-18}
 // contact.test.js
@@ -295,13 +295,13 @@ jest.mock("./map", () => {
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -337,9 +337,9 @@ it("should render contact information", () => {
 
 ---
 
-### Events {#events}
+### *Events* {#events}
 
-We recommend dispatching real DOM events on DOM elements, and then asserting on the result. Consider a `Toggle` component:
+Kami menyarankan pengiriman *event* DOM sebenarnya dari elemen DOM, lalu melakukan *asserting* pada hasilnya. Dapat dilihat pada komponen `Toggle` berikut:
 
 ```jsx
 // toggle.js
@@ -362,7 +362,7 @@ export default function Toggle(props) {
 }
 ```
 
-We could write tests for it:
+Dapat kita tulis pengujiannya sebagai berikut:
 
 ```jsx{13-14,35,43}
 // toggle.test.js
@@ -375,14 +375,14 @@ import Toggle from "./toggle";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
-  // container *must* be attached to document so events work correctly.
+  // container *harus* melekat pada document agar events bekerja dengan benar
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -394,7 +394,7 @@ it("changes value when clicked", () => {
     render(<Toggle onChange={onChange} />, container);
   });
 
-  // get ahold of the button element, and trigger some clicks on it
+  // pegang elemen button, dan picu beberapa klik dengannya
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Turn off");
 
@@ -416,17 +416,17 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+*Event* DOM yang berbeda dan properti-properti mereka dijabarkan di [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Perlu dicatat bahwa anda perlu mengoper `{ bubbles: true }` pada setiap *event* yang anda buat agar *event* tersebut dapat mencapai React *listener* karena React secara otomatis mendelegasikan *event-event*  itu ke dokumen.
 
-> Note:
+Catatan:
 >
-> React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+> React Testing Library menawarkan [bantuan-bantuan yang lebih ringkas](https://testing-library.com/docs/dom-testing-library/api-events) untuk melepaskan *event-event*.
 
 ---
 
-### Timers {#timers}
+### Pengatur Waktu {#timers}
 
-Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+Kode anda mungkin menggunakan fungsi berbasis pengaturan waktu seperti `setTimeout` untuk menjadwalkan pekerjaan di masa depan. Pada contoh ini, sebuah panel pilihan ganda menunggu pemilihan dan pergerakan, waktu akan habis apabila pemilihan tidak dilakukan dalam 5 detik: 
 
 ```jsx
 // card.js
@@ -455,7 +455,7 @@ export default function Card(props) {
 }
 ```
 
-We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
+Kita dapat melakukan pengujian-pengujian pada komponen ini dengan memanfaatkan [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), dan melakukan pengujian-pengujian dengan *states* yang berbeda-beda.
 
 ```jsx{7,31,37,49,59}
 // card.test.js
@@ -468,13 +468,13 @@ jest.useFakeTimers();
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -486,13 +486,13 @@ it("should select null after timing out", () => {
     render(<Card onSelect={onSelect} />, container);
   });
 
-  // move ahead in time by 100ms
+  // bergerak maju dalam waktu 100 milidetik
   act(() => {
     jest.advanceTimersByTime(100);
   });
   expect(onSelect).not.toHaveBeenCalled();
 
-  // and then move ahead by 5 seconds
+  // dan bergerak maju dalam 5 detik
   act(() => {
     jest.advanceTimersByTime(5000);
   });
@@ -510,7 +510,7 @@ it("should cleanup on being removed", () => {
   });
   expect(onSelect).not.toHaveBeenCalled();
 
-  // unmount the app
+  // lepas app
   act(() => {
     render(null, container);
   });
@@ -537,15 +537,15 @@ it("should accept selections", () => {
 });
 ```
 
-You can use fake timers only in some tests. Above, we enabled them by calling `jest.useFakeTimers()`. The main advantage they provide is that your test doesn't actually have to wait five seconds to execute, and you also didn't need to make the component code more convoluted just for testing.
+Anda dapat menggunakan pengaturan waktu palsu hanya pada beberapa pengujian. Diatas, kita mengaktifkan itu dengan memanggil `jest.useFakeTimers()`. Kelebihan utama dari ini adalah test anda tidak perlu menunggu waktu aktual selama 5 detik untuk dilaksanakan, dan anda juga tidak perlu membuat kode komponen menjadi lebih membelit hanya untuk pengujian.
 
 ---
 
-### Snapshot Testing {#snapshot-testing}
+### Pengujian *Snapshot* {#snapshot-testing}
 
-Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the rendered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
+*Framework* seperti Jest juga dapat menyimpan *"snapshots"* data dengan [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). Dengan ini, kita dapat "menyimpan" keluaran komponen yang sudah ter-*render* dan memastikan perubahan pada komponen itu komit secara eksplisit seperti perubahan pada *snapshot*.
 
-In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
+Pada contoh ini, kita akan melakukan *render* komponen dan membentuk hasil *render* HTML dengan paket [`pretty`](https://www.npmjs.com/package/pretty), sebelum menyimpan sebagai *snapshot inline*:
 
 ```jsx{29-31}
 // hello.test.js, again
@@ -559,13 +559,13 @@ import Hello from "./hello";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // Pembersihan ketika keluar
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -578,7 +578,7 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* ... otomatis dipenuhi oleh jest ... */
 
   act(() => {
     render(<Hello name="Jenny" />, container);
@@ -586,7 +586,7 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* ... otomatis dipenuhi oleh jest ... */
 
   act(() => {
     render(<Hello name="Margaret" />, container);
@@ -594,17 +594,17 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* ... otomatis dipenuhi oleh jest ... */
 });
 ```
 
-It's typically better to make more specific assertions than to use snapshots. These kinds of tests include implementation details so they break easily, and teams can get desensitized to snapshot breakages. Selectively [mocking some child components](#mocking-modules) can help reduce the size of snapshots and keep them readable for the code review.
+Pada umumnya lebih baik untuk membuat *assertions* yang lebih spesifik daripada menggunakan snapshots. Jenis pengujian ini termasuk implementasi detil agar mereka dapat dipilah dengan mudah, dan tim tidak terlalu terpengaruh dari pemilahan *snapshot*. Secara selektif [meniru beberapa anak komponen](#mocking-modules) dapat membantu mengurangi ukuran *snapshots* and menjaga mereka tetap dapat terbaca untuk ulasan kode.
 
 ---
 
-### Multiple Renderers {#multiple-renderers}
+### *Multiple Renderers* {#multiple-renderers}
 
-In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+Pada kasus-kasus yang jarang, anda akan menjalankan pengujian dengan komponen yang menggunakan *multiple renderers*. Sebagai contoh, anda mungkin menjalankan pengujian-pengujian *snapshot* pada sebuah komponen dengan `react-test-renderer`, yang secara internal menggunakan `ReactDOM.render` didalam sebuah anak komponen untuk me-*render* konten. Pada skenario ini, anda dapat membungkus pembaruan-pembaruan dengan `act()`s sesuai dengan *renderers* masing-masing.
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";
@@ -621,6 +621,6 @@ expect(root).toMatchSnapshot();
 
 ---
 
-### Something Missing? {#something-missing}
+### Ada yang kurang? {#something-missing}
 
-If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.
+Apabila beberapa skenario umum belum tercakup, harap memberitahukan kami pada [issue tracker](https://github.com/reactjs/reactjs.org/issues) untuk dokumentasi *website*.
