@@ -69,8 +69,8 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
   if (!code) {
     return (
       <p>
-        When you encounter an error, you'll receive a link to this page for that
-        specific error and we'll show you the full error text.
+        Ketika anda menemukan <i>error</i>, anda akan mendapatkan sebuah tautan 
+        ke laman ini untuk <i>error</i> tersebut dan kami akan menampilkan teks <i>error</i> secara penuh kepada anda.
       </p>
     );
   }
