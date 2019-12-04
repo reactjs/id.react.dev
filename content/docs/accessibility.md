@@ -488,11 +488,7 @@ Berikut ini panduan untuk menggunakan NVDA dengan baik:
 
 VoiceOver adalah pembaca layar yang terintegrasi dengan peranti Apple.
 
-<<<<<<< HEAD
 Berikut ini panduan cara mengaktifkan dan menggunakan VoiceOver:
-=======
-Refer to the following guides on how to activate and use VoiceOver:
->>>>>>> e0a0ec3dad47804d0b41d4a7bb81841638dc79dd
 
 - [WebAIM - Menggunakan VoiceOver untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/voiceover/)
 - [Deque - Pintasan _Keyboard_ VoiceOver untuk OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
