@@ -156,62 +156,62 @@ Anda dapat mempelajari ini lebih lanjut di [dokumentasi webpack](https://webpack
 
 Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengaplikasikan `TerserPlugin` dalam pengembangan karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
-## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
+## Memprofil Komponen dengan Tab *Performance* Chrome {#profiling-components-with-the-chrome-performance-tab}
 
-In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:
+Dalam mode **pengembangan**, Anda dapat memvisualisasikan bagaimana komponen terpasang, diperbarui, dan dilepas, mengunakan perangkat performa di peramban web yang mendukungnya. Sebagai contoh:
 
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center>
+<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="Komponen React di timeline Chrome" /></center>
 
-To do this in Chrome:
+Cara melakukannya di Chrome:
 
-1. Temporarily **disable all Chrome extensions, especially React DevTools**. They can significantly skew the results!
+1. **Matikan seluruh ekstensi Chrome secara sementara, termasuk React DevTools**. Ekstensi tambahan dapat mengubah hasil uji performa!
 
-2. Make sure you're running the application in the development mode.
+2. Pastikan Anda menjalankan aplikasi dalam mode pengembangan.
 
-3. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
+3. Buka tab **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** pada Chrome DevTools dan tekan **Record** untuk merekam.
 
-4. Perform the actions you want to profile. Don't record more than 20 seconds or Chrome might hang.
+4. Lakukan aksi-aksi yang ingin Anda profil. Jangan merekan lebih dari 20 detik, ini akan membuat Chrome *hang*.
 
-5. Stop recording.
+5. Berhenti merekam.
 
-6. React events will be grouped under the **User Timing** label.
+6. *Event* React akan dikelompokkan dalam label **User Timing**.
 
-For a more detailed walkthrough, check out [this article by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
+Untuk panduan lebih lengkap, baca [artikel ini oleh Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
 
-Note that **the numbers are relative so components will render faster in production**. Still, this should help you realize when unrelated UI gets updated by mistake, and how deep and how often your UI updates occur.
+Perlu dicatat bahwa **nilai-nilai ini adalah relatif sehingga komponen akan me-*render* lebih cepat di mode produksi**. Tetap saja, ini akan membantu Anda untuk mengetahui ketika bagian UI yang tidak relevan diperbarui secara tidak sengaja, dan seberapa dalam dan sering pembaruan UI terjadi.
 
-Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
+Saat ini hanya Chrome, Edge, and IE yang mendukung fitur ini, tapi kita menggunakan [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) yang terstandarisasi sehingga kami memperkirakan peramban web lain akan menambahkan dukungan terhadap API tersebut.
 
-## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
+## Memprofil Komponen dengan Profiler DevTools {#profiling-components-with-the-devtools-profiler}
 
-`react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
-An overview of the Profiler can be found in the blog post ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
-A video walkthrough of the profiler is also [available on YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
+`react-dom` 16.5+ dan `react-native` 0.57+ menyediakan kemampuan memprofil tambahan dalam mode pengembangan dengan Profiler React DevTools.
+Sebuah ikhtisar mengenai *profiler* tersebut dapat ditemukan dalam postingan blog ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
+Panduan video profiler ini juga [tersedia di YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
 
-If you haven't yet installed the React DevTools, you can find them here:
+Jika Anda belum menginstal React DevTools, Anda dapat menemukannya di sini:
 
-- [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
-- [Standalone Node Package](https://www.npmjs.com/package/react-devtools)
+- [Versi Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Versi Firefox](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+- [*Standalone Package* di Node](https://www.npmjs.com/package/react-devtools)
 
-> Note
+> Catatan
 >
-> A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
-> Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)
+> Versi bundel `react-dom` yang dapat memprofil versi produksi juga tersedia di `react-dom/profiling`.
+> Baca lebih lanjut mengenai cara penggunaan bundel ini di [fb.me/react-profiling](https://fb.me/react-profiling)
 
-## Virtualize Long Lists {#virtualize-long-lists}
+## Memvirtualisasi *List* Panjang {#virtualize-long-lists}
 
-If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+Jika aplikasi Anda me-*render* *list* data yang panjang (ratusan atau ribuan baris), kani menyarankan menggunakan teknik "windowing". Teknik ini hanya me-*render* subset kecil dari baris-baris data Anda dalam waktu tertentu, dan dapat mengurangi waktu me-*render* ulang komponen Anda serta jumlah simpul DOM yang dibuat secara signifikan.
 
-[react-window](https://react-window.now.sh/) and [react-virtualized](https://bvaughn.github.io/react-virtualized/) are popular windowing libraries. They provide several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
+[react-window](https://react-window.now.sh/) dan [react-virtualized](https://bvaughn.github.io/react-virtualized/) adalah *library* *windowing* paling populer. *Library-library* ini menyediakan beberapa komponen untuk menampilkan data-data dalam bentuk *list*, *grid*, dan tabular. Anda juga dapat membuat komponen *windowing* versi Anda sendiri, seperti [yang dilakukan Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), jika Anda ingin sesuatu yang lebih dikhususkan untuk *use case* aplikasi Anda.
 
-## Avoid Reconciliation {#avoid-reconciliation}
+## Menghindari Rekonsiliasi {#avoid-reconciliation}
 
-React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.
+React membangun dan memelihara representasi internal dari UI yang di-*render*. Representasi ini berisi elemen-elemen React yang dikembalikan dari komponen Anda. Representasi ini memungkinkan React menghindari membuat simpul DOM baru dan mengakses simpul DOM yang sudah ada diluar keperluan, karena mereka bisa lebih lambat daripada operasi dalam obyek JavaScript. Terkadan hal ini disebut sebagai "virtual DOM", namun dapat juga bekerja secara sama di React Native.
 
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM.
+Ketika *props* atau *state* komponen berubah, React memutuskan apakah pembaruan DOM yang sesungguhnya diperlukan dengan membandingkan elemen yang baru dikembalikan dengan elemen yang sebelumnya di-render. Ketika keduanya tidak sama, React akan memperbarui DOM.
 
-Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, you can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
+Meskipun React hanya memperbarui simpul DOM yang berubah, me-*render* ulang tetap memerlukan waktu tambahan. Dalam banyak kasus ini tidak menjadi masalah, namun ketika ada perlambatan yang signifikan, Anda dapat mempercepatnya dengan meng-*override* *lifecycle* `shouldComponentUpdate`, yang dijalankan sebelum proses *render* ulang dimulai. Implementasi bawaan fungsi ini mengembalikan `true`, yang membuat react React melakukan pembaruan tersebut:
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -219,9 +219,9 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 ```
 
-If you know that in some situations your component doesn't need to update, you can return `false` from `shouldComponentUpdate` instead, to skip the whole rendering process, including calling `render()` on this component and below.
+Jika Anda tahu bahwa dalam beberapa kasus komponen Anda tidak perlu diperbarui, Anda dapat mengembalikan `false` dari `shouldComponentUpdate`, untuk melewati seluruh proses rendering, termasuk memanggil `render()` dalam komponen ini dan komponen-komponen didalamnya.
 
-In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state.
+Dalam banyak kasus, alih-alih menuliskan `shouldComponentUpdate()` secara manual, Anda dapat meng-*inherit* dari [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). Ini sama seperti mengimplementasikan `shouldComponentUpdate()` dengan perbandingan dangkal dari *props* dan *state* sekarang.
 
 ## shouldComponentUpdate In Action {#shouldcomponentupdate-in-action}
 
