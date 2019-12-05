@@ -211,7 +211,7 @@ React membangun dan memelihara representasi internal dari UI yang di-*render*. R
 
 Ketika *props* atau *state* komponen berubah, React memutuskan apakah pembaruan DOM yang sesungguhnya diperlukan dengan membandingkan elemen yang baru dikembalikan dengan elemen yang sebelumnya di-render. Ketika keduanya tidak sama, React akan memperbarui DOM.
 
-Meskipun React hanya memperbarui simpul DOM yang berubah, me-*render* ulang tetap memerlukan waktu tambahan. Dalam banyak kasus ini tidak menjadi masalah, namun ketika ada perlambatan yang signifikan, Anda dapat mempercepatnya dengan meng-*override* *lifecycle* `shouldComponentUpdate`, yang dijalankan sebelum proses *render* ulang dimulai. Implementasi bawaan fungsi ini mengembalikan `true`, yang membuat react React melakukan pembaruan tersebut:
+Meskipun React hanya memperbarui simpul DOM yang berubah, me-*render* ulang tetap memerlukan waktu tambahan. Dalam banyak kasus ini tidak menjadi masalah, namun ketika ada perlambatan yang signifikan, Anda dapat mempercepatnya dengan meng-*override* *lifecycle* `shouldComponentUpdate`, yang dijalankan sebelum proses *render* ulang dimulai. Implementasi bawaan fungsi ini mengembalikan `true`, yang membuat React melakukan pembaruan tersebut:
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -223,23 +223,23 @@ Jika Anda tahu bahwa dalam beberapa kasus komponen Anda tidak perlu diperbarui, 
 
 Dalam banyak kasus, alih-alih menuliskan `shouldComponentUpdate()` secara manual, Anda dapat meng-*inherit* dari [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). Ini sama seperti mengimplementasikan `shouldComponentUpdate()` dengan perbandingan dangkal dari *props* dan *state* sekarang.
 
-## shouldComponentUpdate In Action {#shouldcomponentupdate-in-action}
+## Cara Kerja shouldComponentUpdate {#shouldcomponentupdate-in-action}
 
-Here's a subtree of components. For each one, `SCU` indicates what `shouldComponentUpdate` returned, and `vDOMEq` indicates whether the rendered React elements were equivalent. Finally, the circle's color indicates whether the component had to be reconciled or not.
+Berikut adalah subdiagram beberapa komponen. Dalam setiap komponen, `SCU` mengindikasikan apa yang dikembalikan `shouldComponentUpdate`, dan `vDOMEq` mengindikasikan apakah elemen-elemen React yang di-*render* ekuivalen. Akhirnya, warna lingkaran mengindikasikan apakah komponen tersebut harus direkonsiliasikan atau tidak.
 
 <figure><img src="../images/docs/should-component-update.png" style="max-width:100%" /></figure>
 
-Since `shouldComponentUpdate` returned `false` for the subtree rooted at C2, React did not attempt to render C2, and thus didn't even have to invoke `shouldComponentUpdate` on C4 and C5.
+Karena `shouldComponentUpdate` mengembalikan `false` pada subdiagram yang mengakar pada C2, React tidak akan me-*render* C2, dan dengan demikian tidak perlu menjalankan `shouldComponentUpdate` di C4 dan C5.
 
-For C1 and C3, `shouldComponentUpdate` returned `true`, so React had to go down to the leaves and check them. For C6 `shouldComponentUpdate` returned `true`, and since the rendered elements weren't equivalent React had to update the DOM.
+Untuk C1 dan C3, `shouldComponentUpdate` mengembalikan `true`, sehingga React harus menelusuri cabang komponen dan mengeceknya. Untuk C6 `shouldComponentUpdate` mengembalikan `true`, dan karena elemen yang di-*render* tidak ekuivalen React harus memperbarui DOM.
 
-The last interesting case is C8. React had to render this component, but since the React elements it returned were equal to the previously rendered ones, it didn't have to update the DOM.
+Kasus menarik yang terakhir adalah C8. React harus me-*render* komponen ini, tapi karena elemen-elemen React yang dikembalikan sama dengan elemen yang sebelumnya di-*render*, ia tidak harus memperbarui DOM.
 
-Note that React only had to do DOM mutations for C6, which was inevitable. For C8, it bailed out by comparing the rendered React elements, and for C2's subtree and C7, it didn't even have to compare the elements as we bailed out on `shouldComponentUpdate`, and `render` was not called.
+Perlu dicatat bahwa React hanya perlu melakukan mutasi DOM untuk C6, yang tidak dapat dihindari. Untuk C8, ia menghindari mutasi DOM dengan membandingkan elemen-elemen React yang di-*render*, dan untuk subdiagram komponen C2 dan C7, ia bahkan tidak perlu membandingkan elemen-elemennya karena kita sudah menghindarinya di dalam `shouldComponentUpdate`, jadi `render` tidak dipanggil.
 
-## Examples {#examples}
+## Contoh {#examples}
 
-If the only way your component ever changes is when the `props.color` or the `state.count` variable changes, you could have `shouldComponentUpdate` check that:
+Jika satu-satunya cara komponen Anda berubah adalah ketika variabel `props.color` atau `state.count` berubah, anda dapat mengeceknya melalui `shouldComponentUpdate`:
 
 ```javascript
 class CounterButton extends React.Component {
@@ -270,7 +270,7 @@ class CounterButton extends React.Component {
 }
 ```
 
-In this code, `shouldComponentUpdate` is just checking if there is any change in `props.color` or `state.count`. If those values don't change, the component doesn't update. If your component got more complex, you could use a similar pattern of doing a "shallow comparison" between all the fields of `props` and `state` to determine if the component should update. This pattern is common enough that React provides a helper to use this logic - just inherit from `React.PureComponent`. So this code is a simpler way to achieve the same thing:
+Dalam kode ini, `shouldComponentUpdate` hanya memeriksa jika ada perubahan dalam `props.color` atau `state.count`. Jika nilai variabel-variabel tersebut tidak berubah, komponen tidak akan diperbarui. Jika komponen Anda menjadi lebih kompleks, Anda dapat menggunakan pola serupa dengan melakukan "perbandingan dangkal" (*shallow comparison*) diantara semua nilai di dalam `props` dan `state` untuk menentukan apakah komponen harus diperbarui. Pola ini cukup umum sehingga React menyediakan *helper* khisis untuk menggunakan logika ini - tinggal melakukan *inherit* dari `React.PureComponent`. Jadi kode di bawah adalah cara lebih simpel untuk melakukan hal serupa:
 
 ```js
 class CounterButton extends React.PureComponent {
@@ -291,9 +291,9 @@ class CounterButton extends React.PureComponent {
 }
 ```
 
-Most of the time, you can use `React.PureComponent` instead of writing your own `shouldComponentUpdate`. It only does a shallow comparison, so you can't use it if the props or state may have been mutated in a way that a shallow comparison would miss.
+Seringkali, Anda dapat menggunakan `React.PureComponent` alih-alih menuliskan `shouldComponentUpdate` versi Anda sendiri. `React.PureComponent` perbandingan dangkal, jadi Anda tidak dapat menggunakannya apabila *props* atau *state* mungkin termutasi dengan cara yang tidak tertangkap oleh perbandingan dangkal.
 
-This can be a problem with more complex data structures. For example, let's say you want a `ListOfWords` component to render a comma-separated list of words, with a parent `WordAdder` component that lets you click a button to add a word to the list. This code does *not* work correctly:
+Hal ini akan menjadi masalah dalam komponen dengan struktur data yang lebih kompleks. Misalnya, umpamakan Anda ingin komponen `ListOfWords` me-*render* *list* kata yang terpisahkan oleh koma, dengan komponen induk `WordAdder` yang memungkinkan Anda mengklik tombol untuk menambahkan kata ke dalam *list*. Kode di bawah *tidak akan* bekerja secara benar:
 
 ```javascript
 class ListOfWords extends React.PureComponent {
@@ -312,7 +312,7 @@ class WordAdder extends React.Component {
   }
 
   handleClick() {
-    // This section is bad style and causes a bug
+    // Bagian ini merupakan contoh buruk dan akan menghasilkan bug
     const words = this.state.words;
     words.push('marklar');
     this.setState({words: words});
@@ -329,11 +329,11 @@ class WordAdder extends React.Component {
 }
 ```
 
-The problem is that `PureComponent` will do a simple comparison between the old and new values of `this.props.words`. Since this code mutates the `words` array in the `handleClick` method of `WordAdder`, the old and new values of `this.props.words` will compare as equal, even though the actual words in the array have changed. The `ListOfWords` will thus not update even though it has new words that should be rendered.
+Masalahnya adalah `PureComponent` akan melakukan perbandingan simpel antara nilai baru dan lama dari `this.props.words`. Karena kode ini memutasikan senarai `words` di dalam *method* `handleClick` pada `WordAdder`, perbandingan nilai lama dan baru dari `this.props.words` akan berhasil serupa, meskipun kata-kata di dalam senarai telah berubah. Oleh karena itu, komponen `ListOfWords` tidak akan diperbarui meskipun even ada kata-kata baru yang seharusnya di-*render*.
 
-## The Power Of Not Mutating Data {#the-power-of-not-mutating-data}
+## Keuntungan Tidak Memutasi Data {#the-power-of-not-mutating-data}
 
-The simplest way to avoid this problem is to avoid mutating values that you are using as props or state. For example, the `handleClick` method above could be rewritten using `concat` as:
+Cara paling simpel untuk menghindari masalah di atas adalah menghindari memutasi nilai-nilai yang akan digunakan di dalam *props* atau *state*. Sebagai contoh, *method* `handleClick` dapat ditulis ulang dengan `concat` seperti contoh berikut:
 
 ```javascript
 handleClick() {
@@ -343,7 +343,7 @@ handleClick() {
 }
 ```
 
-ES6 supports a [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) for arrays which can make this easier. If you're using Create React App, this syntax is available by default.
+ES6 mendukung [sintaksis *spread*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) untuk senarai yang membuat proses ini lebih mudah. Jika Anda menggunakan Create React App, sintaksis ini sudah bisa digunakan.
 
 ```js
 handleClick() {
@@ -353,7 +353,7 @@ handleClick() {
 };
 ```
 
-You can also rewrite code that mutates objects to avoid mutation, in a similar way. For example, let's say we have an object named `colormap` and we want to write a function that changes `colormap.right` to be `'blue'`. We could write:
+Anda juga dapat menuliskan ulang kode yang memutasi objek untuk menghindari mutasi, dengan cara yang sama. Sebagai contoh, umpamakan kita memiliki objek bernama `colormap` dan kita ingin membuat fungsi yang mengubah `colormap.right` menjadi `'blue'`. Kita dapat menuliskan:
 
 ```js
 function updateColorMap(colormap) {
@@ -361,7 +361,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-To write this without mutating the original object, we can use [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) method:
+Untuk menuliskan fungsi ini tanpa memutasikan objek aslinya, kita dapat menggunakan *method* [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign):
 
 ```js
 function updateColorMap(colormap) {
@@ -369,9 +369,9 @@ function updateColorMap(colormap) {
 }
 ```
 
-`updateColorMap` now returns a new object, rather than mutating the old one. `Object.assign` is in ES6 and requires a polyfill.
+`updateColorMap` sekarang mengembalikan objek baru, daripada memutasikan objek yang lama. `Object.assign` berada di spesifikasi ES6 dan membutuhkan *polyfill*.
 
-There is a JavaScript proposal to add [object spread properties](https://github.com/sebmarkbage/ecmascript-rest-spread) to make it easier to update objects without mutation as well:
+Ada juga proposal JavaScript untuk menambahkan [properti *spread* objek](https://github.com/sebmarkbage/ecmascript-rest-spread) untuk membuat pembaruan objek tanpa mutasi menjadi lebih mudah:
 
 ```js
 function updateColorMap(colormap) {
@@ -379,6 +379,6 @@ function updateColorMap(colormap) {
 }
 ```
 
-If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
+Jika Anda menggunakan Create React App, `Object.assign` dan sintaksis *spread* untuk objek sudah tersedia.
 
-When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.
+Ketika berurusan dengan objek bersarang dalam, memperbaruinya secara *immutable* dapat menjadi sulit. Jika Anda memiliki masalah ini, cobalah [Immer](https://github.com/mweststrate/immer) atau [immutability-helper](https://github.com/kolodny/immutability-helper). *Library* ini memungkinkan Anda membuat kode yang lebih mudah dibaca tanpa menanggalkan keuntungan-keuntungan *immutability*.
