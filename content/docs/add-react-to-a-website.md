@@ -196,11 +196,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 Jangan menunggu perintah untuk selesai -- perintah ini menjalankan sebuah *watcher* otomatis untuk JSX.
 
-<<<<<<< HEAD
-Jika sekarang Anda membuat sebuah berkas bernama `src/like_button.js` dengan **[kode permulaan JSX](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** ini, *watcher* akan membuat sebuah `like_button.js` yang telah dipreproses berbentuk sebuah kode JavaScript biasa yang siap dijalankan di *browser*. Ketika Anda menyunting berkas sumber dengan JSX, proses transformasi akan berjalan kembali secara otomatis.
-=======
-If you now create a file called `src/like_button.js` with this **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+Jika sekarang Anda membuat sebuah berkas bernama `src/like_button.js` dengan **[kode permulaan JSX](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** ini, *watcher* akan membuat sebuah `like_button.js` yang telah dipreproses berbentuk sebuah kode JavaScript biasa yang siap dijalankan di *browser*. Ketika Anda menyunting berkas sumber dengan JSX, proses transformasi akan berjalan kembali secara otomatis.
 
 Sebagai bonus, cara ini juga memungkinkan Anda menggunakan fitur-fitur sintaksis JavaScript modern seperti kelas (*class*) tanpa khawatir merusak dukungan terhadap *browser* yang lebih lama. Alat yang baru saja kita gunakan disebut Babel, dan Anda dapat mempelajarinya lebih lanjut dari [dokumentasinya](https://babeljs.io/docs/en/babel-cli/).
 

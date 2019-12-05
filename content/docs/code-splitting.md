@@ -73,12 +73,8 @@ import("./math").then(math => {
   console.log(math.add(16, 26));
 });
 ```
-> Catatan:
->
-> Sintaks *dynamic* `import()` adalah sebuah
-> [proposal](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript) yang belum menjadi sebuah standar dalam bahasa pemrograman ini. Proposal ini diharapkan akan diterima dalam waktu dekat.
 
-Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya] (https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 Jika Anda membuat sendiri pengaturan Webpack Anda, Anda mungkin dapat melihat [panduan untuk melakukan *code-splitting* ini](https://webpack.js.org/guides/code-splitting/). Pengaturan Webpack Anda kira-kira akan terlihat mirip [seperti ini](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
