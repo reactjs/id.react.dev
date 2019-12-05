@@ -239,7 +239,7 @@ Sering diperlukan untuk memperbarui *context* dari komponen yang bersarang di su
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
-### Mengkonsumsi Banyak Context {#consuming-multiple-contexts}
+### Mengonsumsi Banyak Context {#consuming-multiple-contexts}
 
 Untuk menjaga agar *rendering* ulang *context* tetap cepat, React perlu membuat setiap *context consumer* sebagai *node* yang terpisah dalam diagram. 
 
