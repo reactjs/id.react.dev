@@ -255,7 +255,7 @@ tidak disengaja dalam *consumer* ketika *parent provider render* ulang. Misalnya
 `embed:context/reference-caveats-problem.js`
 
 
-Untuk menyiasatinya, angkat nilai ke dalam *state parent* :
+Untuk menyiasatinya, angkat nilai ke dalam *state* induk:
 
 `embed:context/reference-caveats-solution.js`
 
