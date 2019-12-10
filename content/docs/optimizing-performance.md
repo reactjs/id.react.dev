@@ -6,11 +6,11 @@ redirect_from:
   - "docs/advanced-performance.html"
 ---
 
-Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM mahal yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antaramuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara Anda dapan mempercepat aplikasi React Anda.
+Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM mahal yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antarmuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara untuk mempercepat aplikasi React Anda.
 
 ## Menggunakan Versi Produksi {#use-the-production-build}
 
-Apabila Anda melakukan *benchmarking* atau mengalami masalah performa di aplikasi React Anda, pastikan Anda mencobanya dengan versi produksi yang telah *minified*.
+Apabila Anda melakukan *benchmarking* atau mengalami masalah performa di aplikasi React Anda, pastikan Anda mencobanya dengan versi produksi yang telah di *minified*.
 
 Secara *default*, React mengandung banyak pesan peringatan. Peringatan-peringatan ini sangat berguna dalam pengembangan aplikasi. Namun, pesan-pesan ini membuat React menjadi lebih besar dan lambat sehingga Anda harus memastikan menggunakan versi produksi ketika Anda men-*deploy* aplikasi.
 
@@ -201,7 +201,7 @@ Jika Anda belum menginstal React DevTools, Anda dapat menemukannya di sini:
 
 ## Memvirtualisasi *List* Panjang {#virtualize-long-lists}
 
-Jika aplikasi Anda me-*render* *list* data yang panjang (ratusan atau ribuan baris), kani menyarankan menggunakan teknik "windowing". Teknik ini hanya me-*render* subset kecil dari baris-baris data Anda dalam waktu tertentu, dan dapat mengurangi waktu me-*render* ulang komponen Anda serta jumlah simpul DOM yang dibuat secara signifikan.
+Jika aplikasi Anda me-*render* *list* data yang panjang (ratusan atau ribuan baris), kami menyarankan menggunakan teknik "windowing". Teknik ini hanya me-*render* bagian kecil dari baris-baris data Anda dalam waktu tertentu, dan dapat mengurangi waktu untuk me-*render* ulang komponen Anda serta jumlah simpul DOM yang dibuat secara signifikan.
 
 [react-window](https://react-window.now.sh/) dan [react-virtualized](https://bvaughn.github.io/react-virtualized/) adalah *library* *windowing* paling populer. *Library-library* ini menyediakan beberapa komponen untuk menampilkan data-data dalam bentuk *list*, *grid*, dan tabular. Anda juga dapat membuat komponen *windowing* versi Anda sendiri, seperti [yang dilakukan Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), jika Anda ingin sesuatu yang lebih dikhususkan untuk *use case* aplikasi Anda.
 
@@ -291,9 +291,9 @@ class CounterButton extends React.PureComponent {
 }
 ```
 
-Seringkali, Anda dapat menggunakan `React.PureComponent` alih-alih menuliskan `shouldComponentUpdate` versi Anda sendiri. `React.PureComponent` perbandingan dangkal, jadi Anda tidak dapat menggunakannya apabila *props* atau *state* mungkin termutasi dengan cara yang tidak tertangkap oleh perbandingan dangkal.
+Seringkali, Anda dapat menggunakan `React.PureComponent` alih-alih menuliskan `shouldComponentUpdate` versi Anda sendiri. `React.PureComponent` melakukan perbandingan dangkal, jadi Anda tidak dapat menggunakannya apabila *props* atau *state* mungkin termutasi dengan cara yang tidak tertangkap oleh perbandingan dangkal.
 
-Hal ini akan menjadi masalah dalam komponen dengan struktur data yang lebih kompleks. Misalnya, umpamakan Anda ingin komponen `ListOfWords` me-*render* *list* kata yang terpisahkan oleh koma, dengan komponen induk `WordAdder` yang memungkinkan Anda mengklik tombol untuk menambahkan kata ke dalam *list*. Kode di bawah *tidak akan* bekerja secara benar:
+Hal ini akan menjadi masalah dalam komponen dengan struktur data yang lebih kompleks. Misalnya, Anda ingin komponen `ListOfWords` me-*render* *list* kata yang terpisahkan oleh koma, dengan komponen induk `WordAdder` yang memungkinkan Anda mengklik tombol untuk menambahkan kata ke dalam *list*. Kode di bawah *tidak akan* bekerja secara benar:
 
 ```javascript
 class ListOfWords extends React.PureComponent {
@@ -329,7 +329,7 @@ class WordAdder extends React.Component {
 }
 ```
 
-Masalahnya adalah `PureComponent` akan melakukan perbandingan simpel antara nilai baru dan lama dari `this.props.words`. Karena kode ini memutasikan senarai `words` di dalam *method* `handleClick` pada `WordAdder`, perbandingan nilai lama dan baru dari `this.props.words` akan berhasil serupa, meskipun kata-kata di dalam senarai telah berubah. Oleh karena itu, komponen `ListOfWords` tidak akan diperbarui meskipun even ada kata-kata baru yang seharusnya di-*render*.
+Masalahnya adalah `PureComponent` akan melakukan perbandingan sederhana antara nilai baru dan lama dari `this.props.words`. Karena kode ini memutasikan senarai `words` di dalam *method* `handleClick` pada `WordAdder`, perbandingan nilai lama dan baru dari `this.props.words` akan menghasilkan nilai serupa, meskipun kata-kata di dalam senarai telah berubah. Oleh karena itu, komponen `ListOfWords` tidak akan diperbarui meskipun ada kata-kata baru yang seharusnya di-*render*.
 
 ## Keuntungan Tidak Memutasi Data {#the-power-of-not-mutating-data}
 
