@@ -105,7 +105,7 @@ Perlu diperhatikan bahwa React mungkin masih perlu me-*render* lagi komponen ter
 useEffect(didUpdate);
 ```
 
-Menerima sebuah fungsi yang berisi kode imperatif, juga mungkin kode yang efektif.
+Menerima sebuah fungsi yang berisi kode imperatif, juga kode yang mungkin mengandung efek samping.
 
 Mutasi, berlangganan, pengatur waktu, mencatat, dan efek samping lainnya tidak diperbolehkan di dalam bagian utama dari sebuah *function component* (disebut sebagai _render phase_ pada React). Dengan melakukan hal tersebut akan menyebabkan *bugs* dan ketidakkonsistenan pada UI.
 
@@ -459,7 +459,7 @@ Tanda ini identik dengan `useEffect`, tetapi diaktifkan secara *synchronous* set
 
 Pilih `useEffect` standar bila memungkinkan untuk menghindari pemblokiran pembaruan visual.
 
-> Kiat
+> Tip
 >
 > Jika Anda memigrasikan kode dari sebuah *class component*, `useLayoutEffect` aktif pada fase yang sama dengan `componentDidMount` dan `componentDidUpdate`. Namun, **kami sarankan memulai dengan `useEffect` dahulu** dan hanya mencoba `useLayoutEffect` jika itu menyebabkan masalah.
 >
@@ -491,7 +491,7 @@ function useFriendStatus(friendID) {
 }
 ```
 
-> Kiat
+> Tip
 >
 > Kami tidak menyarankan menambahkan nilai *debug* ke setiap *Hook* kustom. Ini paling berharga untuk *Hooks* kustom yang merupakan bagian dari *libraries* bersama.
 
