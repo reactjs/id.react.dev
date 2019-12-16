@@ -54,10 +54,10 @@ Ingat bahwa hanya *file* React yang berakhir dengan `.production.min.js` yang la
 Untuk *build* produksi yang efisien menggunakan Brunch, instal *plugin* [`terser-brunch`](https://github.com/brunch/terser-brunch):
 
 ```
-# If you use npm
+# Jika menggunakan npm
 npm install --save-dev terser-brunch
 
-# If you use Yarn
+# Jika menggunakan Yarn
 yarn add --dev terser-brunch
 ```
 
@@ -74,10 +74,10 @@ Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu
 Untuk *build* produksi yang efisien menggunakan Browserify, instal plugin-plugin berikut:
 
 ```
-# If you use npm
+# Jika menggunakan npm
 npm install --save-dev envify terser uglifyify 
 
-# If you use Yarn
+# Jika menggunakan Yarn
 yarn add --dev envify terser uglifyify 
 ```
 
@@ -103,10 +103,10 @@ Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu
 Untuk *build* produksi yang efisien menggunakan Rollup, instal plugin-plugin berikut:
 
 ```bash
-# If you use npm
+# Jika menggunakan npm
 npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 
-# If you use Yarn
+# Jika menggunakan Yarn
 yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
