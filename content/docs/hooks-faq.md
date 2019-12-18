@@ -26,8 +26,8 @@ Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked q
   * [Haruskah saya menggunakan Hooks, kelas atau gabungan keduanya?](#should-i-use-hooks-classes-or-a-mix-of-both)
   * [Apakah *Hooks* mencakup seluruh kasus yang digunakan untuk kelas?](#do-hooks-cover-all-use-cases-for-classes)
   * [Apakah *Hooks* menggantikan *render props* dan *higher-order components*?](#do-hooks-replace-render-props-and-higher-order-components)
-  * [Apa yang *Hooks* peruntukan untuk API populer seperti *Redux connect()* dan *React router*?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
-  * [Apakah *Hooks* dapat berjalan dengan *static typing*?](#do-hooks-work-with-static-typing)
+  * [Apa kegunaan *Hooks* untuk API populer seperti Redux connect() dan React router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
+  * [Apakah *Hooks* dapat bekerja dengan *static typing*?](#do-hooks-work-with-static-typing)
   * [Bagaimana cara menguji komponen-komponen yang menggunakan Hooks?](#how-to-test-components-that-use-hooks)
   * [Apa yang sebenarnya aturan-aturan *lint* terapkan?](#what-exactly-do-the-lint-rules-enforce)
 * **[Dari Kelas ke Hooks](#from-classes-to-hooks)**
@@ -37,7 +37,7 @@ Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked q
   * [Apa saya harus menggunakan satu atau beberapa *state variable*?](#should-i-use-one-or-many-state-variables)
   * [Bisakah saya menjalakan sebuah efek hanya pada pembaruan?](#can-i-run-an-effect-only-on-updates)
   * [Bagimana cara untuk mendapatkan kembali *prop* atau *state* sebelumnya?](#how-to-get-the-previous-props-or-state)
-  * [Mengapa saya melihat *stale prop* atau *state* dalam fungsi yang saya buat?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
+  * [Mengapa saya melihat *prop* atau *state* yang basi dalam fungsi yang saya buat?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
   * [Bagaimana cara mengimplementasikan *getDerivedStateFromProps*?](#how-do-i-implement-getderivedstatefromprops)
   * [Apakah ada suatu hal seperti *forceUpdate*?](#is-there-something-like-forceupdate)
   * [Bisakah saya membuat sebuah *ref* pada sebuah komponen fungsi?](#can-i-make-a-ref-to-a-function-component)
@@ -103,19 +103,19 @@ Sekarang adalah masa-masa awal untuk Hooks, dan *library* pihak ketiga bisa jadi
 
 Seringkali, *render props* dan *higher-order components* hanya (me)*render* sebuah turunan. Kami pikir *Hooks* adalah cara yang lebih sederhana untuk menyajikan kasus penggunaan ini. Masih ada tempat untuk kedua pola (contohnya, sebuah *virtual scroller component* bisa saja memiliki sebuah *prop* `renderItem`, atau sebuah *visual container component* bisa saja memiliki struktur *DOM*-nya sendiri). Namun dalam banyak kasus, *Hooks* sudahlah cukup dan akan membantu mengurangi *nesting* dalam tatanan Anda.
 
-### Apa yang *Hooks* peruntukan untuk API populer seperti *Redux `connect()` dan *React router*? {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
+### Apa kegunaan *Hooks* untuk API populer seperti Redux `connect()` dan React router? {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
 
-Anda dapat terus menggunakan *API* yang sama seperti yang selama ini dilakukan; *API* tersebut akan tetap bekerja.
+Anda dapat terus menggunakan API yang sama seperti yang selama ini dilakukan; API tersebut akan tetap bekerja.
 
 React Redux sejak versi v7.1.0 [mendukung API Hooks](https://react-redux.js.org/api/hooks) dan memaparkan *Hooks* seperti `useDispatch` atau `useSelector`.
 
 *Library* seperti React Router akan mendukung *Hooks* di masa yang akan datang.
 
-### Apakah *Hooks* dapat berjalan dengan *static typing*?{#do-hooks-work-with-static-typing}
+### Apakah *Hooks* dapat bekerja dengan *static typing*?{#do-hooks-work-with-static-typing}
 
-*Hooks* didesain dengan *static typing* pada dasarnya. Karena hal-hal tersebut adalah fungsi, *static typing* lebih mudah ditulis dengan benar daripada pola-pola seperti *higher-order components*. Definisi *Flow* dan *TypeScript React* untuk React sudah mendukung untuk React Hooks di dalamnya.
+*Hooks* didesain dengan *static typing* pada dasarnya. Karena *Hooks* adalah sekumpulan fungsi, *static typing* lebih mudah ditulis dengan benar daripada pola-pola seperti *higher-order components*. Definisi Flow dan TypeScript React untuk React sudah mendukung React Hooks.
 
-Penting untuk diingat, *custom Hooks* memberikan Anda kewenangan untuk memaksa *API* React jika Anda ingin menuliskannya dengan lebih ketat dalam beberapa hal. React memberikan Anda *primitives*, tapi Anda bisa menggabungkannya dengan cara-cara lain yang unik selain dari yang kami sediakan untuk Anda.
+Penting untuk diingat, *custom Hooks* memberikan Anda kewenangan untuk memaksa API React jika Anda ingin menuliskannya dengan lebih ketat dalam beberapa hal. React memberikan Anda *primitives*, tapi Anda bisa menggabungkannya dengan cara-cara lain yang unik selain dari yang kami sediakan untuk Anda.
 
 ### Bagaimana cara menguji komponen-komponen yang menggunakan Hooks? {#how-to-test-components-that-use-hooks}
 
@@ -145,7 +145,7 @@ function Example() {
 ```
 Kami akan mengujinya dengan React DOM. Pastikan bahwa perilakunya dengan yang terjadi di peramban, kami akan mengemas proses *rendering* kode dan memperbaruinya ke dalam [`ReactTestUtils.act()`](/docs/test-utils.html#act) beberapa pemanggilan:
 
-```js {3,20-22,29-31}
+```js{3,20-22,29-31}
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
@@ -227,7 +227,7 @@ Ya! [`useRef()`](/docs/hooks-reference.html#useref) Hook tidak hanya untuk *ref*
 
 Anda dapat menuliskannya dari dalam 'useEffect':
 
-```js {2,8}
+```js{2,8}
 function Timer() {
   const intervalRef = useRef();
 
@@ -247,7 +247,7 @@ function Timer() {
 
 Jika kita hanya ingin mengatur sebuah interval, kita tidak perlu *ref* ('id' bisa jadi lokal pada efek tersebut), tapi akan berguna jika kita ingin membersihkan interval dari sebuah *event handler*:
 
-```js {3}
+```js{3}
   // ...
   function handleCancelClick() {
     clearInterval(intervalRef.current);
@@ -270,7 +270,7 @@ function Box() {
 
 Sekarang umpamakan kita ingin menuliskan beberapa logika yang mana merubah `left` (sisi kiri) dan `top` (sisi atas) ketika pengguna menggerakan tetikusnya. Perhatikan bagaimana kita harus menggabungkan area-area ini ke dalam objek *state* sebelumnya secara manual:
 
-```js {4,5}
+```js{4,5}
   // ...
   useEffect(() => {
     function handleWindowMouseMove(e) {
@@ -290,7 +290,7 @@ Jika Anda melihatkan penggabungan otomatis (*automatic merging*), Anda bisa menu
 
 Sebagai contohnya, kita bisa membagi *state* komponen menjadi `position` dan `size` objek, serta selalu merubah `position` tanpa harus proses penggabungan:
 
-```js {2,7}
+```js{2,7}
 function Box() {
   const [position, setPosition] = useState({ left: 0, top: 0 });
   const [size, setSize] = useState({ width: 100, height: 100 });
@@ -304,7 +304,7 @@ function Box() {
 
 Memisahkan *state variable* independen juga memiliki keuntungan lain. Hal tersebut membuatnya mudah untuk mengekstrak beberapa logika ke dalam sebuah *custom Hook* nantinya, sebagai contoh:
 
-```js {2,7}
+```js{2,7}
 function Box() {
   const position = useWindowPosition();
   const [size, setSize] = useState({ width: 100, height: 100 });
@@ -332,7 +332,7 @@ Ini adalah kasus penggunaan yang langka. Jika butuh, Anda bisa [gunakan sebuah *
 
 Kini, Anda bisa melakukannya secara manual [dengan *ref*](#is-there-something-like-instance-variables):
 
-```js {6,8}
+```js{6,8}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -348,7 +348,7 @@ function Counter() {
 
 Ini bisa jadi agak berbelit tetapi Anda bisa mengekstraknya ke dalam sebuah *custom Hook*:
 
-```js {3,7}
+```js{3,7}
 function Counter() {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count);
@@ -366,7 +366,7 @@ function usePrevious(value) {
 
 Perhatikan bagaimana hal ini dapat bekerja pada *props, state,* atau nilai apapun yang diperhitungkan.
 
-```js {5}
+```js{5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -379,7 +379,7 @@ Di masa yang akan datang, React mungkin akan menyediakan sebuah `usePrevious` Ho
 
 Lihat juga [pola yang direkomendasikan untuk *derived state*](#how-do-i-implement-getderivedstatefromprops).
 
-### Mengapa saya melihat *stale prop* atau *state* dalam fungsi yang saya buat?  {#why-am-i-seeing-stale-props-or-state-inside-my-function}
+### Mengapa saya melihat *prop* atau *state* yang basi dalam fungsi yang saya buat?  {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
 Fungsi apapun yang ada dalam sebuah komponen, termasuk *event handler* dan efek, "melihat" *prop* dan *state* dari dalam proses *render* mana fungsi tersebut diciptakan. Sebagai contohnya, pertimbangkan kode seperi berikut ini:
 
@@ -411,7 +411,7 @@ Jika Anda meng-klik "Show alert" dan kemudian memberi penambahan (*increment*) p
 
 Jika ingin membaca *state* *terkini* dari beberapa *asynchronous callback*, baiknya Anda menyimpannya dalam [sebuah *ref*](/docs/hooks-faq.html#is-there-something-like-instance-variables), mengubahnya, dan membaca dari situ.
 
-Pada akhirnya, alasan lain Anda melihat *stale prop* atau *state* yakni jika Anda menggunakan optimasi "dependency array" tapi tidak secara benar dalam menspesifikasi semua *dependency*-nya. Sebagai contohnya, jika sebuah efek menspesifikasikan `[]` sebagai argumen kedua tetapi membaca `someProp` di dalamnya, efek tersebut akan tetap "melihat" nilai awal dari `someProp`. Solusinya yakni antara menghilangkan *dependency array*, atau memperbaikinya. Ini adalah cara [bagaimana Anda bisa memperlakukan fungsi](#is-it-safe-to-omit-functions-from-the-list-of-dependencies), dan ini adalah [strategi umum lainnya](#what-can-i-do-if-my-effect-dependencies-change-too-often) untuk menjalankan efek lebih jarang tanpa keliru melewatkan *dependency*.
+Pada akhirnya, alasan lain Anda melihat *prop* atau *state* yang basi yakni jika Anda menggunakan optimasi "dependency array" tapi tidak secara benar dalam menspesifikasi semua *dependency*-nya. Sebagai contohnya, jika sebuah efek menspesifikasikan `[]` sebagai argumen kedua tetapi membaca `someProp` di dalamnya, efek tersebut akan tetap "melihat" nilai awal dari `someProp`. Solusinya yakni antara menghilangkan *dependency array*, atau memperbaikinya. Ini adalah cara [bagaimana Anda bisa memperlakukan fungsi](#is-it-safe-to-omit-functions-from-the-list-of-dependencies), dan ini adalah [strategi umum lainnya](#what-can-i-do-if-my-effect-dependencies-change-too-often) untuk menjalankan efek lebih jarang tanpa keliru melewatkan *dependency*.
 
 >Catatan
 >
@@ -462,9 +462,9 @@ Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos 
 
 ### Bagaimana cara mengukur *DOM node*? {#how-can-i-measure-a-dom-node}
 
-Untuk mengukur posisi atau ukuran dari sebuah *DOM node*, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* itu kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
+Untuk mengukur posisi atau ukuran dari sebuah *node* DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* itu kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
 
-```js {4-8,12}
+```js{4-8,12}
 function MeasureExample() {
   const [height, setHeight] = useState(0);
 
@@ -489,7 +489,7 @@ Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `use
 
 Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
 
-```js {2}
+```js{2}
 function MeasureExample() {
   const [rect, ref] = useClientRect();
   return (
@@ -529,7 +529,7 @@ Ya. Lihat [pengaktifan efek secara kondisional](/docs/hooks-reference.html#condi
 
 Umumnya tidak aman.
 
-```js {3,8}
+```js{3,8}
 function Example({ someProp }) {
   function doSomething() {
     console.log(someProp);
@@ -543,7 +543,7 @@ function Example({ someProp }) {
 
 Sulit untuk mengingat *prop* atau *state* yang digunakan oleh fungsi yang ada di luar efek. Inilah mengapa **biasanya Anda akan mendeklarasikan fungsi yang dibutuhkan dengan efek *di dalam*-nya.** Lalu kita bisa dengan mudah melihat nilai-nilai apa saja dari cakupan komponen yang jadi patokan efek tersebut:
 
-```js {4,8}
+```js{4,8}
 function Example({ someProp }) {
   useEffect(() => {
     function doSomething() {
@@ -557,7 +557,7 @@ function Example({ someProp }) {
 
 Jika setelah itu kita masih tidak menggunakan nilai apapun dari cakupan komponen tersebut, sebaiknya spesifikasikan `[]` agar aman:
 
-```js {7}
+```js{7}
 useEffect(() => {
   function doSomething() {
     console.log('hello');
@@ -579,7 +579,7 @@ Jika Anda menspesifikasikan sebuah [daftar *dependency*](/docs/hooks-reference.h
 
 Hal tersebut **hanya akan** aman untuk menghilangkan sebuah fungsi dari daftar *dependency* jika tidak terjadi apa-apa di dalamnya (atau fungsi lain yang terpanggil) yang merujuk pada *prop, state,* atau nilai yang berasal dari keduanya. Contoh berikut memiliki *bug*:
 
-```js {5,12}
+```js{5,12}
 function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
@@ -598,7 +598,7 @@ function ProductPage({ productId }) {
 
 **Rekomendasi perbaikannya adalah dengan cara memindahkan fungsi itu _di dalam_ efek yang Anda buat**. Perbaikan tersebut akan memudahkan untuk melihat *prop* atau *state* mana yang efek Anda gunakan, serta memastikan semuanya terdeklarasikan:
 
-```js {5-10,13}
+```js{5-10,13}
 function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
@@ -618,7 +618,7 @@ function ProductPage({ productId }) {
 
 Ini juga membebaskan Anda untuk menangani respon-respon yang tidak pada tempatnya (*out-of-order*) dengan sebuah *local variable* dalam efek tersebut:
 
-```js {2,6,10}
+```js{2,6,10}
   useEffect(() => {
     let ignore = false;
     async function fetchProduct() {
@@ -644,7 +644,7 @@ Kita pindahkan fungsi dalam efek tersebut agar fungsi tersebut tidak perlu berad
 * Jika fungsi yang Anda panggil adalah murni sebuah komputasi dan aman untuk dipanggil saat proses *render*, Anda boleh **memanggilnya di luar efek tersebut sebagai gantinya,** dan membuat efek tersebut bergantung pada nilai balikan (*return*).
 * Sebagai pilihan terakhir, Anda bisa**menambahkan sebuah fungsi ke _dependency_ efek tersebut namun _mengemas definisinya_** ke dalam [`useCallback`](/docs/hooks-reference.html#usecallback) *Hook*. Ini memastikan fungsi tersebut tidak berubah pada tiap *render* kecuali *dependency-nya sendiri* juga berubah:
 
-```js {2-5}
+```js{2-5}
 function ProductPage({ productId }) {
   // ✅ Dikemas dengan useCallback untuk menghindari berubah tiap kali render
   const fetchProduct = useCallback(() => {
@@ -668,7 +668,7 @@ Perhatikan bahwa pada contoh di atas kita **perlu** untuk menjaga fungsi agar te
 
 Terkadang, efek Anda bisa jadi menggunakan *state* yang terlalu sering berubah. Anda mungkin berkeinginan untuk menghilangkan *state* itu dari daftar *dependency*, namun biasanya berujung pada *bug*:
 
-```js {6,9}
+```js{6,9}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -687,7 +687,7 @@ Kumpulan *dependency* yang kosong, `[]`, berarti bahwa efek tersebut hanya akan 
 
 Menspesifikasikan `[count]` sebagai sebauh daftar *dependency* dapat memperbaiki *bug*, tetapi juga bisa menyebabkan interval tersetel ulang (*reset*) pada setiap perubahan. Secara efektif, tiap `setInterval` akan mendapat satu kali kesempatan untuk mengeksekusi sebelum dikosongkan (mirip dengan `setTimeout`). Hal itu mungkin saja tidak diinginkan. Untuk memperbaikinya, kita bisa gunakan [bentuk pembaruan fungsional pada `setState`](/docs/hooks-reference.html#functional-updates). Hal tersebut membiarkan kita menspesifikasikan *bagaimana* *state* perlu berubah tanpa merujuk pada *state* yang *sekarang*:
 
-```js {6,9}
+```js{6,9}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -710,7 +710,7 @@ Dalam kasus-kasus yang lebih kompleks lagi (seperti halnya jika satu *state* ber
 
 Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah kelas, Anda bisa [gunakan *ref*](/docs/hooks-faq.html#is-there-something-like-instance-variables) untuk menahan sebuah variabel yang berubah-ubah. Kemudian Anda bisa menulis dan membacanya. Contohnya:
 
-```js {2-6,10-11,16}
+```js{2-6,10-11,16}
 function Example(props) {
   // Jaga prop terkini dalam sebuah ref.
   let latestProps = useRef(props);
@@ -851,7 +851,7 @@ Secara tradisional, performa menyangkut seputar fugsi-fungsi *inline* React suda
 
 * *Hook* [`useCallback`](/docs/hooks-reference.html#usecallback) mengizinkan Anda untuk tetap menggunakan rujukan *callback* yang sama di antara *render* ulang sehingga `shouldComponentUpdate` akan terus bekerja:
 
-    ```js {2}
+    ```js{2}
     // Tidak akan berubah kecuali `a` atau `b` berubah
     const memoizedCallback = useCallback(() => {
       doSomething(a, b);
@@ -868,7 +868,7 @@ Kami menemukan bahwa kebanyakan orang tidak menikmati pengoperan *callback* seca
 
 Dalam pohon komponen yang luas, sebuah alternatif yang kami rekomendasikan adalah untuk mengoper sebuah fungsi `dispatch` dari [`useReducer`](/docs/hooks-reference.html#usereducer) melalui *context*:
 
-```js {4,5}
+```js{4,5}
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
@@ -885,7 +885,7 @@ function TodosApp() {
 
 Turunan apapun dalam pohon yang ada di dalam `TodosApp` bisa menggunakan fungsi `dispatch` untuk mengoper tindakan kepada `TodosApp`:
 
-```js {2,3}
+```js{2,3}
 function DeepChild(props) {
   // Jika kita ingin melakukan sebuah tindakan, kita bisa mendapatkan dispatch dari context.
   const dispatch = useContext(TodosDispatch);
@@ -914,7 +914,7 @@ Perlu diingat bahawa Anda masih bisa memilih antara mengoper *state* aplikasi se
 
 Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [`useCallback`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah *instance variable*](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
 
-```js {6,10}
+```js{6,10}
 function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
@@ -939,7 +939,7 @@ function Form() {
 
 Ini bisa saja pola yang berbelit namun menunjukkan pada Anda bahwa Anda bisa melakukan optimasi darurat ini jika membutuhkannya. Bahkan lebih bisa ditangani jika Anda mengekstraknya ke dalam sebuah *custom Hook*:
 
-```js {4,16}
+```js{4,16}
 function Form() {
   const [text, updateText] = useState('');
   // Akan di memoize bahkan jika `text` berubah:
