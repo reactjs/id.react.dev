@@ -6,7 +6,7 @@ redirect_from:
   - "docs/advanced-performance.html"
 ---
 
-Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM mahal yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antarmuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara untuk mempercepat aplikasi React Anda.
+Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM boros yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antarmuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara untuk mempercepat aplikasi React Anda.
 
 ## Menggunakan Versi Produksi {#use-the-production-build}
 
