@@ -25,7 +25,11 @@ Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jad
 
 ### Ikhtisar {#overview}
 
+<<<<<<< HEAD
 *Reconciler* sendiri tidak memiliki API publik. [*Renderers*](/docs/codebase-overview.html#stack-renderers) seperti React DOM dan React Native menggunakannya untuk memperbarui antarmuka pengguna secara efisien sesuai dengan komponen React yang ditulis oleh pengguna.
+=======
+The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+>>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
 
 ### Mounting sebagai proses rekursif{#mounting-as-a-recursive-process}
 

@@ -36,7 +36,11 @@ React mendukung semua *browser* populer, termasuk Internet Explorer 9 dan setela
 ReactDOM.render(element, container[, callback])
 ```
 
+<<<<<<< HEAD
 Me-*render* sebuah elemen React ke dalam DOM di dalam `container` yang diberikan dan mengembalikan sebuah [referensi](/docs/more-about-refs.html) kepada komponen (atau mengembalikan `null` untuk [stateless components](/docs/components-and-props.html#functional-and-class-components)).
+=======
+Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).
+>>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
 
 Jika elemen React tersebut sebelumnya di-*render* ke dalam `container`, ini akan memperbaruinya dan hanya mengubah DOM seperlunya untuk memperlihatkan elemen React terbaru.
 
