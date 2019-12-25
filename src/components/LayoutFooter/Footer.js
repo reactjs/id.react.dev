@@ -31,6 +31,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
       [media.size('sidebarFixed')]: {
         paddingTop: 40,
       },
+      '@media print': {
+        display: 'none',
+      },
     }}>
     <Container>
       <div
@@ -84,7 +87,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
-              Code of Conduct
+              Kode Etik
             </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink
