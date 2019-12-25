@@ -25,7 +25,7 @@ Di React, mengubah senarai ke dalam *list* [elemen](/docs/rendering-elements.htm
 
 Anda dapat membangun koleksi dari beberapa elemen dan [menyertakannya dalam JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) menggunakan tanda kurung kurawal `{}`.
 
-Di bawah ini, kita perulangan melalui senarai `numbers` menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) JavaScript.
+Di bawah ini, kita mengulang-ulang melalui senarai `numbers` menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) JavaScript.
 Kita akan mengembalikan elemen `<li>` untuk setiap *item*.
 Akhirnya, kita akan menetapkan senarai elemen dari hasil proses tersebut ke dalam `listItems`:
 
