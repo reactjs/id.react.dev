@@ -244,7 +244,7 @@ _Method_ `componentDidMount()` berjalan setelah hasil komponen sudah ter-_render
   }
 ```
 
-Perhatikan bagaimana kami menyimpan _ID_ pengatur _timer_ langsung di `this`.
+Perhatikan bagaimana kami menyimpan ID _timer_ langsung pada `this` (`this.timerID`).
 
 Ketika `this.props` diatur oleh React sendiri dan `this.state` punya arti spesial, Anda dapat dengan bebas untuk menambah _field_ tambahan di kelas secara manual jika Anda butuh untuk menyimpan sesuatu yang tidak ikut berpartisipasi di alur data (seperti _ID timer_).
 

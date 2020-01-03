@@ -40,7 +40,7 @@ Berikut contoh mendokumentasikan berbagai validator yang berbeda yang sudah dise
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // Anda dapat menyatakan bahwa sebuah prop adalah tipe khusus yang berasal dari JS. Secara default, 
+  // Anda dapat menyatakan bahwa sebuah prop adalah tipe khusus yang berasal dari JS. Secara default,
   // hal ini sifatnya opsional.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
@@ -57,6 +57,9 @@ MyComponent.propTypes = {
   // Sebuah elemen React.
   optionalElement: PropTypes.element,
 
+  // Sebuah tipe elemen React. (contoh: MyComponent).
+  optionalElementType: PropTypes.elementType,
+
   // Anda dapat juga menyatakan bahwa sebuah prop adalah instance dari sebuah kelas. Ini menggunakan
   // operator instanceof dari JS.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -65,36 +68,36 @@ MyComponent.propTypes = {
   // sebagai sebuah enum.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
-  // Sebuah objek dapat memiliki satu dari banyak tipe-tipe
+  // Sebuah objek dapat memiliki satu dari banyak tipe-tipe.
   optionalUnion: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.instanceOf(Message)
   ]),
 
-  // Sebuah array dari tipe tertentu
+  // Sebuah array dari tipe tertentu.
   optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
 
-  // Sebuah objek dengan nilai properti dari tipe tertentu
+  // Sebuah objek dengan nilai properti dari tipe tertentu.
   optionalObjectOf: PropTypes.objectOf(PropTypes.number),
 
-  // Sebuah objek yang menerima bentuk tertentu
+  // Sebuah objek yang menerima bentuk tertentu.
   optionalObjectWithShape: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
-  // An object with warnings on extra properties
+
+  // Sebuah objek dengan peringatan pada properti ekstra.
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
     quantity: PropTypes.number
-  }),   
+  }),
 
   // Anda dapat merangkai dari contoh diatas dengan `isRequired` untuk memastikan sebuah peringatan
   // akan muncul jika sebuah prop tidak disertakan.
   requiredFunc: PropTypes.func.isRequired,
 
-  // Sebuah nilai dari tipe data apapun
+  // Sebuah nilai dari tipe data apapun.
   requiredAny: PropTypes.any.isRequired,
 
   // Anda dapat juga menentukan validator khusus. Akan menghasilkan objek Error

@@ -1,6 +1,6 @@
 ---
 id: implementation-notes
-title: Implementation Notes
+title: Catatan Implementasi
 layout: contributing
 permalink: docs/implementation-notes.html
 prev: codebase-overview.html
@@ -9,93 +9,92 @@ redirect_from:
   - "contributing/implementation-notes.html"
 ---
 
-This section is a collection of implementation notes for the [stack reconciler](/docs/codebase-overview.html#stack-reconciler).
+Bagian ini adalah kumpulan catatan implementasi untuk [*stack reconciler*](/docs/codebase-overview.html#stack-reconciler).
 
-It is very technical and assumes a strong understanding of React public API as well as how it's divided into core, renderers, and the reconciler. If you're not very familiar with the React codebase, read [the codebase overview](/docs/codebase-overview.html) first.
+Ini sangat teknis dan mengasumsikan pemahaman yang kuat tentang API publik React serta bagaimana itu dibagi menjadi inti, *renderers*, dan *reconciler*. Jika anda tidak terlalu mengenal basis kode React, baca dahulu [ikhtisar basis kode](/docs/codebase-overview.html).
 
-It also assumes an understanding of the [differences between React components, their instances, and elements](/blog/2015/12/18/react-components-elements-and-instances.html).
+Ini juga mengasumsikan pemahaman tentang [perbedaan antara komponen React, *instances* mereka, dan elemen](/blog/2015/12/18/react-components-elements-and-instances.html).
 
-The stack reconciler was used in React 15 and earlier. It is located at [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
+*Stack reconciler* digunakan dalam React 15 dan sebelumnya. Terletak di [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
 
-### Video: Building React from Scratch {#video-building-react-from-scratch}
+### Video: Membangun React dari awal {#video-building-react-from-scratch}
 
-[Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) that largely inspired this document.
+[Paul O'Shannessy](https://twitter.com/zpao) memberi ceramah tentang [membangun React dari awal](https://www.youtube.com/watch?v=_MAD4Oly9yg) yang sebagian besar menginspirasi dokumen ini.
 
-Both this document and his talk are simplifications of the real codebase so you might get a better understanding by getting familiar with both of them.
+Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jadi anda mungkin mendapatkan pemahaman yang lebih baik dengan membiasakan diri dengan mereka berdua.
 
-### Overview {#overview}
+### Ikhtisar {#overview}
 
-The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#stack-renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+*Reconciler* sendiri tidak memiliki API publik. [*Renderers*](/docs/codebase-overview.html#stack-renderers) seperti React DOM dan React Native menggunakannya untuk memperbarui antarmuka pengguna secara efisien sesuai dengan komponen React yang ditulis oleh pengguna.
 
-### Mounting as a Recursive Process {#mounting-as-a-recursive-process}
+### Mounting sebagai proses rekursif{#mounting-as-a-recursive-process}
 
-Let's consider the first time you mount a component:
+Mari kita pertimbangkan pertama kali anda pasang komponen:
 
 ```js
 ReactDOM.render(<App />, rootEl);
 ```
 
-React DOM will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
+React DOM akan oper `<App />` ke *reconciler*. Ingat bahwa `<App />` adalah elemen React, yaitu, deskripsi *apa* yang akan di *render*. Anda dapat menganggapnya sebagai objek biasa:
 
 ```js
 console.log(<App />);
 // { type: App, props: {} }
 ```
 
-The reconciler will check if `App` is a class or a function.
+*Reconciler* akan memeriksa apakah `App` adalah kelas atau fungsi.
+Jika `App` adalah fungsi, *reconciler* akan memanggil `App(props)` untuk mendapatkan elemen yang di *render*.
 
-If `App` is a function, the reconciler will call `App(props)` to get the rendered element.
+Jika `App` adalah kelas, *reconciler* akan *instantiate* sebuah `App` dengan `new App(props)`, panggil *method lifecycle* `componentWillMount()`, dan kemudian akan memanggil *method* `render()` untuk mendapatkan elemen yang di *render*.
 
-If `App` is a class, the reconciler will instantiate an `App` with `new App(props)`, call the `componentWillMount()` lifecycle method, and then will call the `render()` method to get the rendered element.
+Bagaimanapun juga, *reconciler* akan mempelajari elemen `App` *"rendered to"*.
 
-Either way, the reconciler will learn the element `App` "rendered to".
+Proses ini rekursif. `App` dapat di *render* menjadi `<Greeting />`, `Greeting` dapat di *render* menjadi `<Button />`, dan begitu seterusnya. *Reconciler* akan "menelusuri" melalui komponen yang ditentukan pengguna secara rekursif saat mempelajari apa yang di *render* oleh setiap komponen.
 
-This process is recursive. `App` may render to a `<Greeting />`, `Greeting` may render to a `<Button />`, and so on. The reconciler will "drill down" through user-defined components recursively as it learns what each component renders to.
-
-You can imagine this process as a pseudocode:
+Anda dapat membayangkan proses ini sebagai *pseudocode*:
 
 ```js
 function isClass(type) {
-  // React.Component subclasses have this flag
+  // Subkelas React.Component memiliki *flag* ini
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
   );
 }
 
-// This function takes a React element (e.g. <App />)
-// and returns a DOM or Native node representing the mounted tree.
+// Fungsi ini mengambil elemen React (misalnya <App />)
+// dan mengembalikan DOM atau *node* Native yang mewakili diagram yang dipasang.
 function mount(element) {
   var type = element.type;
   var props = element.props;
 
-  // We will determine the rendered element
-  // by either running the type as function
-  // or creating an instance and calling render().
+  // Kita akan menentukan elemen yang di *render*
+  // dengan menjalankan tipe sebagai fungsi
+  // atau membuat *instance* dan memanggil render().
   var renderedElement;
   if (isClass(type)) {
-    // Component class
+    // Komponen kelas
     var publicInstance = new type(props);
-    // Set the props
+    // Atur *props*
     publicInstance.props = props;
-    // Call the lifecycle if necessary
+    // Panggil *lifecycle* jika diperlukan
     if (publicInstance.componentWillMount) {
       publicInstance.componentWillMount();
     }
-    // Get the rendered element by calling render()
+    // Dapatkan elemen yang di *render* dengan memanggil render()
     renderedElement = publicInstance.render();
   } else {
-    // Component function
+    // Komponen fungsi
     renderedElement = type(props);
   }
 
-  // This process is recursive because a component may
-  // return an element with a type of another component.
+  // Proses ini rekursif karena komponen mungkin
+  // mengembalikan elemen dengan tipe komponen lain.
   return mount(renderedElement);
 
-  // Note: this implementation is incomplete and recurses infinitely!
-  // It only handles elements like <App /> or <Button />.
-  // It doesn't handle elements like <div /> or <p /> yet.
+  // Catatan: implementasi ini tidak lengkap dan berulang-ulang!
+  // Ini hanya menangani elemen seperti <App /> atau <Button />.
+  // Ini tidak menangani elemen seperti <div /> atau <p /> belum.
 }
 
 var rootEl = document.getElementById('root');
@@ -103,81 +102,81 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
->**Note:**
+>**Catatan:**
 >
->This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
+>Implementasi di atas benar-benar *pseudo-code*, dan tidak mirip dengan implementasi nyata. Implementasi ini juga akan menyebabkan *stack overflow* karena kita belum membahas kapan harus menghentikan rekursi.
 
-Let's recap a few key ideas in the example above:
+Mari kita rekap beberapa ide utama dalam contoh di atas:
 
-* React elements are plain objects representing the component type (e.g. `App`) and the props.
-* User-defined components (e.g. `App`) can be classes or functions but they all "render to" elements.
-* "Mounting" is a recursive process that creates a DOM or Native tree given the top-level React element (e.g. `<App />`).
+* Elemen React adalah objek polos yang mewakili jenis komponen (mis. `App`) dan *props*.
+* Komponen yang ditentukan pengguna(misalnya. `App`) dapat berupa kelas atau fungsi tetapi semuanya merupakan elemen *"render to"*.
+* *"Mounting"* adalah proses rekursif yang membuat DOM atau diagram Native diberi elemen React tingkat atas (misalnya. `<App />`).
 
-### Mounting Host Elements {#mounting-host-elements}
+### Elemen Mounting Host {#mounting-host-elements}
 
-This process would be useless if we didn't render something to the screen as a result.
+Proses ini akan sia-sia jika kami tidak *render* sesuatu ke layar sebagai hasilnya.
 
-In addition to user-defined ("composite") components, React elements may also represent platform-specific ("host") components. For example, `Button` might return a `<div />` from its render method.
+Selain komponen yang ditentukan pengguna (*"composite"*), elemen React mungkin juga dapat mewakili komponen platform khusus ("*host*"). Sebagai contoh, `Button` mungkin mengembalikan `<div />` dari *method render*.
 
-If element's `type` property is a string, we are dealing with a host element:
+Jika properti elemen `type` adalah *string*, kami berurusan dengan elemen *host*:
 
 ```js
 console.log(<div />);
 // { type: 'div', props: {} }
 ```
 
-There is no user-defined code associated with host elements.
+Tidak ada kode yang ditentukan pengguna yang terkait dengan element *host*.
 
-When the reconciler encounters a host element, it lets the renderer take care of mounting it. For example, React DOM would create a DOM node.
+Ketika *reconciler* menjumpai elemen *host*, itu memungkinkan *renderer* mengurus *mounting*. Misalnya, React DOM akan membuat *node* DOM.
 
-If the host element has children, the reconciler recursively mounts them following the same algorithm as above. It doesn't matter whether children are host (like `<div><hr /></div>`), composite (like `<div><Button /></div>`), or both.
+Jika elemen host memiliki *children*, *reconciler* secara rekursif me-*mount* mereka mengikuti algoritma yang sama seperti diatas. Tidak masalah apakah *children* adalah *host* (seperti `<div><hr /></div>`), komposit (seperti `<div><Button /></div>`), atau keduanya.
 
-The DOM nodes produced by the child components will be appended to the parent DOM node, and recursively, the complete DOM structure will be assembled.
+*Node* DOM diproduksi oleh komponen *child* akan ditambahkan ke *node parent* DOM, dan secara rekursif, struktur DOM lengkap akan dirakit.
 
->**Note:**
+>**Catatan:**
 >
->The reconciler itself is not tied to the DOM. The exact result of mounting (sometimes called "mount image" in the source code) depends on the renderer, and can be a DOM node (React DOM), a string (React DOM Server), or a number representing a native view (React Native).
+>*Reconciler* sendiri tidak terikat dengan DOM. Hasil *mounting* yang tepat (kadang disebut *"image mount"* dalam *source code*) tergantung pada *renderer*, dan bisa menjadi *node* DOM (React DOM), *string* (React DOM Server), atau *number* mewakili tampilan asli (React Native).
 
-If we were to extend the code to handle host elements, it would look like this:
+Jika kami memperluas kode untuk menangani elemen *host*, akan terlihat seperti ini:
 
 ```js
 function isClass(type) {
-  // React.Component subclasses have this flag
+  // Subkelas React.Component memiliki *flag* ini
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
   );
 }
 
-// This function only handles elements with a composite type.
-// For example, it handles <App /> and <Button />, but not a <div />.
+// Fungsi ini hanya menangani elemen dengan tipe komposit.
+// Sebagai contoh, ia menangani <App /> dan <Button />, tetapi bukan <div />.
 function mountComposite(element) {
   var type = element.type;
   var props = element.props;
 
   var renderedElement;
   if (isClass(type)) {
-    // Component class
+    // Komponen kelas
     var publicInstance = new type(props);
-    // Set the props
+    // Atur *props*
     publicInstance.props = props;
-    // Call the lifecycle if necessary
+    // Panggil *lifecycle* jika diperlukan
     if (publicInstance.componentWillMount) {
       publicInstance.componentWillMount();
     }
     renderedElement = publicInstance.render();
   } else if (typeof type === 'function') {
-    // Component function
+    // Komponen fungsi
     renderedElement = type(props);
   }
 
-  // This is recursive but we'll eventually reach the bottom of recursion when
-  // the element is host (e.g. <div />) rather than composite (e.g. <App />):
+  // Ini bersifat rekursif tetapi pada akhirnya kami akan mencapai dasar rekursif ketika
+  // elemen adalah *host* (misalnya <div />) daripada komposit (misalnya <App />):
   return mount(renderedElement);
 }
 
-// This function only handles elements with a host type.
-// For example, it handles <div /> and <p /> but not an <App />.
+// Fungsi ini hanya menangani elemen dengan tipe *host*
+// Sebagai contoh, ia menangani <div /> dan <p /> bukan <App />.
 function mountHost(element) {
   var type = element.type;
   var props = element.props;
@@ -187,9 +186,9 @@ function mountHost(element) {
   }
   children = children.filter(Boolean);
 
-  // This block of code shouldn't be in the reconciler.
-  // Different renderers might initialize nodes differently.
-  // For example, React Native would create iOS or Android views.
+  // Blok kode ini seharusnya tidak ada di dalam *reconciler*.
+  // *Renderers* yang berbeda mungkin menginisialisasi *node* secara berbeda.
+  // Sebagai contoh, React Native akan membuat tampilan iOS atau Android.
   var node = document.createElement(type);
   Object.keys(props).forEach(propName => {
     if (propName !== 'children') {
@@ -197,29 +196,29 @@ function mountHost(element) {
     }
   });
 
-  // Mount the children
+  // Pasang *children*
   children.forEach(childElement => {
-    // Children may be host (e.g. <div />) or composite (e.g. <Button />).
-    // We will also mount them recursively:
+    // *Children* dapat berupa *host* (e.g. <div />) atau komposit (e.g. <Button />).
+    // Kami juga akan memasang mereka secara rekursif:
     var childNode = mount(childElement);
 
-    // This line of code is also renderer-specific.
-    // It would be different depending on the renderer:
+    // Baris kode ini juga khusus *renderer*.
+    // Ini akan berbeda tergantung pada *renderer*:
     node.appendChild(childNode);
   });
 
-  // Return the DOM node as mount result.
-  // This is where the recursion ends.
+  // Kembalikan *node* DOM sebagai hasil pemasangan.
+  // Di sinilah rekursi berakhir.
   return node;
 }
 
 function mount(element) {
   var type = element.type;
   if (typeof type === 'function') {
-    // User-defined components
+    // Komponen yang ditentukan pengguna
     return mountComposite(element);
   } else if (typeof type === 'string') {
-    // Platform-specific components
+    // Komponen khusus platform
     return mountHost(element);
   }
 }
@@ -229,40 +228,40 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
-This is working but still far from how the reconciler is really implemented. The key missing ingredient is support for updates.
+Kode ini bekerja, tetapi masih jauh dari bagaimana *reconciler* benar-benar dilaksanakan. Bahan utama yang hilang adalah dukungan untuk pembaruan.
 
-### Introducing Internal Instances {#introducing-internal-instances}
+### Memperkenalkan Instance Internal {#introducing-internal-instances}
 
-The key feature of React is that you can re-render everything, and it won't recreate the DOM or reset the state:
+Fitur utama dari React adalah anda dapat *render* ulang semuanya, dan itu tidak akan membuat ulang DOM atau mengatur ulang *state*:
 
 ```js
 ReactDOM.render(<App />, rootEl);
-// Should reuse the existing DOM:
+// Harus menggunakan kembali DOM yang ada:
 ReactDOM.render(<App />, rootEl);
 ```
 
-However, our implementation above only knows how to mount the initial tree. It can't perform updates on it because it doesn't store all the necessary information, such as all the `publicInstance`s, or which DOM `node`s correspond to which components.
+Namun, implementasi kami di atas hanya tahu cara memasang diagram awal. Itu tidak dapat melakukan pembaruan karena itu tidak menyimpan semua informasi yang diperlukan, seperti semua `publicInstance`, atau `node` DOM yang sesuai dengan komponen yang mana.
 
-The stack reconciler codebase solves this by making the `mount()` function a method and putting it on a class. There are drawbacks to this approach, and we are going in the opposite direction in the [ongoing rewrite of the reconciler](/docs/codebase-overview.html#fiber-reconciler). Nevertheless this is how it works now.
+Basis kode *stack reconciler* memecahkan ini dengan membuat fungsi `mount()` menjadi *method* dan meletakannya di kelas. Ada beberapa kelemahan dari pendekatan ini, dan kita akan berada di arah yang berlawanan dalam [penulisan ulang *reconciler* yang sedang berlangsung](/docs/codebase-overview.html#fiber-reconciler). Namun demikian inilah cara kerjanya sekarang.
 
-Instead of separate `mountHost` and `mountComposite` functions, we will create two classes: `DOMComponent` and `CompositeComponent`.
+Alih-alih memisahkan fungsi `mountHost` dan `mountComposite`, kami akan membuat dua kelas: `DOMComponent` dan `CompositeComponent`.
 
-Both classes have a constructor accepting the `element`, as well as a `mount()` method returning the mounted node. We will replace a top-level `mount()` function with a factory that instantiates the correct class:
+Kedua kelas memiliki *constructor* yang menerima `element`, serta *method* `mount()` yang mengembalikan *node* yang dipasang. Kami akan mengganti fungsi `mount()` tingkat atas dengan *factory* yang membuat kelas yang benar:
 
 ```js
 function instantiateComponent(element) {
   var type = element.type;
   if (typeof type === 'function') {
-    // User-defined components
+    // Komponen yang ditentukan pengguna
     return new CompositeComponent(element);
   } else if (typeof type === 'string') {
-    // Platform-specific components
+    // Komponen khusus platform
     return new DOMComponent(element);
   }  
 }
 ```
 
-First, let's consider the implementation of `CompositeComponent`:
+Pertama, mari kita pertimbangkan implementasi `CompositeComponent`:
 
 ```js
 class CompositeComponent {
@@ -273,7 +272,7 @@ class CompositeComponent {
   }
 
   getPublicInstance() {
-    // For composite components, expose the class instance.
+    // Untuk komponen komposit, buka instance kelas.
     return this.publicInstance;
   }
 
@@ -285,45 +284,45 @@ class CompositeComponent {
     var publicInstance;
     var renderedElement;
     if (isClass(type)) {
-      // Component class
+      // Komponen Kelas
       publicInstance = new type(props);
-      // Set the props
+      // Atur props
       publicInstance.props = props;
-      // Call the lifecycle if necessary
+      // Panggil lifecycle jika diperlukan
       if (publicInstance.componentWillMount) {
         publicInstance.componentWillMount();
       }
       renderedElement = publicInstance.render();
     } else if (typeof type === 'function') {
-      // Component function
+      // Komponen Fungsi
       publicInstance = null;
       renderedElement = type(props);
     }
 
-    // Save the public instance
+    // Simpan instance publik
     this.publicInstance = publicInstance;
 
-    // Instantiate the child internal instance according to the element.
-    // It would be a DOMComponent for <div /> or <p />,
-    // and a CompositeComponent for <App /> or <Button />:
+    // Instantiate instance child internal sesuai dengan elemen.
+    // Ini akan menjadi DOMComponent untuk <div /> atau <p />,
+    // dan CompositeComponent untuk <App /> atau <Button />:
     var renderedComponent = instantiateComponent(renderedElement);
     this.renderedComponent = renderedComponent;
 
-    // Mount the rendered output
+    // Pasang keluaran yang di render
     return renderedComponent.mount();
   }
 }
 ```
 
-This is not much different from our previous `mountComposite()` implementation, but now we can save some information, such as `this.currentElement`, `this.renderedComponent`, and `this.publicInstance`, for use during updates.
+Ini tidak jauh berbeda dari implementasi `mountComposite()` kami sebelumnya, tetapi sekarang kami dapat menyimpan beberapa informasi, seperti `this.currentElement`, `this.renderedComponent`, dan `this.publicInstance`, untuk digunakan selama pembaruan.
 
-Note that an instance of `CompositeComponent` is not the same thing as an instance of the user-supplied `element.type`. `CompositeComponent` is an implementation detail of our reconciler, and is never exposed to the user. The user-defined class is the one we read from `element.type`, and `CompositeComponent` creates an instance of it.
+Perhatikan bahwa *instance* `CompositeComponent` tidak sama dengan *instance* dari `element.type` yang disediakan pengguna. `CompositeComponent` adalah detail implementasi dari *reconciler* kami, dan tidak pernah di ekspos ke pengguna. Kelas yang ditentukan pengguna adalah yang kita baca dari `element.type`, dan `CompositeComponent` menciptakan *instance* dari itu.
 
-To avoid the confusion, we will call instances of `CompositeComponent` and `DOMComponent` "internal instances". They exist so we can associate some long-lived data with them. Only the renderer and the reconciler are aware that they exist.
+Untuk menghindari kebingungan, kami akan memanggil *instance* `CompositeComponent` dan `DOMComponent` "*instance* internal". Mereka ada sehingga kami dapat mengaitkan beberapa data *long-lived* dengan mereka. Hanya *renderer* dan *reconciler* yang menyadari bahwa mereka ada.
 
-In contrast, we call an instance of the user-defined class a "public instance". The public instance is what you see as `this` in the `render()` and other methods of your custom components.
+Sebaliknya, kami menyebut *instance* kelas yang ditentukan pengguna sebagai "*instance* publik". *Instance* publik adalah apa yang ada lihat sebagai `this` di `render()` dan *method* lain dari komponen *custom* anda.
 
-The `mountHost()` function, refactored to be a `mount()` method on `DOMComponent` class, also looks familiar:
+Fungsi `mountHost()`, yang di tulis ulang menjadi *method* `mount()` pada kelas `DOMComponent`, juga tampak familier:
 
 ```js
 class DOMComponent {
@@ -334,7 +333,7 @@ class DOMComponent {
   }
 
   getPublicInstance() {
-    // For DOM components, only expose the DOM node.
+    // Untuk komponen DOM, hanya mengekspos *node* DOM.
     return this.node;
   }
 
@@ -347,36 +346,36 @@ class DOMComponent {
       children = [children];
     }
 
-    // Create and save the node
+    // Buat dan simpan *node*
     var node = document.createElement(type);
     this.node = node;
 
-    // Set the attributes
+    // Atur atributnya
     Object.keys(props).forEach(propName => {
       if (propName !== 'children') {
         node.setAttribute(propName, props[propName]);
       }
     });
 
-    // Create and save the contained children.
-    // Each of them can be a DOMComponent or a CompositeComponent,
-    // depending on whether the element type is a string or a function.
+    // Buat dan simpan children yang dibungkus.
+    // Masing-masing dari mereka dapat menjadi DOMComponent atau CompositeComponent,
+    // tergantung pada apakah tipe elemen adalah string atau fungsi.
     var renderedChildren = children.map(instantiateComponent);
     this.renderedChildren = renderedChildren;
 
-    // Collect DOM nodes they return on mount
+    // Kumpulkan node DOM yang mereka kembalikan saat pemasangan
     var childNodes = renderedChildren.map(child => child.mount());
     childNodes.forEach(childNode => node.appendChild(childNode));
 
-    // Return the DOM node as mount result
+    // Kembalikan node DOM node sebagai hasil pemasangan
     return node;
   }
 }
 ```
 
-The main difference after refactoring from `mountHost()` is that we now keep `this.node` and `this.renderedChildren` associated with the internal DOM component instance. We will also use them for applying non-destructive updates in the future.
+Perbedaan utama setelah menulis ulang dari `mountHost()` adalah sekarang kita menyimpan `this.node` dan `this.renderedChildren` yang terkait dengan *instance* komponen DOM internal. Kami juga akan menggunakannya untuk menerapkan pembaruan yang tidak merusak di masa mendatang.
 
-As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a function `<App>` component renders a `<Button>` class component, and `Button` class renders a `<div>`, the internal instance tree would look like this:
+Akibatnya, setiap *instance* internal, komposit atau *host*, sekarang menuju ke *instance* internal *child*. Untuk membantu memvisualisasikan ini, jika fungsi komponen `<App>` me-*render* komponen kelas `<Button>`, dan kelas `Button`  me-*render* sebuah `<div>`, diagram *instance* internal akan terlihat seperti ini:
 
 ```js
 [object CompositeComponent] {
@@ -394,36 +393,36 @@ As a result, each internal instance, composite or host, now points to its child 
 }
 ```
 
-In the DOM you would only see the `<div>`. However the internal instance tree contains both composite and host internal instances.
+Dalam DOM Anda hanya akan melihat `<div>`. Namun diagram *instance* internal berisi komposit dan *instance* internal *host*.
 
-The composite internal instances need to store:
+*Instance* internal komposit perlu disimpan:
 
-* The current element.
-* The public instance if element type is a class.
-* The single rendered internal instance. It can be either a `DOMComponent` or a `CompositeComponent`.
+* Elemen saat ini.
+* *Instance* publik jika tipe elemen adalah kelas.
+* Satu *instance* internal yang di *render*. Itu bisa berupa `DOMComponent` atau `CompositeComponent`.
 
-The host internal instances need to store:
+*Instance* internal *host* perlu disimpan:
 
-* The current element.
-* The DOM node.
-* All the child internal instances. Each of them can be either a `DOMComponent` or a `CompositeComponent`.
+* Elemen saat ini.
+* *Node* DOM.
+* Semua *instance* internal *child*. Masing-masing dari mereka dapat berupa `DOMComponent` atau `CompositeComponent`.
 
-If you're struggling to imagine how an internal instance tree is structured in more complex applications, [React DevTools](https://github.com/facebook/react-devtools) can give you a close approximation, as it highlights host instances with grey, and composite instances with purple:
+Jika anda kesulitan membayangkan bagaimana struktur *instance* internal terstruktur dalam aplikasi yang lebih kompleks, [React DevTools](https://github.com/facebook/react-devtools) dapat memberi anda perkiraan yang mendekati, karena menyoroti *instance host* dengan contoh warna abu-abu, dan *instance* komposit dengan warna ungu:
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-To complete this refactoring, we will introduce a function that mounts a complete tree into a container node, just like `ReactDOM.render()`. It returns a public instance, also like `ReactDOM.render()`:
+Untuk menyelesaikan penulisan ulang ini, kami akan memperkenalkan fungsi yang memasang diagram lengkap ke *node container*, juga seperti `ReactDOM.render()`. Ia mengembalikan *instance* publik, juga seperti `ReactDOM.render()`:
 
 ```js
 function mountTree(element, containerNode) {
-  // Create the top-level internal instance
+  // Buat instance internal tingkat atas
   var rootComponent = instantiateComponent(element);
 
-  // Mount the top-level component into the container
+  // Pasang komponen tingkat atas ke dalam container
   var node = rootComponent.mount();
   containerNode.appendChild(node);
 
-  // Return the public instance it provides
+  // Kembalikan instance publik yang disediakannya
   var publicInstance = rootComponent.getPublicInstance();
   return publicInstance;
 }
@@ -434,7 +433,7 @@ mountTree(<App />, rootEl);
 
 ### Unmounting {#unmounting}
 
-Now that we have internal instances that hold onto their children and the DOM nodes, we can implement unmounting. For a composite component, unmounting calls a lifecycle method and recurses.
+Sekarang kami memiliki *instance* internal yang menampung *children* mereka dan *node* DOM, kami dapat menerapkan *unmounting*. Untuk komponen komposit, *unmounting* memanggil *method lifecycle* dan berulang.
 
 ```js
 class CompositeComponent {
@@ -442,7 +441,7 @@ class CompositeComponent {
   // ...
 
   unmount() {
-    // Call the lifecycle method if necessary
+    // Panggil method lifecycle jika diperlukan
     var publicInstance = this.publicInstance;
     if (publicInstance) {
       if (publicInstance.componentWillUnmount) {
@@ -450,14 +449,14 @@ class CompositeComponent {
       }
     }
 
-    // Unmount the single rendered component
+    // Lepaskan komponen tunggal yang di*render*
     var renderedComponent = this.renderedComponent;
     renderedComponent.unmount();
   }
 }
 ```
 
-For `DOMComponent`, unmounting tells each child to unmount:
+Untuk `DOMComponent`, *unmounting* memberitahu setiap *child* untuk *unmount*:
 
 ```js
 class DOMComponent {
@@ -465,70 +464,70 @@ class DOMComponent {
   // ...
 
   unmount() {
-    // Unmount all the children
+    // Lepaskan semua *children*
     var renderedChildren = this.renderedChildren;
     renderedChildren.forEach(child => child.unmount());
   }
 }
 ```
 
-In practice, unmounting DOM components also removes the event listeners and clears some caches, but we will skip those details.
+Dalam praktiknya, *unmounting* komponen DOM juga menghapus *event listener* dan menghapus beberapa *cache*, tetapi kami akan melewatkan detail itu.
 
-We can now add a new top-level function called `unmountTree(containerNode)` that is similar to `ReactDOM.unmountComponentAtNode()`:
+Kita sekarang dapat menambahkan fungsi tingkat atas baru yang disebut `unmountTree(containerNode)` yang mirip dengan `ReactDOM.unmountComponentAtNode()`:
 
 ```js
 function unmountTree(containerNode) {
-  // Read the internal instance from a DOM node:
-  // (This doesn't work yet, we will need to change mountTree() to store it.)
+  // Baca instance internal dari node DOM:
+  // (Ini belum berfungsi, kita perlu mengubah mountTree() untuk menyimpannya.)
   var node = containerNode.firstChild;
   var rootComponent = node._internalInstance;
 
-  // Unmount the tree and clear the container
+  // Lepas diagram dan bersihkan *container*
   rootComponent.unmount();
   containerNode.innerHTML = '';
 }
 ```
 
-In order for this to work, we need to read an internal root instance from a DOM node. We will modify `mountTree()` to add the `_internalInstance` property to the root DOM node. We will also teach `mountTree()` to destroy any existing tree so it can be called multiple times:
+Agar ini berfungsi, kita perlu membaca *instance root* internal dari *node* DOM. Kami akan memodifikasi `mountTree()` untuk menambahkan properti `_internalInstance` ke *root node* DOM. Kami juga akan mengajarkan `mountTree()` untuk menghancurkan diagram yang ada sehingga dapat dipanggil beberapa kali:
 
 ```js
 function mountTree(element, containerNode) {
-  // Destroy any existing tree
+  // Hancurkan diagram yang ada
   if (containerNode.firstChild) {
     unmountTree(containerNode);
   }
 
-  // Create the top-level internal instance
+  // Buat instance internal tingkat atas
   var rootComponent = instantiateComponent(element);
 
-  // Mount the top-level component into the container
+  // Pasang komponen tingkat atas kedalam container
   var node = rootComponent.mount();
   containerNode.appendChild(node);
 
-  // Save a reference to the internal instance
+  // Simpan referensi ke instance internal
   node._internalInstance = rootComponent;
 
-  // Return the public instance it provides
+  // Kembalikan instance publik yang disediakannya
   var publicInstance = rootComponent.getPublicInstance();
   return publicInstance;
 }
 ```
 
-Now, running `unmountTree()`, or running `mountTree()` repeatedly, removes the old tree and runs the `componentWillUnmount()` lifecycle method on components.
+Sekarang, jalankan `unmountTree()`, atau jalankan `mountTree()` berulang kali, hapus hierarki yang lama dan jalankan *method lifecycle* `componentWillUnmount()` pada komponen.
 
-### Updating {#updating}
+### Memperbarui {#updating}
 
-In the previous section, we implemented unmounting. However React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
+Di bagian sebelumnya, kami menerapkan *unmounting*. Namun React tidak akan sangat berguna jika setiap perubahan *prop* dilepas dan dipasang seluruh diagram. Tujuan dari *reconciler* adalah menggunakan kembali *instances* yang ada di mana mungkin untuk melestarikan DOM dan *state*:
 
 ```js
 var rootEl = document.getElementById('root');
 
 mountTree(<App />, rootEl);
-// Should reuse the existing DOM:
+// Harus menggunakan kembali DOM yang ada:
 mountTree(<App />, rootEl);
 ```
 
-We will extend our internal instance contract with one more method. In addition to `mount()` and `unmount()`, both `DOMComponent` and `CompositeComponent` will implement a new method called `receive(nextElement)`:
+Kami akan memperpanjang kontrak *instance* internal kami dengan satu *method* lagi. Selain `mount()` dan `unmount()`, `DOMComponent` dan `CompositeComponent` akan menerapkan *method* baru yang disebut `receive(nextElement)`:
 
 ```js
 class CompositeComponent {
@@ -548,15 +547,15 @@ class DOMComponent {
 }
 ```
 
-Its job is to do whatever is necessary to bring the component (and any of its children) up to date with the description provided by the `nextElement`.
+Tugasnya adalah melakukan apa pun yang diperlukan untuk memperbarui komponen (dan *children*-nya) dengan deskripsi yang disediakan oleh `nextElement`.
 
-This is the part that is often described as "virtual DOM diffing" although what really happens is that we walk the internal tree recursively and let each internal instance receive an update.
+Ini adalah bagian yang sering digambarkan sebagai "*virtual DOM diffing*" walaupun yang sebenarnya terjadi adalah kita menjalankan diagram internal secara rekursif dan membiarkan setiap *instance* internal menerima pembaruan.
 
-### Updating Composite Components {#updating-composite-components}
+### Memperbarui Komponen Komposit {#updating-composite-components}
 
-When a composite component receives a new element, we run the `componentWillUpdate()` lifecycle method.
+Ketika komponen komposit menerima elemen baru, kami menjalankan *method lifecycle* `componentWillUpdate()`.
 
-Then we re-render the component with the new props, and get the next rendered element:
+Lalu kami *render* ulang komponen dengan *props* baru, dan mendapatkan elemen yang di*render* berikutnya:
 
 ```js
 class CompositeComponent {
@@ -569,40 +568,40 @@ class CompositeComponent {
     var prevRenderedComponent = this.renderedComponent;
     var prevRenderedElement = prevRenderedComponent.currentElement;
 
-    // Update *own* element
+    // Perbarui elemen *sendiri*
     this.currentElement = nextElement;
     var type = nextElement.type;
     var nextProps = nextElement.props;
 
-    // Figure out what the next render() output is
+    // Cari tahu apa hasil render() berikutnya
     var nextRenderedElement;
     if (isClass(type)) {
-      // Component class
-      // Call the lifecycle if necessary
+      // Komponen kelas
+      // Panggil lifecycle jika diperlukan
       if (publicInstance.componentWillUpdate) {
         publicInstance.componentWillUpdate(nextProps);
       }
-      // Update the props
+      // Perbaru props
       publicInstance.props = nextProps;
-      // Re-render
+      // Render ulang
       nextRenderedElement = publicInstance.render();
     } else if (typeof type === 'function') {
-      // Component function
+      // Komponen fungsi
       nextRenderedElement = type(nextProps);
     }
 
     // ...
 ```
 
-Next, we can look at the rendered element's `type`. If the `type` has not changed since the last render, the component below can also be updated in place.
+Selanjutnya, kita bisa melihat elemen `type` yang di-*render*. Jika `type` belum berubah sejak *render* terakhir, komponen di bawah ini juga dapat diperbarui di tempat.
 
-For example, if it returned `<Button color="red" />` the first time, and `<Button color="blue" />` the second time, we can just tell the corresponding internal instance to `receive()` the next element:
+Misalnya, jika ia mengembalikan `<Button color="red" />` pertama kalinya, dan `<Button color="blue" />` untuk kedua kalinya, kami hanya bisa memberi tahu *instance* internal terkait untuk `receive()` elemen selanjutnya:
 
 ```js
     // ...
 
-    // If the rendered element type has not changed,
-    // reuse the existing component instance and exit.
+    // Jika tipe elemen yang di render tidak berubah,
+    // gunakan kembali instance komponen yang ada dan keluar.
     if (prevRenderedElement.type === nextRenderedElement.type) {
       prevRenderedComponent.receive(nextRenderedElement);
       return;
@@ -611,48 +610,48 @@ For example, if it returned `<Button color="red" />` the first time, and `<Butto
     // ...
 ```
 
-However, if the next rendered element has a different `type` than the previously rendered element, we can't update the internal instance. A `<button>` can't "become" an `<input>`.
+Namun, jika elemen yang di-*render* berikutnya memiliki `type` yang berbeda dari elemen yang di-*render* sebelumnya, kami tidak dapat memperbarui *instance* internal. Sebuah `<button>` tidak bisa "menjadi" sebuah `<input>`.
 
-Instead, we have to unmount the existing internal instance and mount the new one corresponding to the rendered element type. For example, this is what happens when a component that previously rendered a `<button />` renders an `<input />`:
+Sebagai gantinya, kita harus lepaskan *instance* internal yang ada dan pasang yang baru yang sesuai dengan tipe elemen yang di*render*. Sebagai contoh, inilah yang terjadi ketika komponen yang sebelumnya me*render* `<button />` me*render* `<input />`:
 
 ```js
     // ...
 
-    // If we reached this point, we need to unmount the previously
-    // mounted component, mount the new one, and swap their nodes.
+    // Jika kita mencapai titik ini, kita perlu meng-unmount sebelumnya
+    // komponen yang dipasang, pasang yang baru, dan tukar node mereka.
 
-    // Find the old node because it will need to be replaced
+    // Temukan node lama karena perlu diganti
     var prevNode = prevRenderedComponent.getHostNode();
 
-    // Unmount the old child and mount a new child
+    // Lepas child lama dan pasang child baru
     prevRenderedComponent.unmount();
     var nextRenderedComponent = instantiateComponent(nextRenderedElement);
     var nextNode = nextRenderedComponent.mount();
 
-    // Replace the reference to the child
+    // Ganti referensi dengan child
     this.renderedComponent = nextRenderedComponent;
 
-    // Replace the old node with the new one
-    // Note: this is renderer-specific code and
-    // ideally should live outside of CompositeComponent:
+    // Ganti node lama dengan yang baru
+    // Catatan: ini adalah kode renderer khusus dan
+    // idealnya harus hidup di luar CompositeComponent:
     prevNode.parentNode.replaceChild(nextNode, prevNode);
   }
 }
 ```
 
-To sum this up, when a composite component receives a new element, it may either delegate the update to its rendered internal instance, or unmount it and mount a new one in its place.
+Singkatnya, ketika komponen komposit menerima elemen baru, ia dapat mendelegasikan pembaruan ke *instance* internal yang di-*render*, atau melepaskan dan pasang yang baru di tempatnya.
 
-There is another condition under which a component will re-mount rather than receive an element, and that is when the element's `key` has changed. We don't discuss `key` handling in this document because it adds more complexity to an already complex tutorial.
+Ada kondisi lain di mana komponen akan dipasang kembali daripada menerima elemen, dan saat itulah elemen `key` telah berubah. Kami tidak membahas penanganan `key` dalam dokumen ini karena menambah kompleksitas pada tutorial yang sudah kompleks.
 
-Note that we needed to add a method called `getHostNode()` to the internal instance contract so that it's possible to locate the platform-specific node and replace it during the update. Its implementation is straightforward for both classes:
-
+Perhatikan bahwa kami perlu menambahkan *method* yang disebut `getHostNode()` ke kontrak *instance* internal sehingga memungkinkan untuk menemukan *node* platform khusus dan menggantinya selama pembaruan. Implementasinya sangat mudah untuk kedua kelas:
+ 
 ```js
 class CompositeComponent {
   // ...
 
   getHostNode() {
-    // Ask the rendered component to provide it.
-    // This will recursively drill down any composites.
+    // Tanyakan komponen yang di-*render* untuk menyediakannya.
+    // Ini akan menelusuri setiap komposit secara rekursif.
     return this.renderedComponent.getHostNode();
   }
 }
@@ -666,9 +665,9 @@ class DOMComponent {
 }
 ```
 
-### Updating Host Components {#updating-host-components}
+### Memperbarui Komponen Host {#updating-host-components}
 
-Host component implementations, such as `DOMComponent`, update differently. When they receive an element, they need to update the underlying platform-specific view. In case of React DOM, this means updating the DOM attributes:
+Implementasi komponen *host*, seperti `DOMComponent`, perbarui secara berbeda. Ketika mereka menerima elemen, mereka perlu memperbaru tampilan platform spesifik yang mendasarinya. Dalam kasus React DOM, ini berarti memperbarui atribut DOM:
 
 ```js
 class DOMComponent {
@@ -681,13 +680,13 @@ class DOMComponent {
     var nextProps = nextElement.props;    
     this.currentElement = nextElement;
 
-    // Remove old attributes.
+    // Hapus atribut lama.
     Object.keys(prevProps).forEach(propName => {
       if (propName !== 'children' && !nextProps.hasOwnProperty(propName)) {
         node.removeAttribute(propName);
       }
     });
-    // Set next attributes.
+    // Tetapkan atribut berikutnya.
     Object.keys(nextProps).forEach(propName => {
       if (propName !== 'children') {
         node.setAttribute(propName, nextProps[propName]);
@@ -697,16 +696,16 @@ class DOMComponent {
     // ...
 ```
 
-Then, host components need to update their children. Unlike composite components, they might contain more than a single child.
+Kemudian, komponen *host* perlu memperbarui *children* mereka. Tidak seperti komponen komposit, mereka mungkin mengandung lebih dari satu *child*.
 
-In this simplified example, we use an array of internal instances and iterate over it, either updating or replacing the internal instances depending on whether the received `type` matches their previous `type`. The real reconciler also takes element's `key` in the account and track moves in addition to insertions and deletions, but we will omit this logic.
+Dalam contoh yang disederhanakan ini, kami menggunakan senarai *instance* internal dan mengulanginya, memperbarui atau mengganti *instance* internal tergantung pada apakah `type` yang diterima cocok dengan `type` sebelumnya. *Reconciler* nyata juga mengambil elemen `key` dalam akun dan melacak pergerakan selain penyisipan dan penghapusan, tetapi kami akan menghilangkan logika ini.
 
-We collect DOM operations on children in a list so we can execute them in batch:
+Kami mengumpulkan operasi DOM pada *children* dalam daftar sehingga kami dapat menjalankannya dalam *batch*:
 
 ```js
     // ...
 
-    // These are arrays of React elements:
+    // Ini adalah senarai elemen React
     var prevChildren = prevProps.children || [];
     if (!Array.isArray(prevChildren)) {
       prevChildren = [prevChildren];
@@ -715,41 +714,41 @@ We collect DOM operations on children in a list so we can execute them in batch:
     if (!Array.isArray(nextChildren)) {
       nextChildren = [nextChildren];
     }
-    // These are arrays of internal instances:
+    // Ini adalah senarai dari instance internal:
     var prevRenderedChildren = this.renderedChildren;
     var nextRenderedChildren = [];
 
-    // As we iterate over children, we will add operations to the array.
+    // Saat kita beralih ke children, kita akan menambahkan operasi ke senarai.
     var operationQueue = [];
 
-    // Note: the section below is extremely simplified!
-    // It doesn't handle reorders, children with holes, or keys.
-    // It only exists to illustrate the overall flow, not the specifics.
+    // Catatan: bagian di bawah ini sangat disederhanakan!
+    // Itu tidak menangani pemesanan ulang, *children* dengan *holes*, atau *key*.
+    // Itu hanya ada untuk menggambarkan aliran keseluruhan, bukan spesifik.
 
     for (var i = 0; i < nextChildren.length; i++) {
-      // Try to get an existing internal instance for this child
+      // Cobalah untuk mendapatkan *instance* internal yang ada untuk *child* ini
       var prevChild = prevRenderedChildren[i];
 
-      // If there is no internal instance under this index,
-      // a child has been appended to the end. Create a new
-      // internal instance, mount it, and use its node.
+      // Jika tidak ada *instance* internal di bawah indeks ini,
+      // *child* telah ditambahkan sampai akhir. Buat yang baru
+      // *instance* internal, pasang, dan gunakan *node*nya.
       if (!prevChild) {
         var nextChild = instantiateComponent(nextChildren[i]);
         var node = nextChild.mount();
 
-        // Record that we need to append a node
+        // Catat bahwa kita perlu menambahkan sebuah *node*
         operationQueue.push({type: 'ADD', node});
         nextRenderedChildren.push(nextChild);
         continue;
       }
 
-      // We can only update the instance if its element's type matches.
-      // For example, <Button size="small" /> can be updated to
-      // <Button size="large" /> but not to an <App />.
+      // Kami hanya dapat memperbarui *instance* jika tipe elemennya cocok.
+      // Misalnya, <Button size="small" /> dapat diperbaru ke
+      // <Button size="large" /> tetapi tidak ke <App />.
       var canUpdate = prevChildren[i].type === nextChildren[i].type;
 
-      // If we can't update an existing instance, we have to unmount it
-      // and mount a new one instead of it.
+      // Jika kita tidak dapat memperbarui *instance* yang ada, kita harus melepasnya
+      // dan pasang yang baru sebagai gantinya.
       if (!canUpdate) {
         var prevNode = prevChild.getHostNode();
         prevChild.unmount();
@@ -757,40 +756,40 @@ We collect DOM operations on children in a list so we can execute them in batch:
         var nextChild = instantiateComponent(nextChildren[i]);
         var nextNode = nextChild.mount();
 
-        // Record that we need to swap the nodes
+        // Catat bahwa kita perlu menukar kode
         operationQueue.push({type: 'REPLACE', prevNode, nextNode});
         nextRenderedChildren.push(nextChild);
         continue;
       }
 
-      // If we can update an existing internal instance,
-      // just let it receive the next element and handle its own update.
+      // Jika kita dapat memperbarui *instance* internal yang ada,
+      // biarkan saja menerima elemen berikutnya dan menangani pembaruannya sendiri.
       prevChild.receive(nextChildren[i]);
       nextRenderedChildren.push(prevChild);
     }
 
-    // Finally, unmount any children that don't exist:
+    // Akhirnya, lepaskan semua *children* yang tidak ada:
     for (var j = nextChildren.length; j < prevChildren.length; j++) {
       var prevChild = prevRenderedChildren[j];
       var node = prevChild.getHostNode();
       prevChild.unmount();
 
-      // Record that we need to remove the node
+      // Catat bahwa kita perlu menghapus *node*
       operationQueue.push({type: 'REMOVE', node});
     }
 
-    // Point the list of rendered children to the updated version.
+    // Arahkan daftar *children* yang di*render* ke versi yang diperbarui.
     this.renderedChildren = nextRenderedChildren;
 
     // ...
 ```
 
-As the last step, we execute the DOM operations. Again, the real reconciler code is more complex because it also handles moves:
+Sebagai langkah terakhir, kami menjalankan operasi DOM. Sekali lagi, kode *reconciler* nyata lebih kompleks karena ia juga menangani gerakan:
 
 ```js
     // ...
 
-    // Process the operation queue.
+    // Memproses antrian operasi.
     while (operationQueue.length > 0) {
       var operation = operationQueue.shift();
       switch (operation.type) {
@@ -809,27 +808,27 @@ As the last step, we execute the DOM operations. Again, the real reconciler code
 }
 ```
 
-And that is it for updating host components.
+Dan itu untuk memperbarui komponen *host*
 
-### Top-Level Updates {#top-level-updates}
+### Pembaruan Tingkat Atas {#top-level-updates}
 
-Now that both `CompositeComponent` and `DOMComponent` implement the `receive(nextElement)` method, we can change the top-level `mountTree()` function to use it when the element `type` is the same as it was the last time:
+Sekarang setelah `CompositeComponent` dan `DOMComponent` menerapkan *method* `receive(nextElement)`, kita dapat mengubah fungsi `mountTree()` tingkat atas untuk menggunakanny ketika elemen `type` sama dengan yang terakhir kali:
 
 ```js
 function mountTree(element, containerNode) {
-  // Check for an existing tree
+  // Periksa diagram yang ada
   if (containerNode.firstChild) {
     var prevNode = containerNode.firstChild;
     var prevRootComponent = prevNode._internalInstance;
     var prevElement = prevRootComponent.currentElement;
 
-    // If we can, reuse the existing root component
+    // Jika kita bisa, gunakan kembali komponen *root* yang ada
     if (prevElement.type === element.type) {
       prevRootComponent.receive(element);
       return;
     }
 
-    // Otherwise, unmount the existing tree
+    // Jika tidak, lepaskan diagram yang ada
     unmountTree(containerNode);
   }
 
@@ -838,61 +837,61 @@ function mountTree(element, containerNode) {
 }
 ```
 
-Now calling `mountTree()` two times with the same type isn't destructive:
+Sekarang memanggil `mountTree()` dua kali dengan tipe yang sama tidak merusak:
 
 ```js
 var rootEl = document.getElementById('root');
 
 mountTree(<App />, rootEl);
-// Reuses the existing DOM:
+// Menggunakan kembali DOM yang ada:
 mountTree(<App />, rootEl);
 ```
 
-These are the basics of how React works internally.
+Ini adalah dasar-dasar bagaimana React bekerja secara internal.
 
-### What We Left Out {#what-we-left-out}
+### Apa yang kami keluarkan {#what-we-left-out}
 
-This document is simplified compared to the real codebase. There are a few important aspects we didn't address:
+Dokumen ini disederhanakan dibandingkan dengan basis kode nyata. Ada beberapa aspek penting yang tidak kami tangani:
 
-* Components can render `null`, and the reconciler can handle "empty slots" in arrays and rendered output.
+* Komponen dapat membuat `null`, dan *reconciler* dapat menangani "slot kosong" dalam senarai dan menghasilkan keluaran.
 
-* The reconciler also reads `key` from the elements, and uses it to establish which internal instance corresponds to which element in an array. A bulk of complexity in the actual React implementation is related to that.
+* *Reconciler* juga membaca `key` dari elemen-elemen, dan menggunakannya untuk menetapkan *instance* internal yang sesuai dengan elemen mana dalam senarai. Sebagian besar kompleksitas dalam implementasi React aktual terkait dengan itu.
 
-* In addition to composite and host internal instance classes, there are also classes for "text" and "empty" components. They represent text nodes and the "empty slots" you get by rendering `null`.
+* Selain kelas *instance* internal *host* dan komposit, ada juga kelas untuk komponen "teks" and "kosong". Mereka mewakili *node* teks dan "slot kosong" anda dapatkan dengan *rendering* `null`.
 
-* Renderers use [injection](/docs/codebase-overview.html#dynamic-injection) to pass the host internal class to the reconciler. For example, React DOM tells the reconciler to use `ReactDOMComponent` as the host internal instance implementation.
+* *Renderer* menggunakan [injeksi](/docs/codebase-overview.html#dynamic-injection) untuk meneruskan kelas internal *host* ke *reconciler*. Misalnya, React DOM memberitahu *reconciler* untuk menggunakan `ReactDOMComponent` sebagai implementasi *instance* internal *host*.
 
-* The logic for updating the list of children is extracted into a mixin called `ReactMultiChild` which is used by the host internal instance class implementations both in React DOM and React Native.
+* Logika untuk memperbarui daftar *children* diekstraksi ke dalam *mixin* yang disebut `ReactMultiChild` yang digunakan oleh implementasi kelas *instance host* internal baik di React DOM dan React Native.
 
-* The reconciler also implements support for `setState()` in composite components. Multiple updates inside event handlers get batched into a single update.
+* *Reconciler* juga mengimplementasikan dukungan untuk `setState()` dalam komponen komposit. Beberapa pembaruan di dalam *event handlers* dapat dikumpulkan menjadi satu pembaruan tunggal.
 
-* The reconciler also takes care of attaching and detaching refs to composite components and host nodes.
+* *Reconciler* juga menangani melampirkan dan melepaskan *refs* ke komponen komposit dan *node host*.
 
-* Lifecycle methods that are called after the DOM is ready, such as `componentDidMount()` and `componentDidUpdate()`, get collected into "callback queues" and are executed in a single batch.
+* *Method Lifecycle* yang dipanggil setelah DOM siap, seperti `componentDidMount()` dan `componentDidUpdate()`, dikumpulkan ke dalam "antrean *callback*" dan dieksekusi dalam satu *batch*.
 
-* React puts information about the current update into an internal object called "transaction". Transactions are useful for keeping track of the queue of pending lifecycle methods, the current DOM nesting for the warnings, and anything else that is "global" to a specific update. Transactions also ensure React "cleans everything up" after updates. For example, the transaction class provided by React DOM restores the input selection after any update.
+* React menempatkan informasi tentang pembaruan saat ini ke objek internal yang disebut "transaksi". Transaksi berguna untuk melacak antrean *method lifecycle* yang tertunda, DOM saat ini bersarang untuk peringatan, dan hal lain yang bersifat "global" untuk pembaruan tertentu. Transaksi juga memastikan React "membersihkan semuanya" setelah pembaruan. Misalnya, kelas transaksi yang disediakan oleh React DOM mengembalikan pilihan masukan setelah pembaruan apapun.
 
-### Jumping into the Code {#jumping-into-the-code}
+### Melompat ke Kode {#jumping-into-the-code}
 
-* [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) is where the code like `mountTree()` and `unmountTree()` from this tutorial lives. It takes care of mounting and unmounting top-level components. [`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) is its React Native analog.
-* [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) is the equivalent of `DOMComponent` in this tutorial. It implements the host component class for React DOM renderer. [`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) is its React Native analog.
-* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) is the equivalent of `CompositeComponent` in this tutorial. It handles calling user-defined components and maintaining their state.
-* [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) contains the switch that picks the right internal instance class to construct for an element. It is equivalent to `instantiateComponent()` in this tutorial.
+* [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) adalah tempat kode seperti `mountTree()` dan `unmountTree()` dari tutorial ini berada. Ini menangani pemasangan dan pelepasan komponen tingkat atas. [`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) adalah analog React Native-nya.
+* [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) adalah setara dengan `DOMComponent` dalam tutorial ini. Ini mengimplementasikan Komponen Kelas *host* untuk *renderer* React DOM. [`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) adalah analog React Native-nya.
+* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) adalah setara dengan `CompositeComponent` dalam tutorial ini. Ini menangani panggilan komponen yang ditentukan pengguna dan mempertahankan *state* mereka. 
+* [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) berisi sakelar yang memilih kelas *instance* internal yang tepat untuk membangun sebuah elemen. Ini sama dengan `instantiateComponent()` dalam tutorial ini.
 
-* [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) is a wrapper with `mountComponent()`, `receiveComponent()`, and `unmountComponent()` methods. It calls the underlying implementations on the internal instances, but also includes some code around them that is shared by all internal instance implementations.
+* [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) adalah pembungkus dengan *method* `mountComponent()`, `receiveComponent()`, dan `unmountComponent()`. Ia menyebut implementasi yang mendasarinya pada *instance* internal, tetapi juga menyertakan beberapa kode di sekitarnya yang dibagikan oleh semua implementasi *instance* internal.
 
-* [`ReactChildReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactChildReconciler.js) implements the logic for mounting, updating, and unmounting children according to the `key` of their elements.
+* [`ReactChildReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactChildReconciler.js) mengimplementasikan logika untuk memasang, memperbarui, dan melepaskan *children* sesuai dengan elemen `key` mereka.
 
-* [`ReactMultiChild`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactMultiChild.js) implements processing the operation queue for child insertions, deletions, and moves independently of the renderer.
+* [`ReactMultiChild`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactMultiChild.js) mengimplementasikan pemrosesan antrean operasi untuk penyisipan *child*, penghapusan, dan bergerak secara independen dari *renderer*.
 
-* `mount()`, `receive()`, and `unmount()` are really called `mountComponent()`, `receiveComponent()`, and `unmountComponent()` in React codebase for legacy reasons, but they receive elements.
+* `mount()`, `receive()`, dan `unmount()` benar-benar disebut `mountComponent()`, `receiveComponent()`, dan `unmountComponent()` di basis kode React untuk alasan warisan, tetapi mereka menerima elemen.
 
-* Properties on the internal instances start with an underscore, e.g. `_currentElement`. They are considered to be read-only public fields throughout the codebase.
+* Properti pada *instance* internal dimulai dengan garis bawah, misalnya `_currentElement`. Mereka dianggap sebagai bidang publik *read-only* di seluruh basis kode.
 
-### Future Directions {#future-directions}
+### Arah Masa Depan {#future-directions}
 
-Stack reconciler has inherent limitations such as being synchronous and unable to interrupt the work or split it in chunks. There is a work in progress on the [new Fiber reconciler](/docs/codebase-overview.html#fiber-reconciler) with a [completely different architecture](https://github.com/acdlite/react-fiber-architecture). In the future, we intend to replace stack reconciler with it, but at the moment it is far from feature parity.
+*Stack reconciler* memiliki keterbatasan yang melekat seperti menjadi *synchronous* dan tidak dapat mengganggu pekerjaan atau membaginya menjadi beberapa bagian. Ada pekerjaan yang sedang berjalan [*Reconciler fiber* baru](/docs/codebase-overview.html#fiber-reconciler) dengan [arsitektur yang sama sekali berbeda](https://github.com/acdlite/react-fiber-architecture). Di masa mendatang, kami bermaksud mengganti *stack reconciler* dengannya, tetapi saat ini masih jauh dari paritas fitur.
 
-### Next Steps {#next-steps}
+### Langkah Selanjutnya {#next-steps}
 
-Read the [next section](/docs/design-principles.html) to learn about the guiding principles we use for React development.
+Baca [bagian selanjutnya](/docs/design-principles.html) untuk mempelajari tentang prinsip panduan yang kita gunakan untuk pengembangan React.

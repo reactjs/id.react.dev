@@ -1,5 +1,5 @@
-// Make sure the shape of the default value passed to
-// createContext matches the shape that the consumers expect!
+// Pastikan bentuk nilai default yang di oper ke
+// createContext cocok dengan bentuk yang di harapkan *consumer*!
 // highlight-range{2-3}
 export const ThemeContext = React.createContext({
   theme: themes.dark,

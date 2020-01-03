@@ -1,10 +1,10 @@
 ---
-title: React Element Factories and JSX Warning
+title: React Element Factories dan Peringatan JSX
 layout: single
 permalink: warnings/legacy-factories.html
 ---
 
-You probably came here because your code is calling your component as a plain function call. This is now deprecated:
+Anda kemungkinan berada di sini karena kode Anda memanggil komponen sebagai _function call_ biasa. Hal ini sekarang sudah usang:
 
 ```javascript
 var MyComponent = require('MyComponent');
@@ -16,7 +16,7 @@ function render() {
 
 ## JSX {#jsx}
 
-React components can no longer be called directly like this. Instead [you can use JSX](/docs/jsx-in-depth.html).
+Komponen React tidak lagi dapat dipanggil seperti ini. Sebagai gantinya [Anda dapat menggunakan JSX](/docs/jsx-in-depth.html).
 
 ```javascript
 var React = require('react');
@@ -27,9 +27,9 @@ function render() {
 }
 ```
 
-## Without JSX {#without-jsx}
+## Tanpa JSX {#without-jsx}
 
-If you don't want to, or can't use JSX, then you'll need to wrap your component in a factory before calling it:
+Jika Anda tidak ingin atau tidak dapat menggunakan JSX, Anda perlu membungkus komponen Anda dalam sebuah _factory_ sebelum pemanggilan:
 
 ```javascript
 var React = require('react');
@@ -40,11 +40,11 @@ function render() {
 }
 ```
 
-This is an easy upgrade path if you have a lot of existing function calls.
+Hal ini merupakan langkah pembaruan yang mudah jika Anda memiliki banyak _function call_ yang sudah ada.
 
-## Dynamic components without JSX {#dynamic-components-without-jsx}
+## Komponen dinamis tanpa JSX {#dynamic-components-without-jsx}
 
-If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:
+Jika anda mendapatkan komponen kelas dari sumber dinamis, tidaklah begitu perlu membuat _factory_ yang dipanggil secara langsung. Sebagai gantinya, Anda dapat saja membuat elemen _inline_:
 
 ```javascript
 var React = require('react');
@@ -54,6 +54,6 @@ function render(MyComponent) {
 }
 ```
 
-## In Depth {#in-depth}
+## Pembahasan Mendalam {#in-depth}
 
-[Read more about WHY we're making this change.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
+[Baca lebih lanjut tentang kenapa kita membuat perubahan ini.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)

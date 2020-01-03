@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: Conditional Rendering
+title: Render Bersyarat
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
@@ -8,11 +8,11 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
+Pada React, Anda dapat membuat komponen berbeda yang mencakup perilaku yang dibutuhkan. Lalu, Anda dapat me-*render* hanya beberapa bagian saja, berdasarkan _state_ dari aplikasi Anda.
 
-Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) or the [conditional operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to create elements representing the current state, and let React update the UI to match them.
+Render Bersyarat pada React berfungsi sama halnya dengan operator bersyarat pada Javascript. Gunakan JavaScript operator seperti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) atau [operator bersyarat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) untuk membuat representasi elemen dari _state_ saat ini, dan React akan memperbarui UI sesuai dengan _state_ tersebut.
 
-Consider these two components:
+Perhatikan dua komponen ini:
 
 ```js
 function UserGreeting(props) {
@@ -24,7 +24,7 @@ function GuestGreeting(props) {
 }
 ```
 
-We'll create a `Greeting` component that displays either of these components depending on whether a user is logged in:
+Kita akan membuat komponen `Greeting` yang menampilkan salah satu dari dua komponen diatas berdasarkan pada apakah pengguna telah login:
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -42,15 +42,15 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-This example renders a different greeting depending on the value of `isLoggedIn` prop.
+Contoh di atas me-*render* komponen greeting yang berbeda berdasarkan nilai *prop* `isLoggedIn`.
 
-### Element Variables {#element-variables}
+### Variabel Elemen {#element-variables}
 
-You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
+Anda dapat memakai variabel untuk menyimpan element. Hal ini akan membantu anda me-*render* beberapa bagian pada komponen secara kondisional sementara output lainnya tidak berubah.
 
-Consider these two new components representing Logout and Login buttons:
+Perhatikan dua komponen baru yang merepresentasikan tombol Logout dan Login:
 
 ```js
 function LoginButton(props) {
@@ -70,9 +70,9 @@ function LogoutButton(props) {
 }
 ```
 
-In the example below, we will create a [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) called `LoginControl`.
+Pada contoh dibawah, kita akan membuat sebuah [komponen _stateful_](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) `LoginControl`.
 
-It will render either `<LoginButton />` or `<LogoutButton />` depending on its current state. It will also render a `<Greeting />` from the previous example:
+Komponen `LoginControl` akan me-*render* salah satu dari `<LoginButton />` atau `<LogoutButton />` berdasarkan _state_ saat ini. Komponen `LoginControl` juga akan me-*render* `<Greeting />` dari contoh sebelumnya:
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -116,13 +116,13 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
+Saat mendeklarasikan sebuah variabel dan  menggunakan statement `if` merupakan cara yang baik me-*render* komponen secara kondisional, terkadang Anda mungkin ingin memakai sintaksis pendek. Ada beberapa cara _inline_ bersyarat pada JSX, dijelaskan dibawah.
 
-### Inline If with Logical && Operator {#inline-if-with-logical--operator}
+### Inline If dengan Operator Logis && {#inline-if-with-logical--operator}
 
-You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+Anda dapat [menyisipkan ekspresi apapun pada JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) dengan cara membungkusnya ke dalam kurung kurawal. Juga memasukan operator logis `&&`. Kurung kurawal dapat berguna untuk memasukan elemen secara kondisional:
 
 ```js{6-10}
 function Mailbox(props) {
@@ -146,17 +146,17 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
+Ekspresi diatas akan bekerja karena dalam JavaScript, `true && expression` selalu mengevaluasi `true`, dan `false && expression` selalu mengevaluasi `false`.
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+Maka dari itu, jika kondisi `true`, elemen tepat setelah `&&` akan muncul pada _output_. jika `false`, React akan mengabaikannya.
 
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
-Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+Metode lain untuk me-*render* _inline_ elemen secara kondisional ialah menggunakan operator kondisional JavaScript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-In the example below, we use it to conditionally render a small block of text.
+Pada contoh di bawah, kita menggunakan untuk me-*render* sebagian kecil dari teks secara kondisional.
 
 ```javascript{5}
 render() {
@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-It can also be used for larger expressions although it is less obvious what's going on:
+Ekspresi diatas juga dapat digunakan untuk ekspresi yang lebih besar meski terlihat kurang jelas apa yang terjadi:
 
 ```js{5,7,9}
 render() {
@@ -186,13 +186,13 @@ render() {
 }
 ```
 
-Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+Seperti pada Javascript, Terserah pada Anda untuk memilih gaya yang sesuai dengan apa yang Anda dan tim Anda rasa lebih mudah untuk dibaca. Diingat juga bahwa saat kondisi menjadi terlalu kompleks, mungkin saat tepat untuk [mengekstark sebuah komponen](/docs/components-and-props.html#extracting-components).
 
-### Preventing Component from Rendering {#preventing-component-from-rendering}
+### Mencegah Komponen dari Rendering {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+Pada kasus yang jarang terjadi, Anda mungkin ingin komponen menyembunyikan dirinya sendiri meskipun komponen itu di-*render* oleh komponen lain. Untuk melakukan ini, kembalikan `null` melainkan hasil output `render`.
 
-In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
+Pada contoh dibawah, `<WarningBanner />` di-*render* berdasarkan nilai dari _prop_ yang bernama `warn`. Jika nilai dari _prop_ `false`, maka komponen tidak di-*render*.
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -238,6 +238,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.
+Mengembalikan `null` dari metode `render` pada komponen tidak akan berdampak pada kerja metode siklus hidup komponen. Contohnya `componentDidUpdate` akan tetap dijalankan.

@@ -1,32 +1,32 @@
 ---
 id: accessibility
-title: Accessibility
+title: Aksesibilitas
 permalink: docs/accessibility.html
 ---
 
-## Why Accessibility? {#why-accessibility}
+## Mengapa aksesibilitas? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+Aksesibilitas web (juga dikenal dengan istilah [**a11y**](https://en.wiktionary.org/wiki/a11y)) adalah perancangan dan pembuatan situs web yang dapat digunakan oleh semua orang. Dukungan aksesibilitas diperlukan agar teknologi asistif—misalnya alat pembaca layar untuk pengguna tuna netra—dapat memahami dan menyampaikan isi halaman web.
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React sepenuhnya mendukung pembuatan situs web yang aksesibel, pada umumnya melalui penggunaan teknik-teknik HTML standar.
 
-## Standards and Guidelines {#standards-and-guidelines}
+## Standar dan Pedoman {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+[Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) (Panduan Aksesibilitas Konten Web) menyediakan panduan untuk membuat situs web yang aksesibel.
 
-The following WCAG checklists provide an overview:
+Daftar cek dari WCAG di bawah ini dapat memberikan gambaran umum:
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [Daftar cek WCAG dari Wuhcag](https://www.wuhcag.com/wcag-checklist/)
+- [Daftar cek WCAG dari WebAIM](http://webaim.org/standards/wcag/checklist)
+- [Daftar cek dari The A11Y Project](http://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+Dokumen [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) (Inisiatif Aksesibilitas Web - Aplikasi Internet Kaya yang Aksesibel) berisi teknik-teknik untuk membuat _widget_ JavaScript yang sepenuhnya aksesibel.
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+JSX sepenuhnya mendukung semua atribut HTML `aria-*`. Berbeda dengan sebagian besar properti DOM dan atribut lain di React yang ditulis dengan _camelCase_ (inisial kata selain kata pertama menggunakan huruf kapital), atribut `aria-*` menggunakan _hyphen-case_ (seluruh kata ditulis dengan huruf kecil dan dipisahkan tanda “-“) karena atribut-atribut tersebut ditulis dalam HTML biasa:
 
 ```javascript{3,4}
 <input
@@ -39,16 +39,15 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
-## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
-in our websites will often give us accessibility for free.
+## HTML Semantik {#semantic-html}
 
-- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+HTML yang semantik merupakan landasan aksesibilitas dalam suatu aplikasi web. Dengan menggunakan berbagai elemen HTML untuk memperkuat makna informasi di situs web kita, sering kali kita dapat memperoleh manfaat aksesibilitas secara cuma-cuma.
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+- [Referensi elemen HTML di MDN](https://developer.mozilla.org/id/docs/Web/HTML/Element)
 
-For example,
+Kadang kita melanggar kaidah semantik HTML dengan menambahkan elemen `<div>` ke dalam JSX agar kode React berjalan dengan baik, khususnya saat berurusan dengan elemen-elemen daftar (`<ol>`, `<ul>`, dan `<dl>`) serta `<table>` HTML. Dalam kasus demikian, alih-alih `<div>`, gunakan [_Fragment_ React](/docs/fragments.html) untuk mengelompokkan beberapa elemen.
+
+Contohnya,
 
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
@@ -73,14 +72,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+Anda juga dapat memetakan sekumpulan _item_ pada senarai (_array_) berisi fragmen, sama seperti elemen-elemen lainnya:
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // Fragment juga harus memiliki prop `key` untuk memetakan koleksi
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +90,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+Jika _tag_ _Fragment_ Anda tidak membutuhkan _props_ dan jika peralatan Anda mendukung, Anda dapat menggunakan [sintaks singkat](/docs/fragments.html#short-syntax):
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,81 +103,83 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+Untuk info selengkapnya, lihat [dokumentasi _Fragment_](/docs/fragments.html).
 
-## Accessible Forms {#accessible-forms}
+## Formulir yang Aksesibel {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### Pelabelan {#labeling}
 
-The following resources show us how to do this:
+Setiap elemen kendali formulir HTML, seperti `<input>` dan `<textarea>`, perlu diberi label yang memenuhi prinsip aksesibilitas. Kita perlu memberi label deskriptif yang juga dapat diakses oleh aplikasi pembaca layar (_screen reader_).
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+Sumber-sumber di bawah ini menunjukkan caranya:
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+- [W3C menunjukkan cara memberi label pada elemen](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [WebAIM menunjukkan cara memberi label pada elemen](http://webaim.org/techniques/forms/controls)
+- [Paciello Group menjelaskan tentang nama yang aksesibel](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+
+Praktik-praktik standar HTML tersebut dapat langsung digunakan di React, namun harap diingat bahwa atribut `for` ditulis sebagai `htmlFor` di JSX:
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### Menyampaikan notifikasi kesalahan ke pengguna {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+Keadaan kesalahan (_error_) perlu dipahami semua pengguna. Tautan di bawah ini menunjukkan cara menyampaikan pesan kesalahan yang juga dapat diakses oleh pengguna aplikasi pembaca layar:
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
+- [W3C mendemonstrasikan notifikasi untuk pengguna](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [WebAIM melihat proses validasi formulir](http://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## Kendali Fokus {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+Pastikan aplikasi web Anda dapat dioperasikan sepenuhnya hanya dengan menggunakan _keyboard_:
 
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
+- [Artikel WebAIM tentang aksesibilitas _keyboard_](http://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### Fokus _keyboard_ dan garis luar fokus {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+Fokus _keyboard_ mengacu pada elemen saat ini di DOM
+yang dipilih untuk menerima masukan dari _keyboard_. Kita sering melihatnya dalam bentuk garis luar (_outline_) fokus seperti pada gambar di bawah ini:
 
-<img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
+<img src="../images/docs/keyboard-focus.png" alt="Garis luar fokus berwarna biru di sekeliling tautan yang dipilih." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+Jangan gunakan CSS untuk menghilangkan garis luar ini, misalnya dengan menggunakan `outline: 0`, kecuali Anda menggantinya dengan implementasi sejenis untuk garis luar fokus.
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### Mekanisme untuk melompat ke konten yang diinginkan {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+Sediakan mekanisme untuk memungkinkan pengguna “melompati” bagian navigasi di aplikasi Anda, karena ini dapat memudahkan dan mempercepat navigasi menggunakan _keyboard_.
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with internal page anchors and some styling:
+Tautan melompati navigasi (_Skiplinks_ atau _Skip Navigation Links_) adalah tautan navigasi tersembunyi yang hanya muncul di layar saat pengguna _keyboard_ berinteraksi dengan halaman tersebut. Fitur ini sangat mudah untuk diimplementasikan dengan menggunakan tautan internal halaman dan modifikasi tampilan (_styling_):
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - Tautan Melompati Navigasi](http://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+Gunakan juga elemen dan peran _landmark_, seperti  `<main>` dan `<aside>`, untuk menandai wilayah halaman yang berguna bagi pengguna teknologi asistif untuk melakukan navigasi cepat ke bagian-bagian tersebut.
 
-Read more about the use of these elements to enhance accessibility here:
+Baca selengkapnya tentang kegunaan elemen-elemen tersebut untuk meningkatkan aksesibilitas di sini:
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [_Landmark_ yang Aksesibel](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
-### Programmatically managing focus {#programmatically-managing-focus}
+### Mengelola fokus secara programatik {#programmatically-managing-focus}
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+Aplikasi React kita memodifikasi DOM HTML secara terus menerus sepanjang _runtime_, yang kadang menyebabkan hilangnya fokus _keyboard_ atau berpindahnya fokus ke elemen yang tak diinginkan. Untuk mengatasi masalah ini, kita perlu mengarahkan fokus _keyboard_ secara programatik ke arah yang tepat. Misalnya, dengan mengembalikan fokus _keyboard_ ke tombol yang membuka jendela _modal_ setelah jendela _modal_ tersebut ditutup.
 
-MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+Dokumentasi Web MDN mengangkat topik ini dan menjelaskan cara membuat [_widget_ JavaScript yang dapat dioperasikan dengan _keyboard_](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
+Untuk menetapkan fokus pada React, kita dapat menggunakan [_Ref_ ke elemen DOM](/docs/refs-and-the-dom.html).
 
-Using this, we first create a ref to an element in the JSX of a component class:
+Dengan kode di bawah ini, pertama-tama kita membuat _ref_ ke elemen dalam JSX dari sebuah kelas komponen:
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // Create a ref to store the textInput DOM element
+    // Buat ref untuk menyimpan elemen DOM textInput
     this.textInput = React.createRef();
   }
   render() {
-  // Use the `ref` callback to store a reference to the text input DOM
-  // element in an instance field (for example, this.textInput).
+  // Gunakan callback `ref` untuk menyimpan referensi ke elemen 
+  // DOM input teks dalam field instans (misalnya, this.textInput).
     return (
       <input
         type="text"
@@ -189,17 +190,17 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-Then we can focus it elsewhere in our component when needed:
+Lalu, kita dapat memfokuskan _ref_ tersebut ke posisi lain di komponen kita saat diperlukan:
 
  ```javascript
  focus() {
-   // Explicitly focus the text input using the raw DOM API
-   // Note: we're accessing "current" to get the DOM node
+   // Fokuskan pada input teks secara eksplisit menggunakan API DOM mentah
+   // Catatan: kita mengakses “current” untuk mendapatkan simpul DOM
    this.textInput.current.focus();
  }
  ```
 
-Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+Kadang komponen induk perlu menetapkan fokus pada sebuah elemen dalam komponen anak yang meneruskan _ref_ induknya ke simpul DOM. Kita dapat melakukannya dengan [mengekspos _ref_ DOM ke komponen induk](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) melalui prop khusus pada komponen anak yang meneruskan _ref_ induk ke simpul DOM anak.
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -222,29 +223,27 @@ class Parent extends React.Component {
   }
 }
 
-// Now you can set focus when required.
+// Sekarang Anda dapat menetapkan fokus saat diperlukan.
 this.inputElement.current.focus();
 ```
 
-When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+Saat menggunakan HOC (_Higher-Order Component_) untuk membuat komponen baru dari komponen yang sudah ada, disarankan untuk [melakukan _ref forwarding_](/docs/forwarding-refs.html) ke komponen yang dibungkus dengan menggunakan fungsi `forwardRef` React. Jika HOC pihak ketiga tidak mengimplementasikan _ref forwarding_, pola di atas masih dapat digunakan sebagai _fallback_.
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
-the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that initially triggered the modal.
+Salah satu contoh pengelolaan fokus yang baik adalah [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Ini adalah contoh yang relatif langka dari jendela _modal_ yang sepenuhnya aksesibel. Selain menetapkan fokus awal pada tombol “batal” (mencegah pengguna keyboard tidak sengaja mengaktifkan opsi “sukses”) dan mengurung fokus _keyboard_ di dalam modal, react-aria-modal juga mengembalikan fokus ke elemen awal yang memicu _modal_ tersebut.
 
->Note:
+>Catatan:
 >
->While this is a very important accessibility feature, it is also a technique that should be used judiciously. Use it to repair the keyboard focus flow when it is disturbed, not to try and anticipate how
->users want to use applications.
+>Ini adalah fitur aksesibilitas yang sangat penting, namun pertimbangkan matang-matang sebelum menggunakan teknik ini. Gunakanlah teknik ini untuk memperbaiki alur fokus keyboard yang mengalami gangguan, bukan untuk mencoba mengantisipasi cara pengguna memakai aplikasi.
 
-## Mouse and pointer events {#mouse-and-pointer-events}
+## _Event mouse_ dan penunjuk {#mouse-and-pointer-events}
 
-Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where keyboard users cannot use your application.
+Pastikan bahwa semua fungsionalitas yang terekspos melalui _event mouse_ atau penunjuk (_pointer_) juga dapat diakses hanya dengan menggunakan _keyboard_. Bergantung pada peranti penunjuk akan mengakibatkan kasus di mana pengguna _keyboard_ tidak dapat menggunakan aplikasi Anda.
 
-To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element.
+Sebagai gambaran, mari kita lihat contoh umum rusaknya aksesibilitas akibat _event_ klik. Ini adalah pola “klik di luar”, di mana pengguna bisa menonaktifkan kotak _popover_ yang terbuka dengan cara mengklik di luar elemen tersebut.
 
-<img src="../images/docs/outerclick-with-mouse.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with a mouse showing that the close action works." />
+<img src="../images/docs/outerclick-with-mouse.gif" alt="Tombol buka-tutup yang membuka kotak daftar popover yang diimplementasikan dengan pola klik di luar popover dan dioperasikan dengan mouse. Kotak popover berhasil ditutup." />
 
-This is typically implemented by attaching a `click` event to the `window` object that closes the popover:
+Pola ini umumnya diimplementasikan dengan menempelkan _event_ `click` pada obyek `window` yang menutup _popover_:
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
@@ -281,12 +280,12 @@ class OuterClickExample extends React.Component {
   render() {
     return (
       <div ref={this.toggleContainer}>
-        <button onClick={this.onClickHandler}>Select an option</button>
-        {this.state.isOpen && (
+        <button onClick={this.onClickHandler}>Pilih salah satu opsi</button>
+        {this.state.isOpen ? (
           <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
+            <li>Opsi 1</li>
+            <li>Opsi 2</li>
+            <li>Opsi 3</li>
           </ul>
         )}
       </div>
@@ -295,11 +294,11 @@ class OuterClickExample extends React.Component {
 }
 ```
 
-This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+Kode ini mungkin berfungsi dengan baik untuk pengguna yang memakai peranti penunjuk, misalnya _mouse_. Tapi jika dioperasikan hanya dengan _keyboard_, fungsionalitasnya akan rusak saat pengguna menekan tombol _tab_ ke elemen selanjutnya, karena objek `window` tidak pernah menerima _event_ `click`. Hal ini dapat mengakibatkan fungsionalitas yang terhalang, yang menghambat pengguna untuk menggunakan aplikasi Anda.
 
-<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
+<img src="../images/docs/outerclick-with-keyboard.gif" alt="Tombol buka-tutup yang membuka kotak daftar popover yang diimplementasikan dengan pola klik di luar popover dan dioperasikan dengan keyboard. Kotak popover tidak tertutup saat fokus berpindah (blur) dan menghalangi elemen lainnya di layar." />
 
-The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
+Fungsionalitas yang sama dapat dicapai dengan menggunakan _event handler_ yang sesuai, misalnya `onBlur` dan `onFocus`:
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -320,10 +319,10 @@ class BlurExample extends React.Component {
     }));
   }
 
-  // We close the popover on the next tick by using setTimeout.
-  // This is necessary because we need to first check if
-  // another child of the element has received focus as
-  // the blur event fires prior to the new focus event.
+  // Kita menutup popover pada detik selanjutnya menggunakan setTimeout.
+  // Ini perlu, karena kita harus memeriksa terlebih dahulu 
+  // apakah ada anak lain dari elemen ini yang telah menerima 
+  // fokus saat event blur diluncurkan sebelum event fokus yang baru.
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -332,27 +331,27 @@ class BlurExample extends React.Component {
     });
   }
 
-  // If a child receives focus, do not close the popover.
+  // Jika ada anak yang menerima fokus, jangan tutup popover.
   onFocusHandler() {
     clearTimeout(this.timeOutId);
   }
 
   render() {
-    // React assists us by bubbling the blur and
-    // focus events to the parent.
+    // React membantu kita dengan melakukan bubbling 
+    // pada event blur dan fokus ke elemen induk.
     return (
       <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
         <button onClick={this.onClickHandler}
                 aria-haspopup="true"
                 aria-expanded={this.state.isOpen}>
-          Select an option
+          Pilih salah satu opsi
         </button>
         {this.state.isOpen && (
           <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
+            <li>Opsi 1</li>
+            <li>Opsi 2</li>
+            <li>Opsi 3</li>
           </ul>
         )}
       </div>
@@ -361,80 +360,79 @@ class BlurExample extends React.Component {
 }
 ```
 
-This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+Kode ini mengekspos fungsionalitas pada peranti penunjuk maupun pengguna _keyboard_. Perhatikan adanya tambahan _props_ `aria-*` untuk mendukung pengguna pembaca layar. Agar contoh ini ringkas, _event keyboard_ untuk mengaktifkan interaksi `arrow key` pada opsi-opsi _popover_ belum diimplementasikan.
 
-<img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
+<img src="../images/docs/blur-popover-close.gif" alt="Kotak daftar 'popover' yang menutup dengan benar baik untuk pengguna mouse maupun keyboard." />
 
-This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+Ini salah satu contoh dari banyak kasus di mana bergantung hanya pada _event mouse_ dan penunjuk akan merusak fungsionalitas untuk pengguna _keyboard_. Selalu lakukan pengujian dengan _keyboard_ agar dapat segera melihat area bermasalah, yang kemudian dapat diperbaiki dengan menggunakan _event handler_ yang sadar akan _keyboard_.
 
-## More Complex Widgets {#more-complex-widgets}
+## _Widget_ yang Lebih Kompleks {#more-complex-widgets}
 
-A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible, even the most complex widget can be coded accessibly.
+Pengalaman pengguna (_user experience_) yang lebih kompleks tidak semestinya mengurangi aksesibilitas. Meskipun aksesibilitas paling mudah dicapai dengan menulis kode yang sedekat mungkin dengan HTML, bahkan _widget_ paling rumit sekalipun dapat dibuat dengan aksesibel.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
-These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
+Di sini kita membutuhkan pengetahuan tentang [Peran (_Role_) ARIA](https://www.w3.org/TR/wai-aria/#roles), juga [_State_ dan Properti ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties), yang merupakan “kotak peralatan” berisi atribut-atribut HTML yang sepenuhnya didukung di JSX dan memungkinkan kita untuk menyusun komponen-komponen React yang sepenuhnya aksesibel dan sangat fungsional.
 
-Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
+Masing-masing jenis _widget_ memiliki pola desain yang spesifik; dan baik pengguna maupun perangkat (_agent_) sudah memiliki ekspekstasi tentang fungsi _widget_ tersebut:
 
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
-- [Inclusive Components](https://inclusive-components.design/)
+- [Praktik-praktik Menulis WAI-ARIA - Pola Desain dan _Widget_](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Heydon Pickering - Contoh-contoh ARIA](http://heydonworks.com/practical_aria_examples/)
+- [Komponen-komponen Inklusif](https://inclusive-components.design/)
 
-## Other Points for Consideration {#other-points-for-consideration}
+## Hal-hal Lain untuk Dipertimbangkan {#other-points-for-consideration}
 
-### Setting the language {#setting-the-language}
+### Mengatur bahasa {#setting-the-language}
 
-Indicate the human language of page texts as screen reader software uses this to select the correct voice settings:
+Beri keterangan bahasa manusia yang digunakan pada isi teks di halaman, karena perangkat lunak pembaca layar menggunakannya untuk memilih pengaturan suara yang tepat:
 
-- [WebAIM - Document Language](https://webaim.org/techniques/screenreader/#language)
+- [WebAIM - Bahasa Dokumen](http://webaim.org/techniques/screenreader/#language)
 
-### Setting the document title {#setting-the-document-title}
+### Mengatur judul dokumen {#setting-the-document-title}
 
-Set the document `<title>` to correctly describe the current page content as this ensures that the user remains aware of the current page context:
+Atur `<title>` dokumen agar menggambarkan dengan tepat isi halaman yang sedang dibuka, untuk menmastikan pengguna tetap sadar tentang konteks halaman saat ini:
 
-- [WCAG - Understanding the Document Title Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
+- [WCAG - Memahami Syarat Judul Dokumen](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
 
-We can set this in React using the [React Document Title Component](https://github.com/gaearon/react-document-title).
+Kita dapat mengaturnya di React menggunakan [komponen _React Document Title_](https://github.com/gaearon/react-document-title).
 
-### Color contrast {#color-contrast}
+### Kontras warna {#color-contrast}
 
-Ensure that all readable text on your website has sufficient color contrast to remain maximally readable by users with low vision:
+Pastikan seluruh teks yang dapat dibaca di situs web Anda  memiliki kontras warna yang cukup, agar semudah mungkin untuk dibaca oleh pengguna dengan kemampuan penglihatan lemah (_low vision_):
 
-- [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
-- [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
+- [WCAG - Memahami Syarat Kontras Warna](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+- [Semua Tentang Kontras Warna dan Mengapa Anda Perlu Berpikir Ulang Tentangnya](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
+- [A11yProject - Apa Itu Kontras Warna](http://a11yproject.com/posts/what-is-color-contrast/)
 
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
+Akan membosankan jika harus menghitung kombinasi warna secara manual untuk setiap kasus penggunaan di halaman website Anda, maka Anda dapat [membuat perhitungan seluruh palet warna yang aksesibel dengan Colorable](http://jxnblk.com/colorable/).
 
-Both the aXe and WAVE tools mentioned below also include color contrast tests and will report on contrast errors.
+Uji kontras warna juga termasuk dalam alat aXe maupun WAVE yang disebut di bawah ini. Alat-alat tersebut akan melaporkan jika ada kesalahan kontras.
 
-If you want to extend your contrast testing abilities you can use these tools:
+Jika Anda ingin mengembangkan kemampuan uji kontras, Anda dapat menggunakan alat-alat ini:
 
-- [WebAIM - Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [The Paciello Group - Color Contrast Analyzer](https://www.paciellogroup.com/resources/contrastanalyser/)
+- [WebAIM - Pemeriksa Kontras Warna](http://webaim.org/resources/contrastchecker/)
+- [The Paciello Group - Penganalisa Kontras Warna](https://www.paciellogroup.com/resources/contrastanalyser/)
 
-## Development and Testing Tools {#development-and-testing-tools}
+## Alat-alat Pengembangan dan Pengujian {#development-and-testing-tools}
 
-There are a number of tools we can use to assist in the creation of accessible web applications.
+Ada sejumlah alat yang dapat kita gunakan untuk membantu pembuatan aplikasi web yang aksesibel.
 
-### The keyboard {#the-keyboard}
+### _Keyboard_ {#the-keyboard}
 
-By far the easiest and also one of the most important checks is to test if your entire website can be reached and used with the keyboard alone. Do this by:
+Bentuk uji coba yang paling mudah sekaligus salah satu yang terpenting sejauh ini ialah menguji apakah seluruh situs web Anda dapat dijangkau dan digunakan hanya dengan menggunakan _keyboard_. Caranya adalah:
 
-1. Disconnecting your mouse.
-1. Using `Tab` and `Shift+Tab` to browse.
-1. Using `Enter` to activate elements.
-1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
+1. Cabut _mouse_ Anda.
+1. Gunakan tombol `Tab` dan `Shift+Tab` untuk menjelajah.
+1. Gunakan tombol `Enter` untuk mengaktifkan elemen.
+1. Bila dibutuhkan, gunakan tombol panah pada _keyboard_ untuk berinteraksi dengan beberapa elemen, misalnya menu dan _dropdown_.
 
-### Development assistance {#development-assistance}
+### Bantuan pengembangan {#development-assistance}
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also have access to the following tool:
+Kita dapat memeriksa beberapa fitur aksesibilitas secara langsung dalam kode JSX kita. Sering kali, pemeriksaan _intellisense_ untuk peran, _state_, dan properti ARIA sudah tersedia di IDE yang sadar akan JSX. Kita juga dapat mengakses peralatan berikut ini:
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
-The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many IDE's allow you to integrate these findings directly into code analysis and source code windows.
+_Plugin_ [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) untuk ESLint menyediakan umpan balik _linting_ _Abstract Syntax Tree_ (AST) tentang masalah-masalah aksesibilitas di JSX Anda. Banyak IDE memungkinkan Anda untuk mengintegrasikan hasil penemuan tersebut langsung ke jendela analisa kode dan kode sumber.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with this content:
+[Create React App](https://github.com/facebookincubator/create-react-app) memiliki _plugin_ ini dengan sebagian aturan aksesibilitas yang sudah aktif. Jika Anda ingin mengaktifkan lebih banyak lagi aturan aksesibiltas, Anda dapat membuat file `.eslintrc` di _root_ projek Anda dengan isi seperti ini:
 
   ```json
   {
@@ -443,77 +441,75 @@ The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) 
   }
   ```
 
-### Testing accessibility in the browser {#testing-accessibility-in-the-browser}
+### Menguji aksesibilitas di _browser_ {#testing-accessibility-in-the-browser}
 
-A number of tools exist that can run accessibility audits on web pages in your browser. Please use them in combination with other accessibility checks mentioned here as they can only
-test the technical accessibility of your HTML.
+Ada sejumlah alat yang dapat menjalankan audit aksesibilitas pada halaman-halaman web dari _browser_ Anda. Gunakanlah bersama metode pemeriksaan aksesibilitas lainnya yang disebutkan di sini, karena alat-alat ini hanya menguji aksesibilitas teknis kode HTML Anda.
 
 #### aXe, aXe-core and react-axe {#axe-axe-core-and-react-axe}
 
-Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
+Deque Systems menawarkan [aXe-core](https://github.com/dequelabs/axe-core) untuk menguji aksesibilitas aplikasi Anda secara otomatis dari awal hingga akhir. Modul ini mencakup integrasi Selenium.
 
-[The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
+[The Accessibility Engine](https://www.deque.com/products/axe/) atau aXe adalah ekstensi _browser_ pemeriksa aksesibilitas yang dibuat berdasarkan `aXe-core`.
 
-You can also use the [react-axe](https://github.com/dylanb/react-axe) module to report these accessibility findings directly to the console while developing and debugging.
+Anda juga dapat menggunakan modul [react-axe](https://github.com/dylanb/react-axe) untuk melaporkan temuan-temuan aksesibilitas ini secara langsung ke _console_ saat melakukan pengembangan dan menelusuri kesalahan.
 
 #### WebAIM WAVE {#webaim-wave}
 
-The [Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) is another accessibility browser extension.
+[Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) adalah ekstensi _browser_ lainnya untuk memeriksa aksesibilitas.
 
-#### Accessibility inspectors and the Accessibility Tree {#accessibility-inspectors-and-the-accessibility-tree}
+#### Pemeriksa aksesibilitas dan Pohon Aksesibilitas {#accessibility-inspectors-and-the-accessibility-tree}
 
-[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed
-to assistive technology, such as screen readers.
+[Pohon Aksesibilitas (_Accessibility Tree_)](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) adalah bagian dari pohon DOM yang berisi objek-objek aksesibel untuk setiap elemen DOM yang seharusnya terekspos ke teknologi asistif, misalnya pembaca layar.
 
-In some browsers we can easily view the accessibility information for each element in the accessibility tree:
+Di beberapa _browser_, kita dapat dengan mudah melihat informasi aksesibilitas untuk masing-masing elemen di pohon aksesibilitas:
 
-- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Activate the Accessibility Inspector in Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
-- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+- [Menggunakan Pemeriksa Aksesibilitas di Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [Menggunakan Pemeriksa Aksesibilitas di Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
+- [Menggunakan Pemeriksa Aksesibilitas di Safari OS X](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 
-### Screen readers {#screen-readers}
+### Pembaca layar {#screen-readers}
 
-Testing with a screen reader should form part of your accessibility tests.
+Menguji dengan pembaca layar harus menjadi bagian uji aksesibilitas Anda.
 
-Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
+Harap perhatikan bahwa kombinasi _browser_ / pembaca layar berpengaruh. Anda disarankan menguji aplikasi Anda pada _browser_ yang paling sesuai dengan pembaca layar pilihan Anda.
 
-### Commonly Used Screen Readers {#commonly-used-screen-readers}
+### Pembaca Layar yang Umum Digunakan {#commonly-used-screen-readers}
 
-#### NVDA in Firefox {#nvda-in-firefox}
+#### NVDA di Firefox {#nvda-in-firefox}
 
-[NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open source Windows screen reader that is widely used.
+[NonVisual Desktop Access](https://www.nvaccess.org/) atau NVDA adalah pembaca layar bersumber terbuka (_open source_) untuk Windows yang banyak digunakan.
 
-Refer to the following guides on how to best use NVDA:
+Berikut ini panduan untuk menggunakan NVDA dengan baik:
 
-- [WebAIM - Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/)
-- [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
+- [WebAIM - Menggunakan NVDA untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/nvda/)
+- [Deque - Pintasan _Keyboard_ NVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
-#### VoiceOver in Safari {#voiceover-in-safari}
+#### VoiceOver di Safari {#voiceover-in-safari}
 
-VoiceOver is an integrated screen reader on Apple devices.
+VoiceOver adalah pembaca layar yang terintegrasi dengan peranti Apple.
 
-Refer to the following guides on how activate and use VoiceOver:
+Berikut ini panduan cara mengaktifkan dan menggunakan VoiceOver:
 
-- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
-- [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
-- [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
+- [WebAIM - Menggunakan VoiceOver untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/voiceover/)
+- [Deque - Pintasan _Keyboard_ VoiceOver untuk OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
+- [Deque - Pintasan VoiceOver untuk iOS](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
-#### JAWS in Internet Explorer {#jaws-in-internet-explorer}
+#### JAWS di Internet Explorer {#jaws-in-internet-explorer}
 
-[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) or JAWS, is a prolifically used screen reader on Windows.
+[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) atau JAWS adalah pembaca layar untuk Windows yang banyak digunakan.
 
-Refer to the following guides on how to best use JAWS:
+Berikut ini panduan untuk menggunakan JAWS dengan baik:
 
-- [WebAIM - Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws/)
-- [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+- [WebAIM - Menggunakan JAWS untuk Evaluasi Aksesibilitas Web](http://webaim.org/articles/jaws/)
+- [Deque - Pintasan _Keyboard_ JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
-### Other Screen Readers {#other-screen-readers}
+### Pembaca Layar Lain {#other-screen-readers}
 
-#### ChromeVox in Google Chrome {#chromevox-in-google-chrome}
+#### ChromeVox di Google Chrome {#chromevox-in-google-chrome}
 
-[ChromeVox](https://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+[ChromeVox](http://www.chromevox.com/) adalah pembaca layar yang terintegrasi dengan Chromebook, dan tersedia [sebagai ekstensi _browser_](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=id) Google Chrome.
 
-Refer to the following guides on how best to use ChromeVox:
+Berikut ini panduan untuk menggunakan ChromeVox dengan baik:
 
-- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox Classic Keyboard Shortcuts Reference](https://www.chromevox.com/keyboard_shortcuts.html)
+- [Bantuan Google Chromebook - Gunakan Pembaca Layar Bawaan](https://support.google.com/chromebook/answer/7031755?hl=id)
+- [Referesi Pintasan _Keyboard_ ChromeVox Classic](http://www.chromevox.com/keyboard_shortcuts.html)

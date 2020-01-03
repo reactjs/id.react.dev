@@ -1,12 +1,12 @@
 ---
 id: test-renderer
-title: Uji Renderer
+title: Test Renderer
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Pengimporan**
+**Cara Import**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
@@ -18,7 +18,7 @@ const TestRenderer = require('react-test-renderer'); // ES5 dengan npm
 
 *Package* ini menyediakan *renderer* React  yang dapat digunakan untuk me-*render* komponen React menjadi objek JavaScript murni, tanpa bergantung pada DOM atau bahasa *native* pada telepon seluler.
 
-Pada dasarnya, *package* ini membuat kemudahan untuk mengambil potret awal dari hierarki tampilan *platform* (mirip dengan pohon DOM) yang di-*render* oleh React DOM atau komponen React Native tanpa menggunakan *browser* atau [jsdom](https://github.com/tmpvar/jsdom).
+Pada dasarnya, *package* ini memberi kemudahan untuk mengambil *snapshot* dari hierarki tampilan *platform* (mirip dengan pohon DOM) yang di-*render* oleh React DOM atau komponen React Native tanpa menggunakan *browser* atau [jsdom](https://github.com/tmpvar/jsdom).
 
 Contoh:
 
@@ -39,9 +39,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-Anda dapat menggunakan fitur pengujian potret awal dari Jest untuk menyimpan salinan pohon JSON ke *file* secara otomatis dan memeriksa bahwa pengujian Anda tidak berubah: [Pelajari lebih lanjut](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Anda dapat menggunakan fitur *snapshot testing* dari Jest untuk menyimpan salinan pohon JSON ke *file* secara otomatis dan melakukan pengecekan di tes anda terhadap adanya perubahan (struktur): [Pelajari lebih lanjut](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
-Anda juga dapat melewati ke bagian keluaran untuk menemukan *node* tertentu dan membuat pernyataan tentang *node - node* tersebut.
+Anda juga dapat melintasi ke bagian keluaran untuk menemukan *node* tertentu dan membuat perbandingan terhadap *node-node* tersebut.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -71,6 +71,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 ### TestRenderer {#testrenderer}
 
 * [`TestRenderer.create()`](#testrenderercreate)
+* [`TestRenderer.act()`](#testrendereract)
 
 ### TestRenderer instance {#testrenderer-instance}
 
@@ -103,7 +104,37 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-Membuat *instance* `TestRenderer` dengan mengoper elemen React. Hal ini tidak menggunakan DOM asli, tetapi masih sepenuhnya me-*render* pohon komponen ke dalam memori sehingga Anda dapat membuat sebuah pernyataan. *Instance* yang dihasilkan memiliki *method* dan *property* sebagai berikut.
+Membuat *instance* `TestRenderer` dengan mengoper elemen React. Fungsi ini tidak menggunakan DOM asli, tetapi masih sepenuhnya me-*render* diagram komponen ke dalam memori sehingga Anda masih dapat membandingkannya. Mengembalikan sebuah [*instance* TestRenderer](#testrenderer-instance).
+
+### `TestRenderer.act()` {#testrendereract}
+
+```javascript
+TestRenderer.act(callback);
+```
+
+Mirip seperti [fungsi pembantu `act()` dari `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` menyiapkan komponen untuk dibandingkan. Gunakan versi `act()` ini untuk membungkus panggilan ke `TestRenderer.create` dan `testRenderer.update`.
+
+```javascript
+import {create, act} from 'react-test-renderer';
+import App from './app.js'; // Komponen yang akan dites
+
+// merender komponen
+let root; 
+act(() => {
+  root = create(<App value={1}/>)
+});
+
+// membuat perbandingan dengan root 
+expect(root.toJSON()).toMatchSnapshot();
+
+// memperbarui dengan prop berbeda
+act(() => {
+  root = root.update(<App value={2}/>);
+})
+
+// membuat perbandingan dengan root 
+expect(root.toJSON()).toMatchSnapshot();
+```
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 
@@ -119,7 +150,7 @@ Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Pohon in
 testRenderer.toTree()
 ```
 
-Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Tidak seperti `toJSON ()`, representasinya lebih detail daripada yang dihasilkan oleh `toJSON ()`, dan termasuk komponen yang dibuat pengguna. Anda mungkin tidak memerlukan *method* ini kecuali Anda sedang membuat *library* pernyataan sendiri di atas uji *renderer*.
+Menghasilkan objek yang merepresentasikan diageam yang telah di-*render*. Tidak seperti `toJSON ()`, representasinya lebih detail daripada yang dihasilkan oleh `toJSON ()`, dan termasuk komponen yang dibuat pengguna. Anda mungkin tidak memerlukan *method* ini kecuali Anda sedang membuat *library* pernyataan sendiri di atas uji *renderer*.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -151,7 +182,7 @@ Menghasilkan *instance* yang sesuai dengan elemen *root*, jika tersedia. Hal ini
 testRenderer.root
 ```
 
-Menghasilkan objek *root* "uji *instance*"  yang berguna untuk membuat pernyataan tentang *node* tertentu di pohon. Anda dapat menggunakannya untuk menemukan "uji *instance*" lainnya secara lebih dalam di bawah ini.
+Menghasilkan objek *root* "*test instance*"  yang berguna untuk membuat pernyataan tentang *node* tertentu di pohon. Anda dapat menggunakannya untuk menemukan "*test instance*" lainnya secara lebih dalam di bawah ini.
 
 ### `testInstance.find()` {#testinstancefind}
 
@@ -159,7 +190,7 @@ Menghasilkan objek *root* "uji *instance*"  yang berguna untuk membuat pernyataa
 testInstance.find(test)
 ```
 
-Menemukan turunan tunggal uji *instance* yang mana `test(testInstance)` menghasilkan nilai `true`. Jika `test(testInstance)` tidak menghasilkan nilai `true` untuk satu uji *instance*, hal ini akan melemparkan *error*.
+Menemukan turunan tunggal *test instance* yang mana `test(testInstance)` menghasilkan nilai `true`. Jika `test(testInstance)` tidak menghasilkan nilai `true` untuk satu *test instance*, fungsi ini akan melemparkan *error*.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -167,7 +198,7 @@ Menemukan turunan tunggal uji *instance* yang mana `test(testInstance)` menghasi
 testInstance.findByType(type)
 ```
 
-Menemukan turunan tunggal uji *instance* dengan berdasarkan `type` yang disediakan. Jika tidak ada satupun uji *instance* dengan `type` yang disediakan, hal ini akan melemparkan *error*.
+Menemukan turunan tunggal dari *test instance* berdasarkan `type` yang disediakan. Jika tidak ada satupun *test instance* dengan `type` yang disediakan, fungsi ini akan melemparkan *error*.
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -175,7 +206,7 @@ Menemukan turunan tunggal uji *instance* dengan berdasarkan `type` yang disediak
 testInstance.findByProps(props)
 ```
 
-Menemukan turunan tunggal uji *instance* dengan berdasarkan `props` yang disediakan. Jika tidak ada satupun uji *instance* dengan `props` yang disediakan, hal ini akan melemparkan *error*.
+Menemukan turunan tunggal *test instance* dengan berdasarkan `props` yang disediakan. Jika tidak ada satupun *test instance* dengan `props` yang disediakan, hal ini akan melemparkan *error*.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -183,7 +214,7 @@ Menemukan turunan tunggal uji *instance* dengan berdasarkan `props` yang disedia
 testInstance.findAll(test)
 ```
 
-Menemukan semua turunan uji *instance* yang mana `test(testInstance)` menghasilkan nilai `true`.
+Menemukan semua turunan *test instance* yang mana `test(testInstance)` menghasilkan nilai `true`.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -191,7 +222,7 @@ Menemukan semua turunan uji *instance* yang mana `test(testInstance)` menghasilk
 testInstance.findAllByType(type)
 ```
 
-Menemukan semua turunan uji *instance* dengan berdasarkan `type` yang disediakan.
+Menemukan semua turunan *test instance* dengan berdasarkan `type` yang disediakan.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -199,7 +230,7 @@ Menemukan semua turunan uji *instance* dengan berdasarkan `type` yang disediakan
 testInstance.findAllByProps(props)
 ```
 
-Menemukan semua turunan uji *instance* dengan berdasarkan `props` yang disediakan.
+Menemukan semua turunan *test instance* dengan berdasarkan `props` yang disediakan.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -207,7 +238,7 @@ Menemukan semua turunan uji *instance* dengan berdasarkan `props` yang disediaka
 testInstance.instance
 ```
 
-*Instance* dari komponen yang ada di uji *instance*. Hanya tersedia untuk *class component*, karena *function component* tidak memiliki *instance*. Hal Ini sama dengan nilai `this` di dalam komponen yang diberikan.
+*Instance* dari komponen yang ada di *test instance*. Hanya tersedia untuk *class component*, karena *function component* tidak memiliki *instance*. Hal Ini sama dengan nilai `this` di dalam komponen yang diberikan.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -215,7 +246,7 @@ testInstance.instance
 testInstance.type
 ```
 
-Jenis dari komponen yang ada di uji *instance*. Sebagai contoh, komponen `<Button />` memiliki tipe `Button`.
+Jenis dari komponen yang ada di *test instance*. Sebagai contoh, komponen `<Button />` memiliki tipe `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -223,7 +254,7 @@ Jenis dari komponen yang ada di uji *instance*. Sebagai contoh, komponen `<Butto
 testInstance.props
 ```
 
-*Props* yang ada di uji *instance*. Sebagai contoh, komponen `<Button size="small" />` memiliki `{size: 'small'}` sebagai *props*.
+*Props* yang ada di *test instance*. Sebagai contoh, komponen `<Button size="small" />` memiliki `{size: 'small'}` sebagai *props*.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -231,7 +262,7 @@ testInstance.props
 testInstance.parent
 ```
 
-Induk uji *instance* dari uji *instance* ini.
+Induk *test instance* dari *test instance* ini.
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -239,7 +270,7 @@ Induk uji *instance* dari uji *instance* ini.
 testInstance.children
 ```
 
-Anak uji *instance* dari uji *instance* ini.
+Anak *test instance* dari *test instance* ini.
 
 ## Gagasan {#ideas}
 
