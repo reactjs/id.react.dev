@@ -61,7 +61,7 @@ class CodeExample extends Component {
         {loaded ? (
           <CodeEditor code={code} containerNodeID={containerNodeID} />
         ) : (
-          <h4>Loading code example...</h4>
+          <h4>Memuat contoh kode...</h4>
         )}
       </div>
     );

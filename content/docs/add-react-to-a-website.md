@@ -1,6 +1,6 @@
 ---
 id: add-react-to-a-website
-title: Add React to a Website
+title: Menambahkan React pada Sebuah Situs
 permalink: docs/add-react-to-a-website.html
 redirect_from:
   - "docs/add-react-to-an-existing-app.html"
@@ -8,127 +8,128 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
-Use as little or as much React as you need.
+Anda dapat menggunakan React sesedikit atau sebanyak mungkin sesuai kebutuhan Anda.
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need**. Perhaps you only want to add some "sprinkles of interactivity" to an existing page. React components are a great way to do that.
+React telah didesain dari awal untuk adopsi secara bertahap, dan **Anda dapat menggunakan React sesedikit atau sebanyak mungkin sesuai kebutuhan Anda**. Mungkin Anda hanya ingin menambahkan "sedikit interaktivitas" di laman yang sudah ada. Komponen React adalah cara yang tepat untuk melakukan hal tersebut.
 
-The majority of websites aren't, and don't need to be, single-page apps. With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+Mayoritas situs bukan, dan tidak perlu, untuk bersifat *Single Page Application*. Dengan **beberapa baris kode dan tanpa *build tool***, Anda dapat mencoba React di bagian kecil dari situs Anda. Anda kemudian dapat secara bertahap memperluas penggunaannya, atau membiarkannya berada di beberapa *widget* yang dinamis saja.
 
 ---
 
-- [Add React in One Minute](#add-react-in-one-minute)
-- [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
+- [Tambahkan React Dalam Satu Menit](#add-react-in-one-minute)
+- [Opsional: Mencoba React Dengan JSX](#optional-try-react-with-jsx) (no bundler necessary!)
 
-## Add React in One Minute {#add-react-in-one-minute}
+## Tambahkan React Dalam Satu Menit {#add-react-in-one-minute}
 
-In this section, we will show how to add a React component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
+Pada bagian ini, kami akan menunjukkan bagaimana Anda dapat menambahkan sebuah komponen React ke laman HTML yang sudah ada. Anda dapat mengikuti dengan situs Anda sendiri, atau dengan membuat sebuah berkas HTML kosong untuk berlatih.
 
-There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
+Di sini tidak akan ada alat yang membingungkan atau persyaratan pemasangan apapun -- **untuk menyelesaikan bagian ini, Anda hanya butuh koneksi internet, dan semenit dari waktu Anda**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Opsional: [Unduh contoh lengkap (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
+### Langkah 1: Tambahkan sebuah Kontainer DOM ke dalam HTML {#step-1-add-a-dom-container-to-the-html}
 
-First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
+Pertama, buka laman HTML yang ingin Anda sunting. Tambahkan sebuah *tag* `<div>` kosong untuk menandai di mana Anda ingin menampilkan sesuatu dengan React. Sebagai contoh:
 
 ```html{3}
-<!-- ... existing HTML ... -->
+<!-- ... HTML yang sudah ada ... -->
 
 <div id="like_button_container"></div>
 
-<!-- ... existing HTML ... -->
+<!-- ... HTML yang sudah ada ... -->
 ```
 
-We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
+Kita memberikan atribut HTML `id` yang unik kepada `<div>` ini. Hal ini memungkinkan kita untuk menemukannya dari kode JavaScript nantinya dan menampilkan sebuah komponen React di dalamnya.
 
 >Tip
 >
->You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
+>Anda dapat menaruh sebuah `<div>` kontainer seperti ini **di mana saja** di dalam *tag* `<body>`. Anda dapat memiliki sebanyak apapun kontainer DOM independen dalam satu laman sesuai yang Anda butuhkan. Mereka biasanya kosong -- React akan menimpa konten apapun yang berada di dalam kontainer DOM.
 
-### Step 2: Add the Script Tags {#step-2-add-the-script-tags}
+### Langkah 2: Tambahkan Tag Script {#step-2-add-the-script-tags}
 
-Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
+Berikutnya, tambahkan tiga *tag* `<script>` ke laman HTML tepat sebelum penutup *tag* `<body>`:
 
 ```html{5,6,9}
-  <!-- ... other HTML ... -->
+  <!-- ... HTML lainnya ... -->
 
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <!-- Muat React. -->
+  <!-- Catatan: ketika men-deploy (ke production), timpa "development.js" menjadi "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- Load our React component. -->
+  <!-- Muat komponen React kita. -->
   <script src="like_button.js"></script>
 
 </body>
 ```
 
-The first two tags load React. The third one will load your component code.
+*Tag* pertama dan kedua akan memuat React. *Tag* ketiga akan memuat kode komponen Anda.
 
-### Step 3: Create a React Component {#step-3-create-a-react-component}
 
-Create a file called `like_button.js` next to your HTML page.
+### Langkah 3: Buat Sebuah Komponen React {#step-3-create-a-react-component}
 
-Open **[this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
+Buat sebuah berkas bernama `like_button.js` tepat disebelah berkas laman HTML Anda.
+
+Buka **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** dan *paste*-kan kode tersebut ke berkas yang baru saja Anda buat.
 
 >Tip
 >
->This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
+>Kode ini mendefinisikan sebuah komponen React bernama `LikeButton`. Jangan khawatir jika Anda belum memahaminya -- kita akan membahas blok-blok pembangun React nantinya di [tutorial langsung](/tutorial/tutorial.html) dan [panduan konsep utama](/docs/hello-world.html). Untuk sekarang, mari kita fokus untuk membuatnya muncul di layar terlebih dahulu!
 
-After **[the starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+Setelah **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, tambahkan dua barus di bawah berkas `like_button.js`:
 
 ```js{3,4}
-// ... the starter code you pasted ...
+// ... kode permulaan yang telah Anda paste ...
 
 const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
+Kedua baris kode di atas akan menemukan `<div>` yang telah kita tambahkan ke HTML kita di langkah pertama, kemudian menampilkan komponen React tombol "Like" kita di dalamnya.
 
-### That's It! {#thats-it}
+### Itu Saja! {#thats-it}
 
-There is no step four. **You have just added the first React component to your website.**
+Tidak ada langkah ke empat. **Anda baru saja menambahkan komponen React pertama pada situs Anda**
 
-Check out the next sections for more tips on integrating React.
+Kunjungi bagian-bagian berikutnya untuk tips lebih lanjut mengenai mengintegrasikan React.
 
-**[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
+**[Lihat contoh kode sumber lengkapnya](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
-### Tip: Reuse a Component {#tip-reuse-a-component}
+### Tip: Penggunaan Ulang Sebuah Komponen {#tip-reuse-a-component}
 
-Commonly, you might want to display React components in multiple places on the HTML page. Here is an example that displays the "Like" button three times and passes some data to it:
+Umumnya, Anda mungkin ingin menampilkan komponen React di berbagai tempat di laman HTML. Ini adalah sebuah contoh untuk menampilkan tombol "Like" tiga kali dan mengoperkan data ke dalamnya.
 
-[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
+[Lihat contoh kode sumber lengkapnya](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
->Note
+>Catatan
 >
->This strategy is mostly useful while React-powered parts of the page are isolated from each other. Inside React code, it's easier to use [component composition](/docs/components-and-props.html#composing-components) instead.
+>Strategi ini akan lebih berguna untuk penggunaan React di bagian-bagian laman yang terisolasi satu sama lain. Di dalam kode React sendiri, akan lebih mudah menggunakan [komposisi komponen](/docs/components-and-props.html#composing-components).
 
-### Tip: Minify JavaScript for Production {#tip-minify-javascript-for-production}
+### Tip: Minifikasi JavaScript untuk Production {#tip-minify-javascript-for-production}
 
-Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
+Sebelum men-*deploy* situs Anda ke *production*, berhati-hatilah terhadap JavaScript yang belum diminifikasi yang dapat secara signifikan memperlambat laman untuk pengguna Anda.
 
-If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
+Jika Anda telah meminifikasi *script* aplikasi, **situs Anda telah siap untuk *production*** jika Anda telah memastikan HTML yang ter-*deploy* memuat versi React yang berakhiran dengan `production.min.js`:
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+Jika Anda belum memiliki proses minifikasi untuk *script* Anda, [berikut salah satu cara untuk mempersiapkannya](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
-## Optional: Try React with JSX {#optional-try-react-with-jsx}
+## Opsional: Mencoba React dengan JSX {#optional-try-react-with-jsx}
 
-In the examples above, we only relied on features that are natively supported by the browsers. This is why we used a JavaScript function call to tell React what to display:
+Pada contoh di atas, kita hanya bergantung pada fitur-fitur yang secara langsung didukung oleh *browser*. Inilah alasan mengapa kita menggunakan sebuah fungsi JavaScript untuk memberitahukan React apa yang akan ditampilkan:
 
 ```js
 const e = React.createElement;
 
-// Display a "Like" <button>
+// Tampilkan sebuah <button> "Like"
 return e(
   'button',
   { onClick: () => this.setState({ liked: true }) },
@@ -136,10 +137,10 @@ return e(
 );
 ```
 
-However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
+Namun, React juga menawarkan opsi untuk menggunakan [JSX](/docs/introducing-jsx.html):
 
 ```js
-// Display a "Like" <button>
+// Tampiilkan sebuah <button>-"Like"
 return (
   <button onClick={() => this.setState({ liked: true })}>
     Like
@@ -147,56 +148,56 @@ return (
 );
 ```
 
-These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code -- both with React and with other libraries.
+Kedua potongan kode di atas akan menghasilkan hal yang sama. Meskipun **JSX bersifat [opsional sepenuhnya](/docs/react-without-jsx.html)**, banyak orang yang menganggapnya berguna untuk menuliskan kode antarmuka pengguna -- dengan menggunakan React maupun *library* lainnya.
 
-You can play with JSX using [this online converter](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
+Anda dapat bermain-main dengan JSX menggunakan [konverter daring ini](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
 
-### Quickly Try JSX {#quickly-try-jsx}
+### Mencoba JSX Secara Cepat {#quickly-try-jsx}
 
-The quickest way to try JSX in your project is to add this `<script>` tag to your page:
+Cara tercepat untuk mencoba JSX di proyek Anda adalah dengan menambahkan *tag* `<script>` pada laman Anda:
 
 ```html
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) that you can download and play with.
+Sekarang Anda dapat menggunakan JSX di *tag* `<script>` manapun dengan menambahkan atribut `type="text/babel"`. Berikut adalah [sebuah contoh berkas HTML dengan JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) yang dapat Anda unduh dan mainkan.
 
-This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
+Pendekatan ini cukup untuk mempelajari dan membuat contoh-contoh simpel. Namun, cara ini akan membuat situs Anda lambat dan **tidak cocok untuk *production***. Ketika Anda siap untuk melangkah lebih lanjut, hapus *tag* `<script>` dan atribut `type="text/babel"` yang baru saja Anda tambahkan. Alih-alih menggunakan cara tadi, di bagian berikutnya Anda akan menyiapkan preprosesor JSX untuk mengkonversi *tag* `<script>` secara otomatis.
 
-### Add JSX to a Project {#add-jsx-to-a-project}
+### Menambahkan JSX pada Sebuah Proyek {#add-jsx-to-a-project}
 
-Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
+Menambahkan JSX pada sebuah proyek tidak memerlukan alat-alat rumit seperti *bundler* atau server *development*. Sebenarnya, menambahkan JSX **sangat mirip dengan menambahkan sebuah preprosesor CSS.** Satu-satunya prasyarat adalah Anda harus memiliki [Node.js](https://nodejs.org/) terpasang di komputer Anda.
 
-Go to your project folder in the terminal, and paste these two commands:
+Masuk ke *folder* proyek Anda di terminal, dan *paste*-kan kedua perintah di bawah:
 
-1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Step 2:** Run `npm install babel-cli@6 babel-preset-react-app@3`
+1. **Langkah 1:** Jalankan `npm init -y` (jika perintah ini gagal, [berikut cara pembetulannya](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+2. **Langkah 2:** Jalankan `npm install babel-cli@6 babel-preset-react-app@3`
 
 >Tip
 >
->We're **using npm here only to install the JSX preprocessor;** you won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
+>Kita **menggunakan npm di sini hanya untuk memasang preprosesor JSX;** Anda tidak akan membutuhkannya untuk hal-hal lainnya. Baik React maupun kode aplikasi Anda akan tetap berada di *tag* `<script>` tanpa perlu perubahan.
 
-Congratulations! You just added a **production-ready JSX setup** to your project.
+Selamat! Anda baru saja menambahkan sebuah ***setup* JSX yang siap untuk *production*** pada proyek Anda.
 
 
-### Run JSX Preprocessor {#run-jsx-preprocessor}
+### Menjalankan Preprosesor JSX {#run-jsx-preprocessor}
 
-Create a folder called `src` and run this terminal command:
+Buat sebuah *folder* yang bernama `src` dan jalankan perintah terminal di bawah:
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
->Note
+>Catatan
 >
->`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` di atas bukan kesalahan pengetikan -- ia adalah sebuah [*package runner* yang terpasang bersama npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 >
->If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+> Jika Anda melihat pesan *error* yang mengatakan "You have mistakenly installed the `babel` package", Anda mungkin melewatkan [langkah sebelumnya](#add-jsx-to-a-project). Lakukan langkah tersebut di *folder* yang sama, kemudian ulangi lagi.
 
-Don't wait for it to finish -- this command starts an automated watcher for JSX.
+Jangan menunggu perintah untuk selesai -- perintah ini menjalankan sebuah *watcher* otomatis untuk JSX.
 
-If you now create a file called `src/like_button.js` with this **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+Jika sekarang Anda membuat sebuah berkas bernama `src/like_button.js` dengan **[kode permulaan JSX](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** ini, *watcher* akan membuat sebuah `like_button.js` yang telah dipreproses berbentuk sebuah kode JavaScript biasa yang siap dijalankan di *browser*. Ketika Anda menyunting berkas sumber dengan JSX, proses transformasi akan berjalan kembali secara otomatis.
 
-As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](https://babeljs.io/docs/en/babel-cli/).
+Sebagai bonus, cara ini juga memungkinkan Anda menggunakan fitur-fitur sintaksis JavaScript modern seperti kelas (*class*) tanpa khawatir merusak dukungan terhadap *browser* yang lebih lama. Alat yang baru saja kita gunakan disebut Babel, dan Anda dapat mempelajarinya lebih lanjut dari [dokumentasinya](https://babeljs.io/docs/en/babel-cli/).
 
-If you notice that you're getting comfortable with build tools and want them to do more for you, [the next section](/docs/create-a-new-react-app.html) describes some of the most popular and approachable toolchains. If not -- those script tags will do just fine!
+Jika Anda merasa mulai nyaman menggunakan *build tool* dan menginginkan mereka untuk melakukan hal-hal lain, [bagian berikutnya](/docs/create-a-new-react-app.html) menjelaskan beberapa dari *toolchain* yang populer dan cukup mudah digunakan. Jika tidak -- *tag-tag* *script* tadi juga tidak masalah!

@@ -1,22 +1,22 @@
 ---
 id: hooks-reference
-title: Hooks API Reference
+title: Referensi API Hooks
 permalink: docs/hooks-reference.html
 prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* merupakan fitur baru pada React 16.8. *Hooks* memungkinkan Anda menggunakan *state* dan fitur React lainnya tanpa membuat sebuah kelas.
 
-This page describes the APIs for the built-in Hooks in React.
+Halaman ini menjelaskan tentang API untuk *Hooks* bawaan di React.
 
-If you're new to Hooks, you might want to check out [the overview](/docs/hooks-overview.html) first. You may also find useful information in the [frequently asked questions](/docs/hooks-faq.html) section.
+Jika anda baru menggunakan *Hooks*, anda mungkin ingin melihat [gambaran umum](/docs/hooks-overview.html) terlebih dahulu. Anda juga dapat menemukan informasi yang berguna di bagian [pertanyaan yang sering diajukan](/docs/hooks-faq.html).
 
-- [Basic Hooks](#basic-hooks)
+- [*Hooks* Dasar](#basic-hooks)
   - [`useState`](#usestate)
   - [`useEffect`](#useeffect)
   - [`useContext`](#usecontext)
-- [Additional Hooks](#additional-hooks)
+- [*Hooks* Tambahan](#additional-hooks)
   - [`useReducer`](#usereducer)
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
@@ -25,7 +25,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useLayoutEffect`](#uselayouteffect)
   - [`useDebugValue`](#usedebugvalue)
 
-## Basic Hooks {#basic-hooks}
+## *Hooks* Dasar {#basic-hooks}
 
 ### `useState` {#usestate}
 
@@ -33,21 +33,25 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
 const [state, setState] = useState(initialState);
 ```
 
-Returns a stateful value, and a function to update it.
+Mengembalikan sebuah nilai *stateful*, dan sebuah fungsi untuk memperbaruinya.
 
-During the initial render, the returned state (`state`) is the same as the value passed as the first argument (`initialState`).
+Selama *render* awal, *state* yang dikembalikan (`state`) sama dengan nilai yang telah dioper pada argumen pertama (`initialState`).
 
-The `setState` function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+Fungsi `setState` digunakan untuk memperbarui *state*. Fungsi tersebut menerima sebuah nilai *state* yang baru dan meminta sebuah *render* ulang pada komponen tersebut.
 
 ```js
 setState(newState);
 ```
 
-During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
+Selama *render* ulang berikutnya, nilai pertama yang dikembalikan oleh `useState` akan selalu menjadi *state* yang paling terbaru setelah pembaruan diterapkan.
 
-#### Functional updates {#functional-updates}
+>Catatan
+>
+>React menjamin bahwa identitas fungsi `setState` stabil dan tidak akan berubah saat *render* ulang. Inilah sebabnya mengapa aman untuk diabaikan dari daftar *dependency* `useEffect` atau `useCallback`.
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+#### Pembaruan fungsional {#functional-updates}
+
+Jika *state* baru dikomputasi menggunakan *state* sebelumnya, Anda dapat mengoper sebuah fungsi ke `setState`. Fungsi tersebut akan menerima nilai sebelumnya, dan mengembalikan sebuah nilai yang telah diperbarui. Berikut adalah contoh komponen penghitung yang menggunakan kedua bentuk `setState`:
 
 ```js
 function Counter({initialCount}) {
@@ -56,18 +60,18 @@ function Counter({initialCount}) {
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
   );
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to 0.
+Tombol "+" dan "-" menggunakan bentuk fungsional, karena nilai yang telah diperbarui didasari oleh nilai sebelumnya. Tetapi tombol "Reset" menggunakan bentuk normal, karena tombol tersebut selalu mengatur perhitungan kembali ke nilai awal.
 
-> Note
+> Catatan
 >
-> Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:
+> Tidak seperti metode `setState` yang dapat ditemukan dalam *class components*, `useState` tidak secara otomatis menggabungkan obyek-obyek yang telah diperbaruinya. Anda bisa meniru perilaku ini dengan menggabungkan fungsi *updater* dengan *object spread syntax*:
 >
 > ```js
 > setState(prevState => {
@@ -76,11 +80,11 @@ The "+" and "-" buttons use the functional form, because the updated value is ba
 > });
 > ```
 >
-> Another option is `useReducer`, which is more suited for managing state objects that contain multiple sub-values.
+> Pilihan lainnya adalah `useReducer`, yang lebih cocok untuk mengelola obyek-obyek *state* yang berisi beberapa sub nilai.
 
 #### Lazy initial state {#lazy-initial-state}
 
-The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
+Argumen `initialState` adalah *state* yang digunakan selama *render* awal. Dalam *render* berikutnya, argumen tersebut diabaikan. Jika *state* awal adalah hasil dari perhitungan yang "mahal", mungkin Anda dapat menyediakan sebuah fungsi sebagai gantinya, yang akan dijalankan hanya pada *render* awal:
 
 ```js
 const [state, setState] = useState(() => {
@@ -89,9 +93,11 @@ const [state, setState] = useState(() => {
 });
 ```
 
-#### Bailing out of a state update {#bailing-out-of-a-state-update}
+#### Pengabaian dari sebuah pembaruan *state* {#bailing-out-of-a-state-update}
 
-If you update a State Hook to the same value as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+Jika Anda memperbarui sebuah *State Hook* ke nilai yang sama dengan nilai *state* saat ini, React akan mengabaikannya tanpa me-*render* turunannya atau mengaktifkan efek. (React menggunakan [`Object.is` algoritma perbandingan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+
+Perlu diperhatikan bahwa React mungkin masih perlu me-*render* lagi komponen tersebut sebelum diabaikan. Itu seharusnya tidak perlu menjadi perhatian karena React tidak perlu masuk "lebih dalam" ke dalam bagan. Jika Anda melakukan perhitungan "mahal" saat me-*render*, Anda dapat mengoptimalkannya dengan `useMemo`.
 
 ### `useEffect` {#useeffect}
 
@@ -99,17 +105,17 @@ If you update a State Hook to the same value as the current state, React will ba
 useEffect(didUpdate);
 ```
 
-Accepts a function that contains imperative, possibly effectful code.
+Menerima sebuah fungsi yang berisi kode imperatif, juga kode yang mungkin mengandung efek samping.
 
-Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React's _render phase_). Doing so will lead to confusing bugs and inconsistencies in the UI.
+Mutasi, berlangganan, pengatur waktu, mencatat, dan efek samping lainnya tidak diperbolehkan di dalam bagian utama dari sebuah *function component* (disebut sebagai _render phase_ pada React). Dengan melakukan hal tersebut akan menyebabkan *bugs* dan ketidakkonsistenan pada UI.
 
-Instead, use `useEffect`. The function passed to `useEffect` will run after the render is committed to the screen. Think of effects as an escape hatch from React's purely functional world into the imperative world.
+Sebagai gantinya, gunakan `useEffect`. Fungsi yang dioper ke `useEffect` akan berjalan setelah *render* dilakukan ke layar. Pikirkan efek sebagai jalan keluar dari dunia fungsional murni pada React ke dunia imperatif.
 
-By default, effects run after every completed render, but you can choose to fire it [only when certain values have changed](#conditionally-firing-an-effect).
+Secara bawaan, efek berjalan setelah setiap *render* selesai, tetapi Anda dapat memilih untuk memicu efek tersebut [hanya ketika nilai-nilai tertentu telah berubah](#conditionally-firing-an-effect).
 
-#### Cleaning up an effect {#cleaning-up-an-effect}
+#### Membersihkan sebuah efek {#cleaning-up-an-effect}
 
-Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription:
+Seringkali, efek-efek menciptakan sumber daya yang perlu dibersihkan sebelum komponen meninggalkan layar, seperti sebuah langganan atau pengatur waktu. Untuk melakukan ini, fungsi yang dioper ke `useEffect` mungkin dapat mengembalikan sebuah fungsi pembersihan. Misalnya, untuk membuat sebuah langganan:
 
 ```js
 useEffect(() => {
@@ -121,23 +127,23 @@ useEffect(() => {
 });
 ```
 
-The clean-up function runs before the component is removed from the UI to prevent memory leaks. Additionally, if a component renders multiple times (as they typically do), the **previous effect is cleaned up before executing the next effect**. In our example, this means a new subscription is created on every update. To avoid firing an effect on every update, refer to the next section.
+Fungsi pembersihan berjalan sebelum komponen dihapus dari UI untuk mencegah kebocoran memori. Selain itu, jika komponen me-*render* berkali-kali (seperti biasanya), **efek sebelumnya dibersihkan sebelum menjalankan efek selanjutnya**. Dalam contoh ini, sebuah langganan baru dibuat pada setiap pembaruan. Untuk menghindari pengaktifan efek pada setiap pembaruan, lihat bagian selanjutnya.
 
-#### Timing of effects {#timing-of-effects}
+#### Pengaturan waktu efek {#timing-of-effects}
 
-Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
+Tidak seperti `componentDidMount` dan `componentDidUpdate`, fungsi dioper ke `useEffect` aktif **setelah** tata letak dan menggambar, selama *event* yang ditunda. Ini membuatnya cocok untuk kebanyakan efek samping yang umum, seperti mengatur langganan dan *event handlers*, karena sebagian besar jenis pekerjaan tidak boleh menghalangi browser untuk memperbarui layar.
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
+Namun, tidak semua efek dapat ditangguhkan. Misalnya, mutasi DOM yang terlihat oleh pengguna harus diaktifkan secara *synchronous* sebelum menggambar berikutnya sehingga pengguna tidak perlu melihat visual yang tidak konsisten. (Perbedaannya secara konseptual mirip dengan *event listeners* pasif melawan *event listeners* aktif.) Untuk jenis efek ini, React menyediakan satu *Hook* tambahan yang disebut [`useLayoutEffect`](#uselayouteffect). Ini memiliki tanda yang sama dengan `useEffect`, dan hanya berbeda ketika itu dijalankan.
 
-Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
+Meskipun `useEffect` ditangguhkan sampai setelah browser digambar, `useEffect` dijamin akan diaktifkan sebelum *render* baru. React akan selalu membanjiri efek render sebelumnya, sebelum memulai sebuah pembaruan baru.
 
-#### Conditionally firing an effect {#conditionally-firing-an-effect}
+#### Memicu sebuah efek secara bersyarat {#conditionally-firing-an-effect}
 
-The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its inputs changes.
+Perilaku efek secara bawaan adalah dengan memicu efek setelah setiap *render* selesai. Dengan begitu efek selalu diciptakan kembali jika salah satu dari beberapa *dependency*-nya berubah.
 
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
+Namun, ini mungkin terlalu berlebihan dalam beberapa kasus, seperti contoh sebuah langganan pada bagian sebelumnya. Kita tidak perlu membuat sebuah langganan baru pada setiap pembaruan, hanya jika `source` *props* telah berubah.
 
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
+Untuk mengimplementasikan ini, oper sebuah argumen kedua ke `useEffect` yang merupakan senarai nilai yang efeknya bergantung padanya. Contoh terbaru akan terlihat seperti berikut:
 
 ```js
 useEffect(
@@ -151,27 +157,92 @@ useEffect(
 );
 ```
 
-Now the subscription will only be recreated when `props.source` changes.
+Sekarang langganan tersebut hanya akan dibuat ulang ketika `props.source` berubah.
 
-Passing in an empty array `[]` of inputs tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and clean up on unmount; it won't run on updates.
-
-> Note
+>Catatan
 >
-> The array of inputs is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+>Jika Anda menggunakan optimisasi ini, pastikan senarai termasuk **semua nilai dari lingkup komponen (seperti *props* dan *state*) yang berubah seiring waktu dan yang digunakan oleh efek**. Jika tidak, kode Anda akan merujuk pada nilai lama dari *renders* sebelumnya. Pelajari lebih lanjut tentang [bagaimana cara menangani fungsi](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) dan apa yang harus dilakukan ketika [nilai senarai terlalu sering berubah](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>
+>Jika Anda ingin menjalankan efek dan membersihkannya hanya sekali (saat *mount* dan *unmount*), Anda dapat mengoper senarai kosong (`[]`) sebagai argumen kedua. Ini memberi tahu React bahwa efek Anda tidak bergantung pada nilai apapun dari *props* atau *state*, sehingga efek itu tidak perlu dijalankan kembali. Ini tidak ditangani sebagai kasus khusus -- ini mengikuti secara langsung bagaimana *dependencies* senarai selalu bekerja.
+>
+>Jika Anda mengoper senarai kosong (`[]`), *props* dan *state* di dalam efek akan selalu memiliki nilai awal. Ketika mengoper `[]` dimana argumen kedua akan lebih dekat dengan model mental `componentDidMount` dan` componentWillUnmount` yang sudah dikenal, biasanya ada [solusi](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) [lebih baik](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) untuk menghindari menjalankan efek terlalu sering. Juga, jangan lupa bahwa React menunda menjalankan `useEffect` sampai setelah browser digambar, jadi, melakukan pekerjaan ekstra tidak terlalu menjadi masalah.
+>
+>
+> Kami sarankan untuk menggunakan aturan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari paket [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) kami. Itu akan memberi peringatan ketika *dependencies* ditentukan secara tidak benar dan akan menyarankan sebuah perbaikan.
+
+Senarai dari *dependencies* tidak dioper sebagai argumen ke fungsi efek. Meskipun demikian, secara konseptual itulah yang mereka wakili: setiap nilai yang direferensikan di dalam fungsi efek juga harus muncul dalam senarai *dependencies*. Di masa depan, kompiler yang cukup canggih dapat membuat senarai ini secara otomatis.
 
 ### `useContext` {#usecontext}
 
 ```js
-const context = useContext(Context);
+const value = useContext(MyContext);
 ```
 
-Accepts a context object (the value returned from `React.createContext`) and returns the current context value, as given by the nearest context provider for the given context.
+Menerima sebuah obyek konteks (nilai yang dikembalikan dari `React.createContext`) dan mengembalikan nilai konteks saat ini untuk konteks tersebut. Nilai konteks saat ini ditentukan oleh `value` dari *prop* terdekat dari `<MyContext.Provider>` diatas komponen yang dipanggil pada bagan.
 
-When the provider updates, this Hook will trigger a rerender with the latest context value.
+Ketika `<MyContext.Provider>` terdekat diatas pembaruan komponen, *Hook* ini akan memicu *render* ulang dengan `value` dari konteks terakhir yang dioper ke penyedia `MyContext` tersebut.
 
-## Additional Hooks {#additional-hooks}
+Jangan lupa bahwa argumen untuk `useContext` harus berupa obyek konteks itu sendiri:
 
-The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don't stress about learning them up front.
+ * **Benar:** `useContext(MyContext)`
+ * **Salah:** `useContext(MyContext.Consumer)`
+ * **Salah:** `useContext(MyContext.Provider)`
+
+Sebuah komponen yang memanggil `useContext` akan selalu me-*render* ulang ketika nilai konteksnya berubah. Jika merender ulang komponen itu "mahal", Anda dapat [mengoptimalkannya dengan menggunakan memoisasi](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+
+>Kiat
+>
+>Jika Anda terbiasa dengan API konteks sebelum *Hooks*, `useContext(MyContext)` setara dengan `static contextType = MyContext` pada sebuah kelas, atau untuk `<MyContext.Consumer>`.
+>
+>`useContext(MyContext)` hanya memungkinkan Anda *membaca* konteksnya dan berlangganan pada perubahannya. Anda masih memerlukan `<MyContext.Provider>` di atas pada bagan untuk *memberikan* nilai untuk konteks ini.
+
+**Menyatukannya bersama dengan Context.Provider**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+Contoh ini dimodifikasi untuk *hooks* dari contoh sebelumnya di [Panduan Konteks Tingkat Lanjut](/docs/context.html), di mana Anda dapat menemukan informasi lebih lanjut tentang kapan dan bagaimana cara menggunakan konteks.
+
+
+## *Hooks* Tambahan {#additional-hooks}
+
+*Hooks* berikut adalah varian dasar dari bagian sebelumnya, atau hanya diperlukan untuk kasus tertentu. Jangan terlalu dipusingkan untuk mempelajarinya di muka.
 
 ### `useReducer` {#usereducer}
 
@@ -179,11 +250,11 @@ The following Hooks are either variants of the basic ones from the previous sect
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+Sebuah alternatif untuk [`useState`](#usestate). Menerima sebuah *reducer* bertipe `(state, action) => newState`, dan mengembalikan *state* saat ini yang dipasangkan dengan metode `dispatch`. (Jika Anda terbiasa dengan Redux, Anda sudah tahu cara kerjanya.)
 
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+`useReducer` biasanya lebih disukai daripada `useState` ketika Anda memiliki logika *state* yang kompleks yang melibatkan beberapa sub nilai atau ketika *state* selanjutnya bergantung pada *state* sebelumnya. `useReducer` juga memungkinkan Anda mengoptimalkan kinerja untuk komponen yang memicu pembaruan mendalam karena [Anda dapat mengoper `dispatch` ke bawah bukan menggunakan *callbacks*](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
-Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
+Inilah contoh sebuah penghitung dari bagian [`useState`](#usestate), ditulis ulang untuk menggunakan *reducer*:
 
 ```js
 const initialState = {count: 0};
@@ -199,21 +270,25 @@ function reducer(state, action) {
   }
 }
 
-function Counter({initialState}) {
+function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
 ```
 
-#### Specifying the initial state {#specifying-the-initial-state}
+>Catatan
+>
+>React menjamin bahwa identitas fungsi `setState` stabil dan tidak akan berubah saat *render* ulang. Inilah sebabnya mengapa aman untuk diabaikan dari daftar *dependency* `useEffect` atau `useCallback`.
 
-There’s two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+#### Menentukan *state* awal {#specifying-the-initial-state}
+
+Terdapat dua cara berbeda untuk menginisialisasi `useReducer` *state*. Anda dapat memilih salah satu tergantung pada kasus penggunaan. Cara paling sederhana adalah dengan mengoper *state* awal sebagai argumen kedua:
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -222,15 +297,15 @@ There’s two different ways to initialize `useReducer` state. You may choose ei
   );
 ```
 
->Note
+>Catatan
 >
->React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can call `useReducer(reducer, undefined, reducer)` to emulate the Redux behavior, but it's not encouraged.
+>React tidak menggunakan konvensi argumen `state = initialState` yang dipopulerkan oleh Redux. *State* awal kadang perlu bergantung pada *props* dan ditentukan dari panggilan *Hook* sebagai gantinya. Jika Anda sangat yakin dengan hal ini, Anda dapat memanggil `useReducer(reducer, undefined, reducer)` untuk meniru perilaku Redux, tetapi itu tidak dianjurkan.
 
 #### Lazy initialization {#lazy-initialization}
 
-You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
+Anda juga dapat membuat *state* awal secara *lazy*. Untuk melakukan ini, Anda dapat mengoper fungsi `init` sebagai argumen ketiga. *State* awal akan diatur ke `init(initialArg)`.
 
-It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
+Ini memungkinkan Anda mengekstrak logika untuk menghitung *state* awal di luar *reducer*. Ini juga berguna untuk mengatur ulang *state* nantinya sebagai respon terhadap suatu tindakan:
 
 ```js{1-3,11-12,19,24}
 function init(initialCount) {
@@ -259,16 +334,18 @@ function Counter({initialCount}) {
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
         Reset
       </button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
 ```
 
-#### Bailing out of a dispatch {#bailing-out-of-a-dispatch}
+#### Pengabaian dari sebuah *dispatch* {#bailing-out-of-a-dispatch}
 
-If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+Jika Anda mengembalikan nilai yang sama dari sebuah *Reducer Hook* sebagai *state* saat ini, React akan mengabaikannya tanpa me-*render* turunannya atau mengaktifkan efek. (React menggunakan [`Object.is` algoritma perbandingan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+
+Perhatikan bahwa React mungkin masih perlu me-*render* lagi komponen tersebut sebelum diabaikan. Itu seharusnya tidak perlu menjadi perhatian karena React tidak perlu masuk "lebih dalam" ke dalam bagan. Jika Anda melakukan perhitungan "mahal" saat me-*render*, Anda dapat mengoptimalkannya dengan `useMemo`.
 
 ### `useCallback` {#usecallback}
 
@@ -281,15 +358,17 @@ const memoizedCallback = useCallback(
 );
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
+Mengembalikan sebuah [*memoized*](https://en.wikipedia.org/wiki/Memoization) *callback*.
 
-Pass an inline callback and an array of inputs. `useCallback` will return a memoized version of the callback that only changes if one of the inputs has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+Oper sebuah *inline callback* dan sebuah senarai dari *dependencies*. `useCallback` akan mengembalikan versi *memoized* dari *callback* yang hanya berubah jika salah satu dari *dependency* telah berubah. Ini berguna ketika mengoper *callbacks* ke komponen turunan yang teroptimisasi yang mengandalkan kesetaraan referensi untuk mencegah *render* yang tidak perlu (misalnya `shouldComponentUpdate`).
 
-`useCallback(fn, inputs)` is equivalent to `useMemo(() => fn, inputs)`.
+`useCallback(fn, deps)` setara dengan `useMemo(() => fn, deps)`.
 
-> Note
+> Catatan
 >
-> The array of inputs is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> Senarai dari *dependencies* tidak dioper sebagai argumen ke *callback*. Meskipun demikian, secara konseptual itulah yang mereka wakili: setiap nilai yang direferensikan di dalam *callback* juga harus muncul dalam senarai *dependencies*. Di masa depan, kompiler yang cukup canggih dapat membuat senarai ini secara otomatis.
+>
+> Kami sarankan untuk menggunakan aturan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari paket [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) kami. Itu akan memberi peringatan ketika *dependencies* ditentukan secara tidak benar dan akan menyarankan sebuah perbaikan.
 
 ### `useMemo` {#usememo}
 
@@ -297,19 +376,22 @@ Pass an inline callback and an array of inputs. `useCallback` will return a memo
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
+Mengembalikan sebuah nilai [memoized](https://en.wikipedia.org/wiki/Memoization).
 
-Pass a "create" function and an array of inputs. `useMemo` will only recompute the memoized value when one of the inputs has changed. This optimization helps to avoid expensive calculations on every render.
+Oper sebuah fungsi "create" dan sebuah senarai dari *dependencies*. `useMemo` hanya akan menghitung ulang nilai *memoized* ketika salah satu *dependencies* telah berubah. Optimalisasi ini membantu menghindari perhitungan "mahal" pada setiap *render*.
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+Ingatlah bahwa fungsi yang dioper ke `useMemo` berjalan selama *render*. Jangan lakukan apa pun yang biasanya tidak Anda lakukan selama *render*. Misalnya, efek samping termasuk dalam `useEffect`, bukan` useMemo`.
 
-If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
+Jika tidak ada senarai yang disediakan, sebuah nilai baru akan dihitung pada setiap *render*.
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
+**Anda dapat mengandalkan `useMemo` sebagai sebuah pengoptimalan kinerja, bukan sebagai sebuah jaminan semantik.** Di masa mendatang, React dapat memilih untuk "melupakan" beberapa nilai *memoized* sebelumnya dan menghitung ulang pada *render* berikutnya, misalnya untuk mengosongkan memori untuk *offscreen components*. Tulis kode Anda dimana itu masih berfungsi tanpa `useMemo` - lalu tambahkan itu untuk mengoptimalkan kinerja.
 
-> Note
+> Catatan
 >
-> The array of inputs is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> Senarai dari *dependencies* tidak dioper sebagai argumen ke dalam fungsi. Meskipun demikian, secara konseptual itulah yang mereka wakili: setiap nilai yang direferensikan di dalam fungsi juga harus muncul dalam senarai *dependencies*. Di masa depan, kompiler yang cukup canggih dapat membuat senarai ini secara otomatis.
+>
+>
+> Kami sarankan untuk menggunakan aturan [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) sebagai bagian dari paket [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) kami. Itu akan memberi peringatan ketika *dependencies* ditentukan secara tidak benar dan akan menyarankan sebuah perbaikan.
 
 ### `useRef` {#useref}
 
@@ -317,9 +399,9 @@ If no array is provided, a new value will be computed whenever a new function in
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
+`useRef` mengembalikan sebuah obyek *mutable ref* (obyek yang mungkin dapat berubah) dimana properti `.current` diinisialisasi ke argumen yang dioper (`initialValue`). Obyek yang dikembalikan akan bertahan selamanya di komponen.
 
-A common use case is to access a child imperatively:
+Sebuah kasus penggunaan umum adalah dengan mengakses sebuah turunan secara imperatif:
 
 ```js
 function TextInputWithFocusButton() {
@@ -337,15 +419,24 @@ function TextInputWithFocusButton() {
 }
 ```
 
-Note that `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+Pada dasarnya, `useRef` seperti "kotak" yang dapat menyimpan sebuah nilai *mutable* (nilai yang mungkin dapat berubah) dalam properti `.current`.
+
+Anda mungkin terbiasa dengan refs terutama sebagai sebuah cara untuk [mengakses DOM](/docs/refs-and-the-dom.html). Jika Anda mengoper obyek ref ke React dengan `<div ref={myRef} />`, React akan mengatur properti `.current` miliknya ke DOM *node* yang sesuai setiap kali *node* itu berubah.
+
+Namun, `useRef ()` berguna untuk lebih dari atribut `ref`. Ini [berguna untuk menjaga nilai yang mungkin dapat berubah di sekitarnya](/docs/hooks-faq.html#is-there-something-like-instance-variables) mirip dengan cara Anda menggunakan *instance fields* pada kelas.
+
+Ini berfungsi karena `useRef ()` membuat obyek JavaScript biasa. Satu-satunya perbedaan antara `useRef ()` dan membuat obyek `{current: ...}` sendiri adalah bahwa `useRef` akan memberi Anda obyek ref yang sama pada setiap *render*.
+
+Ingatlah bahwa `useRef` *tidak* memberi tahu Anda ketika kontennya berubah. Memutasi properti `.current` tidak menyebabkan *render* ulang. Jika Anda ingin menjalankan beberapa kode ketika React melampirkan atau melepaskan sebuah ref ke DOM *Node*, Anda mungkin ingin menggunakan [*callback ref*](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) sebagai gantinya.
+
 
 ### `useImperativeHandle` {#useimperativehandle}
 
 ```js
-useImperativeHandle(ref, createHandle, [inputs])
+useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
+`useImperativeHandle` mengkustomisasi nilai contoh yang diekspos ke komponen induk saat menggunakan `ref`. Seperti biasanya, kode imperatif yang menggunakan refs harus dihindari dalam banyak kasus. `useImperativeHandle` harus digunakan dengan `forwardRef`:
 
 ```js
 function FancyInput(props, ref) {
@@ -360,17 +451,21 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
+Dalam contoh ini, sebuah komponen induk yang me-*render* `<FancyInput ref={fancyInputRef} />` akan dapat memanggil `fancyInputRef.current.focus()`.
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+Tanda ini identik dengan `useEffect`, tetapi diaktifkan secara *synchronous* setelah semua mutasi DOM. Gunakan ini untuk membaca tata letak dari DOM dan me-*render* ulang secara *synchronous*. Pembaruan yang dijadwalkan di dalam `useLayoutEffect` akan dipenuhi secara *synchronous*, sebelum browser memiliki kesempatan untuk menggambar.
 
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
+Pilih `useEffect` standar bila memungkinkan untuk menghindari pemblokiran pembaruan visual.
 
 > Tip
 >
-> If you're migrating code from a class component, `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`, so if you're unsure of which effect Hook to use, it's probably the least risky.
+> Jika Anda memigrasikan kode dari sebuah *class component*, `useLayoutEffect` aktif pada fase yang sama dengan `componentDidMount` dan `componentDidUpdate`. Namun, **kami sarankan memulai dengan `useEffect` dahulu** dan hanya mencoba `useLayoutEffect` jika itu menyebabkan masalah.
+>
+>Jika Anda menggunakan *server rendering*, perlu diingat bahwa `useLayoutEffect` atau `useEffect` tidak dapat berjalan hingga JavaScript diunduh. Inilah sebabnya React memberikan peringatan ketika sebuah *server-rendered component* mengandung `useLayoutEffect`. Untuk memperbaikinya, pindahkan logika itu ke `useEffect` (jika itu tidak diperlukan untuk *render* pertama), atau menunda untuk memperlihatkan komponen itu sampai setelah *client* me-*render* (jika HTML terlihat rusak sampai `useLayoutEffect` berjalan).
+>
+>Untuk mengecualikan komponen yang membutuhkan efek tata letak dari *server-rendered* HTML, render secara kondisional dengan `showChild && <Child />` dan tunda untuk memperlihatkannya dengan `useEffect (() => {setShowChild (true);}, [] ) `. Dengan cara ini, UI tidak tampak rusak sebelum hidrasi.
 
 ### `useDebugValue` {#usedebugvalue}
 
@@ -378,9 +473,9 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 useDebugValue(value)
 ```
 
-`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+`useDebugValue` dapat digunakan untuk menampilkan sebuah label untuk *hooks* kustom di React DevTools.
 
-For example, consider the `useFriendStatus` custom Hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+Misalnya, pertimbangkan `useFriendStatus` *hooks* kustom yang dijelaskan dalam ["Membuat *Hooks* Anda Sendiri"](/docs/hooks-custom.html):
 
 ```js{6-8}
 function useFriendStatus(friendID) {
@@ -398,15 +493,15 @@ function useFriendStatus(friendID) {
 
 > Tip
 >
-> We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
+> Kami tidak menyarankan menambahkan nilai *debug* ke setiap *Hook* kustom. Ini paling berharga untuk *Hooks* kustom yang merupakan bagian dari *libraries* bersama.
 
-#### Defer formatting debug values {#defer-formatting-debug-values}
+#### Tunda pemformatan nilai *debug* {#defer-formatting-debug-values}
 
-In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a Hook is actually inspected.
+Dalam beberapa kasus, memformat sebuah nilai untuk tampilan mungkin merupakan operasi yang "mahal". Ini juga tidak perlu kecuali sebuah *Hook* benar-benar diperiksa.
 
-For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the Hooks are inspected. It receives the debug value as a parameter and should return a formatted display value.
+Karena alasan ini `useDebugValue` menerima sebuah fungsi pemformatan sebagai parameter opsional kedua. Fungsi ini hanya dipanggil jika *Hooks* diperiksa. Ini menerima nilai *debug* sebagai parameter dan harus mengembalikan sebuah nilai tampilan yang telah diformat.
 
-For example a custom Hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+Misalnya, sebuah *Hook* kustom yang mengembalikan sebuah nilai `Date` dapat menghindari pemanggilan fungsi `toDateString` tanpa perlu, dengan mengoper peformat berikut:
 
 ```js
 useDebugValue(date, date => date.toDateString());

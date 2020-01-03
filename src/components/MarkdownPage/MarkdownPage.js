@@ -15,7 +15,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
-import createOgUrl from 'utils/createOgUrl';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
 
 import type {Node} from 'types';
 
@@ -74,7 +74,7 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
-        ogUrl={createOgUrl(markdownRemark.fields.slug)}
+        canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
       <div css={{flex: '1 0 auto'}}>
@@ -115,7 +115,7 @@ const MarkdownPage = ({
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${
                         markdownRemark.fields.path
                       }`}>
-                      Edit this page
+                      Ubah laman ini
                     </a>
                   </div>
                 )}

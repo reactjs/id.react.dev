@@ -1,32 +1,32 @@
 ---
 id: faq-build
-title: Babel, JSX, and Build Steps
+title: Babel, JSX, dan Tahapan Build
 permalink: docs/faq-build.html
 layout: docs
 category: FAQ
 ---
 
-### Do I need to use JSX with React? {#do-i-need-to-use-jsx-with-react}
+### Perlukah saya menggunakan JSX dengan React? {#do-i-need-to-use-jsx-with-react}
 
-No! Check out ["React Without JSX"](/docs/react-without-jsx.html) to learn more.
+Tidak! Silahkan lihat ["React Tanpa JSX"](/docs/react-without-jsx.html) untuk mempelajari lebih lanjut.
 
-### Do I need to use ES6 (+) with React? {#do-i-need-to-use-es6--with-react}
+### Perlukah saya menggunakan ES6 (+) dengan React? {#do-i-need-to-use-es6--with-react}
 
-No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
+Tidak! Silakan lihat ["React Tanpa ES6"](/docs/react-without-es6.html) untuk mempelajari lebih lanjut.
 
-### How can I write comments in JSX? {#how-can-i-write-comments-in-jsx}
+### Bagaimana cara menulis komentar di JSX? {#how-can-i-write-comments-in-jsx}
 
 ```jsx
 <div>
-  {/* Comment goes here */}
-  Hello, {name}!
+  {/* komentar disini */}
+  Halo, {name}!
 </div>
 ```
 
 ```jsx
 <div>
-  {/* It also works 
-  for multi-line comments. */}
-  Hello, {name}! 
+  {/* Juga bekerja untuk
+  komentar multi-baris */}
+  Halo, {name}!
 </div>
 ```

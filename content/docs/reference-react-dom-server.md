@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
-The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:
+Objek `ReactDOMServer` memungkinkan Anda untuk me-*render* komponen-komponen ke dalam bentuk *markup* statis. Objek ini digunakan di dalam server Node :
 
 ```js
 // ES modules
@@ -15,78 +15,76 @@ import ReactDOMServer from 'react-dom/server';
 var ReactDOMServer = require('react-dom/server');
 ```
 
-## Overview {#overview}
+## Ikthisar {#overview}
 
-The following methods can be used in both the server and browser environments:
+*Method-method* di bawah ini bisa digunakan di dalam ruang lingkup server dan *browser* :
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
 
-These additional methods depend on a package (`stream`) that is **only available on the server**, and won't work in the browser.
+*Method-method* tambahan ini bergantung pada *package* (`stream`) yang hanya **tersedia di server**, dan tidak dapat bekerja di dalam *browser*.
 
 - [`renderToNodeStream()`](#rendertonodestream)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
 * * *
 
-## Reference {#reference}
+## Referensi {#reference}
 
 ### `renderToString()` {#rendertostring}
 
 ```javascript
-ReactDOMServer.renderToString(element)
+ReactDOMServer.renderToString(elemen)
 ```
 
-Render a React element to its initial HTML. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Me-*render* sebuah elemen React menjadi HTML biasa. React akan mengembalikan sebuah *string* HTML. Anda bisa menggunakan *method* ini untuk menghasilkan HTML di server dan mengirim *markup* pada permintaan pertama untuk pemuatan halaman yang lebih cepat dan juga memungkinkan mesin pencarian untuk melakukan *crawling* pada halaman-halaman Anda demi kepentingan SEO.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+Jika Anda memanggil [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di dalam sebuah *node* yang sudah memiliki *markup* yang merupakan hasil dari *render* di server, React akan menyimpan *markup* tersebut dan hanya memasang *event handler* pada *markup* tersebut, memungkinkan Anda untuk mendapat performa *first-load experience* yang sangat bagus.
 
 * * *
 
 ### `renderToStaticMarkup()` {#rendertostaticmarkup}
 
 ```javascript
-ReactDOMServer.renderToStaticMarkup(element)
+ReactDOMServer.renderToStaticMarkup(elemen)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+Sama seperti [`renderToString`](#rendertostring), bedanya *method* ini tidak membuat atribut DOM tambahan yang digunakan React secara internal, seperti `data-reactroot`. Metode ini bermanfaat jika Anda ingin menggunakan React untuk menghasilkan halaman statis yang simpel, dikarenakan menghapus beberapa atribut tambahan bisa menghemat beberapa *byte*.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+Jika Anda berencana untuk menggunakan React di sisi klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di sisi server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di sisi klien.
 
 * * *
 
 ### `renderToNodeStream()` {#rendertonodestream}
 
 ```javascript
-ReactDOMServer.renderToNodeStream(element)
+ReactDOMServer.renderToNodeStream(elemen)
 ```
 
-Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Me-*render* sebuah elemen React menjadi HTML biasa. Mengembalikan sebuah [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) yang menghasilkan sebuah *string* HTML. Keluaran HTML oleh *stream* ini sama persis dengan keluaran yang dikembalikan oleh [`ReactDOMServer.renderToString`](#rendertostring). Anda dapat menggunakan *method* untuk menghasilkan HTML di server dan mengirim *markup* tersebut pada permintaan pertama untuk pemuatan halaman yang lebih cepat dan juga memungkinkan mesin pencarian untuk melakukan *crawling* pada halaman-halaman Anda demi kepentingan SEO.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+Jika Anda memanggil [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di dalam sebuah *node* yang sudah memiliki *markup* yang merupakan hasil dari *render* di server, React akan menyimpan *markup* tersebut dan hanya memasang *event handler* pada *markup* tersebut, memungkinkan Anda untuk mendapat performa *first-load experience* yang sangat bagus.
 
-> Note:
+> Catatan:
 >
-> Server-only. This API is not available in the browser.
+> Hanya untuk server. API ini tidak bisa digunakan di *browser*.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
-
+> *Stream* yang dikembalikan oleh *method* ini akan mengembalikan sebuah *byte stream* yang dienkode dalam utf-8. Jika Anda membutuhkan *stream* dalam kode selain utf-8, disarankan untuk mencoba melihat proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang menyediakan *transform streams* untuk *transcoding text*.
 * * *
 
 ### `renderToStaticNodeStream()` {#rendertostaticnodestream}
 
 ```javascript
-ReactDOMServer.renderToStaticNodeStream(element)
+ReactDOMServer.renderToStaticNodeStream(elemen)
 ```
 
-Similar to [`renderToNodeStream`](#rendertonodestream), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+Sama seperti [`renderToNodeStream`](#rendertonodestream), bedanya *method* ini tidak membuat atribut DOM tambahan yang digunakan React secara internal, seperti `data-reactroot`. Metode ini bermanfaat jika Anda ingin menggunakan React untuk menghasilkan halaman statis yang simpel, dikarenakan menghapus beberapa atribut tambahan bisa menghemat beberapa *byte*.
+Hasil keluaran HTML yang dikembalikan oleh *stream* ini sama persis dengan yang dikembalikan oleh [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup).
 
-The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) would return.
+Jika Anda berencana untuk menggunakan React di sisi klien untuk membuat *markup* yang interaktif, Anda tidak disarankan untuk menggunakan *method* ini. Sebaiknya, gunakan [`renderToString`](#rendertostring) di sisi server dan gunakan [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) di sisi klien.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToNodeStream`](#rendertonodestream) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
-
-> Note:
+> Catatan:
 >
-> Server-only. This API is not available in the browser.
+> Hanya untuk di server. API ini tidak bisa digunakan di *browser*.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> *Stream* yang dikembalikan oleh *method* ini akan mengembalikan sebuah *byte stream* yang dikodekan dalam utf-8. Jika Anda membutuhkan *stream* dalam kode selain kode utf-8, disarankan Anda untuk mencoba melihat projek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang menyediakan *transform streams* untuk *transcoding text*.

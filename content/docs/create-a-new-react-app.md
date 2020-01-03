@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Create a New React App
+title: Membuat Sebuah Aplikasi React Baru
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
@@ -8,38 +8,39 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-Use an integrated toolchain for the best user and developer experience.
+Gunakan *toolchains* yang terintegrasi untuk pengalaman pengguna dan pengembangan terbaik.
 
-This page describes a few popular React toolchains which help with tasks like:
+Halaman ini menjelaskan beberapa *toolchains* yang bisa membantu menyelesaikan tugas seperti:
 
-* Scaling to many files and components.
-* Using third-party libraries from npm.
-* Detecting common mistakes early.
-* Live-editing CSS and JS in development.
-* Optimizing the output for production.
+* Penskalaan ke banyak *file* dan komponen.
+* Penggunaan *library* pihak ketiga dari npm.
+* Mendeteksi kesalahan umum lebih awal.
+* Pengeditan CSS dan JS secara langsung dalam tahap pengembangan.
+* Mengoptimalkan keluaran untuk tahap produksi.
 
-The toolchains recommended on this page **don't require configuration to get started**.
+*Toolchains* yang direkomendasikan pada halaman ini **tidak membutuhkan konfigurasi untuk memulai**.
 
-## You Might Not Need a Toolchain {#you-might-not-need-a-toolchain}
+## Anda Mungkin Tidak Butuh Toolchains{#you-might-not-need-a-toolchain}
 
-If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+Jika Anda tidak mengalami masalah yang dijelaskan di atas atau belum nyaman menggunakan *tools* dari JavaScript, pertimbangkan untuk [menambahkan React sebagai *tag* `<script>` biasa pada halaman HTML](/docs/add-react-to-a-website.html). Anda dapat melakukan itu [dengan JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
-This is also **the easiest way to integrate React into an existing website.** You can always add a larger toolchain if you find it helpful!
+Cara tersebut juga merupakan **cara termudah mengintegrasikan React ke dalam situs yang sudah ada.** Anda bisa menambah *Toolchains* yang lebih besar kapanpun Anda inginkan jika Anda merasa itu dapat membantu!
 
-## Recommended Toolchains {#recommended-toolchains}
+## Toolchains Yang Direkomendasikan {#recommended-toolchains}
 
-The React team primarily recommends these solutions:
+Tim React sangat merekomendasikan solusi ini:
 
-- If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
-- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
-- If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
-- If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
+- Jika Anda **sedang belajar React** atau **membuat aplikasi [*single-page*](/docs/glossary.html#single-page-application) baru,** cobalah [Create React App](#create-react-app).
+- Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan *server* Node.js,** cobalah [Next.js](#nextjs).(#nextjs).
+- Jika Anda sedang membangun sebuah **situs statis yang berorientasi pada konten,** cobalah [Gatsby](#gatsby).
+- Jika Anda sedang membangun sebuah ***library* komponen** atau **menggabungkannya dengan basis kode yang sudah ada,** cobalah [*toolchains* yang lebih fleksibel](#more-flexible-toolchains).
 
 ### Create React App {#create-react-app}
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
 
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 and npm >= 5.2 on your machine. To create a project, run:
+[Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [*single-page*](/docs/glossary.html#single-page-application)** di React.
+
+Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
 
 ```bash
 npx create-react-app my-app
@@ -47,48 +48,49 @@ cd my-app
 npm start
 ```
 
->Note
+>Catatan
 >
->`npx` on the first line is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` pada baris pertama bukanlah salah ketik --itu adalah [*package runner tool* yang tersedia bersamaan dengan npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses [Babel](https://babeljs.io/) and [webpack](https://webpack.js.org/), but you don't need to know anything about them.
+Create React App tidak mengatur bagian *backend* ataupun basis data; tapi hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
 
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app--) dan [Petunjuk Pengguna](https://facebook.github.io/create-react-app/) Create React App.
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) adalah *framework* populer dan ringan untuk aplikasi statis dan aplikasi yang di-*render* di *server*. Next.js dibangun menggunakan React. Framework ini sudah mengatasi masalah ***styling*** dan ***routing***, dan mengasumsikan bahwa Anda menggunakan [Node.js](https://nodejs.org/) sebagai lingkungan *server* anda.
 
-Learn Next.js from [its official guide](https://nextjs.org/learn/).
+Pelajari Next.js dari [dokumentasi resminya](https://nextjs.org/learn/).
 
 ### Gatsby {#gatsby}
 
-[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) adalah cara terbaik untuk membuat situs statis dengan menggunakan React. Gatsby membuat Anda dapat menggunakan komponen React, namun memberikan keluaran berupa HTML yang telah di-*render* dan CSS untuk menjamin kecepatan waktu pemuatan.
 
-Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
+Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan [galeri *starter kit*](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
-### More Flexible Toolchains {#more-flexible-toolchains}
+### Toolchains Yang Lebih Fleksibel {#more-flexible-toolchains}
 
-The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:
+*Toolchains* berikut menawarkan fleksibilitas dan berbagai pilihan. Kami merekomendasikan ini untuk pengguna yang lebih berpengalaman:
 
-- **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
+- **[Neutrino](https://neutrinojs.org/)** mengombinasikan keunggulan [Webpack](https://webpack.js.org/) dengan kemudahan pengaturan awal, termasuk pengaturan awal [Aplikasi React](https://neutrinojs.org/packages/react/) dan [komponen React](https://neutrinojs.org/packages/react-components/).
 
-- **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
+- **[nwb](https://github.com/insin/nwb)** sangat baik dalam [memublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
 
-- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+- **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+- **[Razzle](https://github.com/jaredpalmer/razzle)** adalah *framework* yang me-*render* di *server* dan tidak membutuhkan konfigurasi, namun menyediakan fleksibilitas lebih dibanding Next.js.
 
-## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
+## Membuat Toolchains dari Awal{#creating-a-toolchain-from-scratch}
 
-A JavaScript build toolchain typically consists of:
+Sebuah *Toolchains* yang dibuat menggunakan JavaScript biasanya terdiri dari:
 
-* A **package manager**, such as [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). It lets you take advantage of a vast ecosystem of third-party packages, and easily install or update them.
+* Sebuah ***package manager***, seperti [Yarn](https://yarnpkg.com/) atau [npm](https://www.npmjs.com/). *Package manager* memberikan keuntungan berupa ekosistem yang luas dari paket-paket pihak ketiga, dan Anda dapat memasang atau memperbarui paket tersebut dengan mudah.
 
-* A **bundler**, such as [webpack](https://webpack.js.org/) or [Parcel](https://parceljs.org/). It lets you write modular code and bundle it together into small packages to optimize load time.
+* Sebuah ***bundler***, seperti [Webpack](https://webpack.js.org/) atau [Parcel](https://parceljs.org/). *Bundler* membantu Anda menuliskan kode modular dan menyatukannya menjadi paket-paket kecil untuk mengoptimalkan waktu pemuatan.
 
-* A **compiler** such as [Babel](https://babeljs.io/). It lets you write modern JavaScript code that still works in older browsers.
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
+* Sebuah ***compiler*** seperti [Babel](http://babeljs.io/). *Compiler* membantu Anda menulis kode JavaScript yang lebih modern agar dapat bekerja pada *browser* yang lebih lama.
 
-Don't forget to ensure your custom toolchain [is correctly set up for production](/docs/optimizing-performance.html#use-the-production-build).
+Jika Anda lebih suka membuat *Toolchains* JavaScript anda sendiri dari awal, [silahkan cek petunjuk ini](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) yang membuat ulang beberapa fungsi dari Create React App.
+
+Jangan lupa memastikan *toolchains* buatan anda [sudah diatur untuk tahap produksi dengan benar](/docs/optimizing-performance.html#use-the-production-build).

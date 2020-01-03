@@ -6,33 +6,33 @@ next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* adalah sebuah fitur tambahan baru di React 16.8. Mereka membantu Anda untuk menggunakan *state* and fitur-fitur React lainnya tanpa menulis sebuah kelas.
 
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
+Hooks adalah fungsi JavaScript, tetapi Anda perlu mengikuti dua aturan pada saat menggunakannya. Kami menyediakan sebuah [*linter plugin*](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memberlakukan aturan-aturan ini secara otomatis:
 
-### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
+### Hanya Panggil *Hooks* di Tingkat Atas {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**Jangan memanggil *Hooks* dari dalam *loops*, *conditions*, atau *nested functions*.** Melainkan, selalu gunakan *Hooks* di tingkat atas dari fungsi React Anda. Dengan mengikuti aturan ini, Anda dapat dengan yakin dapat memastikan bahwa *Hooks* akan dipanggil dengan urutan yang sama setiap kali sebuah komponen me-*render*. Hal itu yang menyebabkan React dapat menyimpan *state* dari *Hooks* dengan benar di antara banyak panggilan `useState` dan `useEffect`. (Jika Anda ingin tahu lebih lanjut, kami akan menjelaskan ini lebih dalam [di bawah](#explanation).)
 
-### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
+### Hanya Panggil *Hooks* dari Fungsi-Fungsi React {#only-call-hooks-from-react-functions}
 
-**Don't call Hooks from regular JavaScript functions.** Instead, you can:
+**Jangan memanggil *Hooks* dari fungsi-fungsi JavaScript biasa.** Sebagai gantinya, Anda dapat:
 
-* ✅ Call Hooks from React function components.
-* ✅ Call Hooks from custom Hooks (we'll learn about them [on the next page](/docs/hooks-custom.html)).
+* ✅ Memanggil *Hooks* dari komponen-komponen fungsi React.
+* ✅ Memanggil *Hooks* dari *custom Hooks* (kita akan belajar tentang ini [di laman berikutnya](/docs/hooks-custom.html)).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+Dengan mengikuti aturan ini, Anda dapat dengan yakin memastikan bahwa semua logika *stateful* di dalam sebuah komponen terlihat jelas dari *source code*-nya.
 
-## ESLint Plugin {#eslint-plugin}
+## *Plugin* ESLint {#eslint-plugin}
 
-We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
+Kami membuat sebuah *ESLint plugin* dengan nama [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) yang membantu menekankan dua aturan-aturan ini. Anda dapat menambahkan *plugin* ini ke proyek Anda jika Anda ingin mencobanya:
 
 ```bash
-npm install eslint-plugin-react-hooks
+npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
-// Your ESLint configuration
+// Konfigurasi ESLint Anda
 {
   "plugins": [
     // ...
@@ -40,33 +40,34 @@ npm install eslint-plugin-react-hooks
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
 ```
 
-In the future, we intend to include this plugin by default into Create React App and similar toolkits.
+Di masa mendatang, kami merencanakan untuk menyertakan *plugin* ini secara umum ke dalam *Create React App* dan *toolkit-tookit* sejenis.
 
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**Anda dapat melompat ke laman selanjutnya yang menjelaskan bagaimana membuat [*Hooks* Anda sendiri](/docs/hooks-custom.html) sekarang.** Di laman ini, kita akan melanjutkan dengan menjelaskan pemikiran dibalik aturan-aturan ini.
 
-## Explanation {#explanation}
+## Penjelasan {#explanation}
 
-As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
+Seperti yang telah [dipelajari sebelumnya](/docs/hooks-state.html#tip-using-multiple-state-variables), kita dapat menggunakan banyak *State* atau *Effect Hooks* di dalam sebuah komponen:
 
 ```js
 function Form() {
-  // 1. Use the name state variable
+  // 1. Menggunakan state variabel name
   const [name, setName] = useState('Mary');
 
-  // 2. Use an effect for persisting the form
+  // 2. Menggunakan sebuah effect untuk mengukuhkan form
   useEffect(function persistForm() {
     localStorage.setItem('formData', name);
   });
 
-  // 3. Use the surname state variable
+  // 3. Menggunakan state variabel surname
   const [surname, setSurname] = useState('Poppins');
 
-  // 4. Use an effect for updating the title
+  // 4. Menggunakan sebuah effect untuk meng-update title
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
   });
@@ -75,32 +76,32 @@ function Form() {
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that **React relies on the order in which Hooks are called**. Our example works because the order of the Hook calls is the same on every render:
+Bagaimana React mengetahui *state* mana yang sesuai dengan panggilan `useState` yang mana? Jawabannya adalah **React bergantung pada urutan bagaimana *Hooks* dipanggil**. Contoh kami berjalan dengan baik karena urutan dari panggilan-panggilan *Hook* sama setiap kali *render*:
 
 ```js
 // ------------
-// First render
+// Render pertama
 // ------------
-useState('Mary')           // 1. Initialize the name state variable with 'Mary'
-useEffect(persistForm)     // 2. Add an effect for persisting the form
-useState('Poppins')        // 3. Initialize the surname state variable with 'Poppins'
-useEffect(updateTitle)     // 4. Add an effect for updating the title
+useState('Mary')           // 1. Inisialisasi state variabel name dengan 'Mary'
+useEffect(persistForm)     // 2. Tambahkan sebuah effect untuk mengukuhkan form
+useState('Poppins')        // 3. Inisialisasi state variabel surname dengan 'Poppins'
+useEffect(updateTitle)     // 4. Tambahkan sebuah effect untuk meng-update title
 
 // -------------
-// Second render
+// Render kedua
 // -------------
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-useEffect(persistForm)     // 2. Replace the effect for persisting the form
-useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
-useEffect(updateTitle)     // 4. Replace the effect for updating the title
+useState('Mary')           // 1. Baca state variabel name (argument diabaikan)
+useEffect(persistForm)     // 2. Ganti effect untuk mengukuhkan form
+useState('Poppins')        // 3. Baca state variabel surname (argument diabaikan)
+useEffect(updateTitle)     // 4. Ganti effect untuk meng-update title
 
 // ...
 ```
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+Selama urutan panggilan-panggilan *Hook* sama dalam setiap *render*, React dapat mengasosiasikan beberapa *state* lokal dengannya. Tetapi apa yang akan terjadi jika menaruh sebuah panggilan *Hook* (contoh, *effect* `persistForm`) di dalam sebuah *condition*?
 
 ```js
-  // 🔴 We're breaking the first rule by using a Hook in a condition
+  // 🔴 Kita melanggar aturan pertama dengan menggunakan Hook di dalam sebuah condition
   if (name !== '') {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
@@ -108,30 +109,30 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+*Condition* `name !== ''` adalah `true` pada *render* pertama, jadi kita menjalankan *Hook* ini. Akan tetapi, pada *render* selanjutnya pengguna mungkin mengosongkan *form*, mengakibatkan *condition* menjadi `false`. Sekarang kita melangkahi *Hook* ini pada saat *rendering*, urutan panggilan-panggilan *Hook* menjadi tidak sama:
 
 ```js
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-// useEffect(persistForm)  // 🔴 This Hook was skipped!
-useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state variable
-useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
+useState('Mary')           // 1. Baca state variabel name (argument diabaikan)
+// useEffect(persistForm)  // 🔴 Hook ini dilangkahi!
+useState('Poppins')        // 🔴 2 (sebelumnya 3). Gagal membaca state variabel surname
+useEffect(updateTitle)     // 🔴 3 (sebelumnya 4). Gagal mengganti effect
 ```
 
-React wouldn't know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the `persistForm` effect, just like during the previous render, but it doesn't anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+React tidak akan mengetahui apa yang harus dikembalikan pada saat panggilan *Hook* `useState` kedua. React mengharapkan bahwa panggilan *Hook* kedua di komponen ini sesuai dengan *effect* `persistForm`, seperti *render* sebelumnya, tetapi tidak lagi. Sejak saat itu, setiap panggilan *Hook* selanjutnya setelah yang kita langkahi juga akan bergeser satu, mengakibatkan *bugs*.
 
-**This is why Hooks must be called on the top level of our components.** If we want to run an effect conditionally, we can put that condition *inside* our Hook:
+**Ini sebabnya Hooks harus dipanggil dari level atas komponen-komponen kita.** Jika kita ingin menjalankan sebuah *effect* secara *conditional*, kita dapat menaruh *condition* tersebut *di dalam* *Hook* kita:
 
 ```js
   useEffect(function persistForm() {
-    // 👍 We're not breaking the first rule anymore
+    // 👍 Kita tidak lagi melanggar aturan pertama
     if (name !== '') {
       localStorage.setItem('formData', name);
     }
   });
 ```
 
-**Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
+**Catatan Anda tidak perlu khawatir tentang masalah ini lagi jika Anda menggunakan [*lint rule* yang diberikan](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Tetapi sekarang Anda juga mengetahui *mengapa* *Hooks* bekerja dengan cara ini, dan masalah apa yang dihindari dengan mengikuti aturan-aturan ini.
 
-## Next Steps {#next-steps}
+## Langkah-Langkah Selanjutnya {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+Akhirnya, kita siap untuk belajar mengenai [membuat *Hook* Anda sendiri](/docs/hooks-custom.html)! *Custom Hooks* memperbolehkan Anda untuk menggabungkan *Hooks* dari React ke dalam abstraksi milik Anda, dan menggunakan kembali logika *stateful* umum dalam komponen-komponen yang berbeda.

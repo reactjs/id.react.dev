@@ -4,7 +4,7 @@ title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
-Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html) untuk mengimpementasikan *form*. Pada *controlled component*, *form data* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, dengan *form data* ditangani oleh DOM-nya sendiri.
+Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html#controlled-components) untuk mengimpementasikan *form*. Pada *controlled component*, *form data* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, dengan *form data* ditangani oleh DOM-nya sendiri.
 
 Untuk menulis *uncontrolled component*, alih-alih menulis *event handler* untuk setiap pembaruan *state*, Anda bisa [menggunakan *ref*](/docs/refs-and-the-dom.html) untuk mendapatkan nilai *form* dari DOM.
 
