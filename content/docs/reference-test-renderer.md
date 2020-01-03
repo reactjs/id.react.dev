@@ -50,7 +50,7 @@ function MyComponent() {
   return (
     <div>
       <SubComponent foo="bar" />
-      <p className="my">Hello</p>
+      <p className="my">Halo</p>
     </div>
   )
 }
@@ -142,7 +142,7 @@ expect(root.toJSON()).toMatchSnapshot();
 testRenderer.toJSON()
 ```
 
-Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Pohon ini hanya berisi *node* *platform* khusus seperti `<div>` atau `<View>` dan beserta *props*-nya, tetapi tidak mengandung komponen yang dibuat oleh pengguna. Hal ini berguna untuk [pengujian potret](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Pohon ini hanya berisi *node* pada *platform* spesifik seperti `<div>` atau `<View>` dan beserta *props*-nya, tetapi tidak mengandung komponen yang dibuat oleh pengguna. Hal ini berguna untuk [*snapshot testing*](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -150,7 +150,7 @@ Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Pohon in
 testRenderer.toTree()
 ```
 
-Menghasilkan objek yang merepresentasikan diageam yang telah di-*render*. Tidak seperti `toJSON ()`, representasinya lebih detail daripada yang dihasilkan oleh `toJSON ()`, dan termasuk komponen yang dibuat pengguna. Anda mungkin tidak memerlukan *method* ini kecuali Anda sedang membuat *library* pernyataan sendiri di atas uji *renderer*.
+Menghasilkan objek yang merepresentasikan pohon yang telah di-*render*. Tidak seperti `toJSON ()`, representasinya lebih detail daripada yang dihasilkan oleh `toJSON ()`, dan termasuk komponen yang dibuat pengguna. Anda mungkin tidak memerlukan *method* ini kecuali Anda sedang membuat *library* perbandingan sendiri di atas *test renderer*.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -206,7 +206,7 @@ Menemukan turunan tunggal dari *test instance* berdasarkan `type` yang disediaka
 testInstance.findByProps(props)
 ```
 
-Menemukan turunan tunggal *test instance* dengan berdasarkan `props` yang disediakan. Jika tidak ada satupun *test instance* dengan `props` yang disediakan, hal ini akan melemparkan *error*.
+Menemukan turunan tunggal dari *test instance* berdasarkan `props` yang disediakan. Jika tidak ada satupun *test instance* dengan `props` yang disediakan, fungsi ini akan melemparkan *error*.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -214,7 +214,7 @@ Menemukan turunan tunggal *test instance* dengan berdasarkan `props` yang disedi
 testInstance.findAll(test)
 ```
 
-Menemukan semua turunan *test instance* yang mana `test(testInstance)` menghasilkan nilai `true`.
+Menemukan semua turunan *test instance* dimana `test(testInstance)` menghasilkan nilai `true`.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -222,7 +222,7 @@ Menemukan semua turunan *test instance* yang mana `test(testInstance)` menghasil
 testInstance.findAllByType(type)
 ```
 
-Menemukan semua turunan *test instance* dengan berdasarkan `type` yang disediakan.
+Menemukan semua turunan dari *test instance* berdasarkan `type` yang disediakan.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -230,7 +230,7 @@ Menemukan semua turunan *test instance* dengan berdasarkan `type` yang disediaka
 testInstance.findAllByProps(props)
 ```
 
-Menemukan semua turunan *test instance* dengan berdasarkan `props` yang disediakan.
+Menemukan semua turunan dari *test instance* berdasarkan `props` yang disediakan.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -238,7 +238,7 @@ Menemukan semua turunan *test instance* dengan berdasarkan `props` yang disediak
 testInstance.instance
 ```
 
-*Instance* dari komponen yang ada di *test instance*. Hanya tersedia untuk *class component*, karena *function component* tidak memiliki *instance*. Hal Ini sama dengan nilai `this` di dalam komponen yang diberikan.
+*Instance* komponen bersangkutan dari *test instance* ini. Hanya tersedia untuk *class component*, karena *function component* tidak memiliki *instance*. Bernilai sama dengan nilai `this` di dalam komponen yang diberikan.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -246,7 +246,7 @@ testInstance.instance
 testInstance.type
 ```
 
-Jenis dari komponen yang ada di *test instance*. Sebagai contoh, komponen `<Button />` memiliki tipe `Button`.
+Jenis dari komponen di dalam *test instance*. Sebagai contoh, komponen `<Button />` memiliki tipe `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -254,7 +254,7 @@ Jenis dari komponen yang ada di *test instance*. Sebagai contoh, komponen `<Butt
 testInstance.props
 ```
 
-*Props* yang ada di *test instance*. Sebagai contoh, komponen `<Button size="small" />` memiliki `{size: 'small'}` sebagai *props*.
+*Props* dari komponen di dalam *test instance*. Sebagai contoh, komponen `<Button size="small" />` memiliki `{size: 'small'}` sebagai *props*.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -262,7 +262,7 @@ testInstance.props
 testInstance.parent
 ```
 
-Induk *test instance* dari *test instance* ini.
+*Test instance* induk dari *test instance* ini.
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -270,13 +270,13 @@ Induk *test instance* dari *test instance* ini.
 testInstance.children
 ```
 
-Anak *test instance* dari *test instance* ini.
+*Test instance* anak dari *test instance* ini.
 
 ## Gagasan {#ideas}
 
-Anda dapat mengoper *function* `createNodeMock` ke ` TestRenderer.create` sebagai opsinya, yang memungkinkan untuk referensi tiruan yang sudah diubah.
-`createNodeMock` menerima elemen tersebut dan harus menghasilkan objek referensi tiruan.
-Hal Ini berguna ketika Anda menguji sebuah komponen yang bergantung pada referensi.
+Anda dapat mengoper fungsi `createNodeMock` ke `TestRenderer.create` sebagai opsi, yang memungkinkan Anda untuk membuat *mock refs* buatan.
+`createNodeMock` menerima elemen saat ini dan harus menghasilkan sebuah objek *mock ref*.
+Hal Ini berguna ketika Anda menguji sebuah komponen yang bergantung pada *refs*.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -300,7 +300,7 @@ TestRenderer.create(
   {
     createNodeMock: (element) => {
       if (element.type === 'input') {
-        // tiruan function focus
+        // tiruan dari fungsi focus
         return {
           focus: () => {
             focused = true;
