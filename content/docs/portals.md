@@ -1,24 +1,24 @@
 ---
 id: portals
-title: Portals
+title: Portal
 permalink: docs/portals.html
 ---
 
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Portal menyediakan cara utama untuk me-*render* anak ke dalam simpul DOM yang berada di luar hierarki komponen induk.
 
 ```js
 ReactDOM.createPortal(child, container)
 ```
 
-The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
+Argumen pertama (`child`) berupa [anak React yang bisa di-*render*](/docs/react-component.html#render), misalnya sebuah elemen, string, atau *fragment*. Argumen kedua (`container`) merupakan elemen DOM.
 
-## Usage {#usage}
+## Penggunaan {#usage}
 
-Normally, when you return an element from a component's render method, it's mounted into the DOM as a child of the nearest parent node:
+Umumnya saat Anda mengembalikan sebuah elemen dari *method* *render* komponen, elemen tersebut dipasang ke DOM sebagai anak pada simpul induk terdekat:
 
 ```js{4,6}
 render() {
-  // React mounts a new div and renders the children into it
+  // React memasang div baru dan me-render anaknya kepadanya
   return (
     <div>
       {this.props.children}
@@ -27,12 +27,13 @@ render() {
 }
 ```
 
-However, sometimes it's useful to insert a child into a different location in the DOM:
+Akan tetapi terkadang ada gunanya untuk menyisipkan sebuah anak ke lokasi yang berbeda dalam DOM:
 
 ```js{6}
 render() {
-  // React does *not* create a new div. It renders the children into `domNode`.
-  // `domNode` is any valid DOM node, regardless of its location in the DOM.
+  // React *tidak* membuat div baru. React me-render anak ke dalam `domNode`.
+  // `domNode` berupa simpul DOM apa saja yang valid, tidak tergantung pada 
+  // lokasinya dalam DOM.
   return ReactDOM.createPortal(
     this.props.children,
     domNode
@@ -40,21 +41,21 @@ render() {
 }
 ```
 
-A typical use case for portals is when a parent component has an `overflow: hidden` or `z-index` style, but you need the child to visually "break out" of its container. For example, dialogs, hovercards, and tooltips.
+Penggunaan umum untuk portal adalah ketika komponen induk memiliki gaya `overflow: hidden` atau `z-index`, tetapi Anda harus "memisahkan" anak secara visual dari kontainernya. Misalnya pada dialog, *hovercard*, atau *tooltip*.
 
-> Note:
+> Catatan:
 >
-> When working with portals, remember that [managing keyboard focus](/docs/accessibility.html#programmatically-managing-focus) becomes very important.
+> Saat bekerja dengan portal, perhatikan bahwa [mengelola fokus papan ketik](/docs/accessibility.html#programmatically-managing-focus) menjadi sangat penting.
 >
-> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
+> Untuk dialog modal, pastikan semua pihak bisa berinteraksi dengannya dengan mengikuti [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
-## Event Bubbling Through Portals {#event-bubbling-through-portals}
+## *Event Bubbling* lewat Portal {#event-bubbling-through-portals}
 
-Even though a portal can be anywhere in the DOM tree, it behaves like a normal React child in every other way. Features like context work exactly the same regardless of whether the child is a portal, as the portal still exists in the *React tree* regardless of position in the *DOM tree*.
+Walau sebuah portal bisa berada di mana saja dalam pohon DOM, portal tersebut berperilaku seperti halnya anak React yang normal. Fitur seperti *context work* bekerja sama persis tanpa tergantung apakah sebuah anak adalah sebuah portal, karena portal masih berada dalam *pohon React* tanpa memandang posisinya dalam *pohon DOM*.
 
-This includes event bubbling. An event fired from inside a portal will propagate to ancestors in the containing *React tree*, even if those elements are not ancestors in the *DOM tree*. Assuming the following HTML structure:
+Ini mencakup *event bubbling*. Sebuah *event* yang dijalankan dari dalam portal akan dipropagasikan ke induknya dalam *pohon React* yang memuatnya, walau elemen tersebut bukan merupakan induk dalam *pohon DOM*. Misalnya pada struktur HTML berikut:
 
 ```html
 <html>
@@ -65,10 +66,10 @@ This includes event bubbling. An event fired from inside a portal will propagate
 </html>
 ```
 
-A `Parent` component in `#app-root` would be able to catch an uncaught, bubbling event from the sibling node `#modal-root`.
+Komponen `Parent` pada `#app-root` akan bisa menangkap *event bubbling* yang belum ditangkap dari simpul sederajat `#modal-root`.
 
 ```js{28-31,42-49,53,61-63,70-71,74}
-// These two containers are siblings in the DOM
+// Kedua kontainer berikut sederajat dalam DOM
 const appRoot = document.getElementById('app-root');
 const modalRoot = document.getElementById('modal-root');
 
@@ -79,14 +80,14 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    // The portal element is inserted in the DOM tree after
-    // the Modal's children are mounted, meaning that children
-    // will be mounted on a detached DOM node. If a child
-    // component requires to be attached to the DOM tree
-    // immediately when mounted, for example to measure a
-    // DOM node, or uses 'autoFocus' in a descendant, add
-    // state to Modal and only render the children when Modal
-    // is inserted in the DOM tree.
+    // Elemen portal disisipkan dalam pohon DOM setelah
+    // anak dari Modal dipasang, yang berarti anak tersebut
+    // akan dipasang pada simpul DOM yang terpisah. Jika 
+    // komponen anak harus disematkan ke dalam pohon DOM
+    // segera setelah dipasang, misalnya untuk mengukur dimensi
+    // simpul DOM, atau menggunakan 'autoFocus' pada turunannya, 
+    // tambahkan state pada Modal dan hanya render para anak saat
+    // Modal disisipkan dalam pohon DOM.
     modalRoot.appendChild(this.el);
   }
 
@@ -110,9 +111,9 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // This will fire when the button in Child is clicked,
-    // updating Parent's state, even though button
-    // is not direct descendant in the DOM.
+    // Ini akan dijalankan ketika tombol pada Child diklik,
+    // memperbarui state Parent, walau tombol tersebut
+    // bukan turunan langsung dalam DOM.
     this.setState(state => ({
       clicks: state.clicks + 1
     }));
@@ -121,12 +122,12 @@ class Parent extends React.Component {
   render() {
     return (
       <div onClick={this.handleClick}>
-        <p>Number of clicks: {this.state.clicks}</p>
+        <p>Jumlah klik: {this.state.clicks}</p>
         <p>
-          Open up the browser DevTools
-          to observe that the button
-          is not a child of the div
-          with the onClick handler.
+          Buka DevTools browser
+          untuk mengamati bahwa tombol
+          bukan anak dari div
+          pada handler onClick.
         </p>
         <Modal>
           <Child />
@@ -137,11 +138,11 @@ class Parent extends React.Component {
 }
 
 function Child() {
-  // The click event on this button will bubble up to parent,
-  // because there is no 'onClick' attribute defined
+  // Event klik pada tombol ini akan meluap ke induk,
+  // karena tidak ada atribut 'onClick' yang didefinisikan
   return (
     <div className="modal">
-      <button>Click</button>
+      <button>Klik</button>
     </div>
   );
 }
@@ -149,6 +150,6 @@ function Child() {
 ReactDOM.render(<Parent />, appRoot);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
 
-Catching an event bubbling up from a portal in a parent component allows the development of more flexible abstractions that are not inherently reliant on portals. For example, if you render a `<Modal />` component, the parent can capture its events regardless of whether it's implemented using portals.
+Menangkap *event bubbling* yang meluap dari portal pada komponen induk mengizinkan pengembangan abstraksi yang lebih fleksibel yang tidak mengandalkan portal. Misalnya jika Anda me-*render* komponen `<Modal />`, induk bisa menangkap *event*-nya tanpa tergantung apakah diimplementasikan dengan portal atau tidak.
