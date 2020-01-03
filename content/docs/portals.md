@@ -10,7 +10,7 @@ Portal menyediakan cara utama untuk me-*render* anak ke dalam simpul DOM yang be
 ReactDOM.createPortal(child, container)
 ```
 
-Argumen pertama (`child`) berupa [anak React yang bisa di-*render*](/docs/react-component.html#render), misalnya sebuah elemen, string, atau *fragment*. Argumen kedua (`container`) merupakan elemen DOM.
+Argumen pertama (`child`) berupa [anak React yang bisa di-*render*](/docs/react-component.html#render), misalnya sebuah elemen, *string*, atau *fragment*. Argumen kedua (`container`) merupakan elemen DOM.
 
 ## Penggunaan {#usage}
 
@@ -53,7 +53,7 @@ Penggunaan umum untuk portal adalah ketika komponen induk memiliki gaya `overflo
 
 ## *Event Bubbling* lewat Portal {#event-bubbling-through-portals}
 
-Walau sebuah portal bisa berada di mana saja dalam pohon DOM, portal tersebut berperilaku seperti halnya anak React yang normal. Fitur seperti *context work* bekerja sama persis tanpa tergantung apakah sebuah anak adalah sebuah portal, karena portal masih berada dalam *pohon React* tanpa memandang posisinya dalam *pohon DOM*.
+Walau sebuah portal bisa berada di mana saja dalam pohon DOM, portal tersebut berperilaku seperti halnya anak React yang normal. Fitur seperti *context* bekerja sama persis tanpa tergantung apakah sebuah anak adalah sebuah portal, karena portal masih berada dalam *pohon React* tanpa memandang posisinya dalam *pohon DOM*.
 
 Ini mencakup *event bubbling*. Sebuah *event* yang dijalankan dari dalam portal akan dipropagasikan ke induknya dalam *pohon React* yang memuatnya, walau elemen tersebut bukan merupakan induk dalam *pohon DOM*. Misalnya pada struktur HTML berikut:
 

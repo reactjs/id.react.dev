@@ -4,7 +4,7 @@ title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
-Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html#controlled-components) untuk mengimpementasikan *form*. Pada *controlled component*, *form data* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, dengan *form data* ditangani oleh DOM-nya sendiri.
+Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html) untuk mengimpementasikan *form*. Pada *controlled component*, data *form* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, di mana data *form* akan ditangani oleh DOM-nya sendiri.
 
 Untuk menulis *uncontrolled component*, alih-alih menulis *event handler* untuk setiap pembaruan *state*, Anda bisa [menggunakan *ref*](/docs/refs-and-the-dom.html) untuk mendapatkan nilai *form* dari DOM.
 
@@ -43,7 +43,7 @@ Oleh karena *uncontrolled component* menyimpan sumber kebenaran dalam DOM, terka
 
 Jika masih belum jelas jenis komponen mana yang harus Anda gunakan untuk situasi tertentu, mungkin [artikel tentang *controlled input* versus *uncontrolled input*](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) bisa membantu.
 
-### Nilai *Default* {#default-values}
+### Nilai Default {#default-values}
 
 Pada *lifecycle rendering* React, atribut `value` pada elemen *form* akan menimpa nilai pada DOM. Dengan *uncontrolled component*, sering kali Anda menginginkan React untuk menentukan nilai awal tetapi pembaruan berikutnya dilakukan secara *uncontrolled*. Untuk menangani kasus ini, Anda bisa menentukan atribut `defaultValue` alih-alih menggunakan `value`.
 
@@ -66,7 +66,7 @@ render() {
 
 Ini juga berlaku pada dukungan `defaultChecked` untuk `<input type="checkbox">` dan `<input type="radio">`, serta dukungan `defaultValue` untuk `<select>` dan `<textarea>`.
 
-## *Tag* *file input* {#the-file-input-tag}
+## Tag file input {#the-file-input-tag}
 
 Pada HTML, sebuah `<input type="file">` memungkinkan pengguna untuk memilih satu atau beberapa flle dari media penyimpanan mereka untuk diunggah ke server atau dimanipulasi dengan JavaScript lewat [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
 
@@ -76,7 +76,7 @@ Pada HTML, sebuah `<input type="file">` memungkinkan pengguna untuk memilih satu
 
 Dalam React, sebuah `<input type="file" />` selalu merupakan *uncontrolled component* karena nilainya hanya bisa disetel oleh pengguna, bukan oleh kode program.
 
-Anda harus menggunakan File API untuk berinteraksi dengan *file*. Contoh berikut menunjukkan cara membuat [*ref* ke simpul DOM](/docs/refs-and-the-dom.html) untuk mengakses *file* dalam *submit handler*:
+Anda harus menggunakan File API untuk berinteraksi dengan berkas. Contoh berikut menunjukkan cara membuat [*ref* ke simpul DOM](/docs/refs-and-the-dom.html) untuk mengakses berkas dalam *submit handler*:
 
 `embed:uncontrolled-components/input-type-file.js`
 

@@ -13,7 +13,7 @@ permalink: docs/refs-and-the-dom.html
 
 *Ref* menyediakan cara untuk mengakses simpul DOM atau elemen React yang dibuat dalam *render method*.
 
-Dalam *dataflow* React yang umum, [*props*](/docs/components-and-props.html) adalah satu-satunya cara bagi komponen induk untuk berinteraksi dengan anaknya. Untuk memodifikasi anak, Anda me-*render* ulang dengan *props* yang baru. Tetapi ada beberapa kasus ketika Anda harus memodifikasi anak secara imperatif di luar *dataflow* yang umum. Anak yang akan dimodifikasi bisa berupa komponen React atau elemen DOM. Pada kedua kasus ini, React menyediakan jalan keluar.
+Dalam aliran data React yang umum, [*props*](/docs/components-and-props.html) adalah satu-satunya cara bagi komponen induk untuk berinteraksi dengan anaknya. Untuk memodifikasi anak, Anda me-*render* ulang dengan *props* yang baru. Tetapi ada beberapa kasus ketika Anda harus memodifikasi anak secara imperatif di luar aliran data yang umum. Anak yang akan dimodifikasi bisa berupa komponen React atau elemen DOM. Pada kedua kasus ini, React menyediakan jalan keluar.
 
 ### Kapan Harus Menggunakan *Ref* {#when-to-use-refs}
 
@@ -25,11 +25,11 @@ Ada beberapa kasus yang cocok untuk *ref*:
 
 Hindari penggunaan *ref* untuk semua yang bisa dilakukan secara deklaratif.
 
-Misalnya, alih-alih mengekspos *method* `open()` dan `close()` pada komponen `Dialog`, operkan *props* `isOpen` kepadanya.
+Misalnya, alih-alih mengekspos *method* `open()` dan `close()` pada komponen `Dialog`, kirimkan *props* `isOpen` kepadanya.
 
 ### Jangan Berlebihan Menggunakan *Ref* {#dont-overuse-refs}
 
-Godaan pertama mungkin adalah menggunakan *ref* agar aplikasi "bisa berfungsi". Jika benar demikian, hentikan sejenak dan pikirkan secara kritis, tempat *state* harus berada dalam hierarki komponen. Sering kali nantinya ditemukan bahwa tempat yang lebih baik untuk "memiliki" *state* tersebut adalah di tingkat yang lebih tinggi dalam hierarki. Lihat panduan [Meningkatkan *State*](/docs/lifting-state-up.html) untuk contohnya.
+Godaan pertama mungkin adalah menggunakan *ref* agar aplikasi "bisa berfungsi". Jika benar demikian, hentikan sejenak dan pikirkan secara kritis, tempat *state* harus berada dalam hierarki komponen. Sering kali nantinya ditemukan bahwa tempat yang lebih baik untuk "memiliki" *state* tersebut adalah di tingkat yang lebih tinggi dalam hierarki. Lihat panduan [Memindahkan *State* ke Atas](/docs/lifting-state-up.html) untuk contohnya.
 
 > Catatan
 >
@@ -37,7 +37,7 @@ Godaan pertama mungkin adalah menggunakan *ref* agar aplikasi "bisa berfungsi". 
 
 ### Membuat *Ref* {#creating-refs}
 
-*Ref* dibuat menggunakan `React.createRef()` dan disematkan ke elemen React lewat atribut `ref`. *Ref* umumnya ditetapkan ke properti instans saat komponen dibuat agar mereka bisa dirujuk dalam komponen.
+*Ref* dibuat menggunakan `React.createRef()` dan disematkan ke elemen React lewat atribut `ref`. *Ref* umumnya ditetapkan ke properti *instance* saat komponen dibuat agar mereka bisa dirujuk dalam komponen.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -81,7 +81,7 @@ class CustomTextInput extends React.Component {
   }
 
   focusTextInput() {
-    // Fokuskan secara eksplisit pada input teks menggunakan API DOM mentah
+    // Fokuskan secara eksplisit pada input teks menggunakan API DOM dasar
     // Catatan: kita sedang mengakses "current" untuk mendapatkan simpul DOM
     this.textInput.current.focus();
   }
@@ -153,7 +153,7 @@ class Parent extends React.Component {
     this.textInput = React.createRef();
   }
   render() {
-    // Ini tidak akan berfungsi!
+    // Ini *tidak akan* berfungsi!
     return (
       <MyFunctionComponent ref={this.textInput} />
     );
@@ -221,7 +221,7 @@ class CustomTextInput extends React.Component {
     };
 
     this.focusTextInput = () => {
-      // Fokus pada input teks menggunakan API DOM mentah
+      // Fokus pada input teks menggunakan API DOM dasar
       if (this.textInput) this.textInput.focus();
     };
   }
@@ -279,7 +279,7 @@ Pada contoh di atas, `Parent` mengoper *callback ref*-nya sebagai *props* `input
 
 ### API *Legacy*: *String Ref* {#legacy-api-string-refs}
 
-Jika sebelumnya Anda bekerja dengan React, Anda mungkin sudah mengenal API lawas dengan atribut `ref` berupa string, misalnya `"textInput"`, dan simpul DOM yang diakses dengan `this.refs.textInput`. Kami sarankan untuk tidak melakukannya karena *string ref* memiliki [beberapa masalah](https://github.com/facebook/react/pull/8333#issuecomment-271648615) dan dipertimbangkan sebagai *legacy*, serta **kemungkinan besar akan dihapus dalam salah satu rilis di masa mendatang**. 
+Jika sebelumnya Anda bekerja dengan React, Anda mungkin sudah mengenal API lawas dengan atribut `ref` berupa *string*, misalnya `"textInput"`, dan simpul DOM yang diakses dengan `this.refs.textInput`. Kami sarankan untuk tidak melakukannya karena *string ref* memiliki [beberapa masalah](https://github.com/facebook/react/pull/8333#issuecomment-271648615) dan dipertimbangkan sebagai *legacy*, serta **kemungkinan besar akan dihapus dalam salah satu rilis di masa mendatang**. 
 
 > Catatan
 >

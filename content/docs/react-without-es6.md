@@ -84,7 +84,7 @@ var Counter = createReactClass({
 
 ## *Autobinding* {#autobinding}
 
-Pada komponen React yang dideklarasikan sebagai kelas ES6, *method* mengikuti semantik yang sama seperti kelas ES6 reguler. Ini berarti *method* tersebut tidak secara otomatis mem-*bind* `this` kepada instans. Anda harus secara eksplisit menggunakan `.bind(this)` pada konstruktor:
+Pada komponen React yang dideklarasikan sebagai kelas ES6, *method* mengikuti semantik yang sama seperti kelas ES6 reguler. Ini berarti *method* tersebut tidak secara otomatis mem-*bind* `this` kepada *instance*. Anda harus secara eksplisit menggunakan `.bind(this)` pada konstruktor:
 
 ```javascript
 class SayHello extends React.Component {
@@ -144,7 +144,7 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Halo!'};
   }
-  // PERINGATAN: sintalsis ini bersifat eksperimental!
+  // PERINGATAN: sintaksis ini bersifat eksperimental!
   // Menggunakan *arrow* akan mem-bind method:
   handleClick = () => {
     alert(this.state.message);
@@ -174,7 +174,7 @@ Jika Anda ingin bermain pada area yang aman, Anda memiliki beberapa opsi:
 >
 >ES6 diluncurkan tanpa adanya dukungan *mixin*. Oleh sebab itu, tidak ada dukungan untuk *mixin* saat Anda menggunakan React dengan kelas ES6.
 >
->**Kami juga menemukan banyak masalah pada kode dasar yang menggunakan *mixin*, [dan tidak menyarankan untuk menggunakannya untuk kode yang baru](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**Kami juga menemukan banyak masalah pada basis kode yang menggunakan *mixin*, [dan tidak menyarankan untuk menggunakannya untuk kode yang baru](/blog/2016/07/13/mixins-considered-harmful.html).**
 >
 >Bagian berikut hanya digunakan untuk rujukan.
 
@@ -223,4 +223,4 @@ ReactDOM.render(
 );
 ```
 
-Jika komponen menggunakan beberapa *mixin* dan beberapa *mixin* mendefinisikan *lifecycle method* yang sama (beberapa *mixin* ingin melakukan pembersihan ketika komponen dihancurkan), semua *lifecycle method* dijamin untuk dipanggil. *Method* yang didefiniskan pada *mixin* dijalankan secara berurutan sesuai dengan dengan proses pendaftarannya, diikuti dengan pemanggilan *method* pada komponen.
+Jika komponen menggunakan beberapa *mixin* dan beberapa *mixin* mendefinisikan *lifecycle method* yang sama (contohnya, beberapa *mixin* ingin melakukan pembersihan ketika komponen dihancurkan), semua *lifecycle method* dijamin untuk dipanggil. *Method* yang didefinisikan pada *mixin* dijalankan secara berurutan sesuai dengan dengan proses pendaftarannya, diikuti dengan pemanggilan *method* pada komponen.

@@ -18,7 +18,7 @@ Untuk menggunakannya, Anda harus:
 
 Kami akan menjelaskan langkah-langkah tersebut secara mendetail.
 
-### Menambahkan Flow ke Project {#adding-flow-to-a-project}
+### Menambahkan Flow ke Proyek {#adding-flow-to-a-project}
 
 Pertama-tama, buka direktori proyek Anda di terminal. Anda akan harus menjalankan perintah berikut:
 
@@ -67,19 +67,19 @@ Perintah tersebut akan membuat konfigurasi Flow yang harus Anda sertakan dalam *
 
 ### Menghapus Sintaksis Flow dari Kode Hasil Kompilasi {#stripping-flow-syntax-from-the-compiled-code}
 
-Flow memperluas bahasa JavaScript dengan sintaksis khusus untuk *type annotation*. Akan tetapi browser tidak mengenal sintaksis ini, jadi kita harus memastikan sintaksis tersebut dihapus dari bundel JavaScript hasil kompilasi yang akan dikirim ke browser.
+Flow memperluas bahasa JavaScript dengan sintaksis khusus untuk *type annotation*. Akan tetapi *browser* tidak mengenal sintaksis ini, jadi kita harus memastikan sintaksis tersebut dihapus dari bundel JavaScript hasil kompilasi yang akan dikirim ke *browser*.
 
 Cara yang benar untuk melakukannya tergantung pada peralatan yang Anda gunakan untuk mengompilasi JavaScript.
 
-#### *Create React App* {#create-react-app}
+#### Create React App {#create-react-app}
 
-Jika proyek Anda disiapkan menggunakan [*Create React App*](https://github.com/facebookincubator/create-react-app), maka kami ucapkan selamat! Anotasi Flow akan dihapus secara *default* dan tidak ada yang perlu dilakukan pada langkah ini.
+Jika proyek Anda disiapkan menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), maka kami ucapkan selamat! Anotasi Flow akan dihapus secara *default* dan tidak ada yang perlu dilakukan pada langkah ini.
 
 #### Babel {#babel}
 
 >Catatan:
 >
->Petunjuk berikut *bukan* ditujukan untuk pengguna *Create React App*. Walau pengguna *Create React App* menggunakan Babel di balik layar, Babel tersebut telah dikonfigurasi untuk memahami Flow. Hanya ikuti langkah berikut jika Anda *tidak* menggunakan *Create React App*.
+>Petunjuk berikut *bukan* ditujukan untuk pengguna Create React App. Walau pengguna Create React App menggunakan Babel di balik layar, Babel tersebut telah dikonfigurasi untuk memahami Flow. Hanya ikuti langkah berikut jika Anda *tidak* menggunakan Create React App.
 
 Jika Babel dikonfigurasi secara manual untuk proyek Anda, Anda harus menginstal *preset* khusus untuk Flow.
 
@@ -95,7 +95,7 @@ Jika menggunakan npm, jalankan:
 npm install --save-dev @babel/preset-flow
 ```
 
-Kemudian tambahkan *preset* `flow` ke [konfigurasi Babel ](https://babeljs.io/docs/usage/babelrc/) Anda. Misalnya, jika Babel dikonfigurasi lewat *file* `.babelrc`, tampilannya mungkin seperti berikut:
+Kemudian tambahkan *preset* `flow` ke [konfigurasi Babel](https://babeljs.io/docs/usage/babelrc/) Anda. Misalnya, jika Babel dikonfigurasi lewat *file* `.babelrc`, tampilannya mungkin seperti berikut:
 
 ```js{3}
 {
@@ -214,7 +214,7 @@ Selamat! Anda telah menginstal versi terbaru TypeScript ke proyek Anda. Instalas
 ```
 
 ### Mengonfigurasi Kompiler TypeScript {#configuring-the-typescript-compiler}
-Kompiler tidak akan membantu kita hingga kita memberi tahu apa yang harus kompiler lakukan. Pada TypeScript, aturan ini didefinisikan pada *file* khusus yang diberi nama `tsconfig.json`. Untuk membuat *file* ini:
+Kompiler tidak akan membantu kita hingga kita memberi tahu apa yang harus kompiler lakukan. Pada TypeScript, aturan ini didefinisikan pada berkas khusus yang diberi nama `tsconfig.json`. Untuk membuat berkas ini:
 
 Jika menggunakan [Yarn](https://yarnpkg.com/), jalankan:
 
@@ -230,7 +230,7 @@ npx tsc --init
 
 Pada `tsconfig.json` yang baru dibuat, Anda bisa melihat banyak opsi yang bisa dikonfigurasi untuk kompiler. Untuk deskripsi mendetail tentang semua opsi kunjungi [halaman ini](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-Dari sekian banyak opsi, mari kita lihat opsi `rootDir` dan `outDir`. Awalnya, kompiler akan mengambil *file* TypeScript dan menciptakan *file* JavaScript. Akan tetapi kita tidak ingin mencampur aduk *file* sumber dengan *file* keluaran yang diciptakan..
+Dari sekian banyak opsi, mari kita lihat opsi `rootDir` dan `outDir`. Awalnya, kompiler akan mengambil berkas TypeScript dan menciptakan berkas JavaScript. Akan tetapi kita tidak ingin mencampur aduk berkas sumber dengan berkas keluaran yang diciptakan.
 
 Kita akan mengatasi masalah ini dalam dua langkah:
 * Pertama-tama, mari kita susun struktur proyek kita seperti berikut. Kita akan tempatkan semua kode sumber dalam direktori `src`.
@@ -257,7 +257,7 @@ Kita akan mengatasi masalah ini dalam dua langkah:
 }
 ```
 
-Kini, jika kita menjalankan skrip *build*, maka kompiler akan menghasilkan kode JavaScript ke *folder* `build`. [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) menyediakan `tsconfig.json` dengan sekumpulan aturan yang layak bagi Anda untuk memulai.
+Kini, jika kita menjalankan *build script*, maka kompiler akan menghasilkan kode JavaScript di *folder* `build`. [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) menyediakan `tsconfig.json` dengan sekumpulan aturan yang cukup bagi Anda untuk memulai.
 
 Secara umum Anda tidak ingin menyimpan kode JavaScript yang dihasilkan dalam sistem *source control* Anda, jadi pastikan untuk menambahkan *folder* *build* ke *file* `.gitignore`.
 
@@ -302,7 +302,7 @@ npm i --save-dev @types/react
 ```
 
 __Deklarasi Lokal__
-Terkadang *package* yang ingin digunakan tidak memiliki deklarasi terbundel atau tidak tersedia di DefinitelyTyped. Pada kasus ini, kita bisa membuat *file* deklarasi lokal. Untuk melakukannya, buat *file* `declarations.d.ts` pada akar direktori sumber Anda. Deklarasi sederhana tampak sebagai berikut:
+Terkadang *package* yang ingin digunakan tidak memiliki deklarasi terbundel atau tidak tersedia di DefinitelyTyped. Pada kasus ini, kita bisa membuat berkas deklarasi lokal. Untuk melakukannya, buat berkas `declarations.d.ts` pada akar direktori sumber Anda. Deklarasi sederhana tampak sebagai berikut:
 
 ```typescript
 declare module 'querystring' {
