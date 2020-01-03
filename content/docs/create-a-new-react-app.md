@@ -30,7 +30,7 @@ Cara tersebut juga merupakan **cara termudah mengintegrasikan React ke dalam sit
 
 Tim React sangat merekomendasikan solusi ini:
 
-- Jika Anda **Sedang belajar React** atau **membuat Aplikasi [satu halaman](/docs/glossary.html#single-page-application) baru,** cobalah [Create React App](#create-react-app).
+- Jika Anda **sedang belajar React** atau **membuat aplikasi [*single-page*](/docs/glossary.html#single-page-application) baru,** cobalah [Create React App](#create-react-app).
 - Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan *server* Node.js,** cobalah [Next.js](#nextjs).(#nextjs).
 - Jika Anda sedang membangun sebuah **situs statis yang berorientasi pada konten,** cobalah [Gatsby](#gatsby).
 - Jika Anda sedang membangun sebuah ***library* komponen** atau **menggabungkannya dengan basis kode yang sudah ada,** cobalah [*toolchains* yang lebih fleksibel](#more-flexible-toolchains).
@@ -38,7 +38,7 @@ Tim React sangat merekomendasikan solusi ini:
 ### Create React App {#create-react-app}
 
 
-[Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [satu halaman](/docs/glossary.html#single-page-application)** di React.
+[Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [*single-page*](/docs/glossary.html#single-page-application)** di React.
 
 Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
 
