@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 React, menurut opini kami, adalah cara paling terdepan dalam membangun sebuah aplikasi web JavaScript yang besar dan cepat. React dapat mengatasi masalah skalabilitas dengan sangat baik untuk kami di Facebook dan Instagram.
 
-Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
+Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi Anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
 
 ## Mulailah Dengan Sebuah Rancang Bangun {#start-with-a-mock}
 
@@ -33,7 +33,7 @@ API JSON kita akan mengembalikan beberapa data yang akan terlihat seperti ini:
 
 ## Langkah 1: Bagi Antaramuka Pengguna Menjadi Sebuah Hierarki Komponen {#step-1-break-the-ui-into-a-component-hierarchy}
 
-Langkah pertama yang akan Anda lakukan adalah menggambar kotak-kotak untuk setiap komponen (dan subkomponen) di rancang bangun dan memberikan mereka masing-masing sebuah nama. Jika Anda bekerja dengan desainer, mungkin mereka telah melakukan ini, jadi cobalah tanya mereka! Nama *layer* pada berkas Photoshop mereka bisa menjadi nama bagi komponen React anda!
+Langkah pertama yang akan Anda lakukan adalah menggambar kotak-kotak untuk setiap komponen (dan subkomponen) di rancang bangun dan memberikan mereka masing-masing sebuah nama. Jika Anda bekerja dengan desainer, mungkin mereka telah melakukan ini, jadi cobalah tanya mereka! Nama *layer* pada berkas Photoshop mereka bisa menjadi nama bagi komponen React Anda!
 
 Namun bagaimana Anda mengetahui bagian mana yang harus menjadi komponen sendiri? Anda dapat menggunakan teknik yang sama untuk memutuskan jika Anda harus membuat sebuah fungsi atau obyek. Salah satu dari teknik tersebut adalah [*single responsibility principle*](https://en.wikipedia.org/wiki/Single_responsibility_principle), yang berarti secara ideal, sebuah komponen hanya dapat melakukan satu hal. Jika pada akhirnya komponen tersebut berkembang, maka ia harus dibagi kembali menjadi subkomponen yang lebih kecil.
 
@@ -41,7 +41,7 @@ Karena Anda seringkali akan menampilkan sebuah model data JSON kepada pengguna, 
 
 ![Component diagram](../images/blog/thinking-in-react-components.png)
 
-Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi simpel kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
+Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
 
   1. **`FilterableProductTable` (oranye):** berisi keseluruhan dari contoh ini
   2. **`SearchBar` (biru):** menerima semua *masukan pengguna*
@@ -49,7 +49,7 @@ Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi simpel k
   4. **`ProductCategoryRow` (biru muda):** menampilkan judul untuk setiap *kategori*
   5. **`ProductRow` (merah):** menampilkan sebuah baris untuk setiap *produk*
 
-Jika Anda melihat `ProductTable`, Anda akan menemukan bahwa judul tabel (berisi label "Name" dan "Price") bukan merupakan komponen yang berdiri sendiri. Sebenarnya ini adalah masalah preferensi, dan akan terdapat argumen yang akan dibuat bagaimanapun juga. Di contoh ini, kita membuatnya sebagai bagian dari `ProductTable` karena ia adalah bagian dari proses *render* *koleksi data*, yang merupakan tanggung jawab dari `ProductTable`. Namun, jika judul tabel ini berkembang menjadi lebih rumit (mis. jika kita akan menambahkan fungsi sorting), akan menjadi masuk akal untuk membuatnya dalam komponen `ProductTableHeader` yang terpisah.
+Jika Anda melihat `ProductTable`, Anda akan menemukan bahwa judul tabel (berisi label "Name" dan "Price") bukan merupakan komponen yang berdiri sendiri. Sebenarnya ini adalah masalah preferensi, dan akan terdapat argumen yang akan dibuat bagaimanapun juga. Di contoh ini, kita membuatnya sebagai bagian dari `ProductTable` karena ia adalah bagian dari proses me-*render* *koleksi data*, yang merupakan tanggung jawab dari `ProductTable`. Namun, jika judul tabel ini berkembang menjadi lebih rumit (mis. jika kita akan menambahkan fungsi *sorting*), akan menjadi masuk akal untuk membuatnya dalam komponen `ProductTableHeader` yang terpisah.
 
 Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturnya dalam sebuah hierarki. Ini mudah. Komponen yang berada di dalam komponen dalam rancang bangun kita harusnya akan muncul sebagai komponen anak dalam hierarki kita:
 
@@ -61,28 +61,28 @@ Setelah kita mengidentifikasi komponen dari rancang bangun kita, mari mengaturny
 
 ## Langkah 2: Buat Versi Statis di React {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> di <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Setelah kita memiliki hierarki komponen, saatnya mengimplementasikan aplikasi anda. Cara termudah adalah membuat versi aplikasi anda yang menerima model data dan me-*render* UI tanpa ada interaktifitas yang terjadi. Memisahkan proses ini adalah jalan yang terbaik karena membuat versi statis membutuhkan banyak mengetik dan tanpa berpikir, dan menambahkan interaktifitas membutuhkan banyak berpikir namun tidak terlalu banyak mengetik. Kita akan segera tahu alasannya.
+Setelah kita memiliki hierarki komponen, saatnya mengimplementasikan aplikasi Anda. Cara termudah adalah membuat versi aplikasi Anda yang menerima model data dan me-*render* UI tanpa ada interaktifitas yang terjadi. Memisahkan proses ini adalah jalan yang terbaik karena membuat versi statis membutuhkan banyak mengetik dan tanpa berpikir, dan menambahkan interaktifitas membutuhkan banyak berpikir namun tidak terlalu banyak mengetik. Kita akan segera tahu alasannya.
 
-Untuk membuat versi statis dari aplikasi anda yang me-*render* model data, Anda akan membangun komponen yang menggunakan kembali komponen lain dan mengoper data menggunakan *props*. *props* adalah sebuah cara untuk mengoper data dari komponen induk ke komponen anak. Jika anda telah familiar dengan konsep *state*, **jangan menggunakan *state* sama sekali** untuk membangun versi statis ini. *State* disediakan hanya untuk interaktifitas, yang berarti, data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi yang Anda buat, Anda belum membutuhkannya.
+Untuk membuat versi statis dari aplikasi Anda yang me-*render* model data, Anda akan membangun komponen yang menggunakan kembali komponen lain dan mengoper data menggunakan *props*. *props* adalah sebuah cara untuk mengoper data dari komponen induk ke komponen anak. Jika Anda telah familiar dengan konsep *state*, **jangan menggunakan *state* sama sekali** untuk membangun versi statis ini. *State* disediakan hanya untuk interaktifitas, yang berarti, data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi yang Anda buat, Anda belum membutuhkannya.
 
-Anda dapat membangun dari atas ke bawah atau dari bawah ke atas. Maksudnya, anda dapat mulai membangun komponen teratas dari hierarki (mis. memulai dari `FilterableProductTable`) atau dari komponen terbawah (`ProductRow`). Dalam contoh simpel, biasanya lebih mudah membangun dari atas ke bawah, dan dalam proyek yang lebih besar, biasanya lebih mudah membangun dari bawah ke atas dan menambahkan tes dalam prosesnya.
+Anda dapat membangun dari atas ke bawah atau dari bawah ke atas. Maksudnya, Anda dapat mulai membangun komponen teratas dari hierarki (mis. memulai dari `FilterableProductTable`) atau dari komponen terbawah (`ProductRow`). Dalam contoh simpel, biasanya lebih mudah membangun dari atas ke bawah, dan dalam proyek yang lebih besar, biasanya lebih mudah membangun dari bawah ke atas dan menambahkan tes dalam prosesnya.
 
-Pada akhir langkah ini, Anda akan memiliki sebuah *library* dari komponen pakai ulang yang akan me-*render* model data Anda. Komponen-komponen tersebut hanya akan memiliki method `render()` karena mereka adalah versis statis dari aplikasi anda. Komponen di atas hierarki (`FilterableProductTable`) akan mengambil model data sebagai sebuah prop. Jika Anda membuat perubahan pada model data dan memanggil kembali `ReactDOM.render()`, UI akan diperbarui secara otomatis. Akan mudah untuk melihat bagaimana UI Anda diperbarui dan dimana untuk melakukan perubahan karena tidak ada hal rumit yang terjadi. Konsep **one-way data flow** (disebut juga *one-way binding*) dari React membuat segalanya modular dan cepat.
+Pada akhir langkah ini, Anda akan memiliki sebuah *library* dari komponen pakai ulang yang akan me-*render* model data Anda. Komponen-komponen tersebut hanya akan memiliki method `render()` karena mereka adalah versis statis dari aplikasi Anda. Komponen di atas hierarki (`FilterableProductTable`) akan mengambil model data sebagai sebuah prop. Jika Anda membuat perubahan pada model data dan memanggil kembali `ReactDOM.render()`, UI akan diperbarui secara otomatis. Akan mudah untuk melihat bagaimana UI Anda diperbarui dan dimana untuk melakukan perubahan karena tidak ada hal rumit yang terjadi. Konsep **one-way data flow** (disebut juga *one-way binding*) dari React membuat segalanya modular dan cepat.
 
 Silakan merujuk pada [dokumentasi React](/docs/) jika Anda memerlukan bantuan dalam melakukan langkah ini.
 
 ### Sedikit Selingan: *Props* vs *State* {#a-brief-interlude-props-vs-state}
 
-Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk memahami perbedaan keduanya; baca [dokumentasi React](/docs/interactivity-and-dynamic-uis.html) jika Anda belum yakin apa perbedaan mereka.
+Terdapat dua tipe "model" data di React: *props* dan *state*. Penting untuk memahami perbedaan keduanya; baca [dokumentasi React](/docs/interactivity-and-dynamic-uis.html) jika Anda belum yakin apa perbedaan mereka. Lihat juga [FAQ: Apakah perbedaan dari *state* dan *props*?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## Langkah 3: Identifikasi Representasi Minimal (namun komplit) dari *State* UI {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
 Untuk membuat UI Anda interaktif, Anda harus bisa melakukan perubahan terhadap model data Anda. React membuat langkah ini mudah dengan **state**.
 
-Untuk membangun aplikasi anda dengan benar, pertama-tama anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika anda membangun sebuah TODO list, simpan saja sebuah array dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari array item TODO.
+Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah senarai dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari senarai item TODO.
 
 Pikirkan bagian-bagian data yang ada dalam aplikasi kita. Kita memiliki:
 
@@ -106,13 +106,13 @@ Jadi, *state* kita adalah:
 
 ## Langkah 4: Identifikasi Dimana *State* Anda Berada {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 OK, jadi kita sudah mengindentifikasi set minimal dari *state* aplikasi kita. Selanjutnya, kita perlu mengidentifikasi komponen mana yang memutasi, atau *memiliki* *state* tersebut.
 
 Perlu diingat: Prinsip dasar React adalah aliran data satu arah yang mengalir ke bawah sejalan dengan hierarki komponen. Bisa jadi menentukan komponen mana yang harus menyimpan *state* yang mana tidak dapat dilakukan secara langsung. **Ini seringkali adalah bagian paling menantang bagi pendatang baru untuk dipahami,** jadi ikuti langkah-langkah berikut untuk mengetahuinya:
 
-Untuk setiap bagian *state* dari aplikasi anda:
+Untuk setiap bagian *state* dari aplikasi Anda:
 
   * Identifikasi setiap komponen yang me-*render* sesuatu berdasarkan *state* tersebut.
   * Temukan sebuah komponen yang menjadi pemilik bersama dari *state* (sebuah komponen di atas komponen-komponen yang membutuhkan *state* tersebut di hirarki).
@@ -125,23 +125,21 @@ Mari kita jalankan strategi ini di aplikasi kita:
   * Komponen pemilik bersama dalam hal ini adalah `FilterableProductTable`.
   * Akan menjadi masuk akal secara konsep apabila teks pencarian dan nilai checkbox untuk berada di `FilterableProductTable`
 
-Bagus, jadi kita telah menentukan bahwa *state* kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan *state* awal dari aplikasi anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan *props* tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
+Bagus, jadi kita telah menentukan bahwa *state* kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan *state* awal dari aplikasi Anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan *props* tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
 
-Anda akan mulai dapat melihat bagaimana aplikasi anda bekerja: ubah `filterText` menjadi `"ball"` lalu muat ulang aplikasi anda. Anda akan melihat tabel data telah diperbarui dengan benar.
+Anda akan mulai dapat melihat bagaimana aplikasi Anda bekerja: ubah `filterText` menjadi `"ball"` lalu muat ulang aplikasi Anda. Anda akan melihat tabel data telah diperbarui dengan benar.
 
 ## Langkah 5: Tambahkan Aliran Data Sebaliknya {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Lihat Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> di <a href="https://codepen.io">CodePen</a>.</p>
 
 Sejauh ini, kita telah membangun sebuah aplikasi yang telah secara benar di-*render* sebagai fungsi dari *props* dan *state* yang mengalir ke bawah seiring hierarki. Sekarang saatnya untuk mendukung aliran data ke arah sebaliknya: komponen form yang berada di bawah hirarki perlu untuk memperbarui *state* di `FilterableProductTable`.
 
-React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemahaman bagaimana aplikasi anda bekerja, namun cara ini membuat perlunya pengetikan yang sedikit lebih banyak daripada metode *two-way data binding* tradisional.
+React membuat aliran data seperti ini menjadi eksplisit untuk mempermudah pemahaman bagaimana aplikasi Anda bekerja, namun cara ini membuat perlunya pengetikan yang sedikit lebih banyak daripada metode *two-way data binding* tradisional.
 
-Jika anda mencoba untuk mengetik atau mencentang checkbox di versi saat ini, anda akan melihat bahwa React tidak memperdulikan input yang anda lakukan. Hal ini memang disengaja, karena kita telah menentukan prop `value` dari `input` agar selalu setara dengan `state` yang dioper dari `FilterableProductTable`.
+Jika Anda mencoba untuk mengetik atau mencentang checkbox di versi saat ini, Anda akan melihat bahwa React tidak memperdulikan input yang Anda lakukan. Hal ini memang disengaja, karena kita telah menentukan prop `value` dari `input` agar selalu setara dengan `state` yang dioper dari `FilterableProductTable`.
 
 Mari kita berpikir mengenai apa yang sebenarnya kita inginkan terjadi. Kita ingin untuk memastikan bahwa ketika pengguna mengubah form, kita memperbarui *state* untuk merefleksikan input dari pengguna. Karena komponen hanya diperbolehkan untuk memperbarui *state* mereka sendiri, `FilterableProductTable` akan mengalirkan *callback* ke `SearchBar` yang kemudian akan dipanggil kapanpun *state* harus diperbarui. Kita dapat menggunakan event `onChange` pada input untuk mengetahui kapan harus memanggil *callback*. *Callback* yang dioper oleh `FilterableProductTable` akan memanggil `setState()`, dan aplikasi akan diperbarui.
-
-Mungkin terdengar kompleks, namun ini hanya memerlukan beberapa baris kode. Dan bagaimana data Anda mengalir ke keseluruhan aplikasi dapat terlihat secara eksplisit.
 
 ## Dan Selesai! {#and-thats-it}
 

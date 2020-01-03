@@ -8,7 +8,7 @@ prev: hooks-overview.html
 
 *Hooks* merupakan fitur baru di React 16.8. Fitur ini memungkinkan Anda menggunakan *state* dan fitur React lainnya tanpa menuliskan sebuah kelas.
 
-Pada [halaman sebelumnya](/docs/hooks-intro.html) mengenalkan *Hooks* dengan contoh sebagai berikut:
+Halaman [Memperkenalkan *Hooks*](/docs/hooks-intro.html) menggunakan contoh sebagai berikut:
 
 ```js{4-5}
 import React, { useState } from 'react';

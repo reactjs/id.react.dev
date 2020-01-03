@@ -6,63 +6,64 @@ layout: docs
 category: Reference
 ---
 
-**Importing**
+**Cara Import**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 dengan npm
 ```
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Ketika menulis _unit tests_ untuk React, _shallow rendering_ akan sangat membantu Anda. _Shallow rendering_ memungkinkan Anda untuk melakukan _render_ suatu komponen “sedalam satu level” dan melakukan pengujian dari hasil kembalian _render method_ komponen tersebut. Hasil _render method_ tidak akan memedulikan sifat (_behavior_) dari komponen-komponen yang ada di dalamnya, karena komponen-komponen tersebut tidak ter-_render_. Proses ini tidak memerlukan DOM.
 
-For example, if you have the following component:
+Sebagai contoh, jika Anda memiliki komponen seperti berikut:
 
 ```javascript
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">Judul</span>
       <Subcomponent foo="bar" />
     </div>
   );
 }
 ```
 
-Then you can assert:
+Kemudian Anda dapat melakukan pengujian:
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// pada pengujian Anda:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 
 expect(result.type).toBe('div');
 expect(result.props.children).toEqual([
-  <span className="heading">Title</span>,
+  <span className="heading">Judul</span>,
   <Subcomponent foo="bar" />
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+Saat ini _shallow testing_ masih memiliki beberapa keterbatasan, salah satunya belum mendukung _refs_.
 
-> Note:
+> Catatan:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> Kami juga menyarankan Anda untuk membaca [API Shallow Rendering](http://airbnb.io/enzyme/docs/api/shallow.html) oleh Enzyme yang menyediakan _API_ tingkat atas (_higher-level API_) yang lebih baik untuk fungsionalitas serupa.
 
-## Reference {#reference}
+
+## Referensi {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+Anda dapat membayangkan `shallowRenderer` sebagai “tempat” untuk me-_render_ suatu komponen yang sedang Anda uji, juga sebagai tempat di mana Anda bisa mengekstrak keluaran dari komponen tersebut.
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+`shallowRenderer.render()` merupakan _method_ yang serupa dengan [`ReactDOM.render()`](/docs/react-dom.html#render) tetapi tidak membutuhkan DOM dan hanya melakukan _render_ sedalam satu level. Hal tersebut membuat Anda dapat menguji suatu komponen secara terisolasi, tidak menghiraukan implementasi komponen lain yang ada di dalamnya.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+Setelah memanggil _method_ `shallowRenderer.render()` , Anda dapat menggunakan `shallowRenderer.getRenderOutput()` untuk memperoleh keluaran dari komponen yang di-_render_ menggunakan _shallow renderer_.
 
-You can then begin to assert facts about the output.
+Kemudian, Anda dapat mulai melakukan pengujian dari hasil keluaran yang telah diperoleh.

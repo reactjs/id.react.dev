@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "Tutorial: Pengantar React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,99 +12,95 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+Tutorial ini tidak membutuhkan pengetahuan tentang React sebelumnya. 
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## Sebelum Kita Memulai Tutorial {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React apps, and mastering it will give you a deep understanding of React.
+Kita akan membangun sebuah gim kecil sepanjang tutorial ini. **Anda bisa jadi tergoda untuk melewati tutorial ini karena Anda tidak benar-benar membuat gim -- namun luangkanlah sedikit waktu untuk mencobanya.** Teknik-teknik yang akan Anda pelajari pada tutorial ini adalah hal-hal dasar yang digunakan untuk membangun aplikasi React, dan menguasai teknik-teknik tersebut akan memberikan pemahaman terhadap React secara lebih mendalam.
 
->Tip
+>Tips
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+>Tutorial ini didesain untuk orang yang lebih suka **belajar dengan mempraktikkan**. Jika Anda lebih suka mempelajari konsep dari tingkat dasar sampai tingkat lanjut, lihat [panduan langkah demi langkah](/docs/hello-world.html) kami. Anda akan menyadari bahwa tutorial dan panduan akan saling melengkapi.
 
-The tutorial is divided into several sections:
+Tutorial ini akan dibagi menjadi beberapa bagian:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [Mempersiapkan Tutorial](#setup-for-the-tutorial) merupakan **titik awal** Anda untuk mengikuti tutorial.
+* [Ikhtisar](#overview) bagian ini berisi **hal-hal mendasar** React: komponen, *props*, dan *state*.
+* [Menyelesaikan Permainan](#completing-the-game) bagian ini berisi **teknik-teknik yang paling umum** pada pengembangan aplikasi React.
+* [Menambahkan Penjelajahan Waktu](#adding-time-travel) bagian ini akan memberikan **pemahaman yang lebih mendalam** pada kekuatan unik dari React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+Anda tidak perlu menyelesaikan semua bagian sekaligus untuk mendapatkan pembelajaran dari tutorial ini. Cobalah mengerjakan semampu Anda -- walaupun hanya satu atau dua bagian.
 
-It's fine to copy and paste code as you're following along the tutorial, but we recommend to type it by hand. This will help you develop a muscle memory and a stronger understanding.
+### Apa yang Kita Kembangkan? {#what-are-we-building}
 
-### What Are We Building? {#what-are-we-building}
+Dalam tutorial ini, kami akan menunjukkan cara membuat permainan *tic-tac-toe* interaktif menggunakan React.
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+Anda dapat melihat gambaran aplikasi yang akan kita buat di sini: **[Hasil Akhir](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Jika kode tersebut tidak masuk akal untuk Anda, atau Anda tidak akrab dengan sintaks kode tersebut, jangan khawatir! Tujuan dari tutorial ini adalah untuk membantu Anda mengerti React dan sintaksnya.
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Kami merekomendasikan Anda untuk mencari tahu tentang permainan *tic-tac-toe* sebelum melanjutkan tutorial ini. Salah satu fitur yang akan Anda lihat adalah adanya daftar bernomor di sebelah kanan papan permainan. Daftar ini memberikan Anda semua riwayat langkah yang sudah terjadi dalam permainan, dan terus diperbarui selama permainan berlangsung.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and is updated as the game progresses.
+Anda bisa menutup laman permainan *tic-tac-toe* setelah Anda paham dengan permainan tersebut. Kita akan memulai dari templat sederhana pada tutorial ini. Langkah selanjutnya adalah mempersiapkan Anda sehingga Anda dapat memulai mengembangkan permainan *tic-tac-toe*.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+### Prasyarat {#prerequisites}
 
-### Prerequisites {#prerequisites}
+Kami mengasumsikan bahwa Anda memiliki pemahaman akan HTML dan JavaScript, namun Anda seharusnya tetap dapat mengikuti tutorial ini jika Anda memiliki pemahaman pada bahasa pemrograman lainnya. Kami juga berasumsi bahwa Anda memiliki pemahaman akan konsep pemrograman seperti fungsi, objek, senarai, dan pada tingkat yang lebih rendah, kelas.
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+Jika Anda memerlukan pengingat tentang JavaScript, kami merekomendasikan Anda untuk membaca [panduan ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Perlu diperhatikan juga bahwa kita menggunakan beberapa fitur dari ES6 -- versi terbaru JavaScript. Di tutorial ini, kita menggunakan *statement* *[arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)*, [kelas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), dan [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Anda dapat menggunakan [Babel REPL](babel://es5-syntax-example) untuk melihat hasil kompilasi kode ES6.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+## Mempersiapkan Tutorial {#setup-for-the-tutorial}
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+Ada dua cara untuk menyelesaikan tutorial ini: Anda dapat menulis kode pada *browser* Anda atau mempersiapkan *local development environment* pada komputer Anda.
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+### Persiapan Cara 1: Menulis Kode pada Browser {#setup-option-1-write-code-in-the-browser}
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+Ini adalah cara tercepat untuk memulai!
 
-This is the quickest way to get started!
+Pertama, buka **[kode permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** ini pada *tab* baru. *Tab* baru tersebut seharusnya menunjukan papan permainan *tic-tac-toe* yang kosong dan kode React. Kita akan mengedit kode React tersebut pada tutorial ini.
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+Anda dapat melewati cara kedua untuk persiapan dan menuju ke bagian [Ikhtisar](#overview) untuk mendapatkan ikhtisar dari React.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+### Persiapan Cara 2: Local Development Environment {#setup-option-2-local-development-environment}
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
-
-This is completely optional and not required for this tutorial!
+Cara ini murni opsional dan tidak wajib pada tutorial ini!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Opsional: Instruksi untuk mengikuti secara lokal menggunakan editor teks pilihan Anda</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+Persiapan ini membutuhkan lebih banyak langkah tetapi membuat Anda dapat menyelesaikan tutorial ini menggunakan editor teks pilihan Anda. Berikut adalah beberapa langkah yang harus diikuti:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. Pastikan Anda sudah meng-*install* [Node.js](https://nodejs.org/en/) versi terbaru.
+2. Ikuti [langkah instalasi Create React App](/docs/create-a-new-react-app.html#create-react-app) untuk membuat *project* baru.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Hapus semua *file* pada folder `src/` dari *project* baru Anda.
 
-> Note:
->
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+> Catatan: **jangan hapus seluruh folder `src`, cukup *file-file* yang ada di dalamnya saja.** Kita akan menggantikan *file-file* tersebut dengan contoh-contoh yang akan diberikan melalui tutorial ini.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# Jika Anda menggunakan Mac atau Linux:
 rm -f *
 
-# Or, if you're on Windows:
+# Atau jika Anda menggunakan Windows:
 del *
 
-# Then, switch back to the project folder
+# Kemudian, kembali ke folder project
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Tambahkan *file* bernama `index.css` ke dalam folder `src/` dengan [kode CSS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Tambahkan *file* bernama `index.js` ke dalam folder `src/` dengan [kode JS ini](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. Tambahkan tiga baris kode berikut pada bagian paling atas `index.js` di dalam folder `src/`:
 
 ```js
 import React from 'react';
@@ -112,32 +108,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+Sekarang, jika Anda menjalankan `npm start` pada folder *project* Anda dan mengakses `http://localhost:3000` pada *browser* Anda, Anda akan melihat papan *tic-tac-toe* yang kosong.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+Kami merekomendasikan Anda untuk mengikuti [instruksi ini](https://babeljs.io/docs/editors/) untuk mengkonfigurasi *syntax highlighting* untuk editor Anda.
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### Tolong, Saya Mengalami Masalah! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+Jika Anda mengalami masalah, silahkan kunjungi [sumber dukungan komunitas](/community/support.html). Secara khusus, [Reactiflux Chat](https://discord.gg/reactiflux) adalah langkah yang baik untuk mendapat bantuan dengan cepat. Jika Anda tidak mendapat jawaban, atau tetap mengalami masalah, maka silahkan mengajukan *issue*, dan kami akan membantu Anda.
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-Now that you're set up, let's get an overview of React!
+Sekarang karena Anda sudah siap, mari mempelajari ikhtisar dari React!
 
-### What Is React? {#what-is-react}
+### Apa Itu React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+React adalah *library* JavaScript yang deklaratif, efisien, dan fleksibel untuk membangun antarmuka pengguna. React memungkinkan Anda untuk membuat antarmuka kompleks dari kumpulan kode yang kecil dan terisolasi yang disebut "komponen".
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+React memiliki beberapa jenis komponen, tetapi kita akan memulai dengan subkelas `React.Component`:
 
 ```javascript
 class ShoppingList extends React.Component {
   render() {
     return (
       <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
+        <h1>Daftar Belanja untuk {this.props.name}</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -148,14 +144,14 @@ class ShoppingList extends React.Component {
   }
 }
 
-// Example usage: <ShoppingList name="Mark" />
+// Contoh Penggunaan: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+Kita akan membahas *tag* aneh yang seperti XML sesaat lagi. Kita menggunakan komponen untuk memberi tahu React yang ingin kita lihat pada layar. Ketika data kita berubah, React akan memperbarui dan me-*render* ulang komponen kita dengan efisien.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+Di sini, ShoppingList adalah **kelas komponen React** atau **tipe komponen React**. Sebuah komponen dapat menerima parameter yang disebut dengan *`props`* (singkatan dari *`properties`*) dan mengembalikan sebuah hirarki dari tampilan-tampilan yang akan ditampilkan via *method* `render`.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+*Method* `render` mengembalikan sebuah *deskripsi* dari benda yang akan Anda lihat pada layar. React mengambil deskripsi tersebut dan menampilkan hasilnya ke layar. Secara khusus, `render` mengembalikan **elemen React**, yang merupakan deskripsi ringan tentang yang harus di-`render`. Kebanyakan pengembang React menggunakan sintaks khusus yang disebut "JSX" yang memudahkan struktur dari React mudah untuk ditulis. Sintaks `<div />` akan diubah menjadi `React.createElement('div')` pada saat *build*. Contoh di atas sama dengan sintaks berikut:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -164,42 +160,45 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[Lihat versi lengkap.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+Jika Anda penasaran, `createElement()` dideskripsikan dengan lebih rinci pada bagian [referensi API](/docs/react-api.html#createelement), tetapi kita tidak akan menggunakannya pada tutorial ini. Kita akan tetap menggunakan JSX.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+JSX hadir dengan kekuatan penuh dari JavaScript. Anda dapat menulis *setiap* ekspresi JavaScript di antara tanda kurung kurawal di dalam JSX. Setiap elemen React adalah objek JavaScript yang dapat Anda simpan di dalam variabel atau Anda oper ke seputar program Anda.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+Komponen `ShoppingList` di atas hanya me-*render* komponen DOM *built-in* seperti `<div />` dan `<li />`. Namun, Anda juga dapat membuat dan me-*render* komponen React Anda sendiri. Contohnya, kita dapat mengacu ke seluruh daftar belanja di atas dengan menuliskan `<ShoppingList />`. Setiap komponen React terenkapsulasi dan dapat beroperasi secara mandiri; hal ini memungkinkan Anda untuk membangun sebuah antarmuka pengguna yang kompleks dari komponen sederhana.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## Melihat Kode Permulaan {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan](#setup-option-2-local-development-environment)).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+Kode Permulaan ini berdasarkan pada aplikasi yang akan kita buat. Kami sudah menyediakan *style CSS* sehingga Anda bisa fokus mempelajari React dan memprogram permainan *tic-tac-toe*.
 
-By inspecting the code, you'll notice that we have three React components:
+Dengan melihat kode permulaan, Anda akan melihat bahwa kita memiliki tiga komponen React:
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+Komponen Square akan me-*render* sebuah `<button>` dan komponen Board akan me-*render* 9 persegi. Komponen Game akan me-*render* sebuah papan dengan nilai sementara yang akan kita ganti nanti. Saat ini belum ada komponen interaktif.
 
-### Passing Data Through Props {#passing-data-through-props}
+### Mengoper Data Melalui Props {#passing-data-through-props}
 
-Just to get our feet wet, let's try passing some data from our Board component to our Square component.
+Untuk memulai mendalami React, mari kita mencoba untuk mengoper data dari komponen Board ke komponen Square kita.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+Kami menyarankan mengetik kode-kode berikut secara manual selama Anda mengikuti tutorial ini dan menghindari menggunakan *copy*/*paste*. Ini akan membantu mengembangkan memori otot Anda dan meningkatkan pemahaman Anda mengenai React.
+
+Di dalam *method* `renderSquare` Board, ubah kodenya untuk mengoperkan *prop* bernama `value` ke Square:
 
 ```js{3}
 class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+Ubah *method* `render` Square untuk menampilkan nilai tersebut dengan mengganti `{/* TODO */}` dengan `{this.props.value}`:
 
 ```js{5}
 class Square extends React.Component {
@@ -213,22 +212,22 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+Sebelum:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+Sesudah: Anda seharusnya melihat angka dari setiap persegi pada keluaran yang telah di-*render*.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+Selamat! Anda baru saja "mengoperkan sebuah *prop*" dari komponen Board ke komponen Square. Mengoperkan *props* adalah cara informasi dapat mengalir dalam aplikasi React dari (komponen) induk ke anak.
 
-### Making an Interactive Component {#making-an-interactive-component}
+### Membuat Komponen Interaktif {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it. 
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Mari mengisi komponen Square dengan sebuah "X" ketika kita mengklik komponen tersebut.
+Pertama, ubah *button tag* yang dikembalikan dari fungsi `render()` komponen Square menjadi:
 
 ```javascript{4}
 class Square extends React.Component {
@@ -242,11 +241,11 @@ class Square extends React.Component {
 }
 ```
 
-If we click on a Square now, we should get an alert in our browser.
+Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browser* kita.
 
->Note
+>Catatan
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>Untuk mempercepat proses mengetik dan menghindari [perilaku membingungkan `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), kita akan menggunakan [sintaks *arrow function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) untuk setiap *event handler* yang akan kita buat:
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -260,13 +259,13 @@ If we click on a Square now, we should get an alert in our browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. It only fires after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>Perhatikan bahwa dengan `onClick={() => alert('click')}`, kita mengoperkan *sebuah fungsi* sebagai *prop* `onClick`. Fungsi tersebut hanya dieksekusi setelah klik. Lupa untuk menulis `() =>` dan menulis `onClick={alert('click')}` adalah kesalahan yang sering terjadi, dan menyebabkan fungsi akan terus dijalankan setiap komponen di-*render* ulang.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Selanjutnya, kita ingin agar komponen Square "mengingat" bahwa komponen tersebut sudah diklik dan mengisinya dengan "X". Untuk "mengingat" sesuatu, komponen menggunakan **_state_**.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+Komponen React dapat memiliki *state* dengan mengatur `this.state` pada konstruktornya. `this.state` harus dianggap *private* oleh komponen React tempat ia didefinisikan. Mari menyimpan nilai Square saat ini pada `this.state` dan mengubahnya ketika Square diklik.
 
-First, we'll add a constructor to the class to initialize the state:
+Pertama, kita akan menambahkan konstruktor pada kelas untuk menginisialisasi *state*:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -287,17 +286,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>Catatan
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>Pada [kelas JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), Anda harus selalu memanggil `super` ketika mendefinisikan konstruktor dari sebuah subkelas. Semua kelas komponen React yang memiliki `constructor` harus dimulai dengan `super(props)`.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Sekarang kita akan mengubah *method* `render` Square untuk menampilkan nilai *state* saat ini ketika diklik:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `() => alert()` event handler with `() => this.setState({value: 'X'})`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* Mengganti `this.props.value` dengan `this.state.value` di dalam `<button>` *tag*.
+* Mengganti *event handler* `onClick={...}` dengan `onClick={() => this.setState({value: 'X'})}`.
+* Pisahkan *props* `className` dan `onClick` pada baris yang berbeda agar lebih mudah dibaca.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+Setelah perubahan di atas, *tag* `<button>` yang dikembalikan dari *method* `render` Square akan terlihat seperti ini:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -321,42 +320,45 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Dengan memanggil `this.setState` dari *handler* `onClick` pada *method* `render` Square, kita memberi tahu React untuk me-*render* ulang Square setiap `<button>` diklik. Setelah diperbarui, `this.state.value` dari Square akan menjadi `'X'`, jadi kita akan melihat `X` pada papan permainan. Jika Anda mengklik salah satu Square, maka akan muncul `X`.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Ketika Anda memanggil `setState` di sebuah component, React akan memperbarui komponen anak di dalamnya secara otomatis.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### Developer Tools {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+Ekstensi React Devtools untuk [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) dan [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+memungkinkan Anda untuk melihat pohon komponen dari React dengan menggunakan perangkat pengembang *browser* Anda.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+React Devtools memungkinkan Anda untuk mengecek *props* dan *state* dari komponen React Anda.
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+Setelah meng-*install* React Devtools, Anda dapat mengklik kanan elemen manapun pada halaman Anda, kemudian klik "Inspect" untuk membuka perangkat pengembang dan *tab* React ("⚛️ Components" and "⚛️ Profiler") akan muncul sebagai *tab* terakhir di sebalah kanan. Gunakan "⚛️ Components" untuk menginspeksi pohon komponen.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**Walaupun demikian, perlu diperhatikan bahwa ada beberapa langkah tambahan untuk membuat aplikasi Anda bekerja dengan CodePen:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Masuk atau daftar dan konfirmasi email Anda (diperlukan untuk mencegah *spam*)
+2. Klik tombol "Fork".
+3. Klik "Change View" dan pilih "Debug mode".
+4. Pada *tab* baru yang terbuka, *devtools* saat ini seharusnya memiliki *tab* React.
 
-## Completing the Game {#completing-the-game}
+## Menyelesaikan Permainan {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+Sekarang kita sudah memiliki blok-blok dasar untuk membangun permainan *tic-tac-toe*. Untuk menyelesaikan permainan ini, kita memerlukan penempatan alternatif "X" dan "O" pada papan dan kita memerlukan cara untuk menentukan pemenangnya.
 
-### Lifting State Up {#lifting-state-up}
+### Menaikkan State {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+Saat ini, setiap komponen Square mengurus *state* dari permainan. Untuk menentukan pemenang, kita akan mengurus nilai dari setiap persegi di satu lokasi.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+Kita dapat memikirkan Board seharusnya cukup mengambil *state* setiap Square. Walaupun pendekatan ini mungkin di React, tetapi kami tidak menyarankannya karena kodenya akan sulit untuk dimengerti, rentan terhadap *bugs*, dan sulit untuk di-*refactor*. Sebagai gantinya, pendekatan terbaik untuk adalah untuk menyimpan *state* dari permainan pada komponen Board. Komponen Board dapat memberitahu setiap Square untuk menampilkan data dengan memberikannya melalui *prop* [seperti yang kita lakukan saat kita memberikan angka ke setiap Square](#passing-data-through-props).
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**Untuk mengambil data dari beberapa anak atau membuat dua komponen anak berkomunikasi satu sama lain, Anda perlu mendeklarasikan *state* pada komponen induk. Komponen induk dapat memberikan *state* ke anak dengan menggunakan *props*; pola ini dapat membuat komponen-komponen anak tetap sinkron satu sama lain dan dengan komponen induk.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
+Menaikkan *state* ke komponen induk lazim ketika me-*refactor* komponen React. Mari memanfaatkan kesempatan ini untuk mencobanya.
+
+Kita akan menambahkan konstruktor ke Board dan menginisialisasi *state* dari Board berisi array dengan 9 *null*. Sembilan nilai ini melambangkan 9 persegi:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -370,35 +372,9 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
-
-  render() {
-    const status = 'Next player: X';
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 ```
 
-When we fill the board in later, the board will look something like this:
+Ketika kita mengisi papan permainan nanti, senarai `this.state.squares` akan terlihat seperti ini:
 
 ```javascript
 [
@@ -408,7 +384,7 @@ When we fill the board in later, the board will look something like this:
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+*Method* `renderSquare` dari Board saat ini terlihat seperti ini:
 
 ```javascript
   renderSquare(i) {
@@ -416,9 +392,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+Awalnya, kita [mengoperkan *prop value*](#passing-data-through-props) dari Board untuk menampilkan angka 0 sampai 8 di setiap Square. Pada langkah berbeda sebelumnya, kita menggantikan angka dengan "X" yang [ditentukan oleh *state* dari Square itu sendiri](#making-an-interactive-component). Ini sebabnya Square saat ini mengabaikan *prop* `value` yang diberikan oleh Board.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+Sekarang kita akan menggunakan mekanisme pengoperan *prop* lagi. Kita akan memodifikasi Board untuk memberi instruksi pada setiap Square untuk mengubah nilai saat ini (`'X'`, `'O'`, atau `null`). Kita sudah mendefinisikan senarai `squares` pada konstruktor Board dan kita akan memodifikasi *method* `renderSquare` Board untuk membaca dari state:
 
 ```javascript{2}
   renderSquare(i) {
@@ -426,13 +402,13 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Setiap Square akan menerima *prop* `value` yang dapat berupa `'X'`, `'O'`, atau `null` untuk persegi kosong.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+Selanjutnya, kita perlu mengubah perilaku Square saat diklik. Komponen Board saat ini mengatur persegi yang sedang diisi. Kita perlu memikirkan sebuah cara agar Square dapat memperbarui *state* di Board. Karena *state* dianggap sebagai *private* di dalam suatu komponen, kita tidak dapat mengubah *state* Board melalui Square secara langsung.
 
-To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
+Untuk mempertahankan *state privacy* dari Board, kita akan memberikan sebuah fungsi dari Board ke Square. Fungsi ini akan dipanggil ketika komponen Square diklik. Kita akan mengubah *method* `renderSquare` di dalam Board menjadi:
 
 ```javascript{5}
   renderSquare(i) {
@@ -445,17 +421,17 @@ To maintain the Board's state's privacy, we'll pass down a function from the Boa
   }
 ```
 
->Note
+>Catatan
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Kita membagi elemen yang dikembalikan menjadi beberapa baris agar lebih mudah dibaca. Kami juga menambahkan tanda kurung sehingga JavaScript tidak menyisipkan titik koma setelah `return` dan merusak kode kita.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+Sekarang kita memberikan dua *prop* dari Board ke Square: `value` dan `onClick`. *Prop* `onClick` adalah sebuah fungsi yang dapat dipanggil oleh Square ketika diklik. Kita akan membuat perubahan berikut pada Square:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* Mengganti `this.state.value` dengan `this.props.value` pada *method* `render` Square.
+* Mengganti `this.setState()` dengan `this.props.onClick()` pada *method* `render` Square.
+* Menghapus `constructor` Square karena Square sudah tidak menyimpan *state* dari permainan.
 
-After these changes, the Square component looks like this:
+Setelah perubahan tersebut, komponen Square akan terlihat seperti ini:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -472,19 +448,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+Ketika sebuah Square diklik, fungsi `onClick` yang disediakan oleh Board akan dipanggil. Berikut adalah ulasan bagaimana kita dapat memperoleh hasil saat ini:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes.
+1. *Prop* `onClick` pada komponen *built-in DOM* `<button>` memberi tahu React untuk menyiapkan *event listener* klik.
+2. Ketika tombol diklik, React akan memanggil *event handler* `onClick` yang sudah didefinisikan pada *method* `render()` Square.
+3. *Event handler* ini memanggil `this.props.onClick()`. *Prop* `onClick` dari Square ditentukan oleh Board.
+4. Karena Board mengoperkan `onClick={() => this.handleClick(i)}` ke Square, Square memanggil `this.handleClick(i)` ketika diklik.
+5. Kita belum mendefinisikan *method* `handleClick()`, sehingga kode kita akan *crash*. Ketika Anda mengeklik sebuah persegi, Anda akan melihat teks *error* berwarna merah yang bertuliskan semacam *"this.handleClick is not a function"*.
 
->Note
+>Catatan
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could name the Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>Atribut `onClick` pada elemen DOM `<button>` memiliki arti khusus untuk React karena merupakan komponen *built-in*. Untuk komponen komponen *custom* seperti Square, penamaan bersifat bebas. Kita dapat menamakan prop `onClick` Square atau `handleClick` Board dengan nama lain. Namun demikian, dalam React, hal ini adalah sebuah konvensi untuk menggunakan penamaan `on[Event]` pada *props* yang merepresentasikan *event* dan `handle[Event]` untuk *method* yang menangani *event* tersebut.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+Ketika kita mencoba untuk mengklik salah satu Square, kita seharusnya akan mendapatkan sebuah pesan *error* karena kita belum mendefinisikan `handleClick`. Sekarang kita akan menambahkan `handleClick` pada kelas Board:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -537,63 +513,63 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+Setelah perubahan ini, kita dapat mengklik Square kembali untuk mengisinya. Tetapi, sekarang *state* disimpan pada komponen Board, bukan pada setiap komponen Square. Ketika *state* Board berubah, komponen Square akan di-*render* ulang secara otomatis. Dengan menyimpan *state* dari setiap persegi pada komponen Board, kita dapat menentukan pemenangnya pada tahap berikutnya.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+Karena komponen Square tidak lagi mengatur *state*, komponen Square menerima nilai dari komponen Board dan memberikan informasi ke komponen Board ketika diklik. Dalam istilah React, komponen Square sekarang disebut dengan ***controlled components***. Komponen Board memiliki kontrol penuh pada komponen Square.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+Perhatikan bahwa di dalam `handleClick`, kita memanggil `.slice()` untuk membuat kopi senarai `squares` untuk memodifikasinya sebagai ganti dari memodifikasi senarai yang ada. Kami akan menjelaskan alasan kita membuat kopi dari senarai `squares` di bagian selanjutnya.
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### Mengapa Immutablility Itu Penting {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+Pada contoh kode sebelumnya, kami menyarankan Anda untuk menggunakan `.slice()` untuk membuat kopi dari senarai `squares` untuk memodifikasinya sebagai ganti dari memodifikasi senarai yang ada. Kita akan membahas *immutability* dan mengapa *immutability* penting untuk dipelajari.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+Secara umum, ada dua pendekatan untuk mengubah data. Pendekatan pertama adalah untuk me-*mutate* data dengan mengubah nilai dari data secara langsung. Pendekatan kedua adalah dengan mengganti data dengan kopi baru yang memiliki perubahan yang diinginkan.
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### Perubahan Data dengan Mutation {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// Sekarang player adalah {score: 2, name: 'Jeff'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### Perubahan Data Tanpa Mutation {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// Sekarang player tidak berubah, tetapi newPlayer adalah {score: 2, name: 'Jeff'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Atau jika Anda menggunakan sintaks object spread, Anda dapat menuliskan:
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+Hasil akhir dari kedua pendekatan sama tetapi dengan tidak melakukan *mutate* (atau mengganti data di dalamnya) secara langsung, kita mendapatkan keuntungan sebagai berikut.
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### Fitur Kompleks Menjadi Lebih Sederhana {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+*Immutability* membuat fitur kompleks menjadi lebih mudah untuk diimplementasikan. Nanti pada tutorial ini juga, kita akan mengimplementasikan fitur "penjelajahan waktu" yang memungkinkan kita untuk mengulas riwayat permainan *tic-tac-toe* kita dan "lompat kembali" ke langkah sebelumnya. Fungsionalitas ini tidak spesifik ke permainan -- sebuah kemampuan untuk *undo* dan *redo* beberapa aksi adalah kebutuhan yang umum dalam sebuah aplikasi. Menghindari mutasi data memungkinkan kita untuk menyimpan riwayat permainan sebelumnya utuh dan menggunakannya kembali kemudian.
 
-#### Detecting Changes {#detecting-changes}
+#### Mendeteksi Perubahan {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+Mendeteksi perubahan pada objek *mutable* sulit karena mereka dimodifikasi secara langsung. Deteksi ini membutuhkan objek *mutable* tersebut dibandingkan dengan beberapa kopi sebelumnya dari dirinya dan seluruh melintasi seluruh pohon objek.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+Mendeteksi perubahan pada objek *immutable* dianggap lebih mudah. Jika objek *immutable* yang ditunjuk berbeda dengan objek sebelumnya, maka objeknya sudah berubah.
 
-#### Determining When to Re-render in React {#determining-when-to-re-render-in-react}
+#### Menentukan Waktu Untuk Melakukan Render Ulang di React {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+Keuntungan utama dari *immutability* adalah membantu Anda untuk membuat *pure component* di React. Data yang *immutable* dapat dengan mudah memastikan apakah perubahan sudah terjadi, yang juga membantu untuk menentukan apakah komponen perlu di-*render* ulang.  
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+Anda dapat mempelajari `shouldComponentUpdate()` lebih lanjut dan bagaimana cara membuat *pure components* dengan membaca [Optimisasi Performa](/docs/optimizing-performance.html#examples).
 
 ### Function Components {#function-components}
 
-We'll now change the Square to be a **function component**.
+Sekarang kita akan mengubah Square menjadi **function component**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+Dalam React, **function component** adalah cara lebih mudah untuk menulis komponen yang hanya berisi *method* `render` dan tidak memiliki *state*. Sebagai ganti menulis kelas yang merupakan turunan dari `React.Component`, kita dapat menulis sebuah fungsi yang menerima *`props`* sebagai masukan dan mengembalikan apa yang harus di-*render*. Menulis *function component* lebih tidak jemu dibanding menulis kelas dan banyak komponen dapat ditulis dengan cara ini.
 
-Replace the Square class with this function:
+Ganti kelas Square dengan fungsi berikut:
 
 ```javascript
 function Square(props) {
@@ -605,19 +581,19 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+Kita sudah mengganti `this.props` dengan `props` saat muncul.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[Lihat kode lengkap sampai saat ini](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>Catatan
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a function component we don't need to worry about `this`.
+>Ketika mengubah Square menjadi *function component*, kita juga mengubah `onClick={() => this.props.onClick()}` menjadi lebih pendek `onClick={props.onClick}` (perhatikan hilangnya tanda kurung pada *kedua* sisi). Pada kelas, kita menggunakan *arrow function* untuk mengakses nilai `this` yang benar, tetapi di *function component* kita tidak perlu mengkhawatirkan `this`.
 
-### Taking Turns {#taking-turns}
+### Mengambil Giliran {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+Sekarang kita perlu memperbaiki kerusakan yang cukup jelas pada permainan *tic-tac-toe* kita: "O" tidak dapat dituliskan ke dalam papan.
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+Kita akan menentukan "X" mengambil giliran pertama sebagai nilai *default*. Kita dapat menentukan nilai *default* dengan mengubah *state* awal pada konstruktor Board:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -630,7 +606,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+Setiap pemain selesai dengan langkahnya, `xIsNext` (sebuah *boolean*) akan diubah nilainya untuk menentukan siapa yang akan membuat langkah selanjutnya dan *state* dari permainan akan disimpan. Kita akan mengubah fungsi `handleClick` dari Board untuk mengubah nilai dari `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -643,17 +619,19 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+Dengan perubahan ini, "X" dan "O" akan mendapatkan giliran setiap satu langkah selesai.
+
+Mari mengubah teks "status" pada `render` di Board, sehingga teks menampilkan pemain mana yang sedang mendapat giliran selanjutnya:
 
 ```javascript{2}
   render() {
     const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // sisanya tidak berubah
 ```
 
-After applying these changes, you should have this Board component:
+Setelah mengubahnya, Anda akan memiliki komponen Board berikut:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -710,11 +688,11 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Declaring a Winner {#declaring-a-winner}
+### Menentukan Pemenang {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. We can determine a winner by adding this helper function to the end of the file:
+Sekarang kita sudah menampilkan pemain mana yang akan mendapat giliran selanjutnya, kita juga perlu menampilkan sesuatu ketika permainan sudah dimenangkan oleh salah satu pemain dan tidak ada giliran lagi. Kita dapat menentukan pemenang dengan menambahkan fungsi berikut pada akhir file:
 
 ```javascript
 function calculateWinner(squares) {
@@ -738,7 +716,9 @@ function calculateWinner(squares) {
 }
 ```
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+Ketika diberi senarai dari kesembilan persegi, fungsi ini akan mengecek pemenang dan `'X'`, `'O'`, atau `null` sesuai dengan hasil.
+
+Kita akan memanggil `caluclateWinner(squares)` pada fungsi `render` Board untuk mengecek adanya salah satu pemain yang sudah menang. Jika salah satu pemain sudah menang, kita dapat menampilkan teks seperti *"Winner: X"* atau *"Winner: O"*. Kita akan mengganti deklarasi `status` pada fungsi `render` Board dengan kode berikut:
 
 ```javascript{2-8}
   render() {
@@ -751,10 +731,9 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
     }
 
     return (
-      // the rest has not changed
+      // sisanya tidak berubah
 ```
-
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+Kita dapat mengubah fungsi `handleClick` Board untuk kembali lebih awal dengan mengabaikan klik jika salah satu pemain sudah menang atau jika sebuah Square sudah diisi:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -770,21 +749,21 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+Selamat! Anda sekarang sudah memiliki permainan *tic-tac-toe* yang berjalan dengan baik. Anda juga telah belajar dasar-dasar dari React. Jadi *Anda* mungkin adalah pemenang yang sebenarnya disini.
 
-## Adding Time Travel {#adding-time-travel}
+## Menambahkan Penjelajahan Waktu {#adding-time-travel}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+Sebagai latihan terakhir, mari kita membuat permainan kita dapat "kembali" ke langkah sebelumnya pada permainan.
 
-### Storing a History of Moves {#storing-a-history-of-moves}
+### Menyimpan Riwayat Langkah {#storing-a-history-of-moves}
 
-If we mutated the `squares` array, implementing time travel would be very difficult.
+Jika kita melakukan *mutate* pada senarai `squares`, mengimplementasikan penjelajahan waktu akan sangat sulit.
 
-However, we used `slice()` to create a new copy of the `squares` array after every move, and [treated it as immutable](#why-immutability-is-important). This will allow us to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Tetapi, kita menggunakan `slice()` untuk membuat kopi baru dari senarai `squares` setelah setiap langkah dan [memperlakukannya sebagai *immutable*](#why-immutability-is-important). Hal ini akan membuat kita dapat menyimpan setiap versi sebelumnya dari senarai `squares` dan melakukan navigasi di antara giliran-giliran yang sudah terjadi.
 
-We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+Kita akan menyimpan riwayat senarai `squares` pada senarai lain yang bernama `history`. Senarai `history` menggambarkan semua *state* dari Board dari awal hingga akhir, dan memiliki bentuk seperti ini:
 
 ```javascript
 history = [
@@ -816,15 +795,15 @@ history = [
 ]
 ```
 
-Now we need to decide which component should own the `history` state.
+Sekarang kita akan menentukan komponen yang akan memiliki *state* `history`.
 
-### Lifting State Up, Again {#lifting-state-up-again}
+### Menaikkan State, Lagi {#lifting-state-up-again}
 
-We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+Kita ingin komponen Game teratas untuk menampilkan riwayat langkah. Untuk melakukan hal tersebut, komponen Game memerlukan akses ke `history`, sehingga kita akan menempatkan *state* `history` pada komponen teratas Game.
 
-Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
+Menempatkan *state* `history` ke komponen Game memungkinkan kita menghapus *state* `squares` dari komponen anaknya, komponen Board. Seperti yang kita lakukan pada bagian ["menaikan state"](#lifting-state-up) dari komponen Square ke komponen Board, sekarang kita akan menaikkannya dari Board ke komponen teratas Game. Hal ini memberikan komponen Game kontrol penuh pada data Board dan memungkinkannya untuk memberi instruksi ke Board untuk me-*render* giliran sebelumnya dari `history`.
 
-First, we'll set up the initial state for the Game component within its constructor:
+Pertama, mari kita mempersiapkan *state* awal untuk komponen Game di dalam konstruktornya:
 
 ```javascript{2-10}
 class Game extends React.Component {
@@ -854,13 +833,13 @@ class Game extends React.Component {
 }
 ```
 
-Next, we'll have the Board component receive `squares` and `onClick` props from the Game component. Since we now have a single click handler in Board for many Squares, we'll need to pass the location of each Square into the `onClick` handler to indicate which Square was clicked. Here are the required steps to transform the Board component:
+Selanjutnya, kita akan membuat komponen Board menerima *prop* `squares` dan `onClick` dari komponen Game. Karena sekarang kita sudah memiliki *handler* untuk klik di dalam Board untuk banyak Square, kita akan perlu memberikan lokasi dari setiap Square ke *handler* `onClick` untuk memberi tahu Square mana yang diklik. Berikut adalah langkah yang diperlukan untuk mengubah komponen Board:
 
-* Delete the `constructor` in Board.
-* Replace `this.state.squares[i]` with `this.props.squares[i]` in Board's `renderSquare`.
-* Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
+* Menghapus `constructor` di Board.
+* Mengganti `this.state.squares[i]` dengan `this.props.squares[i]` pada `renderSquare` di Board.
+* Mengganti `this.handleClick(i)` dengan `this.props.onClick(i)` pada `renderSquare` di Board.
 
-The Board component now looks like this:
+Sekarang komponen Board akan terlihat seperti ini:
 
 ```javascript{17,18}
 class Board extends React.Component {
@@ -918,7 +897,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll update the Game component's `render` function to use the most recent history entry to determine and display the game's status:
+Kita akan mengubah fungsi `render` pada komponen Game agar fungsi tersebut menggunakan entri riwayat terakhir untuk menentukan dan menampilkan status permainan:
 
 ```javascript{2-11,16-19,22}
   render() {
@@ -950,7 +929,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
+Karena sekarang komponen Game me-*render* status permainan, kita dapat menghapus kode yang bersangkutan dari *method `render`* Board. Setelah melakukan *refactor*, fungsi *`render`* Board akan terlihat seperti ini:
 
 ```js{1-4}
   render() {
@@ -976,7 +955,7 @@ Since the Game component is now rendering the game's status, we can remove the c
   }
 ```
 
-Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`.
+Terakhir, kita perlu memindahkan *method* `handleClick` dari komponen Board ke komponen Game. Kita juga perlu mengubah `handleClick` karena *state* komponen Game memiliki struktur yang berbeda. Di dalam *method* `handleClick` Game, kita menggabungkan (*concat*) entri riwayat baru ke dalam `history`.
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -996,30 +975,30 @@ Finally, we need to move the `handleClick` method from the Board component to th
   }
 ```
 
->Note
+>Catatan
 >
->Unlike the array `push()` method you might be more familiar with, the `concat()` method doesn't mutate the original array, so we prefer it.
+>Tidak seperti *method* `push()` pada senarai, yang mungkin Anda lebih kenal, *method* `concat()` tidak melakukan *mutate* pada senarai sebenarnya, jadi kami lebih memilih `concat()`.
 
-At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
+Sampai tahap ini, komponen Board hanya memerlukan *method* `renderSquare` dan `render`. *State* permainan dan *method* `handleClick` seharusnya ada di dalam komponen Game.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
-### Showing the Past Moves {#showing-the-past-moves}
+### Menampilakan Langkah-Langkah Sebelumnya {#showing-the-past-moves}
 
-Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
+Karena kita merekam riwayat permainan *tic-tac-toe*, sekarang kita dapat menampilkannya ke pemain sebagai daftar langkah sebelumnya.
 
-We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+Kita mengetahui sebelumnya bahwa elemen React adalah object *first-class* JavaScript; kita dapat mengoperkannya ke manapun pada aplikasi kita. Untuk me-*render* banyak elemen React, kita dapat menggunakan senarai berisi elemen React.
 
-In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+Di JavaScript, senarai memiliki [*method* `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) yang sering digunakan untuk melakukan pemetaan data ke data lain, contohnya:
 
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
-Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
+Dengan menggunakan *method* `map`, kita dapat memetakan riwayat langkah kita ke elemen React yang melambangkan tombol pada layar dan menampilkan daftar tombol untuk "melompat" ke langkah sebelumnya.
 
-Let's `map` over the `history` in the Game's `render` method:
+Mari menerapkan `map` pada `history` di *method* `render` Game:
 
 ```javascript{6-15,34}
   render() {
@@ -1062,27 +1041,27 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+Untuk setiap langkah pada riwayat permainan *tic-tac-toe*, kita membuat `<li>` yang berisi `<button>`. Tombol (`<button>`) memiliki *handler* `onClick` yang akan memanggil *method* bernama `this.jumpTo()`. Kita belum mengimplementasikan *method* `jumpTo()`. Untuk sekarang, kita seharusnya sudah melihat daftar langkah yang sudah terjadi dalam permainan dan peringatan pada *developer tools console* yang bertuliskan:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
 
-Let's discuss what the above warning means.
+Mari membahas makna dari peringatan tersebut.
 
-### Picking a Key {#picking-a-key}
+### Memilih Sebuah Key {#picking-a-key}
 
-When we render a list, React stores some information about each rendered list item. When we update a list, React needs to determine what has changed. We could have added, removed, re-arranged, or updated the list's items.
+Ketika kita me-*render* sebuah *list*, React menyimpan informasi tentang setiap elemen dalam *list* yang di-*render*. Ketika kita memperbarui sebuah *list*, React perlu menentukan elemen yang sudah berubah. Kita bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui elemen pada *list*.
 
-Imagine transitioning from
+Bayangkan perubahan dari
 
 ```html
 <li>Alexa: 7 tasks left</li>
 <li>Ben: 5 tasks left</li>
 ```
 
-to
+ke
 
 ```html
 <li>Ben: 9 tasks left</li>
@@ -1090,28 +1069,28 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+Selain jumlah yang diperbarui, kemampuan baca manusia mungkin akan mengatakan bahwa kita menukar urutan Ben dan Alexa dan menyisipkan Claudia di antara Alexa dan Ben. Tetapi, React adalah program komputer dan tidak tahu intensi kita. Karena React tidak tahu intensi kita, kita perlu memberikan properti *key* dari setiap elemen pada *list* untuk membedakan setiap elemen *list* dari saudaranya (elemen lain dalam satu hirarki). Salah satu opsi adalah dengan menggunakan *string* `alexa`, `ben`, `claudia`. Jika kita menampilkan data dari basisdata, ID Alexa, Ben, Claudia pada database dapat digunakan sebagai *key*.
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
 ```
+**
+Ketika *list* di-*render* ulang, React mengambil seluruh *key* dari elemen *list* dan mencari elemen sebelumnya yang memiliki *key* yang sama. Jika *list* saat ini memiliki *key* yang tidak ada sebelumnya, React akan membuat komponen. Jika *list* saat ini kehilangan sebuah *key* yang ada pada *list* sebelumnya, React menghapus (*destroy*) komponen sebelumnya. Jika ada dua *key* yang sama, komponen yang bersangkutan dipindahkan. *Key* memberi tahu React identitas dari tiap komponen, sehingga membuat React dapat mempertahankan *state* di setiap *render* ulang. Jika *key* dari sebuah komponen berubah, komponen akan dihapus dan dibuat ulang dengan *state* baru.
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+`key` adalah properti khusus dan sudah dipesan di React (bersama dengan `ref`, fitur yang lebih lanjut). Ketika sebuah elemen dibuat, React mengekstrak properti `key` dan menyimpannya langsung ke elemen yang dikembalikan. Walaupun `key` terlihat seperti bagian dari `props`, `key` tidak dapat diacu menggunakan `this.props.key`. React menggunakan `key` untuk menentukan komponen yang akan diubah secara otomatis. Sebuah komponen tidak dapat menanyakan `key` yang dia miliki.
 
-`key` is a special and reserved property in React (along with `ref`, a more advanced feature). When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it belongs in `props`, `key` cannot be referenced using `this.props.key`. React automatically uses `key` to decide which components to update. A component cannot inquire about its `key`.
+**Kami sangat merekomendasikan Anda untuk memberikan *key* yang baik ketika membuat *list* dinamik**. Jika Anda tidak memiliki *key* yang baik, Anda dapat mempertimbangkan restukturisasi data Anda sehingga Anda memiliki *key* yang baik.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+Jika tidak ada *key* yang diberikan, React akan menampilkan sebuah peringatan dan menggunakan indeks senarai sebagai nilai *default*. Menggunakan indeks senarai bermasalah ketika kita mencoba untuk mengatur ulang elemen *list* atau menyisipkan/menghapus elemen *list*. Memberikan `key={i}` secara eksplisit menghilangkan peringatannya, tetapi memiliki masalah yang sama, sehingga tidak direkomendasikan pada banyak kasus.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
-
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+*Key* tidak perlu unik secara global. *Key* hanya perlu unik di antara komponen dan saudaranya.
 
 
-### Implementing Time Travel {#implementing-time-travel}
+### Mengimplementasikan Penjelajahan Waktu {#implementing-time-travel}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+Di dalam riwayat permainan *tic-tac-toe*, setiap langkah sebelumnya memiliki ID unik yang bersangkutan dengan langkah tersebut: ID tersebut adalah angka terutut yang melambangkan urutan langkah. Riwayat langkah tidak pernah di atur ulang, dihapus, atau disisipi elemen lain di tengah, jadi pada kasus ini kita dapat menggunakan indeks langkah sebagai *key*.
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+Dalam *method* `render` komponen Game, kita dapat menambahkan *key* sebagai `<li key={move}>` dan peringatan React tentang *key* akan menghilang:
 
 ```js{6}
     const moves = history.map((step, move) => {
@@ -1126,11 +1105,11 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+Mengklik salah satu tombol pada elemen *list* akan menghasilkan *error* karena *method* `jumpTo` tidak didefinisikan (*undefined*). Sebelum kita mengimplementasikan `jumpTo`, kita akan menambahkan `stepNumber` di dalam *state* komponen Game untuk melambangkan langkah yang sedang kita lihat.
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+Pertama, tambahkan `stepNumber: 0` pada *state* awal di `constructor` Game:
 
 ```js{8}
 class Game extends React.Component {
@@ -1146,7 +1125,7 @@ class Game extends React.Component {
   }
 ```
 
-Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+Kemudian, kita akan mendefinisikan *method* `jumpTo` di dalam Game untuk memperbarui `stepNumber`. Kita juga dapat membuat `xIsNext` *true* jika angka yang kita berikan pada `stepNumber` adalah genap:
 
 ```javascript{5-10}
   handleClick(i) {
@@ -1165,11 +1144,11 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 ```
 
-We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+Sekarang kita akan mengubah beberapa bagian *method* `handleClick` pada Game yang akan dipicu ketika Anda mengklik sebuah persegi.
 
-The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+*State* `stepNumber` yang sudah kita tambahkan menggambarkan langkah yang sedang ditampilkan ke pengguna saat ini. Setelah kita membuat langkah baru, kita perlu memperbarui `stepNumber` dengan menambahkan `stepNumber: history.length` sebagai bagian dari argumen `this.setState`. Hal ini memastikan kita tidak selalu menampilkan langkah yang sama setelah langkah baru berhasil dibuat.
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+Kita juga akan mengganti `this.state.history` dengan `this.state.history.slice(0, this.state.stepNumber = 1)`. Hal ini untuk memastikan jika kita "kembali" dan membuat langkah baru dari titik tersebut, kita membuang semua riwayat "masa depan" yang sekarang menjadi tidak benar.
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1190,7 +1169,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+Terakhir, kita dapat mengubah *method* `render` dari komponen Game dari yang selalu me-*render* langkah terakhir menjadi me-*render* langkah yang saat ini dipilih berdasarkan `stepNumber`:
 
 ```javascript{3}
   render() {
@@ -1198,33 +1177,33 @@ Finally, we will modify the Game component's `render` method from always renderi
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    // the rest has not changed
+    // sisanya tidak berubah
 ```
 
-If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Jika kita mengklik salah satu langkah pada riwayat permainan, papan *tic-tac-toe* seharusnya langsung memperbarui dirinya dan menampilkan papan setelah langkah tersebut dijalankan.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
+**[Lihat kode penuh sampai saat ini](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
-### Wrapping Up {#wrapping-up}
+### Ulasan {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+Selamat! Anda sudah membuat permainan *tic-tac-toe* yang:
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* Memungkinkan Anda bermain *tic-tac-toe*,
+* Memberi tahu pemain yang sudah memenangkan permainan,
+* Menyimpan riwayat permainan selama permainan berlangsung,
+* Memungkinkan pemain untuk mengulas riwayat permainan dan melihat versi sebelumnya dari papan permainan.
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+Kerja bagus! Kami berharap sekarang Anda merasa Anda memiliki pemahaman yang baik tentang bagaimana React bekerja.
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+Lihat hasil akhirnya disini: **[Hasil Akhir](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+Jika Anda memiliki waktu luang atau ingin melatih kemampuan baru React Anda, berikut terdapat beberapa ide untuk perbaikan yang dapat Anda aplikasikan pada permainan *tic-tac-toe* terurut berdasarkan tingkat kesulitan paling mudah ke yang paling sulit:
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+1. Menampilkan lokasi dari setiap langkah dalam format (kolom, baris) pada daftar riwayat langkah.
+2. Menebalkan elemen yang sedang dipilih pada daftar langkah.
+3. Menulis ulang Board sehingga menggunakan dua perulangan untuk membuat persegi, bukan melakukan *hardcode*.
+4. Menambahkan *toggle* yang memungkinkan Anda untuk mengurutkan langkah terutur membesar atau mengecil.
+5. Ketika salah satu pemain menang, tandai 3 persegi yang membuatnya menang.
+6. Ketika tidak ada yang menang, tampilan pesan bahwa hasilnya seri.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+Melalui tutorial ini, kita menyentuh beberapa konsep React termasuk di dalamnya elemen, komponen, *props*, dan *state*. Untuk penjelasan lebih rinci dari setiap topik tersebut, kunjungi [dokumentasi](/docs/hello-world.html). Untuk mempelajari lebih lanjut mengenai cara mendefinisikan komponen, kunjungi [Referensi API `React.Component`](/docs/react-component.html).

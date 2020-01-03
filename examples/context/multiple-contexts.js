@@ -1,7 +1,7 @@
-// Theme context, default to light theme
+// Context Theme, default theme-nya light
 const ThemeContext = React.createContext('light');
 
-// Signed-in user context
+// Context pengguna yang masuk
 const UserContext = React.createContext({
   name: 'Guest',
 });
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     const {signedInUser, theme} = this.props;
 
-    // App component that provides initial context values
+    // Komponen App yang menyediakan nilai *context* awal
     // highlight-range{2-3,5-6}
     return (
       <ThemeContext.Provider value={theme}>
@@ -31,7 +31,7 @@ function Layout() {
   );
 }
 
-// A component may consume multiple contexts
+// Komponen dapat menggunakan banyak *context*
 function Content() {
   // highlight-range{2-10}
   return (

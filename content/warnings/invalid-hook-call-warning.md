@@ -1,33 +1,33 @@
 ---
-title: Invalid Hook Call Warning
+title: Peringatan Pemanggilan Hook yang Tidak Valid
 layout: single
 permalink: warnings/invalid-hook-call-warning.html
 ---
 
- You are probably here because you got the following error message:
+ Anda kemungkinan berada di sini karena pesan galat berikut:
 
  > Hooks can only be called inside the body of a function component.
 
-There are three common reasons you might be seeing it:
+Ada tiga alasan umum Anda kemungkinan mendapat pesan tersebut:
 
-1. You might have **mismatching versions** of React and React DOM.
-2. You might be **breaking the [Rules of Hooks](/docs/hooks-rules.html)**.
-3. You might have **more than one copy of React** in the same app.
+1. Anda kemungkinan menggunakan versi React dan React DOM yang tidak cocok.
+2. Anda kemungkinan **melanggar [Aturan Hooks](/docs/hooks-rules.html)**
+3. Anda kemungkinan memiliki **lebih dari satu salinan React** dalam satu aplikasi.
 
-Let's look at each of these cases.
+Mari kita liat pada tiap-tiap kasus.
 
-## Mismatching Versions of React and React DOM {#mismatching-versions-of-react-and-react-dom}
+## Versi React dan React DOM yang tidak cocok {#mismatching-versions-of-react-and-react-dom}
 
-You might be using a version of `react-dom` (< 16.8.0) or `react-native` (< 0.59) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
+Anda kemungkinan menggunakan versi `react-dom` (< 16.8.0) atau `react-native` (< 0.59) yang belum mendukung Hooks. Anda dapat menjalankan `npm ls react-dom` atau `npm ls react-native` pada folder aplikasi Anda untuk memeriksa versi yang sedang anda gunakan. Jika Anda menemukan lebih dari satu, kemungkinan ini dapat menyebabkan masalah (lebih detail ada pada penjelasan di bawah).
 
-## Breaking the Rules of Hooks {#breaking-the-rules-of-hooks}
+## Melanggar Aturan Hooks {#breaking-the-rules-of-hooks}
 
-You can only call Hooks **while React is rendering a function component**:
+Anda hanya dapat memanggil Hooks **saat React me-_render_ fungsional komponen**:
 
-* ✅ Call them at the top level in the body of a function component.
-* ✅ Call them at the top level in the body of a [custom Hook](/docs/hooks-custom.html).
+* ✅ Panggil pada tingkatan atas dalam badan fungsional komponen.
+* ✅ Panggil pada tingkatan atas dalam badan [custom Hook](/docs/hooks-custom.html).
 
-**Learn more about this in the [Rules of Hooks](/docs/hooks-rules.html).**
+**Pelajari lebih lanjut tentang ini pada [Aturan Hooks](/docs/hooks-rules.html).**
 
 ```js{2-3,8-9}
 function Counter() {
@@ -43,13 +43,13 @@ function useWindowWidth() {
 }
 ```
 
-To avoid confusion, it’s **not** supported to call Hooks in other cases:
+Untuk menghindari kebingungan, Pemanggilan Hooks tidak didukung pada kasus-kasus berikut:
 
-* 🔴 Do not call Hooks in class components.
-* 🔴 Do not call in event handlers.
-* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+* 🔴 Jangan panggil Hooks di dalam komponen kelas.
+* 🔴 Jangan panggil Hooks di *event handler*.
+* 🔴 Jangan panggil Hooks di dalam fungsi yang dioper pada `useMemo`, `useReducer`, atau `useEffect`.
 
-If you break these rules, you might see this error.
+Jika anda melanggar aturan-aturan tersebut, anda kemungkinan mendapatkan galat seperti berikut.
 
 ```js{3-4,11-12,20-21}
 function Bad1() {
@@ -78,26 +78,26 @@ class Bad3 extends React.Component {
 }
 ```
 
-You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to catch some of these mistakes.
+Anda dapat menggunakan [plugin `eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk memunculkan beberapa kesalahan di atas.
 
->Note
+>Catatan
 >
->[Custom Hooks](/docs/hooks-custom.html) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+>[Custom Hooks](/docs/hooks-custom.html) *bisa saja* memanggil Hooks lainnya (itu merupakan tujuan utama). Hal ini bekerja karena custom Hooks juga seharusnya hanya dipanggil saat fungsi komponen di-_render_.
 
 
-## Duplicate React {#duplicate-react}
+## React Ganda{#duplicate-react}
 
-In order for Hooks to work, the `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
+Agar Hooks bekerja, _import_ `react` dari aplikasi Anda perlu menemukan modul yang sama dengan _import_ `react` dari dalam *package* `react-dom`.
 
-If these `react` imports resolve to two different exports objects, you will see this warning. This may happen if you **accidentally end up with two copies** of the `react` package.
+Jika kedua _import_ `react` tersebut menemukan dua _export_ obyek yang berbeda, Anda akan melihat peringatan tersebut. Hal ini bisa saja terjadi jika Anda **secara tidak sengaja menggunakan dua salinan** dari *package* `react`.
 
-If you use Node for package management, you can run this check in your project folder:
+Jika anda menggunakan _Node_ untuk pengelolaan paket, Anda dapat mejalankan perintah ini di dalam berkas proyek Anda:
 
     npm ls react
 
-If you see more than one React, you'll need to figure out why this happens and fix your dependency tree. For example, maybe a library you're using incorrectly specifies `react` as a dependency (rather than a peer dependency). Until that library is fixed, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) is one possible workaround.
+Jika anda menemukan lebih dari satu React, Anda perlu temukan kenapa hal ini terjadi dan perbaiki _dependency tree_ Anda. Contohnya, kemungkinan _library_ yang anda gunakan, menentukan `react` secara salah sebagai _dependency_ (daripada _peer dependency_). Sampai _library_ tersebut diperbaik, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) dapat menjadi salah satu solusi.
 
-You can also try to debug this problem by adding some logs and restarting your development server:
+Anda juga dapat mencoba men-_debug_ masalah ini dengan cara menambahkan beberapa _logs_ dan memuat ulang _development server_ Anda:
 
 ```js
 // Add this in node_modules/react-dom/index.js
@@ -109,14 +109,14 @@ window.React2 = require('react');
 console.log(window.React1 === window.React2);
 ```
 
-If it prints `false` then you might have two Reacts and need to figure out why that happened. [This issue](https://github.com/facebook/react/issues/13991) includes some common reasons encountered by the community.
+Jika pada contoh di atas menampilkan `false` maka Anda kemungkinan memiliki dua React dan temukan kenapa hal tersebut bisa terjadi. [Permasalahan ini](https://github.com/facebook/react/issues/13991) mencakup beberapa alasan umum yang dialami komunitas.
 
-This problem can also come up when you use `npm link` or an equivalent. In that case, your bundler might "see" two Reacts — one in application folder and one in your library folder. Assuming `myapp` and `mylib` are sibling folders, one possible fix is to run `npm link ../myapp/node_modules/react` from `mylib`. This should make the library use the application's React copy.
+Permasalahan ini juga dapat muncul ketika menggunakan `npm link` atau semisalnya. Pada kasus tersebut, _bundler_ Anda mungkin saja "melihat" dua React — satu di dalam berkas aplikasi dan satu di dalam berkas _library_. Misalkan `myapp` dan `mylib` merupakan berkas yang sejajar, salah satu perbaikan yang memungkinkan ialah menjalankan `npm link ../myapp/node_modules/react` dari `mylib`. Hal ini seharusnya membuat _library_ menggunakan salinan aplikasi React.
 
 >Note
 >
->In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
+>Secara umum, React mendukung penggunaan salinan independen ganda dalam satu halaman (Contohnya, saat sebuah aplikasi dan sebuah _third-party widget_ menggunakan yang sama). Hal tersebut hanya berhenti bekerja jika `require('react')` menemukan secara berada antara komponen dan salinan `react-dom` yang digunakan untuk me-_render_.
 
-## Other Causes {#other-causes}
+## Penyebab Lainnya {#other-causes}
 
-If none of this worked, please comment in [this issue](https://github.com/facebook/react/issues/13991) and we'll try to help. Try to create a small reproducing example — you might discover the problem as you're doing it.
+Jika tidak ada yang berdampak, silahkan berkomentar pada [permasalahan ini](https://github.com/facebook/react/issues/13991) dan kita akan mencoba membantu. Coba buat sebuah contoh kecil yang dapat dibuat kembali — Anda mungkin saja menemukan masalah tersebut saat melakukannya.

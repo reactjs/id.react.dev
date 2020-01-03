@@ -13,31 +13,31 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fundamentally, JSX just provides syntactic sugar for the `React.createElement(component, props, ...children)` function. The JSX code:
+Pada dasarnya, JSX hanya menyediakan sintaksis-sintaksis yang mudah ditulis dan dimengerti (*syntatic sugar*) untuk fungsi *`React.createElement(component, prop, ...children)`*. Kode JSX:
 
 ```js
 <MyButton color="blue" shadowSize={2}>
-  Click Me
+  Klik saya
 </MyButton>
 ```
 
-compiles into:
+di-*compile* menjadi:
 
 ```js
 React.createElement(
   MyButton,
   {color: 'blue', shadowSize: 2},
-  'Click Me'
+  'Klik saya'
 )
 ```
 
-You can also use the self-closing form of the tag if there are no children. So:
+Anda juga dapat menggunakan *self-closing form* dari *tag* jika tidak ada turunan (*children*). Jadinya:
 
 ```js
 <div className="sidebar" />
 ```
 
-compiles into:
+di-*compile* menjadi:
 
 ```js
 React.createElement(
@@ -47,19 +47,19 @@ React.createElement(
 )
 ```
 
-If you want to test out how some specific JSX is converted into JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+Jika Anda ingin mencoba bagaimana JSX yang spesifik JSX dikonversi menjadi JavaScript, cobalah [*Babel compiler* daring](babel://jsx-simple-example) ini.
 
-## Specifying The React Element Type {#specifying-the-react-element-type}
+## Spesifikasi Jenis Elemen React {#specifying-the-react-element-type}
 
-The first part of a JSX tag determines the type of the React element.
+Bagian pertama dari sebuah penanda (*tag*) JSX menentukan jenis dari elemen React.
 
-Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
+Jenis-jenis yang dikapitalisasi menandakan bahwa penanda JSX merujuk pada sebuah komponen React.  Penanda-penanda ini dikompilasi menjadi sebuah acuan langsung ke variabe yang sudah diberi nama, jadi jika Anda menggunakan ekspresi JSX `<Foo />`, `Foo` harus berada dalam cakupan (*scope*).
 
-### React Must Be in Scope {#react-must-be-in-scope}
+### React Harus Berada dalam Cakupan {#react-must-be-in-scope}
 
-Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
+Semenjak JSX mengompilasi jadi panggilan-panggilan pada `React.createElement`, `React` library juga harus selalu berada dalam cakupan dari kode JSX Anda.
 
-For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:
+Contohnya, kedua import tersebut dibutuhkan dalam kode ini, bahkan ketika `React` dan `CustomButton` tidak secara langsung mengacu dari JavaScript:
 
 ```js{1,2,5}
 import React from 'react';
@@ -71,11 +71,11 @@ function WarningButton() {
 }
 ```
 
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
+Jika Anda tidak menggunakan sebuah *bundler* JavaScript dan memuat React dari penanda `<script>`, penanda tersebut sudah termasuk di dalam cakupan seperti halnya `React` secara global.
 
-### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
+### Menggunakan Notasi Titik untuk Jenis JSX {#using-dot-notation-for-jsx-type}
 
-You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:
+Anda juga bisa merujuk pada sebuah komponen React menggunakan notasi titik dari dalam JSX. Ini memudahkan jika Anda memiliki sebuah modul tunggal yang mengekspor bnayak komponen React. Contohnya, jika `MyComponents.DatePicker` adalah sebuah komponen, Anda bisa menggunakannya langsung dari JSX dengan cara:
 
 ```js{10}
 import React from 'react';
@@ -91,49 +91,49 @@ function BlueDatePicker() {
 }
 ```
 
-### User-Defined Components Must Be Capitalized {#user-defined-components-must-be-capitalized}
+### Komponen *User-Defined* Harus Dikapitalisasi {#user-defined-components-must-be-capitalized}
 
-When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
+Ketika sebuah tipe elemen dimulai dengan sebuah huruf kecil (*lowercase*), hal tersebut merujuk pada sebuah komponen bawaan seperti `<div>` atau `<span>` dan menghasilkan sebuah *string* `'div'` atau `'span'` yang dioper ke `React.createElement`. Pengetikan yang dimulai dengan huruf kapital seperti `<Foo />` dikompilasi ke `React.createElement(Foo)` dan sesuai dengan sebuah komponen yang didefinisikan atau diimpor dalam *file* JavaScript Anda.
 
-We recommend naming components with a capital letter. If you do have a component that starts with a lowercase letter, assign it to a capitalized variable before using it in JSX.
+Kami merekomendasikan pemberian nama komponen dengan huruf kapital. Jika Anda memiliki sebuah komponen yang dimulai dengan sebuah huruf *lowercase*, serahkan komponen tersebut ke variabel yang dikapitalisasi sebelum menggunakannya dalam JSX.
 
-For example, this code will not run as expected:
+Sebagai contoh, kode ini tidak akan berjalan seperti yang diharapkan:
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Wrong! This is a component and should have been capitalized:
+// Salah! Ini adalah sebuah komponen dan seharusnya dikapitalisasi:
 function hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // Benar! Penggunaan <div> ini sesuai dengan aturan karena div adalah penanda HTML yang valid:
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+  // Salah! React pikir bahwa <hello /> adalah sebuah penanda HTML karena tidak dikapitalisasi:
   return <hello toWhat="World" />;
 }
 ```
 
-To fix this, we will rename `hello` to `Hello` and use `<Hello />` when referring to it:
+Untuk memperbaiki ini, kita akan menamakan ulang `hello` menjadi `Hello` dan menggunakan `<Hello />` ketika mengacu ke sana:
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Correct! This is a component and should be capitalized:
+// Benar! Ini adalah sebuah komponen dan memang seharusnya dikapitalisasi:
 function Hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // Benar! Penggunaan <div> ini sesuai aturan karena div adalah sebuah penanda HTML yang valid:
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Correct! React knows <Hello /> is a component because it's capitalized.
+  // Benar! React tahu bahwa <Hello /> adalah sebuah komponen karena dikapitalisasi.
   return <Hello toWhat="World" />;
 }
 ```
 
-### Choosing the Type at Runtime {#choosing-the-type-at-runtime}
+### Memilih Jenis yang Tepat pada *Runtime* {#choosing-the-type-at-runtime}
 
-You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
+Anda tidak bisa menggunakan sebuah ekspresi umum sebagai jenis elemen React. Jika ingin menggunakan sebuah ekspresi umum untuk mengindikasikan jenis elemen, serahkan saja ekspresi umum tersebut ke variabel yang dikapitalisasi dahulu. Ini seringkali muncul ketika Anda ingin me-*render* sebuah komponen berbeda berdasarkan sebuah *prop*:
 
 ```js{10,11}
 import React from 'react';
@@ -145,12 +145,12 @@ const components = {
 };
 
 function Story(props) {
-  // Wrong! JSX type can't be an expression.
+  // Salah! Tipe JSX tidak boleh berupa ekspresi.
   return <components[props.storyType] story={props.story} />;
 }
 ```
 
-To fix this, we will assign the type to a capitalized variable first:
+Untuk memperbaiki ini, kita akan menyerahkan jenis tersebut ke sebuah variabel yang dikapitalisasi terlebih dahulu:
 
 ```js{10-12}
 import React from 'react';
@@ -162,27 +162,27 @@ const components = {
 };
 
 function Story(props) {
-  // Correct! JSX type can be a capitalized variable.
+  // Benar! Jenis JSX belum berupa sebuah variable yang dikapitalisasi.
   const SpecificStory = components[props.storyType];
   return <SpecificStory story={props.story} />;
 }
 ```
 
-## Props in JSX {#props-in-jsx}
+## *Prop* dalam JSX {#props-in-jsx}
 
-There are several different ways to specify props in JSX.
+Terdapat beberapa cara berbeda untuk men-spesifikasikan *prop* dalam JSX.
 
 ### JavaScript Expressions as Props {#javascript-expressions-as-props}
 
-You can pass any JavaScript expression as a prop, by surrounding it with `{}`. For example, in this JSX:
+Anda bisa mengoper ekspresi JavaScript sebagai sebuah *prop*, dengan cara melingkunginya dengan `{}`. Contohnya, dalam JSX ini:
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
 ```
 
-For `MyComponent`, the value of `props.foo` will be `10` because the expression `1 + 2 + 3 + 4` gets evaluated.
+Untuk `MyComponent`, nilai `props.foo` akan menjadi `10` karena ekspresi `1 + 2 + 3 + 4` telah ditaksi.
 
-`if` statements and `for` loops are not expressions in JavaScript, so they can't be used in JSX directly. Instead, you can put these in the surrounding code. For example:
+Pernyataan-pernyataan `if` dan pengulangan-pengulangan (*loop*) `for` bukanlah ekspresi dalam JavaScript, jadi hal-hal tersebut tidak bisa digunakan secara langsung dalam JSX. Sebagai gantinya, Anda bisa menempatkan ini di dalam kode yang melingkupi. Contohnya:
 
 ```js{3-7}
 function NumberDescriber(props) {
@@ -196,11 +196,11 @@ function NumberDescriber(props) {
 }
 ```
 
-You can learn more about [conditional rendering](/docs/conditional-rendering.html) and [loops](/docs/lists-and-keys.html) in the corresponding sections.
+Anda bisa mempelajari lebuh lanjut [proses *render* kondisional](/docs/conditional-rendering.html) dan [pengulangan](/docs/lists-and-keys.html) di bagian-bagian yang sesuai.
 
-### String Literals {#string-literals}
+### *String Literal* {#string-literals}
 
-You can pass a string literal as a prop. These two JSX expressions are equivalent:
+Anda dapat mengoper sebuah *string literal* sebagai sebuah *prop*. Kedua ekspresi JSX berikut ini sama:
 
 ```js
 <MyComponent message="hello world" />
@@ -208,7 +208,7 @@ You can pass a string literal as a prop. These two JSX expressions are equivalen
 <MyComponent message={'hello world'} />
 ```
 
-When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent:
+Ketika Anda mengoper sebuah *string literal*, nilainya tidak luput dari HTML (*HTML-unescaped*). Jadi kedua eskpresi JSX berikut ini sama:
 
 ```js
 <MyComponent message="&lt;3" />
@@ -216,11 +216,11 @@ When you pass a string literal, its value is HTML-unescaped. So these two JSX ex
 <MyComponent message={'<3'} />
 ```
 
-This behavior is usually not relevant. It's only mentioned here for completeness.
+Perilaku ini biasanya tidak relevan. Dan hanya disebutkan di sini untuk melengkapi.
 
-### Props Default to "True" {#props-default-to-true}
+### Nilai *Default* Prop adalah "True" {#props-default-to-true}
 
-If you pass no value for a prop, it defaults to `true`. These two JSX expressions are equivalent:
+Jika Anda tidak mengoper nilai apapun ke sebuah *prop*, nilai *default*-nya adalah 'true'. Kedua ekspresi JSX ini adalah sama:
 
 ```js
 <MyTextBox autocomplete />
@@ -228,11 +228,11 @@ If you pass no value for a prop, it defaults to `true`. These two JSX expression
 <MyTextBox autocomplete={true} />
 ```
 
-In general, we don't recommend using this because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
+Secara umum, kami tidak merekomendasikan menggunakan cara ini karena bisa membingungkan Anda dengan [*shorthand* objek *ES6*](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` yang merupakan kependekan dari `{foo: foo}` ketimbang `{foo: true}`. *Behavior* ini demikian adanya karena cocok dengan perilaku HTML.
 
-### Spread Attributes {#spread-attributes}
+### Menyebarkan Atribut {#spread-attributes}
 
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
+Jika Anda memiliki `props` sebagai sebuah objek, dan ingin mengopernya ke JSX, Anda bisa gunakan `...` sebagai sebuah operator "penyebaran" (*spread*) untuk mengoper ke objek *prop* yang utuh. Kedua komponen ini adalah sama:
 
 ```js{7}
 function App1() {
@@ -245,7 +245,7 @@ function App2() {
 }
 ```
 
-You can also pick specific props that your component will consume while passing all other props using the spread operator.
+Anda juga bisa mengambil *prop* tertentu yang mana komponen Anda akan gunakan ketika mengoperkan semua *prop* lainnya menggunakan operator penyebaran.
 
 ```js{2}
 const Button = props => {
@@ -265,30 +265,30 @@ const App = () => {
 };
 ```
 
-In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
-All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
+Pada contoh di atas, *prop* `kind` tersebut secara aman digunakan dan *tidak* dioper kepada elemen `<button>` dalam DOM.
+Semua *prop* lainnya dioper melalui objek `...other` membuat komponen ini begitu fleksibel. Anda bisa lihat bahwa komponen tersebut mengoper sebuah *prop* `onClick` dan *prop* `children`.
 
-Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
+Penyebaran atribut bisa berguna tetapi juga membuatnya mudah mengoper *prop* yang tidak perlu ke komponen-komponen yang tidak memperdulikan *prop* tersebut atau mengoper atribut-atribut HTML yang tidak valid ke DOM. Kami rekomendasikan menggunakan sintaks ini seperlunya.  
 
-## Children in JSX {#children-in-jsx}
+## *Children* dalam JSX {#children-in-jsx}
 
-In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: `props.children`. There are several different ways to pass children:
+Dalam ekspresi JSX yang mengandung penanda (*tag*) pembuka dan *tag* penutup, konten yang ada di antara penanda tersebut dioper sebagai *prop* khusus: `props.children`. Ada beberapa cara berbeda untuk mengoper turunan (*children*):
 
-### String Literals {#string-literals-1}
+### *String Literal* {#string-literals-1}
 
-You can put a string between the opening and closing tags and `props.children` will just be that string. This is useful for many of the built-in HTML elements. For example:
+Anda dapat menempatkan sebuah *string* di antara *tag* pembuka dan penutup dan `props.children` akan menjadi *string* tersebut. Ini berguna untuk banyak elemen HTML yang *built-in*. Contohnya:
 
 ```js
 <MyComponent>Hello world!</MyComponent>
 ```
 
-This is valid JSX, and `props.children` in `MyComponent` will simply be the string `"Hello world!"`. HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
+Ini adalah JSX yang valid , dan `props.children` dalam `MyComponent` secara sederhana akan menjadi *string* `"Hello world!"`. HTML tersebut tidak terhindarkan, jadi Anda secara umum akan menuliskan JSX selayaknya Anda menuliskan HTML dengan cara berikut:
 
 ```html
-<div>This is valid HTML &amp; JSX at the same time.</div>
+<div>Ini adalah HTML valid &amp; JSX pada waktu yang sama.</div>
 ```
 
-JSX removes whitespace at the beginning and ending of a line. It also removes blank lines. New lines adjacent to tags are removed; new lines that occur in the middle of string literals are condensed into a single space. So these all render to the same thing:
+JSX mentingkirkan ruang putih (*whitespace*) di awal dan akhir sebuah baris. JSX juga menyingkirkan baris-baris yang kosong. Baris-baris baru yang berbatasan dengan *tag* juga disingkirkan; baris-baris baru yang muncul di tengah *string literal* dipadatkan menjadi sebuah *space* tunggal. Jadi semua ini akan me-*render* hasil yang sama:
 
 ```js
 <div>Hello World</div>
@@ -308,9 +308,9 @@ JSX removes whitespace at the beginning and ending of a line. It also removes bl
 </div>
 ```
 
-### JSX Children {#jsx-children}
+### Turunan (*Children*) JSX {#jsx-children}
 
-You can provide more JSX elements as the children. This is useful for displaying nested components:
+Anda juga bisa menyediakan lebih banyak elemen JSX sebagai turunan (*children*). Hal ini berguna untuk menampilkan komponen yang *nested*:
 
 ```js
 <MyContainer>
@@ -319,7 +319,7 @@ You can provide more JSX elements as the children. This is useful for displaying
 </MyContainer>
 ```
 
-You can mix together different types of children, so you can use string literals together with JSX children. This is another way in which JSX is like HTML, so that this is both valid JSX and valid HTML:
+Anda juga bisa mencampurkan jenis-jenis turunan yang berbeda, jadi Anda bisa mengguankan *string literal* bersamaan dengan turunan JSX. Inin adalah cara lain yang mana JSX seperti halnya HTML, jadi hasilnya JSX yang valid dan HTML yang valid:
 
 ```html
 <div>
@@ -331,23 +331,23 @@ You can mix together different types of children, so you can use string literals
 </div>
 ```
 
-A React component can also return an array of elements:
+Sebuah komponen React juga bisa memberi hasil balikan (*return*) berupa sebuah *array* elemen:
 
 ```js
 render() {
-  // No need to wrap list items in an extra element!
+  // Tidak perlu untuk membungkus daftar itemd dalam sebuah elemen tambahan!
   return [
-    // Don't forget the keys :)
-    <li key="A">First item</li>,
-    <li key="B">Second item</li>,
-    <li key="C">Third item</li>,
+    // Jangan lupa kuncinya :)
+    <li key="A">Item pertama</li>,
+    <li key="B">Item kedua</li>,
+    <li key="C">Item ketiga</li>,
   ];
 }
 ```
 
-### JavaScript Expressions as Children {#javascript-expressions-as-children}
+### Ekspresi JavaScript sebagai *Children* {#javascript-expressions-as-children}
 
-You can pass any JavaScript expression as children, by enclosing it within `{}`. For example, these expressions are equivalent:
+Anda dapat mengoper ekspresi JavaScript apapun sebagai turunan, dengan cara memenyertakannya di antara `{}`. Sebagai contoh, ekspresi-ekspresi ini adalah sama:
 
 ```js
 <MyComponent>foo</MyComponent>
@@ -355,7 +355,7 @@ You can pass any JavaScript expression as children, by enclosing it within `{}`.
 <MyComponent>{'foo'}</MyComponent>
 ```
 
-This is often useful for rendering a list of JSX expressions of arbitrary length. For example, this renders an HTML list:
+Ini seringkali berguna untuk me-*render* sebuah daftar ekspresi JSX yang panjangnya dapat berubah-ubah. Contohnya, berikut ini me-*render* sebuah daftar HTML:
 
 ```js{2,9}
 function Item(props) {
@@ -363,7 +363,7 @@ function Item(props) {
 }
 
 function TodoList() {
-  const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+  const todos = ['menyelesaikan doc', 'men-submit pr', 'nag dan untuk di-review'];
   return (
     <ul>
       {todos.map((message) => <Item key={message} message={message} />)}
@@ -372,7 +372,7 @@ function TodoList() {
 }
 ```
 
-JavaScript expressions can be mixed with other types of children. This is often useful in lieu of string templates:
+Ekspresi-ekspresi JavaScript juga dapat dicampurkan dengan jenis-jenis turunan lain. Ini seringkali berguna dalam pengganti *string template*:
 
 ```js{2}
 function Hello(props) {
@@ -380,12 +380,12 @@ function Hello(props) {
 }
 ```
 
-### Functions as Children {#functions-as-children}
+### Fungsi sebagai Turunan (*Children*) {#functions-as-children}
 
-Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, `props.children` works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as `props.children`:
+Normalnya, ekspresi JavaScript dimasukkan ke dalam JSX akan ditaksir menjadis sebuah *string*, sebuah elemen React, atau menjadi daftar hal-hal semacam itu. Bagaimanapun, `props.children` bekerja seperti halnya *prop* apapun yang mana bisa mengoper jenis data apapun, tidak hanya jenis data yang React tahu bagaimana cara untuk me-*render*-nya. Contohnya, jika Anda memiliki sebuah komponen *custom*, Anda bisa melakukan *callback* pada komponen tersebut sebagai `props.children`:
 
 ```js{4,13}
-// Calls the children callback numTimes to produce a repeated component
+// Memanggil callback turunan numTimes untuk menghasilkan sebuah komponen berulang
 function Repeat(props) {
   let items = [];
   for (let i = 0; i < props.numTimes; i++) {
@@ -403,11 +403,11 @@ function ListOfTenThings() {
 }
 ```
 
-Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
+Turunan dioper ke sebuah komponen *custom* bisa berarti apa saja, selama komponen itu mengubah turunan-turunan tersbut menjadi sesuatu yang bisa dimengerti React sebelum proses *render*. Penggunaan ini tidak lazim, namun berkerja jika Anda ingin melebarkan apa saja yang dapat dilakukan JSX.
 
-### Booleans, Null, and Undefined Are Ignored {#booleans-null-and-undefined-are-ignored}
+### *Boolean, Null,* dan *Undefined* Diabaikan {#booleans-null-and-undefined-are-ignored}
 
-`false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, dan `true` adalah turunan yang valid. Itu semua tidak di-*render*. Ekspresi-ekspresi JSX akan me-*render* hasil yang sama:
 
 ```js
 <div />
@@ -423,7 +423,7 @@ Children passed to a custom component can be anything, as long as that component
 <div>{true}</div>
 ```
 
-This can be useful to conditionally render React elements. This JSX only renders a `<Header />` if `showHeader` is `true`:
+Ini berguna untuk secara kondisional me-*render* elemen-elemen React. JSX ini me-*render* komponen `<Header />` hanya jika `showHeader` bernilai `true`:
 
 ```js{2}
 <div>
@@ -432,9 +432,9 @@ This can be useful to conditionally render React elements. This JSX only renders
 </div>
 ```
 
-One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), such as the `0` number, are still rendered by React. For example, this code will not behave as you might expect because `0` will be printed when `props.messages` is an empty array:
+Satu peringatan bahwa beberapa [nilai "salah"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), seperti angka `0`, masih di-*render* oleh React. Contohnya, kode berikut ini tidak akan berlaku seperi yang Anda kira karena `0` akan dicetak ketika `props.messages` adalah *array* kosong:
 
-```js{2}
+```js 2}
 <div>
   {props.messages.length &&
     <MessageList messages={props.messages} />
@@ -442,7 +442,7 @@ One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/doc
 </div>
 ```
 
-To fix this, make sure that the expression before `&&` is always boolean:
+Untuk memperbaiki ini, pastikan bahwa ekspresi sebelum `&&` adalah *boolean*:
 
 ```js{2}
 <div>
@@ -452,7 +452,7 @@ To fix this, make sure that the expression before `&&` is always boolean:
 </div>
 ```
 
-Conversely, if you want a value like `false`, `true`, `null`, or `undefined` to appear in the output, you have to [convert it to a string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) first:
+Sebaliknya, jika Anda ingin sebuah nilai seperti `false`, `true`, `null`, atau `undefined` untuk muncul di *output*, Anda harus [mengkonversinya menjadi sebuah *string*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) terlebih dahulu:
 
 ```js{2}
 <div>
