@@ -4,11 +4,11 @@ title: React Without JSX
 permalink: docs/react-without-jsx.html
 ---
 
-JSX bukan persyaratan untuk menggunakan React. Menggunakan React tanpa JSX sangat cocok ketika Anda tidak ingin mengatur kompilasi di lingkungan pembangunan Anda.
+JSX bukan persyaratan untuk menggunakan React. Menggunakan React tanpa JSX sangat cocok ketika Anda tidak ingin mengatur kompilasi di *build environment* Anda.
 
 Setiap elemen hanyalah _syntactic sugar_ untuk pemanggilan  `React.createElement(component, props, ...children)`. Jadi, apa pun yang dapat Anda lakukan dengan JSX juga dapat dilakukan hanya dengan JavaScript biasa.
 
-Misalnya, kode ini ditulis dengan JSX:
+Misalnya, kode yang ditulis dengan JSX berikut:
 
 ```js
 class Hello extends React.Component {
@@ -40,7 +40,7 @@ ReactDOM.render(
 
 Jika Anda ingin tahu lebih lanjut untuk melihat banyak contoh tentang bagaimana JSX dikonversi ke JavaScript, Anda dapat mencobanya di [the online Babel compiler](babel://jsx-simple-example).
 
-Komponen dapat diberikan sebagai string, atau sebagai subkelas dari `React.Component`, atau fungsi murni untuk komponen _stateless_.
+Komponen dapat diberikan sebagai _string_, atau sebagai subkelas dari `React.Component`, atau fungsi murni untuk komponen _stateless_.
 
 Jika Anda terlalu lelah mengetik `React.createElement` satu pola umum adalah dengan menggunakan pintasan:
 
