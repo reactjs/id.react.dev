@@ -69,7 +69,13 @@ function Counter({initialCount}) {
 
 Tombol "+" dan "-" menggunakan bentuk fungsional, karena nilai yang telah diperbarui didasari oleh nilai sebelumnya. Tetapi tombol "Reset" menggunakan bentuk normal, karena tombol tersebut selalu mengatur perhitungan kembali ke nilai awal.
 
+<<<<<<< HEAD
 > Catatan
+=======
+If your update function returns the exact same value, the subsequent rerender will be skipped completely.
+
+> Note
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 >
 > Tidak seperti metode `setState` yang dapat ditemukan dalam *class components*, `useState` tidak secara otomatis menggabungkan obyek-obyek yang telah diperbaruinya. Anda bisa meniru perilaku ini dengan menggabungkan fungsi *updater* dengan *object spread syntax*:
 >
@@ -180,7 +186,11 @@ const value = useContext(MyContext);
 
 Menerima sebuah obyek konteks (nilai yang dikembalikan dari `React.createContext`) dan mengembalikan nilai konteks saat ini untuk konteks tersebut. Nilai konteks saat ini ditentukan oleh `value` dari *prop* terdekat dari `<MyContext.Provider>` diatas komponen yang dipanggil pada bagan.
 
+<<<<<<< HEAD
 Ketika `<MyContext.Provider>` terdekat diatas pembaruan komponen, *Hook* ini akan memicu *render* ulang dengan `value` dari konteks terakhir yang dioper ke penyedia `MyContext` tersebut.
+=======
+When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider. Even if an ancestor uses [`React.memo`](/docs/react-api.html#reactmemo) or [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), a rerender will still happen starting at the component itself using `useContext`.
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 Jangan lupa bahwa argumen untuk `useContext` harus berupa obyek konteks itu sendiri:
 
