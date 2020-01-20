@@ -216,7 +216,11 @@ Kode sumbernya terletak di [`packages/react-reconciler`](https://github.com/face
 
 ### Sistem _Event_ {#event-system}
 
+<<<<<<< HEAD
 React menerapkan sebuah sistem _event_ sintetis yang agnostik terhadap _renderer_-nya dan bekerja dengan React DOM dan React Native. Kode sumbernya terletak di [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
+=======
+React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
+>>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 Terdapat sebuah [video dengan pembahasan mendalam mengenai kodenya](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 menit).
 
