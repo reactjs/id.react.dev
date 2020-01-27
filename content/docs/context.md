@@ -106,7 +106,11 @@ function Page(props) {
 
 Pola ini cukup untuk banyak kasus ketika anda perlu memisahkan *child* dari *parent* terdekatnya. Anda dapat membawanya lebih jauh dengan [*render props*](/docs/render-props.html) jika *child* perlu berkomunikasi dengan *parent* sebelum *rendering*.
 
+<<<<<<< HEAD
 Namun, kadang-kadang data yang sama harus dapat diakses oleh banyak komponen dalam diagram, dan pada tingkat bersarang yang berbeda. Context memungkinkan anda "menyiarkan" data tersebut, dan mengubahnya, ke semua komponen di bawah. Contoh umum di mana menggunakan *context* mungkin lebih sederhana daripada alternatif termasuk mengelola *locale* saat ini, tema, atau *cache* data. 
+=======
+However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 ## API {#api}
 
@@ -130,6 +134,7 @@ Setiap objek Context dilengkapi dengan komponen Provider React yang memungkinkan
 
 Menerima *prop* `value` untuk dioper ke komponen konsumsi yang merupakan keturunan Provider ini. Satu Provider dapat dihubungkan ke banyak *consumer*. Provider dapat disarangkan untuk *override* nilai lebih dalam di dalam diagram.
 
+<<<<<<< HEAD
 Semua *consumer* yang merupakan keturunan Provider akan *render* ulang setiap kali *prop* `nilai` Provider berubah. Perambatan dari Provider ke *consumer* turunannya tidak tunduk ke *method* `shouldComponentUpdate`, sehingga *consumer* diperbarui bahkan ketika komponen leluhur menebus pembaruan tersebut.
 
 Perubahan ditentukan dengan membandingkan nilai-nilai baru dan lama menggunakan algoritma yang sama dengan [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
@@ -137,6 +142,15 @@ Perubahan ditentukan dengan membandingkan nilai-nilai baru dan lama menggunakan 
 > Catatan
 > 
 > Cara perubahan ditentukan dapat menyebabkan beberapa masalah saat mengoper objek sebagai `value`: lihat [Peringatan](#caveats).
+=======
+All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
+
+Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
+
+> Note
+>
+> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -193,9 +207,15 @@ Komponen React yang menerima perubahan *context*. Ini memungkinkan Anda menerima
 
 Dibutuhkan sebuah [fungsi sebagai *child*](/docs/render-props.html#using-props-other-than-render). Fungsi menerima nilai *context* saat ini dan mengembalikkan *node* React. Argumen `value` yang diteruskan ke fungsi akan sama dengan *prop* `value` dari Provider terdekat untuk *context* ini di atas dalam diagram. Jika tidak ada Provider untuk *context* ini di atas, argumen `value` akan sama dengan `defaultValue` yang diteruskan ke `createContext()`.
 
+<<<<<<< HEAD
 > Catatan
 > 
 > Untuk lebih lanjut mengenai pola 'fungsi sebagai *child*', lihat [*render props*](/docs/render-props.html).
+=======
+> Note
+>
+> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 ### `Context.displayName` {#contextdisplayname}
 
@@ -241,7 +261,11 @@ Sering diperlukan untuk memperbarui *context* dari komponen yang bersarang di su
 
 ### Mengonsumsi Banyak Context {#consuming-multiple-contexts}
 
+<<<<<<< HEAD
 Untuk menjaga agar *rendering* ulang *context* tetap cepat, React perlu membuat setiap *context consumer* sebagai *node* yang terpisah dalam diagram. 
+=======
+To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 `embed:context/multiple-contexts.js`
 
@@ -261,7 +285,14 @@ Untuk menyiasatinya, angkat nilai ke dalam *state* induk:
 
 ## API Lawas {#legacy-api}
 
+<<<<<<< HEAD
 > Catatan
 > 
 > React sebelumnya dikirimkan dengan API *context* eksperimental. API lama akan di dukung di semua rilis 16.x, tetapi aplikasi yang menggunakannya harus migrasi ke versi yang baru. API lawas akan di hapus dalam versi *major* React di masa depan. Baca [dokumen *context* lawas di sini](/docs/legacy-context.html).
  
+=======
+> Note
+>
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549

@@ -104,7 +104,11 @@ Kunjungi [Referensi API React.Component](/docs/react-component.html) untuk melih
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<<<<<<< HEAD
 `React.PureComponent` mirip dengan [`React.Component`](#reactcomponent). Perbedaannya adalah [`React.Component`](#reactcomponent) tidak mengimplementasikan [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), sedangkan `React.PureComponent` mengimplementasikannya dengan perbandingan _props_ dan _state_ secara dangkal (_shallow_). 
+=======
+`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 Apabila fungsi `render()` pada komponen React Anda me-_render_ hasil yang sama dengan _props_ dan _state_ yang sama juga, Anda dapat menggunakan `React.PureComponent` untuk meningkatkan kinerja komponen pada kasus tertentu.
 
@@ -128,7 +132,13 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
 
+<<<<<<< HEAD
 Secara bawaan `React.memo` hanya akan membandingkan objek yang kompleks pada objek _props_ secara dangkal (_shallow comparison_). Apabila Anda ingin membuat perbandingan sendiri, Anda juga dapat memberikan fungsi pembanding _custom_ sebagai argumen kedua.
+=======
+`React.memo` only affects props changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+
+By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 ```javascript
 function MyComponent(props) {
