@@ -76,9 +76,13 @@ Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan 
 
 - **[nwb](https://github.com/insin/nwb)** sangat baik dalam [memublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
 
+<<<<<<< HEAD
 - **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** adalah *framework* yang me-*render* di *server* dan tidak membutuhkan konfigurasi, namun menyediakan fleksibilitas lebih dibanding Next.js.
+=======
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+>>>>>>> 12eaa7a95df236dc19f9d36893519f2cc2500828
 
 ## Membuat Toolchains dari Awal{#creating-a-toolchain-from-scratch}
 
