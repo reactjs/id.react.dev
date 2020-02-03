@@ -1,14 +1,14 @@
 ---
 id: uncontrolled-components
-title: Uncontrolled Components
+title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html) untuk mengimpementasikan *form*. Pada *controlled component*, data *form* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, di mana data *form* akan ditangani oleh DOM-nya sendiri.
 
-To write an uncontrolled component, instead of writing an event handler for every state update, you can [use a ref](/docs/refs-and-the-dom.html) to get form values from the DOM.
+Untuk menulis *uncontrolled component*, alih-alih menulis *event handler* untuk setiap pembaruan *state*, Anda bisa [menggunakan *ref*](/docs/refs-and-the-dom.html) untuk mendapatkan nilai *form* dari DOM.
 
-For example, this code accepts a single name in an uncontrolled component:
+Misalnya, kode berikut menerima sebuah nama dari sebuah *uncontrolled component*:
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -19,7 +19,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.current.value);
+    alert('Sebuah nama telah dikirim: ' + this.input.current.value);
     event.preventDefault();
   }
 
@@ -27,56 +27,56 @@ class NameForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Nama:
           <input type="text" ref={this.input} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Kirim" />
       </form>
     );
   }
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**Coba di CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
+Oleh karena *uncontrolled component* menyimpan sumber kebenaran dalam DOM, terkadang lebih mudah untuk mengintegrasikan kode React dan non-React jika menggunakan *uncontrolled component*. Ini juga berarti lebih sedikit kode jika Anda menginginkan solusi cepat walau tak rapi. Selain itu pada umumnya Anda harus menggunakan *controlled component*.
 
-If it's still not clear which type of component you should use for a particular situation, you might find [this article on controlled versus uncontrolled inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) to be helpful.
+Jika masih belum jelas jenis komponen mana yang harus Anda gunakan untuk situasi tertentu, mungkin [artikel tentang *controlled input* versus *uncontrolled input*](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) bisa membantu.
 
-### Default Values {#default-values}
+### Nilai Default {#default-values}
 
-In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`.
+Pada *lifecycle rendering* React, atribut `value` pada elemen *form* akan menimpa nilai pada DOM. Dengan *uncontrolled component*, sering kali Anda menginginkan React untuk menentukan nilai awal tetapi pembaruan berikutnya dilakukan secara *uncontrolled*. Untuk menangani kasus ini, Anda bisa menentukan atribut `defaultValue` alih-alih menggunakan `value`.
 
 ```javascript{7}
 render() {
   return (
     <form onSubmit={this.handleSubmit}>
       <label>
-        Name:
+        Nama:
         <input
-          defaultValue="Bob"
+          defaultValue="Budi"
           type="text"
           ref={this.input} />
       </label>
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Kirim" />
     </form>
   );
 }
 ```
 
-Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+Ini juga berlaku pada dukungan `defaultChecked` untuk `<input type="checkbox">` dan `<input type="radio">`, serta dukungan `defaultValue` untuk `<select>` dan `<textarea>`.
 
-## The file input Tag {#the-file-input-tag}
+## Tag file input {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+Pada HTML, sebuah `<input type="file">` memungkinkan pengguna untuk memilih satu atau beberapa flle dari media penyimpanan mereka untuk diunggah ke server atau dimanipulasi dengan JavaScript lewat [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
 
 ```html
 <input type="file" />
 ```
 
-In React, an `<input type="file" />` is always an uncontrolled component because its value can only be set by a user, and not programmatically.
+Dalam React, sebuah `<input type="file" />` selalu merupakan *uncontrolled component* karena nilainya hanya bisa disetel oleh pengguna, bukan oleh kode program.
 
-You should use the File API to interact with the files. The following example shows how to create a [ref to the DOM node](/docs/refs-and-the-dom.html) to access file(s) in a submit handler:
+Anda harus menggunakan File API untuk berinteraksi dengan berkas. Contoh berikut menunjukkan cara membuat [*ref* ke simpul DOM](/docs/refs-and-the-dom.html) untuk mengakses berkas dalam *submit handler*:
 
 `embed:uncontrolled-components/input-type-file.js`
 

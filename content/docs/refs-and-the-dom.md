@@ -1,6 +1,6 @@
 ---
 id: refs-and-the-dom
-title: Refs and the DOM
+title: Ref dan DOM
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -11,33 +11,33 @@ redirect_from:
 permalink: docs/refs-and-the-dom.html
 ---
 
-Refs provide a way to access DOM nodes or React elements created in the render method.
+*Ref* menyediakan cara untuk mengakses simpul DOM atau elemen React yang dibuat dalam *render method*.
 
-In the typical React dataflow, [props](/docs/components-and-props.html) are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.
+Dalam aliran data React yang umum, [*props*](/docs/components-and-props.html) adalah satu-satunya cara bagi komponen induk untuk berinteraksi dengan anaknya. Untuk memodifikasi anak, Anda me-*render* ulang dengan *props* yang baru. Tetapi ada beberapa kasus ketika Anda harus memodifikasi anak secara imperatif di luar aliran data yang umum. Anak yang akan dimodifikasi bisa berupa komponen React atau elemen DOM. Pada kedua kasus ini, React menyediakan jalan keluar.
 
-### When to Use Refs {#when-to-use-refs}
+### Kapan Harus Menggunakan *Ref* {#when-to-use-refs}
 
-There are a few good use cases for refs:
+Ada beberapa kasus yang cocok untuk *ref*:
 
-* Managing focus, text selection, or media playback.
-* Triggering imperative animations.
-* Integrating with third-party DOM libraries.
+* Mengelola fokus, pemilihan teks, atau pemutaran media.
+* Memicu animasi secara imperatif.
+* Mengintegrasikan dengan *library* DOM pihak ketiga.
 
-Avoid using refs for anything that can be done declaratively.
+Hindari penggunaan *ref* untuk semua yang bisa dilakukan secara deklaratif.
 
-For example, instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it.
+Misalnya, alih-alih mengekspos *method* `open()` dan `close()` pada komponen `Dialog`, kirimkan *props* `isOpen` kepadanya.
 
-### Don't Overuse Refs {#dont-overuse-refs}
+### Jangan Berlebihan Menggunakan *Ref* {#dont-overuse-refs}
 
-Your first inclination may be to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. See the [Lifting State Up](/docs/lifting-state-up.html) guide for examples of this.
+Godaan pertama mungkin adalah menggunakan *ref* agar aplikasi "bisa berfungsi". Jika benar demikian, hentikan sejenak dan pikirkan secara kritis, tempat *state* harus berada dalam hierarki komponen. Sering kali nantinya ditemukan bahwa tempat yang lebih baik untuk "memiliki" *state* tersebut adalah di tingkat yang lebih tinggi dalam hierarki. Lihat panduan [Memindahkan *State* ke Atas](/docs/lifting-state-up.html) untuk contohnya.
 
-> Note
+> Catatan
 >
-> The examples below have been updated to use the `React.createRef()` API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
+> Contoh berikut telah diperbarui untuk menggunakan API `React.createRef()` yang diperkenalkan dalam React 16.3. Jika Anda menggunakan versi React sebelumnya, kami sarankan untuk menggunakan [*callback ref*](#callback-refs).
 
-### Creating Refs {#creating-refs}
+### Membuat *Ref* {#creating-refs}
 
-Refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
+*Ref* dibuat menggunakan `React.createRef()` dan disematkan ke elemen React lewat atribut `ref`. *Ref* umumnya ditetapkan ke properti *instance* saat komponen dibuat agar mereka bisa dirujuk dalam komponen.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -51,44 +51,44 @@ class MyComponent extends React.Component {
 }
 ```
 
-### Accessing Refs {#accessing-refs}
+### Mengakses *Ref* {#accessing-refs}
 
-When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `current` attribute of the ref.
+Ketika *ref* dioper ke elemen dalam `render`, sebuah referensi ke simpul akan tersedia untuk diakses pada atribut `current` milik *ref*.
 
 ```javascript
 const node = this.myRef.current;
 ```
 
-The value of the ref differs depending on the type of the node:
+Nilai *ref* berbeda-beda tergantung jenis simpulnya:
 
-- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
-- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
-- **You may not use the `ref` attribute on function components** because they don't have instances.
+- Ketika atribut `ref` digunakan pada elemen HTML, `ref` yang dibuat dalam konstruktor dengan `React.createRef()` menerima elemen DOM yang mendasari sebagai properti `current` miliknya.
+- Saat atribut `ref` digunakan pada *class component* khusus, objek `ref` menerima instans yang dipasang milik komponen sebagai `current`-nya.
+- **Anda tidak diizinkan untuk menggunakan atribut `ref` pada *function component*** karena komponen tersebut tidak memiliki instans.
 
-The examples below demonstrate the differences.
+Contoh berikut menunjukkan perbedaannya.
 
-#### Adding a Ref to a DOM Element {#adding-a-ref-to-a-dom-element}
+#### Menambahkan *Ref* pada elemen DOM {#adding-a-ref-to-a-dom-element}
 
-This code uses a `ref` to store a reference to a DOM node:
+Kode berikut menggunakan `ref` untuk menyimpan referensi ke simpul DOM:
 
 ```javascript{5,12,22}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // create a ref to store the textInput DOM element
+    // buat ref untuk menyimpan elemen DOM textInput
     this.textInput = React.createRef();
     this.focusTextInput = this.focusTextInput.bind(this);
   }
 
   focusTextInput() {
-    // Explicitly focus the text input using the raw DOM API
-    // Note: we're accessing "current" to get the DOM node
+    // Fokuskan secara eksplisit pada input teks menggunakan API DOM dasar
+    // Catatan: kita sedang mengakses "current" untuk mendapatkan simpul DOM
     this.textInput.current.focus();
   }
 
   render() {
-    // tell React that we want to associate the <input> ref
-    // with the `textInput` that we created in the constructor
+    // beri tahu React bahwa kita ingin mengasosiasikan *ref* <input>
+    // dengan `textInput` yang kita buat dalam konstruktor
     return (
       <div>
         <input
@@ -96,7 +96,7 @@ class CustomTextInput extends React.Component {
           ref={this.textInput} />
         <input
           type="button"
-          value="Focus the text input"
+          value="Fokus pada masukan teks"
           onClick={this.focusTextInput}
         />
       </div>
@@ -105,11 +105,11 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
+React akan menetapkan properti `current` menjadi elemen DOM saat komponen dipasang dan menetapkannya kembali menjadi `null` saat dilepas. Pembaruan `ref` terjadi sebelum *lifecycle method* `componentDidMount` atau `componentDidUpdate`.
 
-#### Adding a Ref to a Class Component {#adding-a-ref-to-a-class-component}
+#### Menambahkan *Ref* ke *Class Component* {#adding-a-ref-to-a-class-component}
 
-If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
+Jika kita ingin membungkus `CustomTextInput` di atas untuk mensimulasikan peristiwa klik pada masukan teks segera setelah dipasang, kita bisa menggunakan *ref* untuk mendapatkan akses ke input khususnya dan memanggil *method* `focusTextInput` secara manual:
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
@@ -130,7 +130,7 @@ class AutoFocusTextInput extends React.Component {
 }
 ```
 
-Note that this only works if `CustomTextInput` is declared as a class:
+Perhatikan bahwa ini hanya akan berfungsi jika `CustomTextInput` dideklarasikan sebagai kelas:
 
 ```js{1}
 class CustomTextInput extends React.Component {
@@ -138,9 +138,9 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-#### Refs and Function Components {#refs-and-function-components}
+#### *Ref* dan *Function Component* {#refs-and-function-components}
 
-**You may not use the `ref` attribute on function components** because they don't have instances:
+**Anda tidak diizinkan untuk menggunakan atribut `ref` dalam *function component*** karena komponen tersebut tidak memiliki instans:
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -153,7 +153,7 @@ class Parent extends React.Component {
     this.textInput = React.createRef();
   }
   render() {
-    // This will *not* work!
+    // Ini *tidak akan* berfungsi!
     return (
       <MyFunctionComponent ref={this.textInput} />
     );
@@ -161,13 +161,13 @@ class Parent extends React.Component {
 }
 ```
 
-You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.
+Anda harus mengubah komponen menjadi kelas jika Anda membutuhkan *ref* yang merujuk kepadanya, seperti halnya jika Anda membutuhkan *lifecycle method* atau *state*.
 
-You can, however, **use the `ref` attribute inside a function component** as long as you refer to a DOM element or a class component:
+Tetapi Anda bisa **menggunakan atribut `ref` di dalam *function component*** selama Anda merujuk ke elemen DOM atau *class component*:
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
-  // textInput must be declared here so the ref can refer to it
+  // textInput harus dideklarasikan di sini agar ref bisa merujuknya
   let textInput = React.createRef();
 
   function handleClick() {
@@ -181,7 +181,7 @@ function CustomTextInput(props) {
         ref={textInput} />
       <input
         type="button"
-        value="Focus the text input"
+        value="Fokus pada masukan teks"
         onClick={handleClick}
       />
     </div>
@@ -189,25 +189,25 @@ function CustomTextInput(props) {
 }
 ```
 
-### Exposing DOM Refs to Parent Components {#exposing-dom-refs-to-parent-components}
+### Mengekspos *Ref* DOM ke Komponen Induk {#exposing-dom-refs-to-parent-components}
 
-In rare cases, you might want to have access to a child's DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.
+Pada sebagian kecil kasus, Anda mungkin ingin mendapatkan akses ke simpul DOM anak dari komponen induk. Hal ini tidak disarankan karena akan merusak enkapsulasi komponen, tetapi terkadang berguna untuk memicu fokus atau mengukur ukuran atau posisi simpul DOM anak.
 
-While you could [add a ref to the child component](#adding-a-ref-to-a-class-component), this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn't work with function components.
+Walau Anda bisa [menambahkan *ref* ke *child component*](#adding-a-ref-to-a-class-component), ini bukan solusi yang ideal, karena Anda hanya akan mendapatkan instans komponen, bukan simpul DOM. Selain itu, hal ini tidak akan berfungsi dengan *function component*.
 
-If you use React 16.3 or higher, we recommend to use [ref forwarding](/docs/forwarding-refs.html) for these cases. **Ref forwarding lets components opt into exposing any child component's ref as their own**. You can find a detailed example of how to expose a child's DOM node to a parent component [in the ref forwarding documentation](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+Jika Anda menggunakan React 16.3 atau yang lebih baru, kami sarankan untuk menggunakan [*ref forwarding*](/docs/forwarding-refs.html) untuk kasus semacam ini. ***Ref forwarding* memungkinkan komponen untuk memilih untuk mengekspos semua *ref* komponen anak sebagai miliknya sendiri**. Anda bisa menemukan contoh mendetail tentang cara mengekspos simpul DOM anak ke komponen induk [dalam dokumentasi *ref forwarding*](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
-If you use React 16.2 or lower, or if you need more flexibility than provided by ref forwarding, you can use [this alternative approach](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) and explicitly pass a ref as a differently named prop.
+Jika Anda menggunakan React 16.2 atau yang lebih lawas, atau jika Anda membutuhkan lebih banyak fleksibilitas dibandingkan dengan yang disediakan oleh *ref forwarding*, Anda bisa menggunakan [pendekatan alternatif ini](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) dan secara eksplisit mengoper sebuah *ref* sebagai *props* dengan nama yang berbeda.
 
-When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged and deprecated in [`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+Jika dimungkinkan, kami sarankan untuk tidak mengekspos simpul DOM, walau bisa berguna sebagai jalan keluar. Perhatikan bahwa pendekatan ini membutuhkan tambahan kode pada komponen anak Jika Anda sama sekali tidak memiliki kontrol pada implementasi komponen anak, opsi terakhir Anda adalah menggunakan [`findDOMNode()`](/docs/react-dom.html#finddomnode). Tetapi hal ini tidak disarankan dan akan menjadi *deprecated* dalam [`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
-### Callback Refs {#callback-refs}
+### *Callback Ref* {#callback-refs}
 
-React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
+React juga mendukung cara lain untuk menetapkan *ref* yang disebut sebagai *"callback ref"*, yang memberikan kontrol lebih mendetail kapan *ref* akan di-*set* dan di-*unset*.
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
+Alih-alih mengoper atribut `ref` yang dibuat oleh `createRef()`, Anda mengoper sebuah fungsi. Fungsi tersebut menerima instans komponen React atau elemen DOM HTML sebagai argumennya, yang bisa disimpan dan diakses di tempat lain. 
 
-The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
+Contoh berikut mengimplementasikan sebuah pola umum: menggunakan *callback* `ref` untuk menyimpan rujukan ke simpul DOM dalam properti instans.
 
 ```javascript{5,7-9,11-14,19,29,34}
 class CustomTextInput extends React.Component {
@@ -221,19 +221,19 @@ class CustomTextInput extends React.Component {
     };
 
     this.focusTextInput = () => {
-      // Focus the text input using the raw DOM API
+      // Fokus pada input teks menggunakan API DOM dasar
       if (this.textInput) this.textInput.focus();
     };
   }
 
   componentDidMount() {
-    // autofocus the input on mount
+    // autofocus pada input saat mount
     this.focusTextInput();
   }
 
   render() {
-    // Use the `ref` callback to store a reference to the text input DOM
-    // element in an instance field (for example, this.textInput).
+    // Gunakan callback `ref` untuk menyimpan rujukan ke elemen DOM
+    // input teks dalam field instans (misalnya, this.textInput).
     return (
       <div>
         <input
@@ -242,7 +242,7 @@ class CustomTextInput extends React.Component {
         />
         <input
           type="button"
-          value="Focus the text input"
+          value="Fokus pada masukan teks"
           onClick={this.focusTextInput}
         />
       </div>
@@ -251,9 +251,9 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will call the `ref` callback with the DOM element when the component mounts, and call it with `null` when it unmounts. Refs are guaranteed to be up-to-date before `componentDidMount` or `componentDidUpdate` fires.
+React akan memanggil *callback* `ref` dengan elemen DOM saat komponen dipasang dan memanggilnya dengan `null` saat dilepas. *Ref* dijamin untuk selalu diperbarui sebelum `componentDidMount` atau `componentDidUpdate` dijalankan.
 
-You can pass callback refs between components like you can with object refs that were created with `React.createRef()`.
+Anda bisa mengoper *callback ref* antarkomponen seperti halnya yang bisa Anda lakukan dengan *object ref* yang dibuat dengan `React.createRef()`.
 
 ```javascript{4,13}
 function CustomTextInput(props) {
@@ -275,16 +275,16 @@ class Parent extends React.Component {
 }
 ```
 
-In the example above, `Parent` passes its ref callback as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same function as a special `ref` attribute to the `<input>`. As a result, `this.inputElement` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+Pada contoh di atas, `Parent` mengoper *callback ref*-nya sebagai *props* `inputRef` kepada `CustomTextInput` dan `CustomTextInput` mengoper fungsi yang sama sebagai atribut `ref` khusus kepada `<input>`. Hasilnya, `this.inputElement` pada `Parent` akan disetel ke simpul DOM yang sesuai dengan elemen `<input>` pada `CustomTextInput`.
 
-### Legacy API: String Refs {#legacy-api-string-refs}
+### API *Legacy*: *String Ref* {#legacy-api-string-refs}
 
-If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**. 
+Jika sebelumnya Anda bekerja dengan React, Anda mungkin sudah mengenal API lawas dengan atribut `ref` berupa *string*, misalnya `"textInput"`, dan simpul DOM yang diakses dengan `this.refs.textInput`. Kami sarankan untuk tidak melakukannya karena *string ref* memiliki [beberapa masalah](https://github.com/facebook/react/pull/8333#issuecomment-271648615) dan dipertimbangkan sebagai *legacy*, serta **kemungkinan besar akan dihapus dalam salah satu rilis di masa mendatang**. 
 
-> Note
+> Catatan
 >
-> If you're currently using `this.refs.textInput` to access refs, we recommend using either the [callback pattern](#callback-refs) or the [`createRef` API](#creating-refs) instead.
+> Jika saat ini Anda menggunakan `this.refs.textInput` untuk mengakses *ref*, kami sarankan untuk beralih menggunakan [*callback pattern*](#callback-refs) atau [API `createRef`](#creating-refs).
 
-### Caveats with callback refs {#caveats-with-callback-refs}
+### Kekurangan pada *callback ref* {#caveats-with-callback-refs}
 
-If the `ref` callback is defined as an inline function, it will get called twice during updates, first with `null` and then again with the DOM element. This is because a new instance of the function is created with each render, so React needs to clear the old ref and set up the new one. You can avoid this by defining the `ref` callback as a bound method on the class, but note that it shouldn't matter in most cases.
+Jika *callback* `ref` didefinisikan sebagai fungsi *inline*, fungsi ini akan dipanggil dua kali dalam proses pembaruan, yang pertama dengan argumen `null`, yang kedua dengan argumen elemen DOM. Ini terjadi karena instans baru dari fungsi akan dibuat dalam setiap proses *render*, karena React harus membersihkan *ref* yang lama dan menyiapkan yang baru. Anda bisa menghindari hal ini dengan mendefinisikan *callback* `ref` sebagau *bound method* pada kelas, tetapi perhatikan bahwa dalam sebagian besar kasus hal ini tidak berpengaruh.

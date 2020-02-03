@@ -1,36 +1,36 @@
 ---
 id: react-without-es6
-title: React Without ES6
+title: React Tanpa ES6
 permalink: docs/react-without-es6.html
 ---
 
-Normally you would define a React component as a plain JavaScript class:
+Umumnya Anda mendefinisikan komponen React sebagai kelas JavaScript biasa:
 
 ```javascript
 class Greeting extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Halo {this.props.name}</h1>;
   }
 }
 ```
 
-If you don't use ES6 yet, you may use the `create-react-class` module instead:
+Jika Anda belum menggunakan ES6, Anda bisa menggunakan modul `create-react-class`:
 
 
 ```javascript
 var createReactClass = require('create-react-class');
 var Greeting = createReactClass({
   render: function() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Halo {this.props.name}</h1>;
   }
 });
 ```
 
-The API of ES6 classes is similar to `createReactClass()` with a few exceptions.
+API untuk kelas ES6 mirip dengan `createReactClass()`, dengan beberapa pengecualian.
 
-## Declaring Default Props {#declaring-default-props}
+## Mendeklarasikan *Props* *Default* {#declaring-default-props}
 
-With functions and ES6 classes `defaultProps` is defined as a property on the component itself:
+Dengan kelas dan fungsi ES6, `defaultProps` didefinisikan sebagai properti komponennya sendiri:
 
 ```javascript
 class Greeting extends React.Component {
@@ -38,17 +38,17 @@ class Greeting extends React.Component {
 }
 
 Greeting.defaultProps = {
-  name: 'Mary'
+  name: 'Maria'
 };
 ```
 
-With `createReactClass()`, you need to define `getDefaultProps()` as a function on the passed object:
+Dengan `createReactClass()`, Anda harus mendefinisikan `getDefaultProps()` sebagai fungsi pada objek yang dioperkan:
 
 ```javascript
 var Greeting = createReactClass({
   getDefaultProps: function() {
     return {
-      name: 'Mary'
+      name: 'Maria'
     };
   },
 
@@ -57,9 +57,9 @@ var Greeting = createReactClass({
 });
 ```
 
-## Setting the Initial State {#setting-the-initial-state}
+## Menyetel *State* Awal {#setting-the-initial-state}
 
-In ES6 classes, you can define the initial state by assigning `this.state` in the constructor:
+Pada kelas ES6, Anda bisa mendefinisikan *state* awal dengan menetapkan `this.state` pada konstruktor:
 
 ```javascript
 class Counter extends React.Component {
@@ -71,7 +71,7 @@ class Counter extends React.Component {
 }
 ```
 
-With `createReactClass()`, you have to provide a separate `getInitialState` method that returns the initial state:
+Dengan `createReactClass()`, Anda harus menyediakan *method* `getInitialState` terpisah yang mengembalikan *state* awal:
 
 ```javascript
 var Counter = createReactClass({
@@ -82,16 +82,16 @@ var Counter = createReactClass({
 });
 ```
 
-## Autobinding {#autobinding}
+## *Autobinding* {#autobinding}
 
-In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes. This means that they don't automatically bind `this` to the instance. You'll have to explicitly use `.bind(this)` in the constructor:
+Pada komponen React yang dideklarasikan sebagai kelas ES6, *method* mengikuti semantik yang sama seperti kelas ES6 reguler. Ini berarti *method* tersebut tidak secara otomatis mem-*bind* `this` kepada *instance*. Anda harus secara eksplisit menggunakan `.bind(this)` pada konstruktor:
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
-    // This line is important!
+    this.state = {message: 'Halo!'};
+    // Baris berikut penting!
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -100,22 +100,23 @@ class SayHello extends React.Component {
   }
 
   render() {
-    // Because `this.handleClick` is bound, we can use it as an event handler.
+    // Karena `this.handleClick` telah di-bind, kita bisa menggunakannya
+    // sebagai event handler.
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Ucapkan halo
       </button>
     );
   }
 }
 ```
 
-With `createReactClass()`, this is not necessary because it binds all methods:
+Dengan `createReactClass()`, hal tersebut tidak diperlukan karena semua *method* akan di-*bind*:
 
 ```javascript
 var SayHello = createReactClass({
   getInitialState: function() {
-    return {message: 'Hello!'};
+    return {message: 'Halo!'};
   },
 
   handleClick: function() {
@@ -125,26 +126,26 @@ var SayHello = createReactClass({
   render: function() {
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Ucapkan halo
       </button>
     );
   }
 });
 ```
 
-This means writing ES6 classes comes with a little more boilerplate code for event handlers, but the upside is slightly better performance in large applications.
+Ini berarti penulisan dengan kelas ES6 disertai dengan kode *boilerplate* untuk *event handler* tetapi manfaatnya adalah kinerja yang sedikit lebih baik dalam aplikasi yang besar.
 
-If the boilerplate code is too unattractive to you, you may enable the **experimental** [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) syntax proposal with Babel:
+Jika kode *boilerplate* sangat tidak menarik bagi Anda, Anda bisa mengaktifkan sintaksis [*Class Property*](https://babeljs.io/docs/plugins/transform-class-properties/) yang bersifat **eksperimental** dengan Babel:
 
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
+    this.state = {message: 'Halo!'};
   }
-  // WARNING: this syntax is experimental!
-  // Using an arrow here binds the method:
+  // PERINGATAN: sintaksis ini bersifat eksperimental!
+  // Menggunakan *arrow* akan mem-bind method:
   handleClick = () => {
     alert(this.state.message);
   }
@@ -152,34 +153,34 @@ class SayHello extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Ucapkan halo
       </button>
     );
   }
 }
 ```
 
-Please note that the syntax above is **experimental** and the syntax may change, or the proposal might not make it into the language.
+Perhatikan bahwa sintaksis di atas bersifat **eksperimental** dan sintaksis mungkin akan berubah, atau proposal ini tidak akan disertakan dalam bahasa.
 
-If you'd rather play it safe, you have a few options:
+Jika Anda ingin bermain pada area yang aman, Anda memiliki beberapa opsi:
 
-* Bind methods in the constructor.
-* Use arrow functions, e.g. `onClick={(e) => this.handleClick(e)}`.
-* Keep using `createReactClass`.
+* Mem-*bind* *method* dalam konstruktor.
+* Gunakan *arrow function*, misalnya `onClick={(e) => this.handleClick(e)}`.
+* Terus gunakan `createReactClass`.
 
-## Mixins {#mixins}
+## Mixin {#mixins}
 
->**Note:**
+>**Catatan:**
 >
->ES6 launched without any mixin support. Therefore, there is no support for mixins when you use React with ES6 classes.
+>ES6 diluncurkan tanpa adanya dukungan *mixin*. Oleh sebab itu, tidak ada dukungan untuk *mixin* saat Anda menggunakan React dengan kelas ES6.
 >
->**We also found numerous issues in codebases using mixins, [and don't recommend using them in the new code](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**Kami juga menemukan banyak masalah pada basis kode yang menggunakan *mixin*, [dan tidak menyarankan untuk menggunakannya untuk kode yang baru](/blog/2016/07/13/mixins-considered-harmful.html).**
 >
->This section exists only for the reference.
+>Bagian berikut hanya digunakan untuk rujukan.
 
-Sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` lets you use a legacy `mixins` system for that.
+Terkadang komponen yang sangat berbeda bisa berbagi fungsionalitas yang sama. Hal ini terkadang disebut sebagai [*cross-cutting concern*](https://en.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` memungkinkan Anda untuk menggunakan sistem `mixin` yang bersifat *legacy* untuk hal tersebut.
 
-One common use case is a component wanting to update itself on a time interval. It's easy to use `setInterval()`, but it's important to cancel your interval when you don't need it anymore to save memory. React provides [lifecycle methods](/docs/react-component.html#the-component-lifecycle) that let you know when a component is about to be created or destroyed. Let's create a simple mixin that uses these methods to provide an easy `setInterval()` function that will automatically get cleaned up when your component is destroyed.
+Salah satu kasus penggunaan yang umum adalah sebuah komponen ingin memperbarui dirinya sendiri secara periodik. Sangat mudah untuk menggunakan `setInterval()`, tetapi sangat penting untuk membatalkan interval jika Anda tidak membutuhkannya lagi untuk menghemat memori. React menyediakan [*lifecycle method*](/docs/react-component.html#the-component-lifecycle) yang bisa memberi tahu Anda kapan komponen akan diciptakan atau dihancurkan. Sebagai contoh, mari kita buat *mixin* yang sederhana yang menggunakan *method* berikut untuk menyediakan fungsi `setInterval()` yang mudah, yang akan dibersihkan secara otomatis ketika komponen Anda dihancurkan.
 
 ```javascript
 var SetIntervalMixin = {
@@ -197,12 +198,12 @@ var SetIntervalMixin = {
 var createReactClass = require('create-react-class');
 
 var TickTock = createReactClass({
-  mixins: [SetIntervalMixin], // Use the mixin
+  mixins: [SetIntervalMixin], // Gunakan mixin
   getInitialState: function() {
     return {seconds: 0};
   },
   componentDidMount: function() {
-    this.setInterval(this.tick, 1000); // Call a method on the mixin
+    this.setInterval(this.tick, 1000); // Panggil method pada mixin
   },
   tick: function() {
     this.setState({seconds: this.state.seconds + 1});
@@ -210,7 +211,7 @@ var TickTock = createReactClass({
   render: function() {
     return (
       <p>
-        React has been running for {this.state.seconds} seconds.
+        React telah berjalan selama {this.state.seconds} detik.
       </p>
     );
   }
@@ -222,4 +223,4 @@ ReactDOM.render(
 );
 ```
 
-If a component is using multiple mixins and several mixins define the same lifecycle method (i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.
+Jika komponen menggunakan beberapa *mixin* dan beberapa *mixin* mendefinisikan *lifecycle method* yang sama (contohnya, beberapa *mixin* ingin melakukan pembersihan ketika komponen dihancurkan), semua *lifecycle method* dijamin untuk dipanggil. *Method* yang didefinisikan pada *mixin* dijalankan secara berurutan sesuai dengan dengan proses pendaftarannya, diikuti dengan pemanggilan *method* pada komponen.

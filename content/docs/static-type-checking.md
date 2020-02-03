@@ -1,42 +1,42 @@
 ---
 id: static-type-checking
-title: Static Type Checking
+title: Pengecekan Static Type
 permalink: docs/static-type-checking.html
 ---
 
-Static type checkers like [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/) identify certain types of problems before you even run your code. They can also improve developer workflow by adding features like auto-completion. For this reason, we recommend using Flow or TypeScript instead of `PropTypes` for larger code bases.
+Pengecekan *static type* seperti [Flow](https://flow.org/) dan [TypeScript](https://www.typescriptlang.org/) mengidentifikasi jenis masalah tertentu bahkan sebelum kode dijalankan. Pengecekan tersebut juga bisa meningkatkan alur kerja pengembang dengan menambahkan fitur seperti pelengkapan kode secara otomatis. Dengan alasan ini, kami sarankan untuk menggunakan Flow atau TypeScript alih-alih menggunakan `PropTypes` untuk kode program berukuran besar.
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) is a static type checker for your JavaScript code. It is developed at Facebook and is often used with React. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
+[Flow](https://flow.org/) merupakan pengecek *static type* untuk kode JavaScript. Pengecek ini dikembangkan di Facebook dan sering digunakan bersama React. Pengecek ini memungkinkan Anda untuk menganotasi variabel, fungsi, dan komponen React menggunakan sintaksis khusus dan menemukan kesalahan secara dini. Anda bisa membaca [pengenalan Flow](https://flow.org/en/docs/getting-started/) untuk mempelajari dasar-dasarnya.
 
-To use Flow, you need to:
+Untuk menggunakannya, Anda harus:
 
-* Add Flow to your project as a dependency.
-* Ensure that Flow syntax is stripped from the compiled code.
-* Add type annotations and run Flow to check them.
+* Menambahkan Flow ke proyek Anda sebagai *dependency*.
+* Memastikan sintaksis Flow dihapus dari kode hasil dikompilasi.
+* Menambahkan *type annotation* dan menjalankan Flow untuk mengeceknya.
 
-We will explain these steps below in detail.
+Kami akan menjelaskan langkah-langkah tersebut secara mendetail.
 
-### Adding Flow to a Project {#adding-flow-to-a-project}
+### Menambahkan Flow ke Proyek {#adding-flow-to-a-project}
 
-First, navigate to your project directory in the terminal. You will need to run the following command:
+Pertama-tama, buka direktori proyek Anda di terminal. Anda akan harus menjalankan perintah berikut:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Jika menggunakan [Yarn](https://yarnpkg.com/), jalankan:
 
 ```bash
 yarn add --dev flow-bin
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Jika menggunakan [npm](https://www.npmjs.com/), jalankan:
 
 ```bash
 npm install --save-dev flow-bin
 ```
 
-This command installs the latest version of Flow into your project.
+Perintah tersebut akan menginstal versi terbaru Flow ke proyek Anda.
 
-Now, add `flow` to the `"scripts"` section of your `package.json` to be able to use this from the terminal:
+Kini, tambahkan `flow` ke bagian `"scripts"` pada `package.json` Anda untuk bisa menjalankannya dari terminal:
 
 ```js{4}
 {
@@ -49,53 +49,53 @@ Now, add `flow` to the `"scripts"` section of your `package.json` to be able to 
 }
 ```
 
-Finally, run one of the following commands:
+Terakhir, jalankan salah satu dari perintah berikut:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Jika menggunakan [Yarn](https://yarnpkg.com/), jalankan:
 
 ```bash
 yarn run flow init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Jika menggunakan [npm](https://www.npmjs.com/), jalankan:
 
 ```bash
 npm run flow init
 ```
 
-This command will create a Flow configuration file that you will need to commit.
+Perintah tersebut akan membuat konfigurasi Flow yang harus Anda sertakan dalam *commit*.
 
-### Stripping Flow Syntax from the Compiled Code {#stripping-flow-syntax-from-the-compiled-code}
+### Menghapus Sintaksis Flow dari Kode Hasil Kompilasi {#stripping-flow-syntax-from-the-compiled-code}
 
-Flow extends the JavaScript language with a special syntax for type annotations. However, browsers aren't aware of this syntax, so we need to make sure it doesn't end up in the compiled JavaScript bundle that is sent to the browser.
+Flow memperluas bahasa JavaScript dengan sintaksis khusus untuk *type annotation*. Akan tetapi *browser* tidak mengenal sintaksis ini, jadi kita harus memastikan sintaksis tersebut dihapus dari bundel JavaScript hasil kompilasi yang akan dikirim ke *browser*.
 
-The exact way to do this depends on the tools you use to compile JavaScript.
+Cara yang benar untuk melakukannya tergantung pada peralatan yang Anda gunakan untuk mengompilasi JavaScript.
 
 #### Create React App {#create-react-app}
 
-If your project was set up using [Create React App](https://github.com/facebookincubator/create-react-app), congratulations! The Flow annotations are already being stripped by default so you don't need to do anything else in this step.
+Jika proyek Anda disiapkan menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), maka kami ucapkan selamat! Anotasi Flow akan dihapus secara *default* dan tidak ada yang perlu dilakukan pada langkah ini.
 
 #### Babel {#babel}
 
->Note:
+>Catatan:
 >
->These instructions are *not* for Create React App users. Even though Create React App uses Babel under the hood, it is already configured to understand Flow. Only follow this step if you *don't* use Create React App.
+>Petunjuk berikut *bukan* ditujukan untuk pengguna Create React App. Walau pengguna Create React App menggunakan Babel di balik layar, Babel tersebut telah dikonfigurasi untuk memahami Flow. Hanya ikuti langkah berikut jika Anda *tidak* menggunakan Create React App.
 
-If you manually configured Babel for your project, you will need to install a special preset for Flow.
+Jika Babel dikonfigurasi secara manual untuk proyek Anda, Anda harus menginstal *preset* khusus untuk Flow.
 
-If you use Yarn, run:
+Jika menggunakan Yarn, jalankan:
 
 ```bash
 yarn add --dev @babel/preset-flow
 ```
 
-If you use npm, run:
+Jika menggunakan npm, jalankan:
 
 ```bash
 npm install --save-dev @babel/preset-flow
 ```
 
-Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
+Kemudian tambahkan *preset* `flow` ke [konfigurasi Babel](https://babeljs.io/docs/usage/babelrc/) Anda. Misalnya, jika Babel dikonfigurasi lewat *file* `.babelrc`, tampilannya mungkin seperti berikut:
 
 ```js{3}
 {
@@ -106,101 +106,101 @@ Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs
 }
 ```
 
-This will let you use the Flow syntax in your code.
+Ini memungkinkan Anda untuk menggunakan sintaksis Flow pada kode Anda.
 
->Note:
+>Catatan:
 >
->Flow does not require the `react` preset, but they are often used together. Flow itself understands JSX syntax out of the box.
+>Flow tidak membutuhkan *preset* `react`, tetapi keduanya sering digunakan secara bersama. Flow sendiri memahami sintaksis JSX secara mandiri.
 
-#### Other Build Setups {#other-build-setups}
+#### *Setup Build* Lainnya {#other-build-setups}
 
-If you don't use either Create React App or Babel, you can use [flow-remove-types](https://github.com/flowtype/flow-remove-types) to strip the type annotations.
+Jika Anda tidak menggunakan *Create React App* atau Babel, Anda bisa menggunakan [flow-remove-types](https://github.com/flowtype/flow-remove-types) untuk menghapus *type annotation*.
 
-### Running Flow {#running-flow}
+### Menjalankan Flow {#running-flow}
 
-If you followed the instructions above, you should be able to run Flow for the first time.
+Jika Anda mengikuti petunjuk di atas, Anda bisa menjalankan Flow pertama kali.
 
 ```bash
 yarn flow
 ```
 
-If you use npm, run:
+Jika menggunakan npm, jalankan:
 
 ```bash
 npm run flow
 ```
 
-You should see a message like:
+Seharusnya Anda akan melihat pesan seperti:
 
 ```
 No errors!
 ✨  Done in 0.17s.
 ```
 
-### Adding Flow Type Annotations {#adding-flow-type-annotations}
+### Menambahkan *Type Annotation* Flow {#adding-flow-type-annotations}
 
-By default, Flow only checks the files that include this annotation:
+Secara default, Flow hanya mengecek *file* yang disertakan anotasi berikut:
 
 ```js
 // @flow
 ```
 
-Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
+Umumnya anotasi tersebut ditempatkan di bagian atas *file*. Coba tambahkan anotasi tersebut ke beberapa *file* dalam proyek dan jalankan `yarn flow` atau `npm run flow` untuk melihat apakah Flow sudah menemukan masalah.
 
-There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation. This can be too noisy for existing projects, but is reasonable for a new project if you want to fully type it with Flow.
+Tersedia juga [sebuah *opsi*](https://flow.org/en/docs/config/options/#toc-all-boolean) untuk memaksa Flow untuk mengecek *semua* *file* tanpa melihat adanya anotasi. Ini bisa berakibat terlalu "ramai" untuk proyek yang sudah ada, tetapi cukup bagi proyek baru jika Anda ingin menggunakan Flow secara lengkap.
 
-Now you're all set! We recommend to check out the following resources to learn more about Flow:
+Kini Anda sudah siap! Kami sarankan untuk memeriksa sumber daya berikut untuk mempelajari lebih lanjut tentang Flow:
 
-* [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
-* [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
-* [Flow Documentation: React](https://flow.org/en/docs/react/)
-* [Linting in Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
+* [Dokumentasi Flow: *Type Annotation*](https://flow.org/en/docs/types/)
+* [Dokumentasi Flow: Editor](https://flow.org/en/docs/editors/)
+* [Dokumentasi Flow: React](https://flow.org/en/docs/react/)
+* [*Linting* dalam Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) is a programming language developed by Microsoft. It is a typed superset of JavaScript, and includes its own compiler. Being a typed language, TypeScript can catch errors and bugs at build time, long before your app goes live. You can learn more about using TypeScript with React [here](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+[TypeScript](https://www.typescriptlang.org/) merupakan bahasa pemrograman yang dikembangkan oleh Microsoft. Bahasa ini merupakan *superset* dari JavaScript dan menyertakan kompilernya sendiri. Oleh karena TypeScript adalah *typed language*, bahasa ini bisa menangkap kesalahan dan *bug* pada saat proses *build*, jauh sebelum aplikasi Anda tampil untuk para pemirsa. Anda bisa mempelajari lebih lanjut tentang penggunaan TypeScript dengan React [di sini](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
-To use TypeScript, you need to:
-* Add TypeScript as a dependency to your project
-* Configure the TypeScript compiler options
-* Use the right file extensions
-* Add definitions for libraries you use
+Untuk menggunakan TypeScript, Anda harus:
+* Menambahkan TypeScript sebagai *dependency* ke proyek Anda
+* Mengonfigurasi opsi kompiler TypeScript
+* Menggunakan ektensi *file* yang benar
+* Menambahkan definisi untuk *library* yang Anda gunakan
 
-Let's go over these in detail.
+Mari kita jelajahi secara mendetail.
 
-### Using TypeScript with Create React App {#using-typescript-with-create-react-app}
+### Menggunakan TypeScript dengan *Create React App* {#using-typescript-with-create-react-app}
 
-Create React App supports TypeScript out of the box.
+*Create React App* mendukung TypeScript secara langsung.
 
-To create a **new project** with TypeScript support, run:
+Untuk membuat **proyek baru** dengan dukungan TypeScript, jalankan:
 
 ```bash
 npx create-react-app my-app --typescript
 ```
 
-You can also add it to an **existing Create React App project**, [as documented here](https://facebook.github.io/create-react-app/docs/adding-typescript).
+Anda juga bisa menambahkan TypeScript ke **proyek *Create React App* yang sudah ada**, [seperti yang didokumentasikan di sini](https://facebook.github.io/create-react-app/docs/adding-typescript).
 
->Note:
+>Catatan:
 >
->If you use Create React App, you can **skip the rest of this page**. It describes the manual setup which doesn't apply to Create React App users.
+>Jika Anda menggunakan *Create React App*, Anda bisa melewati **sisa halaman ini**. Sisa halaman ini menjelaskan penyiapan manual yang tidak berlaku untuk pengguna *Create React App*.
 
 
-### Adding TypeScript to a Project {#adding-typescript-to-a-project}
-It all begins with running one command in your terminal.
+### Menambahkan TypeScript ke Proyek {#adding-typescript-to-a-project}
+Semuanya dimulai dengan menjalankan satu perintah di terminal Anda.
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Jika menggunakan [Yarn](https://yarnpkg.com/), jalankan:
 
 ```bash
 yarn add --dev typescript
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Jika menggunakan  [npm](https://www.npmjs.com/), jalankan:
 
 ```bash
 npm install --save-dev typescript
 ```
 
-Congrats! You've installed the latest version of TypeScript into your project. Installing TypeScript gives us access to the `tsc` command. Before configuration, let's add `tsc` to the "scripts" section in our `package.json`:
+Selamat! Anda telah menginstal versi terbaru TypeScript ke proyek Anda. Instalasi TypeScript memberikan akses ke perintah `tsc`. Sebelum mengonfigurasi, mari tambahkan `tsc` ke bagian "scripts" pada `package.json`:
 
 ```js{4}
 {
@@ -213,27 +213,27 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 }
 ```
 
-### Configuring the TypeScript Compiler {#configuring-the-typescript-compiler}
-The compiler is of no help to us until we tell it what to do. In TypeScript, these rules are defined in a special file called `tsconfig.json`. To generate this file:
+### Mengonfigurasi Kompiler TypeScript {#configuring-the-typescript-compiler}
+Kompiler tidak akan membantu kita hingga kita memberi tahu apa yang harus kompiler lakukan. Pada TypeScript, aturan ini didefinisikan pada berkas khusus yang diberi nama `tsconfig.json`. Untuk membuat berkas ini:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Jika menggunakan [Yarn](https://yarnpkg.com/), jalankan:
 
 ```bash
 yarn run tsc --init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Jika menggunakan [npm](https://www.npmjs.com/), jalankan:
 
 ```bash
 npx tsc --init
 ```
 
-Looking at the now generated `tsconfig.json`, you can see that there are many options you can use to configure the compiler. For a detailed description of all the options, check [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
+Pada `tsconfig.json` yang baru dibuat, Anda bisa melihat banyak opsi yang bisa dikonfigurasi untuk kompiler. Untuk deskripsi mendetail tentang semua opsi kunjungi [halaman ini](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-Of the many options, we'll look at `rootDir` and `outDir`. In its true fashion, the compiler will take in typescript files and generate javascript files. However we don't want to get confused with our source files and the generated output.
+Dari sekian banyak opsi, mari kita lihat opsi `rootDir` dan `outDir`. Awalnya, kompiler akan mengambil berkas TypeScript dan menciptakan berkas JavaScript. Akan tetapi kita tidak ingin mencampur aduk berkas sumber dengan berkas keluaran yang diciptakan.
 
-We'll address this in two steps:
-* Firstly, let's arrange our project structure like this. We'll place all our source code in the `src` directory.
+Kita akan mengatasi masalah ini dalam dua langkah:
+* Pertama-tama, mari kita susun struktur proyek kita seperti berikut. Kita akan tempatkan semua kode sumber dalam direktori `src`.
 
 ```
 ├── package.json
@@ -242,7 +242,7 @@ We'll address this in two steps:
 └── tsconfig.json
 ```
 
-* Next, we'll tell the compiler where our source code is and where the output should go.
+* Berikutnya, kita akan memberi tahu kompiler letak kode sumber kita dan tempat keluaran akan disimpan.
 
 ```js{6,7}
 // tsconfig.json
@@ -257,40 +257,41 @@ We'll address this in two steps:
 }
 ```
 
-Great! Now when we run our build script the compiler will output the generated javascript to the `build` folder. The [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) provides a `tsconfig.json` with a good set of rules to get you started.
+Kini, jika kita menjalankan *build script*, maka kompiler akan menghasilkan kode JavaScript di *folder* `build`. [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) menyediakan `tsconfig.json` dengan sekumpulan aturan yang cukup bagi Anda untuk memulai.
 
-Generally, you don't want to keep the generated javascript in your source control, so be sure to add the build folder to your `.gitignore`.
+Secara umum Anda tidak ingin menyimpan kode JavaScript yang dihasilkan dalam sistem *source control* Anda, jadi pastikan untuk menambahkan *folder* *build* ke *file* `.gitignore`.
 
-### File extensions {#file-extensions}
-In React, you most likely write your components in a `.js` file. In TypeScript we have 2 file extensions:
+### Ekstensi *file* {#file-extensions}
+Dalam React, kemungkinan besar Anda menulis komponen pada *file* `.js`. Dalam TypeScript kita memiliki 2 ekstensi *file*:
 
-`.ts` is the default file extension while `.tsx` is a special extension used for files which contain `JSX`.
+* `.ts` sebagai ekstensi *default*, dan
+* `.tsx` yang merupakan ekstensi khusus yang digunakan untuk file yang mengandung `JSX`.
 
-### Running TypeScript {#running-typescript}
+### Menjalankan TypeScript {#running-typescript}
 
-If you followed the instructions above, you should be able to run TypeScript for the first time.
+Jika Anda mengikuti petunjuk di atas, seharusnya Anda bisa menjalankan TypeScript untuk pertama kali.
 
 ```bash
 yarn build
 ```
 
-If you use npm, run:
+Jika menggunakan npm, jalankan:
 
 ```bash
 npm run build
 ```
 
-If you see no output, it means that it completed successfully.
+Jika tidak melihat keluaran, berarti prosesnya selesai dengan sukses.
 
 
-### Type Definitions {#type-definitions}
-To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
+### *Type Definition* {#type-definitions}
+Untuk bisa melihat kesalahan dan petunjuk dari *package* lainnya, kompiler mengandalkan *file* deklarasi. *File* deklarasi menyediakan seluruh informasi *type* tentang sebuah *library*. Ini memungkinkan kita untuk menggunakan *library* JavaScript, misalnya dari npm, dalam proyek kita.
 
-There are two main ways to get declarations for a library:
+Ada dua cara utama untuk mendapatkan deklarasi sebuah *library*:
 
-__Bundled__ - The library bundles its own declaration file. This is great for us, since all we need to do is install the library, and we can use it right away. To check if a library has bundled types, look for an `index.d.ts` file in the project. Some libraries will have it specified in their `package.json` under the `typings` or `types` field.
+__Dibundel__ - *Library* membundel *file* deklarasinya sendiri. Ini baik sekali bagi kita, karena yang perlu kita lakukan adalah menginstal *library* tersebut, dan kita bisa langsung menggunakannya. Untuk memeriksa apakah *library* memiliki *type* yang dibundel, cari *file* bernama `index.d.ts` dalam proyeknya. Beberapa *library* menentukannya dalam *file* `package.json` mereka, di bawah *field* `typings` atau `types`.
 
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped is a huge repository of declarations for libraries that don't bundle a declaration file. The declarations are crowd-sourced and managed by Microsoft and open source contributors. React for example doesn't bundle its own declaration file. Instead we can get it from DefinitelyTyped. To do so enter this command in your terminal.
+__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped adalah repositori raksasa berisi deklarasi *library* yang tidak membundel *file* deklarasi. Deklarasi di dalamnya diurun daya berbagai pihak dan dikelola oleh Microsoft beserta kontributor sumber terbuka. React misalnya, tidak membundel *file* deklarasinya sendiri, namun kita bisa mendapatkannya dari DefinitelyTyped. Untuk melakukannya, masukkan perintah berikut dalam terminal.
 
 ```bash
 # yarn
@@ -300,8 +301,8 @@ yarn add --dev @types/react
 npm i --save-dev @types/react
 ```
 
-__Local Declarations__
-Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
+__Deklarasi Lokal__
+Terkadang *package* yang ingin digunakan tidak memiliki deklarasi terbundel atau tidak tersedia di DefinitelyTyped. Pada kasus ini, kita bisa membuat berkas deklarasi lokal. Untuk melakukannya, buat berkas `declarations.d.ts` pada akar direktori sumber Anda. Deklarasi sederhana tampak sebagai berikut:
 
 ```typescript
 declare module 'querystring' {
@@ -310,24 +311,24 @@ declare module 'querystring' {
 }
 ```
 
-You are now ready to code! We recommend to check out the following resources to learn more about TypeScript:
+Kini Anda siap menciptakan kode program! Kami sarankan untuk mengunjungi sumber daya berikut untuk mempelajari lebih lanjut tentang TypeScript:
 
-* [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-* [TypeScript Documentation: Migrating from Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
-* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+* [Dokumentasi TypeScript: *Type* Dasar](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+* [Dokumentasi TypeScript: Migrasi dari Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [Dokumentasi TypeScript: React dan Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
 ## Reason {#reason}
 
-[Reason](https://reasonml.github.io/) is not a new language; it's a new syntax and toolchain powered by the battle-tested language, [OCaml](https://ocaml.org/). Reason gives OCaml a familiar syntax geared toward JavaScript programmers, and caters to the existing NPM/Yarn workflow folks already know.
+[Reason](https://reasonml.github.io/) bukan sebuah bahasa baru, Reason merupakan sintaksis dan *toolchain* baru yang didukung bahasa [OCaml](https://ocaml.org/) yang telah teruji. Reason memberikan sintaksis OCaml yang familier, yang ditujukan untuk pemrogram JavaScript, serta melayani alur kerja NPM/Yarn yang sudah ada dan telah diketahui.
 
-Reason is developed at Facebook, and is used in some of its products like Messenger. It is still somewhat experimental but it has [dedicated React bindings](https://reasonml.github.io/reason-react/) maintained by Facebook and a [vibrant community](https://reasonml.github.io/docs/en/community.html).
+Reason dikembangkan di Facebook, dan digunakan dalam beberapa produknya seperti Messenger. Reason masih bersifat eksperimental tetapi telah memiliki [*binding* React khusus](https://reasonml.github.io/reason-react/) yang diasuh oleh Facebook serta [komunitas yang dinamis](https://reasonml.github.io/docs/en/community.html).
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) merupakan *typed language* yang statis dan dikembangkan oleh JetBrains. Platform targetnya mencakup JVM, Android, LLVM, dan [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
 
-JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
+JetBrains mengembangkan dan mengasuh beberapa peralatan khusus untuk komunitas React: [*binding* React](https://github.com/JetBrains/kotlin-wrappers) serta [*Create React Kotlin App*](https://github.com/JetBrains/create-react-kotlin-app). Yang terakhir bisa membantu Anda membangun aplikasi React bersama Kotlin tanpa adanya konfigurasi *build*.
 
-## Other Languages {#other-languages}
+## Bahasa Lainnya {#other-languages}
 
-Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [F#/Fable](https://fable.io/) with [elmish-react](https://elmish.github.io/react). Check out their respective sites for more information, and feel free to add more statically typed languages that work with React to this page!
+Perhatikan bahwa ada beberapa *typed language* yang statis yang mengompilasi menjadi JavaScript serta kompatibel dengan React. Misalnya, [F#/Fable](https://fable.io/) dengan [elmish-react](https://elmish.github.io/react). Kunjungi masing-masing situs untuk informasi lebih lanjut. Silakan tambahkan *typed language* statis yang berfungsi bersama React ke halaman ini.
