@@ -36,7 +36,7 @@ function FriendStatus(props) {
 }
 ```
 
-Sekarang dapat dikatakan bahwa aplikasi chatting kami juga memiliki daftar kontak, dan kamu ingin membuat nama pengguna online berwarna hijau. Kita bisa copy dan paste logika serupa diatas ke komponen `FriendListItem` kita tapi itu tidak ideal:
+Sekarang dapat dikatakan bahwa aplikasi chatting kami juga memiliki daftar kontak, dan Anda ingin membuat nama pengguna online berwarna hijau. Kita bisa copy dan paste logika serupa diatas ke komponen `FriendListItem` kita tapi itu tidak ideal:
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
