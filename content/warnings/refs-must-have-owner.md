@@ -30,7 +30,7 @@ Jika `<Foo>` merupakan sebuah _function component_, Anda tidak dapat menambahkan
 <Foo ref={foo} />
 ```
 
-Jika anda perlu menambahkan _ref_ pada sebuah komponen, ubahlah komponen tersebut menjadi kelas terlebih dahulu, atau pertimbangkan untuk tidak menggunakan _ref_ karena biasanya _ref_ [jarang diperlukan](/docs/refs-and-the-dom.html#when-to-use-refs).
+Jika Anda perlu menambahkan _ref_ pada sebuah komponen, ubahlah komponen tersebut menjadi kelas terlebih dahulu, atau pertimbangkan untuk tidak menggunakan _ref_ karena biasanya _ref_ [jarang diperlukan](/docs/refs-and-the-dom.html#when-to-use-refs).
 
 ## _String Ref_ Berada Diluar _Method Render_ {#strings-refs-outside-the-render-method}
 

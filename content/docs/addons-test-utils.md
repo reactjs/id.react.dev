@@ -15,13 +15,13 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 ## Ikhtisar {#ikhtisar}
 
-`ReactTestUtils` mempermudah kita melakukan tes pada komponen React dengan _framework_ tes pilihan anda. Di Facebook kami menggunakan [Jest](https://facebook.github.io/jest/) untuk tes JavaScript yang tidak merepotkan. Belajar cara mulai menggunakan Jest melalui situs Jest [React Tutorial](https://jestjs.io/docs/tutorial-react).
+`ReactTestUtils` mempermudah kita melakukan tes pada komponen React dengan _framework_ tes pilihan Anda. Di Facebook kami menggunakan [Jest](https://facebook.github.io/jest/) untuk tes JavaScript yang tidak merepotkan. Belajar cara mulai menggunakan Jest melalui situs Jest [React Tutorial](https://jestjs.io/docs/tutorial-react).
 
 > Catatan:
 >
-> Kami menyarankan Anda untuk menggunakan [`react-testing-library`](https://git.io/react-testing-library) yang didesain untuk memfasilitasi dan mendorong penulisan tes yang menggunakan komponen anda selayaknya seorang pengguna sebenarnya.
+> Kami menyarankan Anda untuk menggunakan [`react-testing-library`](https://git.io/react-testing-library) yang didesain untuk memfasilitasi dan mendorong penulisan tes yang menggunakan komponen Anda selayaknya seorang pengguna sebenarnya.
 >
-> Pilihan lain, Airbnb telah merilis utilitas tes bernama [Enzyme](https://airbnb.io/enzyme/), yang mempermudah kita dalam menyatakan, memanipulasi, dan melewati keluaran dari komponen React anda.
+> Pilihan lain, Airbnb telah merilis utilitas tes bernama [Enzyme](https://airbnb.io/enzyme/), yang mempermudah kita dalam menyatakan, memanipulasi, dan melewati keluaran dari komponen React Anda.
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -44,7 +44,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 ### `act()` {#act}
 
-Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang me-*render* komponen tersebut dan lakukan pembaruan di dalam panggilan `act()`. Hal ini membuat tes anda berjalan menyerupai bagaimana React bekerja di peramban.
+Untuk menyiapkan komponen sebelum penegasan, bungkus kode yang me-*render* komponen tersebut dan lakukan pembaruan di dalam panggilan `act()`. Hal ini membuat tes Anda berjalan menyerupai bagaimana React bekerja di peramban.
 
 >Catatan
 >

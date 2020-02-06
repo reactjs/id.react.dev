@@ -10,7 +10,7 @@ next: hooks-faq.html
 
 Halaman ini menjelaskan tentang API untuk *Hooks* bawaan di React.
 
-Jika anda baru menggunakan *Hooks*, anda mungkin ingin melihat [gambaran umum](/docs/hooks-overview.html) terlebih dahulu. Anda juga dapat menemukan informasi yang berguna di bagian [pertanyaan yang sering diajukan](/docs/hooks-faq.html).
+Jika Anda baru menggunakan *Hooks*, Anda mungkin ingin melihat [gambaran umum](/docs/hooks-overview.html) terlebih dahulu. Anda juga dapat menemukan informasi yang berguna di bagian [pertanyaan yang sering diajukan](/docs/hooks-faq.html).
 
 - [*Hooks* Dasar](#basic-hooks)
   - [`useState`](#usestate)

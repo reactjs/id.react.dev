@@ -48,7 +48,7 @@ Contoh di atas me-*render* komponen greeting yang berbeda berdasarkan nilai *pro
 
 ### Variabel Elemen {#element-variables}
 
-Anda dapat memakai variabel untuk menyimpan element. Hal ini akan membantu anda me-*render* beberapa bagian pada komponen secara kondisional sementara output lainnya tidak berubah.
+Anda dapat memakai variabel untuk menyimpan element. Hal ini akan membantu Anda me-*render* beberapa bagian pada komponen secara kondisional sementara output lainnya tidak berubah.
 
 Perhatikan dua komponen baru yang merepresentasikan tombol Logout dan Login:
 

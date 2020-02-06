@@ -375,9 +375,9 @@ this.setState(function(state, props) {
 
 ### Pembaruan _State_ Digabungkan {#state-updates-are-merged}
 
-Ketika Anda memanggil `setState()`, React mengabungkan obyek yang anda siapkan ke _state_ saat ini.
+Ketika Anda memanggil `setState()`, React mengabungkan obyek yang Anda siapkan ke _state_ saat ini.
 
-Sebagai contoh, _state_ anda mungkin menganduk beberapa variabel independen:
+Sebagai contoh, _state_ Anda mungkin menganduk beberapa variabel independen:
 
 ```js{4,5}
   constructor(props) {

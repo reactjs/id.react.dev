@@ -184,7 +184,7 @@ Secara keseluruhan, perubahan-perubahan ini membuat `<input type="text">`, `<tex
 
 > Catatan
 >
-> Anda bisa memasukan array ke atribut `value`, yang memungkinkan anda memilih beberapa opsi dalam tag `select`:
+> Anda bisa memasukan array ke atribut `value`, yang memungkinkan Anda memilih beberapa opsi dalam tag `select`:
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
@@ -291,8 +291,8 @@ setTimeout(function() {
 
 ## Alternatif dari Controlled Components {#alternatives-to-controlled-components}
 
-Terkadang akan menjadi sulit untuk menggunakan _controlled components_, karena Anda perlu menulis _event handler_ untuk setiap cara data Anda berubah dan menyalurkan semua masukan _state_ melalui komponen React. Ini dapat menjadi sangat menjengkelkan ketika anda sedang mengkonversi basis kode yang sudah ada ke React, atau mengintegrasikan sebuah aplikasi React dengan sebuah _library_ bukan-React. Pada situasi seperti ini, Anda mungkin ingin menggunakan [uncontrolled components](/docs/uncontrolled-components.html), sebuah teknik alternatif untuk mengimplementasikan masukan form.
+Terkadang akan menjadi sulit untuk menggunakan _controlled components_, karena Anda perlu menulis _event handler_ untuk setiap cara data Anda berubah dan menyalurkan semua masukan _state_ melalui komponen React. Ini dapat menjadi sangat menjengkelkan ketika Anda sedang mengkonversi basis kode yang sudah ada ke React, atau mengintegrasikan sebuah aplikasi React dengan sebuah _library_ bukan-React. Pada situasi seperti ini, Anda mungkin ingin menggunakan [uncontrolled components](/docs/uncontrolled-components.html), sebuah teknik alternatif untuk mengimplementasikan masukan form.
 
 ## Solusi Selengkapnya {#fully-fledged-solutions}
 
-Jika anda mencari solusi komplit termasuk validasi, melacak _fields_ yang dikunjungi, dan menangani pengiriman form, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Namun, itu dibuat dengan prinsip yang sama dengan _controlled components_ dan pengelolaan _state_ — jadi jangan lalai untuk mempelajarinya.
+Jika Anda mencari solusi komplit termasuk validasi, melacak _fields_ yang dikunjungi, dan menangani pengiriman form, [Formik](https://jaredpalmer.com/formik) adalah salah satu pilihan populer. Namun, itu dibuat dengan prinsip yang sama dengan _controlled components_ dan pengelolaan _state_ — jadi jangan lalai untuk mempelajarinya.

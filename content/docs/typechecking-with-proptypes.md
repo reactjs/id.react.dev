@@ -12,7 +12,7 @@ redirect_from:
 >
 >Kami menyediakan [*codemod script*](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) untuk melakukan konversi secara otomatis.
 
-Dengan berkembangnya aplikasi anda, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, anda dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
+Dengan berkembangnya aplikasi Anda, kit dapat menemukan banyak kesalahan atau *bugs* dengan pengecekan tipe. Untuk beberapa aplikasi, Anda dapat menggunakan ekstensi JavaScript seperti [Flow](https://flow.org/) atau [TypeScript](https://www.typescriptlang.org/) untuk melakukan pengecekan tipe di aplikasi secara menyeluruh. Meskipun kamu tidak menggunakannya, React memiliki kemampuan pengecekan tipe. Untuk menjalankan pengecekan terhadap *props* disebuah komponen, kamu dapat menggunakan properti khusus `propTypes`:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -30,7 +30,7 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
+`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, Anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
 ### PropTypes {#proptypes}
 
@@ -64,7 +64,7 @@ MyComponent.propTypes = {
   // operator instanceof dari JS.
   optionalMessage: PropTypes.instanceOf(Message),
 
-  // Anda dapat memastikan bahwa prop anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
+  // Anda dapat memastikan bahwa prop Anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
   // sebagai sebuah enum.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
@@ -130,7 +130,7 @@ MyComponent.propTypes = {
 
 ### Membutuhkan Satu Komponen Anak {#requiring-single-child}
 
-Dengan menggunakan `PropTypes.element` anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
+Dengan menggunakan `PropTypes.element` Anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
 
 ```javascript
 import PropTypes from 'prop-types';

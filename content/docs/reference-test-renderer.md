@@ -39,7 +39,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-Anda dapat menggunakan fitur *snapshot testing* dari Jest untuk menyimpan salinan pohon JSON ke *file* secara otomatis dan melakukan pengecekan di tes anda terhadap adanya perubahan (struktur): [Pelajari lebih lanjut](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Anda dapat menggunakan fitur *snapshot testing* dari Jest untuk menyimpan salinan pohon JSON ke *file* secara otomatis dan melakukan pengecekan di tes Anda terhadap adanya perubahan (struktur): [Pelajari lebih lanjut](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
 Anda juga dapat melintasi ke bagian keluaran untuk menemukan *node* tertentu dan membuat perbandingan terhadap *node-node* tersebut.
 

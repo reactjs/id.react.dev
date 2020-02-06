@@ -5,7 +5,7 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* adalah tambahan baru dalam React 16.8. React memungkinkan anda untuk menggunakan *state* dan fitur-fitur React lainnya tanpa perlu menuliskan sebuah kelas. 
+*Hooks* adalah tambahan baru dalam React 16.8. React memungkinkan Anda untuk menggunakan *state* dan fitur-fitur React lainnya tanpa perlu menuliskan sebuah kelas. 
 
 Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked questions*) tentang [*Hooks*](/docs/hooks-overview.html).
 

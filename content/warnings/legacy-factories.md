@@ -44,7 +44,7 @@ Hal ini merupakan langkah pembaruan yang mudah jika Anda memiliki banyak _functi
 
 ## Komponen dinamis tanpa JSX {#dynamic-components-without-jsx}
 
-Jika anda mendapatkan komponen kelas dari sumber dinamis, tidaklah begitu perlu membuat _factory_ yang dipanggil secara langsung. Sebagai gantinya, Anda dapat saja membuat elemen _inline_:
+Jika Anda mendapatkan komponen kelas dari sumber dinamis, tidaklah begitu perlu membuat _factory_ yang dipanggil secara langsung. Sebagai gantinya, Anda dapat saja membuat elemen _inline_:
 
 ```javascript
 var React = require('react');
