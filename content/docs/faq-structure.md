@@ -39,7 +39,7 @@ Definisi "fitur" tidak universal, dan terserah Anda dalam memilih rincian. Jika 
 
 #### Pengelompokan berdasarkan jenis file {#grouping-by-file-type}
 
-Cara populer lainnya untuk menyusun proyek adalah dengan mengelompokkan file-file yang sama, misalnya:
+Cara populer lainnya untuk menyusun proyek adalah dengan mengelompokkan *file-file* yang sama, misalnya:
 
 ```
 api/
@@ -61,7 +61,7 @@ components/
 
 Beberapa orang juga lebih suka melangkah lebih jauh, dan memisahkan komponen ke dalam folder yang berbeda tergantung pada peran mereka dalam aplikasi. Misalnya, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) adalah metodologi desain yang dibangun berdasarkan prinsip ini. Ingatlah bahwa biasanya akan lebih produktif untuk menggunakan metodologi seperti ini sebagai contoh yang bermanfaat daripada mengikuti aturan ketat.
 
-#### Hindari terlalu banyak *nesting* {#avoid-too-much-nesting}
+#### Hindari terlalu banyak nesting {#avoid-too-much-nesting}
 
 Ada banyak *pain points* terkait dengan *nesting* direktori yang dalam pada proyek JavaScript. Itu akan menjadi lebih sulit saat menulis impor relatif di antara mereka, atau memperbarui impor tersebut ketika file dipindahkan. Kecuali jika Anda memiliki alasan yang sangat kuat untuk menggunakan struktur folder yang dalam, pertimbangkan untuk membatasi diri hingga maksimum tiga atau empat *nesting* folder dalam satu proyek. Tentu saja, ini hanya rekomendasi, dan mungkin tidak relevan dengan proyek Anda.
 
