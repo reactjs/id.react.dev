@@ -96,7 +96,7 @@ yang menghasilkan luaran `<Table />` dengan benar berupa:
 
 ### Sintaksis Singkat {#short-syntax}
 
-Terdapat sintaksis baru dan lebih singkat yang bisa kamu gunakan untuk mendeklarasikan *fragments*. Itu terlihat seperti *tag* kosong:
+Terdapat sintaksis baru dan lebih singkat yang bisa Anda gunakan untuk mendeklarasikan *fragments*. Itu terlihat seperti *tag* kosong:
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -111,7 +111,7 @@ class Columns extends React.Component {
 }
 ```
 
-Anda bisa menggunakan `<></>` dengan cara yang sama kamu menggunakan elemen lainnya namun hal ini tidak mendukung *key* maupun atribut.
+Anda bisa menggunakan `<></>` dengan cara yang sama Anda menggunakan elemen lainnya namun hal ini tidak mendukung *key* maupun atribut.
 
 ### Fragments dengan Key {#keyed-fragments}
 
