@@ -36,7 +36,7 @@ Lebih dari satu juta pengembang menggunakan React, secara kolektif merawat jutaa
 
 *Development builds* dari React menyertakan banyak peringatan yang bermanfaat. Jika memungkinkan, kami menambahkan peringatan-peringatan sebagai persiapan untuk perubahan-perubahan besar yang akan datang. Dengan demikian, jika aplikasi Anda tidak memiliki peringatan pada rilis terbaru, maka akan kompatibel dengan rilis mayor selanjutnya. Hal ini memungkinkan Anda untuk memperbarui aplikasi Anda satu komponen pada satu waktu.
 
-Peringatan *development* tidak akan memengaruhi perilaku *runtime* aplikasi Anda. Dengan demikian, Anda dapat merasa percaya diri bahwa aplikasi Anda akan berlaku sama antara *development* dan *production build* -- satu-satunya perbedaan adalah *production build* tidak akan me-*log* peringatan dan lebih efisien. (Jika kamu pernah melihat hal sebaliknya, tolong ajukan sebuah *issue*).
+Peringatan *development* tidak akan memengaruhi perilaku *runtime* aplikasi Anda. Dengan demikian, Anda dapat merasa percaya diri bahwa aplikasi Anda akan berlaku sama antara *development* dan *production build* -- satu-satunya perbedaan adalah *production build* tidak akan me-*log* peringatan dan lebih efisien. (Jika Anda pernah melihat hal sebaliknya, tolong ajukan sebuah *issue*).
 
 ### Hal apa yang Terhitung sebagai Perubahan Besar? {#what-counts-as-a-breaking-change}
 
