@@ -10,7 +10,7 @@ category: FAQ
 
 Virtual DOM (VDOM) adalah sebuah konsep dalam pemrograman di mana representasi ideal atau "virtual" dari antarmuka pengguna disimpan dalam memori dan disinkronkan dengan DOM "yang sebenarnya" oleh *library* seperti ReactDOM. Proses ini disebut [*reconciliation*](/docs/reconciliation.html).
 
-Pendekatan ini memungkinkan API deklaratif React: Anda cukup memberi tahu React *state* apa yang anda inginkan untuk antarmuka pengguna, dan React akan memastikan DOM sesuai dengan *state* yang anda inginkan. Hal ini menciptakan abstraksi yang memudahkan manipulasi atribut, *event handling*, dan pembaruan DOM yang seharusnya anda lakukan secara manual untuk membangun aplikasi anda.
+Pendekatan ini memungkinkan API deklaratif React: Anda cukup memberi tahu React *state* apa yang Anda inginkan untuk antarmuka pengguna, dan React akan memastikan DOM sesuai dengan *state* yang Anda inginkan. Hal ini menciptakan abstraksi yang memudahkan manipulasi atribut, *event handling*, dan pembaruan DOM yang seharusnya Anda lakukan secara manual untuk membangun aplikasi Anda.
 
 Karena "virtual DOM" lebih merupakan pola daripada sebuah teknologi, kadang orang mengatakan itu berarti hal yang berbeda. Di dunia React, istilah "virtual DOM" biasanya dikaitkan dengan [elemen React](/docs/rendering-elements.html) karena mereka adalah objek yang mewakili antarmuka pengguna. React juga menggunakan objek internal yang disebut "*fiber*" untuk menyimpan informasi tambahan tentang diagram komponen. Mereka juga dapat dianggap sebagai bagian dari implementasi "virtual DOM" di React.
 

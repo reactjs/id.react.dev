@@ -18,7 +18,7 @@ Mari kita liat pada tiap-tiap kasus.
 
 ## Versi React dan React DOM yang tidak cocok {#mismatching-versions-of-react-and-react-dom}
 
-Anda kemungkinan menggunakan versi `react-dom` (< 16.8.0) atau `react-native` (< 0.59) yang belum mendukung Hooks. Anda dapat menjalankan `npm ls react-dom` atau `npm ls react-native` pada folder aplikasi Anda untuk memeriksa versi yang sedang anda gunakan. Jika Anda menemukan lebih dari satu, kemungkinan ini dapat menyebabkan masalah (lebih detail ada pada penjelasan di bawah).
+Anda kemungkinan menggunakan versi `react-dom` (< 16.8.0) atau `react-native` (< 0.59) yang belum mendukung Hooks. Anda dapat menjalankan `npm ls react-dom` atau `npm ls react-native` pada folder aplikasi Anda untuk memeriksa versi yang sedang Anda gunakan. Jika Anda menemukan lebih dari satu, kemungkinan ini dapat menyebabkan masalah (lebih detail ada pada penjelasan di bawah).
 
 ## Melanggar Aturan Hooks {#breaking-the-rules-of-hooks}
 
@@ -49,7 +49,7 @@ Untuk menghindari kebingungan, Pemanggilan Hooks tidak didukung pada kasus-kasus
 * 🔴 Jangan panggil Hooks di *event handler*.
 * 🔴 Jangan panggil Hooks di dalam fungsi yang dioper pada `useMemo`, `useReducer`, atau `useEffect`.
 
-Jika anda melanggar aturan-aturan tersebut, anda kemungkinan mendapatkan galat seperti berikut.
+Jika Anda melanggar aturan-aturan tersebut, Anda kemungkinan mendapatkan galat seperti berikut.
 
 ```js{3-4,11-12,20-21}
 function Bad1() {
@@ -91,11 +91,11 @@ Agar Hooks bekerja, _import_ `react` dari aplikasi Anda perlu menemukan modul ya
 
 Jika kedua _import_ `react` tersebut menemukan dua _export_ obyek yang berbeda, Anda akan melihat peringatan tersebut. Hal ini bisa saja terjadi jika Anda **secara tidak sengaja menggunakan dua salinan** dari *package* `react`.
 
-Jika anda menggunakan _Node_ untuk pengelolaan paket, Anda dapat mejalankan perintah ini di dalam berkas proyek Anda:
+Jika Anda menggunakan _Node_ untuk pengelolaan paket, Anda dapat mejalankan perintah ini di dalam berkas proyek Anda:
 
     npm ls react
 
-Jika anda menemukan lebih dari satu React, Anda perlu temukan kenapa hal ini terjadi dan perbaiki _dependency tree_ Anda. Contohnya, kemungkinan _library_ yang anda gunakan, menentukan `react` secara salah sebagai _dependency_ (daripada _peer dependency_). Sampai _library_ tersebut diperbaik, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) dapat menjadi salah satu solusi.
+Jika Anda menemukan lebih dari satu React, Anda perlu temukan kenapa hal ini terjadi dan perbaiki _dependency tree_ Anda. Contohnya, kemungkinan _library_ yang Anda gunakan, menentukan `react` secara salah sebagai _dependency_ (daripada _peer dependency_). Sampai _library_ tersebut diperbaik, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) dapat menjadi salah satu solusi.
 
 Anda juga dapat mencoba men-_debug_ masalah ini dengan cara menambahkan beberapa _logs_ dan memuat ulang _development server_ Anda:
 

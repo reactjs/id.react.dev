@@ -32,13 +32,13 @@ Laman ini adalah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
 
 ## Coba React {#try-react}
 
-React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik anda ingin mencicipi menggunakan React, menambahkan beberapa interaktivitas ke laman HTML sederhana, atau memulai aplikasi React yang kompleks, tautan di bagian ini akan membantu anda untuk memulai.
+React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat menggunakan sedikit atau sebanyak yang diperlukan.** Baik Anda ingin mencicipi menggunakan React, menambahkan beberapa interaktivitas ke laman HTML sederhana, atau memulai aplikasi React yang kompleks, tautan di bagian ini akan membantu Anda untuk memulai.
 
 ### Online Playgrounds {#online-playgrounds}
 
-Jika anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
+Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
 
-Jika anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
+Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 
 ### Tambahkan React ke Website {#add-react-to-a-website}
 
@@ -52,10 +52,10 @@ Saat aplikasi Anda berkembang, Anda mungkin perlu mempertimbangkan pengaturan ya
 
 ## Belajar React {#learn-react}
 
-Orang datang menggunakan React dari berbagai latar belakang dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap anda akan menemukan bagian yang bermanfaat.
+Orang datang menggunakan React dari berbagai latar belakang dan dengan cara belajar yang berbeda-beda. Apakah Anda lebih suka pendekatan yang lebih teoritis atau praktis, kami harap Anda akan menemukan bagian yang bermanfaat.
 
-* Jika anda lebih suka **belajar dengan mempraktikkan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
-* Jika anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
+* Jika Anda lebih suka **belajar dengan mempraktikkan**, mulailah dengan [tutorial praktis](/tutorial/tutorial.html) kami.
+* Jika Anda lebih suka **belajar konsep langkah demi langkah**, mulailah dengan [panduan untuk konsep utama](/docs/hello-world.html) kami.
 
 Seperti halnya teknologi yang tidak dikenal, React memiliki kurva pembelajaran. Dengan latihan dan kesabaran, Anda dapat menguasainya.
 
@@ -103,7 +103,7 @@ Setelah Anda merasa nyaman dengan [konsep utama](/docs/hello-world.html) dan ber
 
 ### Referensi API {#api-reference}
 
-Bagian dokumentasi ini berguna ketika anda ingin belajar lebih detail mengenai *React API*. Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
+Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih detail mengenai *React API*. Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi Anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
@@ -123,4 +123,4 @@ Dokumentasi ini selalu mencerminkan versi stabil terbaru dari React. Sejak React
 
 ## Ada yang Hilang? {#something-missing}
 
-Jika ada sesuatu yang hilang di dalam dokumentasi atau jika anda menemukan bagian yang membingungkan, Mohon untuk [mengajukan issue pada repositori dokumentasi](https://github.com/reactjs/reactjs.org/issues/new) dengan saran Anda untuk peningkatan, atau tweet di [akun @reactjs](https://twitter.com/reactjs). Kami suka mendengarnya darimu!
+Jika ada sesuatu yang hilang di dalam dokumentasi atau jika Anda menemukan bagian yang membingungkan, Mohon untuk [mengajukan issue pada repositori dokumentasi](https://github.com/reactjs/reactjs.org/issues/new) dengan saran Anda untuk peningkatan, atau tweet di [akun @reactjs](https://twitter.com/reactjs). Kami suka mendengarnya darimu!

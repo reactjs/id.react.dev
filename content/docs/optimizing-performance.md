@@ -14,7 +14,7 @@ Apabila Anda melakukan *benchmarking* atau mengalami masalah performa di aplikas
 
 Secara *default*, React mengandung banyak pesan peringatan. Peringatan-peringatan ini sangat berguna dalam pengembangan aplikasi. Namun, pesan-pesan ini membuat React menjadi lebih besar dan lambat sehingga Anda harus memastikan menggunakan versi produksi ketika Anda men-*deploy* aplikasi.
 
-Jika Anda tidak yakin apakah proses *build* anda sudah diatur dengan benar atau belum, Anda bisa mengeceknya dengan menginstal [React Developer Tools untuk Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). Jika Anda mengunjungi situs yang menggunakan React dalam versi produksi, ikon ekstensi akan memiliki latar belakang gelap:
+Jika Anda tidak yakin apakah proses *build* Anda sudah diatur dengan benar atau belum, Anda bisa mengeceknya dengan menginstal [React Developer Tools untuk Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). Jika Anda mengunjungi situs yang menggunakan React dalam versi produksi, ikon ekstensi akan memiliki latar belakang gelap:
 
 <img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools dalam situs dengan versi produksi React">
 
@@ -239,7 +239,7 @@ Perlu dicatat bahwa React hanya perlu melakukan mutasi DOM untuk C6, yang tidak 
 
 ## Contoh {#examples}
 
-Jika satu-satunya cara komponen Anda berubah adalah ketika variabel `props.color` atau `state.count` berubah, anda dapat mengeceknya melalui `shouldComponentUpdate`:
+Jika satu-satunya cara komponen Anda berubah adalah ketika variabel `props.color` atau `state.count` berubah, Anda dapat mengeceknya melalui `shouldComponentUpdate`:
 
 ```javascript
 class CounterButton extends React.Component {

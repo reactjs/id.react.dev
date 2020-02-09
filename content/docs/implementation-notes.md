@@ -11,7 +11,7 @@ redirect_from:
 
 Bagian ini adalah kumpulan catatan implementasi untuk [*stack reconciler*](/docs/codebase-overview.html#stack-reconciler).
 
-Ini sangat teknis dan mengasumsikan pemahaman yang kuat tentang API publik React serta bagaimana itu dibagi menjadi inti, *renderers*, dan *reconciler*. Jika anda tidak terlalu mengenal basis kode React, baca dahulu [ikhtisar basis kode](/docs/codebase-overview.html).
+Ini sangat teknis dan mengasumsikan pemahaman yang kuat tentang API publik React serta bagaimana itu dibagi menjadi inti, *renderers*, dan *reconciler*. Jika Anda tidak terlalu mengenal basis kode React, baca dahulu [ikhtisar basis kode](/docs/codebase-overview.html).
 
 Ini juga mengasumsikan pemahaman tentang [perbedaan antara komponen React, *instances* mereka, dan elemen](/blog/2015/12/18/react-components-elements-and-instances.html).
 
@@ -21,7 +21,7 @@ Ini juga mengasumsikan pemahaman tentang [perbedaan antara komponen React, *inst
 
 [Paul O'Shannessy](https://twitter.com/zpao) memberi ceramah tentang [membangun React dari awal](https://www.youtube.com/watch?v=_MAD4Oly9yg) yang sebagian besar menginspirasi dokumen ini.
 
-Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jadi anda mungkin mendapatkan pemahaman yang lebih baik dengan membiasakan diri dengan mereka berdua.
+Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jadi Anda mungkin mendapatkan pemahaman yang lebih baik dengan membiasakan diri dengan mereka berdua.
 
 ### Ikhtisar {#overview}
 
@@ -29,7 +29,7 @@ Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jad
 
 ### Mounting sebagai proses rekursif{#mounting-as-a-recursive-process}
 
-Mari kita pertimbangkan pertama kali anda pasang komponen:
+Mari kita pertimbangkan pertama kali Anda pasang komponen:
 
 ```js
 ReactDOM.render(<App />, rootEl);
@@ -232,7 +232,7 @@ Kode ini bekerja, tetapi masih jauh dari bagaimana *reconciler* benar-benar dila
 
 ### Memperkenalkan Instance Internal {#introducing-internal-instances}
 
-Fitur utama dari React adalah anda dapat *render* ulang semuanya, dan itu tidak akan membuat ulang DOM atau mengatur ulang *state*:
+Fitur utama dari React adalah Anda dapat *render* ulang semuanya, dan itu tidak akan membuat ulang DOM atau mengatur ulang *state*:
 
 ```js
 ReactDOM.render(<App />, rootEl);
@@ -320,7 +320,7 @@ Perhatikan bahwa *instance* `CompositeComponent` tidak sama dengan *instance* da
 
 Untuk menghindari kebingungan, kami akan memanggil *instance* `CompositeComponent` dan `DOMComponent` "*instance* internal". Mereka ada sehingga kami dapat mengaitkan beberapa data *long-lived* dengan mereka. Hanya *renderer* dan *reconciler* yang menyadari bahwa mereka ada.
 
-Sebaliknya, kami menyebut *instance* kelas yang ditentukan pengguna sebagai "*instance* publik". *Instance* publik adalah apa yang ada lihat sebagai `this` di `render()` dan *method* lain dari komponen *custom* anda.
+Sebaliknya, kami menyebut *instance* kelas yang ditentukan pengguna sebagai "*instance* publik". *Instance* publik adalah apa yang ada lihat sebagai `this` di `render()` dan *method* lain dari komponen *custom* Anda.
 
 Fungsi `mountHost()`, yang di tulis ulang menjadi *method* `mount()` pada kelas `DOMComponent`, juga tampak familier:
 
@@ -407,7 +407,7 @@ Dalam DOM Anda hanya akan melihat `<div>`. Namun diagram *instance* internal ber
 * *Node* DOM.
 * Semua *instance* internal *child*. Masing-masing dari mereka dapat berupa `DOMComponent` atau `CompositeComponent`.
 
-Jika anda kesulitan membayangkan bagaimana struktur *instance* internal terstruktur dalam aplikasi yang lebih kompleks, [React DevTools](https://github.com/facebook/react-devtools) dapat memberi anda perkiraan yang mendekati, karena menyoroti *instance host* dengan contoh warna abu-abu, dan *instance* komposit dengan warna ungu:
+Jika Anda kesulitan membayangkan bagaimana struktur *instance* internal terstruktur dalam aplikasi yang lebih kompleks, [React DevTools](https://github.com/facebook/react-devtools) dapat memberi Anda perkiraan yang mendekati, karena menyoroti *instance host* dengan contoh warna abu-abu, dan *instance* komposit dengan warna ungu:
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
@@ -857,7 +857,7 @@ Dokumen ini disederhanakan dibandingkan dengan basis kode nyata. Ada beberapa as
 
 * *Reconciler* juga membaca `key` dari elemen-elemen, dan menggunakannya untuk menetapkan *instance* internal yang sesuai dengan elemen mana dalam senarai. Sebagian besar kompleksitas dalam implementasi React aktual terkait dengan itu.
 
-* Selain kelas *instance* internal *host* dan komposit, ada juga kelas untuk komponen "teks" and "kosong". Mereka mewakili *node* teks dan "slot kosong" anda dapatkan dengan *rendering* `null`.
+* Selain kelas *instance* internal *host* dan komposit, ada juga kelas untuk komponen "teks" and "kosong". Mereka mewakili *node* teks dan "slot kosong" Anda dapatkan dengan *rendering* `null`.
 
 * *Renderer* menggunakan [injeksi](/docs/codebase-overview.html#dynamic-injection) untuk meneruskan kelas internal *host* ke *reconciler*. Misalnya, React DOM memberitahu *reconciler* untuk menggunakan `ReactDOMComponent` sebagai implementasi *instance* internal *host*.
 

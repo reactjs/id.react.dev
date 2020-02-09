@@ -48,7 +48,7 @@ Jika tidak, maka Anda perlu untuk membuat sendiri pengaturan pembundelan. Sebaga
 
 ## Code Splitting {#code-splitting}
 
-Bundel adalah hal yang bagus, namun seiring berkembangnya aplikasi Anda, ukuran bundel Anda akan membesar juga. Terutama jika Anda menggunakan *library* dari pihak ketiga. Anda perlu untuk sangat memperhatikan kode yang akan dimasukkan ke dalam bundel sehingga Anda tidak secara tidak sengaja menjadikannya berukuran sangat besar sehingga butuh waktu lama untuk memuat aplikasi anda.
+Bundel adalah hal yang bagus, namun seiring berkembangnya aplikasi Anda, ukuran bundel Anda akan membesar juga. Terutama jika Anda menggunakan *library* dari pihak ketiga. Anda perlu untuk sangat memperhatikan kode yang akan dimasukkan ke dalam bundel sehingga Anda tidak secara tidak sengaja menjadikannya berukuran sangat besar sehingga butuh waktu lama untuk memuat aplikasi Anda.
 
 Untuk menghindari masalah dengan bundel yang besar, ada baiknya Anda melakukan penanggulangan awal dan mulai untuk "memecah" bundel Anda. *Code-Splitting* adalah sebuah fitur yang didukung oleh *bundler* semacam [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) dan Browserify (menggunakan [factor-bundle](https://github.com/browserify/factor-bundle)) yang memungkinkan pembuatan banyak bundel yang dapat dimuat secara dinamis saat *runtime*.
 
@@ -74,7 +74,7 @@ import("./math").then(math => {
 });
 ```
 
-Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika Anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 Jika Anda membuat sendiri pengaturan Webpack Anda, Anda mungkin dapat melihat [panduan untuk melakukan *code-splitting* ini](https://webpack.js.org/guides/code-splitting/). Pengaturan Webpack Anda kira-kira akan terlihat mirip [seperti ini](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
@@ -164,7 +164,7 @@ const MyComponent = () => (
 
 ## *Code splitting* berdasarkan *route* {#route-based-code-splitting}
 
-Tidak selalu mudah menentukan untuk mulai mengimplementasikan *code splitting* di aplikasi anda. Anda ingin memastikan di mana sebuah bundel dapat terbagi dengan baik tanpa mengganggu *user experience*.
+Tidak selalu mudah menentukan untuk mulai mengimplementasikan *code splitting* di aplikasi Anda. Anda ingin memastikan di mana sebuah bundel dapat terbagi dengan baik tanpa mengganggu *user experience*.
 
 Tempat awal yang baik untuk memulai adalah dari *route*. Kebanyakan orang yang menggunakan *web* sudah terbiasa dengan transisi antar halaman yang membutuhkan waktu untuk dimuat. Anda mungkin juga akan me-*render* ulang seluruh isi halaman sekaligus sehingga pengguna juga tidak akan berinteraksi dengan elemen lain pada halaman dalam waktu yang sama. 
 

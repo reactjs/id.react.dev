@@ -70,7 +70,7 @@ ReactDOM.render(
 
 [Coba di CodePen](codepen://introducing-jsx)
 
-Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
+Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan Anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
 ### JSX adalah Ekspresi Juga {#jsx-is-an-expression-too}
 
@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Secara default, React DOM [meng-*escape*](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+Secara default, React DOM [meng-*escape*](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) nilai apapun yang ditaruh di dalam JSX sebelum me-*render* mereka. Oleh karena itu dapat dipastikan Anda tidak akan pernah menginjeksi apapun yang tidak ditulis di aplikasi Anda secara eksplisit. Semuanya akan diubah menjadi *string* sebelum di-*render*. Ini membantu mencegah ada nya serangan [XSS (skrip-lintas-situs)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX Merepresentasikan Objek {#jsx-represents-objects}
 
@@ -181,4 +181,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berik
 
 >**Saran:**
 >
->Kami merokemendasikan anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
+>Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.

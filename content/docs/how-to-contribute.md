@@ -86,10 +86,10 @@ Tim inti sedang memantau _pull request_. Kami akan meninjau _pull request_ Anda 
 
 1. Fork [repositori](https://github.com/facebook/react) dan buat branch Anda dari `master`.
 2. Jalankan `yarn` pada induk repositori.
-3. Jika anda telah memperbaiki _bug_ atau menambahkan kode yang perlu dites, tambahkan tes!
+3. Jika Anda telah memperbaiki _bug_ atau menambahkan kode yang perlu dites, tambahkan tes!
 4. Pastikan rangkaian tes berhasil (`yarn test`). Tip: `yarn test --watch TestName` sangat membantu dalam pengembangan.
 5. Jalankan `yarn test-prod` untuk mengetes pada lingkungan produksi. Ia mendukung opsi yang sama seperti `yarn test`.
-6. Jika anda membutuhkan _debugger_, jalankan `yarn debug-test --watch TestName`, buka `chrome://inspect`, dan tekan "Inspect".
+6. Jika Anda membutuhkan _debugger_, jalankan `yarn debug-test --watch TestName`, buka `chrome://inspect`, dan tekan "Inspect".
 7. Format kode Anda dengan [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
 8. Pastikan kode Anda di-_lint_ (`yarn lint`). Tip: `yarn linc` untuk mengecek hanya _file_ yang berubah.
 9. Jalankan [Flow](https://flowtype.org/) untuk mengecek tipe (`yarn flow`).

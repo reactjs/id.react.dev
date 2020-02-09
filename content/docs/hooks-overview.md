@@ -174,7 +174,7 @@ Kami menyediakan [*linter plugin*](https://www.npmjs.com/package/eslint-plugin-r
 
 ## 💡 Membangun Hooks Anda Sendiri {#building-your-own-hooks}
 
-Terkadang, kita ingin menggunakan kembali logika *stateful* antar komponen. Secara tradisional, ada dua solusi populer untuk masalah ini: [*higher-order component*](/docs/higher-order-components.html) dan [*render props*](/docs/render-props.html). *Hooks* kustom memungkinkan anda melakukan ini, tanpa menambahkan komponen lain pada *tree* komponen Anda.
+Terkadang, kita ingin menggunakan kembali logika *stateful* antar komponen. Secara tradisional, ada dua solusi populer untuk masalah ini: [*higher-order component*](/docs/higher-order-components.html) dan [*render props*](/docs/render-props.html). *Hooks* kustom memungkinkan Anda melakukan ini, tanpa menambahkan komponen lain pada *tree* komponen Anda.
 
 Sebelumnya pada laman ini, kami mengenalkan komponen `FriendStatus` yang memanggil *Hooks* `useState` dan `useEffect` untuk berlangganan status *online* teman. Katakanlah kita juga ingin menggunakan kembali logika berlangganan ini pada komponen lain.
 

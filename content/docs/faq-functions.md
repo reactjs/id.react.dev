@@ -90,7 +90,7 @@ class Foo extends Component {
 
 Secara umum tidak ada masalah, dan terkadang inilah cara termudah untuk mengoper parameter pada fungsi callback.
 
-Adapun demikian, jika Anda menemukan masalah dengan performa program, anda perlu melakukan optimasi.
+Adapun demikian, jika Anda menemukan masalah dengan performa program, Anda perlu melakukan optimasi.
 
 
 ### Mengapa binding diperlukan? {#why-is-binding-necessary-at-all}
@@ -115,7 +115,7 @@ Pada React, biasanya Anda hanya perlu melakukan binding method jika method terse
 
 ### Mengapa fungsi saya dijalankan setiap kali component di-render (bukan saat event terkait)? {#why-is-my-function-being-called-every-time-the-component-renders}
 
-Pastikan anda tidak menjalankan fungsi saat mengopernya pada component (Perhatikan tanda kurungnya):
+Pastikan Anda tidak menjalankan fungsi saat mengopernya pada component (Perhatikan tanda kurungnya):
 
 ```jsx
 render() {
@@ -183,7 +183,7 @@ class Alphabet extends React.Component {
 
 #### Contoh: Mengoper parameter menggunakan data-attributes {#example-passing-params-using-data-attributes}
 
-Cara yang lain, anda bisa memakai DOM API untuk menyimpan data yang dibutuhkan untuk event handler. Pertimbagnkan cara ini jika anda harus mengoptimasi element dalam jumlah besar atau anda harus merender struktur tree yang tergantung pada pengecekan kesamaan React.PureComponent
+Cara yang lain, Anda bisa memakai DOM API untuk menyimpan data yang dibutuhkan untuk event handler. Pertimbagnkan cara ini jika Anda harus mengoptimasi element dalam jumlah besar atau Anda harus merender struktur tree yang tergantung pada pengecekan kesamaan React.PureComponent
 
 ```jsx
 const A = 65 // ASCII character code
@@ -223,7 +223,7 @@ class Alphabet extends React.Component {
 
 ### Bagaimana saya menghindari sebuah fungsi dipanggil terlalu cepat atau terpanggil berkali-kali secara berurutan? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
-Jika anda memiliki event handler seperti `onClick` atau `onScroll` dan anda ingin mencegah callback dari event tersebut terpanggil terlalu cepat, maka anda dapat melakukan pembatasan kecepatan pemanggilan fungsi callback. Hal tersebut dapat dilakukan menggunakan:
+Jika Anda memiliki event handler seperti `onClick` atau `onScroll` dan Anda ingin mencegah callback dari event tersebut terpanggil terlalu cepat, maka Anda dapat melakukan pembatasan kecepatan pemanggilan fungsi callback. Hal tersebut dapat dilakukan menggunakan:
 
 - **throttling**: Mengecek apakah ada perubahan dalam jangka waktu tertentu (contoh: [`_.throttle`](https://lodash.com/docs#throttle))
 - **debouncing**: Mempublish perubahan setelah tidak ada aktivitas selama beberapa waktu (contoh: [`_.debounce`](https://lodash.com/docs#debounce))
@@ -307,7 +307,7 @@ class Searchbox extends React.Component {
 
 #### `requestAnimationFrame` throttling {#requestanimationframe-throttling}
 
-[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) adalah sebuah cara untuk mengantrikan fungsi sehingga bisa dieksekusi oleh browser secara optimal untuk rendering. Sebuah fungsi yang diantrikan menggunakan `requestAnimationFrame` akan dijalankan pada frame selanjutnya. Secara normal, browser akan bekerja untuk memastikan bahwa akan ada 60 frame dalam waktu satu detik (60 fps). Namun, jika browser tidak mampu memenuhi standar tersebut, maka browser akan *membatasi* jumlah frame dalam satu detik. Sebagai contoh, sebuah device mungkin hanya mampu untuk melayani 30 fps. Menggunakan `requestAnimationFrame` untuk throttling adalah teknik yang berguna untuk membatasi supaya tidak ada lebih dari 60 perubahan dalam satu detik. Jika anda melakukan 100 perubahan dalam satu detik, hal tersebut hanya akan membuat browser melakukan komputasi yang pada dasarnya tidak akan terlihat dari sisi user. Teknik throttling digunakan untuk mencegah hal tersebut.
+[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) adalah sebuah cara untuk mengantrikan fungsi sehingga bisa dieksekusi oleh browser secara optimal untuk rendering. Sebuah fungsi yang diantrikan menggunakan `requestAnimationFrame` akan dijalankan pada frame selanjutnya. Secara normal, browser akan bekerja untuk memastikan bahwa akan ada 60 frame dalam waktu satu detik (60 fps). Namun, jika browser tidak mampu memenuhi standar tersebut, maka browser akan *membatasi* jumlah frame dalam satu detik. Sebagai contoh, sebuah device mungkin hanya mampu untuk melayani 30 fps. Menggunakan `requestAnimationFrame` untuk throttling adalah teknik yang berguna untuk membatasi supaya tidak ada lebih dari 60 perubahan dalam satu detik. Jika Anda melakukan 100 perubahan dalam satu detik, hal tersebut hanya akan membuat browser melakukan komputasi yang pada dasarnya tidak akan terlihat dari sisi user. Teknik throttling digunakan untuk mencegah hal tersebut.
 
 >**Catatan:**
 >
@@ -354,4 +354,4 @@ class ScrollListener extends React.Component {
 
 #### Menguji pembatasan rate {#testing-your-rate-limiting}
 
-Saat menguji apakah pembatasan _rate_ yang Anda terapkan sudah bekerja dengan baik, akan sangat membantu jika kita bisa mempercepat waktu. Jika Anda menggunakan [`jest`](https://facebook.github.io/jest/) maka Anda bisa menggunakan [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) untuk mempercepat waktu. Jika anda menggunakan pelambatan `requestAnimationFrame` maka [`raf-stub`](https://github.com/alexreardon/raf-stub) juga akan berguna untuk mengendalikan jumlah _frame_ per detik.
+Saat menguji apakah pembatasan _rate_ yang Anda terapkan sudah bekerja dengan baik, akan sangat membantu jika kita bisa mempercepat waktu. Jika Anda menggunakan [`jest`](https://facebook.github.io/jest/) maka Anda bisa menggunakan [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) untuk mempercepat waktu. Jika Anda menggunakan pelambatan `requestAnimationFrame` maka [`raf-stub`](https://github.com/alexreardon/raf-stub) juga akan berguna untuk mengendalikan jumlah _frame_ per detik.

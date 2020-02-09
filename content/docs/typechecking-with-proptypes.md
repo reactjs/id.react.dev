@@ -30,7 +30,7 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
+`PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, Anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
 ### PropTypes {#proptypes}
 
@@ -64,7 +64,7 @@ MyComponent.propTypes = {
   // operator instanceof dari JS.
   optionalMessage: PropTypes.instanceOf(Message),
 
-  // Anda dapat memastikan bahwa prop anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
+  // Anda dapat memastikan bahwa prop Anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
   // sebagai sebuah enum.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
@@ -130,7 +130,7 @@ MyComponent.propTypes = {
 
 ### Membutuhkan Satu Komponen Anak {#requiring-single-child}
 
-Dengan menggunakan `PropTypes.element` anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
+Dengan menggunakan `PropTypes.element` Anda dapat menentukan bahwa hanya menerima satu komponen anak yang dapat dikirimkan ke komponen lain.
 
 ```javascript
 import PropTypes from 'prop-types';

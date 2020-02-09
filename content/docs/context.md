@@ -37,7 +37,7 @@ Menggunakan *context*, kita dapat menghindari mengoper *props* melalui elemen pe
 
 Context terutama digunakan ketika beberapa data harus dapat diakses oleh *banyak* komponen pada tingkat bersarang yang berbeda. Gunakan dengan hemat karena membuat penggunaan kembali komponen menjadi lebih sulit.
 
-**Jika anda hanya ingin menghindari mengoper beberapa *props* melalui banyak tingkatan, [komposisi komponen](/docs/composition-vs-inheritance.html) seringkali menjadi solusi yang lebih sederhana daripada *context*.**
+**Jika Anda hanya ingin menghindari mengoper beberapa *props* melalui banyak tingkatan, [komposisi komponen](/docs/composition-vs-inheritance.html) seringkali menjadi solusi yang lebih sederhana daripada *context*.**
 
 Misalnya, pertimbangkan komponen `Page` yang mengoper *prop* `user` dan `avatarSize` beberapa tingkat ke bawah sehingga komponen `Link` dan `Avatar` yang bersarang dapat membaca *prop*-nya:
 
@@ -53,7 +53,7 @@ Misalnya, pertimbangkan komponen `Page` yang mengoper *prop* `user` dan `avatarS
 </Link>
 ```
 
-Mungkin terasa berlebihan untuk mewariskan *props* `user` dan `avatarSize` melalui banyak tingkatan jika pada akhirnya komponen `Avatar`yang benar-benar membutuhkannya. Ini juga menjengkelkan bahwa setiap kali komponen `Avatar` membutuhkan lebih banyak *props* dari atas, anda harus menambahkannya di semua tingkatan menengah juga.
+Mungkin terasa berlebihan untuk mewariskan *props* `user` dan `avatarSize` melalui banyak tingkatan jika pada akhirnya komponen `Avatar`yang benar-benar membutuhkannya. Ini juga menjengkelkan bahwa setiap kali komponen `Avatar` membutuhkan lebih banyak *props* dari atas, Anda harus menambahkannya di semua tingkatan menengah juga.
 
 Salah satu cara untuk mengatasi masalah ini **tanpa context** adalah [dengan mengoper komponen `Avatar` itu sendiri](/docs/composition-vs-inheritance.html#containment) sehingga komponen perantara tidak perlu tahu tentang *props* `user` atau `avatarSize`:
 
@@ -80,7 +80,7 @@ function Page(props) {
 
 Dengan perubahan ini, hanya komponen Page paling atas yang perlu tahu tentang penggunaan komponen `Link` dan `Avatar` oleh `user` dan `avatarSize`.
 
-Inversi kontrol ini dapat membuat kode anda lebih bersih dalam banyak kasus dengan mengurangi jumlah *props* yang anda butuhkan untuk melewati aplikasi anda dan memberikan lebih banyak kontrol ke komponen *root*. Namun, ini bukan pilihan yang tepat dalam setiap kasus: memindahkan lebih banyak kerumitan lebih tinggi dalam diagram membuat *higher-level component* lebih rumit dan memaksa *lower-level component* menjadi lebih fleksibel daripada yang anda inginkan.
+Inversi kontrol ini dapat membuat kode Anda lebih bersih dalam banyak kasus dengan mengurangi jumlah *props* yang Anda butuhkan untuk melewati aplikasi Anda dan memberikan lebih banyak kontrol ke komponen *root*. Namun, ini bukan pilihan yang tepat dalam setiap kasus: memindahkan lebih banyak kerumitan lebih tinggi dalam diagram membuat *higher-level component* lebih rumit dan memaksa *lower-level component* menjadi lebih fleksibel daripada yang Anda inginkan.
 
 Anda tidak terbatas pada satu *child* untuk satu komponen. Anda dapat mengoper beberapa *children*, atau bahkan memiliki beberapa "slot" terpisah untuk *children*, [seperti yang didokumentasikan di sini](/docs/composition-vs-inheritance.html#containment):
 
@@ -104,9 +104,9 @@ function Page(props) {
 }
 ```
 
-Pola ini cukup untuk banyak kasus ketika anda perlu memisahkan *child* dari *parent* terdekatnya. Anda dapat membawanya lebih jauh dengan [*render props*](/docs/render-props.html) jika *child* perlu berkomunikasi dengan *parent* sebelum *rendering*.
+Pola ini cukup untuk banyak kasus ketika Anda perlu memisahkan *child* dari *parent* terdekatnya. Anda dapat membawanya lebih jauh dengan [*render props*](/docs/render-props.html) jika *child* perlu berkomunikasi dengan *parent* sebelum *rendering*.
 
-Namun, kadang-kadang data yang sama harus dapat diakses oleh banyak komponen dalam diagram, dan pada tingkat bersarang yang berbeda. Context memungkinkan anda "menyiarkan" data tersebut, dan mengubahnya, ke semua komponen di bawah. Contoh umum di mana menggunakan *context* mungkin lebih sederhana daripada alternatif termasuk mengelola *locale* saat ini, tema, atau *cache* data. 
+Namun, kadang-kadang data yang sama harus dapat diakses oleh banyak komponen dalam diagram, dan pada tingkat bersarang yang berbeda. Context memungkinkan Anda "menyiarkan" data tersebut, dan mengubahnya, ke semua komponen di bawah. Contoh umum di mana menggunakan *context* mungkin lebih sederhana daripada alternatif termasuk mengelola *locale* saat ini, tema, atau *cache* data. 
 
 ## API {#api}
 
@@ -166,7 +166,7 @@ Properti `contextType` pada kelas dapat diberikan objek Context yang dibuat oleh
 
 > Catatan:
 >
-> Anda hanya bisa menerima satu *context* menggunakan API ini. Jika anda perlu membaca lebih dari satu lihat [Mengkonsumsi Banyak Contexts](#consuming-multiple-contexts).
+> Anda hanya bisa menerima satu *context* menggunakan API ini. Jika Anda perlu membaca lebih dari satu lihat [Mengkonsumsi Banyak Contexts](#consuming-multiple-contexts).
 >
 > Jika Anda menggunakan eksperimental [sintaksis *public class fields*](https://babeljs.io/docs/plugins/transform-class-properties/), Anda bisa menggunakan *class field* **static** untuk menginisialisasi `contextType` Anda.
 

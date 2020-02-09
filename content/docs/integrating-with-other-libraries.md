@@ -39,7 +39,7 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak *plugin* jQuery melampirkan pendengar *event* pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika *plugin* tidak menyediakan sebuah *method* untuk membersihkan, anda mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar *event* apapun yang didaftarkan ke *plugin* untuk mencegah kebocoran memori.
+Perhatikan bahwa kami mendefinisikan keduanya `componentDidMount` dan `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Banyak *plugin* jQuery melampirkan pendengar *event* pada DOM sehingga ini penting untuk melepaskan mereka dalam `componentWillUnmount`. Jika *plugin* tidak menyediakan sebuah *method* untuk membersihkan, Anda mungkin akan menyediakannya sendiri, ingat untuk menghapus pendengar *event* apapun yang didaftarkan ke *plugin* untuk mencegah kebocoran memori.
 
 ### Integrasi dengan Plugin Chosen jQuery {#integrating-with-jquery-chosen-plugin}
 
@@ -85,7 +85,7 @@ class Chosen extends React.Component {
 }
 ```
 
-Lihat bagaimana kita membungkus `<select>` dalam sebuah `<div>` ekstra. Ini penting karena Chosen akan menambahkan elemen DOM lainnya tepat setelah *node* `<select>` yang kita berikan padanya. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan pembaharuan React tidak akan konflik dengan ekstra *node* DOM yang ditambahkan Chosen. Ini juga penting bahwa jika anda memodifikasi DOM di luar alur React, anda harus memastikan React tidak punya alasan untuk menyentuh *node* DOM tersebut.
+Lihat bagaimana kita membungkus `<select>` dalam sebuah `<div>` ekstra. Ini penting karena Chosen akan menambahkan elemen DOM lainnya tepat setelah *node* `<select>` yang kita berikan padanya. Namun, sejauh yang React ketahui, `<div>` hanya selalu memiliki satu *children*. Ini adalah bagaimana kita memastikan pembaharuan React tidak akan konflik dengan ekstra *node* DOM yang ditambahkan Chosen. Ini juga penting bahwa jika Anda memodifikasi DOM di luar alur React, Anda harus memastikan React tidak punya alasan untuk menyentuh *node* DOM tersebut.
 
 Selanjutnya, kita akan mengimplementasikan metode *lifecycle*. Kita akan menginisialisasi Chosen dengan _ref_ kepada _node_ `<select>` pada `componentDidMount`, dan menghancurkannya dalam `componentWillUnmount`:
 
@@ -249,7 +249,7 @@ ReactDOM.render(
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Anda dapat memiliki komponen yang terisolasi sebanyak yang anda suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, anda akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
+Anda dapat memiliki komponen yang terisolasi sebanyak yang Anda suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, Anda akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
 
 ### Menanamkan React dalam Tampilan Backbone {#embedding-react-in-a-backbone-view}
 
@@ -359,7 +359,7 @@ Dengan ini, hanya *higher-order component* yang perlu tahu tentang model interna
 
 Pada contoh dibawah ini, kita akan membuat sebuah salinan dari atribut model untuk membentuk *state* awal. Kita berlangganan pada *event* `change` (dan berhenti berlangganan saat sedang melakukan *unmount*), dan saat itu terjadi, kita ubah *state* dengan atribut model saat ini. Akhirnya, kita pastikan jika _prop_ `model` itu sendiri berubah, kita tidak lupa untuk berhenti berlangganan dari model yang lama, dan berlangganan pada model yang baru.
 
-Catat bahwa contoh ini tidak dimaksudkan sebagai contoh yang menyeluruh untuk bekerja dengan Backbone. Tapi ini seharusnya memberi anda sebuah gagasan tentang bagaimana cara mendekatinya dengan cara yang umum:
+Catat bahwa contoh ini tidak dimaksudkan sebagai contoh yang menyeluruh untuk bekerja dengan Backbone. Tapi ini seharusnya memberi Anda sebuah gagasan tentang bagaimana cara mendekatinya dengan cara yang umum:
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {

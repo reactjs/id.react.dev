@@ -40,7 +40,7 @@ Tim React sangat merekomendasikan solusi ini:
 
 [Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [*single-page*](/docs/glossary.html#single-page-application)** di React.
 
-Create React App mengatur lingkungan pengembangan anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer anda. Untuk membuat suatu proyek baru, jalankan:
+Create React App mengatur lingkungan pengembangan Anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi Anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer Anda. Untuk membuat suatu proyek baru, jalankan:
 
 ```bash
 npx create-react-app my-app
@@ -52,13 +52,13 @@ npm start
 >
 >`npx` pada baris pertama bukanlah salah ketik --itu adalah [*package runner tool* yang tersedia bersamaan dengan npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
-Create React App tidak mengatur bagian *backend* ataupun basis data; tapi hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
+Create React App tidak mengatur bagian *backend* ataupun basis data; tapi hanya membuat sebuah *frontend build pipeline*. Sehingga, Anda dapat menggunakan aplikasi Anda dengan *backend* yang Anda inginkan. Create React App menggunakan [Babel](http://babeljs.io/) dan [Webpack](https://webpack.js.org/), tapi Anda tidak perlu tahu tentang semua itu.
 
-Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app--) dan [Petunjuk Pengguna](https://facebook.github.io/create-react-app/) Create React App.
+Ketika Anda siap melanjutkan ke tahap produksi, menjalankan `npm run build` akan membuat *build* yang teroptimasi dari aplikasi Anda dalam *folder* `build`. Anda dapat belajar lebih dalam mengenai Create React App dari [README](https://github.com/facebookincubator/create-react-app#create-react-app--) dan [Petunjuk Pengguna](https://facebook.github.io/create-react-app/) Create React App.
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) adalah *framework* populer dan ringan untuk aplikasi statis dan aplikasi yang di-*render* di *server*. Next.js dibangun menggunakan React. Framework ini sudah mengatasi masalah ***styling*** dan ***routing***, dan mengasumsikan bahwa Anda menggunakan [Node.js](https://nodejs.org/) sebagai lingkungan *server* anda.
+[Next.js](https://nextjs.org/) adalah *framework* populer dan ringan untuk aplikasi statis dan aplikasi yang di-*render* di *server*. Next.js dibangun menggunakan React. Framework ini sudah mengatasi masalah ***styling*** dan ***routing***, dan mengasumsikan bahwa Anda menggunakan [Node.js](https://nodejs.org/) sebagai lingkungan *server* Anda.
 
 Pelajari Next.js dari [dokumentasi resminya](https://nextjs.org/learn/).
 
@@ -91,6 +91,6 @@ Sebuah *Toolchains* yang dibuat menggunakan JavaScript biasanya terdiri dari:
 
 * Sebuah ***compiler*** seperti [Babel](http://babeljs.io/). *Compiler* membantu Anda menulis kode JavaScript yang lebih modern agar dapat bekerja pada *browser* yang lebih lama.
 
-Jika Anda lebih suka membuat *Toolchains* JavaScript anda sendiri dari awal, [silahkan cek petunjuk ini](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) yang membuat ulang beberapa fungsi dari Create React App.
+Jika Anda lebih suka membuat *Toolchains* JavaScript Anda sendiri dari awal, [silahkan cek petunjuk ini](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) yang membuat ulang beberapa fungsi dari Create React App.
 
-Jangan lupa memastikan *toolchains* buatan anda [sudah diatur untuk tahap produksi dengan benar](/docs/optimizing-performance.html#use-the-production-build).
+Jangan lupa memastikan *toolchains* buatan Anda [sudah diatur untuk tahap produksi dengan benar](/docs/optimizing-performance.html#use-the-production-build).

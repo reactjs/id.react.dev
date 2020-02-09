@@ -38,11 +38,11 @@ var apiShape = PropTypes.shape({
 var error = apiShape(json, 'response');
 ```
 
-Jika anda terpaksa menggunakan PropTypes seperti ini, kami menyarankan anda sebaiknya menggunakan atau membuat sebuah *fork* dari PropTypes (seperti *package* [ini](https://github.com/aackerman/PropTypes) dan [ini](https://github.com/developit/proptypes)).
+Jika Anda terpaksa menggunakan PropTypes seperti ini, kami menyarankan Anda sebaiknya menggunakan atau membuat sebuah *fork* dari PropTypes (seperti *package* [ini](https://github.com/aackerman/PropTypes) dan [ini](https://github.com/developit/proptypes)).
 
-Jika anda mengabaikan peringatan, kode ini akan *crash* di *production* dengan React 16.
+Jika Anda mengabaikan peringatan, kode ini akan *crash* di *production* dengan React 16.
 
-### Jika anda tidak memanggil PropTypes secara langsung tetapi tetap mendapatkan peringatan  {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
+### Jika Anda tidak memanggil PropTypes secara langsung tetapi tetap mendapatkan peringatan  {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
 Periksa *stack trace* yang dihasilkan oleh peringatan. Anda akan menemukan definisi komponen yang bertanggung jawab memanggil PropTypes langsung. Biasanya, masalah ini disebabkan oleh PropTypes pihak ketiga yang membungkus PropTypes milik React, contohnya:
 
@@ -55,11 +55,11 @@ Button.propTypes = {
 }
 ```
 
-Dalam kasus ini, `ThirdPartyPropTypes.deprecated` adalah pembungkus yang memanggil `PropTypes.bool`. Pola ini sendiri tidak masalah, tetapi memicu berbagai peringatan yang salah karena React berpikir anda memanggil PropTypes langsung. Bagian selanjutnya menjelaskan bagaimana memperbaiki masalah ini untuk *library* yang menerapkan sesuatu seperti `ThirdPartyPropTypes`. Jika ini bukan sebuah *library* yang anda tulis, anda dapat mengajukan *issue* terhadapnya.
+Dalam kasus ini, `ThirdPartyPropTypes.deprecated` adalah pembungkus yang memanggil `PropTypes.bool`. Pola ini sendiri tidak masalah, tetapi memicu berbagai peringatan yang salah karena React berpikir Anda memanggil PropTypes langsung. Bagian selanjutnya menjelaskan bagaimana memperbaiki masalah ini untuk *library* yang menerapkan sesuatu seperti `ThirdPartyPropTypes`. Jika ini bukan sebuah *library* yang Anda tulis, Anda dapat mengajukan *issue* terhadapnya.
 
 ### Memperbaiki salah positif di PropTypes pihak ketiga {#fixing-the-false-positive-in-third-party-proptypes}
 
-Jika anda adalah penulis dari *library* PropTypes pihak ketiga dan anda memperbolehkan pengguna membungkus *React PropTypes* yang ada, mereka mungkin berpikir peringatan ini datang dari *library* anda. Ini terjadi karena React tidak melihat sebuah argumen "rahasia" terakhir yang [melewati](https://github.com/facebook/react/pull/7132) untuk mendeteksi pemanggilan-pemanggilan PropTypes secara manual.
+Jika Anda adalah penulis dari *library* PropTypes pihak ketiga dan Anda memperbolehkan pengguna membungkus *React PropTypes* yang ada, mereka mungkin berpikir peringatan ini datang dari *library* Anda. Ini terjadi karena React tidak melihat sebuah argumen "rahasia" terakhir yang [melewati](https://github.com/facebook/react/pull/7132) untuk mendeteksi pemanggilan-pemanggilan PropTypes secara manual.
 
 Ini cara memberbaikinya. Kita akan menggunakan `deprecated` dari [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) sebagai sebuah contoh. Implementasi sekarang hanya meneruskan argumen-argumen `props`, `propName`, dan `componentName`:
 
@@ -79,7 +79,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-Untuk memperbaiki salah positif, pastikan anda meneruskan **semua** argumen-argumen ke PropType yang terbungkus. Ini mudah dilakukan dengan notasi ES6 `...rest`:
+Untuk memperbaiki salah positif, pastikan Anda meneruskan **semua** argumen-argumen ke PropType yang terbungkus. Ini mudah dilakukan dengan notasi ES6 `...rest`:
 
 ```javascript
 export default function deprecated(propType, explanation) {
