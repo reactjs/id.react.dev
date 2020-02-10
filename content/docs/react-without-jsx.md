@@ -40,7 +40,11 @@ ReactDOM.render(
 
 Jika Anda ingin tahu lebih lanjut untuk melihat banyak contoh tentang bagaimana JSX dikonversi ke JavaScript, Anda dapat mencobanya di [the online Babel compiler](babel://jsx-simple-example).
 
+<<<<<<< HEAD
 Komponen dapat diberikan sebagai _string_, atau sebagai subkelas dari `React.Component`, atau fungsi murni untuk komponen _stateless_.
+=======
+The component can either be provided as a string, as a subclass of `React.Component`, or a plain function.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Jika Anda terlalu lelah mengetik `React.createElement` satu pola umum adalah dengan menggunakan pintasan:
 

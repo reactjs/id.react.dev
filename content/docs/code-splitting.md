@@ -84,7 +84,11 @@ Jika menggunakan [Babel](https://babeljs.io/), Anda perlu memastikan apakah Babe
 
 > Catatan:
 >
+<<<<<<< HEAD
 > `React.lazy` dan *Suspense* belum tersedia untuk aplikasi yang melakukan *render* di *server*. Jika Anda ingin melakukan *code-splitting* di aplikasi yang melakukan *render* di *server*, kami menyarankan untuk menggunakan [Loadable Components](https://github.com/smooth-code/loadable-components). Di *library* tersebut disediakan [panduan untuk memecah bundel untuk aplikasi yang melakukan *render* di server](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/).
+=======
+> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Fungsi `React.lazy` memungkinkan Anda melakukan *render* hasil impor dinamis sebagai component biasa.
 

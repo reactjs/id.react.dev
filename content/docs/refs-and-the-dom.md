@@ -140,7 +140,11 @@ class CustomTextInput extends React.Component {
 
 #### *Ref* dan *Function Component* {#refs-and-function-components}
 
+<<<<<<< HEAD
 **Anda tidak diizinkan untuk menggunakan atribut `ref` dalam *function component*** karena komponen tersebut tidak memiliki instans:
+=======
+By default, **you may not use the `ref` attribute on function components** because they don't have instances:
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -161,7 +165,11 @@ class Parent extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Anda harus mengubah komponen menjadi kelas jika Anda membutuhkan *ref* yang merujuk kepadanya, seperti halnya jika Anda membutuhkan *lifecycle method* atau *state*.
+=======
+If you want to allow people to take a `ref` to your function component, you can use [`forwardRef`](/docs/forwarding-refs.html) (possibly in conjunction with [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)), or you can convert the component to a class.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Tetapi Anda bisa **menggunakan atribut `ref` di dalam *function component*** selama Anda merujuk ke elemen DOM atau *class component*:
 

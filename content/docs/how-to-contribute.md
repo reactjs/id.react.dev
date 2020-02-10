@@ -21,7 +21,11 @@ Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://gith
 
 ### Versi Semantik {#semantic-versioning}
 
+<<<<<<< HEAD
 React mengikuti [versi semantik](https://semver.org/). Kami merilis versi _patch_ untuk perbaikan bug kritikal, versi minor untuk fitur baru atau perubahan yang tidak esensial, dan versi mayor untuk perubahan yang merusak. Ketika kami membuat perubahan yang merusak, kami juga memperkenalkan peringatan _deprecation_ pada versi minor sehingga pengguna kami mengetahui perubahan yang akan datang dan melakukan migrasi pada kode mereka terlebih dahilu. Pelajari lebih lanjut mengenai komitmen kami terhadap stabilitas dan migrasi inkremental di [kebijakan versi kami](https://reactjs.org/docs/faq-versioning.html).
+=======
+React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Setiap perubahan signifikan didokumentasikan pada [_file changelog_](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
@@ -55,8 +59,13 @@ Facebook memiliki [program berhadiah](https://www.facebook.com/whitehat/) untuk 
 
 ### Bagaimana Cara Berhubungan {#how-to-get-in-touch}
 
+<<<<<<< HEAD
 * IRC: [#reactjs pada freenode](https://webchat.freenode.net/?channels=reactjs)
 * [Forum diskusi](https://reactjs.org/community/support.html#popular-discussion-forums)
+=======
+* IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
+* [Discussion forums](/community/support.html#popular-discussion-forums)
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Terdapat pula [komunitas aktif pengguna React pada platform komunikasi Discord](https://www.reactiflux.com/) jika Anda membutuhkan bantuan mengenai React.
 
@@ -103,9 +112,16 @@ Agar dapat menyetujui _pull request_ Anda, Anda perlu melengkapi CLA. Anda hanya
 
 ### Prasyarat Kontribusi {#contribution-prerequisites}
 
+<<<<<<< HEAD
 * Anda telah memasang [Node](https://nodejs.org) pada v8.0.0+ dan Yarn](https://yarnpkg.com/en/) pada v1.2.0+.
 * Anda telah memasang `gcc` atau dapat memasang _compiler_ jika dibutuhkan. Beberapa _dependency_ dapat membutuhkan tahapan kompilasi. Pada OS X, _Command Line Tools_ Xcode saja cukup. Pada Ubuntu, `apt-get install build-essential` akan memasang _package_ yang dibutuhkan. Perintah sejenis seharusnya dapat bekerja pada distro Linux lainnya. Windows akan membutuhkan beberapa langkah tambahan, lihat [instruksi pemasangan `node-gyp`](https://github.com/nodejs/node-gyp#installation) untuk informasi lebih lengkap.
 * Anda familiar dengan Git.
+=======
+* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
+* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
+* You are familiar with Git.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ### Alur Kerja Pengembangan {#development-workflow}
 
@@ -154,6 +170,7 @@ Anda dapat memeriksa status dari _style_ kode Anda secara mudah dengan menjalank
 
 Bagaimanapun, tetap ada beberapa _style_ yang tidak dapat dideteksi oleh _linter_. Jika Anda ragu mengenai sesuatu, melihat [Panduan _Style_ Airbnb](https://github.com/airbnb/javascript) akan memandu Anda ke arah yang tepat.
 
+<<<<<<< HEAD
 ### Video Pengantar {#introductory-video}
 
 Anda mungkin tertarik untuk menonton [video singkat ini](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 menit) yang memberikan pengantar mengenai bagaimana cara berkontribusi pada React.
@@ -168,6 +185,9 @@ Anda mungkin tertarik untuk menonton [video singkat ini](https://www.youtube.com
 Untuk gambaran realistik mengenai seperti apa _rasanya_ berkontribusi pada React untuk pertama kalinya, cek [acara ReactNYC yang menarik ini](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
 ### Meminta Komentar (RFC) {#request-for-comments-rfc}
+=======
+### Request for Comments (RFC) {#request-for-comments-rfc}
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Banyak perubahan, termasuk perbaikan _bug_ dan penyempurnaan dokumentasi dapat diimplementasi dan ditinjau melalui alur _pull request_ GitHub pada umumnya.
 

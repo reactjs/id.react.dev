@@ -426,8 +426,8 @@ Berikut ini, kita menyetorkan nilai sebelumnya dari *prop* `row` dalam sebuah *s
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Baris berubah karena render terakhir. Memperbarui isScrollingDown.
@@ -463,7 +463,11 @@ Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos 
 
 ### Bagaimana cara mengukur sebuah simpul DOM? {#how-can-i-measure-a-dom-node}
 
+<<<<<<< HEAD
 Untuk mengukur posisi atau ukuran dari sebuah simpul DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* itu kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
+=======
+One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -488,7 +492,13 @@ Kita tidak memilih `useRef` dalam contoh ini karena sebuah objek *ref* tidak mem
 
 Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `useCallback`. Ini memastikan bahwa *ref callback* tidak berubah di antara *render* ulang, serta agar React tidak akan memanggilnya tanpa sebab.
 
+<<<<<<< HEAD
 Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
+=======
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+
+If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ```js{2}
 function MeasureExample() {
@@ -713,8 +723,13 @@ Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah ke
 
 ```js{2-6,10-11,16}
 function Example(props) {
+<<<<<<< HEAD
   // Jaga prop terkini dalam sebuah ref.
   let latestProps = useRef(props);
+=======
+  // Keep latest props in a ref.
+  const latestProps = useRef(props);
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
   useEffect(() => {
     latestProps.current = props;
   });
