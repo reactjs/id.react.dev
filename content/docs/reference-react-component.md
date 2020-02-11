@@ -101,13 +101,13 @@ Masing-masing komponen juga menyediakan beberapa API lainnya:
 ### Properti _Instance_ {#instance-properties}
 
   - [`props`](#props)
-  - [`state`](#_state_)
+  - [`state`](#state)
 
 * * *
 
 ## Referensi {#reference}
 
-### Metode _Lifecycle_ yang Sering Digunakan {#commonly-used-_lifecycle_-methods}
+### Metode _Lifecycle_ yang Sering Digunakan {#commonly-used-lifecycle-methods}
 
 Metode dalam bagian berikut mencakup sebagian besar kasus penggunaan yang Anda hadapi ketika membuat komponen React. **Untuk rujukan visual, lihat [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
