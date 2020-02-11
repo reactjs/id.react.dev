@@ -106,7 +106,7 @@ Tim inti sedang memantau _pull request_. Kami akan meninjau _pull request_ Anda 
 
 ### Perjanjian Lisensi Kontributor (CLA) {#contributor-license-agreement-cla}
 
-Agar dapat menyetujui _pull request_ Anda, Anda perlu melengkapi CLA. Anda hanya perlu melakukan ini sekali, jadi apabila Anda pernah melakukan hal ini untuk proyek sumber terbuka Facebook yang lain. Jika ini adalah pertama kalinya Anda mengirimkan _pull request_, beritahu Anda bahwa Anda telah melengkapi CLA Anda, dan kami akan memeriksa kembali dengan nama pengguna GitHub Anda.
+Anda perlu melengkapi CLA agar kami dapat menyetujui _pull request_ Anda. Anda hanya perlu melakukan proses ini sekali. Jika Anda pernah melakukan hal ini untuk proyek sumber terbuka Facebook yang lain, Anda tidak perlu melakukannya lagi. Jika ini adalah pertama kalinya Anda mengirimkan _pull request_, beri tahu kami bahwa Anda telah melengkapi CLA Anda, dan kami akan memeriksa kembali dengan nama pengguna GitHub Anda.
 
 **[Lengkapi CLA Anda di sini.](https://code.facebook.com/cla)**
 
