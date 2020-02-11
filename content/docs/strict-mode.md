@@ -53,11 +53,11 @@ Dengan penambahan _object ref_ sebagai pengganti untuk _string ref_, mode ketat 
 
 ### Peringatan atas penggunaan findDOMNode yang usang {#warning-about-deprecated-finddomnode-usage}
 
-Dulu, React mendukung `findDOMNode` untuk pencarian simpul DOM dalam pohon berdasarkan _instance_ kelas. Pada umumnya hal ini tidak perlu dilakukan karena Anda bisa [menyertakan _ref_ langsung ke simpul DOM](/docs/refs-and-the-dom.html#creating-refs).
+Sebelumnya React telah mendukung `findDOMNode` untuk pencarian simpul DOM dalam pohon berdasarkan _instance_ kelas. Pada umumnya hal ini tidak perlu dilakukan karena Anda bisa [menyertakan _ref_ langsung ke simpul DOM](/docs/refs-and-the-dom.html#creating-refs).
 
-`findDOMNode` juga dapat digunakan dalam komponen kelas. Namun cara ini melanggar level abstraksi dengan mengizinkan induk untuk meminta turunan tertentu di-_render_. Hal ini menciptakan risiko dalam proses _refactor_, yaitu Anda tidak bisa mengubah detail implementasi sebuah komponen karena induk mungkin bisa mengubah simpul DOM-nya. `findDOMNode` hanya akan mengembalikan anak pertama. Namun dengan menggunakan _Fragment_, sebuah komponen dimungkinkan untuk me-_render_ beberapa simpul DOM sekaligus. `findDOMNode` merupakan API baca sekali saja. API ini memberikan jawaban hanya jika Anda memintanya. Jika komponen anak me-_render_ simpul yang berbeda, tidak ada cara untuk menangani perubahan ini. Dengan alasan ini `findDOMNode` hanya berfungsi jika komponen selalu mengembalikan sebuah simpul DOM yang tidak pernah berubah.
+`findDOMNode` juga dapat digunakan dalam komponen kelas. Namun cara ini melanggar level abstraksi dengan mengizinkan induk untuk meminta turunan tertentu agar di-_render_. Hal ini menciptakan risiko dalam proses _refactor_, yaitu Anda tidak bisa mengubah detail implementasi sebuah komponen karena induk mungkin bisa mengubah simpul DOM-nya. `findDOMNode` hanya akan mengembalikan anak pertama. Namun dengan menggunakan _Fragment_, sebuah komponen dimungkinkan untuk me-_render_ beberapa simpul DOM sekaligus. `findDOMNode` merupakan API baca sekali saja. API ini memberikan jawaban hanya pada saat diminta. Jika komponen anak me-_render_ simpul yang berbeda, tidak ada cara untuk menangani perubahan ini. Dengan alasan ini `findDOMNode` hanya berfungsi jika komponen selalu mengembalikan sebuah simpul DOM yang tidak pernah berubah.
 
-Anda bisa membuat hal ini menjadi eksplisit dengan meneruskan sebuah _ref_ ke komponen khusus Anda, dan meneruskannya ke DOM menggunakan [penerusan _ref_ forwarding_](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+Anda bisa membuat hal ini menjadi eksplisit dengan meneruskan sebuah _ref_ ke komponen khusus Anda, dan meneruskannya ke DOM menggunakan [penerusan _ref_](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
 Anda juga bisa menambahkan simpul DOM pembungkus dalam komponen Anda dan menyertakan _ref_ langsung kepadanya.
 
@@ -80,10 +80,10 @@ class MyComponent extends React.Component {
 ### Pendeteksian atas efek samping yang tidak diharapkan {#detecting-unexpected-side-effects}
 
 Secara mendasar, React bekerja dalam dua tahap:
-* Tahap **render** menentukan perubahan apa yang perlu terjadi, misalnya untuk DOM. Dalam tahap ini, React memanggil `render` lalu membandingkannya dengan hasil _render_ sebelumnya.
-* Tahap **commit** yang terjadi saat React menerapkan perubahan yang ada. Pada kasus DOM, ini yang terjadi saat React menyisipkan, memperbarui, dan menghapus simpul DOM. React juga memanggil _lifecycle_ seperti `componentDidMount` dan `componentDidUpdate` dalam tahap ini.
+* Tahap **_render_** menentukan perubahan apa yang perlu terjadi, misalnya untuk DOM. Dalam tahap ini, React memanggil `render` lalu membandingkannya dengan hasil _render_ sebelumnya.
+* Tahap **_commit_** yang terjadi saat React menerapkan perubahan yang ada. Pada kasus DOM, ini yang terjadi saat React menyisipkan, memperbarui, dan menghapus simpul DOM. React juga memanggil _lifecycle_ seperti `componentDidMount` dan `componentDidUpdate` dalam tahap ini.
 
-Tahap _commit_ umumnya berlangsung sangat cepat, tetapi proses _render_ bisa sangat lambat. Dengan alasan ini, mode asinkronus mendatang (yang masih belum diaktifkan secara _default_) memecah proses _render_ menjadi beberapa bagian, menjeda dan melanjutkan proses untuk mencegah pemblokiran oleh browser. Ini berarti React mungkin memanggil _lifecycle_ render lebih dari satu kali sebelum memanggil _commit_, atau memanggil _render_ tanpa sama sekali memanggil _commit_ (karena ada kesalahan atau adanya interupsi dari proritas yang lebih tinggi).
+Tahap _commit_ umumnya berlangsung sangat cepat, tetapi proses _render_ bisa sangat lambat. Dengan alasan ini, mode asinkronus mendatang (yang masih belum diaktifkan secara _default_)akan memecah proses _render_ menjadi beberapa bagian, menjeda dan melanjutkan proses untuk mencegah pemblokiran oleh browser. Ini berarti React mungkin memanggil _lifecycle_ _render_ lebih dari satu kali sebelum memanggil _commit_, atau memanggil _render_ tanpa sama sekali memanggil _commit_ (karena ada kesalahan atau adanya interupsi dari proritas yang lebih tinggi).
 
 _Lifecyle_ tahap _render_ menyertakan metode komponen kelas berikut:
 * `constructor`
@@ -106,9 +106,9 @@ Mode ketat tidak bisa mendeteksi efek samping secara otomatis, tetapi bisa memba
 
 > Catatan:
 >
-> Ini hanya berlaku dalam mode pengembangan. Lifecycle tidak akan dipanggil dua kali dalam mode produksi.
+> Ini hanya berlaku dalam mode pengembangan. _Lifecycle_ tidak akan dipanggil dua kali dalam mode produksi.
 
-Sebagai contoh, kita contohkan kode berikut:
+Sebagai contoh, kita gunakan kode berikut:
 `embed:strict-mode/side-effects-in-constructor.js`
 
 Sekilas, kode tersebut tampak tidak mengandung masalah. Tetapi jika `SharedApplicationState.recordEvent` tidak bersifat [_idempotent_](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), maka pembuatan _instance_ komponen ini secara berulang kali akan berujung pada _state_ aplikasi yang tidak valid. _Bug_ yang tidak kentara mungkin tidak muncul dalam pengembangan atau mungkin terjadi secara tidak konsisten, dan pada akhirnya cenderung diabaikan.
