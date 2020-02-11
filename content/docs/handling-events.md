@@ -56,11 +56,7 @@ function ActionLink() {
 
 Di sini, `e` adalah sebuah *event* tiruan. React mendefinisikan event tiruan ini berdasarkan [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), jadi Anda tidak perlu khawatir akan kesesuaian antar lintas *browser*. Lihat referensi pada [`SyntheticEvent`](/docs/events.html) untuk panduan belajar lebih jauh.
 
-<<<<<<< HEAD
 Ketika menggunakan React, pada umumnya Anda tidak perlu memanggil `addEventListener` untuk menambahkan *listener* pada elemen DOM setelah dibuat. Sebagai gantinya, cukup berikan *listener* ketika elemen pertama kali di-*render*.
-=======
-When using React, you generally don't need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Ketika Anda mendefinisikan sebuah komponen dengan menggunakan [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), pada umumnya penanganan *event* sebagai sebuah *method* dalam *class*. Sebagai contoh, komponen `Toggle` ini me-*render* sebuah tombol yang memungkinkan pengguna untuk mengubah kondisi "ON" dan "OFF" pada sebuah *state*:
 
@@ -147,11 +143,7 @@ Masalah pada sintaksis tersebut adalah *callback* yang berbeda dibuat setiap kal
 
 ## Mengoper Argumen ke dalam Penanganan Event {#passing-arguments-to-event-handlers}
 
-<<<<<<< HEAD
-Di dalam perulangan biasanya ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan baris ID, maka salah satu dari kedua dapat dijalankan:
-=======
-Inside a loop, it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Di dalam perulangan, umumnya Anda ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan ID baris, maka salah satu dari kedua contoh berikut dapat dijalankan:
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>

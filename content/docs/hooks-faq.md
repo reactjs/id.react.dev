@@ -463,11 +463,7 @@ Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos 
 
 ### Bagaimana cara mengukur sebuah simpul DOM? {#how-can-i-measure-a-dom-node}
 
-<<<<<<< HEAD
-Untuk mengukur posisi atau ukuran dari sebuah simpul DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* itu kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
-=======
-One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Untuk mengukur posisi atau ukuran dari sebuah simpul DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* tersebut kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -492,13 +488,9 @@ Kita tidak memilih `useRef` dalam contoh ini karena sebuah objek *ref* tidak mem
 
 Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `useCallback`. Ini memastikan bahwa *ref callback* tidak berubah di antara *render* ulang, serta agar React tidak akan memanggilnya tanpa sebab.
 
-<<<<<<< HEAD
-Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
-=======
-In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+Dalam contoh ini, *callback ref* hanya akan dipanggil apabila komponen dipasang dan dilepas, karena komponen `<h1>` yang di-_render_ tetap berada di dalam dokumen dalam setiap proses _render_ ulang. Jika Anda ingin diberi tahu setiap sebuah komponen berubah ukuran, Anda mungkin ingin menggunakan [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) atau sebuah *Hook* *third-party* yang menggunakannya.
 
-If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
 
 ```js{2}
 function MeasureExample() {

@@ -21,11 +21,7 @@ Semua pengembangan pada React terjadi secara langsung pada [GitHub](https://gith
 
 ### Versi Semantik {#semantic-versioning}
 
-<<<<<<< HEAD
-React mengikuti [versi semantik](https://semver.org/). Kami merilis versi _patch_ untuk perbaikan bug kritikal, versi minor untuk fitur baru atau perubahan yang tidak esensial, dan versi mayor untuk perubahan yang merusak. Ketika kami membuat perubahan yang merusak, kami juga memperkenalkan peringatan _deprecation_ pada versi minor sehingga pengguna kami mengetahui perubahan yang akan datang dan melakukan migrasi pada kode mereka terlebih dahilu. Pelajari lebih lanjut mengenai komitmen kami terhadap stabilitas dan migrasi inkremental di [kebijakan versi kami](https://reactjs.org/docs/faq-versioning.html).
-=======
-React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+React mengikuti [versi semantik](https://semver.org/). Kami merilis versi _patch_ untuk perbaikan bug kritikal, versi minor untuk fitur baru atau perubahan yang tidak esensial, dan versi mayor untuk perubahan yang merusak. Ketika kami membuat perubahan yang merusak, kami juga memperkenalkan peringatan _deprecation_ pada versi minor sehingga pengguna kami mengetahui perubahan yang akan datang dan melakukan migrasi pada kode mereka terlebih dahilu. Pelajari lebih lanjut mengenai komitmen kami terhadap stabilitas dan migrasi inkremental di [kebijakan versi kami](/docs/faq-versioning.html).
 
 Setiap perubahan signifikan didokumentasikan pada [_file changelog_](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 

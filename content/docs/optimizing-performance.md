@@ -176,11 +176,7 @@ Cara melakukannya di Chrome:
 
 6. *Event* React akan dikelompokkan dalam label **User Timing**.
 
-<<<<<<< HEAD
-Untuk panduan lebih lengkap, baca [artikel ini oleh Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
-=======
-For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Untuk panduan lebih lengkap, baca [artikel ini oleh Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
 
 Perlu dicatat bahwa **nilai-nilai ini adalah relatif sehingga komponen akan me-*render* lebih cepat di mode produksi**. Tetap saja, ini akan membantu Anda untuk mengetahui ketika bagian UI yang tidak relevan diperbarui secara tidak sengaja, dan seberapa dalam dan sering pembaruan UI terjadi.
 
