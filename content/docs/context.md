@@ -130,7 +130,7 @@ Setiap objek Context dilengkapi dengan komponen Provider React yang memungkinkan
 
 Menerima *prop* `value` untuk dioper ke komponen konsumsi yang merupakan keturunan Provider ini. Satu Provider dapat dihubungkan ke banyak *consumer*. Provider dapat disarangkan untuk *override* nilai lebih dalam di dalam diagram.
 
-Semua *consumer* yang merupakan keturunan Provider akan *render* ulang setiap kali *prop* `nilai` Provider berubah. Perambatan dari Provider ke *consumer* turunannya tidak tunduk ke *method* `shouldComponentUpdate`, sehingga *consumer* diperbarui bahkan ketika komponen leluhur menebus pembaruan tersebut.
+Semua *consumer* yang merupakan keturunan Provider akan *render* ulang setiap kali *prop* `value` dalam Provider berubah. Perambatan dari Provider ke *consumer* turunannya (termasuk [`.contextType`](#classcontexttype) dan [`useContext`](/docs/hooks-reference.html#usecontext)) tidak tunduk ke *method* `shouldComponentUpdate`, sehingga *consumer* diperbarui bahkan ketika komponen leluhur menebus pembaruan tersebut.
 
 Perubahan ditentukan dengan membandingkan nilai-nilai baru dan lama menggunakan algoritma yang sama dengan [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
 
@@ -263,5 +263,5 @@ Untuk menyiasatinya, angkat nilai ke dalam *state* induk:
 
 > Catatan
 > 
-> React sebelumnya dikirimkan dengan API *context* eksperimental. API lama akan di dukung di semua rilis 16.x, tetapi aplikasi yang menggunakannya harus migrasi ke versi yang baru. API lawas akan di hapus dalam versi *major* React di masa depan. Baca [dokumen *context* lawas di sini](/docs/legacy-context.html).
+> React sebelumnya dikirimkan dengan API *context* eksperimental. API lama akan di dukung di semua rilis 16.x, tetapi aplikasi yang menggunakannya harus migrasi ke versi yang baru. API lawas akan dihapus dalam versi *major* React di masa depan. Baca [dokumen *context* lawas di sini](/docs/legacy-context.html).
  

@@ -426,8 +426,8 @@ Berikut ini, kita menyetorkan nilai sebelumnya dari *prop* `row` dalam sebuah *s
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Baris berubah karena render terakhir. Memperbarui isScrollingDown.
@@ -463,7 +463,7 @@ Saat Anda seharusnya tidak sering memerlukan hal ini, Anda bisa saja mengekspos 
 
 ### Bagaimana cara mengukur sebuah simpul DOM? {#how-can-i-measure-a-dom-node}
 
-Untuk mengukur posisi atau ukuran dari sebuah simpul DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* itu kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
+Untuk mengukur posisi atau ukuran dari sebuah simpul DOM, Anda bisa gunakan [*callback ref*](/docs/refs-and-the-dom.html#callback-refs). React akan memanggil *callback* tersebut kapanpun *ref* terikat pada sebuah *node* yang berbeda. Berikut ini [demo kecil](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -487,6 +487,8 @@ function MeasureExample() {
 Kita tidak memilih `useRef` dalam contoh ini karena sebuah objek *ref* tidak memberitahukan kita tentang *perubahan* pada nilai *ref* yang sekarang. Menggunakan sebuah *callback ref* akan memastikan bahwa [walaupun jika sebuah *child component* menampilkan *node* yang diukur setelah ini](https://codesandbox.io/s/818zzk8m78) (sebagai contoh, dalam respon pada sebuah klik), kita masih akan dapat pemberitahuan tentang hal itu dalam *parent component* dan bisa memperbarui pengukurannya.
 
 Perhatikan bahwa kita mengoper `[]` sebagai sebuah *dependency array* untuk `useCallback`. Ini memastikan bahwa *ref callback* tidak berubah di antara *render* ulang, serta agar React tidak akan memanggilnya tanpa sebab.
+
+Dalam contoh ini, *callback ref* hanya akan dipanggil apabila komponen dipasang dan dilepas, karena komponen `<h1>` yang di-_render_ tetap berada di dalam dokumen dalam setiap proses _render_ ulang. Jika Anda ingin diberi tahu setiap sebuah komponen berubah ukuran, Anda mungkin ingin menggunakan [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) atau sebuah *Hook* *third-party* yang menggunakannya.
 
 Jika mau, Anda bisa [mengekstrak logika ini](https://codesandbox.io/s/m5o42082xy) ke dalam sebuah Hook yang bisa digunakan ulang:
 
@@ -713,8 +715,13 @@ Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah ke
 
 ```js{2-6,10-11,16}
 function Example(props) {
+<<<<<<< HEAD
   // Jaga prop terkini dalam sebuah ref.
   let latestProps = useRef(props);
+=======
+  // Keep latest props in a ref.
+  const latestProps = useRef(props);
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
   useEffect(() => {
     latestProps.current = props;
   });

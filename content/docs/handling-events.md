@@ -143,7 +143,7 @@ Masalah pada sintaksis tersebut adalah *callback* yang berbeda dibuat setiap kal
 
 ## Mengoper Argumen ke dalam Penanganan Event {#passing-arguments-to-event-handlers}
 
-Di dalam perulangan biasanya ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan baris ID, maka salah satu dari kedua dapat dijalankan:
+Di dalam perulangan, umumnya Anda ingin mengoper sebuah parameter ekstra kedalam penanganan *event*. Sebagai contoh, jika `id` sama dengan ID baris, maka salah satu dari kedua contoh berikut dapat dijalankan:
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>

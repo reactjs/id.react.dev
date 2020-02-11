@@ -48,7 +48,7 @@ Anda dapat [menambahkan React ke laman HTML dalam satu menit](/docs/add-react-to
 
 Ketika memulai proyek React, laman HTML sederhana dengan *script tags*](/docs/add-react-to-a-website.html) mungkin masih menjadi pilihan terbaik. Hanya membutuhkan waktu semenit untuk memulai!
 
-Saat aplikasi Anda berkembang, Anda mungkin perlu mempertimbangkan pengaturan yang lebih terintegrasi. Ada [beberapa JavaScript *toolchain*](/docs/create-a-new-react-app.html) yang kami rekomendasikan untuk aplikasi besar. Masing-masing dari mereka dapat bekerja dengan sedikit atau tanpa konfigurasi dan memungkinkan Anda mendapatkan keuntungan penuh dari ekosistem React.
+Saat aplikasi Anda berkembang, Anda mungkin perlu mempertimbangkan pengaturan yang lebih terintegrasi. Ada [beberapa JavaScript *toolchain*](/docs/create-a-new-react-app.html) yang kami rekomendasikan untuk aplikasi besar. Masing-masing dari mereka dapat bekerja dengan sedikit atau tanpa konfigurasi dan memungkinkan Anda mendapatkan keuntungan penuh dari ekosistem React. [Pelajari cara penggunaannya di sini.](/docs/create-a-new-react-app.html)
 
 ## Belajar React {#learn-react}
 

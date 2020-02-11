@@ -78,8 +78,6 @@ Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan 
 
 - **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** adalah *framework* yang me-*render* di *server* dan tidak membutuhkan konfigurasi, namun menyediakan fleksibilitas lebih dibanding Next.js.
-
 ## Membuat Toolchains dari Awal{#creating-a-toolchain-from-scratch}
 
 Sebuah *Toolchains* yang dibuat menggunakan JavaScript biasanya terdiri dari:

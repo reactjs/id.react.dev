@@ -181,4 +181,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berik
 
 >**Saran:**
 >
->Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar. Situs web ini menggunakan skema warna [*Oceanic Next*](https://labs.voronianski.com/oceanic-next-color-scheme/) yang kompatibel dengannya.
+>Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.

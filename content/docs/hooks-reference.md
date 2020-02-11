@@ -69,6 +69,8 @@ function Counter({initialCount}) {
 
 Tombol "+" dan "-" menggunakan bentuk fungsional, karena nilai yang telah diperbarui didasari oleh nilai sebelumnya. Tetapi tombol "Reset" menggunakan bentuk normal, karena tombol tersebut selalu mengatur perhitungan kembali ke nilai awal.
 
+Jika fungsi pembaruan Anda mengembalikan nilai yang sama, pe-_render_-an ulang selanjutnya akan dilewati.
+
 > Catatan
 >
 > Tidak seperti metode `setState` yang dapat ditemukan dalam *class components*, `useState` tidak secara otomatis menggabungkan obyek-obyek yang telah diperbaruinya. Anda bisa meniru perilaku ini dengan menggabungkan fungsi *updater* dengan *object spread syntax*:
@@ -141,7 +143,7 @@ Meskipun `useEffect` ditangguhkan sampai setelah browser digambar, `useEffect` d
 
 Perilaku efek secara bawaan adalah dengan memicu efek setelah setiap *render* selesai. Dengan begitu efek selalu diciptakan kembali jika salah satu dari beberapa *dependency*-nya berubah.
 
-Namun, ini mungkin terlalu berlebihan dalam beberapa kasus, seperti contoh sebuah langganan pada bagian sebelumnya. Kita tidak perlu membuat sebuah langganan baru pada setiap pembaruan, hanya jika `source` *props* telah berubah.
+Namun, ini mungkin terlalu berlebihan dalam beberapa kasus, seperti contoh sebuah langganan pada bagian sebelumnya. Kita tidak perlu membuat sebuah langganan baru pada setiap pembaruan, hanya jika *props* `source` telah berubah.
 
 Untuk mengimplementasikan ini, oper sebuah argumen kedua ke `useEffect` yang merupakan senarai nilai yang efeknya bergantung padanya. Contoh terbaru akan terlihat seperti berikut:
 
@@ -180,7 +182,7 @@ const value = useContext(MyContext);
 
 Menerima sebuah obyek konteks (nilai yang dikembalikan dari `React.createContext`) dan mengembalikan nilai konteks saat ini untuk konteks tersebut. Nilai konteks saat ini ditentukan oleh `value` dari *prop* terdekat dari `<MyContext.Provider>` diatas komponen yang dipanggil pada bagan.
 
-Ketika `<MyContext.Provider>` terdekat diatas pembaruan komponen, *Hook* ini akan memicu *render* ulang dengan `value` dari konteks terakhir yang dioper ke penyedia `MyContext` tersebut.
+Ketika `<MyContext.Provider>` terdekat dari komponen melakukan pembaruan, *Hook* ini akan memicu *render* ulang dengan `value` dari konteks terakhir yang dioper ke penyedia `MyContext` tersebut. Meskipun induk teratas menggunakan [`React.memo`](/docs/react-api.html#reactmemo) atau [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), proses _render_ ulang akan tetap terjadi yang dimulai dari komponen tersebut menggunakan `useContext`.
 
 Jangan lupa bahwa argumen untuk `useContext` harus berupa obyek konteks itu sendiri:
 

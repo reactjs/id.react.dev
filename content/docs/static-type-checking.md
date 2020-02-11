@@ -175,7 +175,7 @@ Mari kita jelajahi secara mendetail.
 Untuk membuat **proyek baru** dengan dukungan TypeScript, jalankan:
 
 ```bash
-npx create-react-app my-app --typescript
+npx create-react-app my-app --template typescript
 ```
 
 Anda juga bisa menambahkan TypeScript ke **proyek *Create React App* yang sudah ada**, [seperti yang didokumentasikan di sini](https://facebook.github.io/create-react-app/docs/adding-typescript).
