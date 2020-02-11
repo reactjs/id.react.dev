@@ -15,50 +15,50 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+Laman ini menjelaskan referensi API mendetail untuk definisi kelas komponen React. Diasumsikan bahwa Anda telah familiar dengan konsep dasar React seperti [Komponen dan _Props_](/docs/components-and-props.html) serta [_State_ dan _Lifecycle_](/docs/state-and-lifecycle.html). Jika belum familiar, baca konsep dasar tersebut terlebih dulu.
 
-## Overview {#overview}
+## Ikhtisar {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React memungkinkan Anda untuk mendefinisikan komponen sebagai kelas atau fungsi. Komponen didefinisikan sebagai kelas yang menyediakan lebih banyak fitur, yang akan dijelaskan secara mendetail di laman ini. Untuk mendefinisikan sebuah kelas komponen React, Anda harus meng-_extend_ `React.Component`:
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Halo, {this.props.name}</h1>;
   }
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+Satu-satunya metode yang *harus* didefinisikan dalam sebuah subkelas `React.Component` adalah [`render()`](#render). Semua metode lainnya yang dijelaskan dalam laman ini bersifat opsional.
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**Kami sangat menyarankan untuk tidak membuat kelas dasar komponen Anda sendiri.** Dalam komponen React, [penggunaan ulang kode diperoleh secara utama lewat metode komposisi, alih-alih menggunakan _inheritance_](/docs/composition-vs-inheritance.html).
 
->Note:
+>Catatan:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React tidak memaksa Anda untuk menggunakan sintaksis kelas ES6. Jika Anda lebih suka menghindarinya, Anda bisa menggunakan modul `create-react-class` atau abstraksi khusus yang mirip. Anda bisa mempelajarinya lebih lanjut dalam [Menggunakan React tanpa ES6](/docs/react-without-es6.html).
 
-### The Component Lifecycle {#the-component-lifecycle}
+### _Lifecycle_ Komponen {#the-component-_lifecycle_}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+Masing-masing komponen memiliki beberapa "metode _lifecycle_"  yang bisa ditimpa untuk menjalankan kode pada waktu tertentu dalam proses. **Anda bisa menggunakan [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) sebagai contekan.** Pada daftar berikut, metode _lifecycle_ yang umum digunakan dibedakan dengan **huruf tebal**. Metode lainnya ada untuk kasus yang sangat jarang digunakan.
 
-#### Mounting {#mounting}
+#### Pemasangan (_Mounting_) {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+Metode berikut dipanggil secara berurutan ketika sebuah _instance_ komponen sedang dibuat dan disisipkan ke dalam DOM:
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>Catatan:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Metode berikut merupakan metode usang dan Anda [harus menghindarinya](/blog/2018/03/27/update-on-async-rendering.html) dalam kode yang baru:
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating {#updating}
+#### Pembaruan {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+Pembaruan bisa disebabkan oleh perubahan pada _props_ atau _state_. Metode berikut dipanggil secara berurutan saat komponen di-_render_ ulang:
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -68,48 +68,48 @@ An update can be caused by changes to props or state. These methods are called i
 
 >Note:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Metode berikut merupakan metode usang dan Anda [harus menghindarinya](/blog/2018/03/27/update-on-async-rendering.html) dalam kode yang baru:
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting {#unmounting}
+#### Pelepasan (_Unmounting_) {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+Metode berikut dipanggil saat komponen sedang dihapus dari DOM:
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### Penanganan Kesalahan {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+Metode berikut dipanggil saat terjadi kesalahan dalam proses _render_, dalam metode _lifecycle_, atau dalam konstruktor semua komponen anak.
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### API Lainnya {#other-apis}
 
-Each component also provides some other APIs:
+Masing-masing komponen juga menyediakan beberapa API lainnya:
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### Properti Kelas {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
+### Properti _Instance_ {#instance-properties}
 
   - [`props`](#props)
-  - [`state`](#state)
+  - [`_state_`](#_state_)
 
 * * *
 
-## Reference {#reference}
+## Referensi {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### Metode _Lifecycle_ yang Sering Digunakan {#commonly-used-_lifecycle_-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Metode dalam bagian berikut mencakup sebagian besar kasus penggunaan yang Anda hadapi ketika membuat komponen React. **Untuk rujukan visual, lihat [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -117,23 +117,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+Metode `render()` merupakan satu-satunya metode yang dibutuhkan dalam komponen kelas.
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+Saat dipanggil, metode ini akan memeriksa `this.props` dan `this.state` serta mengembalikan tipe berikut:
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **Element React.** Umumnya dibuat lewat [JSX](/docs/introducing-jsx.html). Misalnya, `<div />` dan `<MyComponent />` merupakan elemen React yang memerintahkan React untuk me-_render_ sebuah simpul DOM, atau komponen yang didefinisikan pengguna.
+- **_Array_ dan _fragment_.** Memungkinkan Anda untuk mengembalikan beberapa elemen sekaligus dari _render_. Lihat dokumentasi tentang [_fragment_](/docs/fragments.html) untuk detail lebih lanjut.
+- **_Portal_**. Memungkinkan Anda untuk me-_render_ anak ke subpohon DOM yang berbeda. Lihat dokumentasi tentang [portals](/docs/portals.html) for more details.
+- **String dan angka.** Tipe ini akan di-_render_ sebagai simpul teks dalam DOM.
+- **Boolean atau `null`**. Tidak me-_render_ (umumnya ada untuk mendukung pola `return test && <Child />`, dengan nilai `test` yang bertipe boolean.)
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+Fungsi `render()` harus bersifat murni (_pure_), yang berarti fungsi ini tidak mengubah _state_ komponen, mengembalikan hasil yang sama setiap kali dipanggil, dan tidak berinteraksi langsung dengan browser.
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+Jika Anda harus berinteraksi dengan browser, jalankan prosesnya dalam `componentDidMount()` atau dalam metode _lifecycle_ lainnya saja. Dengan menjaga `render()` bersifat murni, cara kerja komponen lebih mudah dibayangkan.
 
-> Note
+> Catatan
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `render()` tidak akan dipanggil jika [`shouldComponentUpdate()`](#shouldcomponentupdate) mengembalikan nilai false.
 
 * * *
 
@@ -143,47 +143,47 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**Jika Anda tidak menginisialisasi _state_ dan Anda tidak mem-_bind_ metode, Anda tidak perlu mengimplementasikan konstruktor dalam komponen React Anda.**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+Konstruktor dalam komponen React dipanggil sebelum dipasang (_mounted_). Saat mengimplementasikan konstruktor untuk subkelas `React.Component`, Anda harus memanggil `super(props)` sebelum _statement_ lainnya. Jika tidak, `this.props` akan bernilai _undefined_ dalam konstruktor, yang bisa menyebabkan _bug__.
 
-Typically, in React constructors are only used for two purposes:
+Umumnya, konstruktor dalam React hanya digunakan untuk dua tujuan:
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
+* Menginsialisasi [_state_ lokal](/docs/state-and-lifecycle.html) dengan menetapkan sebuah obyek ke `this.state`.
+* Mem-_bind_ metode [_event handler_](/docs/handling-events.html) ke sebuah _instance_.
 
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+Anda **tidak boleh memanggil `setState()`** dalam `constructor()`. Jika komponen Anda membutuhkan _state_ lokal,, **tetapkan _state_ awal ke `this.state`** secara langsung dalam konstruktor:
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // Tidak diperbolehkan memanggil this.setState() di sini!
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+Konstruktor merupakan satu-satunya tempat untuk menetapkan `this.state` secara langsung. Dalam metode lainnya, Anda harus menggunakan `this.setState()`.
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+Hindari memperkenalkan efek samping atau langganan (_subscription_) dalam konstruktor. Untuk kasus semacam ini, gunakan `componentDidMount()`.
 
->Note
+>Catatan
 >
->**Avoid copying props into state! This is a common mistake:**
+>**Hindari menyalin _prop_ ke _state_! Ini adalah kesalahan yang umum terjadi:**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // Jangan lakukan seperti di bawah ini!
 >  this.state = { color: props.color };
 >}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>Masalahnya adalah keduanya tidak diperlukan sama sekali (Anda bisa menggunakan `this.props.color` secara langsung), dan menyebabkan _bug_ (pembaruan ke _prop_ `color` tidak akan dicerminkan dalam _state_).
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**Hanya gunakan pola semacam ini jika Anda secara sengaja ingin mengabaikan pembaruan atas _prop_.** Dalam kasus semacam ini, lebih mudah dipahami jika _prop_ diberi nama `initialColor` atau `defaultColor`. Kemudian Anda bisa memaksa komponen untuk me-"_reset_" _state_ internalnya dengan [mengubah `key`-nya](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) jika diperlukan.
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>Baca [postingan blog kami tentang menghindari _state_ turunan](/blog/2018/06/07/you-probably-dont-need-derived-state.html) untuk mempelajari lebih lanjut tentang apa yang harus dilakukan jika Anda memerlukan beberapa _state_ yang tergantung pada _prop_.
 
 
 * * *
@@ -194,11 +194,11 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+`componentDidMount()` dipanggil langsung setelah sebuah komponen dipasang (_mounted_) (disisipkan ke dalam pohon), Inisialisasi yang membutuhkan simpul DOM harus diletakkan di sini. Jika Anda perlu memuat data dari _endpoint remote_, metode ini merupakan tempat yang baik untuk menginisialisasi permintaan jaringan.
 
-This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+Metode ini merupakan tempat yang baik untuk mempersiapkan langganan (_subscription_). Jika Anda melakukan hal ini, jangan lupa untuk berhenti berlangganan dalam `componentWillUnmount()`.
 
-You **may call `setState()` immediately** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+Anda **bisa langsung memanggil `setState()`** dalam `componentDidMount()`. Ini akan memicu proses _render_ ekstra, tetapi akan terjadi sebelum browser memperbarui layar. Ini menjamin bahwa walau `render()` akan dipanggil dua kali dalam kasus tersebut, pengguna tidak akan melihat _state_ _intermediate_. Gunakan pola ini dengan hati-hati karena sering mengakibatkan masalah kinerja. Dalam berbagai kasus umum, Anda bisa menetapkan _state_ awal dalam `constructor()`. Walau mungkin diperlukan untuk kasus seperti kasus modal dan _tooltip_, yaitu Anda harus mengukur simpul DOM sebelum me-_render_ sesuatu yang tergantung pada ukuran atau posisinya.
 
 * * *
 
@@ -208,26 +208,26 @@ You **may call `setState()` immediately** in `componentDidMount()`. It will trig
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+`componentDidUpdate()` langsung dipanggil setelah terjadi perubahan. Metode ini tidak dipanggil dalam proses _render_ awal.
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+Gunakan metode ini sebagai kesempatan untuk beroperasi pada DOM ketika komponen diperbarui. Ini juga merupakan tempat yang baik untuk menjalankan pemanggilan jaringan, selama Anda bisa membandingkan _prop_ saat ini dengan _prop_ sebelumnya (misalnya, permintaan jaringan mungkin tidak diperlukan jika _prop_ tidak berubah).
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // Penggunaan umum (Jangan lupa untuk membandingkan _props_):
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+Anda **bisa langsung memanggil `setState()`** dalam `componentDidUpdate()` tetapi perhatikan bahwa **pemanggilannya harus dibungkus dalam sebuah kondisi** seperti contoh di atas, atau Anda akan mengakibatkan perulangan yang tak terbatas. Ini juga akan mengakibatkan proses _render_ ekstra yang walau tidak tampak ke pengguna, bisa berdampak pada kinerja komponen. Jika Anda mencoba "mencerminkan" beberapa _state_ ke sebuah _prop_ yang datang dari tingkat yang lebih tinggi, pertimbangkan untuk menggunakan secara langsung _prop_-nya. Baca lebih lanjut tentang [mengapa menyalin _props_ ke _state_ bisa menyebabkan _bug_](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+Jika komponen Anda mengimplementasikan _lifecycle_ `getSnapshotBeforeUpdate()` (yang sangat jarang), nilai yang dikembalikan akan diteruskan sebagai parameter "_snapshot_" ketiga ke  `componentDidUpdate()`. Jika tidak, parameter ini akan bernilai _undefined_.
 
-> Note
+> Catatan
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `componentDidUpdate()` tidak akan dipanggil jika [`shouldComponentUpdate()`](#shouldcomponentupdate) mengembalikan nilai false.
 
 * * *
 
@@ -237,15 +237,15 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+`componentWillUnmount()` dipanggil langsung sebelum komponen dilepas dan dihancurkan. Lakukan pembersihan yang diperlukan, misalnya menghancurkan _timer_, membatalkan permintaan jaringan, atau membersihkan semua langganan yang dibuat dalam `componentDidMount()`.
 
-You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
+Anda **tidak boleh memanggil `setState()`** dalam `componentWillUnmount()` karena komponen tidak akan pernah di-_render_ ulang. Segera setelah komponen dilepas, komponen tersebut tidak akan dipasang kembali.
 
 * * *
 
-### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+### Metode _Lifecycle_ yang Jarang Digunakan {#rarely-used-_lifecycle_-methods}
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+Metode dalam bagian berikut terkait dengan kasus penggunaan yang tidak umum. Metode berikut terkadang berguna, tetapi sebagian besar komponen Anda mungkin tidak membutuhkannya. **Anda bisa melihat metode berikut dalam [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) jika Anda mengeklik kotak centang "Show less common _lifecycle_" di bagian atas.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -254,17 +254,17 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+Gunakan `shouldComponentUpdate()` untuk memberi tahu React jika output komponen tidak dipengaruhi oleh perubahan yang terjadi dalam _state_ atau _prop_. Perilaku default adalah menjalankan proses _render_ untuk setiap perubahan _state_ atau _props_. Dalam hampir semua kasus, Anda seharusnya mengandalkan perilaku default ini.
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+`shouldComponentUpdate()` dipanggil sebelum proses _render_ ketika nilai baru _prop_ atau _state_ diterima. Nilai kembalian default metode ini adalah `true`. Metode ini tidak dipanggil dalam proses _render_ awal atau ketika `forceUpdate()` digunakan.
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
+Metode ini hanya ada dengan alasan **[optimalisasi kinerja](/docs/optimizing-performance.html).** Jangan mengandalkan metode ini untuk "mencegah" proses _render_ karena akan menyebabkan _bug_. **Pertimbangkan untuk menggunakan [`PureComponent`](/docs/react-api.html#reactpurecomponent)** yang sudah ada, alih-alih menulis `shouldComponentUpdate()` secara manual. `PureComponent` akan menjalankan perbandingan dangkal (_shallow comparison_) atas _props_ dan _state_, dan mengurangi kemungkinan untuk melewatkan pembaruan yang diperlukan.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+Jika Anda yakin untuk menuliskannya secara manual, Anda bisa membandingkan `this.props` dengan `nextProps` serta `this.state` dengan `nextState` dan kemudian mengembalikan `false` untuk memberi tahu React bahwa pembaruan bisa dilewati. Harap diingat bahwa mengembalikan `false` tidak mencegah komponen anak untuk di-_render_ ketika _state_ komponen anak berubah.
 
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+Kami tidak menyarankan untuk memeriksa pembandingan secara mendalam (_deep equality check_) atau menggunakan `JSON.stringify()` dalam `shouldComponentUpdate()`. Cara ini sangat tidak efisien dan berdampak buruk pada kinerja.
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+Saat ini, jika `shouldComponentUpdate()` mengembalikan `false`, maka [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), dan [`componentDidUpdate()`](#componentdidupdate) tidak akan dipanggil. Di masa datang, React mungkin akan memperlakukan `shouldComponentUpdate()` hanya sebagai panduan, alih-alih sebagai prasyarat yang ketat, dan mengembalikan nilai `false` masih memungkinkan untuk me-_render_ komponen yang bersangkutan.
 
 * * *
 
@@ -274,22 +274,22 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
+`getDerivedStateFromProps` dipanggil langsung sebelum memanggil metode _render_, baik saat pemasangan awal (_initial mount_) maupun dalam pembaruan selanjutnya. Metode ini mengembalikan sebuah obyek untuk memperbarui _state_, atau _null_ untuk tidak memperbarui.
 
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+Metode ini ada untuk [kasus yang sangat jarang](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state), yaitu saat _state_ tergantung pada perubahan dalam _props_ dalam sebuah kurun waktu. Misalnya, mungkin sangat berguna untuk mengimplementasikan sebuah komponen `<Transition>`, yang membandingkan anak sebelum dan selanjutnya untuk menentukan yang mana yang akan dianimasikan atau tidak.
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+Menurunkan _state_ bisa menyebabkan kode lebih bertele-tele dan membuat komponen Anda susah dibayangkan.  
+[Pastikan Anda mengenal alternatif yang lebih sederhana:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+* Jika Anda perlu **menjalankan efek samping** (misalnya, pengambilan data atau animasi) sebagai reaksi atas perubahan _props_, gunakan _lifecycle_ [`componentDidUpdate`](#componentdidupdate).
 
-* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+* Jika Anda ingin **menghitung ulang beberapa data hanya ketika terjadi perubahan _props_**, [gunakan _helper_ _memoization_](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
-* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+* Jika Anda ingin **"me-_reset_" beberapa _state_ ketika terjadi perubahan _props_**, pertimbangkan untuk membuat komponen [dikontrol secara lengkap](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) atau [dikontrol lengkap bersama dengan `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
-This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+Metode ini tidak memiliki akses ke _instance_ komponen. Jika diinginkan, Anda bisa menggunakan ulang kode di antara beberapa `getDerivedStateFromProps()` dengan metode lain dalam kelas, dengan mengekstrak fungsi murni _props_ dan _state_ komponen di luar definisi kelas.
 
-Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
+Perhatikan bahwa metode ini dipanggil dalam *setiap* _render_, tanpa memperhatikan sebabnya. Ini berbeda dengan `UNSAFE_componentWillReceiveProps`, yang akan dipanggil saat induk menyebabkan proses _render_ ulang dan bukan disebabkan oleh `setState` lokal.
 
 * * *
 
@@ -299,41 +299,41 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+`getSnapshotBeforeUpdate()` dipanggil langung setelah output hasil _render_ terbaru di-_commit_, misalnya ke DOM. Metode ini memungkinkan komponen Anda untuk menangkap informasi dari DOM (misalnya posisi _scroll_) sebelum nilainya mungkin berubah. Semua nilai yang dikembalikan _lifecycle_ ini akan diteruskan sebagai parameter ke `componentDidUpdate()`.
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+Kasus penggunaan ini tidak umum, tetapi mungkin terjadi dalam antarmuka seperti utas _chatting_ yang harus menangani posisi _scroll_ secara khusus.
 
-A snapshot value (or `null`) should be returned.
+Nilai _snapshot_ (atau `null`) harus dikembalikan.
 
-For example:
+Misalnya:
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+Pada contoh di atas, sangat penting untuk membaca properti `scrollHeight` dalam `getSnapshotBeforeUpdate` karena mungkin ada penundaan antara _lifecycle_ tahap "_render_" (misalnya metode `render`) dan _lifecycle_ tahap "_commit_" (misalnya `getSnapshotBeforeUpdate` dan `componentDidUpdate`).
 
 * * *
 
-### Error boundaries {#error-boundaries}
+### Batasan kesalahan {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+[Batas kesalahan (_error boundary_](/docs/error-boundaries.html) merupakan komponen React yang menangkap kesalahan JavaScript di semua tempat di dalam pohon komponen, mencatat kesalahan tersebut, dan menampilkan antarmuka kesalahan (_fallback_) alih-alih menampilkan pohon komponen yang gagal. Batas kesalahan menangkap kesalahan dalam proses _render_, dalam metode _lifecycle_, dan dalam konstruktor dari keseluruhan pohon di bawahnya.
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+Sebuah komponen kelas menjadi _batas kesalahan_ jika komponen tersebut mendefinisikan salah satu (atau kedua) metode _lifecycle_ `static getDerivedStateFromError()` atau `componentDidCatch()`. Pembaruan _state_ dari _lifecycle_ tersebut dapat digunakan untuk menangkap kesalahan JavaScript yang tidak tertangani dalam pohon dan menampilkan antarmuka kesalahan.
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+Hanya gunakan batas kesalahan untuk proses pemulihan dari eksespsi yang tidak diharapkan; **jangan menggunakannya dalam alur kendali.**
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+Untuk detail lebih lanjut, lihat [*Penanganan Kesalahan dalam React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
-> Note
+> Catatan
 > 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> Batas kesalahan hanya akan menangkap kesalahan dalam kompoonen **di bawah** pohon. Sebuah batas kesalahan tidak dapat menangkap kesalahan dari dalam dirinya sendiri.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+_Lifecycle_ ini dipanggil setelah sebuah kesalahan dilontarkan oleh komponen turunan.
+_Lifecycle_ ini menerima kesalahan yang dilontarkan sebagai sebuah parameter dan harus mengembalikan nilai untuk memperbarui _state_.
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -343,13 +343,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Perbarui _state_ agar proses _render_ berikutnya akan menampilkan antarmuka kesalahan.
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Anda bisa menampilkan antarmuka kesalahan Anda di sini
       return <h1>Something went wrong.</h1>;
     }
 
@@ -358,10 +358,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> Catatan
 >
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> `getDerivedStateFromError()` dipanggil dalam tahap "_render_", jadi efek samping tidak diizinkan.
+Untuk kasus penggunaan efek samping, gunakan `componentDidCatch()`.
 
 * * *
 
@@ -371,15 +371,15 @@ For those use cases, use `componentDidCatch()` instead.
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+_Lifecycle_ ini dipanggil setelah terjadi sebuah kesalahan yang dilontarkan oleh komponen turunan.
+_Lifecycle_ menerima dua parameter:
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `error` - Kesalahan yang dilontarkan.
+2. `info` - Sebuah objek yang berisi _key_ `componentStack` yang mengandung [informasi tentang komponen yang melontarkan kesalahan](/docs/error-boundaries.html#component-stack-traces).
 
 
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+`componentDidCatch()` dipanggil dalam tahap "_commit_" sehingga efek samping masih diizinkan.
+_Lifecycle_ ini seharusnya digunakan untuk pencatatan kesalahan:
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -389,12 +389,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Perbarui _state_ agar proses _render_ berikutnya akan menampilkan antarmuka kesalahan.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // Contoh "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -404,7 +404,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Anda bisa menampilkan antarmuka kesalahan Anda di sini
       return <h1>Something went wrong.</h1>;
     }
 
@@ -413,16 +413,16 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> Catatan
 > 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> Pada peristiwa kesalahan berikutnya, Anda bisa me-_render_ antarmuka kesalahan lewat `componentDidCatch()` dengan memanggil `setState`, tetapi hal ini akan menjadi usang dalam rilis masa mendatang.
+> Gunakan `static getDerivedStateFromError()` untuk menangani proses _render_ kesalahan.
 
 * * *
 
-### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
+### Metode _Lifecycle_ _Legacy_ {#legacy-_lifecycle_-methods}
 
-The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
+Metode _lifecycle_ di bawah ini ditandai sebagai "_legacy_". Metode tersebut masih berfungsi, tetapi kami tidak menyarankan untuk menggunakannya dalam kode baru. Anda bisa mempelajari lebih lanjut tentang migrasi dari metode _lifecycle_ _legacy_ [dalam postingan blog ini](/blog/2018/03/27/update-on-async-rendering.html).
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
@@ -430,15 +430,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
-> Note
+> Catatan
 >
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Metode _lifecycle_ ini sebelumnya diberi nama `componentWillMount`. Nama tersebut masih akan berfungsi hingga versi 17. Gunakan perintah [codemod `rename-unsafe-_lifecycle_`](https://github.com/reactjs/react-codemod#rename-unsafe-_lifecycle_) untuk memperbarui komponen Anda secara otomatis.
 
-`UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
+`UNSAFE_componentWillMount()` dipanggil sebelum proses pemasangan terjadi. Metode ini dipanggil sebelum `render()`, sehingga pemanggilan `setState()` secara sinkronus dalam metode ini tidak akan memicu proses _render_ ekstra. Secara umum, kami menyarankan menggunakan `constructor()` untuk menginisialisasi _state_.
 
-Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
+Hindari memperkenalkan efek samping atau langganan dalam metode ini. Untuk kasus penggunaan ini, gunakan `componentDidMount()`.
 
-This is the only lifecycle method called on server rendering.
+Metode ini adalah satu-satunya metode _lifecycle_ yang dipanggil dalam proses _render_ sisi server.
 
 * * *
 
@@ -448,25 +448,26 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
-> Note
+> Catatan
 >
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Metode _lifecycle_ ini sebelumnya diberi nama  `componentWillReceiveProps`. Nama tersebut masih akan berfungsi hingga versi 17. Gunakan perintah [codemod `rename-unsafe-_lifecycle_`](https://github.com/reactjs/react-codemod#rename-unsafe-_lifecycle_) untuk memperbarui komponen Anda secara otomatis.
 
-> Note:
+> Catatan:
 >
-> Using this lifecycle method often leads to bugs and inconsistencies
+> Penggunaan _lifecycle_ ini seringkali menyebabkan _bug_ dan ketidakkonsistenan
 >
-> * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
-> * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+> * Jika Anda perlu **menjalankan efek samping** (misalnya, pengambilan data atau animasi) sebagai reaksi atas perubahan _props_, gunakan _lifecycle_ [`componentDidUpdate`](#componentdidupdate).
+> * Jika Anda menggunakan `componentWillReceiveProps` untuk **menghitung ulang beberapa data hanya ketika terjadi perubahan _props_**, [gunakan _helper_ _memoization_](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+> * Jika Anda menggunakan `componentWillReceiveProps` untuk **"me-_reset_" beberapa _state_ ketika terjadi perubahan _props_**, pertimbangkan untuk membuat komponen [dikontrol secara lengkap](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) atau [dikontrol lengkap bersama dengan `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
+
 >
-> For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+> Untuk kasus penggunaan lainnya, [ikuti rekomendasi dalam postingan blog ini tentang _state_ turunan](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-`UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
+`UNSAFE_componentWillReceiveProps()` dipanggil sebelum komponen yang dipasang menerima _props_ baru. Jika Anda perlu untuk memperbarui _state_ sebagai reaksi atas perubahan _prop_ (misalnya untuk me-_reset_-nya), Anda bisa membandingkan `this.props` dam `nextProps` serta melakukan transisi _state_ menggunakan `this.setState()` dalam metode ini.
 
-Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
+Perhatikan bahwa jika komponen induk menyebabkan komponen Anda di-_render_ ulang, metode ini akan tetap dipanggil walau _props_ Anda tidak berubah. Pastikan untuk membandngkan nilai saat ini dan nilai setelahnya jika Anda hanya ingin menangani perubahan.
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+React tidak memanggil `UNSAFE_componentWillReceiveProps()` dengan _props_ awal dalam proses [pemasangan](#mounting). React hanya memanggil metode ini jika beberapa _props_ komponen mungkin akan diperbarui. Pemanggilan `this.setState()` secara umum tidak akan memicu `UNSAFE_componentWillReceiveProps()`.
 
 * * *
 
@@ -476,27 +477,27 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
-> Note
+> Catatan
 >
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Metode _lifecycle_ ini sebelumnya diberi nama `componentWillUpdate`. Nama tersebut masih akan berfungsi hingga versi 17. Gunakan perintah [codemod `rename-unsafe-_lifecycle_` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-_lifecycle_) ntuk memperbarui komponen Anda secara otomatis.
 
-`UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
+`UNSAFE_componentWillUpdate()` dipanggil sebelum proses _render_ ketika _props_ atau _state_ baru sedang diterima. Gunakan metode ini sebagai kesempatan untuk menjalankan persiapan sebelum proses pembaruan terjadi. Metode ini tidak dipanggil untuk _render_ awal.
 
-Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
+Perhatikan bahwa Anda tidak bisa memanggil `this.setState()` di sini, dan juga Anda tidak boleh melakukan hal lain (misalnya, _dispatch_ atau aksi Redux) yang bisa memicu sebuah pembaruan atas komponen React component sebelum pengembalian oleh `UNSAFE_componentWillUpdate()`.
 
-Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
+Umumnya, metode ini bisa digantikan oleh `componentDidUpdate()`. Jika Anda membaca dari sisi DOM dalam metode ini (misalnya, untuk menyimpan posisi _scroll_), Anda bisa memindahkan logikanya ke metode `getSnapshotBeforeUpdate()`.
 
-> Note
+> Catatan
 >
-> `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `UNSAFE_componentWillUpdate()` tidak akan dipanggil jika [`shouldComponentUpdate()`](#shouldcomponentupdate) mengembalikan nilai false.
 
 * * *
 
-## Other APIs {#other-apis-1}
+## API Lainnya {#other-apis-1}
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+Tidak seperti metode _lifecycle_ di atas (yang akan dipanggil oleh React untuk Anda), metode berikut merupakan metode yang bisa *Anda* panggil dari dalam komponen Anda.
 
-There are just two of them: `setState()` and `forceUpdate()`.
+Hanya ada dua metode, yaitu: `setState()` dan `forceUpdate()`.
 
 ### `setState()` {#setstate}
 
@@ -504,68 +505,68 @@ There are just two of them: `setState()` and `forceUpdate()`.
 setState(updater[, callback])
 ```
 
-`setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
+`setState()` mengantrekan perubahan atas _state_ komponen dan memberi tahu React bahwa komponen ini beserta anaknya harus di-_render_ ulang dengan _state_ terbaru. Metode ini merupakan metode utama yang Anda gunakan untuk memperbarui antarmuka sebagai reaksi atas _event handler_ dan balasan server.
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+Anda bisa memandang `setState()` sebagai sebuah *_request_* alih-alih memandangnya sebagai perintah perantara untuk memperbarui komponen. Untuk kinerja yang secara persepsi lebih baik, React mungkin menundanya, dan kemudian memperbarui beberapa komponen dalam sekali jalan. React tidak menjamin bahwa perubahan _state_ akan selalu diterapkan secara langsung.
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+`setState()` tidak selalu langsung memperbarui komponen. Metode ini mungkin mengelompokkan pemanggilan atau menunda pembaruan untuk dilakukan nanti. Hal ini menyebabkan pembacaan `this.state` langsung setelah memanggil `setState()` menjadi sebuah jebakan tersembunyi. Alih-alih menggunakan cara tersebut, gunakan `componentDidUpdate` atau _callback_ `setState` (`setState(updater, callback)`), yang dijamin akan dipanggil setelah pembaruan diterapkan. Jika Anda perlu untuk menetapkan _state_ berdasarkan _state_ sebelumnya, baca tentang argumen `updater` di bawah ini.
 
-`setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
+`setState()` akan selalu menyebabkan proses _render_ ulang, kecuali jika `shouldComponentUpdate()` mengembalikan nilai `false`. Jika obyek _mutable_ digunakan dan logika _render_ kondisional tidak bisa diimplementasikan dalam `shouldComponentUpdate()`, pemanggilan `setState()` ketika _state_ baru berbeda dengan _state_ sebelumnya akan menghindari proses _render_ ulang yang tidak perlu.
 
-The first argument is an `updater` function with the signature:
+Argumen pertama merupakan fungsi `updater` dengan tanda tangan sebagai berikut:
 
 ```javascript
-(state, props) => stateChange
+(_state_, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`_state_` merupakan referensi ke _state_ komponen pada saat perubahan sedang diterapkan. Referensi ini seharusnya tidak boleh langsung bermutasi, tetapi perubahan seharusnya direpresentasikan dengan membangun obyek baru berdasarkan input dari `_state_` dan `props`. Misalnya, asumsikan kita ingin memenaikkan sebuah nilai dalam _state_ dengan `props.step`:
 
 ```javascript
-this.setState((state, props) => {
-  return {counter: state.counter + props.step};
+this.setState((_state_, props) => {
+  return {counter: _state_.counter + props.step};
 });
 ```
 
-Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
+Baik `_state_` maupun `props` yang diterima fungsi `updater` dijamin selalu yang terbaru. Output dari `updater` akan digabungkan secara dangkal dengan `_state_`.
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+Parameter kedua dalam `setState()` merupakan logika _callback_ opsional yang akan dijalankan segera setelah `setState` diselesaikan dan komponen di-_render_ ulang. Umumnya, kami menyarankan untuk menggunakan `componentDidUpdate()` untuk logika semacam ini.
 
-You may optionally pass an object as the first argument to `setState()` instead of a function:
+Alih-alih sebuah fungsi, Anda bisa meneruskan sebuah obyek secara opsional sebagai argumen ke `setState()`:
 
 ```javascript
 setState(stateChange[, callback])
 ```
 
-This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
+Ini akan melakukan penggabungan dangkal dari `stateChange` menjadi _state_ yang baru, misalnya untuk memperbarui jumlah item dalam keranjang belanja:
 
 ```javascript
 this.setState({quantity: 2})
 ```
 
-This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:
+Bentuk `setState()` juga bersifat sinkronus, dan pemanggilan berulang kali dalam siklus yang sama mungkin akan dikelompokkan sekaligus. Misalnya, jika Anda berusaha untuk menaikkan jumlah item lebih dari sekali dalam siklus yang sama, hasilnya sama dengan pemanggilan sebagai berikut:
 
 ```javaScript
 Object.assign(
   previousState,
-  {quantity: state.quantity + 1},
-  {quantity: state.quantity + 1},
+  {quantity: _state_.quantity + 1},
+  {quantity: _state_.quantity + 1},
   ...
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
+Pemanggilan berikutnya akan menimpa nilai dari pemanggilan sebelumnya dalam siklus yang sama, sehingga jumlah di atas hanya akan dinaikkan sekali saja. Jika _state_ selanjutnya bergantung pada _state_ saat ini, kami sarankan untuk menggunakan bentuk fungsi `updater` saja:
 
 ```js
-this.setState((state) => {
-  return {quantity: state.quantity + 1};
+this.setState((_state_) => {
+  return {quantity: _state_.quantity + 1};
 });
 ```
 
-For more detail, see:
+Untuk detail lebih lanjut, baca:
 
-* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
-* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
-* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [_State_ dan _lifecycle_](/docs/state-and-lifecycle.html)
+* [Pembahasan mendalam: Kapan dan mengapa pemanggilan `setState()` dikelompokkan?](https://stackoverflow.com/a/48610973/458193)
+* [Pembahasan mendalam: Mengapa `this.state` tidak diperbarui secara langsung?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 
@@ -575,19 +576,19 @@ For more detail, see:
 component.forceUpdate(callback)
 ```
 
-By default, when your component's state or props change, your component will re-render. If your `render()` method depends on some other data, you can tell React that the component needs re-rendering by calling `forceUpdate()`.
+Secara default, ketika _state_ atau _props_ komponen Anda berubah, komponen Anda akan di-_render_ ulang. Jika metode `render()` Anda tergantung pada beberapa data lain, Anda bisa memberi tahu React bahwa komponen Anda harus di-_render_ ulang dengan memanggil `forceUpdate()`.
 
-Calling `forceUpdate()` will cause `render()` to be called on the component, skipping `shouldComponentUpdate()`. This will trigger the normal lifecycle methods for child components, including the `shouldComponentUpdate()` method of each child. React will still only update the DOM if the markup changes.
+Pemanggilan `forceUpdate()` akan menyebabkan pemanggilan `render()` dalam komponen, melewatkan `shouldComponentUpdate()`. Hal ini akan memicu metode _lifecycle_ normal untuk komponen anak, termasuk metode `shouldComponentUpdate()` masing-masing anak. React masih akan memperbarui DOM jika _markup_-nya berubah.
 
-Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
+Umumnya, Anda harus sejauh mungkin menghindari semua penggunaan `forceUpdate()` dan hanya membaca dari `this.props` dan `this.state` dalam `render()`.
 
 * * *
 
-## Class Properties {#class-properties-1}
+## Properti Kelas {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:
+`defaultProps` dapat didefinisikan sebagai properti dalam kelas komponen itu sendiri, yang digunakan untuk menetapkan _props_ default pada kelas tersebut. Ini digunakan untuk _props_ yang bernilai _undefined_ tetapi tidak untuk _props_ yang bernilai _null_. Misalnya:
 
 ```js
 class CustomButton extends React.Component {
@@ -599,19 +600,19 @@ CustomButton.defaultProps = {
 };
 ```
 
-If `props.color` is not provided, it will be set by default to `'blue'`:
+Jika `props.color` tidak disediakan, nilainya akan ditetapkan secara default sebagai `'blue'`:
 
 ```js
   render() {
-    return <CustomButton /> ; // props.color will be set to blue
+    return <CustomButton /> ; // Nilai props.color akan ditetapkan menjadi blue
   }
 ```
 
-If `props.color` is set to null, it will remain null:
+Jika `props.color` ditetapkan bernilai _null_, nilainya akan tetap _null_:
 
 ```js
   render() {
-    return <CustomButton color={null} /> ; // props.color will remain null
+    return <CustomButton color={null} /> ; // Nilai props.color akan tetap _null_
   }
 ```
 
@@ -619,24 +620,24 @@ If `props.color` is set to null, it will remain null:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+String `displayName` digunakan untuk proses _debug_. Umumnya, Anda tidak perlu menetapkannya secara eksplisit karena nilainya diturunkan dari nama fungsi atau kelas yang mendefinisikan komponen. Anda mungkin ingin menetapkan nilainnya secara eksplisit jika Anda ingin menampilkannya dengan nama yang berbeda untuk keperluan _debug_ atau jika Anda membuat _higher-order component_, baca [Pemb _displayName_ untuk Mempermudah _Debug_](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
 
 * * *
 
-## Instance Properties {#instance-properties-1}
+## Properti _Instance_ {#instance-properties-1}
 
 ### `props` {#props}
 
-`this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
+`this.props` mengandung _props_ yang didefinisikan oleh pemanggil komponen ini. Lihat [Komponen dan _Props_](/docs/components-and-props.html) untuk panduan pengantar _props_.
 
-In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
+Secara khusus, `this.props.children` merupakan _prop_ yang khusus yang umumnya didefinisikan oleh tag anak dalam ekspresi JSX, alih-alih dalam tagnya sendiri.
 
-### `state` {#state}
+### `_state_` {#_state_}
 
-The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
+_state_ mengandung data khusus untuk komponen ini yang bisa berubah sepanjang waktu. Nilai _state_ dedefinisikan oleh pengguna dan harus berupa obyek JavaScript biasa.
 
-If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
+Jika beberapa nilai tidak digunakan untuk proses _render_ atau aliran data (misalnya ID _timer_), Anda tidak perlu meletakkannya dalam _state_. Nilai semacam ini bisa didefinisikan sebagai _field_ dalam _instance_ komponen.
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+Lihat [_State_ dan _lifecycle_](/docs/state-and-lifecycle.html) untuk informasi lebih lanjut tentang _state_.
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+Jangan pernah mengubah `this.state` secara langsung, karena pemanggilan `setState()` berikutnya bisa menimpa perubahan yang Anda buat. Perlakukan `this.state` seperti halnya bersifat _immutable_.
