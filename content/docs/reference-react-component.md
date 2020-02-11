@@ -15,11 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-Laman ini menjelaskan referensi API mendetail untuk definisi kelas komponen React. Diasumsikan bahwa Anda telah familiar dengan konsep dasar React seperti [Komponen dan _Props_](/docs/components-and-props.html) serta [_State_ dan _Lifecycle_](/docs/state-and-lifecycle.html). Jika belum familiar, baca konsep dasar tersebut terlebih dulu.
+Laman ini menjelaskan referensi API mendetail untuk definisi kelas komponen React. Diasumsikan bahwa Anda telah familier dengan konsep dasar React seperti [Komponen dan _Props_](/docs/components-and-props.html) serta [_State_ dan _Lifecycle_](/docs/state-and-lifecycle.html). Jika belum, baca konsep dasar tersebut terlebih dulu.
 
 ## Ikhtisar {#overview}
 
-React memungkinkan Anda untuk mendefinisikan komponen sebagai kelas atau fungsi. Komponen didefinisikan sebagai kelas yang menyediakan lebih banyak fitur, yang akan dijelaskan secara mendetail di laman ini. Untuk mendefinisikan sebuah kelas komponen React, Anda harus meng-_extend_ `React.Component`:
+React memungkinkan Anda untuk mendefinisikan komponen sebagai kelas atau fungsi. Untuk saat ini, komponen yang didefinisikan sebagai kelas menyediakan lebih banyak fitur, yang akan dijelaskan secara mendetail di laman ini. Untuk mendefinisikan sebuah kelas komponen React, Anda harus meng-_extend_ `React.Component`:
 
 ```js
 class Welcome extends React.Component {
@@ -66,7 +66,7 @@ Pembaruan bisa disebabkan oleh perubahan pada _props_ atau _state_. Metode berik
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+>Catatan:
 >
 >Metode berikut merupakan metode usang dan Anda [harus menghindarinya](/blog/2018/03/27/update-on-async-rendering.html) dalam kode yang baru:
 >
@@ -101,7 +101,7 @@ Masing-masing komponen juga menyediakan beberapa API lainnya:
 ### Properti _Instance_ {#instance-properties}
 
   - [`props`](#props)
-  - [`_state_`](#_state_)
+  - [`state`](#_state_)
 
 * * *
 
@@ -343,7 +343,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Perbarui _state_ agar proses _render_ berikutnya akan menampilkan antarmuka kesalahan.
+    // Perbarui state agar proses render berikutnya akan menampilkan antarmuka kesalahan.
     return { hasError: true };
   }
 
@@ -389,7 +389,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Perbarui _state_ agar proses _render_ berikutnya akan menampilkan antarmuka kesalahan.
+    // Perbarui state agar proses render berikutnya akan menampilkan antarmuka kesalahan.
     return { hasError: true };
   }
 
@@ -516,18 +516,18 @@ Anda bisa memandang `setState()` sebagai sebuah *_request_* alih-alih memandangn
 Argumen pertama merupakan fungsi `updater` dengan tanda tangan sebagai berikut:
 
 ```javascript
-(_state_, props) => stateChange
+(state, props) => stateChange
 ```
 
-`_state_` merupakan referensi ke _state_ komponen pada saat perubahan sedang diterapkan. Referensi ini seharusnya tidak boleh langsung bermutasi, tetapi perubahan seharusnya direpresentasikan dengan membangun obyek baru berdasarkan input dari `_state_` dan `props`. Misalnya, asumsikan kita ingin memenaikkan sebuah nilai dalam _state_ dengan `props.step`:
+`state` merupakan referensi ke _state_ komponen pada saat perubahan sedang diterapkan. Referensi ini seharusnya tidak boleh langsung bermutasi, tetapi perubahan seharusnya direpresentasikan dengan membangun obyek baru berdasarkan input dari `state` dan `props`. Misalnya, asumsikan kita ingin memenaikkan sebuah nilai dalam _state_ dengan `props.step`:
 
 ```javascript
-this.setState((_state_, props) => {
-  return {counter: _state_.counter + props.step};
+this.setState((state, props) => {
+  return {counter: state.counter + props.step};
 });
 ```
 
-Baik `_state_` maupun `props` yang diterima fungsi `updater` dijamin selalu yang terbaru. Output dari `updater` akan digabungkan secara dangkal dengan `_state_`.
+Baik `state` maupun `props` yang diterima fungsi `updater` dijamin selalu yang terbaru. Output dari `updater` akan digabungkan secara dangkal dengan `state`.
 
 Parameter kedua dalam `setState()` merupakan logika _callback_ opsional yang akan dijalankan segera setelah `setState` diselesaikan dan komponen di-_render_ ulang. Umumnya, kami menyarankan untuk menggunakan `componentDidUpdate()` untuk logika semacam ini.
 
@@ -548,8 +548,8 @@ Bentuk `setState()` juga bersifat sinkronus, dan pemanggilan berulang kali dalam
 ```javaScript
 Object.assign(
   previousState,
-  {quantity: _state_.quantity + 1},
-  {quantity: _state_.quantity + 1},
+  {quantity: state.quantity + 1},
+  {quantity: state.quantity + 1},
   ...
 )
 ```
@@ -558,7 +558,7 @@ Pemanggilan berikutnya akan menimpa nilai dari pemanggilan sebelumnya dalam sikl
 
 ```js
 this.setState((_state_) => {
-  return {quantity: _state_.quantity + 1};
+  return {quantity: state.quantity + 1};
 });
 ```
 
@@ -632,7 +632,7 @@ String `displayName` digunakan untuk proses _debug_. Umumnya, Anda tidak perlu m
 
 Secara khusus, `this.props.children` merupakan _prop_ yang khusus yang umumnya didefinisikan oleh tag anak dalam ekspresi JSX, alih-alih dalam tagnya sendiri.
 
-### `_state_` {#_state_}
+### `state` {#_state_}
 
 _state_ mengandung data khusus untuk komponen ini yang bisa berubah sepanjang waktu. Nilai _state_ dedefinisikan oleh pengguna dan harus berupa obyek JavaScript biasa.
 
