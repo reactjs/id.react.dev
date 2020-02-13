@@ -105,7 +105,7 @@ class CodeEditor extends Component {
                 color: colors.white,
               }}>
               <MetaTitle onDark={true}>
-                Editor JSX Langsung
+                Editor JSX Interaktif
                 <label
                   css={{
                     fontSize: 14,
