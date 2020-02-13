@@ -4,25 +4,25 @@ title: Error Boundaries
 permalink: docs/error-boundaries.html
 ---
 
-In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
+Di masa lalu, kesalahan JavaScript dalam komponen sering kali merusak _state_ internal React dan menyebabkannya untuk [meng-_emit_](https://github.com/facebook/react/issues/4026) [kesalahan](https://github.com/facebook/react/issues/8579) [yang samar](https://github.com/facebook/react/issues/6895) dalam proses _render_ berikutnya. Kesalahan tersebut selalu disebabkan oleh kesalahan sebelumnya pada kode aplikasi, tetapi React tidak menyediakan cara untuk menanganinya secara lugas dalam komponen, dan pada akhirnya tidak bisa dipulihkan.
 
 
-## Introducing Error Boundaries {#introducing-error-boundaries}
+## Memperkenalkan _Error Boundaries_ (Pembatas Kesalahan) {#introducing-error-boundaries}
 
-A JavaScript error in a part of the UI shouldn’t break the whole app. To solve this problem for React users, React 16 introduces a new concept of an “error boundary”.
+Kesalahan JavaScript dalam sebuah bagian antarmuka seharusnya tidak boleh menyebabkan kerusakan aplikasi secara keseluruhan. Untuk mengatasi masalah ini bagi pengguna React, React 16 memperkenalkan konsep baru yaitu “_error boundary_”.
 
-Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+_Error boundaries_ merupakan komponen React yang **menangkap kesalahan JavaScript di semua tempat di dalam pohon komponen, mencatat kesalahan tersebut, dan menampilkan antarmuka darurat (_fallback_)** alih-alih menampilkan pohon komponen yang rusak. _Error boundary_ menangkap kesalahan dalam proses _render_, dalam metode _lifecycle_, dan dalam konstruktor dari keseluruhan pohon di bawahnya.
 
-> Note
+> Catatan
 >
-> Error boundaries do **not** catch errors for:
+> _Error boundaries_ **tidak**  menangkap kesalahan untuk:
 >
-> * Event handlers ([learn more](#how-about-event-handlers))
-> * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
-> * Server side rendering
-> * Errors thrown in the error boundary itself (rather than its children)
+> * _Event handler_ ([pelajari lebih lanjut](#how-about-event-handlers))
+> * Kode asinkronus (misalnya, `setTimeout` atau _callback_ `requestAnimationFrame`)
+> * Proses _render_ sisi server
+> * Kesalahan yang dilontarkan dalam komponen _error boundary_ itu sendiri (bukan dalam anaknya)
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
+Sebuah komponen kelas menjadi komponen _error boundary_ jika komponen tersebut mendefinisikan salah satu (atau kedua) metode _lifecycle_ [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) atau [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Gunakan `static getDerivedStateFromError()` untuk me-_render_ antarmuka darurat saat kesalahan dilontarkan. Gunakan `componentDidCatch()` untuk mencatat informasi kesalahan.
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -32,18 +32,18 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Perbarui state agar proses render berikutnya akan menampilkan antarmuka darurat.
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
+    // Anda juga bisa mencatat kesalahan ke layanan pencatat kesalahan
     logErrorToMyService(error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Anda bisa menampilkan antarmuka darurat Anda di sini
       return <h1>Something went wrong.</h1>;
     }
 
@@ -52,7 +52,7 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can use it as a regular component:
+Setelahnya, Anda bisa menggunakannya seperti komponen biasa:
 
 ```js
 <ErrorBoundary>
@@ -60,53 +60,53 @@ Then you can use it as a regular component:
 </ErrorBoundary>
 ```
 
-Error boundaries work like a JavaScript `catch {}` block, but for components. Only class components can be error boundaries. In practice, most of the time you’ll want to declare an error boundary component once and use it throughout your application.
+_Error boundaries_ bekerja seperti blok JavaScript `catch {}`, tetapi diperuntukkan bagi komponen. Hanya komponen kelas yang bisa menjadi komponen _error boundaries_. Dalam praktiknya, Anda hampir akan selalu mendeklarasikan sebuah komponen _error boundary_ sekali lalu menggunakannya dalam aplikasi Anda.
 
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how catch {} block works in JavaScript.
+Perhatikan bahwa **_error boundaries_ hanya menangkap kesalahan dalam komponen di bawah pohon**. Komponen _error boundary_ tidak dapat menangkap kesalahan dari dalam dirinya sendiri. Jika _error boundary_ gagal me-_render_ pesan kesalahan, kesalahan tersebut akan merambat ke komponen _error boundary_ terdekat di atasnya. Ini mirip dengan cara kerja blok catch {} dalam JavaScript.
 
-## Live Demo {#live-demo}
+## Demonstrasi Langsung {#live-demo}
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](/blog/2017/09/26/react-v16.0.html).
-
-
-## Where to Place Error Boundaries {#where-to-place-error-boundaries}
-
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+Kunjungi [contoh tentang pendeklarasian dan penggunaan komponen _error boundary_](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) dengan [React 16](/blog/2017/09/26/react-v16.0.html).
 
 
-## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
+## Dimana Harus Meletakkan _Error boundaries_ {#where-to-place-error-boundaries}
 
-This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**
-
-We debated this decision, but in our experience it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display a wrong amount than to render nothing.
-
-This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide better user experience when something goes wrong.
-
-For example, Facebook Messenger wraps content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
-
-We also encourage you to use JS error reporting services (or build your own) so that you can learn about unhandled exceptions as they happen in production, and fix them.
+Anda sendiri yang menentukan granularitas sebuah komponen _error boundaries_. Anda mungkin ingin membungkus komponen _route_ tingkat teratas untuk menampilkan pesan “Ada masalah” kepada pengguna, seperti halnya yang dilakukan _framework_ sisi server saat terjadi kerusakan. Anda mungkin juga bisa membungkus _widget_ secara individual dengan sebuah _error boundary_ untuk melindung kerusakan merambat ke seluruh aplikasi.
 
 
-## Component Stack Traces {#component-stack-traces}
+## Perilaku Baru untuk Kesalahan yang Tidak Tertangkap {#new-behavior-for-uncaught-errors}
 
-React 16 prints all errors that occurred during rendering to the console in development, even if the application accidentally swallows them. In addition to the error message and the JavaScript stack, it also provides component stack traces. Now you can see where exactly in the component tree the failure has happened:
+Perubahan ini memiliki dampak yang penting. **Sejak React 16, kesalahan yang tidak ditangkap oleh _error boundary_ apa pun akan menyebabkan proses pelepasan (_mounting_) keseluruhan pohon komponen React.**
 
-<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Error caught by Error Boundary component">
+Kami berdebat cukup panjang hingga sampai pada keputusan ini. Namun menurut pengalaman kami, antarmuka yang rusak berdampak lebih buruk dibandingkan dengan benar-benar menghilangkannya. Misalnya, pada produk seperti Messenger, menyisakan tampilan antarmuka yang rusak kepada pengguna bisa menyebabkan seseorang mengirim pesan ke tujuan yang salah. Kasus yang mirip adalah dalam aplikasi pembayaran, dampak lebih buruk akan terjadi jika aplikasi menampilkan jumlah yang salah, dibandingkan dengan tidak menampilkannya sama sekali..
 
-You can also see the filenames and line numbers in the component stack trace. This works by default in [Create React App](https://github.com/facebookincubator/create-react-app) projects:
+Perubahan ini berarti, seiring dengan migrasi Anda ke React 16, Anda lebih mungkin menemukan kerusakan yang ada dalam aplikasi, yang sebelumnya belum pernah ditemukan. Penambahan _error boundaries_ dapat digunakan untuk menyediakan pengalaman yang lebih baik bagi pengguna Anda pada saat masalah terjadi.
 
-<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
+Misalnya, Facebook Messenger membungkus konten bilah samping, panel info, catatan percakapan, serta input pesan ke dalam _error boundaries_ yang berbeda. Jika beberapa komponen dalam antarmuka tersebut rusak, sisa antarmuka yang tampil tetap masih bersifat interaktif.
 
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
+Kami juga menyarankan Anda untuk menggunakan layanan pelaporan kesalahan JavaScript (atau buatan Anda sendiri) agar Anda bisa mempelajari tentang eksepsi yang tidak tertangani dalam versi produksi, dan kemudian memperbaikinya.
 
-> Note
+
+## _Stack Trace_ Komponen {#component-stack-traces}
+
+React 16 mencetak semua kesalahan yang terjadi dalam proses _render_ ke konsol dalam tahap pengembangan, walau aplikasi tanpa sengaja mengenyampingkannya. Selain pesan kesalahan dan _stack_ JavaScript, React juga menyediakan _stack trace_ komponen. Kini Anda bisa melihat letak kegagalan dalam pohon komponen:
+ 
+<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Kesalahan yang ditangkap komponen Error Boundary">
+
+Anda juga bisa melihat nama file dan nomor baris dalam _stack trace_ komponen. Ini berfungsi secara default dalam proyek yang berasal dari [Create React App](https://github.com/facebookincubator/create-react-app):
+
+<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Kesalahan yang ditangkap komponen Error Boundary beserta nomor baris">
+
+Jika Anda tidak menggunakan Create React App, Anda bisa menambahkan [_plugin_ ini](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) secara manual dalam konfigurasi Babel Anda. Perhatikan bahwa ini ditujukan untuk tahap pengembangan dan **harus dinonaktifkan dalam tahap produksi**.
+
+> Catatan
 >
-> Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a `Function.name` polyfill in your bundled application, such as [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
+> Nama komponen yang ditampilkan dalam _stack trace_ tergantung dari properti [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Jika Anda mendukung browser dan perangkat versi lawas yang tidak mendukung fitur ini secara _native_ (misalnya, IE 11), pertimbangkan untuk menyertakan _polyfill_ `Function.name` dalam bundel aplikasi Anda, misalnya [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatifnya adalah Anda bisa menetapkan properti [`displayName`](/docs/react-component.html#displayname) secara eksplisit untuk semua komponen Anda.
 
 
-## How About try/catch? {#how-about-trycatch}
+## Bagaimana dengan try/catch? {#how-about-trycatch}
 
-`try` / `catch` is great but it only works for imperative code:
+`try` / `catch` sangat baik, tetapi hanya bekerja untuk kode yang imperatif:
 
 ```js
 try {
@@ -116,21 +116,21 @@ try {
 }
 ```
 
-However, React components are declarative and specify *what* should be rendered:
+Sedangkan komponen React bersifat deklaratif dan menentukan *apa* yang harus di-_render_:
 
 ```js
 <Button />
 ```
 
-Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` method caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
+_Error boundaries_ mempertahankan sifat deklaratif React dan berperilaku seperti yang Anda harapkan. Misalnya, walau kesalahan terjadi dalam metode `componentDidUpdate` yang disebabkan oleh `setState` di suatu tempat dalam pohon, kesalahan tersebut masih akan terus merambat dengan benar ke _error boundary_ terdekat.
 
-## How About Event Handlers? {#how-about-event-handlers}
+## Bagaimana dengan _Event Handler_? {#how-about-event-handlers}
 
-Error boundaries **do not** catch errors inside event handlers.
+_Error boundaries_ **tidak** menangkap kesalahan dalam _event handler_.
 
-React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
+React tidak membutuhkan _error boundaries_ untuk memulihkan dari kesalahan dalam _event handler_. Tidak seperti metode _render_ dan _lifecycle_, _event handler_ tidak dijalankan selama proses _render_. Jadi jika kesalahan ini dilontarkan, React masih mengetahui apa yang harus ditampilkan dalam layar.
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+Jika Anda harus menangkap kesalahan dalam _event handler_, gunakan JavaScript _statement_ `try` / `catch` biasa:
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
@@ -142,7 +142,7 @@ class MyComponent extends React.Component {
 
   handleClick() {
     try {
-      // Do something that could throw
+      // Lakukan sesuatu yang bisa melontarkan kesalahan
     } catch (error) {
       this.setState({ error });
     }
@@ -150,17 +150,17 @@ class MyComponent extends React.Component {
 
   render() {
     if (this.state.error) {
-      return <h1>Caught an error.</h1>
+      return <h1>Kesalahan ditangkap.</h1>
     }
-    return <div onClick={this.handleClick}>Click Me</div>
+    return <div onClick={this.handleClick}>Klik Saya</div>
   }
 }
 ```
 
-Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries.
+Perhatikan bahwa contoh di atas mendemonstrasikan perilaku JavaScript biasa dan tidak menggunakan _error boundaries_.
 
-## Naming Changes from React 15 {#naming-changes-from-react-15}
+## Perubahan Nama Sejak React 15 {#naming-changes-from-react-15}
 
-React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
+React 15 menyertakan dukungan terbatas untuk _error boundaries_ dengan nama metode yang berbeda: `unstable_handleError`. Metode ini tidak lagi berfungsi dan Anda harus mengubahnya menjadi `componentDidCatch` dalam kode, sejak versi rilis beta 16.
 
-For this change, we’ve provided a [codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.
+Untuk perubahan ini, kami menyediakan perintah [codemod](https://github.com/reactjs/react-codemod#error-boundaries) untuk memigrasikan kode Anda secara otomatis.
