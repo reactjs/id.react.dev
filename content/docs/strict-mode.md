@@ -1,65 +1,65 @@
 ---
 id: strict-mode
-title: Strict Mode
+title: Mode Ketat (Strict Mode)
 permalink: docs/strict-mode.html
 ---
 
-`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
+Mode Ketat (`StrictMode`) merupakan alat untuk menyoroti potensi masalah dalam aplikasi. Seperti halnya `Fragment`, `StrictMode` tidak me-_render_ antarmuka yang tampak. Mode ini mengaktifkan pemeriksaan dan peringatan ekstra untuk turunannya.
 
-> Note:
+> Catatan:
 >
-> Strict mode checks are run in development mode only; _they do not impact the production build_.
+> Pemeriksaan mode ketat hanya berjalan dalam mode pengembangan. Mode ini _tidak_ berdampak dalam _build_ produksi.
 
-You can enable strict mode for any part of your application. For example:
+Anda bisa mengaktifkan mode ketat untuk berbagai bagian dalam aplikasi. Misalnya:
 `embed:strict-mode/enabling-strict-mode.js`
 
-In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `ComponentOne` and `ComponentTwo`, as well as all of their descendants, will have the checks.
+Pada contoh di atas, pemeriksaan mode ketat *tidak* akan dijalankan dalam komponen `Header` dan `Footer`. Namun, `ComponentOne` dan `ComponentTwo`, beserta semua turunannya akan diperiksa.
 
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
+Saat ini Mode Ketat `StrictMode` membantu dalam:
+* [Identifikasi komponen yang mengandung _unsafe lifecycle_](#identifying-unsafe-lifecycles)
+* [Peringatan atas penggunaan API _string ref_ _legacy_](#warning-about-legacy-string-ref-api-usage)
+* [Peringatan atas penggunaan findDOMNode yang usang](#warning-about-deprecated-finddomnode-usage)
+* [Pendeteksian atas efek samping yang tidak diharapkan](#detecting-unexpected-side-effects)
+* [Pendeteksian API _context_ _legacy_](#detecting-legacy-context-api)
 
-Additional functionality will be added with future releases of React.
+Fungsionalitas lain akan ditambahkan dalam rilis React masa mendatang.
 
-### Identifying unsafe lifecycles {#identifying-unsafe-lifecycles}
+### Identifikasi komponen yang mengandung _unsafe lifecycle_ {#identifying-unsafe-lifecycles}
 
-As explained [in this blog post](/blog/2018/03/27/update-on-async-rendering.html), certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
+Seperti yang dijelaskan dalam [postingan blog ini](/blog/2018/03/27/update-on-async-rendering.html), beberapa metode _lifecycle_ yang bersifat _legacy_ tidak aman digunakan dalam aplikasi React asinkronus. Namun, jika aplikasi Anda menggunakan _library_ pihak ketiga, sangat sulit untuk memastikan bahwa _lifecycle_ ini benar-benar tidak digunakan. Mode ketat bisa membantu Anda dalam hal ini.
 
-When strict mode is enabled, React compiles a list of all class components using the unsafe lifecycles, and logs a warning message with information about these components, like so:
+Saat mode ketat diaktifkan, React mengompilasi daftar semua komponen kelas yang menggunakan _unsafe lifecycle_ dan mencatatkan pesan peringatan dengan informasi tentang komponen tersebut, misalnya:
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of async rendering in future releases of React.
+Mengatasi masalah yang diidentifikasi oleh mode ketat _sekarang juga_ akan mempermudah Anda untuk memanfaatkan proses _render_ asinkronus dalam rilis React masa mendatang.
 
-### Warning about legacy string ref API usage {#warning-about-legacy-string-ref-api-usage}
+### Peringatan atas penggunaan API _string ref_ _legacy_ {#warning-about-legacy-string-ref-api-usage}
 
-Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to [use the callback form instead](/docs/refs-and-the-dom.html#legacy-api-string-refs).
+Sebelumnya, React menyediakan dua cara untuk mengelola _ref_: API _string ref_ _legacy_ dan API _callback_. Walau API _string ref_ lebih nyaman digunakan, API ini memiliki [beberapa kelemahan](https://github.com/facebook/react/issues/1373) sehingga rekomendasi resmi kami adalah [menggunakan bentuk _callback_](/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
-React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
+React 16.3 menambahkan opsi ketiga yang menawarkan kenyamanan _string ref_ tanpa kelemahan tersebut:
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
+Dengan penambahan _object ref_ sebagai pengganti untuk _string ref_, mode ketat kini memperingatkan tentang penggunaan _string ref_.
 
-> **Note:**
+> **Catatan:**
 >
-> Callback refs will continue to be supported in addition to the new `createRef` API.
+> _Callback ref_ akan terus didukung selain API baru `createRef`.
 >
-> You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
+> Anda tidak perlu mengganti _callback ref_ dalam komponen Anda. API ini sedikit lebih fleksibel, jadi API ini akan tetap menjadi fitur lanjutan.
 
-[Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
+[Pelajari lebih lanjut tentang API baru `createRef` di sini.](/docs/refs-and-the-dom.html)
 
-### Warning about deprecated findDOMNode usage {#warning-about-deprecated-finddomnode-usage}
+### Peringatan atas penggunaan findDOMNode yang usang {#warning-about-deprecated-finddomnode-usage}
 
-React used to support `findDOMNode` to search the tree for a DOM node given a class instance. Normally you don't need this because you can [attach a ref directly to a DOM node](/docs/refs-and-the-dom.html#creating-refs).
+Sebelumnya React telah mendukung `findDOMNode` untuk pencarian simpul DOM dalam pohon berdasarkan _instance_ kelas. Pada umumnya hal ini tidak perlu dilakukan karena Anda bisa [menyertakan _ref_ langsung ke simpul DOM](/docs/refs-and-the-dom.html#creating-refs).
 
-`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children was rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+`findDOMNode` juga dapat digunakan dalam komponen kelas. Namun cara ini melanggar level abstraksi dengan mengizinkan induk untuk meminta turunan tertentu agar di-_render_. Hal ini menciptakan risiko dalam proses _refactor_, yaitu Anda tidak bisa mengubah detail implementasi sebuah komponen karena induk mungkin bisa mengubah simpul DOM-nya. `findDOMNode` hanya akan mengembalikan anak pertama. Namun dengan menggunakan _Fragment_, sebuah komponen dimungkinkan untuk me-_render_ beberapa simpul DOM sekaligus. `findDOMNode` merupakan API baca sekali saja. API ini memberikan jawaban hanya pada saat diminta. Jika komponen anak me-_render_ simpul yang berbeda, tidak ada cara untuk menangani perubahan ini. Dengan alasan ini `findDOMNode` hanya berfungsi jika komponen selalu mengembalikan sebuah simpul DOM yang tidak pernah berubah.
 
-You can instead make this explicit by passing a ref to your custom component and pass that along to the DOM using [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+Anda bisa membuat hal ini menjadi eksplisit dengan meneruskan sebuah _ref_ ke komponen khusus Anda, dan meneruskannya ke DOM menggunakan [penerusan _ref_](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
-You can also add a wrapper DOM node in your component and attach a ref directly to it.
+Anda juga bisa menambahkan simpul DOM pembungkus dalam komponen Anda dan menyertakan _ref_ langsung kepadanya.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -73,19 +73,19 @@ class MyComponent extends React.Component {
 }
 ```
 
-> Note:
+> Catatan:
 >
-> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
+> Dalam CSS, atribut [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) bisa digunakan jika Anda tidak ingin simpul menjadi bagian dari _layout_.
 
-### Detecting unexpected side effects {#detecting-unexpected-side-effects}
+### Pendeteksian atas efek samping yang tidak diharapkan {#detecting-unexpected-side-effects}
 
-Conceptually, React does work in two phases:
-* The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
-* The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+Secara mendasar, React bekerja dalam dua tahap:
+* Tahap **_render_** menentukan perubahan apa yang perlu terjadi, misalnya untuk DOM. Dalam tahap ini, React memanggil `render` lalu membandingkannya dengan hasil _render_ sebelumnya.
+* Tahap **_commit_** yang terjadi saat React menerapkan perubahan yang ada. Pada kasus DOM, ini yang terjadi saat React menyisipkan, memperbarui, dan menghapus simpul DOM. React juga memanggil _lifecycle_ seperti `componentDidMount` dan `componentDidUpdate` dalam tahap ini.
 
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming async mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+Tahap _commit_ umumnya berlangsung sangat cepat, tetapi proses _render_ bisa sangat lambat. Dengan alasan ini, mode asinkronus mendatang (yang masih belum diaktifkan secara _default_)akan memecah proses _render_ menjadi beberapa bagian, menjeda dan melanjutkan proses untuk mencegah pemblokiran oleh browser. Ini berarti React mungkin memanggil _lifecycle_ _render_ lebih dari satu kali sebelum memanggil _commit_, atau memanggil _render_ tanpa sama sekali memanggil _commit_ (karena ada kesalahan atau adanya interupsi dari proritas yang lebih tinggi).
 
-Render phase lifecycles include the following class component methods:
+_Lifecyle_ tahap _render_ menyertakan metode komponen kelas berikut:
 * `constructor`
 * `componentWillMount` (or `UNSAFE_componentWillMount`)
 * `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
@@ -93,32 +93,32 @@ Render phase lifecycles include the following class component methods:
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`
-* `setState` updater functions (the first argument)
+* Fungsi pembaruan `setState` (argumen pertama)
 
-Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
+Oleh karena metode di atas mungkin dipanggil lebih dari satu kali, sangat penting bagi metode tersebut untuk tidak menimbulkan efek samping. Pengabaian atas aturan ini bisa menyebabkan berbagai macam masalah, termasuk kebocoran memori dan _state_ aplikasi yang tidak valid. Sayangnya, mungkin sangat sulit untuk mendeteksi masalah tersebut karena masalahnya mungkin bersifat [non-deterministik](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
-Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
+Mode ketat tidak bisa mendeteksi efek samping secara otomatis, tetapi bisa membantu Anda untuk menemukannya dengan membuatnya menjadi lebih deterministik. Ini dilakukan dengan memanggil metode berikut dua kali secara sengaja:
 
-* Class component `constructor` method
-* The `render` method
-* `setState` updater functions (the first argument)
-* The static `getDerivedStateFromProps` lifecycle
+* Metode `constructor` komponen kelas
+* Metode `render`
+* Fungsi pembaruan `setState` (argumen pertama)
+* _Lifecycle_ statis `getDerivedStateFromProps`
 
-> Note:
+> Catatan:
 >
-> This only applies to development mode. _Lifecycles will not be double-invoked in production mode._
+> Ini hanya berlaku dalam mode pengembangan. _Lifecycle_ tidak akan dipanggil dua kali dalam mode produksi.
 
-For example, consider the following code:
+Sebagai contoh, kita gunakan kode berikut:
 `embed:strict-mode/side-effects-in-constructor.js`
 
-At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
+Sekilas, kode tersebut tampak tidak mengandung masalah. Tetapi jika `SharedApplicationState.recordEvent` tidak bersifat [_idempotent_](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), maka pembuatan _instance_ komponen ini secara berulang kali akan berujung pada _state_ aplikasi yang tidak valid. _Bug_ yang tidak kentara mungkin tidak muncul dalam pengembangan atau mungkin terjadi secara tidak konsisten, dan pada akhirnya cenderung diabaikan.
 
-By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
+Dengan memanggil metode dua kali secara sengaja seperti konstruktor komponen, mode ketat membuat pola di atas lebih mudah ditemukan.
 
-### Detecting legacy context API {#detecting-legacy-context-api}
+### Pendeteksian API _context_ _legacy_ {#detecting-legacy-context-api}
 
-The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
+API _context_ _legacy_ sangat rentan dari kesalahan dan akan dihapus dalam versi mayor mendatang. API ini masih berfungsi dalam semua rilis 16.x tetapi akan menampilkan pesan peringatan berikut dalam mode ketat:
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
+Baca [dokumentasi tentang API _context_ yang baru](/docs/context.html) untuk membantu proses migrasi ke versi yang baru.
