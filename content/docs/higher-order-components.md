@@ -122,7 +122,7 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-Parameter pertama ialah komponen yang terbungkus. Parameter kedua mengambil data yang kita inginkan, contohnya  ialah `DataSource` dan _props_ saat ini.
+Parameter pertama ialah _Wrapped Component_. Parameter kedua mengambil data yang kita inginkan, contohnya  ialah `DataSource` dan _props_ saat ini.
 
 Saat `CommentListWithSubscription` dan `BlogPostWithSubscription` di-_render_, `CommentList` dan `BlogPost` akan dioper sebuah `data` _prop_ dengan data paling baru yang diperoleh dari `DataSource`:
 
@@ -155,7 +155,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... dan me-*render* komponen yang terbungkus dengan data baru!
+      // ... dan me-*render* _Wrapped Component_ dengan data baru!
       // Perhatikan bahwa kita mengoper *props* tambahan apapun
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
@@ -165,11 +165,11 @@ function withSubscription(WrappedComponent, selectData) {
 
 Catat bahwa sebuah HOC tidak mengubah komponen masukan, tidak pula menggunakan _inheritance_ untuk menyalin perilakunya. Sebaliknya, sebuah HOC *menyusun* komponen asli dengan cara *membungkusnya* ke dalam sebuah _container_. Sebuah HOC merupakan fungsi murni bebas dari _side-effects_.
 
-Dan jadilah! komponen yang terbungkus menerima semua _props_ dari _container_ sejalan dengan _prop_ baru, `data`, yang mana digunakan untuk me-_render_ keluaranya. HOC tidak memperhatikan bagaimana data digunakan dan komponen yang terbungkus tidak memperhatikan darimana data berasal.
+Dan jadilah! _Wrapped Component_ menerima semua _props_ dari _container_ sejalan dengan _prop_ baru, `data`, yang mana digunakan untuk me-_render_ keluaranya. HOC tidak memperhatikan bagaimana data digunakan dan _Wrapped Component_ tidak memperhatikan darimana data berasal.
 
-Karena `withSubscription` merupakan fungsi normal, Anda dapat menambahkan sebanyak atau pun sesedikit mungkin argumen yang anda inginkan. Contohnya, Anda ingin membuat nama dari `data` _props_ dapat diatur untuk nantinya dapat mengisolasi HOC dari komponen yang terbungkus. Atau Anda dapat menerima sebuah argumen yang mengatur `shouldComponentUpdate`, atau satu yang mengatur sumber data. Hal ini memungkinkan karena HOC memiliki kontrol penuh terhadap bagaimana komponen didefinisikan.
+Karena `withSubscription` merupakan fungsi normal, Anda dapat menambahkan sebanyak atau pun sesedikit mungkin argumen yang anda inginkan. Contohnya, Anda ingin membuat nama dari `data` _props_ dapat diatur untuk nantinya dapat mengisolasi HOC dari _Wrapped Component_. Atau Anda dapat menerima sebuah argumen yang mengatur `shouldComponentUpdate`, atau satu yang mengatur sumber data. Hal ini memungkinkan karena HOC memiliki kontrol penuh terhadap bagaimana komponen didefinisikan.
 
-Seperti komponen, kontrak antara `withSubscription` dan komponen yang terbungkus seluruhnya merupakan _props-based_. Hal ini memudahkan bertukar dari satu HOC ke yang lainnya, selama menyediakan _props_ yang sama ke komponen yang terbungkus. Hal ini berguna contohnya jika Anda mengubah pustaka _data-fetching_.
+Seperti komponen, kontrak antara `withSubscription` dan _Wrapped Component_ seluruhnya merupakan _props-based_. Hal ini memudahkan bertukar dari satu HOC ke yang lainnya, selama menyediakan _props_ yang sama ke _Wrapped Component_. Hal ini berguna contohnya jika Anda mengubah pustaka _data-fetching_.
 
 ## Jangan Memutasi Komponen Asli. Gunakan _Composition_. {#dont-mutate-the-original-component-use-composition}
 
@@ -227,11 +227,11 @@ render() {
   // dioper 
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Masukan *props* kedalam komponen yang terbungkus. Biasanya nilai 
+  // Masukan *props* kedalam _Wrapped Component_. Biasanya nilai 
   // metode *instance*
   const injectedProp = someStateOrInstanceMethod;
 
-  // Oper *props* ke komponen yang terbungkus
+  // Oper *props* ke _Wrapped Component_
   return (
     <WrappedComponent
       injectedProp={injectedProp}
@@ -394,6 +394,6 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 ### Jangan mengoper _Ref_ {#refs-arent-passed-through}
 
-Sementara kesepakatan untuk komponen HOC mengoper semua _props_ ke komponen yang dibungkus, hal ini tidak bekerja untuk *refs*. Ini dikarenakan `ref` sebenarnya bukan *prop* — sama seperti `key`, hal itu ditangani secara khusus oleh React. Jika Anda menambahkan sebuah *ref* ke sebuah elemen yang mana komponen merupakan hasil dari sebuah HOC, *ref* merujuk ke sebuah *instance* dari komponen *container* paling luar, bukan komponen yang terbungkus.
+Sementara kesepakatan untuk komponen HOC mengoper semua _props_ ke komponen yang dibungkus, hal ini tidak bekerja untuk *refs*. Ini dikarenakan `ref` sebenarnya bukan *prop* — sama seperti `key`, hal itu ditangani secara khusus oleh React. Jika Anda menambahkan sebuah *ref* ke sebuah elemen yang mana komponen merupakan hasil dari sebuah HOC, *ref* merujuk ke sebuah *instance* dari komponen *container* paling luar, bukan _Wrapped Component_.
 
 Solusi dari masalah ini ialah dengan menggunakan `React.forwardRef` API (diperkenalkan di React 16.3). [ Pelajari lebih lanjut tentang ini pada bagian forwarding refs](/docs/forwarding-refs.html).
