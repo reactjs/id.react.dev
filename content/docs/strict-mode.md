@@ -32,7 +32,11 @@ Saat mode ketat diaktifkan, React mengompilasi daftar semua komponen kelas yang 
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
+<<<<<<< HEAD
 Mengatasi masalah yang diidentifikasi oleh mode ketat _sekarang juga_ akan mempermudah Anda untuk memanfaatkan proses _render_ asinkronus dalam rilis React masa mendatang.
+=======
+Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
 
 ### Peringatan atas penggunaan API _string ref_ _legacy_ {#warning-about-legacy-string-ref-api-usage}
 
@@ -83,7 +87,11 @@ Secara mendasar, React bekerja dalam dua tahap:
 * Tahap **_render_** menentukan perubahan apa yang perlu terjadi, misalnya untuk DOM. Dalam tahap ini, React memanggil `render` lalu membandingkannya dengan hasil _render_ sebelumnya.
 * Tahap **_commit_** yang terjadi saat React menerapkan perubahan yang ada. Pada kasus DOM, ini yang terjadi saat React menyisipkan, memperbarui, dan menghapus simpul DOM. React juga memanggil _lifecycle_ seperti `componentDidMount` dan `componentDidUpdate` dalam tahap ini.
 
+<<<<<<< HEAD
 Tahap _commit_ umumnya berlangsung sangat cepat, tetapi proses _render_ bisa sangat lambat. Dengan alasan ini, mode asinkronus mendatang (yang masih belum diaktifkan secara _default_)akan memecah proses _render_ menjadi beberapa bagian, menjeda dan melanjutkan proses untuk mencegah pemblokiran oleh browser. Ini berarti React mungkin memanggil _lifecycle_ _render_ lebih dari satu kali sebelum memanggil _commit_, atau memanggil _render_ tanpa sama sekali memanggil _commit_ (karena ada kesalahan atau adanya interupsi dari proritas yang lebih tinggi).
+=======
+The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
 
 _Lifecyle_ tahap _render_ menyertakan metode komponen kelas berikut:
 * `constructor`

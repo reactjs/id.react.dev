@@ -70,6 +70,10 @@ Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](codepen:/
 
 ![Inspektor DOM menunjukkan pembaruan yang bersifat *granular*](../images/docs/granular-dom-updates.gif)
 
+<<<<<<< HEAD
 Walaupun kita membuat sebuah elemen yang mendeskripsikan struktur antarmuka pengguna secara keseluruhan dalam setiap detiknya, hanya *node* teks yang kontennya mengalami perubahanlah yang akan diperbarui oleh React DOM.
+=======
+Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
 
 Menurut pengalaman kami, dengan hanya memikirkan tentang bagaimana antarmuka pengguna seharusnya terlihat pada saat tertentu daripada bagaimana ia berubah seiring waktu akan dapat mengeliminasi banyak *bug*.
