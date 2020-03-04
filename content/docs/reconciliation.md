@@ -141,11 +141,7 @@ Sebagai pilihan terakhir, Anda dapat mengoper sebuah indeks *item* dalam senarai
 
 Pengurutan kembali juga dapat menyebabkan masalah dengan *state* komponen saat indeks digunakan sebagai *key*. *Instance* komponen diperbarui dan digunakan kembali berdasarkan *key*-nya. Jika *key* adalah indeks, memindahkan sebuah *item* akan mengubahnya. Sebagai hasil, *state* komponen untuk hal seperti *uncontrolled input* dapat tercampur dan diperbarui dengan cara yang tidak terduga.
 
-<<<<<<< HEAD
-[Disini](codepen://reconciliation/index-used-as-key) adalah contoh masalah yang dapat disebabkan oleh penggunaan indeks sebagai *key* pada CodePen, dan [disini](codepen://reconciliation/no-index-used-as-key) adalah versi terbaru dari contoh yang sama menunjukan bagaimana agar tidak menggunakan indeks sebagai *key* akan memperbaiki pengurutan kembali, penyortiran, dan masalah yang saling terkait ini.
-=======
-Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key).
->>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
+[Disini adalah contoh masalah yang dapat disebabkan oleh penggunaan indeks sebagai *key*](codepen://reconciliation/index-used-as-key) pada CodePen, dan [disini adalah versi terbaru dari contoh yang sama menunjukan bagaimana agar tidak menggunakan indeks sebagai *key* akan memperbaiki pengurutan kembali, penyortiran, dan masalah yang saling terkait ini](codepen://reconciliation/no-index-used-as-key).
 
 ## Pengorbanan {#tradeoffs}
 

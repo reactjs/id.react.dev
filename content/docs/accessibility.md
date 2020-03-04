@@ -374,15 +374,9 @@ Di sini kita membutuhkan pengetahuan tentang [Peran (_Role_) ARIA](https://www.w
 
 Masing-masing jenis _widget_ memiliki pola desain yang spesifik; dan baik pengguna maupun perangkat (_agent_) sudah memiliki ekspekstasi tentang fungsi _widget_ tersebut:
 
-<<<<<<< HEAD
 - [Praktik-praktik Menulis WAI-ARIA - Pola Desain dan _Widget_](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
 - [Heydon Pickering - Contoh-contoh ARIA](http://heydonworks.com/practical_aria_examples/)
 - [Komponen-komponen Inklusif](https://inclusive-components.design/)
-=======
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
-- [Inclusive Components](https://inclusive-components.design/)
->>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
 
 ## Hal-hal Lain untuk Dipertimbangkan {#other-points-for-consideration}
 
