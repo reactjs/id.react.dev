@@ -167,8 +167,13 @@ Tetapi Anda bisa **menggunakan atribut `ref` di dalam *function component*** sel
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
+<<<<<<< HEAD
   // textInput harus dideklarasikan di sini agar ref bisa merujuknya
   let textInput = React.createRef();
+=======
+  // textInput must be declared here so the ref can refer to it
+  let textInput = useRef(null);
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
   function handleClick() {
     textInput.current.focus();

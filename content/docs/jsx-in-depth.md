@@ -42,8 +42,7 @@ di-*compile* menjadi:
 ```js
 React.createElement(
   'div',
-  {className: 'sidebar'},
-  null
+  {className: 'sidebar'}
 )
 ```
 
