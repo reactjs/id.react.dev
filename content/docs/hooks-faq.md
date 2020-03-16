@@ -71,7 +71,11 @@ Mulai dari 16.8.0, implementasi stabil dari React Hooks sudah tersedia untuk:
 
 Perhatikan bahwa **untuk menjalankan Hooks, semua *package* React perlu setidaknya pada versi 16.8.0 atau lebih tinggi**. *Hooks* tidak akan bekerja jika Anda lupa melakukan pembaruan, sebagai contohnya, React *DOM*.
 
+<<<<<<< HEAD
 [React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) dan versi di atasnya sudah mendukung Hooks.
+=======
+[React Native 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ### Apakah perlu menulis ulang semua komponen kelas saya?{#do-i-need-to-rewrite-all-my-class-components}
 
@@ -91,11 +95,19 @@ Hooks memiliki sebuah alur kurva pembelajarannya sendiri. Jika terdapat sesuatu 
 
 Ketika Anda siap, kami menganjurkan Anda untuk mulai mencoba *Hooks* dalam komponen-komponen baru yang Anda tulis. Pastikan setiap orang dalam tim Anda siap dan tidak asing dengan dokumentasi ini. Kami tidak merekomendasikan menulis ulang kelas-kelas Anda yang sudah ada ke *Hooks* kecuali Anda sudah berencana menulis ulang (seperti memperbaiki *bug*).
 
+<<<<<<< HEAD
 Anda tidak bisa menggunakan *Hooks* *di dalam* sebuah komponen kelas, tetapi Anda bisa mencampurkan komponen kelas dan fungsi dengan *Hooks* dalam sebuah tatanan. Tak peduli apakah sebuah komponen adalah kelas atau fungsi yang menggunakan Hooks, itu semua adalah implementasi rinci dari komponen tersebut. Dalam jangka waktu panjang, kami harap *Hooks* menjadi cara utama semua orang untuk menulis komponen React.
+=======
+You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ### Apakah *Hooks* mencakup seluruh kasus yang digunakan untuk kelas? {#do-hooks-cover-all-use-cases-for-classes}
 
+<<<<<<< HEAD
 Tujuan kami untuk *Hooks* yakni mencakup seluruh kasus yang digunakan untuk kelas sesegera mungkin. Tidak ada persamaan (*equivalent*) *Hooks* untuk *lifecyle* yang tidak umum seperti `getSnapshotBeforeUpdate` dan `componentDidCatch` sementara ini, namun kami berencana untuk menambahkannya segera.
+=======
+Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Sekarang adalah masa-masa awal untuk Hooks, dan *library* pihak ketiga bisa jadi tidak kompatibel dengan *Hooks* saat ini.
 
@@ -216,7 +228,11 @@ Terdapat beberapa heuristik lagi, dan hal tersebut bisa saja berubah sepanjang w
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: [`useEffect` *Hook*](/docs/hooks-reference.html#useeffect) dapat mengekspresikan semua kombinasi ini (termasuk kasus-kasus yang [kurang](#can-i-skip-an-effect-on-updates) [awam](#can-i-run-an-effect-only-on-updates)).
 
+<<<<<<< HEAD
 * `componentDidCatch` dan `getDerivedStateFromError`: Tidak ada persamaan Hook untuk *method* ini sementara ini, tetapi akan segera ditambahkan.
+=======
+* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ### Bagaimana cara saya dapat memperoleh data dengan Hooks?{#how-can-i-do-data-fetching-with-hooks}
 
@@ -287,7 +303,11 @@ Sekarang umpamakan kita ingin menuliskan beberapa logika yang mana merubah `left
 
 Ini karena ketika kita memperbarui sebuah *state variable*, kita merubah (*replace*) nilainya. Ini berbeda dari `this.setState` dalam sebuah kelas, yang mana menggabungkan (*merges*) area-area yang diperbarui ke dalam objek.
 
+<<<<<<< HEAD
 Jika Anda melihatkan penggabungan otomatis (*automatic merging*), Anda bisa menulis sebuah *custom Hook* `useLegacyState` yang menggabungkan pembaruan-pembaruan *state* objek.  Namun, sebagai gantinya **kami merekomendasikan untuk membagi *state* menjadi beberapa _state variable_ berdasarkan nilai mana yang cenderung berubah bersamaan.**
+=======
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Sebagai contohnya, kita bisa membagi *state* komponen menjadi `position` dan `size` objek, serta selalu merubah `position` tanpa harus proses penggabungan:
 
@@ -578,7 +598,11 @@ Tergantung pada kasus penggunaan Anda, terdapat beberapa pilihan lainnya sebagai
 
 Mari kita lihat mengapa hal ini penting.
 
+<<<<<<< HEAD
 Jika Anda menspesifikasikan sebuah [daftar *dependency*](/docs/hooks-reference.html#conditionally-firing-an-effect) sebagai sebuah argumen terakhir untuk `useEffect`, `useMemo`, `useCallback`, atau `useImperativeHandle`, haruslah termasuk semua nilai yang digunakan di dalamnya yang ikut andil dalam *data flow* React. Itu termasuk *prop, state,* dan apapun yang berasal dari keduanya.
+=======
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Hal tersebut **hanya akan** aman untuk menghilangkan sebuah fungsi dari daftar *dependency* jika tidak terjadi apa-apa di dalamnya (atau fungsi lain yang terpanggil) yang merujuk pada *prop, state,* atau nilai yang berasal dari keduanya. Contoh berikut memiliki *bug*:
 
@@ -587,7 +611,11 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
+<<<<<<< HEAD
     const response = await fetch('http://myapi/product' + productId); // Menggunakan productId prop
+=======
+    const response = await fetch('http://myapi/product/' + productId); // Uses productId prop
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
     const json = await response.json();
     setProduct(json);
   }
@@ -608,7 +636,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // Dengan memindahkan fungsi ini ke dalam efek, kita bisa dengan jelas melihat nilai-nilai yang digunakan.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }
