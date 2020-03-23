@@ -47,7 +47,11 @@ class Welcome extends React.Component {
 
 Dari sudut pandang React, kedua komponen di atas mempunyai nilai yang sama.
 
+<<<<<<< HEAD
 Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai di sini, kita akan menggunakan komponen fungsional untuk mempersingkatnya.
+=======
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 ## Merender sebuah Komponen {#rendering-a-component}
 
@@ -64,9 +68,13 @@ oleh pengguna:
 const element = <Welcome name="Sara" />;
 ```
 
+<<<<<<< HEAD
 Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh
 pengguna, komponen mengoper atribut JSX ke dalam komponen ini sebagai
 *single-object*.
+=======
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 Sebagai contoh, kode ini akan me-*render* "Halo, Sara" pada laman:
 
