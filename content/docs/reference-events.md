@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -75,6 +76,7 @@ _Event handler_ di bawah dipicu oleh _event_ dalam fase _bubbling_. Untuk mendaf
 - [Keyboard Events](#keyboard-events)
 - [Focus Events](#focus-events)
 - [Form Events](#form-events)
+- [Generic Events](#generic-events)
 - [Mouse Events](#mouse-events)
 - [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
@@ -176,10 +178,20 @@ DOMEventTarget relatedTarget
 Nama-nama _event_:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 Untuk informasi lebih mengenai _event_ `onChange`, lihat [Forms](/docs/forms.html).
+
+* * *
+
+### Generic Events {#generic-events}
+
+Event names:
+
+```
+onError onLoad
+```
 
 * * *
 

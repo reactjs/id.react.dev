@@ -177,7 +177,11 @@ const element = {
 
 Objek seperti ini disebut "elemen React". Anda dapat menganggap mereka sebagai deskripsi dari apa yang Anda ingin lihat di layar. React membaca objek-objek ini dan menggunakan mereka untuk membangun DOM dan membuatnya tetap sesuai dengan kondisi saat ini.
 
+<<<<<<< HEAD
 Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam bagian berikutnya.
+=======
+We will explore rendering React elements to the DOM in the [next section](/docs/rendering-elements.html).
+>>>>>>> 9e5a358cb24a665fc48615ae224f26a4f2191b32
 
 >**Saran:**
 >

@@ -74,7 +74,7 @@ Ketika kita ingin berbagi komponen logika antara dua fungsi Javascript, kita men
 **Sebuah Hook kustom adalah sebuah fungsi Javascript yang namanya dimulai dengan "`use`" dan mungkin memanggil Hooks lain.** Misalnya, `useFriendStatus` dibawah ini adalah Hooks kustom pertama kami:
 
 ```js{3}
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
