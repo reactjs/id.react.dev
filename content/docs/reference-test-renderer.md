@@ -129,7 +129,7 @@ expect(root.toJSON()).toMatchSnapshot();
 
 // memperbarui dengan prop berbeda
 act(() => {
-  root = root.update(<App value={2}/>);
+  root.update(<App value={2}/>);
 })
 
 // membuat perbandingan dengan root 

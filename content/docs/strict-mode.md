@@ -97,12 +97,22 @@ _Lifecyle_ tahap _render_ menyertakan metode komponen kelas berikut:
 
 Oleh karena metode di atas mungkin dipanggil lebih dari satu kali, sangat penting bagi metode tersebut untuk tidak menimbulkan efek samping. Pengabaian atas aturan ini bisa menyebabkan berbagai macam masalah, termasuk kebocoran memori dan _state_ aplikasi yang tidak valid. Sayangnya, mungkin sangat sulit untuk mendeteksi masalah tersebut karena masalahnya mungkin bersifat [non-deterministik](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
+<<<<<<< HEAD
 Mode ketat tidak bisa mendeteksi efek samping secara otomatis, tetapi bisa membantu Anda untuk menemukannya dengan membuatnya menjadi lebih deterministik. Ini dilakukan dengan memanggil metode berikut dua kali secara sengaja:
 
 * Metode `constructor` komponen kelas
 * Metode `render`
 * Fungsi pembaruan `setState` (argumen pertama)
 * _Lifecycle_ statis `getDerivedStateFromProps`
+=======
+Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following functions:
+
+* Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
+>>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
 
 > Catatan:
 >

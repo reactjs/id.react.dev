@@ -27,6 +27,8 @@ Dengan mengikuti aturan ini, Anda dapat dengan yakin memastikan bahwa semua logi
 
 Kami membuat sebuah *ESLint plugin* dengan nama [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) yang membantu menekankan dua aturan-aturan ini. Anda dapat menambahkan *plugin* ini ke proyek Anda jika Anda ingin mencobanya:
 
+This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
@@ -46,9 +48,13 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
+<<<<<<< HEAD
 *Plugin* ini sudah disediakan secara bawaan pada [Create React App](/docs/create-a-new-react-app.html#create-react-app).
 
 **Anda dapat melompat ke laman selanjutnya yang menjelaskan bagaimana membuat [*Hooks* Anda sendiri](/docs/hooks-custom.html) sekarang.** Di laman ini, kita akan melanjutkan dengan menjelaskan pemikiran dibalik aturan-aturan ini.
+=======
+**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+>>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
 
 ## Penjelasan {#explanation}
 
