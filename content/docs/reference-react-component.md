@@ -502,7 +502,7 @@ Hanya ada dua metode, yaitu: `setState()` dan `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater[, callback])
+setState(updater, [callback])
 ```
 
 `setState()` mengantrekan perubahan atas _state_ komponen dan memberi tahu React bahwa komponen ini beserta anaknya harus di-_render_ ulang dengan _state_ terbaru. Metode ini merupakan metode utama yang Anda gunakan untuk memperbarui antarmuka sebagai reaksi atas _event handler_ dan balasan server.
