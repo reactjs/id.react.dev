@@ -190,11 +190,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-<<<<<<< HEAD
 Ada sedikit masalah dengan kode ini. Salah satunya ialah komponen masukan tidak dapat digunakan kembali secara terpisah dari komponen yang ditingkatkan. lebih petingnya lagi, jika Anda menerapkan HOC yang lain ke `EnhancedComponent` yang *juga* memutasi `componentWillReceiveProps`, fungsionalitas HOC pertama akan ditimpa! HOC ini juga tidak akan bekerja dengan fungsional komponen, yang mana tidak memiliki sikuls metode.
-=======
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 Mengubah HOC merupakan kebocoran abstraksi - pengguna harus mengerti bagaimana mereka diimplementasikan untuk menghindari konflik dengan HOC lainnya.
 

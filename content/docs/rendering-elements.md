@@ -34,11 +34,7 @@ Kita menyebut ini sebagai *node DOM* "akar" karena semua yang berada di dalamnya
 
 Aplikasi yang dibuat dengan React biasanya memiliki satu *node DOM* akar. Jika Anda mengintegrasikan React ke dalam aplikasi yang sudah ada, Anda dapat memiliki *node DOM* akar yang terisolasi sebanyak yang Anda inginkan.
 
-<<<<<<< HEAD
-Untuk me-*render* sebuah elemen React ke dalam sebuah *node DOM* akar, oper keduanya ke `ReactDOM.render()`:
-=======
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Untuk me-*render* sebuah elemen React ke dalam sebuah *node DOM* akar, oper keduanya ke [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 `embed:rendering-elements/render-an-element.js`
 

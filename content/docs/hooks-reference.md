@@ -69,11 +69,7 @@ function Counter({initialCount}) {
 
 Tombol "+" dan "-" menggunakan bentuk fungsional, karena nilai yang telah diperbarui didasari oleh nilai sebelumnya. Tetapi tombol "Reset" menggunakan bentuk normal, karena tombol tersebut selalu mengatur perhitungan kembali ke nilai awal.
 
-<<<<<<< HEAD
-Jika fungsi pembaruan Anda mengembalikan nilai yang sama, pe-_render_-an ulang selanjutnya akan dilewati.
-=======
-If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Jika fungsi pembaruan Anda mengembalikan nilai yang sama dengan _state_ saat ini, pe-_render_-an ulang selanjutnya akan dilewati.
 
 > Catatan
 >

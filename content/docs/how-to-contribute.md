@@ -55,13 +55,8 @@ Facebook memiliki [program berhadiah](https://www.facebook.com/whitehat/) untuk 
 
 ### Bagaimana Cara Berhubungan {#how-to-get-in-touch}
 
-<<<<<<< HEAD
 * IRC: [#reactjs pada freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Forum diskusi](https://reactjs.org/community/support.html#popular-discussion-forums)
-=======
-* IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Discussion forums](/community/support.html#popular-discussion-forums)
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+* [Forum diskusi](/community/support.html#popular-discussion-forums)
 
 Terdapat pula [komunitas aktif pengguna React pada platform komunikasi Discord](https://www.reactiflux.com/) jika Anda membutuhkan bantuan mengenai React.
 
@@ -108,16 +103,10 @@ Anda perlu melengkapi CLA agar kami dapat menyetujui _pull request_ Anda. Anda h
 
 ### Prasyarat Kontribusi {#contribution-prerequisites}
 
-<<<<<<< HEAD
 * Anda telah memasang [Node](https://nodejs.org) pada v8.0.0+ dan Yarn](https://yarnpkg.com/en/) pada v1.2.0+.
+* Anda telah memasang [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
 * Anda telah memasang `gcc` atau dapat memasang _compiler_ jika dibutuhkan. Beberapa _dependency_ dapat membutuhkan tahapan kompilasi. Pada OS X, _Command Line Tools_ Xcode saja cukup. Pada Ubuntu, `apt-get install build-essential` akan memasang _package_ yang dibutuhkan. Perintah sejenis seharusnya dapat bekerja pada distro Linux lainnya. Windows akan membutuhkan beberapa langkah tambahan, lihat [instruksi pemasangan `node-gyp`](https://github.com/nodejs/node-gyp#installation) untuk informasi lebih lengkap.
 * Anda familiar dengan Git.
-=======
-* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
-* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with Git.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ### Alur Kerja Pengembangan {#development-workflow}
 
@@ -141,13 +130,9 @@ Pertama jalankan `yarn build`. Perintah ini akan menghasilkan bundel-bundel yang
 
 Cara termudah untuk mencoba perubahan Anda adalah dengan menjalankan `yarn build react/index,react-dom/index --type=UMD` kemudian membuka `fixtures/packaging/babel-standalone/dev.html`. _File_ ini telah menggunakan `react.development.js` dari folder `build` sehingga ia akan menangkap perubahan Anda.
 
-<<<<<<< HEAD
-Jika Anda ingin mencoba perubahan Anda pada proyek React yang sudah ada, Anda bisa menyalin `build/dist/react.development.js`, `build/dist/react-dom.development.js`, atau produk _build_ lainnya ke dalam aplikasi Anda dan menggunakan mereka daripada versi stabilnya. Jika proyek Anda menggunakan React dari npm, Anda dapat menghapus `react` dan `react-dom` pada _dependencies_-nya dan menggunakan `yarn link` untuk mengarahkan mereka pada folder _build_ lokal Anda:
-=======
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+Jika Anda ingin mencoba perubahan Anda pada proyek React yang sudah ada, Anda bisa menyalin `build/dist/react.development.js`, `build/dist/react-dom.development.js`, atau produk _build_ lainnya ke dalam aplikasi Anda dan menggunakan mereka daripada versi stabilnya.
 
-If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Jika proyek Anda menggunakan React dari npm, Anda dapat menghapus `react` dan `react-dom` pada _dependencies_-nya dan menggunakan `yarn link` untuk mengarahkan mereka pada folder _build_ lokal Anda:
 
 ```sh
 cd ~/path_to_your_react_clone/
@@ -164,13 +149,9 @@ yarn link react react-dom
 
 Setiap kali Anda menjalankan `yarn build` pada folder React, versi terbaru akan muncul pada `node_modules` di proyek Anda. Anda dapat melakukan _rebuild_ proyek untuk mencoba perubahan Anda.
 
-<<<<<<< HEAD
-Kami masih mengharuskan _pull request_ Anda berisi _unit test_ untuk setiap fungsionalitas baru. Dengan begitu, kami dapat memastikan bahwa kami tidak akan merusak kode Anda di kemudian hari.
-=======
-If some package is still missing (e.g. maybe you use `react-dom/server` in your project), you can always do a full build with `yarn build`. Note that running `yarn build` without options takes a long time.
+Jika ada beberapa _package_ yang masih hilang (mis. mungkin Anda menggunakan `react-dom/server` di proyek Anda), Anda dapat melakukan _full build_ dengan `yarn build`. Perlu dicatat bahwa menjalankan `yarn build` tanpa opsi akan memerlukan waktu yang lama.
 
-We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Kami masih mengharuskan _pull request_ Anda berisi _unit test_ untuk setiap fungsionalitas baru. Dengan begitu, kami dapat memastikan bahwa kami tidak akan merusak kode Anda di kemudian hari.
 
 ### Panduan _Style_ {#style-guide}
 
@@ -182,24 +163,7 @@ Anda dapat memeriksa status dari _style_ kode Anda secara mudah dengan menjalank
 
 Bagaimanapun, tetap ada beberapa _style_ yang tidak dapat dideteksi oleh _linter_. Jika Anda ragu mengenai sesuatu, melihat [Panduan _Style_ Airbnb](https://github.com/airbnb/javascript) akan memandu Anda ke arah yang tepat.
 
-<<<<<<< HEAD
-### Video Pengantar {#introductory-video}
-
-Anda mungkin tertarik untuk menonton [video singkat ini](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 menit) yang memberikan pengantar mengenai bagaimana cara berkontribusi pada React.
-
-#### Video yang Penting: {#video-highlights}
-- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Membangun dan mengetes React secara lokal
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Membuat dan mengirimkan _pull request_
-- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Mengorganisir kode
-- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Menambahkan fitur baru pada React
-
-Untuk gambaran realistik mengenai seperti apa _rasanya_ berkontribusi pada React untuk pertama kalinya, cek [acara ReactNYC yang menarik ini](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
-
 ### Meminta Komentar (RFC) {#request-for-comments-rfc}
-=======
-### Request for Comments (RFC) {#request-for-comments-rfc}
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Banyak perubahan, termasuk perbaikan _bug_ dan penyempurnaan dokumentasi dapat diimplementasi dan ditinjau melalui alur _pull request_ GitHub pada umumnya.
 

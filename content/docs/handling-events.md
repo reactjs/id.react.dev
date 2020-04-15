@@ -135,13 +135,8 @@ class LoggingButton extends React.Component {
   render() {
     // Sintaksis ini memastikan `this` telah terikat dalam handleClick.
     return (
-<<<<<<< HEAD
-      <button onClick={(e) => this.handleClick(e)}>
-        Klik Saya
-=======
       <button onClick={() => this.handleClick()}>
-        Click me
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+        Klik Saya
       </button>
     );
   }

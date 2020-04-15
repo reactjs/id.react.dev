@@ -74,14 +74,7 @@ import("./math").then(math => {
 });
 ```
 
-<<<<<<< HEAD
-Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika Anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika Anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
 
 Jika Anda membuat sendiri pengaturan Webpack Anda, Anda mungkin dapat melihat [panduan untuk melakukan *code-splitting* ini](https://webpack.js.org/guides/code-splitting/). Pengaturan Webpack Anda kira-kira akan terlihat mirip [seperti ini](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 

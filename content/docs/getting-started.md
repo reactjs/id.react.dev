@@ -36,11 +36,7 @@ React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat mengguna
 
 ### Online Playgrounds {#online-playgrounds}
 
-<<<<<<< HEAD
-Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
+Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), atau [Stackblitz](https://stackblitz.com/fork/react).
 
 Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 

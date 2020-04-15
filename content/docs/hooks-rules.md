@@ -48,13 +48,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-<<<<<<< HEAD
-*Plugin* ini sudah disediakan secara bawaan pada [Create React App](/docs/create-a-new-react-app.html#create-react-app).
-
 **Anda dapat melompat ke laman selanjutnya yang menjelaskan bagaimana membuat [*Hooks* Anda sendiri](/docs/hooks-custom.html) sekarang.** Di laman ini, kita akan melanjutkan dengan menjelaskan pemikiran dibalik aturan-aturan ini.
-=======
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
->>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 ## Penjelasan {#explanation}
 
