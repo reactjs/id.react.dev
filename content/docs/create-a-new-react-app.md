@@ -38,9 +38,13 @@ Tim React sangat merekomendasikan solusi ini:
 ### Create React App {#create-react-app}
 
 
+<<<<<<< HEAD
 [Create React App](http://github.com/facebookincubator/create-react-app) adalah sebuah lingkungan yang nyaman untuk **mempelajari React**, dan merupakan cara terbaik untuk membangun **sebuah aplikasi [*single-page*](/docs/glossary.html#single-page-application)** di React.
 
 Create React App mengatur lingkungan pengembangan Anda. Sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi Anda untuk lingkungan produksi. Anda membutuhkan Node >= 8.10 dan npm >= 5.6 di komputer Anda. Untuk membuat suatu proyek baru, jalankan:
+=======
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 8.10 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 ```bash
 npx create-react-app my-app

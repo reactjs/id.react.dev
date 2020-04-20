@@ -31,8 +31,13 @@ function Example() {
 
 >Catatan
 >
+<<<<<<< HEAD
 >React 16.8.0 adalah versi rilis pertama yang mendukung *Hooks*. Ketika melakukan *upgrade*, jangan lupa untuk memperbarui semua *package*, termasuk React DOM.
 >React Native mendukung *Hooks* sejak [versi rilis 0.59 dari React Native](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
+=======
+>React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
+>React Native supports Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 ## Video Pengenalan {#video-introduction}
 

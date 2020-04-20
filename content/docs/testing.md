@@ -14,7 +14,11 @@ Ada beberapa cara untuk mengeteskomponen pada React. Secara umum, terbagi menjad
 * **_Rendering component trees_** di dalam _environment_ tes yang sudah disederhanakan dan ditegaskan pada keluarannya.
 * **Menjalankan aplikasi lengkap** di dalam _environment_ peramban asli (juga dikenal sebagai tes “end-to-end”).
 
+<<<<<<< HEAD
 Bagian dokumentasi ini berfokus pada strategi tes untuk kasus pertama. Sementara tes _end-to-end_ secara menyeluruh bisa sangat berguna untuk mencegah regresi terhadap alur kerja yang penting, tes semacam itu tidak diperhatikan terutama pada komponen React, dan berada di luar cakupan bagian ini.
+=======
+This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 ### _Tradeoffs_ {#tradeoffs}
 

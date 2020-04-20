@@ -177,9 +177,9 @@ Tahan godaan untuk memodifikasi prototipe komponen (jika tidak, lakukan mutasi) 
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // Fakta bahwa kita mengembalikan masukan original merupakan petunjuk bahwa hal itu 
   // telah dimutasi
@@ -190,7 +190,11 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
+<<<<<<< HEAD
 Ada sedikit masalah dengan kode ini. Salah satunya ialah komponen masukan tidak dapat digunakan kembali secara terpisah dari komponen yang ditingkatkan. lebih petingnya lagi, jika Anda menerapkan HOC yang lain ke `EnhancedComponent` yang *juga* memutasi `componentWillReceiveProps`, fungsionalitas HOC pertama akan ditimpa! HOC ini juga tidak akan bekerja dengan fungsional komponen, yang mana tidak memiliki sikuls metode.
+=======
+There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 Mengubah HOC merupakan kebocoran abstraksi - pengguna harus mengerti bagaimana mereka diimplementasikan untuk menghindari konflik dengan HOC lainnya.
 
@@ -199,9 +203,9 @@ Daripada mutasi, HOC seharusnya menggunakan _composition_, dengan membungkus kom
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Bungkus komponen masukan dalam *container*, tanpa memutasinya. Bagus!

@@ -68,6 +68,7 @@ class NameForm extends React.Component {
 
 Karena atribut `value` telah kita set pada elemen form, nilai yang ditampilkan akan selalu sama dengan `this.state.value`, yang menjadikan React sebagai sumber kebenaran tunggal dari _state_. Dan karena `handleChange` dijalankan setiap ketikan untuk memperbarui _state_ React, nilai yang ditampilkan akan terbarui ketika pengguna mengetik.
 
+<<<<<<< HEAD
 Dengan sebuah _controlled component_, setiap perubahan _state_ akan memiliki sebuah fungsi _handler_ yang terkait. Hal ini memudahkan untuk memodifikasi atau memvalidasi masukan pengguna. Sebagai contoh, jika kita ingin mengharuskan nama untuk seluruhnya ditulis dengan huruf kapital, kita dapat menuliskan `handleChange` sebagai:
 
 ```javascript{2}
@@ -75,6 +76,9 @@ handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()});
 }
 ```
+=======
+With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 ## Tag textarea {#the-textarea-tag}
 
@@ -220,7 +224,7 @@ class Reservation extends React.Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.name === 'isGoing' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
