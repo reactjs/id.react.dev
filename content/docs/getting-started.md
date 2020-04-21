@@ -36,7 +36,7 @@ React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat mengguna
 
 ### Online Playgrounds {#online-playgrounds}
 
-Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world) atau [CodeSandbox](https://codesandbox.io/s/new).
+Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), atau [Stackblitz](https://stackblitz.com/fork/react).
 
 Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 
@@ -83,7 +83,11 @@ Kami sarankan untuk menggunakan [ikhtisar JavaScript ini](https://developer.mozi
 
 ### Tutorial Praktis {#practical-tutorial}
 
+<<<<<<< HEAD
 Jika Anda lebih suka **belajar dengan mempraktikkan** periksa [tutorial](/tutorial/tutorial.html) kami. Dalam tutorial ini, kami membuat game tic-tac-toe dengan React. Anda mungkin tergoda untuk melewati karena Anda tidak membuat game -- tetapi berikanlah kesempatan untuk mencoba. Teknik yang akan Anda pelajari dalam tutorial ini sangat penting untuk membangun aplikasi *apapun* dengan React, dan menguasainya akan memberi Anda pemahaman yang lebih dalam.
+=======
+If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 ### Panduan Langkah demi Langkah {#step-by-step-guide}
 

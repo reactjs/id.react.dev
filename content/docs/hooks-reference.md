@@ -69,7 +69,7 @@ function Counter({initialCount}) {
 
 Tombol "+" dan "-" menggunakan bentuk fungsional, karena nilai yang telah diperbarui didasari oleh nilai sebelumnya. Tetapi tombol "Reset" menggunakan bentuk normal, karena tombol tersebut selalu mengatur perhitungan kembali ke nilai awal.
 
-Jika fungsi pembaruan Anda mengembalikan nilai yang sama, pe-_render_-an ulang selanjutnya akan dilewati.
+Jika fungsi pembaruan Anda mengembalikan nilai yang sama dengan _state_ saat ini, pe-_render_-an ulang selanjutnya akan dilewati.
 
 > Catatan
 >
@@ -438,7 +438,11 @@ Ingatlah bahwa `useRef` *tidak* memberi tahu Anda ketika kontennya berubah. Memu
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
+<<<<<<< HEAD
 `useImperativeHandle` mengkustomisasi nilai contoh yang diekspos ke komponen induk saat menggunakan `ref`. Seperti biasanya, kode imperatif yang menggunakan refs harus dihindari dalam banyak kasus. `useImperativeHandle` harus digunakan dengan `forwardRef`:
+=======
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with [`forwardRef`](/docs/react-api.html#reactforwardref):
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 ```js
 function FancyInput(props, ref) {

@@ -15,12 +15,6 @@ Jika Anda ingin [berkontribusi pada React](/docs/how-to-contribute.html) kami be
 
 Kami tidak selalu merekomendasikan konvensi ini pada aplikasi React. Banyak di antaranya ada karena alasan historis dan mungkin berubah seiring berjalannya waktu.
 
-### _Dependency_ Eksternal {#external-dependencies}
-
-React hampir tidak memiliki _dependency_ eksternal. Biasanya, `require()` mengacu pada sebuah _file_ pada basis kode React sendiri. Bagaimanapun, ada sedikit pengecualian yang relatif langka.
-
-[Repositori fbjs](https://github.com/facebook/fbjs) ada karena React berbagi beberapa utilitas dengan _library_ seperti [Relay](https://github.com/facebook/relay), dan kami menjaga mereka tetap sinkron. Kami tidak bergantung pada modul-modul kecil yang ekuivalen pada ekosistem Node karena kami ingin _engineer_ Facebook dapat mengubahnya kapanpun dibutuhkan. Tidak ada satupun utilitas dalam fbjs yang dianggap sebagai API publik, dan hanya ditujukan untuk penggunaan oleh proyek Facebook seperti React.
-
 ### Folder Level Atas {#top-level-folders}
 
 Setelah melakukan kloning pada [repositori React](https://github.com/facebook/react), Anda akan melihat beberapa folder teratas di dalamnya:
@@ -170,7 +164,7 @@ Kode untuk inti React terletak di [`packages/react`](https://github.com/facebook
 
 ### _Renderer_ {#renderers}
 
-React mulanya dibuat demi DOM tetapi kemudian diadaptasi untuk mendukung platform _native_ dengan [React Native](https://facebook.github.io/react-native/). Hal ini memperkenalkan konsep _renderer_ pada tim internal React.
+React mulanya dibuat demi DOM tetapi kemudian diadaptasi untuk mendukung platform _native_ dengan [React Native](https://reactnative.dev/). Hal ini memperkenalkan konsep _renderer_ pada tim internal React.
 
 **_Renderer_ mengatur bagaimana sebuah diagram React berubah menjadi panggilan platform yang mendasarinya**
 

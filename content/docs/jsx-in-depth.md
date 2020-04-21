@@ -42,8 +42,7 @@ di-*compile* menjadi:
 ```js
 React.createElement(
   'div',
-  {className: 'sidebar'},
-  null
+  {className: 'sidebar'}
 )
 ```
 
@@ -228,7 +227,7 @@ Jika Anda tidak mengoper nilai apapun ke sebuah *prop*, nilai *default*-nya adal
 <MyTextBox autocomplete={true} />
 ```
 
-Secara umum, kami tidak merekomendasikan menggunakan cara ini karena bisa membingungkan Anda dengan [*shorthand* objek *ES6*](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` yang merupakan kependekan dari `{foo: foo}` ketimbang `{foo: true}`. *Behavior* ini demikian adanya karena cocok dengan perilaku HTML.
+Secara umum, kami tidak merekomendasikan menggunakan cara ini karena bisa membingungkan Anda dengan [*shorthand* objek *ES6*](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` yang merupakan kependekan dari `{foo: foo}` ketimbang `{foo: true}`. Perilaku ini demikian adanya karena cocok dengan perilaku HTML.
 
 ### Menyebarkan Atribut {#spread-attributes}
 

@@ -177,9 +177,9 @@ Tahan godaan untuk memodifikasi prototipe komponen (jika tidak, lakukan mutasi) 
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // Fakta bahwa kita mengembalikan masukan original merupakan petunjuk bahwa hal itu 
   // telah dimutasi
@@ -199,9 +199,9 @@ Daripada mutasi, HOC seharusnya menggunakan _composition_, dengan membungkus kom
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Bungkus komponen masukan dalam *container*, tanpa memutasinya. Bagus!

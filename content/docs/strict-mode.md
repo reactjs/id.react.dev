@@ -99,10 +99,11 @@ Oleh karena metode di atas mungkin dipanggil lebih dari satu kali, sangat pentin
 
 Mode ketat tidak bisa mendeteksi efek samping secara otomatis, tetapi bisa membantu Anda untuk menemukannya dengan membuatnya menjadi lebih deterministik. Ini dilakukan dengan memanggil metode berikut dua kali secara sengaja:
 
-* Metode `constructor` komponen kelas
-* Metode `render`
-* Fungsi pembaruan `setState` (argumen pertama)
-* _Lifecycle_ statis `getDerivedStateFromProps`
+* Metode `constructor`, `render`, dan `shouldComponentUpdate` komponen kelas
+* Metode statis `getDerivedStateFromProps` komponen kelas
+* Isi komponen fungsi
+* Fungsi pembaruan *state* (argumen pertama `setState`)
+* Fungsi yang dioper ke `useState`, `useMemo`, atau `useReducer`
 
 > Catatan:
 >

@@ -8,7 +8,11 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<<<<<<< HEAD
 Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaksis:
+=======
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 * *Events* pada React biasanya ditulis dalam bentuk *camelCase*, bukan *lowercase*.
 * Dengan JSX Anda dapat mengoper *function* sebagai *event handler*, bukan sebagai *string*.
@@ -131,7 +135,7 @@ class LoggingButton extends React.Component {
   render() {
     // Sintaksis ini memastikan `this` telah terikat dalam handleClick.
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Klik Saya
       </button>
     );

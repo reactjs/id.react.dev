@@ -74,7 +74,7 @@ import("./math").then(math => {
 });
 ```
 
-Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika Anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Ketika Webpack membaca sintaks ini, maka proses *code-splitting* pada aplikasi Anda akan dijalankan. Jika Anda menggunakan *Create React App*, pengaturan ini sudah tersedia dan Anda bisa [langsung menggunakannya](https://facebook.github.io/create-react-app/docs/code-splitting). Pengaturan ini juga disediakan di [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
 
 Jika Anda membuat sendiri pengaturan Webpack Anda, Anda mungkin dapat melihat [panduan untuk melakukan *code-splitting* ini](https://webpack.js.org/guides/code-splitting/). Pengaturan Webpack Anda kira-kira akan terlihat mirip [seperti ini](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
@@ -107,6 +107,8 @@ Dengan menggunakan cara ini, bundel yang mengandung `OtherComponent` akan termua
 Komponen *lazy* kemudian akan ter-*render* di dalam sebuah komponen `Suspense`, yang membuat kita dapat memunculkan sebuah komponen pengganti (misalnya memunculkan indikator *loading*) selagi kita menunggu komponen *lazy* selesai dimuat.
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
@@ -122,6 +124,8 @@ function MyComponent() {
 *Props* `fallback` dapat diisi dengan elemen React apapun yang ingin Anda tampilkan selama menunggu komponen untuk dimuat. Anda bisa menggunakan komponen `Suspense` dimanapun di atas komponen yang dimuat secara *lazy*. Anda bahkan dapat membungkus beberapa komponen *lazy* dengan sebuah komponen *Suspense*.
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -144,7 +148,9 @@ function MyComponent() {
 Jika sebuah modul gagal dimuat (misalnya karena kesalahan jaringan), maka sebuah *error* akan terpicu. Anda dapat menangani *error* tersebut untuk menampilkan *user experience* yang baik dan memungkinkan pembenahan kembali dengan menggunakan [Batasan *Error*](/docs/error-boundaries.html). Ketika Anda telah membuat batasan *error*, Anda dapat menggunakannya pada komponen *lazy* untuk memunculkan tampilan *error* khusus ketika terjadi kesalahan jaringan.
 
 ```js
+import React, { Suspense } from 'react';
 import MyErrorBoundary from './MyErrorBoundary';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -171,8 +177,8 @@ Tempat awal yang baik untuk memulai adalah dari *route*. Kebanyakan orang yang m
 Berikut contoh bagaimana cara mengatur *code-splitting* berdasarkan *route* dengan `React.lazy` pada *library* semacam [React Router](https://reacttraining.com/react-router/).
 
 ```js
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));

@@ -71,7 +71,7 @@ Mulai dari 16.8.0, implementasi stabil dari React Hooks sudah tersedia untuk:
 
 Perhatikan bahwa **untuk menjalankan Hooks, semua *package* React perlu setidaknya pada versi 16.8.0 atau lebih tinggi**. *Hooks* tidak akan bekerja jika Anda lupa melakukan pembaruan, sebagai contohnya, React *DOM*.
 
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) dan versi di atasnya sudah mendukung Hooks.
+[React Native 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) dan versi di atasnya sudah mendukung Hooks.
 
 ### Apakah perlu menulis ulang semua komponen kelas saya?{#do-i-need-to-rewrite-all-my-class-components}
 
@@ -216,7 +216,7 @@ Terdapat beberapa heuristik lagi, dan hal tersebut bisa saja berubah sepanjang w
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: [`useEffect` *Hook*](/docs/hooks-reference.html#useeffect) dapat mengekspresikan semua kombinasi ini (termasuk kasus-kasus yang [kurang](#can-i-skip-an-effect-on-updates) [awam](#can-i-run-an-effect-only-on-updates)).
 
-* `componentDidCatch` dan `getDerivedStateFromError`: Tidak ada persamaan Hook untuk *method* ini sementara ini, tetapi akan segera ditambahkan.
+* `getSnapshotBeforeUpdate`, `componentDidCatch` dan `getDerivedStateFromError`: Tidak ada persamaan Hook untuk *method* ini sementara ini, tetapi akan segera ditambahkan.
 
 ### Bagaimana cara saya dapat memperoleh data dengan Hooks?{#how-can-i-do-data-fetching-with-hooks}
 
@@ -578,7 +578,7 @@ Tergantung pada kasus penggunaan Anda, terdapat beberapa pilihan lainnya sebagai
 
 Mari kita lihat mengapa hal ini penting.
 
-Jika Anda menspesifikasikan sebuah [daftar *dependency*](/docs/hooks-reference.html#conditionally-firing-an-effect) sebagai sebuah argumen terakhir untuk `useEffect`, `useMemo`, `useCallback`, atau `useImperativeHandle`, haruslah termasuk semua nilai yang digunakan di dalamnya yang ikut andil dalam *data flow* React. Itu termasuk *prop, state,* dan apapun yang berasal dari keduanya.
+Jika Anda menspesifikasikan sebuah [daftar *dependency*](/docs/hooks-reference.html#conditionally-firing-an-effect) sebagai sebuah argumen terakhir untuk `useEffect`, `useMemo`, `useCallback`, atau `useImperativeHandle`, haruslah termasuk semua nilai yang digunakan di dalamnya yang ikut andil dalam *data flow* React. Itu termasuk *props*, *state*, dan apapun yang berasal dari keduanya.
 
 Hal tersebut **hanya akan** aman untuk menghilangkan sebuah fungsi dari daftar *dependency* jika tidak terjadi apa-apa di dalamnya (atau fungsi lain yang terpanggil) yang merujuk pada *prop, state,* atau nilai yang berasal dari keduanya. Contoh berikut memiliki *bug*:
 
@@ -587,7 +587,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Menggunakan productId prop
+    const response = await fetch('http://myapi/product/' + productId); // Menggunakan prop productId
     const json = await response.json();
     setProduct(json);
   }
@@ -608,7 +608,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // Dengan memindahkan fungsi ini ke dalam efek, kita bisa dengan jelas melihat nilai-nilai yang digunakan.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }
@@ -715,13 +715,8 @@ Sebagai pilihan terakhir, jika Anda ingin sesuatu seperti `this` dalam sebuah ke
 
 ```js{2-6,10-11,16}
 function Example(props) {
-<<<<<<< HEAD
   // Jaga prop terkini dalam sebuah ref.
-  let latestProps = useRef(props);
-=======
-  // Keep latest props in a ref.
   const latestProps = useRef(props);
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
   useEffect(() => {
     latestProps.current = props;
   });

@@ -47,7 +47,7 @@ class Welcome extends React.Component {
 
 Dari sudut pandang React, kedua komponen di atas mempunyai nilai yang sama.
 
-Kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [sesi selanjutnya](/docs/state-and-lifecycle.html). Sampai di sini, kita akan menggunakan komponen fungsional untuk mempersingkatnya.
+Komponen fungsi dan kelas mempunyai beberapa fitur tambahan yang akan kita diskusikan di [bagian selanjutnya](/docs/state-and-lifecycle.html).
 
 ## Merender sebuah Komponen {#rendering-a-component}
 
@@ -64,9 +64,7 @@ oleh pengguna:
 const element = <Welcome name="Sara" />;
 ```
 
-Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh
-pengguna, komponen mengoper atribut JSX ke dalam komponen ini sebagai
-*single-object*.
+Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh pengguna, komponen mengoper atribut JSX ke dalam komponen ini sebagai obyek tunggal. Kita menyebut obyek ini "props".
 
 Sebagai contoh, kode ini akan me-*render* "Halo, Sara" pada laman:
 

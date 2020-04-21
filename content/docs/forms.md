@@ -68,13 +68,7 @@ class NameForm extends React.Component {
 
 Karena atribut `value` telah kita set pada elemen form, nilai yang ditampilkan akan selalu sama dengan `this.state.value`, yang menjadikan React sebagai sumber kebenaran tunggal dari _state_. Dan karena `handleChange` dijalankan setiap ketikan untuk memperbarui _state_ React, nilai yang ditampilkan akan terbarui ketika pengguna mengetik.
 
-Dengan sebuah _controlled component_, setiap perubahan _state_ akan memiliki sebuah fungsi _handler_ yang terkait. Hal ini memudahkan untuk memodifikasi atau memvalidasi masukan pengguna. Sebagai contoh, jika kita ingin mengharuskan nama untuk seluruhnya ditulis dengan huruf kapital, kita dapat menuliskan `handleChange` sebagai:
-
-```javascript{2}
-handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
-}
-```
+Dengan sebuah _controlled component_, nilai input akan selalu didorong oleh _state_ di React. Meskipun ini mengharuskan Anda untuk menulis lebih banyak kode, sekarang Anda juga bisa mengoper nilai ini ke elemen antarmuka lain, atau me-_reset_ nilai tersebut dari _event handler_ lain.
 
 ## Tag textarea {#the-textarea-tag}
 
@@ -220,7 +214,7 @@ class Reservation extends React.Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.name === 'isGoing' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
