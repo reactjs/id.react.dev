@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-intro
-title: Memperkenalkan Mode Concurrent
+title: Memperkenalkan Mode Concurrent (Eksperimental)
 permalink: docs/concurrent-mode-intro.html
 next: concurrent-mode-suspense.html
 ---
@@ -16,7 +16,7 @@ next: concurrent-mode-suspense.html
 
 >Perhatian:
 >
->Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan pada eksperimental _builds_ dalam aplikasi React versi produksi. Fitur-fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
+>Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
 >Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
@@ -25,31 +25,31 @@ next: concurrent-mode-suspense.html
 Laman ini menyediakan ikhtisar teoretis untuk Mode _Concurrent_. **Untuk pengenalan yang lebih praktikal, anda mungkin ingin melihat bagian selanjutnya:**
 
 * [_Suspense_ untuk Pengambilan Data](/docs/concurrent-mode-suspense.html) menjelaskan mekanisme baru untuk pengambilan data dalam komponen React.
-* [Pola _Concurrent_ antarmuka pengguna (UI)](/docs/concurrent-mode-patterns.html) menunjukkan beberapa pola antarmuka pengguna (UI) yang memungkinkan oleh _Concurrent Mode_ dan _Suspense_.
-* [Mengadopsi Mode _Concurrent_](/docs/concurrent-mode-adoption.html) menjelaskan bagaimana anda dapat mencoba _Concurrent Mode_ di projek anda.
-* [Referensi API Mode _Concurrent_](/docs/concurrent-mode-reference.html) mendokumentasikan API yang baru tersedia di eksperimental _builds_.
+* [Pola _Concurrent_ antarmuka pengguna (UI)](/docs/concurrent-mode-patterns.html) menunjukkan beberapa pola antarmuka pengguna (UI) yang memungkinkan dari Mode _Concurrent_ dan _Suspense_.
+* [Mengadopsi Mode _Concurrent_](/docs/concurrent-mode-adoption.html) menjelaskan bagaimana anda dapat mencoba Mode _Concurrent_ di projek anda.
+* [Referensi API Mode _Concurrent_](/docs/concurrent-mode-reference.html) mendokumentasikan API yang baru tersedia dalam _build_ eksperimental.
 
 ## Apa Itu Mode _Concurrent_? {#what-is-concurrent-mode}
 
 Mode _Concurrent_ adalah serangkaian fitur baru yang membantu aplikasi React tetap responsif dan menyesuaikan dengan kapabilitas perangkat pengguna dan kecepatan jaringan.
 
-Fitur ini masih dalam tahap percobaan dan dapat berubah sewaktu-waktu. Fitur ini belum menjadi bagian dari React versi rilis yang stabil, tetapi anda dapat mencobanya dalam eksperimental _build_.
+Fitur ini masih dalam tahap percobaan dan dapat berubah sewaktu-waktu. Fitur ini belum menjadi bagian dari React versi rilis yang stabil, tetapi anda dapat mencobanya dalam _build_ eksperimental.
 
-## Blocking vs Interruptible Rendering {#blocking-vs-interruptible-rendering}
+## _Blocking_ vs _Interruptible Rendering_ {#blocking-vs-interruptible-rendering}
 
-**Untuk menjelaskan Mode _Concurrent_, kami akan menggunakan _version control_ sebagai kiasan.** Jika anda bekerja dalam tim, anda mungkin menggunakan sistem _version control_ seperti Git dan bekerja dalam _branches_. Ketika sebuah _branch_ telah siap, anda dapat menggabungkan pekerjaan anda ke dalam _master_ sehingga orang lain dapat mengambil pekerjaan anda.
+**Untuk menjelaskan Mode _Concurrent_, kita akan menggunakan _version control_ sebagai kiasan.** Jika anda bekerja dalam tim, anda mungkin menggunakan sistem _version control_ seperti Git dan bekerja dalam _branch_. Ketika sebuah _branch_ telah siap, anda dapat menggabungkan pekerjaan anda ke dalam _master_ sehingga orang lain dapat mengambil pekerjaan anda.
 
-Sebelum ada _version control_, alur kerja pengembangan sangat berbeda. Tidak ada konsep _branches_. Jika anda ingin mengubah beberapa berkas, anda harus memberitahu semua orang untuk tidak menyentuh berkas-berkas itu sampai anda menyelesaikan pekerjaan anda. Anda bahkan tidak bisa mulai mengerjakannya secara bersamaan dengan orang itu - anda benar-benar *diblokir* oleh mereka.
+Sebelum ada _version control_, alur kerja pengembangan sangat berbeda. Tidak ada konsep _branch_. Jika anda ingin mengubah beberapa berkas, anda harus memberitahu semua orang untuk tidak menyentuh berkas-berkas itu sampai anda menyelesaikan pekerjaan anda. Anda bahkan tidak bisa mulai mengerjakannya secara bersamaan dengan orang itu - anda benar-benar *diblokir* oleh mereka.
 
-Ini menggambarkan bagaimana _libraries_ antarmuka pengguna (UI), termasuk React, khususnya bekerja sampai hari ini. Begitu mereka mulai me-_render_ yang terbaru, termasuk membuat DOM _nodes_ baru dan menjalankan kode di dalam komponen, mereka tidak bisa interupsi pekerjaan ini. Kami akan menyebut pendekatan ini sebagai "_blocking rendering_".
+Ini menggambarkan bagaimana _library_ antarmuka pengguna (UI), termasuk React, khususnya bekerja sampai hari ini. Begitu mereka mulai me-_render_ yang terbaru, termasuk membuat DOM _node_ baru dan menjalankan kode di dalam komponen, mereka tidak bisa meng-interupsi pekerjaan ini. Kita akan menyebut pendekatan ini sebagai "_blocking rendering_".
 
 Saat Mode _Concurrent_, _rendering_ tidak memblokir. Hal itu dapat di-interupsi. Ini meningkatkan pengalaman pengguna (UX). Itu juga membuka fitur-fitur baru yang tidak mungkin sebelumnya. Sebelum kita melihat contoh konkret di [bab](/docs/concurrent-mode-patterns.html) [selanjutnya](/docs/concurrent-mode-suspense.html), kami akan melakukan ikhtisar tingkat tinggi pada fitur-fitur baru.
 
-### Interruptible Rendering {#interruptible-rendering}
+### _Interruptible Rendering_ {#interruptible-rendering}
 
-Bayangkan daftar produk yang dapat di-_filter_. Pernahkah anda mengetikkan daftar _filter_ dan merasa _stutter_ setiap menekan tombol? Beberapa pekerjaan untuk memperbarui daftar produk mungkin tidak dapat dihindari, seperti membuat DOM _nodes_ baru atau _browser_ yang melakukan tata letak. Bagaimanapun, *kapan* dan *bagaimana* kami melakukan pekerjaan itu memainkan peran yang besar.
+Bayangkan daftar produk yang dapat di-_filter_. Pernahkah anda mengetikkan daftar _filter_ dan merasa _stutter_ setiap menekan tombol? Beberapa pekerjaan untuk memperbarui daftar produk mungkin tidak dapat dihindari, seperti membuat DOM _node_ baru atau _browser_ yang melakukan tata letak. Bagaimanapun, *kapan* dan *bagaimana* kita melakukan pekerjaan itu memainkan peran yang besar.
 
-Cara yang umum untuk mengatasi _stutter_ adalah dengan melakukan "_debounce_" pada masukan. Ketika me-_debounce_, kami hanya memperbarui daftar *setelah* pengguna berhenti mengetik. Namun, itu bisa membuat frustasi karena antarmuka pengguna (UI) tidak memperbarui saat mengetik. Sebagai alternatif, kita bisa melakukan "_throttle_" pada masukan, dan memperbarui daftarnya dengan frekuensi maksimum tertentu. Tetapi kemudian pada perangkat bertenaga rendah masih akan tetap berakhir dengan _stutter_. _Debounce_ dan _throttle_ keduanya membuat pengalaman pengguna (UX) kurang optimal.
+Cara yang umum untuk mengatasi _stutter_ adalah dengan melakukan "_debounce_" pada masukan. Ketika me-_debounce_, kita hanya memperbarui daftar *setelah* pengguna berhenti mengetik. Namun, itu bisa membuat frustasi karena antarmuka pengguna (UI) tidak memperbarui saat mengetik. Sebagai alternatif, kita bisa melakukan "_throttle_" pada masukan, dan memperbarui daftarnya dengan frekuensi maksimum tertentu. Tetapi kemudian pada perangkat bertenaga rendah masih akan tetap berakhir dengan _stutter_. _Debounce_ dan _throttle_ keduanya membuat pengalaman pengguna (UX) kurang optimal.
 
 Alasan untuk melakukan _stutter_ sederhana: begitu mulai me-_render_, hal itu tidak dapat di-interupsi. Jadi _browser_ tidak dapat memperbarui masukan teks setelah tombol ditekan. Tidak perduli sebagus apa _library_ antarmuka pengguna (UI) (seperti React) akan terlihat perbandingannya, jika itu menggunakan _blocking rendering_, sejumlah pekerjaan dalam komponen anda akan selalu menyebabkan _stutter_. Dan, seringkali, tidak ada cara yang mudah untuk memperbaikinya.
 
@@ -61,18 +61,18 @@ Teknik Mode _Concurrent_ mengurangi kebutuhan _debounce_ dan _throttle_ dalam an
 
 ### Urutan Memuat yang Disengaja {#intentional-loading-sequences}
 
-Kami telah mengatakan sebelumnya bahwa Mode _Concurrent_ itu seperti React yang bekerja "pada suatu _branch_". _Branches_ berguna tidak hanya untuk waktu perbaikan jangka pendek, tapi juga untuk fitur jangka panjang. Terkadang anda mungkin mengerjakan suatu fitur, tapi itu mungkin butuh waktu berminggu-minggu sebelum itu dalam "kondisi yang cukup bagus" untuk digabungkan ke _master_. Sisi metafora _version control_ kami ini berlaku untuk _render_ juga.
+Kami telah mengatakan sebelumnya bahwa Mode _Concurrent_ itu seperti React yang bekerja "pada suatu _branch_". _Branch_ berguna tidak hanya untuk waktu perbaikan jangka pendek, tapi juga untuk fitur jangka panjang. Terkadang anda mungkin mengerjakan suatu fitur, tapi itu mungkin butuh waktu berminggu-minggu sebelum itu dalam "kondisi yang cukup bagus" untuk digabungkan ke _master_. Sisi metafora _version control_ kita ini berlaku untuk _render_ juga.
 
-Anggap kami menavigasi antara dua layar pada suatu aplikasi. Terkadang, kami mungkin tidak punya cukup kode dan data yang dimuat untuk menampilkan muatan yang "cukup baik" kepada pengguna pada layar baru. Transisi ke layar kosong atau _spinner_ besar bisa menjadi pengalaman yang menjengkelkan. Namun, hal itu juga umum bahwa kode dan data tidak butuh waktu yang lama untuk mengambil. **Bukankah lebih baik jika React bisa berdiam pada layar yang lama untuk lebih lama, dan "melewati" kondisi muatan yang buruk sebelum menampilkan layar yang baru?**
+Anggap kita menavigasi antara dua layar pada suatu aplikasi. Terkadang, kita mungkin tidak punya cukup kode dan data yang dimuat untuk menampilkan muatan yang "cukup baik" kepada pengguna pada layar baru. Transisi ke layar kosong atau _spinner_ besar bisa menjadi pengalaman yang menjengkelkan. Namun, hal itu juga umum bahwa kode dan data tidak butuh waktu yang lama untuk mengambil. **Bukankah lebih baik jika React bisa berdiam pada layar yang lama untuk lebih lama, dan "melewati" kondisi muatan yang buruk sebelum menampilkan layar yang baru?**
 
 Walaupun hal ini memungkinkan saat ini, hal itu sulit untuk diatur. Pada Mode _Concurrent_, fitur ini _built-in_. React mulai mempersiapkan layar yang baru pada memori terlebih dahulu - atau, seperti metafora kita, "pada _branch_ yang berbeda". Jadi React bisa menunggu sebelum memperbarui DOM sehingga lebih banyak konten yang bisa dimuat. Pada Mode _Concurrent_, kita bisa memberitahu React untuk terus menampilkan layar yang lama, interaktif sepenuhnya, dengan indikator muatan _inline_. Dan ketika layar yang baru sudah siap, React bisa membawa kita ke layar yang baru.
 
-### Concurrency {#concurrency}
+### _Concurrency_ {#concurrency}
 
-Mari kita rekap dua contoh di atas dan lihat bagaimana Mode _Concurrent_ menyatukan mereka. **Saat Mode _Concurrent_, React dapat bekerja pada beberapa perubahan _state_ secara *bersamaan*** — sama seperti _branches_ membiarkan anggota tim yang berbeda untuk bekerja secara independen:
+Mari kita rekap dua contoh di atas dan lihat bagaimana Mode _Concurrent_ menyatukan mereka. **Saat Mode _Concurrent_, React dapat bekerja pada beberapa perubahan _state_ secara *bersamaan*** — sama seperti _branch_ membiarkan anggota tim yang berbeda untuk bekerja secara independen:
 
-* Untuk perubahan _CPU-bound_ (seperti membuat DOM _nodes_ dan menjalankan kode komponen), _concurrency_ dapat diartikan bahwa perubahan yang lebih mendesak dapat "meng-interupsi" _render_ yang sudah berjalan.
-* Untuk perubahan _IO-bound_ (seperti pengambilan kode atau data dari jaringan), _concurrency_ dapat diartikan bahwa React bisa mulai me-_render_ dalam memori bahkan sebelum semua data tiba, dan melewati untuk menampilkan _states_ yang sedang memuat.
+* Untuk perubahan _CPU-bound_ (seperti membuat DOM _node_ dan menjalankan kode komponen), _concurrency_ dapat diartikan bahwa perubahan yang lebih mendesak dapat "meng-interupsi" _render_ yang sudah berjalan.
+* Untuk perubahan _IO-bound_ (seperti pengambilan kode atau data dari jaringan), _concurrency_ dapat diartikan bahwa React bisa mulai me-_render_ dalam memori bahkan sebelum semua data tiba, dan melewati untuk menampilkan _state_ yang sedang memuat.
 
 Yang terpenting, cara anda *menggunakan* React itu sama. Konsep seperti komponen, _props_, and _state_ secara fundamental bekerja dengan cara yang sama. Saat anda ingin memperbarui layar, anda mengatur _state_ nya.
 
@@ -82,7 +82,7 @@ React menggunakan perilaku perangkat lunak untuk memutuskan seberapa "mendesak" 
 
 Ada motif umum mengelilingi fitur Mode _Concurrent_. **Misi nya adalah untuk membantu mengintegrasikan hasil temuan riset Human-Computer Interaction ke dalam antarmuka pengguna (UI) nyata.**
 
-Sebagai contohnya, riset menunjukkan bahwa menampilkan terlalu banyak _states_ yang sedang memuat saat transisi antar layar membuat nuansa transisi *lebih lambat*. Inilah sebabnya kenapa Mode _Concurrent_ menunjukkan _states_ baru yang sedang memuat pada "jadwal" yang pasti untuk menghindari pembaruan yang terlalu sering dan menjengkelkan.
+Sebagai contohnya, riset menunjukkan bahwa menampilkan terlalu banyak _state_ yang sedang memuat saat transisi antar layar membuat nuansa transisi *lebih lambat*. Inilah sebabnya kenapa Mode _Concurrent_ menunjukkan _state_ baru yang sedang memuat pada "jadwal" yang pasti untuk menghindari pembaruan yang terlalu sering dan menjengkelkan.
 
 Sama halnya, kami tahu dari riset bahwa interaksi seperti _hover_ dan masukan teks perlu ditangani dalam waktu yang sangat singkat, sementara klik dan transisi antar halaman bisa membutuhkan waktu sedikit lebih lama tanpa merasa lamban. Perbedaan "prioritas" yang digunakan Mode _Concurrent_ secara internal sesuai dengan kategori interaksi pada riset persepsi manusia.
 
@@ -95,6 +95,6 @@ Sekarang anda tahu apa itu Mode _Concurrent_!
 Pada laman selanjutnya, anda akan mempelajari lebih detil tentang topik tertentu:
 
 * [_Suspense_ untuk Pengambilan Data](/docs/concurrent-mode-suspense.html) menjelaskan mekanisme baru untuk pengambilan data dalam komponen React.
-* [Pola _Concurrent_ antarmuka pengguna (UI)](/docs/concurrent-mode-patterns.html) menunjukkan beberapa pola antarmuka pengguna (UI) yang memungkinkan oleh Mode _Concurrent_ dan _Suspense_.
+* [Pola _Concurrent_ antarmuka pengguna (UI)](/docs/concurrent-mode-patterns.html) menunjukkan beberapa pola antarmuka pengguna (UI) yang memungkinkan dari Mode _Concurrent_ dan _Suspense_.
 * [Mengadopsi Mode _Concurrent_](/docs/concurrent-mode-adoption.html) menjelaskan bagaimana anda dapat mencoba Mode _Concurrent_ di projek anda.
-* [Referensi API Mode _Concurrent_](/docs/concurrent-mode-reference.html) mendokumentasikan API yang baru tersedia di eksperimental _builds_.
+* [Referensi API Mode _Concurrent_](/docs/concurrent-mode-reference.html) mendokumentasikan API yang baru tersedia dalam _build_ eksperimental.
