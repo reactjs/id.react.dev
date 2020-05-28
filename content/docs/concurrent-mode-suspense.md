@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-suspense
-title: Suspense for Data Fetching (Experimental)
+title: Suspense for Penarikan Data (Eksperimental)
 permalink: docs/concurrent-mode-suspense.html
 prev: concurrent-mode-intro.html
 next: concurrent-mode-patterns.html
@@ -17,13 +17,13 @@ next: concurrent-mode-patterns.html
 
 >Caution:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+> Halaman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _builds_ eksperimental dalam aplikasi React versi produksi. Fitur-fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now. For example, if you're looking for a data fetching tutorial that works today, read [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) instead.
+> Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Jika Anda baru menggunakan React, jangan khawatirkan tentang fitur ini** -- Anda tidak perlu mempelajarinya sekaran
 
 </div>
 
-React 16.6 added a `<Suspense>` component that lets you "wait" for some code to load and declaratively specify a loading state (like a spinner) while we're waiting:
+React 16.6 menambahkan komponen `<Suspense>` yang memungkinkan Anda "menunggu" kode untuk dimuat dan menentukan _state_ yang sedang memuat (_spinner_) secara deklaratif.
 
 ```jsx
 const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
@@ -34,40 +34,40 @@ const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
 </Suspense>
 ```
 
-Suspense for Data Fetching is a new feature that lets you also use `<Suspense>` to **declaratively "wait" for anything else, including data.** This page focuses on the data fetching use case, but it can also wait for images, scripts, or other asynchronous work.
+Suspense untuk Penarikan Data adalah sebuah fitur baru yang juga memungkinkan Anda menggunakan `<Suspense>` untuk **secara deklaratif "menunggu" hal-hal yang lainnya, termasuk data.** Halaman ini berfokus pada kasus penarikan data, tetapi ini bisa juga menunggu gambar, kode, atau pekerjaan asinkron lainnya.
 
-- [What Is Suspense, Exactly?](#what-is-suspense-exactly)
-  - [What Suspense Is Not](#what-suspense-is-not)
-  - [What Suspense Lets You Do](#what-suspense-lets-you-do)
-- [Using Suspense in Practice](#using-suspense-in-practice)
-  - [What If I Don’t Use Relay?](#what-if-i-dont-use-relay)
-  - [For Library Authors](#for-library-authors)
-- [Traditional Approaches vs Suspense](#traditional-approaches-vs-suspense)
-  - [Approach 1: Fetch-on-Render (not using Suspense)](#approach-1-fetch-on-render-not-using-suspense)
-  - [Approach 2: Fetch-Then-Render (not using Suspense)](#approach-2-fetch-then-render-not-using-suspense)
-  - [Approach 3: Render-as-You-Fetch (using Suspense)](#approach-3-render-as-you-fetch-using-suspense)
-- [Start Fetching Early](#start-fetching-early)
-  - [We’re Still Figuring This Out](#were-still-figuring-this-out)
-- [Suspense and Race Conditions](#suspense-and-race-conditions)
-  - [Race Conditions with useEffect](#race-conditions-with-useeffect)
-  - [Race Conditions with componentDidUpdate](#race-conditions-with-componentdidupdate)
-  - [The Problem](#the-problem)
-  - [Solving Race Conditions with Suspense](#solving-race-conditions-with-suspense)
-- [Handling Errors](#handling-errors)
-- [Next Steps](#next-steps)
+- [Apa sebenarnya Suspense itu?](#what-is-suspense-exactly)
+  - [Apa yang Bukan Suspense](#what-suspense-is-not)
+  - [Apa saja yang Suspense Bisa Lakukan](#what-suspense-lets-you-do)
+- [Penggunaan Suspense dalam Praktik](#using-suspense-in-practice)
+  - [Bagaimana Jika Saya Tidak Menggunakan Relay?](#what-if-i-dont-use-relay)
+  - [Untuk Pembuat Pustaka](#for-library-authors)
+- [Pendekatan Tradisional vs Suspense](#traditional-approaches-vs-suspense)
+  - [Pendekatan 1: Fetch-on-Render (Tidak Menggunakan Suspense)](#approach-1-fetch-on-render-not-using-suspense)
+  - [Pendekatan 2: Fetch-Then-Render (Tidak Menggunakan Suspense)](#approach-2-fetch-then-render-not-using-suspense)
+  - [Pendekatan 3: Render-as-You-Fetch (Menggunakan Suspense)](#approach-3-render-as-you-fetch-using-suspense)
+- [Mulai Penarikan Lebih Awal](#start-fetching-early)
+  - [Kita Masih Mencari Tahu](#were-still-figuring-this-out)
+- [Suspense and Kondisi Balapan](#suspense-and-race-conditions)
+  - [Kondisi Balapan dengan useEffect](#race-conditions-with-useeffect)
+  - [Race Conditions dengan componentDidUpdate](#race-conditions-with-componentdidupdate)
+  - [Masalah](#the-problem)
+  - [Memecahkan Kondisi Balapan Solving dengan Suspense](#solving-race-conditions-with-suspense)
+- [Penanganan Error](#handling-errors)
+- [Langkah Selanjutnya](#next-steps)
 
 ## What Is Suspense, Exactly? {#what-is-suspense-exactly}
 
-Suspense lets your components "wait" for something before they can render. In [this example](https://codesandbox.io/s/frosty-hermann-bztrp), two components wait for an asynchronous API call to fetch some data:
+Suspense memungkinkan komponen Anda "menunggu" sesuatu sebelum mereka bisa _render_. Pada [contoh ini](https://codesandbox.io/s/frosty-hermann-bztrp), dua komponen menunggu sebuah pemanggilan API secara asinkron untuk penarikan suatu data:
 
 ```js
 const resource = fetchProfileData();
 
 function ProfilePage() {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
+      <Suspense fallback={<h1>Memuat postingan...</h1>}>
         <ProfileTimeline />
       </Suspense>
     </Suspense>
@@ -75,13 +75,13 @@ function ProfilePage() {
 }
 
 function ProfileDetails() {
-  // Try to read user info, although it might not have loaded yet
+  // Mencoba untuk membaca info pengguna, walau mungkin belum termuat
   const user = resource.user.read();
   return <h1>{user.name}</h1>;
 }
 
 function ProfileTimeline() {
-  // Try to read posts, although they might not have loaded yet
+  // Mencoba untuk membaca postingan, walau mungkin belum termuat
   const posts = resource.posts.read();
   return (
     <ul>
@@ -93,9 +93,10 @@ function ProfileTimeline() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
 
-This demo is a teaser. Don't worry if it doesn't quite make sense yet. We'll talk more about how it works below. Keep in mind that Suspense is more of a *mechanism*, and particular APIs like `fetchProfileData()` or `resource.posts.read()` in the above example are not very important. If you're curious, you can find their definitions right in the [demo sandbox](https://codesandbox.io/s/frosty-hermann-bztrp).
+Demo ini hanyalah penggoda. Jangan khawatir jika itu belum cukup masuk akal. Kita akan bahas lebih lanjut tentang bagaimana cara kerjanya di bawah. Perlu diingat bahwa Suspense lebih merupakan sebuah *mekanisme*, dan beberapa API seperti `fetchProfileData()` atau `resource.posts.read()` pada contoh di atas tidak terlalu penting. Jika Anda penasaran, Anda bisa menemukan definisinya langsung di [demo sandbox](https://codesandbox.io/s/frosty-hermann-bztrp)
+
 
 Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](https://relay.dev/docs/en/experimental/step-by-step). We expect that other libraries like Apollo can provide similar integrations.
 
