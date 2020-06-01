@@ -418,12 +418,15 @@ Inilah sebabnya mengapa _state_ kadang disebut lokal atau terenkapsulasi. Itu ti
 Sebuah komponen dapat memilih untuk menurunkan _state_ sebagai _props_ ke komponen turunannya:
 
 ```js
+<<<<<<< HEAD
 <h2>Ini {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 Ini juga berfungsi untuk komponen yang ditentukan pengguna:
 
 ```js
+=======
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 <FormattedDate date={this.state.date} />
 ```
 
