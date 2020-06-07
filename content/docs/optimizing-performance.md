@@ -270,7 +270,7 @@ class CounterButton extends React.Component {
 }
 ```
 
-Dalam kode ini, `shouldComponentUpdate` hanya memeriksa jika ada perubahan dalam `props.color` atau `state.count`. Jika nilai variabel-variabel tersebut tidak berubah, komponen tidak akan diperbarui. Jika komponen Anda menjadi lebih kompleks, Anda dapat menggunakan pola serupa dengan melakukan "perbandingan dangkal" (*shallow comparison*) diantara semua nilai di dalam `props` dan `state` untuk menentukan apakah komponen harus diperbarui. Pola ini cukup umum sehingga React menyediakan *helper* khisis untuk menggunakan logika ini - tinggal melakukan *inherit* dari `React.PureComponent`. Jadi kode di bawah adalah cara lebih simpel untuk melakukan hal serupa:
+Dalam kode ini, `shouldComponentUpdate` hanya memeriksa jika ada perubahan dalam `props.color` atau `state.count`. Jika nilai variabel-variabel tersebut tidak berubah, komponen tidak akan diperbarui. Jika komponen Anda menjadi lebih kompleks, Anda dapat menggunakan pola serupa dengan melakukan "perbandingan dangkal" (*shallow comparison*) diantara semua nilai di dalam `props` dan `state` untuk menentukan apakah komponen harus diperbarui. Pola ini cukup umum sehingga React menyediakan *helper* khusus untuk menggunakan logika ini - tinggal melakukan *inherit* dari `React.PureComponent`. Jadi kode di bawah adalah cara lebih simpel untuk melakukan hal serupa:
 
 ```js
 class CounterButton extends React.PureComponent {
