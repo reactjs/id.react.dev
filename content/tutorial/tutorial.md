@@ -1193,11 +1193,7 @@ Selamat! Anda sudah membuat permainan *tic-tac-toe* yang:
 * Menyimpan riwayat permainan selama permainan berlangsung,
 * Memungkinkan pemain untuk mengulas riwayat permainan dan melihat versi sebelumnya dari papan permainan.
 
-<<<<<<< HEAD
 Kerja bagus! Kami berharap sekarang Anda merasa Anda memiliki pemahaman yang baik tentang bagaimana React bekerja.
-=======
-Nice work! We hope you now feel like you have a decent grasp of how React works.
->>>>>>> c9b990070fc35d31b56957263e1ea9fe2fe67b40
 
 Lihat hasil akhirnya disini: **[Hasil Akhir](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 

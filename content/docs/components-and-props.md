@@ -256,16 +256,7 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components-continued)
 
-<<<<<<< HEAD
-Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada
-awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan
-terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika
-pada bagian dari antarmuka pengguna digunakan beberapa kali (*Button*, *Panel*, *Avatar*), atau yang cukup
-kompleks (App, FeedStory, Comment), ini merupakan kandidat yang bagus untuk
-dijadikan sebagai komponen yang dapat digunakan kembali.
-=======
-Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.
->>>>>>> c9b990070fc35d31b56957263e1ea9fe2fe67b40
+Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika pada bagian dari antarmuka pengguna digunakan beberapa kali (`Button`, `Panel`, `Avatar`), atau yang cukup kompleks (`App`, `FeedStory`, `Comment`), ini merupakan kandidat yang bagus untuk dijadikan sebagai komponen yang dapat digunakan kembali.
 
 ## Props bersifat *Read-Only* {#props-are-read-only}
 
