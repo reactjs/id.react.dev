@@ -68,7 +68,7 @@ function ProfilePage() {
   return (
     <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <Suspense fallback={<h1>Memuat postingan...</h1>}>
+      <Suspense fallback={<h1>Memuat kiriman...</h1>}>
         <ProfileTimeline />
       </Suspense>
     </Suspense>
@@ -82,7 +82,7 @@ function ProfileDetails() {
 }
 
 function ProfileTimeline() {
-  // Mencoba untuk membaca postingan, walau mungkin belum termuat
+  // Mencoba untuk membaca kiriman, walau mungkin belum termuat
   const posts = resource.posts.read();
   return (
     <ul>
@@ -207,7 +207,7 @@ function ProfileTimeline() {
   }, []);
 
   if (posts === null) {
-    return <h2>Memuat postingan ...</h2>;
+    return <h2>Memuat kiriman ...</h2>;
   }
   return (
     <ul>
@@ -226,11 +226,11 @@ Jika Anda menjalankan kode ini dan memperhatikan log konsol, Anda akan melihat u
 1. Kita mulai penarikan detail pengguna
 2. Kita menunggu...
 3. Kita selesai penarikan detail pengguna
-4. Kita mulai penarikan postingan
+4. Kita mulai penarikan kiriman
 5. Kita menunggu...
-6. Kita selesai penarikan postingan
+6. Kita selesai penarikan kiriman
 
-Jika penarikan detail pengguna membutuhkan tiga detik, kita hanya akan *mulai* mengambil postingan setelah tiga detik! Itu adalah "waterfall": tidak disengaja berurutan yang seharusnya diparalelkan.
+Jika penarikan detail pengguna membutuhkan tiga detik, kita hanya akan *mulai* mengambil kiriman setelah tiga detik! Itu adalah "waterfall": tidak disengaja berurutan yang seharusnya diparalelkan.
 
 _Waterfalls_ adalah umum dalam kode yang menarik data pada saat render. Hal itu mungkin untuk dipecahkan, tetapi ketika produk berkembang, banyak orang lebih suka menggunakan solusi yang dapat menghindari masalah ini.
 
@@ -282,7 +282,7 @@ function ProfilePage() {
 // Komponen anaknya tidak lagi memicu penarikan
 function ProfileTimeline({ posts }) {
   if (posts === null) {
-    return <h2>Memuat postingan...</h2>;
+    return <h2>Memuat kiriman...</h2>;
   }
   return (
     <ul>
@@ -299,10 +299,10 @@ function ProfileTimeline({ posts }) {
 Urutan kejadian sekarang menjadi seperti ini:
 
 1. Kita mulai penarikan detail pengguna
-2. Kita mulai penarikan postingan
+2. Kita mulai penarikan kiriman
 3. Kita menunggu...
 4. Kita selesai penarikan detail pengguna
-5. Kita selesai penarikan postingan
+5. Kita selesai penarikan kiriman
 
 Kita telah memecahkan masalah _waterfalls_ jaringan sebelumnya, tetapi secara tidak sengaja memperkenalkan suatu hal yang berbeda. Kita menunggu *semua* data untuk kembali dengan `Promise.all()` di dalam `fetchProfileData`, jadi sekarang kami tidak dapat merender detail profil hingga postingannya sudah ditarik juga. Kita harus menunggu keduanya.
 
@@ -334,7 +334,7 @@ function ProfilePage() {
   return (
     <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <Suspense fallback={<h1>Memuat postingan...</h1>}>
+      <Suspense fallback={<h1>Memuat kiriman...</h1>}>
         <ProfileTimeline />
       </Suspense>
     </Suspense>
@@ -348,7 +348,7 @@ function ProfileDetails() {
 }
 
 function ProfileTimeline() {
-  // Mencoba untuk membaca postingan, walaupun itu mungkin belum termuat.
+  // Mencoba untuk membaca kiriman, walaupun itu mungkin belum termuat.
   const posts = resource.posts.read();
   return (
     <ul>
@@ -371,34 +371,35 @@ Inilah yang terjadi ketika kita merender `<ProfilePage>` di layar:
 4. React mencoba untuk merender `<ProfileTimeline>`. Dia memanggil `resource.posts.read()`. Sekali lagi, belum ada data, jadi komponen ini juga "ditangguhkan". React melompatinya juga, dan mencoba merender komponen lain di pohon.
 5. Tidak ada yang tersisa untuk dicoba dirender. Karena `<ProfileDetails>` ditangguhkan, React menunjukkan the closest `<Suspense>` _fallback_ terdekat di atasnya di dalam pohon: `<h1>Memuat profil...</h1>`. Kita sudah selesai sekarang.
 
-This `resource` object represents the data that isn't there yet, but might eventually get loaded. When we call `read()`, we either get the data, or the component "suspends".
+Objek `resource` ini mewakili data yang belum ada, tetapi pada akhirnya mungkin dimuat. Ketika kita memanggil `read()`, kita mendapatkan datanya, atau komponen yang "ditangguhkan".
 
-**As more data streams in, React will retry rendering, and each time it might be able to progress "deeper".** When `resource.user` is fetched, the `<ProfileDetails>` component will render successfully and we'll no longer need the `<h1>Loading profile...</h1>` fallback. Eventually, we'll get all the data, and there will be no fallbacks on the screen.
+**Ketika lebih banyak data mengalir masuk, React akan mencoba lagi perenderan, dan setiap kali dapat berkembang menjadi "lebih dalam".** Ketika `resource.user` didapatkan, komponen `<ProfileDetails>` akan terender dengan sukses dan kita tidak lagi membutuhkan _fallback_ `<h1> Memuat profil ... </h1>`. Pada akhirnya, kita akan mendapatkan semua data, dan tidak akan ada _fallback_ di layar.
 
-This has an interesting implication. Even if we use a GraphQL client that collects all data requirements in a single request, *streaming the response lets us show more content sooner*. Because we render-*as-we-fetch* (as opposed to *after* fetching), if `user` appears in the response earlier than `posts`, we'll be able to "unlock" the outer `<Suspense>` boundary before the response even finishes. We might have missed this earlier, but even the fetch-then-render solution contained a waterfall: between fetching and rendering. Suspense doesn't inherently suffer from this waterfall, and libraries like Relay take advantage of this.
+Hal ini memiliki implikasi yang menarik. Bahkan jika kita menggunakan klien GraphQL yang mengumpulkan semua persyaratan data dalam satu permintaan, *streaming respons memungkinkan kita menampilkan lebih banyak konten dengan lebih cepat*. Karena kita merender-*sembari-tarik* (bertolak belakang dari *setelah* penarikan), jika `user` muncul dalam respons lebih awal dari` posts`, kita akan dapat "membuka" bagian luar batasan `<Suspense> ` bahkan sebelum respons selesai. Kita mungkin telah melewatkan ini sebelumnya, tetapi bahkan solusi tarik-kemudian-render mengandung _waterfall_: antara penarikan dan perenderan. Pada dasarnya tidak terefek buruk dari _waterfall_ ini, dan pustaka seperti Relay mengambil keuntungan dari ini.
 
-Note how we eliminated the `if (...)` "is loading" checks from our components. This doesn't only remove boilerplate code, but it also simplifies making quick design changes. For example, if we wanted profile details and posts to always "pop in" together, we could delete the `<Suspense>` boundary between them. Or we could make them independent from each other by giving each *its own* `<Suspense>` boundary. Suspense lets us change the granularity of our loading states and orchestrate their sequencing without invasive changes to our code.
+Perhatikan bagaimana kita menghilangkan pemeriksaan `if (...)` "sedang memuat" dari komponen kita. Ini tidak hanya menghapus kode yang bertele-tele, tetapi juga menyederhanakan membuat perubahan desain cepat. Misalnya, jika kita ingin detail profil dan kiriman selalu "muncul" bersama-sama, kita dapat menghapus batas `<Suspense>` di antara kedua hal tersebut. Atau kita bisa membuat mereka independen satu sama lain dengan memberi masing-masing *batas* `<Suspense>` *sendiri*. Suspense memungkinkan kita mengubah rincian status pemuatan dan mengatur urutannya tanpa perubahan invasif pada kode kita.
 
-## Start Fetching Early {#start-fetching-early}
+## Mulai Penarikan Di Awal {#start-fetching-early}
 
-If you're working on a data fetching library, there's a crucial aspect of Render-Sembari-Tarik you don't want to miss. **We kick off fetching _before_ rendering.** Look at this code example closer:
+Jika Anda sedang mengerjakan pustaka pengambilan data, ada aspek penting dari render-sembari-tarik yang tidak ingin Anda lewatkan. **Kita memulai penarikan _sebelum_ perenderan.** Lihat contoh kode ini lebih dekat:
 
 ```js
-// Start fetching early!
+// Mulai penarikan di awal!
 const resource = fetchProfileData();
 
 // ...
 
 function ProfileDetails() {
-  // Try to read user info
+  // Mencoba membaca info pengguna
   const user = resource.user.read();
   return <h1>{user.name}</h1>;
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
 
 Note that the `read()` call in this example doesn't *start* fetching. It only tries to read the data that is **already being fetched**. This difference is crucial to creating fast applications with Suspense. We don't want to delay loading data until a component starts rendering. As a data fetching library author, you can enforce this by making it impossible to get a `resource` object without also starting a fetch. Every demo on this page using our "fake API" enforces this.
+
 
 You might object that fetching "at the top level" like in this example is impractical. What are we going to do if we navigate to another profile's page? We might want to fetch based on props. The answer to this is **we want to start fetching in the event handlers instead**. Here is a simplified example of navigating between user's pages:
 
