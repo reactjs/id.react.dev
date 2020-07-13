@@ -371,7 +371,11 @@ function updateColorMap(colormap) {
 
 `updateColorMap` sekarang mengembalikan objek baru, daripada memutasikan objek yang lama. `Object.assign` berada di spesifikasi ES6 dan membutuhkan *polyfill*.
 
+<<<<<<< HEAD
 Ada juga proposal JavaScript untuk menambahkan [properti *spread* objek](https://github.com/sebmarkbage/ecmascript-rest-spread) untuk membuat pembaruan objek tanpa mutasi menjadi lebih mudah:
+=======
+[Object spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) makes it easier to update objects without mutation as well:
+>>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 
 ```js
 function updateColorMap(colormap) {
@@ -379,6 +383,12 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Jika Anda menggunakan Create React App, `Object.assign` dan sintaksis *spread* untuk objek sudah tersedia.
+=======
+This feature was added to JavaScript in ES2018. 
+
+If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
+>>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 
 Ketika berurusan dengan objek bersarang dalam, memperbaruinya secara *immutable* dapat menjadi sulit. Jika Anda memiliki masalah ini, cobalah [Immer](https://github.com/mweststrate/immer) atau [immutability-helper](https://github.com/kolodny/immutability-helper). *Library* ini memungkinkan Anda membuat kode yang lebih mudah dibaca tanpa menanggalkan keuntungan-keuntungan *immutability*.
