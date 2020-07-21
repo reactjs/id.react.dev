@@ -4,55 +4,59 @@ title: Testing Environments
 permalink: docs/testing-environments.html
 prev: testing-recipes.html
 ---
+<!-- Dokumen ini dimaksudkan untuk orang-orang yang menguasai JavaScript, dan sudah pernah menulis tes/pengujian dengan itu. Dokumen ini berfungsi sebagai referensi mengenai perbedaan dari *environment* pengujian untuk komponen React, dan bagaimana perbedaan tersebut mempengaruhi pengujian-pengujian yang mereka tulis. Dokumen ini juga meng-asumsikan sudut pandang ke arah komponen react-dom berbasi web, namun memiliki catatan untuk *renderers lainnya.-->
 
 <!-- This document is intended for folks who are comfortable with JavaScript, and have probably written tests with it. It acts as a reference for the differences in testing environments for React components, and how those differences affect the tests that they write. This document also assumes a slant towards web-based react-dom components, but has notes for other renderers. -->
 
-This document goes through the factors that can affect your environment and recommendations for some scenarios.
+Dokumen ini membahas faktor-faktor yang dapat mempengaruhi *environment* anda dan membahas rekomendasi untuk beberapa skenario.
+<!-- This document goes through the factors that can affect your environment and recommendations for some scenarios. -->
 
-### Test runners {#test-runners}
+### *Test runners* {#test-runners}
 
-Test runners like [Jest](https://jestjs.io/), [mocha](https://mochajs.org/), [ava](https://github.com/avajs/ava) let you write test suites as regular JavaScript, and run them as part of your development process. Additionally, test suites are run as part of continuous integration.
+*Test runners* seperti [Jest](https://jestjs.io/), [mocha](https://mochajs.org/), [ava](https://github.com/avajs/ava) mengizinkan anda untuk menulis *test suites* dengan Javascript, dan menjalankannya sebagai bagian dari proses pengembangan anda. Selain itu, *test suites* juga dijalankan sebagai bagian dari *continuous integration*
 
-- Jest is widely compatible with React projects, supporting features like mocked [modules](#mocking-modules) and [timers](#mocking-timers), and [`jsdom`](#mocking-a-rendering-surface) support. **If you use Create React App, [Jest is already included out of the box](https://facebook.github.io/create-react-app/docs/running-tests) with useful defaults.**
-- Libraries like [mocha](https://mochajs.org/#running-mocha-in-the-browser) work well in real browser environments, and could help for tests that explicitly need it.
-- End-to-end tests are used for testing longer flows across multiple pages, and require a [different setup](#end-to-end-tests-aka-e2e-tests).
+- Jest sangat kompatibel dengan proyek-proyek React, mendukung fitur-fitur seperti [tiruan modul](#mocking-modules)* dan [tiruan waktu](#mocking-timers), dan mendukung [`jsdom`](#mocking-a-rendering-surface). **Bila Anda menggunakan Create React App [Jest sudah tersedia secara *out of the box*](https://facebook.github.io/create-react-app/docs/running-tests) dengan standar bawaan yang bermanfaat.**
+- *Library* seperti [mocha](https://mochajs.org/#running-mocha-in-the-browser) berfungsi dengan baik pada *environment browser* sebenarnya, dan dapat membantu pengujian-pengujian yang secara eksplisit membutuhkannya.
+- Pengujian *End-to-end* digunakan untuk menguji alur yang lebih lama pada banyak halaman, dan membutuhkan [pengaturan berbeda](#end-to-end-tests-aka-e2e-tests).
 
-### Mocking a rendering surface {#mocking-a-rendering-surface}
+### Membuat tiruan *rendering surface*{#mocking-a-rendering-surface}
 
-Tests often run in an environment without access to a real rendering surface like a browser. For these environments, we recommend simulating a browser with [`jsdom`](https://github.com/jsdom/jsdom), a lightweight browser implementation that runs inside Node.js.
+Pengujian seringkali dijalankan didalam *environment* tanpa akses ke *rendering surface* sebenarnya seperti contohnya sebuah *browser*. Untuk *environment* ini kami merekomendasikan men-simulasikan *browser* dengan [`jsdom`](https://github.com/jsdom/jsdom), sebuah implementasi *browser* ringan yang berjalan didalam Node.js.
 
-In most cases, jsdom behaves like a regular browser would, but doesn't have features like [layout and navigation](https://github.com/jsdom/jsdom#unimplemented-parts-of-the-web-platform). This is still useful for most web-based component tests, since it runs quicker than having to start up a browser for each test. It also runs in the same process as your tests, so you can write code to examine and assert on the rendered DOM.
+Pada banyak kasus, jsdom berperilaku seperti *browser* pada umumnya, namun tidak memiliki fitur-fitur seperti [tata letak dan navigasi](https://github.com/jsdom/jsdom#unimplemented-parts-of-the-web-platform). Ini masih berguna untuk kebanyakan tes komponen berbasis web, karena lebih cepat dibandingkan harus menjalankan *browser* setiap kali pengujian. jsdom juga berjalan dengan proses yang sama dengan tes anda, agar Anda dapat menulis kode untuk memeriksa dan menguji pada *rendered* DOM.
 
-Just like in a real browser, jsdom lets us model user interactions; tests can dispatch events on DOM nodes, and then observe and assert on the side effects of these actions [<small>(example)</small>](/docs/testing-recipes.html#events).
+Seperti pada *browser* sebenarnya, kita dapat memodelkan interaksi pengguna dengan jsdom; pengujian dapat mengirimkan *events* pada DOM *nodes*, lalu mengamati dan menguji efek samping dari aksi-aksi yang dikirimkan [<small>(contoh)</small>](/docs/testing-recipes.html#events).
 
-A large portion of UI tests can be written with the above setup: using Jest as a test runner, rendered to jsdom, with user interactions specified as sequences of browser events, powered by the `act()` helper [<small>(example)</small>](/docs/testing-recipes.html). For example, a lot of React's own tests are written with this combination.
+Porsi besar dari pengujian antarmuka pengguna dapat ditulis menggunakan pengaturan diatas:
+Menggunakan Jest sebagai *test runner*, di*render* ke jsdom, dengan interaksi pengguna yang sudah dtentukan sebagai rangkaian dari *browser events*, menggunakan bantuan `act()` [<small>(contoh)</small>](/docs/testing-recipes.html). Sebagai contoh, banyak dari pengujian React sendiri dituliskan dengan kombinasi seperti ini.
 
-If you're writing a library that tests mostly browser-specific behavior, and requires native browser behavior like layout or real inputs, you could use a framework like [mocha.](https://mochajs.org/)
+Bila Anda sedang menulis *library* yang melakukan pengujian pada perilaku *browser* yang spesifik, dan memerlukan perilaku *browser* bawaan seperti tata letak dan *inputs* sebenarnya, Anda dapat menggunakan *framework* seperti [mocha](https://mochajs.org/)
+.
 
-In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
+Pada *environment* dimana Anda *tidak dapat* men-simulasikan sebuah DOM (contoh: Menguji komponen React Native pada Node.js), Anda dapat menggunakan [event simulation helpers](https://reactjs.org/docs/test-utils.html#simulate) untuk mensimulasikan interaksi-interaksi dengan elemen-elemen. Cara lainnya, Anda dapat menggunakan bantuan `fireEvent` dari [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
 
-Frameworks like [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) and [webdriver](https://www.seleniumhq.org/projects/webdriver/) are useful for running [end-to-end tests](#end-to-end-tests-aka-e2e-tests).
+*Frameworks* seperti [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) dan [webdriver](https://www.seleniumhq.org/projects/webdriver/) berguna untuk melakukan [pengujian *end-to-end*](#end-to-end-tests-aka-e2e-tests).
 
-### Mocking functions {#mocking-functions}
+### Membuat tiruan fungsi {#mocking-functions}
 
-When writing tests, we'd like to mock out the parts of our code that don't have equivalents inside our testing environment (e.g. checking `navigator.onLine` status inside Node.js). Tests could also spy on some functions, and observe how other parts of the test interact with them. It is then useful to be able to selectively mock these functions with test-friendly versions.
+Ketika menulis pengujian, Kita dapat membuat tiruan bagian kode yang tidak mempunyai padanan didalam *environment* pengujian (contoh: menguji status `navigator.online` didalam Node.js). Pengujian juga dapat memperhatikan pada beberapa fungsi, dan mengamati bagaimana bagian lain dari pengujian berinteraksi dengan mereka. Hal ini berguna ketika dapat secara selektif meniru fungsi-fungsi dengan versi yang lebih bersahabat dengan pengujian.
 
-This is especially useful for data fetching. It is usually preferable to use "fake" data for tests to avoid the slowness and flakiness due to fetching from real API endpoints [<small>(example)</small>](/docs/testing-recipes.html#data-fetching). This helps make the tests predictable. Libraries like [Jest](https://jestjs.io/) and [sinon](https://sinonjs.org/), among others, support mocked functions. For end-to-end tests, mocking network can be more difficult, but you might also want to test the real API endpoints in them anyway.
+Hal ini juga berguna khususnya pada *data fetching*. Umumnya lebih diminati untuk menggunakan data "palsu" dalam rangka menghindari kelambatan dan pemecahan akibat dari pengambilan dari API *endpoints* sebenarnya [<small>(contoh)</small>](/docs/testing-recipes.html#data-fetching). Ini membantu membuat pengujian dapat diprediksi. *Library-library* seperti [Jest](https://jestjs.io/) dan [sinon](https://sinonjs.org/), diantara yang lainnya, mendukung fungsi-fungsi tiruan. Untuk pengujian *end-to-end*, meniru jaringan dapat lebih sulit, akan tetapi Anda mungkin akan menguji API *endpoints* sebenarnya juga nanti.
 
-### Mocking modules {#mocking-modules}
+### Membuat tiruan modul {#mocking-modules}
 
-Some components have dependencies for modules that may not work well in test environments, or aren't essential to our tests. It can be useful to selectively mock these modules out with suitable replacements [<small>(example)</small>](/docs/testing-recipes.html#mocking-modules).
+Beberapa komponen memiliki ketergantungan pada modul-modul yang mungkin tidak berjalan dengan baik pada *environment* pengujian, atau bukan hal yang utama pada pengujian yang dilakukan. Dapat berguna untuk secara selektif membuat tiruan dari modul-modul tersebut dengan pengganti yang cocok [<small>(example)</small>](/docs/testing-recipes.html#mocking-modules).
 
-On Node.js, runners like Jest [support mocking modules](https://jestjs.io/docs/en/manual-mocks). You could also use libraries like [`mock-require`](https://www.npmjs.com/package/mock-require).
+Pada Node.js, *runner* seperti Jest [support mocking modules](https://jestjs.io/docs/en/manual-mocks). Anda dapat menggunakan *library* seperti [`mock-require`](https://www.npmjs.com/package/mock-require).
 
-### Mocking timers {#mocking-timers}
+### Membuat tiruan waktu {#mocking-timers}
 
-Components might be using time-based functions like `setTimeout`, `setInterval`, or `Date.now`. In testing environments, it can be helpful to mock these functions out with replacements that let you manually "advance" time. This is great for making sure your tests run fast! Tests that are dependent on timers would still resolve in order, but quicker [<small>(example)</small>](/docs/testing-recipes.html#timers). Most frameworks, including [Jest](https://jestjs.io/docs/en/timer-mocks), [sinon](https://sinonjs.org/releases/v7.3.2/fake-timers/) and [lolex](https://github.com/sinonjs/lolex), let you mock timers in your tests.
+Komponen dapat menggunakan fungsi-fungsi berbasis waktu seperti `setTimeout`, `setInterval`, atau `Date.now`. Pada *environment* pengujian, akan bermanfaat untuk membuat tiruan dari fungsi-fungsi ini dengan pengganti yang memperbolehkan anda untuk secara manual "memajukan" waktu. Ini sangat baik untuk memastikan pengujian berjalan dengan cepat! Pengujian yang bergantung dengan waktu akan dapat selesai secara berurutan, namun lebih cepat [<small>(example)</small>](/docs/testing-recipes.html#timers). Kebanyakan *framework*, termasuk [Jest](https://jestjs.io/docs/en/timer-mocks), [sinon](https://sinonjs.org/releases/v7.3.2/fake-timers/) dan [lolex](https://github.com/sinonjs/lolex), dapat membuat tiruan waktu pada pengujian Anda.
 
-Sometimes, you may not want to mock timers. For example, maybe you're testing an animation, or interacting with an endpoint that's sensitive to timing (like an API rate limiter). Libraries with timer mocks let you enable and disable them on a per test/suite basis, so you can explicitly choose how these tests would run.
+Terkadang, Anda mungkin tidak ingin membuat waktu tiruan. Contohnya, mungkin Anda menguji sebuah animasi, atau interaksi dengan *endpoint* yang sensitif dengan waktu (seperti API *rate limiter*). *Library* dengan peniru waktu memungkinkan Anda untuk meng-aktifkan dan menon-aktifkan tiruan di setiap pengujian/*suite*, agar Anda dapat secara eksplisit memilih bagimana pengujian tersebut berjalan.
 
-### End-to-end tests {#end-to-end-tests-aka-e2e-tests}
+### Pengujian *End-to-end* {#end-to-end-tests-aka-e2e-tests}
 
-End-to-end tests are useful for testing longer workflows, especially when they're critical to your business (such as payments or signups). For these tests, you'd probably want to test how a real browser renders the whole app, fetches data from the real API endpoints, uses sessions and cookies, navigates between different links. You might also likely want to make assertions not just on the DOM state, but on the backing data as well (e.g. to verify whether the updates have been persisted to the database).
+Pengujian *end-to-end* berguna untuk menguji alur yang lebih panjang, khususnya untuk hal-hal yang bersifat kritis pada bisnis anda (seperti pembayaran dan pendaftaran). Untuk pengujian-pengujian ini, Anda mungkin ingin menguji keduanya, bagaimana *browser* sebenarnya *merender* app secara keseluruhan, mengambil data dari API *endpoint* sungguhan, menggunakan *session* dan *cookie*, melakukan navigasi untuk berbagai tautan. Anda juga mungkin tidak hanya menguji kondisi DOM, namun juga menguji untuk hal-hal dukungan data (contoh: Verifikasi apakah pembaruan telah tersimpan di *database*)
 
-In this scenario, you would use a framework like [Cypress](https://www.cypress.io/) or a library like [puppeteer](https://github.com/GoogleChrome/puppeteer) so you can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
+Pada skenario ini, Anda dapat menggunakan *framework* seperti [Cypress](https://www.cypress.io/) atau *library* seperti [puppeteer](https://github.com/GoogleChrome/puppeteer) agar anda dapat mengunjungi banyak rute navigasi dan menguji efek samping tidak hanya pada *browser*, namun juga pada *backend*.
