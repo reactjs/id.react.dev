@@ -23,11 +23,11 @@ Sebuah kompiler JavaScript menerima kode JavaScript, mengubahnya, dan mengembali
 
 ## Bundler {#bundlers}
 
-_Bundler_ menggunakan kode JavaScript dan CSS yang ditulis di modul terpisah, dan menggabungkannya menjadi beberapa file yang lebih optimal untuk dijalankan oleh peramban. _Bundler_ yang sering digunakan React meliputi [Webpack](https://webpack.js.org/) dan [Browserify](http://browserify.org/)
+_Bundler_ menggunakan kode JavaScript dan CSS yang ditulis di modul terpisah, dan menggabungkannya menjadi beberapa file yang lebih optimal untuk dijalankan oleh *browser*. _Bundler_ yang sering digunakan React meliputi [Webpack](https://webpack.js.org/) dan [Browserify](http://browserify.org/)
 
-## Manajer Paket {#package-managers}
+## Package Manager {#package-managers}
 
-Manajer paket adalah alat yang digunakan untuk mengatur dan mengelola dependensi pada proyek Anda. [npm](https://www.npmjs.com/) dan [Yarn](http://yarnpkg.com/) adalah manajer paket yang paling sering digunakan pada aplikasi React dimana keduanya adalah klien yang memiliki registri paket npm yang sama.
+_Package manager_ adalah alat yang digunakan untuk mengatur dan mengelola dependensi pada proyek Anda. [npm](https://www.npmjs.com/) dan [Yarn](http://yarnpkg.com/) adalah _package manager_ yang paling sering digunakan pada aplikasi React dimana keduanya adalah klien yang memiliki registri paket npm yang sama.
 
 ## CDN {#cdn}
 
@@ -134,7 +134,7 @@ _Lifecycle Methods_ adalah fungsionalitas khusus yang dijalankan selama fase ter
 
  ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
 
-React memiliki dua pendekatan berbeda untuk mengatur masukan formulir.
+React memiliki dua pendekatan berbeda untuk mengatur inputan form.
 
 Sebuah elemen masukan formulir yang nilainya diatur oleh React disebut sebagai *_controlled component*. Saat seorang pengguna memasukkan data kedalam _controlled component_, sebuah _event handler_ terpicu, dan kode Anda yang selanjutnya menentukan apakah masukan valid atau tidak (dengan cara merender ulang dengan nilai yang telah diperbarui). Jika Anda tidak merender ulang, maka nilai formulir tidak akan berubah.
 

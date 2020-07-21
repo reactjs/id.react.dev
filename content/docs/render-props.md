@@ -1,12 +1,12 @@
 ---
 id: render-props
-title: Props Render
+title: Render Props
 permalink: docs/render-props.html
 ---
 
-Istilah ["_props render_"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) merujuk kepada sebuah teknik untuk berbagi kode antara komponen React menggunakan suatu prop yang nilainya merupakan suatu fungsi.
+Istilah ["_render props_"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) merujuk kepada sebuah teknik untuk berbagi kode antara komponen React menggunakan suatu prop yang nilainya merupakan suatu fungsi.
 
-Sebuah komponen dengan _props render_ mengambil suatu fungsi yang mengembalikan suatu elemen React dan memanggilnya alih-alih mengimplementasikan logika _render_-nya sendiri
+Sebuah komponen dengan _render props_ mengambil suatu fungsi yang mengembalikan suatu elemen React dan memanggilnya alih-alih mengimplementasikan logika _render_-nya sendiri
 
 ```jsx
 <DataProvider render={data => (
@@ -14,11 +14,11 @@ Sebuah komponen dengan _props render_ mengambil suatu fungsi yang mengembalikan 
 )}/>
 ```
 
-_Library_ yang menggunakan _props render_ termasuk [React Router](https://reacttraining.com/react-router/web/api/Route/Route-render-methods) dan [Downshift](https://github.com/paypal/downshift).
+_Library_ yang menggunakan _render props_ termasuk [React Router](https://reacttraining.com/react-router/web/api/Route/Route-render-methods) dan [Downshift](https://github.com/paypal/downshift).
 
-Pada dokumen ini kita akan mendiskusikan mengapa _props render_ berguna serta bagaimana cara menulisnya.
+Pada dokumen ini kita akan mendiskusikan mengapa _render props_ berguna serta bagaimana cara menulisnya.
 
-## Gunakan _Props Render_ untuk _*Urusan Lintas-Sektoral*_ {#use-render-props-for-cross-cutting-concerns}
+## Gunakan _Render Props_ untuk _*Urusan Lintas-Sektoral*_ {#use-render-props-for-cross-cutting-concerns}
 
 Komponen merupakan unit utama dari penggunaan kembali kode di React, namun tidak selalu jelas bagaimana membagikan _state_ atau perilaku tertentu yang dimiliki suatu komponen ke komponen lainnya yang membutuhkan _state_ yang sama itu.
 
@@ -52,9 +52,9 @@ class MouseTracker extends React.Component {
 
 Ketika kursor bergerak di layar, komponen menampilkan koordinat (x, y) dari kursor di sebuah `<p>`.
 
-Kemudian muncul pertanyaan: Bagaimana kita bisa menggunakan kembali perilaku ini pada komponen lainnya? Dengan kata lain, apabila ada komponen lain yang membutuhkan informasi tentang posisi kursor, dapatkah kita merangkum perilaku ini sehingga kita dapat dengan mudah membagikan informasi posisi kursor kepada komponen tersebut?
+Kemudian muncul pertanyaan: Bagaimana kita bisa menggunakan kembali perilaku ini pada komponen lainnya? Dengan kata lain, apabila ada komponen lain yang membutuhkan informasi tentang posisi kursor, dapatkah kita mengenkapsulasi perilaku ini sehingga kita dapat dengan mudah membagikan informasi posisi kursor kepada komponen tersebut?
 
-Karena komponen merupakan unit dasar penggunaan kembali kode di React, mari kita coba menyusun ulang kode sebelumnya sedikit untuk menggunakan komponen `<Mouse>` yang merangkum perilaku yang perlu kita gunakan di tempat lain.
+Karena komponen merupakan unit dasar penggunaan kembali kode di React, mari kita coba menyusun ulang kode sebelumnya sedikit untuk menggunakan komponen `<Mouse>` yang mengenkapsulasi perilaku yang perlu kita gunakan di tempat lain.
 
 ```js
 // The <Mouse> component encapsulates the behavior we need...
@@ -95,9 +95,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Sekarang komponen `<Mouse>` telah merangkum semua perilaku yang terkait dengan mendengar pada _event_ `mousemove` serta menyimpan posisi (x, y) dari kursor, namun hasil ini belum benar-benar dapat digunakan kembali di tempat lain (_reusable_).
+Sekarang komponen `<Mouse>` telah mengenkapsulasi semua perilaku yang terkait dengan mendengar pada _event_ `mousemove` serta menyimpan posisi (x, y) dari kursor, namun hasil ini belum benar-benar dapat digunakan kembali di tempat lain (_reusable_).
 
-Sebagai contoh, anggap kita memiliki sebuah komponen `<Cat>` yang me-_render_ gambar kucing sedang mengejar tetikus di layar. Kita dapat menggunakan props `<Cat mouse={{ x, y }}>` untuk memberitahukan pada komponen itu koordinat tetikus sehingga ia mengetahui di mana harus memposisikan gambar di layar.
+Sebagai contoh, anggap kita memiliki sebuah komponen `<Cat>` yang me-_render_ gambar kucing sedang mengejar tetikus di layar. Kita dapat menggunakan props `<Cat mouse={{ x, y }}>` untuk memberitahu koordinat tetikus kepada komponen tersebut sehingga ia mengetahui di mana harus memposisikan gambar di layar.
 
 Sebagai usaha pertama, Anda bisa mencoba me-_render_ `<Cat>` *di dalam metode `render` milik `<Mouse>`*, seperti ini:
 
@@ -153,9 +153,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Pendekatan ini akan bekerja untuk kasus penggunaan ini secara spesifik, namun kita belum berhasil mencapai tujuan untuk benar-benar merangkum perilaku yang kita inginkan (melacak posisi kursor) agar dapat dengan mudah digunakan kembali. Sekarang, setiap kali kita ingin mengetahui posisi kursor untuk kasus penggunaan yang lain, kita masih harus membuat sebuah komponen baru (i.e. komponen  `<MouseWithCat>` lainnya) yang me-_render_ sesuatu secara spesifik untuk kasus tersebut.
+Pendekatan ini akan bekerja untuk kasus penggunaan ini secara spesifik, namun kita belum berhasil mencapai tujuan untuk benar-benar mengenkapsulasi perilaku yang kita inginkan (melacak posisi kursor) agar dapat dengan mudah digunakan kembali. Sekarang, setiap kali kita ingin mengetahui posisi kursor untuk kasus penggunaan yang lain, kita masih harus membuat sebuah komponen baru (dengan kata lain, komponen  `<MouseWithCat>` lainnya) yang me-_render_ sesuatu secara spesifik untuk kasus tersebut.
 
-Di sinilah _props render_ bisa digunakan: alih-alih menuliskan sebuah `<Cat>` di dalam sebuah komponen '<Mouse>', dan secara efektif mengubah hasil _render_ nya, kita dapat memberikan `<Mouse>` sebuah props berupa suatu fungsi yang digunakan untuk menentukan secara dinamis apa yang akan di-_render_ - sebuah _props render_.
+Di sinilah _render props_ bisa digunakan: alih-alih menuliskan sebuah `<Cat>` di dalam sebuah komponen '<Mouse>', dan secara efektif mengubah hasil _render_ nya, kita dapat memberikan `<Mouse>` sebuah props berupa suatu fungsi yang digunakan untuk menentukan secara dinamis apa yang akan di-_render_ - sebuah _render props_.
 
 ```js
 class Cat extends React.Component {
@@ -212,17 +212,15 @@ class MouseTracker extends React.Component {
 
 Dengan begini, alih-alih mengkloning komponen `<Mouse>` dan menulis secara eksplisit sesuatu yang berbeda di dalam metode `render` untuk setiap kasus penggunaan, kita memberikan suatu props `render` kepada komponen `<Mouse>` yang dapat digunakan untuk menentukan apa yang harus di-_render_ secara dinamis.
 
-Secara lebih konkrit, **sebuah _props render_ adalah suatu _prop_ berupa sebuah fungsi yang digunakan suatu komponen untuk mengetahui apa yang harus ia _render_.**
+Secara lebih konkrit, **sebuah _render props_ adalah suatu _prop_ berupa sebuah fungsi yang digunakan suatu komponen untuk mengetahui apa yang harus ia _render_.**
 
 Teknik ini membuat perilaku yang perlu kita bagikan menjadi amat portabel. Untuk mendapatkan perilaku tersebut, _render_-lah sebuah `<Mouse>` dengan sebuah _props_ `render` yang memberitahunya apa yang harus di-_render_ dengan posisi (x, y) kursor saat ini.
 
-Satu hal menarik tentang _props render_ adalah bahwa Anda dapat mengimplementasikan kebanyakan [komponen tingkat tinggi/higher-order components](/docs/higher-order-components.html) (HOC) menggunakan komponen biasa dengan sebuah _props render_. Sebagai contoh, jika Anda lebih memilih untuk memiliki sebuah HOC `withMouse` daripada komponen `<Mouse>`, Anda dapat dengan mudah membuatnya menggunakan komponen `<Mouse>` biasa dengan suatu _props render_:
+Satu hal menarik tentang _render props_ adalah bahwa Anda dapat mengimplementasikan kebanyakan [komponen tingkat tinggi/higher-order components](/docs/higher-order-components.html) (HOC) menggunakan komponen biasa dengan sebuah _render props_. Sebagai contoh, jika Anda lebih memilih untuk memiliki sebuah HOC `withMouse` daripada komponen `<Mouse>`, Anda dapat dengan mudah membuatnya menggunakan komponen `<Mouse>` biasa dengan suatu _render props_:
 
 ```js
-// If you really want a HOC for some reason, you can easily
-// create one using a regular component with a render prop!
-// Jika Anda
-//
+// Jika Anda benar-benar ingin menggunakan HOC untuk alasan tertentu, Anda dapat dengan mudah
+// membuatnya menggunakan komponen biasa dengan sebuah _render prop_!
 function withMouse(Component) {
   return class extends React.Component {
     render() {
@@ -236,11 +234,11 @@ function withMouse(Component) {
 }
 ```
 
-Menggunakan _props render_ membuat pola manapun mungkin digunakan.
+Menggunakan _render props_ membuat pola manapun mungkin digunakan.
 
 ## Menggunakan Props Selain `render` {#using-props-other-than-render}
 
-Penting untuk diingat bahwa meskipun pola ini disebut "_render props (props render)_" bukan berarti Anda *harus menggunakan* props *dengan nama `render` untuk menggunakannya.* Sebaliknya, [_props_ *apapun* yang merupakan sebuah fungsi yang digunakan oleh komponen untuk mengetahui apa yang harus di-_render_ secara teknis merupakan sebuah "_prop render_"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
+Penting untuk diingat bahwa meskipun pola ini disebut "_render props_" bukan berarti Anda *harus menggunakan* props *dengan nama `render` untuk menggunakannya.* Sebaliknya, [_props_ *apapun* yang merupakan sebuah fungsi yang digunakan oleh komponen untuk mengetahui apa yang harus di-_render_ secara teknis merupakan sebuah "_render prop_"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
 
 Meskipun contoh-contoh di atas menggunakan kata kunci `render`, kita dapat dengan sama mudahnya menggunakan props `children`!
 
@@ -271,9 +269,9 @@ Mouse.propTypes = {
 ```
 ## Peringatan {#caveats}
 
-### Berhati-hatilah ketika menggunakan Props Render dengan React.PureComponent {#be-careful-when-using-render-props-with-reactpurecomponent}
+### Berhati-hatilah ketika menggunakan Render Props dengan React.PureComponent {#be-careful-when-using-render-props-with-reactpurecomponent}
 
-Menggunakan sebuah _props render_ dapat menghilangkan keuntungan yang didapatkan dengan menggunakan [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) jika Anda membuat fungsi di dalam metode `render`. Hal ini disebabkan karena perbandingan _props_ yang dangkal (_shallow prop comparison_) pada PureComponent akan selalu mengembalikan nilai `false` untuk props baru, dan setiap `render` dalam kasus ini akan menghasilkan nilai baru untuk _props render_.
+Menggunakan sebuah _render props_ dapat menghilangkan keuntungan yang didapatkan dengan menggunakan [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) jika Anda membuat fungsi di dalam metode `render`. Hal ini disebabkan karena perbandingan _props_ yang dangkal (_shallow prop comparison_) pada PureComponent akan selalu mengembalikan nilai `false` untuk props baru, dan setiap `render` dalam kasus ini akan menghasilkan nilai baru untuk _render props_.
 
 Sebagai contoh, melanjutkan dengan komponen `<Mouse>` dari pembahasan di atas, jika `Mouse` meng-_extend_ `React.PureComponent` alih-alih `React.Component`, contoh kita akan menjadi seperti berikut:
 
@@ -327,4 +325,3 @@ class MouseTracker extends React.Component {
 ```
 
 Pada kasus-kasus di mana Anda tidak dapat mendefinisikan _props_ secara statis (misalnya karena Anda harus menutup _props_ dan/atau _state_ dari komponen tertentu) `<Mouse>` seharusnya meng-_extend_ `React.Component` saja.
-ẁ
