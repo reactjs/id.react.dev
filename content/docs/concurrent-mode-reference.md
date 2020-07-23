@@ -14,19 +14,19 @@ prev: concurrent-mode-adoption.html
 
 <div class="scary">
 
->Caution:
+>Perhatian:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau Anda baru menggunakan React, jangan khawatir tentang fitur ini** -- Anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
-This page is an API reference for the React [Concurrent Mode](/docs/concurrent-mode-intro.html). If you're looking for a guided introduction instead, check out [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).
+Laman ini merupakan referensi API untuk [Mode _Concurrent_](/docs/concurrent-mode-intro.html) React. Jika Anda mencari panduan dasar, gunakan [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html)
 
-**Note: This is a Community Preview and not the final stable version. There will likely be future changes to these APIs. Use at your own risk!**
+**Catatan: Fitur ini merupakan versi Pratinjau Komunitas dan bukan versi rilis yang stabil. Besar kemungkinan akan perubahan dari API yang terdapat pada laman ini. Gunakan sesuai dengan resiko Anda sendiri!**
 
-- [Enabling Concurrent Mode](#concurrent-mode)
+- [Mengaktifkan Mode _Concurrent_](#concurrent-mode)
     - [`createRoot`](#createroot)
     - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
@@ -35,7 +35,7 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
     - [`useTransition`](#usetransition)
     - [`useDeferredValue`](#usedeferredvalue)
 
-## Enabling Concurrent Mode {#concurrent-mode}
+## Mengaktifkan Mode _Concurrent_ {#concurrent-mode}
 
 ### `createRoot` {#createroot}
 
@@ -43,9 +43,9 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 ReactDOM.createRoot(rootNode).render(<App />);
 ```
 
-Replaces `ReactDOM.render(<App />, rootNode)` and enables Concurrent Mode.
+Menggantikan `ReactDOM.render(<App />, rootNode)` dan mengaktifkan Mode _Concurrent_.
 
-For more information on Concurrent Mode, check out the [Concurrent Mode documentation.](/docs/concurrent-mode-intro.html)
+Untuk informasi lebih lanjut mengenai Mode _Concurrent_, silahkan lihat [dokumentasi Mode _Concurrent_.](/docs/concurrent-mode-intro.html)
 
 ### `createBlockingRoot` {#createblockingroot}
 
@@ -53,11 +53,11 @@ For more information on Concurrent Mode, check out the [Concurrent Mode document
 ReactDOM.createBlockingRoot(rootNode).render(<App />)
 ```
 
-Replaces `ReactDOM.render(<App />, rootNode)` and enables [Blocking Mode](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode).
+Menggantikan `ReactDOM.render(<App />, rootNode)` dan mengaktifkan [Mode _Blocking_](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode).
 
-Opting into Concurrent Mode introduces semantic changes to how React works. This means that you can't use Concurrent Mode in just a few components. Because of this, some apps may not be able to migrate directly to Concurrent Mode. 
+Dengan menggunakan Mode _Concurrent_ akan merubah landasan cara kerja React. Hal ini berarti Anda tidak bisa menggunakan Mode _Concurrent_ untuk beberapa komponen saja. Oleh sebab itu, kemungkinan beberapa aplikasi tidak bisa langsung mengimplementasikan Mode _Concurrent_. 
 
-Blocking Mode only contains a small subset of Concurrent Mode features and is intended as an intermediary migration step for apps that are unable to migrate directly.
+Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujukan untuk proses peralihan aplikasi yang belum bisa mengadopsi secara langsung.
 
 ## Suspense API {#suspense}
 
@@ -70,13 +70,13 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 </Suspense>
 ```
 
-`Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.
+`Suspense` memungkinkan komponen Anda "menunggu" sesuatu sebelum di _render_, dengan menampilkan _fallback_ selama menunggu.
 
-In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
+Pada contoh berikut ini, `ProfileDetails` menunggu panggilan API _asynchronous_ untuk mendapatkan data. Selama menunggu `ProfileDetails` dan `ProfilePhoto`, kita dapat menampilkan _fallback_ berupa `Loading...`. Hal penting yang perlu dicatat yaitu jika semua anak komponen (_children_) dari `<Suspense>` belum siap, tampilan _fallback_ akan terus muncul.
 
-`Suspense` takes two props:
-* **fallback** takes a loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
-* **unstable_avoidThisFallback** takes a boolean. It tells React whether to "skip" revealing this boundary during the initial load. This API will likely be removed in a future release.
+`Suspense` memiliki dua _props_:
+* **fallback** untuk indikator menunggu. _fallback_ akan terus ditampilkan sampai semua anak komponen dari `Suspense` sudah selesai di _render_.
+* **unstable_avoidThisFallback** sebagai _boolean_. React menggunakan _prop_ ini untuk "menghindari" tampilan _fallback_ diawal inisialisasi. Besar kemungkinan API ini akan dihapus di rilis yang akan datang.
 
 ### `<SuspenseList>` {#suspenselist}
 
@@ -95,19 +95,19 @@ In this example, `ProfileDetails` is waiting for an asynchronous API call to fet
 </SuspenseList>
 ```
 
-`SuspenseList` helps coordinate many components that can suspend by orchestrating the order in which these components are revealed to the user.
+`SuspenseList` bisa membantu koordinansi beberapa komponen sekaligus yang perlu diatur urutan penampilannya kepada pengguna.
 
-When multiple components need to fetch data, this data may arrive in an unpredictable order. However, if you wrap these items in a `SuspenseList`, React will not show an item in the list until previous items have been displayed (this behavior is adjustable).
+Ketika sejumlah komponen memerlukan data, kita tidak selalu bisa memprediksi urutan data yang sampai. Tetapi, jika kita bungkus komponen-komponen ini ke dalam `SuspenseList`, React tidak akan menampilkan suatu komponen hingga komponen sebelumnya sudah tampil (dapat diatur lebih lanjut).
 
-`SuspenseList` takes two props:
-* **revealOrder (forwards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
-  * `together` reveals *all* of them when they're ready instead of one by one.
-* **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` is shown. 
-    * By default, `SuspenseList` will show all fallbacks in the list.
-    * `collapsed` shows only the next fallback in the list.
-    * `hidden` doesn't show any unloaded items.
+`SuspenseList` memiliki dua _props_:
+* **revealOrder (forwards, backwards, together)** mengatur urutan munculnya komponen yang ada di dalam `SuspenseList`.
+  * `together` akan menampilkan *semua* komponen secara bersamaan ketika sudah siap dibanding satu per satu.
+* **tail (collapsed, hidden)** mengatur perilaku komponen di dalam `SuspenseList` yang belum siap. 
+    * Secara umum, `SuspenseList` akan menampilkan semua _fallbacks_.
+    * `collapsed` hanya akan menampilkan _fallback_ berikutnya dari anak komponen.
+    * `hidden` tidak akan menampilkan _fallback_ apapun.
 
-Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseList` components below it. It does not search for boundaries deeper than one level. However, it is possible to nest multiple `SuspenseList` components in each other to build grids.
+Perlu dicatat bahwa `SuspenseList` hanya akan melihat komponen `Suspense` dan `SuspenseList` terdekat. `SuspenseList` tidak akan melihat lebih dari satu level di bawahnya. Tetapi, jika dibutuhkan Anda bisa menumpuk beberapa komponen `SuspenseList` satu sama lain untuk membuat sebuah kerangka.
 
 ### `useTransition` {#usetransition}
 
@@ -117,13 +117,13 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 ```
 
-`useTransition` allows components to avoid undesirable loading states by waiting for content to load before **transitioning to the next screen**. It also allows components to defer slower, data fetching updates until subsequent renders so that more crucial updates can be rendered immediately.
+`useTransition` bisa digunakan untuk mencegah kondisi pembaruan (_loading state_) yang tidak diinginkan dengan cara menunggu konten muncul sebelum **berpindah ke tampilan berikutnya**. Dan juga hal ini bisa membantu mengontrol komponen agar memprioritaskan _render_ yang lebih penting, seperti ketika pembaruan data untuk ditahan sampai _render_ berikutnya.
 
-The `useTransition` hook returns two values in an array.
-* `startTransition` is a function that takes a callback. We can use it to tell React which state we want to defer.
-* `isPending` is a boolean. It's React's way of informing us whether we're waiting for the transition to finish.
+_Hook_ `useTransition` menghasilkan dua nilai dalam sebuah senarai.
+* `startTransition` sebuah fungsi dengan masukan _callback_. Bisa digunakan untuk memberitahu React _state_ mana yang perlu ditunda.
+* `isPending` sebuah _boolean_. Digunakan React untuk memberitahu jika sedang dalam proses penangguhan _state_ tertentu.
 
-**If some state update causes a component to suspend, that state update should be wrapped in a transition.**
+**Jika proses pembaruan _state_ mengakibatkan sebuah komponen ditangguhkan, pembaruan _state_ tersebut harus dimasukkan ke dalam _transition_.**
 
 ```js
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
@@ -153,21 +153,21 @@ function App() {
 }
 ```
 
-In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner` for 2 seconds (the time shown in `timeoutMs`).
+Dalam contoh potongan kode, proses pengambilan data dienkapsulasi dengan `startTransition`. Ini berarti permintaan data akan segera dieksekusi selagi menangguhkan _render_ halaman profil dan komponen `Spinner` selama 2 detik (sesuai dengan waktu yang tertera di `timeoutMs`).
 
-The `isPending` boolean lets React know that our component is transitioning, so we are able to let the user know this by showing some loading text on the previous profile page.
+_Boolean_ `isPending` mengindikasikan React bahwa komponen sedang dalam transisi yang bisa kita gunakan untuk memberitahu pengguna dengan menampilkan sebuah pesan di halaman profil sebelumnya.
 
-**For an in-depth look at transitions, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions).**
+**Untuk informasi lebih jauh tentang transisi dapat dilihat di [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions).**
 
-#### useTransition Config {#usetransition-config}
+#### Konfigurasi useTransition {#usetransition-config}
 
 ```js
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 ```
 
-`useTransition` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long to wait before showing the next state (the new Profile Page in the above example).
+`useTransition` dapat menggunakan parameter `timeoutMs` sebagai **tambahan Konfigurasi _Suspense_**. Parameter ini (dalam mili detik) digunakan React sebagai penanda berapa lama jeda sebelum berpindah ke _state_ berikutnya (Halaman Profil baru dari contoh di atas).
 
-**Note: We recommend that you share Suspense Config between different modules.**
+**Catatan: Kami merekomendasikan untuk menggunakan Konfigurasi _Suspense_ untuk tiap modul yang berbeda.**
 
 
 ### `useDeferredValue` {#usedeferredvalue}
@@ -176,11 +176,11 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
 ```
 
-Returns a deferred version of the value that may "lag behind" it for at most `timeoutMs`.
+Menghasilkan suatu nilai yang tertunda" sampai kurun waktu `timeoutMs`.
 
-This is commonly used to keep the interface responsive when you have something that renders immediately based on user input and something that needs to wait for a data fetch.
+Biasanya digunakan untuk memastikan tampilan tetap responsif ketika suatu hal perlu di tampilkan seketika dari interaksi pengguna sedangkan harus menunggu proses pengambilan data juga.
 
-A good example of this is a text input.
+Salah satu contoh skenario yang tepat adalah masukan teks (_text input_).
 
 ```js
 function App() {
@@ -199,16 +199,16 @@ function App() {
  }
 ```
 
-This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lags behind" for up to 2 seconds according to the `timeoutMs` before updating, allowing it to render with the current text in the background.
+Dengan metode ini kita dapat menampilkan segera teks terbaru di `input` yang akan membuat laman web terlihat responsif. Sementara itu, `MySlowList` "tertunda" sampai 2 detik berdasarkan `timeoutMs` sebelum diperbarui, memberikan kesempatan untuk eksekusi dengan teks terbaru di balik layar.
 
-**For an in-depth look at deferring values, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#deferring-a-value).**
+**Untuk informasi lebih lanjut tentang penundaan, Anda dapat melihat [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#deferring-a-value).**
 
-#### useDeferredValue Config {#usedeferredvalue-config}
+#### Konfigurasi useDeferredValue {#usedeferredvalue-config}
 
 ```js
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 ```
 
-`useDeferredValue` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long the deferred value is allowed to lag behind.
+`useDeferredValue` dapat menggunakan parameter `timeoutMs` sebagai **tambahan Konfigurasi _Suspense_**. Parameter ini (dalam mili detik) digunakan React sebagai penanda berapa lama jeda waktu sebuah nilai perlu ditunda.
 
-React will always try to use a shorter lag when network and device allows it.
+React akan selalu menggunakan jeda waktu terkecil ketika jaringan dan peranti mendukungnya.
