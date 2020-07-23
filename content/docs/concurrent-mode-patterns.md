@@ -23,9 +23,7 @@ next: concurrent-mode-adoption.html
 
 </div>
 
-Usually, when we update the state, we expect to see changes on the screen immediately. This makes sense because we want to keep our app responsive to user input. However, there are cases where we might prefer to **defer an update from appearing on the screen**.
-
-For example, if we switch from one page to another, and none of the code or data for the next screen has loaded yet, it might be frustrating to immediately see a blank page with a loading indicator. We might prefer to stay longer on the previous screen. Implementing this pattern has historically been difficult in React. Concurrent Mode offers a new set of tools to do that.
+Biasanya, ketika kita mengubah state, kita akan langsung melihat perubahannya di layar. Ini masuk akal karena kita ingin aplikasi responsif terhadap input user. Tetapi, mungkin ada kasus dimana kita lebih memilih untuk **menunda perubahan yang terjadi di layar**
 
 - [Transitions](#transitions)
   - [Wrapping setState in a Transition](#wrapping-setstate-in-a-transition)
