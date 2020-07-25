@@ -26,8 +26,8 @@ next: concurrent-mode-adoption.html
 Biasanya, ketika kita mengubah state, kita akan langsung melihat perubahannya di layar. Ini masuk akal karena kita ingin aplikasi responsif terhadap input user. Tetapi, mungkin ada kasus dimana kita lebih memilih untuk **menunda perubahan yang terjadi di layar**
 
 Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk laman selanjutnya, mungkin kita akan merasa frustasi ketika melihat laman dengan loading. Kita mungkin lebih memilih untuk tetap berada di laman sebelumnya. Meng-implementasi pola ini secara historis sulit dalam React. Concurrent Mode menawarkan seperangkat alat baru untuk melakukan itu.
-- [Transitions](#transitions)
-  - [Wrapping setState in a Transition](#wrapping-setstate-in-a-transition)
+- [Transisi](#transitions)
+  - [Setstate didalam transisi](#wrapping-setstate-in-a-transition)
   - [Adding a Pending Indicator](#adding-a-pending-indicator)
   - [Reviewing the Changes](#reviewing-the-changes)
   - [Where Does the Update Happen?](#where-does-the-update-happen)
@@ -48,15 +48,15 @@ Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk lama
 
 ## Transitions {#transitions}
 
-Let's revisit [this demo](https://codesandbox.io/s/infallible-feather-xjtbu) from the previous page about [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html).
+Mari buka kembali [demo berikut](https://codesandbox.io/s/infallible-feather-xjtbu) dari the laman sebelumnya mengenai [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html).
 
-When we click the "Next" button to switch the active profile, the existing page data immediately disappears, and we see the loading indicator for the whole page again. We can call this an "undesirable" loading state. **It would be nice if we could "skip" it and wait for some content to load before transitioning to the new screen.**
+Ketika kita klik Tombol "Next" untuk mengubah profil aktif, data laman sebelumnya langsung menghilang, dan kita melihat indikator loading untuk seluruh laman lagi. Kita bisa menyebut hal ini loading state yang "tidak diinginkan". **Akan lebih baik jika kita bisa "melewatinya" dan menunggu konten tersebut selesai di load sebelum pindah ke laman baru**
 
-React offers a new built-in `useTransition()` Hook to help with this.
+React punya Hook khusus `useTransition()` untuk menangani masalah ini.
 
-We can use it in three steps.
+Kita bisa menggunakannya dengan 3 langkah.
 
-First, we'll make sure that we're actually using Concurrent Mode. We'll talk more about [adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) later, but for now it's sufficient to know that we need to use `ReactDOM.createRoot()` rather than `ReactDOM.render()` for this feature to work:
+Pertama, Kita harus menggunakan Concurrent Mode. Kita akan membahas lebih lanjut tentang [mengadopsi Concurrent Mode](/docs/concurrent-mode-adoption.html) lain waktu, untuk sekarang kita hanya perlu tahu kalau kita akan menggunakan `ReactDOM.createRoot()` daripada `ReactDOM.render()` agar fitur berikut dapat bekerja:
 
 ```js
 const rootElement = document.getElementById("root");
@@ -64,13 +64,13 @@ const rootElement = document.getElementById("root");
 ReactDOM.createRoot(rootElement).render(<App />);
 ```
 
-Next, we'll add an import for the `useTransition` Hook from React:
+Selanjutnya kita import hook`useTransition` dari React:
 
 ```js
 import React, { useState, useTransition, Suspense } from "react";
 ```
 
-Finally, we'll use it inside the `App` component:
+Terakhir, kita pakai hook tersebut di dalam komponen `App`:
 
 ```js{3-5}
 function App() {
