@@ -25,6 +25,7 @@ next: concurrent-mode-adoption.html
 
 Biasanya, ketika kita mengubah state, kita akan langsung melihat perubahannya di layar. Ini masuk akal karena kita ingin aplikasi responsif terhadap input user. Tetapi, mungkin ada kasus dimana kita lebih memilih untuk **menunda perubahan yang terjadi di layar**
 
+Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk laman selanjutnya, mungkin kita akan merasa frustasi ketika melihat laman dengan loading. Kita mungkin lebih memilih untuk tetap berada di laman sebelumnya. Meng-implementasi pola ini secara historis sulit dalam React. Concurrent Mode menawarkan seperangkat alat baru untuk melakukan itu.
 - [Transitions](#transitions)
   - [Wrapping setState in a Transition](#wrapping-setstate-in-a-transition)
   - [Adding a Pending Indicator](#adding-a-pending-indicator)
