@@ -73,6 +73,8 @@ Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan 
 
 - **[nwb](https://github.com/insin/nwb)** sangat baik dalam [memublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
 
+- **[Nx](https://nx.dev/react)** adalah sebuah *toolkit* untung pengembangan *full-stack* di dalam monorepo, dengan dukungan untuk React, Next.js, [Express](https://expressjs.com/), dan lebih banyak lagi.
+
 - **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 
 ## Membuat Toolchains dari Awal{#creating-a-toolchain-from-scratch}

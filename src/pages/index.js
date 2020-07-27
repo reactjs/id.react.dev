@@ -53,7 +53,11 @@ class Home extends Component {
           title="React &ndash; Library JavaScript untuk membangun antarmuka pengguna"
           canonicalUrl={createCanonicalUrl('/')}
         />
-        <div css={{width: '100%'}}>
+        <div
+          css={{
+            width: '100%',
+            marginTop: 60, // BLM
+          }}>
           <header
             css={{
               backgroundColor: colors.dark,
