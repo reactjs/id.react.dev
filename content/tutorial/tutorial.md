@@ -559,7 +559,11 @@ Mendeteksi perubahan pada objek *immutable* dianggap lebih mudah. Jika objek *im
 
 #### Menentukan Waktu Untuk Melakukan Render Ulang di React {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 Keuntungan utama dari *immutability* adalah membantu Anda untuk membuat *pure component* di React. Data yang *immutable* dapat dengan mudah memastikan apakah perubahan sudah terjadi, yang juga membantu untuk menentukan apakah komponen perlu di-*render* ulang.  
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 Anda dapat mempelajari `shouldComponentUpdate()` lebih lanjut dan bagaimana cara membuat *pure components* dengan membaca [Optimisasi Performa](/docs/optimizing-performance.html#examples).
 
