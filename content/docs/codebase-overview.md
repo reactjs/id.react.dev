@@ -35,6 +35,7 @@ Misalnya, tes untuk [`setInnerHTML.js`](https://github.com/facebook/react/blob/8
 
 ### Peringatan dan _Invariant_ {#warnings-and-invariants}
 
+<<<<<<< HEAD
 Basis kode React menggunakan modul `warning` untuk menampilkan peringatan:
 
 ```js
@@ -61,6 +62,13 @@ if (!didWarnAboutMath) {
     'Matematika tidak berfungsi hari ini.'
   );
   didWarnAboutMath = true;
+=======
+The React codebase uses `console.error` to display warnings:
+
+```js
+if (__DEV__) {
+  console.error('Something is wrong.');
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 }
 ```
 
@@ -113,6 +121,7 @@ ReactRef.detachRefs = function(
 Bila mungkin, kode baru harus menggunakan anotasi Flow.
 Anda dapat menjalankan `yarn flow` secara lokal untuk mengecek kode Anda menggunakan Flow.
 
+<<<<<<< HEAD
 ### Injeksi Dinamis {#dynamic-injection}
 
 React menggunakan injeksi dinamis pada sebagian modul. Walaupun selalu eksplisit, hal tersebut masih disayangkan karena menghalangi pemahaman terhadap kode. Alasan utamanya adalah karena React mulanya hanya mendukung DOM sebagai target. React Native dimulai sebagai _fork_ dari React. Kami perlu menambahkan injeksi dinamis agar React Native dapat melakukan _override_ pada beberapa perilaku.
@@ -147,6 +156,9 @@ _Field_ `injection` tidak ditangani secara khusus dengan cara apapun. Tapi menur
 Terdapat beberapa poin untuk injeksi pada basis kode. Di waktu yang akan datang, kami berniat untuk menghilangkan mekanisme injeksi dinamis dan menghubungkan semua bagian secara statis selama proses _build_.
 
 ### _Multiple Package_ {#multiple-packages}
+=======
+### Multiple Packages {#multiple-packages}
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 React adalah sebuah [monorepo](https://danluu.com/monorepo/). Repositorinya berisi banyak _package_ terpisah sehingga perubahan mereka dapat dikoordinasikan bersama, dan isu-isu berada pada satu tempat.
 
@@ -210,9 +222,13 @@ Kode sumbernya terletak di [`packages/react-reconciler`](https://github.com/face
 
 ### Sistem _Event_ {#event-system}
 
+<<<<<<< HEAD
 React menerapkan sebuah sistem _event_ sintetis yang agnostik terhadap _renderer_-nya dan bekerja dengan React DOM dan React Native. Kode sumbernya terletak di [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
 
 Terdapat sebuah [video dengan pembahasan mendalam mengenai kodenya](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 menit).
+=======
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 ### Selanjutnya Apa? {#what-next}
 

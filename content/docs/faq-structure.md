@@ -12,7 +12,11 @@ React tidak memiliki pendapat tentang bagaimana Anda memasukkan file ke folder. 
 
 #### Pengelompokan berdasarkan fitur atau rute {#grouping-by-features-or-routes}
 
+<<<<<<< HEAD
 Salah satu cara umum untuk menyusun proyek adalah dengan menempatkan CSS, JS, dan tes bersama di dalam folder yang dikelompokkan berdasarkan fitur atau rute.
+=======
+One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 ```
 common/

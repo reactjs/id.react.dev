@@ -40,7 +40,12 @@ console.log(add(16, 26)); // 42
 >
 > Bundel Anda akan terlihat sangat berbeda dari contoh yang ada.
 
+<<<<<<< HEAD
 Jika Anda menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), atau alat bantu lain yang serupa, maka Anda akan sudah mempunyai pengaturan Webpack bawaan dari alat bantu tersebut untuk membundel aplikasi Anda. 
+=======
+If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
+app.
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 Jika tidak, maka Anda perlu untuk membuat sendiri pengaturan pembundelan. Sebagai contoh, Anda bisa melihat panduan pengaturan Webpack di
 [Installation](https://webpack.js.org/guides/installation/) dan
