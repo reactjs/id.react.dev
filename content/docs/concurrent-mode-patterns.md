@@ -28,25 +28,25 @@ Biasanya, ketika kita mengubah state, kita akan langsung melihat perubahannya di
 Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk laman selanjutnya, mungkin kita akan merasa frustasi ketika melihat laman dengan loading. Kita mungkin lebih memilih untuk tetap berada di laman sebelumnya. Meng-implementasi pola ini secara historis sulit dalam React. Concurrent Mode menawarkan seperangkat alat baru untuk melakukan itu.
 - [Transisi](#transitions)
   - [Setstate didalam transisi](#wrapping-setstate-in-a-transition)
-  - [Adding a Pending Indicator](#adding-a-pending-indicator)
-  - [Reviewing the Changes](#reviewing-the-changes)
-  - [Where Does the Update Happen?](#where-does-the-update-happen)
-  - [Transitions Are Everywhere](#transitions-are-everywhere)
+  - [Menambah indikator tunggu](#adding-a-pending-indicator)
+  - [Review perubahan](#reviewing-the-changes)
+  - [Dimana perubahan terjadi?](#where-does-the-update-happen)
+  - [Transisi disetiap tempat](#transitions-are-everywhere)
   - [Baking Transitions Into the Design System](#baking-transitions-into-the-design-system)
-- [The Three Steps](#the-three-steps)
+- [Tiga Langkah](#the-three-steps)
   - [Default: Receded → Skeleton → Complete](#default-receded-skeleton-complete)
   - [Preferred: Pending → Skeleton → Complete](#preferred-pending-skeleton-complete)
   - [Wrap Lazy Features in `<Suspense>`](#wrap-lazy-features-in-suspense)
   - [Suspense Reveal “Train”](#suspense-reveal-train)
   - [Delaying a Pending Indicator](#delaying-a-pending-indicator)
   - [Recap](#recap)
-- [Other Patterns](#other-patterns)
+- [Cara lain](#other-patterns)
   - [Splitting High and Low Priority State](#splitting-high-and-low-priority-state)
   - [Deferring a Value](#deferring-a-value)
   - [SuspenseList](#suspenselist)
-- [Next Steps](#next-steps)
+- [Selanutnya](#next-steps)
 
-## Transitions {#transitions}
+## Transisi {#transitions}
 
 Mari buka kembali [demo berikut](https://codesandbox.io/s/infallible-feather-xjtbu) dari the laman sebelumnya mengenai [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html).
 
@@ -81,12 +81,12 @@ function App() {
   // ...
 ```
 
-**By itself, this code doesn't do anything yet.** We will need to use this Hook's return values to set up our state transition. There are two values returned from `useTransition`:
+**Dengan sendirinya, kode ini tidak melakukan apapun.** Kita akan menggunakan nilai return dari Hook ini untuk mempersiapkan transisi state kita. Ada dua nilai yang di return dari `useTransition`":
 
-* `startTransition` is a function. We'll use it to tell React *which* state update we want to defer.
-* `isPending` is a boolean. It's React telling us whether that transition is ongoing at the moment.
+* `startTransition` adalah fungsi. Fungsi ini akan kita gunakan untuk memberi tahu React state *mana* yang ingin kita tunda.
+* `isPending` adalah boolean. React memberi tahu apakah transisi sedang terjadi atau tidak.
 
-We will use them right below.
+Kita akan menggunakannya seperti berikut.
 
 Note we passed a configuration object to `useTransition`. Its `timeoutMs` property specifies **how long we're willing to wait for the transition to finish**. By passing `{timeoutMs: 3000}`, we say "If the next profile takes more than 3 seconds to load, show the big spinner -- but before that timeout it's okay to keep showing the previous screen".
 
