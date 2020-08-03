@@ -41,10 +41,10 @@ Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk lama
   - [Delaying a Pending Indicator](#delaying-a-pending-indicator)
   - [Recap](#recap)
 - [Cara lain](#other-patterns)
-  - [Splitting High and Low Priority State](#splitting-high-and-low-priority-state)
+  - [Memisahkan state dengan prioritas tinggi dan rendah](#splitting-high-and-low-priority-state)
   - [Deferring a Value](#deferring-a-value)
   - [SuspenseList](#suspenselist)
-- [Selanutnya](#next-steps)
+- [Selanjutnya](#next-steps)
 
 ## Transisi {#transitions}
 
@@ -88,11 +88,11 @@ function App() {
 
 Kita akan menggunakannya seperti berikut.
 
-Note we passed a configuration object to `useTransition`. Its `timeoutMs` property specifies **how long we're willing to wait for the transition to finish**. By passing `{timeoutMs: 3000}`, we say "If the next profile takes more than 3 seconds to load, show the big spinner -- but before that timeout it's okay to keep showing the previous screen".
+Kita menggunakan objek konfigurasi ke `useTransition`. Properti `timeoutMs` menspesifikasi **berapa lama kita ingin menunggu transisi untuk selesai**. Dengan mengoper `{timeoutMs: 3000}`, berarti kita mengatakan "Jika profil perlu lebih dari 3 detik untuk load, tampilkan loading berputar -- tapi sebelum timeout kita bisa tetap memperlihatkan layar sebelumnya".
 
-### Wrapping setState in a Transition {#wrapping-setstate-in-a-transition}
+### Setstate didalam transisi {#wrapping-setstate-in-a-transition}
 
-Our "Next" button click handler sets the state that switches the current profile in the state:
+Handler klik tombol "Next" kita, mengubah state yang mengganti profile saat ini:
 
 ```js{4}
 <button
@@ -103,7 +103,7 @@ Our "Next" button click handler sets the state that switches the current profile
 >
 ```
 
- We'll wrap that state update into `startTransition`. That's how we tell React **we don't mind React delaying that state update** if it leads to an undesirable loading state:
+ Kita akan membungkus perubahan state tersebut didalam `startTransition`. Dengan begitu, kita memberitahu React untuk **Boleh delay update state tersebut** jika perubahan tersebut membuat loading state yang tidak diinginkan:
 
 ```js{3,6}
 <button
@@ -116,13 +116,15 @@ Our "Next" button click handler sets the state that switches the current profile
 >
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/musing-driscoll-6nkie)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/musing-driscoll-6nkie)**
 
 Press "Next" a few times. Notice it already feels very different. **Instead of immediately seeing an empty screen on click, we now keep seeing the previous page for a while.** When the data has loaded, React transitions us to the new screen.
+Tekan "Next" beberapa kali. Jika diperhatikan, akan terasa bedanya. **Daripada langsung melihat layar kosong ketika klik, sekarang kita melihat layar sebelumnya untuk beberapa saat.** Ketika data sudah diload, React mengarahkan kita ke layar baru.
 
 If we make our API responses take 5 seconds, [we can confirm](https://codesandbox.io/s/relaxed-greider-suewh) that now React "gives up" and transitions anyway to the next screen after 3 seconds. This is because we passed `{timeoutMs: 3000}` to `useTransition()`. For example, if we passed `{timeoutMs: 60000}` instead, it would wait a whole minute.
+Jika kita buat API response untuk menunggu selama 5 detik, [kita bisa memastikan](https://codesandbox.io/s/relaxed-greider-suewh) kalau React "menyerah" dan langsung mengarahkan kita ke layar selanjutnya setelah 3 detik. Ini karena kita telah melewati batas `{timeoutMs: 3000}` untuk `useTransition()`. Contohnya, jika kita set `{timeoutMs: 60000}`, React akan menunggu selama semenit penuh.
 
-### Adding a Pending Indicator {#adding-a-pending-indicator}
+### Menambah indikator tunggu {#adding-a-pending-indicator}
 
 There's still something that feels broken about [our last example](https://codesandbox.io/s/musing-driscoll-6nkie). Sure, it's nice not to see a "bad" loading state. **But having no indication of progress at all feels even worse!** When we click "Next", nothing happens and it feels like the app is broken.
 
