@@ -228,7 +228,11 @@ function FriendListItem(props) {
 }
 ```
 
+<<<<<<< HEAD
 *State* dari komponen-komponen tersebut sepenuhnya independen. *Hooks* merupakan salah satu cara untuk menggunakan ulang *stateful logic*, bukan *state* itu sendiri. Faktanya, setiap panggilan kepada sebuah *Hook* memiliki *state* yang sepenuhnya terisolasi -- sehingga Anda dapat menggunakan *Hook* kustom yang sama dua kali dalam satu komponen.
+=======
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+>>>>>>> 80c16779a751ef997373adf95c47dbc9b1592eb6
 
 *Hook* kustom merupakan sebuah konvensi daripada sebuah fitur. Jika suatu nama fungsi dimulai dengan "`use`" dan memanggil *Hooks* lainnya, kami menganggapnya sebagai *Hook* kustom. Konvensi penamaan `useSomething` merupakan cara dari *linter plugin* kami dapat menemukan kesalahan (*bug*) dalam kode yang menggunakan *Hooks*.
 
