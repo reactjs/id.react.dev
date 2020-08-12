@@ -1,106 +1,107 @@
 ---
 id: faq-state
-title: Component State
+title: State Komponen
 permalink: docs/faq-state.html
 layout: docs
 category: FAQ
 ---
 
-### What does `setState` do? {#what-does-setstate-do}
+### Apa yang `setState` lakukan? {#what-does-setstate-do}
 
-`setState()` schedules an update to a component's `state` object. When state changes, the component responds by re-rendering.
+`setState()` merencanakan suatu pembaruan ke suatu `state` objek komponen. Ketika *state* berubah, komponen merespons dengan me-*render* ulang.
 
-### What is the difference between `state` and `props`? {#what-is-the-difference-between-state-and-props}
+### Apa perbedaan antara `state` dan `props`? {#what-is-the-difference-between-state-and-props}
 
-[`props`](/docs/components-and-props.html) (short for "properties") and [`state`](/docs/state-and-lifecycle.html) are both plain JavaScript objects. While both hold information that influences the output of render, they are different in one important way: `props` get passed *to* the component (similar to function parameters) whereas `state` is managed *within* the component (similar to variables declared within a function).
+[`props`](/docs/components-and-props.html) (kependekan dari "properti") dan [`state`](/docs/state-and-lifecycle.html) adalah objek JavaScript biasa. Meskipun keduanya menyimpan informasi yang mempengaruhi keluaran dari *render*, keduanya berbeda satu sama lain: `props` diteruskan *ke* komponen (mirip dengan *function parameters*) sedangkan `state` dikelola *dalam* komponen (mirip dengan variabel yang dideklarasikan dalam suatu *function*).
 
-Here are some good resources for further reading on when to use `props` vs `state`:
+Berikut adalah beberapa sumber yang bagus untuk dibaca lebih lanjut tentang kapan menggunakan `props` vs. `state`:
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 * [ReactJS: Props vs. State](https://lucybain.com/blog/2016/react-state-vs-pros/)
 
-### Why is `setState` giving me the wrong value? {#why-is-setstate-giving-me-the-wrong-value}
+### Kenapa `setState` memberikan saya `value` yang salah? {#why-is-setstate-giving-me-the-wrong-value}
 
-In React, both `this.props` and `this.state` represent the *rendered* values, i.e. what's currently on the screen.
+Di React, baik `this.props` dan `this.state` mewakili nilai yang telah di-*render*, yaitu apa yang saat ini ada di layar.
 
-Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need to compute values based on the current state (see below for details).
+Pemanggilan `setState` bersifat *asynchronous* - jangan mengandalkan `this.state` untuk mencerminkan nilai baru segera setelah memanggil `setState`. Mengoper pembaruan *function* sebagai ganti *object* jika anda perlu menghitung nilai berdasarkan *state* saat ini (lihat di bawah untuk lebih lanjut).
 
-Example of code that will *not* behave as expected:
+Contoh kode yang *tidak* akan berperilaku seperti yang diharapkan:
 
 ```jsx
 incrementCount() {
-  // Note: this will *not* work as intended.
+  // Catatan: ini mungkin *tidak* akan bekerja sebagaimana mestinya.
   this.setState({count: this.state.count + 1});
 }
 
 handleSomething() {
-  // Let's say `this.state.count` starts at 0.
+  // Anggap saja `this.state.count` dimulai dari 0.
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
-  // When React re-renders the component, `this.state.count` will be 1, but you expected 3.
+  // Ketika React me-render ulang komponennya, `this.state.count` akan menjadi 1, tapi anda mengharapkannya menjadi 3.
 
-  // This is because `incrementCount()` function above reads from `this.state.count`,
-  // but React doesn't update `this.state.count` until the component is re-rendered.
-  // So `incrementCount()` ends up reading `this.state.count` as 0 every time, and sets it to 1.
+  // Ini karena fungsi `incrementCount()` di atas membacanya dari `this.state.count`,
+  // tapi React tidak memperbarui `this.state.count` sampai komponennya me-render ulang.
+  // Jadi `incrementCount()` akhirnya membaca `this.state.count` sebagai 0 setiap waktu, dan mengubahnya ke 1.
 
-  // The fix is described below!
+  // Perbaikan dari masalah ini dijelaskan di bawah!
 }
 ```
 
-See below for how to fix this problem.
+Lihat di bawah untuk mengetahui cara memperbaiki masalah ini.
 
-### How do I update state with values that depend on the current state? {#how-do-i-update-state-with-values-that-depend-on-the-current-state}
+### Bagaimana cara saya memperbarui `state` dengan `value` yang bergantung pada `state` saat ini?{#how-do-i-update-state-with-values-that-depend-on-the-current-state}
 
-Pass a function instead of an object to `setState` to ensure the call always uses the most updated version of state (see below). 
+Oper sebuah *function* bukan *object* ke dalam `setState` untuk memastikan pemanggilannya selalu menggunakan versi terbaru dari *state* (lihat di bawah).
 
-### What is the difference between passing an object or a function in `setState`? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
+### Apa perbedaan antara mengoper sebuah `object` atau `function` dalam `setState`? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 
-Passing an update function allows you to access the current state value inside the updater. Since `setState` calls are batched, this lets you chain updates and ensure they build on top of each other instead of conflicting:
+Mengoper pembaruan *function* memungkinkan anda untuk mengakses nilai *state* saat ini dalam pembaruan. Karena pemanggilan `setState` dikelompokkan, ini memungkinkan anda merangkai pembaruan dan memastikannya terjadi secara bertumpukan bukan bertentangan:
 
 ```jsx
 incrementCount() {
   this.setState((state) => {
-    // Important: read `state` instead of `this.state` when updating.
+    // Penting: membaca `state` bukan `this.state` ketika memperbarui.
     return {count: state.count + 1}
   });
 }
 
 handleSomething() {
-  // Let's say `this.state.count` starts at 0.
+  // Anggap saja `this.state.count` dimulai dari 0.
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
 
-  // If you read `this.state.count` now, it would still be 0.
-  // But when React re-renders the component, it will be 3.
+  // Jika anda membaca `this.state.count` sekarang, itu pasti tetap 0.
+  // Tapi ketika React me-render ulang komponennya, hasilnya akan menjadi 3.
 }
 ```
 
-[Learn more about setState](/docs/react-component.html#setstate)
+[Pelajari lebih lanjut tentang `setState`](/docs/react-component.html#setstate)
 
-### When is `setState` asynchronous? {#when-is-setstate-asynchronous}
+### Kapan `setState` *asynchronous*? {#when-is-setstate-asynchronous}
 
-Currently, `setState` is asynchronous inside event handlers.
+Saat ini, `setState` *asynchronous* di dalam *event handler*.
 
-This ensures, for example, that if both `Parent` and `Child` call `setState` during a click event, `Child` isn't re-rendered twice. Instead, React "flushes" the state updates at the end of the browser event. This results in significant performance improvements in larger apps.
+Ini memastikan, sebagai contoh, jika kedua `Parent` dan `Child` memanggil `setState` selagi *click event*, `Child` tidak perlu me-*render* ulang dua kali. Bahkan sebaliknya, React "membilas" pembaruan *state* pada akhir *browser event*. Ini menghasilkan peningkatan kinerja yang signifikan pada aplikasi-aplikasi yang lebih besar.
 
-This is an implementation detail so avoid relying on it directly. In the future versions, React will batch updates by default in more cases.
+Ini adalah implementasi secara rinci untuk menghindari mengandalkannya secara langsung. Di versi yang mendatang, React akan melakukan sejumlah pembaruan secara *default* dalam kasus-kasus yang lebih banyak.
 
-### Why doesn't React update `this.state` synchronously? {#why-doesnt-react-update-thisstate-synchronously}
+### Kenapa React tidak memperbarui `this.state` secara *synchronous*? {#why-doesnt-react-update-thisstate-synchronously}
 
-As explained in the previous section, React intentionally "waits" until all components call `setState()` in their event handlers before starting to re-render. This boosts performance by avoiding unnecessary re-renders.
+Seperti yang sudah dijelaskan di bagian sebelumnya, React dengan sengaja "menunggu" sampai semua komponen memanggil `setState()` di *event handlers* sebelum me-*render* ulang. Ini meningkatkan kinerja dengan menghindari *render* ulang yang tidak perlu.
 
-However, you might still be wondering why React doesn't just update `this.state` immediately without re-rendering.
+Namun, anda mungkin masih bertanya-tanya kenapa React tidak langsung memperbarui `this.state` tanpa proses *render* ulang.
 
-There are two main reasons:
+Ada dua alasan utama:
 
-* This would break the consistency between `props` and `state`, causing issues that are very hard to debug.
-* This would make some of the new features we're working on impossible to implement.
+* Ini akan merusak konsistensi antara `props` dan `state`, menyebabkan masalah yang sangat sulit untuk di-*debug*.
+* Ini akan membuat beberapa fitur baru yang sedang kami kerjakan menjadi mustahil untuk diimplementasikan.
 
-This [GitHub comment](https://github.com/facebook/react/issues/11527#issuecomment-360199710) dives deep into the specific examples.
 
-### Should I use a state management library like Redux or MobX? {#should-i-use-a-state-management-library-like-redux-or-mobx}
+[Komentar GitHub](https://github.com/facebook/react/issues/11527#issuecomment-360199710) ini mendalami lebih jauh ke contoh-contoh yang lebih spesifik.
 
-[Maybe.](https://redux.js.org/faq/general#when-should-i-use-redux)
+### Haruskah saya menggunakan `state` *management library* seperti Redux atau MobX? {#should-i-use-a-state-management-library-like-redux-or-mobx}
 
-It's a good idea to get to know React first, before adding in additional libraries. You can build quite complex applications using only React.
+[Mungkin.](https://redux.js.org/faq/general#when-should-i-use-redux)
+
+Ide yang bagus untuk mengenal React terlebih dahulu, sebelum menambahkan *library* tambahan. Anda dapat membuat aplikasi yang sangat kompleks hanya dengan menggunakan React.
