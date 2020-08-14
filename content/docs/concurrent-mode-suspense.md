@@ -19,7 +19,7 @@ next: concurrent-mode-patterns.html
 >
 >Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
-> Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Jika Anda baru menggunakan React, jangan khawatirkan tentang fitur ini** -- Anda tidak perlu mempelajarinya sekarang
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
