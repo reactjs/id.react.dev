@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-suspense
-title: Suspense for Data Fetching (Experimental)
+title: Suspense untuk Penarikan Data (Eksperimental)
 permalink: docs/concurrent-mode-suspense.html
 prev: concurrent-mode-intro.html
 next: concurrent-mode-patterns.html
@@ -15,59 +15,59 @@ next: concurrent-mode-patterns.html
 
 <div class="scary">
 
->Caution:
+>Perhatian:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now. For example, if you're looking for a data fetching tutorial that works today, read [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) instead.
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
-React 16.6 added a `<Suspense>` component that lets you "wait" for some code to load and declaratively specify a loading state (like a spinner) while we're waiting:
+React 16.6 menambahkan komponen `<Suspense>` yang memungkinkan Anda "menunggu" kode untuk dimuat dan menentukan keadaan pemintal pemuatan secara deklaratif.
 
 ```jsx
 const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
 
-// Show a spinner while the profile is loading
+// Menampilkan pemintal ketika masih memuat profil
 <Suspense fallback={<Spinner />}>
   <ProfilePage />
 </Suspense>
 ```
 
-Suspense for Data Fetching is a new feature that lets you also use `<Suspense>` to **declaratively "wait" for anything else, including data.** This page focuses on the data fetching use case, but it can also wait for images, scripts, or other asynchronous work.
+Suspense untuk Penarikan Data adalah sebuah fitur baru yang juga memungkinkan Anda menggunakan `<Suspense>` untuk **secara deklaratif "menunggu" hal-hal yang lainnya, termasuk data.** Halaman ini berfokus pada kasus penarikan data, tetapi ini bisa juga menunggu gambar, kode, atau pekerjaan asinkron lainnya.
 
-- [What Is Suspense, Exactly?](#what-is-suspense-exactly)
-  - [What Suspense Is Not](#what-suspense-is-not)
-  - [What Suspense Lets You Do](#what-suspense-lets-you-do)
-- [Using Suspense in Practice](#using-suspense-in-practice)
-  - [What If I Don’t Use Relay?](#what-if-i-dont-use-relay)
-  - [For Library Authors](#for-library-authors)
-- [Traditional Approaches vs Suspense](#traditional-approaches-vs-suspense)
-  - [Approach 1: Fetch-on-Render (not using Suspense)](#approach-1-fetch-on-render-not-using-suspense)
-  - [Approach 2: Fetch-Then-Render (not using Suspense)](#approach-2-fetch-then-render-not-using-suspense)
-  - [Approach 3: Render-as-You-Fetch (using Suspense)](#approach-3-render-as-you-fetch-using-suspense)
-- [Start Fetching Early](#start-fetching-early)
-  - [We’re Still Figuring This Out](#were-still-figuring-this-out)
-- [Suspense and Race Conditions](#suspense-and-race-conditions)
-  - [Race Conditions with useEffect](#race-conditions-with-useeffect)
-  - [Race Conditions with componentDidUpdate](#race-conditions-with-componentdidupdate)
-  - [The Problem](#the-problem)
-  - [Solving Race Conditions with Suspense](#solving-race-conditions-with-suspense)
-- [Handling Errors](#handling-errors)
-- [Next Steps](#next-steps)
+- [Apa Sebenarnya Suspense Itu?](#what-is-suspense-exactly)
+  - [Apa yang Bukan Suspense](#what-suspense-is-not)
+  - [Apa yang Mungkin Anda Lakukan dengan Suspense](#what-suspense-lets-you-do)
+- [Penggunaan Suspense dalam Praktik](#using-suspense-in-practice)
+  - [Bagaimana Jika Saya Tidak Menggunakan Relay?](#what-if-i-dont-use-relay)
+  - [Untuk Pembuat Pustaka](#for-library-authors)
+- [Pendekatan Tradisional vs Suspense](#traditional-approaches-vs-suspense)
+  - [Pendekatan 1: Tarik-Saat-Render (Tidak Menggunakan Suspense)](#approach-1-fetch-on-render-not-using-suspense)
+  - [Pendekatan 2: Tarik-Kemudian-Render (Tidak Menggunakan Suspense)](#approach-2-fetch-then-render-not-using-suspense)
+  - [Pendekatan 3: Render-Sembari-Tarik (Menggunakan Suspense)](#approach-3-render-as-you-fetch-using-suspense)
+- [Mulai Penarikan Lebih Awal](#start-fetching-early)
+  - [Kita Masih Mencari Tahu](#were-still-figuring-this-out)
+- [Suspense and Kondisi Balapan](#suspense-and-race-conditions)
+  - [Kondisi Balapan dengan useEffect](#race-conditions-with-useeffect)
+  - [Kondisi Balapan dengan componentDidUpdate](#race-conditions-with-componentdidupdate)
+  - [Masalah](#the-problem)
+  - [Memecahkan Kondisi Balapan dengan Suspense](#solving-race-conditions-with-suspense)
+- [Penanganan Eror](#handling-errors)
+- [Langkah Selanjutnya](#next-steps)
 
-## What Is Suspense, Exactly? {#what-is-suspense-exactly}
+## Apa Sebenarnya Suspense Itu? {#what-is-suspense-exactly}
 
-Suspense lets your components "wait" for something before they can render. In [this example](https://codesandbox.io/s/frosty-hermann-bztrp), two components wait for an asynchronous API call to fetch some data:
+Suspense memungkinkan komponen Anda "menunggu" sesuatu sebelum mereka bisa dirender. Pada [contoh ini](https://codesandbox.io/s/frosty-hermann-bztrp), dua komponen menunggu sebuah pemanggilan API secara asinkron untuk penarikan suatu data:
 
 ```js
 const resource = fetchProfileData();
 
 function ProfilePage() {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
+      <Suspense fallback={<h1>Memuat kiriman...</h1>}>
         <ProfileTimeline />
       </Suspense>
     </Suspense>
@@ -75,13 +75,13 @@ function ProfilePage() {
 }
 
 function ProfileDetails() {
-  // Try to read user info, although it might not have loaded yet
+  // Mencoba untuk membaca info pengguna, walau mungkin belum termuat
   const user = resource.user.read();
   return <h1>{user.name}</h1>;
 }
 
 function ProfileTimeline() {
-  // Try to read posts, although they might not have loaded yet
+  // Mencoba untuk membaca kiriman, walau mungkin belum termuat
   const posts = resource.posts.read();
   return (
     <ul>
@@ -93,91 +93,91 @@ function ProfileTimeline() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
 
-This demo is a teaser. Don't worry if it doesn't quite make sense yet. We'll talk more about how it works below. Keep in mind that Suspense is more of a *mechanism*, and particular APIs like `fetchProfileData()` or `resource.posts.read()` in the above example are not very important. If you're curious, you can find their definitions right in the [demo sandbox](https://codesandbox.io/s/frosty-hermann-bztrp).
+Demo ini hanyalah penggoda. Jangan khawatir jika itu belum cukup masuk akal. Kita akan bahas lebih lanjut tentang bagaimana cara kerjanya di bawah. Perlu diingat bahwa Suspense lebih merupakan sebuah *mekanisme*, dan beberapa API seperti `fetchProfileData()` atau `resource.posts.read()` pada contoh di atas tidak terlalu penting. Jika Anda penasaran, Anda bisa menemukan definisinya langsung di [demo sandbox](https://codesandbox.io/s/frosty-hermann-bztrp)
 
-Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](https://relay.dev/docs/en/experimental/step-by-step). We expect that other libraries like Apollo can provide similar integrations.
+Suspense bukan merupakan pustaka untuk penarikan data. Dia adalah sebuah **mekanisme bagi pustaka penarikan data** untuk berkomunikasi dengan React dimana *data yang dibaca sebuah komponen belum siap*. React bisa menunggunya hingga siap dan kemudian memperbarui UI-nya. Di Facebook, kita menggunakan Relay dan [integrasi dengan Suspense yang baru](https://relay.dev/docs/en/experimental/step-by-step)
 
-In the long term, we intend Suspense to become the primary way to read asynchronous data from components -- no matter where that data is coming from.
+Dalam jangka panjang, kita berniat agar Suspense menjadi cara utama untuk membaca data asinkron pada suatu komponen -- tidak peduli darimanapun datangnya
 
-### What Suspense Is Not {#what-suspense-is-not}
+### Apa yang Bukan Suspense {#what-suspense-is-not}
 
-Suspense is significantly different from existing approaches to these problems, so reading about it for the first time often leads to misconceptions. Let's clarify the most common ones:
+Suspense secara signifikan berbeda dengan pendekatan yang sudah ada pada masalah-masalah ini, jadi membaca tentang hal ini untuk pertama kali sering kali mengarah ke kesalahpahaman. Mari klarifikasi beberapa yang paling umum:
 
- * **It is not a data fetching implementation.** It does not assume that you use GraphQL, REST, or any other particular data format, library, transport, or protocol.
+ * **Ini bukan merupakan implementasi penarikan data.** Suspense tidak mengasumsikan Anda menggunakan GraphQL, REST, atau format data, pustaka, pengangkut, dan protokol lainnya.
 
- * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/en/experimental/api-reference)).
+ * **Ini bukan merupakan klien yang siap digunakan.** Anda tidak bisa "mengganti" `fetch` atau Relay dengan Suspense. Tetapi Anda bisa menggunakan pustaka yang terintegrasi dengan Suspense (contohnya, [API Relay yang baru](https://relay.dev/docs/en/experimental/api-reference)).
 
- * **It does not couple data fetching to the view layer.** It helps orchestrate displaying the loading states in your UI, but it doesn't tie your network logic to React components.
+ * **Ini tidak menggandeng penarikan data pada lapisan tampilan.** Suspense membantu orkestrasi dalam menampilkan keadaan pemuatan pada antarmuka Anda, tetapi tidak mengikat logika jaringan pada komponen React.
 
-### What Suspense Lets You Do {#what-suspense-lets-you-do}
+### Apa yang Mungkin Anda Lakukan dengan Suspense {#what-suspense-lets-you-do}
 
-So what's the point of Suspense? There are a few ways we can answer this:
+Jadi, apakah poin dari Suspense? Terdapat beberapa cara untuk kita dapat menjawabnya:
 
-* **It lets data fetching libraries deeply integrate with React.** If a data fetching library implements Suspense support, using it from React components feels very natural.
+* **Ini memungkinkan pustaka penarikan data terintegrasi secara mendalam dengan React.** Jika pustaka penarikan data mengimplementasikan dukungan Suspense, menggunakannya dari komponen React terasa sangat natural.
 
-* **It lets you orchestrate intentionally designed loading states.** It doesn't say _how_ the data is fetched, but it lets you closely control the visual loading sequence of your app.
+* **Ini memungkinkan Anda mengatur keadaan pemuatan yang dirancang dengan maksud tertentu.** Suspense tidak menyatakan _bagaimana_ data ditarik, tetapi memungkinkan Anda mengontrol urutan pemuatan visual pada aplikasi Anda.
 
-* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it were already loaded.
+* **Ini membantu Anda terhindar dari kondisi balapan.** Bahkan dengan `await`, kode asinkron sering rawan kesalahan. Suspense lebih terasa seperti membaca data secara *sinkron* yang seolah-olah sudah dimuat.
 
-## Using Suspense in Practice {#using-suspense-in-practice}
+## Penggunaan Suspense dalam Praktik {#using-suspense-in-practice}
 
-At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/en/experimental/step-by-step)!** It demonstrates patterns that have already worked well for us in production.
+Di Facebook, sejauh ini kami hanya menggunakan integrasi Relay dengan Suspense dalam produksi. **Jika Anda mencari panduan praktis untuk memulai hari ini, [lihat Panduan Relay](https://relay.dev/docs/en/experimental/step-by-step)!** Hal itu menunjukkan pola yang sudah bekerja dengan baik bagi kita dalam produksi.
 
-**The code demos on this page use a "fake" API implementation rather than Relay.** This makes them easier to understand if you're not familiar with GraphQL, but they won't tell you the "right way" to build an app with Suspense. This page is more conceptual and is intended to help you see *why* Suspense works in a certain way, and which problems it solves.
+**Demo kode pada halaman ini menggunakan implementasi API "palsu" daripada Relay.** Hal itu membuat mereka lebih mudah dimengerti jika Anda tidak terbiasa dengan GraphQL, tetapi mereka tidak akan memberi tahu Anda "cara yang benar" untuk membangun aplikasi dengan Suspense. Halaman ini lebih konseptual dan dimaksudkan untuk membantu Anda melihat *mengapa* Suspense bekerja dengan cara tertentu, dan masalah apa yang dipecahkannya.
 
-### What If I Don't Use Relay? {#what-if-i-dont-use-relay}
+### Bagaimana Jika Saya Tidak Menggunakan Relay? {#what-if-i-dont-use-relay}
 
-If you don't use Relay today, you might have to wait before you can really try Suspense in your app. So far, it's the only implementation that we tested in production and are confident in.
+Jika Anda tidak menggunakan Relay hari ini, Anda mungkin harus menunggu sebelum benar-benar dapat mencoba Suspense di aplikasi Anda. Sejauh ini, ini adalah satu-satunya implementasi yang kami uji dalam produksi dan merasa percaya diri.
 
-Over the next several months, many libraries will appear with different takes on Suspense APIs. **If you prefer to learn when things are more stable, you might prefer to ignore this work for now, and come back when the Suspense ecosystem is more mature.**
+Selama beberapa bulan ke depan, banyak pustaka yang akan muncul dengan pandangan berbeda pada Suspense APIs. **Jika Anda lebih memilih belajar ketika segalanya lebih stabil, Anda mungkin lebih memilih untuk mengabaikan Suspense untuk saat ini, dan kembali ketika ekosistemnya lebih matang.**
 
-You can also write your own integration for a data fetching library, if you'd like.
+Anda juga dapat menulis integrasi Anda sendiri untuk pustaka penarikan data, jika Anda mau.
 
-### For Library Authors {#for-library-authors}
+### Untuk Pembuat Pustaka {#for-library-authors}
 
-We expect to see a lot of experimentation in the community with other libraries. There is one important thing to note for data fetching library authors.
+Kami berharap dapat melihat banyak eksperimen di komunitas dengan pustaka lain. Ada satu hal penting yang perlu diperhatikan untuk penulis pustaka penarikan data.
 
-Although it's technically doable, Suspense is **not** currently intended as a way to start fetching data when a component renders. Rather, it lets components express that they're "waiting" for data that is *already being fetched*. **[Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) describes why this matters and how to implement this pattern in practice.**
+Meskipun secara teknis bisa dilakukan, Suspense saat ini **tidak** dimaksudkan sebagai cara untuk mulai menarik data saat komponen dirender. Sebaliknya, Suspense memungkinkan komponen untuk menyatakan bahwa mereka "menunggu" data yang *sedang ditarik*. **[Membangun Pengalaman Pengguna yang Hebat dengan Mode Konkuren dan Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) menjelaskan mengapa hal ini penting dan bagaimana menerapkan pola ini dalam praktik.**
 
-Unless you have a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. For a concrete example, you can look at how [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) enforces preloading. Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
+Kecuali Anda memiliki solusi yang membantu mencegah _waterfalls_, kami sarankan untuk memilih API yang mendukung atau memberlakukan penarikan sebelum render. Sebagai contoh nyata, Anda bisa melihat bagaimana cara [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) memberlakukan _preloading_. Pesan kami tentang ini belum terlalu konsisten di masa lalu. Suspense untuk Penarikan Data masih bersifat percobaan, sehingga Anda dapat mengharapkan rekomendasi kami berubah seiring waktu karena kami belajar lebih banyak dari penggunaan produksi dan memahami ruang masalah dengan lebih baik.
 
-## Traditional Approaches vs Suspense {#traditional-approaches-vs-suspense}
+## Pendekatan Tradisional vs Suspense {#traditional-approaches-vs-suspense}
 
-We could introduce Suspense without mentioning the popular data fetching approaches. However, this makes it more difficult to see which problems Suspense solves, why these problems are worth solving, and how Suspense is different from the existing solutions.
+Kami dapat memperkenalkan Suspense tanpa menyebutkan pendekatan penarikan data populer. Namun, ini membuatnya lebih sulit untuk melihat masalah mana yang dipecahkan oleh Suspense, mengapa masalah ini layak untuk dipecahkan, dan bagaimana Suspense berbeda dari solusi yang sudah ada.
 
-Instead, we'll look at Suspense as a logical next step in a sequence of approaches:
+Sebagai gantinya, kita akan melihat Suspense sebagai langkah logis berikutnya dalam serangkaian pendekatan:
 
-* **Fetch-on-render (for example, `fetch` in `useEffect`):** Start rendering components. Each of these components may trigger data fetching in their effects and lifecycle methods. This approach often leads to "waterfalls".
-* **Fetch-then-render (for example, Relay without Suspense):** Start fetching all the data for the next screen as early as possible. When the data is ready, render the new screen. We can't do anything until the data arrives.
-* **Render-as-you-fetch (for example, Relay with Suspense):** Start fetching all the required data for the next screen as early as possible, and start rendering the new screen *immediately — before we get a network response*. As data streams in, React retries rendering components that still need data until they're all ready.
+* **Tarik-saat-render (contohnya, `fetch` di dalam `useEffect`):** Mulai merender komponen. Masing-masing komponen ini dapat memicu penarikan data dalam efek dan silklus hidup mereka. Pendekatan ini sering mengarah pada "waterfall".
+* **Tarik-kemudian-render (contohnya, Relay tanpa Suspense):** Mulai tarik semua data untuk layar berikutnya sedini mungkin. Ketika data siap, render layar baru. Kita tidak dapat melakukan apa pun sampai data tiba.
+* **Render-sembari-tarik (contohnya, Relay dengan Suspense):** Mulai tarik semua data yang diperlukan untuk layar berikutnya sedini mungkin, dan mulai merender layar baru *segera sebelum kita mendapatkan respons jaringan*. Saat data mengalir, React akan mencoba kembali merender komponen yang masih membutuhkan data hingga semuanya siap.
 
->Note
+>Catatan
 >
->This is a bit simplified, and in practice solutions tend to use a mix of different approaches. Still, we will look at them in isolation to better contrast their tradeoffs.
+>Ini agak disederhanakan, dan dalam praktiknya solusi cenderung menggunakan gabungan dari pendekatan yang berbeda. Namun, kita akan melihat mereka secara terpisah agar bisa lebih baik dalam membandingkan perbandingan konsekuensi mereka.
 
-To compare these approaches, we'll implement a profile page with each of them.
+Untuk membandingkan pendekatan ini, kita akan mengimplementasi halaman profil dengan masing-masing dari pendekatan tersebut.
 
-### Approach 1: Fetch-on-Render (not using Suspense) {#approach-1-fetch-on-render-not-using-suspense}
+### Pendekatan 1: Tarik-Saat-Render (tidak menggunakan Suspense) {#approach-1-fetch-on-render-not-using-suspense}
 
-A common way to fetch data in React apps today is to use an effect:
+Cara umum untuk menarik data di aplikasi React hari ini adalah menggunakan _effect_:
 
 ```js
-// In a function component:
+// Di dalam function component:
 useEffect(() => {
   fetchSomething();
 }, []);
 
-// Or, in a class component:
+// Atau, di dalam class component:
 componentDidMount() {
   fetchSomething();
 }
 ```
 
-We call this approach "fetch-on-render" because it doesn't start fetching until *after* the component has rendered on the screen. This leads to a problem known as a "waterfall".
+Kami menyebut pendekatan ini "fetch-on-render" karena tidak memulai penarikan sampai *setelah* komponen ditampilkan di layar. Ini mengarah ke masalah yang dikenal sebagai "waterfall".
 
-Consider these `<ProfilePage>` and `<ProfileTimeline>` components:
+Perhatikan komponen `<ProfilePage>` dan `<ProfileTimeline>` berikut ini:
 
 ```js{4-6,22-24}
 function ProfilePage() {
@@ -188,7 +188,7 @@ function ProfilePage() {
   }, []);
 
   if (user === null) {
-    return <p>Loading profile...</p>;
+    return <p>Memuat profil...</p>;
   }
   return (
     <>
@@ -206,7 +206,7 @@ function ProfileTimeline() {
   }, []);
 
   if (posts === null) {
-    return <h2>Loading posts...</h2>;
+    return <h2>Memuat kiriman ...</h2>;
   }
   return (
     <ul>
@@ -218,26 +218,26 @@ function ProfileTimeline() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/fragrant-glade-8huj6)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/fragrant-glade-8huj6)**
 
-If you run this code and watch the console logs, you'll notice the sequence is:
+Jika Anda menjalankan kode ini dan memperhatikan log konsol, Anda akan melihat urutannya adalah:
 
-1. We start fetching user details
-2. We wait...
-3. We finish fetching user details
-4. We start fetching posts
-5. We wait...
-6. We finish fetching posts
+1. Kita mulai penarikan detail pengguna
+2. Kita menunggu...
+3. Kita selesai penarikan detail pengguna
+4. Kita mulai penarikan kiriman
+5. Kita menunggu...
+6. Kita selesai penarikan kiriman
 
-If fetching user details takes three seconds, we'll only *start* fetching the posts after three seconds! That's a "waterfall": an unintentional *sequence* that should have been parallelized.
+Jika penarikan detail pengguna membutuhkan tiga detik, kita hanya akan *mulai* mengambil kiriman setelah tiga detik! Itu adalah "waterfall": tidak disengaja berurutan yang seharusnya diparalelkan.
 
-Waterfalls are common in code that fetches data on render. They're possible to solve, but as the product grows, many people prefer to use a solution that guards against this problem.
+_Waterfalls_ adalah umum dalam kode yang menarik data pada saat render. Hal itu mungkin untuk dipecahkan, tetapi ketika produk berkembang, banyak orang lebih suka menggunakan solusi yang dapat menghindari masalah ini.
 
-### Approach 2: Fetch-Then-Render (not using Suspense) {#approach-2-fetch-then-render-not-using-suspense}
+### Pendekatan 2: Tarik-Kemudian-Render (tidak menggunakan Suspense) {#approach-2-fetch-then-render-not-using-suspense}
 
-Libraries can prevent waterfalls by offering a more centralized way to do data fetching. For example, Relay solves this problem by moving the information about the data a component needs to statically analyzable *fragments*, which later get composed into a single query.
+Pustaka dapat mencegah _waterfalls_ dengan menawarkan cara yang lebih terpusat untuk melakukan penarikan data. Sebagai contoh, Relay memecahkan masalah ini dengan memindahkan informasi tentang data yang diperlukan komponen pada *fragment-fragment* yang bisa dianalisa secara statis, yang nantinya dapat dikomposisikan ke dalam satu permintaan.
 
-On this page, we don't assume knowledge of Relay, so we won't be using it for this example. Instead, we'll write something similar manually by combining our data fetching methods:
+Pada halaman ini, kita tidak mengasumsikan pengetahuan tentang Relay, jadi kita tidak akan menggunakannya untuk contoh ini. Sebagai gantinya, kita akan menulis sesuatu yang serupa secara manual dengan menggabungkan metode penarikan data kita:
 
 ```js
 function fetchProfileData() {
@@ -250,10 +250,10 @@ function fetchProfileData() {
 }
 ```
 
-In this example, `<ProfilePage>` waits for both requests but starts them in parallel:
+Pada contoh ini, `<ProfilePage>` menunggu kedua permintaan tetapi memulainya secara paralel:
 
 ```js{1,2,8-13}
-// Kick off fetching as early as possible
+// Memulai pengambilan sedini mungkin
 const promise = fetchProfileData();
 
 function ProfilePage() {
@@ -268,7 +268,7 @@ function ProfilePage() {
   }, []);
 
   if (user === null) {
-    return <p>Loading profile...</p>;
+    return <p>Memuat profil...</p>;
   }
   return (
     <>
@@ -278,10 +278,10 @@ function ProfilePage() {
   );
 }
 
-// The child doesn't trigger fetching anymore
+// Komponen anaknya tidak lagi memicu penarikan
 function ProfileTimeline({ posts }) {
   if (posts === null) {
-    return <h2>Loading posts...</h2>;
+    return <h2>Memuat kiriman...</h2>;
   }
   return (
     <ul>
@@ -293,45 +293,45 @@ function ProfileTimeline({ posts }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/wandering-morning-ev6r0)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/wandering-morning-ev6r0)**
 
-The event sequence now becomes like this:
+Urutan kejadian sekarang menjadi seperti ini:
 
-1. We start fetching user details
-2. We start fetching posts
-3. We wait...
-4. We finish fetching user details
-5. We finish fetching posts
+1. Kita mulai penarikan detail pengguna
+2. Kita mulai penarikan kiriman
+3. Kita menunggu...
+4. Kita selesai penarikan detail pengguna
+5. Kita selesai penarikan kiriman
 
-We've solved the previous network "waterfall", but accidentally introduced a different one. We wait for *all* data to come back with `Promise.all()` inside `fetchProfileData`, so now we can't render profile details until the posts have been fetched too. We have to wait for both.
+Kita telah memecahkan masalah "waterfalls" jaringan sebelumnya, tetapi secara tidak sengaja memperkenalkan suatu hal yang berbeda. Kita menunggu *semua* data untuk kembali dengan `Promise.all()` di dalam `fetchProfileData`, jadi sekarang kita tidak dapat merender detail profil hingga kirimannya sudah ditarik juga. Kita harus menunggu keduanya.
 
-Of course, this is possible to fix in this particular example. We could remove the `Promise.all()` call, and wait for both Promises separately. However, this approach gets progressively more difficult as the complexity of our data and component tree grows. It's hard to write reliable components when arbitrary parts of the data tree may be missing or stale. So fetching all data for the new screen and *then* rendering is often a more practical option.
+Tentu saja, ini dimungkinkan untuk diperbaiki dalam contoh khusus ini. Kita dapat menghapus pemanggilan `Promise.all()`, dan menunggu kedua _Promise_ secara terpisah. Namun, pendekatan ini semakin sulit seiring dengan semakin kompleksnya data dan komponen kita. Sulit untuk menulis komponen yang andal ketika suatu bagian acak dari pohon data mungkin hilang atau basi. Jadi menarik semua data untuk layar baru dan *kemudian* melakukan perenderan seringkali merupakan opsi yang lebih praktis.
 
-### Approach 3: Render-as-You-Fetch (using Suspense) {#approach-3-render-as-you-fetch-using-suspense}
+### Pendekatan 3: Render-Sembari-Tarik (menggunakan Suspense) {#approach-3-render-as-you-fetch-using-suspense}
 
-In the previous approach, we fetched data before we called `setState`:
+Pada pendekatan sebelumnya, kita menari kdata sebelum memanggil `setState`:
 
-1. Start fetching
-2. Finish fetching
-3. Start rendering
+1. Mulai penarikan
+2. Selesai penarikan
+3. Mulai perenderan
 
-With Suspense, we still start fetching first, but we flip the last two steps around:
+Dengan Suspense, kita aka mulai penarikan terlebih dahulu, tetapi kita menukar dua langkah terakhir:
 
-1. Start fetching
-2. **Start rendering**
-3. **Finish fetching**
+1. Mulai penarikan
+2. **Mulai perenderan**
+3. **Selesai penarikan**
 
-**With Suspense, we don't wait for the response to come back before we start rendering.** In fact, we start rendering *pretty much immediately* after kicking off the network request:
+**Dengan Suspense, kita tidak menunggu respons kembali sebelum kita mulai merender.** Faktanya, kita mulai perenderan *segera* setelah memulai penarikan jaringan:
 
 ```js{2,17,23}
-// This is not a Promise. It's a special object from our Suspense integration.
+// Ini bukanlah sebuah Promise. Ini adalah sebuah objek spesial dari integrasi Suspense kita.
 const resource = fetchProfileData();
 
 function ProfilePage() {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
+      <Suspense fallback={<h1>Memuat kiriman...</h1>}>
         <ProfileTimeline />
       </Suspense>
     </Suspense>
@@ -339,13 +339,13 @@ function ProfilePage() {
 }
 
 function ProfileDetails() {
-  // Try to read user info, although it might not have loaded yet
+  // Mencoba untuk membaca info pengguna, walaupun itu mungkin belum termuat.
   const user = resource.user.read();
   return <h1>{user.name}</h1>;
 }
 
 function ProfileTimeline() {
-  // Try to read posts, although they might not have loaded yet
+  // Mencoba untuk membaca kiriman, walaupun itu mungkin belum termuat.
   const posts = resource.posts.read();
   return (
     <ul>
@@ -357,49 +357,49 @@ function ProfileTimeline() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
 
-Here's what happens when we render `<ProfilePage>` on the screen:
+Inilah yang terjadi ketika kita merender `<ProfilePage>` di layar:
 
-1. We've already kicked off the requests in `fetchProfileData()`. It gave us a special "resource" instead of a Promise. In a realistic example, it would be provided by our data library's Suspense integration, like Relay.
-2. React tries to render `<ProfilePage>`. It returns `<ProfileDetails>` and `<ProfileTimeline>` as children.
-3. React tries to render `<ProfileDetails>`. It calls `resource.user.read()`. None of the data is fetched yet, so this component "suspends". React skips over it, and tries rendering other components in the tree.
-4. React tries to render `<ProfileTimeline>`. It calls `resource.posts.read()`. Again, there's no data yet, so this component also "suspends". React skips over it too, and tries rendering other components in the tree.
-5. There's nothing left to try rendering. Because `<ProfileDetails>` suspended, React shows the closest `<Suspense>` fallback above it in the tree: `<h1>Loading profile...</h1>`. We're done for now.
+1. Kita telah memulai penarikan saat `fetchProfileData ()`. Dia memberi kita "sumber daya" khusus, bukan sebuah Promise. Dalam contoh realistis, ini akan disediakan oleh integrasi Suspense dari pustaka data, seperti Relay.
+2. React mencoba untuk merender `<ProfilePage>`. Dia mengembalikan `<ProfileDetails>` dan `<ProfileTimeline>` sebagai anak.
+3. React mencoba untuk merender `<ProfileDetails>`. Dia memanggil `resource.user.read()`. Belum ada data yang tertarik, jadi komponen ini "ditangguhkan". React melompatinya, dan mencoba merender komponen lain di pohon.
+4. React mencoba untuk merender `<ProfileTimeline>`. Dia memanggil `resource.posts.read()`. Sekali lagi, belum ada data, jadi komponen ini juga "ditangguhkan". React melompatinya juga, dan mencoba merender komponen lain di pohon.
+5. Tidak ada yang tersisa untuk dicoba dirender. Karena `<ProfileDetails>` ditangguhkan, React menunjukkan the closest `<Suspense>` _fallback_ terdekat di atasnya di dalam pohon: `<h1>Memuat profil...</h1>`. Kita sudah selesai sekarang.
 
-This `resource` object represents the data that isn't there yet, but might eventually get loaded. When we call `read()`, we either get the data, or the component "suspends".
+Objek `resource` ini mewakili data yang belum ada, tetapi pada akhirnya mungkin dimuat. Ketika kita memanggil `read()`, kita mendapatkan datanya, atau komponen yang "ditangguhkan".
 
-**As more data streams in, React will retry rendering, and each time it might be able to progress "deeper".** When `resource.user` is fetched, the `<ProfileDetails>` component will render successfully and we'll no longer need the `<h1>Loading profile...</h1>` fallback. Eventually, we'll get all the data, and there will be no fallbacks on the screen.
+**Ketika lebih banyak data mengalir masuk, React akan mencoba lagi perenderan, dan setiap kali dapat berkembang menjadi "lebih dalam".** Ketika `resource.user` didapatkan, komponen `<ProfileDetails>` akan terender dengan sukses dan kita tidak lagi membutuhkan _fallback_ `<h1> Memuat profil ... </h1>`. Pada akhirnya, kita akan mendapatkan semua data, dan tidak akan ada _fallback_ di layar.
 
-This has an interesting implication. Even if we use a GraphQL client that collects all data requirements in a single request, *streaming the response lets us show more content sooner*. Because we render-*as-we-fetch* (as opposed to *after* fetching), if `user` appears in the response earlier than `posts`, we'll be able to "unlock" the outer `<Suspense>` boundary before the response even finishes. We might have missed this earlier, but even the fetch-then-render solution contained a waterfall: between fetching and rendering. Suspense doesn't inherently suffer from this waterfall, and libraries like Relay take advantage of this.
+Hal ini memiliki implikasi yang menarik. Bahkan jika kita menggunakan klien GraphQL yang mengumpulkan semua persyaratan data dalam satu permintaan, *streaming respons memungkinkan kita menampilkan lebih banyak konten dengan lebih cepat*. Karena kita merender-*sembari-tarik* (bertolak belakang dari *setelah* penarikan), jika `user` muncul dalam respons lebih awal dari` posts`, kita akan dapat "membuka" bagian luar batasan `<Suspense> ` bahkan sebelum respons selesai. Kita mungkin telah melewatkan ini sebelumnya, tetapi bahkan solusi tarik-kemudian-render mengandung _waterfall_: antara penarikan dan perenderan. Pada dasarnya tidak terefek buruk dari _waterfall_ ini, dan pustaka seperti Relay mengambil keuntungan dari ini.
 
-Note how we eliminated the `if (...)` "is loading" checks from our components. This doesn't only remove boilerplate code, but it also simplifies making quick design changes. For example, if we wanted profile details and posts to always "pop in" together, we could delete the `<Suspense>` boundary between them. Or we could make them independent from each other by giving each *its own* `<Suspense>` boundary. Suspense lets us change the granularity of our loading states and orchestrate their sequencing without invasive changes to our code.
+Perhatikan bagaimana kita menghilangkan pemeriksaan `if (...)` "sedang memuat" dari komponen kita. Ini tidak hanya menghapus kode yang bertele-tele, tetapi juga menyederhanakan membuat perubahan desain cepat. Misalnya, jika kita ingin detail profil dan kiriman selalu "muncul" bersama-sama, kita dapat menghapus batas `<Suspense>` di antara kedua hal tersebut. Atau kita bisa membuat mereka independen satu sama lain dengan memberi masing-masing *batas* `<Suspense>` *sendiri*. Suspense memungkinkan kita mengubah rincian status pemuatan dan mengatur urutannya tanpa perubahan invasif pada kode kita.
 
-## Start Fetching Early {#start-fetching-early}
+## Mulai Penarikan Di Awal {#start-fetching-early}
 
-If you're working on a data fetching library, there's a crucial aspect of Render-as-You-Fetch you don't want to miss. **We kick off fetching _before_ rendering.** Look at this code example closer:
+Jika Anda sedang mengerjakan pustaka pengambilan data, ada aspek penting dari render-sembari-tarik yang tidak ingin Anda lewatkan. **Kita memulai penarikan _sebelum_ perenderan.** Lihat contoh kode ini lebih dekat:
 
 ```js
-// Start fetching early!
+// Mulai penarikan di awal!
 const resource = fetchProfileData();
 
 // ...
 
 function ProfileDetails() {
-  // Try to read user info
+  // Mencoba membaca info pengguna
   const user = resource.user.read();
   return <h1>{user.name}</h1>;
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/frosty-hermann-bztrp)**
 
-Note that the `read()` call in this example doesn't *start* fetching. It only tries to read the data that is **already being fetched**. This difference is crucial to creating fast applications with Suspense. We don't want to delay loading data until a component starts rendering. As a data fetching library author, you can enforce this by making it impossible to get a `resource` object without also starting a fetch. Every demo on this page using our "fake API" enforces this.
+Perhatikan bahwa pemanggilan `read()` dalam contoh ini tidak *memulai* penarikan. Dia hanya mencoba untuk membaca data yang **sudah tertarik**. Perbedaan tersebut sangat penting untuk membuat aplikasi yang cepat dengan Suspense. Kita tidak ingin menunda pemuatan data hingga komponen mulai dirender. Sebagai pembuat pustaka penarikan data, Anda bisa memberlakukan hal tersebut dengan membuatnya tidak mungkin untuk mendapatkan objek `resource` tanpa memulai penarikan data. Setiap demo di halaman ini yang menggunakan "API palsu" kami memberlakukan hal tersebut.
 
-You might object that fetching "at the top level" like in this example is impractical. What are we going to do if we navigate to another profile's page? We might want to fetch based on props. The answer to this is **we want to start fetching in the event handlers instead**. Here is a simplified example of navigating between user's pages:
+Anda mungkin keberatan bahwa penarikan "di tingkat atas" seperti dalam contoh itu tidak praktis. Apa yang akan kita lakukan jika kita melakukan navigasi ke halaman profil lain? Kita mungkin ingin menarik berdasarkan propertinya. Jawabannya adalah **kita ingin mulai penarikan dalam event handlers**. Berikut adalah contoh yang disederhanakan dari navigasi di antara halaman pengguna:
 
 ```js{1,2,10,11}
-// First fetch: as soon as possible
+// Penarikan pertama: seawal mungkin
 const initialResource = fetchProfileData(0);
 
 function App() {
@@ -408,10 +408,10 @@ function App() {
     <>
       <button onClick={() => {
         const nextUserId = getNextId(resource.userId);
-        // Next fetch: when the user clicks
+        // Penarikan selanjutnya: ketika pengguna mengeklik
         setResource(fetchProfileData(nextUserId));
       }}>
-        Next
+        Berikutnya
       </button>
       <ProfilePage resource={resource} />
     </>
@@ -419,29 +419,29 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
+ 
+Dengan pendekatan ini, kita dapat **mengambil kode dan data secara paralel**. Saat kita melakukan navigasi antar halaman, kita tidak perlu menunggu kode halaman dimuat untuk mulai memuat datanya. Kita dapat mulai mengambil kode dan data sekaligus (pada saat klik tautan), memberikan pengalaman pengguna yang jauh lebih baik.
 
-With this approach, we can **fetch code and data in parallel**. When we navigate between pages, we don't need to wait for a page's code to load to start loading its data. We can start fetching both code and data at the same time (during the link click), delivering a much better user experience.
+Ini menimbulkan pertanyaan tentang bagaimana kita tahu *apa* yang harus ditarik sebelum merender layar berikutnya. Ada beberapa cara untuk mengatasi ini (misalnya, dengan mengintegrasikan penarikan data semakin dekat dengan solusi routing Anda). Jika Anda mengerjakan pustaka pengambilan data, [Membangun Pengalaman Hebat Pengguna dengan Mode Konkuren dan Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) menyajikan penyelaman mendalam tentang bagaimana mencapai hal tersebut dan mengapa hal tersebut penting.
 
-This poses a question of how do we know *what* to fetch before rendering the next screen. There are several ways to solve this (for example, by integrating data fetching closer with your routing solution). If you work on a data fetching library, [Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) presents a deep dive on how to accomplish this and why it's important.
+### Kita Masih Memikirkan Ini {#were-still-figuring-this-out}
 
-### We're Still Figuring This Out {#were-still-figuring-this-out}
+Suspense itu sendiri sebagai suatu mekanisme adalah fleksibel dan tidak memiliki banyak batasan. Kode produk perlu lebih dibatasi untuk memastikan tidak ada waterfalls, tetapi ada berbagai cara untuk memberikan jaminan ini. Beberapa pertanyaan yang saat ini kita eksplorasi meliputi:
 
-Suspense itself as a mechanism is flexible and doesn't have many constraints. Product code needs to be more constrained to ensure no waterfalls, but there are different ways to provide these guarantees. Some questions that we're currently exploring include:
+* Mengambil lebih awal bisa jadi rumit untuk diungkapkan. Bagaimana kita membuatnya lebih mudah untuk menghindari waterfall?
+* Ketika kita menarik data untuk sebuah halaman, dapatkah API mendorong mengikutsertakan data untuk transisi instan *darinya*?
+* Apa umur tanggapan itu? Haruskah caching bersifat global atau lokal? Siapa yang mengelola cache?
+* Dapatkah Proxy membantu mengekspresikan API yang dimuat secara lazy-loaded tanpa memasukkan pemanggilan `read()` di mana-mana?
+* Seperti apakah hal yang setara dengan penulisan query GraphQL untuk data Suspense yang berubah-ubah?
 
-* Fetching early can be cumbersome to express. How do we make it easier to avoid waterfalls?
-* When we fetch data for a page, can the API encourage including data for instant transitions *from* it?
-* What is the lifetime of a response? Should caching be global or local? Who manages the cache?
-* Can Proxies help express lazy-loaded APIs without inserting `read()` calls everywhere?
-* What would the equivalent of composing GraphQL queries look like for arbitrary Suspense data?
+Relay memiliki jawaban sendiri untuk beberapa pertanyaan ini. Tentu ada lebih dari satu cara untuk melakukannya, dan kita senang melihat ide-ide baru apa yang muncul dari komunitas React.
 
-Relay has its own answers to some of these questions. There is certainly more than a single way to do it, and we're excited to see what new ideas the React community comes up with.
+## Suspense and Kondisi Balapan {#suspense-and-race-conditions}
 
-## Suspense and Race Conditions {#suspense-and-race-conditions}
+Kondisi balapan adalah kesalahan program yang terjadi karena asumsi yang salah tentang urutan yang mungkin kode kita dapat jalankan. Mengambil data di Hook `useEffect` atau metode siklus hidup class seperti` componentDidUpdate` sering mengarah ke hal-hal tersebut. Suspense juga dapat membantu di sini - mari kita lihat caranya.
 
-Race conditions are bugs that happen due to incorrect assumptions about the order in which our code may run. Fetching data in the `useEffect` Hook or in class lifecycle methods like `componentDidUpdate` often leads to them. Suspense can help here, too — let's see how.
-
-To demonstrate the issue, we will add a top-level `<App>` component that renders our `<ProfilePage>` with a button that lets us **switch between different profiles**:
+Untuk menunjukkan masalah ini, kita akan menambahkan komponen `<App>` tingkat atas yang merender `<ProfilePage>` kita dengan tombol yang memungkinkan kita **beralih di antara berbagai profil**:
 
 ```js{9-11}
 function getNextId(id) {
@@ -453,7 +453,7 @@ function App() {
   return (
     <>
       <button onClick={() => setId(getNextId(id))}>
-        Next
+        Berikutnya
       </button>
       <ProfilePage id={id} />
     </>
@@ -461,11 +461,11 @@ function App() {
 }
 ```
 
-Let's compare how different data fetching strategies deal with this requirement.
+Mari kita bandingkan bagaimana berbagai strategi penarikan data menangani kebutuhan ini.
 
-### Race Conditions with `useEffect` {#race-conditions-with-useeffect}
+### Kondisi Balapan dengan `useEffect` {#race-conditions-with-useeffect}
 
-First, we'll try a version of our original "fetch in effect" example. We'll modify it to pass an `id` parameter from the `<ProfilePage>` props to `fetchUser(id)` and `fetchPosts(id)`:
+Pertama, kita akan mencoba contoh versi asli dari "menarik saat efek" kita. Kita akan memodifikasinya untuk meneruskan parameter `id` dari properti `<ProfilePage>` ke `fetchUser(id)` dan `fetchPosts(id)`:
 
 ```js{1,5,6,14,19,23,24}
 function ProfilePage({ id }) {
@@ -476,7 +476,7 @@ function ProfilePage({ id }) {
   }, [id]);
 
   if (user === null) {
-    return <p>Loading profile...</p>;
+    return <p>Memuat profil...</p>;
   }
   return (
     <>
@@ -494,7 +494,7 @@ function ProfileTimeline({ id }) {
   }, [id]);
 
   if (posts === null) {
-    return <h2>Loading posts...</h2>;
+    return <h2>Memuat kiriman...</h2>;
   }
   return (
     <ul>
@@ -506,19 +506,19 @@ function ProfileTimeline({ id }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/nervous-glade-b5sel)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/nervous-glade-b5sel)**
 
-Note how we also changed the effect dependencies from `[]` to `[id]` — because we want the effect to re-run when the `id` changes. Otherwise, we wouldn't refetch new data.
+Perhatikan bagaimana kita juga mengubah dependensi efek dari `[]` ke `[id]` - karena kita ingin efeknya dijalankan kembali ketika `id` berubah. Kalau tidak, kami tidak akan menarik kembali data baru.
 
-If we try this code, it might seem like it works at first. However, if we randomize the delay time in our "fake API" implementation and press the "Next" button fast enough, we'll see from the console logs that something is going very wrong. **Requests from the previous profiles may sometimes "come back" after we've already switched the profile to another ID -- and in that case they can overwrite the new state with a stale response for a different ID.**
+Jika kita mencoba kode ini, mungkin seperti berhasil pada awalnya. Namun, jika kita mengacak waktu tunda dalam implementasi "API palsu" dan menekan tombol "Berikutnya" dengan cukup cepat, kita akan melihat dari log konsol bahwa ada sesuatu yang salah. **Permintaan dari profil sebelumnya kadang-kadang "kembali" setelah kita mengalihkan profil ke ID lain -- dan dalam kasus itu mereka dapat menimpa state baru dengan respons basi untuk ID yang berbeda.**
 
-This problem is possible to fix (you could use the effect cleanup function to either ignore or cancel stale requests), but it's unintuitive and difficult to debug.
+Masalah ini dapat diperbaiki (Anda dapat menggunakan fungsi pembersihan efek untuk mengabaikan atau membatalkan permintaan basi), tetapi tidak intuitif dan sulit untuk di-debug.
 
-### Race Conditions with `componentDidUpdate` {#race-conditions-with-componentdidupdate}
+### Kondisi Balapan dengan `componentDidUpdate` {#race-conditions-with-componentdidupdate}
 
-One might think that this is a problem specific to `useEffect` or Hooks. Maybe if we port this code to classes or use convenient syntax like `async` / `await`, it will solve the problem?
+Orang mungkin berpikir bahwa ini adalah masalah khusus untuk `useEffect` atau Hooks. Mungkin jika kita memasukkan kode ini ke class atau menggunakan sintaks yang mudah digunakan seperti `async` /` await`, itu akan menyelesaikan masalah?
 
-Let's try that:
+Mari kita coba:
 
 ```js
 class ProfilePage extends React.Component {
@@ -541,7 +541,7 @@ class ProfilePage extends React.Component {
     const { id } = this.props;
     const { user } = this.state;
     if (user === null) {
-      return <p>Loading profile...</p>;
+      return <p>Memuatan profil...</p>;
     }
     return (
       <>
@@ -571,7 +571,7 @@ class ProfileTimeline extends React.Component {
   render() {
     const { posts } = this.state;
     if (posts === null) {
-      return <h2>Loading posts...</h2>;
+      return <h2>Memuat kiriman...</h2>;
     }
     return (
       <ul>
@@ -584,19 +584,19 @@ class ProfileTimeline extends React.Component {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/trusting-clarke-8twuq)**
+**[Coba ini di Codesandbox](https://codesandbox.io/s/trusting-clarke-8twuq)**
 
-This code is deceptively easy to read.
+Kode ini terlihat mudah dibaca.
 
-Unfortunately, neither using a class nor the `async` / `await` syntax helped us solve this problem. This version suffers from exactly the same race conditions, for the same reasons.
+Sayangnya, tidak menggunakan class atau sintaks `async` /` await` membantu ktia memecahkan masalah ini. Versi ini juga mengalami kondisi balapan yang persis sama, untuk sebab yang sama.
 
-### The Problem {#the-problem}
+### Masalah {#the-problem}
 
-React components have their own "lifecycle". They may receive props or update state at any point in time. However, each asynchronous request *also* has its own "lifecycle". It starts when we kick it off, and finishes when we get a response. The difficulty we're experiencing is "synchronizing" several processes in time that affect each other. This is hard to think about.
+Komponen React memiliki "siklus hidup" sendiri. Mereka dapat menerima properti atau memperbarui state kapan saja. Namun, setiap permintaan asinkron *juga* memiliki "siklus hidup" sendiri. Itu dimulai ketika kita memicunya, dan selesai ketika kita mendapatkan respons. Kesulitan yang kami alami adalah "menyinkronkan" beberapa proses sekaligus yang saling memengaruhi. Ini sulit dipikirkan.
 
-### Solving Race Conditions with Suspense {#solving-race-conditions-with-suspense}
+### Memecahkan Kondisi Balapan dengan Suspense {#solving-race-conditions-with-suspense}
 
-Let's rewrite this example again, but using Suspense only:
+Mari tulis ulang contoh tersebut, tetapi dengan hanya menggunakan Suspense:
 
 ```js
 const initialResource = fetchProfileData(0);
@@ -618,9 +618,9 @@ function App() {
 
 function ProfilePage({ resource }) {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails resource={resource} />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
+      <Suspense fallback={<h1>Memuat kiriman...</h1>}>
         <ProfileTimeline resource={resource} />
       </Suspense>
     </Suspense>
@@ -644,9 +644,9 @@ function ProfileTimeline({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
 
-In the previous Suspense example, we only had one `resource`, so we held it in a top-level variable. Now that we have multiple resources, we moved it to the `<App>`'s component state:
+Dalam contoh Suspense sebelumnya, kita hanya memiliki satu `resource`, jadi kami menyimpannya dalam variabel tingkat atas. Sekarang kita memiliki banyak sumber daya, kami memindahkannya ke state komponen `<App>`:
 
 ```js{4}
 const initialResource = fetchProfileData(0);
@@ -655,7 +655,7 @@ function App() {
   const [resource, setResource] = useState(initialResource);
 ```
 
-When we click "Next", the `<App>` component kicks off a request for the next profile, and passes *that* object down to the `<ProfilePage>` component:
+Ketika kita mengklik "Berikutnya", komponen `<App>` memulai permintaan untuk profil berikutnya, dan meneruskan objek *tersebut* ke komponen` <ProfilePage> `:
 
 ```js{4,8}
   <>
@@ -663,26 +663,26 @@ When we click "Next", the `<App>` component kicks off a request for the next pro
       const nextUserId = getNextId(resource.userId);
       setResource(fetchProfileData(nextUserId));
     }}>
-      Next
+      Berikutnya
     </button>
     <ProfilePage resource={resource} />
   </>
 ```
 
-Again, notice that **we're not waiting for the response to set the state. It's the other way around: we set the state (and start rendering) immediately after kicking off a request**. As soon as we have more data, React "fills in" the content inside `<Suspense>` components.
+Sekali lagi, perhatikan bahwa **kita tidak menunggu respons untuk mengatur state. Itu sebaliknya: kita mengatur state (dan mulai merender) segera setelah memulai permintaan**. Segera setelah kita memiliki lebih banyak data, React "mengisi" konten di dalam komponen `<Suspense>`.
 
-This code is very readable, but unlike the examples earlier, the Suspense version doesn't suffer from race conditions. You might be wondering why. The answer is that in the Suspense version, we don't have to think about *time* as much in our code. Our original code with race conditions needed to set the state *at the right moment later*, or otherwise it would be wrong. But with Suspense, we set the state *immediately* -- so it's harder to mess it up.
+Kode ini sangat mudah dibaca, tetapi tidak seperti contoh sebelumnya, versi Suspense tidak mengalami kondisi balapan. Anda mungkin bertanya-tanya mengapa. Jawabannya adalah bahwa dalam versi Suspense, kita tidak perlu memikirkan terlu banyak tentang *waktu* dalam kode kita. Kode asli kita dengan kondisi balapan memerlukan pengaturan state *di saat yang tepat nantinya*, atau jika tidak maka akan salah. Tetapi dengan Suspense, kita mengatur state *seketika* -- jadi lebih sulit untuk mengacaukannya.
 
-## Handling Errors {#handling-errors}
+## Penanganan Eror {#handling-errors}
 
-When we write code with Promises, we might use `catch()` to handle errors. How does this work with Suspense, given that we don't *wait* for Promises to start rendering?
+Ketika kita menulis kode dengan Promises, kita mungkin menggunakan `catch()` untuk menangani eror. Bagaimana cara kerjanya dengan Suspense, mengingat kita tidak *menunggu* Promises untuk memulai perenderan?
 
-With Suspense, handling fetching errors works the same way as handling rendering errors -- you can render an [error boundary](/docs/error-boundaries.html) anywhere to "catch" errors in components below.
+Dengan Suspense, menangani kesalahan penarikan bekerja dengan cara yang sama seperti menangani kesalahan perenderan - Anda dapat membuat [batas kesalahan](/docs/error-boundaries.html) di mana saja untuk "menangkap" kesalahan dalam komponen di bawah ini.
 
-First, we'll define an error boundary component to use across our project:
+Pertama, kita akan mendefinisikan komponen batas kesalahan untuk digunakan di seluruh proyek kita:
 
 ```js
-// Error boundaries currently have to be classes.
+// Batas kesalahan saat ini harus berupa class
 class ErrorBoundary extends React.Component {
   state = { hasError: false, error: null };
   static getDerivedStateFromError(error) {
@@ -700,15 +700,15 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-And then we can put it anywhere in the tree to catch errors:
+Dan kemudian kita bisa meletakkannya di mana saja di pohon untuk menangkap kesalahan:
 
 ```js{5,9}
 function ProfilePage() {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Suspense fallback={<h1>Memuat profil...</h1>}>
       <ProfileDetails />
-      <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
-        <Suspense fallback={<h1>Loading posts...</h1>}>
+      <ErrorBoundary fallback={<h2>Tidak bisa mendapatkan kiriman.</h2>}>
+        <Suspense fallback={<h1>Memuat kiriman...</h1>}>
           <ProfileTimeline />
         </Suspense>
       </ErrorBoundary>
@@ -717,20 +717,20 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/adoring-goodall-8wbn7)**
+**[Coba ini di CodeSandbox](https://codesandbox.io/s/adoring-goodall-8wbn7)**
 
-It would catch both rendering errors *and* errors from Suspense data fetching. We can have as many error boundaries as we like but it's best to [be intentional](https://aweary.dev/fault-tolerance-react/) about their placement.
+Ini akan menangkap kesalahan perenderan *dan* dari penarikan data Suspense. Kita dapat memiliki batas kesalahan sebanyak yang kita mau, tetapi selalu terbaik untuk bisa [beralasan](https://aweary.dev/fault-tolerance-react/) tentang penempatan mereka.
 
-## Next Steps {#next-steps}
+## Langkah Selanjutnya {#next-steps}
 
-We've now covered the basics of Suspense for Data Fetching! Importantly, we now better understand *why* Suspense works this way, and how it fits into the data fetching space.
+Kita sekarang telah membahas dasar-dasar Suspense untuk Penarikan Data! Yang terpenting, kita sekarang lebih memahami *mengapa* Suspense bekerja dengan cara ini, dan bagaimana itu cocok dengan masalah penarikan data.
 
-Suspense answers some questions, but it also poses new questions of its own:
+Suspense menjawab beberapa pertanyaan, tetapi juga memunculkan pertanyaan baru:
 
-* If some component "suspends", does the app freeze? How to avoid this?
-* What if we want to show a spinner in a different place than "above" the component in a tree?
-* If we intentionally *want* to show an inconsistent UI for a small period of time, can we do that?
-* Instead of showing a spinner, can we add a visual effect like "greying out" the current screen?
-* Why does our [last Suspense example](https://codesandbox.io/s/infallible-feather-xjtbu) log a warning when clicking the "Next" button?
+* Jika beberapa komponen "ditangguhkan", apakah aplikasi dibekukan? Bagaimana cara menghindarinya?
+* Bagaimana jika kita ingin menunjukkan pemintal di tempat yang berbeda dari  "di atas" komponen di pohon?
+* Jika kita sengaja *ingin* menampilkan UI yang tidak konsisten untuk jangka waktu yang pendek, dapatkah kita melakukannya?
+* Alih-alih menunjukkan pemintal, dapatkah kita menambahkan efek visual seperti "memudarkan" layar saat ini?
+* Mengapa [contoh Suspense terakhir](https://codesandbox.io/s/infallible-feather-xjtbu) kita membuat log peringatan saat mengklik tombol "Berikutnya"?
 
-To answer these questions, we will refer to the next section on [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).
+Untuk menjawab pertanyaan-pertanyaan ini, kita akan merujuk ke bagian selanjutnya pada [Pola Mode Konkuren](/docs/concurrent-mode-patterns.html).
