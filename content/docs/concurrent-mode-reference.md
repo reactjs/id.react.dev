@@ -176,7 +176,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
 ```
 
-Menghasilkan suatu nilai yang tertunda" sampai kurun waktu `timeoutMs`.
+Menghasilkan suatu nilai yang "tertunda" sampai kurun waktu `timeoutMs`.
 
 Biasanya digunakan untuk memastikan tampilan tetap responsif ketika suatu hal perlu di tampilkan seketika dari interaksi pengguna sedangkan harus menunggu proses pengambilan data juga.
 
