@@ -15,7 +15,7 @@ next: concurrent-mode-patterns.html
 
 <div class="scary">
 
->Caution:
+>Perhatian:
 >
 > Halaman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _builds_ eksperimental dalam aplikasi React versi produksi. Fitur-fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
