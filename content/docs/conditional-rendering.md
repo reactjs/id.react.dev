@@ -122,7 +122,11 @@ Saat mendeklarasikan sebuah variabel dan  menggunakan statement `if` merupakan c
 
 ### Inline If dengan Operator Logis && {#inline-if-with-logical--operator}
 
+<<<<<<< HEAD
 Anda dapat [menyisipkan ekspresi apapun pada JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) dengan cara membungkusnya ke dalam kurung kurawal. Juga memasukan operator logis `&&`. Kurung kurawal dapat berguna untuk memasukan elemen secara kondisional:
+=======
+You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+>>>>>>> 87dcdbedc36b8d53b4d0d0d36f078924582357f0
 
 ```js{6-10}
 function Mailbox(props) {
