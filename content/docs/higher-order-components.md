@@ -2,6 +2,8 @@
 id: higher-order-components
 title: Higher-Order Components
 permalink: docs/higher-order-components.html
+prev: web-components.html
+next: render-props.html
 ---
 
 _Higher-order component_ (HOC) merupakan teknik lanjutan dalam React untuk menggunakan kembali logika komponen. HOCs sendiri bukan merupakan bagian dari API React. Hal tersebut merupakan pola yang muncul dari sifat komposisi React.

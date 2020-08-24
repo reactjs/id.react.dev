@@ -42,7 +42,11 @@ Performa kelas CSS biasanya lebih baik daripada _inline styles._
 
 ### Apa yang dimaksud dengan CSS-in-JS? {#what-is-css-in-js}
 
+<<<<<<< HEAD
 "CSS-in-JS" mengacu kepada pola dimana CSS disusun menggunakan JavaScript bukannya didefinisikan di luar arsip.[disini](https://github.com/MicheleBertoli/css-in-js).
+=======
+"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 _Perhatikan bahwa fungsi ini bukan bagian dari React, tetapi disediakan oleh library dari pihak ketiga._ React tidak memiliki pendapat tentang bagaimana style didefinisikan; jika ragu, titik awal yang baik adalah mendefinisikan style Anda secara terpisah dalam file `*.css` seperti biasa dan arahkan ke mereka menggunakan [`className`](/docs/dom-elements.html#classname).
 

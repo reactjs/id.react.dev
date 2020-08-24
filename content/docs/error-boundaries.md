@@ -2,6 +2,8 @@
 id: error-boundaries
 title: Error Boundaries
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 Di masa lalu, kesalahan JavaScript dalam komponen sering kali merusak _state_ internal React dan menyebabkannya untuk [meng-_emit_](https://github.com/facebook/react/issues/4026) [kesalahan](https://github.com/facebook/react/issues/8579) [yang samar](https://github.com/facebook/react/issues/6895) dalam proses _render_ berikutnya. Kesalahan tersebut selalu disebabkan oleh kesalahan sebelumnya pada kode aplikasi, tetapi React tidak menyediakan cara untuk menanganinya secara lugas dalam komponen, dan pada akhirnya tidak bisa dipulihkan.
@@ -99,7 +101,13 @@ Anda juga bisa melihat nama file dan nomor baris dalam _stack trace_ komponen. I
 
 Jika Anda tidak menggunakan Create React App, Anda bisa menambahkan [_plugin_ ini](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) secara manual dalam konfigurasi Babel Anda. Perhatikan bahwa ini ditujukan untuk tahap pengembangan dan **harus dinonaktifkan dalam tahap produksi**.
 
+<<<<<<< HEAD
 > Catatan
+=======
+If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
+
+> Note
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 >
 > Nama komponen yang ditampilkan dalam _stack trace_ tergantung dari properti [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Jika Anda mendukung browser dan perangkat versi lawas yang tidak mendukung fitur ini secara _native_ (misalnya, IE 11), pertimbangkan untuk menyertakan _polyfill_ `Function.name` dalam bundel aplikasi Anda, misalnya [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatifnya adalah Anda bisa menetapkan properti [`displayName`](/docs/react-component.html#displayname) secara eksplisit untuk semua komponen Anda.
 

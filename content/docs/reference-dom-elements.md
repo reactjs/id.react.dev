@@ -56,7 +56,12 @@ Karena `for` adalah kata khusus dalam JavaScript, elemen React menggunakan `html
 
 ### selected {#selected}
 
+<<<<<<< HEAD
 Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya untuk mengatur apakah komponen ini telah dipilih. Hal ini bermanfaat untuk membangun komponen yang dapat diatur.
+=======
+If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
+Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 ### style {#style}
 
@@ -120,7 +125,11 @@ Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memper
 
 ### value {#value}
 
+<<<<<<< HEAD
 Atribut `value` didukung oleh komponen `<input>` dan `<textarea>`. Anda dapat menggunakannya untuk mengatur nilai komponen. Ini berguna untuk membangun komponen yang dikendalikan. `defaultValue` adalah komponen yang tidak terkontrol, yang menetapkan nilai komponen saat pertama kali dipasang.
+=======
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 ## Semua Atribut HTML yang Didukung {#all-supported-html-attributes}
 

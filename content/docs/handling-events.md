@@ -54,7 +54,11 @@ function ActionLink() {
 }
 ```
 
+<<<<<<< HEAD
 Di sini, `e` adalah sebuah *event* tiruan. React mendefinisikan event tiruan ini berdasarkan [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), jadi Anda tidak perlu khawatir akan kesesuaian antar lintas *browser*. Lihat referensi pada [`SyntheticEvent`](/docs/events.html) untuk panduan belajar lebih jauh.
+=======
+Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 Ketika menggunakan React, pada umumnya Anda tidak perlu memanggil `addEventListener` untuk menambahkan *listener* pada elemen DOM setelah dibuat. Sebagai gantinya, cukup berikan *listener* ketika elemen pertama kali di-*render*.
 
