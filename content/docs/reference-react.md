@@ -124,7 +124,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` merupakan sebuah [_higher order component_](/docs/higher-order-components.html). Ia mirip dengan [`React.PureComponent`](#reactpurecomponent) tapi alih - alih untuk _class component_ ia digunakan untuk _function component_.
+`React.memo` merupakan sebuah [_higher order component_](/docs/higher-order-components.html).
 
 Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
 

@@ -2,6 +2,8 @@
 id: context
 title: Context
 permalink: docs/context.html
+prev: reconciliation.html
+next: fragments.html
 ---
 
 Context menyediakan cara untuk oper data melalui diagram komponen tanpa harus oper *props* secara manual di setiap tingkat.

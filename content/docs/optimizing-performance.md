@@ -2,6 +2,8 @@
 id: optimizing-performance
 title: Mengoptimalkan Performa
 permalink: docs/optimizing-performance.html
+prev: uncontrolled-components.html
+next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
@@ -371,13 +373,15 @@ function updateColorMap(colormap) {
 
 `updateColorMap` sekarang mengembalikan objek baru, daripada memutasikan objek yang lama. `Object.assign` berada di spesifikasi ES6 dan membutuhkan *polyfill*.
 
-Ada juga proposal JavaScript untuk menambahkan [properti *spread* objek](https://github.com/sebmarkbage/ecmascript-rest-spread) untuk membuat pembaruan objek tanpa mutasi menjadi lebih mudah:
+[Properti *spread* objek](https://github.com/sebmarkbage/ecmascript-rest-spread) membuat pembaruan objek tanpa mutasi menjadi lebih mudah:
 
 ```js
 function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }
 ```
+
+Fitur ini ditambahkan ke JavaScript di ES2018.
 
 Jika Anda menggunakan Create React App, `Object.assign` dan sintaksis *spread* untuk objek sudah tersedia.
 

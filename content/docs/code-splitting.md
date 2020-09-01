@@ -2,6 +2,7 @@
 id: code-splitting
 title: Code-Splitting
 permalink: docs/code-splitting.html
+prev: accessibility.html
 ---
 
 ## Bundel {#bundling}
@@ -40,7 +41,7 @@ console.log(add(16, 26)); // 42
 >
 > Bundel Anda akan terlihat sangat berbeda dari contoh yang ada.
 
-Jika Anda menggunakan [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), atau alat bantu lain yang serupa, maka Anda akan sudah mempunyai pengaturan Webpack bawaan dari alat bantu tersebut untuk membundel aplikasi Anda. 
+Jika Anda menggunakan [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), atau alat bantu lain yang serupa, maka Anda akan sudah mempunyai pengaturan Webpack bawaan dari alat bantu tersebut untuk membundel aplikasi Anda.
 
 Jika tidak, maka Anda perlu untuk membuat sendiri pengaturan pembundelan. Sebagai contoh, Anda bisa melihat panduan pengaturan Webpack di
 [Installation](https://webpack.js.org/guides/installation/) dan

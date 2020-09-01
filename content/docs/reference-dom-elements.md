@@ -56,7 +56,7 @@ Karena `for` adalah kata khusus dalam JavaScript, elemen React menggunakan `html
 
 ### selected {#selected}
 
-Atribut `selected` didukung oleh komponen `<option>`. Anda dapat menggunakannya untuk mengatur apakah komponen ini telah dipilih. Hal ini bermanfaat untuk membangun komponen yang dapat diatur.
+Apabila Anda ingin menandai sebuah elemen `<option>` sebagai terpilih, referensikan nilai elemen `<option>` tersebut di atribut `value` di elemen `<select>`-nya. Baca bagian ["Tag select"](/docs/forms.html#the-select-tag) untuk instruksi lebih lanjut.
 
 ### style {#style}
 
