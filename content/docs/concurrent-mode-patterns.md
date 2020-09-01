@@ -19,7 +19,7 @@ next: concurrent-mode-adoption.html
 >
 >Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau Anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
@@ -27,10 +27,10 @@ Biasanya, ketika kita mengubah state, kita akan langsung melihat perubahannya di
 
 Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk laman selanjutnya, mungkin kita akan merasa frustasi ketika melihat laman dengan loading. Kita mungkin lebih memilih untuk tetap berada di laman sebelumnya. Meng-implementasi pola ini secara historis sulit dalam React. Concurrent Mode menawarkan seperangkat alat baru untuk melakukan itu.
 - [Transisi](#transitions)
-  - [Setstate didalam transisi](#wrapping-setstate-in-a-transition)
-  - [Menambah indikator tunggu](#adding-a-pending-indicator)
-  - [Review perubahan](#reviewing-the-changes)
-  - [Dimana perubahan terjadi?](#where-does-the-update-happen)
+  - [Setstate di Dalam Transisi](#wrapping-setstate-in-a-transition)
+  - [Menambah Indikator Tunggu](#adding-a-pending-indicator)
+  - [Me-review Perubahan](#reviewing-the-changes)
+  - [Di Mana Perubahan Yerjadi?](#where-does-the-update-happen)
   - [Transisi disetiap tempat](#transitions-are-everywhere)
   - [Baking Transitions Into the Design System](#baking-transitions-into-the-design-system)
 - [Tiga Langkah](#the-three-steps)
@@ -41,8 +41,8 @@ Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk lama
   - [Delaying a Pending Indicator](#delaying-a-pending-indicator)
   - [Recap](#recap)
 - [Cara lain](#other-patterns)
-  - [Memisahkan state dengan prioritas tinggi dan rendah](#splitting-high-and-low-priority-state)
-  - [Deferring a Value](#deferring-a-value)
+  - [Memisahkan State dengan Prioritas Tinggi dan Rendah](#splitting-high-and-low-priority-state)
+  - [Menangguhkan Sebuah Nilai](#deferring-a-value)
   - [SuspenseList](#suspenselist)
 - [Selanjutnya](#next-steps)
 
@@ -90,7 +90,7 @@ Kita akan menggunakannya seperti berikut.
 
 Kita menggunakan objek konfigurasi ke `useTransition`. Properti `timeoutMs` menspesifikasi **berapa lama kita ingin menunggu transisi untuk selesai**. Dengan mengoper `{timeoutMs: 3000}`, berarti kita mengatakan "Jika profil perlu lebih dari 3 detik untuk load, tampilkan loading berputar -- tapi sebelum timeout kita bisa tetap memperlihatkan layar sebelumnya".
 
-### Setstate didalam transisi {#wrapping-setstate-in-a-transition}
+### Setstate di Dalam Transisi {#wrapping-setstate-in-a-transition}
 
 Handler klik tombol "Next" kita, mengubah state yang mengganti profile saat ini:
 
@@ -103,7 +103,7 @@ Handler klik tombol "Next" kita, mengubah state yang mengganti profile saat ini:
 >
 ```
 
- Kita akan membungkus perubahan state tersebut didalam `startTransition`. Dengan begitu, kita memberitahu React untuk **Boleh delay update state tersebut** jika perubahan tersebut membuat loading state yang tidak diinginkan:
+Kita akan membungkus perubahan state tersebut didalam `startTransition`. Dengan begitu, kita memberitahu React untuk **Boleh delay update state tersebut** jika perubahan tersebut membuat loading state yang tidak diinginkan:
 
 ```js{3,6}
 <button
@@ -118,23 +118,21 @@ Handler klik tombol "Next" kita, mengubah state yang mengganti profile saat ini:
 
 **[Coba di CodeSandbox](https://codesandbox.io/s/musing-driscoll-6nkie)**
 
-Press "Next" a few times. Notice it already feels very different. **Instead of immediately seeing an empty screen on click, we now keep seeing the previous page for a while.** When the data has loaded, React transitions us to the new screen.
-Tekan "Next" beberapa kali. Jika diperhatikan, akan terasa bedanya. **Daripada langsung melihat layar kosong ketika klik, sekarang kita melihat layar sebelumnya untuk beberapa saat.** Ketika data sudah diload, React mengarahkan kita ke layar baru.
+Tekan "Next" beberapa kali. Jika diperhatikan, akan terasa bedanya. **Daripada langsung melihat layar kosong ketika klik, sekarang kita melihat layar sebelumnya untuk beberapa saat.** Ketika data sudah dimuat, React mengarahkan kita ke layar baru.
 
-If we make our API responses take 5 seconds, [we can confirm](https://codesandbox.io/s/relaxed-greider-suewh) that now React "gives up" and transitions anyway to the next screen after 3 seconds. This is because we passed `{timeoutMs: 3000}` to `useTransition()`. For example, if we passed `{timeoutMs: 60000}` instead, it would wait a whole minute.
-Jika kita buat API response untuk menunggu selama 5 detik, [kita bisa memastikan](https://codesandbox.io/s/relaxed-greider-suewh) kalau React "menyerah" dan langsung mengarahkan kita ke layar selanjutnya setelah 3 detik. Ini karena kita telah melewati batas `{timeoutMs: 3000}` untuk `useTransition()`. Contohnya, jika kita set `{timeoutMs: 60000}`, React akan menunggu selama semenit penuh.
+Jika kita membuat _response_ API menunggu selama 5 detik, [kita bisa memastikan](https://codesandbox.io/s/relaxed-greider-suewh) kalau React "menyerah" dan langsung mengarahkan kita ke layar selanjutnya setelah 3 detik. Ini karena kita telah melewati batas `{timeoutMs: 3000}` untuk `useTransition()`. Contohnya, jika kita set `{timeoutMs: 60000}`, React akan menunggu selama semenit penuh.
 
-### Menambah indikator tunggu {#adding-a-pending-indicator}
+### Menambah Indikator Tunggu {#adding-a-pending-indicator}
 
-There's still something that feels broken about [our last example](https://codesandbox.io/s/musing-driscoll-6nkie). Sure, it's nice not to see a "bad" loading state. **But having no indication of progress at all feels even worse!** When we click "Next", nothing happens and it feels like the app is broken.
+Ada sesuatu yang masih merasa tidak benar di [contoh kita sebelumnya](https://codesandbox.io/s/musing-driscoll-6nkie). Memang terasa lebih bagus ketika kita tidak melihat _state_ memuat yang "buruk". **Namun lebih buruk lagi ketika tidak ada indikasi progres!** Ketika kita mengklik "Next", tidak ada yang terjadi dan aplikasi kita terasa seperti rusak.
 
-Our `useTransition()` call returns two values: `startTransition` and `isPending`.
+Pemanggilan `useTransition()` mengembalikan dua nilai: `startTransition` dan `isPending`.
 
 ```js
   const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
 ```
 
-We've already used `startTransition` to wrap the state update. Now we're going to use `isPending` too. React gives this boolean to us so we can tell whether **we're currently waiting for this transition to finish**. We'll use it to indicate that something is happening:
+Kita telah menggunakan `startTransition` untuk membungkus perubahan _state_. Sekarang kita juga akan menggunakan `isPending`. React memberikan nilai boolean ini kepada kita supaya kita dapat mengetahui apakah **kita sedang menunggu transisi ini selesai**. Kita menggunakan ini untuk mengindikasikan sesuatu sedang terjadi:
 
 ```js{4,14}
 return (
@@ -156,13 +154,13 @@ return (
 );
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
 
-Now, this feels a lot better! When we click Next, it gets disabled because clicking it multiple times doesn't make sense. And the new "Loading..." tells the user that the app didn't freeze.
+Sekarang, ini terasa lebih baik! Ketika kita mengklik Next, tombolnya di-_disable_ karena mengkliknya beberapa kali tidak masuk akal. Dan teks "Loading..." memberitahu pengguna bahwa aplikasi tidak sedang _freeze_.
 
-### Reviewing the Changes {#reviewing-the-changes}
+### Me-review Perubahan {#reviewing-the-changes}
 
-Let's take another look at all the changes we've made since the [original example](https://codesandbox.io/s/infallible-feather-xjtbu):
+Mari kita ulas kembali perubahan-perubahan yang kita buat sejak [contoh awal](https://codesandbox.io/s/infallible-feather-xjtbu):
 
 ```js{3-5,9,11,14,19}
 function App() {
@@ -190,32 +188,32 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
 
-It took us only seven lines of code to add this transition:
+Menambahkan transisi ini hanya memerlukan 7 baris kode:
 
-* We've imported the `useTransition` Hook and used it the component that updates the state.
-* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
-* We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
-* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
+* Kita meng-import Hook `useTransition` dan menggunakannya dalam komponen yang merubah _state_.
+* Kita mengoper `{timeoutMs: 3000}` untuk bertahan di layar sebelumnya paling lama 3 detik.
+* Kita membungkus perubahan _state_ dalam `startTransition` untuk memberitahu React tidak apa-apa menundanya.
+* Kita menggunakan `isPending` untuk mengkomunikasikan progres transisi _state_ ke pengguna dan men-_disable_ tombolnya.
 
-As a result, clicking "Next" doesn't perform an immediate state transition to an "undesirable" loading state, but instead stays on the previous screen and communicates progress there.
+Hasilnya, mengklik "Next" tidak melakukan transisi _state_ secara langsung ke _state_ memuat yang "tidak diinginkan", namun bertahan di layar berikutnya dan mengkomunikasikan progres lewatnya.
 
-### Where Does the Update Happen? {#where-does-the-update-happen}
+### Di Mana Perubahan Terjadi? {#where-does-the-update-happen}
 
-This wasn't very difficult to implement. However, if you start thinking about how this could possibly work, it might become a little mindbending. If we set the state, how come we don't see the result right away? *Where* is the next `<ProfilePage>` rendering?
+Mengimplementasi ini tidak terlalu sulit. Namun, jika Anda mulai memikirkan bagaimana cara kerjanya, akan menjadi lebih memeras otak. Jika kita mengeset _state_-nya, bagaimana caranya kita tidak melihat hasilnya secara langsung? *Di mana* `<ProfilePage>` yang selanjutnya me-_render_?
 
-Clearly, both "versions" of `<ProfilePage>` exist at the same time. We know the old one exists because we see it on the screen and even display a progress indicator on it. And we know the new version also exists *somewhere*, because it's the one that we're waiting for!
+Jelasnya, kedua "versi" `<ProfilePage>` ada dalam waktu yang sama. Kita tahu versi yang lama ada karena kita dapat melihatnya di layar dan bahkan menunjukkan indikator progress. Dan kita juga tahu versi yang baru berada *di suatu tempat*, karena ini yang kita inginkan!
 
-**But how can two versions of the same component exist at the same time?**
+**Tapi bagaimana kedua versi komponen yang sama dapat tersedia dalam waktu yang sama?**
 
-This gets at the root of what Concurrent Mode is. We've [previously said](/docs/concurrent-mode-intro.html#intentional-loading-sequences) it's a bit like React working on state update on a "branch". Another way we can conceptualize is that wrapping a state update in `startTransition` begins rendering it *"in a different universe"*, much like in science fiction movies. We don't "see" that universe directly -- but we can get a signal from it that tells us something is happening (`isPending`). When the update is ready, our "universes" merge back together, and we see the result on the screen!
+Di sinilah kita mulai menuju ke akarnya Concurrent Mode. Kita telah [mengungkapkan sebelumnya](/docs/concurrent-mode-intro.html#intentional-loading-sequences) Concurrent Mode seperti React mengerjakan perubahan _state_ dalam sebuah "branch". Cara lain kita dapat memahami konsepnya adalah membungkus perubahan _state_ di dalam `startTransition` memulai proses render *"di alam semesta yang berbeda"*, layaknya film fiksi ilmiah. Kita tidak dapat "melihat" alam semesta tersebut secara langsung -- namun kita dapat mendapatkan sinyal darinya yang memberitahukan sesuatu sedang terjadi (`isPending`). Ketika perubahan telah siap, "alam semesta" kita menyatu kembali, dan kita melihat hasilnya di layar!
 
-Play a bit more with the [demo](https://codesandbox.io/s/jovial-lalande-26yep), and try to imagine it happening.
+Bermainlah lagi dengan [demo-nya](https://codesandbox.io/s/jovial-lalande-26yep), bayangkan hal itu terjadi.
 
-Of course, two versions of the tree rendering *at the same time* is an illusion, just like the idea that all programs run on your computer at the same time is an illusion. An operating system switches between different applications very fast. Similarly, React can switch between the version of the tree you see on the screen and the version that it's "preparing" to show next.
+Tentu saja, dua versi dari sebuah diagram komponen me-_render_ *di waktu yang sama* hanyalah ilusi, layaknya semua program berjalan di komputer Anda di waktu yang sama hanyalah ilusi. Sebuah sistem operasi beralih antar aplikasi dalam waktu yang sangat cepat. Seperti itu jugalah React dapat beralih antar versi diagram komponen dalam layar dan versi yang sedang "dipersiapkan" untuk ditampilkan selanjutnya.
 
-An API like `useTransition` lets you focus on the desired user experience, and not think about the mechanics of how it's implemented. Still, it can be a helpful metaphor to imagine that updates wrapped in `startTransition` happen "on a branch" or "in a different world".
+API seperti `useTransition` memungkinkan Anda untuk berfokus kepada _user experience_ yang diinginkan, dan tidak terlalu memikirkan teknis implementasinya. Namun membayangkan perubahan yang dibungkus dalam `startTransition` terjadi "di dalam branch" atau "di dunia lain" tetap menjadi metafor yang membantu.
 
 ### Transitions Are Everywhere {#transitions-are-everywhere}
 
@@ -613,11 +611,11 @@ The most important things we learned so far are:
 * If we don't want some component to delay the transition, we can wrap it in its own `<Suspense>` boundary.
 * Instead of doing `useTransition` in every other component, we can build it into our design system.
 
-## Other Patterns {#other-patterns}
+## Cara Lain {#other-patterns}
 
 Transitions are probably the most common Concurrent Mode pattern you'll encounter, but there are a few more patterns you might find useful.
 
-### Splitting High and Low Priority State {#splitting-high-and-low-priority-state}
+### Memisahkan State dengan Prioritas Tinggi dan Rendah {#splitting-high-and-low-priority-state}
 
 When you design React components, it is usually best to find the "minimal representation" of state. For example, instead of keeping `firstName`, `lastName`, and `fullName` in state, it's usually better keep only `firstName` and `lastName`, and then calculate `fullName` during rendering. This lets us avoid mistakes where we update one state but forget the other state.
 
@@ -726,7 +724,7 @@ function handleChange(e) {
 
 With this change, it works as expected. We can type into the input immediately, and the translation later "catches up" to what we have typed.
 
-### Deferring a Value {#deferring-a-value}
+### Menangguhkan Sebuah Nilai {#deferring-a-value}
 
 By default, React always renders a consistent UI. Consider code like this:
 
@@ -931,7 +929,7 @@ You can control how many loading states are visible at once with the `tail` prop
 
 Keep in mind that `<SuspenseList>` is composable, like anything in React. For example, you can create a grid by putting several `<SuspenseList>` rows inside a `<SuspenseList>` table.
 
-## Next Steps {#next-steps}
+## Selanjutnya {#next-steps}
 
 Concurrent Mode offers a powerful UI programming model and a set of new composable primitives to help you orchestrate delightful user experiences.
 
