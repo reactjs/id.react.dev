@@ -124,15 +124,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-<<<<<<< HEAD
-`React.memo` merupakan sebuah [_higher order component_](/docs/higher-order-components.html). Ia mirip dengan [`React.PureComponent`](#reactpurecomponent) tapi alih - alih untuk _class component_ ia digunakan untuk _function component_.
+`React.memo` merupakan sebuah [_higher order component_](/docs/higher-order-components.html).
 
 Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
-=======
-`React.memo` is a [higher order component](/docs/higher-order-components.html).
-
-If your component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 `React.memo` hanya berefek kepada _props_ yang berubah. Jika komponen Anda yang dibungkus dengan `React.memo` memiliki *Hooks* [`useState`](/docs/hooks-state.html) atau [`useContext`](/docs/hooks-reference.html#usecontext) dalam implementasinya, komponen itu akan tetap me-_render_ ulang apabila _state_ atau _context_ berubah.
 

@@ -35,40 +35,11 @@ Misalnya, tes untuk [`setInnerHTML.js`](https://github.com/facebook/react/blob/8
 
 ### Peringatan dan _Invariant_ {#warnings-and-invariants}
 
-<<<<<<< HEAD
 Basis kode React menggunakan modul `warning` untuk menampilkan peringatan:
-
-```js
-var warning = require('warning');
-
-warning(
-  2 + 2 === 4,
-  'Matematika tidak berfungsi hari ini.'
-);
-```
-**Peringatan ditampilkan ketika kondisi `warning` adalah `false`.**
-
-Satu cara yang baik untuk mengingatnya adalah bahwa kondisi seharusnya merefleksikan keadaan yang normal daripada yang tidak.
-
-Ini adalah ide yang bagus untuk menghindari men-spam konsol dengan peringatan yang sama:
-
-```js
-var warning = require('warning');
-
-var didWarnAboutMath = false;
-if (!didWarnAboutMath) {
-  warning(
-    2 + 2 === 4,
-    'Matematika tidak berfungsi hari ini.'
-  );
-  didWarnAboutMath = true;
-=======
-The React codebase uses `console.error` to display warnings:
 
 ```js
 if (__DEV__) {
   console.error('Something is wrong.');
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 }
 ```
 
@@ -121,44 +92,7 @@ ReactRef.detachRefs = function(
 Bila mungkin, kode baru harus menggunakan anotasi Flow.
 Anda dapat menjalankan `yarn flow` secara lokal untuk mengecek kode Anda menggunakan Flow.
 
-<<<<<<< HEAD
-### Injeksi Dinamis {#dynamic-injection}
-
-React menggunakan injeksi dinamis pada sebagian modul. Walaupun selalu eksplisit, hal tersebut masih disayangkan karena menghalangi pemahaman terhadap kode. Alasan utamanya adalah karena React mulanya hanya mendukung DOM sebagai target. React Native dimulai sebagai _fork_ dari React. Kami perlu menambahkan injeksi dinamis agar React Native dapat melakukan _override_ pada beberapa perilaku.
-
-Anda mungkin melihat modul yang mendeklarasikan _dependency_ dinamis seperti ini:
-
-```js
-// Diinjeksi secara dinamis
-var textComponentClass = null;
-
-// Bergantung pada nilai yang diinjeksi secara dinamis
-function createInstanceForText(text) {
-  return new textComponentClass(text);
-}
-
-var ReactHostComponent = {
-  createInstanceForText,
-
-  // Menyediakan kesempatan untuk injeksi dinamis
-  injection: {
-    injectTextComponentClass: function(componentClass) {
-      textComponentClass = componentClass;
-    },
-  },
-};
-
-module.exports = ReactHostComponent;
-```
-
-_Field_ `injection` tidak ditangani secara khusus dengan cara apapun. Tapi menurut konvensi, modul ini perlu beberapa _dependency_ (agaknya spesifik pada platform tertentu) yang diinjeksi pada saat sedang berjalan (_runtime_).
-
-Terdapat beberapa poin untuk injeksi pada basis kode. Di waktu yang akan datang, kami berniat untuk menghilangkan mekanisme injeksi dinamis dan menghubungkan semua bagian secara statis selama proses _build_.
-
 ### _Multiple Package_ {#multiple-packages}
-=======
-### Multiple Packages {#multiple-packages}
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 React adalah sebuah [monorepo](https://danluu.com/monorepo/). Repositorinya berisi banyak _package_ terpisah sehingga perubahan mereka dapat dikoordinasikan bersama, dan isu-isu berada pada satu tempat.
 
