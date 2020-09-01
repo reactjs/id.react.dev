@@ -2,6 +2,8 @@
 id: error-boundaries
 title: Error Boundaries
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 Di masa lalu, kesalahan JavaScript dalam komponen sering kali merusak _state_ internal React dan menyebabkannya untuk [meng-_emit_](https://github.com/facebook/react/issues/4026) [kesalahan](https://github.com/facebook/react/issues/8579) [yang samar](https://github.com/facebook/react/issues/6895) dalam proses _render_ berikutnya. Kesalahan tersebut selalu disebabkan oleh kesalahan sebelumnya pada kode aplikasi, tetapi React tidak menyediakan cara untuk menanganinya secara lugas dalam komponen, dan pada akhirnya tidak bisa dipulihkan.
@@ -97,7 +99,7 @@ Anda juga bisa melihat nama file dan nomor baris dalam _stack trace_ komponen. I
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Kesalahan yang ditangkap komponen Error Boundary beserta nomor baris">
 
-Jika Anda tidak menggunakan Create React App, Anda bisa menambahkan [_plugin_ ini](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) secara manual dalam konfigurasi Babel Anda. Perhatikan bahwa ini ditujukan untuk tahap pengembangan dan **harus dinonaktifkan dalam tahap produksi**.
+Jika Anda tidak menggunakan Create React App, Anda bisa menambahkan [_plugin_ ini](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) secara manual dalam konfigurasi Babel Anda. Perhatikan bahwa ini ditujukan untuk tahap pengembangan dan **harus dinonaktifkan dalam tahap produksi**.
 
 > Catatan
 >

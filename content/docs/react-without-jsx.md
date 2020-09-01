@@ -2,6 +2,8 @@
 id: react-without-jsx
 title: React Without JSX
 permalink: docs/react-without-jsx.html
+prev: react-without-es6.html
+next: reconciliation.html
 ---
 
 JSX bukan persyaratan untuk menggunakan React. Menggunakan React tanpa JSX sangat cocok ketika Anda tidak ingin mengatur kompilasi di *build environment* Anda.

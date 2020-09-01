@@ -12,7 +12,7 @@ Panduan ini mendokumentasikan pembungkus `SyntheticEvent` yang merupakan bagian 
 
 *Event handler* Anda akan dioperkan `SyntheticEvent`, sebuah pembungkus lintas _browser_ yang membungkus _event_ bawaan _browser_. `SyntheticEvent` memiliki antarmuka yang sama dengan _event_ bawaan _browser_, termasuk `stopPropagation()` dan `preventDefault()`, bedanya _event_ ini bekerja secara seragam untuk lintas _browser_.
 
-Jika untuk alasan tertentu Anda memerlukan _event_ bawaan dari _browser_, gunakan atribut `nativeEvent` untuk mengaksesnya. Setiap objek `SyntheticEvent` memiliki atribut-atribut berikut:
+Jika untuk alasan tertentu Anda memerlukan _event_ bawaan dari _browser_, gunakan atribut `nativeEvent` untuk mengaksesnya. _Event_ sintetik berbeda dari _event_ native di _browser_. Contohnya, di dalam `onMouseLeave`, `event.nativeEvent` akan merujuk kepada _event_ `mouseout`. _Mapping_ secara spesifik bukan merupakan bagian dari API publik dan dapat berubah setiap waktu. Setiap objek `SyntheticEvent` memiliki atribut-atribut berikut:
 
 ```javascript
 boolean bubbles
