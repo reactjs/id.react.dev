@@ -23,7 +23,7 @@ Mayoritas situs bukan, dan tidak perlu, untuk bersifat *Single Page Application*
 
 Pada bagian ini, kami akan menunjukkan bagaimana Anda dapat menambahkan sebuah komponen React ke laman HTML yang sudah ada. Anda dapat mengikuti dengan situs Anda sendiri, atau dengan membuat sebuah berkas HTML kosong untuk berlatih.
 
-Di sini tidak akan ada alat yang membingungkan atau persyaratan pemasangan apapun -- **untuk menyelesaikan bagian ini, Anda hanya butuh koneksi internet, dan semenit dari waktu Anda**
+Di sini tidak akan ada alat yang membingungkan atau persyaratan pemasangan apapun -- **untuk menyelesaikan bagian ini, Anda hanya butuh koneksi internet, dan semenit dari waktu Anda.**
 
 Opsional: [Unduh contoh lengkap (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
