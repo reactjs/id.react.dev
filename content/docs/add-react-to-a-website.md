@@ -17,7 +17,7 @@ Mayoritas situs bukan, dan tidak perlu, untuk bersifat *Single Page Application*
 ---
 
 - [Tambahkan React Dalam Satu Menit](#add-react-in-one-minute)
-- [Opsional: Mencoba React Dengan JSX](#optional-try-react-with-jsx) (no bundler necessary!)
+- [Opsional: Mencoba React Dengan JSX](#optional-try-react-with-jsx) (tanpa membutuhkan *bundler*!)
 
 ## Tambahkan React Dalam Satu Menit {#add-react-in-one-minute}
 
