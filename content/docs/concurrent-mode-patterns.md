@@ -31,8 +31,8 @@ Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk lama
   - [Menambah Indikator Tunggu](#adding-a-pending-indicator)
   - [Me-review Perubahan](#reviewing-the-changes)
   - [Di Mana Perubahan Yerjadi?](#where-does-the-update-happen)
-  - [Transisi disetiap tempat](#transitions-are-everywhere)
-  - [Baking Transitions Into the Design System](#baking-transitions-into-the-design-system)
+  - [Transisi di Setiap Tempat](#transitions-are-everywhere)
+  - [Memadukan Transisi ke Dalam _Design System_](#baking-transitions-into-the-design-system)
 - [Tiga Langkah](#the-three-steps)
   - [Default: Receded → Skeleton → Complete](#default-receded-skeleton-complete)
   - [Preferred: Pending → Skeleton → Complete](#preferred-pending-skeleton-complete)
@@ -215,13 +215,13 @@ Tentu saja, dua versi dari sebuah diagram komponen me-_render_ *di waktu yang sa
 
 API seperti `useTransition` memungkinkan Anda untuk berfokus kepada _user experience_ yang diinginkan, dan tidak terlalu memikirkan teknis implementasinya. Namun membayangkan perubahan yang dibungkus dalam `startTransition` terjadi "di dalam branch" atau "di dunia lain" tetap menjadi metafor yang membantu.
 
-### Transitions Are Everywhere {#transitions-are-everywhere}
+### Transisi di Setiap Tempat {#transitions-are-everywhere}
 
-As we learned from the [Suspense walkthrough](/docs/concurrent-mode-suspense.html), any component can "suspend" any time if some data it needs is not ready yet. We can strategically place `<Suspense>` boundaries in different parts of the tree to handle this, but it won't always be enough.
+Seperti yang telah kita pelajari di [_walkthrough_ Suspense](/docs/concurrent-mode-suspense.html), setiap komponen dapat "menunda" setiap waktu ketika data yang diperlukan belum tersedia. Kita dapat menempatkan batas-batas `<Suspense>` secara strategis di tempat-tempat berbeda dalam diagram komponen untuk menangani ini, namun cara ini tidak selalu cukup.
 
-Let's get back to our [first Suspense demo](https://codesandbox.io/s/frosty-hermann-bztrp) where there was just one profile. Currently, it fetches the data only once. We'll add a "Refresh" button to check for server updates.
+Mari kita kembali ke [demo pertama Suspense](https://codesandbox.io/s/frosty-hermann-bztrp) ketika hanya ada satu profil pengguna. Saat ini, komponen ini hanya menarik data sekali. Kita ingin menambahkan tombol "Refresh" untuk mengecek perubahan dari peladen.
 
-Our first attempt might look like this:
+Percobaan pertama kita mungkin terlihat seperti ini:
 
 ```js{6-8,13-15}
 const initialResource = fetchUserAndPosts();
@@ -247,13 +247,13 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/boring-shadow-100tf)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/boring-shadow-100tf)**
 
-In this example, we start data fetching at the load *and* every time you press "Refresh". We put the result of calling `fetchUserAndPosts()` into state so that components below can start reading the new data from the request we just kicked off.
+Dalam contoh ini, kita memulai penarikan data di saat memuat *dan* setiap kali Anda menekan "Refresh". Kita menaruh hasil panggilan `fetchUserAndPosts()` ke dalam _state_ sehingga komponen-komponen di bawahnya dapat memulai membaca data baru dari _request_ yang kita baru jalankan.
 
-We can see in [this example](https://codesandbox.io/s/boring-shadow-100tf) that pressing "Refresh" works. The `<ProfileDetails>` and `<ProfileTimeline>` components receive a new `resource` prop that represents the fresh data, they "suspend" because we don't have a response yet, and we see the fallbacks. When the response loads, we can see the updated posts (our fake API adds them every 3 seconds).
+Kita dapat melihat [di contoh ini](https://codesandbox.io/s/boring-shadow-100tf) bahwa menekan tombol "Refresh" berhasil. Komponen `<ProfileDetails>` dan `<ProfileTimeline>` menerima _props_ `resource` baru yang merepresentasikan data baru, komponen-komponen ini "menunda" perunahan karena kita belum mendapatkan _response_, dan kita dapat melihat kondisi _fallback_. Ketika _response_ telah dimuat, kita dapat melihat daftar postingan yang diperbarui (API tiruan kita menambahkannya setiap 3 detik).
 
-However, the experience feels really jarring. We were browsing a page, but it got replaced by a loading state right as we were interacting with it. It's disorienting. **Just like before, to avoid showing an undesirable loading state, we can wrap the state update in a transition:**
+Namun, pengalaman pengguna akan menjadi tidak enak. Ketika kita sedang _browsing_ sebuah halaman, namun tiba-tiba seluruh halaman diubah menjadi _state_ loading sesaat sebelum kita akan berinteraksi dengannya, akan terasa membingungkan. **Seperti sebelumnya, untuk menghindari menampilkan _state_ _loading_ yang tidak diinginkan, kita dapat membungkus perubahan _state_ di dalam transisi:**
 
 ```js{2-5,9-11,21}
 function ProfilePage() {
@@ -286,15 +286,15 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/sleepy-field-mohzb)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/sleepy-field-mohzb)**
 
-This feels a lot better! Clicking "Refresh" doesn't pull us away from the page we're browsing anymore. We see something is loading "inline", and when the data is ready, it's displayed.
+Ini terasa lebih baik! Menekan tombol "Refresh" tidak akan menarik kita keluar dari halaman yang sedang kita liihat. Kita melihat sesuatu sedang dimuat secara "inline", dan ketika data telah siap, baru ditampilkan.
 
-### Baking Transitions Into the Design System {#baking-transitions-into-the-design-system}
+### Memadukan Transisi ke Dalam Design System {#baking-transitions-into-the-design-system}
 
-We can now see that the need for `useTransition` is *very* common. Pretty much any button click or interaction that can lead to a component suspending needs to be wrapped in `useTransition` to avoid accidentally hiding something the user is interacting with.
+Kita dapat melihat bahwa penggunaan `useTransition` sudah *sangat* diperlukan. Setiap tekanan tombol atau interaksi yang memerlukan penundaan komponen perlu dibungkus di dalam `useTransition` untuk menghindari menyembunyikan sesuatu yang pengguna sedang berinteraksi secara tidak sengaja.
 
-This can lead to a lot of repetitive code across components. This is why **we generally recommend to bake `useTransition` into the *design system* components of your app**. For example, we can extract the transition logic into our own `<Button>` component:
+Ini dapat mengasilkan penggunaan kode yang repetitif di berbagai komponen. Inilah kenapa **secara umum kita perlu memadukan `useTransition` ke dalam komponen *design system* di dalam aplikasi kita**. Sebagai contoh, kita dapat mengekstrak logika transisi ke dalam komponen `<Button>` kita:
 
 ```js{7-9,20,24}
 function Button({ children, onClick }) {
@@ -326,9 +326,9 @@ function Button({ children, onClick }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
 
-Note that the button doesn't care *what* state we're updating. It's wrapping *any* state updates that happen during its `onClick` handler into a transition. Now that our `<Button>` takes care of setting up the transition, the `<ProfilePage>` component doesn't need to set up its own:
+Perlu dicatat bahwa tombol ini tidak memperdulikan _state_ _apa_ yang kita ubah. Ia membungkus perubahan _state_ _apapun_ yang terjadi di dalam _handler_ `onClick` ke dalam sebuah transisi. Karena `<Button>` sekarang yang melakukan pembuatan transisi, komponen `<ProfilePage>` tidak perlu membuatnya sendiri:
 
 ```js{4-6,11-13}
 function ProfilePage() {
@@ -352,11 +352,11 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
 
-When a button gets clicked, it starts a transition and calls `props.onClick()` inside of it -- which triggers `handleRefreshClick` in the `<ProfilePage>` component. We start fetching the fresh data, but it doesn't trigger a fallback because we're inside a transition, and the 10 second timeout specified in the `useTransition` call hasn't passed yet. While a transition is pending, the button displays an inline loading indicator.
+Ketika tombol diklik, ia akan memulai transisi dan memanggil `props.onClick()` di dalamnya -- yang memanggil `handleRefreshClick` di dalam komponen `<ProfilePage>`. Kita memulai menarik data yang baru, tapi tidak memanggil _fallback_ karena kita di dalam sebuah transisi, dan _timeout_ dengan durasi 10 detik yang dispesifikasikan di dalam panggilan `useTransition` belum terlewat. Ketika transisi sedang menunggu, tombol akan menunjukkan indikator _loading_ secara _inline_.
 
-We can see now how Concurrent Mode helps us achieve a good user experience without sacrificing isolation and modularity of components. React coordinates the transition.
+Kita dapat melihat bagaimana mode Concurrent membantu kita mendapatkan pengalaman pengguna yang baik tanpa mengorbankan isolasi dan modularitas dari komponen. React mengkoordinasikan transisinya.
 
 ## The Three Steps {#the-three-steps}
 
@@ -504,7 +504,7 @@ function ProfileTrivia({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/focused-mountain-uhkzg)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/focused-mountain-uhkzg)**
 
 If you press "Open Profile" now, you can tell something is wrong. It takes a whole seven seconds to make the transition now! This is because our trivia API is too slow. Let's say we can't make the API faster. How can we improve the user experience with this constraint?
 
@@ -528,7 +528,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/condescending-shape-s6694)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/condescending-shape-s6694)**
 
 This reveals an important insight. React always prefers to go to the Skeleton state as soon as possible. Even if we use transitions with long timeouts everywhere, React will not stay in the Pending state for longer than necessary to avoid the Receded state.
 
@@ -563,7 +563,7 @@ function Button({ children, onClick }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/floral-thunder-iy826)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/floral-thunder-iy826)**
 
 This signals to the user that some work is happening. However, if the transition is relatively short (less than 500ms), it might be too distracting and make the transition itself feel *slower*.
 
@@ -597,7 +597,7 @@ return (
 );
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/gallant-spence-l6wbk)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/gallant-spence-l6wbk)**
 
 With this change, even though we're in the Pending state, we don't display any indication to the user until 500ms has passed. This may not seem like much of an improvement when the API responses are slow. But compare how it feels [before](https://codesandbox.io/s/thirsty-liskov-1ygph) and [after](https://codesandbox.io/s/hardcore-http-s18xr) when the API call is fast. Even though the rest of the code hasn't changed, suppressing a "too fast" loading state improves the perceived performance by not calling attention to the delay.
 
@@ -657,7 +657,7 @@ function Translation({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/brave-villani-ypxvf)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/brave-villani-ypxvf)**
 
 Notice how when you type into the input, the `<Translation>` component suspends, and we see the `<p>Loading...</p>` fallback until we get fresh results. This is not ideal. It would be better if we could see the *previous* translation for a bit while we're fetching the next one.
 
@@ -694,7 +694,7 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/zen-keldysh-rifos)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/zen-keldysh-rifos)**
 
 Try typing into the input now. Something's wrong! The input is updating very slowly.
 
@@ -720,7 +720,7 @@ function handleChange(e) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/lively-smoke-fdf93)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/lively-smoke-fdf93)**
 
 With this change, it works as expected. We can type into the input immediately, and the translation later "catches up" to what we have typed.
 
@@ -785,7 +785,7 @@ function ProfileTimeline({ isStale, resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/vigorous-keller-3ed2b)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/vigorous-keller-3ed2b)**
 
 The tradeoff we're making here is that `<ProfileTimeline>` will be inconsistent with other components and potentially show an older item. Click "Next" a few times, and you'll notice it. But thanks to that, we were able to cut down the transition time from 1000ms to 300ms.
 
@@ -816,7 +816,7 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/pensive-shirley-wkp46)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/pensive-shirley-wkp46)**
 
 In this example, **every item in `<MySlowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
 
@@ -846,7 +846,7 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/infallible-dewdney-9fkv9)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/infallible-dewdney-9fkv9)**
 
 Now typing has a lot less stutter -- although we pay for this by showing the results with a lag.
 
@@ -876,7 +876,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/proud-tree-exg5t)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/proud-tree-exg5t)**
 
 The API call duration in this example is randomized. If you keep refreshing it, you will notice that sometimes the posts arrive first, and sometimes the "fun facts" arrive first.
 
@@ -891,7 +891,7 @@ One way we could fix it is by putting them both in a single boundary:
 </Suspense>
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/currying-violet-5jsiy)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/currying-violet-5jsiy)**
 
 The problem with this is that now we *always* wait for both of them to be fetched. However, if it's the *posts* that came back first, there's no reason to delay showing them. When fun facts load later, they won't shift the layout because they're already below the posts.
 
@@ -921,7 +921,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/black-wind-byilt)**
+**[Coba di CodeSandbox](https://codesandbox.io/s/black-wind-byilt)**
 
 The `revealOrder="forwards"` option means that the closest `<Suspense>` nodes inside this list **will only "reveal" their content in the order they appear in the tree -- even if the data for them arrives in a different order**. `<SuspenseList>` has other interesting modes: try changing `"forwards"` to `"backwards"` or `"together"` and see what happens.
 
