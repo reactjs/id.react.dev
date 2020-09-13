@@ -36,7 +36,7 @@ Setiap bab dalam panduan ini dibangun di atas pengetahuan yang diperkenalkan pad
 
 ## Asumsi Tingkat Pengetahuan {#knowledge-level-assumptions}
 
-React adalah *library* JavaScript, jadi kami akan berasumsi bahwa Anda memiliki pemahaman dasar tentang bahasa JavaScript. **Jika Anda tidak merasa percaya diri, kami merekomendasikan untuk [melalui tutorial JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk mengecek tingkat pengetahuan Anda** dan memungkinkan Anda untuk mengikuti panduan ini tanpa tersesat. Mungkin akan memakan waktu Anda sekitar 30 menit hingga 1 jam, tetapi sebagai hasilnya Anda tidak perlu merasa bahwa Anda sedang belajar React dan JavaScript dalam waktu bersamaan.
+React adalah *library* JavaScript, jadi kami akan berasumsi bahwa Anda memiliki pemahaman dasar tentang bahasa JavaScript. **Jika Anda tidak merasa percaya diri, kami merekomendasikan untuk [mengikuti tutorial JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) untuk mengecek tingkat pengetahuan Anda** dan memungkinkan Anda untuk mengikuti panduan ini tanpa tersesat. Mungkin akan memakan waktu Anda sekitar 30 menit hingga 1 jam, tetapi sebagai hasilnya Anda tidak perlu merasa bahwa Anda sedang belajar React dan JavaScript dalam waktu bersamaan.
 
 >Catatan
 >
