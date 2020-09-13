@@ -17,7 +17,7 @@ ReactDOM.render(
 
 React menampilkan *heading* pada halaman bertuliskan "Halo, dunia!".
 
-[](codepen://hello-world)
+[Coba di CodePen](codepen://hello-world)
 
 Klik tautan di atas untuk membuka editor daring. Anda dibebaskan untuk membuat perubahan dan lihat bagaimana perubahan itu mempengaruhi keluaran. Mayoritas dari halaman yang ada dalam panduan ini akan memiliki contoh yang dapat diubah seperti ini.
 
