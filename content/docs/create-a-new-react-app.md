@@ -31,7 +31,7 @@ Cara tersebut juga merupakan **cara termudah mengintegrasikan React ke dalam sit
 Tim React sangat merekomendasikan solusi ini:
 
 - Jika Anda **sedang belajar React** atau **membuat aplikasi [*single-page*](/docs/glossary.html#single-page-application) baru,** cobalah [Create React App](#create-react-app).
-- Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan *server* Node.js,** cobalah [Next.js](#nextjs).(#nextjs).
+- Jika Anda sedang membangun sebuah **situs yang di-*render* menggunakan *server* Node.js,** cobalah [Next.js](#nextjs).
 - Jika Anda sedang membangun sebuah **situs statis yang berorientasi pada konten,** cobalah [Gatsby](#gatsby).
 - Jika Anda sedang membangun sebuah ***library* komponen** atau **menggabungkannya dengan basis kode yang sudah ada,** cobalah [*toolchains* yang lebih fleksibel](#more-flexible-toolchains).
 
