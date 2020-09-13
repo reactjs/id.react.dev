@@ -103,7 +103,7 @@ Setelah Anda merasa nyaman dengan [konsep utama](/docs/hello-world.html) dan ber
 
 ### Referensi API {#api-reference}
 
-Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih detail mengenai *React API*. Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi Anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
+Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi Anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
