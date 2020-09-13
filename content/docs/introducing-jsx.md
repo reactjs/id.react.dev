@@ -24,7 +24,7 @@ React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan l
 
 Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika Anda merasa belum nyaman menempatkan *markup* di JavaScript, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan Anda.
 
-React [tidak mengharuskan](/docs/react-without-jsx.html) Anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode *JavaScript*. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
+React [tidak mengharuskan](/docs/react-without-jsx.html) Anda untuk menggunakan JSX, namun kebanyakan orang merasa terbantu dengan adanya JSX sebagai bantuan visual saat mengerjakan antarmuka pengguna di dalam kode JavaScript. Menggunakan JSX juga memungkinkan React untuk menampilkan pesan kesalahan *(error)* dan peringatan *(warning)* yang lebih bermanfaat.
 
 Setelah Anda memahaminya, mari kita mulai!
 
