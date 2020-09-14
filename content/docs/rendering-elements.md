@@ -60,7 +60,7 @@ Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callba
 >
 >Dalam praktiknya, sebagian besar aplikasi React hanya memanggil `ReactDOM.render()` sekali saja. Pada bagian berikutnya kita akan mempelajari bagaimana kode ini dapat dienkapsulasi ke dalam [*stateful components*](/docs/state-and-lifecycle.html).
 >
->Kami menyarankan agar Anda tidak melewati satu topik karena topik-topik ini berhubungan satu dengan lainnya.
+>Kami menyarankan agar Anda tidak melewati satupun topik karena topik-topik ini berhubungan satu dengan lainnya.
 
 ## React Hanya Memperbarui Apa yang Diperlukan {#react-only-updates-whats-necessary}
 
