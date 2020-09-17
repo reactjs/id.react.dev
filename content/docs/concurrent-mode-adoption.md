@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-adoption
-title: Adopting Concurrent Mode (Experimental)
+title: Menggunakan Concurrent Mode (Experimental)
 permalink: docs/concurrent-mode-adoption.html
 prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
@@ -15,15 +15,15 @@ next: concurrent-mode-reference.html
 
 <div class="scary">
 
->Caution:
+>Perhatian:
 >
->This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
-- [Installation](#installation)
+- [Instalasi](#installation)
   - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
   - [Enabling Concurrent Mode](#enabling-concurrent-mode)
 - [What to Expect](#what-to-expect)
@@ -31,20 +31,23 @@ next: concurrent-mode-reference.html
   - [Why So Many Modes?](#why-so-many-modes)
   - [Feature Comparison](#feature-comparison)
 
-## Installation {#installation}
+## Instalasi {#installation}
 
-Concurrent Mode is only available in the [experimental builds](/blog/2019/10/22/react-release-channels.html#experimental-channel) of React. To install them, run:
+Mode Concurrent hanya tersedia di dalam [build eksperimental](/blog/2019/10/22/react-release-channels.html#experimental-channel) React. Untuk instalasi, jalankan:
 
 ```
 npm install react@experimental react-dom@experimental
 ```
 
-**There are no semantic versioning guarantees for the experimental builds.**  
-APIs may be added, changed, or removed with any `@experimental` release.
+**Tidak ada jaminan versi semantik untuk build eksperimental.**  
+API dapat ditambahkan, diubah, atau dihapus di dalam rilis `@experimental`.
 
-**Experimental releases will have frequent breaking changes.**
+**Rilis eksperimental memungkinkan adanya banyak perubahan signifikan.**
 
-You can try these builds on personal projects or in a branch, but we don't recommend running them in production. At Facebook, we *do* run them in production, but that's because we're also there to fix bugs when something breaks. You've been warned!
+Anda dapat mencoba build ini untuk projek personal atau di dalam branch, tetapi
+kami tidak merekomendasikan build ini untuk mode produksi. Di Facebook, kami *menggunakan*
+build ini di mode produksi, tapi karena kami juga ada untuk membetulkan *bug*
+ketika ada suatu masalah. Anda telah diperingatkan!
 
 ### Who Is This Experimental Release For? {#who-is-this-experimental-release-for}
 
