@@ -24,7 +24,7 @@ next: concurrent-mode-reference.html
 </div>
 
 - [Instalasi](#installation)
-  - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
+  - [Untuk Siapakah Rilis Eksperimental Ini?](#who-is-this-experimental-release-for)
   - [Enabling Concurrent Mode](#enabling-concurrent-mode)
 - [What to Expect](#what-to-expect)
   - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
@@ -49,11 +49,15 @@ kami tidak merekomendasikan build ini untuk mode produksi. Di Facebook, kami *me
 build ini di mode produksi, tapi karena kami juga ada untuk membetulkan *bug*
 ketika ada suatu masalah. Anda telah diperingatkan!
 
-### Who Is This Experimental Release For? {#who-is-this-experimental-release-for}
+### Untuk Siapakah Rilis Eksperimental Ini? {#who-is-this-experimental-release-for}
 
-This release is primarily aimed at early adopters, library authors, and curious people.
+Rilis ini diperuntukkan bagi pengguna awal, pencipta library, dan orang yang
+penasaran.
 
-We're using this code in production (and it works for us) but there are still some bugs, missing features, and gaps in the documentation. We'd like to hear more about what breaks in Concurrent Mode so we can better prepare it for an official stable release in the future.
+Kami menggunakan kode ini di dalam mode produksi (dan itu bekerja untuk kami)
+tetapi masih terdapat beberapa *bug*, fitur yang hilang, dan dokumentasi yang belum
+lengkap. Kami ingin mendengar lebih tentang apa yang tidak bekerja di dalam Mode
+Concurrent sehingga kami dapat mempersiapkan rilis resmi dan stabil kedepannya.
 
 ### Enabling Concurrent Mode {#enabling-concurrent-mode}
 
