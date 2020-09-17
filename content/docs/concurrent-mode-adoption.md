@@ -25,7 +25,7 @@ next: concurrent-mode-reference.html
 
 - [Instalasi](#installation)
   - [Untuk Siapakah Rilis Eksperimental Ini?](#who-is-this-experimental-release-for)
-  - [Enabling Concurrent Mode](#enabling-concurrent-mode)
+  - [Menjalankan Mode Concurrent](#enabling-concurrent-mode)
 - [What to Expect](#what-to-expect)
   - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
   - [Why So Many Modes?](#why-so-many-modes)
@@ -59,35 +59,40 @@ tetapi masih terdapat beberapa *bug*, fitur yang hilang, dan dokumentasi yang be
 lengkap. Kami ingin mendengar lebih tentang apa yang tidak bekerja di dalam Mode
 Concurrent sehingga kami dapat mempersiapkan rilis resmi dan stabil kedepannya.
 
-### Enabling Concurrent Mode {#enabling-concurrent-mode}
+### Menjalankan Mode Concurrent {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
+Normalnya, ketika kami menambahkan fitur ke dalam React, Anda dapat langsung
+menggunakannya. Fragments, Context, serta Hooks adalah contoh dari fitur
+tersebut. Anda dapat menggunakannya di dalam kode baru tanpa harus melakukan
+perubahan kode.
 
-Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
+Mode Concurrent berbeda. Mode ini memperkenalkan perubahan semantik dalam
+bagaimana cara React bekerja. Sebaliknya, [fitur baru](/docs/concurrent-mode-patterns.html) yang dijalankan *tidak akan terjadi*. Ini mengapa hal tersebut dikelompokkan ke dalam "mode" baru daripada merilisnya dengan terpisah satu per satu.
 
-You can't opt into Concurrent Mode on a per-subtree basis. Instead, to opt in, you have to do it in the place where today you call `ReactDOM.render()`.
+Anda tidak dapat memilih Mode Concurrent dalam per-subpohon. Sebagai ganti
+untuk menggunakannya, Anda harus menempatkannya di dalam tempat yang dinamakan `ReactDOM.render()`.
 
-**This will enable Concurrent Mode for the whole `<App />` tree:**
-
+**Dengan ini, Mode Concurrent akan digunakan untuk keseluruhan pohon `<App />`
+:**
 ```js
 import ReactDOM from 'react-dom';
 
-// If you previously had:
+// Jika Anda sebelumnya menggunakan:
 //
 // ReactDOM.render(<App />, document.getElementById('root'));
 //
-// You can opt into Concurrent Mode by writing:
+// Anda dapat memakai Mode Concurrent dengan menulis:
 
 ReactDOM.unstable_createRoot(
   document.getElementById('root')
 ).render(<App />);
 ```
 
->Note:
+>Catatan:
 >
->Concurrent Mode APIs such as `createRoot` only exist in the experimental builds of React.
+>API Mode Concurrent seperti `createRoot` hanya ada di dalam build eksperimental React.
 
-In Concurrent Mode, the lifecycle methods [previously marked](/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](/docs/strict-mode.html)-compatible.
+Di dalam Mode Concurrent, metoda *lifecycle* yang [sebelumnya ditandai](/blog/2018/03/27/update-on-async-rendering.html) sebagai "*unsafe*" sebetulnya *memang* tidak aman, dan dapat menyebabkan lebih banyak *bug* daripada React saat ini. Kami tidak merekomendasikan untuk mencoba Mode Concurrent sampai aplikasi Anda kompatibel dengan [Strict Mode](/docs/strict-mode.html).
 
 ## What to Expect {#what-to-expect}
 
