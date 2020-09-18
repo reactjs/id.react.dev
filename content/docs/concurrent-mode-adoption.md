@@ -28,7 +28,7 @@ next: concurrent-mode-reference.html
   - [Menjalankan Mode Concurrent](#enabling-concurrent-mode)
 - [Apa yang Diharapkan](#what-to-expect)
   - [Langkah Migrasi: Mode Blocking](#migration-step-blocking-mode)
-  - [Why So Many Modes?](#why-so-many-modes)
+  - [Mengapa Sangat Banyak Mode?](#why-so-many-modes)
   - [Feature Comparison](#feature-comparison)
 
 ## Instalasi {#installation}
@@ -131,13 +131,23 @@ Kesimpulannya:
     setelah semuanya berjalan stabil, kami ingin membuatnya sebagai mode standar
     atau bawaan dari React. Mode ini akan menjalankan *semua* fitur baru.
 
-### Why So Many Modes? {#why-so-many-modes}
+### Mengapa Sangat Banyak Mode? {#why-so-many-modes}
 
-We think it is better to offer a [gradual migration strategy](/docs/faq-versioning.html#commitment-to-stability) than to make huge breaking changes — or to let React stagnate into irrelevance.
+Kami berfikir lebih baik untuk menggunakan [strategi migrasi bertahap](/docs/faq-versioning.html#commitment-to-stability) daripada melakukan perubahan yang sangat banyak dan signifikan — atau membuat React menjadi stagnan (tidak berkembang) dan tidak relevan.
 
-In practice, we expect that most apps using Legacy Mode today should be able to migrate at least to the Blocking Mode (if not Concurrent Mode). This fragmentation can be annoying for libraries that aim to support all Modes in the short term. However, gradually moving the ecosystem away from the Legacy Mode will also *solve* problems that affect major libraries in the React ecosystem, such as [confusing Suspense behavior when reading layout](https://github.com/facebook/react/issues/14536) and [lack of consistent batching guarantees](https://github.com/facebook/react/issues/15080). There's a number of bugs that can't be fixed in Legacy Mode without changing semantics, but don't exist in Blocking and Concurrent Modes.
+Dalam penggunaanya, kami berharap aplikasi yang saat ini menggunakan Mode Legacy
+dapat migrasi setidaknya ke Mode Blocking (jika bukan Mode Concurrent).
+Fragmentasi ini dapat menyebabkan banyak *library* yang harus bisa bekerja dalam
+semua Mode dalam waktu singkat. Namun, dengan memindahkan ekosistem secara
+bertahap dari Mode Legacy memungkinkan untuk *menyelesaikan* masalah yang
+terdapat pada *library* penting di dalam ekosistem React, seperti [mempersulit Suspense ketika membaca layout](https://github.com/facebook/react/issues/14536) dan [tidak adanya jaminan dalam pengerjaan banyak yang konsisten](https://github.com/facebook/react/issues/15080). Terdapat beberapa *bug* yang tidak dapat diselesaikan di Mode Legacy jika tidak merubah semantik, tapi *bug* tersebut tidak ada di dalam Mode Blocking dan Mode Concurrent.
 
-You can think of the Blocking Mode as a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
+Anda dapat berfikir bahwa Mode Blocking adalah versi "degradasi yang anggun"
+dari Mode Concurrent. **Sebagai hasilnya, dalam jangka waktu yang lama kami
+dapat memusatkan satu hal dan berhenti untuk memikirkan Mode yang lainnya.**
+Tapi untuk saat ini, Mode-mode tersebut sangatlah penting sebagai strategi untuk
+migrasi. Semuanya membuat orang memilih, apakah perubahan yang dilakukan
+setimpal untuk migrasi dan *upgrade* kedepannya.
 
 ### Feature Comparison {#feature-comparison}
 
