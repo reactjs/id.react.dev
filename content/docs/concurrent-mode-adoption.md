@@ -27,7 +27,7 @@ next: concurrent-mode-reference.html
   - [Untuk Siapakah Rilis Eksperimental Ini?](#who-is-this-experimental-release-for)
   - [Menjalankan Mode Concurrent](#enabling-concurrent-mode)
 - [Apa yang Diharapkan](#what-to-expect)
-  - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
+  - [Langkah Migrasi: Mode Blocking](#migration-step-blocking-mode)
   - [Why So Many Modes?](#why-so-many-modes)
   - [Feature Comparison](#feature-comparison)
 
@@ -110,15 +110,26 @@ mengandalkan manajemen *state* eksternal adalah kode termudah yang dapat
 mengaplikasikan Mode Concurrent. Kami akan menjelaskan kesalahan yang sering
 terlihat dan solusi dalam beberapa minggu kedepan.
 
-### Migration Step: Blocking Mode {#migration-step-blocking-mode}
+### Langkah Migrasi: Mode Blocking {#migration-step-blocking-mode}
 
-For older codebases, Concurrent Mode might be a step too far. This is why we also provide a new "Blocking Mode" in the experimental React builds. You can try it by substituting `createRoot` with `createBlockingRoot`. It only offers a *small subset* of the Concurrent Mode features, but it is closer to how React works today and can serve as a migration step.
+Untuk *codebase* lama, Mode Concurrent merupakan langkah yang terlalu jauh. Ini
+mengapa kami juga menyediakan "Mode Blocking" yang baru di dalam build
+eksperimental React. Anda dapat mencobanya dengan mengubah `createRoot` dengan
+`createBlockingRoot`. Dengan ini, beberapa fitur kecil dari Mode Concurrent
+dapat digunakan, tetapi kinerjanya hampir mendekati bagaimana React bekerja saat
+ini dan dapat dijadikan sebagai sebuah langkah migrasi.
 
-To recap:
+Kesimpulannya:
 
-* **Legacy Mode:** `ReactDOM.render(<App />, rootNode)`. This is what React apps use today. There are no plans to remove the legacy mode in the observable future — but it won't be able to support these new features.
-* **Blocking Mode:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. It is currently experimental. It is intended as a first migration step for apps that want to get a subset of Concurrent Mode features.
-* **Concurrent Mode:** `ReactDOM.createRoot(rootNode).render(<App />)`. It is currently experimental. In the future, after it stabilizes, we intend to make it the default React mode. This mode enables *all* the new features.
+* **Mode Legacy:** `ReactDOM.render(<App />, rootNode)`. Ini adalah cara dimana aplikasi React saat ini digunakan. Tidak ada rencana untuk mengubah Mode Legacy untuk kedepannya — tetapi mode ini tidak memungkinkan untuk menjalankan fitur-fitur baru.
+* **Mode Blocking:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`.
+    Saat ini, fungsi ini merupakan fungsi percobaan (eksperimental). Hanya digunakan untuk langkah
+    migrasi untuk aplikasi yang ingin memakai fitur-fitur sederhana dari Mode
+    Concurrent.
+* **Mode Concurrent:** `ReactDOM.createRoot(rootNode).render(<App />)`. Saat
+    ini, fungsi ini merupakan fungsi percobaan (eksperimental). Kedepannya,
+    setelah semuanya berjalan stabil, kami ingin membuatnya sebagai mode standar
+    atau bawaan dari React. Mode ini akan menjalankan *semua* fitur baru.
 
 ### Why So Many Modes? {#why-so-many-modes}
 
