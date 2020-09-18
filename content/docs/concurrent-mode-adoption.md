@@ -29,7 +29,7 @@ next: concurrent-mode-reference.html
 - [Apa yang Diharapkan](#what-to-expect)
   - [Langkah Migrasi: Mode Blocking](#migration-step-blocking-mode)
   - [Mengapa Sangat Banyak Mode?](#why-so-many-modes)
-  - [Feature Comparison](#feature-comparison)
+  - [Komparasi Fitur](#feature-comparison)
 
 ## Instalasi {#installation}
 
@@ -149,7 +149,7 @@ Tapi untuk saat ini, Mode-mode tersebut sangatlah penting sebagai strategi untuk
 migrasi. Semuanya membuat orang memilih, apakah perubahan yang dilakukan
 setimpal untuk migrasi dan *upgrade* kedepannya.
 
-### Feature Comparison {#feature-comparison}
+### Komparasi Fitur {#feature-comparison}
 
 <style>
   #feature-table table { border-collapse: collapse; }
@@ -159,7 +159,7 @@ setimpal untuk migrasi dan *upgrade* kedepannya.
 
 <div id="feature-table">
 
-|   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
+|   |Mode Legacy  |Mode Blocking  |Mode Concurrent  |
 |---  |---  |---  |---  |
 |[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
 |[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
@@ -179,6 +179,10 @@ setimpal untuk migrasi dan *upgrade* kedepannya.
 
 </div>
 
-\*: Legacy mode has automatic batching in React-managed events but it's limited to one browser task. Non-React events must opt-in using `unstable_batchedUpdates`. In Blocking Mode and Concurrent Mode, all `setState`s are batched by default.
+\*: Mode Legacy memiliki otomatisasi pengerjaan banyak yang dikelola oleh React,
+tetapi terbatas untuk satu pekerjaan di dalam peramban. Pertistiwa yang tidak
+berkaitan dengan React harus menggunakan `unstable_batchedUpdates`. Di dalam
+Mode Blocking dan Mode Concurrent, semua `setState` dikerjakan secara bertumpuk
+(bersamaan).
 
-\*\*: Warns in development.
+\*\*: Peringatan di dalam *development*.
