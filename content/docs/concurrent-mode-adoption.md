@@ -26,7 +26,7 @@ next: concurrent-mode-reference.html
 - [Instalasi](#installation)
   - [Untuk Siapakah Rilis Eksperimental Ini?](#who-is-this-experimental-release-for)
   - [Menjalankan Mode Concurrent](#enabling-concurrent-mode)
-- [What to Expect](#what-to-expect)
+- [Apa yang Diharapkan](#what-to-expect)
   - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
   - [Why So Many Modes?](#why-so-many-modes)
   - [Feature Comparison](#feature-comparison)
@@ -94,11 +94,21 @@ ReactDOM.unstable_createRoot(
 
 Di dalam Mode Concurrent, metoda *lifecycle* yang [sebelumnya ditandai](/blog/2018/03/27/update-on-async-rendering.html) sebagai "*unsafe*" sebetulnya *memang* tidak aman, dan dapat menyebabkan lebih banyak *bug* daripada React saat ini. Kami tidak merekomendasikan untuk mencoba Mode Concurrent sampai aplikasi Anda kompatibel dengan [Strict Mode](/docs/strict-mode.html).
 
-## What to Expect {#what-to-expect}
+## Apa yang Diharapkan {#what-to-expect}
 
-If you have a large existing app, or if your app depends on a lot of third-party packages, please don't expect that you can use the Concurrent Mode immediately. **For example, at Facebook we are using Concurrent Mode for the new website, but we're not planning to enable it on the old website.** This is because our old website still uses unsafe lifecycle methods in the product code, incompatible third-party libraries, and patterns that don't work well with the Concurrent Mode.
+Jika Anda memiliki aplikasi yang berukuran besar, atau aplikasi yang
+mengandalkan banyak *package* pihak ketiga, tolong jangan berharap Anda dapat
+menggunakan Mode Concurrent secara langsung. **Contohnya, di Facebook kami
+menggunakan Mode Concurrent untuk website baru, tetapi kami tidak memiliki
+rencana untuk memakainya di website lama kami.** Ini dikarenakan website lama
+kami masih menggunakan metoda *lifecycle* yang tidak aman di dalam kode
+produksi, *library* pihak ketiga yang tidak kompatibel, dan pola yang tidak
+dapat bekerja dengan baik jika digunakan bersama Mode Concurrent.
 
-In our experience, code that uses idiomatic React patterns and doesn't rely on external state management solutions is the easiest to get running in the Concurrent Mode. We will describe common problems we've seen and the solutions to them separately in the coming weeks.
+Dari pengalaman kami, kode yang menggunakan pola idiomatis React dan tidak
+mengandalkan manajemen *state* eksternal adalah kode termudah yang dapat
+mengaplikasikan Mode Concurrent. Kami akan menjelaskan kesalahan yang sering
+terlihat dan solusi dalam beberapa minggu kedepan.
 
 ### Migration Step: Blocking Mode {#migration-step-blocking-mode}
 
