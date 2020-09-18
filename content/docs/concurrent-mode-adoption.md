@@ -92,7 +92,7 @@ ReactDOM.unstable_createRoot(
 >
 >API Mode Concurrent seperti `createRoot` hanya ada di dalam build eksperimental React.
 
-Di dalam Mode Concurrent, metoda *lifecycle* yang [sebelumnya ditandai](/blog/2018/03/27/update-on-async-rendering.html) sebagai "*unsafe*" sebetulnya *memang* tidak aman, dan dapat menyebabkan lebih banyak *bug* daripada React saat ini. Kami tidak merekomendasikan untuk mencoba Mode Concurrent sampai aplikasi Anda kompatibel dengan [Strict Mode](/docs/strict-mode.html).
+Di dalam Mode Concurrent, metoda *lifecycle* yang [sebelumnya ditandai](/blog/2018/03/27/update-on-async-rendering.html) sebagai "*unsafe*" sebetulnya *memang* tidak aman, dan dapat menyebabkan lebih banyak *bug* daripada React saat ini. Kami tidak merekomendasikan untuk mencoba Mode Concurrent sampai aplikasi Anda kompatibel dengan [Mode Strict](/docs/strict-mode.html).
 
 ## Apa yang Diharapkan {#what-to-expect}
 
