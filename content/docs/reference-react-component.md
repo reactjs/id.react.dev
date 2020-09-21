@@ -274,7 +274,11 @@ Saat ini, jika `shouldComponentUpdate()` mengembalikan `false`, maka [`UNSAFE_co
 static getDerivedStateFromProps(props, state)
 ```
 
+<<<<<<< HEAD
 `getDerivedStateFromProps` dipanggil langsung sebelum memanggil metode _render_, baik saat pemasangan awal (_initial mount_) maupun dalam pembaruan selanjutnya. Metode ini mengembalikan sebuah obyek untuk memperbarui _state_, atau _null_ untuk tidak memperbarui.
+=======
+`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+>>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
 
 Metode ini ada untuk [kasus yang sangat jarang](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state), yaitu saat _state_ tergantung pada perubahan dalam _props_ dalam sebuah kurun waktu. Misalnya, mungkin sangat berguna untuk mengimplementasikan sebuah komponen `<Transition>`, yang membandingkan anak sebelum dan selanjutnya untuk menentukan yang mana yang akan dianimasikan atau tidak.
 
@@ -588,7 +592,11 @@ Umumnya, Anda harus sejauh mungkin menghindari semua penggunaan `forceUpdate()` 
 
 ### `defaultProps` {#defaultprops}
 
+<<<<<<< HEAD
 `defaultProps` dapat didefinisikan sebagai properti dalam kelas komponen itu sendiri, yang digunakan untuk menetapkan _props_ default pada kelas tersebut. Ini digunakan untuk _props_ yang bernilai _undefined_ tetapi tidak untuk _props_ yang bernilai _null_. Misalnya:
+=======
+`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
+>>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
 
 ```js
 class CustomButton extends React.Component {
@@ -608,7 +616,11 @@ Jika `props.color` tidak disediakan, nilainya akan ditetapkan secara default seb
   }
 ```
 
+<<<<<<< HEAD
 Jika `props.color` ditetapkan bernilai _null_, nilainya akan tetap _null_:
+=======
+If `props.color` is set to `null`, it will remain `null`:
+>>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
 
 ```js
   render() {
