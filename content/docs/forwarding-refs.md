@@ -37,7 +37,7 @@ Here is a step-by-step explanation of what happens in the above example:
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
 
-## Note for component library maintainers {#note-for-component-library-maintainers}
+## Catatan untuk pengelola pustaka komponen {#note-for-component-library-maintainers}
 
 **When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
 
@@ -59,11 +59,11 @@ This means that refs intended for our `FancyButton` component will actually be a
 Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
 `embed:forwarding-refs/log-props-after.js`
 
-## Displaying a custom name in DevTools {#displaying-a-custom-name-in-devtools}
+## Menampilkan nama custom di DevTools {#displaying-a-custom-name-in-devtools}
 
-`React.forwardRef` accepts a render function. React DevTools uses this function to determine what to display for the ref forwarding component.
+`React.forwardRef` menerima fungsi *render*. React DevTools uses this function to determine what to display for the ref forwarding component.
 
-For example, the following component will appear as "*ForwardRef*" in the DevTools:
+Sebagai contoh, komponen berikut akan muncul sebagai "*ForwardRef*" di DevTools:
 
 `embed:forwarding-refs/wrapped-component.js`
 
