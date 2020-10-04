@@ -125,7 +125,7 @@ Mari kita jalankan strategi ini di aplikasi kita:
   * Komponen pemilik bersama dalam hal ini adalah `FilterableProductTable`.
   * Akan menjadi masuk akal secara konsep apabila teks pencarian dan nilai checkbox untuk berada di `FilterableProductTable`
 
-Bagus, jadi kita telah menentukan bahwa *state* kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan *state* awal dari aplikasi Anda. Kemudian, oper `filterText` dan `inStockOnlt` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan *props* tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
+Bagus, jadi kita telah menentukan bahwa *state* kita berada di `FilterableProductTable`. Pertama, sebuah properti awal `this.state = {filterText: '', inStockOnly: false}` di method `constructor` `FilterableProductTable` untuk merefleksikan *state* awal dari aplikasi Anda. Kemudian, oper `filterText` dan `inStockOnly` ke `ProductTable` dan `SearchBar` sebagai sebuah prop. Akhirnya, gunakan *props* tersebut untuk memfilter baris di `ProductTable` dan set nilai dari field pada form di `SearchBar`.
 
 Anda akan mulai dapat melihat bagaimana aplikasi Anda bekerja: ubah `filterText` menjadi `"ball"` lalu muat ulang aplikasi Anda. Anda akan melihat tabel data telah diperbarui dengan benar.
 
