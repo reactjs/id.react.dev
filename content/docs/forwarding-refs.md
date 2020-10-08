@@ -39,9 +39,9 @@ Berikut adalah penjelasan langkah demi langkah tentang apa yang terjadi pada con
 
 ## Catatan untuk pengelola pustaka komponen {#note-for-component-library-maintainers}
 
-**When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
+**Saat Anda mulai menggunakan `forwardRef` di pustaka komponen, Anda harus memperlakukannya sebagai sebuah *breaking change* dan merilis versi *major* baru pustaka Anda.** Ini karena pustaka Anda kemungkinan besar memiliki perilaku yang sangat berbeda (seperti *refs* apa yang ditetapkan, dan tipe apa yang diekspor), dan ini bisa merusak aplikasi dan pustaka lain yang bergantung pada perilaku lama.
 
-Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
+Menerapkan `React.forwardRef` secara kondisional jika ada juga tidak disarankan karena alasan yang sama: ini mengubah cara pustaka Anda berperilaku dan bisa merusak aplikasi pengguna Anda saat mereka meningkatkan versi React itu sendiri.
 
 ## Forwarding refs in higher-order components {#forwarding-refs-in-higher-order-components}
 
