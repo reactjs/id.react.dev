@@ -4,7 +4,7 @@ title: Forwarding Refs
 permalink: docs/forwarding-refs.html
 ---
 
-Ref forwarding is a technique for automatically passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its children. This is typically not necessary for most components in the application. However, it can be useful for some kinds of components, especially in reusable component libraries. The most common scenarios are described below.
+*Ref forwarding* adalah sebuah teknik untuk meneruskan [ref](/docs/refs-and-the-dom.html) secara otomatis melalui komponen ke salah satu anaknya. Ini biasanya tidak diperlukan untuk sebagian besar komponen dalam aplikasi. Namun, ini bisa berguna untuk beberapa jenis komponen, terutama di pustaka komponen yang dapat digunakan kembali. Skenario paling umum dijelaskan di bawah ini.
 
 ## Forwarding refs to DOM components {#forwarding-refs-to-dom-components}
 
@@ -17,13 +17,13 @@ Although such encapsulation is desirable for application-level components like `
 
 **Ref forwarding is an opt-in feature that lets some components take a `ref` they receive, and pass it further down (in other words, "forward" it) to a child.**
 
-In the example below, `FancyButton` uses `React.forwardRef` to obtain the `ref` passed to it, and then forward it to the DOM `button` that it renders:
+Pada contoh di bawah ini, `FancyButton` menggunakan `React.forwardRef` to obtain the `ref` passed to it, and then forward it to the DOM `button` that it renders:
 
 `embed:forwarding-refs/fancy-button-simple-ref.js`
 
 This way, components using `FancyButton` can get a ref to the underlying `button` DOM node and access it if necessary—just like if they used a DOM `button` directly.
 
-Here is a step-by-step explanation of what happens in the above example:
+Berikut adalah penjelasan langkah demi langkah tentang apa yang terjadi pada contoh di atas:
 
 1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and assign it to a `ref` variable.
 1. We pass our `ref` down to `<FancyButton ref={ref}>` by specifying it as a JSX attribute.
@@ -31,7 +31,7 @@ Here is a step-by-step explanation of what happens in the above example:
 1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.
 1. When the ref is attached, `ref.current` will point to the `<button>` DOM node.
 
->Note
+>Catatan
 >
 >The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don't receive the `ref` argument, and ref is not available in props either.
 >
