@@ -6,7 +6,7 @@ permalink: docs/forwarding-refs.html
 
 *Ref forwarding* adalah sebuah teknik untuk meneruskan [ref](/docs/refs-and-the-dom.html) secara otomatis melalui komponen ke salah satu anaknya. Ini biasanya tidak diperlukan untuk sebagian besar komponen dalam aplikasi. Namun, ini bisa berguna untuk beberapa jenis komponen, terutama di pustaka komponen yang dapat digunakan kembali. Skenario paling umum dijelaskan di bawah ini.
 
-## Forwarding refs to DOM components {#forwarding-refs-to-dom-components}
+## *Forwarding refs* ke komponen DOM {#forwarding-refs-to-dom-components}
 
 Consider a `FancyButton` component that renders the native `button` DOM element:
 `embed:forwarding-refs/fancy-button-simple.js`
@@ -39,11 +39,11 @@ Berikut adalah penjelasan langkah demi langkah tentang apa yang terjadi pada con
 
 ## Catatan untuk pengelola pustaka komponen {#note-for-component-library-maintainers}
 
-**Saat Anda mulai menggunakan `forwardRef` di pustaka komponen, Anda harus memperlakukannya sebagai sebuah *breaking change* dan merilis versi *major* baru pustaka Anda.** Ini karena pustaka Anda kemungkinan besar memiliki perilaku yang sangat berbeda (seperti *refs* apa yang ditetapkan, dan tipe apa yang diekspor), dan ini bisa merusak aplikasi dan pustaka lain yang bergantung pada perilaku lama.
+**Saat Anda mulai menggunakan `forwardRef` di pustaka komponen, Anda harus memperlakukannya sebagai sebuah *breaking change* dan merilis versi mayor baru pustaka Anda.** Ini karena pustaka Anda kemungkinan besar memiliki perilaku yang sangat berbeda (seperti *refs* apa yang ditetapkan, dan tipe apa yang diekspor), dan ini bisa merusak aplikasi dan pustaka lain yang bergantung pada perilaku lama.
 
 Menerapkan `React.forwardRef` secara kondisional jika ada juga tidak disarankan karena alasan yang sama: ini mengubah cara pustaka Anda berperilaku dan bisa merusak aplikasi pengguna Anda saat mereka meningkatkan versi React itu sendiri.
 
-## Forwarding refs in higher-order components {#forwarding-refs-in-higher-order-components}
+## *Forwarding refs* dalam *higher-order components* {#forwarding-refs-in-higher-order-components}
 
 This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
 `embed:forwarding-refs/log-props-before.js`
