@@ -35,7 +35,7 @@ Contohnya, ketika kita pindah laman, dan belum ada data yang tersedia untuk lama
   - [Memadukan Transisi ke Dalam _Design System_](#baking-transitions-into-the-design-system)
 - [Tiga Langkah](#the-three-steps)
   - [Default: Receded → Skeleton → Complete](#default-receded-skeleton-complete)
-  - [Preferred: Pending → Skeleton → Complete](#preferred-pending-skeleton-complete)
+  - [Diinginkan: Pending → Skeleton → Complete](#preferred-pending-skeleton-complete)
   - [Wrap Lazy Features in `<Suspense>`](#wrap-lazy-features-in-suspense)
   - [Suspense Reveal “Train”](#suspense-reveal-train)
   - [Delaying a Pending Indicator](#delaying-a-pending-indicator)
@@ -358,31 +358,31 @@ Ketika tombol diklik, ia akan memulai transisi dan memanggil `props.onClick()` d
 
 Kita dapat melihat bagaimana mode Concurrent membantu kita mendapatkan pengalaman pengguna yang baik tanpa mengorbankan isolasi dan modularitas dari komponen. React mengkoordinasikan transisinya.
 
-## The Three Steps {#the-three-steps}
+## Tiga Langkah {#the-three-steps}
 
-By now we have discussed all of the different visual states that an update may go through. In this section, we will give them names and talk about the progression between them.
+Sampai titik ini, kita telah mendiskusikan berbagai macam kondisi visual berbeda yang ditelusuri sebuah pembaruan data. Di bagian ini, kita akan memberikan mereka nama dan menjelaskan perjalanan di antaranya.
 
 <br>
 
 <img src="../images/docs/cm-steps-simple.png" alt="Three steps" />
 
-At the very end, we have the **Complete** state. That's where we want to eventually get to. It represents the moment when the next screen is fully rendered and isn't loading more data.
+Di paling akhir, terdapat _state_ **Complete**. Inilah _state_ yang ingin kita tuju. _State_ ini merepresentasikan moment di mana layar selanjutnya di-_render_ secara penuh dan tidak lagi memuat data.
 
-But before our screen can be Complete, we might need to load some data or code. When we're on the next screen, but some parts of it are still loading, we call that a **Skeleton** state.
+Namun sebelum layar kita menjadi Complete, kita mungkin perlu memuat data atau kode. Ketika kita berada di layar selanjutnya, namun beberapa bagian data tersebut masih memuat, kita sebut _state_ tersebut sebagai **Skeleton**.
 
-Finally, there are two primary ways that lead us to the Skeleton state. We will illustrate the difference between them with a concrete example.
+Akhirnya, ada dua cara utama yang membawa kita ke _state_ Skeleton. Kita akan mengilustrasikan perbedaan di antaranya dengan contoh konkret.
 
 ### Default: Receded → Skeleton → Complete {#default-receded-skeleton-complete}
 
-Open [this example](https://codesandbox.io/s/prod-grass-g1lh5) and click "Open Profile". You will see several visual states one by one:
+Bukalah [contoh berikut](https://codesandbox.io/s/prod-grass-g1lh5) dan tekan "Open Profile". Anda akan melihat beberapa _state_ visual satu persatu:
 
-* **Receded**: For a second, you will see the `<h1>Loading the app...</h1>` fallback.
-* **Skeleton:** You will see the `<ProfilePage>` component with `<h2>Loading posts...</h2>` inside.
-* **Complete:** You will see the `<ProfilePage>` component with no fallbacks inside. Everything was fetched.
+* **Receded**: Untuk beberapa saat, Anda akan melihat kondisi _fallback_ `<h1>Loading the app...</h1>`.
+* **Skeleton:** Anda akan melihat komponen `<ProfilePage>` dengan `<h2>Loading posts...</h2>` di dalamnya.
+* **Complete:** Anda akan melihat komponen `<ProfilePage>` tanpa _fallback_. Seluruh data dimuat.
 
-How do we separate the Receded and the Skeleton states? The difference between them is that the **Receded** state feels like "taking a step back" to the user, while the **Skeleton** state feels like "taking a step forward" in our progress to show more content.
+Bagaimana caranya kita memisahkan _state_ Receded dan Skeleton? Perbedaan di antara keduanya adalah _state_ **Receded** terasa seperti "mengambil langkah mundur" kepada pengguna, dan _state_ **Skeleton** terasa seperti "mengambil langkah maju" dalam perjalanan kita menampilkan lebih banyak konten.
 
-In this example, we started our journey on the `<HomePage>`:
+Dalam contoh berikut, perjalanan kita dimulai di `<HomePage>`:
 
 ```js
 <Suspense fallback={...}>
@@ -391,7 +391,7 @@ In this example, we started our journey on the `<HomePage>`:
 </Suspense>
 ```
 
-After the click, React started rendering the next screen:
+Setelah kita mengeklik, React memulai me-_render_ layar selanjutnya:
 
 ```js
 <Suspense fallback={...}>
@@ -405,7 +405,7 @@ After the click, React started rendering the next screen:
 </Suspense>
 ```
 
-Both `<ProfileDetails>` and `<ProfileTimeline>` need data to render, so they suspend:
+`<ProfileDetails>` dan `<ProfileTimeline>` memerlukan data untuk di-_render_, jadi kedua komponen tersebut ditunda:
 
 ```js{4,6}
 <Suspense fallback={...}>
@@ -419,11 +419,11 @@ Both `<ProfileDetails>` and `<ProfileTimeline>` need data to render, so they sus
 </Suspense>
 ```
 
-When a component suspends, React needs to show the closest fallback. But the closest fallback to `<ProfileDetails>` is at the top level:
+Saat komponen ditunda, React perlu menunjukkan komponen _fallback_ terdekat. Namun, komponen _fallback_ terdekat dari `<ProfileDetails>` terletak di tingkat atas:
 
 ```js{2,3,7}
 <Suspense fallback={
-  // We see this fallback now because of <ProfileDetails>
+  // Kita melihat _fallback_ ini karena <ProfileDetails>
   <h1>Loading the app...</h1>
 }>
   {/* next screen */}
@@ -436,9 +436,9 @@ When a component suspends, React needs to show the closest fallback. But the clo
 </Suspense>
 ```
 
-This is why when we click the button, it feels like we've "taken a step back". The `<Suspense>` boundary which was previously showing useful content (`<HomePage />`) had to "recede" to showing the fallback (`<h1>Loading the app...</h1>`). We call that a **Receded** state.
+Inilah mengapa kita kita mengklik tombol, terasa seperti kita "mengambil langkah mundur". Perbatasan `<Suspense>` yang sebelumnya menunjukkan konten (`<HomePage />`) yang dapat digunakan harus "mundur" untuk menunjukkan komponen _fallback_ (`<h1>Loading the app...</h1>`). Kita menyebut _state_ tersebut **Receded**.
 
-As we load more data, React will retry rendering, and `<ProfileDetails>` can render successfully. Finally, we're in the **Skeleton** state. We see the new page with missing parts:
+Saat kita memuat lebih banyak data, React akan mencoba ulang untuk me-_render_, dan `<ProfileDetails>` dapat di-_render_ secara sukses. Akhirnya, kita berada di _state_ **Skeleton**. Kita melihat halaman baru dengan beberapa bagian yang hilang:
 
 ```js{6,7,9}
 <Suspense fallback={...}>
@@ -455,11 +455,11 @@ As we load more data, React will retry rendering, and `<ProfileDetails>` can ren
 </Suspense>
 ```
 
-Eventually, they load too, and we get to the **Complete** state.
+Suatu saat, bagian-bagian tersebut akan dimuat juga, dan kita mencapai _state_ **Complete**.
 
-This scenario (Receded → Skeleton → Complete) is the default one. However, the Receded state is not very pleasant because it "hides" existing information. This is why React lets us opt into a different sequence (**Pending** → Skeleton → Complete) with `useTransition`.
+Skenario ini (Receded → Skeleton → Complete) adalah skenario bawaan. Namun, _state_ Receded bukanlah pengalaman pengguna yang baik karena ia "menyembunyikan" informasi yang telah ada. Inilah mengapa React memungkinkan kita untuk memilih urutan berbeda (**Pending** → Skeleton → Complete) dengan `useTransition`.
 
-### Preferred: Pending → Skeleton → Complete {#preferred-pending-skeleton-complete}
+### Diinginkan: Pending → Skeleton → Complete {#preferred-pending-skeleton-complete}
 
 When we `useTransition`, React will let us "stay" on the previous screen -- and show a progress indicator there. We call that a **Pending** state. It feels much better than the Receded state because none of our existing content disappears, and the page stays interactive.
 
