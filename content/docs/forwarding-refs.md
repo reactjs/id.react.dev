@@ -6,7 +6,7 @@ permalink: docs/forwarding-refs.html
 
 *Ref forwarding* adalah sebuah teknik untuk meneruskan [ref](/docs/refs-and-the-dom.html) secara otomatis melalui komponen ke salah satu anaknya. Ini biasanya tidak diperlukan untuk sebagian besar komponen dalam aplikasi. Namun, ini bisa berguna untuk beberapa jenis komponen, terutama di pustaka komponen yang dapat digunakan kembali. Skenario paling umum dijelaskan di bawah ini.
 
-## *Forwarding refs* ke komponen DOM {#forwarding-refs-to-dom-components}
+## Mengoper refs ke komponen DOM {#forwarding-refs-to-dom-components}
 
 Pertimbangkan sebuah komponen `FancyButton` yang me-render native DOM element yaitu `button`:
 `embed:forwarding-refs/fancy-button-simple.js`
@@ -18,7 +18,6 @@ Meskipun enkapsulasi seperti itu diperlukan oleh komponen yang berada di applica
 **Ref forwarding adalah sebuah fitur keikutsertaan yang memperbolehkan beberapa komponen-komponen mengambil sebuah `ref` yang didapatkan, dan menurunkannya (dengan kata lain, "meneruskan" nya) kepada child.**
 
 Pada contoh di bawah ini, `FancyButton` menggunakan `React.forwardRef` untuk mendapatkan `ref` yang diteruskan kepadanya, lalu meneruskannya ke `button` DOM yang di render:
-
 `embed:forwarding-refs/fancy-button-simple-ref.js`
 
 Dengan cara ini, komponen-komponen yang menggunakan `FancyButton` bisa mendapatkan ref ke DOM node `button` yang mendasarinya dan mengaksesnya jika perlu - sama seperti jika mereka menggunakan `button` DOM secara langsung. 
@@ -43,34 +42,31 @@ Berikut adalah penjelasan langkah demi langkah tentang apa yang terjadi pada con
 
 Menerapkan `React.forwardRef` secara kondisional jika ada juga tidak disarankan karena alasan yang sama: ini mengubah cara pustaka Anda berperilaku dan bisa merusak aplikasi pengguna Anda saat mereka meningkatkan versi React itu sendiri.
 
-## *Forwarding refs* dalam *higher-order components* {#forwarding-refs-in-higher-order-components}
+## Mengoper refs dalam higher-order components {#forwarding-refs-in-higher-order-components}
 
-This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
+Teknik ini juga bisa menjadi sangat berguna untuk [higher-order components](/docs/higher-order-components.html) (biasa disebut dengan HOCs). Mari kita mulai dengan contoh HOC yang mengeluarkan component props ke log konsol:
 `embed:forwarding-refs/log-props-before.js`
 
-The "logProps" HOC passes all `props` through to the component it wraps, so the rendered output will be the same. For example, we can use this HOC to log all props that get passed to our "fancy button" component:
+HOC "logProps" meneruskan semua `props` ke komponen yang dibungkusnya, sehingga keluaran yang dirender akan sama. Misalnya, kita dapat menggunakan HOC ini untuk mengeluarkan semua props ke log konsol yang diteruskan ke "fancy button" komponen kita:
 `embed:forwarding-refs/fancy-button.js`
 
-There is one caveat to the above example: refs will not get passed through. That's because `ref` is not a prop. Like `key`, it's handled differently by React. If you add a ref to a HOC, the ref will refer to the outermost container component, not the wrapped component.
+Ada satu peringatan untuk contoh diatas: refs tidak akan diteruskan. Itu karena `ref` bukan sebuah prop. Seperti `key`, ini ditangani secara berbeda oleh React. Jika Anda menambahkan ref ke HOC, maka ref akan merujuk ke komponen container terluar, bukan komponen yang dibungkus.
 
-This means that refs intended for our `FancyButton` component will actually be attached to the `LogProps` component:
+Ini berarti bahwa ref yang dimaksudkan untuk komponen `FancyButton` kita sebenarnya akan dilampirkan ke `LogProps` komponen:
 `embed:forwarding-refs/fancy-button-ref.js`
 
-Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
+Untungnya, kita dapat secara eksplisit meneruskan refs kedalam komponen `FancyButton` menggunakan `React.forwardRef` API. `React.forwardRef` menerima sebuah fungsi render yang menerima parameter `props` dan `ref` dan mengembalikan React node. Sebagai contoh:
 `embed:forwarding-refs/log-props-after.js`
 
-## Menampilkan nama *custom* di DevTools {#displaying-a-custom-name-in-devtools}
+## Menampilkan nama custom di DevTools {#displaying-a-custom-name-in-devtools}
 
 `React.forwardRef` menerima fungsi *render*. React DevTools menggunakan fungsi ini untuk menentukan apa yang akan ditampilkan untuk komponen *ref forwarding*.
 
 Sebagai contoh, komponen berikut akan muncul sebagai "*ForwardRef*" di DevTools:
-
 `embed:forwarding-refs/wrapped-component.js`
 
 Jika Anda menamai fungsi *render*, DevTools juga akan menyertakan namanya (misalnya "*ForwardRef(myFunction)*"):
-
 `embed:forwarding-refs/wrapped-component-with-function-name.js`
 
 Anda bahkan dapat menyetel properti `displayName` pada fungsi untuk menyertakan komponen yang Anda bungkus:
-
 `embed:forwarding-refs/customized-display-name.js`
