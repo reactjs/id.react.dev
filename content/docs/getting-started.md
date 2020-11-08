@@ -46,7 +46,7 @@ Anda dapat [menambahkan React ke laman HTML dalam satu menit](/docs/add-react-to
 
 ### Buat Aplikasi React Baru {#create-a-new-react-app}
 
-Ketika memulai proyek React, laman HTML sederhana dengan *script tags*](/docs/add-react-to-a-website.html) mungkin masih menjadi pilihan terbaik. Hanya membutuhkan waktu semenit untuk memulai!
+Ketika memulai proyek React, laman HTML sederhana dengan [*script tags*](/docs/add-react-to-a-website.html) mungkin masih menjadi pilihan terbaik. Hanya membutuhkan waktu semenit untuk memulai!
 
 Saat aplikasi Anda berkembang, Anda mungkin perlu mempertimbangkan pengaturan yang lebih terintegrasi. Ada [beberapa JavaScript *toolchain*](/docs/create-a-new-react-app.html) yang kami rekomendasikan untuk aplikasi besar. Masing-masing dari mereka dapat bekerja dengan sedikit atau tanpa konfigurasi dan memungkinkan Anda mendapatkan keuntungan penuh dari ekosistem React. [Pelajari cara penggunaannya di sini.](/docs/create-a-new-react-app.html)
 
@@ -103,11 +103,11 @@ Setelah Anda merasa nyaman dengan [konsep utama](/docs/hello-world.html) dan ber
 
 ### Referensi API {#api-reference}
 
-Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih detail mengenai *React API*. Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi Anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
+Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai React API. Misalnya, [referensi API `React.Component`](/docs/react-component.html) dapat memberi Anda detail dari bagaimana `setState()` bekerja, dan perbedaan serta kegunaan metode *lifecycle*.
 
 ### Glosarium dan FAQ {#glossary-and-faq}
 
-[Glosarium](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
+[Glosarium](/docs/glossary.html) berisi ikhtisar paling umum yang akan ada lihat pada dokumentasi React. Ada juga bagian *FAQ* yang didedikasikan untuk pertanyaan dan jawaban singkat tentang topik umum, termasuk [membuat AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), dan [file structure](/docs/faq-structure.html).
 
 ## Tetap Terinformasi {#staying-informed}
 
