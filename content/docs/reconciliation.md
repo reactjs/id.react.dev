@@ -2,8 +2,6 @@
 id: reconciliation
 title: Rekonsiliasi
 permalink: docs/reconciliation.html
-prev: react-without-jsx.html
-next: context.html
 ---
 
 React menyediakan API deklaratif jadi Anda tidak perlu khawatir tentang apa yang pasti berubah pada setiap pembaruan. Ini membuat penulisan aplikasi menjadi jauh lebih mudah, tetapi ini mungkin kurang jelas bagaimana ini diimplementasikan di dalam React. Artikel ini menjelaskan pilihan yang bisa kita buat dalam algoritma "pembeda" nya React jadi pembaruan komponen dapat diprediksi selagi aplikasi berkinerja cukup cepat.
