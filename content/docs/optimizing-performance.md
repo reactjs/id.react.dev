@@ -2,8 +2,6 @@
 id: optimizing-performance
 title: Mengoptimalkan Performa
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
@@ -45,8 +43,8 @@ Ingat bahwa ini hanya diperlukan sebelum men-*deploy* ke produksi. Untuk pengemb
 Kami menyediakan versi siap produksi dari React dan React DOM sebagai *file* tunggal:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Ingat bahwa hanya *file* React yang berakhir dengan `.production.min.js` yang layak digunakan untuk produksi.
@@ -76,11 +74,19 @@ Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu
 Untuk *build* produksi yang efisien menggunakan Browserify, instal plugin-plugin berikut:
 
 ```
+<<<<<<< HEAD
 # Jika menggunakan npm
 npm install --save-dev envify terser uglifyify 
 
 # Jika menggunakan Yarn
 yarn add --dev envify terser uglifyify 
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+yarn add --dev envify terser uglifyify
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 ```
 
 Untuk membangun versi produksi, pastikan Anda menambahkan *transform* berikut **(urutan ini penting)**:
@@ -381,7 +387,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Fitur ini ditambahkan ke JavaScript di ES2018.
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 
 Jika Anda menggunakan Create React App, `Object.assign` dan sintaksis *spread* untuk objek sudah tersedia.
 

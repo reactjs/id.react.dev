@@ -2,8 +2,6 @@
 id: typechecking-with-proptypes
 title: Pengecekan Tipe Dengan PropTypes
 permalink: docs/typechecking-with-proptypes.html
-prev: jsx-in-depth.html
-next: static-type-checking.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
@@ -32,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 Dalam contoh ini, kita menggunakan *class component*, tapi fungsionalitas yang sama dapat juga diterapkan kepada *function component*, atau komponen yang dibuat dengan [`React.memo`](https://id.reactjs.org/docs/react-api.html#reactmemo) atau [`React.forwardRef`](https://id.reactjs.org/docs/react-api.html#reactforwardref).
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 
 `PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, Anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
@@ -101,7 +103,11 @@ MyComponent.propTypes = {
   // akan muncul jika sebuah prop tidak disertakan.
   requiredFunc: PropTypes.func.isRequired,
 
+<<<<<<< HEAD
   // Sebuah nilai dari tipe data apapun.
+=======
+  // A required value of any data type
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
   requiredAny: PropTypes.any.isRequired,
 
   // Anda dapat juga menentukan validator khusus. Akan menghasilkan objek Error
