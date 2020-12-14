@@ -1,3 +1,7 @@
+# Ensure English site redirects to Apex. While not used directly by us, may be linked elsewhere.
+http://en.reactjs.org/* https://reactjs.org/:splat 301!
+https://en.reactjs.org/* https://reactjs.org/:splat 301!
+
 /tips/controlled-input-null-value.html  /docs/forms.html#controlled-input-null-value
 /concurrent     /docs/concurrent-mode-intro.html
 /hooks          /docs/hooks-intro.html
@@ -12,7 +16,7 @@
 /link/dangerously-set-inner-html    /docs/dom-elements.html#dangerouslysetinnerhtml
 /link/derived-state                 /blog/2018/06/07/you-probably-dont-need-derived-state.html
 /link/error-boundaries              /docs/error-boundaries.html
-/link/event-pooling                 /docs/events.html#event-pooling
+/link/event-pooling                 /docs/legacy-event-pooling.html
 /link/hooks-data-fetching           /docs/hooks-faq.html#how-can-i-do-data-fetching-with-hooks
 /link/invalid-aria-props            /warnings/invalid-aria-prop.html
 /link/invalid-hook-call             /warnings/invalid-hook-call-warning.html
