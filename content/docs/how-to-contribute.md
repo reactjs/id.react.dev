@@ -124,7 +124,11 @@ Kemudian, Anda dapat menjalankan beberapa perintah:
 * `yarn build` membuat sebuah folder `build` dengan semua _package_.
 * `yarn build react/index,react-dom/index --type=UMD` membuat _build_ UMD yang terdiri hanya dari React dan ReactDOM.
 
+<<<<<<< HEAD
 Kami merekomendasikan menjalankan `yarn test` (atau variasi lainnya di atas) untuk memastikan Anda tidak menyebabkan regresi apapun selama Anda mengerjakan perubahan. Namun akan bermanfaat untuk mencoba _build_ React Anda pada proyek sesungguhnya.
+=======
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
+>>>>>>> 7a11d71b384d41c21dd5d475b96d45b5497ade76
 
 Pertama jalankan `yarn build`. Perintah ini akan menghasilkan bundel-bundel yang telah dibuat di folder `build`, serta mempersiapkan _package_ npm dalam `build/packages`.
 
