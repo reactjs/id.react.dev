@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-adoption
-title: Adopting Concurrent Mode (Experimental)
+title: Mengadopsi Concurrent Mode (Experimental)
 permalink: docs/concurrent-mode-adoption.html
 prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
@@ -15,98 +15,95 @@ next: concurrent-mode-reference.html
 
 <div class="scary">
 
->Caution:
+>Perhatian:
 >
->This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+>Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
 
 </div>
 
-- [Installation](#installation)
-  - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
-  - [Enabling Concurrent Mode](#enabling-concurrent-mode)
-- [What to Expect](#what-to-expect)
-  - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
-  - [Why So Many Modes?](#why-so-many-modes)
-  - [Feature Comparison](#feature-comparison)
+- [Instalasi](#installation)
+  - [Untuk Siapakah Rilis Eksperimental Ini?](#who-is-this-experimental-release-for)
+  - [Menjalankan Mode Concurrent](#enabling-concurrent-mode)
+- [Apa yang Diharapkan](#what-to-expect)
+  - [Langkah Migrasi: Mode Blocking](#migration-step-blocking-mode)
+  - [Mengapa Sangat Banyak Mode?](#why-so-many-modes)
+  - [Komparasi Fitur](#feature-comparison)
 
-## Installation {#installation}
+## Instalasi {#installation}
 
-Concurrent Mode is only available in the [experimental builds](/blog/2019/10/22/react-release-channels.html#experimental-channel) of React. To install them, run:
+Mode Concurrent hanya tersedia di dalam [build eksperimental](/blog/2019/10/22/react-release-channels.html#experimental-channel) React. Untuk instalasi, jalankan:
 
 ```
 npm install react@experimental react-dom@experimental
 ```
 
-**There are no semantic versioning guarantees for the experimental builds.**  
-APIs may be added, changed, or removed with any `@experimental` release.
+**Tidak ada jaminan versi semantik untuk build eksperimental.**  
+API dapat ditambahkan, diubah, atau dihapus di dalam rilis `@experimental`.
 
-**Experimental releases will have frequent breaking changes.**
+**Rilis eksperimental memungkinkan adanya banyak perubahan signifikan.**
 
-You can try these builds on personal projects or in a branch, but we don't recommend running them in production. At Facebook, we *do* run them in production, but that's because we're also there to fix bugs when something breaks. You've been warned!
+Anda dapat mencoba build ini untuk projek personal atau di dalam branch, tetapi kami tidak merekomendasikan build ini untuk mode produksi. Di Facebook, kami *menggunakan* build ini di mode produksi, tapi karena kami juga ada untuk membetulkan *bug* ketika ada suatu masalah. Anda telah diperingatkan!
 
-### Who Is This Experimental Release For? {#who-is-this-experimental-release-for}
+### Untuk Siapakah Rilis Eksperimental Ini? {#who-is-this-experimental-release-for}
 
-This release is primarily aimed at early adopters, library authors, and curious people.
+Rilis ini diperuntukkan bagi pengguna awal, pencipta library, dan orang yang penasaran.
 
-We're using this code in production (and it works for us) but there are still some bugs, missing features, and gaps in the documentation. We'd like to hear more about what breaks in Concurrent Mode so we can better prepare it for an official stable release in the future.
+Kami menggunakan kode ini di dalam mode produksi (dan itu bekerja untuk kami) tetapi masih terdapat beberapa *bug*, fitur yang hilang, dan dokumentasi yang belum lengkap. Kami ingin mendengar lebih tentang apa yang tidak bekerja di dalam Mode Concurrent sehingga kami dapat mempersiapkan rilis resmi dan stabil kedepannya.
 
-### Enabling Concurrent Mode {#enabling-concurrent-mode}
+### Menjalankan Mode Concurrent {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
+Normalnya, ketika kami menambahkan fitur ke dalam React, Anda dapat langsung menggunakannya. Fragments, Context, serta Hooks adalah contoh dari fitur tersebut. Anda dapat menggunakannya di dalam kode baru tanpa harus melakukan perubahan kode.
 
-Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
+Mode Concurrent berbeda. Mode ini memperkenalkan perubahan semantik dalam bagaimana cara React bekerja. Sebaliknya, [fitur baru](/docs/concurrent-mode-patterns.html) yang dijalankan *tidak akan terjadi*. Ini mengapa hal tersebut dikelompokkan ke dalam "mode" baru daripada merilisnya dengan terpisah satu per satu.
 
-You can't opt into Concurrent Mode on a per-subtree basis. Instead, to opt in, you have to do it in the place where today you call `ReactDOM.render()`.
+Anda tidak dapat memilih Mode Concurrent dalam per-subpohon. Sebagai ganti untuk menggunakannya, Anda harus menempatkannya di dalam tempat yang dinamakan `ReactDOM.render()`.
 
-**This will enable Concurrent Mode for the whole `<App />` tree:**
-
+**Dengan ini, Mode Concurrent akan digunakan untuk keseluruhan pohon `<App />` :**
 ```js
 import ReactDOM from 'react-dom';
 
-// If you previously had:
+// Jika Anda sebelumnya menggunakan:
 //
 // ReactDOM.render(<App />, document.getElementById('root'));
 //
-// You can opt into Concurrent Mode by writing:
+// Anda dapat memakai Mode Concurrent dengan menulis:
 
 ReactDOM.unstable_createRoot(
   document.getElementById('root')
 ).render(<App />);
 ```
 
->Note:
+>Catatan:
 >
->Concurrent Mode APIs such as `createRoot` only exist in the experimental builds of React.
+>API Mode Concurrent seperti `createRoot` hanya ada di dalam build eksperimental React.
 
-In Concurrent Mode, the lifecycle methods [previously marked](/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](/docs/strict-mode.html)-compatible.
+Di dalam Mode Concurrent, metoda *lifecycle* yang [sebelumnya ditandai](/blog/2018/03/27/update-on-async-rendering.html) sebagai "*unsafe*" sebetulnya *memang* tidak aman, dan dapat menyebabkan lebih banyak *bug* daripada React saat ini. Kami tidak merekomendasikan untuk mencoba Mode Concurrent sampai aplikasi Anda kompatibel dengan [Mode Strict](/docs/strict-mode.html).
 
-## What to Expect {#what-to-expect}
+## Apa yang Diharapkan {#what-to-expect}
 
-If you have a large existing app, or if your app depends on a lot of third-party packages, please don't expect that you can use the Concurrent Mode immediately. **For example, at Facebook we are using Concurrent Mode for the new website, but we're not planning to enable it on the old website.** This is because our old website still uses unsafe lifecycle methods in the product code, incompatible third-party libraries, and patterns that don't work well with the Concurrent Mode.
+Jika Anda memiliki aplikasi yang berukuran besar, atau aplikasi yang mengandalkan banyak *package* pihak ketiga, tolong jangan berharap Anda dapat menggunakan Mode Concurrent secara langsung. **Contohnya, di Facebook kami menggunakan Mode Concurrent untuk website baru, tetapi kami tidak memiliki rencana untuk memakainya di website lama kami.** Ini dikarenakan website lama kami masih menggunakan metoda *lifecycle* yang tidak aman di dalam kode produksi, *library* pihak ketiga yang tidak kompatibel, dan pola yang tidak dapat bekerja dengan baik jika digunakan bersama Mode Concurrent. Dari pengalaman kami, kode yang menggunakan pola idiomatis React dan tidak mengandalkan manajemen *state* eksternal adalah kode termudah yang dapat mengaplikasikan Mode Concurrent. Kami akan menjelaskan kesalahan yang sering terlihat dan solusi dalam beberapa minggu kedepan.
 
-In our experience, code that uses idiomatic React patterns and doesn't rely on external state management solutions is the easiest to get running in the Concurrent Mode. We will describe common problems we've seen and the solutions to them separately in the coming weeks.
+### Langkah Migrasi: Mode Blocking {#migration-step-blocking-mode}
 
-### Migration Step: Blocking Mode {#migration-step-blocking-mode}
+Untuk *codebase* lama, Mode Concurrent merupakan langkah yang terlalu jauh. Ini mengapa kami juga menyediakan "Mode Blocking" yang baru di dalam build eksperimental React. Anda dapat mencobanya dengan mengubah `createRoot` dengan `createBlockingRoot`. Dengan ini, beberapa fitur kecil dari Mode Concurrent dapat digunakan, tetapi kinerjanya hampir mendekati bagaimana React bekerja saat ini dan dapat dijadikan sebagai sebuah langkah migrasi.
 
-For older codebases, Concurrent Mode might be a step too far. This is why we also provide a new "Blocking Mode" in the experimental React builds. You can try it by substituting `createRoot` with `createBlockingRoot`. It only offers a *small subset* of the Concurrent Mode features, but it is closer to how React works today and can serve as a migration step.
+Kesimpulannya:
 
-To recap:
+* **Mode Legacy:** `ReactDOM.render(<App />, rootNode)`. Ini adalah cara dimana aplikasi React saat ini digunakan. Tidak ada rencana untuk mengubah Mode Legacy untuk kedepannya — tetapi mode ini tidak memungkinkan untuk menjalankan fitur-fitur baru.
+* **Mode Blocking:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. Saat ini, fungsi ini merupakan fungsi percobaan (eksperimental). Hanya digunakan untuk langkah migrasi untuk aplikasi yang ingin memakai fitur-fitur sederhana dari Mode Concurrent.
+* **Mode Concurrent:** `ReactDOM.createRoot(rootNode).render(<App />)`. Saat ini, fungsi ini merupakan fungsi percobaan (eksperimental). Kedepannya, setelah semuanya berjalan stabil, kami ingin membuatnya sebagai mode standar atau bawaan dari React. Mode ini akan menjalankan *semua* fitur baru.
 
-* **Legacy Mode:** `ReactDOM.render(<App />, rootNode)`. This is what React apps use today. There are no plans to remove the legacy mode in the observable future — but it won't be able to support these new features.
-* **Blocking Mode:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. It is currently experimental. It is intended as a first migration step for apps that want to get a subset of Concurrent Mode features.
-* **Concurrent Mode:** `ReactDOM.createRoot(rootNode).render(<App />)`. It is currently experimental. In the future, after it stabilizes, we intend to make it the default React mode. This mode enables *all* the new features.
+### Mengapa Sangat Banyak Mode? {#why-so-many-modes}
 
-### Why So Many Modes? {#why-so-many-modes}
+Kami berfikir lebih baik untuk menggunakan [strategi migrasi bertahap](/docs/faq-versioning.html#commitment-to-stability) daripada melakukan perubahan yang sangat banyak dan signifikan — atau membuat React menjadi stagnan (tidak berkembang) dan tidak relevan.
 
-We think it is better to offer a [gradual migration strategy](/docs/faq-versioning.html#commitment-to-stability) than to make huge breaking changes — or to let React stagnate into irrelevance.
+Dalam penggunaanya, kami berharap aplikasi yang saat ini menggunakan Mode Legacy dapat migrasi setidaknya ke Mode Blocking (jika bukan Mode Concurrent). Fragmentasi ini dapat menyebabkan banyak *library* yang harus bisa bekerja dalam semua Mode dalam waktu singkat. Namun, dengan memindahkan ekosistem secara bertahap dari Mode Legacy memungkinkan untuk *menyelesaikan* masalah yang terdapat pada *library* penting di dalam ekosistem React, seperti [mempersulit Suspense ketika membaca layout](https://github.com/facebook/react/issues/14536) dan [tidak adanya jaminan dalam pengerjaan banyak yang konsisten](https://github.com/facebook/react/issues/15080). Terdapat beberapa *bug* yang tidak dapat diselesaikan di Mode Legacy jika tidak merubah semantik, tapi *bug* tersebut tidak ada di dalam Mode Blocking dan Mode Concurrent.
 
-In practice, we expect that most apps using Legacy Mode today should be able to migrate at least to the Blocking Mode (if not Concurrent Mode). This fragmentation can be annoying for libraries that aim to support all Modes in the short term. However, gradually moving the ecosystem away from the Legacy Mode will also *solve* problems that affect major libraries in the React ecosystem, such as [confusing Suspense behavior when reading layout](https://github.com/facebook/react/issues/14536) and [lack of consistent batching guarantees](https://github.com/facebook/react/issues/15080). There's a number of bugs that can't be fixed in Legacy Mode without changing semantics, but don't exist in Blocking and Concurrent Modes.
+Anda dapat berfikir bahwa Mode Blocking adalah versi "degradasi yang anggun" dari Mode Concurrent. **Sebagai hasilnya, dalam jangka waktu yang lama kami dapat memusatkan satu hal dan berhenti untuk memikirkan Mode yang lainnya.** Tapi untuk saat ini, Mode-mode tersebut sangatlah penting sebagai strategi untuk migrasi. Semuanya membuat orang memilih, apakah perubahan yang dilakukan setimpal untuk migrasi dan *upgrade* kedepannya.
 
-You can think of the Blocking Mode as a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
-
-### Feature Comparison {#feature-comparison}
+### Komparasi Fitur {#feature-comparison}
 
 <style>
   #feature-table table { border-collapse: collapse; }
@@ -116,7 +113,7 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 <div id="feature-table">
 
-|   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
+|   |Mode Legacy  |Mode Blocking  |Mode Concurrent  |
 |---  |---  |---  |---  |
 |[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
 |[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
@@ -136,6 +133,6 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 </div>
 
-\*: Legacy mode has automatic batching in React-managed events but it's limited to one browser task. Non-React events must opt-in using `unstable_batchedUpdates`. In Blocking Mode and Concurrent Mode, all `setState`s are batched by default.
+\*: Mode Legacy memiliki otomatisasi pengerjaan banyak yang dikelola oleh React, tetapi terbatas untuk satu pekerjaan di dalam peramban. Pertistiwa yang tidak berkaitan dengan React harus menggunakan `unstable_batchedUpdates`. Di dalam Mode Blocking dan Mode Concurrent, semua `setState` dikerjakan secara bertumpuk (bersamaan).
 
-\*\*: Warns in development.
+\*\*: Peringatan di dalam *development*.
