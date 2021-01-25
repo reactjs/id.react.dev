@@ -52,10 +52,17 @@ Berikutnya, tambahkan tiga *tag* `<script>` ke laman HTML tepat sebelum penutup 
 ```html{5,6,9}
   <!-- ... HTML lainnya ... -->
 
+<<<<<<< HEAD
   <!-- Muat React. -->
   <!-- Catatan: ketika men-deploy (ke production), timpa "development.js" menjadi "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
   <!-- Muat komponen React kita. -->
   <script src="like_button.js"></script>
@@ -85,7 +92,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Kedua baris kode di atas akan menemukan `<div>` yang telah kita tambahkan ke HTML kita di langkah pertama, kemudian menampilkan komponen React tombol "Like" kita di dalamnya.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
 ### Itu Saja! {#thats-it}
 
@@ -116,8 +127,8 @@ Sebelum men-*deploy* situs Anda ke *production*, berhati-hatilah terhadap JavaSc
 Jika Anda telah meminifikasi *script* aplikasi, **situs Anda telah siap untuk *production*** jika Anda telah memastikan HTML yang ter-*deploy* memuat versi React yang berakhiran dengan `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Jika Anda belum memiliki proses minifikasi untuk *script* Anda, [berikut salah satu cara untuk mempersiapkannya](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -185,7 +196,7 @@ Selamat! Anda baru saja menambahkan sebuah ***setup* JSX yang siap untuk *produc
 Buat sebuah *folder* yang bernama `src` dan jalankan perintah terminal di bawah:
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >Catatan
