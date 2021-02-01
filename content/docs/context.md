@@ -2,8 +2,6 @@
 id: context
 title: Context
 permalink: docs/context.html
-prev: reconciliation.html
-next: fragments.html
 ---
 
 Context menyediakan cara untuk oper data melalui diagram komponen tanpa harus oper *props* secara manual di setiap tingkat.
@@ -130,7 +128,11 @@ Argumen `defaultValue` **hanya** digunakan ketika komponen tidak memiliki Provid
 
 Setiap objek Context dilengkapi dengan komponen Provider React yang memungkinkan komponen konsumsi untuk menerima perubahan *context*.
 
+<<<<<<< HEAD
 Menerima *prop* `value` untuk dioper ke komponen konsumsi yang merupakan keturunan Provider ini. Satu Provider dapat dihubungkan ke banyak *consumer*. Provider dapat disarangkan untuk *override* nilai lebih dalam di dalam diagram.
+=======
+The Provider component accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+>>>>>>> 5e2a231e02bd76061fd2f89814ee1e3f9fad82d3
 
 Semua *consumer* yang merupakan keturunan Provider akan *render* ulang setiap kali *prop* `value` dalam Provider berubah. Perambatan dari Provider ke *consumer* turunannya (termasuk [`.contextType`](#classcontexttype) dan [`useContext`](/docs/hooks-reference.html#usecontext)) tidak tunduk ke *method* `shouldComponentUpdate`, sehingga *consumer* diperbarui bahkan ketika komponen leluhur menebus pembaruan tersebut.
 
