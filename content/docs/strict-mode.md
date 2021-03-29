@@ -116,7 +116,15 @@ Sekilas, kode tersebut tampak tidak mengandung masalah. Tetapi jika `SharedAppli
 
 Dengan memanggil metode dua kali secara sengaja seperti konstruktor komponen, mode ketat membuat pola di atas lebih mudah ditemukan.
 
+<<<<<<< HEAD
 ### Pendeteksian API _context_ _legacy_ {#detecting-legacy-context-api}
+=======
+> Note:
+>
+> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
+### Detecting legacy context API {#detecting-legacy-context-api}
+>>>>>>> c970f75a0ac3513f50e7a4989757c50cde0b7396
 
 API _context_ _legacy_ sangat rentan dari kesalahan dan akan dihapus dalam versi mayor mendatang. API ini masih berfungsi dalam semua rilis 16.x tetapi akan menampilkan pesan peringatan berikut dalam mode ketat:
 
