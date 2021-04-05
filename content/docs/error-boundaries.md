@@ -2,8 +2,6 @@
 id: error-boundaries
 title: Error Boundaries
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
 
 Di masa lalu, kesalahan JavaScript dalam komponen sering kali merusak _state_ internal React dan menyebabkannya untuk [meng-_emit_](https://github.com/facebook/react/issues/4026) [kesalahan](https://github.com/facebook/react/issues/8579) [yang samar](https://github.com/facebook/react/issues/6895) dalam proses _render_ berikutnya. Kesalahan tersebut selalu disebabkan oleh kesalahan sebelumnya pada kode aplikasi, tetapi React tidak menyediakan cara untuk menanganinya secara lugas dalam komponen, dan pada akhirnya tidak bisa dipulihkan.
@@ -73,7 +71,11 @@ Kunjungi [contoh tentang pendeklarasian dan penggunaan komponen _error boundary_
 
 ## Dimana Harus Meletakkan _Error boundaries_ {#where-to-place-error-boundaries}
 
+<<<<<<< HEAD
 Anda sendiri yang menentukan granularitas sebuah komponen _error boundaries_. Anda mungkin ingin membungkus komponen _route_ tingkat teratas untuk menampilkan pesan “Ada masalah” kepada pengguna, seperti halnya yang dilakukan _framework_ sisi server saat terjadi kerusakan. Anda mungkin juga bisa membungkus _widget_ secara individual dengan sebuah _error boundary_ untuk melindung kerusakan merambat ke seluruh aplikasi.
+=======
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 
 ## Perilaku Baru untuk Kesalahan yang Tidak Tertangkap {#new-behavior-for-uncaught-errors}
@@ -132,7 +134,11 @@ _Error boundaries_ **tidak** menangkap kesalahan dalam _event handler_.
 
 React tidak membutuhkan _error boundaries_ untuk memulihkan dari kesalahan dalam _event handler_. Tidak seperti metode _render_ dan _lifecycle_, _event handler_ tidak dijalankan selama proses _render_. Jadi jika kesalahan ini dilontarkan, React masih mengetahui apa yang harus ditampilkan dalam layar.
 
+<<<<<<< HEAD
 Jika Anda harus menangkap kesalahan dalam _event handler_, gunakan JavaScript _statement_ `try` / `catch` biasa:
+=======
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
