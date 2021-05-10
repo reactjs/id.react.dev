@@ -28,7 +28,6 @@ Laman ini merupakan referensi API untuk [Mode _Concurrent_](/docs/concurrent-mod
 
 - [Mengaktifkan Mode _Concurrent_](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -47,6 +46,7 @@ Menggantikan `ReactDOM.render(<App />, rootNode)` dan mengaktifkan Mode _Concurr
 
 Untuk informasi lebih lanjut mengenai Mode _Concurrent_, silahkan lihat [dokumentasi Mode _Concurrent_.](/docs/concurrent-mode-intro.html)
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -59,6 +59,8 @@ Dengan menggunakan Mode _Concurrent_ akan merubah landasan cara kerja React. Hal
 
 Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujukan untuk proses peralihan aplikasi yang belum bisa mengadopsi secara langsung.
 
+=======
+>>>>>>> 16158f195a86fc2dbb59b3ea5a5c32ce161dccb9
 ## Suspense API {#suspense}
 
 ### `Suspense` {#suspensecomponent}

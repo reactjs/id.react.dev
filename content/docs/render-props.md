@@ -2,8 +2,6 @@
 id: render-props
 title: Render Props
 permalink: docs/render-props.html
-prev: higher-order-components.html
-next: integrating-with-other-libraries.html
 ---
 
 Istilah ["_render props_"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) merujuk kepada sebuah teknik untuk berbagi kode antara komponen React menggunakan suatu prop yang nilainya merupakan suatu fungsi.
