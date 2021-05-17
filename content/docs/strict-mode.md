@@ -55,7 +55,11 @@ Dengan penambahan _object ref_ sebagai pengganti untuk _string ref_, mode ketat 
 
 Sebelumnya React telah mendukung `findDOMNode` untuk pencarian simpul DOM dalam pohon berdasarkan _instance_ kelas. Pada umumnya hal ini tidak perlu dilakukan karena Anda bisa [menyertakan _ref_ langsung ke simpul DOM](/docs/refs-and-the-dom.html#creating-refs).
 
+<<<<<<< HEAD
 `findDOMNode` juga dapat digunakan dalam komponen kelas. Namun cara ini melanggar level abstraksi dengan mengizinkan induk untuk meminta turunan tertentu agar di-_render_. Hal ini menciptakan risiko dalam proses _refactor_, yaitu Anda tidak bisa mengubah detail implementasi sebuah komponen karena induk mungkin bisa mengubah simpul DOM-nya. `findDOMNode` hanya akan mengembalikan anak pertama. Namun dengan menggunakan _Fragment_, sebuah komponen dimungkinkan untuk me-_render_ beberapa simpul DOM sekaligus. `findDOMNode` merupakan API baca sekali saja. API ini memberikan jawaban hanya pada saat diminta. Jika komponen anak me-_render_ simpul yang berbeda, tidak ada cara untuk menangani perubahan ini. Dengan alasan ini `findDOMNode` hanya berfungsi jika komponen selalu mengembalikan sebuah simpul DOM yang tidak pernah berubah.
+=======
+`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children were rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+>>>>>>> abcf0358d43caa0772e599949458df9e6578489a
 
 Anda bisa membuat hal ini menjadi eksplisit dengan meneruskan sebuah _ref_ ke komponen khusus Anda, dan meneruskannya ke DOM menggunakan [penerusan _ref_](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
@@ -116,7 +120,15 @@ Sekilas, kode tersebut tampak tidak mengandung masalah. Tetapi jika `SharedAppli
 
 Dengan memanggil metode dua kali secara sengaja seperti konstruktor komponen, mode ketat membuat pola di atas lebih mudah ditemukan.
 
+<<<<<<< HEAD
 ### Pendeteksian API _context_ _legacy_ {#detecting-legacy-context-api}
+=======
+> Note:
+>
+> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
+### Detecting legacy context API {#detecting-legacy-context-api}
+>>>>>>> abcf0358d43caa0772e599949458df9e6578489a
 
 API _context_ _legacy_ sangat rentan dari kesalahan dan akan dihapus dalam versi mayor mendatang. API ini masih berfungsi dalam semua rilis 16.x tetapi akan menampilkan pesan peringatan berikut dalam mode ketat:
 
