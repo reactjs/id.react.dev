@@ -1,8 +1,13 @@
 ---
 id: refs-and-the-dom
+<<<<<<< HEAD
 title: Ref dan DOM
 prev: static-type-checking.html
 next: uncontrolled-components.html
+=======
+title: Refs and the DOM
+permalink: docs/refs-and-the-dom.html
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -10,7 +15,6 @@ redirect_from:
   - "docs/more-about-refs-zh-CN.html"
   - "tips/expose-component-functions.html"
   - "tips/children-undefined.html"
-permalink: docs/refs-and-the-dom.html
 ---
 
 *Ref* menyediakan cara untuk mengakses simpul DOM atau elemen React yang dibuat dalam *render method*.

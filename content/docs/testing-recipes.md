@@ -57,7 +57,11 @@ Anda dapat menggunakan pola yang berbeda, namun ingatlah bahwa kita harus melaku
 
 ### `act()` {#act}
 
+<<<<<<< HEAD
 Ketika menulis pengujian antarmuka pengguna, Pekerjaan-pekerjaan seperti *rendering*, *events* pengguna, atau pengambilan data dapat diperlakukan sebagai "unit-unit" dari interaksi dengan antarmuka pengguna. React menyediakan fungsi bantuan bernama `act()` yang memastikan semua pembaruan yang berhubungan dengan "unit-unit" tadi sudah diproses dan diterapkan ke DOM sebelum Anda melakukan *assertion*.
+=======
+When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. `react-dom/test-utils` provides a helper called [`act()`](/docs/test-utils.html#act) that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
 
 ```js
 act(() => {
@@ -377,7 +381,10 @@ let container = null;
 beforeEach(() => {
   // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
+<<<<<<< HEAD
   // container *harus* melekat pada document agar events bekerja dengan benar
+=======
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
   document.body.appendChild(container);
 });
 
@@ -394,7 +401,11 @@ it("changes value when clicked", () => {
     render(<Toggle onChange={onChange} />, container);
   });
 
+<<<<<<< HEAD
   // pegang elemen button, dan picu beberapa klik dengannya
+=======
+  // get a hold of the button element, and trigger some clicks on it
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Turn on");
 
@@ -416,7 +427,11 @@ it("changes value when clicked", () => {
 });
 ```
 
+<<<<<<< HEAD
 *Event* DOM yang berbeda dan properti-properti mereka dijabarkan di [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Perlu dicatat bahwa Anda perlu mengoper `{ bubbles: true }` pada setiap *event* yang Anda buat agar *event* tersebut dapat mencapai React *listener* karena React secara otomatis mendelegasikan *event-event*  itu ke dokumen.
+=======
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
 
 Catatan:
 >
@@ -466,13 +481,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -480,6 +494,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("should select null after timing out", () => {
