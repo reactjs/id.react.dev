@@ -2,8 +2,6 @@
 id: typechecking-with-proptypes
 title: Pengecekan Tipe Dengan PropTypes
 permalink: docs/typechecking-with-proptypes.html
-prev: jsx-in-depth.html
-next: static-type-checking.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
@@ -32,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 Dalam contoh ini, kita menggunakan *class component*, tapi fungsionalitas yang sama dapat juga diterapkan kepada *function component*, atau komponen yang dibuat dengan [`React.memo`](https://id.reactjs.org/docs/react-api.html#reactmemo) atau [`React.forwardRef`](https://id.reactjs.org/docs/react-api.html#reactforwardref).
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 `PropTypes` mengirimkan berbagai jenis *validator* yang dapat digunakan untuk memastikan bahwa data yang diterima valid. Contoh diatas, Anda menggunakan `PropTypes.string`. Ketika nilai yang dikirimkan untuk sebuah *prop* keliru, sebuah peringatan akan muncul di konsol JavaScript. Untuk alasan performa, `propTypes` hanya melakukan pengecekan di mode pengembangan atau *development*.
 
@@ -64,8 +66,13 @@ MyComponent.propTypes = {
   // Sebuah tipe elemen React. (contoh: MyComponent).
   optionalElementType: PropTypes.elementType,
 
+<<<<<<< HEAD
   // Anda dapat juga menyatakan bahwa sebuah prop adalah instance dari sebuah kelas. Ini menggunakan
   // operator instanceof dari JS.
+=======
+  // You can also declare that a prop is an instance of a class. This uses
+  // JS's instanceof operator.
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
   optionalMessage: PropTypes.instanceOf(Message),
 
   // Anda dapat memastikan bahwa prop Anda dibatasi khusus untuk nilai tertentu dengan memperlakukan
@@ -91,7 +98,11 @@ MyComponent.propTypes = {
     fontSize: PropTypes.number
   }),
 
+<<<<<<< HEAD
   // Sebuah objek dengan peringatan pada properti ekstra.
+=======
+  // An object with warnings on extra properties
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
     quantity: PropTypes.number
@@ -101,7 +112,11 @@ MyComponent.propTypes = {
   // akan muncul jika sebuah prop tidak disertakan.
   requiredFunc: PropTypes.func.isRequired,
 
+<<<<<<< HEAD
   // Sebuah nilai dari tipe data apapun.
+=======
+  // A required value of any data type
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
   requiredAny: PropTypes.any.isRequired,
 
   // Anda dapat juga menentukan validator khusus. Akan menghasilkan objek Error
@@ -197,4 +212,52 @@ class Greeting extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Properti `defaultProps` akan digunakan untuk memastikan bahwa `this.props.name` akan memiliki sebuah nilai jika tidak ada nilai yang diberikan oleh komponen induknya. Proses pengecekan tipe `propTypes` akan dijalankan setelah `defaultProps` berjalan, sehingga proses pengecekan tipe juga akan berlaku untuk `defaultProps`.
+=======
+The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+
+### Function Components {#function-components}
+
+If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be properly applied.
+
+Let's say you have a component like this:
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37

@@ -6,7 +6,11 @@ category: Reference
 permalink: docs/javascript-environment-requirements.html
 ---
 
+<<<<<<< HEAD
 React 16 membutuhkan tipe data *collection* seperti [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) dan [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). Jika Anda ingin mendukung *browser* dan perangkat lama yang mungkin belum menyediakannya secara langsung (contoh: IE < 11) atau *browser* yang mengimplementasikannya dengan tidak sesuai (contoh: IE 11), mohon menambahkan *polyfill global* di bundel aplikasi, seperti [core-js](https://github.com/zloirock/core-js) atau [babel-polyfill](https://babeljs.io/docs/usage/polyfill/).
+=======
+React 16 depends on the collection types [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). If you support older browsers and devices which may not yet provide these natively (e.g. IE < 11) or which have non-compliant implementations (e.g. IE 11), consider including a global polyfill in your bundled application, such as [core-js](https://github.com/zloirock/core-js).
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 Lingkungan untuk React 16 yang sudah ditambahkan *polyfill* menggunakan *core-js* untuk mendukung *browser* lama mungkin terlihat seperti berikut:
 

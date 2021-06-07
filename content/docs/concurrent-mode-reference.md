@@ -28,7 +28,6 @@ Laman ini merupakan referensi API untuk [Mode _Concurrent_](/docs/concurrent-mod
 
 - [Mengaktifkan Mode _Concurrent_](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -47,6 +46,7 @@ Menggantikan `ReactDOM.render(<App />, rootNode)` dan mengaktifkan Mode _Concurr
 
 Untuk informasi lebih lanjut mengenai Mode _Concurrent_, silahkan lihat [dokumentasi Mode _Concurrent_.](/docs/concurrent-mode-intro.html)
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -59,6 +59,8 @@ Dengan menggunakan Mode _Concurrent_ akan merubah landasan cara kerja React. Hal
 
 Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujukan untuk proses peralihan aplikasi yang belum bisa mengadopsi secara langsung.
 
+=======
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 ## Suspense API {#suspense}
 
 ### `Suspense` {#suspensecomponent}
@@ -72,7 +74,11 @@ Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujuk
 
 `Suspense` memungkinkan komponen Anda "menunggu" sesuatu sebelum di _render_, dengan menampilkan _fallback_ selama menunggu.
 
+<<<<<<< HEAD
 Pada contoh berikut ini, `ProfileDetails` menunggu panggilan API _asynchronous_ untuk mendapatkan data. Selama menunggu `ProfileDetails` dan `ProfilePhoto`, kita dapat menampilkan _fallback_ berupa `Loading...`. Hal penting yang perlu dicatat yaitu jika semua anak komponen (_children_) dari `<Suspense>` belum siap, tampilan _fallback_ akan terus muncul.
+=======
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 `Suspense` memiliki dua _props_:
 * **fallback** untuk indikator menunggu. _fallback_ akan terus ditampilkan sampai semua anak komponen dari `Suspense` sudah selesai di _render_.
