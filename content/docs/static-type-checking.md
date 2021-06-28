@@ -313,9 +313,15 @@ declare module 'querystring' {
 
 Kini Anda siap menciptakan kode program! Kami sarankan untuk mengunjungi sumber daya berikut untuk mempelajari lebih lanjut tentang TypeScript:
 
+<<<<<<< HEAD
 * [Dokumentasi TypeScript: *Type* Dasar](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [Dokumentasi TypeScript: Migrasi dari Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Dokumentasi TypeScript: React dan Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+=======
+* [TypeScript Documentation: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+* [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 ## Reason {#reason}
 
