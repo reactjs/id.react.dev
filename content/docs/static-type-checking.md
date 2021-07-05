@@ -257,7 +257,11 @@ Kita akan mengatasi masalah ini dalam dua langkah:
 }
 ```
 
+<<<<<<< HEAD
 Kini, jika kita menjalankan *build script*, maka kompiler akan menghasilkan kode JavaScript di *folder* `build`. [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) menyediakan `tsconfig.json` dengan sekumpulan aturan yang cukup bagi Anda untuk memulai.
+=======
+Great! Now when we run our build script the compiler will output the generated javascript to the `build` folder. The [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/main/tsconfig.json) provides a `tsconfig.json` with a good set of rules to get you started.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Secara umum Anda tidak ingin menyimpan kode JavaScript yang dihasilkan dalam sistem *source control* Anda, jadi pastikan untuk menambahkan *folder* *build* ke *file* `.gitignore`.
 
@@ -313,15 +317,27 @@ declare module 'querystring' {
 
 Kini Anda siap menciptakan kode program! Kami sarankan untuk mengunjungi sumber daya berikut untuk mempelajari lebih lanjut tentang TypeScript:
 
+<<<<<<< HEAD
 * [Dokumentasi TypeScript: *Type* Dasar](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [Dokumentasi TypeScript: Migrasi dari Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Dokumentasi TypeScript: React dan Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+=======
+* [TypeScript Documentation: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+* [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
-## Reason {#reason}
+## ReScript {#rescript}
 
+<<<<<<< HEAD
 [Reason](https://reasonml.github.io/) bukan sebuah bahasa baru, Reason merupakan sintaksis dan *toolchain* baru yang didukung bahasa [OCaml](https://ocaml.org/) yang telah teruji. Reason memberikan sintaksis OCaml yang familier, yang ditujukan untuk pemrogram JavaScript, serta melayani alur kerja NPM/Yarn yang sudah ada dan telah diketahui.
 
 Reason dikembangkan di Facebook, dan digunakan dalam beberapa produknya seperti Messenger. Reason masih bersifat eksperimental tetapi telah memiliki [*binding* React khusus](https://reasonml.github.io/reason-react/) yang diasuh oleh Facebook serta [komunitas yang dinamis](https://reasonml.github.io/docs/en/community.html).
+=======
+[ReScript](https://rescript-lang.org/) is a typed language that compiles to JavaScript. Some of its core features are  guaranteed 100% type coverage, first-class JSX support and [dedicated React bindings](https://rescript-lang.org/docs/react/latest/introduction) to allow integration in existing JS / TS React codebases.
+
+You can find more infos on integrating ReScript in your existing JS / React codebase [here](https://rescript-lang.org/docs/manual/latest/installation#integrate-into-an-existing-js-project).
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ## Kotlin {#kotlin}
 
