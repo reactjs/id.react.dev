@@ -84,7 +84,11 @@ Untuk membuat UI Anda interaktif, Anda harus bisa melakukan perubahan terhadap m
 
 Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah senarai dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari senarai item TODO.
 
+<<<<<<< HEAD
 Pikirkan bagian-bagian data yang ada dalam aplikasi kita. Kita memiliki:
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
   * Daftar produk
   * Teks pencarian yang dimasukkan oleh pengguna
