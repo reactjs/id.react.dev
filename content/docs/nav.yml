@@ -60,7 +60,7 @@
     - id: optimizing-performance
       title: Mengoptimalkan Performa
     - id: portals
-      title: Portals
+      title: Portal
     - id: profiler
       title: Profiler
     - id: react-without-es6
@@ -78,7 +78,7 @@
     - id: strict-mode
       title: Mode Ketat (Strict Mode)
     - id: typechecking-with-proptypes
-      title: Pengecekan Type Dengan PropTypes
+      title: Pengecekan Tipe Dengan PropTypes
     - id: uncontrolled-components
       title: Uncontrolled Components
     - id: web-components
@@ -139,38 +139,38 @@
     - id: concurrent-mode-intro
       title: Memperkenalkan Mode Concurrent
     - id: concurrent-mode-suspense
-      title: Suspense for Data Fetching
+      title: Suspense untuk Penarikan Data (Eksperimental)
     - id: concurrent-mode-patterns
       title: Concurrent UI Patterns
     - id: concurrent-mode-adoption
-      title: Adopting Concurrent Mode
+      title: Mengadopsi Concurrent Mode (Experimental)
     - id: concurrent-mode-reference
       title: Concurrent Mode API Reference
 - title: Contributing
   items:
     - id: how-to-contribute
-      title: How to Contribute
+      title: Cara Berkontribusi
     - id: codebase-overview
-      title: Codebase Overview
+      title: Gambaran Basis Kode
     - id: implementation-notes
-      title: Implementation Notes
+      title: Catatan Implementasi
     - id: design-principles
       title: Design Principles
 - title: FAQ
   items:
     - id: faq-ajax
-      title: AJAX and APIs
+      title: AJAX dan API
     - id: faq-build
-      title: Babel, JSX, and Build Steps
+      title: Babel, JSX, dan Tahapan Build
     - id: faq-functions
-      title: Passing Functions to Components
+      title: Mengoper fungsi-fungsi ke dalam komponen
     - id: faq-state
-      title: Component State
+      title: State Komponen
     - id: faq-styling
-      title: Styling and CSS
+      title: Styling dan CSS
     - id: faq-structure
-      title: File Structure
+      title: Struktur File
     - id: faq-versioning
-      title: Versioning Policy
+      title: Kebijakan Pemversian
     - id: faq-internals
-      title: Virtual DOM and Internals
+      title: Virtual DOM dan Internal
