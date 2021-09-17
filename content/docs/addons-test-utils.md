@@ -19,9 +19,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 > Catatan:
 >
+<<<<<<< HEAD
 > Kami menyarankan Anda untuk menggunakan [`react-testing-library`](https://git.io/react-testing-library) yang didesain untuk memfasilitasi dan mendorong penulisan tes yang menggunakan komponen Anda selayaknya seorang pengguna sebenarnya.
 >
 > Pilihan lain, Airbnb telah merilis utilitas tes bernama [Enzyme](https://airbnb.io/enzyme/), yang mempermudah kita dalam menyatakan, memanipulasi, dan melewati keluaran dari komponen React Anda.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -140,8 +148,12 @@ Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ be
 
 > Catatan:
 >
+<<<<<<< HEAD
 
 > `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 * * *
 

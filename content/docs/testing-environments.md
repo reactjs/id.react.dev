@@ -32,7 +32,11 @@ Bila Anda sedang menulis *library* yang melakukan pengujian pada perilaku *brows
 
 Pada *environment* dimana Anda *tidak dapat* men-simulasikan sebuah DOM (contoh: Menguji komponen React Native pada Node.js), Anda dapat menggunakan [event simulation helpers](https://reactjs.org/docs/test-utils.html#simulate) untuk mensimulasikan interaksi-interaksi dengan elemen-elemen. Cara lainnya, Anda dapat menggunakan bantuan `fireEvent` dari [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
 
+<<<<<<< HEAD
 *Frameworks* seperti [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) dan [webdriver](https://www.seleniumhq.org/projects/webdriver/) berguna untuk melakukan [pengujian *end-to-end*](#end-to-end-tests-aka-e2e-tests).
+=======
+In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 ### Membuat tiruan fungsi {#mocking-functions}
 
