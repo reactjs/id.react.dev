@@ -168,7 +168,11 @@ JSX hadir dengan kekuatan penuh dari JavaScript. Anda dapat menulis *setiap* eks
 
 Komponen `ShoppingList` di atas hanya me-*render* komponen DOM *built-in* seperti `<div />` dan `<li />`. Namun, Anda juga dapat membuat dan me-*render* komponen React Anda sendiri. Contohnya, kita dapat mengacu ke seluruh daftar belanja di atas dengan menuliskan `<ShoppingList />`. Setiap komponen React terenkapsulasi dan dapat beroperasi secara mandiri; hal ini memungkinkan Anda untuk membangun sebuah antarmuka pengguna yang kompleks dari komponen sederhana.
 
+<<<<<<< HEAD
 ## Melihat Kode Permulaan {#inspecting-the-starter-code}
+=======
+### Inspecting the Starter Code {#inspecting-the-starter-code}
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan](#setup-option-2-local-development-environment)).
 
@@ -233,7 +237,7 @@ Pertama, ubah *button tag* yang dikembalikan dari fungsi `render()` komponen Squ
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -241,7 +245,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browser* kita.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 >Catatan
 >
@@ -251,7 +259,7 @@ Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browse
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -259,7 +267,11 @@ Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browse
 >}
 >```
 >
+<<<<<<< HEAD
 >Perhatikan bahwa dengan `onClick={() => alert('click')}`, kita mengoperkan *sebuah fungsi* sebagai *prop* `onClick`. Fungsi tersebut hanya dieksekusi setelah klik. Lupa untuk menulis `() =>` dan menulis `onClick={alert('click')}` adalah kesalahan yang sering terjadi, dan menyebabkan fungsi akan terus dijalankan setiap komponen di-*render* ulang.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 Selanjutnya, kita ingin agar komponen Square "mengingat" bahwa komponen tersebut sudah diklik dan mengisinya dengan "X". Untuk "mengingat" sesuatu, komponen menggunakan **_state_**.
 
@@ -278,7 +290,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -523,7 +535,11 @@ Perhatikan bahwa di dalam `handleClick`, kita memanggil `.slice()` untuk membuat
 
 ### Mengapa Immutablility Itu Penting {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Pada contoh kode sebelumnya, kami menyarankan Anda untuk menggunakan `.slice()` untuk membuat kopi dari senarai `squares` untuk memodifikasinya sebagai ganti dari memodifikasi senarai yang ada. Kita akan membahas *immutability* dan mengapa *immutability* penting untuk dipelajari.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 Secara umum, ada dua pendekatan untuk mengubah data. Pendekatan pertama adalah untuk me-*mutate* data dengan mengubah nilai dari data secara langsung. Pendekatan kedua adalah dengan mengganti data dengan kopi baru yang memiliki perubahan yang diinginkan.
 

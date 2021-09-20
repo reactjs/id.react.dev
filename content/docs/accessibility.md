@@ -2,8 +2,6 @@
 id: accessibility
 title: Aksesibilitas
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## Mengapa aksesibilitas? {#why-accessibility}
@@ -229,7 +227,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Saat menggunakan HOC (_Higher-Order Component_) untuk membuat komponen baru dari komponen yang sudah ada, disarankan untuk [melakukan _ref forwarding_](/docs/forwarding-refs.html) ke komponen yang dibungkus dengan menggunakan fungsi `forwardRef` React. Jika HOC pihak ketiga tidak mengimplementasikan _ref forwarding_, pola di atas masih dapat digunakan sebagai _fallback_.
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 Salah satu contoh pengelolaan fokus yang baik adalah [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Ini adalah contoh yang relatif langka dari jendela _modal_ yang sepenuhnya aksesibel. Selain menetapkan fokus awal pada tombol “batal” (mencegah pengguna keyboard tidak sengaja mengaktifkan opsi “sukses”) dan mengurung fokus _keyboard_ di dalam modal, react-aria-modal juga mengembalikan fokus ke elemen awal yang memicu _modal_ tersebut.
 
