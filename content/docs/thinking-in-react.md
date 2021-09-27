@@ -39,9 +39,13 @@ Namun bagaimana Anda mengetahui bagian mana yang harus menjadi komponen sendiri?
 
 Karena Anda seringkali akan menampilkan sebuah model data JSON kepada pengguna, Anda akan menemukan bahwa jika model Anda dibangun dengan benar, maka antaramuka pengguna (dan demikian juga struktur komponen Anda) akan dapat menyesuaikan dengan baik. Ini karena antaramuka pengguna dan model data cenderung mengikuti *arsitektur informasi* yang sama, yang berarti memisahkan antaramuka pengguna Anda ke dalam komponen-komponen seringkali sangat mudah. Bagi saja komponen-komponen Anda untuk merepresentasikan satu bagian dari model data Anda.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
 
+<<<<<<< HEAD
 Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
+=======
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> 78f78a664fcfaa2e5d9650d9662a67a8ab028661
 
   1. **`FilterableProductTable` (oranye):** berisi keseluruhan dari contoh ini
   2. **`SearchBar` (biru):** menerima semua *masukan pengguna*
@@ -84,7 +88,11 @@ Untuk membuat UI Anda interaktif, Anda harus bisa melakukan perubahan terhadap m
 
 Untuk membangun aplikasi Anda dengan benar, pertama-tama Anda perlu untuk memikirkan set minimal dari *state* yang dapat berubah yang dibutuhkan oleh aplikasi Anda. Kuncinya adalah [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Carilah representasi minimal absolut dari *state* yang dibutuhkan aplikasi Anda dan hitung hal-hal lain yang Anda butuhkan berdasarkan permintaan. Sebagai contohnya, jika Anda membangun sebuah TODO list, simpan saja sebuah senarai dari item TODO; tidak perlu menyimpan variabel *state* terpisah untuk jumlah item TODO tersebut. Jika Anda ingin menampilkan jumlah item TODO, Anda bisa mendapatkannya hanya dengan menghitung panjang dari senarai item TODO.
 
+<<<<<<< HEAD
 Pikirkan bagian-bagian data yang ada dalam aplikasi kita. Kita memiliki:
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 78f78a664fcfaa2e5d9650d9662a67a8ab028661
 
   * Daftar produk
   * Teks pencarian yang dimasukkan oleh pengguna
