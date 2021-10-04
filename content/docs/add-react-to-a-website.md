@@ -52,10 +52,17 @@ Berikutnya, tambahkan tiga *tag* `<script>` ke laman HTML tepat sebelum penutup 
 ```html{5,6,9}
   <!-- ... HTML lainnya ... -->
 
+<<<<<<< HEAD
   <!-- Muat React. -->
   <!-- Catatan: ketika men-deploy (ke production), timpa "development.js" menjadi "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
   <!-- Muat komponen React kita. -->
   <script src="like_button.js"></script>
@@ -85,7 +92,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Kedua baris kode di atas akan menemukan `<div>` yang telah kita tambahkan ke HTML kita di langkah pertama, kemudian menampilkan komponen React tombol "Like" kita di dalamnya.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 ### Itu Saja! {#thats-it}
 
@@ -116,15 +127,19 @@ Sebelum men-*deploy* situs Anda ke *production*, berhati-hatilah terhadap JavaSc
 Jika Anda telah meminifikasi *script* aplikasi, **situs Anda telah siap untuk *production*** jika Anda telah memastikan HTML yang ter-*deploy* memuat versi React yang berakhiran dengan `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Jika Anda belum memiliki proses minifikasi untuk *script* Anda, [berikut salah satu cara untuk mempersiapkannya](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
 ## Opsional: Mencoba React dengan JSX {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 Pada contoh di atas, kita hanya bergantung pada fitur-fitur yang secara langsung didukung oleh *browser*. Inilah alasan mengapa kita menggunakan sebuah fungsi JavaScript untuk memberitahukan React apa yang akan ditampilkan:
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 ```js
 const e = React.createElement;
@@ -160,7 +175,11 @@ Cara tercepat untuk mencoba JSX di proyek Anda adalah dengan menambahkan *tag* `
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Sekarang Anda dapat menggunakan JSX di *tag* `<script>` manapun dengan menambahkan atribut `type="text/babel"`. Berikut adalah [sebuah contoh berkas HTML dengan JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) yang dapat Anda unduh dan mainkan.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 Pendekatan ini cukup untuk mempelajari dan membuat contoh-contoh simpel. Namun, cara ini akan membuat situs Anda lambat dan **tidak cocok untuk *production***. Ketika Anda siap untuk melangkah lebih lanjut, hapus *tag* `<script>` dan atribut `type="text/babel"` yang baru saja Anda tambahkan. Alih-alih menggunakan cara tadi, di bagian berikutnya Anda akan menyiapkan preprosesor JSX untuk mengkonversi *tag* `<script>` secara otomatis.
 
@@ -185,7 +204,7 @@ Selamat! Anda baru saja menambahkan sebuah ***setup* JSX yang siap untuk *produc
 Buat sebuah *folder* yang bernama `src` dan jalankan perintah terminal di bawah:
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >Catatan
