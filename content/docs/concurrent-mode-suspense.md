@@ -17,9 +17,18 @@ next: concurrent-mode-patterns.html
 
 >Perhatian:
 >
+<<<<<<< HEAD
 >Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
 >Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 </div>
 
@@ -97,7 +106,11 @@ function ProfileTimeline() {
 
 Demo ini hanyalah penggoda. Jangan khawatir jika itu belum cukup masuk akal. Kita akan bahas lebih lanjut tentang bagaimana cara kerjanya di bawah. Perlu diingat bahwa Suspense lebih merupakan sebuah *mekanisme*, dan beberapa API seperti `fetchProfileData()` atau `resource.posts.read()` pada contoh di atas tidak terlalu penting. Jika Anda penasaran, Anda bisa menemukan definisinya langsung di [demo sandbox](https://codesandbox.io/s/frosty-hermann-bztrp)
 
+<<<<<<< HEAD
 Suspense bukan merupakan pustaka untuk penarikan data. Dia adalah sebuah **mekanisme bagi pustaka penarikan data** untuk berkomunikasi dengan React dimana *data yang dibaca sebuah komponen belum siap*. React bisa menunggunya hingga siap dan kemudian memperbarui UI-nya. Di Facebook, kita menggunakan Relay dan [integrasi dengan Suspense yang baru](https://relay.dev/docs/en/experimental/step-by-step)
+=======
+Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](docs/getting-started/step-by-step-guide/). We expect that other libraries like Apollo can provide similar integrations.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Dalam jangka panjang, kita berniat agar Suspense menjadi cara utama untuk membaca data asinkron pada suatu komponen -- tidak peduli darimanapun datangnya
 
@@ -107,7 +120,11 @@ Suspense secara signifikan berbeda dengan pendekatan yang sudah ada pada masalah
 
  * **Ini bukan merupakan implementasi penarikan data.** Suspense tidak mengasumsikan Anda menggunakan GraphQL, REST, atau format data, pustaka, pengangkut, dan protokol lainnya.
 
+<<<<<<< HEAD
  * **Ini bukan merupakan klien yang siap digunakan.** Anda tidak bisa "mengganti" `fetch` atau Relay dengan Suspense. Tetapi Anda bisa menggunakan pustaka yang terintegrasi dengan Suspense (contohnya, [API Relay yang baru](https://relay.dev/docs/en/experimental/api-reference)).
+=======
+ * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/api-reference/relay-environment-provider/)).
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
  * **Ini tidak menggandeng penarikan data pada lapisan tampilan.** Suspense membantu orkestrasi dalam menampilkan keadaan pemuatan pada antarmuka Anda, tetapi tidak mengikat logika jaringan pada komponen React.
 
@@ -123,7 +140,11 @@ Jadi, apakah poin dari Suspense? Terdapat beberapa cara untuk kita dapat menjawa
 
 ## Penggunaan Suspense dalam Praktik {#using-suspense-in-practice}
 
+<<<<<<< HEAD
 Di Facebook, sejauh ini kami hanya menggunakan integrasi Relay dengan Suspense dalam produksi. **Jika Anda mencari panduan praktis untuk memulai hari ini, [lihat Panduan Relay](https://relay.dev/docs/en/experimental/step-by-step)!** Hal itu menunjukkan pola yang sudah bekerja dengan baik bagi kita dalam produksi.
+=======
+At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/getting-started/step-by-step-guide/)!** It demonstrates patterns that have already worked well for us in production.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 **Demo kode pada halaman ini menggunakan implementasi API "palsu" daripada Relay.** Hal itu membuat mereka lebih mudah dimengerti jika Anda tidak terbiasa dengan GraphQL, tetapi mereka tidak akan memberi tahu Anda "cara yang benar" untuk membangun aplikasi dengan Suspense. Halaman ini lebih konseptual dan dimaksudkan untuk membantu Anda melihat *mengapa* Suspense bekerja dengan cara tertentu, dan masalah apa yang dipecahkannya.
 
@@ -141,7 +162,11 @@ Kami berharap dapat melihat banyak eksperimen di komunitas dengan pustaka lain. 
 
 Meskipun secara teknis bisa dilakukan, Suspense saat ini **tidak** dimaksudkan sebagai cara untuk mulai menarik data saat komponen dirender. Sebaliknya, Suspense memungkinkan komponen untuk menyatakan bahwa mereka "menunggu" data yang *sedang ditarik*. **[Membangun Pengalaman Pengguna yang Hebat dengan Mode Konkuren dan Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) menjelaskan mengapa hal ini penting dan bagaimana menerapkan pola ini dalam praktik.**
 
+<<<<<<< HEAD
 Kecuali Anda memiliki solusi yang membantu mencegah _waterfalls_, kami sarankan untuk memilih API yang mendukung atau memberlakukan penarikan sebelum render. Sebagai contoh nyata, Anda bisa melihat bagaimana cara [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) memberlakukan _preloading_. Pesan kami tentang ini belum terlalu konsisten di masa lalu. Suspense untuk Penarikan Data masih bersifat percobaan, sehingga Anda dapat mengharapkan rekomendasi kami berubah seiring waktu karena kami belajar lebih banyak dari penggunaan produksi dan memahami ruang masalah dengan lebih baik.
+=======
+Unless you have a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. For a concrete example, you can look at how [Relay Suspense API](https://relay.dev/docs/api-reference/use-preloaded-query/) enforces preloading. Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 ## Pendekatan Tradisional vs Suspense {#traditional-approaches-vs-suspense}
 
