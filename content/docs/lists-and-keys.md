@@ -211,8 +211,12 @@ Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan
 
 ### Key Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 
 *Key* digunakan didalam senarai harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan *key* yang sama ketika kita menghasilkan dua senarai yang berbeda:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
