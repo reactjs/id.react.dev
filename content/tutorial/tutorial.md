@@ -168,7 +168,11 @@ JSX hadir dengan kekuatan penuh dari JavaScript. Anda dapat menulis *setiap* eks
 
 Komponen `ShoppingList` di atas hanya me-*render* komponen DOM *built-in* seperti `<div />` dan `<li />`. Namun, Anda juga dapat membuat dan me-*render* komponen React Anda sendiri. Contohnya, kita dapat mengacu ke seluruh daftar belanja di atas dengan menuliskan `<ShoppingList />`. Setiap komponen React terenkapsulasi dan dapat beroperasi secara mandiri; hal ini memungkinkan Anda untuk membangun sebuah antarmuka pengguna yang kompleks dari komponen sederhana.
 
+<<<<<<< HEAD
 ## Melihat Kode Permulaan {#inspecting-the-starter-code}
+=======
+### Inspecting the Starter Code {#inspecting-the-starter-code}
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 Jika Anda akan mengikuti tutorial ini **di *browser* Anda**, buka kode ini pada *tab* baru: **[Kode Permulaan](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Jika Anda mengikuti tutorial ini dengan *local environment* Anda, bukalah `src/index.js` pada folder *project* Anda (Anda sudah pernah menyentuh *file* ini selama [persiapan](#setup-option-2-local-development-environment)).
 
@@ -233,7 +237,7 @@ Pertama, ubah *button tag* yang dikembalikan dari fungsi `render()` komponen Squ
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -241,7 +245,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browser* kita.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 >Catatan
 >
@@ -251,7 +259,7 @@ Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browse
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -259,7 +267,11 @@ Jika kita mengklik salah satu Square, kita akan mendapatkan *alert* pada *browse
 >}
 >```
 >
+<<<<<<< HEAD
 >Perhatikan bahwa dengan `onClick={() => alert('click')}`, kita mengoperkan *sebuah fungsi* sebagai *prop* `onClick`. Fungsi tersebut hanya dieksekusi setelah klik. Lupa untuk menulis `() =>` dan menulis `onClick={alert('click')}` adalah kesalahan yang sering terjadi, dan menyebabkan fungsi akan terus dijalankan setiap komponen di-*render* ulang.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 Selanjutnya, kita ingin agar komponen Square "mengingat" bahwa komponen tersebut sudah diklik dan mengisinya dengan "X". Untuk "mengingat" sesuatu, komponen menggunakan **_state_**.
 
@@ -278,7 +290,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -450,11 +462,19 @@ class Square extends React.Component {
 
 Ketika sebuah Square diklik, fungsi `onClick` yang disediakan oleh Board akan dipanggil. Berikut adalah ulasan bagaimana kita dapat memperoleh hasil saat ini:
 
+<<<<<<< HEAD
 1. *Prop* `onClick` pada komponen *built-in DOM* `<button>` memberi tahu React untuk menyiapkan *event listener* klik.
 2. Ketika tombol diklik, React akan memanggil *event handler* `onClick` yang sudah didefinisikan pada *method* `render()` Square.
 3. *Event handler* ini memanggil `this.props.onClick()`. *Prop* `onClick` dari Square ditentukan oleh Board.
 4. Karena Board mengoperkan `onClick={() => this.handleClick(i)}` ke Square, Square memanggil `this.handleClick(i)` ketika diklik.
 5. Kita belum mendefinisikan *method* `handleClick()`, sehingga kode kita akan *crash*. Ketika Anda mengeklik sebuah persegi, Anda akan melihat teks *error* berwarna merah yang bertuliskan semacam *"this.handleClick is not a function"*.
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 >Catatan
 >
@@ -523,7 +543,11 @@ Perhatikan bahwa di dalam `handleClick`, kita memanggil `.slice()` untuk membuat
 
 ### Mengapa Immutablility Itu Penting {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Pada contoh kode sebelumnya, kami menyarankan Anda untuk menggunakan `.slice()` untuk membuat kopi dari senarai `squares` untuk memodifikasinya sebagai ganti dari memodifikasi senarai yang ada. Kita akan membahas *immutability* dan mengapa *immutability* penting untuk dipelajari.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 Secara umum, ada dua pendekatan untuk mengubah data. Pendekatan pertama adalah untuk me-*mutate* data dengan mengubah nilai dari data secara langsung. Pendekatan kedua adalah dengan mengganti data dengan kopi baru yang memiliki perubahan yang diinginkan.
 
@@ -1043,7 +1067,13 @@ Mari menerapkan `map` pada `history` di *method* `render` Game:
 
 **[Lihat kode lengkap sampai tahap ini](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 Untuk setiap langkah pada riwayat permainan *tic-tac-toe*, kita membuat `<li>` yang berisi `<button>`. Tombol (`<button>`) memiliki *handler* `onClick` yang akan memanggil *method* bernama `this.jumpTo()`. Kita belum mengimplementasikan *method* `jumpTo()`. Untuk sekarang, kita seharusnya sudah melihat daftar langkah yang sudah terjadi dalam permainan dan peringatan pada *developer tools console* yang bertuliskan:
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
@@ -1144,7 +1174,13 @@ Kemudian, kita akan mendefinisikan *method* `jumpTo` di dalam Game untuk memperb
   }
 ```
 
+<<<<<<< HEAD
 Sekarang kita akan mengubah beberapa bagian *method* `handleClick` pada Game yang akan dipicu ketika Anda mengklik sebuah persegi.
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 *State* `stepNumber` yang sudah kita tambahkan menggambarkan langkah yang sedang ditampilkan ke pengguna saat ini. Setelah kita membuat langkah baru, kita perlu memperbarui `stepNumber` dengan menambahkan `stepNumber: history.length` sebagai bagian dari argumen `this.setState`. Hal ini memastikan kita tidak selalu menampilkan langkah yang sama setelah langkah baru berhasil dibuat.
 
