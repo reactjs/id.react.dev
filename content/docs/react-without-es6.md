@@ -2,8 +2,6 @@
 id: react-without-es6
 title: React Tanpa ES6
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
 
 Umumnya Anda mendefinisikan komponen React sebagai kelas JavaScript biasa:

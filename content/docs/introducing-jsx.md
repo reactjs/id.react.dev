@@ -181,4 +181,8 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam [bagian beri
 
 >**Saran:**
 >
+<<<<<<< HEAD
 >Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 0057efa12c1aa2271ef80d7a84d622732bdfa85c
