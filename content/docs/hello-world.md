@@ -40,10 +40,19 @@ React adalah *library* JavaScript, jadi kami akan berasumsi bahwa Anda memiliki 
 
 >Catatan
 >
+<<<<<<< HEAD
 >Contoh pada panduan ini terkadang menggunakan beberapa sintaksis JavaScript yang baru. Jika Anda belum pernah menggunakan JavaScript dalam beberapa tahun terakhir, [tiga poin berikut](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) akan membantu sebagian besar perjalanan Anda.
 
 ## Ayo Mulai! {#lets-get-started}
 
 Terus gulir ke bawah dan Anda akan menemukan tautan ke [bab selanjutnya dari panduan ini](/docs/introducing-jsx.html) tepat sebelum *footer* laman.
+=======
+>This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+
+
+## Let's Get Started! {#lets-get-started}
+
+Keep scrolling down, and you'll find the link to the [next chapter of this guide](/docs/introducing-jsx.html) right before the website footer.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 

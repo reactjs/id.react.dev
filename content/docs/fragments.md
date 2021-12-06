@@ -2,8 +2,6 @@
 id: fragments
 title: Fragments
 permalink: docs/fragments.html
-prev: context.html
-next: portals.html
 ---
 
 Salah satu pola umum pada React adalah mengembalikan banyak elemen sekaligus. *Fragments* memungkinkan Anda untuk mengelompokkan sejumlah elemen anak tanpa perlu menambahkan lagi *node* ekstra ke DOM.

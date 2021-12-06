@@ -911,9 +911,13 @@ Perlu diingat bahawa Anda masih bisa memilih antara mengoper *state* aplikasi se
 
 >Catatan
 >
+<<<<<<< HEAD
 >Kami rekomendasikan untuk [mengoper `dispatch` dalam *context*](#how-to-avoid-passing-callbacks-down) daripada *callback* dalam *prop* satu-persatu. Pendekatan di bawah hanya disebutkan di sini sebagai pelengkap dan juga cara darurat.
 >
 >Perhatikan juga bahwa pola ini bisa menyebabkan masalah dalam [mode *concurrent*](/blog/2018/03/27/update-on-async-rendering.html). Kami berencana untuk menyediakan alternatif yang lebih ergonomis di masa yang akan datang, tapi solusi teraman sekarang adalah untuk selalu meng-invalidasi callback jika beberapa nilai bergantung pada perubahan.
+=======
+>We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [`useCallback`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah *instance variable*](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
 
