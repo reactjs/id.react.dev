@@ -48,4 +48,8 @@ _Perhatikan bahwa fungsi ini bukan bagian dari React, tetapi disediakan oleh lib
 
 ### Dapatkah saya membuat animasi di React?{#can-i-do-animations-in-react}
 
+<<<<<<< HEAD
 React dapat digunakan untuk menggerakkan animasi. Lihat [React Transition Group](https://reactcommunity.org/react-transition-group/) dan [React Motion](https://github.com/chenglou/react-motion) atau [React Spring](https://github.com/react-spring/react-spring), untuk contoh.
+=======
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring), or [Framer Motion](https://framer.com/motion), for example.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75

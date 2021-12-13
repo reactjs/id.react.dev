@@ -9,18 +9,22 @@ next: release-channels.html
 React dan ReactDOM tersedia melalui CDN.
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 ```
 
 Versi di atas hanya dimaksudkan untuk lingkungan pengembangan dan tidak cocok untuk lingkungan produksi. Versi React yang telah diperkecil dan dioptimalkan untuk lingkungan produksi tersedia di:
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Untuk memuat versi spesifik dari `react` dan `react-dom`, ganti `16` dengan nomor versi yang sesuai.
+=======
+To load a specific version of `react` and `react-dom`, replace `17` with the version number.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 ### Mengapa Atribut `crossorigin`? {#why-the-crossorigin-attribute}
 

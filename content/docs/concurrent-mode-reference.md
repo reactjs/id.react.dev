@@ -16,9 +16,18 @@ prev: concurrent-mode-adoption.html
 
 >Perhatian:
 >
+<<<<<<< HEAD
 >Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
 >Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau Anda baru menggunakan React, jangan khawatir tentang fitur ini** -- Anda tidak perlu mempelajarinya sekarang.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 </div>
 
@@ -28,7 +37,6 @@ Laman ini merupakan referensi API untuk [Mode _Concurrent_](/docs/concurrent-mod
 
 - [Mengaktifkan Mode _Concurrent_](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -47,6 +55,7 @@ Menggantikan `ReactDOM.render(<App />, rootNode)` dan mengaktifkan Mode _Concurr
 
 Untuk informasi lebih lanjut mengenai Mode _Concurrent_, silahkan lihat [dokumentasi Mode _Concurrent_.](/docs/concurrent-mode-intro.html)
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -59,6 +68,8 @@ Dengan menggunakan Mode _Concurrent_ akan merubah landasan cara kerja React. Hal
 
 Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujukan untuk proses peralihan aplikasi yang belum bisa mengadopsi secara langsung.
 
+=======
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 ## Suspense API {#suspense}
 
 ### `Suspense` {#suspensecomponent}
@@ -72,7 +83,11 @@ Mode _Blocking_ terdiri dari sebagian fitur-fitur Mode _Concurrent_ yang ditujuk
 
 `Suspense` memungkinkan komponen Anda "menunggu" sesuatu sebelum di _render_, dengan menampilkan _fallback_ selama menunggu.
 
+<<<<<<< HEAD
 Pada contoh berikut ini, `ProfileDetails` menunggu panggilan API _asynchronous_ untuk mendapatkan data. Selama menunggu `ProfileDetails` dan `ProfilePhoto`, kita dapat menampilkan _fallback_ berupa `Loading...`. Hal penting yang perlu dicatat yaitu jika semua anak komponen (_children_) dari `<Suspense>` belum siap, tampilan _fallback_ akan terus muncul.
+=======
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 `Suspense` memiliki dua _props_:
 * **fallback** untuk indikator menunggu. _fallback_ akan terus ditampilkan sampai semua anak komponen dari `Suspense` sudah selesai di _render_.
