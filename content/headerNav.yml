@@ -8,6 +8,6 @@ items:
   - title: Blog
     to: /blog/
     activeSelector: /blog
-  - title: Community
+  - title: Komunitas
     to: /community/support.html
     activeSelector: /community

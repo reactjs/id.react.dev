@@ -1,11 +1,11 @@
 community:
-  title: Community
+  title: Komunitas
 
 docs:
-  title: Docs
+  title: Dokumentasi
 
 more:
-  title: More
+  title: Lainnya
   items:
     - title: Tutorial
       to: /tutorial/tutorial.html
@@ -18,7 +18,7 @@ more:
       external: true
 
 channels:
-  title: Channels
+  title: Saluran
   items:
     - title: GitHub
       to: https://github.com/facebook/react
@@ -26,13 +26,13 @@ channels:
     - title: Stack Overflow
       to: https://stackoverflow.com/questions/tagged/reactjs
       external: true
-    - title: Discussion Forums
+    - title: Forum Diskusi
       to: https://reactjs.org/community/support.html#popular-discussion-forums
       external: true
     - title: Reactiflux Chat
       to: https://discord.gg/reactiflux
       external: true
-    - title: DEV Community
+    - title: Komunitas DEV
       to: https://dev.to/t/react
       external: true
     - title: Facebook
