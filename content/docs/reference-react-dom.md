@@ -48,9 +48,15 @@ Jika *callback* opsional diberikan, *callback* ini akan dijalankan setelah kompo
 >
 > `ReactDOM.render()` tidak memodifikasi *container node* (hanya memodifikasi anak-anak dari *container*). Hal tersebut memungkinkan kita untuk memasukkan sebuah komponen ke dalam sebuah *DOM node* yang ada tanpa menimpa anak-anaknya.
 >
+<<<<<<< HEAD
 > `ReactDOM.render()` pada saat ini mengembalikan sebuah referensi ke *root* `ReactComponent` *instance*. Tetapi, penggunaan hasil fungsi ini adalah usang
 > dan harus dihindari karena React versi-versi berikutnya mungkin akan me-*render* komponen-komponen secara *asynchronous* dalam beberapa situasi tertentu. Jika Anda memerlukan referensi ke *root* `ReactComponent` *instance*, solusi yang disarankan adalah dengan melampirkan sebuah
 > [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) ke elemen dasar.
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 >
 > Menggunakan `ReactDOM.render()` untuk mengisi sebuah *container* yang di-*render* *server* dianggap usang dan akan tidak berlaku lagi di React 17. Sebaiknya gunakan [`hydrate()`](#hydrate).
 

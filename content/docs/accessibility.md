@@ -2,8 +2,6 @@
 id: accessibility
 title: Aksesibilitas
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## Mengapa aksesibilitas? {#why-accessibility}
@@ -229,7 +227,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Saat menggunakan HOC (_Higher-Order Component_) untuk membuat komponen baru dari komponen yang sudah ada, disarankan untuk [melakukan _ref forwarding_](/docs/forwarding-refs.html) ke komponen yang dibungkus dengan menggunakan fungsi `forwardRef` React. Jika HOC pihak ketiga tidak mengimplementasikan _ref forwarding_, pola di atas masih dapat digunakan sebagai _fallback_.
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Salah satu contoh pengelolaan fokus yang baik adalah [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Ini adalah contoh yang relatif langka dari jendela _modal_ yang sepenuhnya aksesibel. Selain menetapkan fokus awal pada tombol “batal” (mencegah pengguna keyboard tidak sengaja mengaktifkan opsi “sukses”) dan mengurung fokus _keyboard_ di dalam modal, react-aria-modal juga mengembalikan fokus ke elemen awal yang memicu _modal_ tersebut.
 
@@ -453,7 +455,11 @@ Deque Systems menawarkan [aXe-core](https://github.com/dequelabs/axe-core) untuk
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) atau aXe adalah ekstensi _browser_ pemeriksa aksesibilitas yang dibuat berdasarkan `aXe-core`.
 
+<<<<<<< HEAD
 Anda juga dapat menggunakan modul [react-axe](https://github.com/dylanb/react-axe) untuk melaporkan temuan-temuan aksesibilitas ini secara langsung ke _console_ saat melakukan pengembangan dan menelusuri kesalahan.
+=======
+You can also use the [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) module to report these accessibility findings directly to the console while developing and debugging.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 #### WebAIM WAVE {#webaim-wave}
 
