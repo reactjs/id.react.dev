@@ -8,9 +8,9 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React dan [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) dibangun untuk menyelesaikan masalah yang berbeda. Web Components menyediakan enkapsulasi yang kuat untuk *reusable components*, sementara React menyediakan *library* yang deklaratif untuk menjaga DOM tetap sinkron dengan data Anda. Tujuan keduanya adalah untuk saling melengkapi. Sebagai pengembang atau *developer*, Anda bebas untuk menggunakan React di dalam Web Components Anda, atau menggunakan Web Components di dalam React, ataupun keduanya.
+React dan [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) dibangun untuk menyelesaikan masalah yang berbeda. Web Components menyediakan enkapsulasi yang kuat untuk *reusable components*, sementara React menyediakan pustaka yang deklaratif untuk menjaga DOM tetap sinkron dengan data Anda. Tujuan keduanya adalah untuk saling melengkapi. Sebagai pengembang atau *developer*, Anda bebas untuk menggunakan React di dalam Web Components Anda, atau menggunakan Web Components di dalam React, ataupun keduanya.
 
-Kebanyakan orang yang menggunakan React tidak menggunakan Web Components, tetapi mungkin Anda menginginkannya, terutama jika Anda menggunakan *library* komponen antarmuka pengguna pihak ketiga yang ditulis menggunakan Web Components.
+Kebanyakan orang yang menggunakan React tidak menggunakan Web Components, tetapi mungkin Anda menginginkannya, terutama jika Anda menggunakan pustaka komponen antarmuka pengguna pihak ketiga yang ditulis menggunakan Web Components.
 
 ## Menggunakan Web Components di dalam React {#using-web-components-in-react}
 
