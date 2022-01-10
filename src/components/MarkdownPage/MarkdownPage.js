@@ -9,6 +9,7 @@ import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
+// $FlowFixMe Update Flow
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
@@ -17,7 +18,7 @@ import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
-import {colors} from 'theme';
+import {colors, media} from 'theme';
 
 import type {Node} from 'types';
 
@@ -73,6 +74,12 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop: 'var(--banner-height-normal)',
+          [media.lessThan('small')]: {
+            scrollMarginTop: 'var(--banner-height-small)',
+          },
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
@@ -87,13 +94,10 @@ const MarkdownPage = ({
               <MarkdownHeader title={titlePrefix} />
 
               {(date || hasAuthors) && (
-                <div
-                  css={{
-                    marginTop: 15,
-                  }}>
+                <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
-                    <span>
+                    <span css={{lineHeight: 1.75}}>
                       by{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a
@@ -128,8 +132,13 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
+<<<<<<< HEAD
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Edit halaman ini
+=======
+                      href={`https://github.com/reactjs/reactjs.org/tree/main/${markdownRemark.fields.path}`}>
+                      Edit this page
+>>>>>>> 569949e266f5724a04821d6c4f211286238616dc
                     </a>
                   </div>
                 )}

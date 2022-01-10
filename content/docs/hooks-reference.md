@@ -76,6 +76,7 @@ Jika fungsi pembaruan Anda mengembalikan nilai yang sama dengan _state_ saat ini
 > Tidak seperti metode `setState` yang dapat ditemukan dalam *class components*, `useState` tidak secara otomatis menggabungkan obyek-obyek yang telah diperbaruinya. Anda bisa meniru perilaku ini dengan menggabungkan fungsi *updater* dengan *object spread syntax*:
 >
 > ```js
+> const [state, setState] = useState({});
 > setState(prevState => {
 >   // Object.assign would also work
 >   return {...prevState, ...updatedValues};

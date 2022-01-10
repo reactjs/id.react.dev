@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 Elemen form HTML bekerja sedikit berbeda dari elemen DOM lainnya di React, karena elemen form secara natural menyimpan beberapa _state_ internal. Sebagai contoh, form ini pada HTML biasa menerima nama tunggal:
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 569949e266f5724a04821d6c4f211286238616dc
 
 ```html
 <form>
@@ -31,7 +35,7 @@ Kita dapat menggabungkan keduanya dengan menggunakan _state_ pada React sebagai 
 
 Sebagai contoh, jika kita ingin membuat form pada contoh sebelumnya mencatat sebuah nama ketika nama dikirim, kita dapat menuliskan form sebagai sebuah _controlled component_:
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -270,7 +274,11 @@ Dan juga, karena `setState()` secara otomatis [menggabungkan _state_ parsial ke 
 
 ## Mengendalikan Masukkan Nilai Kosong {#controlled-input-null-value}
 
+<<<<<<< HEAD
 Menentukan nilai _prop_ pada [controlled component](/docs/forms.html#controlled-components) mencegah pengguna mengubah masukan kecuali Anda menginginkannya. Jika Anda telah menetapkan nilai `value` namun masukan masih dapat diubah, Anda mungkin telah secara tidak sengaja menetapkan `value` ke `undefined` atau `null`.
+=======
+Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+>>>>>>> 569949e266f5724a04821d6c4f211286238616dc
 
 Kode berikut menunjukkan contoh ini. (Mula-mula masukan terkunci tetapi menjadi dapat diubah setelah jeda singkat.)
 
