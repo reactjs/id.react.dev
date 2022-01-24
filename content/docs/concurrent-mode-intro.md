@@ -16,9 +16,18 @@ next: concurrent-mode-suspense.html
 
 >Perhatian:
 >
+<<<<<<< HEAD
 >Laman ini menjelaskan **fitur eksperimental yang [belum tersedia](/docs/concurrent-mode-adoption.html) dalam versi rilis yang stabil**. Jangan mengandalkan _build_ eksperimental dalam aplikasi React versi produksi. Fitur ini dapat berubah secara signifikan dan tanpa peringatan sebelum menjadi bagian dari React.
 >
 >Dokumentasi ini ditujukan untuk pengguna awal dan orang-orang yang penasaran. **Kalau anda baru menggunakan React, jangan khawatir tentang fitur ini** -- anda tidak perlu mempelajarinya sekarang.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 </div>
 
@@ -37,7 +46,11 @@ Fitur ini masih dalam tahap percobaan dan dapat berubah sewaktu-waktu. Fitur ini
 
 ## _Blocking_ vs _Interruptible Rendering_ {#blocking-vs-interruptible-rendering}
 
+<<<<<<< HEAD
 **Untuk menjelaskan Mode _Concurrent_, kita akan menggunakan _version control_ sebagai kiasan.** Jika anda bekerja dalam tim, anda mungkin menggunakan sistem _version control_ seperti Git dan bekerja dalam _branch_. Ketika sebuah _branch_ telah siap, anda dapat menggabungkan pekerjaan anda ke dalam _master_ sehingga orang lain dapat mengambil pekerjaan anda.
+=======
+**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into main so that other people can pull it.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 Sebelum ada _version control_, alur kerja pengembangan sangat berbeda. Tidak ada konsep _branch_. Jika anda ingin mengubah beberapa berkas, anda harus memberitahu semua orang untuk tidak menyentuh berkas-berkas itu sampai anda menyelesaikan pekerjaan anda. Anda bahkan tidak bisa mulai mengerjakannya secara bersamaan dengan orang itu - anda benar-benar *diblokir* oleh mereka.
 
@@ -61,7 +74,11 @@ Teknik Mode _Concurrent_ mengurangi kebutuhan _debounce_ dan _throttle_ dalam an
 
 ### Urutan Memuat yang Disengaja {#intentional-loading-sequences}
 
+<<<<<<< HEAD
 Kami telah mengatakan sebelumnya bahwa Mode _Concurrent_ itu seperti React yang bekerja "pada suatu _branch_". _Branch_ berguna tidak hanya untuk waktu perbaikan jangka pendek, tapi juga untuk fitur jangka panjang. Terkadang anda mungkin mengerjakan suatu fitur, tapi itu mungkin butuh waktu berminggu-minggu sebelum itu dalam "kondisi yang cukup bagus" untuk digabungkan ke _master_. Sisi metafora _version control_ kita ini berlaku untuk _render_ juga.
+=======
+We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into main. This side of our version control metaphor applies to rendering too.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 Anggap kita menavigasi antara dua layar pada suatu aplikasi. Terkadang, kita mungkin tidak punya cukup kode dan data yang dimuat untuk menampilkan muatan yang "cukup baik" kepada pengguna pada layar baru. Transisi ke layar kosong atau _spinner_ besar bisa menjadi pengalaman yang menjengkelkan. Namun, hal itu juga umum bahwa kode dan data tidak butuh waktu yang lama untuk mengambil. **Bukankah lebih baik jika React bisa berdiam pada layar yang lama untuk lebih lama, dan "melewati" kondisi muatan yang buruk sebelum menampilkan layar yang baru?**
 
