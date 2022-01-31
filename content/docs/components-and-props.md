@@ -80,7 +80,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Mari merangkum apa yang terjadi pada contoh berikut:
 
@@ -131,7 +131,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 Secara khusus, aplikasi React yang baru mempunyai sebuah komponen `App` pada
 bagian paling atas. Namun, jika Anda mengintegrasi React kedalam aplikasi yang
@@ -168,7 +168,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 Komponen menerima `author` (sebuah objek), `text` (sebuah string), dan `date`
 (sebuah tanggal) sebagai *props*, dan mendeskripsikan sebuah komponen dalam
@@ -254,7 +254,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika pada bagian dari antarmuka pengguna digunakan beberapa kali (`Button`, `Panel`, `Avatar`), atau yang cukup kompleks (`App`, `FeedStory`, `Comment`), ini merupakan kandidat yang bagus untuk dijadikan sebagai komponen yang dapat digunakan kembali.
 

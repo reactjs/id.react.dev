@@ -133,6 +133,7 @@
       title: Testing Recipes
     - id: testing-environments
       title: Testing Environments
+<<<<<<< HEAD
 - title: Concurrent Mode (Experimental)
   isOrdered: true
   items:
@@ -146,6 +147,8 @@
       title: Adopting Concurrent Mode
     - id: concurrent-mode-reference
       title: Concurrent Mode API Reference
+=======
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 - title: Contributing
   items:
     - id: how-to-contribute
