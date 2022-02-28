@@ -68,7 +68,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [Coba di CodePen](codepen://introducing-jsx)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan Anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +96,7 @@ function getGreeting(user) {
 Anda dapat menggunakan tanda kutip untuk menentukan *string* literal sebagai atribut:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Anda juga dapat menggunakan kurung kurawal untuk menyematkan ekspresi JavaScript di dalam atribut:
@@ -181,4 +185,8 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam [bagian beri
 
 >**Saran:**
 >
+<<<<<<< HEAD
 >Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42

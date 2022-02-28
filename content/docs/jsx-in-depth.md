@@ -2,7 +2,6 @@
 id: jsx-in-depth
 title: JSX In Depth
 permalink: docs/jsx-in-depth.html
-next: typechecking-with-proptypes.html
 redirect_from:
   - "docs/jsx-spread.html"
   - "docs/jsx-gotchas.html"
@@ -232,7 +231,11 @@ Secara umum, kami tidak merekomendasikan menggunakan cara ini karena bisa membin
 
 ### Menyebarkan Atribut {#spread-attributes}
 
+<<<<<<< HEAD
 Jika Anda memiliki `props` sebagai sebuah objek, dan ingin mengopernya ke JSX, Anda bisa gunakan `...` sebagai sebuah operator "penyebaran" (*spread*) untuk mengoper ke objek *prop* yang utuh. Kedua komponen ini adalah sama:
+=======
+If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 ```js{7}
 function App1() {
@@ -245,7 +248,11 @@ function App2() {
 }
 ```
 
+<<<<<<< HEAD
 Anda juga bisa mengambil *prop* tertentu yang mana komponen Anda akan gunakan ketika mengoperkan semua *prop* lainnya menggunakan operator penyebaran.
+=======
+You can also pick specific props that your component will consume while passing all other props using the spread syntax.
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 ```js{2}
 const Button = props => {

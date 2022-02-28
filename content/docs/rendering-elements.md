@@ -38,7 +38,11 @@ Untuk me-*render* sebuah elemen React ke dalam sebuah *node DOM* akar, oper kedu
 
 `embed:rendering-elements/render-an-element.js`
 
+<<<<<<< HEAD
 [Coba di CodePen](codepen://rendering-elements/render-an-element)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Kode di atas akan menampilkan "Halo dunia" pada laman.
 
@@ -52,7 +56,11 @@ Perhatikan contoh jam berdetak di bawah ini:
 
 `embed:rendering-elements/update-rendered-element.js`
 
+<<<<<<< HEAD
 [Coba di CodePen](codepen://rendering-elements/update-rendered-element)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callback* [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
@@ -66,7 +74,11 @@ Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callba
 
 React DOM membandingkan antara elemen dan elemen anaknya dengan elemen sebelumnya dan hanya mengaplikasikan perbaruan DOM yang diperlukan untuk menyelaraskan DOM ke *state* yang diinginkan.
 
+<<<<<<< HEAD
 Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](codepen://rendering-elements/update-rendered-element) dengan peralatan dari *browser*:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 ![Inspektor DOM menunjukkan pembaruan yang bersifat *granular*](../images/docs/granular-dom-updates.gif)
 
