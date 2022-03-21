@@ -2,8 +2,6 @@
 id: optimizing-performance
 title: Mengoptimalkan Performa
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
@@ -45,8 +43,8 @@ Ingat bahwa ini hanya diperlukan sebelum men-*deploy* ke produksi. Untuk pengemb
 Kami menyediakan versi siap produksi dari React dan React DOM sebagai *file* tunggal:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Ingat bahwa hanya *file* React yang berakhir dengan `.production.min.js` yang layak digunakan untuk produksi.
@@ -76,11 +74,19 @@ Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu
 Untuk *build* produksi yang efisien menggunakan Browserify, instal plugin-plugin berikut:
 
 ```
+<<<<<<< HEAD
 # Jika menggunakan npm
 npm install --save-dev envify terser uglifyify 
 
 # Jika menggunakan Yarn
 yarn add --dev envify terser uglifyify 
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+yarn add --dev envify terser uglifyify
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 ```
 
 Untuk membangun versi produksi, pastikan Anda menambahkan *transform* berikut **(urutan ini penting)**:
@@ -158,6 +164,7 @@ Anda dapat mempelajari ini lebih lanjut di [dokumentasi webpack](https://webpack
 
 Ingat bahwa Anda hanya perlu melakukan ini di *build* produksi. Anda tidak perlu mengaplikasikan `TerserPlugin` dalam pengembangan karena akan menyembunyikan peringatan React yang berguna dan membuat waktu *build* lebih lambat.
 
+<<<<<<< HEAD
 ## Memprofil Komponen dengan Tab *Performance* Chrome {#profiling-components-with-the-chrome-performance-tab}
 
 Dalam mode **pengembangan**, Anda dapat memvisualisasikan bagaimana komponen terpasang, diperbarui, dan dilepas, mengunakan perangkat performa di peramban web yang mendukungnya. Sebagai contoh:
@@ -185,6 +192,9 @@ Perlu dicatat bahwa **nilai-nilai ini adalah relatif sehingga komponen akan me-*
 Saat ini hanya Chrome, Edge, and IE yang mendukung fitur ini, tapi kita menggunakan [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) yang terstandarisasi sehingga kami memperkirakan peramban web lain akan menambahkan dukungan terhadap API tersebut.
 
 ## Memprofil Komponen dengan Profiler DevTools {#profiling-components-with-the-devtools-profiler}
+=======
+## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 `react-dom` 16.5+ dan `react-native` 0.57+ menyediakan kemampuan memprofil tambahan dalam mode pengembangan dengan Profiler React DevTools.
 Sebuah ikhtisar mengenai *profiler* tersebut dapat ditemukan dalam postingan blog ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
@@ -201,9 +211,20 @@ Jika Anda belum menginstal React DevTools, Anda dapat menemukannya di sini:
 > Versi bundel `react-dom` yang dapat memprofil versi produksi juga tersedia di `react-dom/profiling`.
 > Baca lebih lanjut mengenai cara penggunaan bundel ini di [fb.me/react-profiling](https://fb.me/react-profiling)
 
+<<<<<<< HEAD
 ## Memvirtualisasi *List* Panjang {#virtualize-long-lists}
 
 Jika aplikasi Anda me-*render* *list* data yang panjang (ratusan atau ribuan baris), kami menyarankan menggunakan teknik "windowing". Teknik ini hanya me-*render* bagian kecil dari baris-baris data Anda dalam waktu tertentu, dan dapat mengurangi waktu untuk me-*render* ulang komponen Anda serta jumlah simpul DOM yang dibuat secara signifikan.
+=======
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab. 
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+
+## Virtualize Long Lists {#virtualize-long-lists}
+
+If your application renders long lists of data (hundreds or thousands of rows), we recommend using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 [react-window](https://react-window.now.sh/) dan [react-virtualized](https://bvaughn.github.io/react-virtualized/) adalah *library* *windowing* paling populer. *Library-library* ini menyediakan beberapa komponen untuk menampilkan data-data dalam bentuk *list*, *grid*, dan tabular. Anda juga dapat membuat komponen *windowing* versi Anda sendiri, seperti [yang dilakukan Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), jika Anda ingin sesuatu yang lebih dikhususkan untuk *use case* aplikasi Anda.
 
@@ -381,7 +402,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Fitur ini ditambahkan ke JavaScript di ES2018.
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Jika Anda menggunakan Create React App, `Object.assign` dan sintaksis *spread* untuk objek sudah tersedia.
 

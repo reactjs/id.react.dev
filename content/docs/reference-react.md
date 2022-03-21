@@ -128,7 +128,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
 
+<<<<<<< HEAD
 `React.memo` hanya berefek kepada _props_ yang berubah. Jika komponen Anda yang dibungkus dengan `React.memo` memiliki *Hooks* [`useState`](/docs/hooks-state.html) atau [`useContext`](/docs/hooks-reference.html#usecontext) dalam implementasinya, komponen itu akan tetap me-_render_ ulang apabila _state_ atau _context_ berubah.
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Secara bawaan `React.memo` hanya akan membandingkan objek yang kompleks pada objek _props_ secara dangkal (_shallow comparison_). Apabila Anda ingin membuat perbandingan sendiri, Anda juga dapat memberikan fungsi pembanding _custom_ sebagai argumen kedua.
 
@@ -175,12 +179,16 @@ Kode yang ditulis dengan [JSX](/docs/introducing-jsx.html) akan dikonversi mengg
 ```javascript
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang diberikan. Elemen yang dihasilkan akan memiliki _props_ dari elemen asli (elemen yang di-_clone_) dengan tambahan _props_ baru yang akan digabungkan secara dangkal. _Children_ baru yang dimasukkan sebagai argumen akan menggantikan _children_ yang sudah ada. Sedangkan `key` dan `ref` dari elemen asli akan tetap dipertahankan.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 `React.cloneElement()` mirip dengan:
 
@@ -188,7 +196,11 @@ Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang di
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 Namun, `React.cloneElement()` tetap mempertahankan `ref`. Ini artinya apabila Anda mendapatkan _child_ yang memiliki `ref`, Anda tidak akan mencurinya secara tidak sengaja dari _ancestor_. Anda akan mendapatkan `ref` yang sama yang dilampirkan ke elemen yang baru.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 _API_ ini dikenalkan sebagai pengganti dari `React.addons.cloneWithProps()`.
 

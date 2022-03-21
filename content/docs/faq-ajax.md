@@ -72,8 +72,13 @@ class MyComponent extends React.Component {
       return (
         <ul>
           {items.map(item => (
+<<<<<<< HEAD
             <li key={item.nama}>
               {item.nama} {item.harga}
+=======
+            <li key={item.id}>
+              {item.name} {item.price}
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
             </li>
           ))}
         </ul>
@@ -100,7 +105,7 @@ function MyComponent() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result.items);
+          setItems(result);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -120,7 +125,7 @@ function MyComponent() {
     return (
       <ul>
         {items.map(item => (
-          <li key={item.name}>
+          <li key={item.id}>
             {item.name} {item.price}
           </li>
         ))}

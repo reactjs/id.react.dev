@@ -8,4 +8,8 @@ Peringatan _invalid-aria-prop_ akan terpicu jika Anda mencoba untuk me-_render_ 
 
 1. Jika Anda merasa telah menggunakan _prop_ yang valid, periksa kembali ejaannya dengan baik. `aria-labelledby` dan `aria-activedescendant` seringkali salah dieja.
 
+<<<<<<< HEAD
 2. React belum dapat mengenali atribut yang Anda tentukan. Kemungkinan hal ini akan diperbaiki di React versi kedepannya. Meski demikian, React saat ini melucuti seluruh atribut yang tidak dikenal, sehingga menuliskan atribut tersebut didalam aplikasi React Anda tidak serta merta akan di-_render_.
+=======
+2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0

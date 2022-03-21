@@ -97,9 +97,13 @@ Anda tidak bisa menggunakan *Hooks* *di dalam* sebuah komponen kelas, tetapi And
 
 Tujuan kami untuk *Hooks* yakni mencakup seluruh kasus yang digunakan untuk kelas sesegera mungkin. Tidak ada persamaan (*equivalent*) *Hooks* untuk *lifecyle* yang tidak umum seperti `getSnapshotBeforeUpdate` dan `componentDidCatch` sementara ini, namun kami berencana untuk menambahkannya segera.
 
+<<<<<<< HEAD
 Sekarang adalah masa-masa awal untuk Hooks, dan *library* pihak ketiga bisa jadi tidak kompatibel dengan *Hooks* saat ini.
 
 ### Apakah *Hooks* menggantikan *render props* dan *higher-order components*? {#do-hooks-replace-render-props-and-higher-order-components}
+=======
+### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Seringkali, *render props* dan *higher-order components* hanya (me)*render* sebuah turunan. Kami pikir *Hooks* adalah cara yang lebih sederhana untuk menyajikan kasus penggunaan ini. Masih ada tempat untuk kedua pola (contohnya, sebuah *virtual scroller component* bisa saja memiliki sebuah *prop* `renderItem`, atau sebuah *visual container component* bisa saja memiliki struktur *DOM*-nya sendiri). Namun dalam banyak kasus, *Hooks* sudahlah cukup dan akan membantu mengurangi *nesting* dalam tatanan Anda.
 
@@ -911,9 +915,13 @@ Perlu diingat bahawa Anda masih bisa memilih antara mengoper *state* aplikasi se
 
 >Catatan
 >
+<<<<<<< HEAD
 >Kami rekomendasikan untuk [mengoper `dispatch` dalam *context*](#how-to-avoid-passing-callbacks-down) daripada *callback* dalam *prop* satu-persatu. Pendekatan di bawah hanya disebutkan di sini sebagai pelengkap dan juga cara darurat.
 >
 >Perhatikan juga bahwa pola ini bisa menyebabkan masalah dalam [mode *concurrent*](/blog/2018/03/27/update-on-async-rendering.html). Kami berencana untuk menyediakan alternatif yang lebih ergonomis di masa yang akan datang, tapi solusi teraman sekarang adalah untuk selalu meng-invalidasi callback jika beberapa nilai bergantung pada perubahan.
+=======
+>We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [`useCallback`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah *instance variable*](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
 
