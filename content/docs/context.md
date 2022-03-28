@@ -2,13 +2,15 @@
 id: context
 title: Context
 permalink: docs/context.html
-prev: reconciliation.html
-next: fragments.html
 ---
 
 Context menyediakan cara untuk oper data melalui diagram komponen tanpa harus oper *props* secara manual di setiap tingkat.
 
+<<<<<<< HEAD
 Dalam aplikasi React yang khusus, data dioper dari atas ke bawah (*parent* ke *child*) melalui *props*, tetapi ini bisa menjadi rumit untuk tipe *props* tertentu (mis. preferensi *locale*, tema UI) yang dibutuhkan oleh banyak komponen di dalam sebuah aplikasi. Context menyediakan cara untuk berbagi nilai seperti ini di antara komponen tanpa harus oper *prop* secara explisit melalui setiap tingkatan diagram.
+=======
+In a typical React application, data is passed top-down (parent to child) via props, but such usage can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 - [Kapan menggunakan Context](#when-to-use-context)
 - [Sebelum Anda Menggunakan Context](#before-you-use-context)
@@ -82,7 +84,11 @@ function Page(props) {
 
 Dengan perubahan ini, hanya komponen Page paling atas yang perlu tahu tentang penggunaan komponen `Link` dan `Avatar` oleh `user` dan `avatarSize`.
 
+<<<<<<< HEAD
 Inversi kontrol ini dapat membuat kode Anda lebih bersih dalam banyak kasus dengan mengurangi jumlah *props* yang Anda butuhkan untuk melewati aplikasi Anda dan memberikan lebih banyak kontrol ke komponen *root*. Namun, ini bukan pilihan yang tepat dalam setiap kasus: memindahkan lebih banyak kerumitan lebih tinggi dalam diagram membuat *higher-level component* lebih rumit dan memaksa *lower-level component* menjadi lebih fleksibel daripada yang Anda inginkan.
+=======
+This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. Such inversion, however, isn't the right choice in every case; moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 Anda tidak terbatas pada satu *child* untuk satu komponen. Anda dapat mengoper beberapa *children*, atau bahkan memiliki beberapa "slot" terpisah untuk *children*, [seperti yang didokumentasikan di sini](/docs/composition-vs-inheritance.html#containment):
 
@@ -120,7 +126,11 @@ const MyContext = React.createContext(defaultValue);
 
 Buat objek Context. Ketika React *render* komponen yang menerima objek Context ini akan membaca nilai *context* saat ini dari pencocokan terdekat `Provider` di atasnya dalam diagram.
 
+<<<<<<< HEAD
 Argumen `defaultValue` **hanya** digunakan ketika komponen tidak memiliki Provider yang cocok di atasnya dalam diagram. Ini dapat membantu untuk *testing* komponen secara terpisah tanpa membungkusnya. Catatan: mengoper `undefined` sebagai nilai Provider tidak menyebabkan konsumsi komponen menggunakan `defaultValue`.
+=======
+The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This default value can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ### `Context.Provider` {#contextprovider}
 
@@ -130,7 +140,11 @@ Argumen `defaultValue` **hanya** digunakan ketika komponen tidak memiliki Provid
 
 Setiap objek Context dilengkapi dengan komponen Provider React yang memungkinkan komponen konsumsi untuk menerima perubahan *context*.
 
+<<<<<<< HEAD
 Menerima *prop* `value` untuk dioper ke komponen konsumsi yang merupakan keturunan Provider ini. Satu Provider dapat dihubungkan ke banyak *consumer*. Provider dapat disarangkan untuk *override* nilai lebih dalam di dalam diagram.
+=======
+The Provider component accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 Semua *consumer* yang merupakan keturunan Provider akan *render* ulang setiap kali *prop* `value` dalam Provider berubah. Perambatan dari Provider ke *consumer* turunannya (termasuk [`.contextType`](#classcontexttype) dan [`useContext`](/docs/hooks-reference.html#usecontext)) tidak tunduk ke *method* `shouldComponentUpdate`, sehingga *consumer* diperbarui bahkan ketika komponen leluhur menebus pembaruan tersebut.
 
@@ -164,7 +178,11 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
+<<<<<<< HEAD
 Properti `contextType` pada kelas dapat diberikan objek Context yang dibuat oleh [`React.createContext()`](#reactcreatecontext). Ini memungkinkan Anda menggunakan nilai saat ini terdekat dari tipe Context menggunakan `this.context`. Anda dapat merujuk ini dalam salah satu *method lifecycle* termasuk fungsi *render*.
+=======
+The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). Using this property lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 > Catatan:
 >
@@ -191,7 +209,11 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
+<<<<<<< HEAD
 Komponen React yang menerima perubahan *context*. Ini memungkinkan Anda menerima *context* di dalam [komponen fungsi](/docs/components-and-props.html#function-and-class-components).
+=======
+A React component that subscribes to context changes. Using this component lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 Dibutuhkan sebuah [fungsi sebagai *child*](/docs/render-props.html#using-props-other-than-render). Fungsi menerima nilai *context* saat ini dan mengembalikkan *node* React. Argumen `value` yang diteruskan ke fungsi akan sama dengan *prop* `value` dari Provider terdekat untuk *context* ini di atas dalam diagram. Jika tidak ada Provider untuk *context* ini di atas, argumen `value` akan sama dengan `defaultValue` yang diteruskan ke `createContext()`.
 

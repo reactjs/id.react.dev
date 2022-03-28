@@ -313,15 +313,27 @@ declare module 'querystring' {
 
 Kini Anda siap menciptakan kode program! Kami sarankan untuk mengunjungi sumber daya berikut untuk mempelajari lebih lanjut tentang TypeScript:
 
+<<<<<<< HEAD
 * [Dokumentasi TypeScript: *Type* Dasar](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [Dokumentasi TypeScript: Migrasi dari Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Dokumentasi TypeScript: React dan Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+=======
+* [TypeScript Documentation: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+* [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
-## Reason {#reason}
+## ReScript {#rescript}
 
+<<<<<<< HEAD
 [Reason](https://reasonml.github.io/) bukan sebuah bahasa baru, Reason merupakan sintaksis dan *toolchain* baru yang didukung bahasa [OCaml](https://ocaml.org/) yang telah teruji. Reason memberikan sintaksis OCaml yang familier, yang ditujukan untuk pemrogram JavaScript, serta melayani alur kerja NPM/Yarn yang sudah ada dan telah diketahui.
 
 Reason dikembangkan di Facebook, dan digunakan dalam beberapa produknya seperti Messenger. Reason masih bersifat eksperimental tetapi telah memiliki [*binding* React khusus](https://reasonml.github.io/reason-react/) yang diasuh oleh Facebook serta [komunitas yang dinamis](https://reasonml.github.io/docs/en/community.html).
+=======
+[ReScript](https://rescript-lang.org/) is a typed language that compiles to JavaScript. Some of its core features are  guaranteed 100% type coverage, first-class JSX support and [dedicated React bindings](https://rescript-lang.org/docs/react/latest/introduction) to allow integration in existing JS / TS React codebases.
+
+You can find more infos on integrating ReScript in your existing JS / React codebase [here](https://rescript-lang.org/docs/manual/latest/installation#integrate-into-an-existing-js-project).
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ## Kotlin {#kotlin}
 

@@ -152,6 +152,19 @@ Ekspresi diatas akan bekerja karena dalam JavaScript, `true && expression` selal
 
 Maka dari itu, jika kondisi `true`, elemen tepat setelah `&&` akan muncul pada _output_. jika `false`, React akan mengabaikannya.
 
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Metode lain untuk me-*render* _inline_ elemen secara kondisional ialah menggunakan operator kondisional JavaScript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).

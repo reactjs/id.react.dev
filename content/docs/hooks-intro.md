@@ -98,7 +98,11 @@ Kami tahu bahwa pengembang React berfokus pada produk dan tidak ada waktu untuk 
 
 Kami juga mengerti bahwa permintaan untuk menambahkan fungsi dasasr baru ke React sangatlah tinggi. Untuk pembaca yang ingin tahu, kami mempersiapkan [RFC mendetil](https://github.com/reactjs/rfcs/pull/68) yang menjadi motivasi dengan beberapa detil, dan perspektif tambahan pada keputusan mengenai desain, serta pekerjaan terkait sebelumnya.
 
+<<<<<<< HEAD
 **Penting, Hooks bekerja berdampingan dengan kode yang sudah ada sehingga dapat diadopsi secara bertahap.** Tidak ada keharusan untuk cepat-cepat atau berpindah ke *Hooks*. Kami tidak merekomendasikan untuk melakukan "penulisan ulang kode yang besar", terutama untuk yang sudah ada, dengan kelas komponen yang kompleks. Ini membutuhkan sedikit perubahan pemikiran untuk mulai "berpikir dalam *Hooks*". Menurut kami, lebih baik untuk belajar menggunakan *Hooks* pada komponen yang baru dan tidak kritis, dan memastikan bahwa setiap orang dalam tim merasa nyaman untuk menggunakannya. Setelah Anda mencoba menggunakan *Hooks*, mohon bantuannya untuk [mengirimkan umpan balik ke kami](https://github.com/facebook/react/issues/new), positif maupun negatif.
+=======
+**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mind shift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 Kami ingin *Hooks* untuk mencakup setiap *use case* yang ada pada kelas, tetapi **kami akan tetap mendukung komponen kelas untuk kedepannya.** Di Facebook, kami memiliki puluhan ribu komponen yang ditulis menjadi kelas, dan kami tidak memiliki rencana untuk menulis ulang. Sebagai gantinya, kami mulai untuk menggunakan *Hooks* untuk kode baru yang berjalan berdampingan dengan kelas.
 
