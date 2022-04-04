@@ -32,10 +32,15 @@ Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jad
 Mari kita pertimbangkan pertama kali Anda pasang komponen:
 
 ```js
-ReactDOM.render(<App />, rootEl);
+const root = ReactDOM.createRoot(rootEl);
+root.render(<App />);
 ```
 
+<<<<<<< HEAD
 React DOM akan oper `<App />` ke *reconciler*. Ingat bahwa `<App />` adalah elemen React, yaitu, deskripsi *apa* yang akan di *render*. Anda dapat menganggapnya sebagai objek biasa:
+=======
+`root.render` will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ```js
 console.log(<App />);
@@ -235,9 +240,15 @@ Kode ini bekerja, tetapi masih jauh dari bagaimana *reconciler* benar-benar dila
 Fitur utama dari React adalah Anda dapat *render* ulang semuanya, dan itu tidak akan membuat ulang DOM atau mengatur ulang *state*:
 
 ```js
+<<<<<<< HEAD
 ReactDOM.render(<App />, rootEl);
 // Harus menggunakan kembali DOM yang ada:
 ReactDOM.render(<App />, rootEl);
+=======
+root.render(<App />);
+// Should reuse the existing DOM:
+root.render(<App />);
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 ```
 
 Namun, implementasi kami di atas hanya tahu cara memasang diagram awal. Itu tidak dapat melakukan pembaruan karena itu tidak menyimpan semua informasi yang diperlukan, seperti semua `publicInstance`, atau `node` DOM yang sesuai dengan komponen yang mana.
@@ -411,7 +422,11 @@ Jika Anda kesulitan membayangkan bagaimana struktur *instance* internal terstruk
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
+<<<<<<< HEAD
 Untuk menyelesaikan penulisan ulang ini, kami akan memperkenalkan fungsi yang memasang diagram lengkap ke *node container*, juga seperti `ReactDOM.render()`. Ia mengembalikan *instance* publik, juga seperti `ReactDOM.render()`:
+=======
+To complete this refactoring, we will introduce a function that mounts a complete tree into a container node and a public instance:
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ```js
 function mountTree(element, containerNode) {

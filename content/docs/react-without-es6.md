@@ -2,8 +2,6 @@
 id: react-without-es6
 title: React Tanpa ES6
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
 
 Umumnya Anda mendefinisikan komponen React sebagai kelas JavaScript biasa:
@@ -219,10 +217,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 Jika komponen menggunakan beberapa *mixin* dan beberapa *mixin* mendefinisikan *lifecycle method* yang sama (contohnya, beberapa *mixin* ingin melakukan pembersihan ketika komponen dihancurkan), semua *lifecycle method* dijamin untuk dipanggil. *Method* yang didefinisikan pada *mixin* dijalankan secara berurutan sesuai dengan dengan proses pendaftarannya, diikuti dengan pemanggilan *method* pada komponen.
