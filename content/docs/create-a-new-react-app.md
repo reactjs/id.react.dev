@@ -37,7 +37,13 @@ Tim React sangat merekomendasikan solusi ini:
 
 ### Create React App {#create-react-app}
 
+<<<<<<< HEAD
 Create React App mengatur lingkungan pengembangan Anda sehingga, Anda dapat menggunakan fitur terbaru JavaScript, memberikan pengalaman pengembangan yang menyenangkan, dan mengoptimalkan aplikasi Anda untuk lingkungan produksi. Anda membutuhkan [Node >= 8.10 dan npm >= 5.6](https://nodejs.org/en/) di komputer Anda. Untuk membuat suatu proyek baru, jalankan:
+=======
+[Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 14.0.0 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```bash
 npx create-react-app my-app
@@ -73,7 +79,11 @@ Pelajari Gatsby dari [dokumentasi resminya](https://www.gatsbyjs.org/docs/) dan 
 
 - **[nwb](https://github.com/insin/nwb)** sangat baik dalam [memublikasikan komponen React untuk npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). *Toolchains* ini juga [dapat digunakan](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) untuk membuat aplikasi React.
 
+<<<<<<< HEAD
 - **[Nx](https://nx.dev/react)** adalah sebuah *toolkit* untung pengembangan *full-stack* di dalam monorepo, dengan dukungan untuk React, Next.js, [Express](https://expressjs.com/), dan lebih banyak lagi.
+=======
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 - **[Parcel](https://parceljs.org/)** adalah *bundler* aplikasi *web* yang cepat, tanpa konfigurasi, dan dapat [bekerja dengan React](https://parceljs.org/recipes.html#react).
 

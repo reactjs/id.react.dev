@@ -33,7 +33,11 @@ function MyDiv(props) {
 }
 ```
 
+<<<<<<< HEAD
 **Baik:** *Spread operator* dapat digunakan untuk mengekstrak variabel-variabel dari objek *props*, dan menyimpan *props* yang tersisa ke dalam sebuah variabel.
+=======
+**Good:** The spread syntax can be used to pull variables off props, and put the remaining props into a variable.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```js
 function MyDiv(props) {

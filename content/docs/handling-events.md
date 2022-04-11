@@ -29,20 +29,25 @@ sedikit berbeda dengan React:
 </button>
 ```
 
+<<<<<<< HEAD
 Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan React. Anda harus memanggil `preventDefault` secara eksplisit. Sebagai contoh, pada HTML untuk mencegah agar *link* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
+=======
+Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 Sedangkan pada React, contoh tersebut dapat ditulis sebagai berikut:
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
     console.log('Tautan diklik.');
   }
 
@@ -50,6 +55,15 @@ function ActionLink() {
     <a href="#" onClick={handleClick}>
       Klik Saya
     </a>
+=======
+    console.log('You clicked submit.');
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
   );
 }
 ```
@@ -72,8 +86,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -85,11 +99,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
