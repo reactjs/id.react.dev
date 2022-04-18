@@ -36,13 +36,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 Kita akan menyertakan seluruh senarai `listItems` ke dalam elemen `<ul>` dan [me-*render*-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -67,10 +68,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Ketika Anda menjalankan kode ini, Anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu Anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan mengapa ini penting di bagian berikutnya.
@@ -89,12 +88,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -169,12 +162,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Contoh: Penggunaan *Key* yang Benar**
@@ -197,12 +184,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -211,8 +192,12 @@ Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan
 
 ### Key Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 
 *Key* digunakan didalam senarai harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan *key* yang sama ketika kita menghasilkan dua senarai yang berbeda:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -244,10 +229,9 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

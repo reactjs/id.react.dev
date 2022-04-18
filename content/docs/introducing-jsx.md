@@ -33,6 +33,7 @@ Setelah Anda memahaminya, mari kita mulai!
 Dalam contoh di bawah ini, kita mendeklarasikan variabel bernama `name` dan kemudian menggunakannya di dalam JSX dengan cara membungkusnya di dalam tanda kurung kurawal *(curly braces)*:
 
 ```js{1,2}
+<<<<<<< HEAD
 const name = 'Budi';
 const element = <h1>Halo, {name}</h1>;
 
@@ -40,6 +41,10 @@ ReactDOM.render(
   element,
   document.getElementById('root')
 );
+=======
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 ```
 
 Anda dapat menyematkan semua [ekspresi *JavaScript*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) yang valid di dalam tanda kurung kurawal di JSX. Sebagai contoh, `2 + 2`, `user.firstName`, atau `formatName(user)` adalah ekspresi JavaScript yang valid.
@@ -61,14 +66,13 @@ const element = (
     Halo, {formatName(user)}!
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
+<<<<<<< HEAD
 [Coba di CodePen](codepen://introducing-jsx)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan Anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +96,7 @@ function getGreeting(user) {
 Anda dapat menggunakan tanda kutip untuk menentukan *string* literal sebagai atribut:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Anda juga dapat menggunakan kurung kurawal untuk menyematkan ekspresi JavaScript di dalam atribut:
@@ -181,4 +185,8 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam [bagian beri
 
 >**Saran:**
 >
+<<<<<<< HEAD
 >Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450

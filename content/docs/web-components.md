@@ -2,8 +2,6 @@
 id: web-components
 title: Web Components
 permalink: docs/web-components.html
-prev: error-boundaries.html
-next: higher-order-components.html
 redirect_from:
   - "docs/webcomponents.html"
 ---
@@ -52,7 +50,8 @@ class XSearch extends HTMLElement {
 
     const name = this.getAttribute('name');
     const url = 'https://www.google.com/search?q=' + encodeURIComponent(name);
-    ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
+    const root = ReactDOM.createRoot(mountPoint);
+    root.render(<a href={url}>{name}</a>);
   }
 }
 customElements.define('x-search', XSearch);
