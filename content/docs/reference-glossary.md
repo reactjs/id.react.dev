@@ -40,6 +40,7 @@ JSX adalah sintaksis ekstensi untuk JavaScript. JSX mirip dengan bahasa _templat
 Alih-alih menggunakan nama atribut HTML, React DOM menggunakan konvensi penamaan *camelCase* untuk penamaan atributnya. Sebagai contoh, `tabindex` menjadi `tabIndex` di JSX. Atribut `class` juga ditulis sebagai `className` karena `class` adalah nama yang telah dipesan dalam JavaScript.
 
 
+<<<<<<< HEAD
 ```js
 const name = 'Clementine';
 ReactDOM.render(
@@ -47,6 +48,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```  
+=======
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ## [Elemen](/docs/rendering-elements.html) {#elements}
 

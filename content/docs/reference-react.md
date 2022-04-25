@@ -65,6 +65,13 @@ _Suspense_ membuat komponen dapat "menunggu" sesuatu sebelum melakukan _renderin
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Hooks {#hooks}
 
 _Hooks_ merupakan fitur baru pada React 16.8. _Hook_ membuat Anda dapat menggunakan _state_ dan fitur React lain tanpa menuliskan sebuah kelas. _Hooks_ memiliki [bagian dokumentasi tersendiri](/docs/hooks-intro.html) dan terpisah dengan referensi _API_:
@@ -81,6 +88,12 @@ _Hooks_ merupakan fitur baru pada React 16.8. _Hook_ membuat Anda dapat mengguna
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
@@ -128,7 +141,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Apabila _function component_ Anda me-_render_ hasil yang sama jika diberikan _props_ yang sama juga, Anda dapat membungkusnya dengan menggunakan `React.memo` untuk meningkatkan kinerjanya dengan cara menyimpan (_memoize_) hasil _render_-nya. Ini artinya React akan melewati proses _render_ komponen, dan menggunakan hasil _render_ terakhir.
 
+<<<<<<< HEAD
 `React.memo` hanya berefek kepada _props_ yang berubah. Jika komponen Anda yang dibungkus dengan `React.memo` memiliki *Hooks* [`useState`](/docs/hooks-state.html) atau [`useContext`](/docs/hooks-reference.html#usecontext) dalam implementasinya, komponen itu akan tetap me-_render_ ulang apabila _state_ atau _context_ berubah.
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 Secara bawaan `React.memo` hanya akan membandingkan objek yang kompleks pada objek _props_ secara dangkal (_shallow comparison_). Apabila Anda ingin membuat perbandingan sendiri, Anda juga dapat memberikan fungsi pembanding _custom_ sebagai argumen kedua.
 
@@ -175,12 +192,16 @@ Kode yang ditulis dengan [JSX](/docs/introducing-jsx.html) akan dikonversi mengg
 ```javascript
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang diberikan. Elemen yang dihasilkan akan memiliki _props_ dari elemen asli (elemen yang di-_clone_) dengan tambahan _props_ baru yang akan digabungkan secara dangkal. _Children_ baru yang dimasukkan sebagai argumen akan menggantikan _children_ yang sudah ada. Sedangkan `key` dan `ref` dari elemen asli akan tetap dipertahankan.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 `React.cloneElement()` mirip dengan:
 
@@ -188,7 +209,11 @@ Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang di
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 Namun, `React.cloneElement()` tetap mempertahankan `ref`. Ini artinya apabila Anda mendapatkan _child_ yang memiliki `ref`, Anda tidak akan mencurinya secara tidak sengaja dari _ancestor_. Anda akan mendapatkan `ref` yang sama yang dilampirkan ke elemen yang baru.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 _API_ ini dikenalkan sebagai pengganti dari `React.addons.cloneWithProps()`.
 
@@ -329,6 +354,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Perhatikan bahwa untuk me-_render_ komponen `lazy`, Anda membutuhkan komponen `<React.Suspense>` yang berada pada posisi yang lebih tinggi di dalam pohon _rendering_. Ini merupakan cara bagaimana Anda menentukan indikator pemuatan.
 
+<<<<<<< HEAD
 > **Catatan**
 >
 > Menggunakan `React.lazy` dengan impor yang dinamis membutuhkan _Promises_ tersedia pada lingkungan JS. Ini membutuhkan _polyfill_ pada IE11 ke bawah.
@@ -336,6 +362,13 @@ Perhatikan bahwa untuk me-_render_ komponen `lazy`, Anda membutuhkan komponen `<
 ### `React.Suspense` {#reactsuspense}
 
 `React.Suspense` membuat Anda dapat menentukan indikator pemuatan apabila beberapa komponen di bawahnya belum siap untuk di-_render_. Saat ini, komponen _lazy loading_ merupakan **satu-satunya** kasus penggunaan yang didukung `<React.Suspense>`:
+=======
+### `React.Suspense` {#reactsuspense}
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+
+Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ```js
 // Komponen ini dimuat secara dinamis
@@ -355,8 +388,37 @@ function MyComponent() {
 
 Hal itu didokumentasikan pada [panduan pembagian kode](/docs/code-splitting.html#reactlazy) kami. Perhatikan bahwa komponen `lazy` dapat berada jauh di dalam pohon `Suspense` -- komponen tersebut tidak perlu dibungkus secara satu per satu. Sangat disarankan untuk meletakkan `<Suspense>` dimana Anda ingin melihat indikator pemuatan, akan tetapi untuk menggunakan `lazy()` dimanapun Anda ingin melakukan pembagian kode.
 
+<<<<<<< HEAD
 Meskipun hal ini tidak didukung untuk saat ini, pada masa yang akan datang Kami berencana untuk membuat `Suspense` dapat menangani lebih banyak skenario seperti pengambilan data. Anda dapat membaca tentang hal ini pada [roadmap kami](/blog/2018/11/27/react-16-roadmap.html).
+=======
+> Note
+> 
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
->Note:
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
+a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
 >
+<<<<<<< HEAD
 >`React.lazy()` dan `<React.Suspense>` belum didukung oleh `ReactDOMServer`. Ini merupakan batasan yang akan diselesaikan pada masa yang akan datang.
+=======
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892

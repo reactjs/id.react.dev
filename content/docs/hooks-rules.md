@@ -12,7 +12,11 @@ Hooks adalah fungsi JavaScript, tetapi Anda perlu mengikuti dua aturan pada saat
 
 ### Hanya Panggil *Hooks* di Tingkat Atas {#only-call-hooks-at-the-top-level}
 
+<<<<<<< HEAD
 **Jangan memanggil *Hooks* dari dalam *loops*, *conditions*, atau *nested functions*.** Melainkan, selalu gunakan *Hooks* di tingkat atas dari fungsi React Anda. Dengan mengikuti aturan ini, Anda dapat dengan yakin dapat memastikan bahwa *Hooks* akan dipanggil dengan urutan yang sama setiap kali sebuah komponen me-*render*. Hal itu yang menyebabkan React dapat menyimpan *state* dari *Hooks* dengan benar di antara banyak panggilan `useState` dan `useEffect`. (Jika Anda ingin tahu lebih lanjut, kami akan menjelaskan ini lebih dalam [di bawah](#explanation).)
+=======
+**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ### Hanya Panggil *Hooks* dari Fungsi-Fungsi React {#only-call-hooks-from-react-functions}
 
