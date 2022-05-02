@@ -2,8 +2,6 @@
 id: portals
 title: Portal
 permalink: docs/portals.html
-prev: fragments.html
-next: error-boundaries.html
 ---
 
 Portal menyediakan cara utama untuk me-*render* anak ke dalam simpul DOM yang berada di luar hierarki komponen induk.
@@ -149,7 +147,8 @@ function Child() {
   );
 }
 
-ReactDOM.render(<Parent />, appRoot);
+const root = ReactDOM.createRoot(appRoot);
+root.render(<Parent />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jGBWpE)

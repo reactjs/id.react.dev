@@ -39,7 +39,11 @@ Satu-satunya metode yang *harus* didefinisikan dalam sebuah subkelas `React.Comp
 
 ### _Lifecycle_ Komponen {#the-component-_lifecycle_}
 
+<<<<<<< HEAD
 Masing-masing komponen memiliki beberapa "metode _lifecycle_"  yang bisa ditimpa untuk menjalankan kode pada waktu tertentu dalam proses. **Anda bisa menggunakan [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) sebagai contekan.** Pada daftar berikut, metode _lifecycle_ yang umum digunakan dibedakan dengan **huruf tebal**. Metode lainnya ada untuk kasus yang sangat jarang digunakan.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 #### Pemasangan (_Mounting_) {#mounting}
 
@@ -109,7 +113,11 @@ Masing-masing komponen juga menyediakan beberapa API lainnya:
 
 ### Metode _Lifecycle_ yang Sering Digunakan {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Metode dalam bagian berikut mencakup sebagian besar kasus penggunaan yang Anda hadapi ketika membuat komponen React. **Untuk rujukan visual, lihat [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### `render()` {#render}
 
@@ -245,7 +253,11 @@ Anda **tidak boleh memanggil `setState()`** dalam `componentWillUnmount()` karen
 
 ### Metode _Lifecycle_ yang Jarang Digunakan {#rarely-used-_lifecycle_-methods}
 
+<<<<<<< HEAD
 Metode dalam bagian berikut terkait dengan kasus penggunaan yang tidak umum. Metode berikut terkadang berguna, tetapi sebagian besar komponen Anda mungkin tidak membutuhkannya. **Anda bisa melihat metode berikut dalam [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) jika Anda mengeklik kotak centang "Tampilkan _lifecycle_ yang kurang umum" di bagian atas.**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -274,12 +286,21 @@ Saat ini, jika `shouldComponentUpdate()` mengembalikan `false`, maka [`UNSAFE_co
 static getDerivedStateFromProps(props, state)
 ```
 
+<<<<<<< HEAD
 `getDerivedStateFromProps` dipanggil langsung sebelum memanggil metode _render_, baik saat pemasangan awal (_initial mount_) maupun dalam pembaruan selanjutnya. Metode ini mengembalikan sebuah obyek untuk memperbarui _state_, atau _null_ untuk tidak memperbarui.
+=======
+`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Metode ini ada untuk [kasus yang sangat jarang](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state), yaitu saat _state_ tergantung pada perubahan dalam _props_ dalam sebuah kurun waktu. Misalnya, mungkin sangat berguna untuk mengimplementasikan sebuah komponen `<Transition>`, yang membandingkan anak sebelum dan selanjutnya untuk menentukan yang mana yang akan dianimasikan atau tidak.
 
+<<<<<<< HEAD
 Menurunkan _state_ bisa menyebabkan kode lebih bertele-tele dan membuat komponen Anda susah dibayangkan.  
 [Pastikan Anda mengenal alternatif yang lebih sederhana:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 * Jika Anda perlu **menjalankan efek samping** (misalnya, pengambilan data atau animasi) sebagai reaksi atas perubahan _props_, gunakan _lifecycle_ [`componentDidUpdate`](#componentdidupdate).
 
@@ -299,7 +320,11 @@ Perhatikan bahwa metode ini dipanggil dalam *setiap* _render_, tanpa memperhatik
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
+<<<<<<< HEAD
 `getSnapshotBeforeUpdate()` dipanggil langung setelah output hasil _render_ terbaru di-_commit_, misalnya ke DOM. Metode ini memungkinkan komponen Anda untuk menangkap informasi dari DOM (misalnya posisi _scroll_) sebelum nilainya mungkin berubah. Semua nilai yang dikembalikan _lifecycle_ ini akan diteruskan sebagai parameter ke `componentDidUpdate()`.
+=======
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Kasus penggunaan ini tidak umum, tetapi mungkin terjadi dalam antarmuka seperti utas _chatting_ yang harus menangani posisi _scroll_ secara khusus.
 
@@ -323,9 +348,15 @@ Hanya gunakan komponen _error boundary_ untuk proses pemulihan dari eksepsi yang
 
 Untuk detail lebih lanjut, lihat [*Penanganan Kesalahan dalam React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
+<<<<<<< HEAD
 > Catatan
 > 
 > _Error boundary_ hanya akan menangkap kesalahan dalam komponen **di bawah** pohon. Sebuah komponen _error boundary_ tidak dapat menangkap kesalahan dari dalam dirinya sendiri.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -353,7 +384,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Terjadi masalah.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -408,15 +439,28 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+<<<<<<< HEAD
 > Catatan
 > 
 > Pada peristiwa kesalahan berikutnya, Anda bisa me-_render_ antarmuka darurat lewat `componentDidCatch()` dengan memanggil `setState`, tetapi hal ini akan menjadi usang dalam rilis masa mendatang.
 > Gunakan `static getDerivedStateFromError()` untuk menangani proses _render_ kesalahan.
+=======
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 * * *
 
@@ -507,7 +551,11 @@ setState(updater, [callback])
 
 `setState()` mengantrekan perubahan atas _state_ komponen dan memberi tahu React bahwa komponen ini beserta anaknya harus di-_render_ ulang dengan _state_ terbaru. Metode ini merupakan metode utama yang Anda gunakan untuk memperbarui antarmuka sebagai reaksi atas _event handler_ dan balasan server.
 
+<<<<<<< HEAD
 Anda bisa memandang `setState()` sebagai sebuah *_request_* alih-alih memandangnya sebagai perintah perantara untuk memperbarui komponen. Untuk kinerja yang secara persepsi lebih baik, React mungkin menundanya, dan kemudian memperbarui beberapa komponen dalam sekali jalan. React tidak menjamin bahwa perubahan _state_ akan selalu diterapkan secara langsung.
+=======
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 `setState()` tidak selalu langsung memperbarui komponen. Metode ini mungkin mengelompokkan pemanggilan atau menunda pembaruan untuk dilakukan nanti. Hal ini menyebabkan pembacaan `this.state` langsung setelah memanggil `setState()` menjadi sebuah jebakan tersembunyi. Alih-alih menggunakan cara tersebut, gunakan `componentDidUpdate` atau _callback_ `setState` (`setState(updater, callback)`), yang dijamin akan dipanggil setelah pembaruan diterapkan. Jika Anda perlu untuk menetapkan _state_ berdasarkan _state_ sebelumnya, baca tentang argumen `updater` di bawah ini.
 
@@ -588,7 +636,11 @@ Umumnya, Anda harus sejauh mungkin menghindari semua penggunaan `forceUpdate()` 
 
 ### `defaultProps` {#defaultprops}
 
+<<<<<<< HEAD
 `defaultProps` dapat didefinisikan sebagai properti dalam kelas komponen itu sendiri, yang digunakan untuk menetapkan _props_ default pada kelas tersebut. Ini digunakan untuk _props_ yang bernilai _undefined_ tetapi tidak untuk _props_ yang bernilai _null_. Misalnya:
+=======
+`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```js
 class CustomButton extends React.Component {
@@ -608,7 +660,11 @@ Jika `props.color` tidak disediakan, nilainya akan ditetapkan secara default seb
   }
 ```
 
+<<<<<<< HEAD
 Jika `props.color` ditetapkan bernilai _null_, nilainya akan tetap _null_:
+=======
+If `props.color` is set to `null`, it will remain `null`:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```js
   render() {

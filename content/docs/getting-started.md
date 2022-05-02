@@ -36,9 +36,15 @@ React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat mengguna
 
 ### Online Playgrounds {#online-playgrounds}
 
+<<<<<<< HEAD
 Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), atau [Stackblitz](https://stackblitz.com/fork/react).
 
 Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
+=======
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Stackblitz](https://stackblitz.com/fork/react).
+
+If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### Tambahkan React ke Website {#add-react-to-a-website}
 
@@ -115,7 +121,11 @@ Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai Rea
 
 Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi Anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
+<<<<<<< HEAD
 Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/main/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ## Dokumentasi Berversi {#versioned-documentation}
 

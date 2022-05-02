@@ -34,11 +34,19 @@ Kita menyebut ini sebagai *node DOM* "akar" karena semua yang berada di dalamnya
 
 Aplikasi yang dibuat dengan React biasanya memiliki satu *node DOM* akar. Jika Anda mengintegrasikan React ke dalam aplikasi yang sudah ada, Anda dapat memiliki *node DOM* akar yang terisolasi sebanyak yang Anda inginkan.
 
+<<<<<<< HEAD
 Untuk me-*render* sebuah elemen React ke dalam sebuah *node DOM* akar, oper keduanya ke [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 `embed:rendering-elements/render-an-element.js`
 
 [Coba di CodePen](codepen://rendering-elements/render-an-element)
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+
+`embed:rendering-elements/render-an-element.js`
+
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Kode di atas akan menampilkan "Halo dunia" pada laman.
 
@@ -46,19 +54,33 @@ Kode di atas akan menampilkan "Halo dunia" pada laman.
 
 Elemen React bersifat [*immutable*](https://en.wikipedia.org/wiki/Immutable_object). Setelah Anda membuat sebuah elemen, Anda tidak dapat mengubah elemen anak atau atributnya. Sebuah elemen mirip dengan sebuah *frame* dalam film: elemen merepresentasikan antarmuka pengguna pada satu titik waktu tertentu.
 
+<<<<<<< HEAD
 Dengan pengetahuan kita sejauh ini, satu-satunya jalan untuk memperbarui antarmuka pengguna adalah dengan membuat sebuah elemen baru dan mengopernya ke `ReactDOM.render()`.
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Perhatikan contoh jam berdetak di bawah ini:
 
 `embed:rendering-elements/update-rendered-element.js`
 
+<<<<<<< HEAD
 [Coba di CodePen](codepen://rendering-elements/update-rendered-element)
 
 Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callback* [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
+
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >**Catatan:**
 >
+<<<<<<< HEAD
 >Dalam praktiknya, sebagian besar aplikasi React hanya memanggil `ReactDOM.render()` sekali saja. Pada bagian berikutnya kita akan mempelajari bagaimana kode ini dapat dienkapsulasi ke dalam [*stateful components*](/docs/state-and-lifecycle.html).
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 >
 >Kami menyarankan agar Anda tidak melewati satupun topik karena topik-topik ini berhubungan satu dengan lainnya.
 
@@ -66,7 +88,11 @@ Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callba
 
 React DOM membandingkan antara elemen dan elemen anaknya dengan elemen sebelumnya dan hanya mengaplikasikan perbaruan DOM yang diperlukan untuk menyelaraskan DOM ke *state* yang diinginkan.
 
+<<<<<<< HEAD
 Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](codepen://rendering-elements/update-rendered-element) dengan peralatan dari *browser*:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ![Inspektor DOM menunjukkan pembaruan yang bersifat *granular*](../images/docs/granular-dom-updates.gif)
 
