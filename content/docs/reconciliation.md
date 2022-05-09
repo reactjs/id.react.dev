@@ -2,8 +2,6 @@
 id: reconciliation
 title: Rekonsiliasi
 permalink: docs/reconciliation.html
-prev: react-without-jsx.html
-next: context.html
 ---
 
 React menyediakan API deklaratif jadi Anda tidak perlu khawatir tentang apa yang pasti berubah pada setiap pembaruan. Ini membuat penulisan aplikasi menjadi jauh lebih mudah, tetapi ini mungkin kurang jelas bagaimana ini diimplementasikan di dalam React. Artikel ini menjelaskan pilihan yang bisa kita buat dalam algoritma "pembeda" nya React jadi pembaruan komponen dapat diprediksi selagi aplikasi berkinerja cukup cepat.
@@ -29,7 +27,11 @@ Saat membedakan dua pohon, React pertama membandingkan dua elemen *root*. Tindak
 
 Kapanpun elemen-elemen *root* memiliki jenis yang berbeda, React akan meruntuhkan pohon lama dan membangun pohon baru dari awal. Mulai dari `<a>` ke `<img>`, atau dari `<Article>` ke `<Comment>`, atau dari `<Button>` ke `<div>` - Semua itu akan mengarah pada pembangunan kembali sepenuhnya.
 
+<<<<<<< HEAD
 Saat meruntuhkan sebuah pohon, node DOM lama dihancurkan. *Instance* komponen menerima `componentWillUnmount()`. Saat membangun pohon baru, node DOM baru dimasukan ke dalam DOM. *Instance* komponen menerima `componentWillMount()` lalu `componentDidMount()`. *State* manapun yang terkait dengan pohon lama akan hilang.
+=======
+When tearing down a tree, old DOM nodes are destroyed. Component instances receive `componentWillUnmount()`. When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive `UNSAFE_componentWillMount()` and then `componentDidMount()`. Any state associated with the old tree is lost.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 Komponen manapun di bawah *root* juga akan dilepas dan *state* nya dihancurkan. Sebagai contoh, saat membedakan:
 
@@ -46,7 +48,19 @@ Ini akan menghancurkan `Counter` lama dan memasang kembali yang baru.
 
 ### Elemen DOM Dari Jenis Yang Sama {#dom-elements-of-the-same-type}
 
+<<<<<<< HEAD
 Saat membandingkan dua elemen DOM React dari jenis yang sama, React melihat atribut keduanya, menjaga node DOM dengan dasar yang sama, dan hanya memperbarui atribut yang berubah. Sebagai contoh:
+=======
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- `UNSAFE_componentWillMount()`
+
+### DOM Elements Of The Same Type {#dom-elements-of-the-same-type}
+
+When comparing two React DOM elements of the same type, React looks at the attributes of both, keeps the same underlying DOM node, and only updates the changed attributes. For example:
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ```xml
 <div className="before" title="stuff" />
@@ -70,11 +84,26 @@ Setelah menangani node DOM, React lalu berulang pada *children*.
 
 ### Elemen Komponen Dari Jenis Yang Sama {#component-elements-of-the-same-type}
 
+<<<<<<< HEAD
 Saat komponen diperbarui, *instance*-nya tetap sama, jadi *state* tersebut terjaga di berbagai *render*. React memperbarui *prop* yang mendasari *instance* komponen untuk mencocokan elemen baru, dan memanggil `componentWillReceiveProps()` dan `componentWillUpdate()` di *instance* yang mendasari.
+=======
+When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `UNSAFE_componentWillReceiveProps()`, `UNSAFE_componentWillUpdate()` and `componentDidUpdate()` on the underlying instance.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 Selanjutnya, metode `render()` dipanggil dan algoritma pembeda berulang pada hasil sebelumnya dan hasil yang baru.
 
+<<<<<<< HEAD
 ### Berulang Di Children {#recursing-on-children}
+=======
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
+
+### Recursing On Children {#recursing-on-children}
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 Secara standar, saat berulang pada *children* node DOM, React hanya melakukan iterasi di atas kedua daftar *children* di waktu bersamaan dan menghasilkan mutasi setiap kali ada perbedaan.
 

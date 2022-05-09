@@ -32,7 +32,11 @@ Bila Anda sedang menulis *library* yang melakukan pengujian pada perilaku *brows
 
 Pada *environment* dimana Anda *tidak dapat* men-simulasikan sebuah DOM (contoh: Menguji komponen React Native pada Node.js), Anda dapat menggunakan [event simulation helpers](https://reactjs.org/docs/test-utils.html#simulate) untuk mensimulasikan interaksi-interaksi dengan elemen-elemen. Cara lainnya, Anda dapat menggunakan bantuan `fireEvent` dari [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
 
+<<<<<<< HEAD
 *Frameworks* seperti [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) dan [webdriver](https://www.seleniumhq.org/projects/webdriver/) berguna untuk melakukan [pengujian *end-to-end*](#end-to-end-tests-aka-e2e-tests).
+=======
+In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ### Membuat tiruan fungsi {#mocking-functions}
 
@@ -56,4 +60,10 @@ Terkadang, Anda mungkin tidak ingin membuat waktu tiruan. Contohnya, mungkin And
 
 Pengujian *end-to-end* berguna untuk menguji alur yang lebih panjang, khususnya untuk hal-hal yang bersifat kritis pada bisnis anda (seperti pembayaran dan pendaftaran). Untuk pengujian-pengujian ini, Anda mungkin ingin menguji keduanya, bagaimana *browser* sebenarnya me-*render* app secara keseluruhan, mengambil data dari API *endpoint* sungguhan, menggunakan *session* dan *cookie*, melakukan navigasi untuk berbagai tautan. Anda juga mungkin tidak hanya menguji kondisi DOM, namun juga menguji untuk hal-hal dukungan data (contoh: Verifikasi apakah pembaruan telah tersimpan di *database*)
 
+<<<<<<< HEAD
 Pada skenario ini, Anda dapat menggunakan *framework* seperti [Cypress](https://www.cypress.io/) atau *library* seperti [puppeteer](https://github.com/GoogleChrome/puppeteer) agar anda dapat mengunjungi banyak rute navigasi dan menguji efek samping tidak hanya pada *browser*, namun juga pada *backend*.
+=======
+End-to-end tests are useful for testing longer workflows, especially when they're critical to your business (such as payments or signups). For these tests, you'd probably want to test how a real browser renders the whole app, fetches data from the real API endpoints, uses sessions and cookies, navigates between different links. You might also likely want to make assertions not just on the DOM state, but on the backing data as well (e.g. to verify whether the updates have been persisted to the database).
+
+In this scenario, you would use a framework like [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev) or a library like [Puppeteer](https://pptr.dev/) so you can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
