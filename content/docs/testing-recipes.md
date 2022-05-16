@@ -57,7 +57,11 @@ Anda dapat menggunakan pola yang berbeda, namun ingatlah bahwa kita harus melaku
 
 ### `act()` {#act}
 
+<<<<<<< HEAD
 Ketika menulis pengujian antarmuka pengguna, Pekerjaan-pekerjaan seperti *rendering*, *events* pengguna, atau pengambilan data dapat diperlakukan sebagai "unit-unit" dari interaksi dengan antarmuka pengguna. React menyediakan fungsi bantuan bernama `act()` yang memastikan semua pembaruan yang berhubungan dengan "unit-unit" tadi sudah diproses dan diterapkan ke DOM sebelum Anda melakukan *assertion*.
+=======
+When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. `react-dom/test-utils` provides a helper called [`act()`](/docs/test-utils.html#act) that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ```js
 act(() => {
@@ -377,7 +381,10 @@ let container = null;
 beforeEach(() => {
   // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
+<<<<<<< HEAD
   // container *harus* melekat pada document agar events bekerja dengan benar
+=======
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
   document.body.appendChild(container);
 });
 
@@ -394,7 +401,11 @@ it("changes value when clicked", () => {
     render(<Toggle onChange={onChange} />, container);
   });
 
+<<<<<<< HEAD
   // pegang elemen button, dan picu beberapa klik dengannya
+=======
+  // get a hold of the button element, and trigger some clicks on it
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Turn on");
 
@@ -416,7 +427,11 @@ it("changes value when clicked", () => {
 });
 ```
 
+<<<<<<< HEAD
 *Event* DOM yang berbeda dan properti-properti mereka dijabarkan di [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Perlu dicatat bahwa Anda perlu mengoper `{ bubbles: true }` pada setiap *event* yang Anda buat agar *event* tersebut dapat mencapai React *listener* karena React secara otomatis mendelegasikan *event-event*  itu ke dokumen.
+=======
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 Catatan:
 >
@@ -466,13 +481,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // Atur elemen DOM sebagai tujuan render
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -480,6 +494,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("should select null after timing out", () => {
@@ -606,7 +621,11 @@ Pada umumnya lebih baik untuk membuat *assertions* yang lebih spesifik daripada 
 
 ### *Multiple Renderers* {#multiple-renderers}
 
+<<<<<<< HEAD
 Pada kasus-kasus yang jarang, Anda akan menjalankan pengujian dengan komponen yang menggunakan *multiple renderers*. Sebagai contoh, Anda mungkin menjalankan pengujian-pengujian *snapshot* pada sebuah komponen dengan `react-test-renderer`, yang secara internal menggunakan `ReactDOM.render` didalam sebuah anak komponen untuk me-*render* konten. Pada skenario ini, Anda dapat membungkus pembaruan-pembaruan dengan `act()`s sesuai dengan *renderers* masing-masing.
+=======
+In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";

@@ -10,9 +10,15 @@ next: handling-events.html
 
 Halaman ini akan mengenalkan tentang konsep dari _state_ dan _lifecycle_ di sebuah komponen React. Anda bisa menemukan [referensi detail _API_ komponen disini](/docs/react-component.html).
 
+<<<<<<< HEAD
 Pertimbangkan contoh detak jam dari [salah satu bagian sebelumnya](/docs/rendering-elements.html#updating-the-rendered-element). Di [_Rendering Element_](/docs/rendering-elements.html#rendering-an-element-into-the-dom), kita baru saja mempelajari satu cara untuk memperbarui _UI_. Kita memanggil `ReactDOM.render()` untuk mengubah hasil _render_:
+=======
+Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `root.render()` to change the rendered output:
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
-```js{8-11}
+```js{10}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+  
 function tick() {
   const element = (
     <div>
@@ -20,10 +26,7 @@ function tick() {
       <h2>Ini {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
+  root.render(element);
 }
 
 setInterval(tick, 1000);
@@ -35,7 +38,9 @@ Di bagian ini, Kita akan belajar cara membuat komponen `Clock`  benar-benar dapa
 
 Kita dapat memulai dengan mengenkapsulasi bagaimana jam terlihat:
 
-```js{3-6,12}
+```js{5-8,13}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 function Clock(props) {
   return (
     <div>
@@ -46,10 +51,7 @@ function Clock(props) {
 }
 
 function tick() {
-  ReactDOM.render(
-    <Clock date={new Date()} />,
-    document.getElementById('root')
-  );
+  root.render(<Clock date={new Date()} />);
 }
 
 setInterval(tick, 1000);
@@ -62,10 +64,7 @@ Namun, ia melewatkan persyaratan penting: faktanya bahwa `Clock` mengatur _timer
 Idealnya kita butuh untuk menulis ini sekali dan `Clock` dapat memperbarui dirinya sendiri:
 
 ```js{2}
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+root.render(<Clock />);
 ```
 
 Untuk mengimplementasikan ini, kita perlu untuk menambahkan _"state"_ ke komponen `Clock`.
@@ -158,10 +157,7 @@ Kelas komponen harus selalu memanggil ke konstruktor dasar dengan `props`.
 1) Hapus properti `date` dari elemen `<Clock />`:
 
 ```js{2}
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+root.render(<Clock />);
 ```
 
 Kita nanti akan menambahkan kode _timer_ kembali ke komponen itu sendiri.
@@ -185,10 +181,8 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clock />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
@@ -294,10 +288,8 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clock />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
@@ -306,7 +298,11 @@ Sekarang jam akan berdetak setiap waktu.
 
 Mari kita rekap dengan cepat apa yang terjadi dan urutan _method_ yang dipanggil:
 
+<<<<<<< HEAD
 1) Ketika `<Clock />` diberikan ke `ReactDOM.render()`, React memanggil konstruktor dari komponen `Clock`. Ketika `Clock` perlu untuk menampilkan waktu saat ini, dia menginisialisai `this.state` dengan sebuah obyek termasuk waktu saat ini. Kita nantinya akan memperbarui status ini.
+=======
+1) When `<Clock />` is passed to `root.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 2) React kemudian memanggil _method_ `render()` milik komponen `Clock`. Beginilah cara React belajar apa yang harusnya ditampilkan di layar. React kemudian memperbarui _DOM_ untuk mencocokan hasil _render_ `Clock`.
 
@@ -447,11 +443,6 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)

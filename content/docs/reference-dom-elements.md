@@ -116,7 +116,11 @@ Secara normal, ada sebuah peringatan ketika elemen dengan *children* juga ditand
 
 Jika Anda menggunakan *rendering* sisi server React, biasanya ada peringatan ketika server dan klien membuat konten yang berbeda. Namun, pada beberapa kasus yang jarang terjadi, sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Sebagai contoh, *timestamps* diharapkan berbeda di server dan di klien.
 
+<<<<<<< HEAD
 Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ### value {#value}
 
@@ -129,9 +133,15 @@ Pada React 16, semua atribut DOM standar [atau *custom*](/blog/2017/09/08/dom-at
 React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil *props* khusus dan *props* yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
 ```js
+<<<<<<< HEAD
 <div tabIndex="-1" />      // Sama seperti API DOM node.tabIndex
 <div className="Button" /> // Sama seperti API DOM node.className
 <input readOnly={true} />  // Sama seperti API DOM node.readOnly
+=======
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
+<div className="Button" /> // Just like node.className DOM API
+<input readOnly={true} />  // Just like node.readOnly DOM API
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 ```
 
 *Props* ini bekerja mirip dengan atribut HTML yang sesuai, dengan pengecualian pada kasus khusus yang didokumentasikan di atas.

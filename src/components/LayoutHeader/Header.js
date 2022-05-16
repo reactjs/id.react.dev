@@ -5,6 +5,8 @@
  * @flow
  */
 
+import SurveyBanner from 'components/SurveyBanner';
+import SocialBanner from 'components/SocialBanner';
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
@@ -18,6 +20,15 @@ import DocSearch from './DocSearch';
 import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';
+
+const ContainerWrapper = ({children}) => (
+  <div
+    css={{
+      backgroundColor: 'hsl(222, 14%, 10%)',
+    }}>
+    {children}
+  </div>
+);
 
 const Header = ({location}: {location: Location}) => (
   <header
@@ -33,34 +44,14 @@ const Header = ({location}: {location: Location}) => (
         display: 'none',
       },
     }}>
-    <Container>
-      <div
-        css={{
-          height: 60,
-          fontSize: 20,
-          padding: 20,
-          textAlign: 'center',
-          [media.between('small', 'large')]: {
-            fontSize: 22,
-            height: 60,
-          },
-          [media.lessThan('small')]: {
-            height: 80,
-          },
-          [media.greaterThan('medium')]: {
-            fontSize: 25,
-          },
-        }}>
-        Black Lives Matter.{' '}
-        <a
-          style={{color: colors.brand}}
-          target="_blank"
-          rel="noopener"
-          href="https://support.eji.org/give/153413/#!/donation/checkout">
-          Support&nbsp;the&nbsp;Equal&nbsp;Justice&nbsp;Initiative.
-        </a>
-      </div>
-    </Container>
+    <ContainerWrapper>
+      <Container>
+        <div style={{position: 'relative'}}>
+          <SurveyBanner />
+          <SocialBanner />
+        </div>
+      </Container>
+    </ContainerWrapper>
     <Container>
       <div
         css={{
