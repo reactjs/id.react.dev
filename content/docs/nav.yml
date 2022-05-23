@@ -92,6 +92,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
@@ -133,6 +135,7 @@
       title: Testing Recipes
     - id: testing-environments
       title: Testing Environments
+<<<<<<< HEAD
 - title: Concurrent Mode (Experimental)
   isOrdered: true
   items:
@@ -146,6 +149,8 @@
       title: Adopting Concurrent Mode
     - id: concurrent-mode-reference
       title: Concurrent Mode API Reference
+=======
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 - title: Contributing
   items:
     - id: how-to-contribute

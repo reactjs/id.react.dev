@@ -19,9 +19,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 dengan npm
 
 > Catatan:
 >
+<<<<<<< HEAD
 > Kami menyarankan Anda untuk menggunakan [`react-testing-library`](https://git.io/react-testing-library) yang didesain untuk memfasilitasi dan mendorong penulisan tes yang menggunakan komponen Anda selayaknya seorang pengguna sebenarnya.
 >
 > Pilihan lain, Airbnb telah merilis utilitas tes bernama [Enzyme](https://airbnb.io/enzyme/), yang mempermudah kita dalam menyatakan, memanipulasi, dan melewati keluaran dari komponen React Anda.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -87,7 +95,7 @@ Ini adalah contoh bagaimana kita bisa menguji komponen ini:
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -106,7 +114,7 @@ afterEach(() => {
 it('bisa render dan memperbarui counter', () => {
   // Uji render pertama dan componentDidMount
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -140,8 +148,12 @@ Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ be
 
 > Catatan:
 >
+<<<<<<< HEAD
 
 > `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 
 * * *
 
@@ -302,7 +314,7 @@ Menggambar sebuah elemen React ke dalam sebuah DOM _node_ terpisah dalam _docume
 
 ```js
 const domContainer = document.createElement('div');
-ReactDOM.render(element, domContainer);
+ReactDOM.createRoot(domContainer).render(element);
 ```
 
 > Catatan:

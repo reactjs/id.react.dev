@@ -35,11 +35,9 @@ function Greeting(props) {
   return <GuestGreeting />;
 }
 
-ReactDOM.render(
-  // Try changing to isLoggedIn={true}:
-  <Greeting isLoggedIn={false} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
+root.render(<Greeting isLoggedIn={false} />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
@@ -110,10 +108,8 @@ class LoginControl extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<LoginControl />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
@@ -140,10 +136,9 @@ function Mailbox(props) {
 }
 
 const messages = ['React', 'Re: React', 'Re:Re: React'];
-ReactDOM.render(
-  <Mailbox unreadMessages={messages} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Mailbox unreadMessages={messages} />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
@@ -151,6 +146,19 @@ ReactDOM.render(
 Ekspresi diatas akan bekerja karena dalam JavaScript, `true && expression` selalu mengevaluasi `true`, dan `false && expression` selalu mengevaluasi `false`.
 
 Maka dari itu, jika kondisi `true`, elemen tepat setelah `&&` akan muncul pada _output_. jika `false`, React akan mengabaikannya.
+
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
 
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
@@ -231,10 +239,8 @@ class Page extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Page />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
