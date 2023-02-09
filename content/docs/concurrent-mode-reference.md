@@ -178,7 +178,7 @@ const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
 
 Menghasilkan suatu nilai yang "tertunda" sampai kurun waktu `timeoutMs`.
 
-Biasanya digunakan untuk memastikan tampilan tetap responsif ketika suatu hal perlu di tampilkan seketika dari interaksi pengguna sedangkan harus menunggu proses pengambilan data juga.
+Biasanya digunakan untuk memastikan tampilan tetap responsif ketika suatu hal perlu ditampilkan seketika dari interaksi pengguna sedangkan harus menunggu proses pengambilan data juga.
 
 Salah satu contoh skenario yang tepat adalah masukan teks (_text input_).
 

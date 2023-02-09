@@ -201,7 +201,7 @@ Dibutuhkan sebuah [fungsi sebagai *child*](/docs/render-props.html#using-props-o
 
 ### `Context.displayName` {#contextdisplayname}
 
-Objek Context menerima properti *string* `displayName`. React DevTools menggunakan *string* ini untuk menentukan apa yang harus di tampilkan untuk *context* tersebut.
+Objek Context menerima properti *string* `displayName`. React DevTools menggunakan *string* ini untuk menentukan apa yang harus ditampilkan untuk *context* tersebut.
 
 Misalnya, komponen berikut ini akan muncul sebagai MyDisplayName di DevTools:
 

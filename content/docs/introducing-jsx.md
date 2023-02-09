@@ -14,13 +14,13 @@ const element = <h1>Halo, Dunia!</h1>;
 
 Sintaksis *tag* aneh ini bukanlah sebuah *string* ataupun *HTML*.
 
-Sintaksis ini di kenal dengan sebutan JSX, dan sintaksis ini adalah sebuah sintaksis ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan Anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
+Sintaksis ini dikenal dengan sebutan JSX, dan sintaksis ini adalah sebuah sintaksis ekstensi untuk *JavaScript*. Kami sarankan menggunakannya dengan React untuk mendeskripsikan bagaimana antarmuka pengguna seharusnya terlihat. JSX mungkin akan mengingatkan Anda dengan sebuah bahasa *templat*, bedanya adalah JSX telah dilengkapi dengan kekuatan penuh dari JavaScript.
 
 JSX akan menghasilkan "elemen" React. Kita akan mulai mengeksplor bagaimana me-*render* mereka ke dalam DOM di bagian [berikutnya](/docs/rendering-elements.html). Di bawah ini, Anda akan menemukan dasar-dasar JSX yang Anda butuhkan untuk memulai.
 
 ### Mengapa JSX? {#why-jsx}
 
-React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan logika antarmuka pengguna lainnya. bagaimana *events* akan ditangani, bagaimana *state* berubah seiring dengan waktu, dan bagaimana data disiapkan untuk di tampilkan.
+React mengakui bahwa logika *rendering* akan secara inheren digabungkan dengan logika antarmuka pengguna lainnya. bagaimana *events* akan ditangani, bagaimana *state* berubah seiring dengan waktu, dan bagaimana data disiapkan untuk ditampilkan.
 
 Alih-alih memisahkan *technologies* secara artifisial dengan meletakkan *markup* dan logika di file terpisah, React [memisahkan kepentingan *(separates concerns)*](https://en.wikipedia.org/wiki/Separation_of_concerns) dengan unit kopling rendah bernama "komponen" yang mengandung keduanya. Kita akan kembali ke komponen dalam [bagian selanjutnya](/docs/components-and-props.html), tetapi jika Anda merasa belum nyaman menempatkan *markup* di JavaScript, [video ini](https://www.youtube.com/watch?v=x7cQ3mrcKaY) mungkin akan meyakinkan Anda.
 
@@ -76,7 +76,7 @@ Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwaji
 
 Setelah dikompilasi, Ekspresi JSX akan menjadi panggilan fungsi JavaScript biasa dan menjadi objek JavaScript.
 
-Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan perulangan `for`, memasukkannya ke dalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
+Hal ini berarti bahwa Anda dapat menggunakan JSX di dalam pernyataan `if` dan perulangan `for`, memasukkannya kedalam variabel, menerimanya sebagai argumen, dan mengembalikannya dari sebuah fungsi:
 
 ```js{3,5}
 function getGreeting(user) {
@@ -181,4 +181,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam [bagian beri
 
 >**Saran:**
 >
->Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.
+>Kami merekomendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.

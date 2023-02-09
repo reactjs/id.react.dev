@@ -19,7 +19,7 @@ class App extends React.Component {
 }
 
 // highlight-range{1,2}
-// Komponen di tengah tidak harus 
+// Komponen di tengah tidak harus
 // oper temanya secara ekplisit lagi.
 function Toolbar() {
   return (

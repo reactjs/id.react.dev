@@ -27,7 +27,9 @@ class DocSearch extends Component<{}, State> {
         inputSelector: '#algolia-doc-search',
       });
     } else {
-      console.warn('Pencarian gagal untuk memuat dan sekarang telah di non aktifkan');
+      console.warn(
+        'Pencarian gagal untuk memuat dan sekarang telah di non aktifkan',
+      );
       this.setState({enabled: false});
     }
   }
