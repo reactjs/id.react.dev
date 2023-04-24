@@ -4,6 +4,14 @@ title: Pengecekan Static Type
 permalink: docs/static-type-checking.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Check out [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/) for how to use React with TypeScript.
+
+</div>
+
 Pengecekan *static type* seperti [Flow](https://flow.org/) dan [TypeScript](https://www.typescriptlang.org/) mengidentifikasi jenis masalah tertentu bahkan sebelum kode dijalankan. Pengecekan tersebut juga bisa meningkatkan alur kerja pengembang dengan menambahkan fitur seperti pelengkapan kode secara otomatis. Dengan alasan ini, kami sarankan untuk menggunakan Flow atau TypeScript alih-alih menggunakan `PropTypes` untuk kode program berukuran besar.
 
 ## Flow {#flow}
@@ -317,7 +325,7 @@ Kini Anda siap menciptakan kode program! Kami sarankan untuk mengunjungi sumber 
 * [Dokumentasi TypeScript: Migrasi dari Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Dokumentasi TypeScript: React dan Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
-## Reason {#reason}
+## ReScript {#rescript}
 
 [Reason](https://reasonml.github.io/) bukan sebuah bahasa baru, Reason merupakan sintaksis dan *toolchain* baru yang didukung bahasa [OCaml](https://ocaml.org/) yang telah teruji. Reason memberikan sintaksis OCaml yang familier, yang ditujukan untuk pemrogram JavaScript, serta melayani alur kerja NPM/Yarn yang sudah ada dan telah diketahui.
 

@@ -87,7 +87,7 @@ Ini adalah contoh bagaimana kita bisa menguji komponen ini:
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -106,7 +106,7 @@ afterEach(() => {
 it('bisa render dan memperbarui counter', () => {
   // Uji render pertama dan componentDidMount
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -141,7 +141,7 @@ Oper sebuah komponen tiruan ke _method_ ini untuk menambahkan _method-method_ be
 > Catatan:
 >
 
-> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` adalah sebuah API peninggalan. Kami menyarankan Anda menggunakan [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock).
 
 * * *
 
@@ -302,7 +302,7 @@ Menggambar sebuah elemen React ke dalam sebuah DOM _node_ terpisah dalam _docume
 
 ```js
 const domContainer = document.createElement('div');
-ReactDOM.render(element, domContainer);
+ReactDOM.createRoot(domContainer).render(element);
 ```
 
 > Catatan:

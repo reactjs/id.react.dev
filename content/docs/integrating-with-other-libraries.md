@@ -2,9 +2,20 @@
 id: integrating-with-other-libraries
 title: Integrasi dengan Library Lain
 permalink: docs/integrating-with-other-libraries.html
-prev: render-props.html
-next: accessibility.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`useSyncExternalStore`: Subscribing to an external store 
+](https://react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
+> - [`createPortal`: Rendering React components into non-React DOM nodes 
+](https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
+
+</div>
 
 React dapat digunakan pada aplikasi peramban apapun. React juga dapat ditanamkan di aplikasi lain, dan dengan sedikit pengaturan, aplikasi lain dapat ditanamkan di React. Panduan ini akan membahas beberapa kasus penggunaan yang lebih umum, memfokuskan pada integrasi dengan [jQuery](https://jquery.com/) dan [Backbone](https://backbonejs.org/), tetapi ide yang sama dapat diaplikasikan untuk mengintegrasikan komponen dengan kode yang ada.
 
@@ -192,9 +203,9 @@ class Chosen extends React.Component {
 
 ## Integrasi dengan *Library* Tampilan Lain {#integrating-with-other-view-libraries}
 
-React dapat ditanamkan pada aplikasi lain karena kefleksiblelannya [`ReactDOM.render()`](/docs/react-dom.html#render).
+React dapat ditanamkan pada aplikasi lain karena kefleksiblelannya [`createRoot()`](/docs/react-dom-client.html#createRoot).
 
-Meskipun React umum digunakan di *startup* untuk memuat komponen akar tunggal React pada DOM, `ReactDOM.render()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang di mana dapat berupa sekecil tombol, atau sebesar sebuah aplikasi.
+Meskipun React umum digunakan di *startup* untuk memuat komponen akar tunggal React pada DOM, `createRoot()` juga bisa dipanggil beberapa kali untuk bagian independen dari UI yang di mana dapat berupa sekecil tombol, atau sebesar sebuah aplikasi.
 
 Faktanya, seperti inilah bagaimana React digunakan di Facebook. Ini membuat kita menulis aplikasi pada React sedikit demi sedikit, dan mengkombinasikannya dengan templat yang dihasilkan server kami dan kode sisi klien lainnya.
 
@@ -218,15 +229,9 @@ function Button() {
   return <button id="btn">Say Hello</button>;
 }
 
-ReactDOM.render(
-  <Button />,
-  document.getElementById('container'),
-  function() {
-    $('#btn').click(function() {
-      alert('Hello!');
-    });
-  }
-);
+$('#btn').click(function() {
+  alert('Hello!');
+});
 ```
 
 Dari sini Anda dapat mulai memindahkan lebih banyak logika ke komponen dan mulai mengadopsi lebih banyak praktik React yang lebih umum. Contohnya, dalam komponen yang terbaik adalah untuk tidak bergantung pada ID karena komopnen yang sama  dapat di-_render_ beberapa kali. Sebagai gantinya, kira dapat menggunakan [sistem _event_ React](/docs/handling-events.html) dan meregistrasi *handler* klik langsung pada elemen `<button>` React:
@@ -242,36 +247,34 @@ function HelloButton() {
   }
   return <Button onClick={handleClick} />;
 }
-
-ReactDOM.render(
-  <HelloButton />,
-  document.getElementById('container')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Anda dapat memiliki komponen yang terisolasi sebanyak yang Anda suka, dan menggunakan `ReactDOM.render()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, Anda akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.render()`.
+Anda dapat memiliki komponen yang terisolasi sebanyak yang Anda suka, dan menggunakan `ReactDOM.createRoot()` untuk merendernya pada kontainer DOM yang berbeda. Sedikit demi sedikit, saat Anda mengonversi lebih banyak bagian dari aplikasi Anda ke React, Anda akan bisa mengkombinasikannya menjadi komponen yang lebih besar, dan memindahkan beberapa dari hirarki pemanggilan `ReactDOM.createRoot()`.
 
 ### Menanamkan React dalam Tampilan Backbone {#embedding-react-in-a-backbone-view}
 
 Tampilan [Backbone](https://backbonejs.org/) secara khusus menggunakan _string_ HTML, atau templat fungsi pembuat _string_, untuk membuat konten untuk elemen DOM mereka. Proses ini juga dapat digantikan dengan me-_render_ sebuah komponen React.
 
-Di bawah ini, kita dapat membuat sebuah tampilan Backbone bernama `ParagraphView`. Tampilan ini akan mengesampingkan fungsi `render()` Backbone untuk me-_render_ sebuah komponen `<Paragraph>` React pada elemen DOM yang disediakan oleh Backbone (`this.el`). Di sini kita juga menggunakan [`ReactDOM.render()`](/docs/react-dom.html#render):
+Di bawah ini, kita dapat membuat sebuah tampilan Backbone bernama `ParagraphView`. Tampilan ini akan mengesampingkan fungsi `render()` Backbone untuk me-_render_ sebuah komponen `<Paragraph>` React pada elemen DOM yang disediakan oleh Backbone (`this.el`). Di sini kita juga menggunakan [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot):
 
-```js{1,5,8,12}
+```js{7,11,15}
 function Paragraph(props) {
   return <p>{props.text}</p>;
 }
 
 const ParagraphView = Backbone.View.extend({
+  initialize(options) {
+    this.reactRoot = ReactDOM.createRoot(this.el);
+  },
   render() {
     const text = this.model.get('text');
-    ReactDOM.render(<Paragraph text={text} />, this.el);
+    this.reactRoot.render(<Paragraph text={text} />);
     return this;
   },
   remove() {
-    ReactDOM.unmountComponentAtNode(this.el);
+    this.reactRoot.unmount();
     Backbone.View.prototype.remove.call(this);
   }
 });
@@ -279,7 +282,7 @@ const ParagraphView = Backbone.View.extend({
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-Adalah penting bahwa kita juga dapat memanggil `ReactDOM.unmountComponentAtNode()` pada metode `remove` sehingga React membatalkan *event handler* registrasi dan sumber lainnya yang terkait dengan pohon komponen saat dicopot.
+Adalah penting bahwa kita juga dapat memanggil `root.unmount()` pada metode `remove` sehingga React membatalkan *event handler* registrasi dan sumber lainnya yang terkait dengan pohon komponen saat dicopot.
 
 Saat sebuah komponen dihapus *dari dalam* sebuah pohon React, pembersihan dilakukan secara otomatis, tapi karena kita menghapus seluruh pohon secara manual, kita harus memanggil metode ini.
 
@@ -430,10 +433,8 @@ function Example(props) {
 }
 
 const model = new Backbone.Model({ firstName: 'Frodo' });
-ReactDOM.render(
-  <Example model={model} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Example model={model} />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)

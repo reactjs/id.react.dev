@@ -6,6 +6,18 @@ next: hooks-rules.html
 prev: hooks-state.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+> - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+> - [`useEffect`](https://react.dev/reference/react/useEffect)
+
+</div>
+
 *Hooks* adalah tambahan baru di React 16.8. *Hooks* memungkinkan Anda dapat menggunakan *state* dan fitur lain di *React* tanpa menulis *class*.
 
 *Effect Hook* memungkinkan Anda melakukan efek samping (*side effects*) didalam *function component*:

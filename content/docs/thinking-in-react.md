@@ -8,6 +8,14 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The updated [Thinking in React](https://react.dev/learn/thinking-in-react) guide teaches modern React and includes live examples.
+
+</div>
+
 React, menurut opini kami, adalah cara paling terdepan dalam membangun sebuah aplikasi web JavaScript yang besar dan cepat. React dapat mengatasi masalah skalabilitas dengan sangat baik untuk kami di Facebook dan Instagram.
 
 Salah satu keunggulan dari React adalah bagaimana ia dapat membuat Anda berpikir mengenai aplikasi Anda ketika membangun aplikasi tersebut. Dalam dokumen ini, kami akan mengajak Anda melewati proses berpikir dalam membangun sebuah tabel data produk yang memiliki fitur pencarian menggunakan React.
@@ -39,9 +47,9 @@ Namun bagaimana Anda mengetahui bagian mana yang harus menjadi komponen sendiri?
 
 Karena Anda seringkali akan menampilkan sebuah model data JSON kepada pengguna, Anda akan menemukan bahwa jika model Anda dibangun dengan benar, maka antaramuka pengguna (dan demikian juga struktur komponen Anda) akan dapat menyesuaikan dengan baik. Ini karena antaramuka pengguna dan model data cenderung mengikuti *arsitektur informasi* yang sama, yang berarti memisahkan antaramuka pengguna Anda ke dalam komponen-komponen seringkali sangat mudah. Bagi saja komponen-komponen Anda untuk merepresentasikan satu bagian dari model data Anda.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
 
-Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen.
+Anda akan melihat di sini bahwa kita memiliki lima komponen di aplikasi kita. Kami telah mencetak miring data yang direpresentasikan oleh tiap komponen. The numbers in the image correspond to the numbers below.
 
   1. **`FilterableProductTable` (oranye):** berisi keseluruhan dari contoh ini
   2. **`SearchBar` (biru):** menerima semua *masukan pengguna*
@@ -70,7 +78,7 @@ Untuk membuat versi statis dari aplikasi Anda yang me-*render* model data, Anda 
 
 Anda dapat membangun dari atas ke bawah atau dari bawah ke atas. Maksudnya, Anda dapat mulai membangun komponen teratas dari hierarki (mis. memulai dari `FilterableProductTable`) atau dari komponen terbawah (`ProductRow`). Dalam contoh simpel, biasanya lebih mudah membangun dari atas ke bawah, dan dalam proyek yang lebih besar, biasanya lebih mudah membangun dari bawah ke atas dan menambahkan tes dalam prosesnya.
 
-Pada akhir langkah ini, Anda akan memiliki sebuah *library* dari komponen pakai ulang yang akan me-*render* model data Anda. Komponen-komponen tersebut hanya akan memiliki method `render()` karena mereka adalah versis statis dari aplikasi Anda. Komponen di atas hierarki (`FilterableProductTable`) akan mengambil model data sebagai sebuah prop. Jika Anda membuat perubahan pada model data dan memanggil kembali `ReactDOM.render()`, UI akan diperbarui secara otomatis. Akan mudah untuk melihat bagaimana UI Anda diperbarui dan dimana untuk melakukan perubahan karena tidak ada hal rumit yang terjadi. Konsep **one-way data flow** (disebut juga *one-way binding*) dari React membuat segalanya modular dan cepat.
+Pada akhir langkah ini, Anda akan memiliki sebuah *library* dari komponen pakai ulang yang akan me-*render* model data Anda. Komponen-komponen tersebut hanya akan memiliki method `render()` karena mereka adalah versis statis dari aplikasi Anda. Komponen di atas hierarki (`FilterableProductTable`) akan mengambil model data sebagai sebuah prop. Jika Anda membuat perubahan pada model data dan memanggil kembali `root.render()`, UI akan diperbarui secara otomatis. Akan mudah untuk melihat bagaimana UI Anda diperbarui dan dimana untuk melakukan perubahan karena tidak ada hal rumit yang terjadi. Konsep **one-way data flow** (disebut juga *one-way binding*) dari React membuat segalanya modular dan cepat.
 
 Silakan merujuk pada [dokumentasi React](/docs/) jika Anda memerlukan bantuan dalam melakukan langkah ini.
 

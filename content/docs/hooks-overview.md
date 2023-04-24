@@ -6,6 +6,18 @@ next: hooks-state.html
 prev: hooks-intro.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach React with Hooks:
+>
+> - [Quick Start](https://react.dev/learn)
+> - [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
+> - [`react`: Hooks](https://react.dev/reference/react)
+
+</div>
+
 *Hooks* merupakan penambahan baru pada React 16.8. *Hooks* memungkinkan Anda menggunakan *state* dan fitur React lainnya tanpa membuat sebuah kelas.
 
 *Hooks* merupakan fitur yang [*backwards-compatible*](/docs/hooks-intro.html#no-breaking-changes). Laman ini menyediakan ikhtisar mengenai *Hooks* untuk pengguna React yang berpengalaman. Laman ini merupakan ikhtisar yang singkat. Jika Anda kurang paham, carilah kotak kuning seperti di bawah ini:

@@ -2,7 +2,6 @@
 id: jsx-in-depth
 title: JSX In Depth
 permalink: docs/jsx-in-depth.html
-next: typechecking-with-proptypes.html
 redirect_from:
   - "docs/jsx-spread.html"
   - "docs/jsx-gotchas.html"
@@ -13,6 +12,12 @@ redirect_from:
   - "docs/jsx-in-depth-zh-CN.html"
   - "docs/jsx-in-depth-ko-KR.html"
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
 
 Pada dasarnya, JSX hanya menyediakan sintaksis-sintaksis yang mudah ditulis dan dimengerti (*syntatic sugar*) untuk fungsi *`React.createElement(component, prop, ...children)`*. Kode JSX:
 

@@ -2,8 +2,6 @@
 id: accessibility
 title: Aksesibilitas
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## Mengapa aksesibilitas? {#why-accessibility}
@@ -376,7 +374,7 @@ Di sini kita membutuhkan pengetahuan tentang [Peran (_Role_) ARIA](https://www.w
 
 Masing-masing jenis _widget_ memiliki pola desain yang spesifik; dan baik pengguna maupun perangkat (_agent_) sudah memiliki ekspekstasi tentang fungsi _widget_ tersebut:
 
-- [Praktik-praktik Menulis WAI-ARIA - Pola Desain dan _Widget_](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Praktik-praktik Menulis WAI-ARIA - Pola Desain dan _Widget_](https://www.w3.org/WAI/ARIA/apg/patterns/)
 - [Heydon Pickering - Contoh-contoh ARIA](http://heydonworks.com/practical_aria_examples/)
 - [Komponen-komponen Inklusif](https://inclusive-components.design/)
 
@@ -404,7 +402,7 @@ Pastikan seluruh teks yang dapat dibaca di situs web Anda  memiliki kontras warn
 - [Semua Tentang Kontras Warna dan Mengapa Anda Perlu Berpikir Ulang Tentangnya](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - Apa Itu Kontras Warna](http://a11yproject.com/posts/what-is-color-contrast/)
 
-Akan membosankan jika harus menghitung kombinasi warna secara manual untuk setiap kasus penggunaan di halaman website Anda, maka Anda dapat [membuat perhitungan seluruh palet warna yang aksesibel dengan Colorable](http://jxnblk.com/colorable/).
+Akan membosankan jika harus menghitung kombinasi warna secara manual untuk setiap kasus penggunaan di halaman website Anda, maka Anda dapat [membuat perhitungan seluruh palet warna yang aksesibel dengan Colorable](http://colorable.jxnblk.com/).
 
 Uji kontras warna juga termasuk dalam alat aXe maupun WAVE yang disebut di bawah ini. Alat-alat tersebut akan melaporkan jika ada kesalahan kontras.
 
@@ -453,7 +451,7 @@ Deque Systems menawarkan [aXe-core](https://github.com/dequelabs/axe-core) untuk
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) atau aXe adalah ekstensi _browser_ pemeriksa aksesibilitas yang dibuat berdasarkan `aXe-core`.
 
-Anda juga dapat menggunakan modul [react-axe](https://github.com/dylanb/react-axe) untuk melaporkan temuan-temuan aksesibilitas ini secara langsung ke _console_ saat melakukan pengembangan dan menelusuri kesalahan.
+Anda juga dapat menggunakan modul [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) untuk melaporkan temuan-temuan aksesibilitas ini secara langsung ke _console_ saat melakukan pengembangan dan menelusuri kesalahan.
 
 #### WebAIM WAVE {#webaim-wave}
 

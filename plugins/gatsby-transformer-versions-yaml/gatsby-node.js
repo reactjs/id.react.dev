@@ -16,14 +16,10 @@ exports.onPostBuild = async ({store}) => {
   const versions = safeLoad(file);
 
   const {program} = store.getState();
-  const redirectsFilePath = path.join(
-    program.directory,
-    'public',
-    '_redirects',
-  );
+  const redirectsFilePath = path.join(program.directory, 'vercel.json');
 
   // versions.yml structure is [{path: string, url: string, ...}, ...]
-  createRedirects(
+  await createRedirects(
     versions
       .filter(version => version.path && version.url)
       .map(version => ({

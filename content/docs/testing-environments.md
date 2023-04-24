@@ -30,7 +30,7 @@ Menggunakan Jest sebagai *test runner*, di*render* ke jsdom, dengan interaksi pe
 Bila Anda sedang menulis *library* yang melakukan pengujian pada perilaku *browser* yang spesifik, dan memerlukan perilaku *browser* bawaan seperti tata letak dan *inputs* sebenarnya, Anda dapat menggunakan *framework* seperti [mocha](https://mochajs.org/)
 .
 
-Pada *environment* dimana Anda *tidak dapat* men-simulasikan sebuah DOM (contoh: Menguji komponen React Native pada Node.js), Anda dapat menggunakan [event simulation helpers](https://reactjs.org/docs/test-utils.html#simulate) untuk mensimulasikan interaksi-interaksi dengan elemen-elemen. Cara lainnya, Anda dapat menggunakan bantuan `fireEvent` dari [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
+Pada *environment* dimana Anda *tidak dapat* men-simulasikan sebuah DOM (contoh: Menguji komponen React Native pada Node.js), Anda dapat menggunakan [event simulation helpers](https://reactjs.org/docs/test-utils.html#simulate) untuk mensimulasikan interaksi-interaksi dengan elemen-elemen. Cara lainnya, Anda dapat menggunakan bantuan `fireEvent` dari [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
 
 *Frameworks* seperti [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) dan [webdriver](https://www.seleniumhq.org/projects/webdriver/) berguna untuk melakukan [pengujian *end-to-end*](#end-to-end-tests-aka-e2e-tests).
 
@@ -48,7 +48,7 @@ Pada Node.js, *runner* seperti Jest [mendukung membuat tiruan modul](https://jes
 
 ### Membuat tiruan waktu {#mocking-timers}
 
-Komponen dapat menggunakan fungsi-fungsi berbasis waktu seperti `setTimeout`, `setInterval`, atau `Date.now`. Pada *environment* pengujian, akan bermanfaat untuk membuat tiruan dari fungsi-fungsi ini dengan pengganti yang memperbolehkan anda untuk secara manual "memajukan" waktu. Ini sangat baik untuk memastikan pengujian berjalan dengan cepat! Pengujian yang bergantung dengan waktu akan dapat selesai secara berurutan, namun lebih cepat [<small>(contoh)</small>](/docs/testing-recipes.html#timers). Kebanyakan *framework*, termasuk [Jest](https://jestjs.io/docs/en/timer-mocks), [sinon](https://sinonjs.org/releases/v7.3.2/fake-timers/) dan [lolex](https://github.com/sinonjs/lolex), dapat membuat tiruan waktu pada pengujian Anda.
+Komponen dapat menggunakan fungsi-fungsi berbasis waktu seperti `setTimeout`, `setInterval`, atau `Date.now`. Pada *environment* pengujian, akan bermanfaat untuk membuat tiruan dari fungsi-fungsi ini dengan pengganti yang memperbolehkan anda untuk secara manual "memajukan" waktu. Ini sangat baik untuk memastikan pengujian berjalan dengan cepat! Pengujian yang bergantung dengan waktu akan dapat selesai secara berurutan, namun lebih cepat [<small>(contoh)</small>](/docs/testing-recipes.html#timers). Kebanyakan *framework*, termasuk [Jest](https://jestjs.io/docs/en/timer-mocks), [sinon](https://sinonjs.org/releases/latest/fake-timers) dan [lolex](https://github.com/sinonjs/lolex), dapat membuat tiruan waktu pada pengujian Anda.
 
 Terkadang, Anda mungkin tidak ingin membuat waktu tiruan. Contohnya, mungkin Anda menguji sebuah animasi, atau interaksi dengan *endpoint* yang sensitif dengan waktu (seperti API *rate limiter*). *Library* dengan peniru waktu memungkinkan Anda untuk meng-aktifkan dan menon-aktifkan tiruan di setiap pengujian/*suite*, agar Anda dapat secara eksplisit memilih bagimana pengujian tersebut berjalan.
 

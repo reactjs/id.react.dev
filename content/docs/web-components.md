@@ -2,11 +2,17 @@
 id: web-components
 title: Web Components
 permalink: docs/web-components.html
-prev: error-boundaries.html
-next: higher-order-components.html
 redirect_from:
   - "docs/webcomponents.html"
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+>
+</div>
 
 React dan [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) dibangun untuk menyelesaikan masalah yang berbeda. Web Components menyediakan enkapsulasi yang kuat untuk *reusable components*, sementara React menyediakan *library* yang deklaratif untuk menjaga DOM tetap sinkron dengan data Anda. Tujuan keduanya adalah untuk saling melengkapi. Sebagai pengembang atau *developer*, Anda bebas untuk menggunakan React di dalam Web Components Anda, atau menggunakan Web Components di dalam React, ataupun keduanya.
 
@@ -52,7 +58,8 @@ class XSearch extends HTMLElement {
 
     const name = this.getAttribute('name');
     const url = 'https://www.google.com/search?q=' + encodeURIComponent(name);
-    ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
+    const root = ReactDOM.createRoot(mountPoint);
+    root.render(<a href={url}>{name}</a>);
   }
 }
 customElements.define('x-search', XSearch);

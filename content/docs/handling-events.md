@@ -8,6 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Responding to Events](https://react.dev/learn/responding-to-events)
+
+</div>
+
 Menangani *events* dengan elemen React sangat mirip seperti menangani sebuah *events* pada elemen DOM. Ada beberapa perbedaan sintaksis:
 
 * *Events* pada React biasanya ditulis dalam bentuk *camelCase*, bukan *lowercase*.
@@ -32,24 +42,24 @@ sedikit berbeda dengan React:
 Perbedaan lainnya adalah Anda tidak dapat mengembalikan nilai `false` untuk mencegah *behavior* bawaan React. Anda harus memanggil `preventDefault` secara eksplisit. Sebagai contoh, pada HTML untuk mencegah agar *link* bawaan membuka halaman baru, Anda dapat menulis seperti ini:
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 Sedangkan pada React, contoh tersebut dapat ditulis sebagai berikut:
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('Tautan diklik.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Klik Saya
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -72,8 +82,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -85,11 +95,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
@@ -103,10 +108,9 @@ Jika Anda tidak terbiasa menggunakan `bind`, ada dua cara untuk mengatasi ini. J
 ```js{2-6}
 class LoggingButton extends React.Component {
   // Sintaksis ini memastikan `this` telah terikat dalam handleClick.
-  // Peringatan: Ini adalah eksperimental sintaksis.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (

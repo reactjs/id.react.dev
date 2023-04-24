@@ -2,9 +2,15 @@
 id: higher-order-components
 title: Higher-Order Components
 permalink: docs/higher-order-components.html
-prev: web-components.html
-next: render-props.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> Higher-order components are not commonly used in modern React code.
+
+</div>
 
 _Higher-order component_ (HOC) merupakan teknik lanjutan dalam React untuk menggunakan kembali logika komponen. HOCs sendiri bukan merupakan bagian dari API React. Hal tersebut merupakan pola yang muncul dari sifat komposisi React.
 
@@ -16,7 +22,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Sebaliknya saat sebuah komponen mengubah _props_ menjadi antarmuka pengguna (UI), _higher-order component_ mengubah sebuah komponen menjadi komponen yang lainnya.
 
-HOC umum dipakai oleh pustaka pihak ketiga React, seperti [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) milik Redux dan [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) milik Relay.
+HOC umum dipakai oleh pustaka pihak ketiga React, seperti [`connect`](https://react-redux.js.org/api/connect) milik Redux dan [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) milik Relay.
 
 Pada dokumen ini, kita akan mendiskusikan mengapa _higher-order components_ bermanfaat dan bagaimana menulis _higher-order components_ anda sendiri.
 
@@ -299,7 +305,7 @@ Fungsi utilitas `compose` disediakan oleh banyak pustaka pihak ketiga termasuk l
 
 ## Kesepakatan: Bungkus Nama Tampilan untuk Kemudahan _Debugging_ {#convention-wrap-the-display-name-for-easy-debugging}
 
-Komponen *container* dibuat oleh HOC yang akan muncul di [React Developer Tools](https://github.com/facebook/react-devtools) seperti komponen lainnya. Untuk kemudah _debugging_, pilih nama tampilan yang berhubungan bahwa itu merupakan hasil dari HOC.
+Komponen *container* dibuat oleh HOC yang akan muncul di [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) seperti komponen lainnya. Untuk kemudah _debugging_, pilih nama tampilan yang berhubungan bahwa itu merupakan hasil dari HOC.
 
 Teknik paling umum ialah dengan membungkus nama tampilan dari komponen yang dibungkus. Jadi, jika nama HOC Anda `withSubscription`, dan nama tampilan komponen yang dibungkus ialah `CommentList`, gunakan nama tampilan `WithSubscription(CommentList)`:
 
@@ -322,7 +328,7 @@ Komponen HOC datang dengan beberapa batasan yang kurang jelas jika Anda baru men
 
 ### Jangan Menggunakan HOC di dalam Metode _render_ {#dont-use-hocs-inside-the-render-method}
 
-Algoritma _diffing_ React (disebut _reconciliation_) menggunakan identitas komponen untuk menentukan apakah subtree yang ada perlu diperbarui atau _mount_ yang baru. Jika komponen yang dikembalikan dari `render` sama (`===`) dengan _render_ komponen sebelumnya, React memperbarui subtree secara rekursif dengan membandingkan dengan yang baru. Jika tidak sama, subtree sebelumnya akan diganti seluruhnya.
+Algoritma _diffing_ React (disebut [_reconciliation_](/docs/reconciliation.html)) menggunakan identitas komponen untuk menentukan apakah subtree yang ada perlu diperbarui atau _mount_ yang baru. Jika komponen yang dikembalikan dari `render` sama (`===`) dengan _render_ komponen sebelumnya, React memperbarui subtree secara rekursif dengan membandingkan dengan yang baru. Jika tidak sama, subtree sebelumnya akan diganti seluruhnya.
 
 Normalnya, Anda tidak perlu memikirkan tentang ini. Namun itu penting bagi HOC karena itu berarti Anda tidak dapat menerapkan HOC ke komponen di dalam metode *render* dari sebuah komponen:
 

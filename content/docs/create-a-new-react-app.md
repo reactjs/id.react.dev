@@ -8,6 +8,15 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) for the recommended ways to create an app.
+
+</div>
+
 Gunakan *toolchains* yang terintegrasi untuk pengalaman pengguna dan pengembangan terbaik.
 
 Halaman ini menjelaskan beberapa *toolchains* yang bisa membantu menyelesaikan tugas seperti:

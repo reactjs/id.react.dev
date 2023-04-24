@@ -8,4 +8,6 @@ Peringatan _invalid-aria-prop_ akan terpicu jika Anda mencoba untuk me-_render_ 
 
 1. Jika Anda merasa telah menggunakan _prop_ yang valid, periksa kembali ejaannya dengan baik. `aria-labelledby` dan `aria-activedescendant` seringkali salah dieja.
 
-2. React belum dapat mengenali atribut yang Anda tentukan. Kemungkinan hal ini akan diperbaiki di React versi kedepannya. Meski demikian, React saat ini melucuti seluruh atribut yang tidak dikenal, sehingga menuliskan atribut tersebut didalam aplikasi React Anda tidak serta merta akan di-_render_.
+2. If you wrote `aria-role`, you may have meant `role`.
+
+3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/facebook/react/issues/new/choose).

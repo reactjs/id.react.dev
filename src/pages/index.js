@@ -56,7 +56,6 @@ class Home extends Component {
         <div
           css={{
             width: '100%',
-            marginTop: 60, // BLM
           }}>
           <header
             css={{

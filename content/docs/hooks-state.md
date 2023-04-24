@@ -6,6 +6,17 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
+> - [`useState`](https://react.dev/reference/react/useState)
+
+</div>
+
 *Hooks* merupakan fitur baru di React 16.8. Fitur ini memungkinkan Anda menggunakan *state* dan fitur React lainnya tanpa menuliskan sebuah kelas.
 
 Halaman [Memperkenalkan *Hooks*](/docs/hooks-intro.html) menggunakan contoh sebagai berikut:

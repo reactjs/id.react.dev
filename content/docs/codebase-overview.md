@@ -19,8 +19,8 @@ Kami tidak selalu merekomendasikan konvensi ini pada aplikasi React. Banyak di a
 
 Setelah melakukan kloning pada [repositori React](https://github.com/facebook/react), Anda akan melihat beberapa folder teratas di dalamnya:
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) berisi metadata (seperti `package.json`) dan kode sumber (`src` subdirektori) untuk semua _package_ pada repositori React. **Jika perubahan Anda berkaitan dengan kode, subdirektori `src` dari setiap _package_ adalah dimana Anda akan menghabiskan sebagian besar waktu Anda.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) berisi beberapa aplikasi uji coba React untuk para kontributor.
+* [`packages`](https://github.com/facebook/react/tree/main/packages) berisi metadata (seperti `package.json`) dan kode sumber (`src` subdirektori) untuk semua _package_ pada repositori React. **Jika perubahan Anda berkaitan dengan kode, subdirektori `src` dari setiap _package_ adalah dimana Anda akan menghabiskan sebagian besar waktu Anda.**
+* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) berisi beberapa aplikasi uji coba React untuk para kontributor.
 * `build` adalah _output build_ dari React. Ia tidak ada pada repositori tetapi akan muncul pada hasil klon React Anda setelah Anda [melakukan _build_](/docs/how-to-contribute.html#development-workflow) untuk pertama kali.
 
 Dokumentasi berada pada [repositori terpisah dari React](https://github.com/reactjs/reactjs.org).
@@ -98,7 +98,7 @@ React adalah sebuah [monorepo](https://danluu.com/monorepo/). Repositorinya beri
 
 ### Inti React {#react-core}
 
-Inti dari React berisi semua [API level atas `React`](/docs/top-level-api.html#react), misalnya:
+Inti dari React berisi semua [API level atas `React`](/docs/react-api.html#react), misalnya:
 
 * `React.createElement()`
 * `React.Component`
@@ -106,7 +106,7 @@ Inti dari React berisi semua [API level atas `React`](/docs/top-level-api.html#r
 
 **Inti React hanya berisi API yang dibutuhkan untuk mendefinisikan komponen.** Ia tidak termasuk algoritma [_reconciliation_](/docs/reconciliation.html) atau kode spesifik platform lainnya. Ia digunakan oleh React DOM dan komponen React Native.
 
-Kode untuk inti React terletak di [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) pada diagram sumber. Ia tersedia pada npm sebagai _package_ [`react`](https://www.npmjs.com/package/react). _Build browser_ yang berdiri sendiri disebut `react.js`, dan ia mengekspor sebuah global yang disebut `React`.
+Kode untuk inti React terletak di [`packages/react`](https://github.com/facebook/react/tree/main/packages/react) pada diagram sumber. Ia tersedia pada npm sebagai _package_ [`react`](https://www.npmjs.com/package/react). _Build browser_ yang berdiri sendiri disebut `react.js`, dan ia mengekspor sebuah global yang disebut `React`.
 
 ### _Renderer_ {#renderers}
 
@@ -114,17 +114,17 @@ React mulanya dibuat demi DOM tetapi kemudian diadaptasi untuk mendukung platfor
 
 **_Renderer_ mengatur bagaimana sebuah diagram React berubah menjadi panggilan platform yang mendasarinya**
 
-_Renderer_ juga terletak pada [`packages/`](https://github.com/facebook/react/tree/master/packages/):
+_Renderer_ juga terletak pada [`packages/`](https://github.com/facebook/react/tree/main/packages/):
 
-* [_Renderer_ React DOM](https://github.com/facebook/react/tree/master/packages/react-dom) merender komponen React menuju DOM. Ia mengimplementasi [API `ReactDOM` level atas](/docs/react-dom.html) dan tersedia sebagai _package_ npm [`react-dom`](https://www.npmjs.com/package/react-dom). Ia juga bisa digunakan sebagai bundel _browser_ yang berdiri sendiri yang dikenal `react-dom.js` yang mengekspor sebuah global `ReactDOM`.
-* [_Renderer_ React Native](https://github.com/facebook/react/tree/master/packages/react-native-renderer) merender komponen React menuju tampilan _native_. Ia digunakan secara internal oleh React Native.
-* [_Renderer_ React Test](https://github.com/facebook/react/tree/master/packages/react-test-renderer) merender komponen React menuju diagram JSON. Ia digunakan oleh fitur [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) dari [Jest](https://facebook.github.io/jest) dan tersedia sebagai _package_ npm [react-test-renderer](https://www.npmjs.com/package/react-test-renderer).
+* [_Renderer_ React DOM](https://github.com/facebook/react/tree/main/packages/react-dom) merender komponen React menuju DOM. Ia mengimplementasi [API `ReactDOM` level atas](/docs/react-dom.html) dan tersedia sebagai _package_ npm [`react-dom`](https://www.npmjs.com/package/react-dom). Ia juga bisa digunakan sebagai bundel _browser_ yang berdiri sendiri yang dikenal `react-dom.js` yang mengekspor sebuah global `ReactDOM`.
+* [_Renderer_ React Native](https://github.com/facebook/react/tree/main/packages/react-native-renderer) merender komponen React menuju tampilan _native_. Ia digunakan secara internal oleh React Native.
+* [_Renderer_ React Test](https://github.com/facebook/react/tree/main/packages/react-test-renderer) merender komponen React menuju diagram JSON. Ia digunakan oleh fitur [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) dari [Jest](https://facebook.github.io/jest) dan tersedia sebagai _package_ npm [react-test-renderer](https://www.npmjs.com/package/react-test-renderer).
 
-Satu-satunya _Renderer_ lain yang didukung secara resmi adalah [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). Ia dulu terletak pada [repositori GitHub](https://github.com/reactjs/react-art) terpisah tetapi kami memindahkannya pada diagram sumber _main_ sekarang.
+Satu-satunya _Renderer_ lain yang didukung secara resmi adalah [`react-art`](https://github.com/facebook/react/tree/main/packages/react-art). Ia dulu terletak pada [repositori GitHub](https://github.com/reactjs/react-art) terpisah tetapi kami memindahkannya pada diagram sumber _main_ sekarang.
 
 >**Catatan:**
 >
->Secara teknis [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) adalah sebuah lapisan yang sangat tipis yang mengajarkan React untuk berinteraksi dengan implementasi React Native. Kode spesifik platform yang sesungguhnya mengatur tampilan _native_ yang hidup di dalam [repositori React Native](https://github.com/facebook/react-native) bersama dengan komponennya.
+>Secara teknis [`react-native-renderer`](https://github.com/facebook/react/tree/main/packages/react-native-renderer) adalah sebuah lapisan yang sangat tipis yang mengajarkan React untuk berinteraksi dengan implementasi React Native. Kode spesifik platform yang sesungguhnya mengatur tampilan _native_ yang hidup di dalam [repositori React Native](https://github.com/facebook/react-native) bersama dengan komponennya.
 
 ### _Reconciler_ {#reconcilers}
 
@@ -152,7 +152,7 @@ Tujuan utamanya adalah:
 
 Anda dapat membaca lebih banyak mengenai Arsitektur React Fiber [di sini](https://github.com/acdlite/react-fiber-architecture) dan [di sini](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). Walaupun ia telah dikirimkan bersama dengan React 16, fitur-fitur _async_ belum diaktifkan secara _default_.
 
-Kode sumbernya terletak di [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Kode sumbernya terletak di [`packages/react-reconciler`](https://github.com/facebook/react/tree/main/packages/react-reconciler).
 
 ### Sistem _Event_ {#event-system}
 
@@ -161,7 +161,7 @@ React menerapkan sebuah sistem _event_ sintetis yang agnostik terhadap _renderer
 
 Terdapat sebuah [video dengan pembahasan mendalam mengenai kodenya](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 menit).
 =======
-React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/main/packages/react-dom/src/events).
 >>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 ### Selanjutnya Apa? {#what-next}

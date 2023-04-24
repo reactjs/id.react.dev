@@ -5,6 +5,14 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> The new documentation pages teaches React with Hooks.
+
+</div>
+
 *Hooks* adalah tambahan baru dalam React 16.8. React memungkinkan Anda untuk menggunakan *state* dan fitur-fitur React lainnya tanpa perlu menuliskan sebuah kelas. 
 
 Laman ini menjawab beberapa pertanyaan yang sering diajukan (*frequently asked questions*) tentang [*Hooks*](/docs/hooks-overview.html).
@@ -97,8 +105,6 @@ Anda tidak bisa menggunakan *Hooks* *di dalam* sebuah komponen kelas, tetapi And
 
 Tujuan kami untuk *Hooks* yakni mencakup seluruh kasus yang digunakan untuk kelas sesegera mungkin. Tidak ada persamaan (*equivalent*) *Hooks* untuk *lifecyle* yang tidak umum seperti `getSnapshotBeforeUpdate` dan `componentDidCatch` sementara ini, namun kami berencana untuk menambahkannya segera.
 
-Sekarang adalah masa-masa awal untuk Hooks, dan *library* pihak ketiga bisa jadi tidak kompatibel dengan *Hooks* saat ini.
-
 ### Apakah *Hooks* menggantikan *render props* dan *higher-order components*? {#do-hooks-replace-render-props-and-higher-order-components}
 
 Seringkali, *render props* dan *higher-order components* hanya (me)*render* sebuah turunan. Kami pikir *Hooks* adalah cara yang lebih sederhana untuk menyajikan kasus penggunaan ini. Masih ada tempat untuk kedua pola (contohnya, sebuah *virtual scroller component* bisa saja memiliki sebuah *prop* `renderItem`, atau sebuah *visual container component* bisa saja memiliki struktur *DOM*-nya sendiri). Namun dalam banyak kasus, *Hooks* sudahlah cukup dan akan membantu mengurangi *nesting* dalam tatanan Anda.
@@ -148,7 +154,7 @@ Kami akan mengujinya dengan React DOM. Pastikan bahwa perilakunya dengan yang te
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -167,7 +173,7 @@ afterEach(() => {
 it('bisa me-render dan memperbarui sebuah counter', () => {
   // Uji render dan efek pertama
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -333,9 +339,7 @@ Ini adalah kasus penggunaan yang langka. Jika butuh, Anda dapat [menggunakan seb
 
 Saat ini, Anda dapat melakukannya secara manual [dengan *ref*](#is-there-something-like-instance-variables):
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+Sometimes, you need previous props to **clean up an effect.** For example, you might have an effect that subscribes to a socket based on the `userId` prop. If the `userId` prop changes, you want to unsubscribe from the _previous_ `userId` and subscribe to the _next_ one. You don't need to do anything special for this to work:
 
   const prevCountRef = useRef();
   useEffect(() => {
@@ -912,8 +916,6 @@ Perlu diingat bahawa Anda masih bisa memilih antara mengoper *state* aplikasi se
 >Catatan
 >
 >Kami rekomendasikan untuk [mengoper `dispatch` dalam *context*](#how-to-avoid-passing-callbacks-down) daripada *callback* dalam *prop* satu-persatu. Pendekatan di bawah hanya disebutkan di sini sebagai pelengkap dan juga cara darurat.
->
->Perhatikan juga bahwa pola ini bisa menyebabkan masalah dalam [mode *concurrent*](/blog/2018/03/27/update-on-async-rendering.html). Kami berencana untuk menyediakan alternatif yang lebih ergonomis di masa yang akan datang, tapi solusi teraman sekarang adalah untuk selalu meng-invalidasi callback jika beberapa nilai bergantung pada perubahan.
 
 Dalam beberapa kasus langka Anda mungkin butuh untuk *memoize* sebuah *callback* dengan menggunakan [`useCallback`](/docs/hooks-reference.html#usecallback) tetapi proses *memoize* tidak berjalan dengan baik karena fungsi dalam harus dibuat ulang terlalu sering. Jika fungsi yang Anda *memoize* adalah sebuah *event handler* dan tidak digunakan selama proses *render*, Anda bisa gunakan [*ref* sebagai sebuah *instance variable*](#is-there-something-like-instance-variables), dan menyimpan nilai yang terakhir di-*commit* ke dalam *ref* tersebut secara manual:
 

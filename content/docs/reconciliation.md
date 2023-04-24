@@ -2,9 +2,17 @@
 id: reconciliation
 title: Rekonsiliasi
 permalink: docs/reconciliation.html
-prev: react-without-jsx.html
-next: context.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+
+</div>
 
 React menyediakan API deklaratif jadi Anda tidak perlu khawatir tentang apa yang pasti berubah pada setiap pembaruan. Ini membuat penulisan aplikasi menjadi jauh lebih mudah, tetapi ini mungkin kurang jelas bagaimana ini diimplementasikan di dalam React. Artikel ini menjelaskan pilihan yang bisa kita buat dalam algoritma "pembeda" nya React jadi pembaruan komponen dapat diprediksi selagi aplikasi berkinerja cukup cepat.
 
@@ -29,7 +37,7 @@ Saat membedakan dua pohon, React pertama membandingkan dua elemen *root*. Tindak
 
 Kapanpun elemen-elemen *root* memiliki jenis yang berbeda, React akan meruntuhkan pohon lama dan membangun pohon baru dari awal. Mulai dari `<a>` ke `<img>`, atau dari `<Article>` ke `<Comment>`, atau dari `<Button>` ke `<div>` - Semua itu akan mengarah pada pembangunan kembali sepenuhnya.
 
-Saat meruntuhkan sebuah pohon, node DOM lama dihancurkan. *Instance* komponen menerima `componentWillUnmount()`. Saat membangun pohon baru, node DOM baru dimasukan ke dalam DOM. *Instance* komponen menerima `componentWillMount()` lalu `componentDidMount()`. *State* manapun yang terkait dengan pohon lama akan hilang.
+Saat meruntuhkan sebuah pohon, node DOM lama dihancurkan. *Instance* komponen menerima `componentWillUnmount()`. Saat membangun pohon baru, node DOM baru dimasukan ke dalam DOM. *Instance* komponen menerima `UNSAFE_componentWillMount()` lalu `componentDidMount()`. *State* manapun yang terkait dengan pohon lama akan hilang.
 
 Komponen manapun di bawah *root* juga akan dilepas dan *state* nya dihancurkan. Sebagai contoh, saat membedakan:
 
@@ -70,9 +78,16 @@ Setelah menangani node DOM, React lalu berulang pada *children*.
 
 ### Elemen Komponen Dari Jenis Yang Sama {#component-elements-of-the-same-type}
 
-Saat komponen diperbarui, *instance*-nya tetap sama, jadi *state* tersebut terjaga di berbagai *render*. React memperbarui *prop* yang mendasari *instance* komponen untuk mencocokan elemen baru, dan memanggil `componentWillReceiveProps()` dan `componentWillUpdate()` di *instance* yang mendasari.
+Saat komponen diperbarui, *instance*-nya tetap sama, jadi *state* tersebut terjaga di berbagai *render*. React memperbarui *prop* yang mendasari *instance* komponen untuk mencocokan elemen baru, dan memanggil `UNSAFE_componentWillReceiveProps()`, `UNSAFE_componentWillUpdate()` dan `componentDidUpdate()` di *instance* yang mendasari.
 
 Selanjutnya, metode `render()` dipanggil dan algoritma pembeda berulang pada hasil sebelumnya dan hasil yang baru.
+
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
 
 ### Berulang Di Children {#recursing-on-children}
 

@@ -60,7 +60,7 @@ Saat ini _shallow testing_ masih memiliki beberapa keterbatasan, salah satunya b
 
 Anda dapat membayangkan `shallowRenderer` sebagai “tempat” untuk me-_render_ suatu komponen yang sedang Anda uji, juga sebagai tempat di mana Anda bisa mengekstrak keluaran dari komponen tersebut.
 
-`shallowRenderer.render()` merupakan _method_ yang serupa dengan [`ReactDOM.render()`](/docs/react-dom.html#render) tetapi tidak membutuhkan DOM dan hanya melakukan _render_ sedalam satu level. Hal tersebut membuat Anda dapat menguji suatu komponen secara terisolasi, tidak menghiraukan implementasi komponen lain yang ada di dalamnya.
+`shallowRenderer.render()` merupakan _method_ yang serupa dengan [`root.render()`](/docs/react-dom-client.html#createroot) tetapi tidak membutuhkan DOM dan hanya melakukan _render_ sedalam satu level. Hal tersebut membuat Anda dapat menguji suatu komponen secara terisolasi, tidak menghiraukan implementasi komponen lain yang ada di dalamnya.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 

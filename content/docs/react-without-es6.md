@@ -2,9 +2,13 @@
 id: react-without-es6
 title: React Tanpa ES6
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
 
 Umumnya Anda mendefinisikan komponen React sebagai kelas JavaScript biasa:
 
@@ -146,11 +150,11 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Halo!'};
   }
-  // PERINGATAN: sintaksis ini bersifat eksperimental!
+
   // Menggunakan *arrow* akan mem-bind method:
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -219,10 +223,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 Jika komponen menggunakan beberapa *mixin* dan beberapa *mixin* mendefinisikan *lifecycle method* yang sama (contohnya, beberapa *mixin* ingin melakukan pembersihan ketika komponen dihancurkan), semua *lifecycle method* dijamin untuk dipanggil. *Method* yang didefinisikan pada *mixin* dijalankan secara berurutan sesuai dengan dengan proses pendaftarannya, diikuti dengan pemanggilan *method* pada komponen.
