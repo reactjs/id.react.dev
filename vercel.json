@@ -1,0 +1,29 @@
+{
+  "github": {
+    "silent": true
+  },
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/reference",
+      "destination": "/reference/react",
+      "permanent": true
+    },
+    {
+      "source": "/learn/meet-the-team",
+      "destination": "/community/team",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fonts/(.*).woff2",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
