@@ -92,6 +92,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
@@ -133,19 +135,6 @@
       title: Testing Recipes
     - id: testing-environments
       title: Testing Environments
-- title: Concurrent Mode (Experimental)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: Memperkenalkan Mode Concurrent
-    - id: concurrent-mode-suspense
-      title: Suspense for Data Fetching
-    - id: concurrent-mode-patterns
-      title: Concurrent UI Patterns
-    - id: concurrent-mode-adoption
-      title: Adopting Concurrent Mode
-    - id: concurrent-mode-reference
-      title: Concurrent Mode API Reference
 - title: Contributing
   items:
     - id: how-to-contribute

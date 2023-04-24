@@ -32,7 +32,8 @@ Baik dokumen ini maupun ceramahnya merupakan penyederhanaan basis kode nyata jad
 Mari kita pertimbangkan pertama kali Anda pasang komponen:
 
 ```js
-ReactDOM.render(<App />, rootEl);
+const root = ReactDOM.createRoot(rootEl);
+root.render(<App />);
 ```
 
 React DOM akan oper `<App />` ke *reconciler*. Ingat bahwa `<App />` adalah elemen React, yaitu, deskripsi *apa* yang akan di *render*. Anda dapat menganggapnya sebagai objek biasa:
@@ -235,9 +236,9 @@ Kode ini bekerja, tetapi masih jauh dari bagaimana *reconciler* benar-benar dila
 Fitur utama dari React adalah Anda dapat *render* ulang semuanya, dan itu tidak akan membuat ulang DOM atau mengatur ulang *state*:
 
 ```js
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 // Harus menggunakan kembali DOM yang ada:
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 ```
 
 Namun, implementasi kami di atas hanya tahu cara memasang diagram awal. Itu tidak dapat melakukan pembaruan karena itu tidak menyimpan semua informasi yang diperlukan, seperti semua `publicInstance`, atau `node` DOM yang sesuai dengan komponen yang mana.

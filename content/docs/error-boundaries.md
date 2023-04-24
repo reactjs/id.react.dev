@@ -2,9 +2,17 @@
 id: error-boundaries
 title: Error Boundaries
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`: Catching rendering errors with an error boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+
+</div>
 
 Di masa lalu, kesalahan JavaScript dalam komponen sering kali merusak _state_ internal React dan menyebabkannya untuk [meng-_emit_](https://github.com/facebook/react/issues/4026) [kesalahan](https://github.com/facebook/react/issues/8579) [yang samar](https://github.com/facebook/react/issues/6895) dalam proses _render_ berikutnya. Kesalahan tersebut selalu disebabkan oleh kesalahan sebelumnya pada kode aplikasi, tetapi React tidak menyediakan cara untuk menanganinya secara lugas dalam komponen, dan pada akhirnya tidak bisa dipulihkan.
 

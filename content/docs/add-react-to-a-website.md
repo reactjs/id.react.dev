@@ -8,6 +8,15 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 Anda dapat menggunakan React sesedikit atau sebanyak mungkin sesuai kebutuhan Anda.
 
 React telah didesain dari awal untuk adopsi secara bertahap, dan **Anda dapat menggunakan React sesedikit atau sebanyak mungkin sesuai kebutuhan Anda**. Mungkin Anda hanya ingin menambahkan "sedikit interaktivitas" di laman yang sudah ada. Komponen React adalah cara yang tepat untuk melakukan hal tersebut.
@@ -25,7 +34,7 @@ Pada bagian ini, kami akan menunjukkan bagaimana Anda dapat menambahkan sebuah k
 
 Di sini tidak akan ada alat yang membingungkan atau persyaratan pemasangan apapun -- **untuk menyelesaikan bagian ini, Anda hanya butuh koneksi internet, dan semenit dari waktu Anda.**
 
-Opsional: [Unduh contoh lengkap (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Opsional: [Unduh contoh lengkap (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### Langkah 1: Tambahkan sebuah Kontainer DOM ke dalam HTML {#step-1-add-a-dom-container-to-the-html}
 
@@ -54,8 +63,8 @@ Berikutnya, tambahkan tiga *tag* `<script>` ke laman HTML tepat sebelum penutup 
 
   <!-- Muat React. -->
   <!-- Catatan: ketika men-deploy (ke production), timpa "development.js" menjadi "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Muat komponen React kita. -->
   <script src="like_button.js"></script>
@@ -78,11 +87,12 @@ Buka **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f
 
 Setelah **[kode permulaan](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, tambahkan dua barus di bawah berkas `like_button.js`:
 
-```js{3,4}
+```js{3,4,5}
 // ... kode permulaan yang telah Anda paste ...
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
 Kedua baris kode di atas akan menemukan `<div>` yang telah kita tambahkan ke HTML kita di langkah pertama, kemudian menampilkan komponen React tombol "Like" kita di dalamnya.
@@ -95,7 +105,7 @@ Kunjungi bagian-bagian berikutnya untuk tips lebih lanjut mengenai mengintegrasi
 
 **[Lihat contoh kode sumber lengkapnya](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### Tip: Penggunaan Ulang Sebuah Komponen {#tip-reuse-a-component}
 
@@ -103,7 +113,7 @@ Umumnya, Anda mungkin ingin menampilkan komponen React di berbagai tempat di lam
 
 [Lihat contoh kode sumber lengkapnya](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Unduh contoh lengkapnya (2KB *zipped*)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >Catatan
 >
@@ -116,8 +126,8 @@ Sebelum men-*deploy* situs Anda ke *production*, berhati-hatilah terhadap JavaSc
 Jika Anda telah meminifikasi *script* aplikasi, **situs Anda telah siap untuk *production*** jika Anda telah memastikan HTML yang ter-*deploy* memuat versi React yang berakhiran dengan `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Jika Anda belum memiliki proses minifikasi untuk *script* Anda, [berikut salah satu cara untuk mempersiapkannya](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -160,7 +170,7 @@ Cara tercepat untuk mencoba JSX di proyek Anda adalah dengan menambahkan *tag* `
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Sekarang Anda dapat menggunakan JSX di *tag* `<script>` manapun dengan menambahkan atribut `type="text/babel"`. Berikut adalah [sebuah contoh berkas HTML dengan JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) yang dapat Anda unduh dan mainkan.
+Sekarang Anda dapat menggunakan JSX di *tag* `<script>` manapun dengan menambahkan atribut `type="text/babel"`. Berikut adalah [sebuah contoh berkas HTML dengan JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) yang dapat Anda unduh dan mainkan.
 
 Pendekatan ini cukup untuk mempelajari dan membuat contoh-contoh simpel. Namun, cara ini akan membuat situs Anda lambat dan **tidak cocok untuk *production***. Ketika Anda siap untuk melangkah lebih lanjut, hapus *tag* `<script>` dan atribut `type="text/babel"` yang baru saja Anda tambahkan. Alih-alih menggunakan cara tadi, di bagian berikutnya Anda akan menyiapkan preprosesor JSX untuk mengkonversi *tag* `<script>` secara otomatis.
 
@@ -184,8 +194,8 @@ Selamat! Anda baru saja menambahkan sebuah ***setup* JSX yang siap untuk *produc
 
 Buat sebuah *folder* yang bernama `src` dan jalankan perintah terminal di bawah:
 
-```
-npx babel --watch src --out-dir . --presets react-app/prod 
+```console
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >Catatan

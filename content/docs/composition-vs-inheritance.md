@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React memiliki model/gaya komposisi yang cukup *powerful*, dan kami merekomendasikan penggunaan komposisi dibandingkan pewarisan (*inheritance*) untuk menggunakan kembali kode antar komponen.
 
 Pada bagian ini, kita akan melihat beberapa kasus di mana para pengembang yang baru mengenal React sering kali akan mencoba menerapkan pewarisan, dan kami akan menunjukkan bagaimana kita dapat menyelesaikan kasus-kasus tersebut dengan komposisi.

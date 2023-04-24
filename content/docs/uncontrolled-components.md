@@ -2,9 +2,19 @@
 id: uncontrolled-components
 title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
-prev: refs-and-the-dom.html
-next: optimizing-performance.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
 
 Pada sebagian besar kasus, kami sarankan untuk menggunakan [*controlled component*](/docs/forms.html) untuk mengimpementasikan *form*. Pada *controlled component*, data *form* ditangani oleh komponen React. Cara alternatifnya adalah menggunakan *uncontrolled component*, di mana data *form* akan ditangani oleh DOM-nya sendiri.
 
@@ -47,7 +57,7 @@ Jika masih belum jelas jenis komponen mana yang harus Anda gunakan untuk situasi
 
 ### Nilai Default {#default-values}
 
-Pada *lifecycle rendering* React, atribut `value` pada elemen *form* akan menimpa nilai pada DOM. Dengan *uncontrolled component*, sering kali Anda menginginkan React untuk menentukan nilai awal tetapi pembaruan berikutnya dilakukan secara *uncontrolled*. Untuk menangani kasus ini, Anda bisa menentukan atribut `defaultValue` alih-alih menggunakan `value`.
+Pada *lifecycle rendering* React, atribut `value` pada elemen *form* akan menimpa nilai pada DOM. Dengan *uncontrolled component*, sering kali Anda menginginkan React untuk menentukan nilai awal tetapi pembaruan berikutnya dilakukan secara *uncontrolled*. Untuk menangani kasus ini, Anda bisa menentukan atribut `defaultValue` alih-alih menggunakan `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
 
 ```javascript{7}
 render() {

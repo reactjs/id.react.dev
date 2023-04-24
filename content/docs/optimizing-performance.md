@@ -2,11 +2,20 @@
 id: optimizing-performance
 title: Mengoptimalkan Performa
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`memo`: Skipping re-rendering when props are unchanged
+](https://react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+
+</div>
 
 Secara internal, React menggunakan beberapa teknik cermat untuk meminimalkan jumlah operasi DOM boros yang diperlukan untuk memperbarui UI. Bagi sebagian besar aplikasi, menggunakan React akan menghasilkan antarmuka pengguna yang cepat tanpa harus melakukan pekerjaan tambahan untuk mengoptimalkan performa secara spesifik. Meskipun demikian, ada beberapa cara untuk mempercepat aplikasi React Anda.
 
@@ -45,8 +54,8 @@ Ingat bahwa ini hanya diperlukan sebelum men-*deploy* ke produksi. Untuk pengemb
 Kami menyediakan versi siap produksi dari React dan React DOM sebagai *file* tunggal:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
 Ingat bahwa hanya *file* React yang berakhir dengan `.production.min.js` yang layak digunakan untuk produksi.
@@ -77,10 +86,10 @@ Untuk *build* produksi yang efisien menggunakan Browserify, instal plugin-plugin
 
 ```
 # Jika menggunakan npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser uglifyify
 
 # Jika menggunakan Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser uglifyify
 ```
 
 Untuk membangun versi produksi, pastikan Anda menambahkan *transform* berikut **(urutan ini penting)**:
@@ -200,6 +209,11 @@ Jika Anda belum menginstal React DevTools, Anda dapat menemukannya di sini:
 >
 > Versi bundel `react-dom` yang dapat memprofil versi produksi juga tersedia di `react-dom/profiling`.
 > Baca lebih lanjut mengenai cara penggunaan bundel ini di [fb.me/react-profiling](https://fb.me/react-profiling)
+
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab.
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
 
 ## Memvirtualisasi *List* Panjang {#virtualize-long-lists}
 

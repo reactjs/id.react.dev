@@ -5,6 +5,18 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach React with Hooks:
+>
+> - [Quick Start](https://react.dev/learn)
+> - [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
+> - [`react`: Hooks](https://react.dev/reference/react)
+
+</div>
+
 *Hooks* merupakan fitur baru di React 16.8. Dengan *Hooks*, kita dapat menggunakan *state* dan fitur React yang lain tanpa perlu menulis sebuah kelas baru.
 
 ```js{4,5}

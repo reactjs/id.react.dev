@@ -15,6 +15,16 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
+
 Laman ini menjelaskan referensi API mendetail untuk definisi kelas komponen React. Diasumsikan bahwa Anda telah familier dengan konsep dasar React seperti [Komponen dan _Props_](/docs/components-and-props.html) serta [_State_ dan _Lifecycle_](/docs/state-and-lifecycle.html). Jika belum, baca konsep dasar tersebut terlebih dulu.
 
 ## Ikhtisar {#overview}
@@ -39,7 +49,7 @@ Satu-satunya metode yang *harus* didefinisikan dalam sebuah subkelas `React.Comp
 
 ### _Lifecycle_ Komponen {#the-component-_lifecycle_}
 
-Masing-masing komponen memiliki beberapa "metode _lifecycle_"  yang bisa ditimpa untuk menjalankan kode pada waktu tertentu dalam proses. **Anda bisa menggunakan [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) sebagai contekan.** Pada daftar berikut, metode _lifecycle_ yang umum digunakan dibedakan dengan **huruf tebal**. Metode lainnya ada untuk kasus yang sangat jarang digunakan.
+Masing-masing komponen memiliki beberapa "metode _lifecycle_"  yang bisa ditimpa untuk menjalankan kode pada waktu tertentu dalam proses. **Anda bisa menggunakan [diagram _lifecycle_ ini](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) sebagai contekan.** Pada daftar berikut, metode _lifecycle_ yang umum digunakan dibedakan dengan **huruf tebal**. Metode lainnya ada untuk kasus yang sangat jarang digunakan.
 
 #### Pemasangan (_Mounting_) {#mounting}
 
@@ -109,7 +119,7 @@ Masing-masing komponen juga menyediakan beberapa API lainnya:
 
 ### Metode _Lifecycle_ yang Sering Digunakan {#commonly-used-lifecycle-methods}
 
-Metode dalam bagian berikut mencakup sebagian besar kasus penggunaan yang Anda hadapi ketika membuat komponen React. **Untuk rujukan visual, lihat [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Metode dalam bagian berikut mencakup sebagian besar kasus penggunaan yang Anda hadapi ketika membuat komponen React. **Untuk rujukan visual, lihat [diagram _lifecycle_ ini](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -125,7 +135,7 @@ Saat dipanggil, metode ini akan memeriksa `this.props` dan `this.state` serta me
 - **_Array_ dan _fragment_.** Memungkinkan Anda untuk mengembalikan beberapa elemen sekaligus dari _render_. Lihat dokumentasi tentang [_fragment_](/docs/fragments.html) untuk detail lebih lanjut.
 - **_Portal_**. Memungkinkan Anda untuk me-_render_ anak ke subpohon DOM yang berbeda. Lihat dokumentasi tentang [portals](/docs/portals.html) for more details.
 - **String dan angka.** Tipe ini akan di-_render_ sebagai simpul teks dalam DOM.
-- **Boolean atau `null`**. Tidak me-_render_ (umumnya ada untuk mendukung pola `return test && <Child />`, dengan nilai `test` yang bertipe boolean.)
+- **Boolean atau `null` or `undefined`**. Tidak me-_render_ (umumnya ada untuk mendukung pola `return test && <Child />`, dengan nilai `test` yang bertipe boolean).
 
 Fungsi `render()` harus bersifat murni (_pure_), yang berarti fungsi ini tidak mengubah _state_ komponen, mengembalikan hasil yang sama setiap kali dipanggil, dan tidak berinteraksi langsung dengan browser.
 
@@ -245,7 +255,7 @@ Anda **tidak boleh memanggil `setState()`** dalam `componentWillUnmount()` karen
 
 ### Metode _Lifecycle_ yang Jarang Digunakan {#rarely-used-_lifecycle_-methods}
 
-Metode dalam bagian berikut terkait dengan kasus penggunaan yang tidak umum. Metode berikut terkadang berguna, tetapi sebagian besar komponen Anda mungkin tidak membutuhkannya. **Anda bisa melihat metode berikut dalam [diagram _lifecycle_ ini](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) jika Anda mengeklik kotak centang "Tampilkan _lifecycle_ yang kurang umum" di bagian atas.**
+Metode dalam bagian berikut terkait dengan kasus penggunaan yang tidak umum. Metode berikut terkadang berguna, tetapi sebagian besar komponen Anda mungkin tidak membutuhkannya. **Anda bisa melihat metode berikut dalam [diagram _lifecycle_ ini](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) jika Anda mengeklik kotak centang "Tampilkan _lifecycle_ yang kurang umum" di bagian atas.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -278,7 +288,7 @@ static getDerivedStateFromProps(props, state)
 
 Metode ini ada untuk [kasus yang sangat jarang](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state), yaitu saat _state_ tergantung pada perubahan dalam _props_ dalam sebuah kurun waktu. Misalnya, mungkin sangat berguna untuk mengimplementasikan sebuah komponen `<Transition>`, yang membandingkan anak sebelum dan selanjutnya untuk menentukan yang mana yang akan dianimasikan atau tidak.
 
-Menurunkan _state_ bisa menyebabkan kode lebih bertele-tele dan membuat komponen Anda susah dibayangkan.  
+Menurunkan _state_ bisa menyebabkan kode lebih bertele-tele dan membuat komponen Anda susah dibayangkan.
 [Pastikan Anda mengenal alternatif yang lebih sederhana:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * Jika Anda perlu **menjalankan efek samping** (misalnya, pengambilan data atau animasi) sebagai reaksi atas perubahan _props_, gunakan _lifecycle_ [`componentDidUpdate`](#componentdidupdate).
@@ -324,7 +334,7 @@ Hanya gunakan komponen _error boundary_ untuk proses pemulihan dari eksepsi yang
 Untuk detail lebih lanjut, lihat [*Penanganan Kesalahan dalam React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Catatan
-> 
+>
 > _Error boundary_ hanya akan menangkap kesalahan dalam komponen **di bawah** pohon. Sebuah komponen _error boundary_ tidak dapat menangkap kesalahan dari dalam dirinya sendiri.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
@@ -353,7 +363,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Terjadi masalah.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -408,13 +418,19 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
 > Catatan
-> 
+>
 > Pada peristiwa kesalahan berikutnya, Anda bisa me-_render_ antarmuka darurat lewat `componentDidCatch()` dengan memanggil `setState`, tetapi hal ini akan menjadi usang dalam rilis masa mendatang.
 > Gunakan `static getDerivedStateFromError()` untuk menangani proses _render_ kesalahan.
 
@@ -502,7 +518,7 @@ Hanya ada dua metode, yaitu: `setState()` dan `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` mengantrekan perubahan atas _state_ komponen dan memberi tahu React bahwa komponen ini beserta anaknya harus di-_render_ ulang dengan _state_ terbaru. Metode ini merupakan metode utama yang Anda gunakan untuk memperbarui antarmuka sebagai reaksi atas _event handler_ dan balasan server.

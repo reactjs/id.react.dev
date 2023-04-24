@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 `React` merupakan _entry point_ untuk menggunakan _library_ React. Apabila Anda mengimpor React menggunakan _tag_ `<script>`, _API_ tingkat atas ini tersedia pada `React` _global_. Apabila Anda menggunakan ES6 dengan npm, Anda dapat mengimpor React dengan menuliskan `import React from 'react'`. Apabila Anda menggunakan ES5 dengan npm, Anda dapat mengimpor React dengan menuliskan `var React = require('react')`.
 
 ## Ikhtisar {#overview}
@@ -65,6 +78,13 @@ _Suspense_ membuat komponen dapat "menunggu" sesuatu sebelum melakukan _renderin
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Hooks {#hooks}
 
 _Hooks_ merupakan fitur baru pada React 16.8. _Hook_ membuat Anda dapat menggunakan _state_ dan fitur React lain tanpa menuliskan sebuah kelas. _Hooks_ memiliki [bagian dokumentasi tersendiri](/docs/hooks-intro.html) dan terpisah dengan referensi _API_:
@@ -81,12 +101,26 @@ _Hooks_ merupakan fitur baru pada React 16.8. _Hook_ membuat Anda dapat mengguna
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
 ## Referensi {#reference}
 
 ### `React.Component` {#reactcomponent}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 `React.Component` merupakan kelas pokok untuk komponen React ketika didefinisikan menggunakan [kelas ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
@@ -104,19 +138,35 @@ Kunjungi [Referensi API React.Component](/docs/react-component.html) untuk melih
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
+
 `React.PureComponent` mirip dengan [`React.Component`](#reactcomponent). Perbedaannya adalah [`React.Component`](#reactcomponent) tidak mengimplementasikan [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), sedangkan `React.PureComponent` mengimplementasikannya dengan perbandingan _props_ dan _state_ secara dangkal (_shallow_). 
 
 Apabila fungsi `render()` pada komponen React Anda me-_render_ hasil yang sama dengan _props_ dan _state_ yang sama juga, Anda dapat menggunakan `React.PureComponent` untuk meningkatkan kinerja komponen pada kasus tertentu.
 
 > Catatan
 >
-> `shouldComponentUpdate()` pada `React.PureComponent` hanya membandingkan objek secara dangkal (_shallow compare_). Apabila objek tersebut berisi struktur data yang rumit dan dalam, bisa jadi hal ini akan menghasilkan _false-negative_ pada perbandingan yang lebih dalam. Gunakan `PureComponent` hanya ketika Anda memiliki _props_ dan _state_ yang dangkal, atau gunakan [`forceUpdate()`](/docs/react-component.html#forceupdate) saat Anda tahu bahwa ada perubahan pada struktur data yang dalam. Atau, cobalah untuk menggunakan [_immutable object_](https://facebook.github.io/immutable-js/) untuk mempercepat proses perbandingan data bersarang.
+> `shouldComponentUpdate()` pada `React.PureComponent` hanya membandingkan objek secara dangkal (_shallow compare_). Apabila objek tersebut berisi struktur data yang rumit dan dalam, bisa jadi hal ini akan menghasilkan _false-negative_ pada perbandingan yang lebih dalam. Gunakan `PureComponent` hanya ketika Anda memiliki _props_ dan _state_ yang dangkal, atau gunakan [`forceUpdate()`](/docs/react-component.html#forceupdate) saat Anda tahu bahwa ada perubahan pada struktur data yang dalam. Atau, cobalah untuk menggunakan [_immutable object_](https://immutable-js.com/) untuk mempercepat proses perbandingan data bersarang.
 >
 > Selain itu, `shouldComponentUpdate()` pada `React.PureComponent` melewati proses pembaruan _props_ pada seluruh komponen dibawahnya. Jadi pastikan semua komponen anaknya juga "_pure_".
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -156,6 +206,14 @@ _Method_ ini hanya digunakan sebagai **[optimasi kinerja](/docs/optimizing-perfo
 
 ### `createElement()` {#createelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
+
 ```javascript
 React.createElement(
   type,
@@ -172,10 +230,18 @@ Kode yang ditulis dengan [JSX](/docs/introducing-jsx.html) akan dikonversi mengg
 
 ### `cloneElement()` {#cloneelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
+
 ```javascript
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
@@ -188,13 +254,21 @@ Melakukan _clone_ dan mengembalikan elemen React baru berdasarkan elemen yang di
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-Namun, `React.cloneElement()` tetap mempertahankan `ref`. Ini artinya apabila Anda mendapatkan _child_ yang memiliki `ref`, Anda tidak akan mencurinya secara tidak sengaja dari _ancestor_. Anda akan mendapatkan `ref` yang sama yang dilampirkan ke elemen yang baru.
+Namun, `React.cloneElement()` tetap mempertahankan `ref`. Ini artinya apabila Anda mendapatkan _child_ yang memiliki `ref`, Anda tidak akan mencurinya secara tidak sengaja dari _ancestor_. Anda akan mendapatkan `ref` yang sama yang dilampirkan ke elemen yang baru. The new `ref` or `key` will replace old ones if present.
 
 _API_ ini dikenalkan sebagai pengganti dari `React.addons.cloneWithProps()`.
 
 * * *
 
 ### `createFactory()` {#createfactory}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -210,6 +284,14 @@ Anda tidak perlu menggunakan `React.createFactory()` secara langsung apabila And
 
 ### `isValidElement()` {#isvalidelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -219,6 +301,14 @@ Memeriksa apakah objek yang diberikan merupakan elemen React atau bukan. Mengemb
 * * *
 
 ### `React.Children` {#reactchildren}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` memberikan utilitas untuk berurusan dengan struktur data `this.props.children`.
 
@@ -278,6 +368,14 @@ Mengembalikan struktur data `children` sebagai senarai datar dengan _key_ yang d
 
 ### `React.Fragment` {#reactfragment}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
+
 Komponen `React.Fragment` membuat Anda dapat mengembalikan lebih dari satu elemen pada _method_ `render()` tanpa membuat elemen _DOM_ tambahan:
 
 ```javascript
@@ -296,10 +394,26 @@ Anda juga dapat menggunakannya dengan menuliskan sintaksis pintas `<></>`. Untuk
 
 ### `React.createRef` {#reactcreateref}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
+
 `React.createRef` membuat sebuah [_ref_](/docs/refs-and-the-dom.html) yang dapat dilampirkan ke elemen React melalaui atribut _ref_.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` membuat komponen React yang dapat meneruskan atribut [_ref_](/docs/refs-and-the-dom.html) yang diterima ke komponen lain yang berada di bawahnya. teknik ini jarang digunakan tapi sangat berguna pada dua skenario berikut:
 
@@ -318,6 +432,14 @@ Untuk informasi selengkapnya, kunjungi [meneruskan _ref_](/docs/forwarding-refs.
 
 ### `React.lazy` {#reactlazy}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
+
 `React.lazy()` membuat Anda dapat mendefinisikan komponen yang akan dimuat secara dinamis. Ini membantu mengurangi ukuran bundel dengan menunda pemuatan komponen yang tidak digunakan saat _render_ pertama.
 
 Anda dapat belajar cara menggunakan `React.lazy()`  dari [dokumentasi pembagian kode](/docs/code-splitting.html#reactlazy) kami. Anda mungkin juga ingin melihat [artikel ini](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) yang menjelaskan cara menggunakan `React.lazy()` secara lebih detail.
@@ -329,11 +451,15 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Perhatikan bahwa untuk me-_render_ komponen `lazy`, Anda membutuhkan komponen `<React.Suspense>` yang berada pada posisi yang lebih tinggi di dalam pohon _rendering_. Ini merupakan cara bagaimana Anda menentukan indikator pemuatan.
 
-> **Catatan**
->
-> Menggunakan `React.lazy` dengan impor yang dinamis membutuhkan _Promises_ tersedia pada lingkungan JS. Ini membutuhkan _polyfill_ pada IE11 ke bawah.
-
 ### `React.Suspense` {#reactsuspense}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 `React.Suspense` membuat Anda dapat menentukan indikator pemuatan apabila beberapa komponen di bawahnya belum siap untuk di-_render_. Saat ini, komponen _lazy loading_ merupakan **satu-satunya** kasus penggunaan yang didukung `<React.Suspense>`:
 
@@ -355,8 +481,36 @@ function MyComponent() {
 
 Hal itu didokumentasikan pada [panduan pembagian kode](/docs/code-splitting.html#reactlazy) kami. Perhatikan bahwa komponen `lazy` dapat berada jauh di dalam pohon `Suspense` -- komponen tersebut tidak perlu dibungkus secara satu per satu. Sangat disarankan untuk meletakkan `<Suspense>` dimana Anda ingin melihat indikator pemuatan, akan tetapi untuk menggunakan `lazy()` dimanapun Anda ingin melakukan pembagian kode.
 
-Meskipun hal ini tidak didukung untuk saat ini, pada masa yang akan datang Kami berencana untuk membuat `Suspense` dapat menangani lebih banyak skenario seperti pengambilan data. Anda dapat membaca tentang hal ini pada [roadmap kami](/blog/2018/11/27/react-16-roadmap.html).
-
->Note:
+> Note
 >
->`React.lazy()` dan `<React.Suspense>` belum didukung oleh `ReactDOMServer`. Ini merupakan batasan yang akan diselesaikan pada masa yang akan datang.
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

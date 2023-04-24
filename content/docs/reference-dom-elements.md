@@ -14,6 +14,21 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<option>`](https://react.dev/reference/react-dom/components/option)
+> - [`<progress>`](https://react.dev/reference/react-dom/components/progress)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 React mengimplementasikan sistem DOM yang independen terhadap peramban demi performa dan kompatibilitas lintas peramban. Kami mengambil kesempatan untuk membersihkan beberapa sisi kasar dalam implementasi DOM peramban.
 
 Di React, semua properti dan atribut DOM (termasuk *event handlers*) harus menggunakan *camelCase*. Sebagai contoh, atribut HTML `tabindex` mengacu pada atribut `tabIndex` di React. Terdapat pengecualian untuk atribut `aria-*` dan `data-*`, yang mana menggunakan *lowercase*. Sebagai contoh, Anda dapat membiarkan `aria-label` sebagai `aria-label`.
@@ -116,7 +131,7 @@ Secara normal, ada sebuah peringatan ketika elemen dengan *children* juga ditand
 
 Jika Anda menggunakan *rendering* sisi server React, biasanya ada peringatan ketika server dan klien membuat konten yang berbeda. Namun, pada beberapa kasus yang jarang terjadi, sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Sebagai contoh, *timestamps* diharapkan berbeda di server dan di klien.
 
-Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
+Jika Anda mengatur `suppressHydrationWarning` ke `true`, React tidak akan memperingatkan Anda tentang ketidakcocokan dalam atribut dan konten elemen itu. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar. Jangan terlalu sering menggunakannya. Anda dapat membaca lebih lanjut tentang hidrasi di [dokumentasi `ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot).
 
 ### value {#value}
 
@@ -129,7 +144,7 @@ Pada React 16, semua atribut DOM standar [atau *custom*](/blog/2017/09/08/dom-at
 React selalu menyediakan API JavaScript-sentris untuk DOM. Karena komponen React seringkali mengambil *props* khusus dan *props* yang terkait dengan DOM, React menggunakan konvensi `camelCase` seperti halnya DOM API:
 
 ```js
-<div tabIndex="-1" />      // Sama seperti API DOM node.tabIndex
+<div tabIndex={-1} />      // Sama seperti API DOM node.tabIndex
 <div className="Button" /> // Sama seperti API DOM node.className
 <input readOnly={true} />  // Sama seperti API DOM node.readOnly
 ```

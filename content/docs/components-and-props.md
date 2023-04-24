@@ -16,6 +16,18 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Your First Component](https://react.dev/learn/your-first-component)
+> - [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
+
+</div>
+
 Komponen mempermudah Anda untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali, dan berpikir tentang setiap potongan dalam isolasi.
 Halaman ini memberikan pengantar tentang ide komponen. Anda dapat menemukan
 [rujukan API komponen terperinci di sini](/docs/react-component.html)
@@ -68,23 +80,21 @@ Ketika React melihat sebuah element mewakili sebuah komponen yang dibuat oleh pe
 
 Sebagai contoh, kode ini akan me-*render* "Halo, Sara" pada laman:
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Halo, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Mari merangkum apa yang terjadi pada contoh berikut:
 
-1. Kita memanggil `ReactDOM.render()` dengan elemen `<Welcome name="Sara" />`.
+1. Kita memanggil `root.render()` dengan elemen `<Welcome name="Sara" />`.
 2. React memanggil komponen `Welcome` dengan `{name: 'Sara'}` sebagai
    propertinya.
 3. Komponen `Welcome` kita akan mengembalikan sebuah element `<h1>Halo,
@@ -124,14 +134,9 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 Secara khusus, aplikasi React yang baru mempunyai sebuah komponen `App` pada
 bagian paling atas. Namun, jika Anda mengintegrasi React kedalam aplikasi yang
@@ -168,7 +173,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 Komponen menerima `author` (sebuah objek), `text` (sebuah string), dan `date`
 (sebuah tanggal) sebagai *props*, dan mendeskripsikan sebuah komponen dalam
@@ -254,7 +259,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 Mengekstraksi komponen mungkin terlihat seperti pekerjaan yang kasar pada awalnya, namun mempunyai *pallete* dari komponen yang bisa digunakan kembali akan terbayar pada aplikasi yang lebih besar. Aturan praktik yang bagus adalah jika pada bagian dari antarmuka pengguna digunakan beberapa kali (`Button`, `Panel`, `Avatar`), atau yang cukup kompleks (`App`, `FeedStory`, `Comment`), ini merupakan kandidat yang bagus untuk dijadikan sebagai komponen yang dapat digunakan kembali.
 

@@ -2,22 +2,29 @@
 id: hello-world
 title: Hello World
 permalink: docs/hello-world.html
-prev: cdn-links.html
+prev: release-channels.html
 next: introducing-jsx.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Quick Start](https://react.dev/learn) for an introduction to React.
+
+</div>
+
 Contoh React yang paling sederhana adalah seperti ini:
 
-```js
-ReactDOM.render(
-  <h1>Halo, dunia!</h1>,
-  document.getElementById('root')
-);
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Halo, dunia!</h1>);
 ```
 
 React menampilkan *heading* pada halaman bertuliskan "Halo, dunia!".
 
-[Coba di CodePen](codepen://hello-world)
+[Coba di CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)
 
 Klik tautan di atas untuk membuka editor daring. Anda dibebaskan untuk membuat perubahan dan lihat bagaimana perubahan itu mempengaruhi keluaran. Mayoritas dari halaman yang ada dalam panduan ini akan memiliki contoh yang dapat diubah seperti ini.
 

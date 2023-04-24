@@ -8,6 +8,18 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach how to write JSX and show it on an HTML page:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+
+</div>
+
 Elemen adalah blok terkecil pada aplikasi React.
 
 Sebuah elemen menggambarkan apa yang ingin Anda lihat pada layar:
@@ -54,7 +66,7 @@ Perhatikan contoh jam berdetak di bawah ini:
 
 [Coba di CodePen](codepen://rendering-elements/update-rendered-element)
 
-Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callback* [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
+Contoh di atas memanggil `root.render()` setiap detiknya dari sebuah *callback* [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
 >**Catatan:**
 >
@@ -66,7 +78,7 @@ Contoh di atas memanggil `ReactDOM.render()` setiap detiknya dari sebuah *callba
 
 React DOM membandingkan antara elemen dan elemen anaknya dengan elemen sebelumnya dan hanya mengaplikasikan perbaruan DOM yang diperlukan untuk menyelaraskan DOM ke *state* yang diinginkan.
 
-Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](codepen://rendering-elements/update-rendered-element) dengan peralatan dari *browser*:
+Anda dapat memverifikasi hal ini dengan menginspeksi [contoh terakhir](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) dengan peralatan dari *browser*:
 
 ![Inspektor DOM menunjukkan pembaruan yang bersifat *granular*](../images/docs/granular-dom-updates.gif)
 

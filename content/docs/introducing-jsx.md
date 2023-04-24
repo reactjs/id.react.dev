@@ -6,6 +6,18 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces)
+
+</div>
+
 Cobalah lihat deklarasi variabel dibawah ini:
 
 ```js
@@ -35,11 +47,6 @@ Dalam contoh di bawah ini, kita mendeklarasikan variabel bernama `name` dan kemu
 ```js{1,2}
 const name = 'Budi';
 const element = <h1>Halo, {name}</h1>;
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
 Anda dapat menyematkan semua [ekspresi *JavaScript*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) yang valid di dalam tanda kurung kurawal di JSX. Sebagai contoh, `2 + 2`, `user.firstName`, atau `formatName(user)` adalah ekspresi JavaScript yang valid.
@@ -61,14 +68,9 @@ const element = (
     Halo, {formatName(user)}!
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
-[Coba di CodePen](codepen://introducing-jsx)
+[Coba di CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)
 
 Kami membagi JSX menjadi beberapa baris agar mudah dibaca. Meskipun tidak diwajibkan, ketika melakukan hal ini, kami juga merekomendasikan Anda membungkusnya dalam tanda kurung untuk menghindari terjadinya [penyisipan titik koma otomatis](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +94,7 @@ function getGreeting(user) {
 Anda dapat menggunakan tanda kutip untuk menentukan *string* literal sebagai atribut:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Anda juga dapat menggunakan kurung kurawal untuk menyematkan ekspresi JavaScript di dalam atribut:
@@ -181,4 +183,4 @@ Kita akan mengeksplorasi *rendering* pada elemen React ke DOM dalam [bagian beri
 
 >**Saran:**
 >
->Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.
+>Kami merokemendasikan Anda untuk mencari [skema sintaksis "Babel"](https://babeljs.io/docs/en/next/editors) untuk editor pilihan Anda sehingga baik kode ES6 dan JSX bisa di-*highlight* dengan benar.

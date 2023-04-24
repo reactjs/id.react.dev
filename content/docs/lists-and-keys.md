@@ -6,6 +6,17 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+</div>
+
+
 Pertama-tama, mari kita tinjau kembali bagaimana Anda dapat mentransformasi *list* di JavaScript.
 
 Jika melihat kode di bawah, kita menggunakan fungsi [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk mengambil senarai `numbers` dan menggandakan nilainya.
@@ -39,10 +50,7 @@ const listItems = numbers.map((number) =>
 Kita akan menyertakan seluruh senarai `listItems` ke dalam elemen `<ul>` dan [me-*render*-nya ke dalam DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -67,10 +75,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Ketika Anda menjalankan kode ini, Anda akan mendapatkan peringatan bahwa *key* harus disediakan untuk *item* di dalam *list*. Sebuah "*key*" adalah atribut *string* spesial yang perlu Anda sertakan dalam pembuatan *list* elemen. Kita akan mendiskusikan mengapa ini penting di bagian berikutnya.
@@ -89,12 +95,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -134,7 +134,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Jika Anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
+Kami tidak merekomendasikan menggunakan indeks untuk *key* jika urutan *item* nantinya berubah. Ini berdampak negatif terhadap kinerja dan dapat menyebabkan masalah dengan *state* komponen. Simak artikel Robin Pokorny untuk [penjelasan lebih dalam mengenai dampak negatif penggunaan indeks sebagai *key*](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). Jika Anda memilih untuk tidak menetapkan *key* pada *list item* maka React secara bawaan akan menggunakan indeks sebagai *key*.
 
 Berikut adalah [penjelasan lebih dalam tentang kenapa *key* sangat diperlukan](/docs/reconciliation.html#recursing-on-children) Jika Anda tertarik untuk mempelajari lebih lanjut.
 
@@ -169,12 +169,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Contoh: Penggunaan *Key* yang Benar**
@@ -197,12 +191,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -210,7 +198,6 @@ ReactDOM.render(
 Sebuah aturan yang mudah diingat adalah elemen di dalam pemanggilan `map()` akan membutuhkan *key*.
 
 ### Key Harus Bersifat Unik Diantara Saudaranya {#keys-must-only-be-unique-among-siblings}
-
 
 *Key* digunakan didalam senarai harus bersifat unik di antara saudaranya. Namun mereka tidak perlu unik secara global. Kita dapat menggunakan *key* yang sama ketika kita menghasilkan dua senarai yang berbeda:
 
@@ -244,10 +231,9 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

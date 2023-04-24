@@ -2,9 +2,17 @@
 id: portals
 title: Portal
 permalink: docs/portals.html
-prev: fragments.html
-next: error-boundaries.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`createPortal`](https://react.dev/reference/react-dom/createPortal)
+
+</div>
 
 Portal menyediakan cara utama untuk me-*render* anak ke dalam simpul DOM yang berada di luar hierarki komponen induk.
 
@@ -49,7 +57,7 @@ Penggunaan umum untuk portal adalah ketika komponen induk memiliki gaya `overflo
 >
 > Saat bekerja dengan portal, perhatikan bahwa [mengelola fokus papan ketik](/docs/accessibility.html#programmatically-managing-focus) menjadi sangat penting.
 >
-> Untuk dialog modal, pastikan semua pihak bisa berinteraksi dengannya dengan mengikuti [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
+> Untuk dialog modal, pastikan semua pihak bisa berinteraksi dengannya dengan mengikuti [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/).
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
@@ -149,7 +157,8 @@ function Child() {
   );
 }
 
-ReactDOM.render(<Parent />, appRoot);
+const root = ReactDOM.createRoot(appRoot);
+root.render(<Parent />);
 ```
 
 [**Coba di CodePen**](https://codepen.io/gaearon/pen/jGBWpE)

@@ -9,6 +9,16 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+
+</div>
+
 Seringkali, beberapa komponen perlu mencerminkan perubahan data yang sama. Kami menyarankan untuk memindah `state` yang digunakan bersama tersebut ke modul _parent_ terdekat yang dimiliki komponen-komponen terkait. Mari kita lihat bagaimana ini bekerja dalam aksi.
 
 Di bagian ini, kita akan membuat kalkulator suhu yang menghitung apakah air akan mendidih pada suhu tertentu.
@@ -324,7 +334,7 @@ Pengangkatan *state* melibatkan penulisan lebih banyak kode "*boilerplate*" dari
 
 Jika sesuatu dapat diturunkan dari *props* atau *state*, hal itu mungkin tidak sebaiknya berada di *state*. Sebagai contoh, alih-alih menyimpan keduanya `celsiusValue` dan `fahrenheitValue`, kita menyimpan hanya `temperature` yang terakhir diubah dan `scale`-nya. Nilai dari masukan lain selalu dapat dihitung dari kedua nilai tersebut dalam metode `render()`. Ini memungkinkan kita menghapus atau menerapkan pembulatan ke masukan lain tanpa kehilangan ketepatan pada masukan pengguna.
 
-Ketika Anda melihat sesuatu yang salah di antarmuka pengguna, Anda dapat menggunakan [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) untuk memeriksa *props* dan menelusuri *tree* komponen Anda ke atas sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
+Ketika Anda melihat sesuatu yang salah di antarmuka pengguna, Anda dapat menggunakan [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) untuk memeriksa *props* dan menelusuri *tree* komponen Anda ke atas sampai Anda menemukan komponen yang bertanggung jawab untuk memperbarui *state*. Ini memungkinkan Anda melacak *bug* ke sumbernya:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

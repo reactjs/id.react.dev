@@ -6,6 +6,16 @@ category: Reference
 permalink: docs/profiler.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`<Profiler>`](https://react.dev/reference/react/Profiler)
+
+</div>
+
 The `Profiler` measures how often a React application renders and what the "cost" of rendering is.
 Its purpose is to help identify parts of an application that are slow and may benefit from [optimizations such as memoization](/docs/hooks-faq.html#how-to-memoize-calculations).
 
@@ -49,7 +59,7 @@ render(
 ```
 
 `Profiler` components can also be nested to measure different components within the same subtree:
-```js{2,6,8}
+```js{3,5,8}
 render(
   <App>
     <Profiler id="Panel" onRender={callback}>

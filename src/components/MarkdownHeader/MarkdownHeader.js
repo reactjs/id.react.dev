@@ -6,29 +6,32 @@
  */
 
 import Flex from 'components/Flex';
+// $FlowFixMe Update Flow
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 
-const MarkdownHeader = ({title}: {title: string}) => (
-  <Flex type="header" halign="space-between" valign="baseline">
-    <h1
-      css={{
-        color: colors.dark,
-        marginBottom: 0,
-        marginTop: 100, // BLM
-        ...fonts.header,
+const MarkdownHeader = ({title}: {title: string}) => {
+  return (
+    <Flex type="header" halign="space-between" valign="baseline">
+      <h1
+        css={{
+          color: colors.dark,
+          marginBottom: 0,
+          marginTop: 80,
+          ...fonts.header,
 
-        [media.size('medium')]: {
-          marginTop: 100, // BLM
-        },
+          [media.size('medium')]: {
+            marginTop: 60,
+          },
 
-        [media.greaterThan('large')]: {
-          marginTop: 100, // BLM
-        },
-      }}>
-      {title}
-    </h1>
-  </Flex>
-);
+          [media.lessThan('small')]: {
+            marginTop: 40,
+          },
+        }}>
+        {title}
+      </h1>
+    </Flex>
+  );
+};
 
 export default MarkdownHeader;

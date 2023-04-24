@@ -18,6 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The new [Quick Start](https://react.dev/learn) teaches modern React and includes live examples.
+
+</div>
+
 Laman ini adalah ikhtisar dari dokumentasi React dan sumber-sumber terkait.
 
 **React** adalah *library* JavaScript untuk membangun antarmuka pengguna (*user interface*). Pelajari apa sebenarnya React itu di [beranda kami](/) atau [di dalam tutorial](/tutorial/tutorial.html).
@@ -38,7 +47,7 @@ React telah dirancang dari awal untuk adopsi bertahap, dan **anda dapat mengguna
 
 Jika Anda tertarik bermain dengan React, Anda dapat menggunakan *online code playground*. Coba *template* Hello World di [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), atau [Stackblitz](https://stackblitz.com/fork/react).
 
-Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
+Jika Anda memilih untuk menggunakan *text editor* sendiri, Anda juga dapat [mengunduh berkas HTML ini](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), sunting, dan buka itu dari *filesystem* lokal pada peramban Anda. Hal tersebut memperlambat transformasi *runtime code*, jadi kami merekomendasikan menggunakan ini untuk demonstrasi sederhana.
 
 ### Tambahkan React ke Website {#add-react-to-a-website}
 
@@ -115,7 +124,7 @@ Bagian dokumentasi ini berguna ketika Anda ingin belajar lebih jauh mengenai Rea
 
 Anda juga dapat mengikuti [akun @reactjs](https://twitter.com/reactjs) di Twitter, tetapi Anda tidak akan kehilangan sesuatu yang penting jika hanya membaca blog.
 
-Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/master/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
+Tidak setiap rilis React mendapatkan postingan sendiri pada blog, tapi Anda dapat menemukan *changelog* terperinci untuk setiap rilis [di berkas `CHANGELOG.md` pada repositori React](https://github.com/facebook/react/blob/main/CHANGELOG.md), dan juga pada laman [Rilis](https://github.com/facebook/react/releases).
 
 ## Dokumentasi Berversi {#versioned-documentation}
 
