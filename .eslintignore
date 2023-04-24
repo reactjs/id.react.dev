@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/*
 
 # Ignore markdown files and examples
@@ -8,3 +9,8 @@ public/*
 
 # Ignore examples
 examples/*
+=======
+scripts
+plugins
+next.config.js
+>>>>>>> 920f32eca6fee820fc22b528c564cf9c65eb786c
