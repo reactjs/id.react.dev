@@ -120,7 +120,7 @@ Baca **[Mengimpor dan Mengekspor Komponen](/learn/importing-and-exporting-compon
 
 Setiap komponen React adalah fungsi JavaScript yang dapat berisi beberapa *markup* yang di-*render* oleh React ke browser. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
 
-Jika kita menempel *markup* HTML yang sudah ada ke dalam komponen React, itu tidak selalu akan berfungsi:
+Jika kita menempel *markup* HTML yang sembarang ke dalam komponen React, itu tidak selalu akan berfungsi:
 
 <Sandpack>
 
