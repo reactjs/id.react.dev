@@ -1,41 +1,41 @@
 ---
-title: Your First Component
+title: Komponen Pertama Anda
 ---
 
 <Intro>
 
-*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+Komponen merupakan salah satu konsep inti dari React. Komponen adalah fondasi di mana anda bangun antarmuka pengguna (UI), yang membuat komponen tempat yang sempurna untuk memulai perjalan React anda!
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* Apa itu komponen
+* Apa tugas yang dimainkan oleh komponen di dalam aplikasi React
+* Bagaimana cara menulis komponen React pertama anda
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## Komponen: Pembangun Balok UI {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+Di dalam *web*, HTML memungkinkan kita membuat dokumen-dokumen terstruktur yang kaya dengan kumpulan *tag* *built-in*-nya seperti `<h1>` dan `<li>`:
 
 ```html
 <article>
-  <h1>My First Component</h1>
+  <h1>Komponen Pertama Saya</h1>
   <ol>
-    <li>Components: UI Building Blocks</li>
-    <li>Defining a Component</li>
-    <li>Using a Component</li>
+    <li>Komponen: Pembangun Balok UI</li>
+    <li>Mendefinisikan sebuah Komponen</li>
+    <li>Menggunakan sebuah Komponen</li>
   </ol>
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+*Markup* ini merepresentasikan artikel `<article>`, heading `<h1>` dan daftar isi (yang disingkat) sebagai daftar yang tersusun `<ol>`. *Markup* seperti ini, digabung dengan CSS untuk *style*, dan *Javascript* untuk interaktivitas, berada di belakang setiap *sidebar*, *avatar*, *modal*, *dropdown*—setiap potongan UI anda liat di dalam web.
 
-React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React memungkinkan anda menggabung *markup*, CSS, dan *Javascript* anda menjadi "komponen" *custom*, **elemen UI yang dapat digunakan kembali untuk aplikasi anda.** Daftar isi yang anda lihat diatas dapat diubah menjadi sebuah komponen `<TableOfContents />` yang dapat kamu *render* di setiap halaman. *Under the hood*, itu tetap menggunakan *tag* HTML yang sama seperti `<article>`, `h1`, dll.
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+Sama seperti *tag* HTMl, anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Contohnya, halaman dokumentasi ini yang anda baca terbuat oleh komponen React: 
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI.](https://material-ui.com/)
+Seiring berkembangnya proyek anda, anda akan memperhatikan bahwa banyak desain anda bisa dikomposisi dengan menggunakan ulang komponen yang sudah anda buat, mempercepatkan *development* anda. Daftar isi kami diatas bisa disertakan pada layar apapun denagn `<TableOfContents />`! Anda bisa *jumpstart* projek anda dengan ribuan komponen yang dibagi oleh komunitas *open source* React seperti [Chakra UI](https://chakra-ui.com/) dan [Material UI.](https://material-ui.com/)
 
-## Defining a component {/*defining-a-component*/}
+## Mendefinisikan sebuah Komponen {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_.** Here's what that looks like (you can edit the example below):
+Secara tradisional saat menciptakan halaman *web*, para *web developer* *marked up* konten mereka kemudian menambahkan interaksi dengan menambahkan sedikit *Javascript*. Ini bekerja dengan baik ketika interaksi hanya menyenangkan-untuk-dimiliki di dalam *web*. Sekarang ini diharapkan banyak situs dan semua aplikasi. React mengutamakan interaktivitas dengan tetap menggunakan teknologi yang sama: **Komponen React adalah _function Javascript_ yang dapat anda _sirami dengan markup_.** Inilah tampilannya (anda bisa sunting contoh dibawah):
 
 <Sandpack>
 
@@ -76,33 +76,34 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+Dan ini bagaimana cara membuat komponen:
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### Langkah 1: Ekspor komponen {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+*prefix* `export default` adalah sebuah [sintaksis *Javascript* standar](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (tidak spesifik kepada React). Itu memungkinkan anda menandai fungsi utama di sebuah file supaya anda bisa import itu dari *files* lain nanti. (Lebih lanjut tentang mengimport di [Mengimport dan Mengeksport Komponen](/learn/importing-and-exporting-components)!)
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### Langkah 2: Definisikan fungsi {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+Dengan `function Profile() { }` anda mendefinisikan fungsi *Javascript* dengan nama `Profile`.
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+Componen React adalah fungsi-fungsi *Javascript* biasa, tetapi **nama mereka harus dimulai dengan huruf kapital** atau tidak akan berfungsi!
 
 </Pitfall>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### Langkah 3: Tambahkan *markup* {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+Komponen itu mengembalikan tag `<img />` dengan attribut `src` dan `alt`. `<img />` ditulis seperti HTML, tetapi ini sebenarngan *Javascript* *under the hood*! Sintaksis ini disebut [JSX](/learn/writing-markup-with-jsx), dan ini memungkinkan anda untuk *embed* *markup* didalam *Javascript*.
 
-Return statements can be written all on one line, as in this component:
+Pernyataan-pernyataan yang dikembalikan bisa ditulis semua dalam satu baris, seperti dalam komponen ini.
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
 But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
+Tetapi jika *markup* anda tidak semua ada di baris yang sama seperti *keyword* `return`, anda harus membungkus itu dalam tanda kurung:
 
 ```js
 return (
@@ -114,13 +115,13 @@ return (
 
 <Pitfall>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+Tanpa tanda kurung, kode apapun di baris-baris setelah `return` [akan diabaikan](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
 </Pitfall>
 
-## Using a component {/*using-a-component*/}
+## Menggunakan komponen {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+  Sekarang setelah anda mendefinisikan komponen `Profile` anda, anda bisa mengsarangi itu di dalam komponen-komponen lain. Misalnya, anda bisa eksport sebuah komponen `Gallery` yang menggunakan beberapa komponen `Profile`:
 
 <Sandpack>
 
@@ -215,7 +216,7 @@ Your React application begins at a "root" component. Usually, it is created auto
 
 Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[React-based frameworks](/learn/start-a-new-react-project) take this a Langkah further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
 
 Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
 
