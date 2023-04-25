@@ -11,13 +11,13 @@ React adalah sebuah *library* JavaScript untuk merender antarmuka pengguna (UI).
 <YouWillLearn isChapter={true}>
 
 * [Cara menulis komponen React pertama Anda](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [Kapan dan bagaimana membuat file multi-komponen](/learn/importing-and-exporting-components)
+* [Cara menambahkan markup ke JavaScript dengan JSX](/learn/writing-markup-with-jsx)
+* [Cara menggunakan kurung kurawal dengan JSX untuk mengakses fungsionalitas JavaScript dari komponen Anda](/learn/javascript-in-jsx-with-curly-braces)
+* [Cara mengonfigurasi komponen dengan props](/learn/passing-props-to-a-component)
+* [Cara menampilkan komponen secara bersyarat](/learn/conditional-rendering)
+* [Cara merender beberapa komponen sekaligus](/learn/rendering-lists)
+* [Cara menghindari bug yang membingungkan dengan menjaga komponen tetap murni](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
@@ -61,9 +61,9 @@ Baca **[Komponen Pertama Anda](/learn/your-first-component)** untuk mempelajari 
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Mengimpor dan Mengekspor Komponen {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+Anda dapat mendeklarasikan banyak komponen dalam satu file, tetapi file yang besar dapat sulit untuk dinavigasi/dibaca. Untuk memecahkan masalah ini, Anda dapat *mengekspor* sebuah komponen ke dalam file sendiri, dan kemudian *mengimpor* komponen tersebut dari file lain:
 
 
 <Sandpack>
@@ -84,7 +84,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Ilmuwan yang luar biasa</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -112,22 +112,22 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Baca **[Mengimpor dan Mengekspor Komponen](/learn/importing-and-exporting-components)**  untuk belajar bagaimana memecah komponen ke dalam file-file terpisah.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Menulis Markup dengan JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+Setiap komponen React adalah fungsi JavaScript yang dapat berisi beberapa *markup* yang dirender oleh React ke browser. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
 
-If we paste existing HTML markup into a React component, it won't always work:
+Jika kita menempel *markup* HTML yang sudah ada ke dalam komponen React, itu tidak selalu akan berfungsi:
 
 <Sandpack>
 
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
+    // Ini tidak cukup berhasil
     <h1>Hedy Lamarr's Todos</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
@@ -135,9 +135,9 @@ export default function TodoList() {
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve spectrum technology
+      <li>Ciptakan lampu lalu lintas baru
+      <li>Latih adegan film
+      <li>Meningkatkan teknologi spektrum
     </ul>
   );
 }
@@ -149,7 +149,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+Jika Anda memiliki HTML seperti ini, Anda dapat memperbaikinya menggunakan [konverter](https://transform.tools/html-to-jsx):
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ export default function TodoList() {
         className="photo"
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve spectrum technology</li>
+        <li>Ciptakan lampu lalu lintas baru</li>
+        <li>Latih adegan film</li>
+        <li>Meningkatkan teknologi spektrum</li>
       </ul>
     </>
   );
