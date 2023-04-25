@@ -1,5 +1,5 @@
 {
-  "title": "Learn React",
+  "title": "Belajar React",
   "path": "/learn",
   "routes": [
     {
@@ -47,12 +47,12 @@
       "sectionHeader": "LEARN REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Menggambarkan Antarmuka Pengguna (UI)",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Your First Component",
+          "title": "Komponen Pertama Anda",
           "path": "/learn/your-first-component"
         },
         {
@@ -186,7 +186,7 @@
         },
         {
           "title": "Removing Effect Dependencies",
-          "path": "/learn/removing-effect-dependencies"              
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "Reusing Logic with Custom Hooks",

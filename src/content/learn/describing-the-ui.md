@@ -4,7 +4,7 @@ title: Menggambarkan Antarmuka Pengguna (UI)
 
 <Intro>
 
-React adalah sebuah *library* JavaScript untuk merender antarmuka pengguna (UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat ditempatkan di komponen lainnya). Dari situs web hingga aplikasi telepon, semuanya pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara bersyarat.
+React adalah sebuah *library* JavaScript untuk melakukan *render* antarmuka pengguna (UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat ditempatkan di komponen lainnya). Dari situs web hingga aplikasi telepon, semuanya pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara bersyarat.
 
 </Intro>
 
@@ -15,15 +15,15 @@ React adalah sebuah *library* JavaScript untuk merender antarmuka pengguna (UI).
 * [Cara menambahkan markup ke JavaScript dengan JSX](/learn/writing-markup-with-jsx)
 * [Cara menggunakan kurung kurawal dengan JSX untuk mengakses fungsionalitas JavaScript dari komponen Anda](/learn/javascript-in-jsx-with-curly-braces)
 * [Cara mengonfigurasi komponen dengan props](/learn/passing-props-to-a-component)
-* [Cara menampilkan komponen secara bersyarat](/learn/conditional-rendering)
-* [Cara merender beberapa komponen sekaligus](/learn/rendering-lists)
+* [Cara melakukan render komponen secara kondisional](/learn/conditional-rendering)
+* [Cara melakukan render beberapa komponen sekaligus](/learn/rendering-lists)
 * [Cara menghindari bug yang membingungkan dengan menjaga komponen tetap murni](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
 ## Komponen Pertama Anda {/*your-first-component*/}
 
-Aplikasi React dibangun dari potongan-potongan antaramuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang merender tiga komponen `Profile`:
+Aplikasi React dibangun dari potongan-potongan antaramuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang me-*render* tiga komponen `Profile`:
 
 <Sandpack>
 
@@ -118,7 +118,7 @@ Baca **[Mengimpor dan Mengekspor Komponen](/learn/importing-and-exporting-compon
 
 ## Menulis Markup dengan JSX {/*writing-markup-with-jsx*/}
 
-Setiap komponen React adalah fungsi JavaScript yang dapat berisi beberapa *markup* yang dirender oleh React ke browser. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
+Setiap komponen React adalah fungsi JavaScript yang dapat berisi beberapa *markup* yang di-*render* oleh React ke browser. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
 
 Jika kita menempel *markup* HTML yang sudah ada ke dalam komponen React, itu tidak selalu akan berfungsi:
 
@@ -181,13 +181,13 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+Baca **[Menulis Markup dengan JSX](/learn/writing-markup-with-jsx)** untuk mempelajarai cara menulis JSX yang valid.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript di JSX dengan Kurung Kurawal {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX memungkinkan Anda menulis *markup* mirip HTML di dalam file JavaScript, menjaga logika *rendering* dan konten di tempat yang sama. Terkadang Anda ingin menambahkan sedikit logika JavaScript atau merujuk pada properti dinamis di dalam markup tersebut. Dalam situasi ini, Anda dapat menggunakan kurung kurawal di JSX Anda untuk "membuka jendela" ke JavaScript:
 
 <Sandpack>
 
@@ -210,9 +210,9 @@ export default function TodoList() {
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Meningkatkan videophone</li>
+        <li>Menyiapkan kuliah aeronautika</li>
+        <li>Mengerjakan mesin berbahan bakar alkohol</li>
       </ul>
     </div>
   );
@@ -229,13 +229,13 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+Baca **[JavaScript di JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Mengoper Props ke Komponen {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+Komponen React menggunakan *props* untuk berkomunikasi satu sama lain. Setiap komponen induk dapat memberikan informasi ke komponen anaknya dengan memberikan *props*. *Props* mungkin mengingatkan Anda pada atribut HTML, tetapi Anda dapat mengoper nilai JavaScript apa pun melalui *props*, termasuk objek, senarai, fungsi, dan bahkan JSX!
 
 <Sandpack>
 
@@ -310,15 +310,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+Baca **[Mengoper Props ke Komponen](/learn/passing-props-to-a-component)** untuk mempelajari cara mengoper dan membaca *props*.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## Rendering Kondisional {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+Dalam contoh ini, operator `&&` JavaScript digunakan untuk me-*render* centang secara kondisional:
 
 <Sandpack>
 
@@ -334,19 +334,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Daftar Perlengkapan Mengemudi Sally</h1>
       <ul>
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Pakaian luar angkasa"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Helm dengan daun emas"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -358,7 +358,7 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+Baca **[Rendering Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
 
 </LearnMore>
 
