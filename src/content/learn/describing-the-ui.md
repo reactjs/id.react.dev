@@ -1,16 +1,16 @@
 ---
-title: Describing the UI
+title: Menggambarkan Antarmuka Pengguna (UI)
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React adalah sebuah *library* JavaScript untuk merender antarmuka pengguna (UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat ditempatkan di komponen lainnya). Dari situs web hingga aplikasi telepon, semuanya pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara bersyarat.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
+* [Cara menulis komponen React pertama Anda](/learn/your-first-component)
 * [When and how to create multi-component files](/learn/importing-and-exporting-components)
 * [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
 * [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
@@ -21,9 +21,9 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Komponen Pertama Anda {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+Aplikasi React dibangun dari potongan-potongan antaramuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang merender tiga komponen `Profile`:
 
 <Sandpack>
 
@@ -40,7 +40,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Ilmuwan yang luar biasa</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -57,7 +57,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Baca **[Komponen Pertama Anda](/learn/your-first-component)** untuk mempelajari cara mendeklarasikan dan menggunakan komponen React.
 
 </LearnMore>
 

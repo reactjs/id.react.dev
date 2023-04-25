@@ -113,16 +113,16 @@ function LearnMore({
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
           <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
-            Ready to learn this topic?
+            Siap mempelajari topik ini?
           </h2>
           {children}
           {path ? (
             <ButtonLink
               className="mt-1"
-              label="Read More"
+              label="Baca selengkapnya"
               href={path}
               type="primary">
-              Read More
+              Baca selengkapnya
               <IconNavArrow displayDirection="right" className="inline ml-1" />
             </ButtonLink>
           ) : null}
