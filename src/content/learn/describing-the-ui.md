@@ -233,7 +233,7 @@ Baca **[JavaScript di JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-c
 
 </LearnMore>
 
-## Mengoper Props ke Komponen {/*passing-props-to-a-component*/}
+## Mengoper *Props* ke Komponen {/*passing-props-to-a-component*/}
 
 Komponen React menggunakan *props* untuk berkomunikasi satu sama lain. Setiap komponen induk dapat memberikan informasi ke komponen anaknya dengan memberikan *props*. *Props* mungkin mengingatkan Anda pada atribut HTML, tetapi Anda dapat mengoper nilai JavaScript apa pun melalui *props*, termasuk objek, senarai, fungsi, dan bahkan JSX!
 
@@ -314,7 +314,7 @@ Baca **[Mengoper Props ke Komponen](/learn/passing-props-to-a-component)** untuk
 
 </LearnMore>
 
-## Rendering Kondisional {/*conditional-rendering*/}
+## *Rendering* Kondisional {/*conditional-rendering*/}
 
 Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
@@ -362,11 +362,11 @@ Baca **[Rendering Kondisional](/learn/conditional-rendering)** untuk mempelajari
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## *Rendering* Daftar {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+Anda sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk memfilter dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+Untuk setiap item pada senarai, Anda perlu menentukan sebuah kunci `key`. Biasanya, Anda ingin menggunakan ID dari basisdata sebagai `key`. `Key` memungkinkan React untuk melacak posisi setiap item di dalam daftar bahkan jika daftar berubah.
 
 <Sandpack>
 
@@ -384,13 +384,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        yang terkenal dengan {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Ilmuwan</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -401,32 +401,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'ahli matematika',
+  accomplishment: 'perhitungan penerbangan luar angkasa',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'ahli kimia',
+  accomplishment: 'penemuan lubang ozon Arktik',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'ahli fisika',
+  accomplishment: 'teori elektromagnetik',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'ahli kimia',
+  accomplishment: 'perintis obat kortison, steroid dan pil KB',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'ahli astrofisika',
+  accomplishment: 'perhitungan massa bintang kerdil putih',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -458,18 +458,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Baca **[Rendering Daftar](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Menjaga Komponen Murni {/*keeping-components-pure*/}
 
-Some JavaScript functions are *pure.* A pure function:
+Beberapa fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apa pun yang ada sebelumnya dipanggil.
+* **Input sama, output sama.**  Dengan input yang sama, sebuah fungsi murni harus selalu mengembalikan hasil yang sama.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+Dengan secara ketat hanya menulis komponen Anda sebagai fungsi murni, Anda dapat menghindari seluruh bug yang membingungkan dan perilaku yang tidak dapat diprediksi saat kode Anda berkembang. Berikut ini adalah contoh komponen tidak murni:
 
 <Sandpack>
 
@@ -477,9 +477,9 @@ By strictly only writing your components as pure functions, you can avoid an ent
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Buruk: memodifikasi variabel yang sudah ada sebelum cup dipanggil!
   guest = guest + 1;
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Gelas teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -495,13 +495,13 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+Anda dapat membuat komponen ini menjadi murni dengan melewatkan sebuah *prop* daripada memodifikasi variabel yang sudah ada:
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Gelas teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -519,12 +519,12 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Baca **[Menjaga Komponen Murni](/learn/keeping-components-pure)** untuk mempelajari cara menulis komponen sebagai fungsi yang murni dan dapat diprediksi.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+Lanjut ke [Komponen Pertama Anda](/learn/your-first-component) untuk mulai membaca halaman bab ini dari awal!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+Atau, jika Anda sudah familiar dengan topik ini, mengapa tidak membaca tentang [Menambahkan Interaktivitas](/learn/adding-interactivity)?

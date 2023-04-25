@@ -56,31 +56,31 @@
           "path": "/learn/your-first-component"
         },
         {
-          "title": "Importing and Exporting Components",
+          "title": "Mengimpor dan Mengekspor Komponen",
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Writing Markup with JSX",
+          "title": "Menulis Markup dengan JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript in JSX with Curly Braces",
+          "title": "JavaScript di JSX dengan Kurung Kurawal",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Passing Props to a Component",
+          "title": "Mengoper Props ke Komponen",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "Rendering Kondisional",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "Rendering Daftar",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Keeping Components Pure",
+          "title": "Menjaga Komponen Murni",
           "path": "/learn/keeping-components-pure"
         }
       ]
