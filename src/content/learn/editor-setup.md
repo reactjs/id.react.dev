@@ -27,7 +27,7 @@ Editor teks populer lainnya yang digunakan dalam komunitas React meliputi:
 
 ## Fitur editor teks yang direkomendasikan {/*recommended-text-editor-features*/}
 
-Beberapa editor dilengkapi dengan fitur-fitur ini secara *built-in*, tetapi yang lain mungkin memerlukan penambahan ekstensi. Periksa untuk melihat dukungan yang disediakan editor pilihan Anda untuk memastikan!
+Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang lain mungkin memerlukan penambahan ekstensi. Periksa untuk melihat dukungan yang disediakan editor pilihan Anda untuk memastikan!
 
 ### Pemeriksaan {/*linting*/}
 
