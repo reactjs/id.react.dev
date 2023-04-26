@@ -16,7 +16,7 @@ useDebugValue(value, format?)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
