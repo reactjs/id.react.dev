@@ -4,7 +4,7 @@ title: Komponen Pertama Anda
 
 <Intro>
 
-Komponen merupakan salah satu konsep inti dari React. Komponen adalah fondasi di mana anda bangun antarmuka pengguna (UI), yang membuat komponen tempat yang sempurna untuk memulai perjalan React anda!
+Komponen merupakan salah satu konsep inti dari React. Komponen adalah fondasi di mana Anda bangun antarmuka pengguna (UI), yang membuat komponen tempat yang sempurna untuk memulai perjalan React Anda!
 
 </Intro>
 
@@ -12,7 +12,7 @@ Komponen merupakan salah satu konsep inti dari React. Komponen adalah fondasi di
 
 * Apa itu komponen
 * Apa tugas yang dimainkan oleh komponen di dalam aplikasi React
-* Bagaimana cara menulis komponen React pertama anda
+* Bagaimana cara menulis komponen React pertama Anda
 
 </YouWillLearn>
 
@@ -31,11 +31,11 @@ Di dalam *web*, HTML memungkinkan kita membuat dokumen-dokumen terstruktur yang 
 </article>
 ```
 
-*Markup* ini merepresentasikan artikel `<article>`, heading `<h1>` dan daftar isi (yang disingkat) sebagai daftar yang tersusun `<ol>`. *Markup* seperti ini, digabung dengan CSS untuk *style*, dan *Javascript* untuk interaktivitas, berada di belakang setiap *sidebar*, *avatar*, *modal*, *dropdown*—setiap potongan UI yang anda liat di dalam *web*.
+*Markup* ini merepresentasikan artikel `<article>`, heading `<h1>` dan daftar isi (yang disingkat) sebagai daftar yang tersusun `<ol>`. *Markup* seperti ini, digabung dengan CSS untuk *style*, dan *Javascript* untuk interaktivitas, berada di belakang setiap *sidebar*, *avatar*, *modal*, *dropdown*—setiap potongan UI yang Anda liat di dalam *web*.
 
-React memungkinkan anda menggabung *markup*, CSS, dan *Javascript* anda menjadi "komponen" yang dibuat khusus, **elemen UI yang dapat digunakan kembali untuk aplikasi anda.** Daftar isi yang anda lihat di atas dapat diubah menjadi sebuah komponen `<TableOfContents />` yang dapat anda *render* pada setiap halaman. Dari belakang, itu tetap menggunakan *tag* HTML yang sama seperti `<article>`, `h1`, dll.
+React memungkinkan Anda menggabung *markup*, CSS, dan *Javascript* Anda menjadi "komponen" yang dibuat khusus, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda.** Daftar isi yang Anda lihat di atas dapat diubah menjadi sebuah komponen `<TableOfContents />` yang dapat Anda *render* pada setiap halaman. Dari belakang, itu tetap menggunakan *tag* HTML yang sama seperti `<article>`, `h1`, dll.
 
-Sama seperti *tag* HTML, anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang anda baca terbuat oleh komponen-komponen React: 
+Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang Anda baca terbuat oleh komponen-komponen React: 
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Sama seperti *tag* HTML, anda dapat menggabung, mengurut, dan menyusun bertingka
 </PageLayout>
 ```
 
-Seiring berkembangnya proyek anda, anda akan memperhatikan bahwa banyak desain anda bisa dikomposisi dengan menggunakan ulang komponen-komponen yang sudah anda buat, mempercepatkan perkembangan proyek anda. Daftar isi kita di atas bisa disertakan pada layar apapun dengan `<TableOfContents />`! Anda bisa memulai proyek anda dengan cepat menggunakan ribuan komponen-komponen yang dibagi oleh komunitas *open source* React seperti [Chakra UI](https://chakra-ui.com/) dan [Material UI.](https://material-ui.com/)
+Seiring berkembangnya proyek Anda, Anda akan memperhatikan bahwa banyak desain Anda bisa dikomposisi dengan menggunakan ulang komponen-komponen yang sudah Anda buat, mempercepatkan perkembangan proyek Anda. Daftar isi kita di atas bisa disertakan pada layar apapun dengan `<TableOfContents />`! Anda bisa memulai proyek Anda dengan cepat menggunakan ribuan komponen-komponen yang dibagi oleh komunitas *open source* React seperti [Chakra UI](https://chakra-ui.com/) dan [Material UI.](https://material-ui.com/)
 
 ## Mendefinisikan suatu komponen {/*defining-a-component*/}
 
-Secara tradisional saat menciptakan halaman *web*, para *web developer* me-*mark-up* konten mereka kemudian menambahkan interaksi dengan sedikit *Javascript*. Ini bekerja dengan baik ketika interaksi hanya menyenangkan-untuk-dimiliki di dalam *web*. Sekarang ini diharapkan banyak situs dan semua aplikasi. React mengutamakan interaktivitas dengan tetap menggunakan teknologi yang sama: **Sebuah komponen React adalah sebuah fungsi _Javascript_ yang dapat anda _tambahkan dengan markup_.** Inilah tampilannya (anda bisa sunting contoh di bawah ini):
+Secara tradisional saat menciptakan halaman *web*, para pengembang *web* me-*mark-up* konten mereka kemudian menambahkan interaksi dengan sedikit *Javascript*. Ini bekerja dengan baik ketika interaksi hanya menyenangkan-untuk-dimiliki di dalam *web*. Sekarang ini diharapkan banyak situs dan semua aplikasi. React mengutamakan interaktivitas dengan tetap menggunakan teknologi yang sama: **Sebuah komponen React adalah sebuah fungsi _Javascript_ yang dapat Anda _tambahkan dengan markup_.** Inilah tampilannya (Anda bisa sunting contoh di bawah ini):
 
 <Sandpack>
 
@@ -80,11 +80,11 @@ Dan ini bagaimana cara membuat sebuah komponen:
 
 ### Langkah 1: Eksport komponennya {/*step-1-export-the-component*/}
 
-awalan `export default` adalah sebuah [sintaksis *Javascript* standar](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (tidak spesifik kepada React). Itu memungkinkan anda menandai fungsi utama di sebuah file supaya anda bisa mengimport itu dari *file-file* lain nantinya. (Lebih lanjut tentang mengimport di [Mengimport dan Mengeksport Komponen](/learn/importing-and-exporting-components)!)
+awalan `export default` adalah sebuah [sintaksis *Javascript* standar](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (tidak spesifik kepada React). Itu memungkinkan Anda menandai fungsi utama di sebuah file supaya Anda bisa mengimport itu dari *file-file* lain nantinya. (Lebih lanjut tentang mengimport di [Mengimport dan Mengeksport Komponen](/learn/importing-and-exporting-components)!)
 
 ### Langkah 2: Definisikan fungsinya {/*step-2-define-the-function*/}
 
-Dengan `function Profile() { }` anda mendefinisikan fungsi *Javascript* dengan nama `Profile`.
+Dengan `function Profile() { }` Anda mendefinisikan fungsi *Javascript* dengan nama `Profile`.
 
 <Pitfall>
 
@@ -94,7 +94,7 @@ Komponen React adalah fungsi *Javascript* biasa, tetapi **nama mereka harus dimu
 
 ### Langkah 3: Tambahkan *markup* {/*step-3-add-markup*/}
 
-Komponen itu mengembalikan *tag* `<img />` dengan atribut `src` dan `alt`. `<img />` ditulis seperti HTML, tetapi ini sebenarnya merupakan *Javascript* di belakang! Sintaksis ini disebut [JSX](/learn/writing-markup-with-jsx), dan ini memungkinkan anda untuk *embed* *markup* di dalam *Javascript*.
+Komponen itu mengembalikan *tag* `<img />` dengan atribut `src` dan `alt`. `<img />` ditulis seperti HTML, tetapi ini sebenarnya merupakan *Javascript* di belakang! Sintaksis ini disebut [JSX](/learn/writing-markup-with-jsx), dan ini memungkinkan Anda untuk *embed* *markup* di dalam *Javascript*.
 
 Pernyataan-pernyataan yang dikembalikan bisa ditulis semua pada satu baris, seperti dalam komponen ini.
 
@@ -102,7 +102,7 @@ Pernyataan-pernyataan yang dikembalikan bisa ditulis semua pada satu baris, sepe
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-Tetapi jika *markup* anda tidak semua ada di baris yang sama dengan *keyword* `return`, anda harus membungkus itu dalam tanda kurung:
+Tetapi jika *markup* Anda tidak semua ada di baris yang sama dengan *keyword* `return`, Anda harus membungkus itu dalam tanda kurung:
 
 ```js
 return (
@@ -120,7 +120,7 @@ Tanpa tanda kurung, kode apapun di baris-baris setelah `return` [akan diabaikan]
 
 ## Menggunakan suatu komponen {/*using-a-component*/}
 
-Sekarang setelah anda mendefinisikan komponen `Profile` anda, anda bisa meletakkan itu di dalam komponen-komponen lain secara bertingkat. Misalnya, anda bisa eksport sebuah komponen `Gallery` yang menggunakan beberapa komponen `Profile`:
+Sekarang setelah Anda mendefinisikan komponen `Profile` Anda, Anda bisa meletakkan itu di dalam komponen-komponen lain secara bertingkat. Misalnya, Anda bisa eksport sebuah komponen `Gallery` yang menggunakan beberapa komponen `Profile`:
 
 <Sandpack>
 
@@ -152,14 +152,14 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### Apa yang dilihat oleh *browser* {/*what-the-browser-sees*/}
+### Apa yang dilihat oleh peramban {/*what-the-browser-sees*/}
 
 Perhatikanlah perbedaan pada huruf kapitalisasi:
 
 * `<section>` dimulai dengan huruf kecil, supaya React mengetahui bahwa kita merujuk pada *tag* HTML.
 * `<Profile />` dimulai dengan huruf kapital `P`, supaya React mengetahui bahwa kita ingin menggunakan komponen kita bernama `Profile`.
 
-Dan `Profile` berisi lebih banyak HTML: `<img />`. Pada akhirnya, inilah yang dilihat oleh *browser*:
+Dan `Profile` berisi lebih banyak HTML: `<img />`. Pada akhirnya, inilah yang dilihat oleh peramban:
 
 ```html
 <section>
@@ -172,13 +172,13 @@ Dan `Profile` berisi lebih banyak HTML: `<img />`. Pada akhirnya, inilah yang di
 
 ### Menyusun secara bertingkat dan mengorganisir komponen {/*nesting-and-organizing-components*/}
 
-Komponen adalah fungsi *Javascript* biasa, sehingga anda bisa menjaga beberapa komponen di dalam *file* yang sama. Ini nyaman ketika komponen-komponen relatif kecil atau saling terkait secara erat. Jika *file* ini menjadi ramai, anda selalu bisa memindahkan `Profile` kepada suatu *file* yang beda. Anda akan belajar bagaimana cara melakukan ini segera di [halaman tentang import.](/learn/importing-and-exporting-components)
+Komponen adalah fungsi *Javascript* biasa, sehingga Anda bisa menjaga beberapa komponen di dalam *file* yang sama. Ini nyaman ketika komponen-komponen relatif kecil atau saling terkait secara erat. Jika *file* ini menjadi ramai, Anda selalu bisa memindahkan `Profile` kepada suatu *file* yang beda. Anda akan belajar bagaimana cara melakukan ini segera di [halaman tentang import.](/learn/importing-and-exporting-components)
 
-Karena komponen-komponen `Profile` di-*render* di dalam `Gallery`—bahkan beberapa kali!—kita dapat mengatakan bahwa `Gallery` adalah sebuah **komponen induk,** yang me-*render* setiap `Profile` sebagai sebuah "anak". Ini merupakan bagian ajaib dari React: anda bisa mendefinisikan suatu komponen sekali, kemudian digunakan di banyak tempat dan sebanyak kali yang anda suka.
+Karena komponen-komponen `Profile` di-*render* di dalam `Gallery`—bahkan beberapa kali!—kita dapat mengatakan bahwa `Gallery` adalah sebuah **komponen induk,** yang me-*render* setiap `Profile` sebagai sebuah "anak". Ini merupakan bagian ajaib dari React: Anda bisa mendefinisikan suatu komponen sekali, kemudian digunakan di banyak tempat dan sebanyak kali yang Anda suka.
 
 <Pitfall>
 
-Komponen dapat me-*render* komponen lain, tetapi **anda tidak boleh menyusun definisinya secara bertingkat:**
+Komponen dapat me-*render* komponen lain, tetapi **Anda tidak boleh menyusun definisinya secara bertingkat:**
 
 ```js {2-5}
 export default function Gallery() {
@@ -211,11 +211,11 @@ Ketika suatu komponen anak membutuhkan data dari suatu induk, [operkan data mela
 
 #### Komponen sampai ke bawah {/*components-all-the-way-down*/}
 
-Aplikasi React anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat secara otomatis saat anda memulai proyek baru. Misalnya, jika anda menggunakan [CodeSandbox](https://codesandbox.io/) atau [Create React App](https://create-react-app.dev/), komponen *root* didefinisikan di `src/App.js`. Jika anda menggunakan *framework* [Next.js](https://nextjs.org/), komponen *root* didefinisikan di `pages/index.js`. Dalam contoh-contoh berikut, anda telah mengeksport komponen-komponen *root*.
+Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat secara otomatis saat Anda memulai proyek baru. Misalnya, jika Anda menggunakan [CodeSandbox](https://codesandbox.io/) atau [Create React App](https://create-react-app.dev/), komponen *root* didefinisikan di `src/App.js`. Jika Anda menggunakan *framework* [Next.js](https://nextjs.org/), komponen *root* didefinisikan di `pages/index.js`. Dalam contoh-contoh berikut, Anda telah mengeksport komponen-komponen *root*.
 
-Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
+Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti Anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
 
-[*Framework-framework* berbasis React](/learn/start-a-new-react-project) mengambil ini selangkah lebih jauh. Daripada menggunakan sebuah *file* HTML yang kosong dan membiarkan React untuk "mengambil alih" dalam mengelola halamannya dengan *Javascript*, mereka *juga* membuat HTML-nya secara otomatis dari komponen-komponen React anda. Ini memungkinkan aplikasi anda menampilkan beberapa konten sebelum kode *Javascript* dimuat.
+[*Framework-framework* berbasis React](/learn/start-a-new-react-project) mengambil ini selangkah lebih jauh. Daripada menggunakan sebuah *file* HTML yang kosong dan membiarkan React untuk "mengambil alih" dalam mengelola halamannya dengan *Javascript*, mereka *juga* membuat HTML-nya secara otomatis dari komponen-komponen React Anda. Ini memungkinkan aplikasi Anda menampilkan beberapa konten sebelum kode *Javascript* dimuat.
 
 Namun, banyak *website* hanya menggunakan React untuk [menambahkan interaktivitas kepada halaman HTML yang sudah ada.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) Mereka memiliki banya komponen *root* daripada satu untuk seluruh halaman. Anda dapat menggunakan React sebanyaknya-banyaknya—atau sesedikit mungkin—sesuai dengan yang dibutuhkan.
 
@@ -223,9 +223,9 @@ Namun, banyak *website* hanya menggunakan React untuk [menambahkan interaktivita
 
 <Recap>
 
-Anda baru saja mendapatkan rasa pertama anda dari React! Mari kita rekap beberapa poin penting.
+Anda baru saja mendapatkan rasa pertama Anda dari React! Mari kita rekap beberapa poin penting.
 
-* React memungkinkan anda untuk membuat komponen, **elemen UI yang dapat digunakan kembali untuk aplikasi anda**
+* React memungkinkan Anda untuk membuat komponen, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda**
 * Dalam suatu aplikasi React, setiap bagian dari UI adalah sebuah komponen.
 * Komponen React adalah fungsi *Javascript* biasa kecuali:
   
@@ -292,7 +292,7 @@ Anda mungkin heran mengapa menulis `export` sendiri tidak cukup untuk memperbaik
 
 #### Perbaikilah pernyataan pengembalian {/*fix-the-return-statement*/}
 
-Ada yang tidak benar tentang pernyataan `return` ini. Dapatkah anda memperbaikinya?
+Ada yang tidak benar tentang pernyataan `return` ini. Dapatkah Anda memperbaikinya?
 
 <Hint>
 
@@ -359,7 +359,7 @@ img { height: 180px; }
 
 #### Temukanlah kesalahannya {/*spot-the-mistake*/}
 
-Ada yang salah dengan bagaimana komponen `Profile` dideklarasi dan digunakan. Dapatkah anda temukan masalahnya? (Coba untuk mengingat kembali bagaimana React membedakan komponen dengan *tag* HTML biasa!)
+Ada yang salah dengan bagaimana komponen `Profile` dideklarasi dan digunakan. Dapatkah Anda temukan masalahnya? (Coba untuk mengingat kembali bagaimana React membedakan komponen dengan *tag* HTML biasa!)
 
 <Sandpack>
 
@@ -429,14 +429,14 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-#### Komponen anda sendiri {/*your-own-component*/}
+#### Komponen Anda sendiri {/*your-own-component*/}
 
-Tulislah sebuah komponen dari awal. Anda bisa memberikannya nama apapun yang benar dan mengembalikan *markup* apapun. Jika anda kehabisan ide, anda bisa tulis sebuah komponen `Congratuliations` yang menampilkan `<h1>Kerja bagus!</h1>`. Jangan lupa untuk dieksport!
+Tulislah sebuah komponen dari awal. Anda bisa memberikannya nama apapun yang benar dan mengembalikan *markup* apapun. Jika Anda kehabisan ide, Anda bisa tulis sebuah komponen `Congratuliations` yang menampilkan `<h1>Kerja bagus!</h1>`. Jangan lupa untuk dieksport!
 
 <Sandpack>
 
 ```js
-// Tulislah komponen anda di bawah ini!
+// Tulislah komponen Anda di bawah ini!
 
 ```
 
