@@ -29,7 +29,7 @@ Editor teks populer lainnya yang digunakan dalam komunitas React meliputi:
 
 Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang lain mungkin memerlukan penambahan ekstensi. Periksa untuk melihat dukungan yang disediakan editor pilihan Anda untuk memastikan!
 
-### *Linting* {/*linting*/}
+### Linting {/*linting*/}
 
 *Linter* kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah *linter open source* yang populer untuk JavaScript.
 
