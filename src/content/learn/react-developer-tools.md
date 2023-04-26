@@ -1,5 +1,5 @@
 ---
-title: Alat pengembang React
+title: React Developer Tools
 ---
 
 <Intro>
