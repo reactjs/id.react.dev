@@ -51,7 +51,7 @@ Jika Anda baru menggunakan Gatsby, lihat [panduan Gatsby.](https://www.gatsbyjs.
 
 Gatsby dikelola oleh [Netlify](https://www.netlify.com/). Anda dapat [memasang situs statis Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting) ke _hosting_ statis apapun. Jika Anda memilih untuk menggunakan fitur _server-only_, Anda perlu memastikan jika penyedia layanan _hosting_ mendukung hal tersebut untuk Gatsby.
 
-### Expo (untuk aplikasi _native_) {/*expo*/}
+### Expo (untuk aplikasi native) {/*expo*/}
 
 **[Expo](https://expo.dev/) adalah _framework_ React yang membantu Anda untuk dapat membuat aplikasi universal untuk Android, iOS, dan web dengan menggunakan tampilan antarmuka pengguna yang asli bawaan dari _platform_ tersebut (_native_).** _Framework_ ini menyediakan kit pengembangan perangkat lunak (SDK) untuk [React Native](https://reactnative.dev/) yang membuat komponen _native_ dapat digunakan dengan mudah. Untuk membuat proyek Expo baru, jalankan perintah:
 
