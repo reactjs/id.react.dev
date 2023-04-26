@@ -4,7 +4,9 @@ title: Pemasangan
 
 <Intro>
 
-React didesain sejak awal untuk dapat diapdopsi secara bertahap. Anda dapat menggunakan React sedikit atau sebanyak apapun sesuai dengan kebutuhan Anda. Baik jika Anda hanya ingin mencoba React, menambahan interaktivitas ke hamalan HTML, atau mulai mengembangkan aplikasi kompleks berbasis React, seksi ini akan membantu Anda untuk mulai menggunakan React.
+
+React didesain sejak awal untuk dapat diapdopsi secara bertahap. Anda dapat menggunakan React sedikit atau sebanyak apapun sesuai dengan kebutuhan Anda. Baik jika Anda hanya ingin mencoba React, menambahkan interaktivitas ke halaman HTML, atau mulai mengembangkan aplikasi kompleks berbasis React, bagian ini akan membantu Anda untuk mulai menggunakan React.
+
 
 </Intro>
 
