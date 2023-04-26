@@ -156,7 +156,7 @@ Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa da
 
 ---
 
-### Mengimpor dan mengekspor konteks dari *file* {/*importing-and-exporting-context-from-a-file*/}
+### Mengimpor dan mengekspor konteks dari file {/*importing-and-exporting-context-from-a-file*/}
 
 Sering kali, komponen dalam *file* yang berbeda membutuhkan akses ke konteks yang sama. Inilah sebabnya mengapa umum untuk mendeklarasikan konteks dalam file terpisah. Kemudian Anda dapat menggunakan [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) untuk membuat konteks tersedia untuk *file* lain:
 
