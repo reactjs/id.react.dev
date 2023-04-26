@@ -581,7 +581,7 @@ Ups, ini bukan yang Anda inginkan:
 
 ![papan berisikan value](../images/tutorial/board-filled-with-value.png)
 
-Anda ingin me-render variabel JavaScript yang disebut `value` dari komponen Anda, bukan kata "value". Untuk "melarikan diri ke dalam JavaScript" dari JSX, Anda memerlukan kurung kurawal. Tambahkan tanda kurung kurawal di sekitar `nilai` di JSX seperti ini:
+Anda ingin merender variabel JavaScript yang disebut `value` dari komponen Anda, bukan kata "value". Untuk "melarikan diri ke dalam JavaScript" dari JSX, Anda memerlukan kurung kurawal. Tambahkan tanda kurung kurawal di sekitar `nilai` di JSX seperti ini:
 
 ```js {2}
 function Square({ value }) {
@@ -797,7 +797,7 @@ function Square() {
 }
 ```
 
-Dengan memanggil fungsi `set` ini dari handler `onClick`, Anda memberi tahu React untuk me-render ulang `Square` setiap kali `<button>` diklik. Setelah pembaruan, nilai `Square` akan menjadi `'X'`, sehingga Anda akan melihat "X" pada papan permainan. Klik pada kotak mana pun, dan "X" akan muncul:
+Dengan memanggil fungsi `set` ini dari handler `onClick`, Anda memberi tahu React untuk merender ulang `Square` setiap kali `<button>` diklik. Setelah pembaruan, nilai `Square` akan menjadi `'X'`, sehingga Anda akan melihat "X" pada papan permainan. Klik pada kotak mana pun, dan "X" akan muncul:
 
 ![menambahkan x ke papan permainan](../images/tutorial/tictac-adding-x-s.gif)
 
@@ -1357,7 +1357,7 @@ Hasilnya sama, tetapi dengan tidak melakukan mutasi (mengubah data yang mendasar
 
 Immutability membuat fitur-fitur yang kompleks menjadi lebih mudah untuk diimplementasikan. Kemudian dalam tutorial ini, Anda akan mengimplementasikan fitur "perjalanan waktu" yang memungkinkan Anda meninjau sejarah game dan "melompat kembali" ke gerakan sebelumnya. Fungsionalitas ini tidak spesifik untuk gim--kemampuan untuk membatalkan dan mengulang tindakan tertentu adalah persyaratan umum untuk aplikasi. Menghindari mutasi data secara langsung memungkinkan Anda menyimpan data versi sebelumnya, dan menggunakannya kembali nanti.
 
-Ada juga manfaat lain dari immutability. Secara default, semua komponen anak dirender ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus me-render ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
+Ada juga manfaat lain dari immutability. Secara default, semua komponen anak dirender ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus merender ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
 
 ### Bergiliran {/*taking-turns*/}
 
@@ -2021,7 +2021,7 @@ body {
 
 Karena Anda merekam riwayat permainan *tic-tac-toe* ini, Anda sekarang dapat menampilkan daftar gerakan sebelumnya kepada pemain.
 
-Elemen React seperti `<button>` adalah objek JavaScript biasa; Anda dapat mengopernya di dalam aplikasi Anda. Untuk me-render beberapa item di React, Anda dapat menggunakan senarai elemen-elemen React.
+Elemen React seperti `<button>` adalah objek JavaScript biasa; Anda dapat mengopernya di dalam aplikasi Anda. Untuk merender beberapa item di React, Anda dapat menggunakan senarai elemen-elemen React.
 
 Anda telah memiliki sebuah senarai `history` yang merupakan sejarah gerakan dalam state, jadi sekarang Anda perlu mengubahnya menjadi sebuah array elemen React. Dalam JavaScript, untuk mengubah satu senarai menjadi senarai lainnya, Anda dapat menggunakan metode [array `map`:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
@@ -2249,7 +2249,7 @@ Untuk saat ini, Anda akan melihat daftar gerakan yang terjadi di dalam game dan 
 
 ### Memilih key {/*picking-a-key*/}
 
-Ketika Anda me-render sebuah list, React menyimpan beberapa informasi tentang setiap item list yang di-render. Ketika Anda memperbarui list, React perlu menentukan apa yang telah berubah. Anda bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui item pada list.
+Ketika Anda merender sebuah list, React menyimpan beberapa informasi tentang setiap item list yang di-render. Ketika Anda memperbarui list, React perlu menentukan apa yang telah berubah. Anda bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui item pada list.
 
 Bayangkan pergantian dari
 
