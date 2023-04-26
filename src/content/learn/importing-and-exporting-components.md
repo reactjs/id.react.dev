@@ -4,17 +4,17 @@ title: Mengimport dan Mengeksport Komponen
 
 <Intro>
 
-Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda dapat membuat komponan yang disusun dengan komponen lain. Namun, ketika Anda menyusun komponen-komponen yang semakin banyak, seringkali lebih masuk akal untuk mulai membaginya ke dalam file-file yang berbeda. Dengan ini Anda menjaga file Anda mudah untuk dipindai dan digunakan kembali di banyak tempat.
+Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda dapat membuat komponan yang disusun dengan komponen lain. Namun, ketika Anda menyusun komponen-komponen yang semakin banyak, seringkali lebih masuk akal untuk mulai membaginya ke dalam *file-file* yang berbeda. Dengan ini Anda menjaga *file* Anda mudah untuk dipindai dan digunakan kembali di banyak tempat.
 
 </Intro>
 
 <YouWillLearn>
 
-* Apa itu file komponen root
+* Apa itu *file* komponen root
 * Bagaimana cara import dan eksport komponen
 * Kapan menggunakan default dan named import dan eksport
-* Bagaimana cara mengimport dan mengeksport beberapa komponen pada satu file
-* Bagaimana cara memisahkan komponen menjadi beberapa file
+* Bagaimana cara mengimport dan mengeksport beberapa komponen pada satu *file*
+* Bagaimana cara memisahkan komponen menjadi beberapa *file*
 
 </YouWillLearn>
 
@@ -52,17 +52,17 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App.js` pada contoh ini. Pada [Create React App](https://create-react-app.dev/), aplikasi Anda berada di `src/App.js`. Tergantung pada persiapan Anda, komponen root Anda bisa saja berada di file lain. Jika Anda menggunakan framework dengan file-based routing, seperti Next.js, komponen root Anda akan berbeda di setiap halaman.
+Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App.js` pada contoh ini. Pada [Create React App](https://create-react-app.dev/), aplikasi Anda berada di `src/App.js`. Tergantung pada persiapan Anda, komponen root Anda bisa saja berada di *file* lain. Jika Anda menggunakan framework dengan *file-based routing*, seperti Next.js, komponen root Anda akan berbeda di setiap halaman.
 
 ## Mengeksport dan mengimport sebuah komponen {/*exporting-and-importing-a-component*/}
 
-Bagaimana jika Anda ingin mengubah landing screen di masa depan dan memasukkan daftar buku sains disana? Atau meletakkan semua profil di tempat lain? Masuk akal untuk memindahkan `Gallery` dan `Profile` dari file komponen root. Ini akan membuat lebih modular dan dapat digunakan kembali di file lain. Anda dapat memindahkan sebuah komponen dengan tiga langkah:
+Bagaimana jika Anda ingin mengubah *landing screen* di masa depan dan memasukkan daftar buku sains disana? Atau meletakkan semua profil di tempat lain? Masuk akal untuk memindahkan `Gallery` dan `Profile` dari *file* komponen root. Ini akan membuat lebih modular dan dapat digunakan kembali di *file* lain. Anda dapat memindahkan sebuah komponen dengan tiga langkah:
 
 1. **Buat** sebuah *file* JS baru untuk memasukkan komponen.
-2. **Eksport** function component Anda dari file tersebut (menggunakan baik [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
+2. **Eksport** function component Anda dari *file* tersebut (menggunakan baik [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
 3. **Import** dimana Anda akan menggunakan komponen tersebut (menggunakan teknik yang sesuai untuk mengimport [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
 
-Di sini `Profile` dan `Gallery` sudah dipindahkan dari `App.js` kedalam *file* baru bernama `Gallery.js`. Sekarang Anda dapat mengubah `App.js` untuk mengimport `Gallery` dari `Gallery.js`:
+Di sini `Profile` dan `Gallery` sudah dipindahkan dari `App.js` ke dalam *file* baru bernama `Gallery.js`. Sekarang Anda dapat mengubah `App.js` untuk mengimport `Gallery` dari `Gallery.js`:
 
 <Sandpack>
 
@@ -104,7 +104,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Perhatikan bagaimana pada contoh ini dipencah menjadi dua *file* komponen sekarang:
+Perhatikan bagaimana pada contoh ini dipecah menjadi dua *file* komponen sekarang:
 
 1. `Gallery.js`:
      - Mendefinisikan `Profile` komponen yang hanya digunakan dalam *file* yang sama dan tidak dieksport.
@@ -116,7 +116,7 @@ Perhatikan bagaimana pada contoh ini dipencah menjadi dua *file* komponen sekara
 
 <Note>
 
-Anda mungkin menemukan file yang meninggalkan ekstensi file `.js` seperti ini:
+Anda mungkin menemukan *file* yang meninggalkan ekstensi *file* `.js` seperti ini:
 
 ```js 
 import Gallery from './Gallery';
@@ -130,7 +130,7 @@ Salah satu `'./Gallery.js'` atau `'./Gallery'` akan jalan dengan React, meskipun
 
 #### Default vs named exports {/*default-vs-named-exports*/}
 
-Ada dua cara utama untuk mengeksport nilai dengan JavaScript: default exports dan named exports. Sejauh ini, contoh kita hanya menggunakan default exports. Tapi Anda dapat menggunakan satu atau keduanya pada file yang sama. **Sebuah file dapat menggunakan tidak lebih dari satu _default_ export, tapi dapat menggunakan _named_ exports sebanyak yang Anda suka.**
+Ada dua cara utama untuk mengeksport nilai dengan JavaScript: default exports dan named exports. Sejauh ini, contoh kita hanya menggunakan default exports. Tapi Anda dapat menggunakan satu atau keduanya pada *file* yang sama. **Sebuah file dapat menggunakan tidak lebih dari satu _default_ export, tapi dapat menggunakan _named_ exports sebanyak yang Anda suka.**
 
 ![Default dan named exports](/images/docs/illustrations/i_import-export.svg)
 
@@ -143,17 +143,17 @@ Bagaimana Anda mengeksport komponen Anda mendikte bagaimana Anda harus mengimpor
 
 Ketika Anda menulis _default_ import, Anda dapat memberi nama apa saja setelah `import`. Contoh, Anda dapat menulis `import Banana from './Button.js'` dan itu akan tetap memberi Anda export default yang sama. Sebaliknya, dengan named imports, nama harus sama di kedua sisi. Itulah mengapa disebut _named_ imports!
 
-**Orang-orang seringkali menggunakan default exports jika file yang dieksport hanya satu komponen, dan menggunakan named exports jika mengeksport beberapa komponen dan nilai.** Bagaimanapun gaya koding yang Anda gunakan, selalu beri nama yang berarti pada fungsi komponen Anda dan isi file tersebut. Komponen tanpa nama, seperti `export default () => {}`, tidak disarankan karena membuat proses debugging lebih sulit.
+**Orang-orang seringkali menggunakan default exports jika *file* yang dieksport hanya satu komponen, dan menggunakan named exports jika mengeksport beberapa komponen dan nilai.** Bagaimanapun gaya koding yang Anda gunakan, selalu beri nama yang berarti pada fungsi komponen Anda dan isi *file* tersebut. Komponen tanpa nama, seperti `export default () => {}`, tidak disarankan karena membuat proses debugging lebih sulit.
 
 </DeepDive>
 
 ## Mengeksport dan mengimport beberapa komponen dari file yang sama {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-Bagaimana jika Anda ingin menampilkan hanya satu `Profile` selain sebuah galeri? Anda dapat mengeksport komponen `Profile` juga. Tapi `Gallery.js` telah menggunakan *default* export, dan Anda tidak dapat memiliki _dua_ default exports. Anda dapat membuat file baru dengan default export, atau Anda dapat menambahkan sebuah *named* export untuk `Profile`. **Sebuah file hanya dapat memiliki satu default export, tapi dapat memiliki banyak named export!**
+Bagaimana jika Anda ingin menampilkan hanya satu `Profile` selain sebuah galeri? Anda dapat mengeksport komponen `Profile` juga. Tapi `Gallery.js` telah menggunakan *default* export, dan Anda tidak dapat memiliki _dua_ default exports. Anda dapat membuat *file* baru dengan default export, atau Anda dapat menambahkan sebuah *named* export untuk `Profile`. **Sebuah *file* hanya dapat memiliki satu default export, tapi dapat memiliki banyak named export!**
 
 <Note>
 
-Untuk menguragi potensi kebingunan antara default dan named exports, beberapa tim memilih untuk berpegang pada satu gaya penulisan (default atau named), atau menghindari mencampurnya dalam satu file. Lakukan yang terbaik untuk Anda!
+Untuk menguragi potensi kebingunan antara default dan named exports, beberapa tim memilih untuk berpegang pada satu gaya penulisan (default atau named), atau menghindari mencampurnya dalam satu *file*. Lakukan yang terbaik untuk Anda!
 
 </Note>
 
@@ -237,10 +237,10 @@ Sekarang Anda menggunakan campuran default dan named exports:
 
 Pada halaman ini Anda belajar:
 
-* Apa itu file komponen root
+* Apa itu *file* komponen root
 * Bagaimana cara import dan eksport komponen
 * Kapan menggunakan default dan named import dan eksport
-* Bagaimana cara mengimport dan mengeksport beberapa komponen pada satu file
+* Bagaimana cara mengimport dan mengeksport beberapa komponen pada satu *file*
 
 </Recap>
 
