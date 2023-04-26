@@ -29,9 +29,9 @@ Editor teks populer lainnya yang digunakan dalam komunitas React meliputi:
 
 Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang lain mungkin memerlukan penambahan ekstensi. Periksa untuk melihat dukungan yang disediakan editor pilihan Anda untuk memastikan!
 
-### Pemeriksaan {/*linting*/}
+### *Linting* {/*linting*/}
 
-Pemeriksa kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah pemeriksa *open source* yang populer untuk JavaScript.
+*Linter* kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah *linter open source* yang populer untuk JavaScript.
 
 * [Memasang ESLint dengan konfigurasi yang direkomendasikan untuk React](https://www.npmjs.com/package/eslint-config-react-app) (pastikan Anda telah [memasang Node!](https://nodejs.org/en/download/current/))
 * [Integrasi ESLint di VSCode dengan ekstensi resmi](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
