@@ -4,7 +4,7 @@ title: createContext
 
 <Intro>
 
-`createContext` lets you create a [context](/learn/passing-data-deeply-with-context) that components can provide or read.
+`createContext` memungkinkan Anda membuat [context](/learn/passing-data-deeply-with-context) yang dapat disediakan atau dibaca oleh komponen.
 
 ```js
 const SomeContext = createContext(defaultValue)
@@ -16,11 +16,11 @@ const SomeContext = createContext(defaultValue)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `createContext(defaultValue)` {/*createcontext*/}
 
-Call `createContext` outside of any components to create a context.
+Panggil fungsi `createContext` di luar komponen apapun untuk membuat konteks.
 
 ```js
 import { createContext } from 'react';
@@ -28,26 +28,26 @@ import { createContext } from 'react';
 const ThemeContext = createContext('light');
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `defaultValue`: The value that you want the context to have when there is no matching context provider in the tree above the component that reads context. If you don't have any meaningful default value, specify `null`. The default value is meant as a "last resort" fallback. It is static and never changes over time.
+* `defaultValue`: Nilai yang Anda inginkan untuk konteks ketika tidak ada penyedia konteks yang cocok di dalam pohon di atas komponen yang membaca konteks. Jika Anda tidak memiliki nilai default yang berarti, tentukan `null`. Nilai default dimaksudkan sebagai fallback "pilihan terakhir". Nilai ini bersifat statis dan tidak pernah berubah dari waktu ke waktu.
 
 #### Returns {/*returns*/}
 
-`createContext` returns a context object.
+`createContext` mengembalikan sebuah konteks objek.
 
-**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext.Provider`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in components below to read it. The context object has a few properties:
+**Objek konteks itu sendiri tidak menyimpan informasi apapun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext.Provider`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
 
-* `SomeContext.Provider` lets you provide the context value to components.
-* `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
+* `SomeContext.Provider` memungkinkan Anda memberikan nilai konteks pada komponen.
+* `SomeContext.Consumer` adalah cara alternatif dan jarang digunakan untuk membaca nilai dari konteks.
 
 ---
 
 ### `SomeContext.Provider` {/*provider*/}
 
-Wrap your components into a context provider to specify the value of this context for all components inside:
+Bungkus komponen Anda ke dalam penyedia konteks untuk menentukan nilai konteks ini untuk semua komponen di dalamnya:
 
 ```js
 function App() {
@@ -63,13 +63,13 @@ function App() {
 
 #### Props {/*provider-props*/}
 
-* `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/reference/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.
+* `value`: Nilai yang ingin Anda berikan kepada semua komponen yang membaca konteks ini di dalam penyedia ini, tidak peduli seberapa dalam. Nilai konteks dapat berupa jenis apa saja. Komponen yang memanggil [`useContext(SomeContext)`](/reference/react/useContext) di dalam penyedia menerima `value` dari penyedia konteks yang paling dalam di atasnya.
 
 ---
 
 ### `SomeContext.Consumer` {/*consumer*/}
 
-Before `useContext` existed, there was an older way to read context:
+Sebelum `useContext` ada, ada cara yang lebih lama untuk membaca konteks:
 
 ```js
 function Button() {
@@ -84,7 +84,7 @@ function Button() {
 }
 ```
 
-Although this older way still works, but **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+Meskipun cara lama ini masih berfungsi, tetapi **kode yang baru ditulis harus membaca konteks dengan [`useContext()`](/reference/react/useContext) sebagai gantinya:**
 
 ```js
 function Button() {
@@ -96,17 +96,17 @@ function Button() {
 
 #### Props {/*consumer-props*/}
 
-* `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](/reference/react/useContext) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context from the parent components changes.
+* `children`: Sebuah fungsi. React akan memanggil fungsi yang Anda berikan dengan nilai konteks saat ini yang ditentukan oleh algoritma yang sama dengan yang dilakukan oleh [`useContext()`](/reference/react/useContext), dan me-render hasil yang Anda kembalikan dari fungsi ini. React juga akan menjalankan ulang fungsi ini dan memperbarui UI setiap kali konteks dari komponen induk berubah.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Creating context {/*creating-context*/}
+### Membuat context {/*creating-context*/}
 
-Context lets components [pass information deep down](/learn/passing-data-deeply-with-context) without explicitly passing props.
+Konteks memungkinkan komponen [pass information deep down](/learn/passing-data-deeply-with-context) tanpa secara eksplisit memberikan _props_.
 
-Call `createContext` outside any components to create one or more contexts.
+Panggil fungsi `createContext` diluar komponen apapun untuk membuat satu atau beberapa konteks.
 
 ```js [[1, 3, "ThemeContext"], [1, 4, "AuthContext"], [3, 3, "'light'"], [3, 4, "null"]]
 import { createContext } from 'react';
@@ -115,7 +115,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` returns a <CodeStep step={1}>context object</CodeStep>. Components can read context by passing it to [`useContext()`](/reference/react/useContext):
+`createContext` mengembalikan <CodeStep step={1}>konteks objek</CodeStep>. Komponen datap membaca konteks dengan mengoper ke [`useContext()`](/reference/react/useContext):
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
 function Button() {
@@ -129,9 +129,9 @@ function Profile() {
 }
 ```
 
-By default, the values they receive will be the <CodeStep step={3}>default values</CodeStep> you have specified when creating the contexts. However, by itself this isn't useful because the default values never change.
+Secara _default_, nilai yang diterima adalah <CodeStep step={3}>default values</CodeStep> yang Anda tentukan saat membuat konteks. Namun, dengan sendirinya hal ini tidak berguna karena nilai _default_ tidak pernah berubah.
 
-Context is useful because you can **provide other, dynamic values from your components:**
+Konteks berguna karena Anda dapat **memberikan nilai dinamis lainnya dari komponen Anda:**
 
 ```js {8-9,11-12}
 function App() {
@@ -150,15 +150,15 @@ function App() {
 }
 ```
 
-Now the `Page` component and any components inside it, no matter how deep, will "see" the passed context values. If the passed context values change, React will re-render the components reading the context as well.
+Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa dalam, akan "melihat" nilai konteks yang diberikan. Jika nilai konteks yang diberikan berubah, React akan me-_render_ulang komponen yang membaca konteks tersebut.
 
-[Read more about reading and providing context and see examples.](/reference/react/useContext)
+[Baca lebih lanjut tentang membaca dan memberikan konteks dan lihat contohnya.](/reference/react/useContext)
 
 ---
 
-### Importing and exporting context from a file {/*importing-and-exporting-context-from-a-file*/}
+### Mengimpor dan mengekspor konteks dari file {/*importing-and-exporting-context-from-a-file*/}
 
-Often, components in different files will need access to the same context. This is why it's common to declare contexts in a separate file. Then you can use the [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) to make context available for other files:
+Sering kali, komponen dalam file yang berbeda membutuhkan akses ke konteks yang sama. Inilah sebabnya mengapa umum untuk mendeklarasikan konteks dalam file terpisah. Kemudian Anda dapat menggunakan [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) untuk membuat konteks tersedia untuk file lain:
 
 ```js {4-5}
 // Contexts.js
@@ -168,7 +168,7 @@ export const ThemeContext = createContext('light');
 export const AuthContext = createContext(null);
 ````
 
-Components declared in other files can then use the [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) statement to read or provide this context:
+Komponen yang dideklarasikan di berkas lain dapat menggunakan pernyataan [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) untuk membaca atau menyediakan konteks ini:
 
 ```js {2}
 // Button.js
@@ -196,22 +196,22 @@ function App() {
 }
 ```
 
-This works similar to [importing and exporting components.](/learn/importing-and-exporting-components)
+Cara kerjanya mirip dengan [mengimpor dan mengekspor komponen.](/learn/importing-and-exporting-components)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### I can't find a way to change the context value {/*i-cant-find-a-way-to-change-the-context-value*/}
+### Saya tidak dapat menemukan cara untuk mengubah nilai konteks {/*i-cant-find-a-way-to-change-the-context-value*/}
 
 
-Code like this specifies the *default* context value:
+Kode seperti ini menentukan nilai konteks *default*:
 
 ```js
 const ThemeContext = createContext('light');
 ```
 
-This value never changes. React only uses this value as a fallback if it can't find a matching provider above.
+Nilai ini tidak pernah berubah. React hanya menggunakan nilai ini sebagai fallback jika tidak dapat menemukan penyedia yang cocok di atas.
 
-To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
+Untuk membuat konteks berubah seiring waktu, [tambahkan state dan bungkus komponen didalam penyedia konteks](/reference/react/useContext#updating-data-passed-via-context)
 
