@@ -4,25 +4,25 @@ Berikut adalah panduan-panduan dasar dalam penerjemahan situs reactjs.org ke Bah
 
 ## Menyunting Konten Secara Lokal
 
-Untuk menjalankan situs id.reactjs.org secara lokal, ikuti langkah-langkah berikut:
+Untuk menjalankan situs id.react.dev secara lokal, ikuti langkah-langkah berikut:
 
 1. Unduh dan instalasi [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), dan [Yarn](https://yarnpkg.com/en/).
-2. Buatlah *fork* dari repositori id.reactjs.org di akun Anda, kemudian *clone* repositori tersebut.
+2. Buatlah *fork* dari repositori id.react.dev di akun Anda, kemudian *clone* repositori tersebut.
 3. Jalankan `yarn` di terminal untuk menginstalasi dependensi yang dibutuhkan.
 4. Jalankan `yarn dev` untuk menjalankan *server* lokal.
 5. Buka alamat `localhost:8000` dalam peramban web Anda.
 
-Konten dari situs id.reactjs.org terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.reactjs.org dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
+Konten dari situs id.react.dev terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
 
 ## Klaim Halaman Supaya Tidak Ada Pekerjaan Ganda
 
-Proses penerjemahan akan dicatat dalam *issue* https://github.com/reactjs/id.reactjs.org/issues/1. Pastikan Anda telah meng-klaim halaman yang Anda ingin menerjemahkan, supaya tidak terjadi pekerjaan ganda.
+Proses penerjemahan akan dicatat dalam *issue* https://github.com/reactjs/id.react.dev/issues/330. Pastikan Anda telah meng-klaim halaman yang Anda ingin menerjemahkan, supaya tidak terjadi pekerjaan ganda.
 
 ## Panduan Penulisan Universal
 
 Berikut adalah panduan penulisan yang berlaku bagi seluruh situs terjemahan reactjs.org.
 
-Silakan merujuk ke halaman [Glosarium](https://github.com/reactjs/id.reactjs.org/wiki/Glosarium) pada wiki id.reactjs.org. Halaman wiki tersebut berisi daftar glosarium beserta terjemahannya.
+Silakan merujuk ke halaman [Glosarium](https://github.com/reactjs/id.react.dev/wiki/Glosarium) pada wiki id.react.dev. Halaman wiki tersebut berisi daftar glosarium beserta terjemahannya.
 
 Referensi panduan penulisan Bahasa Indonesia lainnya yang dapat digunakan adalah:
 
@@ -35,7 +35,7 @@ Referensi panduan penulisan Bahasa Indonesia lainnya yang dapat digunakan adalah
 Setiap *heading* pada halaman reactjs.org memiliki ID seperti berikut:
 
 ```md
-## Try React {#try-react}
+## Try React {/*try-react*/}
 ```
 
 **Jangan** menerjemahkan ID-nya! ID yang diterjemahkan akan merusak navigasi dalam situs.
@@ -47,13 +47,13 @@ Lihat [bagian permulaan](/getting-started#try-react) untuk info lebih lanjut.
 ✅ LAKUKAN:
 
 ```md
-## Coba React {#try-react}
+## Mencoba React {/*try-react*/}
 ```
 
 ❌ JANGAN LAKUKAN:
 
 ```md
-## Coba React {#coba-react}
+## Mencoba React {/*mencoba-react*/}
 ```
 
 Ini akan merusak tautan di atas.
