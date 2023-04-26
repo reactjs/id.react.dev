@@ -20,7 +20,7 @@ useDebugValue(value, format?)
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Panggil `useDebugValue` di bagian atas [kustom Hook](/learn/reusing-logic-with-custom-hooks) Anda untuk manampilkan nilai debug yang dapat dibaca:
+Panggil `useDebugValue` di bagian atas [kustom Hook](/learn/reusing-logic-with-custom-hooks) Anda untuk manampilkan nilai *debug* yang dapat dibaca:
 
 ```js
 import { useDebugValue } from 'react';
@@ -103,13 +103,13 @@ function subscribe(callback) {
 
 <Note>
 
-Jangan menambahkan nilai debug untuk setiap kustom Hook. Itu paling berharga untuk kustom Hooks yang merupakan bagian dari pustaka bersama dan memiliki struktur data internal kompleks yang sulit untuk diperiksa.
+Jangan menambahkan nilai *debug* untuk setiap kustom Hook. Itu paling berharga untuk kustom Hooks yang merupakan bagian dari pustaka bersama dan memiliki struktur data internal kompleks yang sulit untuk diperiksa.
 
 </Note>
 
 ---
 
-### Menunda pemformatan nilai debug {/*deferring-formatting-of-a-debug-value*/}
+### Menunda pemformatan nilai *debug* {/*deferring-formatting-of-a-debug-value*/}
 
 Anda juga bisa meneruskan fungsi pemformatan sebagai argumen kedua ke `useDebugValue`:
 
