@@ -2693,7 +2693,7 @@ body {
 
 </Sandpack>
 
-### Pembnersihan akhir {/*final-cleanup*/}
+### Pembersihan akhir {/*final-cleanup*/}
 
 Jika Anda melihat kode tersebut dengan seksama, Anda mungkin melihat bahwa `xIsNext === true` ketika `currentMove` bernilai genap dan `xIsNext === false` ketika `currentMove` bernilai ganjil. Dengan kata lain, jika Anda mengetahui nilai dari `currentMove`, maka Anda selalu dapat mengetahui berapa nilai dari `xIsNext`.
 
