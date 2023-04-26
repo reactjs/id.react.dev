@@ -4,28 +4,28 @@ title: 'Tutorial: Tic-Tac-Toe'
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+Dalam tutorial ini, Anda akan membuat sebuah gim *tic-tac-toe* sederhana. Tutorial ini berasumsi anda tidak memiliki pengetahuan sebelumnya mengenai React. Teknik-teknik yang akan Anda pelajari di tutorial ini akan menjadi fundamental untuk membuat aplikasi apapun dengan React, dan memahami ini dengan sepenuhnya akan memberikan Anda pemahaman mendalam mengenai React.
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+Tutorial ini didesain untuk Anda yang ingin **mempelajari dengan mencoba secara langsung (*learning by doing*)** dan ingin segera mencoba membuat sesuatu yang nyata. Jika Anda lebih suka mempelajari setiap konsep selangkah demi selangkah, mulailah dengan [Menggambarkan Antarmuka Pengguna.](/learn/describing-the-ui)
 
 </Note>
 
-The tutorial is divided into several sections:
+Tutorial ini dibagi menjadi beberapa bagian:
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [Persiapan untuk tutorial](#setup-for-the-tutorial) akan memberi Anda **titik awal** untuk memulai tutorial.
+- [Gambaran umum](#overview) akan mengajarkan Anda **dasar-dasar** React: komponen, *props*, dan *state*.
+- [Menyelesaikan gim](#completing-the-game) akan mengajarkan Anda **teknik-teknik yang paling umum** dalam pengembangan React.
+- [Menambahkan perjalanan waktu](#adding-time-travel) akan memberi Anda **wawasan yang lebih dalam** tentang kekuatan unik React.
 
-### What are you building? {/*what-are-you-building*/}
+### Apa yang akan Anda buat? {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+Dalam tutorial ini, Anda akan membuat gim *tic-tac-toe* interaktif dengan React.
 
-You can see what it will look like when you're finished here:
+Anda dapat melihat seperti apa tampilannya setelah Anda selesai di sini:
 
 <Sandpack>
 
@@ -57,9 +57,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -103,9 +103,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li key={move}>
@@ -194,15 +194,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Jika kode tersebut masih belum masuk akal bagi Anda, atau jika Anda tidak terbiasa dengan sintaksis kode tersebut, jangan khawatir! Tujuan dari tutorial ini adalah untuk membantu Anda memahami React dan sintaksnya.
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+Kami sarankan Anda untuk melihat gim *tic-tac-toe* di atas sebelum melanjutkan dengan tutorial ini. Salah satu fitur yang akan Anda perhatikan adalah adanya daftar bernomor di sebelah kanan papan permainan. Daftar ini memberi Anda riwayat semua gerakan yang telah terjadi dalam permainan, dan diperbarui saat permainan berlangsung.
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Setelah Anda bermain-main dengan gim *tic-tac-toe* yang sudah jadi, lanjutkan menggulir. Anda akan mulai dengan template yang lebih sederhana dalam tutorial ini. Langkah kami selanjutnya adalah menyiapkan Anda agar Anda dapat mulai membuat gim.
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## Persiapan untuk tutorial {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox lets you write code in your browser and preview how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+Pada editor kode langsung di bawah ini, klik **Fork** di pojok kanan atas untuk membuka editor di tab baru menggunakan situs web CodeSandbox. CodeSandbox memungkinkan Anda menulis kode di browser dan melihat pratinjau bagaimana pengguna akan melihat aplikasi yang Anda buat. Tab baru akan menampilkan kotak kosong dan kode awal untuk tutorial ini.
 
 <Sandpack>
 
@@ -261,33 +261,33 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+Anda juga dapat mengikuti tutorial ini dengan menggunakan *development environment* lokal Anda. Untuk melakukan ini, Anda perlu:
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. Menginstal [Node.js](https://nodejs.org/en/)
+1. Pada tab CodeSandbox yang telah Anda buka sebelumnya, tekan tombol pojok kiri atas untuk membuka menu, lalu pilih **File > Export to ZIP** pada menu tersebut untuk mengunduh arsip berkas-berkas secara lokal
+1. *Unzip* arsip tersebut, lalu buka terminal dan `cd` ke direktori yang telah Anda *unzip*
+1. Instal dependensi dengan `npm install`
+1. Jalankan `npm start` memulai server lokal dan ikuti petunjuknya untuk melihat kode yang berjalan di peramban
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+Jika Anda mengalami kebuntuan, jangan biarkan hal ini menghentikan Anda! Ikuti saja secara online dan coba lagi penyiapan lokal nanti.
 
 </Note>
 
-## Overview {/*overview*/}
+## Gambaran umum {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+Sekarang setelah Anda siap, mari kita lihat gambaran umum tentang React!
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### Memeriksa kode awal {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+Di CodeSandbox Anda akan melihat tiga bagian utama:
 
-![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
+![CodeSandbox dengan kode awal](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. Bagian _Files_ dengan daftar file seperti `App.js`, `index.js`, `styles.css`, dan sebuah folder bernama `public`
+1. _Editor kode_ di mana Anda akan melihat kode sumber dari berkas yang Anda pilih
+1. Bagian _browser_ di mana Anda akan melihat bagaimana kode yang Anda tulis akan ditampilkan
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+File `App.js` juga sudah terpilih di bagian _Files_. Isi dari file tersebut di dalam _code editor_ seharusnya:
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+Bagian _browser_ seharusnya menampilkan sebuah kotak dengan tanda X di dalamnya seperti ini:
 
-![x-filled square](../images/tutorial/x-filled-square.png)
+![kotak berisikan x](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+Sekarang mari kita lihat file-file dalam kode awal.
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+Kode dalam `App.js` membuat sebuah _komponen_. Dalam React, komponen adalah bagian dari kode yang dapat digunakan kembali yang merepresentasikan bagian dari antarmuka pengguna. Komponen digunakan untuk merender, mengelola, dan memperbarui elemen UI dalam aplikasi Anda. Mari kita lihat komponen ini baris demi baris untuk melihat apa yang terjadi:
 
 ```js {1}
 export default function Square() {
@@ -311,7 +311,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+Baris pertama mendefinisikan sebuah fungsi bernama `Square`. Kata kunci JavaScript `export` membuat fungsi ini dapat diakses di luar berkas ini. Kata kunci `default` memberi tahu berkas lain yang menggunakan kode Anda bahwa ini adalah fungsi utama dalam berkas Anda.
 
 ```js {2}
 export default function Square() {
@@ -319,15 +319,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+Baris kedua mengembalikan sebuah tombol. Kata kunci JavaScript `return` berarti apa pun yang muncul setelahnya akan dikembalikan sebagai nilai kepada pemanggil fungsi. `<button>` adalah sebuah *elemen JSX*. Elemen JSX adalah kombinasi kode JavaScript dan tag HTML yang menjelaskan apa yang ingin Anda tampilkan. `className="square"` adalah properti tombol atau *prop* yang memberi tahu CSS cara menata tombol. `X` adalah teks yang ditampilkan di dalam tombol dan `</button>` menutup elemen JSX untuk mengindikasikan bahwa konten berikutnya tidak boleh ditempatkan di dalam tombol.
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+Klik pada file berlabel `styles.css` di bagian _Files_ pada CodeSandbox. File ini mendefinisikan *style* untuk aplikasi React Anda. Dua _CSS selector_ pertama (`*` dan `body`) mendefinisikan *style* dari sebagian besar aplikasi Anda, sementara selektor `.square` mendefinisikan *style* dari setiap komponen di mana properti `className` disetel ke `square`. Dalam kode Anda, itu akan mereferensikan tombol dari komponen Square Anda di file `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+Klik pada file berlabel `index.js` di bagian _Files_ pada CodeSandbox. Anda tidak akan mengedit file ini selama tutorial, namun file ini merupakan penghubung antara komponen yang Anda buat di file `App.js` dengan peramban web.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -337,20 +337,20 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together: 
+Baris 1-5 menyatukan semua bagian yang diperlukan:
 
 * React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+* *Library* React untuk berkomunikasi dengan peramban web (React DOM)
+* *style* untuk komponen Anda
+* komponen yang Anda buat di `App.js`.
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+Sisa dari berkas ini menyatukan semua bagian dan menyuntikkan hasil akhir ke dalam `index.html` di dalam folder `public`.
 
-### Building the board {/*building-the-board*/}
+### Membuat papan permainan {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+Mari kembali ke `App.js`. Di sinilah Anda akan menghabiskan sisa tutorial ini.
 
-Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
+Saat ini papannya hanya terdiri dari satu kotak, tetapi Anda membutuhkan sembilan kotak! Jika Anda hanya mencoba menyalin dan menempelkan kotak Anda untuk membuat dua kotak seperti ini:
 
 ```js {2}
 export default function Square() {
@@ -358,7 +358,7 @@ export default function Square() {
 }
 ```
 
-You'll get this error:
+Anda akan mendapatkan *error* berikut:
 
 <ConsoleBlock level="error">
 
@@ -366,7 +366,7 @@ You'll get this error:
 
 </ConsoleBlock>
 
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+Komponen React harus mengembalikan satu elemen JSX dan bukan beberapa elemen JSX yang berdekatan seperti dua buah tombol. Untuk memperbaikinya, Anda dapat menggunakan *fragment* (`<>` dan `</>`) untuk membungkus beberapa elemen JSX yang berdekatan seperti ini:
 
 ```js {3-6}
 export default function Square() {
@@ -379,17 +379,17 @@ export default function Square() {
 }
 ```
 
-Now you should see:
+Sekarang Anda bisa melihat:
 
-![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+![dua kotak berisikan x](../images/tutorial/two-x-filled-squares.png)
 
-Great! Now you just need to copy-paste a few times to add nine squares and...
+Bagus! Sekarang Anda hanya perlu menyalin-tempel beberapa kali untuk menambahkan sembilan kotak dan...
 
-![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
+![sembilan kotak berisikan x dalam satu baris](../images/tutorial/nine-x-filled-squares.png)
 
-Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
+Oh tidak! Kotak-kotak tersebut berada dalam satu baris, bukan dalam *grid* seperti yang Anda perlukan untuk papan permainannya. Untuk mengatasinya, Anda perlu mengelompokkan kotak-kotak Anda ke dalam baris dengan `div` dan menambahkan beberapa kelas CSS. Selagi Anda melakukannya, Anda akan memberikan nomor pada setiap kotak untuk memastikan Anda tahu di mana setiap kotak ditampilkan.
 
-In the `App.js` file, update the `Square` component to look like this:
+Pada file `App.js`, perbarui komponen `Square` menjadi seperti ini:
 
 ```js {3-19}
 export default function Square() {
@@ -415,11 +415,11 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+CSS yang didefinisikan di `styles.css` memberi *style* pada div dengan `className` berupa `board-row`. Sekarang Anda telah mengelompokkan komponen Anda ke dalam baris dengan `div` yang diberi *style*, Anda telah memiliki papan tic-tac-toe:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![papan tic-tac-toe berisikan nomor 1 hingga 9](../images/tutorial/number-filled-board.png)
 
-But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
+Tetapi sekarang ada masalah. Komponen Anda yang bernama `Square`, sebenarnya bukan sebuah persegi lagi. Mari kita perbaiki dengan mengubah namanya menjadi `Board`:
 
 ```js {1}
 export default function Board() {
@@ -427,7 +427,7 @@ export default function Board() {
 }
 ```
 
-At this point your code should look something like this:
+Saat ini, kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -504,15 +504,15 @@ body {
 
 <Note>
 
-Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend only copying code that you've manually typed at least once yourself.
+Psssst... Banyak sekali yang harus diketik! Tidak masalah untuk menyalin dan menempelkan kode dari halaman ini. Namun, jika Anda ingin sedikit tantangan, kami sarankan untuk hanya menyalin kode yang sudah Anda ketik sendiri secara manual setidaknya satu kali.
 
 </Note>
 
-### Passing data through props {/*passing-data-through-props*/}
+### Mengirimkan data melalui props {/*passing-data-through-props*/}
 
-Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
+Selanjutnya, Anda ingin mengubah nilai kotak dari kosong menjadi "X" ketika pengguna mengklik kotak tersebut. Dengan cara Anda membuat papan sejauh ini, Anda perlu menyalin-tempel kode yang memperbarui kotak sebanyak sembilan kali (satu kali untuk setiap kotak yang Anda miliki)! Alih-alih menyalin-tempel, arsitektur komponen React memungkinkan Anda untuk membuat komponen yang dapat digunakan kembali untuk menghindari kode yang berantakan dan terduplikasi.
 
-First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
+Pertama, Anda akan menyalin baris yang mendefinisikan kotak pertama Anda (`<button className="square">1</button>`) dari komponen `Board` ke dalam komponen `Square` yang baru:
 
 ```js {1-3}
 function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Then you'll update the Board component to render that `Square` component using JSX syntax:
+Kemudian Anda akan memperbarui komponen Board untuk merender komponen `Square` tersebut dengan menggunakan sintaksis JSX:
 
 ```js {5-19}
 // ...
@@ -551,15 +551,15 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+Perhatikan bagaimana tidak seperti `div` yang merupakan elemen untuk peramban, komponen Anda sendiri seperti `Board` dan `Square` harus dimulai dengan huruf kapital.
 
-Let's take a look:
+Mari kita lihat:
 
-![one-filled board](../images/tutorial/board-filled-with-ones.png)
+![papan berisikan angka satu](../images/tutorial/board-filled-with-ones.png)
 
-Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to its child (`Square`).
+Oh tidak! Anda kehilangan kotak bernomor yang Anda miliki sebelumnya. Sekarang setiap kotak bertuliskan "1". Untuk memperbaikinya, Anda akan menggunakan _props_ untuk memberikan nilai yang seharusnya dimiliki setiap kotak dari komponen induk (`Board`) ke anaknya (`Square`).
 
-Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
+Perbarui komponen `Square` untuk membaca props `value` yang akan Anda berikan dari `Board`:
 
 ```js {1}
 function Square({ value }) {
@@ -567,9 +567,9 @@ function Square({ value }) {
 }
 ```
 
-`function Square({ value })` indicates the Square component can be passed a prop called `value`.
+`function Square({ value })` menunjukkan komponen Square dapat dioper sebuah prop yang disebut `value`.
 
-Now you want to display that `value` instead of `1` inside every square. Try doing it like this:
+Sekarang Anda ingin menampilkan `value` tersebut, bukan `1` di setiap kotak. Coba lakukan seperti ini:
 
 ```js {2}
 function Square({ value }) {
@@ -577,11 +577,11 @@ function Square({ value }) {
 }
 ```
 
-Oops, this is not what you wanted:
+Ups, ini bukan yang Anda inginkan:
 
-![value-filled board](../images/tutorial/board-filled-with-value.png)
+![papan berisikan value](../images/tutorial/board-filled-with-value.png)
 
-You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
+Anda ingin merender variabel JavaScript yang disebut `value` dari komponen Anda, bukan kata "value". Untuk "melarikan diri ke dalam JavaScript" dari JSX, Anda memerlukan kurung kurawal. Tambahkan tanda kurung kurawal di sekitar `nilai` di JSX seperti ini:
 
 ```js {2}
 function Square({ value }) {
@@ -589,11 +589,11 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see an empty board:
+Untuk saat ini, Anda akan melihat papan kosong:
 
-![empty board](../images/tutorial/empty-board.png)
+![papan kosong](../images/tutorial/empty-board.png)
 
-This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
+Hal ini karena komponen `Board` belum meneruskan prop `value` ke setiap komponen `Square` yang di-render. Untuk memperbaikinya, Anda harus menambahkan prop `value` ke setiap komponen `Square` yang dirender oleh komponen `Board`:
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -619,11 +619,11 @@ export default function Board() {
 }
 ```
 
-Now you should see a grid of numbers again:
+Sekarang, Anda akan melihat grid berisikan angka lagi:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![papan tic-tac-toe berisikan angka dari 1 hingga 9](../images/tutorial/number-filled-board.png)
 
-Your updated code should look like this:
+Kode Anda yang telah diperbarui akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -702,14 +702,14 @@ body {
 
 </Sandpack>
 
-### Making an interactive component {/*making-an-interactive-component*/}
+### Membuat komponen interaktif {/*making-an-interactive-component*/}
 
-Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square`:
+Mari isi komponen `Square` dengan sebuah `X` ketika Anda mengkliknya. Deklarasikan sebuah fungsi bernama `handleClick` di dalam `Square`. Kemudian, tambahkan `onClick` ke properti elemen JSX tombol yang dikembalikan dari `Square`:
 
 ```js {2-4,9}
 function Square({ value }) {
   function handleClick() {
-    console.log('clicked!');
+    console.log('telah diklik!');
   }
 
   return (
@@ -723,19 +723,19 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+Jika Anda mengklik kotak sekarang, Anda akan melihat log yang bertuliskan `"telah diklik!"` pada tab _Console_ di bagian bawah bagian _Browser_ di CodeSandbox. Mengklik kotak lebih dari satu kali akan mencatat `"telah diklik!"` lagi. Log konsol yang berulang dengan pesan yang sama tidak akan membuat lebih banyak baris di konsol. Sebaliknya, Anda akan melihat penghitung yang bertambah di sebelah log `"telah diklik!"` pertama Anda.
 
 <Note>
 
-If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
+Jika Anda mengikuti tutorial ini menggunakan _development environment_ lokal, Anda perlu membuka *Console* browser Anda. Misalnya, jika Anda menggunakan browser Chrome, Anda dapat melihat *Console* dengan pintasan keyboard **Shift + Ctrl + J** (di Windows/Linux) atau **Option + ⌘ + J** (di macOS).
 
 </Note>
 
-As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
+Sebagai langkah selanjutnya, Anda ingin komponen Square "mengingat" bahwa komponen tersebut telah diklik, dan mengisinya dengan tanda "X". Untuk "mengingat" sesuatu, komponen menggunakan _state_.
 
-React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
+React menyediakan fungsi khusus bernama `useState` yang dapat Anda panggil dari komponen Anda untuk membuatnya "mengingat" sesuatu. Mari kita menyimpan nilai saat ini dari `Square` dalam state, dan mengubahnya ketika `Square` diklik.
 
-Import `useState` at the top of the file. Remove the `value` prop from the `Square` component. Instead, add a new line at the start of the `Square` that calls `useState`. Have it return a state variable called `value`:
+Import `useState` di bagian atas file. Hapus props `value` dari komponen `Square`. Sebagai gantinya, tambahkan baris baru di awal `Square` yang memanggil `useState`. Buatlah ia mengembalikan sebuah variabel state yang disebut `value`:
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -747,9 +747,9 @@ function Square() {
     //...
 ```
 
-`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+`value` menyimpan nilai dan `setValue` adalah sebuah fungsi yang dapat digunakan untuk mengubah nilai. Nilai `null` yang dioper ke `useState` digunakan sebagai nilai awal untuk variabel state ini, sehingga `value` di sini dimulai dengan nilai yang sama dengan `null`.
 
-Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
+Karena komponen `Square` tidak lagi menerima props, Anda akan menghapus props `value` dari kesembilan komponen Square yang dibuat oleh komponen Board:
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -776,7 +776,7 @@ export default function Board() {
 }
 ```
 
-Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
+Sekarang Anda akan mengubah `Square` untuk menampilkan "X" ketika diklik. Ganti _event handler_ `console.log("telah diklik!");` dengan `setValue('X');`. Sekarang komponen `Square` Anda terlihat seperti ini:
 
 ```js {5}
 function Square() {
@@ -797,13 +797,13 @@ function Square() {
 }
 ```
 
-By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board. Click on any Square, and "X" should show up:
+Dengan memanggil fungsi `set` ini dari handler `onClick`, Anda memberi tahu React untuk merender ulang `Square` setiap kali `<button>` diklik. Setelah pembaruan, nilai `Square` akan menjadi `'X'`, sehingga Anda akan melihat "X" pada papan permainan. Klik pada kotak mana pun, dan "X" akan muncul:
 
-![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
+![menambahkan x ke papan permainan](../images/tutorial/tictac-adding-x-s.gif)
 
-Each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside too.
+Setiap kotak memiliki state-nya sendiri: `value` yang disimpan di setiap kotak sepenuhnya independen dari yang lain. Ketika Anda memanggil fungsi `set` di dalam sebuah komponen, React akan secara otomatis memperbarui komponen turunan di dalamnya.
 
-After you've made the above changes, your code will look like this:
+Setelah Anda melakukan perubahan di atas, kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -899,35 +899,35 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevTools memungkinkan Anda untuk memeriksa props dan state dari komponen React Anda. Anda dapat menemukan tab React DevTools di bagian bawah bagian _browser_ di CodeSandbox:
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+![React DevTools dalam CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+Untuk memeriksa komponen tertentu di layar, gunakan tombol di sudut kiri atas React DevTools:
 
-![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
+![Memilih komponen dalam halaman dengan React DevTools](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
+Untuk pengembangan lokal, React DevTools tersedia sebagai ekstensi peramban [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), dan [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil). Instal, dan tab *Components* akan muncul di tab Developer Tools peramban Anda untuk situs yang menggunakan React.
 
 </Note>
 
-## Completing the game {/*completing-the-game*/}
+## Menyelesaikan gim {/*completing-the-game*/}
 
-By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
+Sampai di sini, Anda sudah memiliki semua blok bangunan dasar untuk permainan *tic-tac-toe*. Untuk memiliki permainan yang lengkap, Anda sekarang perlu menempatkan "X" dan "O" secara bergantian di papan, dan Anda perlu cara untuk menentukan pemenang.
 
-### Lifting state up {/*lifting-state-up*/}
+### Memindahkan state ke atas {/*lifting-state-up*/}
 
-Currently, each `Square` component maintains a part of the game's state. To check for a winner in a tic-tac-toe game, the `Board` would need to somehow know the state of each of the 9 `Square` components.
+Saat ini, setiap komponen `Square` menyimpan sebagian dari state gim. Untuk memeriksa pemenang dalam permainan *tic-tac-toe*, `Board` harus mengetahui state masing-masing dari 9 komponen `Square`.
 
-How would you approach that? At first, you might guess that the `Board` needs to "ask" each `Square` for that `Square`'s state. Although this approach is technically possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent `Board` component instead of in each `Square`. The `Board` component can tell each `Square` what to display by passing a prop, like you did when you passed a number to each Square.
+Bagaimana pendekatannya? Pada awalnya, Anda mungkin menduga bahwa `Board` perlu "meminta" setiap `Square` untuk mengetahui state dari `Square` tersebut. Meskipun pendekatan ini secara teknis mungkin dilakukan di React, kami tidak menyarankannya karena kodenya menjadi sulit untuk dipahami, rentan terhadap bug, dan sulit untuk di-refactor. Sebagai gantinya, pendekatan terbaik adalah dengan menyimpan state game di komponen `Board` induk, bukan di setiap `Square`. Komponen `Board` dapat memberi tahu setiap `Square` apa yang akan ditampilkan dengan mengoperkan sebuah prop, seperti yang Anda lakukan saat Anda mengoperkan sebuah angka ke setiap kotak.
 
-**To collect data from multiple children, or to have two child components communicate with each other, declare the shared state in their parent component instead. The parent component can pass that state back down to the children via props. This keeps the child components in sync with each other and with their parent.**
+**Untuk mengumpulkan data dari beberapa anak, atau untuk membuat dua komponen anak berkomunikasi satu sama lain, deklarasikan state bersama dalam komponen induknya. Komponen induk dapat meneruskan state tersebut kembali ke anak melalui props. Hal ini membuat komponen anak tetap sinkron satu sama lain dan dengan induknya.**
 
-Lifting state into a parent component is common when React components are refactored.
+Mengangkat state ke dalam komponen induk adalah hal yang umum terjadi ketika komponen React direfaktor.
 
-Let's take this opportunity to try it out. Edit the `Board` component so that it declares a state variable named `squares` that defaults to an array of 9 nulls corresponding to the 9 squares:
+Mari kita gunakan kesempatan ini untuk mencobanya. Edit komponen `Board` sehingga komponen tersebut mendeklarasikan variabel state bernama `squares` yang secara default merupakan sebuah senarai berisi 9 null yang sesuai dengan 9 kotak:
 
 ```js {3}
 // ...
@@ -939,13 +939,13 @@ export default function Board() {
 }
 ```
 
-`Array(9).fill(null)` creates an array with nine elements and sets each of them to `null`. The `useState()` call around it declares a `squares` state variable that's initially set to that array. Each entry in the array corresponds to the value of a square. When you fill the board in later, the `squares` array will look like this:
+`Array(9).fill(null)` membuat senarai dengan sembilan elemen dan menetapkan masing-masing elemen menjadi `null`. Panggilan `useState()` di sekelilingnya mendeklarasikan variabel status `squares` yang pada awalnya disetel ke senarai tersebut. Setiap entri dalam senarai berhubungan dengan nilai sebuah kotak. Ketika Anda mengisi papan nanti, senarai `squares` akan terlihat seperti ini:
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Now your `Board` component needs to pass the `value` prop down to each `Square` that it renders:
+Sekarang komponen `Board` Anda harus meneruskan props `value` ke setiap `Square` yang di-render:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -972,7 +972,7 @@ export default function Board() {
 }
 ```
 
-Next, you'll edit the `Square` component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
+Selanjutnya, Anda akan mengedit komponen `Square` untuk menerima prop `value` dari komponen Board. Hal ini akan membutuhkan penghapusan pelacakan *stateful* komponen Square sendiri terhadap `value` dan prop `onClick` tombol:
 
 ```js {1,2}
 function Square({value}) {
@@ -980,11 +980,11 @@ function Square({value}) {
 }
 ```
 
-At this point you should see an empty tic-tac-toe board:
+Pada titik ini, Anda akan melihat papan *tic-tac-toe* yang kosong:
 
-![empty board](../images/tutorial/empty-board.png)
+![papan kosong](../images/tutorial/empty-board.png)
 
-And your code should look like this:
+Dan kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -1066,11 +1066,11 @@ body {
 
 </Sandpack>
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Setiap Square sekarang akan menerima sebuah props `value` yang akan menjadi `'X'`, `'O'`, atau `null` untuk kotak kosong.
 
-Next, you need to change what happens when a `Square` is clicked. The `Board` component now maintains which squares are filled. You'll need to create a way for the `Square` to update the `Board`'s state. Since state is private to a component that defines it, you cannot update the `Board`'s state directly from `Square`.
+Selanjutnya, Anda perlu mengubah apa yang terjadi ketika sebuah `Square` diklik. Komponen `Board` sekarang mempertahankan kotak mana yang terisi. Anda perlu membuat cara agar `Square` memperbarui state `Board`. Karena state bersifat privat bagi komponen yang mendefinisikannya, Anda tidak dapat memperbarui state `Board` secara langsung dari `Square`.
 
-Instead, you'll pass down a function from the `Board` component to the `Square` component, and you'll have `Square` call that function when a square is clicked. You'll start with the function that the `Square` component will call when it is clicked. You'll call that function `onSquareClick`:
+Sebagai gantinya, Anda akan mewariskan fungsi dari komponen `Board` ke komponen `Square`, dan Anda akan membuat `Square` memanggil fungsi tersebut saat kotak diklik. Anda akan mulai dengan fungsi yang akan dipanggil oleh komponen `Square` ketika diklik. Anda akan menamakan fungsi tersebut `onSquareClick`:
 
 ```js {3}
 function Square({ value }) {
@@ -1082,7 +1082,7 @@ function Square({ value }) {
 }
 ```
 
-Next, you'll add the `onSquareClick` function to the `Square` component's props:
+Selanjutnya, Anda akan menambahkan fungsi `onSquareClick` ke props komponen `Square`:
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama: 
 
 ```js {7}
 export default function Board() {
@@ -1109,7 +1109,7 @@ export default function Board() {
 }
 ```
 
-Lastly, you will define the `handleClick` function inside the Board component to update the `squares` array holding your board's state:
+Terakhir, Anda akan mendefinisikan fungsi `handleClick` di dalam komponen Board untuk memperbarui senarai `squares` yang menyimpan state papan Anda:
 
 ```js {4-8}
 export default function Board() {
@@ -1127,17 +1127,17 @@ export default function Board() {
 }
 ```
 
-The `handleClick` function creates a copy of the `squares` array (`nextSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `nextSquares` array to add `X` to the first (`[0]` index) square.
+Fungsi `handleClick` membuat salinan senarai `squares` (`nextSquares`) dengan metode senarai JavaScript `slice()`. Kemudian, `handleClick` memperbarui senarai `nextSquares` untuk menambahkan `X` ke kotak pertama (indeks `[0]`).
 
-Calling the `setSquares` function lets React know the state of the component has changed. This will trigger a re-render of the components that use the `squares` state (`Board`) as well as its child components (the `Square` components that make up the board).
+Memanggil fungsi `setSquares` akan membuat React mengetahui bahwa state dari komponen telah berubah. Hal ini akan memicu render ulang komponen yang menggunakan state `squares` (`Board`) dan juga komponen turunannya (komponen `Square` yang membentuk board).
 
 <Note>
 
-JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in a outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+JavaScript mendukung [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) yang berarti fungsi dalam (misalnya `handleClick`) memiliki akses ke variabel dan fungsi yang didefinisikan di fungsi luar (misalnya `Board`). Fungsi `handleClick` dapat membaca state `squares` dan memanggil metode `setSquares` karena keduanya didefinisikan di dalam fungsi `Board`.
 
 </Note>
 
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add an argument `i` to the `handleClick` function that takes the index of the square to update:
+Sekarang Anda dapat menambahkan tanda X pada papan tulis... tetapi hanya pada kotak kiri atas. Fungsi `handleClick` Anda telah dikodekan untuk meng-update indeks untuk kotak kiri atas (`0`). Mari kita perbarui `handleClick` agar dapat memperbarui kotak manapun. Tambahkan argumen `i` ke fungsi `handleClick` yang mengambil indeks kotak yang akan diperbarui:
 
 ```js {4,6}
 export default function Board() {
@@ -1155,13 +1155,13 @@ export default function Board() {
 }
 ```
 
-Next, you will need to pass that `i` to `handleClick`. You could try to set the `onSquareClick` prop of square to be `handleClick(0)` directly in the JSX like this, but it won't work:
+Selanjutnya, Anda harus mengoper `i` tersebut ke `handleClick`. Anda dapat mencoba untuk mengatur props `onSquareClick` dari kotak menjadi `handleClick(0)` secara langsung pada JSX seperti ini, tetapi tidak akan berhasil:
 
 ```jsx
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
 ```
 
-Here is why this doesn't work. The `handleClick(0)` call will be a part of rendering the board component. Because `handleClick(0)` alters the state of the board component by calling `setSquares`, your entire board component will be re-rendered again. But this runs `handleClick(0)` again, leading to an infinite loop:
+Inilah alasan mengapa kode ini tidak bekerja. Panggilan `handleClick(0)` akan menjadi bagian dari proses rendering komponen papan. Karena `handleClick(0)` mengubah keadaan komponen papan dengan memanggil `setSquares`, seluruh komponen papan Anda akan di-render kembali. Tapi ini akan menjalankan `handleClick(0)` lagi, yang menyebabkan perulangan tak terbatas:
 
 <ConsoleBlock level="error">
 
@@ -1169,13 +1169,13 @@ Too many re-renders. React limits the number of renders to prevent an infinite l
 
 </ConsoleBlock>
 
-Why didn't this problem happen earlier?
+Mengapa masalah ini tidak terjadi sebelumnya?
 
-When you were passing `onSquareClick={handleClick}`, you were passing the `handleClick` function down as a prop. You were not calling it! But now you are *calling* that function right away--notice the parentheses in `handleClick(0)`--and that's why it runs too early. You don't *want* to call `handleClick` until the user clicks!
+Ketika Anda mengoper `onSquareClick={handleClick}`, Anda mengoper fungsi `handleClick` sebagai sebuah prop. Anda tidak memanggilnya! Tetapi sekarang Anda langsung memanggil fungsi tersebut - perhatikan tanda kurung pada `handleClick(0)` - dan itulah mengapa fungsi tersebut berjalan terlalu cepat. Anda tidak *ingin* memanggil `handleClick` sampai pengguna mengklik!
 
-You could fix by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+Anda dapat memperbaikinya dengan membuat fungsi seperti `handleFirstSquareClick` yang memanggil `handleClick(0)`, fungsi seperti `handleSecondSquareClick` yang memanggil `handleClick(1)`, dan seterusnya. Anda akan meneruskan (daripada memanggil) fungsi-fungsi ini sebagai props seperti `onSquareClick={handleFirstSquareClick}`. Hal ini akan menyelesaikan perulangan tak terbatas.
 
-However, defining nine different functions and giving each of them a name is too verbose. Instead, let's do this:
+Namun demikian, mendefinisikan sembilan fungsi yang berbeda dan memberikan nama untuk masing-masing fungsi itu terlalu bertele-tele. Sebagai gantinya, mari kita lakukan ini:
 
 ```js {6}
 export default function Board() {
@@ -1189,9 +1189,9 @@ export default function Board() {
 }
 ```
 
-Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
+Perhatikan sintaks `() =>` yang baru. Di sini, `() => handleClick(0)` adalah sebuah fungsi *arrow function,* yang merupakan cara yang lebih singkat untuk mendefinisikan fungsi. Ketika kotak diklik, kode setelah tanda "panah" `=>` akan berjalan, memanggil `handleClick(0)`.
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
+Sekarang Anda perlu memperbarui delapan kotak lainnya untuk memanggil `handleClick` dari fungsi panah yang Anda berikan. Pastikan bahwa argumen untuk setiap pemanggilan `handleClick` sesuai dengan indeks kotak yang benar:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -1218,13 +1218,13 @@ export default function Board() {
 };
 ```
 
-Now you can again add X's to any square on the board by clicking on them:
+Sekarang Anda dapat kembali menambahkan tanda X ke kotak mana pun di papan tulis dengan mengekliknya:
 
-![filling the board with X](../images/tutorial/tictac-adding-x-s.gif)
+![mengisi papan permainan dengan X](../images/tutorial/tictac-adding-x-s.gif)
 
-But this time all the state management is handled by the `Board` component!
+Tapi kali ini semua manajemen state ditangani oleh komponen `Board`!
 
-This is what your code should look like:
+Seperti inilah tampilan kode Anda:
 
 <Sandpack>
 
@@ -1317,53 +1317,53 @@ body {
 
 </Sandpack>
 
-Now that your state handling is in the `Board` component, the parent `Board` component passes props to the child `Square` components so that they can be displayed correctly. When clicking on a `Square`, the child `Square` component now asks the parent `Board` component to update the state of the board. When the `Board`'s state changes, both the `Board` component and every child `Square` re-renders automatically. Keeping the state of all squares in the `Board` component will allow it to determine the winner in the future.
+Karena sekarang penanganan state Anda ada di komponen `Board`, komponen `Board` induk meneruskan props ke komponen `Square` anak sehingga dapat ditampilkan dengan benar. Ketika mengklik `Square`, komponen `Square` anak sekarang meminta komponen `Board` induk untuk memperbarui state papan. Ketika state `Board` berubah, komponen `Board` dan semua anak `Square` akan di-render ulang secara otomatis. Menyimpan state semua kotak dalam komponen `Board` akan memungkinkan komponen tersebut untuk menentukan pemenang di masa mendatang.
 
-Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+Mari kita rekap apa yang terjadi ketika pengguna mengeklik kotak kiri atas pada papan Anda untuk menambahkan tanda `X`:
 
-1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
-1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
-1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
+1. Mengklik kotak kiri atas akan menjalankan fungsi yang diterima `tombol` sebagai prop `onClick` dari `Square`. Komponen `Square` menerima fungsi tersebut sebagai props `onSquareClick` dari `Board`. Komponen `Board` mendefinisikan fungsi tersebut secara langsung di JSX. Komponen ini memanggil `handleClick` dengan argumen `0`.
+1. `handleClick` menggunakan argumen (`0`) untuk meng-update elemen pertama dari array `squares` dari `null` menjadi `X`.
+1. State `squares` dari komponen `Board` telah diperbarui, sehingga `Board` dan semua anak komponennya di-render ulang. Hal ini menyebabkan prop `value` dari komponen `Square` dengan indeks `0` berubah dari `null` menjadi `X`.
 
-In the end the user sees that the upper left square has changed from empty to having a `X` after clicking it.
+Pada akhirnya pengguna akan melihat bahwa kotak kiri atas telah berubah dari kosong menjadi bertanda `X` setelah mengekliknya.
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `onSomething` names for props which represent events and `handleSomething` for the function definitions which handle those events.
+Atribut `onClick` pada elemen DOM `<button>` memiliki arti khusus untuk React karena merupakan komponen bawaan. Untuk komponen kustom seperti Square, penamaan terserah Anda. Anda dapat memberikan nama apa pun pada prop `Square` dengan `onSquareClick` atau fungsi `handleClick` pada `Board`, dan kodenya akan bekerja secara sama. Dalam React, sudah menjadi hal yang lazim untuk menggunakan nama `onSomething` untuk props yang merepresentasikan _event_ dan `handleSomething` untuk definisi fungsi yang menangani _event_ tersebut.
 
 </Note>
 
-### Why immutability is important {/*why-immutability-is-important*/}
+### Mengapa immutability itu penting {/*why-immutability-is-important*/}
 
-Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
+Perhatikan bagaimana dalam `handleClick`, Anda memanggil `.slice()` untuk membuat salinan dari senarai `squares` dan bukannya memodifikasi senarai yang sudah ada. Untuk menjelaskan alasannya, kita perlu mendiskusikan immutability dan mengapa immutability penting untuk dipelajari.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+Secara umum ada dua pendekatan untuk mengubah data. Pendekatan pertama adalah mengubah data (_mutate_) dengan mengubah nilai data secara langsung. Pendekatan kedua adalah mengganti data dengan salinan baru yang memiliki perubahan yang diinginkan. Berikut adalah tampilannya jika Anda mengubah senarai `squares`:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
 squares[0] = 'X';
-// Now `squares` is ["X", null, null, null, null, null, null, null, null];
+// Sekarang nilai `squares` adalah ["X", null, null, null, null, null, null, null, null];
 ```
 
-And here is what it would look like if you changed data without mutating the `squares` array:
+Dan inilah tampilannya jika Anda mengubah data tanpa melakukan mutasi pada senarai `squares`:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
 const nextSquares = ['X', null, null, null, null, null, null, null, null];
-// Now `squares` is unchanged, but `nextSquares` first element is 'X' rather than `null`
+// Sekarang nilai `squares` tidak berubah, tetapi elemen pertama `nextSquares` adalah 'X', bukan `null`
 ```
 
-The result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
+Hasilnya sama, tetapi dengan tidak melakukan mutasi (mengubah data yang mendasarinya) secara langsung, Anda akan mendapatkan beberapa keuntungan.
 
-Immutability makes complex features much easier to implement. Later in this tutorial, you will implement a "time travel" feature that lets you review the game's history and "jump back" to past moves. This functionality isn't specific to games--an ability to undo and redo certain actions is a common requirement for apps. Avoiding direct data mutation lets you keep previous versions of the data intact, and reuse them later.
+Immutability membuat fitur-fitur yang kompleks menjadi lebih mudah untuk diimplementasikan. Kemudian dalam tutorial ini, Anda akan mengimplementasikan fitur "perjalanan waktu" yang memungkinkan Anda meninjau sejarah game dan "melompat kembali" ke gerakan sebelumnya. Fungsionalitas ini tidak spesifik untuk gim--kemampuan untuk membatalkan dan mengulang tindakan tertentu adalah persyaratan umum untuk aplikasi. Menghindari mutasi data secara langsung memungkinkan Anda menyimpan data versi sebelumnya, dan menggunakannya kembali nanti.
 
-There is also another benefit of immutability. By default, all child components re-render automatically when the state of a parent component changes. This includes even the child components that weren't affected by the change. Although re-rendering is not by itself noticeable to the user (you shouldn't actively try to avoid it!), you might want to skip re-rendering a part of the tree that clearly wasn't affected by it for performance reasons. Immutability makes it very cheap for components to compare whether their data has changed or not. You can learn more about how React chooses when to re-render a component in [the `memo` API reference](/reference/react/memo).
+Ada juga manfaat lain dari immutability. Secara default, semua komponen anak dirender ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus merender ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
 
-### Taking turns {/*taking-turns*/}
+### Bergiliran {/*taking-turns*/}
 
-It's now time to fix a major defect in this tic-tac-toe game: the "O"s cannot be marked on the board.
+Sekarang saatnya untuk memperbaiki kekurangan utama dalam gim *tic-tac-toe* ini: huruf "O" tidak dapat ditandai di papan permainan.
 
-You'll set the first move to be "X" by default. Let's keep track of this by adding another piece of state to the Board component:
+Anda akan mengatur langkah pertama menjadi "X" secara default. Mari kita pantau hal ini dengan menambahkan satu lagi state ke komponen Board:
 
 ```js {2}
 function Board() {
@@ -1374,7 +1374,7 @@ function Board() {
 }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. You'll update the `Board`'s `handleClick` function to flip the value of `xIsNext`:
+Setiap kali pemain bergerak, `xIsNext` (sebuah boolean) akan dibalik untuk menentukan pemain mana yang akan bergerak selanjutnya dan state permainan akan disimpan. Anda akan memperbarui fungsi `handleClick` pada `Board` untuk membalik nilai `xIsNext`:
 
 ```js {7,8,9,10,11,13}
 export default function Board() {
@@ -1398,15 +1398,15 @@ export default function Board() {
 }
 ```
 
-Now, as you click on different squares, they will alternate between `X` and `O`, as they should!
+Sekarang, saat Anda mengeklik kotak yang berbeda, kotak-kotak itu akan bergantian antara `X` dan `O`, sebagaimana mestinya!
 
-But wait, there's a problem. Try clicking on the same square multiple times:
+Tapi tunggu, ada masalah. Coba klik kotak yang sama beberapa kali:
 
-![O overwriting an X](../images/tutorial/o-replaces-x.gif)
+![Tanda O menimpa X](../images/tutorial/o-replaces-x.gif)
 
-The `X` is overwritten by an `O`! While this would add a very interesting twist to the game, we're going to stick to the original rules for now.
+Tanda `X` ditimpa oleh tanda `O`! Meskipun hal ini akan menambah sentuhan yang sangat menarik pada gim ini, kami akan tetap berpegang pada aturan asli untuk saat ini.
 
-When you mark a square with a `X` or an `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+Ketika Anda menandai kotak dengan `X` atau `O`, Anda tidak memeriksa terlebih dahulu apakah kotak tersebut telah memiliki nilai `X` atau `O`. Anda dapat memperbaikinya dengan *return lebih awal*. Anda akan memeriksa apakah kotak tersebut sudah memiliki nilai `X` atau `O`. Jika kotak sudah terisi, Anda akan `return` dalam fungsi `handleClick` lebih awal--sebelum fungsi ini mencoba untuk meng-update state papan.
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1418,7 +1418,7 @@ function handleClick(i) {
 }
 ```
 
-Now you can only add `X`'s or `O`'s to empty squares! Here is what your code should look like at this point:
+Sekarang Anda hanya dapat menambahkan tanda `X` atau `O` pada kotak kosong! Berikut adalah tampilan kode Anda pada saat ini:
 
 <Sandpack>
 
@@ -1520,9 +1520,9 @@ body {
 
 </Sandpack>
 
-### Declaring a winner {/*declaring-a-winner*/}
+### Memutuskan pemenang {/*declaring-a-winner*/}
 
-Now that the players can take turns, you'll want to show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+Sekarang setelah para pemain dapat bergiliran, Anda ingin menunjukkan kapan permainan dimenangkan dan tidak ada lagi giliran yang harus dilakukan. Untuk melakukan ini, Anda akan menambahkan fungsi pembantu yang disebut `calculateWinner` yang mengambil sebuah senarai berisi 9 kotak, memeriksa pemenang dan mengembalikan `'X'`, `'O'`, atau `null` yang sesuai. Jangan terlalu khawatir dengan fungsi `calculateWinner`; fungsi ini tidak spesifik terhadap React:
 
 ```js App.js
 export default function Board() {
@@ -1552,11 +1552,11 @@ function calculateWinner(squares) {
 
 <Note>
 
-It does not matter whether you define `calculateWinner` before or after the `Board`. Let's put it at the end so that you don't have to scroll past it every time you edit your components.
+Tidak masalah apakah Anda mendefinisikan `calculateWinner` sebelum atau sesudah `Board`. Letakkan di bagian akhir agar Anda tidak perlu menggulir melawatinya setiap kali mengedit komponen.
 
 </Note>
 
-You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
+Anda akan memanggil `calculateWinner(squares)` dalam fungsi `handleClick` komponen `Board` untuk memeriksa apakah pemain telah menang. Anda dapat melakukan pengecekan ini bersamaan dengan pengecekan apakah pengguna telah mengklik kotak yang telah memiliki tanda `X` atau `O`. Kita ingin kembali lebih awal dalam kedua kasus tersebut:
 
 ```js {2}
 function handleClick(i) {
@@ -1568,7 +1568,7 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+Untuk memberi tahu para pemain ketika permainan berakhir, Anda dapat menampilkan teks seperti "Pemenang: X" atau "Pemenang: O". Untuk melakukannya, Anda akan menambahkan bagian `status` ke komponen `Board`. Status akan menampilkan pemenang jika permainan selesai dan jika permainan sedang berlangsung, Anda akan menampilkan giliran pemain berikutnya:
 
 ```js {3-9,13}
 export default function Board() {
@@ -1576,9 +1576,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = "Pemenang: " + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = "Pemain selanjutnya: " + (xIsNext ? "X" : "O");
   }
 
   return (
@@ -1590,7 +1590,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+Selamat! Anda sekarang memiliki permainan *tic-tac-toe* yang berfungsi. Dan Anda juga baru saja mempelajari dasar-dasar React. Jadi, _Anda_ adalah pemenang sebenarnya di sini. Berikut ini adalah tampilan kodenya:
 
 <Sandpack>
 
@@ -1626,9 +1626,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -1721,37 +1721,37 @@ body {
 
 </Sandpack>
 
-## Adding time travel {/*adding-time-travel*/}
+## Menambahkan perjalanan waktu {/*adding-time-travel*/}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+Sebagai latihan terakhir, mari kita memungkinkan untuk "kembali ke masa lalu" ke gerakan sebelumnya dalam permainan ini.
 
-### Storing a history of moves {/*storing-a-history-of-moves*/}
+### Menyimpan riwayat gerakan {/*storing-a-history-of-moves*/}
 
-If you mutated the `squares` array, implementing time travel would be very difficult.
+Jika Anda memutasi senarai `squares`, mengimplementasikan perjalanan waktu akan sangat sulit.
 
-However, you used `slice()` to create a new copy of the `squares` array after every move, and treated it as immutable. This will allow you to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Namun, Anda menggunakan `slice()` untuk membuat salinan baru dari senarai `squares` setelah setiap perpindahan, dan memperlakukannya sebagai immutable. Hal ini akan memungkinkan Anda untuk menyimpan setiap versi senarai `squares` sebelumnya, dan menavigasi di antara giliran yang telah terjadi.
 
-You'll store the past `squares` arrays in another array called `history`, which you'll store as a new state variable. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+Anda akan menyimpan senarai `squares` sebelumnya dalam senarai lain yang disebut `history`, yang akan Anda simpan sebagai variabel state baru. Senarai `history` merepresentasikan semua state papan, dari langkah pertama hingga terakhir, dan memiliki bentuk seperti ini:
 
 ```jsx
 [
-  // Before first move
+  // Sebelum langkah pertama
   [null, null, null, null, null, null, null, null, null],
-  // After first move
+  // Setelah langkah pertama
   [null, null, null, null, 'X', null, null, null, null],
-  // After second move
+  // Setelah langkah kedua
   [null, null, null, null, 'X', null, null, null, 'O'],
   // ...
 ]
 ```
 
-### Lifting state up, again {/*lifting-state-up-again*/}
+### Memindahkan state ke atas, lagi {/*lifting-state-up-again*/}
 
-You will now write a new top-level component called `Game` to display a list of past moves. That's where you will place the `history` state that contains the entire game history.
+Sekarang Anda akan menulis komponen tingkat atas baru yang disebut `Game` untuk menampilkan daftar gerakan sebelumnya. Di situlah Anda akan menempatkan state `history` yang berisi riwayat permainan.
 
-Placing the `history` state into the `Game` component will let you remove the `squares` state from its child `Board` component. Just like you "lifted state up" from the `Square` component into the `Board` component, you will now lift it up from the `Board` into the top-level `Game` component. This gives the `Game` component full control over the `Board`'s data and lets it instruct the `Board` to render previous turns from the `history`.
+Menempatkan state `history` ke dalam komponen `Game` akan membuat Anda dapat menghapus state `squares` dari komponen `Board` turunannya. Sama seperti Anda "mengangkat state" dari komponen `Square` ke dalam komponen `Board`, sekarang Anda akan mengangkatnya dari `Board` ke dalam komponen `Game` tingkat atas. Hal ini memberikan komponen `Game` kontrol penuh atas data `Board` dan memungkinkannya menginstruksikan `Board` untuk merender giliran sebelumnya dari `history`.
 
-First, add a `Game` component with `export default`. Have it render the `Board` component and some markup:
+Pertama, tambahkan komponen `Game` dengan `export default`. Buatlah ia merender komponen `Board` dan beberapa markup:
 
 ```js {1,5-16}
 function Board() {
@@ -1772,9 +1772,9 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+Perhatikan bahwa Anda menghapus kata kunci `export default` sebelum deklarasi `function Board() {` dan menambahkannya sebelum deklarasi `function Game() {`. Hal ini memberi tahu file `index.js` Anda untuk menggunakan komponen `Game` sebagai komponen tingkat atas, bukan komponen `Board`. Tambahan `div` yang dikembalikan oleh komponen `Game` menyediakan ruang untuk informasi permainan yang akan Anda tambahkan ke papan nanti.
 
-Add some state to the `Game` component to track which player is next and the history of moves:
+Tambahkan state ke komponen `Game` untuk melacak pemain mana yang berikutnya dan riwayat gerakan:
 
 ```js {2-3}
 export default function Game() {
@@ -1783,9 +1783,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
+Perhatikan bagaimana `[Array(9).fill(null)]` adalah sebuah senarai dengan satu item, yang merupakan senarai dari 9 buah `null`.
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
+Untuk merender kotak untuk pergerakan saat ini, Anda perlu membaca senarai kotak terakhir dari `history`. Anda tidak membutuhkan `useState` untuk ini - Anda sudah memiliki informasi yang cukup untuk menghitungnya selama render:
 
 ```js {4}
 export default function Game() {
@@ -1795,7 +1795,7 @@ export default function Game() {
   // ...
 ```
 
-Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+Selanjutnya, buat fungsi `handlePlay` di dalam komponen `Game` yang akan dipanggil oleh komponen `Board` untuk memperbarui permainan. Berikan `xIsNext`, `currentSquares` dan `handlePlay` sebagai props ke komponen `Board`:
 
 ```js {6-8,13}
 export default function Game() {
@@ -1816,7 +1816,7 @@ export default function Game() {
 }
 ```
 
-Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array when a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
+Mari kita buat komponen `Board` dikontrol sepenuhnya oleh props yang diterimanya. Ubah komponen `Board` untuk mengambil tiga props: `xIsNext`, `squares`, dan fungsi `onPlay` baru yang dapat dipanggil oleh `Board` dengan senarai kotak yang telah diperbarui saat pemain melakukan gerakan. Selanjutnya, hapus dua baris pertama dari fungsi `Board` yang memanggil `useState`:
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1827,7 +1827,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Now replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
+Sekarang ganti panggilan `setSquares` dan `setXIsNext` di `handleClick` di komponen `Board` dengan satu panggilan ke fungsi `onPlay` yang baru, sehingga komponen `Game` dapat memperbarui `Board` saat pengguna mengeklik kotak:
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1847,11 +1847,11 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
+Komponen `Board` sepenuhnya dikendalikan oleh props yang diteruskan oleh komponen `Game`. Anda perlu mengimplementasikan fungsi `handlePlay` di komponen `Game` untuk membuat game bekerja kembali.
 
-What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
+Apa yang harus dilakukan oleh `handlePlay` ketika dipanggil? Ingat bahwa Board digunakan untuk memanggil `setSquares` dengan senarai yang telah diperbarui; sekarang fungsi ini meneruskan senarai `squares` yang telah diperbarui ke `onPlay`.
 
-The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+Fungsi `handlePlay` perlu memperbarui state `Game` untuk memicu render ulang, tetapi Anda tidak memiliki fungsi `setSquares` yang bisa Anda panggil lagi--Anda sekarang menggunakan variabel state `history` untuk menyimpan informasi ini. Anda perlu memperbarui `history` dengan menambahkan senarai `squares` yang telah diperbarui sebagai entri history baru. Anda juga ingin mengganti `xIsNext`, seperti yang dilakukan oleh Board:
 
 ```js {4-5}
 export default function Game() {
@@ -1864,11 +1864,11 @@ export default function Game() {
 }
 ```
 
-Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
+Di sini, `[...history, nextSquares]` membuat senarai baru yang berisi semua item dalam `history`, diikuti dengan `nextSquares`. (Anda dapat membaca [*sintaks spread*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) `...history` sebagai "mencacah semua item dalam `history`".)
 
-For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+Sebagai contoh, jika `history` adalah `[[null,null,null], ["X",null,null]]` dan `nextSquares` adalah `["X",null, "O"]`, maka senarai `[...history, nextSquares]` yang baru adalah `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
-At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
+Pada titik ini, Anda telah memindahkan state untuk berada di komponen `Game`, dan UI seharusnya berfungsi penuh, sama seperti sebelum refactor. Berikut adalah tampilan kode yang seharusnya pada saat ini:
 
 <Sandpack>
 
@@ -1900,9 +1900,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2017,19 +2017,19 @@ body {
 
 </Sandpack>
 
-### Showing the past moves {/*showing-the-past-moves*/}
+### Menampilkan gerakan masa lalu {/*showing-the-past-moves*/}
 
-Since you are recording the tic-tac-toe game's history, you can now display a list of past moves to the player.
+Karena Anda merekam riwayat permainan *tic-tac-toe* ini, Anda sekarang dapat menampilkan daftar gerakan sebelumnya kepada pemain.
 
-React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+Elemen React seperti `<button>` adalah objek JavaScript biasa; Anda dapat mengopernya di dalam aplikasi Anda. Untuk merender beberapa item di React, Anda dapat menggunakan senarai elemen-elemen React.
 
-You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+Anda telah memiliki sebuah senarai `history` yang merupakan sejarah gerakan dalam state, jadi sekarang Anda perlu mengubahnya menjadi sebuah array elemen React. Dalam JavaScript, untuk mengubah satu senarai menjadi senarai lainnya, Anda dapat menggunakan metode [array `map`:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
+Anda akan menggunakan `map` untuk mengubah `history` gerakan Anda menjadi elemen React yang merepresentasikan tombol di layar, dan menampilkan daftar tombol untuk "melompat" ke gerakan sebelumnya. Mari kita melakukan `map` pada `history` dalam komponen Game:
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2049,9 +2049,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li>
@@ -2073,7 +2073,7 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` You'll fix this error in the next section.
+Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` Anda akan memperbaiki error ini di bagian selanjutnya.
 
 <Sandpack>
 
@@ -2105,9 +2105,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2149,9 +2149,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li>
@@ -2241,24 +2241,24 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+Saat Anda mengulang senarai `history` di dalam fungsi yang Anda berikan ke `map`, argumen `squares` melewati setiap elemen dari `history`, dan argumen `move` melewati setiap indeks senarai: `0`, `1`, `2`, …. (Pada kebanyakan kasus, Anda akan membutuhkan elemen senarai yang sebenarnya, namun untuk membuat daftar gerakan, Anda hanya membutuhkan indeks.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+Untuk setiap langkah dalam riwayat permainan tic-tac-toe, Anda membuat item daftar `<li>` yang berisi tombol `<button>`. Tombol ini memiliki sebuah handler `onClick` yang memanggil sebuah fungsi yang disebut `jumpTo` (yang belum Anda implementasikan).
 
-For now, you should see a list of the moves that occurred in the game and an error in the developer tools console. Let's discuss what the "key" error means.
+Untuk saat ini, Anda akan melihat daftar gerakan yang terjadi di dalam game dan error di konsol *developer tools*. Mari kita bahas apa arti dari error "key".
 
-### Picking a key {/*picking-a-key*/}
+### Memilih key {/*picking-a-key*/}
 
-When you render a list, React stores some information about each rendered list item. When you update a list, React needs to determine what has changed. You could have added, removed, re-arranged, or updated the list's items.
+Ketika Anda merender sebuah list, React menyimpan beberapa informasi tentang setiap item list yang di-render. Ketika Anda memperbarui list, React perlu menentukan apa yang telah berubah. Anda bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui item pada list.
 
-Imagine transitioning from
+Bayangkan pergantian dari
 
 ```html
 <li>Alexa: 7 tasks left</li>
 <li>Ben: 5 tasks left</li>
 ```
 
-to
+menjadi
 
 ```html
 <li>Ben: 9 tasks left</li>
@@ -2266,7 +2266,7 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and can't know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+Selain jumlah yang diperbarui, manusia yang membaca ini mungkin akan mengatakan bahwa Anda menukar urutan Alexa dan Ben dan menyisipkan Claudia di antara Alexa dan Ben. Namun, React adalah program komputer dan tidak dapat mengetahui apa yang Anda maksudkan, sehingga Anda perlu menentukan props _key_ untuk setiap item list untuk membedakan setiap item list dari saudaranya. Jika data Anda berasal dari database, ID database Alexa, Ben, dan Claudia dapat digunakan sebagai key.
 
 ```js {1}
 <li key={user.id}>
@@ -2274,23 +2274,23 @@ In addition to the updated counts, a human reading this would probably say that 
 </li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
+Ketika sebuah list di-render ulang, React mengambil key dari setiap item list dan mencari item list sebelumnya untuk mendapatkan key yang cocok. Jika list saat ini memiliki key yang tidak ada sebelumnya, React akan membuat sebuah komponen. Jika list saat ini tidak memiliki key yang ada di list sebelumnya, React akan menghancurkan komponen sebelumnya. Jika dua key cocok, komponen yang sesuai akan dipindahkan.
 
-Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+Key memberi tahu React tentang identitas setiap komponen, yang memungkinkan React untuk mempertahankan state di antara render ulang. Jika key sebuah komponen berubah, komponen tersebut akan dihancurkan dan dibuat ulang dengan state yang baru.
 
-`key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
+`key` adalah props khusus dan dicadangkan di React. Ketika sebuah elemen dibuat, React mengekstrak properti `key` dan menyimpan key secara langsung pada elemen yang dikembalikan. Meskipun `key` mungkin terlihat seperti dioper sebagai properti, React secara otomatis menggunakan `key` untuk menentukan komponen mana yang akan diperbarui. Tidak ada cara bagi sebuah komponen untuk menanyakan `key` apa yang ditentukan oleh induknya.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**Sangat disarankan agar Anda menentukan key yang tepat setiap kali Anda membuat list dinamis.** Jika Anda tidak memiliki kunci yang sesuai, Anda dapat mempertimbangkan untuk merestrukturisasi data Anda agar memiliki key yang sesuai.
 
-If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
+Jika tidak ada key yang ditentukan, React akan melaporkan error dan menggunakan indeks senarai sebagai key secara default. Menggunakan indeks senarai sebagai key akan menjadi masalah ketika mencoba mengurutkan ulang item dalam list atau menyisipkan/menghapus item dalam list. Secara eksplisit mengoper `key={i}` akan menghilangkan error tetapi memiliki masalah yang sama dengan indeks senarai dan tidak direkomendasikan dalam banyak kasus.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+Key tidak perlu unik secara global; mereka hanya perlu unik di antara komponen dan saudaranya.
 
-### Implementing time travel {/*implementing-time-travel*/}
+### Mengimplementasikan perjalanan waktu {/*implementing-time-travel*/}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+Dalam riwayat permainan *tic-tac-toe*, setiap langkah sebelumnya memiliki ID unik yang terkait dengannya: ini adalah nomor urut langkah tersebut. Langkah tidak akan pernah diurutkan ulang, dihapus, atau disisipkan di tengah-tengah, jadi aman untuk menggunakan indeks langkah sebagai key.
 
-In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
+Pada fungsi `Game`, Anda dapat menambahkan key sebagai `<li key={move}>`, dan jika Anda memuat ulang game yang telah di-render, error "key" pada React akan hilang:
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2333,9 +2333,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2377,9 +2377,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li key={move}>
@@ -2470,7 +2470,7 @@ body {
 
 </Sandpack>
 
-Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
+Sebelum Anda dapat mengimplementasikan `jumpTo`, Anda memerlukan komponen `Game` untuk melacak langkah mana yang sedang dilihat oleh pengguna. Untuk melakukan ini, tentukan variabel state baru yang disebut `currentMove`, dengan nilai awal `0`:
 
 ```js {4}
 export default function Game() {
@@ -2482,7 +2482,7 @@ export default function Game() {
 }
 ```
 
-Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
+Selanjutnya, perbarui fungsi `jumpTo` di dalam `Game` untuk memperbarui `currentMove` tersebut. Anda juga akan mengatur `xIsNext` menjadi `true` jika angka yang Anda ubah menjadi `currentMove` adalah genap.
 
 ```js {4-5}
 export default function Game() {
@@ -2495,10 +2495,10 @@ export default function Game() {
 }
 ```
 
-You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
+Anda sekarang akan membuat dua perubahan pada fungsi `handlePlay` pada `Game` yang dipanggil ketika Anda mengeklik sebuah kotak.
 
-- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
-- Each time a move is made, you need to update `currentMove` to point to the latest history entry.
+- Jika Anda "kembali ke masa lalu" dan kemudian membuat langkah baru dari titik tersebut, Anda hanya ingin menyimpan riwayat hingga titik tersebut. Alih-alih menambahkan `nextSquares` setelah semua item (sintaks spread `...`) di `history`, Anda akan menambahkannya setelah semua item di `history.slice(0, currentMove + 1)` sehingga Anda hanya menyimpan bagian dari riwayat lama.
+- Setiap kali gerakan dilakukan, Anda perlu memperbarui `currentMove` untuk menunjuk ke entri riwayat terbaru.
 
 ```js {2-4}
 function handlePlay(nextSquares) {
@@ -2509,7 +2509,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
+Terakhir, Anda akan memodifikasi komponen `Game` untuk merender gerakan yang sedang dipilih, alih-alih selalu merender gerakan terakhir:
 
 ```js {5}
 export default function Game() {
@@ -2522,7 +2522,7 @@ export default function Game() {
 }
 ```
 
-If you click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Jika Anda mengeklik langkah mana pun dalam riwayat permainan, papan *tic-tac-toe* akan segera diperbarui untuk menunjukkan seperti apa papan tersebut setelah langkah itu terjadi.
 
 <Sandpack>
 
@@ -2554,9 +2554,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2602,9 +2602,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li key={move}>
@@ -2693,11 +2693,11 @@ body {
 
 </Sandpack>
 
-### Final cleanup {/*final-cleanup*/}
+### Pembersihan akhir {/*final-cleanup*/}
 
-If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
+Jika Anda melihat kode tersebut dengan seksama, Anda mungkin melihat bahwa `xIsNext === true` ketika `currentMove` bernilai genap dan `xIsNext === false` ketika `currentMove` bernilai ganjil. Dengan kata lain, jika Anda mengetahui nilai dari `currentMove`, maka Anda selalu dapat mengetahui berapa nilai dari `xIsNext`.
 
-There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state reduces bugs and makes your code easier to understand. Change `Game` so that it doesn't store `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
+Tidak ada alasan bagi Anda untuk menyimpan kedua nilai ini dalam state. Bahkan, selalu usahakan untuk menghindari state yang berlebihan. Menyederhanakan apa yang Anda simpan dalam state akan mengurangi bug dan membuat kode Anda lebih mudah dipahami. Ubah `Game` agar tidak menyimpan `xIsNext` sebagai variabel state yang terpisah dan sebagai gantinya mencari tahu berdasarkan `currentMove`:
 
 ```js {4,11,15}
 export default function Game() {
@@ -2719,20 +2719,20 @@ export default function Game() {
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
+Anda tidak lagi membutuhkan deklarasi state `xIsNext` atau pemanggilan `setXIsNext`. Sekarang, tidak ada kesempatan bagi `xIsNext` untuk tidak sinkron dengan `currentMove`, bahkan jika Anda melakukan kesalahan saat mengkodekan komponen.
 
-### Wrapping up {/*wrapping-up*/}
+### Penutup {/*wrapping-up*/}
 
-Congratulations! You've created a tic-tac-toe game that:
+Selamat! Anda telah membuat gim *tic-tac-toe* yang:
 
-- Lets you play tic-tac-toe,
-- Indicates when a player has won the game,
-- Stores a game's history as a game progresses,
-- Allows players to review a game's history and see previous versions of a game's board.
+- Memungkinkan Anda bermain tic-tac-toe,
+- Menunjukkan kapan seorang pemain telah memenangkan permainan,
+- Menyimpan riwayat permainan saat permainan berlangsung,
+- Memungkinkan pemain untuk meninjau riwayat permainan dan melihat versi sebelumnya dari papan permainan.
 
-Nice work! We hope you now feel like you have a decent grasp of how React works.
+Kerja bagus! Kami harap Anda sekarang merasa memiliki pemahaman yang cukup baik tentang cara kerja React.
 
-Check out the final result here:
+Lihat hasil akhirnya di sini:
 
 <Sandpack>
 
@@ -2764,9 +2764,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pemenang: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Pemain selanjutnya: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2810,9 +2810,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Pergi ke langkah #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Pergi ke awal permainan';
     }
     return (
       <li key={move}>
@@ -2901,12 +2901,12 @@ body {
 
 </Sandpack>
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+Jika Anda memiliki waktu tambahan atau ingin melatih keterampilan React yang baru, berikut ini adalah beberapa ide untuk peningkatan yang dapat Anda lakukan pada permainan tic-tac-toe ini, yang didaftarkan dalam urutan tingkat kesulitan:
 
-1. For the current move only, show "You are at move #..." instead of a button.
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (row, col) in the move history list.
+1. Untuk langkah saat ini saja, tampilkan "Anda berada di langkah #..." sebagai pengganti tombol.
+1. Tulis ulang `Board` untuk menggunakan dua loop untuk membuat kotak alih-alih mengodekannya.
+1. Tambahkan tombol sakelar yang memungkinkan Anda mengurutkan langkah dalam urutan naik atau turun.
+1. Ketika seseorang menang, sorot tiga kotak yang menyebabkan kemenangan tersebut (dan ketika tidak ada yang menang, tampilkan pesan bahwa hasilnya seri).
+1. Menampilkan lokasi untuk setiap langkah dalam format (baris, kolom) dalam daftar riwayat langkah.
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
+Di sepanjang tutorial ini, Anda telah mempelajari konsep-konsep React termasuk elemen, komponen, props, dan state. Sekarang Anda telah melihat bagaimana konsep-konsep ini bekerja ketika membuat sebuah game, lihat [Cara Berpikir dengan React](/learn/thinking-in-react) untuk melihat bagaimana konsep-konsep React yang sama bekerja ketika membuat UI aplikasi.
