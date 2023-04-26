@@ -233,7 +233,7 @@ Baca **[JavaScript di JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-c
 
 </LearnMore>
 
-## Mengoper *Props* ke Komponen {/*passing-props-to-a-component*/}
+## Mengoper Props ke Komponen {/*passing-props-to-a-component*/}
 
 Komponen React menggunakan *props* untuk berkomunikasi satu sama lain. Setiap komponen induk dapat memberikan informasi ke komponen anaknya dengan memberikan *props*. *Props* mungkin mengingatkan Anda pada atribut HTML, tetapi Anda dapat mengoper nilai JavaScript apa pun melalui *props*, termasuk objek, senarai, fungsi, dan bahkan JSX!
 
@@ -314,7 +314,7 @@ Baca **[Mengoper Props ke sebuah Komponen](/learn/passing-props-to-a-component)*
 
 </LearnMore>
 
-## *Rendering* Kondisional {/*conditional-rendering*/}
+## Merender Kondisional {/*conditional-rendering*/}
 
 Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
@@ -358,7 +358,7 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Baca **[Rendering Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
+Baca **[Merender Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
 
 </LearnMore>
 
@@ -458,7 +458,7 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Baca **[Rendering Daftar](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
+Baca **[Merender List](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
 
 </LearnMore>
 
