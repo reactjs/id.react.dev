@@ -10,7 +10,7 @@ Sebuah editor yang terkonfigurasi dengan baik dapat membuat kode lebih mudah dib
 
 <YouWillLearn>
 
-* Apa saja editor yang populer
+* Apa saja editor yang paling populer
 * Cara memformat kode Anda secara otomatis
 
 </YouWillLearn>
@@ -42,7 +42,7 @@ Pemeriksa kode dapat menemukan masalah dalam kode Anda saat Anda menulis, memban
 
 Hal terakhir yang ingin Anda lakukan saat berbagi kode Anda dengan kontributor lain adalah terlibat dalam diskusi tentang [tab vs spasi](https://www.google.com/search?q=tabs+vs+spaces)! Untungnya, [Prettier](https://prettier.io/) akan membersihkan kode Anda dengan memformat ulang sesuai dengan aturan yang telah ditentukan. Jalankan Prettier, dan semua tab Anda akan dikonversi menjadi spasi—dan indentasi, tanda kutip, dll juga akan diubah sesuai dengan konfigurasi. Dalam pengaturan yang ideal, Prettier akan berjalan saat Anda menyimpan file Anda, dengan cepat membuat perubahan ini untuk Anda.
 
-Kamu dapat memasang [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
+Anda dapat memasang [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
 
 1. Buka VS Code
 2. Gunakan *Quick Open* (tekan Ctrl/Cmd+P)
