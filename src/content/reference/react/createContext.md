@@ -115,7 +115,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` mengembalikan <CodeStep step={1}>konteks objek</CodeStep>. Komponen datap membaca konteks dengan mengoper ke [`useContext()`](/reference/react/useContext):
+`createContext` mengembalikan <CodeStep step={1}>konteks objek</CodeStep>. Komponen membaca konteks dengan mengoper ke [`useContext()`](/reference/react/useContext):
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
 function Button() {
@@ -129,7 +129,7 @@ function Profile() {
 }
 ```
 
-Secara _default_, nilai yang diterima adalah <CodeStep step={3}>default values</CodeStep> yang Anda tentukan saat membuat konteks. Namun, dengan sendirinya hal ini tidak berguna karena nilai _default_ tidak pernah berubah.
+Secara *default*, nilai yang diterima adalah <CodeStep step={3}>default values</CodeStep> yang Anda tentukan saat membuat konteks. Namun, dengan sendirinya hal ini tidak berguna karena nilai *default* tidak pernah berubah.
 
 Konteks berguna karena Anda dapat **memberikan nilai dinamis lainnya dari komponen Anda:**
 
@@ -211,7 +211,7 @@ Kode seperti ini menentukan nilai konteks *default*:
 const ThemeContext = createContext('light');
 ```
 
-Nilai ini tidak pernah berubah. React hanya menggunakan nilai ini sebagai fallback jika tidak dapat menemukan penyedia yang cocok di atas.
+Nilai ini tidak pernah berubah. React hanya menggunakan nilai ini sebagai *fallback* jika tidak dapat menemukan penyedia yang cocok di atas.
 
 Untuk membuat konteks berubah seiring waktu, [tambahkan state dan bungkus komponen didalam penyedia konteks](/reference/react/useContext#updating-data-passed-via-context)
 
