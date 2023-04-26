@@ -941,13 +941,11 @@ export default function Board() {
 
 `Array(9).fill(null)` membuat senarai dengan sembilan elemen dan menetapkan masing-masing elemen menjadi `null`. Panggilan `useState()` di sekelilingnya mendeklarasikan variabel status `squares` yang pada awalnya disetel ke senarai tersebut. Setiap entri dalam senarai berhubungan dengan nilai sebuah kotak. Ketika Anda mengisi papan nanti, senarai `squares` akan terlihat seperti ini:
 
-`Array(9).fill(null)` creates an array with nine elements and sets each of them to `null`. The `useState()` call around it declares a `squares` state variable that's initially set to that array. Each entry in the array corresponds to the value of a square. When you fill the board in later, the `squares` array will look like this:
-
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Now your `Board` component needs to pass the `value` prop down to each `Square` that it renders:
+Sekarang komponen `Board` Anda harus meneruskan props `value` ke setiap `Square` yang di-render:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -974,7 +972,7 @@ export default function Board() {
 }
 ```
 
-Next, you'll edit the `Square` component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
+Selanjutnya, Anda akan mengedit komponen `Square` untuk menerima prop `value` dari komponen Board. Hal ini akan membutuhkan penghapusan pelacakan *stateful* komponen Square sendiri terhadap `value` dan prop `onClick` tombol:
 
 ```js {1,2}
 function Square({value}) {
@@ -982,11 +980,11 @@ function Square({value}) {
 }
 ```
 
-At this point you should see an empty tic-tac-toe board:
+Pada titik ini, Anda akan melihat papan *tic-tac-toe* yang kosong:
 
-![empty board](../images/tutorial/empty-board.png)
+![papan kosong](../images/tutorial/empty-board.png)
 
-And your code should look like this:
+Dan kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -1068,11 +1066,11 @@ body {
 
 </Sandpack>
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Setiap Square sekarang akan menerima sebuah props `value` yang akan menjadi `'X'`, `'O'`, atau `null` untuk kotak kosong.
 
-Next, you need to change what happens when a `Square` is clicked. The `Board` component now maintains which squares are filled. You'll need to create a way for the `Square` to update the `Board`'s state. Since state is private to a component that defines it, you cannot update the `Board`'s state directly from `Square`.
+Selanjutnya, Anda perlu mengubah apa yang terjadi ketika sebuah `Square` diklik. Komponen `Board` sekarang mempertahankan kotak mana yang terisi. Anda perlu membuat cara agar `Square` memperbarui state `Board`. Karena state bersifat privat bagi komponen yang mendefinisikannya, Anda tidak dapat memperbarui state `Board` secara langsung dari `Square`.
 
-Instead, you'll pass down a function from the `Board` component to the `Square` component, and you'll have `Square` call that function when a square is clicked. You'll start with the function that the `Square` component will call when it is clicked. You'll call that function `onSquareClick`:
+Sebagai gantinya, Anda akan mewariskan fungsi dari komponen `Board` ke komponen `Square`, dan Anda akan membuat `Square` memanggil fungsi tersebut saat kotak diklik. Anda akan mulai dengan fungsi yang akan dipanggil oleh komponen `Square` ketika diklik. Anda akan menamakan fungsi tersebut `onSquareClick`:
 
 ```js {3}
 function Square({ value }) {
@@ -1084,7 +1082,7 @@ function Square({ value }) {
 }
 ```
 
-Next, you'll add the `onSquareClick` function to the `Square` component's props:
+Selanjutnya, Anda akan menambahkan fungsi `onSquareClick` ke props komponen `Square`:
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1096,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama: 
 
 ```js {7}
 export default function Board() {
@@ -1111,7 +1109,7 @@ export default function Board() {
 }
 ```
 
-Lastly, you will define the `handleClick` function inside the Board component to update the `squares` array holding your board's state:
+Terakhir, Anda akan mendefinisikan fungsi `handleClick` di dalam komponen Board untuk memperbarui senarai `squares` yang menyimpan state papan Anda:
 
 ```js {4-8}
 export default function Board() {
@@ -1129,17 +1127,17 @@ export default function Board() {
 }
 ```
 
-The `handleClick` function creates a copy of the `squares` array (`nextSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `nextSquares` array to add `X` to the first (`[0]` index) square.
+Fungsi `handleClick` membuat salinan senarai `squares` (`nextSquares`) dengan metode senarai JavaScript `slice()`. Kemudian, `handleClick` memperbarui senarai `nextSquares` untuk menambahkan `X` ke kotak pertama (indeks `[0]`).
 
-Calling the `setSquares` function lets React know the state of the component has changed. This will trigger a re-render of the components that use the `squares` state (`Board`) as well as its child components (the `Square` components that make up the board).
+Memanggil fungsi `setSquares` akan membuat React mengetahui bahwa state dari komponen telah berubah. Hal ini akan memicu render ulang komponen yang menggunakan state `squares` (`Board`) dan juga komponen turunannya (komponen `Square` yang membentuk board).
 
 <Note>
 
-JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in a outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+JavaScript mendukung [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) yang berarti fungsi dalam (misalnya `handleClick`) memiliki akses ke variabel dan fungsi yang didefinisikan di fungsi luar (misalnya `Board`). Fungsi `handleClick` dapat membaca state `squares` dan memanggil metode `setSquares` karena keduanya didefinisikan di dalam fungsi `Board`.
 
 </Note>
 
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add an argument `i` to the `handleClick` function that takes the index of the square to update:
+Sekarang Anda dapat menambahkan tanda X pada papan tulis... tetapi hanya pada kotak kiri atas. Fungsi `handleClick` Anda telah dikodekan untuk meng-update indeks untuk kotak kiri atas (`0`). Mari kita perbarui `handleClick` agar dapat memperbarui kotak manapun. Tambahkan argumen `i` ke fungsi `handleClick` yang mengambil indeks kotak yang akan diperbarui:
 
 ```js {4,6}
 export default function Board() {
@@ -1157,13 +1155,13 @@ export default function Board() {
 }
 ```
 
-Next, you will need to pass that `i` to `handleClick`. You could try to set the `onSquareClick` prop of square to be `handleClick(0)` directly in the JSX like this, but it won't work:
+Selanjutnya, Anda harus mengoper `i` tersebut ke `handleClick`. Anda dapat mencoba untuk mengatur props `onSquareClick` dari kotak menjadi `handleClick(0)` secara langsung pada JSX seperti ini, tetapi tidak akan berhasil:
 
 ```jsx
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
 ```
 
-Here is why this doesn't work. The `handleClick(0)` call will be a part of rendering the board component. Because `handleClick(0)` alters the state of the board component by calling `setSquares`, your entire board component will be re-rendered again. But this runs `handleClick(0)` again, leading to an infinite loop:
+Inilah alasan mengapa kode ini tidak bekerja. Panggilan `handleClick(0)` akan menjadi bagian dari proses rendering komponen papan. Karena `handleClick(0)` mengubah keadaan komponen papan dengan memanggil `setSquares`, seluruh komponen papan Anda akan di-render kembali. Tapi ini akan menjalankan `handleClick(0)` lagi, yang menyebabkan perulangan tak terbatas:
 
 <ConsoleBlock level="error">
 
@@ -1171,13 +1169,13 @@ Too many re-renders. React limits the number of renders to prevent an infinite l
 
 </ConsoleBlock>
 
-Why didn't this problem happen earlier?
+Mengapa masalah ini tidak terjadi sebelumnya?
 
-When you were passing `onSquareClick={handleClick}`, you were passing the `handleClick` function down as a prop. You were not calling it! But now you are *calling* that function right away--notice the parentheses in `handleClick(0)`--and that's why it runs too early. You don't *want* to call `handleClick` until the user clicks!
+Ketika Anda mengoper `onSquareClick={handleClick}`, Anda mengoper fungsi `handleClick` sebagai sebuah prop. Anda tidak memanggilnya! Tetapi sekarang Anda langsung memanggil fungsi tersebut - perhatikan tanda kurung pada `handleClick(0)` - dan itulah mengapa fungsi tersebut berjalan terlalu cepat. Anda tidak *ingin* memanggil `handleClick` sampai pengguna mengklik!
 
-You could fix by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+Anda dapat memperbaikinya dengan membuat fungsi seperti `handleFirstSquareClick` yang memanggil `handleClick(0)`, fungsi seperti `handleSecondSquareClick` yang memanggil `handleClick(1)`, dan seterusnya. Anda akan meneruskan (daripada memanggil) fungsi-fungsi ini sebagai props seperti `onSquareClick={handleFirstSquareClick}`. Hal ini akan menyelesaikan perulangan tak terbatas.
 
-However, defining nine different functions and giving each of them a name is too verbose. Instead, let's do this:
+Namun demikian, mendefinisikan sembilan fungsi yang berbeda dan memberikan nama untuk masing-masing fungsi itu terlalu bertele-tele. Sebagai gantinya, mari kita lakukan ini:
 
 ```js {6}
 export default function Board() {
@@ -1191,9 +1189,9 @@ export default function Board() {
 }
 ```
 
-Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
+Perhatikan sintaks `() =>` yang baru. Di sini, `() => handleClick(0)` adalah sebuah fungsi *arrow function,* yang merupakan cara yang lebih singkat untuk mendefinisikan fungsi. Ketika kotak diklik, kode setelah tanda "panah" `=>` akan berjalan, memanggil `handleClick(0)`.
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
+Sekarang Anda perlu memperbarui delapan kotak lainnya untuk memanggil `handleClick` dari fungsi panah yang Anda berikan. Pastikan bahwa argumen untuk setiap pemanggilan `handleClick` sesuai dengan indeks kotak yang benar:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -1220,13 +1218,13 @@ export default function Board() {
 };
 ```
 
-Now you can again add X's to any square on the board by clicking on them:
+Sekarang Anda dapat kembali menambahkan tanda X ke kotak mana pun di papan tulis dengan mengekliknya:
 
-![filling the board with X](../images/tutorial/tictac-adding-x-s.gif)
+![mengisi papan permainan dengan X](../images/tutorial/tictac-adding-x-s.gif)
 
-But this time all the state management is handled by the `Board` component!
+Tapi kali ini semua manajemen state ditangani oleh komponen `Board`!
 
-This is what your code should look like:
+Seperti inilah tampilan kode Anda:
 
 <Sandpack>
 
@@ -1319,19 +1317,19 @@ body {
 
 </Sandpack>
 
-Now that your state handling is in the `Board` component, the parent `Board` component passes props to the child `Square` components so that they can be displayed correctly. When clicking on a `Square`, the child `Square` component now asks the parent `Board` component to update the state of the board. When the `Board`'s state changes, both the `Board` component and every child `Square` re-renders automatically. Keeping the state of all squares in the `Board` component will allow it to determine the winner in the future.
+Karena sekarang penanganan state Anda ada di komponen `Board`, komponen `Board` induk meneruskan props ke komponen `Square` anak sehingga dapat ditampilkan dengan benar. Ketika mengklik `Square`, komponen `Square` anak sekarang meminta komponen `Board` induk untuk memperbarui state papan. Ketika state `Board` berubah, komponen `Board` dan semua anak `Square` akan di-render ulang secara otomatis. Menyimpan state semua kotak dalam komponen `Board` akan memungkinkan komponen tersebut untuk menentukan pemenang di masa mendatang.
 
-Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+Mari kita rekap apa yang terjadi ketika pengguna mengeklik kotak kiri atas pada papan Anda untuk menambahkan tanda `X`:
 
-1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
-1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
-1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
+1. Mengklik kotak kiri atas akan menjalankan fungsi yang diterima `tombol` sebagai prop `onClick` dari `Square`. Komponen `Square` menerima fungsi tersebut sebagai props `onSquareClick` dari `Board`. Komponen `Board` mendefinisikan fungsi tersebut secara langsung di JSX. Komponen ini memanggil `handleClick` dengan argumen `0`.
+1. `handleClick` menggunakan argumen (`0`) untuk meng-update elemen pertama dari array `squares` dari `null` menjadi `X`.
+1. State `squares` dari komponen `Board` telah diperbarui, sehingga `Board` dan semua anak komponennya di-render ulang. Hal ini menyebabkan prop `value` dari komponen `Square` dengan indeks `0` berubah dari `null` menjadi `X`.
 
-In the end the user sees that the upper left square has changed from empty to having a `X` after clicking it.
+Pada akhirnya pengguna akan melihat bahwa kotak kiri atas telah berubah dari kosong menjadi bertanda `X` setelah mengekliknya.
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `onSomething` names for props which represent events and `handleSomething` for the function definitions which handle those events.
+Atribut `onClick` pada elemen DOM `<button>` memiliki arti khusus untuk React karena merupakan komponen bawaan. Untuk komponen kustom seperti Square, penamaan terserah Anda. Anda dapat memberikan nama apa pun pada prop `Square` dengan `onSquareClick` atau fungsi `handleClick` pada `Board`, dan kodenya akan bekerja secara sama. Dalam React, sudah menjadi hal yang lazim untuk menggunakan nama `onSomething` untuk props yang merepresentasikan _event_ dan `handleSomething` untuk definisi fungsi yang menangani _event_ tersebut.
 
 </Note>
 
