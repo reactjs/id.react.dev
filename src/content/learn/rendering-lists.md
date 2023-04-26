@@ -95,9 +95,9 @@ Warning: Each child in a list should have a unique "key" prop.
 
 Anda akan mempelajari cara memperbaiki kesalahan ini nanti. Untuk saat ini, kita akan menambahkan struktur ke data Anda.
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+## Menyaring seranai {/*filtering-arrays-of-items*/}
 
-This data can be structured even more.
+Kita bisa menambahkan struktur ke data ini.
 
 ```js
 const people = [{
@@ -121,11 +121,11 @@ const people = [{
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+Misalkan Anda hanya ingin menampilkan orang yang memiliki profesi `'chemist'`. Anda dapat menggunakan *method* `filter()` dari JavaScript untuk mendapatkan daftar tersebut. *Method* ini menerima masukan berupa sebuah seranai, kemudian menguji setiap anggota dari seranai tersebut dengan sebuah fungsi uji (fungsi yang hanya mengembalikan nilai `true` (benar) atau `false` (salah)), lalu mengembalikan sebuah seranai baru yang terdiri atas anggota-anggota yang lolos uji (memperoleh nilai `true`).
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+Anda hanya menginginkan orang yang memiliki `profession` berupa `'chemist'`. Oleh karena itu, fungsi ujinya adalah `(person) => person.profession === 'chemist'`. Langkahnya seperti berikut:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **Buatkan** sebuah seranai baru yang terdiri atas orang-orang berprofesi `chemists`, dengan memanggil *method* `filter()` terhadap seranai `people` dengan syarat `person.profession === 'chemist'`:
 
 ```js
 const chemists = people.filter(person =>
@@ -133,7 +133,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. Now **map** over `chemists`:
+2. **Petakan** setiap anggota dari seranai `chemists` menggunakan *method* `map()`, yang sudah kita pelajari, menjadi sebuah seranai *node* JSX, `listItems`:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -151,11 +151,13 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. **Kembalikan** `listItems` dari komponen Anda dengan membungkusnya terlebih dahulu dengan elemen `ul`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
+
+Hasil akhirnya seperti berikut:
 
 <Sandpack>
 
@@ -244,23 +246,23 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+*Arrow function* mengembalikan, secara implisit, pernyataan tepat setelah `=>`, sehingga Anda tidak perlu menulis `return`:
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // Implicit return!
+  <li>...</li> // Return secara implisit
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+Namun, **Anda harus menulis `return` secara eksplisit jika setelah `=>` terdapat `{`!**
 
 ```js
-const listItems = chemists.map(person => { // Curly brace
+const listItems = chemists.map(person => { // Kurung kurawal
   return <li>...</li>;
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apapun!
 
 </Pitfall>
 
