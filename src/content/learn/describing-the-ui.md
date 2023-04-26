@@ -362,7 +362,7 @@ Baca **[Rendering Kondisional](/learn/conditional-rendering)** untuk mempelajari
 
 </LearnMore>
 
-## *Rendering* Daftar {/*rendering-lists*/}
+## Merender List {/*rendering-lists*/}
 
 Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk memfilter dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
