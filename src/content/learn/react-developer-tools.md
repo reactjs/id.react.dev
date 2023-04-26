@@ -4,7 +4,7 @@ title: React Developer Tools
 
 <Intro>
 
-Gunakan Alat Pengembang React untuk memeriksa [komponen](/learn/your-first-component), menyunting [*props*](/learn/passing-props-to-a-component) dan [*state*](/learn/state-a-components-memory), dan mengidentifikasi masalah kinerja.
+Gunakan React Developer Tools untuk memeriksa [komponen](/learn/your-first-component), menyunting [*props*](/learn/passing-props-to-a-component) dan [*state*](/learn/state-a-components-memory), dan mengidentifikasi masalah kinerja.
 
 </Intro>
 
