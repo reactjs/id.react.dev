@@ -1,62 +1,62 @@
 ---
-title: Editor Setup
+title: Persiapan Editor
 ---
 
 <Intro>
 
-A properly configured editor can make code clearer to read and faster to write. It can even help you catch bugs as you write them! If this is your first time setting up an editor or you're looking to tune up your current editor, we have a few recommendations.
+Sebuah editor yang terkonfigurasi dengan baik dapat membuat kode lebih mudah dibaca dan lebih cepat ditulis. Ini bahkan dapat membantu Anda menangkap *bug* saat Anda menulisnya! Jika ini adalah pertama kalinya Anda mempersiapkan editor atau Anda ingin menyetel ulang editor Anda saat ini, kami memiliki beberapa rekomendasi.
 
 </Intro>
 
 <YouWillLearn>
 
-* What the most popular editors are
-* How to format your code automatically
+* Apa saja editor yang populer
+* Cara memformat kode Anda secara otomatis
 
 </YouWillLearn>
 
-## Your editor {/*your-editor*/}
+## Editor Anda {/*your-editor*/}
 
-[VS Code](https://code.visualstudio.com/) is one of the most popular editors in use today. It has a large marketplace of extensions and integrates well with popular services like GitHub. Most of the features listed below can be added to VS Code as extensions as well, making it highly configurable!
+[VS Code](https://code.visualstudio.com/) adalah salah satu editor yang paling populer yang digunakan saat ini. Memiliki pasar ekstensi yang besar dan terintegrasi dengan baik dengan layanan populer seperti GitHub. Sebagian besar fitur yang tercantum di bawah ini juga dapat ditambahkan ke VS Code sebagai ekstensi, sehingga membuatnya sangat dapat dikonfigurasi!
 
-Other popular text editors used in the React community include:
+Editor teks populer lainnya yang digunakan dalam komunitas React meliputi:
 
-* [WebStorm](https://www.jetbrains.com/webstorm/) is an integrated development environment designed specifically for JavaScript.
-* [Sublime Text](https://www.sublimetext.com/) has support for JSX and TypeScript, [syntax highlighting](https://stackoverflow.com/a/70960574/458193) and autocomplete built in.
-* [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
+* [WebStorm](https://www.jetbrains.com/webstorm/) adalah lingkungan pengembangan terpadu yang dirancang khusus untuk JavaScript.
+* [Sublime Text](https://www.sublimetext.com/) memiliki dukungan untuk JSX dan TypeScript, [*syntax highlighting*](https://stackoverflow.com/a/70960574/458193) dan penyelesaian otomatis yang sudah *built-in*.
+* [Vim](https://www.vim.org/) adalah editor teks yang sangat dapat dikonfigurasi yang dirancang untuk membuat membuat dan mengubah jenis teks apa pun menjadi sangat efisien. Ini disertakan sebagai "vi" dengan sebagian besar sistem UNIX dan dengan Apple OS X.
 
-## Recommended text editor features {/*recommended-text-editor-features*/}
+## Fitur editor teks yang direkomendasikan {/*recommended-text-editor-features*/}
 
-Some editors come with these features built in, but others might require adding an extension. Check to see what support your editor of choice provides to be sure!
+Beberapa editor dilengkapi dengan fitur-fitur ini secara *built-in*, tetapi yang lain mungkin memerlukan penambahan ekstensi. Periksa untuk melihat dukungan yang disediakan editor pilihan Anda untuk memastikan!
 
-### Linting {/*linting*/}
+### Pemeriksaan {/*linting*/}
 
-Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript. 
+Pemeriksa kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah pemeriksa *open source* yang populer untuk JavaScript.
 
-* [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) (be sure you have [Node installed!](https://nodejs.org/en/download/current/))
-* [Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Memasang ESLint dengan konfigurasi yang direkomendasikan untuk React](https://www.npmjs.com/package/eslint-config-react-app) (pastikan Anda telah [memasang Node!](https://nodejs.org/en/download/current/))
+* [Integrasi ESLint di VSCode dengan ekstensi resmi](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**Make sure that you've enabled all the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) rules for your project.** They are essential and catch the most severe bugs early. The recommended [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) preset already includes them.
+**Pastikan Anda telah mengaktifkan semua aturan [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk proyek Anda.** Mereka sangat penting dan menangkap *bug* yang paling parah lebih awal. *Preset* [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) yang direkomendasikan sudah termasuk di dalamnya.
 
-### Formatting {/*formatting*/}
+### Pemformatan {/*formatting*/}
 
-The last thing you want to do when sharing your code with another contributor is get into an discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
+Hal terakhir yang ingin Anda lakukan saat berbagi kode Anda dengan kontributor lain adalah terlibat dalam diskusi tentang [tab vs spasi](https://www.google.com/search?q=tabs+vs+spaces)! Untungnya, [Prettier](https://prettier.io/) akan membersihkan kode Anda dengan memformat ulang sesuai dengan aturan yang telah ditentukan. Jalankan Prettier, dan semua tab Anda akan dikonversi menjadi spasi—dan indentasi, tanda kutip, dll juga akan diubah sesuai dengan konfigurasi. Dalam pengaturan yang ideal, Prettier akan berjalan saat Anda menyimpan file Anda, dengan cepat membuat perubahan ini untuk Anda.
 
-You can install the [Prettier extension in VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by following these steps:
+Kamu dapat memasang [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
 
-1. Launch VS Code
-2. Use Quick Open (press Ctrl/Cmd+P)
-3. Paste in `ext install esbenp.prettier-vscode`
-4. Press Enter
+1. Buka VS Code
+2. Gunakan *Quick Open* (tekan Ctrl/Cmd+P)
+3. Tempelkan `ext install esbenp.prettier-vscode`
+4. Tekan Enter
 
-#### Formatting on save {/*formatting-on-save*/}
+#### Pemformatan saat menyimpan {/*formatting-on-save*/}
 
-Ideally, you should format your code on every save. VS Code has settings for this!
+Idealnya, Anda harus memformat kode Anda setiap kali menyimpan. VS Code memiliki pengaturan untuk ini!
 
-1. In VS Code, press `CTRL/CMD + SHIFT + P`.
-2. Type "settings"
-3. Hit Enter
-4. In the search bar, type "format on save"
-5. Be sure the "format on save" option is ticked!
+1. Di VS Code, tekan `CTRL/CMD + SHIFT + P`.
+2. Ketik "settings"
+3. Tekan Enter
+4. Di bilah pencarian, ketik "format on save"
+5. Pastikan opsi "format on save" dicentang!
 
-> If your ESLint preset has formatting rules, they may conflict with Prettier. We recommend disabling all formatting rules in your ESLint preset using [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) so that ESLint is *only* used for catching logical mistakes. If you want to enforce that files are formatted before a pull request is merged, use [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) for your continuous integration.
+Jika *preset* ESLint Anda memiliki aturan pemformatan, mereka mungkin akan bertentangan dengan Prettier. Kami menyarankan untuk menonaktifkan semua aturan pemformatan di *preset* ESLint Anda menggunakan [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) sehingga ESLint hanya digunakan untuk menangkap kesalahan logis. Jika Anda ingin menegakkan bahwa file diformat terlabih dahulu sebelum *pull request* digabungkan, gunakan [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) untuk integrasi berkelanjutan Anda.
