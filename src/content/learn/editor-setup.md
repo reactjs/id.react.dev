@@ -33,7 +33,7 @@ Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang la
 
 *Linter* kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah *linter open source* yang populer untuk JavaScript.
 
-* [Memasang ESLint dengan konfigurasi yang direkomendasikan untuk React](https://www.npmjs.com/package/eslint-config-react-app) (pastikan Anda telah [memasang Node!](https://nodejs.org/en/download/current/))
+* [Menginstal ESLint dengan konfigurasi yang direkomendasikan untuk React](https://www.npmjs.com/package/eslint-config-react-app) (pastikan Anda telah [menginstal Node!](https://nodejs.org/en/download/current/))
 * [Integrasi ESLint di VSCode dengan ekstensi resmi](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 **Pastikan Anda telah mengaktifkan semua aturan [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk proyek Anda.** Mereka sangat penting dan menangkap *bug* yang paling parah lebih awal. *Preset* [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) yang direkomendasikan sudah termasuk di dalamnya.
@@ -42,7 +42,7 @@ Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang la
 
 Hal terakhir yang ingin Anda lakukan saat berbagi kode Anda dengan kontributor lain adalah terlibat dalam diskusi tentang [tab vs spasi](https://www.google.com/search?q=tabs+vs+spaces)! Untungnya, [Prettier](https://prettier.io/) akan membersihkan kode Anda dengan memformat ulang sesuai dengan aturan yang telah ditentukan. Jalankan Prettier, dan semua tab Anda akan dikonversi menjadi spasi—dan indentasi, tanda kutip, dll juga akan diubah sesuai dengan konfigurasi. Dalam pengaturan yang ideal, Prettier akan berjalan saat Anda menyimpan file Anda, dengan cepat membuat perubahan ini untuk Anda.
 
-Anda dapat memasang [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
+Anda dapat menginstal [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
 
 1. Buka VS Code
 2. Gunakan *Quick Open* (tekan Ctrl/Cmd+P)
