@@ -32,11 +32,11 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Parameters {/*parameters*/}
 
-* `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sempai pertama kali And mencoba untuk merender komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian merender nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak, React akan `throw` alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
+* `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk merender komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian merender nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
 
 #### Returns {/*returns*/}
 
-`lazy` mengembalikan kompon React yang dapat Anda render di dalam *tree*. Ketika kode untuk komponen *lazy* masih dimuat, mencoba merendernya akan *suspend.* Gunakan [`<Suspense>`](/reference/react/Suspense) untuk menampilkan indikator pemuatan ketika komponen tersebut dimuat.
+`lazy` mengembalikan komponen React yang dapat Anda render di dalam *tree*. Ketika kode untuk komponen *lazy* masih dimuat, mencoba merendernya akan *suspend.* Gunakan [`<Suspense>`](/reference/react/Suspense) untuk menampilkan indikator pemuatan ketika komponen tersebut dimuat.
 
 ---
 
@@ -62,7 +62,7 @@ Biasanya, Anda mengimpor komponen dengan deklarasi statis [`import`](https://dev
 import MarkdownPreview from './MarkdownPreview.js';
 ```
 
-Untuk menunda pemuatan jkode komponen ini hingga dirender untuk pertama kalinya, ganti *import* ini dengan:
+Untuk menunda pemuatan kode komponen ini hingga dirender untuk pertama kalinya, ganti *import* ini dengan:
 
 ```js
 import { lazy } from 'react';
@@ -72,7 +72,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 Kode ini bergantung pada [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) yang mungkin memerlukan dukungan dari *bundler* atau *framework* yang Anda gunakan.
 
-Setelah kode komponen Anda dimuat saat digunakan, Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu *parent* ke dalam [`<Suspense>`](/reference/react/Suspense):
+Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu *parent* ke dalam [`<Suspense>`](/reference/react/Suspense):
 
 ```js {1,4}
 <Suspense fallback={<Loading />}>
@@ -183,9 +183,9 @@ Demo ini dimuat dengan penundaan buatan. Lain kali Anda menghapus centang dan me
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
-### `lazy` komponen saya disetel ulang secara tidak terduka {/*my-lazy-components-state-gets-reset-unexpectedly*/}
+### `lazy` komponen saya disetel ulang secara tidak terduga {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 
-Jangan deklarasikan `lazy` komponen *didalam* komponen lain:
+Jangan deklarasikan `lazy` komponen *di dalam* komponen lain:
 
 ```js {4-5}
 import { lazy } from 'react';
