@@ -58,11 +58,11 @@ Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App
 
 Bagaimana jika Anda ingin mengubah landing screen di masa depan dan memasukkan daftar buku sains disana? Atau meletakkan semua profil di tempat lain? Masuk akal untuk memindahkan `Gallery` dan `Profile` dari file komponen root. Ini akan membuat lebih modular dan dapat digunakan kembali di file lain. Anda dapat memindahkan sebuah komponen dengan tiga langkah:
 
-1. **Buat** sebuah file JS baru untuk memasukkan komponen.
+1. **Buat** sebuah *file* JS baru untuk memasukkan komponen.
 2. **Eksport** function component Anda dari file tersebut (menggunakan baik [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
 3. **Import** dimana Anda akan menggunakan komponen tersebut (menggunakan teknik yang sesuai untuk mengimport [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
 
-Di sini `Profile` dan `Gallery` sudah dipindahkan dari `App.js` kedalam file baru bernama `Gallery.js`. Sekarang Anda dapat mengubah `App.js` untuk mengimport `Gallery` dari `Gallery.js`:
+Di sini `Profile` dan `Gallery` sudah dipindahkan dari `App.js` kedalam *file* baru bernama `Gallery.js`. Sekarang Anda dapat mengubah `App.js` untuk mengimport `Gallery` dari `Gallery.js`:
 
 <Sandpack>
 
@@ -104,10 +104,10 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Perhatikan bagaimana pada contoh ini dipencah menjadi dua file komponen sekarang:
+Perhatikan bagaimana pada contoh ini dipencah menjadi dua *file* komponen sekarang:
 
 1. `Gallery.js`:
-     - Mendefinisikan `Profile` komponen yang hanya digunakan dalam file yang sama dan tidak dieksport.
+     - Mendefinisikan `Profile` komponen yang hanya digunakan dalam *file* yang sama dan tidak dieksport.
      - Mengeksport `Gallery` komponen sebagai **default export.**
 2. `App.js`:
      - Mengimport `Gallery` sebagai **default import** dari `Gallery.js`.
