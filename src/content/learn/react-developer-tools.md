@@ -14,9 +14,9 @@ Gunakan React Developer Tools untuk memeriksa [komponen](/learn/your-first-compo
 
 </YouWillLearn>
 
-## Ekstensi Peramban {/*browser-extension*/}
+## Ekstensi peramban {/*browser-extension*/}
 
-Cara termudah untuk melakukan debugging website yang dibangun dengan React adalah dengan memasang ekstensi peramban React Developer Tools. Ekstensi ini tersedia untuk beberapa peramban populer:
+Cara termudah untuk melakukan debugging website yang dibangun dengan React adalah dengan menginstal ekstensi peramban React Developer Tools. Ekstensi ini tersedia untuk beberapa peramban populer:
 
 * [Instal untuk **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 * [Instal untuk **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
@@ -26,8 +26,8 @@ Sekarang, jika Anda mengunjungi sebuah website **yang dibangun dengan React,** A
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 
-### Safari and Peramban lainnya {/*safari-and-other-browsers*/}
-Untuk peramban lainnya (misalnya, Safari), instal paket npm [`react-devtools`](https://www.npmjs.com/package/react-devtools):
+### Safari and peramban lainnya {/*safari-and-other-browsers*/}
+Untuk peramban lainnya (misalnya, Safari), instal *package* npm [`react-devtools`](https://www.npmjs.com/package/react-devtools):
 
 ```bash
 # Yarn
@@ -43,7 +43,7 @@ Selanjutnya buka React Developer Tools dari terminal:
 react-devtools
 ```
 
-Lalu sambungkan website Anda dengan menambahkan tag `<script>` berikut ke awal `<head>` website Anda:
+Lalu sambungkan *website* Anda dengan menambahkan tag `<script>` berikut ke awal `<head>` *website* Anda:
 
 ```html {3}
 <html>
@@ -58,7 +58,7 @@ Reload website Anda sekarang untuk melihatnya di React Developer Tools.
 ## Mobile (React Native) {/*mobile-react-native*/}
 React Developer Tools dapat digunakan untuk memeriksa aplikasi yang dibangun dengan [React Native](https://reactnative.dev/) juga.
 
-Cara termudah untuk menggunakan React Developer Tools adalah dengan memasangnya secara global:
+Cara termudah untuk menggunakan React Developer Tools adalah dengan menginstalnya secara global:
 ```bash
 # Yarn
 yarn global add react-devtools
