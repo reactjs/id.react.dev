@@ -116,7 +116,7 @@ Baca **[Mengimpor dan Mengekspor Komponen](/learn/importing-and-exporting-compon
 
 </LearnMore>
 
-## Menulis Markup dengan JSX {/*writing-markup-with-jsx*/}
+## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
 Setiap komponen React adalah fungsi JavaScript yang dapat berisi beberapa *markup* yang di-*render* oleh React ke browser. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
 
@@ -185,7 +185,7 @@ Baca **[Menulis Markup dengan JSX](/learn/writing-markup-with-jsx)** untuk mempe
 
 </LearnMore>
 
-## JavaScript di JSX dengan Kurung Kurawal {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript di JSX dengan kurung kurawal {/*javascript-in-jsx-with-curly-braces*/}
 
 JSX memungkinkan Anda menulis *markup* mirip HTML di dalam file JavaScript, menjaga logika *rendering* dan konten di tempat yang sama. Terkadang Anda ingin menambahkan sedikit logika JavaScript atau merujuk pada properti dinamis di dalam markup tersebut. Dalam situasi ini, Anda dapat menggunakan kurung kurawal di JSX Anda untuk "membuka jendela" ke JavaScript:
 
@@ -310,7 +310,7 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Baca **[Mengoper Props ke Komponen](/learn/passing-props-to-a-component)** untuk mempelajari cara mengoper dan membaca *props*.
+Baca **[Mengoper Props ke sebuah Komponen](/learn/passing-props-to-a-component)** untuk mempelajari cara mengoper dan membaca *props*.
 
 </LearnMore>
 
