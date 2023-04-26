@@ -16,9 +16,9 @@ Anda mungkin ingin menampilkan beberapa komponen yang mirip dari sebuah kumpulan
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
+## Me-*render* data dari seranai {/*rendering-data-from-arrays*/}
 
-Say that you have a list of content.
+Misalkan Anda memiliki daftar konten seperti berikut.
 
 ```js
 <ul>
@@ -30,11 +30,11 @@ Say that you have a list of content.
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+Semua anggota dari daftar tersebut memiliki format yang sama. Perbedaan hanya terletak pada isi konten, lebih tepatnya data mereka. Pada beberapa situasi, Anda mungkin harus menampilkan beberapa komponen yang sama dengan data yang berbeda saat membangun antarmuka, seperti daftar komentar atau galeri foto profil. Dalam situasi-situasi tersebut, Anda bisa menyimpan data tersebut ke dalam objek atau seranai JavaScript dengan menggunakan *method* [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) dan [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) yang kemudian akan digunakan untuk me-*render* beberapa komponen.
 
-Here’s a short example of how to generate a list of items from an array:
+Contoh untuk membuat sebuah daftar dari sebuah seranai:
 
-1. **Move** the data into an array:
+1. **Pindahkan** data ke sebuah seranai:
 
 ```js
 const people = [
@@ -46,19 +46,19 @@ const people = [
 ];
 ```
 
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **Petakan** dengan menggunakan *method* `map()` setiap anggota `people` ke sebuah seranai *node* JSX, `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **Kembalikan** `listItems` dari komponen Anda dengan membungkusnya terlebih dahulu dengan elemen `<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+Hasilnya seperti berikut:
 
 <Sandpack>
 
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+Perhatikan bahwa *sandbox* di atas menampilkan pesan kesalahan:
 
 <ConsoleBlock level="error">
 
@@ -93,7 +93,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+Anda akan mempelajari cara memperbaiki kesalahan ini nanti. Untuk saat ini, kita akan menambahkan struktur ke data Anda.
 
 ## Filtering arrays of items {/*filtering-arrays-of-items*/}
 
