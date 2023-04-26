@@ -261,11 +261,11 @@ body {
 
 <Note>
 
-Anda juga dapat mengikuti tutorial ini dengan menggunakan _development environment_ lokal Anda. Untuk melakukan ini, Anda perlu:
+Anda juga dapat mengikuti tutorial ini dengan menggunakan *development environment* lokal Anda. Untuk melakukan ini, Anda perlu:
 
 1. Menginstal [Node.js](https://nodejs.org/en/)
 1. Pada tab CodeSandbox yang telah Anda buka sebelumnya, tekan tombol pojok kiri atas untuk membuka menu, lalu pilih **File > Export to ZIP** pada menu tersebut untuk mengunduh arsip berkas-berkas secara lokal
-1. *Unzip* arsip tersebut, lalu buka terminal dan `cd` ke direktori yang telah Anda _unzip_
+1. *Unzip* arsip tersebut, lalu buka terminal dan `cd` ke direktori yang telah Anda *unzip*
 1. Instal dependensi dengan `npm install`
 1. Jalankan `npm start` memulai server lokal dan ikuti petunjuknya untuk melihat kode yang berjalan di peramban
 
@@ -2730,7 +2730,7 @@ Selamat! Anda telah membuat gim *tic-tac-toe* yang:
 - Menyimpan riwayat permainan saat permainan berlangsung,
 - Memungkinkan pemain untuk meninjau riwayat permainan dan melihat versi sebelumnya dari papan permainan.
 
-Kerja yang bagus! Kami harap Anda sekarang merasa memiliki pemahaman yang cukup baik tentang cara kerja React.
+Kerja bagus! Kami harap Anda sekarang merasa memiliki pemahaman yang cukup baik tentang cara kerja React.
 
 Lihat hasil akhirnya di sini:
 
