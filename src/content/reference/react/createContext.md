@@ -150,15 +150,15 @@ function App() {
 }
 ```
 
-Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa dalam, akan "melihat" nilai konteks yang diberikan. Jika nilai konteks yang diberikan berubah, React akan me-*render* ulang komponen yang membaca konteks tersebut.
+Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa dalam, akan "melihat" nilai konteks yang diberikan. Jika nilai konteks yang diberikan berubah, React akan merender ulang komponen yang membaca konteks tersebut.
 
 [Baca lebih lanjut tentang membaca dan memberikan konteks dan lihat contohnya.](/reference/react/useContext)
 
 ---
 
-### Mengimpor dan mengekspor konteks dari file {/*importing-and-exporting-context-from-a-file*/}
+### Mengimpor dan mengekspor konteks dari *file* {/*importing-and-exporting-context-from-a-file*/}
 
-Sering kali, komponen dalam file yang berbeda membutuhkan akses ke konteks yang sama. Inilah sebabnya mengapa umum untuk mendeklarasikan konteks dalam file terpisah. Kemudian Anda dapat menggunakan [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) untuk membuat konteks tersedia untuk file lain:
+Sering kali, komponen dalam *file* yang berbeda membutuhkan akses ke konteks yang sama. Inilah sebabnya mengapa umum untuk mendeklarasikan konteks dalam file terpisah. Kemudian Anda dapat menggunakan [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) untuk membuat konteks tersedia untuk *file* lain:
 
 ```js {4-5}
 // Contexts.js
@@ -168,7 +168,7 @@ export const ThemeContext = createContext('light');
 export const AuthContext = createContext(null);
 ````
 
-Komponen yang dideklarasikan di berkas lain dapat menggunakan pernyataan [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) untuk membaca atau menyediakan konteks ini:
+Komponen yang dideklarasikan di *file* lain dapat menggunakan pernyataan [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) untuk membaca atau menyediakan konteks ini:
 
 ```js {2}
 // Button.js
