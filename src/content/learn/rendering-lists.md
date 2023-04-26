@@ -266,9 +266,9 @@ const listItems = chemists.map(person => { // Kurung kurawal
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## Menjaga urutan dengan `key` {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+Perhatikan bahwa setiap *sandbox* di atas menampilkan pesan kesalahan:
 
 <ConsoleBlock level="error">
 
@@ -276,7 +276,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+Anda harus memberikan setiap anggota dari seranai sebuah `key`--sebuah *string* atau angka yang dapat mengidentifikasi setiap anggota secara unik:
 
 ```js
 <li key={person.id}>...</li>
@@ -284,13 +284,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+Setiap elemen JSX yang ada di dalam `map()` harus selalu memiliki `key`!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+`Key` memberi tahu React mengenai hubungan antara sebuah komponen dengan sebuah anggota seranai. Hal ini krusial jika anggota seranai bisa berubah posisi (contohnya karena proses pengurutan (*sorting*)), ditambah, atau dihapus. Sebuah `key` yang baik dapat membantu React untuk mengetahui apa yang telah terjadi dan menentukan langkah optimal saat memperbarui pohon DOM.
 
-Rather than generating keys on the fly, you should include them in your data:
+Sebaiknya, `key` terkandung di dalam data Anda:
 
 <Sandpack>
 
@@ -318,31 +318,31 @@ export default function List() {
 
 ```js data.js active
 export const people = [{
-  id: 0, // Used in JSX as a key
+  id: 0, // Digunakan sebagai key pada JSX
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
-  id: 1, // Used in JSX as a key
+  id: 1, // Digunakan sebagai key pada JSX
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
-  id: 2, // Used in JSX as a key
+  id: 2, // Digunakan sebagai key pada JSX
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
-  id: 3, // Used in JSX as a key
+  id: 3, // Digunakan sebagai key pada JSX
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
-  id: 4, // Used in JSX as a key
+  id: 4, // Digunakan sebagai key pada JSX
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
@@ -376,11 +376,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### Menampilkan beberapa *node* DOM untuk setiap anggota seranai {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+Bagaimana kalau setiap anggota seranai membutuhkan bukan hanya satu, tetapi beberapa *node* DOM?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+Sintaks singkat [`<>...</>` Fragment](/reference/react/Fragment) tidak memberikan tempat untuk `key`, sehingga Anda harus membungkus ke dalam sebuah `<div>` atau menggunakan [sintaks `<Fragment>` yang lebih panjang](/reference/react/Fragment#rendering-a-list-of-fragments):
 
 ```js
 import { Fragment } from 'react';
@@ -395,35 +395,35 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Pada akhirnya, `Fragment` akan hilang dari DOM dan hanya menyisakan `<h1>`, `<p>`, `<h1>`, `<p>`, dan seterusnya, pada contoh di atas.
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### Bagaimana Anda memperoleh `key`? {/*where-to-get-your-key*/}
 
-Different sources of data provide different sources of keys:
+Sumber data yang berbeda akan memberikan `key` yang berbeda juga, contoh:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **Data dari basis data:** Jika data yang digunakan berasal dari basis data, ID dapat digunakan sebagai `key` karena sifatnya yang sudah unik.
+* **Data lokal:** Jika data dihasilkan dan disimpan secara lokal (seperti catatan pada aplikasi penulisan catatan), Anda dapat menggunakan *counter* yang bertambah, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID), atau *library* seperti [`uuid`](https://www.npmjs.com/package/uuid).
 
-### Rules of keys {/*rules-of-keys*/}
+### Aturan `key` {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **`Key` harus bersifat unik antar-*sibling*.** Namun, `key` yang sama bisa digunakan lagi di seranai yang berbeda.
+* **`Key` tidak boleh berubah** atau fungsinya akan hilang! Jangan membuat `key` di saat me-*render*.
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### Mengapa React membutuhkan `key`? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+Bayangkan jika *file* yang ada di komputer Anda tidak memiliki nama. Sebagai pengganti, Anda merujuk ke *file* tersebut dengan urutannya--file pertama, file kedua, dan seterusnya. Saat *file* pertama dihapus, *file* kedua akan menjadi *file* pertama, kemudian *file* ketiga akan menjadi *file* kedua, dan seterusnya. Perujukan *file* menjadi tidak konsisten.
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+Nama file pada folder dan `key` pada JSX memiliki tujuan yang serupa. Mereka membantu kita mengidentifikasi anggota seranai dan membedakan mereka antar-*sibling*. `Key` yang baik tidak hanya memberikan informasi mengenai posisi *item* di dalam seranai, tetapi juga membantu React mengidentifikasi *item* tersebut sepanjang hidupnya.
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+Anda mungkin tertarik untuk menggunakan indeks pada seranai sebagai `key`. Sebenarnya, itulah yang digunakan React jika Anda tidak memberikan `key`. Namun, urutan anggota seranai dapat berubah saat ada yang ditambah, dihapus, atau diubah urutannya. Jika ini terjadi, ini bisa menimbulkan *bug* yang membingungkan dan sulit ditemukan.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+Bukan hanya itu, sebaiknya juga tidak membuat `key` sembarangan, misal `key={Math.random()}`. Hal ini menyebabkan `key` baru dibuat setiap *render*. Akibatnya, komponen dan DOM juga ikut dibuat baru setiap *render*. Pada akhirnya, proses *render* akan menjadi lambat dan masukan dari pengguna juga akan hilang. Oleh karena itu, sebaiknya Anda menggunakan ID yang konsisten yang berasal dari data.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+Perlu diperhatikan bahwa komponen tidak bisa membaca `key`, layaknya sebuah *prop*. `Key` hanya digunakan oleh React. Jika komponen Anda membutuhkan ID, Anda harus menggunakan *prop* yang berbeda, contoh `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
