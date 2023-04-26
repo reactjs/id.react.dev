@@ -4,7 +4,7 @@ title: Menggambarkan Antarmuka Pengguna (UI)
 
 <Intro>
 
-React adalah sebuah *library* JavaScript untuk melakukan *render* antarmuka pengguna (UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat ditempatkan di komponen lainnya). Dari situs web hingga aplikasi telepon, semuanya yang ada pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara bersyarat.
+React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*User Interface* - UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat diletakkan secara bersarang dan/atau di bawah komponen lainnya). Dari situs web hingga aplikasi, semuanya yang ada pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara kondisional.
 
 </Intro>
 
