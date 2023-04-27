@@ -1,5 +1,5 @@
 {
-  "title": "Belajar React",
+  "title": "Learn React",
   "path": "/learn",
   "routes": [
     {
@@ -47,40 +47,40 @@
       "sectionHeader": "LEARN REACT"
     },
     {
-      "title": "Menggambarkan Antarmuka Pengguna (UI)",
+      "title": "Describing the UI",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Komponen Pertama Anda",
+          "title": "Your First Component",
           "path": "/learn/your-first-component"
         },
         {
-          "title": "Mengimpor dan Mengekspor Komponen",
+          "title": "Importing and Exporting Components",
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Menulis Markup dengan JSX",
+          "title": "Writing Markup with JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript di JSX dengan Kurung Kurawal",
+          "title": "JavaScript in JSX with Curly Braces",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Mengoper Props ke sebuah Komponen",
+          "title": "Passing Props to a Component",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Merender Kondisional",
+          "title": "Conditional Rendering",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Merender List",
+          "title": "Rendering Lists",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Menjaga Komponen Murni",
+          "title": "Keeping Components Pure",
           "path": "/learn/keeping-components-pure"
         }
       ]

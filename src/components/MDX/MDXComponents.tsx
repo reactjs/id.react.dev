@@ -113,16 +113,16 @@ function LearnMore({
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
           <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
-            Siap mempelajari topik ini?
+            Ready to learn this topic?
           </h2>
           {children}
           {path ? (
             <ButtonLink
               className="mt-1"
-              label="Baca selengkapnya"
+              label="Read More"
               href={path}
               type="primary">
-              Baca selengkapnya
+              Read More
               <IconNavArrow displayDirection="right" className="inline ml-1" />
             </ButtonLink>
           ) : null}
@@ -173,7 +173,7 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'Dalam bab ini' : 'Anda akan mempelajari';
+  let title = isChapter ? 'In this chapter' : 'You will learn';
   return <SimpleCallout title={title}>{children}</SimpleCallout>;
 }
 

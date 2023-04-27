@@ -65,7 +65,7 @@ function getTableOfContents(children, depth) {
   if (anchors.length > 0) {
     anchors.unshift({
       url: '#',
-      text: 'Ikhtisar',
+      text: 'Overview',
       depth: 2,
     });
   }
