@@ -10,7 +10,7 @@ Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan Rea
 
 <Note>
 
-**Anda wajib menginstal [Node.js](https://nodejs.org/en/) untuk dapat melakukan pengembangan di ekosistem lokal.** Anda *juga* dapat menggunakan Node.js pada ekosistem *production*, namun Anda tidak harus melakukannya. Karena banyak *framework* React yang mendukung ekspor ke folder HTML/CSS/JS statis.
+**Anda perlu menginstal [Node.js](https://nodejs.org/en/) untuk dapat melakukan pengembangan di ekosistem lokal.** Anda *juga* dapat menggunakan Node.js pada ekosistem *production*, namun Anda tidak harus melakukannya. Karena banyak *framework* React yang mendukung ekspor ke folder HTML/CSS/JS statis.
 
 </Note>
 
