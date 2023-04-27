@@ -18,7 +18,7 @@ Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan Rea
 
 ### Next.js {/*nextjs*/}
 
-**[Next.js](https://nextjs.org/) adalah *full-stack framework* React.** *framework* ini serbaguna dan memudahkan Anda untuk membuat aplikasi React dalam berbagai ukuran--mulai dari halaman blog statis hingga aplikasi dinamis yang kompleks. Untuk membuat proyek Next.js, jalankan perintah berikut di terminal Anda:
+**[Next.js](https://nextjs.org/) adalah *full-stack framework* React.** *framework* ini serbaguna dan memudahkan Anda untuk membuat aplikasi React dalam berbagai ukuran--mulai dari halaman blog statis hingga aplikasi dinamis yang kompleks. Untuk membuat proyek Next.js, jalankan di terminal Anda:
 
 <TerminalBlock>
 npx create-next-app
