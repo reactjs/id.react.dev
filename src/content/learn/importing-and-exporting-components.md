@@ -1,19 +1,19 @@
 ---
-title: Mengimport dan Mengeksport Komponen
+title: Mengimpor dan Mengekspor Komponen
 ---
 
 <Intro>
 
-Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda dapat membuat komponan yang disusun dengan komponen lain. Namun, ketika Anda menyusun komponen-komponen yang semakin banyak, seringkali lebih masuk akal untuk mulai membaginya ke dalam *file-file* yang berbeda. Dengan ini Anda menjaga *file* Anda mudah untuk dipindai dan digunakan kembali di banyak tempat.
+Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda dapat membuat komponan yang disusun dengan komponen lain. Namun, ketika Anda menyusun komponen-komponen yang semakin banyak, seringkali lebih masuk akal untuk mulai membaginya ke dalam *file-file* yang berbeda. Dengan ini Anda menjaga *file* Anda agar tetap mudah dipindai dan digunakan kembali di banyak tempat.
 
 </Intro>
 
 <YouWillLearn>
 
 * Apa itu *file* komponen root
-* Bagaimana cara import dan eksport komponen
-* Kapan menggunakan default dan named import dan eksport
-* Bagaimana cara mengimport dan mengeksport beberapa komponen pada satu *file*
+* Bagaimana cara impor dan ekspor komponen
+* Kapan menggunakan default dan named impor dan ekspor
+* Bagaimana cara mengimpor dan mengekspor beberapa komponen pada satu *file*
 * Bagaimana cara memisahkan komponen menjadi beberapa *file*
 
 </YouWillLearn>
@@ -256,7 +256,7 @@ Pindahkan komponen `Profile` pada miliknya sendiri `Profile.js`, dan ubah kompon
 
 Anda mungkin menggukanan salah satu dari default atau named export untuk `Profile`, tetapi pastikan bahwa Anda menggunakan sintaksis import pada kedua `App.js` dan `Gallery.js`. Anda dapat merujuk pada table dari bagian deep dive di atas:
 
-| Sintaksis           | Pernyataan Export                           | Pernyataan Import                          |
+| Sintaksis           | Pernyataan Expor                           | Pernyataan Impor                          |
 | -----------      | -----------                                | -----------                               |
 | Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
 | Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
@@ -296,7 +296,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuan Hebat</h1>
+      <h1>Ilmuwan Hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -314,11 +314,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Setelah Anda berhasil menjalankan dengan salah satu eksport, buat juga berjalan dengan jenis yang lain.
+Setelah Anda berhasil menjalankan dengan salah satu ekspor, buat juga berjalan dengan jenis yang lain.
 
 <Solution>
 
-Ini adalah solusi menggunakan named exports:
+Ini adalah solusi menggunakan `named exports`:
 
 <Sandpack>
 
@@ -342,7 +342,7 @@ import { Profile } from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuan Hebat</h1>
+      <h1>Ilmuwan Hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -368,7 +368,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Ini adalah solusi menggunakan default exports:
+Ini adalah solusi menggunakan `default exports`:
 
 <Sandpack>
 
@@ -392,7 +392,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuan Hebat</h1>
+      <h1>Ilmuwan Hebat</h1>
       <Profile />
       <Profile />
       <Profile />
