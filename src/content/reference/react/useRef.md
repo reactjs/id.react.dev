@@ -96,7 +96,7 @@ Dengan menggunakan ref, Anda memastikan bahwa:
 
 - Anda dapat **menyimpan informasi** di antara render ulang (tidak seperti variabel biasa, yang disetel ulang pada setiap render).
 - Mengubahnya **tidak memicu sebuah render ulang** (tidak seperti variabel state, yang memicu sebuah render ulang).
-- The **information is local** to each copy of your component (unlike the variables outside, which are shared).
+- **Informasi ini bersifat lokal** untuk setiap salinan komponen Anda (tidak seperti variabel di luar, yang dibagikan).
 
 Mengubah sebuah ref tidak akan memicu sebuah render ulang, jadi ref tidak sesuai untuk menyimpan informasi yang ingin Anda tampilkan di layar. Gunakan state untuk itu. Baca lebih lanjut tentang [memilih antara `useRef` dan `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
@@ -190,7 +190,7 @@ export default function Stopwatch() {
 
 **Jangan menulis _atau membaca_ `ref.current` selama proses rendering.**
 
-React mengharapkan bahwa tubuh komponen Anda [berperilaku seperti pure function](/learn/keeping-components-pure):
+React mengharapkan bahwa tubuh komponen Anda [berperilaku seperti fungsi murni](/learn/keeping-components-pure):
 
 - Jika masukan-masukan ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), dan [context](/learn/passing-data-deeply-with-context)) yang sama, seharusnya mengembalikan JSX yang sama persis.
 - Memanggilnya dengan urutan yang berbeda atau dengan argumen yang berbeda tidak akan mempengaruhi hasil panggilan lainnya.
@@ -255,7 +255,7 @@ Kemudian oper objek ref Anda sebagai atribut `ref` ke JSX milik node DOM yang in
   return <input ref={inputRef} />;
 ```
 
-Setelah React membuat node DOM dan meletakkannya di layar, React akan mengatur <CodeStep step={2}>properti `current`</CodeStep> objek Anda yang merujuk ke node DOM tersebut. Sekarang Anda dapat mengakses `<input>`'s node DOM dan method panggilan seperti [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
+Setelah React membuat node DOM dan meletakkannya di layar, React akan mengatur <CodeStep step={2}>properti `current`</CodeStep> objek Anda yang merujuk ke node DOM tersebut. Sekarang Anda dapat mengakses node DOM dari `<input>` dan memanggil method seperti [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
 
 ```js [[2, 2, "inputRef.current"]]
   function handleClick() {
@@ -302,7 +302,7 @@ export default function Form() {
 
 #### Menggulir gambar ke dalam tampilan {/*scrolling-an-image-into-view*/}
 
-Pada contoh ini, mengeklik tombol akan menggulir gambar ke dalam tampilan. Ini menggunakan ref ke daftar node DOM, dan kemudian memanggil DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API untuk menemukan gambar yang ingin kita gulir.
+Pada contoh ini, mengeklik tombol akan menggulirkan gambar ke dalam tampilan. Ini menggunakan ref ke daftar node DOM, dan kemudian memanggil DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API untuk menemukan gambar yang ingin kita gulir.
 
 <Sandpack>
 
@@ -448,7 +448,7 @@ button { display: block; margin-bottom: 20px; }
 
 #### Mengekspos sebuah ref ke komponen Anda sendiri {/*exposing-a-ref-to-your-own-component*/}
 
-Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Membaca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) disini.
+Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Baca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
 
 <Sandpack>
 
@@ -540,7 +540,7 @@ Di sini, `playerRef` itu sendiri dapat bernilai null. Namun, Anda harus dapat me
 
 ## Pemecahan masalah {/*troubleshooting*/}
 
-### Saya tidak bisa mendapatkan ref ke komponen khusus {/*i-cant-get-a-ref-to-a-custom-component*/}
+### Saya tidak bisa mendapatkan ref ke komponen kustom {/*i-cant-get-a-ref-to-a-custom-component*/}
 
 Jika Anda mencoba mengoper `ref` ke komponen Anda sendiri seperti ini:
 
@@ -558,7 +558,7 @@ Warning: Function components cannot be given refs. Attempts to access this ref w
 
 </ConsoleBlock>
 
-Secara default, komponen Anda sendiri tidak mengekspos ref ke node DOM di dalamnya.
+Secara bawaan, komponen Anda sendiri tidak mengekspos ref ke node DOM di dalamnya.
 
 Untuk memperbaikinya, cari komponen yang ingin Anda dapatkan ref-nya:
 
