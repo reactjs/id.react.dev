@@ -189,15 +189,15 @@ Jika variabel `cups` atau senarai `[]` dibuat di luar fungsi `TeaGathering`, ini
 
 Namun, pada kasus ini, itu tidak menjadi masalah karena Anda membuatnya *bersamaan dengan proses render yang sama*, di dalam `TeaGathering`. Tidak ada kode di luar `TeaGathering` akan mengetahui kejadian ini. Inilah yang disebut sebagai **"mutasi lokal"**—rahasia kecil bagi komponen Anda.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## Di mana Anda *dapat* menimbulkan efek samping? {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
+Walaupun pemrograman fungsional sangat bergantung terhadap kemurnian, ada beberapa situasi, *sesuatu* memang harus diubah. Itulah tujuan dari pemrograman! Perubahan ini-—memperbarui layar, memulai sebuah animasi, mengubah data-—disebut **efek samping**. Aktivitas tersebut terjadi di *"samping"*, bukan saat *render*.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+Di React, **efek samping biasanya berada di dalam [*event handlers*](/learn/responding-to-events)**. *Event handler* adalah fungsi yang dijalankan React saat Anda melakukan sebuah aksi-—misalnya, saat Anda menekan sebuah tombol. Meskipun *event handler* berada *di dalam* komponen Anda, dia tidak berjalan *saat* *render*! **Jadi *event handler* tidak perlu murni**.
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+Jika Anda sudah kehabisan pilihan dan tidak dapat menemukan *event handler* yang tepat untuk efek samping Anda, Anda masih dapat melampirkannya di JSX yang dikembalikan komponen Anda dengan memanggil [`useEffect`](/reference/react/useEffect) di dalam komponen Anda. Ini memberi tahu React untuk mengeksekusinya nanti, setelah *render*, saat efek samping sudah diperbolehkan. **Namun, metode ini sebaiknya menjadi pilihan terakhir Anda**.
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di proses *render*.
 
 <DeepDive>
 
