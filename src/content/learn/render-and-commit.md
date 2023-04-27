@@ -1,44 +1,44 @@
 ---
-title: Render and Commit
+title: Render dan Commit
 ---
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Sebelum komponen Anda ditampilkan pada layar, komponen tersebut akan melakukan proses *render* oleh React. Mengerti tahapan ini akan membuat Anda mengerti bagaimana kode tersebut dijalankan dan dapat menjelaskan perilaku kode tersebut.
 
 </Intro>
 
 <YouWillLearn>
 
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
+* Apa definisi proses *render* pada React
+* Kapan dan Mengapa React melakukukan *render* pada komponen
+* Langkah-langkah untuk menampilkan komponen pada layar
+* Mengapa proses *render* tidak selalu menghasilkan perubahan pada DOM 
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Bayangkan komponen Anda adalah juru masak pada sebuah dapur yang meracik hidangan lezat dari bahan-bahan. Pada skenario ini, React adalah pelayan yang meletakkan permintaan dari konsumen dan membawa pesanan kepada mereka. Proses meminta dan menyajikan UI ada 3 langkah:
 
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Memicu** sebuah render (mengirimkan pesanan tamu ke dapur)
+2. **Render** komponen (menyiapkan pesanan di dapur)
+3. **_Commit_** terhadap DOM (meletakkan pesanan pada meja)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Memicu" alt="React sebagai server pada sebuah restoran, mengambil pesanan dari pengguna dan mengirimkan pesanan tersebut kepada komponen dapur." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="Kartu Chef memberikan React sebuah komponen kartu baru." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React mengirimkan komponen kartu kepada pengguna pada meja mereka." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
+## Langkah 1: Memicu *render* {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+Terdapat dua alasan bagi komponen untuk melakukan *render*:
 
-1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+1. Itu adalah sebuah komponen **_render_ awal.**
+2. Komponen (atau salah satu turunannya) **_state_ telah diperbarui.**
 
-### Initial render {/*initial-render*/}
+### *Render* awal {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
+Ketika Anda memulai aplikasi, Anda perlu untuk memicu *render* awal. Kerangka kerja dan *sandboxes* terkadang menyembunyikan kode ini, tetapi itu telah dilakukan dengan memanggil [`createRoot`](/reference/react-dom/client/createRoot) yang mengarahkan pada simpul dari DOM target, dan itu tekah menjalankan fungsi *`render`* pada komponen Anda:
 
 <Sandpack>
 
@@ -63,28 +63,28 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `root.render()` call and see the component disappear!
+Cobalah memberi komentar di luar dari `root.render()` dan lihat komponen tersebut menghilang!
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### Render ulang ketika *state* diperbarui {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Setelah komponen telah pertama kali di*render*, Anda dapat memicu *render* kembali dengan memperbarui *state* menggunakan [fungsi `set`.](/reference/react/useState#setstate) Mengubah *state* komponen Anda otomatis akan membuat antrian proses *render*. (Anda dapat membayangkan ada sebuah restoran dimana pengunjung memesan teh, hidangan penutup, dan semua hal tersebut dipesan setelah melakukan pesanan pertama, tergantung pada keadaan haus atau lapar dari pengunjung)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+  <Illustration caption="State diperbarui..." alt="React sebagai a server pada sebuah restoran, menyajikan sebuah Kartu UI untuk pengguna, direpresentasikan sebagai pelindung dengan kursor di kepala mereka. Pelindung mereka menyatakan mereka menginginkan kartu merah mudah, bukan yang hitam!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...memicu..." alt="React mengembalikan kepada komponen dapur dan mengatakan pada Chef kartu bahwa mereka membutuhkan kartu merah muda." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="Chef kartu itu memberi React kartu merah muda." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## Langkah 2: React me-render komponen Anda {/*step-2-react-renders-your-components*/}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+Setelah Anda memicu sebuah *render*, React memanggil komponen Anda untuk menemukan apa yang ingin ditampilkan pada layar. **"Rendering" adalah proses ketika React memanggil komponen Anda.** 
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **Pada render awal,** React akan memanggil komponen *root*.
+* **Untuk render selanjutnya,** React akan memanggil komponen fungsi yang pembaruan *state*-nya memicu proses *render*.
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+Proses ini bersifat rekursif: jika komponen yang diperbarui mengembalikan beberapa komponen lain, React akan me-*render* komponen _itu_ berikutnya, dan jika komponen itu juga mengembalikan sesuatum React akan me-*render* komponen _itu_ berikutnya, dan seterusnya. Proses tersebut akan berlanjut sampai tidak terdapat komponen bersarang dan React mengetahui persis apa yang harus ditampilkan pada layar.
 
-In the following example, React will call `Gallery()` and  `Image()` several times:
+Dalam contoh berikut, React akan memanggil `Gallery()` dan  `Image()` beberapa kali:   
 
 <Sandpack>
 
@@ -92,7 +92,7 @@ In the following example, React will call `Gallery()` and  `Image()` several tim
 export default function Gallery() {
   return (
     <section>
-      <h1>Inspiring Sculptures</h1>
+      <h1>Patung yang Menginspirasi</h1>
       <Image />
       <Image />
       <Image />
@@ -104,7 +104,7 @@ function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Floralis Genérica' oleh Eduardo Catalano: patung bunga metalik raksasa dengan kelopak reflektif"
     />
   );
 }
@@ -124,36 +124,36 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+* **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apapun sampai tahapan selanjutnya, yaitu fase *commit*. 
 
 <Pitfall>
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+Proses _render_ harus selalu [kalkulasi murni](/learn/keeping-components-pure)
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+* **Masukkan sama, keluaran sama** Dengan masukkan yang sama, sebuah komponen harus mengembalikan JSX yang sama. (Ketika seseorang memesan salad dengan tomat, mereka seharusnya tidak menerima salad dengan bawang!)
+* **Memikirkan urusannya sendiri.** Itu seharusnya tidak mengubah objek atau variabel yang ada sebelum proses *render*. (Satu pesanan tidak boleh mengubah pesanan orang lain.)
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
+Jika tidak, Anda dapat menemukan bug yang membingungkan dan perilaku yang tidak dapat diprediksi dari basis kode Anda saat menjadi lebih kompleks. Ketika proses pengembangan dalam "Mode Ketat", React memanggil setiap fungsi komponen sebanyak dua kali, yang dapat membantu untuk menampilkan kesalahan oleh fungsi yang tidak murni.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Optimizing performance {/*optimizing-performance*/}
+#### Mengoptimalkan kinerja {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
+Perilaku bawaan dari proses *render* semua komponen bersarang di dalam komponen yang diperbarui adalah tidak optimal untuk performa jika komponen yang diperbarui sangat tinggi pada pohon. Jika Anda mengalami permasalahan pada performa, ada beberapa opsi untuk menyelesaikannya pada bagian [Performa](https://reactjs.org/docs/optimizing-performance.html). **Jangan optimalkan sebelum saatnya!**
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## Langkah 3: React mengirimkan perubahan kepada DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
-After rendering (calling) your components, React will modify the DOM. 
+Setelah proses _render_ (memanggil) komponen Anda, React akan memodifikasi DOM.
 
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+* **Untuk _render_ awal,** React akan menggunakan [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API untuk meletakkan semua simpul DOM yang telah dibuat ke dalam layar.
+* **Untuk _render_ ulang,** React akan menerapkan operasi minimal yang diperlukan (dihitung saat proses *render*!) untuk membuat DOM sama dengan keluaran *render* terakhir.
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React hanya mengubah simpul DOM jika ada perbedaan diantara proses _render_.** Sebagai contoh, berikut terdapat komponen yang me-*render* ulang dengan properti berbeda yang dikirimkan setiap detik. Perhatikan bagaimana Anda dapat menambahkan beberapa teks ke dalam `<input>`, memperbarui nilai `<input>`, tetapi teks tersebut tidak menghilang saat komponen me-*render* ulang:
 
 <Sandpack>
 
@@ -193,21 +193,21 @@ export default function App() {
 
 </Sandpack>
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+Hal ini bekerja dikarenakan selama tahap terakhir ini, React hanya memperbarui konten `<h1>` dengan `waktu` yang baru. Terlihat bawah `<input>` muncul pada JSX di tempat yang sama dengan saat terakhir, jadi React tidak menyentuh `<input>` ataupun `nilai`-nya!
+## Epilog: Cat peramban {/*epilogue-browser-paint*/}
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.
+Setelah proses *render* selesai dan React memperbarui DOM, peramban akan mengecat ulang layar. Meskipun proses ini dikenal sebagai "*render* pada peramban", kami akan menyebutnya sebagai "lukisan" untuk menghindari kebingungan pada dokumen.
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+<Illustration alt="Sebuah lukisan peramban 'masih hidup dengan elemen kartu'." src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
-* Any screen update in a React app happens in three steps:
-  1. Trigger
-  2. Render
-  3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+* Setuap pembaruan layar pada aplikasi React terjadi dalam 3 langkah:
+  1. Memicu
+  2. *Render*
+  3. *Commit*
+* Anda dapat menggunakan Mode Ketat untuk menghindari kesalahan pada komponen Anda
+* React tidak menyentuh DOM apabila hasil *render* sama dengan sebelumnya
 
 </Recap>
 
