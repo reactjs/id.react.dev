@@ -85,11 +85,11 @@ Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep ters
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Sebuah resep teh untuk x orang: membutuhkan x gelas air, tambahkan teh sebanyak x sendok, tambahkan rempah sebanyak 0,5 sendok, dan 0,5 gelas susu" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## Efek Samping: Konsekuensi yang (tidak) diinginkan {/*side-effects-unintended-consequences*/}
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+Proses *render* React harus selalu murni. Komponen hanya *mengembalikan* JSX mereka dan tidak mengubah objek atau variabel apapun yang telah ada sebelumnya--ini membuat komponen tersebut menjadi tidak murni!
 
-Here is a component that breaks this rule:
+Ini contoh komponen yang tidak mengikuti aturan tersebut:
 
 <Sandpack>
 
@@ -97,7 +97,7 @@ Here is a component that breaks this rule:
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Buruk: mengubah variabel yang sudah ada!
   guest = guest + 1;
   return <h2>Tea cup for guest #{guest}</h2>;
 }
@@ -115,11 +115,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+Komponen ini membaca dan menulis sebuah variabel `guest` yang telah dideklarasi di luar komponen tersebut. Ini berarti **memanggil komponen JSX ini berkali-kali akan menghasilkan JSX yang berbeda pada setiap percobaan!** Bukan hanya itu, jika ada komponen **lain* yang juga membaca `guest`, komponen tersebut juga akan menghasilkan JSX yang berbeda, bergantung kepada kapan dia di-*render*. Hal ini sangat sulit untuk diprediksi.
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+Kembali ke rumus <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, meskipun <Math><MathI>x</MathI> = 2</Math>, kita tidak bisa menjamin <Math><MathI>y</MathI> = 4</Math>. Kasus uji kita akan gagal, pengguna kita menjadi sangat bingung, dan pesawat akan berjatuhan dari langit--Anda bisa melihat bagaimana ini akan berujung kepada *bug* yang sangat membingungkan!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+Anda bisa memperbaiki komponen ini dengan [memberikan `guest` sebagai sebuah *prop*](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -141,9 +141,9 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+Sekarang, komponen Anda menjadi murni karena JSX yang dikembalikan hanya bergantung kepada *prop* `guest`.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+Secara umum, Anda jangan mengharapkan komponen Anda untuk di-*render* mengikuti suatu urutan yang pasti. Meskipun Anda memanggil <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> sebelum atau sesudah <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>, kedua rumus tersebut akan berjalan secara independen. Oleh karena itu, setiap komponen sebaiknya hanya "mengurus dirinya sendiri" dan tidak mencoba untuk berkoordinasi atau bergantung kepada komponen lain selama proses *render* berjalan. Proses *render* mirip dengan ujian di sekolah, setiap komponen harus mengalkulasi JSX dia sendiri.
 
 <DeepDive>
 
