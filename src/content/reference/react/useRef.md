@@ -41,7 +41,7 @@ function MyComponent() {
 
 `useRef` mengembalikan sebuah objek dengan satu properti:
 
-* `current`: Awalnya, ini diatur ke `initialValue` yang telah Anda lewati. Anda dapat mengaturnya ke nilai yang lain. Jika Anda mengoper objek ref ke React sebagai sebuah atribut `ref` ke node JSX, React akan menyetel properti `current`.
+* `current`: Awalnya, ini diatur ke `initialValue` yang telah Anda oper. Anda dapat mengaturnya ke nilai yang lain. Jika Anda mengoper objek ref ke React sebagai sebuah atribut `ref` ke node JSX, React akan menyetelkan properti `current`-nya.
 
 Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
