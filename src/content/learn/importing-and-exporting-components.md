@@ -130,18 +130,18 @@ Salah satu `'./Gallery.js'` atau `'./Gallery'` akan jalan dengan React, meskipun
 
 #### Default vs named ekspor {/*default-vs-named-exports*/}
 
-Ada dua cara utama untuk mengekspor nilai dengan JavaScript: `default exports` dan `named exports`. Sejauh ini, contoh kita hanya menggunakan `default exports`. Tapi Anda dapat menggunakan satu atau keduanya pada *file* yang sama. **Sebuah file dapat menggunakan tidak lebih dari satu _default_ export, tapi dapat menggunakan _named_ exports sebanyak yang Anda suka.**
+Ada dua cara utama untuk mengekspor nilai dengan JavaScript: **default exports** dan **named exports**. Sejauh ini, contoh kita hanya menggunakan **default exports**. Tapi Anda dapat menggunakan satu atau keduanya pada *file* yang sama. **Sebuah file dapat menggunakan tidak lebih dari satu _default_ export, tapi dapat menggunakan _named_ exports sebanyak yang Anda suka.**
 
 ![Default dan named ekspor](/images/docs/illustrations/i_import-export.svg)
 
-Bagaimana Anda mengekspor komponen Anda mendikte bagaimana Anda harus mengimpornya. Anda akan mendapatkan error jika Anda mencoba untuk mengimpor `default exports` dengan cara yang sama Anda menggunakan `named exports`! Tabel ini akan membantu Anda untuk melacak:
+Bagaimana Anda mengekspor komponen Anda mendikte bagaimana Anda harus mengimpornya. Anda akan mendapatkan error jika Anda mencoba untuk mengimpor **default exports** dengan cara yang sama Anda menggunakan **named exports**! Tabel ini akan membantu Anda untuk melacak:
 
 | Sintaksis           | Pernyataan Expor                           | Pernyataan Impor                          |
 | -----------      | -----------                                | -----------                               |
 | Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
 | Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
-Ketika Anda menulis `_default_ imports`, Anda dapat memberi nama apa saja setelah `import`. Contoh, Anda dapat menulis `import Banana from './Button.js'` dan itu akan tetap memberi Anda `export default` yang sama. Sebaliknya, dengan `named imports`, nama harus sama di kedua sisi. Itulah mengapa disebut `_named_ imports`!
+Ketika Anda menulis **default imports**, Anda dapat memberi nama apa saja setelah `import`. Contoh, Anda dapat menulis `import Banana from './Button.js'` dan itu akan tetap memberi Anda `export default` yang sama. Sebaliknya, dengan **named imports**, nama harus sama di kedua sisi. Itulah mengapa disebut **named imports**!
 
 **Orang-orang seringkali menggunakan `default exports` jika *file* yang diekspor hanya satu komponen, dan menggunakan `named exports` jika mengekspor beberapa komponen dan nilai.** Bagaimanapun gaya koding yang Anda gunakan, selalu beri nama yang berarti pada fungsi komponen Anda dan isi *file* tersebut. Komponen tanpa nama, seperti `export default () => {}`, tidak disarankan karena membuat proses debug lebih sulit.
 
@@ -149,15 +149,15 @@ Ketika Anda menulis `_default_ imports`, Anda dapat memberi nama apa saja setela
 
 ## Mengekspor dan mengimpor beberapa komponen dari file yang sama {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-Bagaimana jika Anda ingin menampilkan hanya satu `Profile` selain sebuah galeri? Anda dapat mengekspor komponen `Profile` juga. Tapi `Gallery.js` telah menggunakan `*default* exports`, dan Anda tidak dapat memiliki _dua_ `default exports`. Anda dapat membuat *file* baru dengan `default exports`, atau Anda dapat menambahkan sebuah `*named* exports` untuk `Profile`. **Sebuah *file* hanya dapat memiliki satu `default exports`, tapi dapat memiliki banyak `named exports`!**
+Bagaimana jika Anda ingin menampilkan hanya satu `Profile` selain sebuah galeri? Anda dapat mengekspor komponen `Profile` juga. Tapi `Gallery.js` telah menggunakan **default exports**, dan Anda tidak dapat memiliki _dua_ **default exports**. Anda dapat membuat *file* baru dengan **default exports**, atau Anda dapat menambahkan sebuah **named exports** untuk `Profile`. **Sebuah *file* hanya dapat memiliki satu `default exports`, tapi dapat memiliki banyak `named exports`!**
 
 <Note>
 
-Untuk mengurangi potensi kebingunan antara `default` dan `named exports`, beberapa tim memilih untuk berpegang pada satu gaya penulisan (`default` atau `named`), atau menghindari mencampurnya dalam satu *file*. Lakukan yang terbaik untuk Anda!
+Untuk mengurangi potensi kebingunan antara **default** dan **named exports**, beberapa tim memilih untuk berpegang pada satu gaya penulisan (**default** atau **named**), atau menghindari mencampurnya dalam satu *file*. Lakukan yang terbaik untuk Anda!
 
 </Note>
 
-Pertama, **ekspor** `Profile` dari `Gallery.js` menggunakan `named exports` (tanpa kata kunci `default`):
+Pertama, **ekspor** `Profile` dari `Gallery.js` menggunakan **named exports** (tanpa kata kunci **default**):
 
 ```js
 export function Profile() {
@@ -165,7 +165,7 @@ export function Profile() {
 }
 ```
 
-Selanjutnya, **impor** `Profile` dari `Gallery.js` ke `App.js` menggunakan `named imports` (dengan kurung kurawal):
+Selanjutnya, **impor** `Profile` dari `Gallery.js` ke `App.js` menggunakan **named imports** (dengan kurung kurawal):
 
 ```js
 import { Profile } from './Gallery.js';
@@ -179,7 +179,7 @@ export default function App() {
 }
 ```
 
-Sekarang `Gallery.js` berisi dua ekspor: `default exports` `Gallery`, dan `named exports` `Profile`. `App.js` mengimpor keduanya.
+Sekarang `Gallery.js` berisi dua ekspor: **default exports** `Gallery`, dan **named exports** `Profile`. `App.js` mengimpor keduanya.
 Coba mengedit `<Profile />` ke `<Gallery />` dan kembali pada contoh ini:
 
 <Sandpack>
@@ -223,7 +223,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Sekarang Anda menggunakan campuran `default` dan `named exports`:
+Sekarang Anda menggunakan campuran **default** dan **named exports**:
 
 * `Gallery.js`:
   - Mengekspor komponen `Profile` sebagai **named exports bernama `Profile`.**
@@ -239,7 +239,7 @@ Pada halaman ini Anda belajar:
 
 * Apa itu *file* komponen root
 * Bagaimana cara impor dan ekspor komponen
-* Kapan menggunakan `default` dan `named` impor dan ekspor
+* Kapan menggunakan **default** dan **named** impor dan ekspor
 * Bagaimana cara mengimpor dan mengekspor beberapa komponen pada satu *file*
 
 </Recap>
@@ -254,7 +254,7 @@ Saat ini, `Gallery.js` mengekspor kedua `Profile` dan `Gallery`, yang mana sedik
 
 Pindahkan komponen `Profile` pada miliknya sendiri `Profile.js`, dan ubah komponen `App` untuk merender kedua `<Profile />` dan `<Gallery />` satu setelah lainnya.
 
-Anda mungkin menggukanan salah satu dari `default` atau `named` eskpor untuk `Profile`, tetapi pastikan bahwa Anda menggunakan sintaksis impor pada kedua `App.js` dan `Gallery.js`. Anda dapat merujuk pada table dari bagian `deep dive` di atas:
+Anda mungkin menggukanan salah satu dari **default** atau **named** eskpor untuk `Profile`, tetapi pastikan bahwa Anda menggunakan sintaksis impor pada kedua `App.js` dan `Gallery.js`. Anda dapat merujuk pada table dari bagian **deep dive** di atas:
 
 | Sintaksis           | Pernyataan Expor                           | Pernyataan Impor                          |
 | -----------      | -----------                                | -----------                               |
