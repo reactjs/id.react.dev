@@ -4,7 +4,7 @@ title: forwardRef
 
 <Intro>
 
-`forwardRef` lets your component expose a DOM node to parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+`forwardRef` memungkinkan Anda mengekspos sebuah *DOM node* sebagai sebuah [ref](/learn/manipulating-the-dom-with-refs) kepada induknya.
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -16,11 +16,11 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `forwardRef(render)` {/*forwardref*/}
 
-Call `forwardRef()` to let your component receive a ref and forward it to a child component:
+Panggil fungsi `forwardRef()` untuk membiarkan komponen Anda menerima *ref* dan meneruskannya ke komponen anak:
 
 ```js
 import { forwardRef } from 'react';
@@ -30,26 +30,26 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.] (#usage)
 
 #### Parameters {/*parameters*/}
 
-* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
+* `render`: Fungsi *render* untuk komponen Anda. React memanggil fungsi ini dengan *props* dan `ref` yang diterima komponen Anda dari induknya. JSX yang Anda kembalikan akan menjadi keluaran dari komponen Anda.
 
-#### Returns {/*returns*/}
+#### Mengembalikan {/*returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
+`forwardRef` mengembalikan komponen React yang dapat Anda *render* di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` juga dapat menerima *prop* `ref`.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* Dalam Mode Ketat, React akan **memanggil fungsi* render Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.] (#my-initializer-or-updater-function-runs-two times) Ini adalah perilaku khusus pengembangan dan tidak mempengaruhi produksi. Jika fungsi render Anda murni (sebagaimana mestinya), hal ini tidak akan mempengaruhi logika komponen Anda. Hasil dari salah satu pemanggilan akan diabaikan.
 
 
 ---
 
 ### `render` function {/*render-function*/}
 
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+`forwardRef` menerima fungsi render sebagai argumen. React memanggil fungsi ini dengan `props` dan `ref`:
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -64,21 +64,21 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### Parameters {/*render-parameters*/}
 
-* `props`: The props passed by the parent component.
+* `props`: *props* yang dioperkan oleh komponen induk.
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
+* `ref`: Atribut `ref` yang dioper oleh komponen induk. `ref` dapat berupa objek atau fungsi. Jika komponen induk tidak mengoper *ref*, maka akan menjadi `null`. Anda harus mengoper `ref` yang Anda terima ke komponen lain, atau mengopernya ke [`useImperativeHandle`.] (/reference/react/useImperativeHandle)
 
 #### Returns {/*render-returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
+`forwardRef` mengembalikan komponen React yang dapat Anda render di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` dapat mengambil sebuah *prop* `ref`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
+### Mengekspos DOM node ke komponen induk {/*exposing-a-dom-node-to-the-parent-component*/}
 
-By default, each component's DOM nodes are private. However, sometimes it's useful to expose a DOM node to the parent--for example, to allow focusing it. To opt in, wrap your component definition into `forwardRef()`:
+Secara *default*, setiap *DOM nodes* komponen bersifat privat. Namun, terkadang berguna untuk mengekspos *DOM node* ke induknya - misalnya, untuk memungkinkan pemfokusan. Untuk ikut serta, bungkus definisi komponen Anda ke dalam `forwardRef()`:
 
 ```js {3,11}
 import { forwardRef } from 'react';
@@ -94,7 +94,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument after props. Pass it to the DOM node that you want to expose:
+Anda akan menerima <CodeStep step={1}>ref</CodeStep> sebagai argumen kedua setelah props. Berikan ke *DOM node* yang ingin Anda ekspos:
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -110,7 +110,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-This lets the parent `Form` component access the <CodeStep step={2}>`<input>` DOM node</CodeStep> exposed by `MyInput`:
+Hal ini memungkinkan komponen `Form` induk mengakses <CodeStep step={2}>`<input>` DOM node</CodeStep> yang diekspos oleh `MyInput`:
 
 ```js [[1, 2, "ref"], [1, 10, "ref", 41], [2, 5, "ref.current"]]
 function Form() {
@@ -131,15 +131,16 @@ function Form() {
 }
 ```
 
-This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya, komponen `Form` dapat mengakses *DOM node* `<input>` tersebut dan memanggil fungsi [`focus()`] (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) di atasnya.
 
-Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
+Perlu diingat bahwa mengekspos *ref* ke *DOM node* di dalam komponen Anda akan mempersulit untuk mengubah internal komponen Anda di kemudian hari. Anda biasanya akan mengekspos *DOM node* dari komponen tingkat rendah yang dapat digunakan kembali seperti tombol atau input teks, tetapi Anda tidak akan melakukannya untuk komponen tingkat aplikasi seperti avatar atau komentar.
+
 
 <Recipes title="Examples of forwarding a ref">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### memfokuskan input teks {/*focusing-a-text-input*/}
 
-Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
+Mengklik tombol akan memfokuskan input. Komponen `Form` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyInput`. Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hal ini memungkinkan komponen `Form` memfokuskan `<input>`.
 
 <Sandpack>
 
@@ -191,9 +192,9 @@ input {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Memutar dan menjeda video {/*playing-and-pausing-a-video*/}
 
-Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node. The `App` component defines a ref and passes it to the `MyVideoPlayer` component. The `MyVideoPlayer` component forwards that ref to the browser `<video>` node. This lets the `App` component play and pause the `<video>`.
+Mengklik tombol akan memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada *DOM node* `<video>`. Komponen `Aplikasi` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyVideoPlayer`. Komponen `MyVideoPlayer` meneruskan *ref* tersebut ke *node* `<video>` pada peramban. Hal ini memungkinkan komponen `Aplikasi` memainkan dan menjeda `<video>`.
 
 <Sandpack>
 
@@ -252,9 +253,9 @@ button { margin-bottom: 10px; margin-right: 10px; }
 
 ---
 
-### Forwarding a ref through multiple components {/*forwarding-a-ref-through-multiple-components*/}
+### Meneruskan ref melalui beberapa komponen {/*forwarding-a-ref-through-multiple-components*/}
 
-Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
+Alih-alih meneruskan `ref` ke *DOM node*, Anda bisa meneruskannya ke komponen Anda sendiri seperti `MyInput`:
 
 ```js {1,5}
 const FormField = forwardRef(function FormField(props, ref) {
@@ -268,7 +269,7 @@ const FormField = forwardRef(function FormField(props, ref) {
 });
 ```
 
-If that `MyInput` component forwards a ref to its `<input>`, a ref to `FormField` will give you that `<input>`:
+Jika komponen `MyInput` meneruskan sebuah *ref* ke `<input>`, sebuah *ref* ke `FormField` akan memberi Anda `<input>` tersebut:
 
 ```js {2,5,10}
 function Form() {
@@ -289,8 +290,7 @@ function Form() {
 }
 ```
 
-The `Form` component defines a ref and passes it to `FormField`. The `FormField` component forwards that ref to `MyInput`, which forwards it to a browser `<input>` DOM node. This is how `Form` accesses that DOM node.
-
+Komponen `Form` mendefinisikan sebuah *ref* dan meneruskannya ke `FormField`. Komponen `FormField` meneruskan *ref* tersebut ke `MyInput`, yang meneruskannya ke *DOM node* `<input>` peramban. Beginilah cara `Form` mengakses *DOM node* tersebut.
 
 <Sandpack>
 
@@ -367,9 +367,10 @@ input, button {
 
 ---
 
-### Exposing an imperative handle instead of a DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### Mengekspos penanganan imperatif daripada DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
 
-Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
+Daripada mengekspos seluruh *DOM node*, Anda dapat mengekspos objek khusus, yang disebut *imperative handle,* dengan sekumpulan metode yang lebih terbatas. Untuk melakukan ini, Anda harus mendefinisikan *ref* terpisah untuk menampung *DOM node*:
+
 
 ```js {2,6}
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -381,7 +382,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Pass the `ref` you received to [`useImperativeHandle`](/reference/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+Berikan `ref` yang Anda terima ke [`useImperativeHandle`](/reference/react/useImperativeHandle) dan tentukan nilai yang ingin Anda pajankan ke `ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -404,7 +405,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-If some component gets a ref to `MyInput`, it will only receive your `{ focus, scrollIntoView }` object instead of the DOM node. This lets you limit the information you expose about your DOM node to the minimum.
+Jika beberapa komponen mendapatkan referensi ke `MyInput`, komponen tersebut hanya akan menerima objek `{ focus, scrollIntoView }`, bukan *DOM node*. Hal ini memungkinkan Anda membatasi informasi yang Anda paparkan tentang *DOM node* seminimal mungkin.
 
 <Sandpack>
 
@@ -463,25 +464,25 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/reference/react/useImperativeHandle)
+[Baca lebih lanjut tentang menggunakan pegangan imperatif.] (/reference/react/useImperativeHandle)
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**Jangan terlalu sering menggunakan refs.** Anda hanya boleh menggunakan *refs* untuk perilaku *imperatif* yang tidak dapat Anda ungkapkan sebagai *props*: misalnya, menggulir ke sebuah *node*, memfokuskan sebuah *node*, memicu sebuah animasi, memilih teks, dan sebagainya.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**Jika Anda dapat mengekspresikan sesuatu sebagai *prop*, Anda tidak boleh menggunakan *ref*.** Sebagai contoh, daripada mengekspos penanganan imperatif seperti `{ buka, tutup }` dari komponen `Modal`, lebih baik menggunakan `isOpen` sebagai *prop* seperti `<Modal isOpen = {isOpen} />`. [Effects](/learn/synchronizing-with-effects) dapat membantu Anda mengekspos perilaku imperatif melalui  *props*.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### Komponen saya dibungkus dengan `forwardRef`, tetapi `ref` ke komponen tersebut selalu `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
-This usually means that you forgot to actually use the `ref` that you received.
+Hal ini biasanya berarti bahwa Anda lupa menggunakan `ref` yang Anda terima.
 
-For example, this component doesn't do anything with its `ref`:
+Sebagai contoh, komponen ini tidak melakukan apa pun dengan `ref`-nya:
 
 ```js {1}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -494,7 +495,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-To fix it, pass the `ref` down to a DOM node or another component that can accept a ref:
+Untuk memperbaikinya, berikan `ref` ke *DOM node* atau komponen lain yang dapat menerima *ref*:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -507,7 +508,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-The `ref` to `MyInput` could also be `null` if some of the logic is conditional:
+`ref` ke Komponen `MyInput` juga dapat menjadi `null` jika beberapa logika bersyarat:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
@@ -520,7 +521,7 @@ const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
 });
 ```
 
-If `showInput` is `false`, then the ref won't be forwarded to any node, and a ref to `MyInput` will remain empty. This is particularly easy to miss if the condition is hidden inside another component, like `Panel` in this example:
+Jika `showInput` bernilai `false`, maka *ref* tidak akan diteruskan ke *node* mana pun, dan *ref* ke `MyInput` akan tetap kosong. Hal ini sangat mudah terlewatkan jika kondisi tersebut tersembunyi di dalam komponen lain, seperti `Panel` pada contoh ini:
 
 ```js {5,7}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
