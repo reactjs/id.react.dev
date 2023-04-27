@@ -4,7 +4,7 @@ title: useLayoutEffect
 
 <Pitfall>
 
-`useLayoutEffect` can hurt performance. Prefer [`useEffect`](/reference/react/useEffect) when possible.
+`useLayoutEffect` dapat menurunkan kinerja. Disarankan menggunakan [`useEffect`](/reference/react/useEffect) jika memungkinkan.
 
 </Pitfall>
 
