@@ -56,7 +56,7 @@ Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
 ## Penggunaan {/*usage*/}
 
-### Merujuk sebuah nilai dengan sebuah ref {/*referencing-a-value-with-a-ref*/}
+### Mereferensikan sebuah nilai dengan sebuah ref {/*referencing-a-value-with-a-ref*/}
 
 Panggil `useRef` di tingkat atas komponen Anda untuk mendeklarasikan satu atau lebih [ref.](/learn/referencing-values-with-refs)
 
