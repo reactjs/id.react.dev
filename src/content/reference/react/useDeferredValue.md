@@ -36,7 +36,7 @@ function SearchPage() {
 
 #### Parameters {/*parameters*/}
 
-* `value`: Nilai yang ingin Anda tunda. Itu dapat memiliki tipe apa saja.
+* `value`: Nilai yang ingin Anda tunda. Nilai ini dapat memiliki tipe apa saja.
 
 #### Returns {/*returns*/}
 
