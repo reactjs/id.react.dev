@@ -69,7 +69,7 @@ Expo dikelola oleh [Expo (perusahaan)](https://expo.dev/about). Anda dapat Membu
 
 Anda dapat menggunakan React tanpa menggunakan *framework*--begitupun Anda dapat [menggunakan React untuk sebagian dari halaman proyek Anda.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **Namun, jika Anda ingin membuat aplikasi atau situs baru sepenuhnya menggunakan React, kami merekomendasikan Anda untuk menggunakan *framework*.**
 
-Ini alasannya.
+Berikut alasannya.
 
 Meskipun Anda tidak membutuhkan fungsi *routing* maupun pengambilan data di awal pembuatan proyek, suatu waktu Anda perlu menambahkan beberapa *library* baru untuk proyek tersebut. Semakin bertambahnya ukuran bundel JavaScript karena bertambahnya fitur baru, Anda perlu memikirkan bagaimana cara untuk memecah kode untuk setiap *route* secara individu. Dengan semakin kompleksnya kebutuhan pengambilan data, Anda mungkin akan menghadapi situasi semakin banyaknya permintaan jaringan antara *server* dan klien yang akan membuat aplikasi Anda terasa sangat lambat. Semakin banyak pengguna Anda dengan kondisi jaringan yang buruk dan perangkat dengan spesifikasi rendah serta fitur terbatas, Anda mungkin perlu untuk dapat membuat HTML dari komponen aplikasi Anda untuk bisa menampilkan konten aplikasi secara cepat--baik di *server*, atau saat waktu *build*. Mengubah susunan sistem untuk menjalankan kode di *server* atau saat waktu *build* sangatlah rumit.
 
