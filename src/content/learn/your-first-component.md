@@ -296,7 +296,7 @@ Ada yang tidak benar tentang pernyataan `return` ini. Dapatkah Anda memperbaikin
 
 <Hint>
 
-Anda mungkin mendapatakan sebuah kesalahan "*Unexpected Token*" saat mencoba memperbaiki ini. Dalam hal itu, cek kembali bahwa titik koma muncul *setelah* tanda kurung. Meletakkan suatu titik koma di dalam `return ( )` akan mengakibatkan sebuah kesalahan.
+Anda mungkin mendapatkan sebuah kesalahan "*Unexpected Token*" saat mencoba memperbaiki ini. Dalam hal itu, cek kembali bahwa titik koma muncul *setelah* tanda kurung. Meletakkan suatu titik koma di dalam `return ( )` akan mengakibatkan sebuah kesalahan.
 
 </Hint>
 
