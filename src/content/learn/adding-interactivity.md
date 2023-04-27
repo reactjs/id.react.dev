@@ -1,30 +1,30 @@
 ---
-title: Adding Interactivity
+title: Menambahkan Interaktivitas
 ---
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Beberapa hal di layar berubah mengikuti input dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apapun, dan mengubahnya sesuai kebutuhan. Di bab ini, anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan output yang berbeda seiring berjalannya waktu.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Cara menangani events yang di-mulai oleh pengguna](/learn/responding-to-events)
+* [Cara membuat komponen mengingat informasi dengan menggunakan state](/learn/state-a-components-memory)
+* [Cara React memperbaharui UI dalam dua fase](/learn/render-and-commit)
+* [Mengapa state tidak langsung terbaharui setelah anda mengubahnya](/learn/state-as-a-snapshot)
+* [Cara meng-queue beberapa perubahan state](/learn/queueing-a-series-of-state-updates)
+* [Cara mengubah object didalam state](/learn/updating-objects-in-state)
+* [Cara mengubah array didalam state](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## Menanggapi events {/*responding-to-events*/}
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+React memungkinkan anda untuk menambakan *event handlers* ke JSX anda. Event handlers adalah fungsi milik anda yang akan dipanggil sebagai respon terhadap interaksi dari pengguna seperti klik, hover, fokus pada input form, dan lain-lain.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+Komponen bawaan seperti `<button>` hanya mendukung event bawaan dari browser seperti `onClick`. Namun, anda juga dapat membuat komponen anda sendiri, dan memberikan *prop event handler* dengan nama apapun, spesifik terhadap aplikasi anda.
 
 <Sandpack>
 
@@ -32,7 +32,7 @@ Built-in components like `<button>` only support built-in browser events like `o
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
+      onPlayMovie={() => alert('Memutar!')}
       onUploadImage={() => alert('Uploading!')}
     />
   );
@@ -42,10 +42,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Putar Film
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Upload Gambar
       </Button>
     </div>
   );
@@ -68,7 +68,7 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+Baca **[Menangani Events](/learn/responding-to-events)** untuk mempelajari cara menambahkan event handlers.
 
 </LearnMore>
 
