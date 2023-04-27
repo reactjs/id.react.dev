@@ -63,7 +63,7 @@ function Button() {
   // ... 
 ```
 
-`useContext` mengembalikan <CodeStep step={2}>context value</CodeStep> untuk <CodeStep step={1}>context</CodeStep> yang telah Anda oper. Untuk menentukan nilai konteks, React mencari di pohon komponen dan menemukan **penyedia konteks terdekat di atas** untuk konteks tertentu.
+`useContext` mengembalikan <CodeStep step={2}>nilai konteks</CodeStep> untuk <CodeStep step={1}>konteks</CodeStep> yang telah Anda oper. Untuk menentukan nilai konteks, React mencari di pohon komponen dan menemukan **penyedia konteks terdekat di atas** untuk konteks tertentu.
 
 Untuk mengoper konteks ke sebuah `Button`, bungkus komponen tersebut atau salah satu komponen induknya ke dalam penyedia konteks yang sesuai:
 
@@ -85,7 +85,7 @@ Tidak masalah berapa banyak lapisan komponen yang ada di antara penyedia dan `Bu
 
 <Pitfall>
 
-`useContext()` selalu mencari penyedia terdekat *di atas* komponen yang memanggilnya. Ia mencari ke atas dan **tidak** mempertimbangkan penyedia dalam komponen yang Anda panggil `useContext()`.
+`useContext()` selalu mencari penyedia terdekat *di atas* komponen yang memanggilnya. Ia mencari ke atas dan **tidak** mempertimbangkan penyedia di dalam komponen dari yang Anda panggil `useContext()`.
 
 </Pitfall>
 
@@ -300,13 +300,13 @@ function Button({ children }) {
 
 </Sandpack>
 
-Perhatikan bahwa `value = "dark"` meneruskan string `"dark"`, tetapi `value = `theme`` meneruskan nilai variabel `theme` JavaScript dengan [kurung kurawal JSX.] (/learn/javascript-in-jsx-dengan-kurung-kurung kurawal) Kurung kurawal juga memungkinkan Anda mengoper nilai konteks yang bukan *string*.
+Perhatikan bahwa `value="dark"` meneruskan string `"dark"`, tetapi `value={theme}` meneruskan nilai variabel `theme` JavaScript dengan [kurung kurawal JSX.](/learn/javascript-in-jsx-with-curly-braces) Kurung kurawal juga memungkinkan Anda mengoper nilai konteks yang bukan *string*.
 
 <Solution />
 
 #### Memperbarui objek melalui konteks {/*updating-an-object-via-context*/}
 
-Pada contoh ini, terdapat variabel state `currentUser` yang menyimpan sebuah objek. Anda menggabungkan `{ currentUser, setCurrentUser }` ke dalam satu objek dan meneruskannya melalui konteks di dalam `value={}`. Hal ini memungkinkan komponen di bawahnya, seperti `LoginButton`, membaca `currentUser` dan `setCurrentUser`, dan kemudian memanggil `setCurrentUser` saat dibutuhkan.
+Pada contoh ini, terdapat variabel *state* `currentUser` yang menyimpan sebuah objek. Anda menggabungkan `{ currentUser, setCurrentUser }` ke dalam suatu objek dan meneruskannya melalui konteks di dalam `value={}`. Hal ini memungkinkan komponen di bawahnya, seperti `LoginButton`, membaca `currentUser` dan `setCurrentUser`, dan kemudian memanggil `setCurrentUser` saat dibutuhkan.
 
 <Sandpack>
 
@@ -563,7 +563,7 @@ label {
 
 <Solution />
 
-#### Mengekstrak penyedia ke komponen {/*extracting-providers-to-a-component*/}
+#### Mengekstrak penyedia ke sebuah komponen {/*extracting-providers-to-a-component*/}
 
 Seiring dengan pertumbuhan aplikasi Anda, diharapkan Anda akan memiliki "piramida" konteks yang lebih dekat dengan akar aplikasi Anda. Tidak ada yang salah dengan hal itu. Namun, jika Anda tidak menyukai susunan tersebut secara estetika, Anda bisa mengekstrak penyedia ke dalam satu komponen. Dalam contoh ini, `MyProviders` menyembunyikan "pipa ledeng" dan membuat anak-anak yang diteruskan ke pipa ledeng tersebut di dalam penyedia yang diperlukan. Perhatikan bahwa *state* `theme` dan `setTheme` dibutuhkan di dalam `MyApp` itu sendiri, jadi `MyApp` masih memiliki bagian *state* tersebut.
 
