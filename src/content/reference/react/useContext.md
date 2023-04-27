@@ -81,7 +81,7 @@ function Form() {
 }
 ```
 
-Tidak masalah berapa banyak lapisan komponen yang ada di antara penyedia dan `Button`. Ketika sebuah `Button` *di mana saja* di dalam `Form` memanggil `useContext(ThemeContext)`, maka akan menerima `"dark"` sebagai nilai
+Tidak masalah berapa banyak lapisan komponen yang ada di antara penyedia dan `Button`. Ketika sebuah `Button` *di mana saja* di dalam `Form` memanggil `useContext(ThemeContext)`, maka akan menerima `"dark"` sebagai nilai.
 
 <Pitfall>
 
