@@ -161,11 +161,11 @@ Di contoh pertama, Anda dapat melihat apa yang ditampilkan adalah "*Guest #2*", 
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Mutasi lokal: Rahasia kecil bagi komponen Anda {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+Pada contoh di atas, masalah yang ditemukan adalah komponen tersebut mengubah variabel yang *sudah ada* sebelumnya saat melakukan proses *render*. Ini sering disebut **mutasi** agar terdengar lebih menakutkan. Fungsi murni tidak memutasi variabel yang ada di luar lingkup fungsi tersebut ataupun objek yang dibuat sebelum fungsi tersebut dipanggil--ini membuat fungsi tersebut menjadi tidak murni!
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+Namun, **mengubah variabel atau objek yang *baru saja* Anda buat saat proses *render* bukan menjadi masalah**. Pada contoh ini, Anda akan membuat sebuah senarai `[]`, memasukkannya ke variabel `cups`, kemudian `menambahkan` 1 lusin *cup* ke dalamnya dengan menggunakan *method* `push()`:
 
 <Sandpack>
 
@@ -185,9 +185,9 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+Jika variabel `cups` atau senarai `[]` dibuat di luar fungsi `TeaGathering`, ini akan menimbulkan masalah besar! Anda akan mengubah objek yang *sudah ada* sebelumnya dengan menambahkan benda baru ke dalam senarai tersebut.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+Namun, pada kasus ini, itu tidak menjadi masalah karena Anda membuatnya *bersamaan dengan proses render yang sama*, di dalam `TeaGathering`. Tidak ada kode di luar `TeaGathering` akan mengetahui kejadian ini. Inilah yang disebut sebagai **"mutasi lokal"**—rahasia kecil bagi komponen Anda.
 
 ## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
 
