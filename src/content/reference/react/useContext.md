@@ -565,7 +565,7 @@ label {
 
 #### Mengekstrak penyedia ke sebuah komponen {/*extracting-providers-to-a-component*/}
 
-Seiring dengan pertumbuhan aplikasi Anda, diharapkan Anda akan memiliki "piramida" konteks yang lebih dekat dengan akar aplikasi Anda. Tidak ada yang salah dengan hal itu. Namun, jika Anda tidak menyukai susunan tersebut secara estetika, Anda bisa mengekstrak penyedia ke dalam satu komponen. Dalam contoh ini, `MyProviders` menyembunyikan "pipa ledeng" dan membuat anak-anak yang diteruskan ke pipa ledeng tersebut di dalam penyedia yang diperlukan. Perhatikan bahwa *state* `theme` dan `setTheme` dibutuhkan di dalam `MyApp` itu sendiri, jadi `MyApp` masih memiliki bagian *state* tersebut.
+Seiring dengan pertumbuhan aplikasi Anda, diharapkan Anda akan memiliki "piramida" konteks yang lebih dekat dengan akar aplikasi Anda. Tidak ada yang salah dengan hal itu. Namun, jika Anda tidak menyukai susunan tersebut secara estetika, Anda bisa mengekstrak penyedia ke dalam satu komponen. Dalam contoh ini, `MyProviders` menyembunyikan "cara kerja" dan membuat anak-anak yang diteruskan ke cara kerja tersebut di dalam penyedia yang diperlukan. Perhatikan bahwa *state* `theme` dan `setTheme` dibutuhkan di dalam `MyApp` itu sendiri, jadi `MyApp` masih memiliki bagian *state* tersebut.
 
 <Sandpack>
 
