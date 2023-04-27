@@ -147,17 +147,17 @@ Secara umum, Anda jangan mengharapkan komponen Anda untuk di-*render* mengikuti 
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### Mendeteksi kalkulasi tidak murni dengan *Strict Mode* {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+Walaupun Anda mungkin belum menggunakan semuanya, di React, ada tiga jenis masukan yang bisa dibaca saat proses *render*, yaitu [*prop*](/learn/passing-props-to-a-component), [*state*](/learn/state-a-components-memory), and [*context*](/learn/passing-data-deeply-with-context). Anda harus selalu menganggap masukan ini sebagai sesuatu yang hanya untuk dibaca (*read-only*).
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+Saat Anda ingin mengubah sesuatu sebagai respons dari masukan pengguna, Anda harus [mengubah *state*](/learn/state-a-components-memory), bukan menulis ke suatu variabel. Anda tidak boleh mengubah variabel atau objek yang sudah ada sebelumnya saat komponen Anda sedang di-*render*.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React menawarkan "*Strict Mode*" yang memanggil setiap komponen dua kali pada proses pengembangan. **Dengan memanggil setiap komponen dua kali, *Strict Mode* membantu Anda menemukan komponen-komponen yang melanggar aturan ini**.
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+Di contoh pertama, Anda dapat melihat apa yang ditampilkan adalah "*Guest #2*", "*Guest #4*", dan "*Guest #6*", bukan "*Guest #1*", "*Guest #2*", dan "*Guest #3*". Fungsi tersebut tidak murni sehingga saat dipanggil dua kali, dia rusak. Namun, fungsi yang sudah diperbaiki dan menjadi murni dapat bekerja dengan baik meskipun dijalankan dua kali pada setiap pemanggilan. **Fungsi murni hanya mengalkulasi sehingga memanggil dia dua kali tidak akan mengubah apapun**--seperti memanggil `double(2)` dua kali tidak akan mengubah hasilnya dan menyelesaikan <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dua kali tidak akan mengubah nilai <MathI>y</MathI>. Masukan yang sama, luaran yang sama. Selalu.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+*Strict Mode* tidak memberikan pengaruh apapun di tahap produksi sehingga tidak akan memperlambat aplikasi bagi pengguna Anda. Untuk mencoba *Strict Mode*, Anda bisa membungkus komponen akar Anda ke dalam `<React.StrictMode>`. Beberapa *framework* sudah melakukan ini untuk Anda tanpa perlu intervensi dari Anda.
 
 </DeepDive>
 
