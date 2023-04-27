@@ -4,7 +4,7 @@ title: Memulai Proyek Baru dengan React
 
 <Intro>
 
-Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan React, kami merekomendasikan Anda untuk memilih salah satu dari *framework* berbasis React yang populer di komunitas. *framework* menyediakan fitur - fitur yang sebagian besar aplikasi dan situs web butuhkan, termasuk *routing*, pengambilan data, dan pembuatan halaman HTML.
+Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan React, kami merekomendasikan Anda untuk memilih salah satu dari *framework* berbasis React yang populer di komunitas. *framework* menyediakan fitur-fitur yang sebagian besar aplikasi dan situs web butuhkan, termasuk *routing*, pengambilan data, dan pembuatan halaman HTML.
 
 </Intro>
 
