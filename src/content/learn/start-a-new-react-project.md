@@ -14,7 +14,7 @@ Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan Rea
 
 </Note>
 
-## Framework React Berkelas Produksi {/*production-grade-react-frameworks*/}
+## Framework React berkelas produksi {/*production-grade-react-frameworks*/}
 
 ### Next.js {/*nextjs*/}
 
