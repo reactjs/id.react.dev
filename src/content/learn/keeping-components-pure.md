@@ -201,15 +201,15 @@ Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di pr
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### Mengapa React peduli terhadap kemurnian? {/*why-does-react-care-about-purity*/}
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+Penulisan fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* Komponen Anda dapat berjalan di lingkungan yang berbeda-—misalnya, di server! Karena komponen tersebut selalu menghasilkan hal yang sama untuk masukan yang sama, sebuah komponen bisa melayani permintaan dari banyak pengguna.
+* Anda bisa meningkatkan performa dengan [melewati proses *render*](/reference/react/memo) dari komponen yang masukannya tidak berubah. Ini aman karena fungsi murni selalu memberikan hasil yang sama sehingga hasilnya bisa disimpan di *cache*.
+* Jika ada data yang berubah di tengah *render* dari sebuah pohon komponen yang dalam, React bisa mengulang proses *render* tanpa perlu menghabiskan waktu menyelesaikan *render* yang sudah tidak berlaku lagi. Kemurnian menjamin keamanan dari penghentian kalkulasi pada sembarang waktu.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. Dari pengambilan data hingga animasi dan performa. Menjaga kemurnian komponen membuka jalan bagi kemampuan asli dari paradigma React untuk bersinar.
 
 </DeepDive>
 
