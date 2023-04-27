@@ -53,7 +53,7 @@ Gatsby dikelola oleh [Netlify](https://www.netlify.com/). Anda dapat [memasang s
 
 ### Expo (untuk aplikasi native) {/*expo*/}
 
-**[Expo](https://expo.dev/) adalah *framework* React yang membantu Anda untuk dapat membuat aplikasi universal untuk Android, iOS, dan web dengan menggunakan tampilan antarmuka pengguna yang asli bawaan dari *platform* tersebut (*native*).** *framework* ini menyediakan kit pengembangan perangkat lunak (SDK) untuk [React Native](https://reactnative.dev/) yang membuat komponen *native* dapat digunakan dengan mudah. Untuk membuat proyek Expo baru, jalankan perintah:
+**[Expo](https://expo.dev/) adalah *framework* React yang membantu Anda untuk dapat membuat aplikasi universal untuk Android, iOS, dan web dengan menggunakan tampilan antarmuka pengguna yang asli bawaan dari *platform* tersebut (*native*).** *Framework* ini menyediakan kit pengembangan perangkat lunak (SDK) untuk [React Native](https://reactnative.dev/) yang membuat komponen *native* dapat digunakan dengan mudah. Untuk membuat proyek Expo baru, jalankan:
 
 <TerminalBlock>
 npx create-expo-app
