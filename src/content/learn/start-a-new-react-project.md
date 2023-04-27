@@ -86,14 +86,14 @@ Selama kami melakukan eksplorasi untuk meningkatkan kemampuan dan kualitas React
 
 Setiap hari, fitur-fitur ini semakin dekat untuk menjadi teknologi yang siap digunakan di tingkat *production*, dan kami telah berbicara dengan pengembang *bundler* dan *framework* lainnya untuk dapat mengintergrasikan hal tersebut. Kami berharap bahwa dalam satu atau dua tahun, seluruh *framework* yang terdaftar pada halaman ini akan mendapatkan dukungan penuh dari fitur - fitur ini. (Jika Anda adalah pencipta *framework* dan tertarik untuk berkerja sama dengan kami untuk bereksperimen dengan fitur - fitur ini, mohon untuk menghubungi kami!)
 
-### Router Aplikasi Next.js {/*nextjs-app-router*/}
+### *App Router* Next.js {/*nextjs-app-router*/}
 
-**[*Router* Aplikasi Next.js](https://beta.nextjs.org/docs/getting-started) adalah sebuah desain baru dari Next.js API yang bertujuan untuk memenuhi visi tim React mengenai arsitektur aplikasi *full-stack*.** Hal ini dapat membantu Anda untuk mengambil data pada komponen asinkron yang berjalan pada *server* atau saat waktu *build*.
+**[*App Router* Next.js](https://beta.nextjs.org/docs/getting-started) adalah sebuah desain baru dari Next.js API yang bertujuan untuk memenuhi visi tim React mengenai arsitektur aplikasi *full-stack*.** Hal ini dapat membantu Anda untuk mengambil data pada komponen asinkron yang berjalan pada *server* atau saat waktu *build*.
 
 Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplikasi Next.js](https://nextjs.org/docs/deployment) ke semua ekosistem berbasis Node.js atau *serverless hosting* atau pada *server* Anda sendiri. Next.js juga mendukung [ekspor halaman statis](https://beta.nextjs.org/docs/configuring/static-export) yang tidak membutuhkan *server*.
 <Pitfall>
 
-*Router* Aplikasi Next.js **saat ini dalam fase *beta* dan tidak direkomendasikan untuk implementasi di tingkat *production*** (per Bulan Maret 2023). Untuk mencoba bereksperimen dengan *Router* Aplikasi dalam proyek Next.js yang ada, [ikuti panduan migrasi bertahap ini](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
+*App Router* Next.js **saat ini dalam fase *beta* dan tidak direkomendasikan untuk implementasi di tingkat *production*** (per Bulan Maret 2023). Untuk mencoba bereksperimen dengan *App Router* dalam proyek Next.js yang ada, [ikuti panduan migrasi bertahap ini](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
 
 </Pitfall>
 
@@ -119,7 +119,7 @@ async function Talks({ confId }) {
 }
 ```
 
-*Router* Aplikasi Next.js juga mengintegrasikan [pengambilan data dengan *Suspense*](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Hal ini memungkinkan Anda untuk menentukan status pemuatan (seperti kerangka *placeholder*) untuk berbagai komponen dari tampilan antar muka Anda langsung dari pohon React Anda:
+*App Router* Next.js juga mengintegrasikan [pengambilan data dengan *Suspense*](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Hal ini memungkinkan Anda untuk menentukan status pemuatan (seperti kerangka *placeholder*) untuk berbagai komponen dari tampilan antar muka Anda langsung dari pohon React Anda:
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -127,6 +127,6 @@ async function Talks({ confId }) {
 </Suspense>
 ```
 
-*Server Components* dan *Suspense* merupakan fitur dari React dan bukan fitur Next.js. Namun, menggunakannya pada tingkatan *framework* membutuhkan implementasi yang serius dan bukan hal yang mudah (*non-trivial*). Saat ini, *Router* Aplikasi Next.js merupakan implementasi yang paling lengkap dari hal tersebut. Tim React saat ini sedang bekerja sama dengan pengembang *bundler* untuk membuat fitur ini dapat diimplementasikan pada *framework* generasi berikutnya.
+*Server Components* dan *Suspense* merupakan fitur dari React dan bukan fitur Next.js. Namun, menggunakannya pada tingkatan *framework* membutuhkan implementasi yang serius dan bukan hal yang mudah (*non-trivial*). Saat ini, *App Router* Next.js merupakan implementasi yang paling lengkap dari hal tersebut. Tim React saat ini sedang bekerja sama dengan pengembang *bundler* untuk membuat fitur ini dapat diimplementasikan pada *framework* generasi berikutnya.
 
 </DeepDive>
