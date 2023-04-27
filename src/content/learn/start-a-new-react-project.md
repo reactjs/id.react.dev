@@ -101,7 +101,7 @@ Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplika
 
 #### Fitur apa yang membentuk visi arsitektur aplikasi full stack dari tim React? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-*Router* aplikasi Next.js sepenuhnya mengimplementasi [spesifikasi React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Hal ini memungkinkan Anda untuk dapat menggabungkan waktu *build*, *server-only*, dan komponen interaktif ke dalam satu pohon React.
+*Bundler* App Router Next.js sepenuhnya mengimplementasi [spesifikasi React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Hal ini memungkinkan Anda untuk dapat menggabungkan waktu *build*, *server-only*, dan komponen interaktif ke dalam satu pohon React.
 
 Sebagai contoh, Anda dapat menulis komponen *server-only* React sebagai sebuah fungsi `async` yang dapat membaca data dari database atau sebuah berkas. Kemudian Anda dapat mengirimkan data tersebut ke komponen interaktif Anda:
 
