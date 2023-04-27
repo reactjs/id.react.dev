@@ -191,7 +191,7 @@ Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to lear
 
 </LearnMore>
 
-## Kemungkinan Besar Anda Tidak Memerlukan Efek {/*you-might-not-need-an-effect*/}
+## Kemungkinan besar anda tidak memerlukan Efek {/*you-might-not-need-an-effect*/}
 
 Fitur Efek sebetulnya tidak sejalan dengan paradigma React. Fitur ini memungkinkan Anda "keluar" dari React dan menyinkronkan komponen-komponen Anda dengan sistem eksternal tertentu. Jika tidak ada sistem eksternal yang terlibat (misalnya, jika Anda ingin memperbarui *state* komponen ketika beberapa *props* atau *state* berubah), Anda seharusnya tidak memerlukan Efek. Menghapus Efek yang tidak perlu akan membuat kode Anda lebih mudah dipahami, lebih cepat dijalankan, dan mengurangi potensi kesalahan.
 
