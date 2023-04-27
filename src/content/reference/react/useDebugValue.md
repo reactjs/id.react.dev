@@ -63,7 +63,7 @@ Hal ini akan mengakibatkan komponen yang memanggil  `useOnlineStatus` memiliki l
 
 ![Sebuah tangkapan layar React DevTools yang menunjukan nilai debug](/images/docs/react-devtools-usedebugvalue.png)
 
-Tanpa panggilan `useDebugValue`, hanya data yang mendasarinya (dalam contoh ini, `true`) akan ditampilkan.
+Tanpa panggilan `useDebugValue`, hanya data yang mendasarinya (dalam contoh ini, `true`) yang akan ditampilkan.
 
 <Sandpack>
 
@@ -103,7 +103,7 @@ function subscribe(callback) {
 
 <Note>
 
-Jangan menambahkan nilai *debug* untuk setiap Hook kustom. Itu paling berharga untuk kustom Hooks yang merupakan bagian dari pustaka bersama dan memiliki struktur data internal yang kompleks sehingga sulit untuk diperiksa.
+Jangan menambahkan nilai *debug* untuk setiap Hook kustom. Nilai tersebut paling berharga untuk Hooks kustom yang merupakan bagian dari pustaka bersama dan memiliki struktur data internal yang kompleks sehingga sulit untuk diperiksa.
 
 </Note>
 
@@ -119,4 +119,4 @@ useDebugValue(date, date => date.toDateString());
 
 Fungsi pemformatan Anda akan menerima <CodeStep step={1}>nilai debug</CodeStep> sebagai sebuah parameter dan akan mengembalikan sebuah <CodeStep step={2}>nilai tampilan yang telah diformat</CodeStep>. Ketika komponen Anda diperiksa, React DevTools akan memanggil fungsi ini dan menampilkan hasilnya.
 
-Ini memungkinkan Anda menghindari menjalankan logika pemformatan yang berpotensi berat kecuali komponen benar-benar diperiksa. Sebagai contoh, jika `date` merupakan sebuah nilai Tanggal, ini menghindari pemanggilan `toDateString()` pada setiap render komponen.
+Ini memungkinkan Anda menghindari menjalankan logika pemformatan yang berpotensi mahal kecuali komponen benar-benar diperiksa. Sebagai contoh, jika `date` merupakan sebuah nilai *Date*, ini menghindari pemanggilan `toDateString()` pada setiap render.
