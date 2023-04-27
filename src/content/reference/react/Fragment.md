@@ -4,7 +4,7 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
+`<Fragment>`, atau sering digunakan melalui sintaksis `<>...</>`, memungkinkan anda mengelompokkan elemen tanpa pembungkus node.
 
 ```js
 <>
@@ -19,19 +19,19 @@ title: <Fragment> (<>...</>)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<Fragment>` {/*fragment*/}
 
-Wrap elements in `<Fragment>` to group them together in situations where you need a single element. Grouping elements in `Fragment` has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is shorthand for `<Fragment></Fragment>` in most cases.
+Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana anda membutuhkan satu elemen. Mengelompokkan element di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. Tag JSX kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
 
 #### Props {/*props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **opsional** `key`: Fragment yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-- If you want to pass `key` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment key={yourKey}>...</Fragment>`.
+- Jika Anda ingin oper `key` ke Fragment, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimport `Fragment` dari `'react'` dan _render_ `<Fragment key={yourKey}>...</Fragment>`.
 
 - React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
@@ -131,7 +131,7 @@ function CloseDialog() {
   );
   return (
     <AlertDialog buttons={buttons}>
-      Are you sure you want to leave this page?
+      Apakah anda yakin untuk meninggalkan halaman ini?
     </AlertDialog>
   );
 }
