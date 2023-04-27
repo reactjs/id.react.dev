@@ -83,7 +83,7 @@ function handleStartClick() {
 }
 ```
 
-Nantinya, Anda dapat membaca ID interval tersebut dari ref sehingga Anda dapat memanggil [clear that interval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+Nantinya, Anda dapat membaca ID interval tersebut dari ref sehingga Anda dapat memanggil [pembersihan interval tersebut](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 
 ```js [[2, 2, "intervalRef.current"]]
 function handleStopClick() {
