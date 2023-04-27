@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: Mengirim Props Pada Komponen
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+Komponen React menggunakan *props* untuk berkomunikasi antara satu dengan yang lainnya. Setiap komponen induk bisa mengirim beberapa informasi pada komponen-komponen anaknya dengan memberikan mereka *props*. *Props* mungkin akan mengingatkan Anda dengan atribut HTML, namun Anda bisa mengirim nilai JavaScript apapun melalui itu, termasuk objek, senarai, bahkan fungsi.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* Bagaimana cara mengirim *props* pada komponen
+* Bagaimana cara membaca *props* dari komponen
+* Bagaimana cara memberi nilai bawaan untuk *props*
+* Bagaimana cara mengirim beberapa JSX ke dalam component
+* Bagaimana *props* berubah seiring waktu
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Props umum {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+*Props* adalah informasi yang Anda kirimkan pada tag JSX. Sebagai contoh, `className`, `src`, `alt`, `width`, dan `height` adalah beberapa contoh dari *props* yang bisa Anda kirimkan pada `<img>`:
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+*Props* yang bisa dikirimkan pada tag `<img>` sudah didefinisikan sebelumnya (ReactDOM menyesuaikan dengan [standar HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Namun Anda bisa mengirimkan *props* apapun pada komponen Anda *sendiri*, Misalnya `<Avatar>`, untuk dikustomisasi. Begini caranya!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Mengirim *props* pada komponen {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+Pada kode ini, komponen `Profile` tidak mengirimkan *props* apapun pada komponen anaknya, yaitu `Avatar`:
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+Kamu bisa memberi `Avatar` beberapa *props* dalam dua langkah.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### Langkah 1: Mengirim *props* pada komponen anak {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+Pertama-tama, kirimkan beberapa *props* pada `Avatar`. Sebagai contoh, mari kirimkan dua *props*: `person` (sebuah objek), dan `size` (sebuah angka):
 
 ```js
 export default function Profile() {
@@ -84,25 +84,25 @@ export default function Profile() {
 
 <Note>
 
-If double curly braces after `person=` confuse you, recall [they're merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+Jika dobel kurung kurawal setelah `person=` membuatmu bingung, ingatlah bahwa [mereka hanyalah sebuah objek](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) dalam kurung kurawal JSX.
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+Sekarang Anda bisa membaca *props* tersebut di dalam komponen `Avatar`.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### Langkah 2: Membaca **props** di dalam komponen anak {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+Anda bisa membaca *props* tersebut dengan mendaftarkan namanya yaitu `person, size` dengan cara dipisahkan dengan koma di dalam `({` dan `})` langsung setelah `function Avatar`. Hal ini memungkinkan Anda untuk menggunakannya di dalam kode `Avatar`, sama halnya saat Anda menggunakan variabel.
 
 ```js
 function Avatar({ person, size }) {
-  // person and size are available here
+  // sekarang person dan size bisa Anda pakai di sini
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+Tambahkan beberapa logika pada `Avatar` yang menggunakan *props* `person` dan `size` untuk dirender, dan selesai.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+Sekarang Anda bisa membuat `Avatar` untuk dirender dalam banyak cara dan dengan *props* yang berbeda. Cobalah utak-atik nilainya!
 
 <Sandpack>
 
@@ -168,9 +168,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+*Props* membuat Anda berpikir tentang komponen induk dan komponen anak secara terpisah. Sebagai contoh, Anda bisa mengubah *props* `person` atau `size` di dalam `Profile` tanpa perlu memikirkan bagaimana `Avatar` menggunakannya. Begitupun, Anda bisa mengubah bagaimana `Avatar` menggunakan *props* tersebut, tanpa menghiraukan `Profile`.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+Anda bisa menganggap *props* seperti "kenop" yang bisa disesuaikan. *Props* berperan sama seperti *arguments* pada *functions*—Nyatanya, *props* _adalah_ satu-satunya *argument* pada komponen Anda! Komponen fungsi React menerima satu *argument*, sebuah objek *props*.:
 
 ```js
 function Avatar(props) {
@@ -180,11 +180,11 @@ function Avatar(props) {
 }
 ```
 
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+Biasanya Anda tidak memerlukan objek *props* secara utuh, maka kamu memecahnya menjadi *props* tersendiri.
 
 <Pitfall>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+**Jangan melewatkan pasangan kurung kurawal `{` dan `}`** di dalam `(` dan `)` saat menyatakan *props*:
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+Sintaksis ini disebut ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) dan ini berfungsi untuk membaca properti dari parameter fungsi:
 
 ```js
 function Avatar(props) {
@@ -204,9 +204,9 @@ function Avatar(props) {
 
 </Pitfall>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## Menentukan nilai bawaaan untuk *prop* {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+Jika Anda ingin memberi *prop* nilai bawaan untuk berjaga-jaga saat tidak ada nilai yang ditentukan, Anda bisa melakukannya dengan memecahnya lalu menaruh `=` dan nilai bawaannya tepat setelah parameter:
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -214,13 +214,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+Sekarang, jika `<Avatar person={...} />` dirender tanpa menerima prop `size`, `size` akan bernilai `100`.
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+Nilai bawaan hanya akan terpakai jika *prop* `size` tidak ada atau jika Anda mengirim `size={undefined}`. Namun jika kamu mengirim `size={null}` atau `size={0}`, nilai bawaan **tidak akan** terpakai.
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## Meneruskan *props* dengan sintaksis *spread* JSX {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+Terkadang, mengirim *props* bisa sangat repetitif:
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -237,7 +237,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+Tidak ada salahnya dengan kode yang repetitif—itu membuatnya lebih mudah untuk dibaca. Namun terkadang Anda mungkin lebih menyukai keringkasan. Beberapa komponen meneruskan semua *props*nya kepada komponen anaknya, persis seperti yang `Profile` lakukan dengan `Avatar`. Karena mereka tidak menggunakan *props*nya secara langsung, ini akan masuk akal untuk menggunakan sintaksis "*spread*" yang mana lebih ringkas:
 
 ```js
 function Profile(props) {
@@ -249,13 +249,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+Ini akan meneruskan semua *props* milik `Profile` pada `Avatar` tanpa menuliskannya satu-persatu.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**Gunakan sintaksis *spread* dengan batasan.** Jika Anda menggunakannya pada setiap komponen, maka ada yang salah. Seringkali, ini menunjukan bahwa Anda perlu memecah komponen Anda dan mengirim anaknya sebagai JSX. Mari kita bahas!
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## Mengirim JSX sebagai anak {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+Sudah umum untuk menyisipkan tag bawaan pada peramban:
 
 ```js
 <div>
@@ -263,7 +263,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+Terkadang Anda ingin menyisipkan komponen Anda dengan cara yang sama:
 
 ```js
 <Card>
@@ -271,7 +271,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+Saat Anda menyisipkan konten ke dalam tag JSX, komponen induk akan menerima konten tersebut dalam bentuk *prop* yang disebut `children`. Sebagai contoh, Komponen `Card` di bawah akan menerima *prop* `children` yang diisi `<Avatar />` lalu me-*render*nya dengan cara membungkusnya ke dalam div:
 
 <Sandpack>
 
@@ -347,17 +347,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+Cobalah ubah `<Avatar>` yang ada di dalam `<Card>` dengan teks untuk melihat bagaimana komponen `Card` bisa disisipkan konten apapun. Komponen tersebut tidak perlu "mengetahui" apa yang dirender di dalamnya. Kamu lihat betapa fleksibelnya hal ini.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
+Anda bisa menganggap bahwa komponen dengan *prop* `children` itu mempunyai "lubang" yang bisa "diisi" oleh komponen induknya dengan JSX secara bebas. Anda akan sering menggunakan *prop* `children` sebagai pembungkus: *panels*, *grids*, dan lainnya.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## Bagaimana props berubah seiring waktu {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+Komponen `Clock` di bawah menerima dua *props* dari komponen induknya: `color` dan `time`. (Kode untuk komponen induknya dihilangkan karena itu menggunakan [state](/learn/state-a-components-memory), yang mana belum kita bahas untuk saat ini.)
 
-Try changing the color in the select box below:
+Coba ubahlah warna pada kotak pilihan di bawah:
 
 <Sandpack>
 
@@ -407,11 +407,11 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+Contoh ini menggambarkan bahwa **sebuah komponen mungkin menerima props yang berbeda seiring waktu.** *Props* tidak selalu bersifat tetap! Begini, *prop* `time` berubah setiap detik, dan *prop* `color` berubah ketika Anda memilih warna lain. Data pada komponen akan ditampilkan *props* kapan saja, bukan hanya di awal.
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+Bagaimanapun, props bersifat [*immutable*](https://en.wikipedia.org/wiki/Immutable_object)—Sebuah istilah pada ilmu komputer yang berarti "tidak dapat diubah". Saat sebuah komponen ingin mengubah *props*nya (sebagai contoh, untuk merespon interaksi pengguna atau merespon data baru), mereka harus "meminta" komponen induknya untuk mengirim dirinya ***props* yang lain**—objek baru! Lalu *props* yang lama akan disingkirkan, dan nantinya mesin JavasCript akan mengambil kembali memori yang dipakai oleh mereka.
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
+**Jangan mencoba untuk "mengubah *props*".** Ketika Anda perlu merespon masukan pengguna (misalnya mengubah warna yang dipilih), Anda akan memerlukan "*set state*", yang mana akan Anda pelajari pada [State: Memori Milik Komponen.](/learn/state-a-components-memory)
 
 <Recap>
 
