@@ -42,14 +42,14 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### Peringatan {/*caveats*/}
 
-* Dalam Mode Ketat, React akan **memanggil fungsi* render Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.] (#my-initializer-or-updater-function-runs-two times) Ini adalah perilaku khusus pengembangan dan tidak mempengaruhi produksi. Jika fungsi render Anda murni (sebagaimana mestinya), hal ini tidak akan mempengaruhi logika komponen Anda. Hasil dari salah satu pemanggilan akan diabaikan.
+* Dalam Mode Ketat, React akan **memanggil fungsi *render* Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus pengembangan dan tidak mempengaruhi produksi. Jika fungsi *render* Anda murni (sebagaimana mestinya), hal ini tidak akan mempengaruhi logika komponen Anda. Hasil dari salah satu pemanggilan akan diabaikan.
 
 
 ---
 
 ### `render` function {/*render-function*/}
 
-`forwardRef` menerima fungsi render sebagai argumen. React memanggil fungsi ini dengan `props` dan `ref`:
+`forwardRef` menerima fungsi *render* sebagai argumen. React memanggil fungsi ini dengan `props` dan `ref`:
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -66,11 +66,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `props`: *props* yang dioperkan oleh komponen induk.
 
-* `ref`: Atribut `ref` yang dioper oleh komponen induk. `ref` dapat berupa objek atau fungsi. Jika komponen induk tidak mengoper *ref*, maka akan menjadi `null`. Anda harus mengoper `ref` yang Anda terima ke komponen lain, atau mengopernya ke [`useImperativeHandle`.] (/reference/react/useImperativeHandle)
+* `ref`: Atribut `ref` yang dioper oleh komponen induk. `ref` dapat berupa objek atau fungsi. Jika komponen induk tidak mengoper *ref*, maka akan menjadi `null`. Anda harus mengoper `ref` yang Anda terima ke komponen lain, atau mengopernya ke [`useImperativeHandle`.](/reference/react/useImperativeHandle)
 
 #### Returns {/*render-returns*/}
 
-`forwardRef` mengembalikan komponen React yang dapat Anda render di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` dapat mengambil sebuah *prop* `ref`.
+`forwardRef` mengembalikan komponen React yang dapat Anda *render* di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` dapat mengambil sebuah *prop* `ref`.
 
 ---
 
@@ -131,7 +131,7 @@ function Form() {
 }
 ```
 
-Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya, komponen `Form` dapat mengakses *DOM node* `<input>` tersebut dan memanggil fungsi [`focus()`] (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) di atasnya.
+Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya, komponen `Form` dapat mengakses *DOM node* `<input>` tersebut dan memanggil fungsi [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) di atasnya.
 
 Perlu diingat bahwa mengekspos *ref* ke *DOM node* di dalam komponen Anda akan mempersulit untuk mengubah internal komponen Anda di kemudian hari. Anda biasanya akan mengekspos *DOM node* dari komponen tingkat rendah yang dapat digunakan kembali seperti tombol atau input teks, tetapi Anda tidak akan melakukannya untuk komponen tingkat aplikasi seperti avatar atau komentar.
 
@@ -464,7 +464,7 @@ input {
 
 </Sandpack>
 
-[Baca lebih lanjut tentang menggunakan pegangan imperatif.] (/reference/react/useImperativeHandle)
+[Baca lebih lanjut tentang menggunakan pegangan imperatif.](/reference/react/useImperativeHandle)
 
 <Pitfall>
 
