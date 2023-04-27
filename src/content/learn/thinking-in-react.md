@@ -1,10 +1,10 @@
 ---
-title: Thinking in React
+title: Cara Berpikir dengan React
 ---
 
 <Intro>
 
-React can change how you think about the designs you look at and the apps you build. When you build a user interface with React, you will first break it apart into pieces called *components*. Then, you will describe the different visual states for each of your components. Finally, you will connect your components together so that the data flows through them. In this tutorial, we’ll guide you through the thought process of building a searchable product data table with React.
+React dapat mengubah cara berpikir Anda tentang desain yang Anda lihat dan aplikasi yang Anda buat. Ketika Anda membuat antarmuka pengguna dengan React, pertama-tama Anda akan memecahnya menjadi beberapa bagian yang disebut dengan *komponen*. Kemudian, Anda akan mendeskripsikan state visual yang berbeda untuk setiap komponen Anda. Terakhir, Anda akan menghubungkan komponen-komponen Anda bersama-sama sehingga data mengalir melaluinya. Dalam tutorial ini, kami akan memandu Anda melalui proses berpikir untuk membangun tabel data produk yang dapat dicari dengan React.
 
 </Intro>
 
