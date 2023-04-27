@@ -191,47 +191,48 @@ Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to lear
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## Kemungkinan Besar Anda Tidak Memerlukan Efek {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Fitur Efek sebetulnya tidak sejalan dengan paradigma React. Fitur ini memungkinkan Anda "keluar" dari React dan menyinkronkan komponen-komponen Anda dengan sistem eksternal tertentu. Jika tidak ada sistem eksternal yang terlibat (misalnya, jika Anda ingin memperbarui *state* komponen ketika beberapa *props* atau *state* berubah), Anda seharusnya tidak memerlukan Efek. Menghapus Efek yang tidak perlu akan membuat kode Anda lebih mudah dipahami, lebih cepat dijalankan, dan mengurangi potensi kesalahan.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+Terdapat dua kasus umum dimana Anda tidak akan memerlukan Efek:
+- **Anda tidak memerlukan Efek untuk mentransformasi data yang akan dirender**
+- **Anda tidak memerlukan Efek untuk menangani *event* dari pengguna**
 
-For example, you don't need an Effect to adjust some state based on other state:
+
+Contohnya, Anda tidak memerlukan Efek untuk mengubah *state* berdasarkan *state* lain:
 
 ```js {5-9}
 function Form() {
-  const [firstName, setFirstName] = useState('Taylor');
-  const [lastName, setLastName] = useState('Swift');
+  const [namaDepan, setNamaDepan] = useState('Isyana');
+  const [namaBelakang, setNamaBelakang] = useState('Sarasvati');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
-  const [fullName, setFullName] = useState('');
+  // 🔴 Hindari: pemborosan State dan Efek yang tidak perlu
+  const [namaLengkap, setNamaLengkap] = useState('');
   useEffect(() => {
-    setFullName(firstName + ' ' + lastName);
-  }, [firstName, lastName]);
+    setNamaLengkap(namaDepan + ' ' + namaBelakang);
+  }, [namaDepan, namaBelakang]);
   // ...
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+Alih-alih, lakukan operasi sebanyak mungkin saat *rendering*:
 
 ```js {4-5}
 function Form() {
-  const [firstName, setFirstName] = useState('Taylor');
-  const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
-  const fullName = firstName + ' ' + lastName;
+  const [namaDepan, setNamaDepan] = useState('Isyana');
+  const [namaBelakang, setNamaBelakang] = useState('Sarasvati');
+  // ✅ Bagus: operasi dilakukan saat rendering
+  const namaLengkap = namaDepan + ' ' + namaBelakang;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+Namun, Anda *tetap* membutuhkan Efek untuk melakukan sinkronisasi dengan sistem eksternal.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Baca **[Kemungkinan Besar Anda Tidak Memerlukan Efek](/learn/you-might-not-need-an-effect)** untuk mempelajari bagaimana menghapus Efek yang tidak perlu.
 
 </LearnMore>
 
