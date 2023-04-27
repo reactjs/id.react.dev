@@ -1,18 +1,18 @@
 ---
-title: Keeping Components Pure
+title: Menjaga Kemurnian Komponen
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Beberapa fungsi JavaScript bersifat murni, yaitu hanya melakukan kalkulasi. Dengan begitu, Anda bisa menghindari berbagai macam *bug* dan tingkah laku yang membingungkan dari aplikasi yang Anda bangun. Namun, ada beberapa aturan yang harus Anda ikuti untuk mencapai keadaan ini.
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* Apa itu kemurnian dan bagaimana hal tersebut dapat membantu Anda menghindari *bug*
+* Bagaimana cara menjaga kemurnian komponen dengan tidak melakukan pengubahan pada fase *render*
+* Bagaimana cara menggunakan *Strict Mode* untuk menemukan kesalahan pada komponen Anda
 
 </YouWillLearn>
 
