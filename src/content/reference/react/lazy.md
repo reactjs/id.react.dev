@@ -72,7 +72,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 Kode ini bergantung pada [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) yang mungkin memerlukan dukungan dari *bundler* atau *framework* yang Anda gunakan.
 
-Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu *parent* ke dalam [`<Suspense>`](/reference/react/Suspense):
+Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu induknya ke dalam [`<Suspense>`](/reference/react/Suspense):
 
 ```js {1,4}
 <Suspense fallback={<Loading />}>
@@ -183,9 +183,9 @@ Demo ini dimuat dengan penundaan buatan. Lain kali Anda menghapus centang dan me
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
-### `lazy` komponen saya disetel ulang secara tidak terduga {/*my-lazy-components-state-gets-reset-unexpectedly*/}
+### komponen `lazy` saya disetel ulang secara tidak terduga {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 
-Jangan deklarasikan `lazy` komponen *di dalam* komponen lain:
+Jangan deklarasikan komponen `lazy` *di dalam* komponen lain:
 
 ```js {4-5}
 import { lazy } from 'react';
