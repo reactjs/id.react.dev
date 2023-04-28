@@ -185,7 +185,7 @@ Baca **[Menulis Markup dengan JSX](/learn/writing-markup-with-jsx)** untuk mempe
 
 </LearnMore>
 
-## JavaScript di JSX dengan kurung kurawal {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript di dalam JSX dengan kurung kurawal {/*javascript-in-jsx-with-curly-braces*/}
 
 JSX memungkinkan Anda menulis *markup* mirip HTML di dalam file JavaScript, menjaga logika *rendering* dan konten di tempat yang sama. Terkadang Anda ingin menambahkan sedikit logika JavaScript atau merujuk pada properti dinamis di dalam markup tersebut. Dalam situasi ini, Anda dapat menggunakan kurung kurawal di JSX Anda untuk "membuka jendela" ke JavaScript:
 
