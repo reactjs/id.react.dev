@@ -4,7 +4,7 @@ title: renderToStaticNodeStream
 
 <Intro>
 
-`renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToStaticNodeStream` merender sebuah pohon non-interaktif React menjadi sebuah [aliran yang dapat dibaca Node.js.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToStaticNodeStream(reactNode)
