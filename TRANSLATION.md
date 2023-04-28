@@ -1,12 +1,16 @@
-# Panduan Penerjemahan Bahasa Indonesia untuk reactjs.org
+# Panduan Penerjemahan Bahasa Indonesia untuk react.dev
 
-Berikut adalah panduan-panduan dasar dalam penerjemahan situs reactjs.org ke Bahasa Indonesia. Dokumen ini ditujukan bagi mereka yang baru mulai berkontribusi dan yang pernah berkontribusi sebelumnya. Apabila ada kekurangan, silakan berkontribusi dengan menyunting dokumen ini.
+Berikut adalah panduan-panduan dasar dalam penerjemahan situs react.dev ke Bahasa Indonesia. Dokumen ini ditujukan bagi mereka yang baru mulai berkontribusi dan yang pernah berkontribusi sebelumnya. Apabila ada kekurangan, silakan berkontribusi dengan menyunting dokumen ini.
 
 ## Referensi
+
+Semua referensi mengenai penerjemahan terletak di [bagian Wiki](https://github.com/reactjs/id.react.dev/wiki) di repositori ini.
 
 - [Glosarium](https://github.com/reactjs/id.react.dev/wiki/Glosarium)
 - [Panduan Penulisan Universal](https://github.com/reactjs/id.react.dev/wiki/Panduan-Penulisan-Universal)
 - [Universal Style Guide (English)](https://github.com/reactjs/id.react.dev/wiki/Universal-Style-Guide)
+
+Apabila Anda ingin mendikusikan apapun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
 
 ## Menyunting Konten Secara Lokal
 
