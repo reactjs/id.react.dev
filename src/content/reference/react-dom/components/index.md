@@ -30,7 +30,7 @@ Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `va
 
 ---
 
-## Semua Komponen HTML {/*all-html-components*/}
+## Semua komponen HTML {/*all-html-components*/}
 
 React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
 
