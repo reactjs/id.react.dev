@@ -366,7 +366,7 @@ Baca **[Merender Secara Kondisional](/learn/conditional-rendering)** untuk mempe
 
 Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk memfilter dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
-Untuk setiap item pada senarai, Anda perlu menentukan sebuah kunci `key`. Biasanya, Anda ingin menggunakan ID dari basisdata sebagai `key`. `Key` memungkinkan React untuk melacak posisi setiap item di dalam daftar bahkan jika daftar berubah.
+Untuk setiap *item* pada senarai, Anda perlu menentukan sebuah kunci `key`. Biasanya, Anda ingin menggunakan ID dari basisdata sebagai `key`. `key` memungkinkan React untuk melacak posisi setiap *item* di dalam daftar bahkan jika daftar berubah.
 
 <Sandpack>
 
