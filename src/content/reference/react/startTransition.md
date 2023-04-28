@@ -4,7 +4,7 @@ title: startTransition
 
 <Intro>
 
-`startTransition` lets you update the state without blocking the UI.
+`startTransition` memungkinkan Anda memperbarui sebuah _state_ tanpa memblokir proses _rendering_ pada UI.
 
 ```js
 startTransition(scope)
@@ -16,11 +16,11 @@ startTransition(scope)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `startTransition(scope)` {/*starttransitionscope*/}
 
-The `startTransition` function lets you mark a state update as a transition.
+Fungsi `startTransition` memungkinkan Anda menandai sebuah pembaruan _state_ sebagai transisi.
 
 ```js {7,9}
 import { startTransition } from 'react';
@@ -37,37 +37,37 @@ function TabContainer() {
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
+* `scope`: Fungsi yang memperbarui sebuah _state_ dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` tanpa parameter apapun dan menandai seluruh pembaruan _state_ yang berada di dalam fungsi `scope` sebagai transisi. Mereka akan bersifat [_non-blocking_](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
 
-#### Returns {/*returns*/}
+#### Nilai Balik {/*returns*/}
 
-`startTransition` does not return anything.
+`startTransition` tidak memiliki nilai balik apapun.
 
-#### Caveats {/*caveats*/}
+#### Anjuran {/*caveats*/}
 
-* `startTransition` does not provide a way to track whether a transition is pending. To show a pending indicator while the transition is ongoing, you need [`useTransition`](/reference/react/useTransition) instead.
+* `startTransition` tidak menyediakan penanda untuk mengetahui apakah sebuah transisi sedang _pending_ atau tidak. Untuk menampilkan indikator _pending_ ketika sebuah transisi sedang berjalan, Anda dapat menggunakan [`useTransition`.](/reference/react/useTransition)
 
-* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* Anda hanya dapat menempatkan pembaruan _state_ ke dalam transisi bila Anda memiliki akses terhadap fungsi `set` dari _state_ tersebut. Jika Anda ingin memulai sebuah transisi sebagai respons terhadap sebuah _prop_ atau nilai balik sebuah _custom Hook_, cobalah menggunakan [`useDeferredValue`.](/reference/react/useDeferredValue)
 
-* The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
+* Fungsi yang Anda tempatkan ke dalam `startTransition` harus merupakan fungsi sinkronus. React langsung mengeksekusi fungsi ini dan menandai seluruh pembaruan _state_ yang terjadi sembari eksekusi sedang berjalan sebagai sebuah transisi. Apabila Anda mencoba melakukan pembaruan _state_ pada waktu lain (misalnya dalam sebuah _timeout_), mereka tak akan ditandai sebagai transisi.
 
-* A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input state update.
+* Sebuah pembaruan _state_ yang ditandai sebagai transisi dapat diinterupsi oleh pembaruan _state_ yang lain. Contohnya, bila Anda memperbarui sebuah komponen grafik didalam sebuah transisi, namun kemudian mengetik dalam sebuah masukan teks saat grafik tersebut masih di dalam proses _re-render_, React akan mengulangi proses _re-render_ pada grafik tersebut setelah selesai melakukan pembaruan _state_ dalam masukan teks tersebut.
 
-* Transition updates can't be used to control text inputs.
+* Pembaruan transisi tidak dapat digunakan untuk mengontrol masukan teks.
 
-* If there are multiple ongoing transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
+* Ketika terdapat beberapa transisi yang sedang berjalan, React akan menggabungkannya menjadi satu. Ini adalah sebuah keterbatasan yang kemungkinan besar akan diperbaiki pada rilis React selanjutnya.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Marking a state update as a non-blocking transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Menandai sebuah pembaruan _state_ sebagai transisi _non-blocking_ {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-You can mark a state update as a *transition* by wrapping it in a `startTransition` call:
+Anda dapat menandai sebuah _pembaruan state_ sebagai sebuah transisi dengan memasukkannya ke dalam pemanggilan `startTransition`:
 
 ```js {7,9}
 import { startTransition } from 'react';
@@ -84,14 +84,14 @@ function TabContainer() {
 }
 ```
 
-Transitions let you keep the user interface updates responsive even on slow devices.
+Transisi memungkinkan pembaruan antarmuka pengguna (_user interface_) tetap responsif, bahkan dalam gawai yang relatif lamban.
 
-With a transition, your UI stays responsive in the middle of a re-render. For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
+Dengan sebuah transisi, antarmuka aplikasi Anda akan tetap responsif di tengah proses _re-render_. Sebagai contoh, ketika pengguna menekan sebuah _tab_ tetapi kemudian berubah pikiran dan menekan _tab_ lain, mereka dapat tetap melakukannya tanpa perlu menunggu proses _re-render_ pertama untuk selesai.
 
 <Note>
 
-`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
+`startTransition` hampir serupa dengan [`useTransition`](/reference/react/useTransition), tetapi dengan perbedaan bahwa ia tidak memiliki penanda `isPending` untuk memberi tahu apakah sebuah transisi sedang berjalan atau tidak. Anda dapat memanggil `startTransition` ketika `useTransition` tidak dapat digunakan dalam kondisi tertentu. Contohnya, `startTransition` dapat digunakan di luar komponen, misalnya seperti pustaka data / _data library_.
 
-[Learn about transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
+[Pelajari lebih lanjut mengenai transisi dan lihat contoh pada halaman `useTransition`.](/reference/react/useTransition)
 
 </Note>
