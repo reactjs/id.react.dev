@@ -229,7 +229,7 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Baca **[JavaScript di JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
+Baca **[JavaScript di Dalam JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
 
 </LearnMore>
 
@@ -358,7 +358,7 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Baca **[Merender Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
+Baca **[Merender Secara Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
 
 </LearnMore>
 
