@@ -4,7 +4,7 @@ title: renderToStaticNodeStream
 
 <Intro>
 
-`renderToStaticNodeStream` merender sebuah pohon non-interaktif React menjadi sebuah [aliran yang dapat dibaca Node.js.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToStaticNodeStream` merender sebuah pohon React yang tidak interaktif ke dalam sebuah [*Node.js Readable Stream*.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToStaticNodeStream(reactNode)
@@ -16,11 +16,11 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
 
-On the server, call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams).
+Pada *server*, panggil `renderToStaticNodeStream` untuk mendapatkan sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams).
 
 ```js
 import { renderToStaticNodeStream } from 'react-dom/server';
@@ -29,52 +29,52 @@ const stream = renderToStaticNodeStream(<Page />);
 stream.pipe(response);
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-The stream will produce non-interactive HTML output of your React components.
+*Stream* akan menghasilkan keluaran HTML yang tidak interaktif dari komponen-komponen React kalian.
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<Page />`.
+* `reactNode`: Sebuah *node* React yang ingin kalian render ke dalam HTML. Misalnya, sebuah elemen JSX seperti `<Page />`.
 
 #### Returns {/*returns*/}
 
-A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string. The resulting HTML can't be hydrated on the client.
+Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan sebuah *string* HTML. HTML yang dihasilkan tidak bisa dihidrasi di sisi klien.
 
-#### Caveats {/*caveats*/}
+#### Batasan {/*caveats*/}
 
-* `renderToStaticNodeStream` output cannot be hydrated.
+* Keluaran `renderToStaticNodeStream` tidak dapat dihidrasi.
 
-* This method will wait for all [Suspense boundaries](/reference/react/Suspense) to complete before returning any output.
+* Metode ini akan menunggu semua [*Suspense boundaries*](/reference/react/Suspense) untuk diselesaikan sebelum mengembalikan keluaran apapun.
 
-* As of React 18, this method buffers all of its output, so it doesn't actually provide any streaming benefits.
+* Sejak React 18, metode ini menyangga semua keluarannya, sehingga tidak memberikan keuntungan *stream* apapun .
 
-* The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+* *Stream* yang dikembalikan merupakan sebuah *byte stream* yang dienkode dalam utf-8. Jika kalian membutuhkan sebuah *stream* yang dienkode lainnya, lihatlah ke sebuah proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang memberikan transformasi aliran untuk *transcoding* teks.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
+### Merender sebuah pohon React sebagai HTML statis ke dalam sebuah *Node.js Readable Stream* {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
 
-Call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+Panggil `renderToStaticNodeStream` untuk mendapatkan sebuah [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang dapat dihubungkan ke respon *server*:
 
 ```js {5-6}
 import { renderToStaticNodeStream } from 'react-dom/server';
 
-// The route handler syntax depends on your backend framework
+// Sintaks route bergantung pada framework backend yang digunakan
 app.use('/', (request, response) => {
   const stream = renderToStaticNodeStream(<Page />);
   stream.pipe(response);
 });
 ```
 
-The stream will produce the initial non-interactive HTML output of your React components.
+*Stream* akan menghasilkan keluaran awal HTML yang tidak interaktif dari komponen-komponen React kalian.
 
 <Pitfall>
 
-This method renders **non-interactive HTML that cannot be hydrated.** This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+Metode ini merender **HTML tidak interaktif yang tidak bisa dihidrasi.** Ini berguna jika kalian ingin menggunakan React sebagai sebuah generator halaman statis sederhana, atau jika kalian merender konten statis seperti email.
 
-Interactive apps should use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
+Aplikasi interaktif sebaiknya menggunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) pada *server* dan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) pada klien.
 
 </Pitfall>
