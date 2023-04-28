@@ -10,7 +10,7 @@ title: useLayoutEffect
 
 <Intro>
 
-`useLayoutEffect` adalah versi [`useEffect`](/reference/react/useEffect) yang dijalankan sebelum browser melukis ulang (*repaint*) layar.
+`useLayoutEffect` adalah versi [`useEffect`](/reference/react/useEffect) yang dijalankan sebelum peramban melukis ulang (*repaint*) layar.
 
 ```js
 useLayoutEffect(setup, dependencies?)
@@ -26,7 +26,7 @@ useLayoutEffect(setup, dependencies?)
 
 ### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum browser melukis ulang layar:
+Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum peramban melukis ulang layar:
 
 ```js
 import { useState, useRef, useLayoutEffect } from 'react';
@@ -65,15 +65,15 @@ function Tooltip() {
 
 * Efek **hanya berjalan di sisi klien**. Efek tidak berjalan ketika *server rendering*.
 
-* Kode di dalam `useLayoutEffect` dan semua pembaruan *state* yang dijadwalkan akan **menghalangi browser untuk melukis ulang layar.** Penggunaan yang berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
+* Kode di dalam `useLayoutEffect` dan semua pembaruan *state* yang dijadwalkan akan **menghalangi peramban untuk melukis ulang layar.** Penggunaan yang berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-### Mengukur tata letak sebelum browser melukis ulang layar {/*measuring-layout-before-the-browser-repaints-the-screen*/}
+### Mengukur tata letak sebelum peramban melukis ulang layar {/*measuring-layout-before-the-browser-repaints-the-screen*/}
 
-Sebagian besar komponen tidak perlu mengetahui posisi dan ukuran di layar untuk memutuskan apa yang harus dirender. Komponen hanya mengembalikan beberapa JSX. Selanjutnya, browser akan mengukur *tata letak* (posisi dan ukuran) dan melukis ulang layar
+Sebagian besar komponen tidak perlu mengetahui posisi dan ukuran di layar untuk memutuskan apa yang harus dirender. Komponen hanya mengembalikan beberapa JSX. Selanjutnya, peramban akan mengukur *tata letak* (posisi dan ukuran) dan melukis ulang layar
 
 Terkadang, itu tidak cukup. Bayangkan sebuah *tooltip* berada di sebelah elemen tertentu saat diarahkan (*hover*). Jika ruang mencukupi, posisi *tooltip* harus berada di atas elemen tersebut. Tetapi, jika tidak cukup, posisi *tooltip* harus berada di bawah. Untuk merender *tooltip* pada posisi akhir yang tepat, maka Anda harus mengetahui tingginya (yaitu, apakah muat berada di atas)
 
@@ -84,7 +84,7 @@ Untuk melakukan hal ini, Anda perlu merender dalam dua tahap:
 3. Merender *ulang tooltip* agar berada di posisi yang tepat.
 
 
-**Seluruh proses tersebut harus terjadi sebelum browser melukis ulang layar.** Anda tidak ingin pengguna untuk melihat *tooltip* bergerak. Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum browser melukis ulang layar:
+**Seluruh proses tersebut harus terjadi sebelum peramban melukis ulang layar.** Anda tidak ingin pengguna untuk melihat *tooltip* bergerak. Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum peramban melukis ulang layar:
 
 
 ```js {5-8}
@@ -107,7 +107,7 @@ Berikut adalah langkah-langkah cara kerja:
 2. React menempatkannya di DOM dan menjalankan kode di `useLayoutEffect`.
 3. `useLayoutEffect`[mengukur tinggi](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) konten `tooltip` dan akan segera memicu *re-render*.
 4. `Tooltip` dirender ulang dengan nilai `tooltipHeight` yang sebenarnya (sehingga *tooltip* berada di posisi yang benar).
-5. React memperbarui DOM dan akhirnya browser menampilkan *tooltip* tersebut.
+5. React memperbarui DOM dan akhirnya peramban menampilkan *tooltip* tersebut.
 
 Arahkan kursor ke tombol-tombol berikut dan perhatikan *tooltip*  menyesuaikan posisinya tergantung dari muat atau tidaknya ruang:
 
@@ -257,9 +257,9 @@ Perhatikan meskipun komponen `Tooltip` harus dirender dalam dua tahap (pertama, 
 
 <Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
 
-#### `useLayoutEffect` menghalangi browser untuk melukis ulang {/*uselayouteffect-blocks-the-browser-from-repainting*/}
+#### `useLayoutEffect` menghalangi peramban untuk melukis ulang {/*uselayouteffect-blocks-the-browser-from-repainting*/}
 
-React menjamin kode di dalam `useLayoutEffect` dan setiap pembaruan *state* yang dijadwalkan akan diproses **sebelum browser melukis ulang layar.**  Hal ini memungkinkan Anda untuk merender *tooltip*, mengukurnya, dan merender ulang kembali *tooltip* tersebut tanpa pengguna menyadari *render* awal tambahan. Dengan kata lain, `useLayoutEffect` menghalangi browser untuk melukis ulang
+React menjamin kode di dalam `useLayoutEffect` dan setiap pembaruan *state* yang dijadwalkan akan diproses **sebelum peramban melukis ulang layar.**  Hal ini memungkinkan Anda untuk merender *tooltip*, mengukurnya, dan merender ulang kembali *tooltip* tersebut tanpa pengguna menyadari *render* awal tambahan. Dengan kata lain, `useLayoutEffect` menghalangi peramban untuk melukis ulang
 
 <Sandpack>
 
@@ -404,7 +404,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Solution />
 
-#### `useEffect` tidak menghalangi browser {/*useeffect-does-not-block-the-browser*/}
+#### `useEffect` tidak menghalangi peramban {/*useeffect-does-not-block-the-browser*/}
 
 Berikut merupakan contoh identik menggunakan [`useEffect`](/reference/react/useEffect) daripada `useLayoutEffect`. Jika Anda menggunakan perangkat yang lebih lambat, mungkin Anda akan melihat bahwa terkadang *tooltip* "berkedip" dan secara singkat Anda melihat posisi awalnya sebelum diperbaiki.
 
@@ -549,7 +549,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Agar *bug* mudah direproduksi, versi berikut secara artifisial menambahkan delay saat merender. React akan membiarkan browser melukis ulang layar sebelum memproses pembaruan *state* di dalam `useEffect`. Hasilnya, tooltip berkedip:
+Untuk mempermudah reproduski *bug* ini, versi berikut secara artifisial menambahkan delay saat merender. React akan membiarkan peramban melukis ulang layar sebelum memproses pembaruan *state* di dalam `useEffect`. Hasilnya, tooltip berkedip:
 
 <Sandpack>
 
@@ -706,7 +706,7 @@ Ubah contoh berikut menjadi `useLayoutEffect` dan perhatikan bahwa proses meluki
 
 <Note>
 
-Proses merender dalam dua tahap dan memblokir browser akan menurunkan kinerja. Cobalah untuk menghindari ini sebisa mungkin.
+Proses merender dalam dua tahap dan memblokir peramban akan menurunkan kinerja. Cobalah untuk menghindari ini sebisa mungkin.
 
 </Note>
 
@@ -719,7 +719,7 @@ Proses merender dalam dua tahap dan memblokir browser akan menurunkan kinerja. C
 Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan informasi tata letak untuk *merender*:](#measuring-layout-before-the-browser-repaints-the-screen)
 
 1. Merender konten awal.
-2. Mengukur tata letak *sebelum browser melukis ulang layar.*
+2. Mengukur tata letak *sebelum peramban melukis ulang layar.*
 3. Merender konten akhir menggunakan informasi tata letak yang telah dibaca.
 
 When you or your framework uses [server rendering](/reference/react-dom/server), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
