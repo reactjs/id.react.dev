@@ -1,19 +1,19 @@
 ---
-title: Preserving and Resetting State
+title: Mempertahankan dan Mengatur Ulang State
 ---
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
+*State* diisolasi antar komponen. React melacak *state* mana yang dimiliki oleh komponen mana berdasarkan tempatnya di pohon antarmuka pengguna (UI). Anda dapat mengontrol kapan harus mempertahankan *state* dan kapan harus mengatur ulang di antara render ulang (re-*render*).
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* When React chooses to preserve or reset the state
-* How to force React to reset component's state
-* How keys and types affect whether the state is preserved
+* Bagaimana React "melihat" struktur komponen
+* Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
+* Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
+* Bagaimana *keys* dan *types* mempengaruhi apakah *state* dipertahankan
 
 </YouWillLearn>
 
