@@ -1,40 +1,38 @@
 ---
-title: "React DOM Components"
+title: "Komponen DOM React"
 ---
 
 <Intro>
-
-React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) components.
-
+React mendukung semua komponen [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) dan [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) bawaan peramban.
 </Intro>
 
 ---
 
-## Common components {/*common-components*/}
+## Komponen-Komponen Umum {/*common-components*/}
 
-All of the built-in browser components support some props and events.
+Semua komponen bawaan peramban mendukung beberapa *props* dan *events*.
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [Komponen-Komponen Umum (contoh: `<div>`)](/reference/react-dom/components/common)
 
-This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
+Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`. 
 
 ---
 
-## Form components {/*form-components*/}
+## Komponen *Form* {/*form-components*/}
 
-These built-in browser components accept user input:
+Komponen-komponen bawaan peramban ini menerima masukan dari pengguna:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
 
-They are special in React because passing the `value` prop to them makes them *[controlled.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
+Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `value` ke dalamnya, akan membuatnya menjadi *[controlled component.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
 
 ---
 
-## All HTML components {/*all-html-components*/}
+## Semua komponen HTML {/*all-html-components*/}
 
-React supports all built-in browser HTML components. This includes:
+React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -140,38 +138,39 @@ React supports all built-in browser HTML components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing HTML to JSX with an [online converter.](https://transform.tools/html-to-jsx)
+Serupa dengan [standar panduan DOM,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React menggunakan konvensi *`camelCase`* untuk penamaan *props*. Sebagai contoh, Anda disarankan menulis `tabIndex` ketimbang `tabindex`. Anda dapat mengubah HTML yang telah ada menjadi JSX menggunakan [*online converter.*](https://transform.tools/html-to-jsx)
 
 </Note>
 
 ---
 
-### Custom HTML elements {/*custom-html-elements*/}
+### Elemen HTML *Custom* {/*custom-html-elements*/}
 
-If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) In React, rendering custom elements works differently from rendering built-in browser tags:
+Jika Anda *render* sebuah *tag* menggunakan tanda hubung, seperti `<my-element>`, React akan mengasumsikan Anda untuk *render* [elemen HTML *custom*.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) Pada React, cara kerja *rendering* pada elemen *custom* akan berbeda dengan *rendering* pada *tags* bawaan peramban:
 
-- All custom element props are serialized to strings and are always set using attributes.
-- Custom elements accept `class` rather than `className`, and `for` rather than `htmlFor`.
+- Semua props dari *custom element* akan diserialisasikan menjadi *strings* dan selalu disetel menggunakan *attributes*.
+- *Custom elements* menerima `class` ketimbang `className`, dan `for` ketimbang `htmlFor`.
 
-If you render a built-in browser HTML element with an [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) attribute, it will also be treated as a custom element.
+Jika Anda `render` sebuah elemen HTML bawaan peramban dengan atribut [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is), maka itu akan diperlakukan sebagai *custom element*.
+
 
 <Note>
 
-[A future version of React will include more comprehensive support for custom elements.](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)
+[Versi React mendatang akan menambahkan lebih banyak dukungan komprehensif untuk *custom elements*.](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)
 
-You can try it by upgrading React packages to the most recent experimental version:
+Anda dapat mencobanya dengan memperbarui *packages* React ke versi eksperimental terbaru:
 
 - `react@experimental`
 - `react-dom@experimental`
 
-Experimental versions of React may contain bugs. Don't use them in production.
+Versi eksperimental mungkin mengandung *bugs*. Jangan digunakan di *production*.
 
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## Semua komponen SVG {/*all-svg-components*/}
 
-React supports all built-in browser SVG components. This includes:
+React mendukung semua komponen SVG bawaan peramban. Ini termasuk:
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)
@@ -242,20 +241,20 @@ React supports all built-in browser SVG components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing SVG to JSX with an [online converter.](https://transform.tools/)
+Serupa dengan [standar panduan DOM,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React menggunakan konvensi `camelCase` untuk penamaan *props*. Sebagai contoh, Anda disarankan untuk menuliskan `tabIndex` ketimbang `tabindex`. Anda juga dapat mengubah SVG yang telah ada ke JSX menggunakan [*online converter.*](https://transform.tools/)
 
-Namespaced attributes also have to be written without the colon:
+Atribut *namespaced* juga harus dituliskan tanpa tanda titik dua:
 
-* `xlink:actuate` becomes `xlinkActuate`.
-* `xlink:arcrole` becomes `xlinkArcrole`.
-* `xlink:href` becomes `xlinkHref`.
-* `xlink:role` becomes `xlinkRole`.
-* `xlink:show` becomes `xlinkShow`.
-* `xlink:title` becomes `xlinkTitle`.
-* `xlink:type` becomes `xlinkType`.
-* `xml:base` becomes `xmlBase`.
-* `xml:lang` becomes `xmlLang`.
-* `xml:space` becomes `xmlSpace`.
-* `xmlns:xlink` becomes `xmlnsXlink`.
+* `xlink:actuate` menjadi `xlinkActuate`.
+* `xlink:arcrole` menjadi `xlinkArcrole`.
+* `xlink:href` menjadi `xlinkHref`.
+* `xlink:role` menjadi `xlinkRole`.
+* `xlink:show` menjadi `xlinkShow`.
+* `xlink:title` menjadi `xlinkTitle`.
+* `xlink:type` menjadi `xlinkType`.
+* `xml:base` menjadi `xmlBase`.
+* `xml:lang` menjadi `xmlLang`.
+* `xml:space` menjadi `xmlSpace`.
+* `xmlns:xlink` menjadi `xmlnsXlink`.
 
 </Note>
