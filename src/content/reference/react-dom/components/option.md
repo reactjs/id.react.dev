@@ -4,12 +4,14 @@ title: "<option>"
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+
+[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk merender opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
+
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="sebuahOpsi">Sebuah opsi</option>
+  <option value="opsiLain">Opsi lain</option>
 </select>
 ```
 
@@ -19,44 +21,45 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<option>` {/*option*/}
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk merender opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="sebuahOpsi">Sebuah opsi</option>
+  <option value="opsiLain">Opsi lain</option>
 </select>
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lebih banyak di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
-`<option>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<option>` mendukung semua [props element umum.](/reference/react-dom/components/common#props)
 
-Additionally, `<option>` supports these props:
+Sebagai tambahan, `<option>` mendukung *props* ini:
 
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
-* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): Sebuah *boolean*. Jika `true`, opsi akan tidak dapat dipilih dan akan tampak redup.
+* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): Sebuah *string*. Menentukan arti dari opsi. Jika tidak ditentukan, teks di dalam opsi akan digunakan.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): Nilai yang akan digunakan [ketika mengirimkan induk `<select>` dalam *form*](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) jika opsi ini dipilih.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select.
+* React tidak mendukung atribut `selected` dalam `<option>`. Sebagai gantinya, kirimkan `value` dari opsi ke elemen induk [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) untuk sebuah _uncontrolled_ _select box_, atau [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) untuk _controlled_ _select_.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Menampilkan kotak select dengan opsi {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+Render sebuah `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilihan. Beri setiap `<option>` sebuah `value` yang merepresentasikan data yang akan dikirim dengan formulir.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[Baca lebih lanjut mengenai menampilkan `<select>` dengan daftar dari komponen `<option>`.](/reference/react-dom/components/select)
+
 
 <Sandpack>
 
@@ -64,11 +67,11 @@ Render a `<select>` with a list of `<option>` components inside to display a sel
 export default function FruitPicker() {
   return (
     <label>
-      Pick a fruit:
+      Pilih buah:
       <select name="selectedFruit">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="orange">Orange</option>
+        <option value="apel">Apel</option>
+        <option value="pisang">Pisang</option>
+        <option value="jeruk">Jeruk</option>
       </select>
     </label>
   );
@@ -80,4 +83,3 @@ select { margin: 5px; }
 ```
 
 </Sandpack>  
-
