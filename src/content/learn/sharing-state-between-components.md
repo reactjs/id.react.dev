@@ -1,5 +1,6 @@
 ---
-title: Sharing State Between Components
+title: Berbagi State Antar Komponen
+
 ---
 
 <Intro>
