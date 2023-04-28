@@ -1,50 +1,49 @@
 ---
-title: 'Referencing Values with Refs'
+title: 'Mereferensikan Nilai dengan Refs'
 ---
 
 <Intro>
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*.
+Ketika Anda ingin sebuah komponen untuk "mengingat" beberapa informasi, tetapi Anda tidak mau informasi tersebut [memicu _render_ baru](/learn/render-and-commit), Anda dapat menggunakan _ref_.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add a ref to your component
-- How to update a ref's value
-- How refs are different from state
-- How to use refs safely
+- Bagaimana cara menambahkan _ref_ pada komponen Anda
+- Bagaimana cara memperbarui nilai _ref_
+- Perbedaan antara _refs_ dan _state_
+- Bagaimana cara menggunakan _refs_ dengan aman
 
 </YouWillLearn>
 
-## Adding a ref to your component {/*adding-a-ref-to-your-component*/}
+## Menambahkan _ref_ pada komponen Anda {/*adding-a-ref-to-your-component*/}
 
-You can add a ref to your component by importing the `useRef` Hook from React:
+Anda dapat menambahkan sebuah _ref_ ke komponen dengan mengimpor `useRef` _Hook_ dari React:
 
 ```js
 import { useRef } from 'react';
 ```
 
-Inside your component, call the `useRef` Hook and pass the initial value that you want to reference as the only argument. For example, here is a ref to the value `0`:
+Di dalam komponen Anda, panggil `useRef` _Hook_ dan berikan nilai awal yang Anda ingin referensikan sebagai satu-satunya argumen. Misalnya, berikut adalah _ref_ yang mempunyai nilai `0`:
 
 ```js
 const ref = useRef(0);
 ```
 
-`useRef` returns an object like this:
+`useRef` mengembalikan sebuah objek seperti:
 
 ```js
 { 
-  current: 0 // The value you passed to useRef
+  current: 0 // Nilai yang Anda berikan ke useRef
 }
 ```
 
-<Illustration src="/images/docs/illustrations/i_ref.png" alt="An arrow with 'current' written on it stuffed into a pocket with 'ref' written on it." />
+<Illustration src="/images/docs/illustrations/i_ref.png" alt="Sebuah panah dengan tulisan 'current' dimasukkan ke dalam saku dengan tulisan 'ref'." />
 
-You can access the current value of that ref through the `ref.current` property. This value is intentionally mutable, meaning you can both read and write to it. It's like a secret pocket of your component that React doesn't track. (This is what makes it an "escape hatch" from React's one-way data flow--more on that below!)
+Anda dapat mengakses nilai saat ini dari _ref_ tersebut melalui properti `ref.current`. Nilai ini bersifat _mutable_ (dapat diubah), yang artinya Anda dapat membaca dan mengubah nilainya. Ini seperti kantong rahasia dari komponen Anda yang tidak dilacak oleh React. (Inilah yang membuatnya menjadi "jalan keluar" dari arus data satu arah pada React - lebih lanjut tentang hal ini akan dijelaskan di bawah!)
 
-Here, a button will increment `ref.current` on every click:
-
+Di sini, tombol akan menambahkan nilai dari `ref.current` setiap kali diklik:
 <Sandpack>
 
 ```js
@@ -55,12 +54,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Anda mengeklik ' + ref.current + ' kali!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Klik saya!
     </button>
   );
 }
@@ -68,20 +67,20 @@ export default function Counter() {
 
 </Sandpack>
 
-The ref points to a number, but, like [state](/learn/state-a-components-memory), you could point to anything: a string, an object, or even a function. Unlike state, ref is a plain JavaScript object with the `current` property that you can read and modify.
+_Ref_ tersebut mengacu pada sebuah angka, tetapi, seperti [_state_](/learn/state-a-components-memory), Anda juga dapat mengacu pada tipe data apapun: sebuah _string_, objek, atau bahkan sebuah fungsi. Berbeda dengan _state_, _ref_ adalah sebuah objek JavaScript biasa dengan properti `current` yang dapat Anda baca dan ubah nilainya.
 
-Note that **the component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not!
+Perhatikan bahwa **komponen tidak rerender setiap kali nilai pada _ref_ ditambahkan.** Seperti _state_, nilai dari _refs_ akan tetap disimpan atau dipertahankan oleh React saat rerender terjadi. Namun mengubah _state_ akan memicu rerender pada komponen, sementara _ref_ tidak akan melakukannya!
 
-## Example: building a stopwatch {/*example-building-a-stopwatch*/}
+## Contoh: Membangun _stopwatch_ {/*example-building-a-stopwatch*/}
 
-You can combine refs and state in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
+Anda dapat menggabungkan _refs_ dan _state_ dalam satu komponen. Sebagai contoh, mari buat _stopwatch_ yang dapat dijalankan atau dihentikan oleh pengguna dengan menekan tombol. Untuk menampilkan berapa waktu yang telah berlalu sejak pengguna menekan tombol "Mulai", Anda perlu melacak kapan tombol "Mulai" ditekan dan waktu saat ini. **Informasi ini digunakan untuk _rendering_, sehingga Anda akan menyimpannya dalam _state_:**
 
 ```js
 const [startTime, setStartTime] = useState(null);
 const [now, setNow] = useState(null);
 ```
 
-When the user presses "Start", you'll use [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval) in order to update the time every 10 milliseconds:
+Ketika pengguna menekan "Mulai", Anda akan menggunakan [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval) untuk memperbarui waktu setiap 10 milidetik:
 
 <Sandpack>
 
@@ -93,12 +92,12 @@ export default function Stopwatch() {
   const [now, setNow] = useState(null);
 
   function handleStart() {
-    // Start counting.
+    // Mulai menghitung
     setStartTime(Date.now());
     setNow(Date.now());
 
     setInterval(() => {
-      // Update the current time every 10ms.
+      // Memperbarui waktu saat ini setiap 10ms.
       setNow(Date.now());
     }, 10);
   }
@@ -110,9 +109,9 @@ export default function Stopwatch() {
 
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+      <h1>Waktu yang telah berlalu: {secondsPassed.toFixed(3)}</h1>
       <button onClick={handleStart}>
-        Start
+        Mulai
       </button>
     </>
   );
@@ -121,7 +120,7 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When the "Stop" button is pressed, you need to cancel the existing interval so that it stops updating the `now` state variable. You can do this by calling [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), but you need to give it the interval ID that was previously returned by the `setInterval` call when the user pressed Start. You need to keep the interval ID somewhere. **Since the interval ID is not used for rendering, you can keep it in a ref:**
+Ketika tombol "Berhenti" ditekan, Anda perlu membatalkan _interval_ yang ada sehingga berhenti memperbarui nilai dari variabel _state_ `now`. Anda dapat melakukannya dengan memanggil [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), tetapi Anda harus memberikan _interval ID_ yang sebelumnya dikembalikan oleh pemanggilan `setInterval` saat pengguna menekan "Mulai". Anda perlu menyimpan _interval ID_ tersebut di suatu tempat. **Karena _interval ID_ tidak digunakan untuk _rendering_, Anda dapat menyimpannya dalam _ref_**:
 
 <Sandpack>
 
@@ -154,12 +153,12 @@ export default function Stopwatch() {
 
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+      <h1>Waktu yang telah berlalu: {secondsPassed.toFixed(3)}</h1>
       <button onClick={handleStart}>
-        Start
+        Mulai
       </button>
       <button onClick={handleStop}>
-        Stop
+        Berhenti
       </button>
     </>
   );
@@ -168,20 +167,20 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When a piece of information is used for rendering, keep it in state. When a piece of information is only needed by event handlers and changing it doesn't require a re-render, using a ref may be more efficient.
+Ketika sebuah informasi digunakan untuk _rendering_, simpanlah di dalam _state_. Ketika sebuah informasi hanya dibutuhkan oleh _event handler_ dan perubahan informasi tersebut tidak memerlukan _rerender_, menggunakan _ref_ mungkin akan lebih efisien.
 
-## Differences between refs and state {/*differences-between-refs-and-state*/}
+## Perbedaan antara _refs_ dan _state_ {/*differences-between-refs-and-state*/}
 
-Perhaps you're thinking refs seem less "strict" than state—you can mutate them instead of always having to use a state setting function, for instance. But in most cases, you'll want to use state. Refs are an "escape hatch" you won't need often. Here's how state and refs compare:
+Mungkin Anda berpikir bahwa _ref_ terlihat kurang "ketat" dibandingkan dengan _state_ - Anda dapat memutasi _ref_ daripada selalu harus menggunakan fungsi pengaturan _state_, misalnya. Tetapi dalam kebanyakan kasus, Anda akan ingin menggunakan _state_. _Ref_ adalah "jalan keluar" yang tidak sering Anda butuhkan. Berikut adalah perbandingan antara _state_ dan _ref_:
 
-| refs                                                                                  | state                                                                                                                     |
+| _refs_                                                                                  | _state_                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `useRef(initialValue)` returns `{ current: initialValue }`                            | `useState(initialValue)` returns the current value of a state variable and a state setter function ( `[value, setValue]`) |
-| Doesn't trigger re-render when you change it.                                         | Triggers re-render when you change it.                                                                                    |
-| Mutable—you can modify and update `current`'s value outside of the rendering process. | "Immutable"—you must use the state setting function to modify state variables to queue a re-render.                       |
-| You shouldn't read (or write) the `current` value during rendering. | You can read state at any time. However, each render has its own [snapshot](/learn/state-as-a-snapshot) of state which does not change.
+| `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah variabel state dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
+| Tidak memicu _rerender_ ketika Anda mengubahnya.                                         | Memicu _rerender_ ketika Anda mengubahnya.                                                                                    |
+| _Mutable_—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | _Immutable_—Anda harus menggunakan fungsi pengatur state untuk memodifikasi variabel state agar terjadwal ulang (_rerender_).                       |
+| Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses _rendering_. | Anda dapat membaca state kapan saja. Namun, setiap _render_ state memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
 
-Here is a counter button that's implemented with state:
+Berikut adalah tombol penghitung yang diimplementasikan dengan state:
 
 <Sandpack>
 
@@ -197,7 +196,7 @@ export default function Counter() {
 
   return (
     <button onClick={handleClick}>
-      You clicked {count} times
+      Anda mengeklik {count} kali
     </button>
   );
 }
@@ -205,9 +204,9 @@ export default function Counter() {
 
 </Sandpack>
 
-Because the `count` value is displayed, it makes sense to use a state value for it. When the counter's value is set with `setCount()`, React re-renders the component and the screen updates to reflect the new count.
+Karena nilai `count` ditampilkan, maka masuk akal untuk menggunakan nilai _state_ untuk hal tersebut. Ketika nilai hitung diatur dengan `setCount()`, React akan _merender_ ulang komponen dan layar akan diperbarui untuk mencerminkan hitungan baru.
 
-If you tried to implement this with a ref, React would never re-render the component, so you'd never see the count change! See how clicking this button **does not update its text**:
+Jika Anda mencoba mengimplementasikan ini dengan menggunakan _ref_, React tidak akan pernah melakukan _rerender_ pada komponen, sehingga Anda tidak akan pernah melihat perubahan hitungan! Lihat bagaimana mengeklik tombol ini **tidak memperbarui teks-nya**:
 
 <Sandpack>
 
@@ -218,13 +217,13 @@ export default function Counter() {
   let countRef = useRef(0);
 
   function handleClick() {
-    // This doesn't re-render the component!
+    // Hal ini tidak memicu rerender pada komponen
     countRef.current = countRef.current + 1;
   }
 
   return (
     <button onClick={handleClick}>
-      You clicked {countRef.current} times
+      Anda mengeklik {countRef.current} kali
     </button>
   );
 }
@@ -232,68 +231,69 @@ export default function Counter() {
 
 </Sandpack>
 
-This is why reading `ref.current` during render leads to unreliable code. If you need that, use state instead.
+Inilah mengapa membaca `ref.current` selama proses `render` akan menghasilkan kode yang tidak dapat diandalkan. Jika kamu membutuhkan akses nilai pada saat proses render, lebih baik gunakan _state_.
 
 <DeepDive>
 
-#### How does useRef work inside? {/*how-does-use-ref-work-inside*/}
+#### Bagaimana cara useRef bekerja di dalamnya? {/*how-does-use-ref-work-inside*/}
 
-Although both `useState` and `useRef` are provided by React, in principle `useRef` could be implemented _on top of_ `useState`. You can imagine that inside of React, `useRef` is implemented like this:
+Meskipun kedua `useState` dan `useRef` disediakan oleh React, pada prinsipnya useRef dapat diimplementasikan di atas useState. Anda dapat membayangkan bahwa di dalam React, useRef diimplementasikan seperti ini:
 
 ```js
-// Inside of React
+// Di dalam React
 function useRef(initialValue) {
   const [ref, unused] = useState({ current: initialValue });
   return ref;
 }
 ```
 
-During the first render, `useRef` returns `{ current: initialValue }`. This object is stored by React, so during the next render the same object will be returned. Note how the state setter is unused in this example. It is unnecessary because `useRef` always needs to return the same object!
+Pada saat render pertama kali, `useRef` akan mengembalikan nilai `{ current: initialValue }`. Objek ini akan disimpan oleh React, sehingga pada saat render berikutnya, objek yang sama akan dikembalikan. Perhatikan bahwa dalam contoh ini, pengatur dari _state_ tidak digunakan. Pengatur _state_ tidak diperlukan karena `useRef` selalu harus mengembalikan objek yang sama!
 
-React provides a built-in version of `useRef` because it is common enough in practice. But you can think of it as a regular state variable without a setter. If you're familiar with object-oriented programming, refs might remind you of instance fields--but instead of `this.something` you write `somethingRef.current`.
+React menyediakan versi bawaan dari `useRef` karena cukup umum dalam praktiknya. Namun, Anda bisa memikirkannya sebagai variabel state biasa tanpa pengatur. Jika Anda akrab dengan pemrograman berorientasi objek, _ref_ mungkin mengingatkan Anda pada _instance fields_--tetapi bukannya `this.something`, Anda menulis `somethingRef.current`.
 
 </DeepDive>
 
-## When to use refs {/*when-to-use-refs*/}
+## Kapan untuk menggunakan _refs_ {/*when-to-use-refs*/}
 
-Typically, you will use a ref when your component needs to "step outside" React and communicate with external APIs—often a browser API that won't impact the appearance of the component. Here are a few of these rare situations:
+Biasanya, Anda akan menggunakan _ref_ ketika komponen Anda perlu "keluar" dari React dan berkomunikasi dengan _API_ eksternal - seringkali _API_ peramban yang tidak mempengaruhi tampilan komponen. Berikut adalah beberapa situasi langka di mana Anda bisa menggunakan _refs_:
 
-- Storing [timeout IDs](https://developer.mozilla.org/docs/Web/API/setTimeout)
-- Storing and manipulating [DOM elements](https://developer.mozilla.org/docs/Web/API/Element), which we cover on [the next page](/learn/manipulating-the-dom-with-refs)
-- Storing other objects that aren't necessary to calculate the JSX.
+- Menyimpan [_timeout IDs_](https://developer.mozilla.org/docs/Web/API/setTimeout)
+- Menyimpan dan memanipulasi [elemen DOM](https://developer.mozilla.org/docs/Web/API/Element), yang akan dibahas pada [halaman berikutnya](/learn/manipulating-the-dom-with-refs)
+- Menyimpan objek lain yang tidak diperlukan untuk menghitung JSX.
 
-If your component needs to store some value, but it doesn't impact the rendering logic, choose refs.
+Jika komponen Anda perlu menyimpan beberapa nilai, tetapi tidak mempengaruhi logika _rendering_, pilihlah penggunaan _refs_.
 
-## Best practices for refs {/*best-practices-for-refs*/}
+## Praktik terbaik menggunakan _refs_ {/*best-practices-for-refs*/}
 
-Following these principles will make your components more predictable:
+Mengikuti prinsip-prinsip ini akan membuat komponen Anda lebih dapat diprediksi:
 
-- **Treat refs as an escape hatch.** Refs are useful when you work with external systems or browser APIs. If much of your application logic and data flow relies on refs, you might want to rethink your approach.
-- **Don't read or write `ref.current` during rendering.** If some information is needed during rendering, use [state](/learn/state-a-components-memory) instead. Since React doesn't know when `ref.current` changes, even reading it while rendering makes your component's behavior difficult to predict. (The only exception to this is code like `if (!ref.current) ref.current = new Thing()` which only sets the ref once during the first render.)
+- **Gunakan _refs_ sebagai "jalan keluar"**. _Refs_ berguna ketika Anda bekerja dengan sistem eksternal atau _API_ peramban. Jika sebagian besar logika aplikasi dan aliran data bergantung pada _refs_, mungkin perlu untuk mempertimbangkan kembali pendekatan yang digunakan.
 
-Limitations of React state don't apply to refs. For example, state acts like a [snapshot for every render](/learn/state-as-a-snapshot) and [doesn't update synchronously.](/learn/queueing-a-series-of-state-updates) But when you mutate the current value of a ref, it changes immediately:
+- **Jangan membaca atau menulis `ref.current` selama proses rendering**. Jika beberapa informasi dibutuhkan selama _rendering_, gunakan [state](/learn/state-a-components-memory) sebagai gantinya. Karena React tidak mengetahui perubahan pada `ref.current`, bahkan membacanya selama _rendering_ membuat perilaku komponen sulit diprediksi. (Satu-satunya pengecualian untuk ini adalah kode seperti `if (!ref.current) ref.current = new Thing()` yang hanya mengatur _ref_ sekali selama _render_ pertama.)
+
+Keterbatasan dari _state_ di React tidak berlaku pada _refs_. Sebagai contoh, _state_ bertindak seperti [snapshot untuk setiap render](/learn/state-as-a-snapshot) dan [tidak memperbarui sinkron secara langsung](/learn/queueing-a-series-of-state-updates). Namun ketika Anda memutasi nilai saat ini dari sebuah _ref_, perubahannya langsung terjadi:
 
 ```js
 ref.current = 5;
 console.log(ref.current); // 5
 ```
 
-This is because **the ref itself is a regular JavaScript object,** and so it behaves like one.
+Ini karena **_ref_ itu sendiri adalah objek JavaScript biasa**, dan karena itu berperilaku seperti objek biasa.
 
-You also don't need to worry about [avoiding mutation](/learn/updating-objects-in-state) when you work with a ref. As long as the object you're mutating isn't used for rendering, React doesn't care what you do with the ref or its contents.
+Anda juga tidak perlu khawatir tentang [menghindari mutasi](/learn/updating-objects-in-state) saat bekerja dengan _ref_. Selama objek yang Anda ubah tidak digunakan untuk _rendering_, React tidak peduli apa yang Anda lakukan dengan _ref_ atau isinya.
 
-## Refs and the DOM {/*refs-and-the-dom*/}
+## _Refs_ dan _DOM_ {/*refs-and-the-dom*/}
 
-You can point a ref to any value. However, the most common use case for a ref is to access a DOM element. For example, this is handy if you want to focus an input programmatically. When you pass a ref to a `ref` attribute in JSX, like `<div ref={myRef}>`, React will put the corresponding DOM element into `myRef.current`. You can read more about this in [Manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
+Anda dapat memberikan nilai apapun kepada _ref_. Namun, penggunaan _ref_ yang paling umum adalah untuk mengakses sebuah elemen _DOM_. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah _ref_ ke dalam atribut `ref` di _JSX_, seperti `<div ref={myRef}>`, React akan menempatkan elemen _DOM_ yang sesuai ke dalam `myRef.current`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
 
 <Recap>
 
-- Refs are an escape hatch to hold onto values that aren't used for rendering. You won't need them often.
-- A ref is a plain JavaScript object with a single property called `current`, which you can read or set.
-- You can ask React to give you a ref by calling the `useRef` Hook.
-- Like state, refs let you retain information between re-renders of a component.
-- Unlike state, setting the ref's `current` value does not trigger a re-render.
-- Don't read or write `ref.current` during rendering. This makes your component hard to predict.
+- _Ref_ adalah "jalan keluar" untuk menyimpan nilai yang tidak digunakan untuk merender. Anda tidak akan membutuhkannya terlalu sering.
+- _Ref_ adalah objek JavaScript biasa dengan satu properti yang disebut `current`, yang dapat Anda baca atau mengaturnya.
+- Anda dapat meminta React untuk memberikan Anda sebuah _ref_ dengan memanggil Hook `useRef`.
+- Seperti _state_, _ref_ memungkinkan Anda mempertahankan informasi antara _rerenders_ dari komponen.
+- Tidak seperti _state_, mengatur nilai `current` dari _ref_ tidak memicu _rerender_.
+- Jangan membaca atau mengubah `ref.current` selama _merender_. Hal ini membuat perilaku komponen Anda sulit diprediksi.
 
 </Recap>
 
@@ -301,13 +301,13 @@ You can point a ref to any value. However, the most common use case for a ref is
 
 <Challenges>
 
-#### Fix a broken chat input {/*fix-a-broken-chat-input*/}
+#### Memperbaiki _chat input_ yang rusak {/*fix-a-broken-chat-input*/}
 
-Type a message and click "Send". You will notice there is a three second delay before you see the "Sent!" alert. During this delay, you can see an "Undo" button. Click it. This "Undo" button is supposed to stop the "Sent!" message from appearing. It does this by calling [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) for the timeout ID saved during `handleSend`. However, even after "Undo" is clicked, the "Sent!" message still appears. Find why it doesn't work, and fix it.
+Ketikkan pesan dan klik "Kirim". Anda akan melihat ada penundaan tiga detik sebelum Anda melihat _alert_ "Terkirim!". Selama penundaan ini, Anda dapat melihat tombol "_Undo_". Klik tombol "_Undo_". Tombol "_Undo_" ini seharusnya menghentikan pesan "Terkirim!" untuk muncul. Ini dilakukan dengan memanggil [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) untuk ID waktu tunggu yang disimpan selama `handleSend`. Namun, bahkan setelah "_Undo_" diklik, pesan "Terkirim!" tetap muncul. Temukan mengapa ini tidak berfungsi dan perbaikilah.
 
 <Hint>
 
-Regular variables like `let timeoutID` don't "survive" between re-renders because every render runs your component (and initializes its variables) from scratch. Should you keep the timeout ID somewhere else?
+Variabel biasa seperti `let timeoutID` tidak "bertahan" antara _rerender_ karena setiap _rerender_ akan menjalankan komponen dari awal (dan menginisialisasi variabel-variabelnya) kembali. Apakah Anda harus menyimpan _timeout ID_ di tempat lain?
 
 </Hint>
 
@@ -324,7 +324,7 @@ export default function Chat() {
   function handleSend() {
     setIsSending(true);
     timeoutID = setTimeout(() => {
-      alert('Sent!');
+      alert('Terkirim!');
       setIsSending(false);
     }, 3000);
   }
@@ -344,7 +344,7 @@ export default function Chat() {
       <button
         disabled={isSending}
         onClick={handleSend}>
-        {isSending ? 'Sending...' : 'Send'}
+        {isSending ? 'Mengirim...' : 'Kirim'}
       </button>
       {isSending &&
         <button onClick={handleUndo}>
@@ -360,7 +360,7 @@ export default function Chat() {
 
 <Solution>
 
-Whenever your component re-renders (such as when you set state), all local variables get initialized from scratch. This is why you can't save the timeout ID in a local variable like `timeoutID` and then expect another event handler to "see" it in the future. Instead, store it in a ref, which React will preserve between renders.
+Setiap kali komponen Anda _dirender_ ulang (seperti saat Anda mengatur _state_), semua variabel lokal akan diinisialisasi dari awal. Inilah sebabnya mengapa Anda tidak dapat menyimpan _timeout ID_ dalam variabel lokal seperti `timeoutID` dan kemudian mengharapkan `event handler` lainnya untuk "melihat"nya di masa depan. Sebaliknya, simpanlah _timeout ID_ di dalam sebuah _ref_, yang akan dipertahankan oleh React antara _render_.
 
 <Sandpack>
 
@@ -375,7 +375,7 @@ export default function Chat() {
   function handleSend() {
     setIsSending(true);
     timeoutRef.current = setTimeout(() => {
-      alert('Sent!');
+      alert('Terkirim!');
       setIsSending(false);
     }, 3000);
   }
@@ -395,7 +395,7 @@ export default function Chat() {
       <button
         disabled={isSending}
         onClick={handleSend}>
-        {isSending ? 'Sending...' : 'Send'}
+        {isSending ? 'Mengirim...' : 'Kirim'}
       </button>
       {isSending &&
         <button onClick={handleUndo}>
@@ -412,9 +412,9 @@ export default function Chat() {
 </Solution>
 
 
-#### Fix a component failing to re-render {/*fix-a-component-failing-to-re-render*/}
+#### Perbaiki komponen yang gagal untuk _dirender_ kembali {/*fix-a-component-failing-to-re-render*/}
 
-This button is supposed to toggle between showing "On" and "Off". However, it always shows "Off". What is wrong with this code? Fix it.
+Tombol ini seharusnya beralih antara menunjukkan "Nyala" dan "Mati". Namun, selalu menunjukkan "Mati". Apa yang salah dengan kode ini? Perbaiki.
 
 <Sandpack>
 
@@ -428,7 +428,7 @@ export default function Toggle() {
     <button onClick={() => {
       isOnRef.current = !isOnRef.current;
     }}>
-      {isOnRef.current ? 'On' : 'Off'}
+      {isOnRef.current ? 'Nyala' : 'Mati'}
     </button>
   );
 }
@@ -438,7 +438,7 @@ export default function Toggle() {
 
 <Solution>
 
-In this example, the current value of a ref is used to calculate the rendering output: `{isOnRef.current ? 'On' : 'Off'}`. This is a sign that this information should not be in a ref, and should have instead been put in state. To fix it, remove the ref and use state instead:
+Dalam contoh ini, nilai saat ini dari sebuah _ref_ digunakan untuk menghitung output _rendering_: `{isOnRef.current ? 'Nyala' : 'Mati'}`. Ini menunjukkan bahwa informasi ini seharusnya tidak berada dalam sebuah _ref_, dan seharusnya disimpan dalam _state_. Untuk memperbaikinya, hapus _ref_ dan gunakan state sebagai gantinya:
 
 <Sandpack>
 
@@ -452,7 +452,7 @@ export default function Toggle() {
     <button onClick={() => {
       setIsOn(!isOn);
     }}>
-      {isOn ? 'On' : 'Off'}
+      {isOn ? 'Nyala' : 'Mati'}
     </button>
   );
 }
@@ -462,17 +462,17 @@ export default function Toggle() {
 
 </Solution>
 
-#### Fix debouncing {/*fix-debouncing*/}
+#### Perbaiki _debouncing_ {/*fix-debouncing*/}
 
-In this example, all button click handlers are ["debounced".](https://redd.one/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
+Pada contoh ini, semua penangan klik tombol di-_debounce_. Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik _setelah_ Anda berhenti mengeklik. _Debouncing_ memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
 
-This example works, but not quite as intended. The buttons are not independent. To see the problem, click one of the buttons, and then immediately click another button. You'd expect that after a delay, you would see both button's messages. But only the last button's message shows up. The first button's message gets lost.
+Contoh ini berfungsi, tetapi tidak sepenuhnya seperti yang dimaksudkan. Tombol-tombolnya tidak independen. Untuk melihat masalahnya, klik salah satu tombol, lalu segera klik tombol lain. Anda akan mengharapkan bahwa setelah penundaan, Anda akan melihat pesan dari kedua tombol. Tetapi hanya pesan dari tombol terakhir yang muncul. Pesan dari tombol pertama hilang.
 
-Why are the buttons interfering with each other? Find and fix the issue.
+Mengapa tombol-tombol saling mengganggu satu sama lain? Temukan dan perbaiki masalahnya.
 
 <Hint>
 
-The last timeout ID variable is shared between all `DebouncedButton` components. This is why clicking one button resets another button's timeout. Can you store a separate timeout ID for each button?
+Variabel `timeoutID` dibagikan antara semua komponen `DebouncedButton`. Ini adalah mengapa mengeklik satu tombol akan mereset waktu tunggu tombol yang lain. Bisakah Anda menyimpan _ID_ waktu tunggu yang terpisah untuk setiap tombol?
 
 </Hint>
 
@@ -498,19 +498,19 @@ export default function Dashboard() {
   return (
     <>
       <DebouncedButton
-        onClick={() => alert('Spaceship launched!')}
+        onClick={() => alert('Pesawat luar angkasa diluncurkan!')}
       >
-        Launch the spaceship
+        Luncurkan pesawat ruang angkasa
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Soup boiled!')}
+        onClick={() => alert('Sup direbus!')}
       >
-        Boil the soup
+        Rebus sup
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Lullaby sung!')}
+        onClick={() => alert('Lagu pengantar tidur dinyanyikan!')}
       >
-        Sing a lullaby
+        Nyanyikan lagu pengantar tidur
       </DebouncedButton>
     </>
   )
@@ -525,7 +525,7 @@ button { display: block; margin: 10px; }
 
 <Solution>
 
-A variable like `timeoutID` is shared between all components. This is why clicking on the second button resets the first button's pending timeout. To fix this, you can keep timeout in a ref. Each button will get its own ref, so they won't conflict with each other. Notice how clicking two buttons fast will show both messages.
+Sebuah variabel seperti `timeoutID` bersifat global diantara semua komponen. Inilah sebabnya mengapa mengeklik tombol kedua akan mengatur ulang _timeout_ yang tertunda di tombol pertama. Untuk memperbaikinya, Anda dapat menyimpan _timeout_ dalam _ref_. Setiap tombol akan memiliki _ref_-nya sendiri, sehingga tidak akan saling bertentangan satu sama lain. Perhatikan bagaimana mengeklik dua tombol dengan cepat akan menampilkan kedua pesan.
 
 <Sandpack>
 
@@ -550,19 +550,19 @@ export default function Dashboard() {
   return (
     <>
       <DebouncedButton
-        onClick={() => alert('Spaceship launched!')}
+        onClick={() => alert('Pesawat luar angkasa diluncurkan!')}
       >
-        Launch the spaceship
+        Luncurkan pesawat ruang angkasa
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Soup boiled!')}
+        onClick={() => alert('Sup direbus!')}
       >
-        Boil the soup
+        Rebus sup
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Lullaby sung!')}
+        onClick={() => alert('Lagu pengantar tidur dinyanyikan!')}
       >
-        Sing a lullaby
+        Nyanyikan lagu pengantar tidur
       </DebouncedButton>
     </>
   )
@@ -577,11 +577,11 @@ button { display: block; margin: 10px; }
 
 </Solution>
 
-#### Read the latest state {/*read-the-latest-state*/}
+#### Membaca nilai _state_ terbaru {/*read-the-latest-state*/}
 
-In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of state [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
+Pada contoh ini, setelah Anda menekan "Kirim", ada jeda sebentar sebelum pesan ditampilkan. Ketikkan "halo", klik Kirim, lalu cepat edit input kembali. Meskipun Anda mengedit, alert masih akan menampilkan "halo" (yang merupakan nilai state [pada saat](/learn/state-as-a-snapshot#state-over-time) tombol diklik).
 
-Usually, this behavior is what you want in an app. However, there may be occasional cases where you want some asynchronous code to read the *latest* version of some state. Can you think of a way to make the alert show the *current* input text rather than what it was at the time of the click?
+Biasanya, perilaku ini yang Anda inginkan di dalam sebuah aplikasi. Namun, mungkin ada kasus-kasus tertentu di mana Anda ingin beberapa kode asinkron membaca versi _terbaru_ dari suatu _state_. Bisakah Anda memikirkan cara untuk membuat _alert_ menampilkan teks masukan _saat ini_ daripada saat tombol diklik?
 
 <Sandpack>
 
@@ -593,7 +593,7 @@ export default function Chat() {
 
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + text);
+      alert('Mengirim: ' + text);
     }, 3000);
   }
 
@@ -605,7 +605,7 @@ export default function Chat() {
       />
       <button
         onClick={handleSend}>
-        Send
+        Kirim
       </button>
     </>
   );
@@ -616,7 +616,7 @@ export default function Chat() {
 
 <Solution>
 
-State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the latest state from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the `current` property at any time. Since the current text is also used for rendering, in this example, you will need *both* a state variable (for rendering), *and* a ref (to read it in the timeout). You will need to update the current ref value manually.
+Dalam contoh ini, state bekerja [seperti snapshot](/learn/state-as-a-snapshot), sehingga Anda tidak dapat membaca +state+ terbaru dari operasi asinkron seperti _timeout_. Namun, Anda dapat menyimpan teks input terbaru dalam _ref_. _Ref_ bersifat _mutable_(dapat diubah), sehingga Anda dapat membaca properti `current` kapan saja. Karena teks saat ini juga digunakan untuk _merender_, pada contoh ini, Anda akan memerlukan keduanya, variabel _state_ (untuk _merender_), dan _ref_ (untuk membacanya di _timeout_). Anda harus memperbarui nilai _ref_ saat ini secara manual.
 
 <Sandpack>
 
@@ -634,7 +634,7 @@ export default function Chat() {
 
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + textRef.current);
+      alert('Mengirim: ' + textRef.current);
     }, 3000);
   }
 
@@ -646,7 +646,7 @@ export default function Chat() {
       />
       <button
         onClick={handleSend}>
-        Send
+        Kirim
       </button>
     </>
   );
