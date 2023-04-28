@@ -100,7 +100,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-Tambahkan beberapa logika pada `Avatar` yang menggunakan *props* `person` dan `size` untuk di-**render**, dan selesai.
+Tambahkan beberapa logika pada `Avatar` yang menggunakan *props* `person` dan `size` untuk di-*render*, dan selesai.
 
 Sekarang Anda bisa membuat `Avatar` untuk di-*render* dalam banyak cara dan dengan *props* yang berbeda. Cobalah utak-atik nilainya!
 
