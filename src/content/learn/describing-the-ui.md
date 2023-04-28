@@ -63,7 +63,7 @@ Baca **[Komponen Pertama Anda](/learn/your-first-component)** untuk mempelajari 
 
 ## Mengimpor dan Mengekspor Komponen {/*importing-and-exporting-components*/}
 
-Anda dapat mendeklarasikan banyak komponen dalam satu file, tetapi file yang besar dapat sulit untuk dinavigasi/dibaca. Untuk memecahkan masalah ini, Anda dapat *mengekspor* sebuah komponen ke dalam file sendiri, dan kemudian *mengimpor* komponen tersebut dari file lain:
+Anda dapat mendeklarasikan banyak komponen dalam satu file, tetapi file yang besar dapat menjadi sulit untuk dinavigasi/dibaca. Untuk memecahkan masalah ini, Anda dapat *mengekspor* sebuah komponen ke dalam file sendiri, dan kemudian *mengimpor* komponen tersebut dari file lain:
 
 
 <Sandpack>
