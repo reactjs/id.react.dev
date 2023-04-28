@@ -721,7 +721,6 @@ Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan i
 2. Mengukur tata letak *sebelum peramban melukis ulang layar.*
 3. Merender konten akhir menggunakan informasi tata letak yang telah dibaca.
 
-When you or your framework uses [server rendering](/reference/react-dom/server), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
 
 Saat Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda dirender menjadi HTML di *server* saat awal merender.   
 
