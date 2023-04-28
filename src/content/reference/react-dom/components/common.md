@@ -1,10 +1,10 @@
 ---
-title: "Common components (e.g. <div>)"
+title: "Komponen umum (e.g. <div>)"
 ---
 
 <Intro>
 
-All built-in browser components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
+Semua komponen bawaan dari sebuah peramban web (*browser*), seperti [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), mendukung beberapa *props* umum dan *event*. 
 
 </Intro>
 
@@ -12,84 +12,85 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
-### Common components (e.g. `<div>`) {/*common*/}
+### Komponen umum (e.g. `<div>`) {/*common*/}
 
 ```js
-<div className="wrapper">Some content</div>
+<div className="wrapper">beberapa konten</div>
 ```
 
 [See more examples below.](#usage)
 
 #### Props {/*common-props*/}
 
-These special React props are supported for all built-in components:
+Beberapa *props* spesial React berikut didukung oleh setiap komponen bawaan:
 
-* `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
+* `children`: Sebuah *node* React (sebuah elemen, string, angka, [portal,](/reference/react-dom/createPortal) *node* kosong seperti `null`, `undefined` and booleans, atau senarai dari *nodes* React). Menggambarkan kontent yang berada di dalam komponen. Saat menggunakan JSX, biasanya kau akan mendefinisikan *prop* dari `children` secara implisit dengan menggunakan tag bersarang seperti `<div><span /></div>`.
 
-* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+* `dangerouslySetInnerHTML`: Sebuah objek dengan bentuk `{ __html: '<p>some html</p>' }` yang mengandung string HTML mentah. Objek ini menimpa [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) yang merupakan properti dari DOM *node* dan menampilkan HTML yang di-*passing* ke dalamnya. Hal ini harus digunakan dengan sangat hati-hati! Jika HTML yang berada didalamnya tidak terpercaya (sebagai contoh, jika datanya berbasis pada data pengguna), akan beresiko pada munculnya kerentanan terhadap [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). [Baca lebih lanjut mengenai penggunaan `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
 
-* `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with refs.](#manipulating-a-dom-node-with-a-ref)
+* `ref`: Ref adalah sebuah objek dari [`useRef`](/reference/react/useRef) atau [`createRef`](/reference/react/createRef), atau sebuah [fungsi *callback* `ref`,](#ref-callback) atau sebuah string untuk [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Ref anda akan diisi dengan elemen DOM untuk *node* tersebut. [Baca lebih lanjut mengenai memanipulasi DOM dengan refs.](#manipulating-a-dom-node-with-a-ref)
 
-* `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
+* `suppressContentEditableWarning`: Sebuah boolean. Jika `true`, menekan peringatan yang ditampilkan oleh React untuk element yang memngandung `children` dan `contentEditable={true}` (yang biasanya tidak bekerja secara bersamaan). Gunakan *prop* ini jika anda sedang membangun sebuah *library* input teks yang mengelola konten `contentEditable` secara manual.
 
-* `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
+* `suppressHydrationWarning`: Sebuah boolean. Jika anda menggunakan [*server rendering*,](/reference/react-dom/server) biasanya terdapat peringatan saat server dan client me-*render* konten yang berbeda. Untuk beberapa kasus langka (seperti tag waktu), sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Jika anda mengatur `suppressHydrationWarning` menjadi `true`, React tidak akan memperingati anda mengenai ketidakcocokan dalam atribut ataupun konten dari elemen tersebut. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar darurat. Jangan terlalu sering menggunakannya. [Baca mengenai menekan kesalahan hidrasi.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
-* `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+* `style`: Sebuah objek *styles* CSS, sebagai contoh `{ fontWeight: 'bold', margin: 20 }`. Seperti properti dari DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style), penamaan dari properti CSS harus ditulis dalam `camelCase`, sebagai contoh `fontWeight` bukan `font-weight`. Anda dapat memasukkan string atau angka sebagai nilai. Jika anda memasukkan angka, seperti `width: 100`, React akan secara otomatis menambahkan `px` ("piksel") ke dalam nilai tersebut kecuali jika properti tersebut merupakan [properti tanpa unit.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) Kami merekomendasikan penggunaan `style` hanya untuk *styles* yang bersifat dinamis yang mana nilai dari *style* tersebut masih dapat berubah-ubah. Untuk kasus lainnya, penggunaan kelas *CSS* biasa dengan `className` lebih efisien. [Baca lebih lanjut mengenai `className` dan `style`.](#applying-css-styles)
 
-These standard DOM props are also supported for all built-in components:
+Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan: 
 
-* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): A string. Specifies a keyboard shortcut for the element. [Not generally recommended.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
-* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
-* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): A string. Specifies whether and how the user input should be capitalized.
-* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): A string. Specifies the element's CSS class name. [Read more about applying CSS styles.](#applying-css-styles)
-* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
-* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
-* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Either `'ltr'` or `'rtl'`. Specifies the text direction of the element.
-* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): A string. Specifies which action to present for the enter key on virtual keyboards.
-* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/reference/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
-* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
-* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
-* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
-* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
-* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
-* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
-* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation completes.
-* `onAnimationEndCapture`: A version of `onAnimationEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when an iteration of a CSS animation ends, and another one begins.
-* `onAnimationIterationCapture`: A version of `onAnimationIteration` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation starts.
-* `onAnimationStartCapture`: `onAnimationStart`, but fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when a non-primary pointer button was clicked.
-* `onAuxClickCapture`: A version of `onAuxClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBeforeInput`: An [`InputEvent` handler](#inputevent-handler) function. Fires before the value of an editable element is modified. React does *not* yet use the native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) event, and instead attempts to polyfill it using other events.
-* `onBeforeInputCapture`: A version of `onBeforeInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBlur`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) event, in React the `onBlur` event bubbles.
-* `onBlurCapture`: A version of `onBlur` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
-* `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
-* `onCompositionStartCapture`: A version of `onCompositionStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) completes or cancels a composition session.
-* `onCompositionEndCapture`: A version of `onCompositionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) receives a new character.
-* `onCompositionUpdateCapture`: A version of `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user tries to open a context menu.
-* `onContextMenuCapture`: A version of `onContextMenu` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to copy something into the clipboard.
-* `onCopyCapture`: A version of `onCopy` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to cut something into the clipboard.
-* `onCutCapture`: A version of `onCut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onDoubleClick`: A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user clicks twice. Corresponds to the browser [`dblclick` event.](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)
-* `onDoubleClickCapture`: A version of `onDoubleClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): A [`DragEvent` handler](#dragevent-handler) function. Fires while the user is dragging something. 
-* `onDragCapture`: A version of `onDrag` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user stops dragging something. 
-* `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content enters a valid drop target. 
-* `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): Sebuah string. Menentukan pintasan (*shortcut*) keyboard untuk elemen. [Tidak direkomendasikan secara umum.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
+* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): Atribut ARIA memungkinkan anda untuk menentukan informasi pohon aksesibilitas untuk elemen ini. Liat [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) untuk referensi yang lengkap. Dalam React, setiap atribut ARIA memiliki nama yang sama persis seperti di HTML.
+* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): Sebuah string. menentukan apakah dan bagaimana masukkan dari pengguna harus dikapitalisasi.
+* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): Sebuah string. Menentukan nama kelas CSS dari elemen tersebut. [Baca lebih lanjut mengenai menerapkan *styles* CSS.](#applying-css-styles)
+* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): Sebuah boolean. Jika `true`, peramban web (*browser*) akan membiarkan pengguna untuk menyunting elemen yang di-*render* secara langsung. Ini digunakan untuk mengimplementasi *libraries* masukkan teks kaya seperti [Lexical.](https://lexical.dev/) 
+React akan memperingatkan jika anda mencoba untuk memasukkan *children* React ke dalam elemen tersebut dengan `contentEditable={true}` karena React tidak akan bisa memperbarui konten tersebut setelah disunting oleh pengguna.
+* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Atribut data membiarkan Anda melampirkan beberapa data string ke element, sebagai contoh `data-buah="pisang"`. Dalam React, hal ini jarang digunakan karena biasanya anda membaca data dari *props* ataupun *state*.
+* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Antara `'ltr'` atau `'rtl'`. Menentukan arah teks dari elemen tersebut.
+* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): Sebuah boolean. Menentukan apakah elemen tersebut dapat diseret. Bagian dari [API HTML *Drag and Drop*.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): Sebuah string. Menentukan aksi apa yang direpresentasikan oleh tombol enter pada keyboard *virtual*.
+* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): Sebuah string. Untuk [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) dan [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), Memungkinan anda untuk [mengasosiasikan label the beberapa kontrol.](/reference/react-dom/components/input#providing-a-label-for-an-input) Sama seperti [atribut HTML `for`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React tidak menggunakan nama dari atribut HTML melainkan menggunakan nama properti standar DOM (`htmlFor`) 
+* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): Sebuah boolean atau string. Menentukan apakah sebuah elemen disembunyikan atau tidak.
+* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): Sebuah string. Menentukan pengidentifikasi untuk untuk elemen ini, yang mana dapat digunakan untuk menemukannya kembali atau menghubungkannya dengan elemen lain. Dapatkan dengan menggunakan [`useId`](/reference/react/useId) untuk menghidari bentrokan antara beberapa *instances* pada komponen yang sama.
+* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): Sebuah string. Jika ditentukan, maka komponen tersebut akan berperilaku seperti [elemen kustom.](/reference/react-dom/components#custom-html-elements)
+* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): Sebuah string. Menentukan jenis keyboard apa yang akan ditampilkan (sebagai contoh, teks, angka or telepon).
+* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): Sebuah string. Menentukan properti apa yang merepresentasikan elemen untuk  *crawler* data terstruktur.
+* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): Sebuah string. Menentukan bahasa dari elemen tersebut.
+* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat sebuah animasi CSS selesai.
+* `onAnimationEndCapture`: Sebuah versi dari `onAnimationEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat iterasi dari animasi CSS selesai, dan dimulainya animasi selanjutnya.
+* `onAnimationIterationCapture`: Sebuah versi dari `onAnimationIteration` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat animasi CSS dimulai.
+* `onAnimationStartCapture`: `onAnimationStart`, tetapi aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat tombol penunjuk non-primer diklik.
+* `onAuxClickCapture`: Sebuah versi dari `onAuxClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onBeforeInput`: Sebuah fungsi [*handler* `InputEvent`](#inputevent-handler). Aktif sebelum dilakukan modifikasi pada nilai dari elemen yang dapat disunting. React belum mengunakan *event* [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) *native*, dan alih-alih mencoba mengisinya menggunakan *event* lain.
+* `onBeforeInputCapture`: Sebuah versi dari `onBeforeInput` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onBlur`: Sebuah fungsi [*handler* `FocusEvent`](#focusevent-handler). Aktif saat sebuah elemen kehilangan fokus. Tidak seperti *event* [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) bawaan dari peramban web (*browser*), di React *event* `onBlur` menggelembung (*bubbles*).
+* `onBlurCapture`: Sebuah versi dari `onBlur` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif ketika tombol primer pada perangkat penunjuk diklik.
+* `onClickCapture`: Sebuah versi dari `onClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) memulai sebuah sesi komposisi baru.
+* `onCompositionStartCapture`: Sebuah versi dari `onCompositionStart` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) menyelesaikan atau membatalkan sebuah sesi komposisi.
+* `onCompositionEndCapture`: Sebuah versi dari `onCompositionEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) menerima karakter baru.
+* `onCompositionUpdateCapture`: Sebuah versi dari `onCompositionUpdate` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat pengguna mencoba untuk membuka menu konteks.
+* `onContextMenuCapture`: Sebuah versi dari `onContextMenu` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): Sebuah fungsi [*handler* `ClipboardEvent`](#clipboardevent-handler). Aktif saat pengguna mencoba menyalin (*copy*) sesuatu ke *clipboard*.
+* `onCopyCapture`: Sebuah versi dari `onCopy` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): Sebuah fungsi [*handler* `ClipboardEvent`](#clipboardevent-handler). Aktif saat pengguna mencoba untuk memotong (*cut*) sesuatu ke *clipboard*.
+* `onCutCapture`: Sebuah versi dari `onCut` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onDoubleClick`: Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat pengguna melakukan klik sebanyak dua kali. Sesuai dengan [*event* `dblclick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event) pada peramban web (*browser*).
+* `onDoubleClickCapture`: Sebuah versi dari `onDoubleClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif ketika user mencoba untuk menyeret sesuatu. 
+* `onDragCapture`: Sebuah versi dari `onDrag` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aksitf saat user berhenti menyeret sesuatu. 
+* `onDragEndCapture`: Sebuah versi dari `onDragEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat konten yang terseret memasuki suatu target penurunan yang valid. 
+* `onDragEnterCapture`: Sebuah versi dari `onDragEnter` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
 * `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user starts dragging an element.
