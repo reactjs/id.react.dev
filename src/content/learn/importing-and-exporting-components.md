@@ -1,26 +1,26 @@
 ---
-title: Importing and Exporting Components
+title: Mengimpor dan Mengekspor Komponen
 ---
 
 <Intro>
 
-The magic of components lies in their reusability: you can create components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse components in more places.
+Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda dapat membuat komponen yang disusun dengan komponen lain. Namun, ketika Anda menyusun komponen-komponen yang semakin banyak, seringkali lebih masuk akal untuk mulai membaginya ke dalam *file-file* yang berbeda. Dengan ini Anda menjaga *file* Anda agar tetap mudah dipindai dan digunakan kembali di banyak tempat.
 
 </Intro>
 
 <YouWillLearn>
 
-* What a root component file is
-* How to import and export a component
-* When to use default and named imports and exports
-* How to import and export multiple components from one file
-* How to split components into multiple files
+* Apa itu *file* komponen root
+* Bagaimana cara impor dan ekspor komponen
+* Kapan menggunakan default dan named impor dan ekspor
+* Bagaimana cara mengimpor dan mengekspor beberapa komponen pada satu *file*
+* Bagaimana cara memisahkan komponen menjadi beberapa *file*
 
 </YouWillLearn>
 
-## The root component file {/*the-root-component-file*/}
+## File komponen root {/*the-root-component-file*/}
 
-In [Your First Component](/learn/your-first-component), you made a `Profile` component and a `Gallery` component that renders it:
+Pada [Komponen Pertama Anda](/learn/your-first-component), Anda membuat komponen `Profile` dan komponen `Gallery` yang merender:
 
 <Sandpack>
 
@@ -37,7 +37,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -52,17 +52,17 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-These currently live in a **root component file,** named `App.js` in this example. In [Create React App](https://create-react-app.dev/), your app lives in `src/App.js`. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
+Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App.js` pada contoh ini. Pada [Create React App](https://create-react-app.dev/), aplikasi Anda berada di `src/App.js`. Tergantung pada persiapan Anda, komponen root Anda bisa saja berada di *file* lain. Jika Anda menggunakan framework dengan *file-based routing*, seperti Next.js, komponen root Anda akan berbeda di setiap halaman.
 
-## Exporting and importing a component {/*exporting-and-importing-a-component*/}
+## Mengekspor dan mengimpor sebuah komponen {/*exporting-and-importing-a-component*/}
 
-What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
+Bagaimana jika Anda ingin mengubah *landing screen* di masa depan dan memasukkan daftar buku sains disana? Atau meletakkan semua profil di tempat lain? Masuk akal untuk memindahkan `Gallery` dan `Profile` dari *file* komponen root. Ini akan membuat lebih modular dan dapat digunakan kembali di *file* lain. Anda dapat memindahkan sebuah komponen dengan tiga langkah:
 
-1. **Make** a new JS file to put the components in.
-2. **Export** your function component from that file (using either [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
-3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
+1. **Buat** sebuah *file* JS baru untuk memasukkan komponen.
+2. **Ekspor** function component Anda dari *file* tersebut (menggunakan baik [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) eskpor).
+3. **Impor** dimana Anda akan menggunakan komponen tersebut (menggunakan teknik yang sesuai untuk mengimpor [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) atau [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) ekspor).
 
-Here both `Profile` and `Gallery` have been moved out of `App.js` into a new file called `Gallery.js`. Now you can change `App.js` to import `Gallery` from `Gallery.js`:
+Di sini `Profile` dan `Gallery` sudah dipindahkan dari `App.js` ke dalam *file* baru bernama `Gallery.js`. Sekarang Anda dapat mengubah `App.js` untuk mengimpor `Gallery` dari `Gallery.js`:
 
 <Sandpack>
 
@@ -89,7 +89,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -104,60 +104,60 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Notice how this example is broken down into two component files now:
+Perhatikan bagaimana pada contoh ini dipecah menjadi dua *file* komponen sekarang:
 
 1. `Gallery.js`:
-     - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export.**
+     - Mendefinisikan `Profile` komponen yang hanya digunakan dalam *file* yang sama dan tidak diekspor.
+     - Mengekspor `Gallery` komponen sebagai **default export.**
 2. `App.js`:
-     - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export.**
+     - Mengimpor `Gallery` sebagai **default import** dari `Gallery.js`.
+     - Mengekspor root `App` komponen sebagai **default export.**
 
 
 <Note>
 
-You may encounter files that leave off the `.js` file extension like so:
+Anda mungkin menemukan *file* yang meninggalkan ekstensi *file* `.js` seperti ini:
 
 ```js 
 import Gallery from './Gallery';
 ```
 
-Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former is closer to how [native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) work.
+Salah satu `'./Gallery.js'` atau `'./Gallery'` akan jalan dengan React, meskipun yang pertama lebih mirip dengan bagaimana [native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) bekerja.
 
 </Note>
 
 <DeepDive>
 
-#### Default vs named exports {/*default-vs-named-exports*/}
+#### Default vs named ekspor {/*default-vs-named-exports*/}
 
-There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
+Ada dua cara utama untuk mengekspor nilai dengan JavaScript: **default exports** dan **named exports**. Sejauh ini, contoh kita hanya menggunakan **default exports**. Tapi Anda dapat menggunakan satu atau keduanya pada *file* yang sama. **Sebuah file dapat menggunakan tidak lebih dari satu _default_ export, tapi dapat menggunakan _named_ exports sebanyak yang Anda suka.**
 
-![Default and named exports](/images/docs/illustrations/i_import-export.svg)
+![Default dan named ekspor](/images/docs/illustrations/i_import-export.svg)
 
-How you export your component dictates how you must import it. You will get an error if you try to import a default export the same way you would a named export! This chart can help you keep track:
+Bagaimana Anda mengekspor komponen Anda mendikte bagaimana Anda harus mengimpornya. Anda akan mendapatkan error jika Anda mencoba untuk mengimpor **default exports** dengan cara yang sama Anda menggunakan **named exports**! Tabel ini akan membantu Anda untuk melacak:
 
-| Syntax           | Export statement                           | Import statement                          |
+| Sintaksis           | Pernyataan Expor                           | Pernyataan Impor                          |
 | -----------      | -----------                                | -----------                               |
 | Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
 | Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
-When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './Button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
+Ketika Anda menulis **default imports**, Anda dapat memberi nama apa saja setelah `import`. Contoh, Anda dapat menulis `import Banana from './Button.js'` dan itu akan tetap memberi Anda `export default` yang sama. Sebaliknya, dengan **named imports**, nama harus sama di kedua sisi. Itulah mengapa disebut **named imports**!
 
-**People often use default exports if the file exports only one component, and use named exports if it exports multiple components and values.** Regardless of which coding style you prefer, always give meaningful names to your component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
+**Orang-orang seringkali menggunakan `default exports` jika *file* yang diekspor hanya satu komponen, dan menggunakan `named exports` jika mengekspor beberapa komponen dan nilai.** Bagaimanapun gaya koding yang Anda gunakan, selalu beri nama yang berarti pada fungsi komponen Anda dan isi *file* tersebut. Komponen tanpa nama, seperti `export default () => {}`, tidak disarankan karena membuat proses debug lebih sulit.
 
 </DeepDive>
 
-## Exporting and importing multiple components from the same file {/*exporting-and-importing-multiple-components-from-the-same-file*/}
+## Mengekspor dan mengimpor beberapa komponen dari file yang sama {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
+Bagaimana jika Anda ingin menampilkan hanya satu `Profile` selain sebuah galeri? Anda dapat mengekspor komponen `Profile` juga. Tapi `Gallery.js` telah menggunakan **default exports**, dan Anda tidak dapat memiliki _dua_ **default exports**. Anda dapat membuat *file* baru dengan **default exports**, atau Anda dapat menambahkan sebuah **named exports** untuk `Profile`. **Sebuah *file* hanya dapat memiliki satu `default exports`, tapi dapat memiliki banyak `named exports`!**
 
 <Note>
 
-To reduce the potential confusion between default and named exports, some teams choose to only stick to one style (default or named), or avoid mixing them in a single file. Do what works best for you!
+Untuk mengurangi potensi kebingunan antara **default** dan **named exports**, beberapa tim memilih untuk berpegang pada satu gaya penulisan (**default** atau **named**), atau menghindari mencampurnya dalam satu *file*. Lakukan yang terbaik untuk Anda!
 
 </Note>
 
-First, **export** `Profile` from `Gallery.js` using a named export (no `default` keyword):
+Pertama, **ekspor** `Profile` dari `Gallery.js` menggunakan **named exports** (tanpa kata kunci **default**):
 
 ```js
 export function Profile() {
@@ -165,13 +165,13 @@ export function Profile() {
 }
 ```
 
-Then, **import** `Profile` from `Gallery.js` to `App.js` using a named import (with the curly braces):
+Selanjutnya, **impor** `Profile` dari `Gallery.js` ke `App.js` menggunakan **named imports** (dengan kurung kurawal):
 
 ```js
 import { Profile } from './Gallery.js';
 ```
 
-Finally, **render** `<Profile />` from the `App` component:
+Akhirnya, **render** `<Profile />` dari komponen `App`:
 
 ```js
 export default function App() {
@@ -179,7 +179,8 @@ export default function App() {
 }
 ```
 
-Now `Gallery.js` contains two exports: a default `Gallery` export, and a named `Profile` export. `App.js` imports both of them. Try editing `<Profile />` to `<Gallery />` and back in this example:
+Sekarang `Gallery.js` berisi dua ekspor: **default exports** `Gallery`, dan **named exports** `Profile`. `App.js` mengimpor keduanya.
+Coba mengedit `<Profile />` ke `<Gallery />` dan kembali pada contoh ini:
 
 <Sandpack>
 
@@ -207,7 +208,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -222,24 +223,24 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Now you're using a mix of default and named exports:
+Sekarang Anda menggunakan campuran **default** dan **named exports**:
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`.**
-  - Exports the `Gallery` component as a **default export.**
+  - Mengekspor komponen `Profile` sebagai **named exports bernama `Profile`.**
+  - Mengekspor komponen `Gallery` sebagai **default exports.**
 * `App.js`:
-  - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
-  - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export.**
+  - Mengimpor `Profile` as a **named imports called `Profile`** dari `Gallery.js`.
+  - Mengimpor `Gallery` as a **default imports** dari `Gallery.js`.
+  - Mengekspor komponen root `App` sebagai **default exports.**
 
 <Recap>
 
-On this page you learned:
+Pada halaman ini Anda belajar:
 
-* What a root component file is
-* How to import and export a component
-* When and how to use default and named imports and exports
-* How to export multiple components from the same file
+* Apa itu *file* komponen root
+* Bagaimana cara impor dan ekspor komponen
+* Kapan menggunakan **default** dan **named** impor dan ekspor
+* Bagaimana cara mengimpor dan mengekspor beberapa komponen pada satu *file*
 
 </Recap>
 
@@ -247,22 +248,22 @@ On this page you learned:
 
 <Challenges>
 
-#### Split the components further {/*split-the-components-further*/}
+#### Memisahkan komponen lebih jauh {/*split-the-components-further*/}
 
-Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
+Saat ini, `Gallery.js` mengekspor kedua `Profile` dan `Gallery`, yang mana sedikit membingungkan.
 
-Move the `Profile` component to its own `Profile.js`, and then change the `App` component to render both `<Profile />` and `<Gallery />` one after another.
+Pindahkan komponen `Profile` pada miliknya sendiri `Profile.js`, dan ubah komponen `App` untuk merender kedua `<Profile />` dan `<Gallery />` satu setelah lainnya.
 
-You may use either a default or a named export for `Profile`, but make sure that you use the corresponding import syntax in both `App.js` and `Gallery.js`! You can refer to the table from the deep dive above:
+Anda mungkin menggukanan salah satu dari **default** atau **named** eskpor untuk `Profile`, tetapi pastikan bahwa Anda menggunakan sintaksis impor pada kedua `App.js` dan `Gallery.js`. Anda dapat merujuk pada table dari bagian **deep dive** di atas:
 
-| Syntax           | Export statement                           | Import statement                          |
+| Sintaksis           | Pernyataan Expor                           | Pernyataan Impor                          |
 | -----------      | -----------                                | -----------                               |
 | Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
 | Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
 <Hint>
 
-Don't forget to import your components where they are called. Doesn't `Gallery` use `Profile`, too?
+Jangan lupa untuk mengimpor komponen Anda di mana mereka dipanggil. Bukankah `Gallery` juga menggunakan `Profile`?
 
 </Hint>
 
@@ -282,7 +283,7 @@ export default function App() {
 ```
 
 ```js Gallery.js active
-// Move me to Profile.js!
+// Pindahkan saya ke Profile.js!
 export function Profile() {
   return (
     <img
@@ -295,7 +296,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -313,11 +314,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-After you get it working with one kind of exports, make it work with the other kind.
+Setelah Anda berhasil menjalankan dengan salah satu ekspor, buat juga berjalan dengan jenis yang lain.
 
 <Solution>
 
-This is the solution with named exports:
+Ini adalah solusi menggunakan `named exports`:
 
 <Sandpack>
 
@@ -341,7 +342,7 @@ import { Profile } from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -367,7 +368,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-This is the solution with default exports:
+Ini adalah solusi menggunakan `default exports`:
 
 <Sandpack>
 
@@ -391,7 +392,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
