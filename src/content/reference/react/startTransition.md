@@ -53,7 +53,7 @@ function TabContainer() {
 
 * Anda hanya dapat menempatkan pembaruan _state_ ke dalam transisi bila Anda memiliki akses terhadap fungsi `set` dari _state_ tersebut. Jika Anda ingin memulai sebuah transisi sebagai respons terhadap sebuah _prop_ atau nilai balik sebuah _custom Hook_, cobalah menggunakan [`useDeferredValue`.](/reference/react/useDeferredValue)
 
-* Fungsi yang Anda tempatkan ke dalam `startTransition` harus merupakan fungsi sinkronus. React langsung mengeksekusi fungsi ini dan menandai seluruh pembaruan _state_ yang terjadi sembari eksekusi sedang berjalan sebagai sebuah transisi. Apabila Anda mencoba melakukan pembaruan _state_ pada waktu lain (misalnya dalam sebuah _timeout_), mereka tak akan ditandai sebagai transisi.
+* Fungsi yang Anda tempatkan di dalam `startTransition` harus merupakan fungsi sinkronus. React langsung mengeksekusi fungsi ini dan menandai seluruh pembaruan _state_ yang terjadi sembari eksekusi sedang berjalan sebagai sebuah transisi. Apabila Anda mencoba melakukan pembaruan _state_ pada waktu lain (misalnya dalam sebuah _timeout_), mereka tak akan ditandai sebagai transisi.
 
 * Sebuah pembaruan _state_ yang ditandai sebagai transisi dapat diinterupsi oleh pembaruan _state_ yang lain. Contohnya, bila Anda memperbarui sebuah komponen grafik didalam sebuah transisi, namun kemudian mengetik dalam sebuah masukan teks saat grafik tersebut masih di dalam proses _re-render_, React akan mengulangi proses _re-render_ pada grafik tersebut setelah selesai melakukan pembaruan _state_ dalam masukan teks tersebut.
 
@@ -67,7 +67,7 @@ function TabContainer() {
 
 ### Menandai sebuah pembaruan _state_ sebagai transisi _non-blocking_ {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Anda dapat menandai sebuah _pembaruan state_ sebagai sebuah transisi dengan memasukkannya ke dalam pemanggilan `startTransition`:
+Anda dapat menandai sebuah pembaruan _state_ sebagai sebuah transisi dengan memasukkannya ke dalam pemanggilan `startTransition`:
 
 ```js {7,9}
 import { startTransition } from 'react';
