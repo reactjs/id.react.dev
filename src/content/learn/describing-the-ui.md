@@ -23,7 +23,7 @@ React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*Us
 
 ## Komponen Pertama Anda {/*your-first-component*/}
 
-Aplikasi React dibangun dari potongan-potongan antaramuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang me-*render* tiga komponen `Profile`:
+Aplikasi React dibangun dari potongan-potongan antarmuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang me-*render* tiga komponen `Profile`:
 
 <Sandpack>
 
