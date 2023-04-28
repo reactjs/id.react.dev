@@ -65,7 +65,7 @@ function Tooltip() {
 
 * Efek **hanya berjalan di sisi klien**. Efek tidak berjalan ketika *server rendering*.
 
-* Kode di dalam `useLayoutEffect` dan semua pembaruan *state* yang dijadwalkan akan **menghalangi peramban untuk melukis ulang layar.** Penggunaan yang berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
+* Kode di dalam `useLayoutEffect` serta semua pembaruan *state* yang telah dijadwalkan akan **menghalangi peramban untuk melukis ulang layar.** Penggunaan yang berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
 
 ---
 
@@ -75,14 +75,13 @@ function Tooltip() {
 
 Sebagian besar komponen tidak perlu mengetahui posisi dan ukuran di layar untuk memutuskan apa yang harus dirender. Komponen hanya mengembalikan beberapa JSX. Selanjutnya, peramban akan mengukur *tata letak* (posisi dan ukuran) dan melukis ulang layar
 
-Terkadang, itu tidak cukup. Bayangkan sebuah *tooltip* berada di sebelah elemen tertentu saat diarahkan (*hover*). Jika ruang mencukupi, posisi *tooltip* harus berada di atas elemen tersebut. Tetapi, jika tidak cukup, posisi *tooltip* harus berada di bawah. Untuk merender *tooltip* pada posisi akhir yang tepat, maka Anda harus mengetahui tingginya (yaitu, apakah muat berada di atas)
+Terkadang, itu tidak cukup. Bayangkan sebuah *tooltip* berada di sebelah elemen tertentu saat diarahkan (*hover*). Jika ruang mencukupi, posisi *tooltip* harus berada di atas elemen tersebut. Tetapi, jika tidak cukup, posisi *tooltip* harus berada di bawah. Untuk merender *tooltip* di posisi akhir yang tepat, maka Anda harus mengetahui tingginya (yaitu, apakah muat berada di atas)
 
 Untuk melakukan hal ini, Anda perlu merender dalam dua tahap:
 
 1. Merender *tooltip* di mana saja (bahkan dengan posisi yang salah).
 2. Mengukur tingginya dan menentukan posisi *tooltip* tersebut.
 3. Merender *ulang tooltip* agar berada di posisi yang tepat.
-
 
 **Seluruh proses tersebut harus terjadi sebelum peramban melukis ulang layar.** Anda tidak ingin pengguna untuk melihat *tooltip* bergerak. Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum peramban melukis ulang layar:
 
