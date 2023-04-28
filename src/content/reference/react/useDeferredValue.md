@@ -4,7 +4,7 @@ title: useDeferredValue
 
 <Intro>
 
-`useDeferredValue` adalah React Hook yang memungkinkan Anda menunda pembaruan bagian dari UI.
+`useDeferredValue` adalah React Hook yang memungkinkan Anda menangguhkan pembaruan bagian dari UI.
 
 ```js
 const deferredValue = useDeferredValue(value)
@@ -36,7 +36,7 @@ function SearchPage() {
 
 #### Parameters {/*parameters*/}
 
-* `value`: Nilai yang ingin Anda tunda. Nilai ini dapat memiliki tipe apa saja.
+* `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
 
 #### Returns {/*returns*/}
 
@@ -62,7 +62,7 @@ Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yan
 
 ### Menampilkan konten basi saat konten segar sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk menunda pembaruan beberapa bagian dari UI Anda.
+Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk menangguhkan pembaruan beberapa bagian dari UI Anda.
 
 ```js [[1, 5, "query"], [2, 5, "deferredQuery"]]
 import { useState, useDeferredValue } from 'react';
@@ -284,7 +284,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-Pola UI alternatif yang umum adalah *menunda* pembaruan daftar hasil dan terus menampilkan hasil sebelumnya hingga hasil baru siap. Panggil `useDeferredValue` untuk meneruskan versi kueri yang ditangguhkan:
+Pola UI alternatif yang umum adalah *menangguhkan* pembaruan daftar hasil dan terus menampilkan hasil sebelumnya hingga hasil baru siap. Panggil `useDeferredValue` untuk meneruskan versi kueri yang ditangguhkan:
 
 ```js {3,11}
 export default function App() {
@@ -501,7 +501,7 @@ input { margin: 10px; }
 
 <DeepDive>
 
-#### Bagaimana cara menunda nilai bekerja di bawah terpal? {/*how-does-deferring-a-value-work-under-the-hood*/}
+#### Bagaimana cara menangguhkan nilai bekerja di bawah terpal? {/*how-does-deferring-a-value-work-under-the-hood*/}
 
 Anda dapat menganggapnya terjadi dalam dua langkah:
 
@@ -529,7 +529,7 @@ Pada contoh di atas, tidak ada indikasi bahwa daftar hasil kueri terbaru masih d
 </div>
 ```
 
-Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menjadi sedikit redup hingga daftar hasil baru dimuat. Anda juga bisa menambahkan transisi CSS untuk menunda peredupan agar terasa bertahap, seperti pada contoh di bawah ini:
+Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menjadi sedikit redup hingga daftar hasil baru dimuat. Anda juga bisa menambahkan transisi CSS untuk menangguhkan peredupan agar terasa bertahap, seperti pada contoh di bawah ini:
 
 <Sandpack>
 
@@ -730,7 +730,7 @@ input { margin: 10px; }
 
 ---
 
-### Menunda rendering ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
+### Menangguhkan rendering ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
 Anda juga dapat menerapkan `useDeferredValue` sebagai pengoptimalan kinerja. Ini berguna ketika bagian dari UI Anda lambat untuk dirender ulang, tidak ada cara mudah untuk mengoptimalkannya, dan Anda ingin mencegahnya memblokir UI lainnya.
 
@@ -951,7 +951,7 @@ Meskipun teknik ini membantu dalam beberapa kasus, `useDeferredValue` lebih coco
 
 Tidak seperti debouncing atau throttling, ini tidak memerlukan pemilihan penundaan tetap. Jika perangkat pengguna cepat (misalnya laptop yang kuat), rendering ulang yang ditangguhkan akan segera terjadi dan tidak akan terlihat. Jika perangkat pengguna lambat, daftar akan "tertinggal" input secara proporsional dengan seberapa lambat perangkat tersebut.
 
-Selain itu, tidak seperti debouncing atau throttling, rendering ulang yang ditangguhkan yang dilakukan oleh `useDeferredValue` dapat diinterupsi secara default. Ini berarti bahwa jika React sedang merender ulang daftar besar, tetapi pengguna membuat keystroke lain, React akan mengabaikan render ulang itu, menangani keystroke, dan kemudian mulai merender di latar belakang lagi. Sebaliknya, debouncing dan throttling masih menghasilkan pengalaman tersendat karena keduanya *memblokir:* keduanya hanya menunda momen saat merender memblokir keystroke.
+Selain itu, tidak seperti debouncing atau throttling, rendering ulang yang ditangguhkan yang dilakukan oleh `useDeferredValue` dapat diinterupsi secara default. Ini berarti bahwa jika React sedang merender ulang daftar besar, tetapi pengguna membuat keystroke lain, React akan mengabaikan render ulang itu, menangani keystroke, dan kemudian mulai merender di latar belakang lagi. Sebaliknya, debouncing dan throttling masih menghasilkan pengalaman tersendat karena keduanya *memblokir:* keduanya hanya menangguhkan momen saat merender memblokir keystroke.
 
 Jika pekerjaan yang Anda optimalkan tidak terjadi selama rendering, debouncing dan throttling tetap berguna. Misalnya, mereka dapat membiarkan Anda memecat lebih sedikit permintaan jaringan. Anda juga dapat menggunakan teknik ini bersama-sama.
 
