@@ -464,7 +464,7 @@ Baca **[Merender List](/learn/rendering-lists)** untuk mempelajari cara me-*rend
 
 ## Menjaga Komponen Tetap Murni {/*keeping-components-pure*/}
 
-Beberapa fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
+Sebagian fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
 * **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apa pun yang ada sebelumnya dipanggil.
 * **Input sama, output sama.**  Dengan input yang sama, sebuah fungsi murni harus selalu mengembalikan hasil yang sama.
