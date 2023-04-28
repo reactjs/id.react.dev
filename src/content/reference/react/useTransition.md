@@ -41,7 +41,7 @@ function TabContainer() {
 
 `useTransition` mengembalikan senarai dengan tepat dua item:
 
-1. Flag `isPending` yang memberitahukan Anda bahwa terdapat transisi yang tertunda.
+1. Penanda `isPending` yang memberitahukan Anda bahwa terdapat transisi yang tertunda.
 2. [fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 ---
@@ -105,7 +105,7 @@ function TabContainer() {
 
 `useTransition` mengembalikan sebuah senarai dengan tepat dua item:
 
-1. Flag <CodeStep step={1}>`isPending`</CodeStep> yang memberitahukan Anda apakah terdapat transisi tertunda.
+1. Penanda <CodeStep step={1}>`isPending`</CodeStep> yang memberitahukan Anda apakah terdapat transisi tertunda.
 2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 Kemudian Anda dapat menandai perubahan *state* sebagai transisi seperti berikut:
