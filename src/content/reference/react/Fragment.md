@@ -4,7 +4,7 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-`<Fragment>`, atau sering digunakan melalui sintaksis `<>...</>`, memungkinkan anda mengelompokkan elemen tanpa pembungkus node.
+`<Fragment>`, atau sering digunakan melalui sintaksis `<>...</>`, memungkinkan Anda mengelompokkan elemen tanpa pembungkus *node*.
 
 ```js
 <>
@@ -23,25 +23,25 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana anda membutuhkan satu elemen. Mengelompokkan element di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. Tag JSX kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
+Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana Anda membutuhkan satu elemen. Mengelompokkan element di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. Tag JSX kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
 
 #### Props {/*props*/}
 
-- **opsional** `key`: Fragment yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **opsional** `key`: *Fragment* yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [*key*.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Peringatan {/*caveats*/}
 
-- Jika Anda ingin oper `key` ke Fragment, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimport `Fragment` dari `'react'` dan _render_ `<Fragment key={yourKey}>...</Fragment>`.
+- Jika Anda ingin oper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan *render* `<Fragment key={yourKey}>...</Fragment>`.
 
-- React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda *rendering* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda *rendering* `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [disini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
-## Usage {/*usage*/}
+## Pengunaan {/*usage*/}
 
-### Returning multiple elements {/*returning-multiple-elements*/}
+### Mengembalikan banyak elemen {/*returning-multiple-elements*/}
 
-Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+Gunakan `Fragment`, atau sintaksis `<>...</>`, untuk mengelompokkan beberapa elemen menjadi satu. Anda bisa menggunakannya untuk meletakkan banyak elemen dimana saja, dimana satu elemen itu bisa muncul. Misalnya, komponen hanya bisa mengembalikan satu elemen, tetapi dengan menggunakan *Fragment*, Anda dapat mengelompokkan beberapa elemen menjadi satu dan kemudian mengembalikannya sebagai grup:
 
 ```js {3,6}
 function Post() {
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<p>` DOM nodes appear as siblings without wrappers around them:
+_Fragment_ sangat berguna karena mengelompokkan elemen dengan _Fragment_ tidak akan mempengaruhi *layout* atau *style*, berbeda jika Anda membungkus elemen dalam wadah lain seperti elemen DOM. Jika Anda memeriksa contoh ini dengan alat browser, Anda akan melihat semua DOM *node* `<h1>` dan `<p>` muncul sebagai saudara tanpa pembungkus di sekitar mereka:
 
 <Sandpack>
 
@@ -94,9 +94,9 @@ function PostBody({ body }) {
 
 <DeepDive>
 
-#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}
+#### Bagaimana menulis *Fragment* tanpa spesial sintaksis? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
-The example above is equivalent to importing `Fragment` from React:
+Contoh di atas sama dengan mengimpor `Fragment` dari React:
 
 ```js {1,5,8}
 import { Fragment } from 'react';
@@ -111,15 +111,15 @@ function Post() {
 }
 ```
 
-Usually you won't need this unless you need to [pass a `key` to your `Fragment`.](#rendering-a-list-of-fragments)
+Biasanya Anda tidak memerlukan cara ini kecuali Anda perlu [oper `key` ke `Fragment` Anda.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
 ---
 
-### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}
+### Menentukan banyak elemen ke variabel {/*assigning-multiple-elements-to-a-variable*/}
 
-Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
+Seperti komponen yang lain, Anda bisa menentukan elemen *Fragment* ke variabel, dan oper mereka sebagai *props*, dan seterusnya:
 
 ```js
 function CloseDialog() {
@@ -139,17 +139,17 @@ function CloseDialog() {
 
 ---
 
-### Grouping elements with text {/*grouping-elements-with-text*/}
+### Mengelompokkan elemen dengan teks {/*grouping-elements-with-text*/}
 
-You can use `Fragment` to group text together with components:
+Anda bisa mengunakan `Fragment` untuk mengelompokkan teks dengan komponen:
 
 ```js
 function DateRangePicker({ start, end }) {
   return (
     <>
-      From
+      Dari
       <DatePicker date={start} />
-      to
+      Ke
       <DatePicker date={end} />
     </>
   );
@@ -158,9 +158,9 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}
+### Merender daftar *Fragment* {/*rendering-a-list-of-fragments*/}
 
-Here's a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [merender beberapa elemen dalam loop](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam loop adalah *Fragment*, Anda perlu menggunakan sintaksis elemen JSX normal untuk menyediakan atribut `key`:
 
 ```js {3,6}
 function Blog() {
@@ -173,7 +173,7 @@ function Blog() {
 }
 ```
 
-You can inspect the DOM to verify that there are no wrapper elements around the Fragment children:
+Anda bisa memeriksa DOM untuk memastikan bahwa tidak ada elemen pembungkus di sekitar anak *Fragment*:
 
 <Sandpack>
 
@@ -181,8 +181,8 @@ You can inspect the DOM to verify that there are no wrapper elements around the 
 import { Fragment } from 'react';
 
 const posts = [
-  { id: 1, title: 'An update', body: "It's been a while since I posted..." },
-  { id: 2, title: 'My new blog', body: 'I am starting a new blog!' }
+  { id: 1, title: 'Sebuah pembaharuan', body: "Sudah lama tidak posting..." },
+  { id: 2, title: 'Blog baru saya', body: 'Saya memulai blog baru!' }
 ];
 
 export default function Blog() {
