@@ -13,7 +13,7 @@ title: Memperbarui Objek dalam State
 - Bagaimana cara membarui objek di dalam React *state*
 - Bagaimana cara membarui objek yang bersarang tanpa melakukan mutasi
 - Apa itu *immutability*, dan bagaimana agar tidak merusaknya
-- Bagaimana cara mempersingkat duplikasi objek dengan Immer
+- Bagaimana cara mempersingkat penyalinan objek dengan Immer
 
 </YouWillLearn>
 
