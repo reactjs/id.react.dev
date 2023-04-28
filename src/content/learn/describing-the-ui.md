@@ -495,7 +495,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Anda dapat membuat komponen ini menjadi murni dengan melewatkan sebuah *prop* daripada memodifikasi variabel yang sudah ada:
+Anda dapat membuat komponen ini menjadi murni dengan mengoper sebuah *prop* daripada memodifikasi variabel yang sudah ada:
 
 <Sandpack>
 
