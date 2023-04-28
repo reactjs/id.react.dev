@@ -4,7 +4,7 @@ title: useTransition
 
 <Intro>
 
-`useTransition` adalah sebuah React Hook yang memungkinkan Anda merubah suatu state tanpa memblokir UI.
+`useTransition` adalah sebuah React Hook yang memungkinkan Anda merubah suatu *state* tanpa memblokir *UI*.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -20,7 +20,7 @@ const [isPending, startTransition] = useTransition()
 
 ### `useTransition()` {/*usetransition*/}
 
-Panggil `useTransition` pada level teratas komponen Anda untuk menandai beberapa perubahan state sebagai transisi.
+Panggil `useTransition` pada level teratas komponen Anda untuk menandai beberapa perubahan *state* sebagai transisi.
 
 ```js
 import { useTransition } from 'react';
@@ -39,16 +39,16 @@ function TabContainer() {
 
 #### Returns {/*returns*/}
 
-`useTransition` mengembalikan array dengan tepat dua item:
+`useTransition` mengembalikan senarai dengan tepat dua item:
 
 1. Flag `isPending` yang memberitahukan Anda bahwa terdapat transisi yang tertunda.
-2. [fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan state sebagai transisi.
+2. [fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 ---
 
 ### fungsi `startTransition` {/*starttransition*/}
 
-Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan state sebagai transisi.
+Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 ```js {6,8}
 function TabContainer() {
@@ -66,7 +66,7 @@ function TabContainer() {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `scope`: Fungsi yang merubah beberapa state dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` dengan tanpa parameter dan menandai semua perubahan state yang dijadwalkan secara sinkronus saat fungsi `scope` dipanggil sebagai transisi. Mereka akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator *render* yang tidak perlu.](#preventing-unwanted-loading-indicators)
+* `scope`: Fungsi yang mengubah beberapa *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` dengan tanpa parameter dan menandai semua perubahan *state* yang dijadwalkan secara sinkron saat fungsi `scope` dipanggil sebagai transisi. Mereka akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator *render* yang tidak perlu.](#preventing-unwanted-loading-indicators)
 
 #### Returns {/*starttransition-returns*/}
 
@@ -74,15 +74,15 @@ function TabContainer() {
 
 #### Perhatian {/*starttransition-caveats*/}
 
-* `useTransition` adalah sebuah Hook, sehingga hanya bisa dipanggil di dalam komponen atau Hook khusus. Jika Anda ingin memulai sebuah transisi di tempat lain (contoh, dari data library), sebaiknya panggil [`startTransition`](/reference/react/startTransition) sebagai gantinya.
+* `useTransition` adalah sebuah Hook, sehingga hanya bisa dipanggil di dalam komponen atau Hook *custom*. Jika Anda ingin memulai sebuah transisi di tempat lain (contoh, dari data *library*), sebaiknya panggil [`startTransition`](/reference/react/startTransition) sebagai gantinya.
 
-* Anda dapat membungkus perubahan menjadi transisi hanya jika Anda memiliki akses pada fungsi `set` pada state tersebut. Jika Anda ingin memulai sebuah transisi sebagai balasan dari beberapa prop atau nilai Hook khusus, coba gunakan [`useDeferredValue`](/reference/react/useDeferredValue) sebagai gantinya.
+* Anda dapat membungkus perubahan menjadi transisi hanya jika Anda memiliki akses pada fungsi `set` pada *state* tersebut. Jika Anda ingin memulai sebuah transisi sebagai balasan dari beberapa *prop* atau nilai Hook *custom*, coba gunakan [`useDeferredValue`](/reference/react/useDeferredValue) sebagai gantinya.
 
-* Fungsi yang Anda kirimkan kepada `startTransition` haruslah sinkronus. React akan langsung mengeksekusi fungsi ini, menandai semua perubahan state yang terjadi sambil mengeksekusinya sebagai transisi. Jika Anda mencoba untuk melakukan perubahan state lebih nanti (contoh, saat timeout), mereka tidak akan ditandai sebagai transisi.
+* Fungsi yang Anda kirimkan kepada `startTransition` haruslah sinkron. React akan langsung mengeksekusi fungsi ini, menandai semua perubahan *state* yang terjadi sambil mengeksekusinya sebagai transisi. Jika Anda mencoba untuk melakukan perubahan *state* lebih nanti (contoh, saat *timeout*), mereka tidak akan ditandai sebagai transisi.
 
-* Perubahan state yang ditandai sebagai transisi akan terganggu oleh perubahan state lainnya. Contohnya, jika anda merubah komponen chart di dalam transisi, namun kemudian memulai mengetik dalam input ketika chart sedang di tengah merender ulang, React akan merender ulang pekerjaan pada komponen chart setelah mengerjakan perubahan pada input.
+* Perubahan *state* yang ditandai sebagai transisi akan terganggu oleh perubahan *state* lainnya. Contohnya, jika anda mengubah komponen chart di dalam transisi, namun kemudian memulai mengetik dalam input ketika chart sedang di tengah me*render* ulang, React akan me*render* ulang pekerjaan pada komponen chart setelah mengerjakan perubahan pada input.
 
-* Perubahan transisi tidak dapat digunakan untuk mengontrol input text.
+* Perubahan transisi tidak dapat digunakan untuk mengontrol input teks.
 
 * Apabila terdapat beberapa transisi yang berjalan, React saat ini akan mengelompokkan mereka bersama. Ini adalah limitasi yang mungkin akan dihapus pada rilis yang akan datang.
 
@@ -92,7 +92,7 @@ function TabContainer() {
 
 ### Menandai perubahan state sebagai transisi non-blocking {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Panggil `useTransition` pada level teratas komponen Anda untuk menandai perubahan state sebagai *transisi* non-blocking.
+Panggil `useTransition` pada level teratas komponen Anda untuk menandai perubahan *state* sebagai *transisi* non-blocking.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -103,12 +103,12 @@ function TabContainer() {
 }
 ```
 
-`useTransition` mengembalikan sebuah array dengan tepat dua item:
+`useTransition` mengembalikan sebuah senarai dengan tepat dua item:
 
 1. Flag <CodeStep step={1}>`isPending`</CodeStep> yang memberitahukan Anda apakah terdapat transisi tertunda.
-2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda menandai perubahan state sebagai transisi.
+2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
-Kemudian Anda dapat menandai perubahan state sebagai transisi seperti berikut:
+Kemudian Anda dapat menandai perubahan *state* sebagai transisi seperti berikut:
 
 ```js {6,8}
 function TabContainer() {
@@ -132,9 +132,9 @@ Dengan transisi, UI Anda akan tetap responsif di tengah-tengah merender ulang. C
 
 #### Merubah tab saat ini dalam transisi {/*updating-the-current-tab-in-a-transition*/}
 
-Pada contoh berikut ini, tab "Posts" ini **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk render.
+Pada contoh berikut ini, tab "Posts" ini **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*.
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa ini akan mengganggu muatan "Posts" yang lambat. Tab "Contact" akan tampil segera. Karena perubahan state ini ditandai sebagai transisi, merender ulang yang lambat tidak akan membekukan tampilan pengguna.
+Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa ini akan mengganggu muatan "Posts" yang lambat. Tab "Contact" akan tampil segera. Karena perubahan *state* ini ditandai sebagai transisi, me*render* ulang yang lambat tidak akan membekukan tampilan pengguna.
 
 <Sandpack>
 
@@ -271,9 +271,9 @@ b { display: inline-block; margin-right: 10px; }
 
 #### Merubah tab saat ini tanpa transisi {/*updating-the-current-tab-without-a-transition*/}
 
-Pada contoh berikut, tab "Posts" juga **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk render. Berbeda dengan contoh sebelumnya, perubahan state ini **bukanlah sebuah transisi.**
+Pada contoh berikut, tab "Posts" juga **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*. Berbeda dengan contoh sebelumnya, perubahan *state* ini **bukanlah sebuah transisi.**
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan state ini bukanlah sebuah transisi, sehingga merender ulang yang lambat membekukan tampilan pengguna.
+Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan *state* ini bukanlah sebuah transisi, sehingga merender ulang yang lambat membekukan tampilan pengguna.
 
 <Sandpack>
 
@@ -411,7 +411,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Merubah komponen induk dalam transisi {/*updating-the-parent-component-in-a-transition*/}
 
-Anda dapat merubah state komponen induk dari panggilan `useTransition` juga. Contohnya, komponen `TabButton` ini membungkus logika komponen `onClick` dalam sebuah transisi:
+Anda dapat mengubah *state* komponen induk dari panggilan `useTransition` juga. Contohnya, komponen `TabButton` ini membungkus logika komponen `onClick` dalam sebuah transisi:
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -431,7 +431,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Karena komponen induk merubah statenya di dalam event handler `onClick`, perubahan state tersebut akan ditandai sebagai transisi. Inilah mengapa, seperti pada contoh diawal, Anda dapat menekan pada "Posts" dan kemudian segera menekan "Contact". Merubah tab yang dipilih akan ditandai sebagai transisi, sehingga itu tidak memblokir tampilan pengguna.
+Karena komponen induk merubah *state*nya di dalam event handler `onClick`, perubahan *state* tersebut akan ditandai sebagai transisi. Inilah mengapa, seperti pada contoh di awal, Anda dapat menekan pada "Posts" dan kemudian segera menekan "Contact". Mengubah tab yang dipilih akan ditandai sebagai transisi, sehingga itu tidak memblokir tampilan pengguna.
 
 <Sandpack>
 
@@ -562,7 +562,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Menampilan state visual tertunda saat transisi {/*displaying-a-pending-visual-state-during-the-transition*/}
 
-Anda dapat menggunakan nilai boolean `isPending` yang dikembalikan oleh `useTransition` untuk menandai ke pengguna bahwa transisi sedang berjalan. Contohnya, tombol tab dapat memiliki state visual special "pending":
+Anda dapat menggunakan nilai boolean `isPending` yang dikembalikan oleh `useTransition` untuk menandai ke pengguna bahwa transisi sedang berjalan. Contohnya, tombol tab dapat memiliki *state* visual special "pending":
 
 ```js {4-6}
 function TabButton({ children, isActive, onClick }) {
@@ -893,7 +893,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Menyembunyikan seluruh tab container untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan state pending di tombol tab sebagai gantinya.
+Menyembunyikan seluruh tab container untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan *state* pending di tombol tab sebagai gantinya.
 
 Perhatikan bahwa menekan "Posts" tidak menjadikan seluruh tab container dengan spinner:
 
@@ -1520,16 +1520,16 @@ function handleChange(e) {
 return <input value={text} onChange={handleChange} />;
 ```
 
-Ini dikarenakan transisi adalah non-blocking, namun merubah input dalam respon untuk merubah *event* seharusnya bekerja secara sinkronus. Jika Anda ingin menjalankan transisi sebagai respon untuk menulis, Anda memiliki dua opsi:
+Ini dikarenakan transisi adalah non-blocking, namun mengubah input dalam respon untuk mengubah *event* seharusnya bekerja secara sinkron. Jika Anda ingin menjalankan transisi sebagai respon untuk menulis, Anda memiliki dua opsi:
 
-1. Anda dapat mendeklarasikan dua state variabel berbeda: satu untuk state input ( yang selaluu berubah secara sinkronus), dan satu yang akan Anda ubah dalam transisi. Ini memungkinkan Anda mengendalikan input menggunakan state sinkronus, dan mengirim variabel state transisi (yang akan "lag" dibelakang input) ke sisa logika rendering Anda.
-2. Kalau tidak, Anda dapat memiliki satu variabel state, dan tambahkan [`useDeferredValue`](/reference/react/useDeferredValue) yang akan "lag" dibelakang nilai asli. Ini akan men*trigger* merender ulang non-blocking untuk "mengejar" dengan nilai baru secara otomatis.
+1. Anda dapat mendeklarasikan dua variabel *state* berbeda: satu untuk *state* masukan ( yang selalu berubah secara sinkron), dan satu yang akan Anda ubah dalam transisi. Ini memungkinkan Anda mengendalikan masukan menggunakan *state* sinkron, dan mengirim variabel *state* transisi (yang akan "lag" dibelakang masukan) ke sisa logika *rendering* Anda.
+2. Kalau tidak, Anda dapat memiliki satu variabel *state*, dan tambahkan [`useDeferredValue`](/reference/react/useDeferredValue) yang akan "lag" dibelakang nilai asli. Ini akan men*trigger* me*render* ulang non-blocking untuk "mengejar" dengan nilai baru secara otomatis.
 
 ---
 
 ### React tidak memperlakukan perubahan state saya sebagai transisi {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
-Ketika Anda membungkus perubahan state di dalam transisi, pastikan bahwa itu terjadi *saat* memanggil `startTransition`:
+Ketika Anda membungkus perubahan *state* di dalam transisi, pastikan bahwa itu terjadi *saat* memanggil `startTransition`:
 
 ```js
 startTransition(() => {
@@ -1538,7 +1538,7 @@ startTransition(() => {
 });
 ```
 
-Fungsi yang Anda kirimkan ke `startTransition` harus sinkronus.
+Fungsi yang Anda kirimkan ke `startTransition` harus sinkron.
 
 Anda tidak dapat menandakan perubahan sebagai transisi seperti berikut:
 
@@ -1586,7 +1586,7 @@ startTransition(() => {
 
 ### Saya ingin memanggil `useTransition` dari luar komponen {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-Anda tidak dapat memanggil `useTransition` diluar sebuah komponen karena ini adalah sebuah Hook. Dalam kasus ini, sebaiknya gunakanlah metode [`startTransition`](/reference/react/startTransition). Itu bekerja dengan cara yang sama, namun itu tidak dapat memberikan indikator `isPending`.
+Anda tidak dapat memanggil `useTransition` di luar sebuah komponen karena ini adalah sebuah Hook. Dalam kasus ini, sebaiknya gunakanlah *method* [`startTransition`](/reference/react/startTransition). Itu bekerja dengan cara yang sama, namun itu tidak dapat memberikan indikator `isPending`.
 
 ---
 
@@ -1603,7 +1603,7 @@ startTransition(() => {
 console.log(3);
 ```
 
-**Ini diharapkan untuk mencetak 1, 2, 3.** Fungsi yang Anda berikan ke `startTransition` tidak tertunda. Tidak seperti milik browser `setTimeout`, hal tersebut nantinya tidak menjalankan *callback*. React akan eksekusi fungsi Anda secara langsung, namun perubahan state yang terjadwal *saat berjalan* akan ditandai sebagai transisi. Anda dapat membayangkan hal tersebut bekerja seperti berikut:
+**Ini diharapkan untuk mencetak 1, 2, 3.** Fungsi yang Anda berikan ke `startTransition` tidak tertunda. Tidak seperti milik browser `setTimeout`, hal tersebut nantinya tidak menjalankan *callback*. React akan eksekusi fungsi Anda secara langsung, namun perubahan *state* yang terjadwal *saat berjalan* akan ditandai sebagai transisi. Anda dapat membayangkan hal tersebut bekerja seperti berikut:
 
 ```js
 // A simplified version of how React works
