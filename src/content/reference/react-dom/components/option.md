@@ -4,7 +4,6 @@ title: "<option>"
 
 <Intro>
 
-
 [Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk merender opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
 
 
@@ -59,7 +58,6 @@ Sebagai tambahan, `<option>` mendukung *props* ini:
 Render sebuah `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilihan. Beri setiap `<option>` sebuah `value` yang merepresentasikan data yang akan dikirim dengan formulir.
 
 [Baca lebih lanjut mengenai menampilkan `<select>` dengan daftar dari komponen `<option>`.](/reference/react-dom/components/select)
-
 
 <Sandpack>
 
