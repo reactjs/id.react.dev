@@ -10,8 +10,8 @@ title: Memperbarui Objek dalam State
 
 <YouWillLearn>
 
-- Bagaimana cara membarui objek di dalam React *state*
-- Bagaimana cara membarui objek yang bersarang tanpa melakukan mutasi
+- Bagaimana cara memperbarui objek di dalam React *state*
+- Bagaimana cara memperbarui objek yang bersarang tanpa melakukan mutasi
 - Apa itu *immutability*, dan bagaimana agar tidak merusaknya
 - Bagaimana cara mempersingkat penyalinan objek dengan Immer
 
@@ -40,7 +40,7 @@ Sekarang pikirkan sebuah objek dalam *state*:
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Secara teknis, Anda bisa membarui isi konten *objek itu sendiri*. **Hal ini disebut sebagai mutasi:**
+Secara teknis, Anda bisa memperbarui isi konten *objek itu sendiri*. **Hal ini disebut sebagai mutasi:**
 
 ```js
 position.x = 5;
@@ -646,7 +646,7 @@ let obj3 = {
 };
 ```
 
-Jika Anda membarui `obj3.artwork.city`, hal itu akan mempengaruhi `obj2.artwork.city` dan `obj1.city`. Hal ini disebabkan karena `obj3.artwork`, `obj2.artwork`, dan `obj1` merupakan objek yang sama. Hal ini sulit untuk dilihat ketika Anda memikirkan objek-objek sebagai "bersarang". Alih-alih, mereka sebenarnya adalah objek-objek terpisah yang "menunjuk" satu sama lain melalui properti-properti.
+Jika Anda memperbarui `obj3.artwork.city`, hal itu akan mempengaruhi `obj2.artwork.city` dan `obj1.city`. Hal ini disebabkan karena `obj3.artwork`, `obj2.artwork`, dan `obj1` merupakan objek yang sama. Hal ini sulit untuk dilihat ketika Anda memikirkan objek-objek sebagai "bersarang". Alih-alih, mereka sebenarnya adalah objek-objek terpisah yang "menunjuk" satu sama lain melalui properti-properti.
 
 </DeepDive>
 
@@ -812,7 +812,7 @@ Dalam praktek, Anda bisa sering kali "lolos" dengan melakukan mutasi *state* dal
 * Daripada mutasi objek, buat versi *baru* dari objek tersebut, dan picu render ulang dengan menyimpan objek baru tersebut ke *state*.
 * Kamu bisa menggunakan `{...obj, something: 'newValue'}` sintaksis objek *spread* untuk membuat salinan dari objek-objek.
 * Sintaksis *spread* adalah dangkal: ia hanya menyalin sedalam satu level.
-* Untuk membarui objek bersarang, Anda perlu menyalin semuanya sampai ke tempat pembaruan.
+* Untuk memperbarui objek bersarang, Anda perlu menyalin semuanya sampai ke tempat pembaruan.
 * Untuk mengurangi kode salinan objek yang repetitif, gunakan Immer.
 
 </Recap>
@@ -964,7 +964,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Masalah pada `handlePlusClick` adalah fungsi tersebut melakukan mutasi terhadap objek `player`. Hasilnya, React tidak tahu bahwa ada alasan untuk melakukan render ulang, dan tidak membarui skor pada layar. Inilah alasan mengapa ketika Anda mengubah nama pertama, *state* diperbarui, memicu render ulang **yang juga** membarui skor pada layar.
+Masalah pada `handlePlusClick` adalah fungsi tersebut melakukan mutasi terhadap objek `player`. Hasilnya, React tidak tahu bahwa ada alasan untuk melakukan render ulang, dan tidak memperbarui skor pada layar. Inilah alasan mengapa ketika Anda mengubah nama pertama, *state* diperbarui, memicu render ulang **yang juga** memperbarui skor pada layar.
 
 Masalah pada `handleLastNameChange` adalah fungsi tersebut tidak menyalin properti-properti `...player` sebelumnya ke objek yang baru. Inilah alasan mengapa skor menjadi hilang setelah Anda mengubah nama belakang.
 
