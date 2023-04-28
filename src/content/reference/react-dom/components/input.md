@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda merender berbagai jenis input form.
 
 ```js
 <input />
@@ -16,26 +16,26 @@ The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<input>` {/*input*/}
 
-To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
+Untuk menampilkan sebuah input, render komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
-`<input>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
-You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
+Anda dapat [membuat sebuah input yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, controls whether it is selected.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, controls its text. (For a radio button, specifies its form data.)
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk input checkbox atau tombol radio, mengontrol apakah itu dipilih.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): Sebuah string. Untuk sebuah text input, mengontrol text. (Untuk tombol radio, menentukan data form.)
 
 When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
 
