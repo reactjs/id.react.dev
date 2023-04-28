@@ -983,7 +983,7 @@ h1 {
 
 <Hint>
 
-JSX apapun yang anda taruh di dalam tag komponen akan terkirim sebagai *prop* `children` bagi komponen tersebut.
+JSX apapun yang Anda taruh di dalam tag komponen akan terkirim sebagai *prop* `children` bagi komponen tersebut.
 
 </Hint>
 
