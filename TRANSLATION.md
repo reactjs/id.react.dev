@@ -1,6 +1,6 @@
-# Panduan Penerjemahan Bahasa Indonesia untuk id.react.dev
+# Panduan Penerjemahan Bahasa Indonesia untuk react.dev
 
-Berikut adalah panduan-panduan dasar dalam penerjemahan situs id.react.dev ke Bahasa Indonesia. Dokumen ini ditujukan bagi mereka yang baru mulai berkontribusi dan yang pernah berkontribusi sebelumnya. Apabila ada kekurangan, silakan berkontribusi dengan menyunting dokumen ini.
+Berikut adalah panduan-panduan dasar dalam penerjemahan situs react.dev ke Bahasa Indonesia. Dokumen ini ditujukan bagi mereka yang baru mulai berkontribusi dan yang pernah berkontribusi sebelumnya. Apabila ada kekurangan, silakan berkontribusi dengan menyunting dokumen ini.
 
 ## Referensi
 
