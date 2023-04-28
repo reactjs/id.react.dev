@@ -477,7 +477,7 @@ Dengan secara ketat hanya menulis komponen Anda sebagai fungsi murni, Anda dapat
 let guest = 0;
 
 function Cup() {
-  // Buruk: memodifikasi variabel yang sudah ada sebelum cup dipanggil!
+  // Buruk: memodifikasi variabel yang sudah ada sebelum Cup dipanggil!
   guest = guest + 1;
   return <h2>Gelas teh untuk tamu #{guest}</h2>;
 }
