@@ -519,7 +519,7 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Baca **[Menjaga Komponen Murni](/learn/keeping-components-pure)** untuk mempelajari cara menulis komponen sebagai fungsi yang murni dan dapat diprediksi.
+Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk mempelajari cara menulis komponen sebagai fungsi yang murni dan dapat diprediksi.
 
 </LearnMore>
 
