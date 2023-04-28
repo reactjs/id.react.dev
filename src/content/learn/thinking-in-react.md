@@ -71,13 +71,13 @@ Setelah Anda mengidentifikasi komponen-komponen dalam rancang bangun, susunlah k
         * `ProductCategoryRow`
         * `ProductRow`
 
-## Step 2: Build a static version in React {/*step-2-build-a-static-version-in-react*/}
+## Langkah 2: Buat versi statis di React {/*step-2-build-a-static-version-in-react*/}
 
-Now that you have your component hierarchy, it's time to implement your app. The most straightforward approach is to build a version that renders the UI from your data model without adding any interactivity... yet! It's often easier to build the static version first and add interactivity later. Building a static version requires a lot of typing and no thinking, but adding interactivity requires a lot of thinking and not a lot of typing.
+Setelah Anda memiliki hierarki komponen, sekarang saatnya mengimplementasikan aplikasi Anda. Pendekatan yang paling mudah adalah membuat versi yang merender UI dari model data Anda tanpa menambahkan interaktivitas apa pun... untuk sementara! Sering kali lebih mudah untuk membuat versi statis terlebih dahulu dan menambahkan interaktivitas kemudian. Membangun versi statis membutuhkan banyak pengetikan dan tidak perlu berpikir, tetapi menambahkan interaktivitas membutuhkan banyak pemikiran dan tidak perlu banyak pengetikan.
 
-To build a static version of your app that renders your data model, you'll want to build [components](/learn/your-first-component) that reuse other components and pass data using [props.](/learn/passing-props-to-a-component) Props are a way of passing data from parent to child. (If you're familiar with the concept of [state](/learn/state-a-components-memory), don't use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.)
+Untuk membuat versi statis dari aplikasi Anda yang merender model data Anda, Anda perlu membuat [komponen](/learn/your-first-component) yang menggunakan kembali komponen lain dan mengirimkan data menggunakan [props.](/learn/passing-props-to-a-component) Props adalah cara untuk mengoper data dari induk ke anak. (Jika Anda sudah terbiasa dengan konsep [state](/learn/state-a-components-memory), jangan gunakan state sama sekali untuk membangun versi statis ini. State hanya diperuntukkan bagi interaktivitas, yaitu data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi, Anda tidak memerlukannya).
 
-You can either build "top down" by starting with building the components higher up in the hierarchy (like `FilterableProductTable`) or "bottom up" by working from components lower down (like `ProductRow`). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up.
+Anda bisa membangun "dari atas ke bawah" dengan memulai membangun komponen yang lebih tinggi dalam hierarki (seperti `FilterableProductTable`) atau "dari bawah ke atas" dengan bekerja dari komponen yang lebih rendah (seperti `ProductRow`). Dalam contoh yang lebih sederhana, biasanya lebih mudah untuk bekerja dari atas ke bawah, dan pada proyek yang lebih besar, lebih mudah untuk bekerja dari bawah ke atas.
 
 <Sandpack>
 
@@ -195,13 +195,13 @@ td {
 
 </Sandpack>
 
-(If this code looks intimidating, go through the [Quick Start](/learn/) first!)
+(Jika kode ini terlihat menyeramkan, bacalah [Quick Start](/learn/) terlebih dahulu!)
 
-After building your components, you'll have a library of reusable components that render your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
+Setelah membuat komponen, Anda akan memiliki pustaka komponen yang dapat digunakan kembali untuk merender model data Anda. Karena ini adalah aplikasi statis, komponen-komponennya hanya akan mengembalikan JSX. Komponen di bagian atas hirarki (`FilterableProductTable`) akan mengambil model data Anda sebagai props. Ini disebut _aliran data satu arah (one-way data flow)_ karena data mengalir turun dari komponen tingkat atas ke komponen di bagian bawah pohon.
 
 <Pitfall>
 
-At this point, you should not be using any state values. That’s for the next step!
+Pada titik ini, Anda tidak perlu menggunakan nilai state apa pun. Itu untuk langkah selanjutnya!
 
 </Pitfall>
 
