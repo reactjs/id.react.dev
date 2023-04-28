@@ -215,13 +215,13 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* Sebuah komponen harus murni, berarti:
+  * **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
+  * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama. 
+* *Render* bisa terjadi kapan saja, maka komponen sebaiknya tidak bergantung terhadap proses *render* satu sama lain.
+* Anda sebaiknya tidak memutasi masukan yang digunakan komponen Anda dalam proses *render*, termasuk *prop*, *state*, dan *context*. Untuk memperbarui layar, ["ubah" *state*](/learn/state-a-components-memory) daripada memutasi objek yang sudah ada sebelumnya.
+* Anda sebaiknya berusaha untuk menuliskan logika komponen di JSX yang akan dihasilkan komponen. Saat Anda ingin "mengubah sesuatu", Anda sebaiknya melakukannya di dalam *event handler*. Sebagai pilihan terakhir, Anda juga bisa menggunakan `useEffect`.
+* Menulis fungsi murni akan membutuhkan waktu, tetapi ini membuka jalan untuk memanfaatkan potensi paradigma React secara maksimal.
 
 </Recap>
 
@@ -229,15 +229,15 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
   
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### Memperbaiki jam rusak {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+Komponen ini ingin mengubah kelas CSS `<h1>` ke `"night"` dari tengah malam hingga pukul enam pagi dan `"day"` di waktu lain. Namun, ini tidak bekerja. Apakah Anda bisa memperbaiki jam ini?
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+Anda bisa memverifikasi solusi Anda dengan mengubah zona waktu komputer Anda. Saat waktu ada di antara tengah malam dan pukul enam pagi, warna jam berubah!
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+*Render* adalah *kalkulasi*. Oleh karena itu, seharusnya *render* tidak berusaha untuk "mengubah" sesuatu. Apakah Anda bisa mengekpresikan ide yang sama dengan cara yang berbeda?
 
 </Hint>
 
@@ -301,7 +301,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+Anda bisa memperbaiki komponen ini dengan mengalkulasi `className` dan menyertakannya di luaran *render*:
 
 <Sandpack>
 
@@ -362,19 +362,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+Di contoh ini, efek samping (memodifikasi DOM) tidak perlu dilakukan. Anda hanya perlu mengembalikan JSX.
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### Memperbaiki profil rusak {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+Dua komponen `Profile` di-*render* secara berdampingan dengan data yang berbeda. Anda bisa menekan "*Collapse*" di profil pertama dan menekan "*Expand*". Anda akan melihat kedua profil menampilkan orang yang sama. Ini adalah sebuah *bug*.
 
-Find the cause of the bug and fix it.
+Anda diminta untuk menemukan *bug* tersebut dan memperbaikinya.
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+Kode yang bermasalah ada di `Profile.js`. Pastikan Anda membaca seluruh kode tersebut!
 
 </Hint>
 
@@ -475,9 +475,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+Masalahnya adalah komponen `Profile` menulis ke variabel yang sudah ada sebelumnya, yaitu `currentPerson`, dan komponen `Header`, serta `Avatar` membaca variabel tersebut. Ini mengakibatkan *tiga komponen ini* tidak murni dan sulit untuk diprediksi.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+Untuk memperbaikinya, hapus variabel `currentPerson`. Justru, serahkan semua informasi dari `Profile` ke `Header` dan `Avatar` melalui *prop*. Anda perlu menambahkan *prop* `person` ke dua komponen tersebut dan meneruskan informasi tersebut.
 
 <Sandpack>
 
@@ -571,15 +571,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+Anda harus ingat React tidak menjamin sebuah fungsi komponen akan dieksekusi berdasarkan suatu urutan sehingga Anda tidak bisa membangun komunikasi antarkomponen dengan menggunakan variabel. Smeua komunikasi harus dilakukan melalui *prop*.
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### Memperbaiki *story tray* rusak {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+*CEO* perusahaan Anda meminta Anda untuk menambahkan "*story*" ke aplikasi jam daring Anda dan Anda tidak bisa menolak permintaan tersebut. Anda telah menulis sebuah komponen `StoryTray` yang menerima daftar berisikan `stories`, kemudian diikuti *placeholder* "*Create Story*".
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+Anda telah mengimplementasi *placeholder* "*Create Story*" dengan menambahkan satu *story* palsu di akhir senarai `stories` yang Anda terima sebagai `prop`. Sayangnya, entah mengapa, "*Create Story*" muncul lebih dari satu kali. Anda diminta untuk memperbaiki ini.
 
 <Sandpack>
 
@@ -675,11 +675,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+Perhatikan bagaimana saat jam berubah, "*Create Story*" ditambahkan *dua kali*. Ini mengindikasikan komponen melakukan mutasi pada saat me-*render*--*Strict Mode* memanggil komponen dua kali untuk menunjukkan masalah ini.
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+Fungsi `StoryTray` tidak murni. Dengan memanggil `push` kepada senarai `stories` yang diterima (sebuah *prop*!), fungsi ini memutasi sebuah objek yang dibuat *sebelum* `StoryTray` mulai me-*render*. Ini yang mengakibatkan *bug* dan komponen menjadi sulit diprediksi.
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+Solusi paling sederhana adalah untuk tidak menyentuh senarai dan me-*render* "*Create Story*" secara terpisah:
 
 <Sandpack>
 
@@ -763,16 +763,16 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+Solusi alternatif adalah Anda bisa membuat sebuah senarai *baru* (dengan menyalin senarai yang sudah ada) sebelum Anda menambahkan anggota baru ke dalamnya:
 
 <Sandpack>
 
 ```js StoryTray.js active
 export default function StoryTray({ stories }) {
-  // Copy the array!
+  // Salin senarai!
   let storiesToDisplay = stories.slice();
 
-  // Does not affect the original array:
+  // Tidak mengubah senarai asli:
   storiesToDisplay.push({
     id: 'create',
     label: 'Create Story'
@@ -855,9 +855,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+Ini menjaga mutasi Anda tetap lokal dan proses *render* tetap murni. Namun, Anda tetap harus berhati-hati: misalnya, jika Anda berusaha untuk mengubah anggota dari senarai tersebut, Anda harus menyalin anggota tersebut terlebih dahulu sebelum mengubahnya.
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+Oleh karena itu, sangat penting bagi Anda untuk mengingat operasi yang memutasi senarai dan yang tidak. Misalnya, `push`, `pop`, `reverse`, dan `sort` memutasi senarai asli, tetapi `slice`, `filter`, dan `map` akan membuat senarai baru.
 
 </Solution>
 
