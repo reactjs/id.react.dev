@@ -501,7 +501,7 @@ Anda dapat membuat komponen ini menjadi murni dengan melewatkan sebuah *prop* da
 
 ```js
 function Cup({ guest }) {
-  return <h2>Gelas teh untuk tamu #{guest}</h2>;
+  return <h2>Cangkir teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
