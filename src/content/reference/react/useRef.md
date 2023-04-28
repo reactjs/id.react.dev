@@ -96,7 +96,7 @@ Dengan menggunakan ref, Anda memastikan bahwa:
 
 - Anda dapat **menyimpan informasi** di antara render ulang (tidak seperti variabel biasa, yang disetel ulang pada setiap render).
 - Mengubahnya **tidak memicu sebuah render ulang** (tidak seperti variabel state, yang memicu sebuah render ulang).
-- **Informasi ini bersifat lokal** untuk setiap salinan komponen Anda (tidak seperti variabel di luar, yang dibagikan).
+- **Informasinya bersifat lokal** untuk setiap salinan komponen Anda (tidak seperti variabel di luar, yang dibagikan).
 
 Mengubah sebuah ref tidak akan memicu sebuah render ulang, jadi ref tidak sesuai untuk menyimpan informasi yang ingin Anda tampilkan di layar. Gunakan state untuk itu. Baca lebih lanjut tentang [memilih antara `useRef` dan `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
