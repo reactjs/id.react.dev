@@ -1,5 +1,5 @@
 ---
-title: Membarui Objek dalam State
+title: Memperbarui Objek dalam State
 ---
 
 <Intro>
@@ -12,7 +12,7 @@ title: Membarui Objek dalam State
 
 - Bagaimana cara membarui objek di dalam React *state*
 - Bagaimana cara membarui objek yang bersarang tanpa melakukan mutasi
-- Apa itu *immutability*, dan bagaimana cara mematuhinya
+- Apa itu *immutability*, dan bagaimana agar tidak merusaknya
 - Bagaimana cara mempersingkat duplikasi objek dengan Immer
 
 </YouWillLearn>
@@ -31,7 +31,7 @@ Sejauh ini Anda sudah bisa menggunakan angka, *string*, dan *boolean*. Nilai-nil
 setX(5);
 ```
 
-Nilai *state* `x` berubah dari `0` menjadi `5`, tetapi *angka `0` itu sendiri* tidak berubah. Melakukan perubahan terhadap nilai-nilai primitif yang *built-in* seperti angka, *string*, dan *boolean* itu mustahil di JavaScript.
+Nilai *state* `x` berubah dari `0` menjadi `5`, tetapi *angka `0` itu sendiri* tidak berubah. Melakukan perubahan terhadap nilai-nilai primitif yang bawaan seperti angka, *string*, dan *boolean* itu mustahil di JavaScript.
 
 
 Sekarang pikirkan sebuah objek dalam *state*:
