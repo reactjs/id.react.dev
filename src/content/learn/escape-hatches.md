@@ -191,12 +191,12 @@ Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to lear
 
 </LearnMore>
 
-## Kemungkinan besar anda tidak memerlukan Efek {/*you-might-not-need-an-effect*/}
+## Kemungkinan Besar Anda Tidak Memerlukan Efek {/*you-might-not-need-an-effect*/}
 
 Fitur Efek sebetulnya tidak sejalan dengan paradigma React. Fitur ini memungkinkan Anda "keluar" dari React dan menyinkronkan komponen-komponen Anda dengan sistem eksternal tertentu. Jika tidak ada sistem eksternal yang terlibat (misalnya, jika Anda ingin memperbarui *state* komponen ketika beberapa *props* atau *state* berubah), Anda seharusnya tidak memerlukan Efek. Menghapus Efek yang tidak perlu akan membuat kode Anda lebih mudah dipahami, lebih cepat dijalankan, dan mengurangi potensi kesalahan.
 
 Terdapat dua kasus umum dimana Anda tidak akan memerlukan Efek:
-- **Anda tidak memerlukan Efek untuk mentransformasi data yang akan dirender**
+- **Anda tidak memerlukan Efek untuk mengubah data yang akan dirender**
 - **Anda tidak memerlukan Efek untuk menangani *event* dari pengguna**
 
 
@@ -204,14 +204,14 @@ Contohnya, Anda tidak memerlukan Efek untuk mengubah *state* berdasarkan *state*
 
 ```js {5-9}
 function Form() {
-  const [namaDepan, setNamaDepan] = useState('Isyana');
-  const [namaBelakang, setNamaBelakang] = useState('Sarasvati');
+  const [firstName, setFirstName] = useState('Taylor');
+  const [lastName, setLastName] = useState('Swift');
 
   // 🔴 Hindari: pemborosan State dan Efek yang tidak perlu
-  const [namaLengkap, setNamaLengkap] = useState('');
+  const [fullName, setFullName] = useState('');
   useEffect(() => {
-    setNamaLengkap(namaDepan + ' ' + namaBelakang);
-  }, [namaDepan, namaBelakang]);
+    setFullName(firstName + ' ' + lastName);
+  }, [firstName, lastName]);
   // ...
 }
 ```
@@ -220,10 +220,10 @@ Alih-alih, lakukan operasi sebanyak mungkin saat *rendering*:
 
 ```js {4-5}
 function Form() {
-  const [namaDepan, setNamaDepan] = useState('Isyana');
-  const [namaBelakang, setNamaBelakang] = useState('Sarasvati');
+  const [firstName, setFirstName] = useState('Taylor');
+  const [lastName, setLastName] = useState('Swift');
   // ✅ Bagus: operasi dilakukan saat rendering
-  const namaLengkap = namaDepan + ' ' + namaBelakang;
+  const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
