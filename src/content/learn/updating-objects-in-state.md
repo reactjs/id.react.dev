@@ -371,7 +371,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Perhatikan bahwa `...` sintaksis *spread* sebenarnya adalah "dangkal"--benda-benda yang diduplikasi hanya sedalam satu level. Hal ini membuatnya cepat, tetapi itu juga berarti bahwa jika Anda ingin memperbarui properti yang bersarang, Anda harus menggunakannya lebih dari sekali.
+Perhatikan bahwa `...` sintaksis *spread* sebenarnya adalah "dangkal"--benda-benda yang disalin hanya sedalam satu level. Hal ini membuatnya cepat, tetapi itu juga berarti bahwa jika Anda ingin memperbarui properti yang bersarang, Anda harus menggunakannya lebih dari sekali.
 
 <DeepDive>
 
