@@ -4,7 +4,7 @@ title: useCallback
 
 <Intro>
 
-`useCallback` is a React Hook that lets you cache a function definition between re-renders.
+`useCallback` adalah sebuah React Hook yang memungkinkan Anda untuk meng-cache sebuah definisi fungsi diantara render ulang.
 
 ```js
 const cachedFn = useCallback(fn, dependencies)
@@ -16,11 +16,11 @@ const cachedFn = useCallback(fn, dependencies)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useCallback(fn, dependencies)` {/*usecallback*/}
 
-Call `useCallback` at the top level of your component to cache a function definition between re-renders:
+Panggil fungsi `useCallback` di tingkat atas komponen Anda untuk meng-cache sebuah definisi fungsi diantara render ulang:
 
 ```js {4,9}
 import { useCallback } from 'react';
@@ -34,30 +34,30 @@ export default function ProductPage({ productId, referrer, theme }) {
   }, [productId, referrer]);
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `fn`: The function value that you want to cache. It can take any arguments and return any values. React will return (not call!) your function back to you during the initial render. On next renders, React will give you the same function again if the `dependencies` have not changed since the last render. Otherwise, it will give you the function that you have passed during the current render, and store it in case it can be reused later. React will not call your function. The function is returned to you so you can decide when and whether to call it.
+* `fn`: Nilai fungsi yang ingin Anda simpan dalam cache. ini dapat menerima argument apa saja dan mengembalikan nilai apa saja. React akan mengembalikan (tidak memanggil!) fungsi Anda kembali kepada Anda selama render awal. Pada render selanjutnya, React akan memberikan fungsi yang sama kepada Anda lagi jika `dependencies` tidak berubah sejak render sebelumnya. Jika tidak, itu akan memberi Anda fungsi yang telah Anda lewati selama render saat ini, dan menyimpannya jika nanti dapat digunakan kembali. React tidak akan memanggil fungsi Anda. Fungsi tersebut dikembalikan kepada kamu agar kamu bisa memutuskan kapan dan apakah akan memanggilnya.
 
-* `dependencies`: The list of all reactive values referenced inside of the `fn` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm.
+* `dependencies`: Daftar dari semua nilai yang bersifat reaktif yang direferensikan di dalam kode `fn`. Nilai-nilai reaktif termasuk props, state, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam badan komponen. jika linter Anda adalah [dikonfigurasi untuk React](/learn/editor-setup#linting), linter akan memverifikasi bahwa setiap nilai reaktif telah ditentukan dengan benar sebagai dependensi. Daftar dependensi harus memiliki jumlah item yang konstan dan ditulis dalam satu baris seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilainya yang sebelumnya menggunakan algorithma perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
-#### Returns {/*returns*/}
+#### Pengembalian {/*returns*/}
 
-On the initial render, `useCallback` returns the `fn` function you have passed.
+Pada render awal, `useCallback` mengembalikan fungsi `fn` yang telah Anda lewati.
 
-During subsequent renders, it will either return an already stored `fn`  function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+Selama render berikutnya, useCallback akan mengembalikan fungsi `fn` yang sudah tersimpan dari render terakhir (jika dependensi tidak berubah), atau mengembalikan fungsi `fn` yang telah kamu lewati selama render ini.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* `useCallback` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* `useCallback` adalah sebuah Hook, jadi Anda hanya dapat memanggil useCallback **di tingkat atas komponen Anda** atau Hooks yang Anda buat sendiri. Anda tidak dapat memanggil useCallback di dalam looping atau kondisi. Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan state ke dalamnya.
+* React **tidak akan membuang fungsi yang sudah di-cache kecuali ada alasan khusus untuk melakukannya.** Sebagai contoh, pada saat pengembangan, React akan membuang cache ketika Anda mengedit file komponen Anda. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Skipping re-rendering of components {/*skipping-re-rendering-of-components*/}
+### Melewati proses render ulang sebuah Komponen {/*skipping-re-rendering-of-components*/}
 
 When you optimize rendering performance, you will sometimes need to cache the functions that you pass to child components. Let's first look at the syntax for how to do this, and then see in which cases it's useful.
 
