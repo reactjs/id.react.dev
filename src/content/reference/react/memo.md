@@ -4,7 +4,7 @@ title: memo
 
 <Intro>
 
-`memo` memungkinkan Anda untuk melewati proses render ulang komponen apabila props tidak berubah.
+`memo` memungkinkan Anda untuk melewatkan proses render ulang komponen apabila props tidak berubah.
 
 ```
 const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
@@ -46,7 +46,7 @@ const SomeComponent = memo(function SomeComponent(props) {
 
 ## Penggunaan {/*usage*/}
 
-### Melewatkan render ulang apabila props tidak berubah {/*skipping-re-rendering-when-props-are-unchanged*/}
+### Melewatkan proses render ulang apabila props tidak berubah {/*skipping-re-rendering-when-props-are-unchanged*/}
 
 React biasanya merender ulang sebuah komponen setiap kali induknya di render ulang. Dengan `memo`, Anda dapat membuat komponen yang tidak akan di render ulang oleh React ketika induknya di render ulang selama props yang baru sama dengan props yang lama. Komponen seperti ini disebut sebagai *memoized*.
 
