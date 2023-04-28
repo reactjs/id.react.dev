@@ -20,7 +20,7 @@ Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`.
 
 ## Komponen *Form* {/*form-components*/}
 
-Komponen-komponen bawaan peramban ini menerima *input* dari *user*:
+Komponen-komponen bawaan peramban ini menerima masukan dari pengguna:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
