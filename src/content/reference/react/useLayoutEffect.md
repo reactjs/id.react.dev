@@ -85,7 +85,6 @@ Untuk melakukan hal ini, Anda perlu merender dalam dua tahap:
 
 **Seluruh proses tersebut harus terjadi sebelum peramban melukis ulang layar.** Anda tidak ingin pengguna untuk melihat *tooltip* bergerak. Panggil `useLayoutEffect` untuk melakukan pengukuran tata letak sebelum peramban melukis ulang layar:
 
-
 ```js {5-8}
 function Tooltip() {
   const ref = useRef(null);
@@ -735,6 +734,8 @@ Namun, jika Anda mengalami masalah ini, ada beberapa opsi yang tersedia:
 - Ubah `useLayoutEffect` menjadi [`useEffect`.](/reference/react/useEffect) Hal ini memberi tahu React bahwa hasil render awal dapat ditampilkan tanpa memblokir proses melukis (karena HTML asli akan menjadi terlihat sebelum Efek dijalankan).
 
 - Sebagai alternatif, [tandai komponen Anda sebagai *client-only*.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content Ini memberi tahu React untuk mengganti kontennya hingga batas [`<Suspense>`](/reference/react/Suspense) terdekat dengan *loading* cadangan (misalnya, *spinner* atau *glimmer*) selama *server rendering*.
+
+- Sebagai alternatif, Anda dapat merender komponen dengan `useLayoutEffect` hanya setelah proses hidrasi. Pertahankan *state boolean* `isMounted` yang diinisialisasi dengan nilai `false`, dan atur nilainya menjadi `true` di dalam panggilan `useEffect`. Logika rendering Anda dapat dituliskan seperti ini: `return isMounted ? <RealContent /> : <FallbackContent />`. Selama di sisi *server* atau proses hidrasi, pengguna akan melihat `FallbackContent` yang tidak memanggil `useLayoutEffect`. Kemudian React akan menggantinya dengan `RealContent` yang hanya dijalankan di sisi klien dan dapat menyertakan pemanggilan `useLayoutEffect`.
 
 - Jika Anda menyinkronkan komponen Anda dengan penyimpanan data eksternal dan mengandalkan `useLayoutEffect` untuk penggunaan selain dari pengukuran tata letak, pertimbangkan [`useSyncExternalStore`](/reference/react/useSyncExternalStore) sebagai gantinya, yang [mendukung `server rendering`.](reference/react/useSyncExternalStore#adding-support-for-server-rendering)
 
