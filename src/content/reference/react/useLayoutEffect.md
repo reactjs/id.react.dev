@@ -128,7 +128,7 @@ export default function App() {
           </div>
         }
       >
-        Arahkan disini (tooltip di atas)
+        Arahkan disini (tooltip berada di atas)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
@@ -136,7 +136,7 @@ export default function App() {
           <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Arahkan disini (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
@@ -144,7 +144,7 @@ export default function App() {
           <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Arahkan disini (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
     </div>
   );
@@ -278,7 +278,7 @@ export default function App() {
           </div>
         }
       >
-        Arahkan disini (tooltip di atas)
+        Arahkan disini (tooltip berada di atas)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
@@ -286,7 +286,7 @@ export default function App() {
           <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Arahkan disini (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
@@ -294,7 +294,7 @@ export default function App() {
           <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Arahkan disini (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
     </div>
   );
@@ -406,8 +406,6 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 #### `useEffect` tidak menghalangi browser {/*useeffect-does-not-block-the-browser*/}
 
-Here is the same example, but with [`useEffect`](/reference/react/useEffect) instead of `useLayoutEffect`. If you're on a slower device, you might notice that sometimes the tooltip "flickers" and you briefly see its initial position before the corrected position.
-
 Berikut merupakan contoh identik menggunakan [`useEffect`](/reference/react/useEffect) daripada `useLayoutEffect`. Jika Anda menggunakan perangkat yang lebih lambat, mungkin Anda akan melihat bahwa terkadang *tooltip* "berkedip" dan secara singkat Anda melihat posisi awalnya sebelum diperbaiki.
 
 <Sandpack>
@@ -421,29 +419,29 @@ export default function App() {
       <ButtonWithTooltip
         tooltipContent={
           <div>
-            This tooltip does not fit above the button.
+            Tooltip ini tidak muat di atas tombol
             <br />
-            This is why it's displayed below instead!
+            Ini sebabnya tooltip ditampilkan di bawah
           </div>
         }
       >
-        Hover over me (tooltip above)
+        Arahkan disini (tooltip berada)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
         tooltipContent={
-          <div>This tooltip fits above the button</div>
+          <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Hover over me (tooltip below)
+        Arahkan disini (tooltip below)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
         tooltipContent={
-          <div>This tooltip fits above the button</div>
+          <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Hover over me (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
     </div>
   );
@@ -506,7 +504,7 @@ export default function Tooltip({ children, targetRect }) {
     tooltipX = targetRect.left;
     tooltipY = targetRect.top - tooltipHeight;
     if (tooltipY < 0) {
-      // It doesn't fit above, so place below.
+      // Tooltip tidak muat di atas, maka ditempatkan di bawah
       tooltipY = targetRect.bottom;
     }
   }
@@ -551,7 +549,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-To make the bug easier to reproduce, this version adds an artificial delay during rendering. React will let the browser paint the screen before it processes the state update inside `useEffect`. As a result, the tooltip flickers:
+Agar *bug* mudah direproduksi, versi berikut secara artifisial menambahkan delay saat merender. React akan membiarkan browser melukis ulang layar sebelum memproses pembaruan *state* di dalam `useEffect`. Hasilnya, tooltip berkedip:
 
 <Sandpack>
 
@@ -564,29 +562,29 @@ export default function App() {
       <ButtonWithTooltip
         tooltipContent={
           <div>
-            This tooltip does not fit above the button.
+            Tooltip ini tidak muat di atas tombol
             <br />
-            This is why it's displayed below instead!
+            Ini sebabnya tooltip ditampilkan di bawah
           </div>
         }
       >
-        Hover over me (tooltip above)
+        Arahkan disini (tooltip berada)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
         tooltipContent={
-          <div>This tooltip fits above the button</div>
+          <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Hover over me (tooltip below)
+        Arahkan disini (tooltip below)
       </ButtonWithTooltip>
       <div style={{ height: 50 }} />
       <ButtonWithTooltip
         tooltipContent={
-          <div>This tooltip fits above the button</div>
+          <div>Tooltip ini muat di atas tombol</div>
         }
       >
-        Hover over me (tooltip below)
+        Arahkan disini (tooltip berada di bawah)
       </ButtonWithTooltip>
     </div>
   );
@@ -638,10 +636,10 @@ export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
   const [tooltipHeight, setTooltipHeight] = useState(0);
 
-  // This artificially slows down rendering
+  // Berikut secara artifisial memperlambat rendering 
   let now = performance.now();
   while (performance.now() - now < 100) {
-    // Do nothing for a bit...
+    // Tidak melakukan apa pun sebentar...
   }
 
   useEffect(() => {
@@ -655,7 +653,7 @@ export default function Tooltip({ children, targetRect }) {
     tooltipX = targetRect.left;
     tooltipY = targetRect.top - tooltipHeight;
     if (tooltipY < 0) {
-      // It doesn't fit above, so place below.
+      // Tooltip tidak muat di atas, maka ditempatkan di bawah
       tooltipY = targetRect.bottom;
     }
   }
@@ -700,7 +698,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Edit this example to `useLayoutEffect` and observe that it blocks the paint even if rendering is slowed down.
+Ubah contoh berikut menjadi `useLayoutEffect` dan perhatikan bahwa proses melukis diblokir meskipun *rendering* diperlambat . 
 
 <Solution />
 
@@ -708,40 +706,38 @@ Edit this example to `useLayoutEffect` and observe that it blocks the paint even
 
 <Note>
 
-Rendering in two passes and blocking the browser hurts performance. Try to avoid this when you can.
+Proses merender dalam dua tahap dan memblokir browser akan menurunkan kinerja. Cobalah untuk menghindari ini sebisa mungkin.
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### I'm getting an error: "`useLayoutEffect` does nothing on the server" {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
+### Saya menerima pesan kesalahan: "`useLayoutEffect` does nothing on the server" {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
 
-The purpose of `useLayoutEffect` is to let your component [use layout information for rendering:](#measuring-layout-before-the-browser-repaints-the-screen)
+Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan informasi tata letak untuk *merender*:](#measuring-layout-before-the-browser-repaints-the-screen)
 
-1. Render the initial content.
-2. Measure the layout *before the browser repaints the screen.*
-3. Render the final content using the layout information you've read.
+1. Merender konten awal.
+2. Mengukur tata letak *sebelum browser melukis ulang layar.*
+3. Merender konten akhir menggunakan informasi tata letak yang telah dibaca.
 
 When you or your framework uses [server rendering](/reference/react-dom/server), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
 
-The problem is that on the server, there is no layout information.
+Saat Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda dirender menjadi HTML di *server* saat awal merender.   
 
-In the [earlier example](#measuring-layout-before-the-browser-repaints-the-screen), the `useLayoutEffect` call in the `Tooltip` component lets it position itself correctly (either above or below content) depending on the content height. If you tried to render `Tooltip` as a part of the initial server HTML, this would be impossible to determine. On the server, there is no layout yet! So, even if you rendered it on the server, its position would "jump" on the client after the JavaScript loads and runs.
+Masalahnya, di *server* tidak tersedia informasi tentang tata letak.
 
-Usually, components that rely on layout information don't need to render on the server anyway. For example, it probably doesn't make sense to show a `Tooltip` during the initial render. It is triggered by a client interaction.
+Pada [contoh sebelumnya](#measuring-layout-before-the-browser-repaints-the-screen), pemanggilan `useLayoutEffect` pada komponen `Tooltip` memungkinkan posisi *tooltip* disesuaikan dengan benar (entah di atas atau di bawah konten) tergantung pada tinggi konten. Jika Anda mencoba merender `Tooltip` sebagai bagian dari HTML *server* awal, ini akan menjadi tidak mungkin untuk ditentukan. Pada *server*, belum terdapat tata letak! Jadi, meskipun Anda merendernya pada server, posisinya akan "melompat" di klien setelah JavaScript dimuat dan dijalankan.
 
-However, if you're running into this problem, you have a few different options:
+Biasanya, komponen yang bergantung pada informasi tata letak tidak perlu dirender di *server*. Misalnya, mungkin tidak masuk akal untuk menampilkan `Tooltip` selama render awal. Itu dipicu oleh interaksi klien.
 
-- Replace `useLayoutEffect` with [`useEffect`.](/reference/react/useEffect) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
+Namun, jika Anda mengalami masalah ini, ada beberapa opsi yang tersedia:
 
-- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+- Ubah `useLayoutEffect` menjadi [`useEffect`.](/reference/react/useEffect) Hal ini memberi tahu React bahwa hasil render awal dapat ditampilkan tanpa memblokir proses melukis (karena HTML asli akan menjadi terlihat sebelum Efek dijalankan).
 
-- Alternatively, you can render a component with `useLayoutEffect` only after hydration. Keep a boolean `isMounted` state that's initialized to `false`, and set it to `true` inside a `useEffect` call. Your rendering logic can then be like `return isMounted ? <RealContent /> : <FallbackContent />`. On the server and during the hydration, the user will see `FallbackContent` which should not call `useLayoutEffect`. Then React will replace it with `RealContent` which runs on the client only and can include `useLayoutEffect` calls.
+- Sebagai alternatif, [tandai komponen Anda sebagai *client-only*.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content Ini memberi tahu React untuk mengganti kontennya hingga batas [`<Suspense>`](/reference/react/Suspense) terdekat dengan *loading* cadangan (misalnya, *spinner* atau *glimmer*) selama *server rendering*.
 
-- If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](/reference/react/useSyncExternalStore) instead which [supports server rendering.](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)
-
-
+- Jika Anda menyinkronkan komponen Anda dengan penyimpanan data eksternal dan mengandalkan `useLayoutEffect` untuk penggunaan selain dari pengukuran tata letak, pertimbangkan [`useSyncExternalStore`](/reference/react/useSyncExternalStore) sebagai gantinya, yang [mendukung `server rendering`.](reference/react/useSyncExternalStore#adding-support-for-server-rendering)
 
 
