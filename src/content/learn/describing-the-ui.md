@@ -479,7 +479,7 @@ let guest = 0;
 function Cup() {
   // Buruk: memodifikasi variabel yang sudah ada sebelum Cup dipanggil!
   guest = guest + 1;
-  return <h2>Gelas teh untuk tamu #{guest}</h2>;
+  return <h2>Cangkir teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
