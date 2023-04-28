@@ -462,7 +462,7 @@ Baca **[Merender List](/learn/rendering-lists)** untuk mempelajari cara me-*rend
 
 </LearnMore>
 
-## Menjaga Komponen Murni {/*keeping-components-pure*/}
+## Menjaga Komponen Tetap Murni {/*keeping-components-pure*/}
 
 Beberapa fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
