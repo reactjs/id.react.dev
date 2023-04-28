@@ -81,7 +81,7 @@ Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu 
  </Suspense>
 ```
 
-Pada contoh ini, kode untuk `MarkdownPreview` tidak akan dimuat hingga Anda mencoba merendernya. Jika `MarkdownPreview` belum dimuat, `Loading` atau indikator akan ditampilkan sebagai gantinya. Coba centang *checkbox* ini:
+Pada contoh ini, kode untuk `MarkdownPreview` tidak akan dimuat hingga Anda mencoba merendernya. Jika `MarkdownPreview` belum dimuat, Komponen `Loading` akan ditampilkan sebagai gantinya. Coba centang *checkbox* **Lihat pratinjau**:
 
 <Sandpack>
 
@@ -93,18 +93,18 @@ const MarkdownPreview = lazy(() => delayForDemo(import('./MarkdownPreview.js')))
 
 export default function MarkdownEditor() {
   const [showPreview, setShowPreview] = useState(false);
-  const [markdown, setMarkdown] = useState('Hello, **world**!');
+  const [markdown, setMarkdown] = useState('Helo, **dunia**!');
   return (
     <>
       <textarea value={markdown} onChange={e => setMarkdown(e.target.value)} />
       <label>
         <input type="checkbox" checked={showPreview} onChange={e => setShowPreview(e.target.checked)} />
-        Show preview
+        Lihat pratinjau
       </label>
       <hr />
       {showPreview && (
         <Suspense fallback={<Loading />}>
-          <h2>Preview</h2>
+          <h2>Pratinjau</h2>
           <MarkdownPreview markdown={markdown} />
         </Suspense>
       )}
@@ -122,7 +122,7 @@ function delayForDemo(promise) {
 
 ```js Loading.js
 export default function Loading() {
-  return <p><i>Loading...</i></p>;
+  return <p><i>Sedang memuat...</i></p>;
 }
 ```
 
@@ -175,7 +175,7 @@ body {
 
 </Sandpack>
 
-Demo ini dimuat dengan penundaan buatan. Lain kali Anda menghapus centang dan mencentang *checkbox*, `Preview` akan dicache, sehingga tidak akan ada status pemuatan. Untuk melihat status pemuatan lagi, Klik "Reset" pada *sandbox*.
+Demo ini dimuat dengan penundaan buatan. Lain kali Anda menghapus centang dan mencentang *checkbox* **Lihat pratinjau**, Komponen `Preview` akan dicache, sehingga tidak akan ada status pemuatan. Untuk melihat status pemuatan lagi, Klik *"Reset"* pada *sandbox*.
 
 [Pelajari lebih lanjut tentang mengelola status pemuatan dengan Suspense.](/reference/react/Suspense)
 
@@ -191,7 +191,7 @@ Jangan deklarasikan komponen `lazy` *di dalam* komponen lain:
 import { lazy } from 'react';
 
 function Editor() {
-  // 🔴 Bad: This will cause all state to be reset on re-renders
+  // 🔴 Buruk: Ini akan menyebabkan semua status direset pada render ulang
   const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
   // ...
 }
@@ -202,7 +202,7 @@ Sebaiknya, selalu deklarasikan mereka di tingkat teratas modul Anda:
 ```js {3-4}
 import { lazy } from 'react';
 
-// ✅ Good: Declare lazy components outside of your components
+// ✅ Bagus: Mendeklarasikan komponen lazy di luar komponen Anda
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 function Editor() {
