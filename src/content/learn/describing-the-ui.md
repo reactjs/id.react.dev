@@ -314,7 +314,7 @@ Baca **[Mengoper Props ke sebuah Komponen](/learn/passing-props-to-a-component)*
 
 </LearnMore>
 
-## Merender Kondisional {/*conditional-rendering*/}
+## Merender Secara Kondisional {/*conditional-rendering*/}
 
 Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
