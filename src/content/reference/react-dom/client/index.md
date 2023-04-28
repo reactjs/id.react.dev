@@ -1,10 +1,11 @@
 ---
-title: Client React DOM APIs
+title: API klien React DOM
 ---
 
 <Intro>
 
-The `react-dom/client` APIs let you render React components on the client (in the browser). These APIs are typically used at the top level of your app to initialize your React tree. A [framework](/learn/start-a-new-react-project#production-grade-react-frameworks) may call them for you. Most of your components don't need to import or use them.
+
+API `react-dom/client` memungkinkan Anda untuk merender komponen React pada sisi klien (di browser). Biasanya API ini digunakan pada level atas aplikasi React untuk menginisialisasi pohon React Anda. Sebuah [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) mungkin memanggilnya untuk Anda. Kebanyakan komponen Anda tidak perlu mengimpor atau menggunakannya.
 
 </Intro>
 
