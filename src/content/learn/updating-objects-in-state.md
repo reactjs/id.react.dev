@@ -170,7 +170,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 #### Mutasi Lokal itu baik-baik saja {/*local-mutation-is-fine*/}
 
-Kode sepert ini merupakan masalah karena ia memodifikasi objek *yang sudah ada* pada *state*:
+Kode seperti ini merupakan masalah karena ia memodifikasi objek *yang sudah ada* pada *state*:
 
 ```js
 position.x = e.clientX;
@@ -296,7 +296,7 @@ setPerson({
 
 Sekarang formulirnya berfungsi!
 
-Perhatikan bagaimana Anda tidak mendeklarasikan variabel *state* yang terpisah untuk setiap bidang isian. Untuk form yang besar, menyimpan semua data dalam sebuah objek sebagai satu kelompok merupakan hal yang mudah--selama objek tersebut diperbarui dengan benar!
+Perhatikan bagaimana Anda tidak mendeklarasikan variabel *state* yang terpisah untuk setiap bidang isian. Untuk formulir yang besar, menyimpan semua data dalam sebuah objek sebagai satu kelompok merupakan hal yang mudah--selama objek tersebut diperbarui dengan benar!
 
 <Sandpack>
 
@@ -801,7 +801,7 @@ Ada beberapa saran:
 * **Perubahan Kebutuhan:** Beberapa fitur aplikasi, seperti implementasi *Undo*/*Redo*, menunjukkan sejarah perubahan, atau membiarkan pengguna mengatur ulang sebuah formulir ke nilai yang lebih awal, lebih mudah dilakukan jika tidak ada yang dimutasi. Alasannya adalah Anda bisa menyimpan salinan-salinan dari *state* sebelumnya di dalam memori, dan menggunakannya kembali jika diinginkan. Jika Anda memulai dengan pendekatan mutasi, fitur-fitur seperti ini bisa menjadi rumit untuk ditambahkan di kemudian hari.
 * **Implementasi yang Lebih Simpel:** Karena React tidak bergantung pada mutasi, React tidak perlu melakukan hal spesial terhadap objek-objek Anda. React tidak perlu membajak properti-properti objek, membungkus objek-objek menjadi *Proxies*, atau melakukan pekerjaan lainnya ketika inisialisasi seperti kebanyakan solusi "reaktif" lainnya. Ini juga menjadi alasan mengapa React membiarkan Anda menaruh objek di dalam *state*--tidak peduli sebesar apapun--tanpa isu-isu tambahan dalam hal performa atau ketepatan.
 
-Dalam praktek, Anda bisa sering kali "lolos" dengan melakukan mutasi *state* dalam React, tetapi kami sangat menyarankan untuk tidak melakukan hal tersebut agar Anda bisa menggunakan fitur-fitur baru React yang dikembangkan dengan pendekatan ini. Para kontributor di masa depan dan bahkan mungkin diri Anda di masa depan akan berterima kasih!
+Dalam praktik, Anda bisa sering kali "lolos" dengan melakukan mutasi *state* dalam React, tetapi kami sangat menyarankan untuk tidak melakukan hal tersebut agar Anda bisa menggunakan fitur-fitur baru React yang dikembangkan dengan pendekatan ini. Para kontributor di masa depan dan bahkan mungkin diri Anda di masa depan akan berterima kasih!
 
 </DeepDive>
 
