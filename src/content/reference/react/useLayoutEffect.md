@@ -720,7 +720,6 @@ Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan i
 2. Mengukur tata letak *sebelum peramban melukis ulang layar.*
 3. Merender konten akhir menggunakan informasi tata letak yang telah dibaca.
 
-
 Saat Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda dirender menjadi HTML di *server* saat awal merender.   
 
 Masalahnya, di *server* tidak tersedia informasi tentang tata letak.
