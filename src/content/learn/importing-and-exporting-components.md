@@ -37,7 +37,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmwuan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -89,7 +89,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuwan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -208,7 +208,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuwan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -296,7 +296,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuwan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -342,7 +342,7 @@ import { Profile } from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuwan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -392,7 +392,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Ilmuwan Hebat</h1>
+      <h1>Para ilmuwan hebat</h1>
       <Profile />
       <Profile />
       <Profile />
