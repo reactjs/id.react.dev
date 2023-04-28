@@ -1,27 +1,27 @@
 ---
-title: State as a Snapshot
+title: State Sebagai Sebuah Snapshot
 ---
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+*State* mungkin terlihat seperti variabel reguler pada Javascript yang dapat Anda baca dan tulis. Akan tetapi, *state* berperilaku lebih seperti sebuah *snapshot*. Melakukan perubahan pada *state* tidak mengubah kondisi dari variabel yang Anda miliki, akan tetapi memicu terjadinya sebuah *render* ulang.
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* Bagaimana mengubah suatu *state* memicu terjadinya *render* ulang
+* Kapan dan bagaimana *state* diperbarui
+* Mengapa *state* tidak segera diperbarui setelah Anda mengubahnya  
+* Bagaimana *event handlers* dapat mengakses "*snapshot*" dari sebuah *state*
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Mengubah state memicu terjadinya render ulang {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+Anda mungkin berpikir bahwa antarmuka pengguna Anda berubah seketika sebagai respons terhadap *event* pengguna seperti sebuah *event* klik. Pada React, cara kerjanya sedikit berbeda dari model mental ini. Pada halaman sebelumnya, Anda dapat melihat bahwa [mengubah *state* mengirim permintaan *render* ulang](/learn/render-and-commit#step-1-trigger-a-render) kepada React. Artinya, agar antarmuka pengguna pada aplikasi Anda dapat bereaksi terhadap *event* tersebut, Anda perlu *memperbarui state tersebut*.
 
-In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
+Pada contoh dibawah, ketika Anda menekan tombol "Kirim". `setIsSent(true)` memberi tahu React untuk melakukan *render* ulang terhadap UI:
 
 <Sandpack>
 
@@ -30,9 +30,9 @@ import { useState } from 'react';
 
 export default function Form() {
   const [isSent, setIsSent] = useState(false);
-  const [message, setMessage] = useState('Hi!');
+  const [message, setMessage] = useState('Halo!');
   if (isSent) {
-    return <h1>Your message is on its way!</h1>
+    return <h1>Pesan anda sedang dikirim!</h1>
   }
   return (
     <form onSubmit={(e) => {
@@ -45,7 +45,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -62,42 +62,43 @@ label, textarea { margin-bottom: 10px; display: block; }
 </Sandpack>
 
 Here's what happens when you click the button:
+Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh diatas:
 
-1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+1. *Event handler* `onSubmit` dijalankan.
+2. `setIsSent(true)` mengubah `isSent` menjadi `true` dan memasukkan antrian *render* baru.
+3. React melakukan *render* ulang pada komponen tersebut sesuai dengan nilai `isSent` yang baru.  
 
-Let's take a closer look at the relationship between state and rendering.
+Mari kita lihat lebih dekat hubungan antara *state* dan *rendering*.
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Rendering mengambil sebuah snapshot pada waktunya {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) berarti React memanggil komponen Anda, yang merupakan sebuah fungsi. JSX yang Anda kembalikan dari fungsi tersebut layaknya seperti sebuah *snapshot* UI pada waktu *render* tersebut. *Props*, *event handler*, dan variabel lokal semuanya dihitung *menggunakan state pada komponen tersebut pada saat render*.
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+Tidak seperti sebuah foto atau sebuah bingkai film, "*snapshot*" antarmuka yang Anda kembalikan bersifat interaktif. Ini termasuk logika seperti *event handler* yang menentukan apa yang terjadi sebagai respons terhadap suatu input. React memperbarui antarmuka agar sesuai dengan *snapshot* ini dan menghubungkan *event handler*. Sebagai hasilnya, menekan sebuah tombol akan memicu *handler* klik dari JSX Anda.
 
-When React re-renders a component:
+Ketika React melakukan *render* ulang pada sebuah komponen:
 
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot you've returned.
-
-<IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
-</IllustrationBlock>
-
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+1. React memanggil fungsi Anda kembali.
+2. Fungsi Anda mengembalikan *snapshot* JSX yang baru.
+3. React lalu memperbarui antarmuka agar sesuai dengan *snapshot* yang Anda kembalikan.
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+    <Illustration caption="React menjalankan fungsi" src="/images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Melakukan kalkulasi untuk mendapatkan snapshot terbaru" src="/images/docs/illustrations/i_render2.png" />
+    <Illustration caption="Memperbarui pohon DOM" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
+Sebagai memori dari sebuah komponen, *state* tidak seperti variabel biasa yang hilang setelah fungsi Anda selesai. *State* sebenarnya "hidup" didalam React itu sendiri--seolah-olah di sebuah rak!--di luar fungsi Anda. Ketika React memanggil komponen Anda, React memberi Anda snapshot dari *state* untuk *render* tersebut. Komponen Anda mengembalikan *snapshot* UI dengan kumpulan *props* dan *event handler* baru di JSX tersebut, yang semuanya dihitung **menggunakan nilai *state* dari *render* tersebut!**
 
-See what happens when you click the "+3" button:
+<IllustrationBlock sequential>
+  <Illustration caption="Anda memberi tahu React untuk memperbarui suatu state" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React memperbarui nilai dari state tersebut" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React meneruskan snapshot dari nilai state tersebut ke komponen yang bersangkutan" src="/images/docs/illustrations/i_state-snapshot3.png" />
+</IllustrationBlock>
+
+Berikut sedikit eksperimen untuk menunjukkan cara kerjanya. Pada contoh dibawah, Anda mungkin mengira bahwa menekan tombol "+3" akan menaikkan jumlah perhitungannya sebanyak tiga kali karena kode tersebut memanggil `setNumber(number + 1)` sebanyak tiga kali.
+
+Lihat apa yang terjadi ketika anda menekan tombol "+3":
 
 <Sandpack>
 
@@ -127,9 +128,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Notice that `number` only increments once per click!
+Perhatikan bahwa `number` hanya bertambah satu kali per klik!
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**Memperbarui state hanya akan mengubahnya untuk *render* selanjutnya.** Pada *render* pertama, `number` bernilai `0`. Inilah sebabnya, dalam *handler* `onClick` pada *render* tersebut, `number` tetap bernilai `0` bahkan setelah `setNumber(number + 1)` dipanggil:
 
 ```js
 <button onClick={() => {
@@ -139,14 +140,14 @@ Notice that `number` only increments once per click!
 }}>+3</button>
 ```
 
-Here is what this button's click handler tells React to do:
+Berikut adalah apa yang *handler* klik pada tombol tersebut beri tahu kepada React apa yang perlu dilakukan:
 
-1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
+1. `setNumber(number + 1)`: `number` bernilai `0` sehingga `setNumber(0 + 1)`.
+    - React mempersiapkan untuk mengubah `number` menjadi `1` pada *render* selanjutnya.
+2. `setNumber(number + 1)`: `number` bernilai `0` sehingga `setNumber(0 + 1)`.
+    - React mempersiapkan untuk mengubah `number` menjadi `1` pada *render* selanjutnya.
+3. `setNumber(number + 1)`: `number` bernilai `0` sehingga `setNumber(0 + 1)`.
+    - React mempersiapkan untuk mengubah `number` menjadi `1` pada *render* selanjutnya.
 
 Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
 
