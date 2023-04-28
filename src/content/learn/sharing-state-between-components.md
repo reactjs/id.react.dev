@@ -5,7 +5,7 @@ title: Berbagi State Antar Komponen
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakukannya, hapus *state* dari kedua komponen, pindahkan ke komponen induk terdekat, dan kemudian oper ke komponen tersebut melalui *props*. Ini dikenal sebagai *lifting state up,* dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
 
 </Intro>
 
