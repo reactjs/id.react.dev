@@ -8,11 +8,11 @@ React dapat mengubah cara berpikir Anda tentang desain yang Anda lihat dan aplik
 
 </Intro>
 
-## Start with the mockup {/*start-with-the-mockup*/}
+## Mulailah dengan sebuah rancang bangun {/*start-with-the-mockup*/}
 
-Imagine that you already have a JSON API and a mockup from a designer.
+Bayangkan Anda sudah memiliki API JSON dan rancang bangun dari desainer.
 
-The JSON API returns some data that looks like this:
+API JSON mengembalikan beberapa data yang terlihat seperti ini:
 
 ```json
 [
@@ -25,25 +25,25 @@ The JSON API returns some data that looks like this:
 ]
 ```
 
-The mockup looks like this:
+Rancang bangun kita terlihat seperti ini:
 
 <img src="/images/docs/s_thinking-in-react_ui.png" width="300" style={{margin: '0 auto'}} />
 
-To implement a UI in React, you will usually follow the same five steps.
+Untuk mengimplementasikan antarmuka pengguna di React, Anda biasanya akan mengikuti lima langkah yang sama.
 
-## Step 1: Break the UI into a component hierarchy {/*step-1-break-the-ui-into-a-component-hierarchy*/}
+## Langkah 1: Bagi antarmuka pengguna menjadi hierarki komponen {/*step-1-break-the-ui-into-a-component-hierarchy*/}
 
-Start by drawing boxes around every component and subcomponent in the mockup and naming them. If you work with a designer, they may have already named these components in their design tool. Ask them!
+Mulailah dengan menggambar kotak-kotak di sekitar setiap komponen dan subkomponen dalam rancang bangun dan beri nama. Jika Anda bekerja dengan seorang desainer, mereka mungkin telah menamai komponen-komponen ini di alat bantu desain mereka. Tanyakan kepada mereka!
 
-Depending on your background, you can think about splitting up a design into components in different ways:
+Tergantung pada latar belakang Anda, Anda dapat berpikir untuk membagi desain menjadi beberapa komponen dengan cara yang berbeda:
 
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
-* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
-* **Design**--consider how you would organize the design's layers.
+* **Pemrograman**--gunakan teknik yang sama untuk memutuskan apakah Anda harus membuat fungsi atau objek baru. Salah satu teknik tersebut adalah [*single responsibility principle*](https://en.wikipedia.org/wiki/Single_responsibility_principle), yaitu sebuah komponen idealnya hanya melakukan satu hal. Jika komponen tersebut berkembang, maka harus dipecah menjadi subkomponen yang lebih kecil.
+* **CSS**--pertimbangkan untuk apa Anda akan membuat *class selector*. (Namun, komponen tidak terlalu terperinci.)
+* **Desain**--pertimbangkan bagaimana Anda akan mengatur *layer* desain.
 
-If your JSON is well-structured, you'll often find that it naturally maps to the component structure of your UI. That's because UI and data models often have the same information architecture--that is, the same shape. Separate your UI into components, where each component matches one piece of your data model.
+Jika JSON Anda terstruktur dengan baik, Anda akan sering menemukan bahwa JSON tersebut secara alami memetakan struktur komponen UI Anda. Hal ini karena UI dan model data sering kali memiliki arsitektur informasi yang sama--atau, bentuk yang sama. Pisahkan UI Anda menjadi beberapa komponen, di mana setiap komponen cocok dengan satu bagian dari model data Anda.
 
-There are five components on this screen:
+Terdapat lima komponen pada layar ini:
 
 <FullWidth>
 
@@ -51,19 +51,19 @@ There are five components on this screen:
 
 <img src="/images/docs/s_thinking-in-react_ui_outline.png" width="500" style={{margin: '0 auto'}} />
 
-1. `FilterableProductTable` (grey) contains the entire app.
-2. `SearchBar` (blue) receives the user input.
-3. `ProductTable` (lavender) displays and filters the list according to the user input.
-4. `ProductCategoryRow` (green) displays a heading for each category.
-5. `ProductRow`	(yellow) displays a row for each product.
+1. `FilterableProductTable` (abu-abu) berisi seluruh aplikasi.
+2. `SearchBar` (biru) menerima masukan dari pengguna.
+3. `ProductTable` (lavender) menampilkan dan memfilter *list* sesuai dengan masukan pengguna.
+4. `ProductCategoryRow` (hijau) menampilkan judul untuk setiap kategori.
+5. `ProductRow` (kuning) menampilkan baris untuk setiap produk.
 
 </CodeDiagram>
 
 </FullWidth>
 
-If you look at `ProductTable` (lavender), you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and you could go either way. For this example, it is a part of `ProductTable` because it appears inside the `ProductTable`'s list. However, if this header grows to be complex (e.g., if you add sorting), you can move it into its own `ProductTableHeader` component.
+Jika Anda melihat `ProductTable` (lavender), Anda akan melihat bahwa *header* tabel (yang berisi label "Name" dan "Price") bukan merupakan komponennya sendiri. Ini adalah masalah preferensi, dan Anda dapat memilih salah satu. Dalam contoh ini, header tersebut merupakan bagian dari `ProductTable` karena muncul di dalam *list* `ProductTable`. Namun, jika *header* ini menjadi kompleks (misalnya, jika Anda menambahkan pengurutan), Anda dapat memindahkannya ke dalam komponen `ProductTableHeader` sendiri.
 
-Now that you've identified the components in the mockup, arrange them into a hierarchy. Components that appear within another component in the mockup should appear as a child in the hierarchy:
+Setelah Anda mengidentifikasi komponen-komponen dalam rancang bangun, susunlah komponen-komponen tersebut ke dalam sebuah hirarki. Komponen yang muncul di dalam komponen lain dalam rancang bangun harus muncul sebagai anak dalam hierarki:
 
 * `FilterableProductTable`
     * `SearchBar`
