@@ -138,9 +138,9 @@ Perlu diingat bahwa mengekspos *ref* ke *DOM node* di dalam komponen Anda akan m
 
 <Recipes title="Examples of forwarding a ref">
 
-#### memfokuskan input teks {/*focusing-a-text-input*/}
+#### Memfokuskan input teks {/*focusing-a-text-input*/}
 
-Mengklik tombol akan memfokuskan input. Komponen `Form` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyInput`. Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hal ini memungkinkan komponen `Form` memfokuskan `<input>`.
+Mengeklik tombol akan memfokuskan input. Komponen `Form` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyInput`. Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hal ini memungkinkan komponen `Form` memfokuskan `<input>`.
 
 <Sandpack>
 
@@ -194,7 +194,7 @@ input {
 
 #### Memutar dan menjeda video {/*playing-and-pausing-a-video*/}
 
-Mengklik tombol akan memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada *DOM node* `<video>`. Komponen `Aplikasi` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyVideoPlayer`. Komponen `MyVideoPlayer` meneruskan *ref* tersebut ke *node* `<video>` pada peramban. Hal ini memungkinkan komponen `Aplikasi` memainkan dan menjeda `<video>`.
+Mengeklik tombol akan memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada *DOM node* `<video>`. Komponen `Aplikasi` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyVideoPlayer`. Komponen `MyVideoPlayer` meneruskan *ref* tersebut ke *node* `<video>` pada peramban. Hal ini memungkinkan komponen `Aplikasi` memainkan dan menjeda `<video>`.
 
 <Sandpack>
 
@@ -382,7 +382,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Berikan `ref` yang Anda terima ke [`useImperativeHandle`](/reference/react/useImperativeHandle) dan tentukan nilai yang ingin Anda pajankan ke `ref`:
+Berikan `ref` yang Anda terima ke [`useImperativeHandle`](/reference/react/useImperativeHandle) dan tentukan nilai yang ingin Anda ekspos ke `ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -464,13 +464,13 @@ input {
 
 </Sandpack>
 
-[Baca lebih lanjut tentang menggunakan pegangan imperatif.](/reference/react/useImperativeHandle)
+[Baca lebih lanjut tentang menggunakan penanganan imperatif.](/reference/react/useImperativeHandle)
 
 <Pitfall>
 
 **Jangan terlalu sering menggunakan refs.** Anda hanya boleh menggunakan *refs* untuk perilaku *imperatif* yang tidak dapat Anda ungkapkan sebagai *props*: misalnya, menggulir ke sebuah *node*, memfokuskan sebuah *node*, memicu sebuah animasi, memilih teks, dan sebagainya.
 
-**Jika Anda dapat mengekspresikan sesuatu sebagai *prop*, Anda tidak boleh menggunakan *ref*.** Sebagai contoh, daripada mengekspos penanganan imperatif seperti `{ buka, tutup }` dari komponen `Modal`, lebih baik menggunakan `isOpen` sebagai *prop* seperti `<Modal isOpen = {isOpen} />`. [Effects](/learn/synchronizing-with-effects) dapat membantu Anda mengekspos perilaku imperatif melalui  *props*.
+**Jika Anda dapat mengekspresikan sesuatu sebagai *prop*, Anda tidak boleh menggunakan *ref*.** Sebagai contoh, daripada mengekspos penanganan imperatif seperti `{ open, close }` dari komponen `Modal`, lebih baik menggunakan `isOpen` sebagai *prop* seperti `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) dapat membantu Anda mengekspos perilaku imperatif melalui  *props*.
 
 </Pitfall>
 
