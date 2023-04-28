@@ -11,22 +11,24 @@ Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakuka
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Bagaimana cara berbagi state antar komponen dengan *lifting state up*
+- Apa itu komponen terkendali dan tidak terkendali
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Contoh Lifting State Up {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+
+Pada contoh ini, komponen induk `Accordion` merender dua komponen `Panel` terpisah:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Setiap komponen `Panel` memiliki *state* boolean `isActive` yang menentukan apakah kontennya terlihat.
 
-Press the Show button for both panels:
+
+Tekan tombol Tampilkan untuk kedua panel:
 
 <Sandpack>
 
@@ -42,7 +44,7 @@ function Panel({ title, children }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Tampilkan
         </button>
       )}
     </section>
@@ -53,11 +55,11 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About">
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <Panel title="Tentang">
+        Dengan populasi sekitar 2 juta, Almaty adalah kota terbesar di Kazakhstan. Dari tahun 1929 hingga 1997, itu adalah ibu kota negara tersebut.
       </Panel>
-      <Panel title="Etymology">
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Etimologi">
+        Nama berasal dari <span lang="kk-KZ">алма</span>, kata Kazakh untuk "apel" dan sering diterjemahkan sebagai "penuh dengan apel". Faktanya, wilayah sekitar Almaty dipercaya sebagai rumah leluhur apel, dan <i lang="la">Malus sieversii</i> si liar dianggap sebagai kandidat yang mungkin untuk leluhur apel domestik modern.
       </Panel>
     </>
   );
@@ -74,59 +76,62 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Perhatikan bagaimana menekan tombol satu panel tidak memengaruhi panel lainnya - mereka independen.
 
 <DiagramGroup>
 
 <Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
 
-Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+Awalnya, setiap `Panel` memiliki state `isActive` dengan nilai `false`, sehingga keduanya terlihat tertutup
 
 </Diagram>
 
 <Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
+Menekan tombol `Panel` mana pun hanya akan memperbarui state `isActive` dari `Panel` itu sendiri
 
 </Diagram>
 
 </DiagramGroup>
 
-**But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
+**Tetapi sekarang katakanlah Anda ingin mengubah panel tersebut sehingga hanya satu panel yang dibuka pada satu waktu.** Dengan desain diatas, membuka panel kedua harus menutup panel pertama. Bagaimana Anda melakukannya?
 
-To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+Untuk mengkoordinasikan kedua panel ini, Anda perlu "mengangkat *state* mereka" ke komponen induk dalam tiga langkah:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Hapus** *state* dari komponen anak.
+2. **Oper** data dari komponen induk.
+3. **Tambahkan** *state* ke komponen induk dan oper bersamaan dengan *Event Handlers*.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+Cara ini akan memungkinkan komponen `Accordion` untuk mengkoordinasikan kedua `Panel` dan hanya membuka satu panel pada satu waktu.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### Langkah 1: Hapus state dari komponen anak {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+
+Anda akan memberikan kontrol `isActive` dari `Panel` ke komponen induknya. Ini berarti komponen induk akan mengoper `isActive` ke `Panel` sebagai *prop*. Mulai dengan **menghapus baris ini** dari komponen `Panel`:
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
-And instead, add `isActive` to the `Panel`'s list of props:
+Lalu, tambahkan `isActive` ke daftar *prop* `Panel`:
 
 ```js
-function Panel({ title, children, isActive }) {
+function Panel({ title, children, isActive }) 
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper sebagai prop.](/learn/passing-props-to-a-component) Sebaliknya, komponen `Panel` sekarang tidak memiliki *kontrol* atas nilai `isActive` - sekarang terserah komponen induk!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+### Langkah 2: Oper data yang diperlukan dari komponen induk {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-* `Accordion` *(closest common parent)*
+Untuk mengangkat *state*, Anda harus menemukan komponen induk yang paling dekat dari *kedua* komponen anak yang ingin Anda koordinasikan:
+
+* `Accordion` *(Komponen induk terdekat)*
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+Pada contoh ini, komponen `Accordion` adalah yang terdekat. Karena komponen ini berada di atas kedua panel dan dapat mengontrol *prop* mereka, komponen ini akan menjadi "sumber kebenaran" untuk panel mana yang sedang aktif. Buat komponen `Accordion` mengoper nilai `isActive` yang telah ditentukan sebelumnya (misalnya, `true`) ke kedua panel:
+
 
 <Sandpack>
 
@@ -137,11 +142,11 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About" isActive={true}>
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <Panel title="Tentang" isActive={true}>
+        Dengan populasi sekitar 2 juta, Almaty adalah kota terbesar di Kazakhstan. Dari tahun 1929 hingga 1997, itu adalah ibu kota negara tersebut.
       </Panel>
-      <Panel title="Etymology" isActive={true}>
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Etimologi" isActive={true}>
+        Nama berasal dari <span lang="kk-KZ">алма</span>, kata Kazakh untuk "apel" dan sering diterjemahkan sebagai "penuh dengan apel". Faktanya, wilayah sekitar Almaty dipercaya sebagai rumah leluhur apel, dan <i lang="la">Malus sieversii</i> si liar dianggap sebagai kandidat yang mungkin untuk leluhur apel domestik modern.
       </Panel>
     </>
   );
@@ -155,7 +160,7 @@ function Panel({ title, children, isActive }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Tampilkan
         </button>
       )}
     </section>
@@ -173,21 +178,23 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
+Coba edit nilai `isActive` yang telah ditentukan sebelumnya di komponen `Accordion` dan lihat hasilnya di layar.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### Langkah 3: Tambahkan state ke komponen induk {/*step-3-add-state-to-the-common-parent*/}
 
-Lifting state up often changes the nature of what you're storing as state.
+Memindahkan *state* keatas sering mengubah sifat apa yang Anda simpan sebagai *state*. 
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
+
+
+Dalam contoh ini, Anda ingin mengubah `Accordion` sehingga hanya satu panel yang dapat dibuka pada satu waktu. Ini berarti bahwa komponen induk `Accordion` perlu melacak *panel mana* yang sedang aktif. Alih-alih nilai `boolean`, ini dapat menggunakan angka sebagai indeks `Panel` aktif untuk variabel *state*:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
 ```
 
-When the `activeIndex` is `0`, the first panel is active, and when it's `1`, it's the second one.
+Ketika `activeIndex` bernilai `0`, panel pertama aktif, dan ketika bernilai `1`, panel kedua aktif.
 
-Clicking the "Show" button in either `Panel` needs to change the active index in `Accordion`. A `Panel` can't set the `activeIndex` state directly because it's defined inside the `Accordion`. The `Accordion` component needs to *explicitly allow* the `Panel` component to change its state by [passing an event handler down as a prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Menekan tombol "Tampilkan" di salah satu `Panel` perlu mengubah indeks aktif di `Accordion`. Sebuah `Panel` tidak dapat mengatur *state* `activeIndex` secara langsung karena didefinisikan di dalam `Accordion`. Komponen `Accordion` perlu *mengeksplisitkan* komponen `Panel` untuk mengubah *state*-nya dengan [mengoper event handler sebagai prop](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
