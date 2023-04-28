@@ -10,7 +10,7 @@ React mendukung semua komponen [HTML](https://developer.mozilla.org/en-US/docs/W
 
 ## Komponen-Komponen Umum {/*common-components*/}
 
-Semua komponen bawaan *browser* mendukung beberapa *props* dan *events*.
+Semua komponen bawaan peramban mendukung beberapa *props* dan *events*.
 
 * [Komponen-Komponen Umum (contoh: `<div>`)](/reference/react-dom/components/common)
 
@@ -20,7 +20,7 @@ Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`.
 
 ## Komponen *Form* {/*form-components*/}
 
-Komponen-komponen peramban bawaan ini menerima *input* dari *user*:
+Komponen-komponen bawaan peramban ini menerima *input* dari *user*:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
@@ -32,7 +32,7 @@ Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `va
 
 ## Semua Komponen HTML {/*all-html-components*/}
 
-React mendukung semua komponen HTML bawaan peramban. Ini meliputi: 
+React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -146,7 +146,7 @@ Serupa dengan [standar panduan DOM,](https://developer.mozilla.org/en-US/docs/We
 
 ### Elemen HTML *Custom* {/*custom-html-elements*/}
 
-Jika Anda *render* sebuah *tag* menggunakan tanda hubung, seperti `<my-element>`, React akan mengasumsikan Anda untuk *render* [elemen HTML *custom*.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) Pada React, cara kerja *rendering* pada elemen *custom* akan berbeda dengan *rendering* pada *tags* bawaan *browser*:
+Jika Anda *render* sebuah *tag* menggunakan tanda hubung, seperti `<my-element>`, React akan mengasumsikan Anda untuk *render* [elemen HTML *custom*.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) Pada React, cara kerja *rendering* pada elemen *custom* akan berbeda dengan *rendering* pada *tags* bawaan peramban:
 
 - Semua props dari *custom element* akan diserialisasikan menjadi *strings* dan selalu disetel menggunakan *attributes*.
 - *Custom elements* menerima `class` ketimbang `className`, dan `for` ketimbang `htmlFor`.
@@ -168,9 +168,9 @@ Versi eksperimental mungkin mengandung *bugs*. Jangan digunakan di *production*.
 </Note>
 ---
 
-## Semua Komponen SVG {/*all-svg-components*/}
+## Semua komponen SVG {/*all-svg-components*/}
 
-React mendukung semua komponen SVG bawaan peramban. Ini meliputi:
+React mendukung semua komponen SVG bawaan peramban. Ini termasuk:
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)
