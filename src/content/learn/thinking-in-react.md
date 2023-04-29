@@ -460,13 +460,13 @@ function SearchBar({ filterText, inStockOnly }) {
 Namun, Anda belum menambahkan kode apa pun untuk merespons tindakan pengguna seperti mengetik. Ini akan menjadi langkah terakhir Anda.
 
 
-## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}
+## Langkah 5: Tambahkan aliran data sebaliknya {/*step-5-add-inverse-data-flow*/}
 
-Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`. 
+Saat ini aplikasi Anda di-*render* dengan benar dengan props dan state yang mengalir ke bawah hirarki. Namun untuk mengubah state sesuai dengan masukan pengguna, Anda perlu mendukung pengaliran data ke arah sebaliknya: komponen form yang berada jauh di dalam hirarki perlu memperbarui state di `FilterableProductTable`.
 
-React makes this data flow explicit, but it requires a little more typing than two-way data binding. If you try to type or check the box in the example above, you'll see that React ignores your input. This is intentional. By writing `<input value={filterText} />`, you've set the `value` prop of the `input` to always be equal to the `filterText` state passed in from `FilterableProductTable`. Since `filterText` state is never set, the input never changes.
+React membuat aliran data ini menjadi eksplisit, tetapi membutuhkan pengetikan yang lebih banyak dibandingkan dengan pengikatan data dua arah. Jika Anda mencoba mengetik atau mencentang kotak pada contoh di atas, Anda akan melihat bahwa React mengabaikan masukan Anda. Hal ini memang disengaja. Dengan menulis `<input value={filterText} />`, Anda telah mengatur prop `value` dari `input` untuk selalu sama dengan state `filterText` yang dioperkan dari `FilterableProductTable`. Karena state `filterText` tidak pernah disetel, input tidak pernah berubah.
 
-You want to make it so whenever the user changes the form inputs, the state updates to reflect those changes. The state is owned by `FilterableProductTable`, so only it can call `setFilterText` and `setInStockOnly`. To let `SearchBar` update the `FilterableProductTable`'s state, you need to pass these functions down to `SearchBar`:
+Anda ingin membuatnya agar setiap kali pengguna mengubah input form, state diperbarui untuk mencerminkan perubahan tersebut. State dimiliki oleh `FilterableProductTable`, sehingga hanya state tersebut yang dapat memanggil `setFilterText` dan `setInStockOnly`. Untuk memungkinkan `SearchBar` memperbarui state `FilterableProductTable`, Anda harus mengoper fungsi-fungsi ini ke `SearchBar`:
 
 ```js {2,3,10,11}
 function FilterableProductTable({ products }) {
@@ -482,7 +482,7 @@ function FilterableProductTable({ products }) {
         onInStockOnlyChange={setInStockOnly} />
 ```
 
-Inside the `SearchBar`, you will add the `onChange` event handlers and set the parent state from them:
+Di dalam `SearchBar`, Anda akan menambahkan *event handler* `onChange` dan mengatur state induk darinya:
 
 ```js {5}
 <input 
@@ -492,7 +492,7 @@ Inside the `SearchBar`, you will add the `onChange` event handlers and set the p
   onChange={(e) => onFilterTextChange(e.target.value)} />
 ```
 
-Now the application fully works!
+Sekarang aplikasi sepenuhnya berfungsi!
 
 <Sandpack>
 
@@ -642,8 +642,8 @@ td {
 
 </Sandpack>
 
-You can learn all about handling events and updating state in the [Adding Interactivity](/learn/adding-interactivity) section.
+Anda dapat mempelajari semua tentang menangani *event* dan memperbarui state di bagian [Menambahkan Interaktivitas](/learn/adding-interactivity).
 
-## Where to go from here {/*where-to-go-from-here*/}
+## Ke mana setelah ini {/*where-to-go-from-here*/}
 
-This was a very brief introduction to how to think about building components and applications with React. You can [start a React project](/learn/installation) right now or [dive deeper on all the syntax](/learn/describing-the-ui) used in this tutorial.
+Ini adalah pengenalan yang sangat singkat tentang bagaimana cara berpikir saat membangun komponen dan aplikasi dengan React. Anda dapat [memulai proyek React](/learn/installation) sekarang juga atau [mempelajari lebih dalam tentang semua sintaks](/learn/describing-the-ui) yang digunakan dalam tutorial ini.
