@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-komponen [bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) memungkinkan Anda merender teks input dengan banyak baris.
+komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda merender teks input dengan banyak baris.
 
 ```js
 <textarea />
@@ -20,7 +20,7 @@ komponen [bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/
 
 ### `<textarea>` {/*textarea*/}
 
-Untuk menampilkan sebuah area teks, render [komponen bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
+Untuk menampilkan sebuah area teks, render [komponen bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
