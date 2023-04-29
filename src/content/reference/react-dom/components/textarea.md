@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda merender teks input dengan banyak baris.
+komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda *render* teks input dengan banyak baris.
 
 ```js
 <textarea />
@@ -20,7 +20,7 @@ komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs
 
 ### `<textarea>` {/*textarea*/}
 
-Untuk menampilkan sebuah area teks, render [komponen bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
+Untuk menampilkan sebuah area teks, *render* [komponen bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
@@ -32,17 +32,17 @@ Untuk menampilkan sebuah area teks, render [komponen bawaan peramban `<textarea>
 
 `<textarea>` mendukung semua [elemen props yang umum.](/reference/react-dom/components/common#props)
 
-Anda dapat [membuat sebuah area teks yang terkontrol](#controlling-a-text-area-with-a-state-variable) dengan cara memberikan sebuah prop `value`:
+Anda dapat [membuat sebuah area teks yang terkendali](#controlling-a-text-area-with-a-state-variable) dengan cara memberikan sebuah prop `value`:
 
 * `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
 Ketika Anda memberikan `value`, Kamu harus memberikan juga sebuah `onChange` *handler* yang memperbarui nilai yang diberikan sebelumnya.
 
-Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` sebagai gantinya:
+Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` sebagai gantinya:
 
 * `defaultValue`: Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-a-text-area) untuk sebuah area teks.
 
-`<textarea>` props ini relevan baik untuk area text terkontrol maupun terkontrol:
+`<textarea>` props ini relevan baik untuk area text terkendali maupun tidak terkendali:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Nilainya `'on'` atau `'off'`. Menentukan perilaku penyelesaian otomatis.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen ketika terpasang.
@@ -53,13 +53,13 @@ Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` se
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): Sebuah bilangan. Menentukan panjang maksimum teks.
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): Sebuah bilangan. Menentukan panjang minimum teks.
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada input yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
-* `onChange`: Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function* . Dibutuhkan untuk [area teks terkontrol.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap tombol ditekan). Berperilaku seperti [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
+* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap tombol ditekan). Berperilaku seperti [event `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`: Sebuah versi `onChange` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
 * `onInputCapture`: Sebuah versi `onInput` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi jika sebuah input gagal memvalidasi pada pengiriman formulir. Tidak seperti *event* bawaan `invalid`, `onInvalid` *event* pada React menggelembung.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi jika sebuah input gagal memvalidasi pada pengiriman formulir. Tidak seperti *event* bawaan `invalid`, `onInvalid` *event* pada React menggelembung.
 * `onInvalidCapture`: Sebuah versi `onInvalid` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi setelah pemilihan di dalam `<textarea>` berubah. React memperluas `onSelect` *event* untuk juga mengaktifkan pemilihan kosong dan pengeditan (dapat mempengaruhi pemilihan).
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi setelah pemilihan di dalam `<textarea>` berubah. React memperluas `onSelect` *event* untuk juga mengaktifkan pemilihan kosong dan pengeditan (dapat mempengaruhi pemilihan).
 * `onSelectCapture`: Sebuah versi `onSelect` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): Sebuah string. Ditampilkan dalam warna redup ketika nilai area teks kosong.
 * [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): Sebuah boolean. Jika `true`, area teks tidak dapat diubah oleh pengguna.
@@ -70,10 +70,10 @@ Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` se
 #### Caveats {/*caveats*/}
 
 - Memberikan *children* seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
-- Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai terkontrol.](#controlling-a-text-area-with-a-state-variable)
-- Sebuah area teks tidak dapat menjadi terkontrol dan tidak terkontrol secara bersamaan.
-- Sebuah area teks tidak dapat beralih menjadi terkontrol atau tidak terkontrol selama masa pakainya.
-- Setiap area teks terkontrol membutuhkan sebuah `onChange` *event handler* yang mengubah nilai pendukungnya secara sinkronis.
+- Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
+- Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
+- Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
+- Setiap area teks terkendali membutuhkan sebuah `onChange` *event handler* yang mengubah nilai pendukungnya secara sinkronis.
 
 ---
 
