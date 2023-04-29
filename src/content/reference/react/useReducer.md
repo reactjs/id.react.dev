@@ -20,7 +20,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?)
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
-Panggil `useReducer` di atas komponen anda untuk mengelola statenya dengan [reducer.](/learn/extracting-state-logic-into-a-reducer)
+Panggil `useReducer` di tingkat atas komponen anda untuk mengelola statenya dengan [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 import { useReducer } from 'react';
@@ -38,9 +38,9 @@ function MyComponent() {
 
 #### Parameter {/*parameters*/}
 
-* `reducer`: Fungsi reducer yang menentukan bagaimana state diperbarui. Itu harus murni, harus mengambil state dan action sebagai argumen, dan harus mengembalikan state berikutnya. State dan action bisa dari tipe apa saja.
-* `initialArg`: Nilai dari mana initial state dihitung. Bisa menjadi nilai dari tipe apapun. Bagaimana initial state dihitung darinya bergantung pada argumen `init` berikutnya.
-* **opsional** `init`: Fungsi penginisialisasi yang harus mengembalikan initial state. Jika tidak ditentukan, initial state disetel ke `initialArg`. Jika tidak, initial state disetel ke hasil pemanggilan `init(initialArg)`.
+* `reducer`: Fungsi reducer yang menentukan bagaimana *state* diperbarui. Itu harus murni, harus mengambil *state* dan *action* sebagai argumen, dan harus mengembalikan *state* berikutnya. *State* dan *action* bisa dari tipe apa saja.
+* `initialArg`: Nilai dari mana *initial state* dihitung. Bisa menjadi nilai dari tipe apapun. Bagaimana *initial state* dihitung darinya bergantung pada argumen `init` berikutnya.
+* **opsional** `init`: Fungsi penginisialisasi yang harus mengembalikan *initial state*. Jika tidak ditentukan, *initial state* disetel ke `initialArg`. Jika tidak, *initial state* disetel ke hasil pemanggilan `init(initialArg)`.
 
 #### Pengembalian {/*returns*/}
 
