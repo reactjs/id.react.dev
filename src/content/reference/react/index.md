@@ -28,7 +28,7 @@ function ImageGallery() {
 
 ## Hook Context {/*context-hooks*/}
 
-*Context* memungkinkan sebuah komponen [menerima informasi dari induk yang jauh tanpa mengopernya sebagai props.](/learn/passing-props-to-a-component) komponen tingkat atas aplikasi Anda dapat meneruskan tema antarmuka pengguna (UI) saat ini ke semua komponen di bawah, tidak peduli seberapa dalam. 
+*Context* memungkinkan sebuah komponen [menerima informasi dari induk yang jauh tanpa mengopernya sebagai props.](/learn/passing-props-to-a-component) Sebagai contoh, komponen tingkat atas aplikasi Anda dapat meneruskan tema antarmuka pengguna (UI) saat ini ke semua komponen di bawah, tidak peduli seberapa dalam. 
 * [`useContext`](/reference/react/useContext) membaca dan berlangganan ke sebuah *context*.
 
 ```js
