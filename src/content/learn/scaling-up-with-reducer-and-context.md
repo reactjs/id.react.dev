@@ -4,21 +4,21 @@ title: Peningkatan Skala dengan Reducer dan Context
 
 <Intro>
 
-Reducer memungkinkan Anda untuk konsolidasi logika pembaruan *state* komponen. *Context* memungkinkan Anda untuk mengirim informasi ke komponen lain yang lebih dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola state layar yang kompleks.
+Reducer memungkinkan Anda untuk konsolidasi logika pembaruan *state* komponen. *Context* memungkinkan Anda untuk mengirim informasi ke komponen lain yang lebih dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola *state* layar yang kompleks.
 
 </Intro>
 
 <YouWillLearn>
 
 * Bagaimana menggabungkan *reducer* dengan *context*
-* Bagaimana menghindari melewatkan *state* dan *dispatch* melalui props
-* Bagaimana menjaga konteks dan logika state pada file terpisah
+* Bagaimana menghindari melewatkan *state* dan *dispatch* melalui *props*
+* Bagaimana menjaga konteks dan logika *state* pada *file* terpisah
 
 </YouWillLearn>
 
 ## Menggabungkan *reducer* dengan *context* {/*combining-a-reducer-with-context*/}
 
-Pada contoh dari [pengenalan *reducer*](/learn/extracting-state-logic-into-a-reducer), *state* dikelola oleh *reducer*. Fungsi *reducer* berisi semua logika pembaruan *state* dan dinyatakan di bagian bawah file ini:
+Pada contoh dari [pengenalan *reducer*](/learn/extracting-state-logic-into-a-reducer), *state* dikelola oleh *reducer*. Fungsi *reducer* berisi semua logika pembaruan *state* dan dinyatakan di bagian bawah *file* ini:
 
 <Sandpack>
 
@@ -210,7 +210,7 @@ ul, li { margin: 0; padding: 0; }
 A *reducer* helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` *state* and the `dispatch` function are only available in the top-level `TaskApp` component.** To let other components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current *state* and the event handlers that change it as props.
 *Reducer* membantu menjaga event handlers menjadi singkat dan ringkas. Namun, ketika aplikasi Anda berkembang, Anda mungkin akan menemukan kesulitan lain. Saat ini, *state* `tugas` dan fungsi `dispatch` hanya tersedia di komponen `TaskApp` level atas. Untuk memungkinkan komponen lain membaca daftar tugas atau mengubahnya, Anda harus secara eksplisit [meneruskan](/learn/passing-props-to-a-component) *state* saat ini dan event handlers yang mengubahnya sebagai props.
 
-Misalnya, `TaskApp` meneruskan daftar tugas dan event handlers ke `TaskList`:
+Misalnya, `TaskApp` meneruskan daftar tugas dan *event handlers* ke `TaskList`:
 
 ```js
 <TaskList
@@ -220,7 +220,7 @@ Misalnya, `TaskApp` meneruskan daftar tugas dan event handlers ke `TaskList`:
 />
 ```
 
-Dan `TaskList` meneruskan event handlers ke `Task`:
+Dan `TaskList` meneruskan *event handlers* ke `Task`:
 
 ```js
 <Task
@@ -232,7 +232,7 @@ Dan `TaskList` meneruskan event handlers ke `Task`:
 
 Dalam contoh kecil seperti ini, cara ini dapat berfungsi dengan baik, namun jika Anda memiliki puluhan atau ratusan komponen di tengah, meneruskan semua *state* dan fungsi dapat sangat menjengkelkan!
 
-Inilah mengapa, sebagai alternatif untuk melewatkan melalui props, Anda mungkin ingin menempatkan baik *state* `tugas` maupun fungsi `dispatch` [ke dalam _context_](/learn/passing-data-deeply-with-context) . **Dengan cara ini, komponen apa pun di bawah `TaskApp` dalam *tree* dapat membaca tugas dan melakukan aksi *dispatch* tanpa “pengeboran props” yang berulang.**
+Inilah mengapa, sebagai alternatif untuk melewatkan melalui props, Anda mungkin ingin menempatkan baik *state* `tugas` maupun fungsi `dispatch` [ke dalam _context_](/learn/passing-data-deeply-with-context) . **Dengan cara ini, komponen apa pun di bawah `TaskApp` dalam pohon(*tree*) dapat membaca tugas dan melakukan aksi *dispatch* tanpa “*prop drilling*” yang berulang.**
 
 Berikut adalah cara menggabungkan *reducer* dengan conteks:
 
@@ -253,7 +253,7 @@ Untuk meneruskannya ke dalam *tree*, Anda akan [membuat](/learn/passing-data-dee
 - `TasksContext` menyediakan daftar tugas saat ini.
 - `TasksDispatchContext` menyediakan fungsi yang memungkinkan komponen melakukan aksi *dispatch*.
 
-Kemudian ekspor keduanya dari file terpisah agar nantinya dapat diimpor dari file lain:
+Kemudian ekspor keduanya dari *file* terpisah agar nantinya dapat diimpor dari *file* lain:
 
 <Sandpack>
 
@@ -449,7 +449,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Di sini, Anda meneruskan `null` sebagai nilai default ke kedua *context*. Nilai aktual akan disediakan oleh komponen `TaskApp`.
+Di sini, Anda meneruskan `null` sebagai nilai *default* ke kedua *context*. Nilai aktual akan disediakan oleh komponen `TaskApp`.
 
 ### Langkah 2: Letakkan *state* dan *dispatch* ke dalam *context* {/*step-2-put-state-and-dispatch-into-context*/}
 
@@ -471,7 +471,7 @@ export default function TaskApp() {
 }
 ```
 
-Saat ini, Anda meneruskan informasi baik melalui props maupun melalui *context*:
+Saat ini, Anda meneruskan informasi baik melalui *props* maupun melalui *context*:
 
 <Sandpack>
 
@@ -670,12 +670,11 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Pada langkah selanjutnya, Anda akan menghapus penyebaran prop.
+Pada langkah selanjutnya, Anda akan menghapus pengoperan *prop*.
 
 ### Langkah 3: Gunakan *context* di mana saja dalam *tree* {/*step-3-use-context-anywhere-in-the-tree*/}
 
-Now you don't need to pass the list of tasks or the event handlers down the tree:
-Sekarang Anda tidak perlu lagi meneruskan daftar tugas atau event handler ke bawah *tree*:
+Sekarang Anda tidak perlu lagi meneruskan daftar tugas atau *event handler* ke bawah *tree*:
 
 ```js {4-5}
 <TasksContext.Provider value={tasks}>
@@ -715,7 +714,7 @@ export default function AddTask() {
     // ...
 ```
 
-**Komponen `TaskApp` tidak meneruskan event handler ke bawah, dan `TaskList` juga tidak meneruskan event handler ke komponen `Task`.** Setiap komponen membaca *context* yang dibutuhkannya:
+**Komponen `TaskApp` tidak meneruskan *event handler* ke bawah, dan `TaskList` juga tidak meneruskan event handler ke komponen `Task`.** Setiap komponen membaca *context* yang dibutuhkannya:
 
 <Sandpack>
 
@@ -899,7 +898,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-***State* masih "berada" di dalam komponen `TaskApp` level atas, dikelola dengan `useReducer`.** Tetapi daftar `tugas` dan fungsi `dispatch` sekarang tersedia untuk setiap komponen di bawahnya dalam tree dengan mengimpor dan menggunakan *context* tersebut.
+***State* masih "berada" di dalam komponen `TaskApp` level atas, dikelola dengan `useReducer`.** Tetapi daftar `tugas` dan fungsi `dispatch` sekarang tersedia untuk setiap komponen di bawahnya dalam *tree* dengan mengimpor dan menggunakan *context* tersebut.
 
 ## Memindahkan semua penghubung ke satu file {/*moving-all-wiring-into-a-single-file*/}
 
@@ -912,11 +911,11 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-File ini akan semakin ramai! Anda akan memindahkan *reducer* ke dalam file yang sama. Kemudian Anda akan mendeklarasikan komponen `TasksProvider` baru dalam file yang sama. Komponen ini akan mengikat semua bagian bersama-sama:
+*File* ini akan semakin ramai! Anda akan memindahkan *reducer* ke dalam *file* yang sama. Kemudian Anda akan mendeklarasikan komponen `TasksProvider` baru dalam *file* yang sama. Komponen ini akan mengikat semua bagian bersama-sama:
 
 1. Ia akan mengelola *state* dengan *reducer*.
 2. Ia akan menyediakan kedua *context* ke komponen di bawahnya.
-3. Ia akan mengambil [children sebagai prop](/learn/passing-props-to-a-component#passing-jsx-as-children) sehingga Anda dapat melewatkan JSX padanya.
+3. Ia akan mengambil [*children* sebagai prop](/learn/passing-props-to-a-component#passing-jsx-as-children) sehingga Anda dapat mengoper JSX padanya.
 
 ```js
 export function TasksProvider({ children }) {
@@ -1351,7 +1350,7 @@ Fungsi-fungsi seperti `useTasks` dan `useTasksDispatch` disebut dengan *[Custom 
 
 </Note>
 
-Saat aplikasi Anda berkembang, mungkin Anda akan memiliki banyak pasangan _context-reducer_ seperti ini. Ini adalah cara yang kuat untuk meningkatkan aplikasi Anda dan [mengangkat *state* ke atas](/learn/sharing-state-between-components) tanpa terlalu banyak pekerjaan setiap kali Anda ingin mengakses data yang dalam di dalam *tree*.
+Seiring dengan pertumbuhan aplikasi Anda, mungkin Anda akan memiliki banyak pasangan _context-reducer_ seperti ini. Ini adalah cara yang kuat untuk meningkatkan aplikasi Anda dan [mengangkat *state* ke atas](/learn/sharing-state-between-components) tanpa terlalu banyak pekerjaan setiap kali Anda ingin mengakses data yang dalam di dalam *tree*.
 
 <Recap>
 
@@ -1360,7 +1359,7 @@ Saat aplikasi Anda berkembang, mungkin Anda akan memiliki banyak pasangan _conte
   1. Buat dua *context* (untuk *state* dan untuk fungsi *dispatch*).
   2. Sediakan kedua *context* dari komponen yang menggunakan *reducer*.
   3. Gunakan salah satu *context* dari komponen yang perlu membacanya.
-- Anda dapat memindahkan seluruh penghubung ke satu file untuk memperjelas komponen.
+- Anda dapat memindahkan seluruh penghubung ke satu *file* untuk memperjelas komponen.
   - Anda dapat mengekspor komponen seperti `TasksProvider` yang menyediakan *context*.
   - Anda juga dapat mengekspor Custom Hooks seperti `useTasks` dan `useTasksDispatch` untuk membacanya.
 - Anda dapat memiliki banyak pasangan *context-reducer* seperti ini di aplikasi Anda.
