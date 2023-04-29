@@ -4,7 +4,7 @@ title: renderToStaticMarkup
 
 <Intro>
 
-`renderToStaticMarkup` renders a non-interactive React tree to an HTML string.
+`renderToStaticMarkup` me-*render* sebuah pohon React yang non-interaktif sebagai *string* HTML.
 
 ```js
 const html = renderToStaticMarkup(reactNode)
@@ -16,11 +16,11 @@ const html = renderToStaticMarkup(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
 
-On the server, call `renderToStaticMarkup` to render your app to HTML.
+Pada *server*, panggil fungsi `renderToStaticMarkup` untuk me-*render* aplikasi Anda sebagai HTML.
 
 ```js
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -28,50 +28,50 @@ import { renderToStaticMarkup } from 'react-dom/server';
 const html = renderToStaticMarkup(<Page />);
 ```
 
-It will produce non-interactive HTML output of your React components.
+Keluaran yang diberikan adalah HTML non-interaktif dari komponen-komponen React Anda.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh dibawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<Page />`.
+* `reactNode`: Sebuah *node* React yang Anda ingin *render* sebagai HTML. Contohnya, sebuah *node* JSX seperti `<Page />`.
 
-#### Returns {/*returns*/}
+#### Nilai Balik {/*returns*/}
 
-An HTML string.
+Sebuah *string* HTML.
 
-#### Caveats {/*caveats*/}
+#### Anjuran {/*caveats*/}
 
-* `renderToStaticMarkup` output cannot be hydrated.
+* Keluaran dari `renderToStaticMarkup` tidak dapat di-*hydrate*.
 
-* `renderToStaticMarkup` has limited Suspense support. If a component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
+* `renderToStaticMarkup` mendukung penggunaan `Suspense` secara terbatas. Apabila sebuah komponen berada dalam kondisi *suspended*, `renderToStaticMarkup` segera mengirimkan *fallback*-nya sebagai HTML.
 
-* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` bekerja dalam peramban, tetapi tidak direkomendasikan untuk digunakan dalam *source code* klien atau lingkungan peramban tersebut. Apabila Anda ingin me-*render* komponen sebagai HTML dalam peramban, [ambil HTML dengan cara me-*render* dalam *node* DOM.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Rendering a non-interactive React tree as HTML to a string {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
+### Me-*render* pohon React yang non-interaktif sebagai HTML menjadi *string* {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
 
-Call `renderToStaticMarkup` to render your app to an HTML string which you can send with your server response:
+Panggil `renderToStaticMarkup` untuk me-*render* aplikasi Anda dalam sebuah *string* HTML yang dapat Anda kirimkan dengan respons dari *server* Anda:
 
 ```js {5-6}
 import { renderToStaticMarkup } from 'react-dom/server';
 
-// The route handler syntax depends on your backend framework
+// Sintaks router ini tergantung dari framework yang Anda gunakan.
 app.use('/', (request, response) => {
   const html = renderToStaticMarkup(<Page />);
   response.send(html);
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components.
+Ini akan memproduksi HTML non-interaktif awal dari komponen-komponen React Anda.
 
 <Pitfall>
 
-This method renders **non-interactive HTML that cannot be hydrated.**  This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+Metode ini me-*render* **HTML non-interaktif yang tidak bisa di-*hydrate*.** Ini berguna apabila Anda ingin menggunakan React sebagai *generator* halaman statis yang sederhana, atau bila Anda me-*render* konten yang benar-benar statis seperti surat elektronik.
 
-Interactive apps should use [`renderToString`](/reference/react-dom/server/renderToString) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
+Aplikasi yang interaktif seharusnya menggunakan [`renderToString`](/reference/react-dom/server/renderToString) pada *server* dan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) pada klien.
 
 </Pitfall>
