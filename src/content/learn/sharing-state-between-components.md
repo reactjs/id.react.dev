@@ -5,7 +5,7 @@ title: Berbagi State Antar Komponen
 
 <Intro>
 
-Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakukannya, hapus *state* dari kedua komponen, pindahkan ke komponen induk terdekat, dan kemudian oper ke komponen tersebut melalui *props*. Ini dikenal sebagai *lifting state up,* dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
+Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakukannya, hapus *state* dari kedua komponen, pindahkan ke komponen induk terdekat, dan kemudian oper ke komponen tersebut melalui *props*. Ini dikenal sebagai mengangkat *state* keatas, dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
 
 </Intro>
 
@@ -16,7 +16,7 @@ Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakuka
 
 </YouWillLearn>
 
-## Contoh Lifting State Up {/*lifting-state-up-by-example*/}
+## Contoh Mengangkat State Keatas {/*lifting-state-up-by-example*/}
 
 
 Pada contoh ini, komponen induk `Accordion` merender dua komponen `Panel` terpisah:
@@ -25,7 +25,7 @@ Pada contoh ini, komponen induk `Accordion` merender dua komponen `Panel` terpis
   - `Panel`
   - `Panel`
 
-Setiap komponen `Panel` memiliki *state* boolean `isActive` yang menentukan apakah kontennya terlihat.
+Setiap komponen `Panel` memiliki *state* *boolean* `isActive` yang menentukan apakah kontennya terlihat.
 
 
 Tekan tombol Tampilkan untuk kedua panel:
@@ -80,13 +80,15 @@ Perhatikan bagaimana menekan tombol satu panel tidak memengaruhi panel lainnya -
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram yang menunjukkan pohon dari tiga komponen, satu induk yang diberi label Accordion dan dua anak yang diberi label Panel dan dua komponen anak yang berlabel Panel. Kedua komponen Panel berisi isActive dengan nilai false.">
+
 
 Awalnya, setiap `Panel` memiliki state `isActive` dengan nilai `false`, sehingga keduanya terlihat tertutup
 
 </Diagram>
 
-<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="Diagram yang sama seperti sebelumnya, dengan isActive dari komponen Panel anak pertama yang disorot menunjukkan klik dengan nilai isActive diatur ke true. Komponen Panel anak kedua masih berisi nilai false." >
+
 
 Menekan tombol `Panel` mana pun hanya akan memperbarui state `isActive` dari `Panel` itu sendiri
 
@@ -213,7 +215,7 @@ Menekan tombol "Tampilkan" di salah satu `Panel` perlu mengubah indeks aktif di 
 </>
 ```
 
-The `<button>` inside the `Panel` will now use the `onShow` prop as its click event handler:
+Elemen `<button>` di dalam `Panel` sekarang akan menggunakan *prop* `onShow` sebagai *event handler* kliknya:
 
 <Sandpack>
 
@@ -226,18 +228,18 @@ export default function Accordion() {
     <>
       <h2>Almaty, Kazakhstan</h2>
       <Panel
-        title="About"
+        title="Tentang"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Dengan populasi sekitar 2 juta, Almaty adalah kota terbesar di Kazakhstan. Dari tahun 1929 hingga 1997, itu adalah ibu kota negara tersebut.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Etimologi"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+       Nama berasal dari <span lang="kk-KZ">алма</span>, kata Kazakh untuk "apel" dan sering diterjemahkan sebagai "penuh dengan apel". Faktanya, wilayah sekitar Almaty dipercaya sebagai rumah leluhur apel, dan <i lang="la">Malus sieversii</i> si liar dianggap sebagai kandidat yang mungkin untuk leluhur apel domestik modern.
       </Panel>
     </>
   );
@@ -256,7 +258,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Tampilkan
         </button>
       )}
     </section>
@@ -274,19 +276,21 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+Dengan ini terselesaikan pengangkatan *state* ke atas! Memindahkan *state* ke komponen induk memungkinkan Anda untuk mengkoordinasikan kedua panel. Menggunakan indeks aktif daripada dua *flag* "ditampilkan" memastikan bahwa hanya satu panel yang aktif pada satu waktu. Dan mengoper *event handler* ke komponen anak memungkinkan komponen anak untuk mengubah *state* induknya.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram yang menunjukkan pohon tiga komponen, satu induk yang diberi label Accordion dan dua anak yang diberi label Panel. Accordion berisi nilai activeIndex nol yang berubah menjadi nilai isActive true yang dilewatkan ke Panel pertama, dan nilai isActive false yang dioper ke Panel kedua." >
 
-Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+
+Awalnya, nilai `activeIndex` dari `Accordion` adalah `0`, sehingga `Panel` pertama menerima `isActive = true`
 
 </Diagram>
 
-<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
+<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="Diagram yang sama dengan sebelumnya, dengan nilai activeIndex dari komponen induk Accordion yang diberi sorotan menunjukkan klik dengan nilai yang berubah menjadi satu. Aliran ke kedua komponen Panel anak juga disorot, dan nilai isActive yang dioper ke setiap anak diatur ke yang berlawanan: false untuk Panel pertama dan true untuk yang kedua." >
 
-When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+
+Ketika nilai `activeIndex` dari `Accordion` berubah menjadi `1`, `Panel` kedua menerima `isActive = true` sebagai gantinya
 
 </Diagram>
 
@@ -294,48 +298,48 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 <DeepDive>
 
-#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
+#### Komponen terkendali dan tak terkendali {/*controlled-and-uncontrolled-components*/}
 
-It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
+Secara umum Anda dapat mengatakan bahwa komponen yang memiliki *state* lokal adalah "tidak terkendali". Misalnya, komponen `Panel` asli dengan variabel *state* `isActive` adalah tidak terkendali karena induknya tidak dapat mempengaruhi apakah panel aktif atau tidak.
 
-In contrast, you might say a component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent component fully specify its behavior. The final `Panel` component with the `isActive` prop is controlled by the `Accordion` component.
+Anda dapat mengatakan bahwa komponen "terkendali" ketika informasi penting di dalamnya didorong oleh *prop* daripada *state* lokalnya sendiri. Ini memungkinkan komponen induk untuk sepenuhnya menentukan perilakunya. Komponen `Panel` akhir dengan *prop* `isActive` dikendalikan oleh komponen `Accordion`.
 
-Uncontrolled components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+Komponen tidak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi kurang fleksibel ketika Anda ingin mengkoordinasikan mereka bersama. Komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
 
-In practice, "controlled" and "uncontrolled" aren't strict technical terms--each component usually has some mix of both local state and props. However, this is a useful way to talk about how components are designed and what capabilities they offer.
+Pada praktiknya, "terkendali" dan "tidak terkendali" bukan istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dikendalikan (melalui *props*), dan informasi apa yang harus tidak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi nanti.
 
 </DeepDive>
 
-## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
+## Satu sumber kebenaran untuk setiap state {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+Pada aplikasi React, banyak komponen akan memiliki *state* mereka sendiri. Beberapa *state* mungkin "hidup" dekat dengan komponen daun (komponen di bagian bawah pohon) seperti masukan. *State* lainnya mungkin "hidup" lebih dekat ke bagian atas aplikasi. Misalnya, bahkan pustaka rute pada sisi klien biasanya diimplementasikan dengan menyimpan rute saat ini di *state* React, dan mengopernya dengan *props*!
 
-**For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**Untuk setiap potongan *state* yang unik, Anda akan memilih komponen yang "memilikinya".** Prinsip ini juga dikenal sebagai memiliki ["sumber kebenaran tunggal".](https://en.wikipedia.org/wiki/Single_source_of_truth) Ini tidak berarti bahwa semua *state* berada di satu tempat--tetapi bahwa untuk _setiap_ potongan *state*, ada _komponen_ tertentu yang memegang potongan informasi itu. Alih-alih menduplikasi *state* yang sama diantara komponen, *angkatlah* *state* tersebut ke induk mereka, dan oper ke anak-anak yang membutuhkannya.
 
-Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
+Aplikasi Anda akan berubah saat Anda bekerja di dalamnya. Biasanya Anda akan memindahkan *state* ke bawah atau kembali ke atas saat Anda masih mencari tahu di mana setiap potongan *state* "hidup". Semua ini adalah bagian dari proses!
 
-To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
+Untuk mengetahui bagaimana penerapannya dalam praktik dengan beberapa komponen lebih banyak, baca [Berpikir dalam React.](/learn/thinking-in-react)
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
-* Then pass the information down through props from their common parent.
-* Finally, pass the event handlers down so that the children can change the parent's state.
-* It's useful to consider components as "controlled" (driven by props) or "uncontrolled" (driven by state).
+* Ketika Anda ingin mengkoordinasikan dua komponen, pindahkan *state* mereka ke induknya.
+* Kemudian oper informasi yang diperlukan melalui *props* dari induk mereka.
+* Terakhir, oper *event handler* sehingga komponen anak-anak dapat mengubah *state* induk.
+* Dapat membantu jika Anda mempertimbangkan komponen sebagai "terkendali" (dikendalikan oleh *props*) atau "tidak terkendali" (dikendalikan oleh *state*).
 
 </Recap>
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Masukan yang disinkronkan {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
+Berikut ini dua masukan yang independen. Buat mereka tetap disinkronkan: mengedit satu masukan harus memperbarui masukan lain dengan teks yang sama, dan sebaliknya.
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+Anda harus mengangkat *state* mereka ke komponen induk.
 
 </Hint>
 
@@ -347,8 +351,8 @@ import { useState } from 'react';
 export default function SyncedInputs() {
   return (
     <>
-      <Input label="First input" />
-      <Input label="Second input" />
+      <Input label="masukan pertama" />
+      <Input label="masukan kedua" />
     </>
   );
 }
@@ -382,7 +386,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Pindahkan variabel *state* `text` ke komponen induk bersama dengan *event handler* `handleChange`. Kemudian oper mereka sebagai *props* ke kedua komponen `Input`. Ini akan membuat mereka tetap disinkronkan.
 
 <Sandpack>
 
@@ -399,12 +403,12 @@ export default function SyncedInputs() {
   return (
     <>
       <Input
-        label="First input"
+        label="Masukan pertama"
         value={text}
         onChange={handleChange}
       />
       <Input
-        label="Second input"
+        label="Masukan kedua"
         value={text}
         onChange={handleChange}
       />
@@ -435,17 +439,18 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Memfilter daftar {/*filtering-a-list*/}
 
-In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
+Pada contoh ini, `SearchBar` memiliki *state* `query` sendiri yang mengontrol masukan teks. Komponen induknya `FilterableList` menampilkan `List` item, tetapi tidak memperhitungkan kueri pencarian.
 
-Use the `filterItems(foods, query)` function to filter the list according to the search query. To test your changes, verify that typing "s" into the input filters down the list to "Sushi", "Shish kebab", and "Dim sum".
 
-Note that `filterItems` is already implemented and imported so you don't need to write it yourself!
+Gunakan fungsi `filterItems(foods, query)` untuk memfilter daftar sesuai dengan kueri pencarian. Untuk menguji perubahan Anda, verifikasi bahwa mengetik "s" ke dalam masukan memfilter daftar menjadi "Sushi", "Shish kebab", dan "Dim sum".
+
+Ingat bahwa `filterItems` sudah diimplementasikan dan diimport sehingga Anda tidak perlu menulisnya sendiri!
 
 <Hint>
 
-You will want to remove the `query` state and the `handleChange` handler from the `SearchBar`, and move them to the `FilterableList`. Then pass them down to `SearchBar` as `query` and `onChange` props.
+Anda harus menghapus *state* `query` dan *event handler* `handleChange` dari `SearchBar`, dan memindahkannya ke `FilterableList`. Kemudian oper mereka ke `SearchBar` sebagai *props* `query` dan `onChange`.
 
 </Hint>
 
@@ -512,23 +517,23 @@ export function filterItems(items, query) {
 export const foods = [{
   id: 0,
   name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  description: 'Sushi adalah hidangan Jepang tradisional dari nasi yang diawetkan dengan cuka.'
 }, {
   id: 1,
   name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  description: 'Cara paling umum untuk menyiapkan dal adalah dalam bentuk sup yang dapat ditambahkan bawang bombay, tomat, dan berbagai bumbu.'
 }, {
   id: 2,
   name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  description: 'Pierogi adalah pangsit isi yang dibuat dengan cara membungkus adonan tidak beragi di sekitar isian yang gurih atau manis dan dimasak dalam air mendidih.'
 }, {
   id: 3,
   name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  description: 'Shish kebab adalah makanan populer yang terdiri dari potongan daging yang ditusuk dan dipanggang.'
 }, {
   id: 4,
   name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  description: 'Dim sum adalah berbagai macam hidangan kecil yang biasa dinikmati orang Kanton di restoran untuk sarapan dan makan siang'
 }];
 ```
 
@@ -536,7 +541,7 @@ export const foods = [{
 
 <Solution>
 
-Lift the `query` state up into the `FilterableList` component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
+Angkat *state* `query` ke komponen `FilterableList`. Panggil `filterItems(foods, query)` untuk mendapatkan daftar yang difilter dan oper ke `List`. Sekarang ubah masukan kueri tercermin dalam daftar:
 
 <Sandpack>
 
@@ -605,23 +610,23 @@ export function filterItems(items, query) {
 export const foods = [{
   id: 0,
   name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  description: 'Sushi adalah hidangan Jepang tradisional dari nasi yang diawetkan dengan cuka.'
 }, {
   id: 1,
   name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  description: 'Cara paling umum untuk menyiapkan dal adalah dalam bentuk sup yang dapat ditambahkan bawang bombay, tomat, dan berbagai bumbu.'
 }, {
   id: 2,
   name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  description: 'Pierogi adalah pangsit isi yang dibuat dengan cara membungkus adonan tidak beragi di sekitar isian yang gurih atau manis dan dimasak dalam air mendidih.'
 }, {
   id: 3,
   name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  description: 'Shish kebab adalah makanan populer yang terdiri dari potongan daging yang ditusuk dan dipanggang.'
 }, {
   id: 4,
   name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  description: 'Dim sum adalah berbagai macam hidangan kecil yang biasa dinikmati orang Kanton di restoran untuk sarapan dan makan siang'
 }];
 ```
 
