@@ -156,7 +156,7 @@ Di situasi yang memungkinkan, kami merekomendasikan untuk menggunakan *state* ya
 
 ---
 
-### Melanggan ke sebuah API peramban {/*subscribing-to-a-browser-api*/}
+### Berlangganan ke sebuah API peramban {/*subscribing-to-a-browser-api*/}
 
 Alasan lain untuk menggunakan `useSyncExternalStore` adalah ketika Anda ingin berlangganan ke sebuah nilai yang diekspos peramban yang berubah seiring berjalannya waktu. Contohnya, saat Anda ingin komponen Anda menampilkan apakah koneksi jaringan masih aktif. Peramban mengekspos informasi ini melalui sebuah *property* yang disebut [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
 
