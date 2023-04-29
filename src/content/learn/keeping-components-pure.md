@@ -189,21 +189,21 @@ Jika variabel `cups` atau senarai `[]` dibuat di luar fungsi `TeaGathering`, ini
 
 Namun, pada kasus ini, itu tidak menjadi masalah karena Anda membuatnya *bersamaan dengan proses render yang sama*, di dalam `TeaGathering`. Tidak ada kode di luar `TeaGathering` akan mengetahui kejadian ini. Inilah yang disebut sebagai **"mutasi lokal"**—rahasia kecil bagi komponen Anda.
 
-## Di mana Anda *dapat* menimbulkan efek samping? {/*where-you-_can_-cause-side-effects*/}
+## Di mana Anda *dapat* menimbulkan efek samping {/*where-you-_can_-cause-side-effects*/}
 
-Walaupun pemrograman fungsional sangat bergantung terhadap kemurnian, ada beberapa situasi, *sesuatu* memang harus diubah. Itulah tujuan dari pemrograman! Perubahan ini-—memperbarui layar, memulai sebuah animasi, mengubah data-—disebut **efek samping**. Aktivitas tersebut terjadi di *"samping"*, bukan saat *render*.
+Walaupun pemrograman fungsional sangat bergantung terhadap kemurnian, ada beberapa situasi, *sesuatu* memang harus diubah. Itulah tujuan dari pemrograman! Perubahan ini-—memperbarui layar, memulai sebuah animasi, mengubah data-—disebut **efek samping**. Aktivitas tersebut terjadi *"di samping"*, bukan saat *render*.
 
-Di React, **efek samping biasanya berada di dalam [*event handlers*](/learn/responding-to-events)**. *Event handler* adalah fungsi yang dijalankan React saat Anda melakukan sebuah aksi-—misalnya, saat Anda menekan sebuah tombol. Meskipun *event handler* berada *di dalam* komponen Anda, dia tidak berjalan *saat* *render*! **Jadi *event handler* tidak perlu murni**.
+Di React, **efek samping biasanya berada di dalam [*event handlers*](/learn/responding-to-events)**. *Event handler* adalah fungsi yang dijalankan React saat Anda melakukan sebuah aksi-—misalnya, saat Anda menekan sebuah tombol. Meskipun *event handler* berada *di dalam* komponen Anda, dia tidak berjalan *saat* *render*! **Dengan demikian, *event handler* tidak perlu murni**.
 
 Jika Anda sudah kehabisan pilihan dan tidak dapat menemukan *event handler* yang tepat untuk efek samping Anda, Anda masih dapat melampirkannya di JSX yang dikembalikan komponen Anda dengan memanggil [`useEffect`](/reference/react/useEffect) di dalam komponen Anda. Ini memberi tahu React untuk mengeksekusinya nanti, setelah *render*, saat efek samping sudah diperbolehkan. **Namun, metode ini sebaiknya menjadi pilihan terakhir Anda**.
 
-Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di proses *render*.
+Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di proses *render*. Anda akan terkejut seberapa jauh ini dapat membantu Anda!
 
 <DeepDive>
 
 #### Mengapa React peduli terhadap kemurnian? {/*why-does-react-care-about-purity*/}
 
-Penulisan fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan:
+Penulisan fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan menakjubkan:
 
 * Komponen Anda dapat berjalan di lingkungan yang berbeda-—misalnya, di server! Karena komponen tersebut selalu menghasilkan hal yang sama untuk masukan yang sama, sebuah komponen bisa melayani permintaan dari banyak pengguna.
 * Anda bisa meningkatkan performa dengan [melewati proses *render*](/reference/react/memo) dari komponen yang masukannya tidak berubah. Ini aman karena fungsi murni selalu memberikan hasil yang sama sehingga hasilnya bisa disimpan di *cache*.
