@@ -10,7 +10,7 @@ API ini akan dihapus di versi utama React yang akan datang. Gunakan [`renderToPi
 
 <Intro>
 
-`renderToNodeStream` renders a React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` merender pohon Reactke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -22,11 +22,11 @@ const stream = renderToNodeStream(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
 
-On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
+Di server, panggil `renderToNodeStream` untuk mendapatkan [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons.
 
 ```js
 import { renderToNodeStream } from 'react-dom/server';
@@ -35,42 +35,44 @@ const stream = renderToNodeStream(<App />);
 stream.pipe(response);
 ```
 
-On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+Di bagian klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk membuat HTML yang dibuat server interaktif.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`.
+* `reactNode`: Node React yang ingin Anda render ke HTML. Contohnya, sebuah elemen JSX seperti `<App />`
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string.
+Sebuah [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang mengahislkan string HTML.
 
-#### Caveats {/*caveats*/}
-
-* This method will wait for all [Suspense boundaries](/reference/react/Suspense) to complete before returning any output.
-
-* As of React 18, this method buffers all of its output, so it doesn't actually provide any streaming benefits. This is why it's recommended that you migrate to [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+#### Peringatan {/*caveats*/}
 
 * The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
 
+* Metode ini akan menunggu semua [Suspense boundaries](/reference/react/Suspense) selesai sebelum menampilkan keluaran apa pun.
+
+* Pada React 18, metode ini mem-buffer semua keluarannya, sehingga tidak benar-benar memberikan manfaat streaming apa pun. Inilah mengapa Anda disarankan untuk beralih ke [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
+
+* Stream yang dikembalikan adalah stream byte yang di-enkode dalam utf-8. Jika Anda memerlukan stream dalam enkode lain, lihat proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang meng-enkode stream transformasi untuk transcoding teks.
+
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
+### Rendering pohon React sebagai HTML ke Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
 
-Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+Panggil `renderToNodeStream` untuk mendapatkan [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons server Anda:
 
 ```js {5-6}
 import { renderToNodeStream } from 'react-dom/server';
 
-// The route handler syntax depends on your backend framework
+// Sintaks pengendali rute bergantung pada framework backend Anda
 app.use('/', (request, response) => {
   const stream = renderToNodeStream(<App />);
   stream.pipe(response);
 });
 ```
 
-The stream will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
+Stream akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. Pada klien, Anda perlu memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk *menghidrasi* HTML yang dihasilkan server dan membuatnya interaktif.
