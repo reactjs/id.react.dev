@@ -69,11 +69,11 @@ Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` se
 
 #### Caveats {/*caveats*/}
 
-- Passing children like `<textarea>something</textarea>` is not allowed. [Use `defaultValue` for initial content.](#providing-an-initial-value-for-a-text-area)
-- If a text area receives a string `value` prop, it will be [treated as controlled.](#controlling-a-text-area-with-a-state-variable)
-- A text area can't be both controlled and uncontrolled at the same time.
-- A text area cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled text area needs an `onChange` event handler that synchronously updates its backing value.
+- Memberikan <em>children</em> seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
+- Jika menerima sebuah <em>prop</em> `value` string, sebuah area teks akan [dianggap sebagai terkontrol.](#controlling-a-text-area-with-a-state-variable)
+- Sebuah area teks tidak dapat menjadi terkontrol dan tidak terkontrol secara bersamaan.
+- Sebuah area teks tidak dapat beralih menjadi terkontrol atau tidak terkontrol selama masa pakainya.
+- Setiap area teks terkontrol membutuhkan sebuah `onChange` <em>event handler</em> yang mengubah nilai pendukungnya secara sinkronis.
 
 ---
 
