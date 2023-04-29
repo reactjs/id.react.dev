@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-Anda bisa memperbaiki ini dengan memberikan *updater function* ketika mengubah state. Perhatikan bagaimana mengganti `setScore(score + 1)` dengan `setScore(s => s + 1)` memperbaiki tombol "+3". Cara ini memungkinkan Anda untuk meng-*queue* beberapa perubahan state.
+Anda bisa memperbaiki ini dengan memberikan *updater function* ketika mengubah state. Perhatikan bagaimana mengganti `setScore(score + 1)` dengan `setScore(s => s + 1)` memperbaiki tombol "+3". Cara ini memungkinkan Anda untuk mengantrikan beberapa perubahan state.
 
 <Sandpack>
 
