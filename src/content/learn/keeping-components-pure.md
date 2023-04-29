@@ -203,7 +203,7 @@ Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di pr
 
 #### Mengapa React peduli terhadap kemurnian? {/*why-does-react-care-about-purity*/}
 
-Penulisan fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan menakjubkan:
+Menulis fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan menakjubkan:
 
 * Komponen Anda dapat berjalan di lingkungan yang berbeda-—misalnya, di server! Karena komponen tersebut selalu menghasilkan hal yang sama untuk masukan yang sama, sebuah komponen bisa melayani permintaan dari banyak pengguna.
 * Anda bisa meningkatkan performa dengan [melewati proses *render*](/reference/react/memo) dari komponen yang masukannya tidak berubah. Ini aman karena fungsi murni selalu memberikan hasil yang sama sehingga hasilnya bisa disimpan di *cache*.
