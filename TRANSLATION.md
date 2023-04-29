@@ -42,6 +42,8 @@ review". *Draft Pull Request* menandakan bahwa *pull request* ini [masih sedang 
 Hal ini diperlukan untuk memberikan sinyal kepada kontributor lainnya bahwa
 terjemahan untuk halaman yang dimaksud di dalam *issue* tersebut sudah dimulai dan masih dikerjakan. Membuat *Draft Pull Request* juga merupakan cara yang lebih baik sebagai media komunikasi antara para kontributor karena informasi tambahan bisa disediakan di sana sembari melihat *file-file* yang diubah.
 
+Dengan membuat *Draft Pull Request* untuk *issue* terkait, kita dapat asumsikan bersama bahwa **Anda telah ditugaskan untuk menerjemahkan halaman tersebut**, sehingga kontributor lain bisa memilih untuk menerjemahkan halaman yang lainnya. Apabila sebuah *Draft Pull Request* dari kontributor lain menggantung terlalu lama tanpa ada kemajuan yang jelas selama beberapa hari, Anda dapat **mengambil alih tugas penerjemahan** halaman tersebut dengan cara membuat *Draft Pull Request* Anda sendiri. Bisa dengan melanjutkan proses penerjemahannya dari *commit* terakhir oleh kontributor lainnya di *Draft Pull Request* yang menggantung tersebut, atau dengan memulainya dari awal lagi (dari *commit* di `main` *branch*).
+
 #### Pembuatan *Draft Pull Request*
 
 Langkah-langkah untuk membuat *Draft Pull Request*:
