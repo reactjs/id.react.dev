@@ -20,7 +20,7 @@ Untuk menjalankan situs id.react.dev secara lokal, ikuti langkah-langkah berikut
 2. Buatlah *fork* dari repositori id.react.dev di akun Anda, kemudian *clone* repositori tersebut.
 3. Jalankan `yarn` di terminal untuk menginstalasi dependensi yang dibutuhkan.
 4. Jalankan `yarn dev` untuk menjalankan *server* lokal.
-5. Buka alamat `localhost:8000` dalam peramban web Anda.
+5. Buka alamat `localhost:3000` dalam peramban web Anda.
 
 Konten dari situs id.react.dev terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
 
