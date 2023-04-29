@@ -195,7 +195,7 @@ function MyPage() {
 }
 ```
 
-Sekarang setiap `Button` di dalam penyedia akan menerima nilai `theme` saat ini. Jika Anda memanggil `setTheme` untuk memperbarui nilai `theme` yang Anda berikan ke penyedia, semua komponen `Button` akan dirender ulang dengan nilai `'light' yang baru.
+Sekarang setiap `Button` di dalam penyedia akan menerima nilai `theme` saat ini. Jika Anda memanggil `setTheme` untuk memperbarui nilai `theme` yang Anda berikan ke penyedia, semua komponen `Button` akan di-*render* ulang dengan nilai `'light' yang baru.
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
@@ -1310,7 +1310,7 @@ function MyApp() {
 }
 ```
 
-Di sini, <CodeStep step={2}>context value</CodeStep> adalah sebuah objek JavaScript dengan dua properti, salah satunya adalah sebuah fungsi. Setiap kali `MyApp` dirender ulang (misalnya, pada pembaruan rute), ini akan menjadi objek *berbeda* yang menunjuk ke fungsi *berbeda*, sehingga React juga harus me-render ulang semua komponen di dalam pohon yang memanggil `useContext(AuthContext)`.
+Di sini, <CodeStep step={2}>context value</CodeStep> adalah sebuah objek JavaScript dengan dua properti, salah satunya adalah sebuah fungsi. Setiap kali `MyApp` di-*render* ulang (misalnya, pada pembaruan rute), ini akan menjadi objek *berbeda* yang menunjuk ke fungsi *berbeda*, sehingga React juga harus me-render ulang semua komponen di dalam pohon yang memanggil `useContext(AuthContext)`.
 
 Pada aplikasi yang lebih kecil, hal ini tidak menjadi masalah. Namun, tidak perlu me-render ulang jika data yang mendasarinya, seperti `currentUser`, tidak berubah. Untuk membantu React memanfaatkan fakta tersebut, Anda dapat membungkus fungsi `login` dengan [`useCallback`](/reference/react/useCallback) dan membungkus pembuatan objek ke dalam [`useMemo`](/reference/react/useMemo). Hal ini merupakan pengoptimalan kinerja:
 
@@ -1338,7 +1338,7 @@ function MyApp() {
 }
 ```
 
-Sebagai hasil dari perubahan ini, meskipun `MyApp` perlu dirender ulang, komponen yang memanggil `useContext(AuthContext)` tidak perlu dirender ulang kecuali jika `currentUser` telah berubah.
+Sebagai hasil dari perubahan ini, meskipun `MyApp` perlu di-*render* ulang, komponen yang memanggil `useContext(AuthContext)` tidak perlu di-*render* ulang kecuali jika `currentUser` telah berubah.
 
 Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rendering-of-components) dan [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
 
