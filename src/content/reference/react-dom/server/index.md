@@ -12,7 +12,7 @@ API `react-dom/server` memungkinkan Anda me-*render* komponen React menjadi HTML
 
 ## API *Server* untuk Node.js *Stream* {/*server-apis-for-nodejs-streams*/}
 
-Metode-metode ini hanya tersedia di lingkungan dengan [Node.js *Stream*:](https://nodejs.org/api/stream.html)
+Beberapa *method* ini hanya tersedia di lingkungan dengan [Node.js *Stream*:](https://nodejs.org/api/stream.html)
 
 * [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) me-*render* sebuah React *tree* ke dalam [Node.js *Stream*](https://nodejs.org/api/stream.html) yang *pipeable*.
 * [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) me-*render* sebuah React *tree* noninteraktif ke dalam [Node.js *Readable Stream*.](https://nodejs.org/api/stream.html#readable-streams)
