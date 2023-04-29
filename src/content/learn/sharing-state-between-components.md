@@ -238,7 +238,7 @@ export default function Accordion() {
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-       Nama berasal dari <span lang="kk-KZ">алма</span>, kata Kazakh untuk "apel" dan sering diterjemahkan sebagai "penuh dengan apel". Faktanya, wilayah sekitar Almaty dipercaya sebagai rumah leluhur apel, dan <i lang="la">Malus sieversii</i> si liar dianggap sebagai kandidat yang mungkin untuk leluhur apel domestik modern.
+       Nama berasal dari <span lang="kk-KZ">алма</span>, kata Kazakh untuk "apel" dan sering diterjemahkan sebagai "penuh dengan apel". Faktanya, wilayah sekitar Almaty dipercaya sebagai rumah leluhur apel, dan tanaman liar <i lang="la">Malus sieversii</i> dianggap sebagai kandidat yang mungkin untuk leluhur apel domestik modern.
       </Panel>
     </>
   );
