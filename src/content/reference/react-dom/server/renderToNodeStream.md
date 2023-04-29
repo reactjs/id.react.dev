@@ -10,7 +10,7 @@ API ini akan dihapus di versi utama React yang akan datang. Gunakan [`renderToPi
 
 <Intro>
 
-`renderToNodeStream` merender pohon Reactke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` merender pohon React ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -35,7 +35,7 @@ const stream = renderToNodeStream(<App />);
 stream.pipe(response);
 ```
 
-Di bagian klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk membuat HTML yang dibuat server interaktif.
+Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk membuat HTML yang dibuat server interaktif.
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
@@ -45,11 +45,9 @@ Di bagian klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot
 
 #### Kembalian {/*returns*/}
 
-Sebuah [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang mengahislkan string HTML.
+Sebuah [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan string HTML.
 
 #### Peringatan {/*caveats*/}
-
-* The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
 
 * Metode ini akan menunggu semua [Suspense boundaries](/reference/react/Suspense) selesai sebelum menampilkan keluaran apa pun.
 
