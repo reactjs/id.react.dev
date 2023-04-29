@@ -4,22 +4,22 @@ title: "State: A Component's Memory"
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Seringkali komponen mengubah tampilan di layar sebagai respons terjadinya interaksi (user). Mengetik di dalam form akan memperbarui <PENDING "kolom input" for "input field">, menekan tombol "Selanjutnya" pada <PENDING "rangkaian gambar" for "image carousel"> akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambah barang ke dalam keranjang. Komponen perlu "mengingat" informasi: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan yang dimiliki komponen ini disebut *state*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* Bagaimana menambahkan _state_ dengan Hook [`useState`](/reference/react/useState)
+* Pasangan variabel yang dikembalikan oleh Hook `useState`
+* Bagaimana menambahkan lebih dari satu variabel _state_
+* Mengapa lingkup _state_ terbatas pakai lokal komponen
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## Saat variabel biasa kurang memadai {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Di bawah adalah komponen yang <PENDING "render as a verb"> sebuah gambar pahatan. Menekan tombol "Selanjutnya" seharusnya menampilkan gambar pahatan yang berikutnya dengan mengganti nilai `index` menjadi `1`, lalu `2`, dan seterusnya. Namun, komponen ini **belum bekerja** (Anda boleh coba!):
 
 <Sandpack>
 
@@ -37,14 +37,14 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <img 
         src={sculpture.url} 
@@ -58,6 +58,7 @@ export default function Gallery() {
 }
 ```
 
+<!-- TODO -->
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -151,20 +152,20 @@ button {
 
 </Sandpack>
 
-The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+_event handler_ `handleClick` memperbarui nilai variabel `index`. Namun dua hal mencegah pembaruan tersebut ditampilkan ke pengguna:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Variabel lokal tidak dipertahankan antar-render.** Saat React me-render komponen ini untuk kedua kalinya, dia membuatnya ulang dari awal—tidak memerhatikan perubahan pada variabel lokal tersebut.
+2. **Perubahan terhadap variabel lokal tidak memicu render.** React tidak menyadari kalau dia perlu melakukan render ulang dengan data yang baru.
 
-To update a component with new data, two things need to happen:
+Untuk memperbarui komponen dengan data baru, dua hal perlu terjadi:
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **Mempertahankan** data antar-render.
+2. **Memicu** React untuk me-render ulang komponennya dengan data baru.
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+Hook [`useState`](/reference/react/useState) melakukan dua hal tersebut:
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. Sebuah **variabel state** untuk mempertahankan data antar-render.
+2. Sebuah **fungsi state setter** untuk memperbarui variabel dan memicu React untuk me-render ulang komponen.
 
 ## Adding a state variable {/*adding-a-state-variable*/}
 
