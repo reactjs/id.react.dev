@@ -4,7 +4,7 @@ title: renderToReadableStream
 
 <Intro>
 
-`renderToReadableStream` renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+`renderToReadableStream` render sebuah pohon React menjadi [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 const stream = await renderToReadableStream(reactNode, options?)
