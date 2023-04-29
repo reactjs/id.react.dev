@@ -1,6 +1,5 @@
 ---
 title: Berbagi State Antar Komponen
-
 ---
 
 <Intro>
