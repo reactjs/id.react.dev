@@ -42,38 +42,39 @@ review". *Draft Pull Request* menandakan bahwa *pull request* ini [masih sedang 
 Hal ini diperlukan untuk memberikan sinyal kepada kontributor lainnya bahwa
 terjemahan untuk halaman yang dimaksud di dalam *issue* tersebut sudah dimulai dan masih dikerjakan. Membuat *Draft Pull Request* juga merupakan cara yang lebih baik sebagai media komunikasi antara para kontributor karena informasi tambahan bisa disediakan di sana sembari melihat *file-file* yang diubah.
 
-#### Pembuatan _Draft Pull Request_
+#### Pembuatan *Draft Pull Request*
 
-Langkah-langkah untuk membuat _Draft Pull Request_:
+Langkah-langkah untuk membuat *Draft Pull Request*:
 
-1. _Commit_ dan _push_ perubahan terbaru ke _forked repository_ Anda. Mohon merujuk ke [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional) untuk membuat pesan _commit_ atau Anda dapat menggunakan [commitlint.io](https://commitlint.io/) untuk membantu Anda membuat pesan _commit_.
-2. Pergi ke bagian _Pull requests_ pada _forked repository_ Anda, dan klik _New pull request_.
+1. *Commit* dan *push* perubahan terbaru ke *forked repository* Anda. Mohon merujuk ke [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional) untuk membuat pesan *commit* atau Anda dapat menggunakan [commitlint.io](https://commitlint.io/) untuk membantu Anda membuat pesan *commit*.
+2. Pergi ke bagian *Pull requests* pada *forked repository* Anda, dan klik *New pull request*.
 
    ![Petunjuk-1](https://user-images.githubusercontent.com/46013258/126284390-c2bd1aa6-fdc2-4aa6-a945-031f02db038e.png)
 
-3. Pilih _forked repository_ Anda sebagai _head repository_, dan pilih _branch_ tempat Anda membuat perubahan untuk bagian _compare_.
+3. Pilih *forked repository* Anda sebagai *head repository*, dan pilih *branch* tempat Anda membuat perubahan untuk bagian *compare*.
 
    ![Petunjuk-2](https://user-images.githubusercontent.com/46013258/126285036-27b49325-62a2-4a6c-b216-5bae261788da.png)
 
-4. Berikan judul dan deskripsi yang jelas mengenai _pull request_ Anda.
+4. Berikan judul dan deskripsi yang jelas mengenai *pull request* Anda.
    Pastikan Anda mengikuti pengisian deskripsi seperti [keterangan di
    bawah](#pemberian-deskripsi-pull-request).
 
    ![Petunjuk-3](https://user-images.githubusercontent.com/46013258/126286179-04341e30-1224-49cb-9b9a-3c3aee99c308.png)
 
-5. Pilih _Create draft pull request_ (seperti pada gambar di atas) dan klik tombol berwarna hijau.
-6. Jangan lupa untuk menandai _Draft Pull Request_ Anda sebagai _Ready for review_ ketika Anda sudah melakukan semua perubahan yang diinginkan.
+5. Pilih *Create draft pull request* (seperti pada gambar di atas) dan klik tombol berwarna hijau.
+6. Jangan lupa untuk menandai *Draft Pull Request* Anda sebagai *Ready for review* ketika Anda sudah melakukan semua perubahan yang diinginkan.
 
-#### Pemberian deskripsi _pull request_
+#### Pemberian deskripsi *pull request*
 
-Agar _pull request_ dapat berkaitan dengan _issue_, ada 1 syarat teks yang
+Agar *pull request* dapat berkaitan dengan *issue*, ada 1 syarat teks yang
 harus dimasukkan ke dalam deskripsinya. Harap pastikan Anda menyebutkan nomor
-_issue_ yang Anda kerjakan dengan benar. Ubah teks `<!-- mention the issue that you're trying to close with this PR -->` yang disediakan dari _template_
-menjadi nomor _issue_. Contoh:
+*issue* yang Anda kerjakan dengan benar. Ubah teks `<!-- mention the issue that you're trying to close with this PR -->` yang disediakan dari *template*
+menjadi nomor *issue*. Contoh:
 
 ```markdown
 Closes #318
 
-Translate <page-name> page.
-Page URL: https://id.react.dev/<path-to-the-page>
+## Description
+
+Update **`Start working on Issues`** section with clearer instructions on getting ready to work on an issue.
 ```
