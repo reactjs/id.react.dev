@@ -42,7 +42,7 @@ root.render(
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Komponen Anda akan [merender ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
+- Komponen Anda akan [me-render ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
 - Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan bug yang disebabkan oleh tidak adanya pembersihan Efek.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
@@ -63,7 +63,7 @@ Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 Strict Mode memungkinkan pemeriksaan tambahan khusus pengembangan untuk seluruh pohon komponen di dalam komponen `<StrictMode>`. Pemeriksaan ini membantu Anda menemukan bug umum di komponen Anda di awal proses pengembangan.
 
 
-Untuk mengaktifkan Strict Mode pada seluruh aplikasi Anda, bungkus komponen akar Anda dengan `<StrictMode>` ketika Anda merendernya:
+Untuk mengaktifkan Strict Mode pada seluruh aplikasi Anda, bungkus komponen akar Anda dengan `<StrictMode>` ketika Anda me-render:
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -85,7 +85,7 @@ Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemerik
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Komponen Anda akan [merender ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
+- Komponen Anda akan [me-render ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
 - Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan bug yang disebabkan oleh tidak adanya pembersihan Efek.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
