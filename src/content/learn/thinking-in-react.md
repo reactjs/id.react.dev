@@ -4,15 +4,15 @@ title: Cara Berpikir dengan React
 
 <Intro>
 
-React dapat mengubah cara berpikir Anda tentang desain yang Anda lihat dan aplikasi yang Anda buat. Ketika Anda membuat antarmuka pengguna dengan React, pertama-tama Anda akan memecahnya menjadi beberapa bagian yang disebut dengan *komponen*. Kemudian, Anda akan mendeskripsikan state visual yang berbeda untuk setiap komponen Anda. Terakhir, Anda akan menghubungkan komponen-komponen Anda bersama-sama sehingga data mengalir melaluinya. Dalam tutorial ini, kami akan memandu Anda melalui proses berpikir untuk membangun tabel data produk yang dapat dicari dengan React.
+React dapat mengubah cara berpikir Anda tentang desain yang Anda lihat dan aplikasi yang Anda buat. Ketika Anda membuat antarmuka pengguna (*user interface*) dengan React, pertama-tama Anda akan memecahnya menjadi beberapa bagian yang disebut dengan *komponen*. Kemudian, Anda akan mendeskripsikan *state* visual yang berbeda untuk setiap komponen Anda. Terakhir, Anda akan menghubungkan komponen-komponen Anda bersama-sama sehingga data mengalir melaluinya. Dalam tutorial ini, kami akan memandu Anda melalui proses berpikir untuk membangun tabel data produk yang dapat dicari dengan React.
 
 </Intro>
 
 ## Mulailah dengan sebuah rancang bangun {/*start-with-the-mockup*/}
 
-Bayangkan Anda sudah memiliki API JSON dan rancang bangun dari desainer.
+Bayangkan Anda sudah memiliki API JSON dan rancang bangun dari seorang desainer.
 
-API JSON mengembalikan beberapa data yang terlihat seperti ini:
+API JSON tersebut mengembalikan beberapa data yang terlihat seperti ini:
 
 ```json
 [
@@ -25,7 +25,7 @@ API JSON mengembalikan beberapa data yang terlihat seperti ini:
 ]
 ```
 
-Rancang bangun kita terlihat seperti ini:
+Rancang bangun tersebut terlihat seperti ini:
 
 <img src="/images/docs/s_thinking-in-react_ui.png" width="300" style={{margin: '0 auto'}} />
 
@@ -33,7 +33,7 @@ Untuk mengimplementasikan antarmuka pengguna di React, Anda biasanya akan mengik
 
 ## Langkah 1: Bagi antarmuka pengguna menjadi hierarki komponen {/*step-1-break-the-ui-into-a-component-hierarchy*/}
 
-Mulailah dengan menggambar kotak-kotak di sekitar setiap komponen dan subkomponen dalam rancang bangun dan beri nama. Jika Anda bekerja dengan seorang desainer, mereka mungkin telah menamai komponen-komponen ini di alat bantu desain mereka. Tanyakan kepada mereka!
+Mulailah dengan menggambar kotak-kotak di sekitar setiap komponen dan subkomponen dalam rancang bangun dan berikan mereka nama. Jika Anda bekerja dengan seorang desainer, mereka mungkin telah menamai komponen-komponen ini di alat bantu desain mereka. Tanyakanlah mereka!
 
 Tergantung pada latar belakang Anda, Anda dapat berpikir untuk membagi desain menjadi beberapa komponen dengan cara yang berbeda:
 
