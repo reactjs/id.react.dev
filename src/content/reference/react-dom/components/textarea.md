@@ -20,7 +20,7 @@ komponen [bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/
 
 ### `<textarea>` {/*textarea*/}
 
-Untuk menampilkan sebuah text area, render [komponen bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
+Untuk menampilkan sebuah area teks, render [komponen bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
@@ -30,19 +30,19 @@ Untuk menampilkan sebuah text area, render [komponen bawaan browser `<textarea>`
 
 #### Props {/*props*/}
 
-`<textarea>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<textarea>` mendukung semua [elemen props yang umum.](/reference/react-dom/components/common#props)
 
-You can [make a text area controlled](#controlling-a-text-area-with-a-state-variable) by passing a `value` prop:
+Anda dapat [membuat sebuah area teks yang terkontrol](#controlling-a-text-area-with-a-state-variable) dengan cara memberikan sebuah prop `value`:
 
-* `value`: A string. Controls the text inside the text area.
+* `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
-When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
+Ketika Anda memberikan `value`, Kamu harus memberikan juga sebuah `onChange` handler yang memperbarui nilai yang diberikan sebelumnya.
 
-If your `<textarea>` is uncontrolled, you may pass the `defaultValue` prop instead:
+Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` sebagai gantinya:
 
-* `defaultValue`: A string. Specifies [the initial value](#providing-an-initial-value-for-a-text-area) for a text area.
+* `defaultValue`: Sebuah string. Menetapkan [nilai awal](#providing-an-initial-value-for-a-text-area) untuk sebuah area teks.
 
-These `<textarea>` props are relevant both for uncontrolled and controlled text areas:
+`<textarea>` props ini relevan baik untuk area text terkontrol maupun terkontrol:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Either `'on'` or `'off'`. Specifies the autocomplete behavior.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): A boolean. If `true`, React will focus the element on mount.
