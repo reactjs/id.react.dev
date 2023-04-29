@@ -13,11 +13,11 @@ API `react-dom/client` memungkinkan Anda merender komponen React di sisi klien (
 
 ## API klien {/*client-apis*/}
 
-* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan untuk membuat akar *(root)* yang digunakan untuk menampilkan komponen React di dalam simpul *(node)* DOM peramban
-* [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan untuk untuk menampilkan komponen React di dalam simpul DOM peramban  yang sebelumnya dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
+* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan pembuatan akar *(root)* yang digunakan untuk menampilkan komponen React di dalam simpul *(node)* DOM peramban.
+* [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan untuk menampilkan komponen React di dalam simpul DOM peramban  yang telah dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
 
 ---
 
 ## Dukungan peramban {/*browser-support*/}
 
-React mendukung semua peramban populer, termasuk Internet Explorer 9 dan yang lebih baru. Beberapa *polyfills* dibutuhkan untuk peramban lama seperti IE 9 dan IE 10
+React mendukung semua peramban populer, termasuk Internet Explorer 9 dan yang lebih baru. Beberapa *polyfills* dibutuhkan untuk peramban lama seperti IE 9 dan IE 10.
