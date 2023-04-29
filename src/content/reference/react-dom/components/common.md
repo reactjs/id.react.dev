@@ -321,7 +321,7 @@ Selain itu, objek *event* React juga menyediakan metode berikut:
 
 ---
 
-### `AnimationEvent` handler function {/*animationevent-handler*/}
+### Fungsi `AnimationEvent` handler {/*animationevent-handler*/}
 
 Sebuah tipe *event handler* untuk *events* [animasi CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 
@@ -342,7 +342,7 @@ Sebuah tipe *event handler* untuk *events* [animasi CSS](https://developer.mozil
 
 ---
 
-### fungsi `ClipboardEvent` handler {/*clipboadevent-handler*/}
+### Fungsi `ClipboardEvent` handler {/*clipboadevent-handler*/}
 
 Sebuah tipe *event handler* untuk *events* [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).
 
