@@ -777,11 +777,11 @@ Di belakang layar, Immer selalu membuat state berikutnya dari awal sesuai dengan
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- Anda dapat memasukkan senarai ke dalam state, tetapi Anda tidak dapat mengubahnya.
+- Alih-alih memutasi senarai, buat versi *barunya*, dan perbarui state tersebut.
+- Anda dapat menggunakan penyebaran sintaksis senarai `[...arr, newItem]` untuk membuat senarai dengan item baru.
+- Anda dapat menggunakan `filter()` dan `map()` untuk membuat senarai baru dengan item yang difilter atau diubah.
+- Anda dapat menggunakan Immer untuk menjaga agar kode Anda tetap ringkas.
 
 </Recap>
 
@@ -789,9 +789,9 @@ Di belakang layar, Immer selalu membuat state berikutnya dari awal sesuai dengan
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Memperbarui item di keranjang belanja {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+Isi logika `handleIncreaseClick` sehingga saat menekan "+" akan meningkatkan angka yang sesuai:
 
 <Sandpack>
 
@@ -849,7 +849,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+Anda dapat menggunakan fungsi `map` untuk membuat senarai baru, lalu menggunakan penyebaran sintaksis objek `...` untuk membuat salinan objek yang diubah untuk senarai baru:
 
 <Sandpack>
 
@@ -916,9 +916,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Menghapus item dari keranjang belanja {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+Keranjang belanja ini memiliki tombol "+" yang berfungsi, tetapi tombol "–" tidak melakukan apa-apa. Anda perlu menambahkan *event handler* ke dalamnya sehingga saat menekannya akan mengurangi `count` produk yang sesuai. Jika Anda menekan "–" saat `count` 1, produk akan secara otomatis dihapus dari keranjang. Pastikan itu tidak pernah menunjukkan 0.
 
 <Sandpack>
 
@@ -988,7 +988,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+Pertama-tama Anda dapat menggunakan `map` untuk menghasilkan senarai baru, lalu `filter` untuk menghapus produk dengan `count` yang disetel ke 0:
 
 <Sandpack>
 
@@ -1077,9 +1077,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Perbaiki mutasi menggunakan metode nonmutatif {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+Pada contoh ini, semua *event handler* di App.js menggunakan mutasi. Akibatnya, mengedit dan menghapus todos tidak berfungsi. Tulis ulang `handleAddTodo`, `handleChangeTodo`, dan `handleDeleteTodo` untuk menggunakan metode *non-mutatif*:
 
 <Sandpack>
 
@@ -1146,14 +1146,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Tambah todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -1197,7 +1197,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -1225,7 +1225,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1242,7 +1242,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+Pada `handleAddTodo`, Anda bisa menggunakan sintaksis penyebaran senarai. Pada `handleChangeTodo`, Anda dapat membuat senarai baru dengan `map`. Pada `handleDeleteTodo`, Anda dapat membuat senarai baru dengan `filter`. Sekarang daftar berfungsi dengan benar:
 
 <Sandpack>
 
@@ -1313,14 +1313,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Tambah todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -1364,7 +1364,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -1392,7 +1392,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1410,9 +1410,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Perbaiki mutasi menggunakan Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+Ini adalah contoh yang sama seperti pada tantangan sebelumnya. Kali ini, perbaiki mutasi dengan menggunakan Immer. Untuk kemudahan Anda, `useImmer` sudah diimpor, jadi Anda perlu mengubah variabel state `todos` untuk menggunakannya.
 
 <Sandpack>
 
@@ -1480,14 +1480,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Tambah todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -1531,7 +1531,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -1559,7 +1559,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1594,7 +1594,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+Dengan Immer, Anda dapat menulis kode dengan gaya yang dapat bermutasi, selama Anda hanya memutasi bagian-bagian dari `draft` yang diberikan oleh Immer. Di sini, semua mutasi dilakukan pada `draft`, jadi kode berfungsi:
 
 <Sandpack>
 
@@ -1668,14 +1668,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Tambah todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -1719,7 +1719,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -1747,7 +1747,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1780,9 +1780,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+Anda juga dapat mencampur dan mencocokkan pendekatan *mutatif* dan *non-mutatif* dengan Immer.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+Misalnya, dalam versi ini `handleAddTodo` diimplementasikan dengan mengubah `draft` Immer, sedangkan `handleChangeTodo` dan `handleDeleteTodo` menggunakan metode `map` dan `filter` *non-mutatif*:
 
 <Sandpack>
 
@@ -1853,14 +1853,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Tambah todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -1904,7 +1904,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -1932,7 +1932,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1965,7 +1965,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+Dengan Immer, Anda dapat memilih gaya yang terasa paling alami untuk setiap casing terpisah.
 
 </Solution>
 
