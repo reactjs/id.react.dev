@@ -4,7 +4,7 @@ title: Menjaga Kemurnian Komponen
 
 <Intro>
 
-Beberapa fungsi JavaScript bersifat murni, yaitu hanya melakukan kalkulasi. Dengan begitu, Anda bisa menghindari berbagai macam *bug* dan tingkah laku yang membingungkan dari aplikasi yang Anda bangun. Namun, ada beberapa aturan yang harus Anda ikuti untuk mencapai keadaan ini.
+Beberapa fungsi JavaScript bersifat murni, yaitu hanya melakukan kalkulasi dan tidak lebih dari itu. Dengan menulis komponen sebagai fungsi murni, Anda bisa menghindari berbagai macam *bug* dan tingkah laku yang membingungkan dari aplikasi yang Anda bangun. Namun, ada beberapa aturan yang harus Anda ikuti untuk mencapai keadaan ini.
 
 </Intro>
 
@@ -237,7 +237,7 @@ Anda bisa memverifikasi solusi Anda dengan mengubah zona waktu komputer Anda. Sa
 
 <Hint>
 
-*Render* adalah *kalkulasi*. Oleh karena itu, seharusnya *render* tidak berusaha untuk "mengubah" sesuatu. Apakah Anda bisa mengekpresikan ide yang sama dengan cara yang berbeda?
+Pe-*render*-an adalah *kalkulasi*. Oleh karena itu, seharusnya *render* tidak berusaha untuk "mengubah" sesuatu. Apakah Anda bisa mengekpresikan ide yang sama dengan cara yang berbeda?
 
 </Hint>
 
