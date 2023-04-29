@@ -58,7 +58,7 @@ export default function Gallery() {
 }
 ```
 
-<!-- TODO -->
+TODO
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -240,7 +240,7 @@ export default function Gallery() {
 }
 ```
 
-<!-- TODO -->
+TODO
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -430,7 +430,7 @@ export default function Gallery() {
 }
 ```
 
-<!-- TODO -->
+TODO
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -736,7 +736,6 @@ Anda tidak perlu mendalaminya untuk menggunakan React, tapi bisa memberi Anda ga
 </DeepDive>
 
 ## State terisolasi dan privat {/*state-is-isolated-and-private*/}
-## State is isolated and private {/*state-is-isolated-and-private*/}
 
 Lingkup state terbatas pada komponen di mana dia dipanggil. Dalam kata lain, **jika Anda merender komponen yang sama dua kali, tiap komponen akan memiliki state yang terpisah!** Mengubah salah satunya tidak kan memengaruhi yang satunya.
 
