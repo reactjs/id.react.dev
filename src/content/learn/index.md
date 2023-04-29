@@ -1,10 +1,10 @@
 ---
-title: Quick Start
+title: Mulai Cepat
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan tentang 80% konsep React yang akan Anda gunakan sehari-hari.
 
 </Intro>
 
