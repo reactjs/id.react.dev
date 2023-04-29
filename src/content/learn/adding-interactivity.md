@@ -4,27 +4,27 @@ title: Menambahkan Interaktivitas
 
 <Intro>
 
-Beberapa hal di layar berubah mengikuti input dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apapun, dan mengubahnya sesuai kebutuhan. Di bab ini, Anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan output yang berbeda seiring berjalannya waktu.
+Beberapa hal di layar berubah mengikuti masukan dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apapun, dan mengubahnya sesuai kebutuhan. Di bab ini, Anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan keluaran yang berbeda seiring berjalannya waktu.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
 * [Cara menangani events yang di-mulai oleh pengguna](/learn/responding-to-events)
-* [Cara membuat komponen mengingat informasi dengan menggunakan state](/learn/state-a-components-memory)
+* [Cara membuat komponen "mengingat" informasi dengan menggunakan state](/learn/state-a-components-memory)
 * [Cara React memperbaharui UI dalam dua fase](/learn/render-and-commit)
 * [Mengapa state tidak langsung terbaharui setelah Anda mengubahnya](/learn/state-as-a-snapshot)
-* [Cara meng-queue beberapa perubahan state](/learn/queueing-a-series-of-state-updates)
-* [Cara mengubah object didalam state](/learn/updating-objects-in-state)
-* [Cara mengubah array didalam state](/learn/updating-arrays-in-state)
+* [Cara mengantrikan beberapa perubahan state](/learn/queueing-a-series-of-state-updates)
+* [Cara mengubah object di dalam state](/learn/updating-objects-in-state)
+* [Cara mengubah array di dalam state](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
 ## Menanggapi events {/*responding-to-events*/}
 
-React memungkinkan Anda untuk menambakan *event handlers* ke JSX Anda. *Event handlers* adalah fungsi milik Anda yang akan dipanggil sebagai respon terhadap interaksi dari pengguna seperti klik, *hover*, fokus pada input form, dan lain-lain.
+React memungkinkan Anda untuk menambakan *event handlers* ke JSX Anda. *Event handlers* adalah fungsi milik Anda yang akan dipanggil sebagai respon terhadap interaksi dari pengguna seperti klik, *hover*, fokus pada masukan form, dan lain-lain.
 
-Komponen bawaan seperti `<button>` hanya mendukung *event* bawaan dari browser seperti `onClick`. Namun, Anda juga dapat membuat komponen Anda sendiri, dan memberikannya *prop event handler* dengan nama apapun, spesifik terhadap aplikasi Anda.
+Komponen bawaan seperti `<button>` hanya mendukung *event* bawaan dari peramban seperti `onClick`. Namun, Anda juga dapat membuat komponen Anda sendiri, dan memberikannya *prop event handler* dengan nama apapun, spesifik terhadap aplikasi Anda.
 
 <Sandpack>
 
@@ -74,7 +74,7 @@ Baca **[Menangani Event](/learn/responding-to-events)** untuk mempelajari cara m
 
 ## State: Ingatan dari komponen {/*state-a-components-memory*/}
 
-Komponen sering perlu mengubah apa yang ada di layar sebagai hasil dari sebuah interaksi. Mengetik kedalam form dapat mengubah sebuah kolom input, mengeklik "next" pada sebuah *carousel* gambar mengubah gambar yang sedang ditampilkan, mengeklik "beli" menambahkan sebuah produk kedalam keranjang belanja. Komponen perlu "mengingat" berbagai hal: nilai input saat ini, gambar saat ini, keranjang belanja. Di React, jenis ingatan komponen seperti ini disebut *state.* 
+Komponen sering perlu mengubah apa yang ada di layar sebagai hasil dari sebuah interaksi. Mengetik kedalam form dapat mengubah sebuah kolom masukan, mengeklik "next" pada sebuah *carousel* gambar mengubah gambar yang sedang ditampilkan, mengeklik "beli" menambahkan sebuah produk kedalam keranjang belanja. Komponen perlu "mengingat" berbagai hal: nilai masukan saat ini, gambar saat ini, keranjang belanja. Di React, jenis ingatan komponen seperti ini disebut *state.* 
 
 Anda dapat menambahkan state kepada komponen dengan menggunakan Hook [`useState`](/reference/react/useState). *Hooks* adalah fungsi spesial yang memungkinkan komponen Anda untuk menggunakan fitur-fitur dari React (state adalah salah satu fitur tersebut). Hook `useState` memungkinkan Anda mendeklarasikan sebuah variabel state. Fungsi ini menerima state awal dan mengeluarkan sepasang nilai: state saat ini, dan sebuah fungsi *state setter*  yang memungkinkan Anda untuk mengubah state tersebut.
 
@@ -318,7 +318,7 @@ Baca **[State sebagai Snapshot](/learn/state-as-a-snapshot)** untuk mempelajari 
 
 </LearnMore>
 
-## Meng-queue serangkaian perubahan state {/*queueing-a-series-of-state-updates*/}
+## Mengantrikan serangkaian perubahan state {/*queueing-a-series-of-state-updates*/}
 
 Komponent ini memiliki *bug*: mengeklik "+3" hanya akan menambahkan skor satu kali saja.
 
@@ -402,13 +402,13 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Baca **[Meng-queue serangkaian perubahan state](/learn/queueing-a-series-of-state-updates)** untuk mempelajari cara meng-*queue* sebuah rentetan perubahan state.
+Baca **[Mengantrikan serangkaian perubahan state](/learn/queueing-a-series-of-state-updates)** untuk mempelajari cara meng-*queue* sebuah rentetan perubahan state.
 
 </LearnMore>
 
-## Mengubah object didalam state {/*updating-objects-in-state*/}
+## Mengubah object di dalam state {/*updating-objects-in-state*/}
 
-State bisa memegang berbagai jenis nilai JavaScript, termasuk *object*. Tetapi Anda tidak boleh mengubah *object* dan *array* yang Anda simpan didalam state React secara langsung. Melainkan, ketika Anda ingin mengubah *object* dan *array*, Anda perlu membuat *object* yang baru (atau membuat salinan dari *object* yang sudah ada), dan kemudian mengubah state-nya untuk menggunakan salinan tersebut.
+State bisa memegang berbagai jenis nilai JavaScript, termasuk *object*. Tetapi Anda tidak boleh mengubah *object* dan *array* yang Anda simpan di dalam state React secara langsung. Melainkan, ketika Anda ingin mengubah *object* dan *array*, Anda perlu membuat *object* yang baru (atau membuat salinan dari *object* yang sudah ada), dan kemudian mengubah state-nya untuk menggunakan salinan tersebut.
 
 
 Biasanya, Anda akan menggunakan sintaks *spreads* `...` untuk menyalin *object* dan *array* yang ingin Anda ubah. Contohnya, mengubah *object* yang bersarang bisa terlihat seperti ini:
@@ -634,11 +634,11 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Baca **[Mengubah Object didalam State](/learn/updating-objects-in-state)** untuk mempelajari cara mengubah *object* dengan benar.
+Baca **[Mengubah Object di dalam State](/learn/updating-objects-in-state)** untuk mempelajari cara mengubah *object* dengan benar.
 
 </LearnMore>
 
-## Mengubah array didalam state {/*updating-arrays-in-state*/}
+## Mengubah array di dalam state {/*updating-arrays-in-state*/}
 
 Array adalah tipe object lain yang bersifat *mutable* di Javascript yang bisa Anda simpan di state dan harus diperlakukan sebagai *read-only*. Seperti *object*, ketika Anda ingin mengubah *array* yang disimpan di state, Anda perlu membuat *array* baru (atau membuat salinan dari *array* yang sudah ada), dan kemudian mengubah state-nya untuk menggunakan *array* baru tersebut:
 
@@ -792,7 +792,7 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Baca **[Mengubah Array didalam State](/learn/updating-arrays-in-state)** untuk mempelajari cara mengubah *array* dengan benar.
+Baca **[Mengubah Array di dalam State](/learn/updating-arrays-in-state)** untuk mempelajari cara mengubah *array* dengan benar.
 
 </LearnMore>
 
