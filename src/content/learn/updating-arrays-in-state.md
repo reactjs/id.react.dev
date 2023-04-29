@@ -1,18 +1,17 @@
 ---
-title: Updating Arrays in State
+title: Memperbarui Senarai pada State
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
-
+Senarai (*array*) pada JavaScript dapat berubah, tetapi ketika Anda menyimpannya dalam state, Anda harus memperlakukannya sebagai tidak dapat diubah. Sama seperti objek, ketika Anda ingin memperbarui sebuah senarai yang tersimpan pada state, Anda harus membuat yang baru (atau membuat salinan dari yang sudah ada), kemudian mengatur state menggunakan senarai baru.
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- Cara menambah, menghapus, atau mengubah item dalam senarai pada React state
+- Cara memperbarui objek di dalam senarai
+- Cara agar penyalinan senarai tidak terlalu berulang menggunakan Immer
 
 </YouWillLearn>
 
