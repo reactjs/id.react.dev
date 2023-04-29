@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-The [built-in browser `<textarea>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) lets you render a multiline text input.
+komponen [bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) memungkinkan Anda merender teks input banyak baris.
 
 ```js
 <textarea />
@@ -20,13 +20,13 @@ The [built-in browser `<textarea>` component](https://developer.mozilla.org/en-U
 
 ### `<textarea>` {/*textarea*/}
 
-To display a text area, render the [built-in browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) component.
+Untuk menampilkan sebuah text area, render [komponen bawaan browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah](#usage)
 
 #### Props {/*props*/}
 
