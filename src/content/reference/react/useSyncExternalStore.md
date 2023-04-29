@@ -354,43 +354,43 @@ Pastikan `getServerSnapshot` mengembalikan data yang sama persis di proses *rend
 
 ## Pemecahan masalah {/*troubleshooting*/}
 
-### Saya mendapat kesalahan: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### Saya mendapat pesan kesalahan: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
 
-This error means your `getSnapshot` function returns a new object every time it's called, for example:
+Pesan kesalahan ini berarti fungsi `getSnapshot` mengembalikan sebuah objek baru pada setiap pemanggilannya, seperti:
 
 ```js {2-5}
 function getSnapshot() {
-  // 🔴 Do not return always different objects from getSnapshot
+  // 🔴 Jangan selalu mengembalikan objek yang berbeda pada setiap pemanggilan
   return {
     todos: myStore.todos
   };
 }
 ```
 
-React will re-render the component if `getSnapshot` return value is different from the last time. This is why, if you always return a different value, you will enter an infinite loop and get this error.
+React akan me-*render* ulang sebuah komponen jika `getSnapshot` mengembalikan nilai yang berbeda dari sebelumnya. Ini mengapa, jika Anda selalu mengembalikan nilai yang berbeda, Anda akan melihat pengulangan tak berhingga dan mendapatkan pesan kesalahan ini.
 
-Your `getSnapshot` object should only return a different object if something has actually changed. If your store contains immutable data, you can return that data directly:
+Objek `getSnapshot` Anda hanya mengembalikan objek yang berbeda jika memang ada yang berubah. Jika tempat penyimpanan Anda mengandung data yang tidak dapat dimutasi, Anda dapat langsung mengembalikan data tersebut:
 
 ```js {2-3}
 function getSnapshot() {
-  // ✅ You can return immutable data
+  // ✅ Anda dapat mengembalikan data yang tidak dapat dimutasi
   return myStore.todos;
 }
 ```
 
-If your store data is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but it shouldn't do this for every single call. Instead, it should store the last calculated snapshot, and return the same snapshot as the last time if the data in the store has not changed. How you determine whether mutable data has changed depends on your mutable store.
+Jika tempat penyimpanan Anda dapat dimutasi, fungsi `getSnapshot` Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi dari data tersebut. Ini berarti fungsi tersebut *harus* membuat objek baru, tetapi tidak pada setiap pemanggilan. Justru, fungsi tersebut sebaiknya menyimpan *snapshot* terakhir dan mengembalikan *snapshot* tersebut jika data belum berubah. Bagaimana Anda menentukan apakah data tersebut sudah berubah atau tidak bergantung kepada tempat penyimpanan Anda.
 
 ---
 
 ### Fungsi `subscribe` saya tidak dipanggil setelah tiap tahap *render* {/*my-subscribe-function-gets-called-after-every-re-render*/}
 
-This `subscribe` function is defined *inside* a component so it is different on every re-render:
+Fungsi `subscribe` ini ditulis *di dalam* komponen sehingga fungsi tersebut selalu berbeda di setiap *render*:
 
 ```js {4-7}
 function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   
-  // 🚩 Always a different function, so React will resubscribe on every re-render
+  // 🚩 Selalu fungsi berbeda sehingga React akan berlangganan ulang setiap render
   function subscribe() {
     // ...
   }
@@ -399,7 +399,7 @@ function ChatIndicator() {
 }
 ```
   
-React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
+React akan melanggan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
 ```js {6-9}
 function ChatIndicator() {
@@ -407,19 +407,19 @@ function ChatIndicator() {
   // ...
 }
 
-// ✅ Always the same function, so React won't need to resubscribe
+// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
 function subscribe() {
   // ...
 }
 ```
 
-Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
+Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk melanggan ulang hanya jika beberapa argumen berubah:
 
 ```js {4-8}
 function ChatIndicator({ userId }) {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   
-  // ✅ Same function as long as userId doesn't change
+  // ✅ Fungsi yang sama selama userId tidak berubah
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
