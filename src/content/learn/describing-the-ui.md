@@ -233,7 +233,7 @@ Baca **[JavaScript di dalam JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-
 
 </LearnMore>
 
-## Mengoper Props ke Komponen {/*passing-props-to-a-component*/}
+## Mengoper Props ke sebuah Komponen {/*passing-props-to-a-component*/}
 
 Komponen React menggunakan *props* untuk berkomunikasi satu sama lain. Setiap komponen induk dapat memberikan informasi ke komponen anaknya dengan memberikan *props*. *Props* mungkin mengingatkan Anda pada atribut HTML, tetapi Anda dapat mengoper nilai JavaScript apa pun melalui *props*, termasuk objek, senarai, fungsi, dan bahkan JSX!
 
