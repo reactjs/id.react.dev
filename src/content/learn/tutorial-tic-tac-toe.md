@@ -593,7 +593,7 @@ Untuk saat ini, Anda akan melihat papan kosong:
 
 ![papan kosong](../images/tutorial/empty-board.png)
 
-Hal ini karena komponen `Board` belum meneruskan prop `value` ke setiap komponen `Square` yang di-render. Untuk memperbaikinya, Anda harus menambahkan prop `value` ke setiap komponen `Square` yang dirender oleh komponen `Board`:
+Hal ini karena komponen `Board` belum meneruskan prop `value` ke setiap komponen `Square` yang di-render. Untuk memperbaikinya, Anda harus menambahkan prop `value` ke setiap komponen `Square` yang di-*render* oleh komponen `Board`:
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -1357,7 +1357,7 @@ Hasilnya sama, tetapi dengan tidak melakukan mutasi (mengubah data yang mendasar
 
 Immutability membuat fitur-fitur yang kompleks menjadi lebih mudah untuk diimplementasikan. Kemudian dalam tutorial ini, Anda akan mengimplementasikan fitur "perjalanan waktu" yang memungkinkan Anda meninjau sejarah game dan "melompat kembali" ke gerakan sebelumnya. Fungsionalitas ini tidak spesifik untuk gim--kemampuan untuk membatalkan dan mengulang tindakan tertentu adalah persyaratan umum untuk aplikasi. Menghindari mutasi data secara langsung memungkinkan Anda menyimpan data versi sebelumnya, dan menggunakannya kembali nanti.
 
-Ada juga manfaat lain dari immutability. Secara default, semua komponen anak dirender ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus merender ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
+Ada juga manfaat lain dari immutability. Secara default, semua komponen anak di-*render* ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus merender ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
 
 ### Bergiliran {/*taking-turns*/}
 
