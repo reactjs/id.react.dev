@@ -4,7 +4,7 @@ title: "State: A Component's Memory"
 
 <Intro>
 
-Seringkali komponen mengubah tampilan di layar sebagai respons terjadinya interaksi (user). Mengetik di dalam form akan memperbarui <PENDING "kolom input" for "input field">, menekan tombol "Selanjutnya" pada <PENDING "rangkaian gambar" for "image carousel"> akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambah barang ke dalam keranjang. Komponen perlu "mengingat" informasi: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan yang dimiliki komponen ini disebut *state*.
+Seringkali komponen mengubah tampilan di layar sebagai respons terjadinya interaksi (user). Mengetik di dalam form akan memperbarui kolom masukan, menekan tombol "Selanjutnya" pada slide gambar akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambah barang ke dalam keranjang. Komponen perlu "mengingat" informasi: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan yang dimiliki komponen ini disebut *state*.
 
 </Intro>
 
@@ -13,13 +13,13 @@ Seringkali komponen mengubah tampilan di layar sebagai respons terjadinya intera
 * Bagaimana menambahkan _state_ dengan Hook [`useState`](/reference/react/useState)
 * Pasangan variabel yang dikembalikan oleh Hook `useState`
 * Bagaimana menambahkan lebih dari satu variabel _state_
-* Mengapa lingkup _state_ terbatas pakai lokal komponen
+* Mengapa lingkup _state_ bersifat lokal ke komponen
 
 </YouWillLearn>
 
 ## Saat variabel biasa kurang memadai {/*when-a-regular-variable-isnt-enough*/}
 
-Di bawah adalah komponen yang <PENDING "render as a verb"> sebuah gambar pahatan. Menekan tombol "Selanjutnya" seharusnya menampilkan gambar pahatan yang berikutnya dengan mengganti nilai `index` menjadi `1`, lalu `2`, dan seterusnya. Namun, komponen ini **belum bekerja** (Anda boleh coba!):
+Di bawah adalah komponen yang merender sebuah gambar pahatan. Menekan tombol "Selanjutnya" seharusnya menampilkan gambar pahatan yang berikutnya dengan mengganti nilai `index` menjadi `1`, lalu `2`, dan seterusnya. Namun, komponen ini **belum bekerja** (Anda boleh coba lho!):
 
 <Sandpack>
 
@@ -154,44 +154,45 @@ button {
 
 _event handler_ `handleClick` memperbarui nilai variabel `index`. Namun dua hal mencegah pembaruan tersebut ditampilkan ke pengguna:
 
-1. **Variabel lokal tidak dipertahankan antar-render.** Saat React me-render komponen ini untuk kedua kalinya, dia membuatnya ulang dari awal—tidak memerhatikan perubahan pada variabel lokal tersebut.
+1. **Variabel lokal tidak dipertahankan antar-render.** Saat React merender komponen ini untuk kedua kalinya, dia membuatnya ulang dari awal—tidak memerhatikan perubahan pada variabel lokal tersebut.
 2. **Perubahan terhadap variabel lokal tidak memicu render.** React tidak menyadari kalau dia perlu melakukan render ulang dengan data yang baru.
 
 Untuk memperbarui komponen dengan data baru, dua hal perlu terjadi:
 
 1. **Mempertahankan** data antar-render.
-2. **Memicu** React untuk me-render ulang komponennya dengan data baru.
+2. **Memicu** React untuk merender ulang komponennya dengan data baru.
 
 Hook [`useState`](/reference/react/useState) melakukan dua hal tersebut:
 
-1. Sebuah **variabel state** untuk mempertahankan data antar-render.
-2. Sebuah **fungsi state setter** untuk memperbarui variabel dan memicu React untuk me-render ulang komponen.
+1. Sebuah **variabel state** untuk mempertahankan data antarrender.
+2. Sebuah **fungsi state setter** untuk memperbarui variabel dan memicu React untuk merender ulang komponen.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Menambahkan variabel state {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+Untuk menambahkan variabel state, impor `useState` dari React di paling atas _file_: 
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+Lalu, ubah baris berikut:
 
 ```js
 let index = 0;
 ```
 
-with
+menjadi
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` merupakan variabel state dan `setIndex` adalah fungsi penyetel.
 
-> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> Sintaks yang menggunakan `"["` dan `"]"` digunakan untuk [membongkar isi array](https://javascript.info/destructuring-assignment) dan membolehkan Anda untuk membaca elemen dalam array tersebut. Array yang dikembalikan oleh `useState` akan selalu berisi dua elemen.
 
-This is how they work together in `handleClick`:
+
+Ini cara mereka bekerja dalam `handleClick`:
 
 ```js
 function handleClick() {
@@ -199,7 +200,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+Sekarang, menekan tombol "Selanjutnya" akan mengganti gambar pahatan:
 
 <Sandpack>
 
@@ -218,14 +219,14 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <img 
         src={sculpture.url} 
@@ -239,6 +240,7 @@ export default function Gallery() {
 }
 ```
 
+<!-- TODO -->
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -332,57 +334,57 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### Menggunakan Hook pertama Anda {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
+Dalam React, `useState`, dan fungsi lainnya yang berawalan "`use`", disebut sebuah Hook.
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+*Hooks* adalah fungsi spesial yang hanya tersedia hanya pada proses [rendering](/learn/render-and-commit#step-1-trigger-a-render) (yang akan kita bahas lebih detail di halaman selanjutnya). Mereka memberikan Anda akses ke berbagai fitur React.
 
-State is just one of those features, but you will meet the other Hooks later.
+State adalah salah satu fitur tersebut, Anda akan menemui Hooks lainnya nanti.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Fungsi-fungsi Hook yang diawali `use`—hanya bisa dipanggil pada top level komponen Anda atau [hooks Anda sendiri](/learn/reusing-logic-with-custom-hooks)** Anda tidak bisa memanggil  Hook di dalam blok kode kondisi, perulangan, atau fungsi bersarang lainnya. Hook sendiri adalah fungsi, tapi penting untuk ingat deklarasi mereka tidak bergantung pada syarat pemanggilan. Anda bisa menggunakan fitur React di tingkat atas komponen seperti Anda mengimpor modul di bagian atas file.
 
 </Pitfall>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### Anatomi dari `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
+Saat Anda memanggil [`useState`](/reference/react/useState), Anda memberitahu React bahwa komponen ini harus mengingat sesuatu:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-In this case, you want React to remember `index`.
+Dalam kasus ini, Anda ingin React untuk mengingat `index`.
 
 <Note>
 
-The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
+Dalam penamaan pasangan variabel dari `useState`, konvensi yang diikuti adalah `const [something, setSomething]`. Sebenarnya Anda tidak harus mengikuti ini, namun pola penamaan yang konsisten membuat kode lebih mudah dimengerti. 
 
 </Note>
 
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
 
-Every time your component renders, `useState` gives you an array containing two values:
+Nilai yang dimasukan ke `useState` adalah **state awal** dari variabel state. Dalam kasus ini, nilai awal `index` disetel ke 0 dengan `useState(0)`.
 
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+Tiap kali komponen Anda dirender, `useState` kan mengembalikan array dengan dua elemen:
+1. **Variabel state** (`index`) dengan nilai yang Anda simpan.
+2. **Fungsi state setter** (`setIndex`) yang akan memperbarui variabel state dan memicu React untuk melakukan render ulang.
 
-Here's how that happens in action:
+Ini urutan yang terjadi:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
-4. And so on!
+1. **Komponen Anda render untuk pertama kali.** Karena Anda memberikan `0` ke `useState` sebagai nilai awal untuk `index`, dia akan mengembalikan `[0, setIndex]`. React akan menandai `0` adalah nilai state terbaru.
+2. **Anda memperbarui state** Saat pengguna menekan tombol, dia akan memanggil `setIndex(index + 1)` di saat `index` bernilai `0`, sehingga menjadi `setIndex(1)`. Kali ini React akan mengingat nilai state terbaru adalah `1` dan memicu render lain.
+3. **Render kedua** React masih membaca `useState(0)`, namun karena sebelumnya dia *ingat* kalau Anda sudah mengatur nilai `index` ke `1`, ia mengembalikan `[1, setIndex]`.
+4. Dan pola ini berlanjut seterusnya!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Memberikan beberapa variabel state kepada komponen {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+Anda bisa memberikan sebanyak mungkin variabel state dengan berbagai macam tipe data ke sebuah komponen. Komponen di bawah memiliki dua variabel state, sebuah bilangan `index` dan boolean `showMore` yang berganti nilai saat Anda menekan "Tampilkan Detail"
 
 <Sandpack>
 
@@ -406,17 +408,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -428,6 +430,7 @@ export default function Gallery() {
 }
 ```
 
+<!-- TODO -->
 ```js data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
@@ -521,19 +524,21 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+Baiknya memang ada beberapa variabel state jika mereka tidak saling berhubungan, misal `index` dan `showMore` dalam contoh tadi. Tapi kalau Anda merasa dua state akan sering berganti nilai bersama, ada baiknya untuk menggabungkannya jadi satu. Contoh, jika Anda mempunyai form dengan beberapa kolom, akan lebih mudah jika ada satru variabel state berupa objek daripada beberapa variabel state untuk masing-masing kolom. Baca [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+
+It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Memilih Struktur State](/learn/choosing-the-state-structure) for more tips.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### Bagaimana React tahu state mana yang harus dikembalikan? {/*how-does-react-know-which-state-to-return*/}
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+Anda mungkin memperhatikan kalau dalam pemanggilan `useState` tidak ada informasi mengenai state *mana* yang terbaru. Tidak ada *tanda pengenal* yang dioper ke `useState`, jadi bagaimana dia bisa tahu variabel state yang harus dikembalikan? Apakah ada cara ajaib seperti memproses fungsi Anda? Jawabannya adalah tidak.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Untuk dapat tetap memakai sintaks yang singkat, Hook **bergantung pada pemanggilan yang konsisten di tiap render dalam komponen yang sama**. Dalam prakteknya ini berjalan dengan baik karena jika Anda mengikuti ketentuan di atas ("panggil Hook hanya pada tingkat atas"), Hook akan selalu dipanggil dengan urutan yang sama. Sebagai tambahan, [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) akan memberitahu Anda kalau ada kesalahan yang luput.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+Di balik layar, React menyimpan sebuah array berisi pasangan state untuk tiap komponen. Dia juga menandai pasangan state terbaru, yang mana diatur menjadi `0` sebelum render. Tiap kali pemanggilan `useState`, React akan memberi pasangan state dan menambah nilai index. Anda bisa membaca lebih lanjut tentang mekanisme ini di [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
-This example **doesn't use React** but it gives you an idea of how `useState` works internally:
+Contoh di bawah **tidak menggunakan React** namun bisa memberi gambaran bagaimana `useState` bekerja:
 
 <Sandpack>
 
@@ -625,6 +630,7 @@ let header = document.getElementById('header');
 let moreButton = document.getElementById('moreButton');
 let description = document.getElementById('description');
 let image = document.getElementById('image');
+// TODO
 let sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -725,15 +731,16 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-You don't have to understand it to use React, but you might find this a helpful mental model.
+Anda tidak perlu mendalaminya untuk menggunakan React, tapi bisa memberi Anda gambaran kasar tentang cara kerjanya.
 
 </DeepDive>
 
+## State terisolasi dan privat {/*state-is-isolated-and-private*/}
 ## State is isolated and private {/*state-is-isolated-and-private*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+Lingkup state terbatas pada komponen di mana dia dipanggil. Dalam kata lain, **jika Anda merender komponen yang sama dua kali, tiap komponen akan memiliki state yang terpisah!** Mengubah salah satunya tidak kan memengaruhi yang satunya.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+Dalam contoh di bawah, komponen `Gallery` dari sebelumnya dirender dua kali tanpa perubahan ke logikanya. Coba tekan tombol di dalam tiap galeri. Perhatikan bagaimana state mereka tidak saling memengaruhi
 
 <Sandpack>
 
@@ -771,17 +778,17 @@ export default function Gallery() {
   return (
     <section>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -892,21 +899,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+Inilah yang membedakan state dengan variabel biasa yang Anda deklarasikan di tingkat atas komponen. State tidak terikat ke pemanggilan fungsi tertentu atau lokasi di dalam kode, tapi dia "bersifat lokal" ke komponen spesifik di laman web. Anda merender dua buah komponen `<Gallery />` makan state mereka disimpan secara terpisah.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Perhatikan juga bagaimana komponen `Page` tidak "mengetahui" tentang state milik `Gallery` atau bahkan ada-tidaknya. Tidak seperti props, **state bersifat privat ke komponen tempat dia dideklarasikan.** Komponen *parent* tidak dapat mengubahnya. Sehingga Anda bisa menambahkan atau menghapus state tanpa memengaruhi komponen lainnya.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+Bagaimana jika Anda ingin menjaga state di kedua `Gallery` tetap sinkron? Cara yang benar dalam React adalah *menghapus* state dari komponen *child* dan memindahkannya ke komponen *parent* terdekat yang sama. Beberapa halaman berikutnya akan fokus ke mengatur state dalam sebuah komponen, tapi kita akan kembali ke topic ini di [Sharing State Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
-* State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* Gunakan variabel state saat komponen perlu *mengingat* informasi antarrender.
+* Variabel state dideklarasikan dengan Hook `useState`.
+* Hooks adalah fungsi spesial yang diawali `use`. Mereka memberi Anda akses ke fitur-fitur React seperti state.
+* Hooks mungkin mengingatkan Anda ke pernyataan import: mereka perlu dipanggil tanpa syarat. Memanggil Hooks, termasuk `useState`, hanya bisa pada tingkat atas sebuah komponen atau Hook lainnya.
+* Hook `useState` mengembalikan pasangan nilai: nilai state terbaru dan fungsi untuk memperbaruinya.
+* Anda bisa memliki lebih dari satu variabel state. Di balik layar, React akan menandainya sesuai urutan pemanggilannya.
+* State bersifat privat ke komponennya. Jika Anda merendernya di dua tempat, tiap komponen memiliki state masing-masing.
 
 </Recap>
 
