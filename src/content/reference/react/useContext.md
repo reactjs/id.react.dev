@@ -4,7 +4,7 @@ title: useContext
 
 <Intro>
 
-`useContext` is a React Hook that lets you read and subscribe to [context](/learn/passing-data-deeply-with-context) from your component.
+`useContext` adalah sebuah React Hook yang memungkinkan Anda membaca dan berlangganan dengan [context](/learn/passing-data-deeply-with-context) dari komponen Anda.
 
 ```js
 const value = useContext(SomeContext)
@@ -16,11 +16,11 @@ const value = useContext(SomeContext)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useContext(SomeContext)` {/*usecontext*/}
 
-Call `useContext` at the top level of your component to read and subscribe to [context.](/learn/passing-data-deeply-with-context)
+Panggil fungsi `useContext` di tingkat atas komponen Anda untuk membaca dan berlangganan dengan [context.](/learn/passing-data-deeply-with-context)
 
 ```js
 import { useContext } from 'react';
@@ -30,30 +30,30 @@ function MyComponent() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `SomeContext`: The context that you've previously created with [`createContext`](/reference/react/createContext). The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
+* `SomeContext`: Konteks yang sebelumnya telah Anda buat dengan [`createContext`](/reference/react/createContext). Konteks itu sendiri tidak menyimpan informasi, konteks hanya merepresentasikan jenis informasi yang dapat Anda berikan atau baca dari komponen.
 
 #### Returns {/*returns*/}
 
-`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/reference/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
+`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext.Provider` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis merender ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
 
 #### Caveats {/*caveats*/}
 
-* `useContext()` call in a component is not affected by providers returned from the *same* component. The corresponding `<Context.Provider>` **needs to be *above*** the component doing the `useContext()` call.
-* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/reference/react/memo) does not prevent the children receiving fresh context values.
-* If your build system produces duplicates modules in the output (which can happen with symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
+* Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context.Provider>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
+* React **secara otomatis merender ulang** semua anak yang menggunakan konteks tertentu mulai dari penyedia yang menerima `nilai` yang berbeda. Nilai sebelumnya dan nilai berikutnya dibandingkan dengan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Melewatkan render ulang dengan [`memo`](/reference/react/memo) tidak mencegah anak-anak menerima nilai konteks yang baru.
+* Jika sistem build Anda menghasilkan modul duplikat pada keluaran (yang dapat terjadi pada *symlink*), ini dapat merusak konteks. Mengoper sesuatu melalui konteks hanya berfungsi jika `SomeContext` yang Anda gunakan untuk memberikan konteks dan `SomeContext` yang Anda gunakan untuk membacanya adalah objek yang sama persis, seperti yang ditentukan oleh perbandingan `===`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
 
-### Passing data deeply into the tree {/*passing-data-deeply-into-the-tree*/}
+### Mengoper data secara mendalam ke dalam pohon {/*passing-data-deeply-into-the-tree*/}
 
-Call `useContext` at the top level of your component to read and subscribe to [context.](/learn/passing-data-deeply-with-context)
+Panggil `useContext` di tingkat atas komponen Anda untuk membaca dan berlangganan ke [context.](/learn/passing-data-deeply-with-context)
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { useContext } from 'react';
@@ -63,9 +63,9 @@ function Button() {
   // ... 
 ```
 
-`useContext` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`useContext` mengembalikan <CodeStep step={2}>nilai konteks</CodeStep> untuk <CodeStep step={1}>konteks</CodeStep> yang telah Anda oper. Untuk menentukan nilai konteks, React mencari di pohon komponen dan menemukan **penyedia konteks terdekat di atas** untuk konteks tertentu.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider:
+Untuk mengoper konteks ke sebuah `Button`, bungkus komponen tersebut atau salah satu komponen induknya ke dalam penyedia konteks yang sesuai:
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -81,11 +81,11 @@ function Form() {
 }
 ```
 
-It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `useContext(ThemeContext)`, it will receive `"dark"` as the value.
+Tidak masalah berapa banyak lapisan komponen yang ada di antara penyedia dan `Button`. Ketika sebuah `Button` *di mana saja* di dalam `Form` memanggil `useContext(ThemeContext)`, maka akan menerima `"dark"` sebagai nilai.
 
 <Pitfall>
 
-`useContext()` always looks for the closest provider *above* the component that calls it. It searches upwards and **does not** consider providers in the component from which you're calling `useContext()`.
+`useContext()` selalu mencari penyedia terdekat *di atas* komponen yang memanggilnya. Ia mencari ke atas dan **tidak** mempertimbangkan penyedia di dalam komponen dari yang Anda panggil `useContext()`.
 
 </Pitfall>
 
@@ -175,9 +175,9 @@ function Button({ children }) {
 
 ---
 
-### Updating data passed via context {/*updating-data-passed-via-context*/}
+### Memperbarui data yang dioper melalui konteks {/*updating-data-passed-via-context*/}
 
-Often, you'll want the context to change over time. To update context, combine it with [state.](/reference/react/useState) Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
+Sering kali, Anda ingin konteks berubah seiring berjalannya waktu. Untuk memperbarui konteks, kombinasikan dengan [state.](/reference/react/useState) Deklarasikan variabel state dalam komponen induk, dan berikan state saat ini sebagai <CodeStep step={2}>context value</CodeStep> ke penyedia.
 
 ```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
 function MyPage() {
@@ -195,13 +195,14 @@ function MyPage() {
 }
 ```
 
-Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
+Sekarang setiap `Button` di dalam penyedia akan menerima nilai `theme` saat ini. Jika Anda memanggil `setTheme` untuk memperbarui nilai `theme` yang Anda berikan ke penyedia, semua komponen `Button` akan dirender ulang dengan nilai `'light' yang baru.
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
-#### Updating a value via context {/*updating-a-value-via-context*/}
+#### Memperbarui nilai melalui konteks {/*updating-a-value-via-context*/}
 
-In this example, the `MyApp` component holds a state variable which is then passed to the `ThemeContext` provider. Checking the "Dark mode" checkbox updates the state. Changing the provided value re-renders all the components using that context.
+Dalam contoh ini, komponen `MyApp` menyimpan variabel status yang kemudian diteruskan ke penyedia `ThemeContext`. Mencentang kotak centang "Dark mode" akan memperbarui *state*. Mengubah nilai yang disediakan akan merender ulang semua komponen yang menggunakan konteks tersebut.
+
 
 <Sandpack>
 
@@ -299,13 +300,13 @@ function Button({ children }) {
 
 </Sandpack>
 
-Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes the value of the JavaScript `theme` variable with [JSX curly braces.](/learn/javascript-in-jsx-with-curly-braces) Curly braces also let you pass context values that aren't strings.
+Perhatikan bahwa `value="dark"` meneruskan string `"dark"`, tetapi `value={theme}` meneruskan nilai variabel `theme` JavaScript dengan [kurung kurawal JSX.](/learn/javascript-in-jsx-with-curly-braces) Kurung kurawal juga memungkinkan Anda mengoper nilai konteks yang bukan *string*.
 
 <Solution />
 
-#### Updating an object via context {/*updating-an-object-via-context*/}
+#### Memperbarui objek melalui konteks {/*updating-an-object-via-context*/}
 
-In this example, there is a `currentUser` state variable which holds an object. You combine `{ currentUser, setCurrentUser }` into a single object and pass it down through the context inside the `value={}`. This lets any component below, such as `LoginButton`, read both `currentUser` and `setCurrentUser`, and then call `setCurrentUser` when needed.
+Pada contoh ini, terdapat variabel *state* `currentUser` yang menyimpan sebuah objek. Anda menggabungkan `{ currentUser, setCurrentUser }` ke dalam suatu objek dan meneruskannya melalui konteks di dalam `value={}`. Hal ini memungkinkan komponen di bawahnya, seperti `LoginButton`, membaca `currentUser` dan `setCurrentUser`, dan kemudian memanggil `setCurrentUser` saat dibutuhkan.
 
 <Sandpack>
 
@@ -395,9 +396,9 @@ label {
 
 <Solution />
 
-#### Multiple contexts {/*multiple-contexts*/}
+#### Beberapa konteks {/*multiple-context*/}
 
-In this example, there are two independent contexts. `ThemeContext` provides the current theme, which is a string, while `CurrentUserContext` holds the object representing the current user.
+Pada contoh ini, terdapat dua konteks yang berdiri sendiri. `ThemeContext` menyediakan tema saat ini, yang merupakan sebuah string, sedangkan `CurrentUserContext` menyimpan objek yang mewakili pengguna saat ini.
 
 <Sandpack>
 
@@ -562,9 +563,9 @@ label {
 
 <Solution />
 
-#### Extracting providers to a component {/*extracting-providers-to-a-component*/}
+#### Mengekstrak penyedia ke sebuah komponen {/*extracting-providers-to-a-component*/}
 
-As your app grows, it is expected that you'll have a "pyramid" of contexts closer to the root of your app. There is nothing wrong with that. However, if you dislike the nesting aesthetically, you can extract the providers into a single component. In this example, `MyProviders` hides the "plumbing" and renders the children passed to it inside the necessary providers. Note that the `theme` and `setTheme` state is needed in `MyApp` itself, so `MyApp` still owns that piece of the state.
+Seiring dengan pertumbuhan aplikasi Anda, diharapkan Anda akan memiliki "piramida" konteks yang lebih dekat dengan akar aplikasi Anda. Tidak ada yang salah dengan hal itu. Namun, jika Anda tidak menyukai susunan tersebut secara estetika, Anda bisa mengekstrak penyedia ke dalam satu komponen. Dalam contoh ini, `MyProviders` menyembunyikan "cara kerja" dan membuat anak-anak yang diteruskan ke cara kerja tersebut di dalam penyedia yang diperlukan. Perhatikan bahwa *state* `theme` dan `setTheme` dibutuhkan di dalam `MyApp` itu sendiri, jadi `MyApp` masih memiliki bagian *state* tersebut.
 
 <Sandpack>
 
@@ -737,11 +738,11 @@ label {
 
 <Solution />
 
-#### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
+#### Peningkatan skala dengan konteks dan peredam {/*scaling-up-with-context-and-a-reducer*/}
 
-In larger apps, it is common to combine context with a [reducer](/reference/react/useReducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
+Pada aplikasi yang lebih besar, adalah hal yang umum untuk menggabungkan konteks dengan [reducer](/reference/react/useReducer) untuk mengekstrak logika yang terkait dengan beberapa *state* dari komponen. Dalam contoh ini, semua "penyambungan" disembunyikan di dalam `TasksContext.js`, yang berisi reducer dan dua konteks terpisah.
 
-Read a [full walkthrough](/learn/scaling-up-with-reducer-and-context) of this example.
+Baca [panduan lengkap](/learn/scaling-up-with-reducer-and-context) dari contoh ini.
 
 <Sandpack>
 
@@ -947,25 +948,25 @@ ul, li { margin: 0; padding: 0; }
 
 ---
 
-### Specifying a fallback default value {/*specifying-a-fallback-default-value*/}
+### Menentukan nilai default fallback {/*specifying-a-fallback-default-value*/}
 
-If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/reference/react/createContext):
+Jika React tidak dapat menemukan penyedia <CodeStep step={1}>context</CodeStep> tertentu di pohon induk, nilai konteks yang dikembalikan oleh `useContext()` akan sama dengan <CodeStep step={3}>default value</CodeStep> yang Anda tentukan ketika Anda [membuat konteks tersebut](/reference/react/createContext):
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "null"]]
 const ThemeContext = createContext(null);
 ```
 
-The default value **never changes**. If you want to update context, use it with state as [described above.](#updating-data-passed-via-context)
+Nilai default **tidak pernah berubah**. Jika Anda ingin memperbarui konteks, gunakan dengan status seperti [yang dijelaskan di atas.](#updating-data-passed-via-context)
 
-Often, instead of `null`, there is some more meaningful value you can use as a default, for example:
+Sering kali, alih-alih `null`, ada beberapa nilai yang lebih berarti yang dapat Anda gunakan sebagai default, misalnya:
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "light"]]
 const ThemeContext = createContext('light');
 ```
 
-This way, if you accidentally render some component without a corresponding provider, it won't break. This also helps your components work well in a test environment without setting up a lot of providers in the tests.
+Dengan cara ini, jika Anda secara tidak sengaja merender beberapa komponen tanpa penyedia yang sesuai, komponen tersebut tidak akan rusak. Hal ini juga membantu komponen Anda bekerja dengan baik di lingkungan pengujian tanpa menyiapkan banyak provider dalam pengujian.
 
-In the example below, the "Toggle theme" button is always light because it's **outside any theme context provider** and the default context theme value is `'light'`. Try editing the default theme to be `'dark'`.
+Pada contoh di bawah ini, tombol "Toggle theme" selalu berwarna terang karena tombol tersebut berada di luar penyedia konteks tema apa pun dan nilai tema konteks *default* adalah `'light'. Cobalah mengedit tema default menjadi 'dark'.
 
 <Sandpack>
 
@@ -1062,9 +1063,9 @@ function Button({ children, onClick }) {
 
 ---
 
-### Overriding context for a part of the tree {/*overriding-context-for-a-part-of-the-tree*/}
+### Menggantikan konteks untuk bagian dari pohon {/*overriding-context-for-a-part-of-the-tree*/}
 
-You can override the context for a part of the tree by wrapping that part in a provider with a different value.
+Anda dapat mengganti konteks untuk suatu bagian pohon dengan membungkus bagian tersebut dengan penyedia bersama nilai yang berbeda.
 
 ```js {3,5}
 <ThemeContext.Provider value="dark">
@@ -1076,13 +1077,13 @@ You can override the context for a part of the tree by wrapping that part in a p
 </ThemeContext.Provider>
 ```
 
-You can nest and override providers as many times as you need.
+Anda bisa membuat sarang dan menimpa penyedia sebanyak yang Anda butuhkan.
 
 <Recipes title="Examples of overriding context">
 
-#### Overriding a theme {/*overriding-a-theme*/}
+#### Menggantikan sebuah tema {/*overriding-a-theme*/}
 
-Here, the button *inside* the `Footer` receives a different context value (`"light"`) than the buttons outside (`"dark"`).
+Di sini, tombol *di dalam* `Footer` menerima nilai konteks yang berbeda (`"light"`) daripada tombol di luar (`"dark"`).
 
 <Sandpack>
 
@@ -1186,11 +1187,11 @@ footer {
 
 <Solution />
 
-#### Automatically nested headings {/*automatically-nested-headings*/}
+#### Judul bersarang secara otomatis {/*automatically-nested-headings*/}
 
-You can "accumulate" information when you nest context providers. In this example, the `Section` component keeps track of the `LevelContext` which specifies the depth of the section nesting. It reads the `LevelContext` from the parent section, and provides the `LevelContext` number increased by one to its children. As a result, the `Heading` component can automatically decide which of the `<h1>`, `<h2>`, `<h3>`, ..., tags to use based on how many `Section` components it is nested inside of.
+Anda dapat "mengumpulkan" informasi ketika Anda menyarangkan penyedia konteks. Dalam contoh ini, komponen `Section` melacak `LevelContext` yang menentukan kedalaman penelusuran bagian. Komponen ini membaca `LevelContext` dari bagian induk, dan penomoran `LevelContext` yang ditambah satu kepada anak-anaknya. Hasilnya, komponen `Heading` dapat secara otomatis memutuskan tanda `<h1>`, `<h2>`, `<h3>`,..., yang mana yang akan digunakan berdasarkan jumlah komponen `Section` yang bersarang di dalamnya.
 
-Read a [detailed walkthrough](/learn/passing-data-deeply-with-context) of this example.
+Baca [panduan rinci](/learn/passing-data-deeply-with-context) dari contoh ini.
 
 <Sandpack>
 
@@ -1288,9 +1289,9 @@ export const LevelContext = createContext(0);
 
 ---
 
-### Optimizing re-renders when passing objects and functions {/*optimizing-re-renders-when-passing-objects-and-functions*/}
+### Mengoptimalkan render ulang saat mengoper objek dan fungsi {/*optimizing-re-renders-when-passing-objects-and-functions*/}
 
-You can pass any values via context, including objects and functions.
+Anda dapat mengoper nilai apa pun melalui konteks, termasuk objek dan fungsi.
 
 ```js [[2, 10, "{ currentUser, login }"]] 
 function MyApp() {
@@ -1309,9 +1310,9 @@ function MyApp() {
 }
 ```
 
-Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
+Di sini, <CodeStep step={2}>context value</CodeStep> adalah sebuah objek JavaScript dengan dua properti, salah satunya adalah sebuah fungsi. Setiap kali `MyApp` dirender ulang (misalnya, pada pembaruan rute), ini akan menjadi objek *berbeda* yang menunjuk ke fungsi *berbeda*, sehingga React juga harus me-render ulang semua komponen di dalam pohon yang memanggil `useContext(AuthContext)`.
 
-In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/reference/react/useCallback) and wrap the object creation into [`useMemo`](/reference/react/useMemo). This is a performance optimization:
+Pada aplikasi yang lebih kecil, hal ini tidak menjadi masalah. Namun, tidak perlu me-render ulang jika data yang mendasarinya, seperti `currentUser`, tidak berubah. Untuk membantu React memanfaatkan fakta tersebut, Anda dapat membungkus fungsi `login` dengan [`useCallback`](/reference/react/useCallback) dan membungkus pembuatan objek ke dalam [`useMemo`](/reference/react/useMemo). Hal ini merupakan pengoptimalan kinerja:
 
 ```js {6,9,11,14,17}
 import { useCallback, useMemo } from 'react';
@@ -1337,25 +1338,25 @@ function MyApp() {
 }
 ```
 
-As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthContext)` won't need to re-render unless `currentUser` has changed.
+Sebagai hasil dari perubahan ini, meskipun `MyApp` perlu dirender ulang, komponen yang memanggil `useContext(AuthContext)` tidak perlu dirender ulang kecuali jika `currentUser` telah berubah.
 
-Read more about [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
+Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rendering-of-components) dan [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### My component doesn't see the value from my provider {/*my-component-doesnt-see-the-value-from-my-provider*/}
+### Komponen saya tidak melihat nilai dari penyedia saya {/*my-component-doesnt-see-the-value-from-my-provider*/}
 
-There are a few common ways that this can happen:
+Ada beberapa cara umum yang dapat menyebabkan hal ini terjadi:
 
-1. You're rendering `<SomeContext.Provider>` in the same component (or below) as where you're calling `useContext()`. Move `<SomeContext.Provider>` *above and outside* the component calling `useContext()`.
-2. You may have forgotten to wrap your component with `<SomeContext.Provider>`, or you might have put it in a different part of the tree than you thought. Check whether the hierarchy is right using [React DevTools.](/learn/react-developer-tools)
-3. You might be running into some build issue with your tooling that causes `SomeContext` as seen from the providing component and `SomeContext` as seen by the reading component to be two different objects. This can happen if you use symlinks, for example. You can verify this by assigning them to globals like `window.SomeContext1` and `window.SomeContext2` and then checking whether `window.SomeContext1 === window.SomeContext2` in the console. If they're not the same, fix that issue on the build tool level.
+1. Anda merender `<SomeContext.Provider>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext.Provider>` *di atas dan di luar* komponen yang memanggil `useContext()`.
+2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext.Provider>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
+3. Anda mungkin mengalami masalah build dengan tooling Anda yang menyebabkan `SomeContext` yang terlihat dari komponen penyedia dan `SomeContext` yang terlihat oleh komponen pembacaan menjadi dua objek yang berbeda. Hal ini dapat terjadi jika Anda menggunakan *symlink*, misalnya. Anda dapat memverifikasi hal ini dengan menugaskan mereka ke global seperti `window.SomeContext1` dan `window.SomeContext2` dan kemudian memeriksa apakah `window.SomeContext1 === window.SomeContext2` di konsol. Jika tidak sama, perbaiki masalah tersebut di tingkat build tool.
 
-### I am always getting `undefined` from my context although the default value is different {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
+### Saya selalu mendapatkan `undefined` dari konteks saya meskipun nilai defaultnya berbeda {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
-You might have a provider without a `value` in the tree:
+Anda mungkin memiliki penyedia tanpa `value` di dalam pohon:
 
 ```js {1,2}
 // 🚩 Doesn't work: no value prop
@@ -1364,9 +1365,9 @@ You might have a provider without a `value` in the tree:
 </ThemeContext.Provider>
 ```
 
-If you forget to specify `value`, it's like passing `value={undefined}`.
+Jika Anda lupa menentukan `value`, ini sama saja dengan mengoper `value={undefined}`.
 
-You may have also mistakingly used a different prop name by mistake:
+Anda mungkin juga tidak sengaja menggunakan nama *prop* yang berbeda:
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"
@@ -1375,7 +1376,7 @@ You may have also mistakingly used a different prop name by mistake:
 </ThemeContext.Provider>
 ```
 
-In both of these cases you should see a warning from React in the console. To fix them, call the prop `value`:
+Pada kedua kasus ini, Anda akan melihat peringatan dari React di konsol. Untuk memperbaikinya, panggil *prop* `value`:
 
 ```js {1,2}
 // ✅ Passing the value prop
@@ -1384,4 +1385,4 @@ In both of these cases you should see a warning from React in the console. To fi
 </ThemeContext.Provider>
 ```
 
-Note that the [default value from your `createContext(defaultValue)` call](#specifying-a-fallback-default-value) is only used **if there is no matching provider above at all.** If there is a `<SomeContext.Provider value={undefined}>` component somewhere in the parent tree, the component calling `useContext(SomeContext)` *will* receive `undefined` as the context value.
+Perhatikan bahwa [nilai *default* dari panggilan `createContext(defaultValue)` Anda] (#specifying-a-fallback-default-value) hanya digunakan **jika tidak ada penyedia yang cocok di atas sama sekali **Jika ada komponen `<SomeContext.Provider value = {undefined}>` di suatu tempat di dalam pohon induk, komponen yang memanggil `useContext(SomeContext)` ` akan menerima `undefined` sebagai nilai konteks.
