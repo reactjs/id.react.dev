@@ -1463,10 +1463,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form
-      className="mb-3 py-1"
-      data-hover="SearchInput"
-      onSubmit={(e) => e.preventDefault()}>
+    <form className="mb-3 py-1" data-hover="SearchInput">
       <label htmlFor={id} className="sr-only">
         Search
       </label>
