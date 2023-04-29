@@ -205,75 +205,75 @@ Pada titik ini, Anda tidak perlu menggunakan nilai state apa pun. Itu untuk lang
 
 </Pitfall>
 
-## Step 3: Find the minimal but complete representation of UI state {/*step-3-find-the-minimal-but-complete-representation-of-ui-state*/}
+## Langkah 3: Identifikasi representasi minimal namun komplit dari state UI {/*step-3-find-the-minimal-but-complete-representation-of-ui-state*/}
 
-To make the UI interactive, you need to let users change your underlying data model. You will use *state* for this.
+Untuk membuat UI interaktif, Anda harus mengizinkan pengguna mengubah model data yang mendasarinya. Anda akan menggunakan *state* untuk ini.
 
-Think of state as the minimal set of changing data that your app needs to remember. The most important principle for structuring state is to keep it [DRY (Don't Repeat Yourself).](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Figure out the absolute minimal representation of the state your application needs and compute everything else on-demand. For example, if you're building a shopping list, you can store the items as an array in state. If you want to also display the number of items in the list, don't store the number of items as another state value--instead, read the length of your array.
+Bayangkan state sebagai kumpulan data perubahan minimal yang perlu diingat oleh aplikasi Anda. Prinsip paling penting dalam menyusun state adalah menjaganya agar tetap [DRY (*Don't Repeat Yourself*)] (https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Cari tahu representasi minimal absolut dari state yang dibutuhkan aplikasi Anda dan hitung semua yang lain sesuai permintaan. Sebagai contoh, jika Anda membuat daftar belanja, Anda dapat menyimpan item sebagai array dalam state. Jika Anda juga ingin menampilkan jumlah item dalam daftar, jangan simpan jumlah item sebagai nilai state lain--sebagai gantinya, baca panjang senarai Anda.
 
-Now think of all of the pieces of data in this example application:
+Sekarang pikirkan semua bagian data dalam contoh aplikasi ini:
 
-1. The original list of products
-2. The search text the user has entered
-3. The value of the checkbox
-4. The filtered list of products
+1. Daftar produk asli
+2. Teks pencarian yang dimasukkan pengguna
+3. Nilai dari kotak centang
+4. Daftar produk yang difilter
 
-Which of these are state? Identify the ones that are not:
+Manakah yang termasuk state? Identifikasi mana yang bukan:
 
-* Does it **remain unchanged** over time? If so, it isn't state.
-* Is it **passed in from a parent** via props? If so, it isn't state.
-* **Can you compute it** based on existing state or props in your component? If so, it *definitely* isn't state!
+* Apakah data **tetap tidak berubah** dari waktu ke waktu? Jika ya, data tersebut bukan state.
+* Apakah data **diturunkan dari induk** melalui props? Jika ya, data tersebut bukan state.
+* **Bisakah Anda menghitungnya** berdasarkan state atau props yang ada di komponen Anda? Jika iya, maka data tersebut *pasti* bukan state!
 
-What's left is probably state.
+Yang tersisa mungkin adalah state.
 
-Let's go through them one by one again:
+Mari kita lihat satu per satu lagi:
 
-1. The original list of products is **passed in as props, so it's not state.** 
-2. The search text seems to be state since it changes over time and can't be computed from anything.
-3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
-4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.
+1. Daftar produk asli **dioper sebagai props, jadi bukan merupakan state**.
+2. Teks pencarian tampaknya adalah state karena berubah dari waktu ke waktu dan tidak dapat dihitung dari apa pun.
+3. Nilai kotak centang tampaknya adalah state karena berubah dari waktu ke waktu dan tidak dapat dihitung dari apa pun.
+4. Daftar produk yang difilter **bukan state karena dapat dihitung** dengan mengambil daftar produk asli dan memfilternya sesuai dengan teks pencarian dan nilai kotak centang.
 
-This means only the search text and the value of the checkbox are state! Nicely done!
+Ini berarti, hanya teks pencarian dan nilai kotak centang yang merupakan state! Bagus sekali!
 
 <DeepDive>
 
 #### Props vs State {/*props-vs-state*/}
 
-There are two types of "model" data in React: props and state. The two are very different:
+Ada dua jenis data "model" dalam React: props dan state. Keduanya sangat berbeda:
 
-* [**Props** are like arguments you pass](/learn/passing-props-to-a-component) to a function. They let a parent component pass data to a child component and customize its appearance. For example, a `Form` can pass a `color` prop to a `Button`.
-* [**State** is like a component’s memory.](/learn/state-a-components-memory) It lets a component keep track of some information and change it in response to interactions. For example, a `Button` might keep track of `isHovered` state.
+* [**Props** seperti argumen yang Anda berikan](/learn/passing-props-to-a-component) ke sebuah fungsi. Mereka memungkinkan komponen induk mengoper data ke komponen anak dan menyesuaikan tampilannya. Sebagai contoh, sebuah `Form` dapat mengoper sebuah props `color` ke sebuah `Button`.
+* [**State** seperti memori sebuah komponen.](/learn/state-a-components-memory) Memungkinkan sebuah komponen melacak beberapa informasi dan mengubahnya sebagai respons terhadap interaksi. Sebagai contoh, sebuah `Button` dapat melacak state `isHovered`.
 
-Props and state are different, but they work together. A parent component will often keep some information in state (so that it can change it), and *pass it down* to child components as their props. It's okay if the difference still feels fuzzy on the first read. It takes a bit of practice for it to really stick!
+Props dan state berbeda, tetapi keduanya bekerja bersama. Komponen induk akan sering menyimpan beberapa informasi dalam state (sehingga dapat mengubahnya), dan *meneruskannya ke komponen anak* sebagai props mereka. Tidak apa-apa jika perbedaannya masih terasa kabur saat pertama kali dibaca. Dibutuhkan sedikit latihan agar benar-benar melekat!
 
 </DeepDive>
 
-## Step 4: Identify where your state should live {/*step-4-identify-where-your-state-should-live*/}
+## Step 4: Identifikasi dimana state Anda berada {/*step-4-identify-where-your-state-should-live*/}
 
-After identifying your app’s minimal state data, you need to identify which component is responsible for changing this state, or *owns* the state. Remember: React uses one-way data flow, passing data down the component hierarchy from parent to child component. It may not be immediately clear which component should own what state. This can be challenging if you’re new to this concept, but you can figure it out by following these steps!
+Setelah mengidentifikasi data state minimal aplikasi Anda, Anda perlu mengidentifikasi komponen mana yang bertanggung jawab untuk mengubah state ini, atau *memiliki* state tersebut. Ingat: React menggunakan aliran data satu arah, mengoper data turun melalui hirarki komponen dari komponen induk ke komponen anak. Mungkin tidak langsung jelas komponen mana yang harus memiliki state apa. Hal ini dapat menjadi tantangan jika Anda baru mengenal konsep ini, tetapi Anda dapat mengetahuinya dengan mengikuti langkah-langkah berikut ini!
 
-For each piece of state in your application:
+Untuk setiap bagian state dalam aplikasi Anda:
 
-1. Identify *every* component that renders something based on that state.
-2. Find their closest common parent component--a component above them all in the hierarchy.
-3. Decide where the state should live:
-    1. Often, you can put the state directly into their common parent.
-    2. You can also put the state into some component above their common parent.
-    3. If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common parent component.
+1. Identifikasi *setiap* komponen yang merender sesuatu berdasarkan state tersebut.
+2. Temukan komponen induk yang paling dekat--komponen yang berada di atas semua komponen dalam hirarki.
+3. Tentukan di mana state tersebut harus berada:
+    1. Sering kali, Anda dapat meletakkan state secara langsung ke dalam induknya.
+    2. Anda juga dapat menempatkan state ke dalam beberapa komponen di atas induknya.
+    3. Jika Anda tidak dapat menemukan komponen yang masuk akal untuk memiliki state, buatlah komponen baru hanya untuk menyimpan state dan tambahkan di suatu tempat di dalam hirarki di atas komponen induk umum.
 
-In the previous step, you found two pieces of state in this application: the search input text, and the value of the checkbox. In this example, they always appear together, so it makes sense to put them into the same place.
+Pada langkah sebelumnya, Anda menemukan dua bagian status dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
 
-Now let's run through our strategy for them:
+Sekarang mari kita bahas strateginya:
 
-1. **Identify components that use state:**
-    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
-    * `SearchBar` needs to display that state (search text and checkbox value).
-1. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-2. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+1. **Identifikasi komponen yang menggunakan state:**
+    * `ProductTable` perlu memfilter daftar produk berdasarkan status tersebut (teks pencarian dan nilai kotak centang). 
+    * `SearchBar` perlu menampilkan status tersebut (teks pencarian dan nilai kotak centang).
+1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
+2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
 
-So the state values will live in `FilterableProductTable`. 
+Jadi nilai state akan berada di dalam `FilterableProductTable`. 
 
-Add state to the component with the [`useState()` Hook.](/reference/react/useState) Hooks are special functions that let you "hook into" React. Add two state variables at the top of `FilterableProductTable` and specify their initial state:
+Tambahkan state ke komponen menggunakan [Hook `useState()`.](/reference/react/useState) Hook adalah fungsi khusus yang memungkinkan Anda "mengaitkan ke dalam" React. Tambahkan dua variabel state di bagian atas `FilterableProductTable` dan tentukan state awalnya:
 
 ```js
 function FilterableProductTable({ products }) {
@@ -281,7 +281,7 @@ function FilterableProductTable({ products }) {
   const [inStockOnly, setInStockOnly] = useState(false);  
 ```
 
-Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as props:
+Kemudian, berikan `filterText` dan `inStockOnly` ke `ProductTable` dan `SearchBar` sebagai props:
 
 ```js
 <div>
@@ -295,7 +295,7 @@ Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as p
 </div>
 ```
 
-You can start seeing how your application will behave. Edit the `filterText` initial value from `useState('')` to `useState('fruit')` in the sandbox code below. You'll see both the search input text and the table update:
+Anda dapat mulai melihat bagaimana aplikasi Anda akan berperilaku. Edit nilai awal `filterText` dari `useState('')` menjadi `useState('fruit')` pada kode *sandbox* di bawah ini. Anda akan melihat teks input pencarian dan tabel diperbarui:
 
 <Sandpack>
 
@@ -437,7 +437,7 @@ td {
 
 </Sandpack>
 
-Notice that editing the form doesn't work yet. There is a console error in the sandbox above explaining why:
+Perhatikan bahwa pengeditan formulir belum berhasil. Ada galat di konsol di *sandbox* di atas yang menjelaskan alasannya:
 
 <ConsoleBlock level="error">
 
@@ -445,7 +445,7 @@ You provided a \`value\` prop to a form field without an \`onChange\` handler. T
 
 </ConsoleBlock>
 
-In the sandbox above, `ProductTable` and `SearchBar` read the `filterText` and `inStockOnly` props to render the table, the input, and the checkbox. For example, here is how `SearchBar` populates the input value:
+Pada *sandbox* di atas, `ProductTable` dan `SearchBar` membaca props `filterText` dan `inStockOnly` untuk merender tabel, input, dan kotak centang. Sebagai contoh, berikut ini cara `SearchBar` mengisi nilai input:
 
 ```js {1,6}
 function SearchBar({ filterText, inStockOnly }) {
@@ -457,7 +457,7 @@ function SearchBar({ filterText, inStockOnly }) {
         placeholder="Search..."/>
 ```
 
-However, you haven't added any code to respond to the user actions like typing yet. This will be your final step.
+Namun, Anda belum menambahkan kode apa pun untuk merespons tindakan pengguna seperti mengetik. Ini akan menjadi langkah terakhir Anda.
 
 
 ## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}
