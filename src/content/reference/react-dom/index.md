@@ -4,7 +4,7 @@ title: React DOM APIs
 
 <Intro>
 
-*package* `react-dom` berisi *method* yang hanya didukung untuk aplikasi web (yang berjalan di *environment* DOM browser). Mereka tidak didukung untuk React Native.
+*package* `react-dom` berisi *method* yang hanya didukung untuk aplikasi web (yang berjalan di lingkungan *DOM* peramban). Mereka tidak didukung untuk React Native.
 
 </Intro>
 
