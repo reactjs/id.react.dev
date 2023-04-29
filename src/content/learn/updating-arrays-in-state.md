@@ -453,13 +453,13 @@ setList(nextList);
 
 Meskipun `nextList` dan `list` adalah dua senarai yang berbeda, **`nextList[0]` dan `list[0]` menunjuk ke objek yang sama.** Jadi dengan mengubah `nextList[0].seen`, Anda juga mengubah `list[0].seen`. Ini adalah mutasi state, yang harus Anda hindari! Anda dapat mengatasi masalah ini dengan cara yang mirip dengan [memperbarui objek bersarang JavaScript](/learn/updating-objects-in-state#updating-a-nested-object)—dengan menyalin setiap item yang ingin Anda ubah alih-alih memutasinya. Begini caranya.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## Memperbarui objek di dalam senarai {/*updating-objects-inside-arrays*/}
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+Objek *tidak benar-benar* terletak "di dalam" senarai. Mereka mungkin terlihat berada "di dalam" pada kode, tetapi setiap objek dalam senarai adalah nilai yang terpisah, yang "ditunjukkan" oleh senarai. Inilah mengapa Anda harus berhati-hati saat mengubah bagian bersarang seperti `list[0]`. Daftar *artwork* orang lain mungkin menunjuk ke elemen senarai yang sama!
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**Ketika mengubah state yang bersarang, Anda harus membuat salinan mulai dari titik di mana Anda ingin mengubah, hingga ke level teratas.** Mari kita lihat bagaimana ini bekerja.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+Dalam contoh ini, dua daftar *artwork* terpisah memiliki state awal yang sama. Mereka seharusnya terisolasi, tetapi karena adanya mutasi, state mereka secara tidak sengaja dibagikan, sehingga mencentang kotak di satu daftar akan memengaruhi daftar lainnya:
 
 <Sandpack>
 
@@ -539,34 +539,34 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+Masalahnya ada di kode seperti ini:
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problem: mutates an existing item
+artwork.seen = nextSeen; // Masalah: memutasikan item yang sudah ada
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Meskipun senarai `myList` itu sendiri baru, *item-itemnya* sama dengan senarai `myList` yang asli. Jadi mengubah `artwork.seen` akan mengubah item *artwork asli*. Item *artwork* itu juga ada di `yourList`, yang menyebabkan bug. Bug seperti ini mungkin sulit untuk dipikirkan, tetapi untungnya bug tersebut akan hilang jika Anda menghindari perubahan pada state *(mutating state)*.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**Anda dapat menggunakan `map` untuk mengganti item lama dengan versi terbarunya tanpa mutasi.**
 
 ```js
 setMyList(myList.map(artwork => {
   if (artwork.id === artworkId) {
-    // Create a *new* object with changes
+    // Buat objek baru dengan perubahan
     return { ...artwork, seen: nextSeen };
   } else {
-    // No changes
+    // Tidak ada perubahan
     return artwork;
   }
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Di sini, `...` adalah sintaksis penyebaran objek yang digunakan untuk [membuat salinan objek](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax).
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+Dengan pendekatan ini, item state yang ada tidak akan dimutasi, dan bug teratasi:
 
 <Sandpack>
 
@@ -589,10 +589,10 @@ export default function BucketList() {
   function handleToggleMyList(artworkId, nextSeen) {
     setMyList(myList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Buat objek baru dengan perubahan
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Tidak ada perubahan
         return artwork;
       }
     }));
@@ -601,10 +601,10 @@ export default function BucketList() {
   function handleToggleYourList(artworkId, nextSeen) {
     setYourList(yourList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Buat objek baru dengan perubahan
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Tidak ada perubahan
         return artwork;
       }
     }));
@@ -652,16 +652,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+Secara umum, **Anda sebaiknya hanya memutasi objek yang baru saja Anda buat.** Jika Anda memasukkan *artwork baru*, Anda dapat memutasinya, tetapi jika Anda berurusan dengan state yang sudah ada, Anda perlu membuat salinannya.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Menulis logika pembaruan singkat dengan Immer {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Memperbarui senarai bersarang tanpa mutasi bisa jadi sedikit berulang. [Sama seperti objek:](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- Secara umum, Anda tidak perlu memperbarui state lebih dari beberapa level kedalaman. Jika state objek Anda sangat dalam, Anda mungkin ingin [menyusunnya kembali secara berbeda](/learn/choosing-the-state-structure#avoid-deeply-nested-state) sehingga menjadi rata.
+- Jika Anda tidak ingin mengubah struktur state Anda, Anda mungkin lebih memilih untuk menggunakan [Immer](https://github.com/immerjs/use-immer), yang memungkinkan Anda menulis menggunakan sintaksis yang mudah tetapi dapat mengubah state dan mengurus penyalinannya untuk Anda.
 
-Here is the Art Bucket List example rewritten with Immer:
+Berikut adalah contoh Art Bucket List yang ditulis ulang dengan Immer:
 
 <Sandpack>
 
@@ -762,7 +762,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Perhatikan bagaimana dengan Immer, **mutasi seperti `artwork.seen = nextSeen` sekarang baik-baik saja:**
 
 ```js
 updateMyTodos(draft => {
@@ -771,9 +771,9 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+Ini karena Anda tidak mengubah state *aslinya*, tetapi Anda mengubah objek `draft` khusus yang disediakan oleh Immer. Demikian pula, Anda dapat menerapkan metode mutasi seperti `push()` dan `pop()` ke konten `draft`.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+Di belakang layar, Immer selalu membuat state berikutnya dari awal sesuai dengan perubahan yang Anda lakukan pada `draft`. Ini membuat *event handler* Anda sangat ringkas tanpa pernah mengubah state.
 
 <Recap>
 
