@@ -75,7 +75,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Perhatikan bagaimana menekan tombol satu panel tidak memengaruhi panel lainnya - mereka independen.
+Perhatikan bagaimana menekan tombol satu panel tidak memengaruhi panel lainnya--mereka independen.
 
 <DiagramGroup>
 
