@@ -149,9 +149,9 @@ Berikut adalah apa yang *handler* klik pada tombol tersebut beri tahu kepada Rea
 3. `setNumber(number + 1)`: `number` bernilai `0` sehingga `setNumber(0 + 1)`.
     - React mempersiapkan untuk mengubah `number` menjadi `1` pada *render* selanjutnya.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Walaupun Anda memanggil `setNumber(number + 1)` sebanyak tiga kali, dalam *event handler* pada *render* ini nilai `number` selalu `0`, sehingga Anda mengubah *state* tersebut menjadi `1` sebanyak tiga kali. Inilah sebabnya, setelah *event handler* Anda selesai dijalankan, React melakukan *render* ulang pada komponen tersebut dengan `number` bernilai `1`, bukan `3`. 
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+Anda juga dapat memvisualisasikan hal ini pada benak Anda dengan mengganti variabel *state* dengan nilai aselinya pada kode Anda. Karena variabel *state* `number` adalah `0` untuk *render* ini, *event handler*-nya terlihat seperti ini:
 
 ```js
 <button onClick={() => {
@@ -161,7 +161,7 @@ You can also visualize this by mentally substituting state variables with their 
 }}>+3</button>
 ```
 
-For the next render, `number` is `1`, so *that render's* click handler looks like this:
+Untuk *render* selanjutnya, `number` bernilai `1`, sehingga *handler* klik untuk *render* tersebut terlihat seperti ini:
 
 ```js
 <button onClick={() => {
@@ -171,11 +171,11 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 }}>+3</button>
 ```
 
-This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
+Inilah sebabnya mengapa menekan tombol lagi akan mengubah mengubah perhitungannya menjadi `2`, kemudian menjadi `3` pada klik selanjutnya, dan seterusnya.
 
-## State over time {/*state-over-time*/}
+## State dari waktu ke waktu {/*state-over-time*/}
 
-Well, that was fun. Try to guess what clicking this button will alert:
+Yah, itu menyenangkan. Coba tebak apa yang akan ditampilkan oleh *alert* dengan mengklik tombol ini:
 
 <Sandpack>
 
@@ -204,14 +204,15 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-If you use the substitution method from before, you can guess that the alert shows "0":
+Jika Anda menggunakan metode substitusi dari sebelumnya, Anda dapat menebak bahwa *alert* akan menampilkan “0”:
 
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+
+Tetapi bagaimana jika Anda menaruh *timer* pada *alert*, sehingga kode *alert* tersebut hanya akan dijalankan setelah komponen di-*render* ulang? Apakah akan tertulis "0" atau "5"? Silahkan tebak! 
 
 <Sandpack>
 
@@ -243,6 +244,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 </Sandpack>
 
 Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+Terkejut? Jika Anda menggunakan metode substitusi, Anda dapat melihat "snapshot" dari *state* tersebut diteruskan kepada *alert*.
 
 ```js
 setNumber(0 + 5);
@@ -253,14 +255,18 @@ setTimeout(() => {
 
 The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+*state* yang disimpan di React mungkin telah berubah pada saat *alert* dijalankan, akan tetapi ia dijadwalkan untuk dijalankan menggunakan *snapshot* dari *state* pada saat pengguna berinteraksi dengannya!
+
+**Nilai dari *state* tidak pernah berubah pada saat render,** bahkan jika kode *event handler*-nya bersifat asinkron. Didalam `onClick` pada *render* tersebut, nilai dari `number` tetaplah `0` bahkan setelah `setNumber(number + 5)` dipanggil. Nilainya sudah ditetapkan pada saat React "mengambil *snapshot*" dari UI dengan memanggil Komponen Anda.
 
 Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
 
-1. You press the "Send" button, sending "Hello" to Alice.
-2. Before the five-second delay ends, you change the value of the "To" field to "Bob".
+Berikut adalah contoh bagaimana hal tersebut membuat *event handler* Anda tidak terlalu rentan terhadap kesalahan waktu. Di bawah ini adalah *form* yang mengirimkan pesan dengan jeda selama lima detik. Bayangkan skenario ini:
 
-What do you expect the `alert` to display? Would it display, "You said Hello to Alice"? Or would it display, "You said Hello to Bob"? Make a guess based on what you know, and then try it:
+1. Anda menekan tombol "Kirim", mengirim pesan "Hello" kepada Alice.
+2. Sebelum jeda lima detik berakhir, Anda mengganti nilai dari *field* "To" menjadi "Bob"
+
+Apa yang Anda perkirakan akan ditampilkan oleh `alert`? Apakah ia akan menampilkan, "Anda berkata Halo kepada Alice"? Atau apakah ia akan menampilkan, "Anda berkata Halo kepada Bob"? Silahkan menebak berdasarkan apa yang Anda ketahui, lalu coba:
 
 <Sandpack>
 
@@ -269,12 +275,12 @@ import { useState } from 'react';
 
 export default function Form() {
   const [to, setTo] = useState('Alice');
-  const [message, setMessage] = useState('Hello');
+  const [message, setMessage] = useState('Halo');
 
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Anda berkata ${message} kepada ${to}`);
     }, 5000);
   }
 
@@ -294,7 +300,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -306,19 +312,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React menjaga nilai *state* "tetap" dalam satu *event handler* didalam render.** Anda tidak perlu khawatir apakah *state* telah berubah saat kode sedang berjalan.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+Tetapi bagaimana jika Anda ingin membaca *state* terakhir sebelum sebuah *render* ulang? Anda dapat menggunakan [state updater function](/learn/queueing-a-series-of-state-updates), yang akan dibahas di halaman selanjutnya!
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
-* Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* Mengubah *state* mengirim permintaan *render* ulang
+* React menyimpang *state* diluar komponen Anda, seolah-olah berada di rak.
+* Ketika Anda memanggil `useState`, React memberikan Anda *snapshot* dari *state* untuk *render* tersebut.
+* Variabel and *event handlers* tidak "bertahan" pada saat terjadi *render* ulang. Setiap *render* memiliki *event handlers*-nya sendiri.
+* Setiap *render* (dan fungsi didalamnya) akan selalu "melihat" *snapshot* dari *state* yang diberikan oleh React pada *render* tersebut.
+* Anda dapat melakukan substitusi nilai *state* pada *event handlers* didalam benak anda, mirip dengan apa yang anda pikirkan tentang JSX yang sudah di-*render*. 
+* *Event handlers* yang dibuat di masa lalu memiliki nilai *state* dari *render* tempat mereka dibuat.
 
 </Recap>
 
@@ -326,9 +332,9 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### Implementasikan sebuah lampu lalu lintas {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles on when the button is pressed:
+Berikut adalah komponen lampu penyeberangan yang menyala saat tombol ditekan:
 
 <Sandpack>
 
@@ -345,12 +351,12 @@ export default function TrafficLight() {
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Ubah menjadi {walk ? 'Berhenti' : 'Jalan'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Jalan' : 'Berhenti'}
       </h1>
     </>
   );
@@ -363,13 +369,14 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Add an `alert` to the click handler. When the light is green and says "Walk", clicking the button should say "Stop is next". When the light is red and says "Stop", clicking the button should say "Walk is next".
+Tambahkan sebuah `alert` didalam *handler* klik. Ketika lampu menyala hijau dan tertulis "Jalan", menekan tombol harus mengubah tulisannya menjadi "Selanjutnya adalah berhenti". Ketika lampu menyala merah dan tertulis "Berhenti", menekan tombol harus mengubah tulisannya menjadi "Selanjutnya adalah berjalan." 
 
-Does it make a difference whether you put the `alert` before or after the `setWalk` call?
+Apakah terdapat perbedaan ketika anda menaruh `alert` sebelum atau sesudah `setWalk` dipanggil?
+
 
 <Solution>
 
-Your `alert` should look like this:
+`alert` Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -381,18 +388,18 @@ export default function TrafficLight() {
 
   function handleClick() {
     setWalk(!walk);
-    alert(walk ? 'Stop is next' : 'Walk is next');
+    alert(walk ? 'Selanjutnya adalah berhenti' : 'Selanjutnya adalah berjalan');
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Ubah menjadi {walk ? 'Berhenti' : 'Jalan'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Jalan' : 'Berhenti'}
       </h1>
     </>
   );
@@ -405,31 +412,31 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Whether you put it before or after the `setWalk` call makes no difference. That render's value of `walk` is fixed. Calling `setWalk` will only change it for the *next* render, but will not affect the event handler from the previous render.
+Apakah Anda meletakkannya sebelum atau sesudah `setWalk` dipanggil tidak ada bedanya. Nilai `jalan` pada *render* tersebut sudah ditetapkan. Memanggil `setWalk` hanya akan mengubahnya untuk *render* berikutnya, tetapi tidak akan memengaruhi *event handler* dari *render* sebelumnya.
 
-This line might seem counter-intuitive at first:
+Baris ini mungkin tampak kontra-intuitif pada awalnya:
 
 ```js
-alert(walk ? 'Stop is next' : 'Walk is next');
+alert(walk ? 'Selanjutnya adalah berhenti' : 'Selanjutnya adalah berjalan');
 ```
 
-But it makes sense if you read it as: "If the traffic light shows 'Walk now', the message should say 'Stop is next.'" The `walk` variable inside your event handler matches that render's value of `walk` and does not change.
+Tapi masuk akal jika Anda membacanya sebagai berikut: "Jika lampu lalu lintas menunjukkan 'Jalan sekarang', pesannya harus mengatakan 'Selanjutnya adalah berhenti.'" Variabel `walk` di dalam *event handler* Anda bernilai sama dengan nilai `walk` pada *render* dan tidak berubah.
 
-You can verify that this is correct by applying the substitution method. When `walk` is `true`, you get:
+Anda dapat memverifikasi bahwa ini benar dengan menerapkan metode substitusi. Ketika `walk` adalah `true`, Anda mendapatkan:
 
 ```js
 <button onClick={() => {
   setWalk(false);
   alert('Stop is next');
 }}>
-  Change to Stop
+  Ubah menjadi Berhenti
 </button>
 <h1 style={{color: 'darkgreen'}}>
-  Walk
+  Jalan
 </h1>
 ```
 
-So clicking "Change to Stop" queues a render with `walk` set to `false`, and alerts "Stop is next".
+Sehingga, mengeklik "Ubah menjadi Berhenti" akan membuat antrean *render* dengan `walk` yang diubah ke `false`, dan menampilkan "Berikutnya adalah berhenti".
 
 </Solution>
 
