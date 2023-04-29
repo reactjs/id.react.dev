@@ -10,12 +10,12 @@ Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- Cara membuat dan menyarangkan (*nest*) komponen-komponen
+- Cara menambahkan *markup* dan penggayaan (*styles*)
+- Cara menampilkan data
+- Cara me-render kondisi dan daftar (*lists*)
+- Cara merespons *events* dan memperbarui layar
+- Cara berbagi data antar komponen
 
 </YouWillLearn>
 
