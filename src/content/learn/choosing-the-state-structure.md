@@ -1,5 +1,5 @@
 ---
-title: Choosing the State Structure
+title: Memilih Struktur State
 ---
 
 <Intro>
