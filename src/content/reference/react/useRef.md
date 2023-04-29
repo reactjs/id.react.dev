@@ -4,7 +4,7 @@ title: useRef
 
 <Intro>
 
-`useRef` is a React Hook that lets you reference a value that's not needed for rendering.
+`useRef` adalah sebuah React Hook yang memungkinkan Anda mereferensikan sebuah nilai yang tidak diperlukan untuk rendering.
 
 ```js
 const ref = useRef(initialValue)
@@ -16,11 +16,11 @@ const ref = useRef(initialValue)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useRef(initialValue)` {/*useref*/}
 
-Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
+Panggil `useRef` di tingkat atas komponen Anda untuk mendeklarasikan sebuah [ref.](/learn/referencing-values-with-refs)
 
 ```js
 import { useRef } from 'react';
@@ -31,34 +31,34 @@ function MyComponent() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `initialValue`: The value you want the ref object's `current` property to be initially. It can be a value of any type. This argument is ignored after the initial render.
+* `initialValue`: Nilai yang Anda inginkan untuk properti `current` objek ref pada awalnya. Nilai ini dapat berupa nilai dari jenis apa pun. Argumen ini akan diabaikan setelah render awal.
 
 #### Returns {/*returns*/}
 
-`useRef` returns an object with a single property:
+`useRef` mengembalikan sebuah objek dengan satu properti:
 
-* `current`: Initially, it's set to the `initialValue` you have passed. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
+* `current`: Awalnya, ini diatur ke `initialValue` yang telah Anda oper. Anda dapat mengaturnya ke nilai yang lain. Jika Anda mengoper objek ref ke React sebagai sebuah atribut `ref` ke node JSX, React akan menyetelkan properti `current`-nya.
 
-On the next renders, `useRef` will return the same object.
+Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
-#### Caveats {/*caveats*/}
+#### Perhatian {/*caveats*/}
 
-* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
-* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
-* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+* Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini tidak dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
+* Ketika Anda mengubah properti `ref.current`, React tidak me-render ulang komponen Anda. React tidak mengetahui kapan Anda mengubahnya karena ref adalah objek JavaScript biasa.
+* Jangan menulis _atau membaca_ `ref.current` selama proses rendering, kecuali untuk [inisialisasi.](#avoiding-recreating-the-ref-contents) Hal ini membuat perilaku komponen Anda tidak dapat diprediksi.
+* Dalam Strict Mode, React akan **memanggil fungsi komponen Anda dua kali** untuk [membantu Anda menemukan bug yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus development dan tidak mempengaruhi produksi. Setiap objek ref akan dibuat dua kali, tetapi salah satu versi akan dibuang. Jika fungsi komponen Anda murni (sebagaimana mestinya), hal ini seharusnya tidak mempengaruhi perilaku.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
+### Mereferensikan sebuah nilai dengan sebuah ref {/*referencing-a-value-with-a-ref*/}
 
-Call `useRef` at the top level of your component to declare one or more [refs.](/learn/referencing-values-with-refs)
+Panggil `useRef` di tingkat atas komponen Anda untuk mendeklarasikan satu atau lebih [ref.](/learn/referencing-values-with-refs)
 
 ```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
@@ -68,11 +68,11 @@ function Stopwatch() {
   // ...
 ```
 
-`useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
+`useRef` mengembalikan sebuah <CodeStep step={1}>objek ref</CodeStep> dengan satu <CodeStep step={2}>properti `current`</CodeStep> pada awalnya diatur ke <CodeStep step={3}>initialValue</CodeStep> yang Anda sediakan.
 
-On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/reference/react/useState), but there is an important difference.
+Pada render berikutnya, `useRef` akan mengembalikan objek yang sama. Anda dapat mengubah properti `current` untuk menyimpan informasi dan membacanya nanti. Hal ini mungkin mengingatkan Anda pada [state](/reference/react/useState), tetapi ada sebuah perbedaan penting.
 
-**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
+**Mengubah sebuah ref tidak memicu render ulang.** Ini berarti ref sangat cocok untuk menyimpan informasi yang tidak memengaruhi keluaran visual komponen Anda. Sebagai contoh, jika Anda perlu menyimpan sebuah [ID interval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) dan mengambilnya nanti, Anda bisa menaruhnya di dalam ref. Untuk pembaruan nilai di dalam ref, Anda perlu mengubah secara manual nilai <CodeStep step={2}>properti `current`</CodeStep>:
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -83,7 +83,7 @@ function handleStartClick() {
 }
 ```
 
-Later, you can read that interval ID from the ref so that you can call [clear that interval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+Nantinya, Anda dapat membaca ID interval tersebut dari ref sehingga Anda dapat memanggil [pembersihan interval tersebut](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 
 ```js [[2, 2, "intervalRef.current"]]
 function handleStopClick() {
@@ -92,19 +92,19 @@ function handleStopClick() {
 }
 ```
 
-By using a ref, you ensure that:
+Dengan menggunakan ref, Anda memastikan bahwa:
 
-- You can **store information** between re-renders (unlike regular variables, which reset on every render).
-- Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
-- The **information is local** to each copy of your component (unlike the variables outside, which are shared).
+- Anda dapat **menyimpan informasi** di antara render ulang (tidak seperti variabel biasa, yang disetel ulang pada setiap render).
+- Mengubahnya **tidak memicu sebuah render ulang** (tidak seperti variabel state, yang memicu sebuah render ulang).
+- **Informasinya bersifat lokal** untuk setiap salinan komponen Anda (tidak seperti variabel di luar, yang dibagikan).
 
-Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
+Mengubah sebuah ref tidak akan memicu sebuah render ulang, jadi ref tidak sesuai untuk menyimpan informasi yang ingin Anda tampilkan di layar. Gunakan state untuk itu. Baca lebih lanjut tentang [memilih antara `useRef` dan `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
-<Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
+<Recipes titleText="Contoh mereferensikan sebuah nilai dengan useRef" titleId="examples-value">
 
-#### Click counter {/*click-counter*/}
+#### Klik penghitung {/*click-counter*/}
 
-This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
+Komponen ini menggunakan sebuah ref untuk melacak berapa kali tombol diklik. Perhatikan bahwa tidak masalah untuk menggunakan sebuah ref dan bukan state di sini karena jumlah klik hanya dibaca dan ditulis di dalam event handler.
 
 <Sandpack>
 
@@ -129,13 +129,13 @@ export default function Counter() {
 
 </Sandpack>
 
-If you show `{ref.current}` in the JSX, the number won't update on click. This is because setting `ref.current` does not trigger a re-render. Information that's used for rendering should be state instead.
+Jika Anda menampilkan `{ref.current}` di dalam JSX, nomor tersebut tidak akan memperbarui saat mengeklik. Hal ini karena pengaturan `ref.current` tidak memicu sebuah render ulang. Informasi yang digunakan untuk rendering harus berupa state.
 
 <Solution />
 
-#### A stopwatch {/*a-stopwatch*/}
+#### Sebuah stopwatch {/*a-stopwatch*/}
 
-This example uses a combination of state and refs. Both `startTime` and `now` are state variables because they are used for rendering. But we also need to hold an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) so that we can stop the interval on button press. Since the interval ID is not used for rendering, it's appropriate to keep it in a ref, and manually update it.
+Contoh ini menggunakan sebuah kombinasi dari state dan ref. Baik `startTime` dan `now` adalah variabel state karena digunakan untuk rendering. Tetapi kita juga perlu menyimpan sebuah [ID interval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) sehingga kita dapat menghentikan interval pada saat tombol ditekan. Karena ID interval tidak digunakan untuk rendering, maka sebaiknya disimpan di dalam sebuah ref, dan pembaruan secara manual.
 
 <Sandpack>
 
@@ -188,14 +188,14 @@ export default function Stopwatch() {
 
 <Pitfall>
 
-**Do not write _or read_ `ref.current` during rendering.**
+**Jangan menulis _atau membaca_ `ref.current` selama proses rendering.**
 
-React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
+React mengharapkan bahwa tubuh komponen Anda [berperilaku seperti fungsi murni](/learn/keeping-components-pure):
 
-- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
-- Calling it in a different order or with different arguments should not affect the results of other calls.
+- Jika masukan-masukan ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), dan [context](/learn/passing-data-deeply-with-context)) yang sama, seharusnya mengembalikan JSX yang sama persis.
+- Memanggilnya dengan urutan yang berbeda atau dengan argumen yang berbeda tidak akan mempengaruhi hasil panggilan lainnya.
 
-Reading or writing a ref **during rendering** breaks these expectations.
+Membaca atau menulis ref **selama rendering** melanggar ekspektasi-ekspektasi ini.
 
 ```js {3-4,6-7}
 function MyComponent() {
@@ -208,7 +208,7 @@ function MyComponent() {
 }
 ```
 
-You can read or write refs **from event handlers or effects instead**.
+Anda dapat membaca atau menulis ref **dari event handler atau effect sebagai gantinya**.
 
 ```js {4-5,9-10}
 function MyComponent() {
@@ -226,19 +226,19 @@ function MyComponent() {
 }
 ```
 
-If you *have to* read [or write](/reference/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/reference/react/useState) instead.
+Jika Anda *harus* membaca [atau menulis](/reference/react/useState#storing-information-from-previous-renders) sesuatu selama rendering, [gunakan state](/reference/react/useState) sebagai gantinya.
 
-When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
+Ketika Anda melanggar beberapa aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
 </Pitfall>
 
 ---
 
-### Manipulating the DOM with a ref {/*manipulating-the-dom-with-a-ref*/}
+### Memanipulasi DOM dengan sebuah ref {/*manipulating-the-dom-with-a-ref*/}
 
-It's particularly common to use a ref to manipulate the [DOM.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API) React has built-in support for this.
+Sangat umum menggunakan sebuah ref untuk memanipulasi [DOM.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API) React memiliki dukungan bawaan untuk hal ini.
 
-First, declare a <CodeStep step={1}>ref object</CodeStep> with an <CodeStep step={3}>initial value</CodeStep> of `null`:
+Pertama, deklarasikan sebuah <CodeStep step={1}>objek ref</CodeStep> dengan sebuah <CodeStep step={3}>initialValue</CodeStep> dari `null`:
 
 ```js [[1, 4, "inputRef"], [3, 4, "null"]]
 import { useRef } from 'react';
@@ -248,14 +248,14 @@ function MyComponent() {
   // ...
 ```
 
-Then pass your ref object as the `ref` attribute to the JSX of the DOM node you want to manipulate:
+Kemudian oper objek ref Anda sebagai atribut `ref` ke JSX milik node DOM yang ingin Anda manipulasi:
 
 ```js [[1, 2, "inputRef"]]
   // ...
   return <input ref={inputRef} />;
 ```
 
-After React creates the DOM node and puts it on the screen, React will set the <CodeStep step={2}>`current` property</CodeStep> of your ref object to that DOM node. Now you can access the `<input>`'s DOM node and call methods like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
+Setelah React membuat node DOM dan meletakkannya di layar, React akan mengatur <CodeStep step={2}>properti `current`</CodeStep> objek Anda yang merujuk ke node DOM tersebut. Sekarang Anda dapat mengakses node DOM dari `<input>` dan memanggil method seperti [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
 
 ```js [[2, 2, "inputRef.current"]]
   function handleClick() {
@@ -263,15 +263,15 @@ After React creates the DOM node and puts it on the screen, React will set the <
   }
 ```
 
-React will set the `current` property back to `null` when the node is removed from the screen.
+React akan menyetel properti `current` kembali ke `null` ketika node dihapus dari layar.
 
-Read more about [manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+Baca lebih lanjut tentang [memanipulasi DOM dengan ref].(/learn/manipulating-the-dom-with-refs)
 
-<Recipes titleText="Examples of manipulating the DOM with useRef" titleId="examples-dom">
+<Recipes titleText="Contoh memanipulasi DOM dengan useRef" titleId="examples-dom">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### Memfokuskan sebuah masukan teks {/*focusing-a-text-input*/}
 
-In this example, clicking the button will focus the input:
+Dalam contoh ini, mengeklik tombol akan memfokuskan masukan:
 
 <Sandpack>
 
@@ -300,9 +300,9 @@ export default function Form() {
 
 <Solution />
 
-#### Scrolling an image into view {/*scrolling-an-image-into-view*/}
+#### Menggulir gambar ke dalam tampilan {/*scrolling-an-image-into-view*/}
 
-In this example, clicking the button will scroll an image into view. It uses a ref to the list DOM node, and then calls DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API to find the image we want to scroll to.
+Pada contoh ini, mengeklik tombol akan menggulirkan gambar ke dalam tampilan. Ini menggunakan ref ke daftar node DOM, dan kemudian memanggil DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API untuk menemukan gambar yang ingin kita gulir.
 
 <Sandpack>
 
@@ -393,9 +393,9 @@ li {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Memutar dan menjeda sebuah video {/*playing-and-pausing-a-video*/}
 
-This example uses a ref to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node.
+Contoh ini menggunakan sebuah ref untuk memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada sebuah node DOM `<video>`.
 
 <Sandpack>
 
@@ -446,9 +446,9 @@ button { display: block; margin-bottom: 20px; }
 
 <Solution />
 
-#### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
+#### Mengekspos sebuah ref ke komponen Anda sendiri {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Baca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
 
 <Sandpack>
 
@@ -485,9 +485,9 @@ export default function Form() {
 
 ---
 
-### Avoiding recreating the ref contents {/*avoiding-recreating-the-ref-contents*/}
+### Menghindari pembuatan ulang konten ref {/*avoiding-recreating-the-ref-contents*/}
 
-React saves the initial ref value once and ignores it on the next renders.
+React menyimpan nilai ref awal sekali dan mengabaikannya pada render berikutnya.
 
 ```js
 function Video() {
@@ -495,9 +495,9 @@ function Video() {
   // ...
 ```
 
-Although the result of `new VideoPlayer()` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating expensive objects.
+Meskipun hasil dari `new VideoPlayer()` hanya digunakan untuk render awal, Anda masih memanggil fungsi ini pada setiap render. Hal ini dapat menjadi boros jika Anda membuat objek yang besar.
 
-To solve it, you may initialize the ref like this instead:
+Untuk mengatasinya, Anda dapat menginisialisasi ref seperti ini sebagai gantinya:
 
 ```js
 function Video() {
@@ -508,13 +508,13 @@ function Video() {
   // ...
 ```
 
-Normally, writing or reading `ref.current` during render is not allowed. However, it's fine in this case because the result is always the same, and the condition only executes during initialization so it's fully predictable.
+Biasanya, menulis atau membaca `ref.current` selama render tidak diperbolehkan. Namun, dalam kasus ini tidak masalah karena hasilnya akan selalu sama, dan kondisi ini hanya dijalankan selama inisialisasi sehingga dapat sepenuhnya diprediksi.
 
 <DeepDive>
 
-#### How to avoid null checks when initializing useRef later {/*how-to-avoid-null-checks-when-initializing-use-ref-later*/}
+#### Cara menghindari pemeriksaan null saat menginisialisasi useRef {/*how-to-avoid-null-checks-when-initializing-use-ref-later*/}
 
-If you use a type checker and don't want to always check for `null`, you can try a pattern like this instead:
+Jika Anda menggunakan pemeriksa tipe dan tidak ingin selalu memeriksa `null`, Anda dapat mencoba pola seperti ini:
 
 ```js
 function Video() {
@@ -532,17 +532,17 @@ function Video() {
   // ...
 ```
 
-Here, the `playerRef` itself is nullable. However, you should be able to convince your type checker that there is no case in which `getPlayer()` returns `null`. Then use `getPlayer()` in your event handlers.
+Di sini, `playerRef` itu sendiri dapat bernilai null. Namun, Anda harus dapat meyakinkan pemeriksa tipe Anda bahwa tidak ada kasus di mana `getPlayer()` mengembalikan `null`. Kemudian gunakan `getPlayer()` di dalam event handler Anda.
 
 </DeepDive>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
+### Saya tidak bisa mendapatkan ref ke komponen kustom {/*i-cant-get-a-ref-to-a-custom-component*/}
 
-If you try to pass a `ref` to your own component like this:
+Jika Anda mencoba mengoper `ref` ke komponen Anda sendiri seperti ini:
 
 ```js
 const inputRef = useRef(null);
@@ -550,7 +550,7 @@ const inputRef = useRef(null);
 return <MyInput ref={inputRef} />;
 ```
 
-You might get an error in the console:
+Anda mungkin mendapatkan error di konsol:
 
 <ConsoleBlock level="error">
 
@@ -558,9 +558,9 @@ Warning: Function components cannot be given refs. Attempts to access this ref w
 
 </ConsoleBlock>
 
-By default, your own components don't expose refs to the DOM nodes inside them.
+Secara bawaan, komponen Anda sendiri tidak mengekspos ref ke node DOM di dalamnya.
 
-To fix this, find the component that you want to get a ref to:
+Untuk memperbaikinya, cari komponen yang ingin Anda dapatkan ref-nya:
 
 ```js
 export default function MyInput({ value, onChange }) {
@@ -573,7 +573,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-And then wrap it in [`forwardRef`](/reference/react/forwardRef) like this:
+Dan kemudian membungkusnya dengan [`forwardRef`](/reference/react/forwardRef) seperti ini:
 
 ```js {3,8}
 import { forwardRef } from 'react';
@@ -591,6 +591,6 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
 export default MyInput;
 ```
 
-Then the parent component can get a ref to it.
+Kemudian komponen induk bisa mendapatkan ref ke sana.
 
-Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+Baca lebih lanjut tentang [mengakses node DOM komponen lain.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
