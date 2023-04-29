@@ -36,7 +36,7 @@ Anda dapat [membuat sebuah area teks yang terkontrol](#controlling-a-text-area-w
 
 * `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
-Ketika Anda memberikan `value`, Kamu harus memberikan juga sebuah `onChange` <em>handler</em> yang memperbarui nilai yang diberikan sebelumnya.
+Ketika Anda memberikan `value`, Kamu harus memberikan juga sebuah `onChange` *handler* yang memperbarui nilai yang diberikan sebelumnya.
 
 Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` sebagai gantinya:
 
@@ -46,20 +46,20 @@ Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` se
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Nilainya `'on'` atau `'off'`. Menentukan perilaku penyelesaian otomatis.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen ketika terpasang.
-* `children`: `<textarea>` tidak menerima <em>children</em>. Untuk Menentukan nilai awal, gunakan `defaultValue`.
+* `children`: `<textarea>` tidak menerima *children*. Untuk Menentukan nilai awal, gunakan `defaultValue`.
 * [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols): Sebuah bilangan. Menentukan lebar bawaaan pada rata-rata lebar karakter. Nilai bawaan adalah `20`.
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): Sebuah boolean. Jika `true`, input tidak akan menjadi interaktif dan akan terlihat redup.
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): Sebuah string. Menentukan `id` pada suatu `<form>` yang memiliki input tersebut. Jika dihilangkan, nilainya mengacu pada induk formulir terdekat.
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): Sebuah bilangan. Menentukan panjang maksimum teks.
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): Sebuah bilangan. Menentukan panjang minimum teks.
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada input yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
-* `onChange`: Sebuah <em>[`Event` handler](/reference/react-dom/components/common#event-handler) function</em> . Dibutuhkan untuk [area teks terkontrol.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap tombol ditekan). Berperilaku seperti [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
+* `onChange`: Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function* . Dibutuhkan untuk [area teks terkontrol.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap tombol ditekan). Berperilaku seperti [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`: Sebuah versi `onChange` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah <em>[`Event` handler](/reference/react-dom/components/common#event-handler) function</em>. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
 * `onInputCapture`: Sebuah versi `onInput` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah <em>[`Event` handler](/reference/react-dom/components/common#event-handler) function</em>. Beroperasi jika sebuah input gagal memvalidasi pada pengiriman formulir. Tidak seperti <em>event</em> bawaan `invalid`, `onInvalid` <em>event</em> pada React menggelembung.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi jika sebuah input gagal memvalidasi pada pengiriman formulir. Tidak seperti *event* bawaan `invalid`, `onInvalid` *event* pada React menggelembung.
 * `onInvalidCapture`: Sebuah versi `onInvalid` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): Sebuah <em>[`Event` handler](/reference/react-dom/components/common#event-handler) function</em>. Beroperasi setelah pemilihan di dalam `<textarea>` berubah. React memperluas `onSelect` <em>event</em> untuk juga mengaktifkan pemilihan kosong dan pengeditan (dapat mempengaruhi pemilihan).
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): Sebuah *[`Event` handler](/reference/react-dom/components/common#event-handler) function*. Beroperasi setelah pemilihan di dalam `<textarea>` berubah. React memperluas `onSelect` *event* untuk juga mengaktifkan pemilihan kosong dan pengeditan (dapat mempengaruhi pemilihan).
 * `onSelectCapture`: Sebuah versi `onSelect` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): Sebuah string. Ditampilkan dalam warna redup ketika nilai area teks kosong.
 * [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): Sebuah boolean. Jika `true`, area teks tidak dapat diubah oleh pengguna.
@@ -69,11 +69,11 @@ Jika `<textarea>` Anda tidak terkontrol, Anda boleh memberikan `defaultValue` se
 
 #### Caveats {/*caveats*/}
 
-- Memberikan <em>children</em> seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
-- Jika menerima sebuah <em>prop</em> `value` string, sebuah area teks akan [dianggap sebagai terkontrol.](#controlling-a-text-area-with-a-state-variable)
+- Memberikan *children* seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
+- Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai terkontrol.](#controlling-a-text-area-with-a-state-variable)
 - Sebuah area teks tidak dapat menjadi terkontrol dan tidak terkontrol secara bersamaan.
 - Sebuah area teks tidak dapat beralih menjadi terkontrol atau tidak terkontrol selama masa pakainya.
-- Setiap area teks terkontrol membutuhkan sebuah `onChange` <em>event handler</em> yang mengubah nilai pendukungnya secara sinkronis.
+- Setiap area teks terkontrol membutuhkan sebuah `onChange` *event handler* yang mengubah nilai pendukungnya secara sinkronis.
 
 ---
 
