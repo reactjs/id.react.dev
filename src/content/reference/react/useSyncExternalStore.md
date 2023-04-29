@@ -63,12 +63,12 @@ function TodosApp() {
 
 ### Berlangganan ke tempat penyimpanan eksternal {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+Sebagian besar komponen React Anda akan membaca data dari [*props*](/learn/passing-props-to-a-component), [*state*](/reference/react/useState), dan [*context*](/reference/react/useContext) mereka. Walaupun begitu, kadang-kadang ada komponen yang harus membaca dari tempat penyimpanan yang ada di luar React dan berubah seiring waktu berjalan. Ini termasuk:
 
-* Third-party state management libraries that hold state outside of React.
-* Browser APIs that expose a mutable value and events to subscribe to its changes.
+* *Library* manajemen *state* dari pihak ketiga yang menyimpan *state* di luar React.
+* API peramban yang mengekspos nilai yang dapat dimutasi dan *event* untuk berlangganan ke perubahannya.
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Panggil `useSyncExternalStore` di tingkat paling atas dari komponen Anda untuk membaca sebuah nilai dari tempat penyimpanan data eksternal.
 
 ```js [[1, 5, "todosStore.subscribe"], [2, 5, "todosStore.getSnapshot"], [3, 5, "todos", 0]]
 import { useSyncExternalStore } from 'react';
@@ -80,14 +80,14 @@ function TodosApp() {
 }
 ```
 
-It returns the <CodeStep step={3}>snapshot</CodeStep> of the data in the store. You need to pass two functions as arguments:
+Fungsi ini mengembalikan <CodeStep step={3}>*snapshot*</CodeStep> dari data yang ada di tempat penyimpanan. Anda harus memberikan dua fungsi sebagai argumen:
 
-1. The <CodeStep step={1}>`subscribe` function</CodeStep> should subscribe to the store and return a function that unsubscribes.
-2. The <CodeStep step={2}>`getSnapshot` function</CodeStep> should read a snapshot of the data from the store.
+1. <CodeStep step={1}>Fungsi `subscribe`</CodeStep> harus berlangganan ke tempat penyimpanan dan mengembalikan sebuah fungsi untuk berhenti berlangganan.
+2. <CodeStep step={2}>Fungsi `getSnapshot`</CodeStep> harus membaca sebuah *snapshot* dari data yang ada di tempat penyimpanan.
 
-React will use these functions to keep your component subscribed to the store and re-render it on changes.
+React akan menggunakan dua fungsi ini untuk menjaga status langganan komponen Anda ke tempat penyimpanan tersebut dan me-*render* ulang saat ada perubahan.
 
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook. 
+Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *hook* `useSyncExternalStore`. 
 
 <Sandpack>
 
@@ -112,11 +112,12 @@ export default function TodosApp() {
 ```
 
 ```js todoStore.js
-// This is an example of a third-party store
-// that you might need to integrate with React.
+// Ini adalah contoh dari sebuah tempat penyimpanan
+// dari pihak ketiga yang Anda perlu integrasikan
+// dengan React.
 
-// If your app is fully built with React,
-// we recommend using React state instead.
+// Jika aplikasi Anda dibangun sepenuhnya oleh React,
+// kami merekomendasikan untuk menggunakan React state.
 
 let nextId = 0;
 let todos = [{ id: nextId++, text: 'Todo #1' }];
@@ -149,17 +150,17 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+Di situasi yang memungkinkan, kami merekomendasikan untuk menggunakan *state* yang sudah ada di dalam React dengan menggunakan [`useState`](/reference/react/useState) dan [`useReducer`](/reference/react/useReducer). API `useSyncExternalStore` biasanya berguna jika Anda ingin mengintegrasi komponen Anda dengan kode non-React.
 
 </Note>
 
 ---
 
-### Berlanggan ke sebuah API peramban {/*subscribing-to-a-browser-api*/}
+### Melanggan ke sebuah API peramban {/*subscribing-to-a-browser-api*/}
 
-Another reason to add `useSyncExternalStore` is when you want to subscribe to some value exposed by the browser that changes over time. For example, suppose that you want your component to display whether the network connection is active. The browser exposes this information via a property called [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+Alasan lain untuk menggunakan `useSyncExternalStore` adalah ketika Anda ingin berlangganan ke sebuah nilai yang diekspos peramban yang berubah seiring berjalannya waktu. Contohnya, saat Anda ingin komponen Anda menampilkan apakah koneksi jaringan masih aktif. Peramban mengekspos informasi ini melalui sebuah *property* yang disebut [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
 
-This value can change without React's knowledge, so you should read it with `useSyncExternalStore`.
+Nilai ini dapat berubah tanpa pengetahuan React sehingga Anda harus membacanya dengan `useSyncExternalStore`.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -170,7 +171,7 @@ function ChatIndicator() {
 }
 ```
 
-To implement the `getSnapshot` function, read the current value from the browser API:
+Untuk mengimplementasi fungsi `getSnapshot`, Anda cukup membaca nilai saat ini dari API peramban:
 
 ```js
 function getSnapshot() {
@@ -178,7 +179,7 @@ function getSnapshot() {
 }
 ```
 
-Next, you need to implement the `subscribe` function. For example, when `navigator.onLine` changes, the browser fires the [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events on the `window` object. You need to subscribe the `callback` argument to the corresponding events, and then return a function that cleans up the subscriptions:
+Selanjutnya, Anda perlu mengimplementasi fungsi `subscribe`. Contohnya, saat `navigator.onLine` berubah, peramban menembakkan *event* [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) dan [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) ke objek `window`. Anda perlu melanggankan argument `callback` ke *event* yang bersangkutan, kemudian mengembalikan sebuah fungsi yang membersihkan langganan tersebut:
 
 ```js
 function subscribe(callback) {
@@ -191,7 +192,7 @@ function subscribe(callback) {
 }
 ```
 
-Now React knows how to read the value from the external `navigator.onLine` API and how to subscribe to its changes. Disconnect your device from the network and notice that the component re-renders in response:
+Sekarang React tahu bagaimana membaca nilai yang ada di API eksternal `navigator.onLine` dan bagaimana berlangganan ke perubahannya. Putuskan koneksi perangkat Anda dari jaringan dan Anda akan melihat komponen di-*render* ulang sebagai respons:
 
 <Sandpack>
 
@@ -223,9 +224,9 @@ function subscribe(callback) {
 
 ### Mengekstrak logika ke *hook* buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
 
-Usually you won't write `useSyncExternalStore` directly in your components. Instead, you'll typically call it from your own custom Hook. This lets you use the same external store from different components.
+Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `hook` tersebut dari `hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
 
-For example, this custom `useOnlineStatus` Hook tracks whether the network is online:
+Sebagai contoh, `hook` `useOnlineStatus` ini mengikuti apakah jaringan menyala:
 
 ```js {3,6}
 import { useSyncExternalStore } from 'react';
@@ -244,7 +245,7 @@ function subscribe(callback) {
 }
 ```
 
-Now different components can call `useOnlineStatus` without repeating the underlying implementation:
+Sekarang, berbagai komponen bisa memanggil `useOnlineStatus` tanpa harus mengulang implementasinya:
 
 <Sandpack>
 
@@ -308,12 +309,12 @@ function subscribe(callback) {
 
 ### Menambahkan dukungan untuk *render* di server {/*adding-support-for-server-rendering*/}
 
-If your React app uses [server rendering,](/reference/react-dom/server) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
+Jika aplikasi React Anda melakukan [*render* di server](/reference/react-dom/server), komponen React Anda akan berjalan di luar lingkungan peramban untuk membuat HTML awal. Ini menimbulkan beberapa tantangan saat ingin berhubungan dengan tempat penyimpanan eksternal:
 
-- If you're connecting to a browser-only API, it won't work because it does not exist on the server.
-- If you're connecting to a third-party data store, you'll need its data to match between the server and client.
+- Jika Anda berusaha untuk terhubung dengan API peramban, ini tidak akan bekerja karena API tersebut tidak ada di server.
+- Jika Anda berusaha untuk terhubung dengan tempat penyimpanan pihak ketiga, Anda harus mencocokkan data yang ada di server dan klien.
 
-To solve these issues, pass a `getServerSnapshot` function as the third argument to `useSyncExternalStore`:
+Untuk menyelesaikan masalah ini, Anda dapat memberikan fungsi `getServerSnapshot` sebagai argumen ketiga ke `useSyncExternalStore`:
 
 ```js {4,12-14}
 import { useSyncExternalStore } from 'react';
@@ -328,7 +329,7 @@ function getSnapshot() {
 }
 
 function getServerSnapshot() {
-  return true; // Always show "Online" for server-generated HTML
+  return true; // Selalu menunjukkan "Online" untuk HTML yang dibuat server
 }
 
 function subscribe(callback) {
@@ -336,16 +337,16 @@ function subscribe(callback) {
 }
 ```
 
-The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only in two situations:
+Fungsi `getServerSnapshot` cukup mirip dengan `getSnapshot`, tetapi hanya berjalan di dua situasi:
 
-- It runs on the server when generating the HTML.
-- It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
+- Fungsi tersebut berjalan di server saat membuat HTML.
+- Fungsi tersebut berjalan di klien saat [hidrasi](/reference/react-dom/client/hydrateRoot), misalnya saat React mengambil HTML dari server dan membuatnya interaktif.
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+Hal ini membiarkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
-Make sure that `getServerSnapshot` returns the same exact data on the initial client render as it returned on the server. For example, if `getServerSnapshot` returned some prepopulated store content on the server, you need to transfer this content to the client. One way to do this is to emit a `<script>` tag during server rendering that sets a global like `window.MY_STORE_DATA`, and read from that global on the client in `getServerSnapshot`. Your external store should provide instructions on how to do that.
+Pastikan `getServerSnapshot` mengembalikan data yang sama persis di proses *render* awal di klien dan juga di server. Sebagai contoh, jika `getServerSnapshot` mengembalikan sebuah data yang sudah disiapkan di server, Anda juga harus memberikan data ini ke klien. Salah satu cara adalah dengan mengirim sebuah *tag* `<script>`, saat proses *render* di server, yang menetapkan sebuah global seperti `window.MY_STORE_DATA` dan klien membaca nilai dari global tersebut di `getServerSnapshot`. Tempat penyimpanan eksternal Anda seharusnya memberikan instruksi mengenai hal ini.
 
 </Note>
 
