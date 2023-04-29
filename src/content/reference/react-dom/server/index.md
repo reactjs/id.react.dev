@@ -1,5 +1,5 @@
 ---
-title: API React Dom Server
+title: API React DOM Server
 ---
 
 <Intro>
@@ -21,24 +21,24 @@ Metode-metode ini hanya tersedia di lingkungan dengan [Node.js *Stream*:](https:
 
 ## API *Server* untuk *Web Stream* {/*server-apis-for-web-streams*/}
 
-Metode-metode ini hanya tersedia di lingkungan dengan [*Web Stream*](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), yang mencakup *browser*, Deno, dan beberapa *runtime* modern:
+Beberapa *method* ini hanya tersedia di lingkungan dengan [*Web Stream*](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), yang mencakup peramban, Deno, dan beberapa *runtime* modern:
 
 * [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) me-*render* sebuah React *tree* ke dalam [*Readable Web Stream*.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ---
 
-## API Server untuk lingkungan non*streaming* {/*server-apis-for-non-streaming-environments*/}
+## API Server untuk lingkungan non-streaming {/*server-apis-for-non-streaming-environments*/}
 
-Metode-metode ini dapat digunakan di lingkungan yang tidak mendukung *stream*:
+Beberapa *method* ini dapat digunakan di lingkungan yang tidak mendukung *stream*:
 
 * [`renderToString`](/reference/react-dom/server/renderToString) me-*render* sebuah React *tree* ke dalam *string*.
 * [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) me-*render* sebuah React *tree* yang noninteraktif ke dalam *string*.
 
-Metode-metode tersebut memiliki fungsionalitas terbatas dibandingkan dengan API *streaming*.
+Beberapa *method* tersebut memiliki fungsionalitas terbatas dibandingkan dengan API *streaming*.
 
 ---
 
-## API *server* yang sudah tidak digunakan {/*deprecated-server-apis*/}
+## API server yang sudah tidak digunakan {/*deprecated-server-apis*/}
 
 <Deprecated>
 
