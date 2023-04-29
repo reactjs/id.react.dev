@@ -40,7 +40,7 @@ function Button() {
 ---
 
 ## Hook Ref {/*ref-hooks*/}
-*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk dirender](/learn/referencing-values-with-refs) seperti node DOM atau batas waktu ID. Tidak seperti state, memperbarui *ref* tidak merender ulang komponen Anda. Ref adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda membutuhkan untuk bekerja dengan sistem non-React, seperti *API* browser bawaan.
+*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk dirender](/learn/referencing-values-with-refs) seperti node DOM atau ID *timeout*. Tidak seperti state, memperbarui *ref* tidak merender ulang komponen Anda. Ref adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda membutuhkan untuk bekerja dengan sistem non-React, seperti *API* browser bawaan.
 
 * [`useRef`](/reference/react/useRef) mendeklarasi *ref*. Anda dapat menyimpan nilai apapun didalamnya, tapi *ref* sering kali digunakan untuk menyimpan node DOM.
 * [`useImperativeHandle`](/reference/react/useImperativeHandle) memungkinkan Anda menyesuaikan *ref* yang terekspos oleh komponen Anda. Ini jarang sekali digunakan.
