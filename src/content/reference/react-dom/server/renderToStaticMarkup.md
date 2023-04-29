@@ -42,7 +42,7 @@ Sebuah *string* HTML.
 
 #### Anjuran {/*caveats*/}
 
-* Keluaran dari `renderToStaticMarkup` tidak dapat di-*hydrate*.
+* Keluaran dari `renderToStaticMarkup` tidak dapat di hidrasi (*hydrate*).
 
 * `renderToStaticMarkup` mendukung penggunaan `Suspense` secara terbatas. Apabila sebuah komponen berada dalam kondisi *suspended*, `renderToStaticMarkup` segera mengirimkan *fallback*-nya sebagai HTML.
 
@@ -70,7 +70,7 @@ Ini akan memproduksi HTML non-interaktif awal dari komponen-komponen React Anda.
 
 <Pitfall>
 
-Metode ini me-*render* **HTML non-interaktif yang tidak bisa di-*hydrate*.** Ini berguna apabila Anda ingin menggunakan React sebagai *generator* halaman statis yang sederhana, atau bila Anda me-*render* konten yang benar-benar statis seperti surat elektronik.
+Metode ini me-*render* **HTML non-interaktif yang tidak bisa di hidrasi.** Ini berguna apabila Anda ingin menggunakan React sebagai *generator* halaman statis yang sederhana, atau bila Anda me-*render* konten yang benar-benar statis seperti surat elektronik.
 
 Aplikasi yang interaktif seharusnya menggunakan [`renderToString`](/reference/react-dom/server/renderToString) pada *server* dan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) pada klien.
 
