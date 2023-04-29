@@ -229,7 +229,7 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Baca **[JavaScript di Dalam JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
+Baca **[JavaScript di dalam JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
 
 </LearnMore>
 
@@ -364,7 +364,7 @@ Baca **[Merender Secara Kondisional](/learn/conditional-rendering)** untuk mempe
 
 ## Merender List {/*rendering-lists*/}
 
-Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk memfilter dan mentransformasikan senarai data Anda menjadi senarai komponen.
+Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk menyaring dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
 Untuk setiap *item* pada senarai, Anda perlu menentukan sebuah kunci `key`. Biasanya, Anda ingin menggunakan ID dari basisdata sebagai `key`. `key` memungkinkan React untuk melacak posisi setiap *item* di dalam daftar bahkan jika daftar berubah.
 
