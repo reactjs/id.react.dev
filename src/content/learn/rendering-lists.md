@@ -268,7 +268,7 @@ const listItems = chemists.map(person => { // Kurung kurawal
 
 ## Menjaga urutan dengan `key` {/*keeping-list-items-in-order-with-key*/}
 
-Perhatikan bahwa setiap *sandbox* di atas menampilkan pesan kesalahan:
+Perhatikan bahwa setiap *sandbox* di atas menampilkan pesan kesalahan di konsol:
 
 <ConsoleBlock level="error">
 
@@ -380,7 +380,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 Bagaimana kalau setiap anggota senarai membutuhkan bukan hanya satu, tetapi beberapa *node* DOM?
 
-sintaksis singkat [`<>...</>` Fragment](/reference/react/Fragment) tidak memberikan tempat untuk `key`, sehingga Anda harus membungkus ke dalam sebuah `<div>` atau menggunakan [sintaksis `<Fragment>` yang lebih panjang](/reference/react/Fragment#rendering-a-list-of-fragments):
+Sintaksis singkat [`<>...</>` Fragment](/reference/react/Fragment) tidak memberikan tempat untuk `key`, sehingga Anda harus membungkus ke dalam sebuah `<div>` atau menggunakan [sintaksis `<Fragment>` yang lebih panjang](/reference/react/Fragment#rendering-a-list-of-fragments):
 
 ```js
 import { Fragment } from 'react';
@@ -399,7 +399,7 @@ Pada akhirnya, `Fragment` akan hilang dari DOM dan hanya menyisakan `<h1>`, `<p>
 
 </DeepDive>
 
-### Bagaimana Anda memperoleh `key`? {/*where-to-get-your-key*/}
+### Bagaimana Anda memperoleh `key` {/*where-to-get-your-key*/}
 
 Sumber data yang berbeda akan memberikan `key` yang berbeda juga, contoh:
 
