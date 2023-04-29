@@ -15,37 +15,37 @@ Senarai (*array*) pada JavaScript dapat berubah, tetapi ketika Anda menyimpannya
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Memperbarui senarai tanpa mutasi {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+Dalam JavaScript, senarai hanyalah salah satu jenis objek. [Sama seperti objek](/learn/updating-objects-in-state), **pada React state Anda harus memperlakukan senarai sebagai *read-only*.** Ini berarti Anda tidak boleh menetapkan ulang item di dalam senarai seperti `arr[0] = 'bird'`, dan Anda juga tidak boleh menggunakan metode yang mengubah senarai, seperti `push()` dan `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Sebagai gantinya, setiap kali Anda ingin memperbarui sebuah senarai, Anda harus mengoper senarai *baru* ke pengaturan fungsi state Anda. Untuk melakukannya, Anda bisa membuat senarai baru dari senarai asli pada state Anda dengan memanggil metode non-mutasi seperti `filter()` dan `map()`. Kemudian Anda dapat mengatur state Anda ke senarai baru yang sudah dihasilkan.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Berikut adalah tabel referensi operasi umum untuk senarai. Saat berurusan dengan senarai di dalam React state, Anda harus menghindari metode di kolom kiri, dan memilih metode di kolom kanan:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
-| --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+|                | hindari (mutasi senarai)              | pilih (menghasilkan senarai baru)                                               |
+| -------------- | ------------------------------------- | ------------------------------------------------------------------------------- |
+| menambahkan    | `push`, `unshift`                     | `concat`, `[...arr]` sintaksis penyebaran ([contoh](#adding-to-an-array))       |
+| menghapus      | `pop`, `shift`, `splice`              | `filter`, `slice` ([contoh](#removing-from-an-array))                           |
+| mengganti      | `splice`, `arr[i] = ...` *assignment* | `map` ([contoh](#replacing-items-in-an-array))                                  |
+| mengurutkan    | `reverse`, `sort`                     | menyalin senarai terlebih dahulu ([contoh](#making-other-changes-to-an-array)) |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+Atau, Anda dapat menggunakan [use Immer](#write-concise-update-logic-with-immer) yang memungkinkan Anda untuk menggunakan metode dari kedua kolom.
 
 <Pitfall>
 
-Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
+Sayangnya, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) dan [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) diberi nama yang mirip tetapi sangat berbeda:
 
-* `slice` lets you copy an array or a part of it.
-* `splice` **mutates** the array (to insert or delete items).
+* `slice` memungkinkan Anda menyalin senarai atau bagian darinya.
+* `splice` **memutasi** senarai (untuk menyisipkan atau menghapus item).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+Pada React, Anda akan lebih sering menggunakan `slice` (tanpa p!) karena Anda tidak ingin memutasi objek atau senarai pada state. [Memperbarui Objek](/learn/updating-objects-in-state) menjelaskan apa itu mutasi dan mengapa itu tidak direkomendasikan untuk state.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Menambahkan ke senarai {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` akan memutasi senarai, yang mana tidak Anda inginkan:
 
 <Sandpack>
 
@@ -60,7 +60,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Pematung yang menginspirasi:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -70,7 +70,7 @@ export default function List() {
           id: nextId++,
           name: name,
         });
-      }}>Add</button>
+      }}>Tambah</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -87,18 +87,18 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+Sebagai gantinya, buat senarai *baru* yang berisi item yang sudah ada *dan* item baru di bagian akhir. Ada beberapa cara untuk melakukan ini, tapi yang paling mudah adalah dengan menggunakan `...` sintaksis [penyebaran senarai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals):
 
 ```js
-setArtists( // Replace the state
-  [ // with a new array
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
+setArtists( // Ganti state
+  [ // dengan sebuah senarai baru
+    ...artists, // yang berisi item yang sudah ada
+    { id: nextId++, name: name } // dan item baru di bagian akhir
   ]
 );
 ```
 
-Now it works correctly:
+Sekarang sudah berfungsi dengan benar:
 
 <Sandpack>
 
@@ -113,7 +113,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Pematung yang menginspirasi:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -123,7 +123,7 @@ export default function List() {
           ...artists,
           { id: nextId++, name: name }
         ]);
-      }}>Add</button>
+      }}>Tambah</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -140,20 +140,20 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+Sintaksis penyebaran senarai juga memungkinkan Anda menambahkan item dengan menempatkannya *sebelum* item asli `...artists`:
 
 ```js
 setArtists([
   { id: nextId++, name: name },
-  ...artists // Put old items at the end
+  ...artists // Letakkan item lama di akhir
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+Dengan cara ini, penyebaran dapat melakukan `push()` dengan menambahkan ke akhir senarai dan `unshift()` dengan menambahkan ke awal senarai. Cobalah pada *sandbox* di atas!
 
-### Removing from an array {/*removing-from-an-array*/}
+### Menghapus dari senarai {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+Cara termudah untuk menghapus item dari senarai adalah dengan *memfilternya*. Dengan kata lain, Anda akan menghasilkan senarai baru yang tidak berisi item tersebut. Untuk melakukannya, gunakan metode `filter`, misalnya:
 
 <Sandpack>
 
@@ -173,7 +173,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Pematung yang menginspirasi:</h1>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>
@@ -185,7 +185,7 @@ export default function List() {
                 )
               );
             }}>
-              Delete
+              Hapus
             </button>
           </li>
         ))}
@@ -197,7 +197,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+Klik tombol "Hapus" beberapa kali, dan lihat penanganan kliknya.
 
 ```js
 setArtists(
@@ -205,13 +205,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+Di sini, `artists.filter(a => a.id !== artist.id)` berarti "buat sebuah senarai yang berisi para artis yang memiliki *ID* berbeda dari `artist.id`". Dengan kata lain, tombol "Hapus" pada setiap artis akan memfilter *artis tersebut* dari senarai, lalu meminta render ulang dengan senarai yang dihasilkan. Ingat bahwa `filter` tidak mengubah senarai asli.
 
-### Transforming an array {/*transforming-an-array*/}
+### Mengubah sebuah senarai {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+Jika Anda ingin mengubah beberapa atau semua item dari senarai, Anda dapat menggunakan `map()` untuk membuat senarai **baru**. Fungsi yang Anda berikan ke `map` dapat memutuskan apa yang harus dilakukan dengan setiap item, berdasarkan datanya atau indeksnya (atau keduanya).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+Dalam contoh ini, sebuah senarai menyimpan koordinat dua lingkaran dan sebuah persegi. Saat Anda menekan tombol, maka hanya akan menggeser lingkaran ke bawah sebanyak 50 piksel. Ini dilakukan dengan menghasilkan senarai data baru menggunakan `map()`:
 
 <Sandpack>
 
@@ -232,24 +232,24 @@ export default function ShapeEditor() {
   function handleClick() {
     const nextShapes = shapes.map(shape => {
       if (shape.type === 'square') {
-        // No change
+        // Tidak ada perubahan
         return shape;
       } else {
-        // Return a new circle 50px below
+        // Kembalikan koordinat lingkaran baru 50px ke bawah
         return {
           ...shape,
           y: shape.y + 50,
         };
       }
     });
-    // Re-render with the new array
+    // Render ulang menggunakan senarai baru
     setShapes(nextShapes);
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Move circles down!
+        Geser lingkarang ke bawah!
       </button>
       {shapes.map(shape => (
         <div
@@ -277,11 +277,11 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Mengganti item dalam senarai {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+Sangat umum untuk ingin mengganti satu atau lebih item dalam senarai. *Assignments* seperti `arr[0] = 'bird'` memutasi senarai asli, jadi sebagai gantinya gunakanlah `map`.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+Untuk mengganti item, buat senarai baru dengan `map`. Di dalam fungsi `map`, Anda akan menerima indeks item sebagai argumen kedua. Gunakan untuk memutuskan apakah akan mengembalikan item asli (argumen pertama) atau yang lainnya:
 
 <Sandpack>
 
@@ -300,10 +300,10 @@ export default function CounterList() {
   function handleIncrementClick(index) {
     const nextCounters = counters.map((c, i) => {
       if (i === index) {
-        // Increment the clicked counter
+        // Penambahan saat diklik
         return c + 1;
       } else {
-        // The rest haven't changed
+        // Sisanya tidak berubah
         return c;
       }
     });
@@ -331,11 +331,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Menyisipkan ke dalam senarai {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Terkadang, Anda mungkin ingin menyisipkan item pada posisi tertentu yang bukan di awal maupun di akhir. Untuk melakukan ini, Anda dapat menggunakan sintaksis penyebaran senarai `...` bersama dengan metode `slice()`. Metode `slice()` memungkinkan Anda untuk memotong "bagian" dari senarai. Untuk menyisipkan item, Anda akan membuat senarai yang menyebarkan "bagian" *sebelum* titik penyisipan, lalu item baru, lalu selebihnya dari senarai asli.
 
-In this example, the Insert button always inserts at the index `1`:
+Dalam contoh ini, tombol sisipkan selalu menyisipkan pada indeks `1`:
 
 <Sandpack>
 
@@ -356,13 +356,13 @@ export default function List() {
   );
 
   function handleClick() {
-    const insertAt = 1; // Could be any index
+    const insertAt = 1; // Bisa dari indeks berapa saja
     const nextArtists = [
-      // Items before the insertion point:
+      // Item sebelum titik penyisipan:
       ...artists.slice(0, insertAt),
-      // New item:
+      // Item baru:
       { id: nextId++, name: name },
-      // Items after the insertion point:
+      // Item setelah titik penyisipan:
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
@@ -371,13 +371,13 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Pematung yang menginspirasi:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
       />
       <button onClick={handleClick}>
-        Insert
+        Sisipkan
       </button>
       <ul>
         {artists.map(artist => (
@@ -395,13 +395,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Membuat perubahan lain ke senarai {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+Ada beberapa hal yang tidak dapat Anda lakukan dengan sintaksis penyebaran dan metode non-mutasi seperti `map()` dan `filter()` saja. Misalnya, Anda mungkin ingin membalikkan atau mengurutkan senarai. Metode JavaScript `reverse()` dan `sort()` memutasikan senarai asli, sehingga Anda tidak dapat menggunakannya secara langsung.
 
-**However, you can copy the array first, and then make changes to it.**
+**Namun, Anda dapat menyalin senarai terlebih dahulu, lalu mengubahnya.**
 
-For example:
+Sebagai contoh:
 
 <Sandpack>
 
@@ -427,7 +427,7 @@ export default function List() {
   return (
     <>
       <button onClick={handleClick}>
-        Reverse
+        Balik
       </button>
       <ul>
         {list.map(artwork => (
@@ -441,17 +441,17 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Di sini, Anda menggunakan sintaksis penyebaran `[...list]` untuk membuat salinan senarai asli terlebih dahulu. Sekarang setelah Anda memiliki salinannya, Anda dapat menggunakan metode mutasi seperti `nextList.reverse()` atau `nextList.sort()`, atau bahkan menetapkan item individual dengan `nextList[0] = "something"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+Namun, **meskipun Anda menyalin sebuah senarai, Anda tidak dapat mengubah item yang ada *di dalamnya* secara langsung,** Ini karena penyalinan dangkal—senarai baru akan berisi item yang sama dengan yang asli. Jadi jika Anda memodifikasi objek di dalam senarai yang disalin, Anda memutasi state yang ada. Misalnya, kode seperti ini adalah masalah.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problem: mutates list[0]
+nextList[0].seen = true; // Masalah: memutasi list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Meskipun `nextList` dan `list` adalah dua senarai yang berbeda, **`nextList[0]` dan `list[0]` menunjuk ke objek yang sama.** Jadi dengan mengubah `nextList[0].seen`, Anda juga mengubah `list[0].seen`. Ini adalah mutasi state, yang harus Anda hindari! Anda dapat mengatasi masalah ini dengan cara yang mirip dengan [memperbarui objek bersarang JavaScript](/learn/updating-objects-in-state#updating-a-nested-object)—dengan menyalin setiap item yang ingin Anda ubah alih-alih memutasinya. Begini caranya.
 
 ## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
