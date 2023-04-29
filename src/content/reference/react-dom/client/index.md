@@ -13,7 +13,7 @@ API `react-dom/client` memungkinkan Anda merender komponen React di sisi klien (
 
 ## API klien {/*client-apis*/}
 
-* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan pembuatan akar *(root)* yang digunakan untuk menampilkan komponen React di dalam simpul *(node)* DOM peramban.
+* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan untuk membuat akar *(root)* yang digunakan untuk menampilkan komponen React di dalam simpul *(node)* DOM peramban.
 * [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan untuk menampilkan komponen React di dalam simpul DOM peramban  yang telah dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
 
 ---
