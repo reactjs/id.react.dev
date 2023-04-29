@@ -501,7 +501,7 @@ input { margin: 10px; }
 
 <DeepDive>
 
-#### Bagaimana cara menangguhkan nilai bekerja di bawah terpal? {/*how-does-deferring-a-value-work-under-the-hood*/}
+#### Bagaimana menangguhkan nilai bekerja dibalik layar? {/*how-does-deferring-a-value-work-under-the-hood*/}
 
 Anda dapat menganggapnya terjadi dalam dua langkah:
 
