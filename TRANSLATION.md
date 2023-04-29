@@ -69,7 +69,7 @@ Langkah-langkah untuk membuat *Draft Pull Request*:
 #### Pemberian deskripsi *pull request*
 
 Agar *pull request* dapat berkaitan dengan *issue*, ada 1 syarat teks yang
-harus dimasukkan ke dalam deskripsinya. Harap pastikan Anda menyebutkan nomor
+harus dimasukkan ke dalam deskripsinya, yakni dengan format `Closes #nomor-issue`. Harap pastikan Anda menyebutkan nomor
 *issue* yang Anda kerjakan dengan benar. Ubah teks `<!-- mention the issue that you're trying to close with this PR -->` yang disediakan dari *template*
 menjadi nomor *issue*. Contoh:
 
@@ -78,5 +78,6 @@ Closes #318
 
 ## Description
 
-Update **`Start working on Issues`** section with clearer instructions on getting ready to work on an issue.
+Translate <page-name> page.
+Page URL: https://id.react.dev/<path-to-the-page>
 ```
