@@ -13,7 +13,7 @@ Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan
 - Cara membuat dan menyarangkan (*nest*) komponen-komponen
 - Cara menambahkan *markup* dan penggayaan (*styles*)
 - Cara menampilkan data
-- Cara me-render kondisi dan daftar (*lists*)
+- Cara me-*render* kondisi dan daftar (*lists*)
 - Cara merespons *events* dan memperbarui layar
 - Cara berbagi data antar komponen
 
