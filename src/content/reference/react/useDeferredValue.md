@@ -40,21 +40,21 @@ function SearchPage() {
 
 #### Returns {/*returns*/}
 
-Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba rerender dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba rerender lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
+Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
 
 #### Caveats {/*caveats*/}
 
-- Nilai yang Anda teruskan ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar rendering. Jika Anda membuat objek baru selama perenderan dan langsung meneruskannya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan rerender latar belakang yang tidak perlu.
+- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar rendering. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
-- Ketika `useDeferredValue` menerima nilai yang berbeda (dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), di selain render saat ini (ketika masih menggunakan nilai sebelumnya), ia menjadwalkan rerender di latar belakang dengan nilai baru. rerender latar belakang dapat diinterupsi: jika ada pembaruan lain pada `value`, React akan memulai ulang rerender latar belakang dari awal. Misalnya, jika pengguna mengetik input lebih cepat daripada bagan yang menerima nilai yang ditangguhkan dapat rerender, bagan hanya akan rerender setelah pengguna berhenti mengetik.
+- Ketika `useDeferredValue` menerima nilai yang berbeda (dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), di selain render saat ini (ketika masih menggunakan nilai sebelumnya), ia menjadwalkan render ulang di latar belakang dengan nilai baru. Render ulang latar belakang dapat diinterupsi: jika ada pembaruan lain pada `value`, React akan memulai lagi render ulang latar belakang dari awal. Misalnya, jika pengguna mengetik input lebih cepat daripada bagan yang menerima nilai yang ditangguhkan dapat render ulang, bagan hanya akan render ulang setelah pengguna berhenti mengetik.
 
 - `useDeferredValue` terintegrasi dengan [`<Suspense>`.](/reference/react/Suspense) Jika update latar belakang yang disebabkan oleh nilai baru menangguhkan UI, pengguna tidak akan melihat fallback. Mereka akan melihat nilai ditangguhkan yang lama hingga data dimuat.
 
 - `useDeferredValue` tidak dengan sendirinya mencegah permintaan jaringan tambahan.
 
-- Tidak ada penundaan tetap yang disebabkan oleh `useDeferredValue` itu sendiri. Segera setelah React menyelesaikan rerender asli, React akan segera mulai mengerjakan rerender latar belakang dengan nilai baru yang ditangguhkan. Pembaruan apa pun yang disebabkan oleh peristiwa (seperti mengetik) akan mengganggu rerender latar belakang dan mendapatkan prioritas di atasnya.
+- Tidak ada penundaan tetap yang disebabkan oleh `useDeferredValue` itu sendiri. Segera setelah React menyelesaikan render ulang asli, React akan segera mulai mengerjakan render ulang latar belakang dengan nilai baru yang ditangguhkan. Pembaruan apa pun yang disebabkan oleh peristiwa (seperti mengetik) akan mengganggu render ulang latar belakang dan mendapatkan prioritas di atasnya.
 
-- rerender latar belakang yang disebabkan oleh `useDeferredValue` tidak mengaktifkan Efek hingga diterapkan ke layar. Jika rerender latar belakang ditangguhkan, Efeknya akan berjalan setelah data dimuat dan pembaruan UI.
+- Render ulang latar belakang yang disebabkan oleh `useDeferredValue` tidak mengaktifkan Efek hingga diterapkan ke layar. Jika render ulang latar belakang ditangguhkan, Efeknya akan berjalan setelah data dimuat dan pembaruan UI.
 
 ---
 
@@ -76,7 +76,7 @@ function SearchPage() {
 
 Selama render awal, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan sama dengan <CodeStep step={1}>nilai</CodeStep> yang Anda berikan.
 
-Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "tertinggal" dari <CodeStep step={1}>nilai</CodeStep> terbaru. Secara khusus, React pertama-tama akan rerender *tanpa* memperbarui nilai yang ditangguhkan, dan kemudian mencoba rerender dengan nilai yang baru diterima di latar belakang.
+Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "tertinggal" dari <CodeStep step={1}>nilai</CodeStep> terbaru. Secara khusus, React pertama-tama akan render ulang *tanpa* memperbarui nilai yang ditangguhkan, dan kemudian mencoba render ulang dengan nilai yang baru diterima di latar belakang.
 
 **Mari telusuri contoh untuk melihat kapan ini berguna.**
 
@@ -505,7 +505,7 @@ input { margin: 10px; }
 
 Anda dapat menganggapnya terjadi dalam dua langkah:
 
-1. **Pertama, React me-render ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
+1. **Pertama, React merender ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
 
 2. **Di latar belakang, React mencoba merender ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya rendering ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
