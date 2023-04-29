@@ -4,7 +4,7 @@ title: unmountComponentAtNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+API ini akan dihapus pada mayor versi berikutnya.
 
 In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
 
