@@ -103,7 +103,7 @@ Berikut adalah langkah-langkah cara kerja:
 
 1. `Tooltip` di-*render* dengan menginisialisasi nilai `tooltipHeight = 0` (Sehingga, memungkinkan *tooltip* berada di posisi yang salah).
 2. React menempatkannya di DOM dan menjalankan kode di `useLayoutEffect`.
-3. `useLayoutEffect`[mengukur tinggi](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) konten `tooltip` dan akan segera memicu *re-render*.
+ 3. `useLayoutEffect`[mengukur tinggi](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) konten `tooltip` dan akan segera memicu *render* ulang.
 4. `Tooltip` di-*render* ulang dengan nilai `tooltipHeight` yang sebenarnya (sehingga *tooltip* berada di posisi yang benar).
 5. React memperbarui DOM dan akhirnya peramban menampilkan *tooltip* tersebut.
 
