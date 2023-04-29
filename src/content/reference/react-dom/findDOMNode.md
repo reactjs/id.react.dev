@@ -4,7 +4,7 @@ title: findDOMNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+API ini akan dihapus pada mayor versi berikutnya. [See the alternatives.](#alternatives)
 
 </Deprecated>
 
