@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Intro>
 
-`useSyncExternalStore` adalah sebuah *hook* React yang membiarkan Anda berlangganan ke penyimpanan eksternal.
+`useSyncExternalStore` adalah sebuah *hook* React yang membiarkan Anda berlangganan ke tempat penyimpanan eksternal.
 
 ```js
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -20,7 +20,7 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Panggil `useSyncExternalStore` di tingkat paling atas dari komponen Anda untuk membaca sebuah nilai dari tempat penyimpanan data eksternal.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -32,36 +32,36 @@ function TodosApp() {
 }
 ```
 
-It returns the snapshot of the data in the store. You need to pass two functions as arguments:
+*Hook* ini mengembalikan sebuah *snapshot* dari data yang ada di tempat penyimpanan. Anda harus memberikan dua fungsi sebagai argumen:
 
-1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
-2. The `getSnapshot` function should read a snapshot of the data from the store.
+1. Fungsi `subscribe` harus berlangganan ke tempat penyimpanan dan mengembalikan fungsi untuk berhenti berlangganan.
+2. Fungsi `getSnapshot` harus membaca sebuah *snapshot* dari data yang ada di tempat penyimpanan.
 
-[See more examples below.](#usage)
+[Lihat contoh yang ada di bawah.](#usage)
 
 #### Parameter {/*parameters*/}
 
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+* `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan melanggankan itu ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
 
-* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React re-renders the component.
+* `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data yang dibutuhkan komponen yang berada di tempat penyimpanan. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
 
-* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If you omit this argument, rendering the component on the server will throw an error.
+* **opsional** `getServerSnapshot`: Sebuah fungsi yang mengembalikan *snapshot* awal dari data yang ada di tempat penyimpanan. *Snapshot* hanya akan digunakan saat proses *render* dilakukan oleh server dan saat hidrasi konten yang telah di-*render* oleh server ke klien. *Snapshot* server harus sama antara klien dan server, dan biasanya diserialisasi dan diserahkan dari server ke klien. Jika Anda mengabaikan argumen ini, proses *render* komponen di server akan memunculkan kesalahan.
 
 #### Kembalian {/*returns*/}
 
-The current snapshot of the store which you can use in your rendering logic.
+*Snapshot* saat ini dari tempat penyimpanan yang dapat Anda gunakan di logika *render* Anda.
 
 #### Perhatian {/*caveats*/}
 
-* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+* *Snapshot* tempat penyimpanan yang dikembalikan `getSnapshot` tidak boleh bisa dimutasi. Jika tempat penyimpanan mengandung data yang dapat dimutasi, Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi saat data berubah. Jika data tidak berubah, Anda dapat mengembalikan *snapshot* terakhir yang sudah di-*cache*.
 
-* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
+* Jika fungsi `subscribe` yang berbeda diberikan saat *render* ulang, React akan berlangganan ulang ke tempat penyimpanan menggunakan fungsi `subscribe` yang baru. Anda bisa menghindari ini dengan mendeklarasi `subscribe` di luar komponen.
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-### Berlangganan ke penyimpanan eksternal {/*subscribing-to-an-external-store*/}
+### Berlangganan ke tempat penyimpanan eksternal {/*subscribing-to-an-external-store*/}
 
 Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
 
