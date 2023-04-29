@@ -27,13 +27,13 @@ Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dima
 
 #### Props {/*props*/}
 
-- **opsional** `key`: *Fragment* yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [*key*.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- `key` **opsional**: *Fragment* yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Peringatan {/*caveats*/}
 
-- Jika Anda ingin oper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan *render* `<Fragment key={yourKey}>...</Fragment>`.
+- Jika Anda ingin mengoper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan merender `<Fragment key={yourKey}>...</Fragment>`.
 
-- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda *rendering* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda *rendering* `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [disini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda merender dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda merender `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [disini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
@@ -111,7 +111,7 @@ function Post() {
 }
 ```
 
-Biasanya Anda tidak memerlukan cara ini kecuali Anda perlu [oper `key` ke `Fragment` Anda.](#rendering-a-list-of-fragments)
+Biasanya Anda tidak memerlukan cara ini kecuali Anda perlu [mengoper `key` ke `Fragment` Anda.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
@@ -119,7 +119,7 @@ Biasanya Anda tidak memerlukan cara ini kecuali Anda perlu [oper `key` ke `Fragm
 
 ### Menentukan banyak elemen ke variabel {/*assigning-multiple-elements-to-a-variable*/}
 
-Seperti komponen yang lain, Anda bisa menentukan elemen *Fragment* ke variabel, dan oper mereka sebagai *props*, dan seterusnya:
+Seperti komponen yang lain, Anda bisa menentukan elemen *Fragment* ke variabel, dan mengoper mereka sebagai *props*, dan seterusnya:
 
 ```js
 function CloseDialog() {
