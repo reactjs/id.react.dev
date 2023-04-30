@@ -934,7 +934,7 @@ export default SlowList;
 
 <Pitfall>
 
-Optimalisasi ini membutuhkan `SlowList` untuk dibungkus dengan [`memo`.](/reference/react/memo) Hal ini karena setiap kali `text` berubah, React harus dapat merender ulang komponen induk dengan cepat. Selama perenderan ulang itu, `deferredText` masih memiliki nilai sebelumnya, jadi `SlowList` dapat melewati perenderan ulang (propnya tidak berubah). Tanpa [`memo`,](/reference/react/memo) itu harus dirender ulang, mengalahkan poin pengoptimalan.
+Optimalisasi ini membutuhkan `SlowList` untuk dibungkus dengan [`memo`.](/reference/react/memo) Hal ini karena setiap kali `text` berubah, React harus dapat me-*render* ulang komponen induk dengan cepat. Selama pe-*render*-an ulang itu, `deferredText` masih memiliki nilai sebelumnya, jadi `SlowList` dapat melewati pe-*render*-an ulang (propnya tidak berubah). Tanpa [`memo`,](/reference/react/memo) itu harus di-*render* ulang, mengalahkan poin pengoptimalan.
 
 </Pitfall>
 
