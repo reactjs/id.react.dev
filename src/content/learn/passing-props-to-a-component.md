@@ -1,5 +1,5 @@
 ---
-title: Mengoper Props kepada Komponen
+title: Mengoper Props ke Komponen
 ---
 
 <Intro>
