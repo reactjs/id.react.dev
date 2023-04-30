@@ -16,7 +16,7 @@ komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<textarea>` {/*textarea*/}
 
@@ -53,7 +53,7 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): Sebuah bilangan. Menentukan panjang maksimum teks.
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): Sebuah bilangan. Menentukan panjang minimum teks.
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada input yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
-* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap tombol ditekan). Berperilaku seperti [event `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
+* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap penekanan tombol). Berperilaku seperti [event `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`: Sebuah versi `onChange` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
 * `onInputCapture`: Sebuah versi `onInput` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
@@ -63,9 +63,9 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 * `onSelectCapture`: Sebuah versi `onSelect` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): Sebuah string. Ditampilkan dalam warna redup ketika nilai area teks kosong.
 * [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): Sebuah boolean. Jika `true`, area teks tidak dapat diubah oleh pengguna.
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): Sebuah boolean. Jika `true`, nilainya harus tersedia di formulir yang akan dikirim.
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): Sebuah boolean. Jika `true`, nilai harus disediakan agar formulir dapat terkirim.
 * [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): Sebuah bilangan. Menentukan tinggi bawaaan pada rata-rata tinggi karakter. Nilai bawaaan adalah `2`.
-* [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): Nilainya `'hard'`, `'soft'`, atau `'off'`. Menentukan bagaimana suatu teks perlu dibungkus ketika mengirimkan formulir.
+* [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): Nilainya `'hard'`, `'soft'`, atau `'off'`. Menentukan bagaimana suatu teks akan dibungkus ketika mengirimkan formulir.
 
 #### Caveats {/*caveats*/}
 
@@ -73,15 +73,15 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 - Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
 - Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
 - Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
-- Setiap area teks terkendali membutuhkan sebuah `onChange` *event handler* yang mengubah nilai pendukungnya secara sinkronis.
+- Setiap area teks terkendali membutuhkan sebuah *event handler* `onChange` yang memperbarui nilai pendukungnya secara sinkronis.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Displaying a text area {/*displaying-a-text-area*/}
+### Menampilkan sebua area teks {/*displaying-a-text-area*/}
 
-Render `<textarea>` to display a text area. You can specify its default size with the [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) and [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols) attributes, but by default the user will be able to resize it. To disable resizing, you can specify `resize: none` in the CSS.
+*Render* `<textarea>` untuk menampilkan sebuah area teks. Kamu dapat menentukan ukuran bawaanya dengan atribut [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) dan [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols), tapi secara bawaan user dapat mengubah ukurannya. Untuk menonaktifkan pengubahan ukuran, kamu dapat menentukan `resize: none` di dalam CSS.
 
 <Sandpack>
 
@@ -89,7 +89,7 @@ Render `<textarea>` to display a text area. You can specify its default size wit
 export default function NewPost() {
   return (
     <label>
-      Write your post:
+      Tulis publikasi Anda:
       <textarea name="postContent" rows={4} cols={40} />
     </label>
   );
@@ -107,11 +107,11 @@ label, textarea { display: block; }
 
 ---
 
-### Providing a label for a text area {/*providing-a-label-for-a-text-area*/}
+### Menyediakan sebuah label untuk sebuah area teks {/*providing-a-label-for-a-text-area*/}
 
-Typically, you will place every `<textarea>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that text area. When the user clicks the label, the browser will focus the text area. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the text area.
+Umumnya, Anda akan meletakkan setiap `<textarea>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberitahu suatu peramban apabila label ini berkaitan dengan area teks tertentu. Ketika pengguna mengeklik label tersebut, peramban akan memfokuskan area teks. Hal ini juga diperlukan untuk aksesbilitas: sebuah layar pembaca akan memberitahu keterangan label ketika pengguna memfokuskan area teks tertentu.
 
-If you can't nest `<textarea>` into a `<label>`, associate them by passing the same ID to `<textarea id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat meletakkan `<textarea>` di dalam sebuah `<label>`, hubungkanlah mereka dengan memberikan ID yang sama kepada `<textarea id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) untuk menghindari konflik antara *instances* pada satu komponen, buatlah sebuah ID dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -123,7 +123,7 @@ export default function Form() {
   return (
     <>
       <label htmlFor={postTextAreaId}>
-        Write your post:
+        Tulis publikasi Anda:
       </label>
       <textarea
         id={postTextAreaId}
@@ -144,9 +144,9 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for a text area {/*providing-an-initial-value-for-a-text-area*/}
+### Menyediakan sebuah nilai awal pada sebuah area teks {/*providing-an-initial-value-for-a-text-area*/}
 
-You can optionally specify the initial value for the text area. Pass it as the `defaultValue` string.
+Kamu dapat menentukan nilai awal pada suatu area teks secara opsional. Untuk memberikan nilai awal, gunakan `defaultValue` dengan tipe string.
 
 <Sandpack>
 
@@ -154,7 +154,7 @@ You can optionally specify the initial value for the text area. Pass it as the `
 export default function EditPost() {
   return (
     <label>
-      Edit your post:
+      Ubah publikasi anda:
       <textarea
         name="postContent"
         defaultValue="I really enjoyed biking yesterday!"
@@ -177,31 +177,31 @@ label, textarea { display: block; }
 
 <Pitfall>
 
-Unlike in HTML, passing initial text like `<textarea>Some content</textarea>` is not supported.
+Tidak seperti HTML, memberikan teks awal seperti `<textarea>Some content</textarea>` tidak didukung.
 
 </Pitfall>
 
 ---
 
-### Reading the text area value when submitting a form {/*reading-the-text-area-value-when-submitting-a-form*/}
+### Membaca nilai area teks ketika mengirimkan sebuah formulir {/*reading-the-text-area-value-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your textarea with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Tambahkan sebuah [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) mengelilingi area teks Anda dengan sebuah [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Tombol itu akan memanggil `<form onSubmit>` *event handler* Anda. Secara *default*, peramban akan mengirimkan data formulir kepada URL saat ini dan memuat ulang halaman. Anda dapat mengesampingkan perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data formulir dengan menggunakan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
 export default function EditPost() {
   function handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    // Mencegah peramban dari memuat ulang halaman
     e.preventDefault();
 
-    // Read the form data
+    // Membaca data formulir
     const form = e.target;
     const formData = new FormData(form);
 
-    // You can pass formData as a fetch body directly:
+    // Anda dapat mengirimakn *formData* sebagai *fetch body* secara langsung:
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Or you can work with it as a plain object:
+    // Atau anda dapat menggunakannya sebagai objek sederhana:
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -212,7 +212,7 @@ export default function EditPost() {
         Post title: <input name="postTitle" defaultValue="Biking" />
       </label>
       <label>
-        Edit your post:
+        Ubah publikasi Anda:
         <textarea
           name="postContent"
           defaultValue="I really enjoyed biking yesterday!"
@@ -221,8 +221,8 @@ export default function EditPost() {
         />
       </label>
       <hr />
-      <button type="reset">Reset edits</button>
-      <button type="submit">Save post</button>
+      <button type="reset">Atur ulang suntingan</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -237,38 +237,38 @@ input { margin: 5px; }
 
 <Note>
 
-Give a `name` to your `<textarea>`, for example `<textarea name="postContent" />`. The `name` you specified will be used as a key in the form data, for example `{ postContent: "Your post" }`.
+Berikan sebuah `name` kepada `<textarea>` Anda, misalkan `<textarea name="postContent" />`. `name` yang Anda tetapkan akan digunakan sebagai sebuah *key* di dalam data formulir, misalkan `{ postContent: "Your post" }`.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Secara *default*, *setiap* `<button>` yang berada di dalam sebuah `<form>` akan mengirimkan data formulir tersebut. Ini bisa mengejutkan! Jika Anda mempunyai kustom komponen React `Button` Anda sendiri, pertimbangkanlah untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) daripada `<button>`. Kemudian, supaya menjadi eksplisit, gunakan `<button type="submit">` untuk tombol-tombol yang seharusnya digunakan untuk mengirimkan formulir.
 
 </Pitfall>
 
 ---
 
-### Controlling a text area with a state variable {/*controlling-a-text-area-with-a-state-variable*/}
+### Mengendalikan sebuah area teks dengan sebuah variabel state {/*controlling-a-text-area-with-a-state-variable*/}
 
-A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-a-text-area) like `<textarea defaultValue="Initial text" />`, your JSX only specifies the initial value, not the value right now.
+Sebuah area teks seperti `<textarea />` bersifat *tak terkendali.* Meskipun jika Anda [memberikan sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
 
-**To render a _controlled_ text area, pass the `value` prop to it.** React will force the text area to always have the `value` you passed. Typically, you will control a text area by declaring a [state variable:](/reference/react/useState)
+**Untuk *render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, kamu akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function NewPost() {
-  const [postContent, setPostContent] = useState(''); // Declare a state variable...
+  const [postContent, setPostContent] = useState(''); // Mendeklarasi sebuah variabel state...
   // ...
   return (
     <textarea
-      value={postContent} // ...force the input's value to match the state variable...
-      onChange={e => setPostContent(e.target.value)} // ... and update the state variable on any edits!
+      value={postContent} // ...memaksa nilai dari input untuk mencocokan variabel state...
+      onChange={e => setPostContent(e.target.value)} // ... dan memperbarui variabel state di setiap pengeditan!
     />
   );
 }
 ```
 
-This is useful if you want to re-render some part of the UI in response to every keystroke.
+Hal ini berguna jika Anda ingin mengulang *render* di beberapa bagian UI sebagai bentuk tanggapan di setiap penekanan tombol.
 
 <Sandpack>
 
@@ -281,7 +281,7 @@ export default function MarkdownEditor() {
   return (
     <>
       <label>
-        Enter some markdown:
+        Masukkan beberapa markdown:
         <textarea
           value={postContent}
           onChange={e => setPostContent(e.target.value)}
@@ -330,7 +330,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to type into the text area.** When you control an text area by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the text area after every keystroke back to the `value` that you specified.
+**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkronis selama *event handler* `onChange`, React akan mengembalikan area teks setelah setiap penekanan tombol ke `value` yang Anda berikan sebelumnya.
 
 </Pitfall>
 
