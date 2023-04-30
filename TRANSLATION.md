@@ -12,7 +12,7 @@ Semua referensi mengenai penerjemahan terletak di [bagian Wiki](https://github.c
 
 Apabila Anda ingin mendikusikan apapun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
 
-## Menyunting Konten Secara Lokal
+## Menyunting konten secara lokal
 
 Untuk menjalankan situs id.react.dev secara lokal, ikuti langkah-langkah berikut:
 
@@ -22,9 +22,9 @@ Untuk menjalankan situs id.react.dev secara lokal, ikuti langkah-langkah berikut
 4. Jalankan `yarn dev` untuk menjalankan *server* lokal.
 5. Buka alamat `localhost:3000` dalam peramban web Anda.
 
-Konten dari situs id.react.dev terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
+Konten dari situs id.react.dev terdapat dalam folder `src/content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
 
-## Klaim Halaman Supaya Tidak Ada Pekerjaan Ganda
+## Klaim halaman supaya tidak ada pekerjaan ganda
 
 Proses penerjemahan akan dilacak dalam *issue* https://github.com/reactjs/id.react.dev/issues/330. Pastikan Anda telah meng-klaim halaman yang ingin Anda terjemahkan supaya tidak terjadi pekerjaan ganda.
 

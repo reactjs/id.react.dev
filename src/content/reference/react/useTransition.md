@@ -126,7 +126,7 @@ function TabContainer() {
 
 Transisi akan memungkinkan Anda untuk mempertahankan perubahan tampilan pengguna secara responsif bahkan untuk perangkat lambat.
 
-Dengan transisi, UI Anda akan tetap responsif di tengah-tengah merender ulang. Contohnya, jika pengguna menekan tab namun mereka berubah pikiran dan menekan tab lain, mereka dapat melakukan itu tanpa menunggu muat ulang pertama selesai.
+Dengan transisi, UI Anda akan tetap responsif di tengah-tengah me-*render* ulang. Contohnya, jika pengguna menekan tab namun mereka berubah pikiran dan menekan tab lain, mereka dapat melakukan itu tanpa menunggu muat ulang pertama selesai.
 
 <Recipes titleText="Perbedaan antara useTransition dan perubahan state biasa" titleId="examples">
 
@@ -273,7 +273,7 @@ b { display: inline-block; margin-right: 10px; }
 
 Pada contoh berikut, tab "Posts" juga **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*. Berbeda dengan contoh sebelumnya, perubahan *state* ini **bukanlah sebuah transisi.**
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan *state* ini bukanlah sebuah transisi, sehingga merender ulang yang lambat membekukan tampilan pengguna.
+Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan *state* ini bukanlah sebuah transisi, sehingga me-*render* ulang yang lambat membekukan tampilan pengguna.
 
 <Sandpack>
 
@@ -1116,7 +1116,7 @@ function Router() {
 
 Ini direkomendasikan karena dua alasan:
 
-- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu merender ulang selesai.
+- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu me-*render* ulang selesai.
 - [Transisi mencegah indikator loading yang tidak diinginkan,](#preventing-unwanted-loading-indicators) yang memungkinkan pengguna menghindari lompatan menggelegar pada navigasi.
 
 Berikut adalah contoh router kecil sederhana menggunakan transisi untuk navigasi.
