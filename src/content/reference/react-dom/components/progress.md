@@ -4,7 +4,7 @@ title: "<progress>"
 
 <Intro>
 
-[Komponen `<progress>` bawaan browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) memungkinkan Anda untuk menampilkan indikator progres.
+[Komponen `<progress>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) memungkinkan Anda untuk menampilkan indikator progres.
 
 ```js
 <progress value={0.5} />
@@ -20,7 +20,7 @@ title: "<progress>"
 
 ### `<progress>` {/*progress*/}
 
-Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress).
+Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress).
 
 ```js
 <progress value={0.5} />
@@ -34,7 +34,7 @@ Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan browse
 
 Selain itu, `<progress>` juga mendukung *props*:
 
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): Sebuah angka. Menentukan nilai maksimum `value`. Default ke `1`.
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): Sebuah angka. Menentukan nilai maksimum `value`. *Default* ke `1`.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): Angka antara `0` and `max`, atau `null` untuk progress menengah. Menentukan berapa banyak yang telah dilakukan.
 
 ---
@@ -43,7 +43,7 @@ Selain itu, `<progress>` juga mendukung *props*:
 
 ### Mengontrol indikator progres {/*controlling-a-progress-indicator*/}
 
-Untuk menampilkan indikator progres, render komponen `<progress>`. Anda dapat memberikan nilai `value` antara `0` dan nilai `max` yang anda tentukan. Jika Anda tidak memberikan nilai `max`, nilai tersebut akan dianggap sebagai `1` secara default.
+Untuk menampilkan indikator progres, render komponen `<progress>`. Anda dapat memberikan nilai `value` antara `0` dan nilai `max` yang anda tentukan. Jika Anda tidak memberikan nilai `max`, nilai tersebut akan dianggap sebagai `1` secara *default*.
 
 Jika operasi tidak sedang berlangsung, berikan `value={null}` untuk mendapatkan indikator progress ke status tidak tentu.
 
