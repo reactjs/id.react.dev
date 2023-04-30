@@ -17,7 +17,7 @@ Ketika Anda ingin sebuah komponen untuk "mengingat" beberapa informasi, tetapi A
 
 </YouWillLearn>
 
-## Menambahkan *ref* pada komponen Anda {/*adding-a-ref-to-your-component*/}
+## Menambahkan sebuah *ref* pada komponen Anda {/*adding-a-ref-to-your-component*/}
 
 Anda dapat menambahkan sebuah *ref* ke komponen dengan mengimpor `useRef` *Hook* dari React:
 
