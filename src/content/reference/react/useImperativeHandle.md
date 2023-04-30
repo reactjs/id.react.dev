@@ -80,7 +80,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Perlu dicatat bahwa dalam kode diatas, `ref` tidak lagi diteruskan kepada `<input>`.
+Perlu dicatat bahwa dalam kode di atas, `ref` tidak lagi diteruskan kepada `<input>`.
 
 For example, suppose you don't want to expose the entire `<input>` DOM node, but you want to expose two of its methods: `focus` and `scrollIntoView`. To do this, keep the real browser DOM in a separate ref. Then use `useImperativeHandle` to expose a handle with only the methods that you want the parent component to call:
 
