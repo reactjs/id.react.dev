@@ -586,7 +586,7 @@ Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahk
 ### Saya menerima pesan kesalahan: "Komponen sedang mengubah masukan yang tidak terkontrol menjadi dikontrol" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-Jika Anda memberikan `value` ke komponen, komponen tersebut harus tetap berupa string selama masa pakainya.
+Jika Anda memberikan `value` ke komponen, `value` tersebut harus tetap berupa string selama masa pakainya.
 
 Anda tidak dapat mengoper `value={undefined}` terlebih dahulu dan kemudian meneruskan `value="some string"` karena React tidak akan tahu apakah Anda ingin komponen tidak dikontrol atau dikontrol. Komponen yang dikontrol harus selalu menerima string `value`, bukan `null` atau `undefined`.
 
