@@ -73,7 +73,7 @@ Perhatikan bahwa **komponen tidak di-*render* ulang setiap kali nilai pada *ref*
 
 ## Contoh: Membangun *stopwatch* {/*example-building-a-stopwatch*/}
 
-Anda dapat menggabungkan *refs* dan *state* dalam satu komponen. Sebagai contoh, mari buat *stopwatch* yang dapat dijalankan atau dihentikan oleh pengguna dengan menekan tombol. Untuk menampilkan berapa waktu yang telah berlalu sejak pengguna menekan tombol "Mulai", Anda perlu melacak kapan tombol "Mulai" ditekan dan waktu saat ini. **Informasi ini digunakan untuk *rendering*, sehingga Anda akan menyimpannya dalam *state*:**
+Anda dapat menggabungkan *refs* dan *state* dalam satu komponen. Sebagai contoh, mari buat *stopwatch* yang dapat dijalankan atau dihentikan oleh pengguna dengan menekan sebuah tombol. Untuk menampilkan berapa waktu yang telah berlalu sejak pengguna menekan tombol "Mulai", Anda perlu melacak kapan tombol "Mulai" ditekan dan waktu saat ini. **Informasi ini digunakan untuk *rendering*, sehingga Anda akan menyimpannya dalam *state*:**
 
 ```js
 const [startTime, setStartTime] = useState(null);
