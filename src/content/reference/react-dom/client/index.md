@@ -1,17 +1,17 @@
 ---
-title: API klien React DOM
+title: API Klien React DOM
 ---
 
 <Intro>
 
 
-API `react-dom/client` memungkinkan Anda merender komponen React di sisi klien (di peramban). Biasanya API ini digunakan pada level atas aplikasi React untuk menginisialisasi pohon React. Sebuah [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) mungkin memanggilnya untuk Anda. Biasanya komponen Anda tidak perlu mengimpor atau menggunakannya.
+API `react-dom/client` memungkinkan Anda me-*render* komponen React di sisi klien (di peramban). Biasanya API ini digunakan pada level atas aplikasi React untuk menginisialisasi pohon React. Sebuah [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) mungkin memanggilnya untuk Anda. Biasanya komponen Anda tidak perlu mengimpor atau menggunakannya.
 
 </Intro>
 
 ---
 
-## API klien {/*client-apis*/}
+## API Klien {/*client-apis*/}
 
 * [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan untuk membuat akar *(root)* yang digunakan untuk menampilkan komponen React di dalam simpul *(node)* DOM peramban.
 * [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan untuk menampilkan komponen React di dalam simpul DOM peramban  yang telah dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
