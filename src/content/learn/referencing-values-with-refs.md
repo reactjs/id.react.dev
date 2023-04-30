@@ -120,7 +120,7 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-Ketika tombol "Berhenti" ditekan, Anda perlu membatalkan *interval* yang ada sehingga berhenti memperbarui nilai dari variabel *state* `now`. Anda dapat melakukannya dengan memanggil [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), tetapi Anda harus memberikan *interval ID* yang sebelumnya dikembalikan oleh pemanggilan `setInterval` saat pengguna menekan "Mulai". Anda perlu menyimpan *interval ID* tersebut di suatu tempat. **Karena *interval ID* tidak digunakan untuk *rendering*, Anda dapat menyimpannya dalam *ref***:
+Ketika tombol "Berhenti" ditekan, Anda perlu membatalkan *interval* yang ada sehingga komponen tersebut berhenti memperbarui nilai dari *state* `now`. Anda dapat melakukannya dengan memanggil [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), tetapi Anda harus memberikan *interval ID* yang sebelumnya dikembalikan oleh pemanggilan `setInterval` saat pengguna menekan "Mulai". Anda perlu menyimpan *interval ID* tersebut di suatu tempat. **Karena *interval ID* tidak digunakan untuk *rendering*, Anda dapat menyimpannya dalam *ref***:
 
 <Sandpack>
 
