@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda merender berbagai jenis masukan form.
+Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda me-*render* berbagai jenis masukan form.
 
 ```js
 <input />
@@ -416,9 +416,9 @@ p { font-weight: bold; }
 
 ### Mengoptimalkan rendering ulang pada setiap penekanan tombol {/*optimizing-re-rendering-on-every-keystroke*/}
 
-Ketika Anda menggunakan masukan terkontrol, Anda mengatur state pada setiap penekanan tombol. Jika komponen yang berisi state Anda merender ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja rendering ulang.
+Ketika Anda menggunakan masukan terkontrol, Anda mengatur state pada setiap penekanan tombol. Jika komponen yang berisi state Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja rendering ulang.
 
-Contohnya, misalkan Anda mulai dengan form yang merender ulang semua konten halaman pada setiap penekanan tombol:
+Contohnya, misalkan Anda mulai dengan form yang me-*render* ulang semua konten halaman pada setiap penekanan tombol:
 
 ```js {5-8}
 function App() {
@@ -466,7 +466,7 @@ Jika tidak ada cara untuk menghindari perenderan ulang (contohnya, jika `PageCon
 
 ### Masukan teks saya tidak diperbarui saat saya mengetiknya {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-Jika Anda merender masukan dengan `value` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
+Jika Anda me-*render* masukan dengan `value` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
 
 ```js
 // 🔴 Bug: masukan teks terkontrol tanpa handler onChange
@@ -504,7 +504,7 @@ Jika nilainya sengaja read-only, tambahkan prop `readOnly` untuk mendiamkan kesa
 
 ### Checkbox saya tidak diperbarui ketika saya mengkliknya {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-Jika Anda merender kotak checkbox dengan `checked` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
+Jika Anda me-*render* kotak checkbox dengan `checked` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
 
 ```js
 // 🔴 Bug: checkbox terkontrol tanpa handler onChange
