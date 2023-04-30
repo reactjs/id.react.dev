@@ -60,11 +60,11 @@ function useCSS(rule) {
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
+### Menyisipkan style dimanis fari pustaka CSS-in-JS {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 
-Traditionally, you would style React components using plain CSS.
+Secara tradisional, kamu dapat menata komponen-komponen React menggunakan CSS biasa.
 
 ```js
 // In your JS file:
@@ -74,28 +74,28 @@ Traditionally, you would style React components using plain CSS.
 .success { color: green; }
 ```
 
-Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS:
+Beberapa tim lebih memilih untuk menulis style secara langsung di dalam pada kode Javascript daripada menuliskan file CSS terpisah. Biasanya ini memerlukan penggunaan sebuah pustaka CSS-in-JS atau sebuah alat. Terdapat 3 pendekatan umum dalam CSS-in-JS:
 
-1. Static extraction to CSS files with a compiler
-2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`
-3. Runtime injection of `<style>` tags
+1. Ekstraksi statis ke dalam file-file CSS dengan sebuah kompiler
+2. Style *inline*, e.g. `<div style={{ opacity: 1 }}>`
+3. Injeksi *runtime* tag `<style>`
 
-If you use CSS-in-JS, we recommend a combination of the first two approaches (CSS files for static styles, inline styles for dynamic styles). **We don't recommend runtime `<style>` tag injection for two reasons:**
+Jika kamu menggunakan CC-in-JS, kami merekomendasikan sebuah kombinasi dari dua pendekatan pertama (File CSS untuk style statis, *inline* untuk style dinamis). **Kami tidak merekomendasikan injeksi *runtime* tag `<style>` karena dua alasan:**
 
-1. Runtime injection forces the browser to recalculate the styles a lot more often.
-2. Runtime injection can be very slow if it happens at the wrong time in the React lifecycle.
+1. Injeksi *runtime* memaksa browser untuk menghitung ulang style dengan lebih sering.
+2. Injeksi *runtime* bisa lebih lambat jika injeksi terjadi pada waktu yang salah pada *React lifecycle*.
 
-The first problem is not solvable, but `useInsertionEffect` helps you solve the second problem.
+Masalah pertama tidak dapat diselesaikan, tapi `useInsertionEffect` membantu Anda menyelesaikan masalah kedua.
 
-Call `useInsertionEffect` to insert the styles before any DOM mutations:
+Panggil `useInsertionEffect` untuk menyertakan sebuah style sebelum terjadinya mutasi DOM:
 
 ```js {4-11}
 // Inside your CSS-in-JS library
 let isInserted = new Set();
 function useCSS(rule) {
   useInsertionEffect(() => {
-    // As explained earlier, we don't recommend runtime injection of <style> tags.
-    // But if you have to do it, then it's important to do in useInsertionEffect.
+    // Seperti yang sudah dijelaskan sebelumnya, kami tidak merekomendasikan injeksi *runtime* dari tag <style>.
+    // Tapi jika Anda harus melakukannya, maka sangat penting untuk melakukannya di dalam useInsertionEffect.
     if (!isInserted.has(rule)) {
       isInserted.add(rule);
       document.head.appendChild(getStyleForRule(rule));
@@ -110,7 +110,7 @@ function Button() {
 }
 ```
 
-Similarly to `useEffect`, `useInsertionEffect` does not run on the server. If you need to collect which CSS rules have been used on the server, you can do it during rendering:
+Sama seperti `useEffect`, `useInsertionEffect` tidak berjalan di sisi *server*. Jika Anda ingin mengumpulkan aturan CSS yang telah digunakan pada *server*, Anda dapat melakukannya saat rendering:
 
 ```js {1,4-6}
 let collectedRulesSet = new Set();
@@ -126,14 +126,14 @@ function useCSS(rule) {
 }
 ```
 
-[Read more about upgrading CSS-in-JS libraries with runtime injection to `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
+[Baca lebih lanjut tentang memperbaharui pustaka CSS-in-JS dengan injeksi *runtime* ke `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
 
 <DeepDive>
 
-#### How is this better than injecting styles during rendering or useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
+#### Bagaimana ini bisa lebih baik daripada menyisipkan style saat render atau useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
-If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+Jika kamu menambahkan style saat rendering dan React sedang memproses [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) browser akan menghitung ulang style setiap *frame* saat me-*render* sebuah pohon (*tree*) komponen, yang dapat **sangat lambat.**
 
-`useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/reference/react/useLayoutEffect) or [`useEffect`](/reference/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
+`useInsertionEffect` lebih baik daripada menyertakan style saat [`useLayoutEffect`](/reference/react/useLayoutEffect) atau [`useEffect`](/reference/react/useEffect) karena `useInsertionEffect` memastikan pada saat efek lain berjalan di dalam komponen Anda, tag `<style>` sudah terpasang. Jika tidak, perhitungan tata letak pada efek biasa akan salah karena style yang sudah usang.
 
 </DeepDive>
