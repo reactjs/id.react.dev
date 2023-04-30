@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Intro>
 
-`useSyncExternalStore` adalah sebuah *hook* React yang membiarkan Anda berlangganan ke tempat penyimpanan eksternal.
+`useSyncExternalStore` adalah sebuah *Hook* React yang membiarkan Anda berlangganan ke tempat penyimpanan eksternal.
 
 ```js
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -37,13 +37,13 @@ function TodosApp() {
 1. Fungsi `subscribe` harus berlangganan ke tempat penyimpanan dan mengembalikan fungsi untuk berhenti berlangganan.
 2. Fungsi `getSnapshot` harus membaca sebuah *snapshot* dari data yang ada di tempat penyimpanan.
 
-[Lihat contoh yang ada di bawah.](#usage)
+[Lihat lebih banyak contoh di bawah.](#usage)
 
 #### Parameter {/*parameters*/}
 
-* `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan melanggankan itu ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
+* `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan berlangganan ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
 
-* `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data yang dibutuhkan komponen yang berada di tempat penyimpanan. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
+* `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data, di tempat penyimpanan, yang dibutuhkan komponen. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
 
 * **opsional** `getServerSnapshot`: Sebuah fungsi yang mengembalikan *snapshot* awal dari data yang ada di tempat penyimpanan. *Snapshot* hanya akan digunakan saat proses *render* dilakukan oleh server dan saat hidrasi konten yang telah di-*render* oleh server ke klien. *Snapshot* server harus sama antara klien dan server, dan biasanya diserialisasi dan diserahkan dari server ke klien. Jika Anda mengabaikan argumen ini, proses *render* komponen di server akan memunculkan kesalahan.
 
@@ -51,7 +51,7 @@ function TodosApp() {
 
 *Snapshot* saat ini dari tempat penyimpanan yang dapat Anda gunakan di logika *render* Anda.
 
-#### Perhatian {/*caveats*/}
+#### *Caveat* {/*caveats*/}
 
 * *Snapshot* tempat penyimpanan yang dikembalikan `getSnapshot` tidak boleh bisa dimutasi. Jika tempat penyimpanan mengandung data yang dapat dimutasi, Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi saat data berubah. Jika data tidak berubah, Anda dapat mengembalikan *snapshot* terakhir yang sudah di-*cache*.
 
@@ -65,7 +65,7 @@ function TodosApp() {
 
 Sebagian besar komponen React Anda akan membaca data dari [*props*](/learn/passing-props-to-a-component), [*state*](/reference/react/useState), dan [*context*](/reference/react/useContext) mereka. Walaupun begitu, kadang-kadang ada komponen yang harus membaca dari tempat penyimpanan yang ada di luar React dan berubah seiring waktu berjalan. Ini termasuk:
 
-* *Library* manajemen *state* dari pihak ketiga yang menyimpan *state* di luar React.
+* Pustaka manajemen *state* dari pihak ketiga yang menyimpan *state* di luar React.
 * API peramban yang mengekspos nilai yang dapat dimutasi dan *event* untuk berlangganan ke perubahannya.
 
 Panggil `useSyncExternalStore` di tingkat paling atas dari komponen Anda untuk membaca sebuah nilai dari tempat penyimpanan data eksternal.
@@ -87,7 +87,7 @@ Fungsi ini mengembalikan <CodeStep step={3}>*snapshot*</CodeStep> dari data yang
 
 React akan menggunakan dua fungsi ini untuk menjaga status langganan komponen Anda ke tempat penyimpanan tersebut dan me-*render* ulang saat ada perubahan.
 
-Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *hook* `useSyncExternalStore`. 
+Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *Hook* `useSyncExternalStore`. 
 
 <Sandpack>
 
@@ -150,7 +150,7 @@ function emitChange() {
 
 <Note>
 
-Di situasi yang memungkinkan, kami merekomendasikan untuk menggunakan *state* yang sudah ada di dalam React dengan menggunakan [`useState`](/reference/react/useState) dan [`useReducer`](/reference/react/useReducer). API `useSyncExternalStore` biasanya berguna jika Anda ingin mengintegrasi komponen Anda dengan kode non-React.
+Ketika memungkinkan, kami merekomendasikan untuk menggunakan *state* yang sudah ada di dalam React dengan menggunakan [`useState`](/reference/react/useState) dan [`useReducer`](/reference/react/useReducer). API `useSyncExternalStore` biasanya berguna jika Anda ingin mengintegrasi komponen Anda dengan kode non-React.
 
 </Note>
 
@@ -222,11 +222,11 @@ function subscribe(callback) {
 
 ---
 
-### Mengekstrak logika ke *hook* buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
+### Mengekstrak logika ke *Hook* buatan sendiri {/*extracting-the-logic-to-a-custom-Hook*/}
 
-Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `hook` tersebut dari `hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
+Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `Hook` tersebut dari `Hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
 
-Sebagai contoh, `hook` `useOnlineStatus` ini mengikuti apakah jaringan menyala:
+Sebagai contoh, `Hook` `useOnlineStatus` ini mengikuti apakah jaringan menyala:
 
 ```js {3,6}
 import { useSyncExternalStore } from 'react';
@@ -399,7 +399,7 @@ function ChatIndicator() {
 }
 ```
   
-React akan melanggan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
+React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
 ```js {6-9}
 function ChatIndicator() {
@@ -413,7 +413,7 @@ function subscribe() {
 }
 ```
 
-Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk melanggan ulang hanya jika beberapa argumen berubah:
+Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk berlangganan ulang hanya jika beberapa argumen berubah:
 
 ```js {4-8}
 function ChatIndicator({ userId }) {
