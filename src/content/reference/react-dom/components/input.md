@@ -148,7 +148,7 @@ input { margin: 5px; }
 
 ### Memberikan label untuk sebuah masukan {/*providing-a-label-for-an-input*/}
 
-Biasanya, Anda akan menaruh setiap `<input>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu browser bahwa label ini dikaitkan dengan masukan itu. Saat pengguna  pada label, browser akan secara otomatis memfokuskan input. Ini juga penting untuk aksesibilitas: pembaca layar akan memberitahukan keterangan label saat pengguna memfokuskan masukan terkait.
+Biasanya, Anda akan menaruh setiap `<input>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu browser bahwa label ini dikaitkan dengan masukan itu. Saat pengguna melakukan klik pada label, browser akan secara otomatis memfokuskan input. Ini juga penting untuk aksesibilitas: pembaca layar akan memberitahukan keterangan label saat pengguna memfokuskan masukan terkait.
 
 Jika Anda tidak dapat menumpuk `<input>` pada sebuah `<label>`, katikan keduanya dengan mengoper ID yang sama ke `<input id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instance dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
 
