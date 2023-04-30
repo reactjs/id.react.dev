@@ -1,5 +1,5 @@
 ---
-title: 'Mereferensikan Nilai dengan Refs'
+title: 'Mereferensikan Nilai menggunakan Refs'
 ---
 
 <Intro>
