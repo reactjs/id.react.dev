@@ -150,7 +150,7 @@ function App() {
 }
 ```
 
-Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa dalam, akan "melihat" nilai konteks yang diberikan. Jika nilai konteks yang diberikan berubah, React akan merender ulang komponen yang membaca konteks tersebut.
+Sekarang komponen `Page` dan semua komponen didalamnya, tidak peduli seberapa dalam, akan "melihat" nilai konteks yang diberikan. Jika nilai konteks yang diberikan berubah, React akan me-*render* ulang komponen yang membaca konteks tersebut.
 
 [Baca lebih lanjut tentang membaca dan memberikan konteks dan lihat contohnya.](/reference/react/useContext)
 
