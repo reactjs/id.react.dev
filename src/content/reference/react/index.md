@@ -13,7 +13,7 @@ title: "React Hook Bawaan"
 ## Hook State {/*state-hooks*/}
 
 *State* memungkinkan sebuah komponen ["mengingat" informasi seperti masukan pengguna.](/learn/state-a-components-memory) Sebagai contoh, sebuah komponen formulir dapat menggunakan *state* untuk menyimpan nilai masukan, sementara komponen gambar galeri dapat menggunakan state untuk menyimpan indeks gambar yang terpilih. 
-Untuk menambahkan state ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
+Untuk menambahkan *state* ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
 
 * [`useState`](/reference/react/useState) mendeklarasi sebuah variabel *state* yang dapat Anda perbarui secara langsung. 
 * [`useReducer`](/reference/react/useReducer) mendeklarasi sebuah variabel *state* dengan pembaruan logika dalam sebuah [fungsi reducer.](/learn/extracting-state-logic-into-a-reducer)
