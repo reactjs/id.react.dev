@@ -73,7 +73,7 @@ function Tooltip() {
 
 ### Mengukur tata letak sebelum peramban melukis ulang layar {/*measuring-layout-before-the-browser-repaints-the-screen*/}
 
-Sebagian besar komponen tidak perlu mengetahui posisi dan ukuran di layar untuk memutuskan apa yang harus dirender. Komponen hanya mengembalikan beberapa JSX. Selanjutnya, peramban akan mengukur *tata letak* (posisi dan ukuran) dan melukis ulang layar.
+Sebagian besar komponen tidak perlu mengetahui posisi dan ukuran di layar untuk memutuskan apa yang harus di-*render*. Komponen hanya mengembalikan beberapa JSX. Selanjutnya, peramban akan mengukur *tata letak* (posisi dan ukuran) dan melukis ulang layar.
 
 Terkadang, itu tidak cukup. Bayangkan sebuah *tooltip* berada di sebelah elemen tertentu saat diarahkan (*hover*). Jika ruang mencukupi, posisi *tooltip* harus berada di atas elemen tersebut. Tetapi, jika tidak cukup, posisi *tooltip* harus berada di bawah. Untuk merender *tooltip* di posisi akhir yang tepat, maka Anda harus mengetahui ketinggiannya (yaitu, apakah muat berada di atas).
 
@@ -101,10 +101,10 @@ function Tooltip() {
 
 Berikut adalah langkah-langkah cara kerja:
 
-1. `Tooltip` dirender dengan menginisialisasi nilai `tooltipHeight = 0` (Sehingga, memungkinkan *tooltip* berada di posisi yang salah).
+1. `Tooltip` di-*render* dengan menginisialisasi nilai `tooltipHeight = 0` (Sehingga, memungkinkan *tooltip* berada di posisi yang salah).
 2. React menempatkannya di DOM dan menjalankan kode di `useLayoutEffect`.
-3. `useLayoutEffect`[mengukur tinggi](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) konten `tooltip` dan akan segera memicu *re-render*.
-4. `Tooltip` dirender ulang dengan nilai `tooltipHeight` yang sebenarnya (sehingga *tooltip* berada di posisi yang benar).
+ 3. `useLayoutEffect`[mengukur tinggi](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) konten `tooltip` dan akan segera memicu *render* ulang.
+4. `Tooltip` di-*render* ulang dengan nilai `tooltipHeight` yang sebenarnya (sehingga *tooltip* berada di posisi yang benar).
 5. React memperbarui DOM dan akhirnya peramban menampilkan *tooltip* tersebut.
 
 Arahkan kursor ke tombol berikut dan perhatikan *tooltip*  menyesuaikan posisinya tergantung dari ketersediaan ruang:
@@ -251,7 +251,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Meskipun komponen `Tooltip` harus dirender dalam dua tahap (pertama, dengan nilai `tooltipHeight` diinisialisasi `0` dan ketika nilai tersebut diukur sesuai dengan tinggi sebenarnya), Anda hanya melihat hasil akhirnya. Ini sebabnya mengapa Anda menggunakan `useLayoutEffect` dibandingkan [`useEffect`](/reference/react/useEffect) untuk kasus contoh tersebut. Mari kita lihat perbedaanya secara detail di bawah ini.
+Meskipun komponen `Tooltip` harus di-*render* dalam dua tahap (pertama, dengan nilai `tooltipHeight` diinisialisasi `0` dan ketika nilai tersebut diukur sesuai dengan tinggi sebenarnya), Anda hanya melihat hasil akhirnya. Ini sebabnya mengapa Anda menggunakan `useLayoutEffect` dibandingkan [`useEffect`](/reference/react/useEffect) untuk kasus contoh tersebut. Mari kita lihat perbedaanya secara detail di bawah ini.
 
 <Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
 
@@ -720,13 +720,13 @@ Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan i
 2. Mengukur tata letak *sebelum peramban melukis ulang layar.*
 3. Merender konten akhir menggunakan informasi tata letak yang telah dibaca.
 
-Ketika Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda dirender menjadi HTML di *server* saat awal merender.   
+Ketika Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda di-*render* menjadi HTML di *server* saat awal merender.   
 
 Masalahnya, di *server* tidak tersedia informasi tentang tata letak.
 
 Pada [contoh sebelumnya](#measuring-layout-before-the-browser-repaints-the-screen), pemanggilan `useLayoutEffect` pada komponen `Tooltip` memungkinkan posisi *tooltip* disesuaikan dengan benar (antara di atas atau di bawah konten) tergantung pada ketinggian konten. Sedangkan, jika Anda mencoba merender `Tooltip` sebagai bagian dari HTML *server* awal, hal tersebut tidak mungkin dapat dilakukan. Sebab di *server* belum terdapat tata letak! Jadi, meskipun Anda merendernya di *server*, posisi *tooltip* akan "melompat" di sisi klien setelah JavaScript dimuat dan dijalankan.
 
-Biasanya, komponen yang bergantung pada informasi tata letak tidak perlu dirender di *server*. Sebagai contoh, tidak akan masuk akal untuk menampilkan `Tooltip` selama *render* awal. Karena hal tersebut dipicu oleh interaksi klien.
+Biasanya, komponen yang bergantung pada informasi tata letak tidak perlu di-*render* di *server*. Sebagai contoh, tidak akan masuk akal untuk menampilkan `Tooltip` selama *render* awal. Karena hal tersebut dipicu oleh interaksi klien.
 
 Namun, jika mengalami masalah tersebut, terdapat beberapa opsi yang tersedia:
 
