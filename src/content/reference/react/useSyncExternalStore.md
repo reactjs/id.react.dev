@@ -222,7 +222,7 @@ function subscribe(callback) {
 
 ---
 
-### Mengekstrak logika ke *Hook* buatan sendiri {/*extracting-the-logic-to-a-custom-Hook*/}
+### Mengekstrak logika ke *Hook* buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
 
 Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `Hook` tersebut dari `Hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
 
