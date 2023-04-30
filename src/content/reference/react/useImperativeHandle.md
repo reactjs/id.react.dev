@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` adalah sebuah React Hook yang memungkinkan Anda menyesuaikan penanganan yang diekspos sebagai [ref.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -16,11 +16,11 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
 
-Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
+Panggil fungsi `useImperativeHandle` di tingkat atas komponen Anda untuk mengkustomisasi penanganan yang diekspos oleh ref:
 
 ```js
 import { forwardRef, useImperativeHandle } from 'react';
@@ -38,11 +38,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### Parameters {/*parameters*/}
 
-* `ref`: The `ref` you received as the second argument from the [`forwardRef` render function.](/reference/react/forwardRef#render-function)
+* `ref`: `ref` yang Anda terima sebagai argumen ke-dua dari [fungsi render `forwardRef`.](/reference/react/forwardRef#render-function)
 
-* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
+* `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan ref yang ingin Anda ekspos. Penanganan ref tersebut dapat memiliki tipe any. Biasanya, Anda akan mengembalikan sebuah object dengan sekumpulan metode yang ingin Anda ekspos.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+* **opsional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
 
 #### Returns {/*returns*/}
 
@@ -50,7 +50,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
 ### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
