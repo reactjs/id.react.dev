@@ -49,7 +49,7 @@ Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-s
 
 * Sejak React 18, metode ini menyangga semua keluarannya, sehingga tidak memberikan keuntungan *stream* apapun .
 
-* *Stream* yang dikembalikan merupakan sebuah *byte stream* yang *encoded* dalam utf-8. Jika anda membutuhkan sebuah *stream* lain yang di-*encode*, lihatlah ke sebuah proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang memberikan transformasi *stream* untuk *transcoding* teks.
+* *Stream* yang dikembalikan merupakan sebuah *byte stream* yang *encoded* dalam *utf-8*. Jika anda membutuhkan sebuah *stream* lain yang di-*encode*, lihatlah ke sebuah proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang memberikan transformasi *stream* untuk *transcoding* teks.
 
 ---
 
