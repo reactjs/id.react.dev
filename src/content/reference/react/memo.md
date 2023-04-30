@@ -20,7 +20,7 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Bungkus komponen dengan `memo` untuk mendapatkan versi *memoized* dari komponen tersebut. Versi memo dari komponen Anda biasanya tidak akan di-*render* ulang ketika komponen induknya di-*render* ulang selama propsnya tidak berubah. Tetapi React masih bisa merender ulang: *memoisasi* adalah pengoptimalan performa, bukan jaminan.
+Bungkus komponen dengan `memo` untuk mendapatkan versi *memoized* dari komponen tersebut. Versi memo dari komponen Anda biasanya tidak akan di-*render* ulang ketika komponen induknya di-*render* ulang selama propsnya tidak berubah. Tetapi React masih bisa me-*render* ulang: *memoisasi* adalah pengoptimalan performa, bukan jaminan.
 
 ```js
 import { memo } from 'react';
@@ -36,11 +36,11 @@ const SomeComponent = memo(function SomeComponent(props) {
 
 * `Component`: Komponen yang ingin Anda buat memonya. `memo` tidak mengubah komponen ini, tetapi mengembalikan komponen baru yang telah dimemo sebagai gantinya. Setiap komponen React yang valid, termasuk fungsi dan [`forwardRef`](/reference/react/forwardRef) komponen bisa diterima.
 
-* **optional** `arePropsEqual`: Fungsi yang menerima dua argumen: props sebelumnya dari komponen, dan props barunya. Fungsi ini akan mengembalikan `true` jika props lama dan baru sama: yaitu, jika komponen akan merender output yang sama dan berperilaku dengan cara yang sama dengan props baru seperti pada props lama. Jika tidak, fungsi ini akan mengembalikan `false`. Biasanya, Anda tidak akan menentukan fungsi ini. Secara default, React akan membandingkan setiap prop dengan [`Object.is`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
+* **optional** `arePropsEqual`: Fungsi yang menerima dua argumen: props sebelumnya dari komponen, dan props barunya. Fungsi ini akan mengembalikan `true` jika props lama dan baru sama: yaitu, jika komponen akan me-*render* output yang sama dan berperilaku dengan cara yang sama dengan props baru seperti pada props lama. Jika tidak, fungsi ini akan mengembalikan `false`. Biasanya, Anda tidak akan menentukan fungsi ini. Secara default, React akan membandingkan setiap prop dengan [`Object.is`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
 
 #### Pengembalian {/*returns*/}
 
-`memo` mengembalikan sebuah komponen React yang baru. Komponen ini berperilaku sama dengan komponen yang disediakan untuk `memo` kecuali bahwa React tidak akan selalu merender ulang komponen tersebut ketika induknya di-*render* ulang kecuali jika propsnya telah berubah.
+`memo` mengembalikan sebuah komponen React yang baru. Komponen ini berperilaku sama dengan komponen yang disediakan untuk `memo` kecuali bahwa React tidak akan selalu me-*render* ulang komponen tersebut ketika induknya di-*render* ulang kecuali jika propsnya telah berubah.
 
 ---
 
@@ -48,7 +48,7 @@ const SomeComponent = memo(function SomeComponent(props) {
 
 ### Melewatkan proses render ulang apabila props tidak berubah {/*skipping-re-rendering-when-props-are-unchanged*/}
 
-React biasanya merender ulang sebuah komponen setiap kali induknya di render ulang. Dengan `memo`, Anda dapat membuat komponen yang tidak akan di render ulang oleh React ketika induknya di render ulang selama props yang baru sama dengan props yang lama. Komponen seperti ini disebut sebagai *memoized*.
+React biasanya me-*render* ulang sebuah komponen setiap kali induknya di render ulang. Dengan `memo`, Anda dapat membuat komponen yang tidak akan di render ulang oleh React ketika induknya di render ulang selama props yang baru sama dengan props yang lama. Komponen seperti ini disebut sebagai *memoized*.
 
 Untuk memo sebuah komponen, bungkus komponen tersebut dengan `memo` dan gunakan nilai yang dikembalikannya untuk menggantikan komponen asli Anda:
 
@@ -60,7 +60,7 @@ const Greeting = memo(function Greeting({ name }) {
 export default Greeting;
 ```
 
-Sebuah komponen React harus selalu memiliki [logika rendering murni](/learn/keeping-components-pure) Artinya, ia harus mengembalikan output yang sama jika props, state, dan konteksnya tidak berubah. Dengan menggunakan `memo`, Anda memberi tahu React bahwa komponen Anda memenuhi persyaratan ini, sehingga React tidak perlu merender ulang selama propsnya tidak berubah. Bahkan dengan `memo`, komponen Anda akan di-*render* ulang jika state-nya berubah atau jika konteks yang digunakan berubah.
+Sebuah komponen React harus selalu memiliki [logika rendering murni](/learn/keeping-components-pure) Artinya, ia harus mengembalikan output yang sama jika props, state, dan konteksnya tidak berubah. Dengan menggunakan `memo`, Anda memberi tahu React bahwa komponen Anda memenuhi persyaratan ini, sehingga React tidak perlu me-*render* ulang selama propsnya tidak berubah. Bahkan dengan `memo`, komponen Anda akan di-*render* ulang jika state-nya berubah atau jika konteks yang digunakan berubah.
 
 Pada contoh ini, perhatikan bahwa komponen `Salam` di-*render* ulang setiap kali `nama` diubah (karena itu adalah salah satu propsnya), tetapi tidak saat `alamat` diubah (karena tidak dioper ke `Salam` sebagai props):
 
@@ -120,9 +120,9 @@ Tidak ada manfaatnya membungkus komponen dalam `memo` dalam kasus lain. Tidak ad
 
 **Dalam praktiknya, Anda bisa membuat banyak memo yang tidak perlu dengan mengikuti beberapa prinsip:**
 
-1. Ketika sebuah komponen secara visual membungkus komponen lain, biarkan komponen tersebut [terima JSX sebagai anak.](/learn/passing-props-to-a-component#passing-jsx-as-children) Dengan cara ini, ketika komponen wrapper memperbarui state-nya sendiri, React tahu bahwa anak-anaknya tidak perlu merender ulang.
+1. Ketika sebuah komponen secara visual membungkus komponen lain, biarkan komponen tersebut [terima JSX sebagai anak.](/learn/passing-props-to-a-component#passing-jsx-as-children) Dengan cara ini, ketika komponen wrapper memperbarui state-nya sendiri, React tahu bahwa anak-anaknya tidak perlu me-*render* ulang.
 1. Lebih suka state lokal dan tidak [mengangkat state](/learn/sharing-state-between-components) lebih jauh dari yang diperlukan. Sebagai contoh, jangan menyimpan status sementara seperti form dan apakah item dilayangkan di bagian atas pohon Anda atau di perpustakaan status global.
-1. aga agar [logika rendering Anda tetap murni.](/learn/keeping-components-pure) Jika merender ulang komponen menyebabkan masalah atau menghasilkan artefak visual yang mencolok, itu adalah bug dalam komponen Anda! Perbaiki bug daripada menambahkan memoisasi.
+1. aga agar [logika rendering Anda tetap murni.](/learn/keeping-components-pure) Jika me-*render* ulang komponen menyebabkan masalah atau menghasilkan artefak visual yang mencolok, itu adalah bug dalam komponen Anda! Perbaiki bug daripada menambahkan memoisasi.
 1. Hindari [Efek yang tidak perlu yang memperbarui status.](/learn/you-might-not-need-an-effect) Sebagian besar masalah performa pada aplikasi React disebabkan oleh rantai pembaruan yang berasal dari Effects yang menyebabkan komponen Anda di-*render* berulang kali.
 1. Cobalah untuk [menghapus ketergantungan yang tidak perlu dari Efek Anda.](/learn/removing-effect-dependencies) Sebagai contoh, alih-alih memoisasi, sering kali lebih mudah untuk memindahkan suatu objek atau fungsi di dalam Efek atau di luar komponen.
 
@@ -343,7 +343,7 @@ function arePropsEqual(oldProps, newProps) {
 }
 ```
 
-Jika Anda melakukan ini, gunakan panel Kinerja di alat pengembang browser Anda untuk memastikan bahwa fungsi perbandingan Anda benar-benar lebih cepat daripada merender ulang komponen. Anda mungkin akan terkejut.
+Jika Anda melakukan ini, gunakan panel Kinerja di alat pengembang browser Anda untuk memastikan bahwa fungsi perbandingan Anda benar-benar lebih cepat daripada me-*render* ulang komponen. Anda mungkin akan terkejut.
 
 Ketika Anda melakukan pengukuran performa, pastikan React berjalan dalam mode produksi.
 
@@ -360,4 +360,4 @@ Hindari melakukan pemeriksaan kesetaraan yang dalam di dalam `arePropsEqual` kec
 ## Pemecahan masalah {/*troubleshooting*/}
 ### Komponen saya di-render ulang ketika sebuah prop adalah objek, senarai, atau fungsi {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
 
-React membandingkan props lama dan baru dengan kesetaraan yang dangkal: yaitu, mempertimbangkan apakah setiap props baru memiliki referensi yang sama dengan props lama. Jika Anda membuat objek atau array baru setiap kali induknya di-*render* ulang, meskipun setiap elemennya sama, React akan tetap menganggapnya berubah. Demikian pula, jika Anda membuat fungsi baru ketika merender komponen induk, React akan menganggap fungsi tersebut telah berubah meskipun fungsi tersebut memiliki definisi yang sama. Untuk menghindari hal ini, [menyederhanakan props atau memo props dalam komponen induk](#minimizing-props-changes).
+React membandingkan props lama dan baru dengan kesetaraan yang dangkal: yaitu, mempertimbangkan apakah setiap props baru memiliki referensi yang sama dengan props lama. Jika Anda membuat objek atau array baru setiap kali induknya di-*render* ulang, meskipun setiap elemennya sama, React akan tetap menganggapnya berubah. Demikian pula, jika Anda membuat fungsi baru ketika me-*render* komponen induk, React akan menganggap fungsi tersebut telah berubah meskipun fungsi tersebut memiliki definisi yang sama. Untuk menghindari hal ini, [menyederhanakan props atau memo props dalam komponen induk](#minimizing-props-changes).
