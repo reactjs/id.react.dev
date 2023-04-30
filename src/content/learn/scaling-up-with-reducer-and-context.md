@@ -11,7 +11,7 @@ Reducer memungkinkan Anda untuk konsolidasi logika pembaruan *state* komponen. *
 <YouWillLearn>
 
 * Bagaimana menggabungkan *reducer* dengan *context*
-* Bagaimana menghindari melewatkan *state* dan *dispatch* melalui *props*
+* Bagaimana menghindari mengoper *state* dan *dispatch* melalui *props*
 * Bagaimana menjaga konteks dan logika *state* pada *file* terpisah
 
 </YouWillLearn>
@@ -207,7 +207,6 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-A *reducer* helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` *state* and the `dispatch` function are only available in the top-level `TaskApp` component.** To let other components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current *state* and the event handlers that change it as props.
 *Reducer* membantu menjaga event handlers menjadi singkat dan ringkas. Namun, ketika aplikasi Anda berkembang, Anda mungkin akan menemukan kesulitan lain. Saat ini, *state* `tugas` dan fungsi `dispatch` hanya tersedia di komponen `TaskApp` level atas. Untuk memungkinkan komponen lain membaca daftar tugas atau mengubahnya, Anda harus secara eksplisit [meneruskan](/learn/passing-props-to-a-component) *state* saat ini dan event handlers yang mengubahnya sebagai props.
 
 Misalnya, `TaskApp` meneruskan daftar tugas dan *event handlers* ke `TaskList`:
