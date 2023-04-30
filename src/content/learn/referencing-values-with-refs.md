@@ -97,7 +97,7 @@ export default function Stopwatch() {
     setNow(Date.now());
 
     setInterval(() => {
-      // Memperbarui waktu saat ini setiap 10ms.
+      // Memperbarui waktu saat ini setiap 10 milidetik.
       setNow(Date.now());
     }, 10);
   }
