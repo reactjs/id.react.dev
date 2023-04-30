@@ -73,13 +73,13 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 - Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
 - Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
 - Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
-- Setiap area teks terkendali membutuhkan sebuah *event handler* `onChange` yang memperbarui nilai pendukungnya secara sinkronis.
+- Setiap area teks terkendali membutuhkan sebuah *event handler* `onChange` yang memperbarui nilai pendukungnya secara sinkron.
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-### Menampilkan sebua area teks {/*displaying-a-text-area*/}
+### Menampilkan sebuah area teks {/*displaying-a-text-area*/}
 
 *Render* `<textarea>` untuk menampilkan sebuah area teks. Kamu dapat menentukan ukuran bawaanya dengan atribut [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) dan [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols), tapi secara bawaan user dapat mengubah ukurannya. Untuk menonaktifkan pengubahan ukuran, kamu dapat menentukan `resize: none` di dalam CSS.
 
@@ -111,7 +111,7 @@ label, textarea { display: block; }
 
 Umumnya, Anda akan meletakkan setiap `<textarea>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberitahu suatu peramban apabila label ini berkaitan dengan area teks tertentu. Ketika pengguna mengeklik label tersebut, peramban akan memfokuskan area teks. Hal ini juga diperlukan untuk aksesbilitas: sebuah layar pembaca akan memberitahu keterangan label ketika pengguna memfokuskan area teks tertentu.
 
-Jika Anda tidak dapat meletakkan `<textarea>` di dalam sebuah `<label>`, hubungkanlah mereka dengan memberikan ID yang sama kepada `<textarea id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) untuk menghindari konflik antara *instances* pada satu komponen, buatlah sebuah ID dengan [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat menyusun `<textarea>` di dalam sebuah `<label>`, hubungkanlah mereka dengan memberikan ID yang sama kepada `<textarea id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) untuk menghindari konflik antara *instances* pada satu komponen, buatlah sebuah ID dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -330,94 +330,94 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkronis selama *event handler* `onChange`, React akan mengembalikan area teks setelah setiap penekanan tombol ke `value` yang Anda berikan sebelumnya.
+**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks setelah setiap penekanan tombol ke `value` yang Anda berikan sebelumnya.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Penyelesain masalah {/*troubleshooting*/}
 
-### My text area doesn't update when I type into it {/*my-text-area-doesnt-update-when-i-type-into-it*/}
+### Area teks saya tidak memperbarui ketika Saya mengetiknya {/*my-text-area-doesnt-update-when-i-type-into-it*/}
 
-If you render a text area with `value` but no `onChange`, you will see an error in the console:
+Jika Anda *render* sebuah area teks dengan `value` tetapi tanpa `onChange`, Anda akan melihat sebuah *error* di konsol:
 
 ```js
-// 🔴 Bug: controlled text area with no onChange handler
+// 🔴 Bug: area teks terkendali tanpa handler onChange
 <textarea value={something} />
 ```
 
 <ConsoleBlock level="error">
 
-You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
+Anda memberikan sebuah prop `value` ke sebuah *field* formulir tanpa sebuah *handler* `onChange`. area teksnya akan ter-*render* menjadi sebuah *field* yang hanya untuk dibaca. Jika *field*-nya harus *mutable*, gunakan `defaultValue`. Selain itu, berikan `onChange` atau `readOnly`.
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-a-text-area) pass `defaultValue` instead:
+Seperti yang disarankan pada pesan *error* berikut, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-a-text-area) berikan `defaultValue` sebagai gantinya:
 
 ```js
-// ✅ Good: uncontrolled text area with an initial value
+// ✅ Good: area teks tidak terkendali dengan sebuah nilai awal
 <textarea defaultValue={something} />
 ```
 
-If you want [to control this text area with a state variable,](#controlling-a-text-area-with-a-state-variable) specify an `onChange` handler:
+Jika Anda ingin [mengendalikan area teks ini dengan sebuah variabel *state*,](#controlling-a-text-area-with-a-state-variable) Tentukanlah sebuah *handler* `onChange`:
 
 ```js
-// ✅ Good: controlled text area with onChange
+// ✅ Good: area teks terkendali dengan onChange
 <textarea value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
+Jika nilainya sengaja diatur hanya untuk dibaca, tambahkan sebuah *prop* `readOnly` untuk menghilangkan *error*:
 
 ```js
-// ✅ Good: readonly controlled text area without on change
+// ✅ Good: area teks terkontrol yang hanya untuk dibaca tanpa onChange
 <textarea value={something} readOnly={true} />
 ```
 
 ---
 
-### My text area caret jumps to the beginning on every keystroke {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### Tanda sisipan saya melompat ke awal pada setiap penekanan tombol {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-If you [control a text area,](#controlling-a-text-area-with-a-state-variable) you must update its state variable to the text area's value from the DOM during `onChange`.
+Jika Anda [mengendalikan sebuah area teks,](#controlling-a-text-area-with-a-state-variable) Anda harus memperbarui variabel *state*-nya ke nilai area teksnya melalui DOM selama `onChange`.
 
-You can't update it to something other than `e.target.value`:
+Anda tidak dapat memperbarui nilainya dengan sesuatu selain `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input to something other than e.target.value
+  // 🔴 Bug: memperbarui sebuah input dengan sesuatu selain e.target.value
   setFirstName(e.target.value.toUpperCase());
 }
 ```
 
-You also can't update it asynchronously:
+Anda juga tidak dapat memperbaruinya secara asinkron:
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input asynchronously
+  // 🔴 Bug: memperbarui sebuah input secara asinkron
   setTimeout(() => {
     setFirstName(e.target.value);
   }, 100);
 }
 ```
 
-To fix your code, update it synchronously to `e.target.value`:
+Untuk memperbaiki kode Anda, perbarui secara sinkron ke `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // ✅ Updating a controlled input to e.target.value synchronously
+  // ✅ Memperbarui sebuah input terkendali ke e.target.value secara sinkron
   setFirstName(e.target.value);
 }
 ```
 
-If this doesn't fix the problem, it's possible that the text area gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render. For example, this can happen if the text area or one of its parents always receives a different `key` attribute, or if you nest component definitions (which is not allowed in React and causes the "inner" component to remount on every render).
+Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan ditambahkan kembali dari DOM di setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) di setiap *render* ulang. Misalkan, ini dapat terjadi jika area teksnya atau salah satu dari *parents*-nya selalu menerima sebuah atribut `key` yang berbeda, atau jika Anda menyusun definisi komponen (dimana hal ini tidak diizinkan React dan menyebabkan komponen "dalam" terpasang ulang di setiap *render*).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Saya menerima sebuah error: "Sebuah komponen sedang mengubah input yang tidak terkendali menjadi terkendali" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+Jika Anda memberikan sebuah `value` ke komponen, nilai tersebut harus tetap berupa string selama masa pakainya.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+Anda tidak dapat memberikan `value={undefined}` terlebih dahulu dan kemudian memberikan `value="some string"` karena React tidak akan mengetahui apakah anda ingin komponennya menjadi tidak terkontrol atau terkontrol. Sebuah *controlled component* harus selalu menerima sebuah string `value`, bukan `null` atau `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+Jika `value` Anda berasal dari sebuah API atau sebuah variabel *state*, nilai tersebut mungkin diinisiasi ke `null` atau `undefined`. Dalam hal ini, Berikan sebuah string kosong (`''`) pada awalnya, atau berikan `value={someValue ?? ''}` untuk memastikan `value`-nya adalah string.
