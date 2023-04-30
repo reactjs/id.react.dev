@@ -118,18 +118,18 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Tombol radio:
         <label>
           <input type="radio" name="myRadio" value="option1" />
-          Option 1
+          Pilihan 1
         </label>
         <label>
           <input type="radio" name="myRadio" value="option2" />
-          Option 2
+          Pilihan 2
         </label>
         <label>
           <input type="radio" name="myRadio" value="option3" />
-          Option 3
+          Pilihan 3
         </label>
       </p>
     </>
