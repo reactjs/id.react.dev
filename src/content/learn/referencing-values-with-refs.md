@@ -31,7 +31,7 @@ Di dalam komponen Anda, panggil `useRef` *Hook* dan berikan nilai awal yang Anda
 const ref = useRef(0);
 ```
 
-`useRef` mengembalikan sebuah objek seperti:
+`useRef` mengembalikan sebuah objek seperti ini:
 
 ```js
 { 
