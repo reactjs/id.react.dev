@@ -596,7 +596,7 @@ function TestCase({
 
 </Sandpack>
 
-Now you know how this part of React works!
+Sekarang Anda tahu cara kerja bagian React ini!
 
 </Solution>
 
