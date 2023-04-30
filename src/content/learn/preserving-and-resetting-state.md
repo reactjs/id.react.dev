@@ -17,28 +17,28 @@ title: Mempertahankan dan Mengatur Ulang State
 
 </YouWillLearn>
 
-## The UI tree {/*the-ui-tree*/}
+## Pohon antarmuka pengguna (UI) {/*the-ui-tree*/}
 
-Browsers use many tree structures to model UI. The [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) represents HTML elements, the [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) does the same for CSS. There's even an [Accessibility tree](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
+Peramban menggunakan banyak struktur pohon untuk memodelkan antarmuka pengguna (UI). [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) mewakili elemen HTML, [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) melakukan hal yang sama untuk CSS. Bahkan ada [Pohon aksesibilitas](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
 
-React also uses tree structures to manage and model the UI you make. React makes **UI trees** from your JSX. Then React DOM updates the browser DOM elements to match that UI tree. (React Native translates these trees into elements specific to mobile platforms.)
+React juga menggunakan struktur pohon untuk mengelola dan memodelkan UI yang Anda buat. React membuat **pohon UI** dari JSX Anda. Kemudian React DOM memperbarui elemen-elemen DOM peramban agar sesuai dengan pohon UI tersebut (React Native menerjemahkan pohon-pohon tersebut menjadi elemen-elemen yang spesifik untuk platform *mobile*).
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
 
-From components, React creates a UI tree which React DOM uses to render the DOM
+Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* DOM
 
 </Diagram>
 
 </DiagramGroup>
 
-## State is tied to a position in the tree {/*state-is-tied-to-a-position-in-the-tree*/}
+## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
-When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the UI tree.
+Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
 
 
-Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
+Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 
 <Sandpack>
 
@@ -102,23 +102,23 @@ label {
 
 </Sandpack>
 
-Here's how these look as a tree:    
+Beginilah tampilannya sebagai pohon:
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
 
-React tree
+Pohon React
 
 </Diagram>
 
 </DiagramGroup>
 
-**These are two separate counters because each is rendered at its own position in the tree.** You don't usually have to think about these positions to use React, but it can be useful to understand how it works.
+**Ini adalah dua penghitung yang terpisah karena masing-masing di-*render* pada posisinya sendiri di dalam pohon.** Anda biasanya tidak perlu memikirkan posisi-posisi ini untuk menggunakan React, tetapi akan sangat berguna untuk memahami cara kerjanya.
 
-In React, each component on the screen has fully isolated state. For example, if you render two `Counter` components side by side, each of them will get its own, independent, `score` and `hover` states.
+Dalam React, setiap komponen pada layar memiliki *state* yang terisolasi sepenuhnya. Sebagai contoh, jika Anda me-*render* dua komponen `Counter` secara berdampingan, masing-masing komponen akan mendapatkan *state*-nya sendiri-sendiri, independen, yaitu state `score` dan `hover`.
 
-Try clicking both counters and notice they don't affect each other:
+Coba klik kedua penghitung dan perhatikan bahwa keduanya tidak saling mempengaruhi:
 
 <Sandpack>
 
@@ -176,21 +176,21 @@ function Counter() {
 
 </Sandpack>
 
-As you can see, when one counter is updated, only the state for that component is updated:
+Seperti yang dapat Anda lihat, ketika satu penghitung diperbarui, hanya *state* untuk komponen tersebut yang diperbarui:
 
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
 
-Updating state
+Memperbarui *state*
 
 </Diagram>
 
 </DiagramGroup>
 
 
-React will keep the state around for as long as you render the same component at the same position. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+React akan mempertahankan *state* selama Anda me-*render* komponen yang sama pada posisi yang sama. Untuk melihat hal ini, naikkan kedua penghitung, lalu hapus komponen kedua dengan menghapus centang pada *checkbox* "Render the second counter", lalu tambahkan kembali dengan mencentangnya lagi:
 
 <Sandpack>
 
@@ -264,31 +264,31 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
+Perhatikan bagaimana saat Anda berhenti me-*render* penghitung kedua, *state*-nya akan hilang sepenuhnya. Hal ini dikarenakan ketika React menghapus sebuah komponen, ia akan menghancurkan *state*-nya.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the component being deleted from the tree.">
 
-Deleting a component
+Menghapus komponen
 
 </Diagram>
 
 </DiagramGroup>
 
-When you tick "Render the second counter", a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
+Ketika Anda mencentang "Render the second counter", `Counter` kedua dan *state*-nya diinisialisasi dari awal (`score = 0`) dan ditambahkan ke DOM.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
 
-Adding a component
+Menambahkan komponen
 
 </Diagram>
 
 </DiagramGroup>
 
-**React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
+**React mempertahankan *state* sebuah komponen selama komponen tersebut di-*render* pada posisinya di pohon UI.** Jika komponen tersebut dihapus, atau komponen lain di-*render* pada posisi yang sama, React akan membuang *state*-nya.
 
 ## Same component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
 
