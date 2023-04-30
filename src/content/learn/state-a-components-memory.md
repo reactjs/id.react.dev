@@ -187,7 +187,7 @@ menjadi
 const [index, setIndex] = useState(0);
 ```
 
-`index` merupakan variabel state dan `setIndex` adalah fungsi penyetel.
+`index` merupakan variabel state dan `setIndex` adalah fungsi setter.
 
 > Sintaks yang menggunakan `"["` dan `"]"` digunakan untuk [membongkar isi array](https://javascript.info/destructuring-assignment) dan memungkinkan Anda untuk membaca elemen dalam array tersebut. Array yang dikembalikan oleh `useState` akan selalu berisi dua elemen.
 
