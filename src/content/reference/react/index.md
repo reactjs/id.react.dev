@@ -94,11 +94,11 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Terkadang, Anda tidak dapat melewatkan pe-*render*an ulang karena layar sebenarnya perlu pembaruan. Di dalam kasus itu, Anda dapat meningkatkan performa dengan memisahkan memblokir pembaruan yang harus sinkron (seperti mengetik masukan) dari pembaruan non-pemblokiran yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
+Terkadang, Anda tidak dapat melewatkan *rendering* ulang karena layar sebenarnya perlu pembaruan. Di dalam kasus itu, Anda dapat meningkatkan performa dengan memisahkan memblokir pembaruan yang harus sinkron (seperti mengetik masukan) dari pembaruan non-pemblokiran yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
 
-Untuk memprioritaskan rendering, gunakan salah satu Hook ini:
+Untuk memprioritaskan *rendering*, gunakan salah satu Hook ini:
 
-- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi state sebagai non-blocking dan mengizinkan pembaruan lain untuk menghentikannya.
+- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi *state* sebagai non-blocking dan mengizinkan pembaruan lain untuk menghentikannya.
 - [`useDeferredValue`](/reference/react/useDeferredValue) memungkinkan Anda menangguhkan pembaruan bagian antarmuka pengguna (UI) yang tidak penting dan membiarkan bagian lain memperbarui terlebih dahulu.
 
 ---
