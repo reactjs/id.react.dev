@@ -82,7 +82,7 @@ Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pad
 
 Cara yang umum untuk mengoptimalkan kinerja *rendering* ulang adalah melewatkan pekerjaan yang tidak perlu. Sebagai contoh, Anda dapat memberi tahu React untuk menggunakan kembali perhitungan yang sudah ada di dalam *cache* atau untuk melewatkan *render* ulang jika data tersebut tidak berubah sejak render sebelumnya.
 
-Untuk melewatkan perhitungan dan render ulang yang tidak perlu, gunakan salah satu dari Hook ini:
+Untuk melewatkan perhitungan dan *render* ulang yang tidak perlu, gunakan salah satu dari Hook ini:
 
 - [`useMemo`](/reference/react/useMemo) memungkinkan Anda menyimpan hasil perhitungan yang berat secara cache.
 - [`useCallback`](/reference/react/useCallback) memungkinkan Anda menyimpan definisi fungsi di cache sebelum melewatkannya ke komponen yang dioptimalkan.
