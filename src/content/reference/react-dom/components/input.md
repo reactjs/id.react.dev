@@ -20,7 +20,7 @@ Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web
 
 ### `<input>` {/*input*/}
 
-Untuk menampilkan sebuah input, render komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+Untuk menampilkan sebuah masukan, render komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
@@ -32,72 +32,72 @@ Untuk menampilkan sebuah input, render komponen [bawaan browser `<input>`](https
 
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
-Anda dapat [membuat sebuah input yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
+Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk input checkbox atau tombol radio, mengontrol apakah itu dipilih.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): Sebuah string. Untuk sebuah text input, mengontrol text. (Untuk tombol radio, menentukan data form.)
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk masukan checkbox atau tombol radio, mengontrol apakah itu dipilih.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): Sebuah string. Untuk sebuah masukan text, mengontrol text. (Untuk tombol radio, menentukan data form.)
 
-When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
+Ketika Anda mengoper salah satu dari mereka, Anda juga harus mengoper sebuah `onChange` handler yang memperbarui nilai yang dioper.
 
-These `<input>` props are only relevant for uncontrolled inputs:
+Props `<input>` ini hanya relevan untuk input yang tidak dikontrol:
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A string. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): Sebuah boolean. Menentukan [nilai awal](#providing-an-initial-value-for-an-input) dari masukan `type="checkbox"` dan `type="radio"`.
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-an-input) dari masukan sebuah text.
 
-These `<input>` props are relevant both for uncontrolled and controlled inputs:
+Props `<input>` ini relevan untuk input tidak terkontrol dan input terkontrol:
 
-* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
-* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.
-* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): A string. Specifies the media (microphone, video, or camera) captured by a `type="file"` input.
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): A boolean. If `true`, React will focus the element on mount.
-* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): A string. Specifies the form field name for the element's directionality.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): A boolean. If `true`, the input will not be interactive and will appear dimmed.
-* `children`: `<input>` does not accept children.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.
-* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string. Overrides the parent `<form action>` for `type="submit"` and `type="image"`.
-* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): A string. Overrides the parent `<form enctype>` for `type="submit"` and `type="image"`.
-* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): A string. Overrides the parent `<form method>` for `type="submit"` and `type="image"`.
-* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): A string. Overrides the parent `<form noValidate>` for `type="submit"` and `type="image"`.
-* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): A string. Overrides the parent `<form target>` for `type="submit"` and `type="image"`.
-* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): A string. Specifies the image height for `type="image"`.
-* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): A string. Specifies the `id` of the `<datalist>` with the autocomplete options.
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): A number. Specifies the maximum value of numerical and datetime inputs.
-* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): A number. Specifies the maximum length of text and other inputs.
-* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): A number. Specifies the minimum value of numerical and datetime inputs.
-* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): A number. Specifies the minimum length of text and other inputs.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): A boolean. Specifies whether multiple values are allowed for `<type="file"` and `type="email"`.
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's [submitted with the form.](#reading-the-input-values-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled inputs.](#controlling-an-input-with-a-state-variable) Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
+* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): Sebuah string. Menentukan tipe file mana yang diterima oleh masukan `type="file"`.
+* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): Sebuah string. Menentukan teks gambar alternatif untuk masuk `type="image"`.
+* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): Sebuah string. Menentukan media (mikrofon, video, atau kamera) yang ditangkap oleh masukan `type="file"`.
+* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): Sebuah string. Menentukan salah satu kemungkinan [perilaku autocomplete.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen saat pasang.
+* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): Sebuah string. Menentukan nama bidang form untuk arah elemen.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): Sebuah boolean. Jika `true`, masukan tidak akan interaktif dan akan tampak redup.
+* `children`: `<input>` tidak menerima children.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): Sebuah string. Menentukan `id` dari `<form>` milik masukan ini. Jika dihilangkan, menggunakan parent form terdekat.
+* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah string. Menimpa parent `<form action>` dari `type="submit"` dan `type="image"`.
+* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): Sebuah string. Menimpa parent `<form enctype>` dari `type="submit"` dan `type="image"`.
+* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): Sebuah string. Menimpa parent `<form method>` dari `type="submit"` dan `type="image"`.
+* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): Sebuah string. Menimpa parent `<form noValidate>` dari `type="submit"` dan `type="image"`.
+* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): Sebuah string. Menimpa parent `<form target>` dari `type="submit"` dan `type="image"`.
+* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): Sebuah string. Menentukan tinggi dari gambar untuk `type="image"`.
+* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): Sebuah string. Menentukan `id` dari `<datalist>` dengan opsi autocomplete.
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): Sebuah angka. Menentukan nilai maksimum masukan numerik dan waktu.
+* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): Sebuah angka. Menentukan panjang maksimum teks dan masukan lainnya.
+* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): Sebuah angka. Menentukan nilai minimum masukan numerik dan waktu.
+* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): Sebuah angka. Menentukan panjang minimum teks dan masukan lainnya.
+* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): Sebuah boolean. Menentukan apakah beberapa nilai diperbolehkan untuk `<type="file"` dan `type="email"`.
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama dari masukan [yang disubmit dengan form.](#reading-the-input-values-when-submitting-a-form)
+* `onChange`: Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Dibutuhkan untuk [masukan yang terkontrol.](#controlling-an-input-with-a-state-variable) Langsung aktif ketika nilai masukan diubah oleh pengguna (sebagai contoh, menyala di setip penekanan tombol). Berperilaku seperti [event`input`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
+* `onChangeCapture`: Sebuha versi dari `onChange` yang aktif dalam [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Langsung aktif ketika nilainya diubah oleh pengguna. Untuk alasan historis, dalam React menggunakan `onChange` sebagai gantinya yang berfungsi serupa adalah idiomatis.
 * `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires after the selection inside the `<input>` changes. React extends the `onSelect` event to also fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): A string. Specifies the pattern that the `value` must match.
-* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): A string. Displayed in a dimmed color when the input value is empty.
-* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): A boolean. If `true`, the input is not editable by the user.
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): A number. Similar to setting width, but the unit depends on the control.
-* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): A string. Specifies the image source for a `type="image"` input.
-* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): A positive number or an `'any'` string. Specifies the distance between valid values.
-* [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): A string. One of the [input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
-* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  A string. Specifies the image width for a `type="image"` input.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Aktif jika sebuah masukan gagal divalidasi ketika pengiriman form. Tidak seperti event `invalid` bawaan, React `onInvalid` berbentuk event bubbles.
+* `onInvalidCapture`: Sebuah versi dari `onInvalid` yang aktif didalam [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Aktif setelah pemilihan di dalam `<input>` berubah. React memperluas event `onSelect` untuk juga mengaktifkan pemilihan kosong dan pada pengeditan (yang dapat memengaruhi pemilihan).
+* `onSelectCapture`: Sebuah versi dari `onSelect` yang aktif ketika [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): Sebuah string. Menentukan pola yang harus cocok dengan `value`.
+* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): Sebuah string. Ditampilkan dalam warna redup saat nilai input kosong.
+* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): Sebuah boolean. Jika `true`, masukan tidak dapat diedit oleh pengguna.
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): Sebuah boolean. Jika `true`, nilai harus diberikan untuk form yang akan dikirim.
+* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): Sebuah angka. Mirip dengan pengaturan lebar, tetapi unit tergantung pada kontrol.
+* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): Sebuah string. Menentukan sumber gambar untuk masukan `type="image"`.
+* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): Angka positif atau string `'any'`. Menentukan jarak antara nilai yang valid.
+* [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): Sebuah string. Satu dari [tipe masukan.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  Sebuah string. Menentukan lebar gambar untuk masukan `type="image"`.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-- Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
-- If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- An input can't be both controlled and uncontrolled at the same time.
-- An input cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
+- Checkbox harus `checked` (atau `defaultChecked`), bukan `value` (atau `defaultValue`).
+- Jika sebuah masukan text menerima sebuah prop string `value`, itu akan [diperlakukan sebagai terkontrol.](#controlling-an-input-with-a-state-variable)
+- Jika sebuah checkbox atau sebuah tombol radio menerima prop boolean `checked`, itu akan [diperlakukan sebagai terkontrol.](#controlling-an-input-with-a-state-variable)
+- Masukan tidak dapat dikontrol dan tidak dikontrol secara bersamaan.
+- Masukan tidak dapat beralih antara dikontrol atau tidak dikontrol selama masa pakainya.
+- Setiap masukan yang dikontrol membutuhkan event handler `onChange` yang secara sinkron memperbarui nilai pendukungnya.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
 ### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
 
@@ -590,6 +590,6 @@ If you provide a `value` to the component, it must remain a string throughout it
 
 You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is Sebuah string.
 
-Similarly, if you pass `checked` to a checkbox, ensure it's always a boolean.
+Similarly, if you pass `checked` to a checkbox, ensure it's always Sebuah boolean.
