@@ -10,7 +10,7 @@ API ini akan dihapus di versi utama React yang akan datang. Gunakan [`renderToPi
 
 <Intro>
 
-`renderToNodeStream` me-_render_ pohon React ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` me-_render_ React _tree_ ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -59,7 +59,7 @@ Sebuah [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-s
 
 ## Penggunaan {/*usage*/}
 
-### Me-render pohon React sebagai HTML ke Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
+### Me-render React tree sebagai HTML ke Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
 
 Panggil `renderToNodeStream` untuk mendapatkan [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons server Anda:
 
