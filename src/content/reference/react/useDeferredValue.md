@@ -857,7 +857,7 @@ export default SlowList;
 
 Dalam contoh ini, setiap item dalam komponen `SlowList` **diperlambat secara artifisial**, tetapi tidak ada `useDeferredValue`.
 
-Perhatikan bagaimana mengetik input terasa sangat tersendat. Ini karena tanpa `useDeferredValue`, setiap penekanan tombol memaksa seluruh daftar untuk segera dirender ulang dengan cara yang tidak dapat disela.
+Perhatikan bagaimana mengetik input terasa sangat tersendat. Ini karena tanpa `useDeferredValue`, setiap penekanan tombol memaksa seluruh daftar untuk segera di-*render* ulang dengan cara yang tidak dapat disela.
 
 <Sandpack>
 
