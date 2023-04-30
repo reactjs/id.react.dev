@@ -290,9 +290,9 @@ Menambahkan komponen
 
 **React mempertahankan *state* sebuah komponen selama komponen tersebut di-*render* pada posisinya di pohon UI.** Jika komponen tersebut dihapus, atau komponen lain di-*render* pada posisi yang sama, React akan membuang *state*-nya.
 
-## Same component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
+## Komponen yang sama pada posisi yang sama mempertahankan *state* {/*same-component-at-the-same-position-preserves-state*/}
 
-In this example, there are two different `<Counter />` tags:
+Pada contoh ini, terdapat dua tag `<Counter />` yang berbeda:
 
 <Sandpack>
 
@@ -377,24 +377,24 @@ label {
 
 </Sandpack>
 
-When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` component:
+Ketika Anda mencentang atau menghapus *checkbox*, *state* penghitung tidak diatur ulang. Entah `isFancy` bernilai `true` atau `false`, Anda selalu memiliki `<Counter />` sebagai anak pertama dari `div` yang dikembalikan dari komponen akar `App`:
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.">
 
-Updating the `App` state does not reset the `Counter` because `Counter` stays in the same position
+Memperbarui *state* `App` tidak mengatur ulang `Counter` karena `Counter` tetap berada di posisi yang sama
 
 </Diagram>
 
 </DiagramGroup>
 
 
-It's the same component at the same position, so from React's perspective, it's the same counter.
+Ini adalah komponen yang sama pada posisi yang sama, jadi dari sudut pandang React, ini adalah penghitung yang sama.
 
 <Pitfall>
 
-Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!** This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
+Ingatlah bahwa **posisi pada pohon UI--bukan pada *markup* JSX--yang penting pada React!** Komponen ini memiliki dua klausa `return` dengan tag JSX `<Counter />` yang berbeda di dalam dan di luar `if`:
 
 <Sandpack>
 
@@ -492,9 +492,9 @@ label {
 
 </Sandpack>
 
-You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
+Anda mungkin berharap *state* akan diatur ulang ketika Anda mencentang *checkbox*, tetapi ternyata tidak! Hal ini dikarenakan **kedua tag `<Counter />` di-*render* pada posisi yang sama.** React tidak mengetahui di mana Anda meletakkan kondisi di dalam fungsi Anda. Yang ia "lihat" hanyalah pohon yang Anda kembalikan.
 
-In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
+Pada kedua kasus tersebut, komponen `App` mengembalikan `<div>` dengan `<Counter />` sebagai anak pertama. Bagi React, kedua penghitung ini memiliki "alamat" yang sama: anak pertama dari anak pertama dari akar. Ini adalah cara React mencocokkan keduanya antara *render* sebelumnya dan berikutnya, terlepas dari bagaimana Anda menyusun logika Anda.
 
 </Pitfall>
 
