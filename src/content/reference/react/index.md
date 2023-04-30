@@ -80,7 +80,7 @@ Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pad
 
 ## Hook Performa {/*performance-hooks*/}
 
-Cara yang umum untuk mengoptimalkan kinerja pen-renderan ulang adalah melewatkan pekerjaan yang tidak perlu. Sebagai contoh, Anda dapat memberi tahu React untuk menggunakan kembali perhitungan yang sudah ada di dalam cache atau untuk melewatkan pen-renderan ulang jika data tersebut tidak berubah sejak render sebelumnya.
+Cara yang umum untuk mengoptimalkan kinerja *rendering* ulang adalah melewatkan pekerjaan yang tidak perlu. Sebagai contoh, Anda dapat memberi tahu React untuk menggunakan kembali perhitungan yang sudah ada di dalam *cache* atau untuk melewatkan *render* ulang jika data tersebut tidak berubah sejak render sebelumnya.
 
 Untuk melewatkan perhitungan dan render ulang yang tidak perlu, gunakan salah satu dari Hook ini:
 
