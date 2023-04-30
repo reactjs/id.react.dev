@@ -1,5 +1,5 @@
 ---
-title: Mengirim Props Pada Komponen
+title: Mengoper Props kepada Komponen
 ---
 
 <Intro>
@@ -10,7 +10,7 @@ Komponen React menggunakan *props* untuk berkomunikasi antara satu dengan yang l
 
 <YouWillLearn>
 
-* Bagaimana cara mengirim *props* pada komponen
+* Bagaimana cara mengoper *props* kepada komponen
 * Bagaimana cara membaca *props* dari komponen
 * Bagaimana cara memberi nilai bawaan untuk *props*
 * Bagaimana cara mengirim beberapa JSX ke dalam component
@@ -53,7 +53,7 @@ body { min-height: 120px; }
 
 *Props* yang bisa dikirimkan pada tag `<img>` sudah didefinisikan sebelumnya (ReactDOM menyesuaikan dengan [standar HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Namun Anda bisa mengirimkan *props* apapun pada komponen Anda *sendiri*, Misalnya `<Avatar>`, untuk dikustomisasi. Begini caranya!
 
-## Mengirim *props* pada komponen {/*passing-props-to-a-component*/}
+## Mengoper *props* kepada komponen {/*passing-props-to-a-component*/}
 
 Pada kode ini, komponen `Profile` tidak mengirimkan *props* apapun pada komponen anaknya, yaitu `Avatar`:
 
@@ -67,7 +67,7 @@ export default function Profile() {
 
 Anda bisa memberi `Avatar` beberapa *props* dalam dua langkah.
 
-### Langkah 1: Mengirim *props* pada komponen anak {/*step-1-pass-props-to-the-child-component*/}
+### Langkah 1: Mengoper *props* kepada komponen anak {/*step-1-pass-props-to-the-child-component*/}
 
 Pertama-tama, kirimkan beberapa *props* pada `Avatar`. Sebagai contoh, mari kirimkan dua *props*: `person` (sebuah objek), dan `size` (sebuah angka):
 
@@ -253,7 +253,7 @@ Ini akan meneruskan semua *props* milik `Profile` pada `Avatar` tanpa menuliskan
 
 **Gunakan sintaksis *spread* dengan batasan.** Jika Anda menggunakannya pada setiap komponen, maka ada yang salah. Seringkali, ini menunjukan bahwa Anda perlu memecah komponen Anda dan mengirim anaknya sebagai JSX. Mari kita bahas!
 
-## Mengirim JSX sebagai anak {/*passing-jsx-as-children*/}
+## Mengoper JSX sebagai anak {/*passing-jsx-as-children*/}
 
 Sudah umum untuk menyisipkan tag bawaan pada peramban:
 
@@ -415,7 +415,7 @@ Bagaimanapun, *props* bersifat [*immutable*](https://en.wikipedia.org/wiki/Immut
 
 <Recap>
 
-* Untuk mengirim *props*, tambahkan langsung ke JSX, seperti yang Anda lakukan dengan atribut HTML.
+* Untuk mengoper *props*, tambahkan langsung ke JSX, seperti yang Anda lakukan dengan atribut HTML.
 * Untuk membaca *props*, gunakan `function Avatar({ person, size })` sintaksis *destructuring*.
 * Anda bisa memberi nilai bawaan seperti `size = 100`, yang mana akan digunakan untuk *props* yang kosong dan `undefined`.
 * Anda bisa meneruskan semua *props* dengan `<Avatar {...props} />` sintaksis *spread* JSX, Namun jangan terlalu sering menggunakannya!
