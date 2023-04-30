@@ -10,7 +10,7 @@ Komponen React menggunakan *props* untuk berkomunikasi antara satu dengan yang l
 
 <YouWillLearn>
 
-* Bagaimana cara mengoper *props* kepada komponen
+* Bagaimana cara mengoper *props* ke komponen
 * Bagaimana cara membaca *props* dari komponen
 * Bagaimana cara memberi nilai bawaan untuk *props*
 * Bagaimana cara mengirim beberapa JSX ke dalam component
@@ -53,7 +53,7 @@ body { min-height: 120px; }
 
 *Props* yang bisa dikirimkan pada tag `<img>` sudah didefinisikan sebelumnya (ReactDOM menyesuaikan dengan [standar HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Namun Anda bisa mengirimkan *props* apapun pada komponen Anda *sendiri*, Misalnya `<Avatar>`, untuk dikustomisasi. Begini caranya!
 
-## Mengoper *props* kepada komponen {/*passing-props-to-a-component*/}
+## Mengoper *props* ke komponen {/*passing-props-to-a-component*/}
 
 Pada kode ini, komponen `Profile` tidak mengirimkan *props* apapun pada komponen anaknya, yaitu `Avatar`:
 
@@ -67,7 +67,7 @@ export default function Profile() {
 
 Anda bisa memberi `Avatar` beberapa *props* dalam dua langkah.
 
-### Langkah 1: Mengoper *props* kepada komponen anak {/*step-1-pass-props-to-the-child-component*/}
+### Langkah 1: Mengoper *props* ke komponen anak {/*step-1-pass-props-to-the-child-component*/}
 
 Pertama-tama, kirimkan beberapa *props* pada `Avatar`. Sebagai contoh, mari kirimkan dua *props*: `person` (sebuah objek), dan `size` (sebuah angka):
 
