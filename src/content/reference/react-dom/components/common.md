@@ -988,7 +988,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-Untuk mengetahui mengapa merender HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
+Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
 
 ```js {1-4,7,8}
 const post = {
