@@ -303,7 +303,7 @@ Sekarang mari kita lihat file-file dalam kode awal.
 
 #### `App.js` {/*appjs*/}
 
-Kode dalam `App.js` membuat sebuah _komponen_. Dalam React, komponen adalah bagian dari kode yang dapat digunakan kembali yang merepresentasikan bagian dari antarmuka pengguna. Komponen digunakan untuk merender, mengelola, dan memperbarui elemen UI dalam aplikasi Anda. Mari kita lihat komponen ini baris demi baris untuk melihat apa yang terjadi:
+Kode dalam `App.js` membuat sebuah _komponen_. Dalam React, komponen adalah bagian dari kode yang dapat digunakan kembali yang merepresentasikan bagian dari antarmuka pengguna. Komponen digunakan untuk me-*render*, mengelola, dan memperbarui elemen UI dalam aplikasi Anda. Mari kita lihat komponen ini baris demi baris untuk melihat apa yang terjadi:
 
 ```js {1}
 export default function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Kemudian Anda akan memperbarui komponen Board untuk merender komponen `Square` tersebut dengan menggunakan sintaksis JSX:
+Kemudian Anda akan memperbarui komponen Board untuk me-*render* komponen `Square` tersebut dengan menggunakan sintaksis JSX:
 
 ```js {5-19}
 // ...
@@ -581,7 +581,7 @@ Ups, ini bukan yang Anda inginkan:
 
 ![papan berisikan value](../images/tutorial/board-filled-with-value.png)
 
-Anda ingin merender variabel JavaScript yang disebut `value` dari komponen Anda, bukan kata "value". Untuk "melarikan diri ke dalam JavaScript" dari JSX, Anda memerlukan kurung kurawal. Tambahkan tanda kurung kurawal di sekitar `nilai` di JSX seperti ini:
+Anda ingin me-*render* variabel JavaScript yang disebut `value` dari komponen Anda, bukan kata "value". Untuk "melarikan diri ke dalam JavaScript" dari JSX, Anda memerlukan kurung kurawal. Tambahkan tanda kurung kurawal di sekitar `nilai` di JSX seperti ini:
 
 ```js {2}
 function Square({ value }) {
@@ -797,7 +797,7 @@ function Square() {
 }
 ```
 
-Dengan memanggil fungsi `set` ini dari handler `onClick`, Anda memberi tahu React untuk merender ulang `Square` setiap kali `<button>` diklik. Setelah pembaruan, nilai `Square` akan menjadi `'X'`, sehingga Anda akan melihat "X" pada papan permainan. Klik pada kotak mana pun, dan "X" akan muncul:
+Dengan memanggil fungsi `set` ini dari handler `onClick`, Anda memberi tahu React untuk me-*render* ulang `Square` setiap kali `<button>` diklik. Setelah pembaruan, nilai `Square` akan menjadi `'X'`, sehingga Anda akan melihat "X" pada papan permainan. Klik pada kotak mana pun, dan "X" akan muncul:
 
 ![menambahkan x ke papan permainan](../images/tutorial/tictac-adding-x-s.gif)
 
@@ -1357,7 +1357,7 @@ Hasilnya sama, tetapi dengan tidak melakukan mutasi (mengubah data yang mendasar
 
 Immutability membuat fitur-fitur yang kompleks menjadi lebih mudah untuk diimplementasikan. Kemudian dalam tutorial ini, Anda akan mengimplementasikan fitur "perjalanan waktu" yang memungkinkan Anda meninjau sejarah game dan "melompat kembali" ke gerakan sebelumnya. Fungsionalitas ini tidak spesifik untuk gim--kemampuan untuk membatalkan dan mengulang tindakan tertentu adalah persyaratan umum untuk aplikasi. Menghindari mutasi data secara langsung memungkinkan Anda menyimpan data versi sebelumnya, dan menggunakannya kembali nanti.
 
-Ada juga manfaat lain dari immutability. Secara default, semua komponen anak di-*render* ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus merender ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
+Ada juga manfaat lain dari immutability. Secara default, semua komponen anak di-*render* ulang secara otomatis ketika state komponen induk berubah. Hal ini termasuk komponen anak yang tidak terpengaruh oleh perubahan tersebut. Meskipun perenderan ulang tidak dengan sendirinya terlihat oleh pengguna (Anda tidak boleh secara aktif mencoba menghindarinya!), Anda mungkin ingin melewatkan perenderan ulang bagian dari pohon komponen yang jelas tidak terpengaruh oleh perubahan tersebut karena alasan kinerja. Immutability membuatnya sangat murah bagi komponen untuk membandingkan apakah datanya telah berubah atau tidak. Anda dapat mempelajari lebih lanjut tentang bagaimana React memilih kapan harus me-*render* ulang sebuah komponen di [referensi API `memo`](/reference/react/memo).
 
 ### Bergiliran {/*taking-turns*/}
 
@@ -1749,9 +1749,9 @@ Anda akan menyimpan senarai `squares` sebelumnya dalam senarai lain yang disebut
 
 Sekarang Anda akan menulis komponen tingkat atas baru yang disebut `Game` untuk menampilkan daftar gerakan sebelumnya. Di situlah Anda akan menempatkan state `history` yang berisi riwayat permainan.
 
-Menempatkan state `history` ke dalam komponen `Game` akan membuat Anda dapat menghapus state `squares` dari komponen `Board` turunannya. Sama seperti Anda "mengangkat state" dari komponen `Square` ke dalam komponen `Board`, sekarang Anda akan mengangkatnya dari `Board` ke dalam komponen `Game` tingkat atas. Hal ini memberikan komponen `Game` kontrol penuh atas data `Board` dan memungkinkannya menginstruksikan `Board` untuk merender giliran sebelumnya dari `history`.
+Menempatkan state `history` ke dalam komponen `Game` akan membuat Anda dapat menghapus state `squares` dari komponen `Board` turunannya. Sama seperti Anda "mengangkat state" dari komponen `Square` ke dalam komponen `Board`, sekarang Anda akan mengangkatnya dari `Board` ke dalam komponen `Game` tingkat atas. Hal ini memberikan komponen `Game` kontrol penuh atas data `Board` dan memungkinkannya menginstruksikan `Board` untuk me-*render* giliran sebelumnya dari `history`.
 
-Pertama, tambahkan komponen `Game` dengan `export default`. Buatlah ia merender komponen `Board` dan beberapa markup:
+Pertama, tambahkan komponen `Game` dengan `export default`. Buatlah ia me-*render* komponen `Board` dan beberapa markup:
 
 ```js {1,5-16}
 function Board() {
@@ -1785,7 +1785,7 @@ export default function Game() {
 
 Perhatikan bagaimana `[Array(9).fill(null)]` adalah sebuah senarai dengan satu item, yang merupakan senarai dari 9 buah `null`.
 
-Untuk merender kotak untuk pergerakan saat ini, Anda perlu membaca senarai kotak terakhir dari `history`. Anda tidak membutuhkan `useState` untuk ini - Anda sudah memiliki informasi yang cukup untuk menghitungnya selama render:
+Untuk me-*render* kotak untuk pergerakan saat ini, Anda perlu membaca senarai kotak terakhir dari `history`. Anda tidak membutuhkan `useState` untuk ini - Anda sudah memiliki informasi yang cukup untuk menghitungnya selama render:
 
 ```js {4}
 export default function Game() {
@@ -2021,7 +2021,7 @@ body {
 
 Karena Anda merekam riwayat permainan *tic-tac-toe* ini, Anda sekarang dapat menampilkan daftar gerakan sebelumnya kepada pemain.
 
-Elemen React seperti `<button>` adalah objek JavaScript biasa; Anda dapat mengopernya di dalam aplikasi Anda. Untuk merender beberapa item di React, Anda dapat menggunakan senarai elemen-elemen React.
+Elemen React seperti `<button>` adalah objek JavaScript biasa; Anda dapat mengopernya di dalam aplikasi Anda. Untuk me-*render* beberapa item di React, Anda dapat menggunakan senarai elemen-elemen React.
 
 Anda telah memiliki sebuah senarai `history` yang merupakan sejarah gerakan dalam state, jadi sekarang Anda perlu mengubahnya menjadi sebuah array elemen React. Dalam JavaScript, untuk mengubah satu senarai menjadi senarai lainnya, Anda dapat menggunakan metode [array `map`:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
@@ -2249,7 +2249,7 @@ Untuk saat ini, Anda akan melihat daftar gerakan yang terjadi di dalam game dan 
 
 ### Memilih key {/*picking-a-key*/}
 
-Ketika Anda merender sebuah list, React menyimpan beberapa informasi tentang setiap item list yang di-render. Ketika Anda memperbarui list, React perlu menentukan apa yang telah berubah. Anda bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui item pada list.
+Ketika Anda me-*render* sebuah list, React menyimpan beberapa informasi tentang setiap item list yang di-render. Ketika Anda memperbarui list, React perlu menentukan apa yang telah berubah. Anda bisa saja menambahkan, menghapus, mengatur ulang, atau memperbarui item pada list.
 
 Bayangkan pergantian dari
 
@@ -2509,7 +2509,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Terakhir, Anda akan memodifikasi komponen `Game` untuk merender gerakan yang sedang dipilih, alih-alih selalu merender gerakan terakhir:
+Terakhir, Anda akan memodifikasi komponen `Game` untuk me-*render* gerakan yang sedang dipilih, alih-alih selalu me-*render* gerakan terakhir:
 
 ```js {5}
 export default function Game() {
