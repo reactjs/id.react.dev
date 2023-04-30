@@ -240,12 +240,12 @@ Sebelum komponen Anda ditampilkan di layar, mereka harus di *render* oleh React.
 Bayangkan bahwa komponen Anda adalah koki di dapur, menyusun hidangan lezat dari bahan-bahan dasar. Dalam skenario ini, React adalah pelayan yang mengajukan permintaan dari pelanggan dan membawakan pesanan mereka. Proses permintaan dan pelayanan UI ini memiliki tiga langkah:
 
 1. **Memicu** *render* (mengirimkan pesanan pelanggan ke dapur)
-2. **Merender** komponen (menyiapkan pesanan di dapur)
+2. **Me-*render*** komponen (menyiapkan pesanan di dapur)
 3. **Commit** ke DOM (menempatkan pesanan di meja)
 
 <IllustrationBlock sequential>
   <Illustration caption="Memicu" alt="React sebagai pelayan di restoran, mengambil pesanan dari pengguna dan mengantarkannya ke Dapur Komponent" src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Merender" alt="Koki Card memberikan React komponen Card baru." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption={<>Me-<i>render</i></>} alt="Koki Card memberikan React komponen Card baru." src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="Commit" alt="React mengantarkan Card ke pengguna di meja mereka" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
@@ -257,11 +257,11 @@ Baca **[Render dan Commit](/learn/render-and-commit)** untuk mempelajari *lifecy
 
 ## State sebagai snapshot {/*state-as-a-snapshot*/}
 
-Tidak seperti variabel Javascript biasa, state di React berperilaku lebih seperti *snapshot*. Mengubah state tidaklah mengubah variabel state yang Anda miliki sekarang, tetapi akan memicu re-render. Ini bisa mengejutkan pada awalnya!
+Tidak seperti variabel Javascript biasa, state di React berperilaku lebih seperti *snapshot*. Mengubah state tidaklah mengubah variabel state yang Anda miliki sekarang, tetapi akan memicu *render* ulang. Ini bisa mengejutkan pada awalnya!
 
 ```js
 console.log(count);  // 0
-setCount(count + 1); // Meminta re-render dengan 1
+setCount(count + 1); // Meminta render ulang dengan 1
 console.log(count);  // Masih 0!
 ```
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State sebagai Snapshot](/learn/state-as-a-snapshot) menjelaskan mengapa ini terjadi. Mengubah state akan meminta re-render baru, tetapi tidak akan mengubah state-nya di kode yang sudah berjalan. Jadi `score` tetap `0` setelah Anda memanggil `setScore(score + 1)`. 
+[State sebagai Snapshot](/learn/state-as-a-snapshot) menjelaskan mengapa ini terjadi. Mengubah state akan meminta *render* ulang baru, tetapi tidak akan mengubah state-nya di kode yang sudah berjalan. Jadi `score` tetap `0` setelah Anda memanggil `setScore(score + 1)`. 
 
 ```js
 console.log(score);  // 0
