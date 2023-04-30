@@ -4,7 +4,7 @@ title: renderToStaticMarkup
 
 <Intro>
 
-`renderToStaticMarkup` me-*render* sebuah pohon React yang non-interaktif sebagai *string* HTML.
+`renderToStaticMarkup` me-*render* sebuah pohon React yang non-interaktif ke *string* HTML.
 
 ```js
 const html = renderToStaticMarkup(reactNode)
@@ -20,7 +20,7 @@ const html = renderToStaticMarkup(reactNode)
 
 ### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
 
-Pada *server*, panggil fungsi `renderToStaticMarkup` untuk me-*render* aplikasi Anda sebagai HTML.
+Pada *server*, panggil fungsi `renderToStaticMarkup` untuk me-*render* aplikasi Anda ke HTML.
 
 ```js
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -34,7 +34,7 @@ Keluaran yang diberikan adalah HTML non-interaktif dari komponen-komponen React 
 
 #### Parameter {/*parameters*/}
 
-* `reactNode`: Sebuah *node* React yang Anda ingin *render* sebagai HTML. Contohnya, sebuah *node* JSX seperti `<Page />`.
+* `reactNode`: Sebuah *node* React yang Anda ingin *render* ke HTML. Contohnya, sebuah *node* JSX seperti `<Page />`.
 
 #### Nilai Balik {/*returns*/}
 
@@ -46,7 +46,7 @@ Sebuah *string* HTML.
 
 * `renderToStaticMarkup` mendukung penggunaan `Suspense` secara terbatas. Apabila sebuah komponen berada dalam kondisi *suspended*, `renderToStaticMarkup` segera mengirimkan *fallback*-nya sebagai HTML.
 
-* `renderToStaticMarkup` bekerja dalam peramban, tetapi tidak direkomendasikan untuk digunakan dalam *source code* klien atau lingkungan peramban tersebut. Apabila Anda ingin me-*render* komponen sebagai HTML dalam peramban, [ambil HTML dengan cara me-*render* dalam *node* DOM.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` bekerja dalam peramban, tetapi tidak direkomendasikan untuk digunakan dalam *source code* klien atau lingkungan peramban tersebut. Apabila Anda ingin me-*render* komponen ke HTML dalam peramban, [ambil HTML dengan cara me-*render* dalam *node* DOM.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
 
 ---
 
