@@ -310,7 +310,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Apakah melakukan dengan manual atau menggunakan *converter*, terserah pada Anda!
+Antara melakukannya dengan manual atau menggunakan *converter*, terserah Anda!
 
 <Solution>
 
@@ -326,7 +326,7 @@ export default function Bio() {
       <p className="summary">
         Anda dapat menemukan pemikiran saya di sini.
         <br /><br />
-        <b>Juga ada <i>foto</b></i> ilmuwan!
+        <b>Juga ada <i>foto-foto</b></i>para ilmuwan!
       </p>
     </div>
   );
