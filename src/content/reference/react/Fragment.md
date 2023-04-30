@@ -23,7 +23,7 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana Anda membutuhkan satu elemen. Mengelompokkan element di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. Tag JSX kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
+Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana Anda membutuhkan satu elemen. Mengelompokkan elemen di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. *Tag JSX* kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
 
 #### Props {/*props*/}
 
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-_Fragment_ sangat berguna karena mengelompokkan elemen dengan _Fragment_ tidak akan mempengaruhi *layout* atau *style*, berbeda jika Anda membungkus elemen dalam wadah lain seperti elemen DOM. Jika Anda memeriksa contoh ini dengan alat browser, Anda akan melihat semua DOM *node* `<h1>` dan `<p>` muncul sebagai saudara tanpa pembungkus di sekitar mereka:
+_Fragment_ sangat berguna karena mengelompokkan elemen dengan _Fragment_ tidak akan mempengaruhi *layout* atau *style*, berbeda jika Anda membungkus elemen dalam wadah lain seperti elemen DOM. Jika Anda memeriksa contoh ini dengan alat *browser*, Anda akan melihat semua DOM *node* `<h1>` dan `<p>` muncul sebagai saudara tanpa pembungkus di sekitar mereka:
 
 <Sandpack>
 
@@ -160,7 +160,7 @@ function DateRangePicker({ start, end }) {
 
 ### Me-*render* daftar *Fragment* {/*rendering-a-list-of-fragments*/}
 
-Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [me-*render* beberapa elemen dalam loop](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam loop adalah *Fragment*, Anda perlu menggunakan sintaksis elemen JSX normal untuk menyediakan atribut `key`:
+Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [me-*render* beberapa elemen dalam *loop*](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam *loop* adalah *Fragment*, Anda perlu menggunakan sintaksis elemen *JSX* normal untuk menyediakan atribut `key`:
 
 ```js {3,6}
 function Blog() {
