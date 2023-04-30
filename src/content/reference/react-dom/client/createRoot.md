@@ -44,9 +44,8 @@ Aplikasi yang sepenuhnya dibuat dengan React biasanya cukup memanggil `createRoo
 * `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan membuat induk untuk elemen DOM ini dan memungkinkan Anda untuk memanggil fungsi lain pada induk, seperti `render` untuk menampilkan konten React yang sudah dirender.
 
 * **opsional** `options`: Sebuah objek dengan opsi-opsi berikut untuk induk React ini.
-
   * **opsional** `onRecoverableError`: *Callback* yang dipanggil saat React berhasil pulih secara otomatis dari kesalahan.
-  * **opsional** `identifierPrefix`: sebuah string yang React gunakan untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Berguna untuk mencegah konflik saat menggunakan banyak induk pada halaman yang sama.
+  * **opsional** `identifierPrefix`: sebuah *string* yang React gunakan untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Berguna untuk mencegah konflik saat menggunakan banyak induk pada halaman yang sama.
 
 #### Returns {/*returns*/}
 
@@ -101,7 +100,7 @@ Sebuah aplikasi yang dibuat sepenuhnya dengan React biasanya tidak perlu memangg
 
 Fungsi ini biasanya berguna saat node DOM pada induk React (atau turunan lainnya) mungkin dapat terhapus dari DOM oleh kode lain. Sebagai contoh, bayangkan sebuah panel tab jQuery yang menghapus tab nonaktif dari DOM. Jika tab tersebut terhapus, seluruh isi dari DOM tersebut (termasuk induk React) juga akan ikut terhapus. Pada kasus ini, Anda perlu memberitahukan React untuk "stop" mengelola konten DOM induk yang terhapus dengan memanggil `root.unmount`. Jika tidak, komponen yang ada di dalam induk tersebut tidak tahu kalau mereka harus membersihkan dan membebaskan *resources* global seperti *subscriptions*.
 
-Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam induk, dan "melepaskan" React dari dalam node DOM induk, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
+Memanggil `root.unmount` akan mengunmount seluruh komponen di dalam induk, dan "melepaskan" React dari dalam node DOM induk, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
 
 
 #### Parameters {/*root-unmount-parameters*/}
@@ -187,7 +186,7 @@ function Counter() {
 
 **Jika aplikasi Anda dibuat sepenuhnya dengan React, Anda seharusnya tidak perlu membuat induk-induk lainnya, atau memanggil [`root.render`](#root-render) kembali.**
 
-Kedepannya, React akan mengelola DOM tersebut untuk seluruh aplikasi Anda. Untuk menambahkan komponen-komponen lain, [pasangkan mereka di dalam komponen `App`.](/learn/importing-and-exporting-components) Saat Anda perlu memperbarui UI tersebut, Anda dapat melakukannya [dengan menggunakan *state*.](/reference/react/useState) Saat Anda ingin menampilkan konten ekstra seperti *modal* atau *tooltip* diluar dari node DOM, [reder komponen tersebut dengan sebuah portal.](/reference/react-dom/createPortal)
+Kedepannya, React akan mengelola DOM tersebut untuk seluruh aplikasi Anda. Untuk menambahkan komponen-komponen lain, [pasangkan mereka di dalam komponen `App`.](/learn/importing-and-exporting-components) Saat Anda perlu memperbarui UI tersebut, Anda dapat melakukannya [dengan menggunakan *state*.](/reference/react/useState) Saat Anda ingin menampilkan konten ekstra seperti *modal* atau *tooltip* diluar dari node DOM, [render komponen tersebut dengan sebuah portal.](/reference/react-dom/createPortal)
 
 <Note>
 
@@ -197,13 +196,13 @@ Saat HTML Anda kosong, pengguna akan melihat sebuah halaman kosong sampai kode J
 <div id="root"></div>
 ```
 
-Ini dapat terasa sangat lambat! Untuk mengatasi masalah ini, Anda dapat membuat HTML awal dari komponen Anda [pada server atau saat proses *build*](/reference/react-dom/server) Sehingga pengunjung dapat membaca teks, melihat gambar dan mengklik tautan sebelum kode JavaScript apapun selesai dimuat. Kami merekomendasikan untuk [menggunakan sebuah *frameworks*](/learn/start-a-new-react-project#production-grade-react-frameworks) yang telah melakukan optimisasi ini sejak awal. Bergantung dari kapan proses ini berjalan, ini dapat dipanggil sebagai *server-side rendering (SSR)* atau *static site generation (SSG).*
+Ini dapat terasa sangat lambat! Untuk mengatasi masalah ini, Anda dapat membuat HTML awal dari komponen Anda [pada server atau saat proses *build*](/reference/react-dom/server) Sehingga pengunjung dapat membaca teks, melihat gambar dan mengklik tautan sebelum kode JavaScript apapun selesai dimuat. Kami merekomendasikan untuk [menggunakan sebuah *framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) yang telah melakukan optimisasi ini sejak awal. Bergantung dari kapan proses ini berjalan, ini dapat dipanggil sebagai *server-side rendering (SSR)* atau *static site generation (SSG).*
 
 </Note>
 
 <Pitfall>
 
-**Aplikasi yang dirender pada server atau pembuatan statis harus memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`.** React kemdudian akan *hydrate* (menggunakan ulang) node-node DOM dari HTML Anda, alih-alih menghancurkan dan membuat ulang node tersebut.
+**Aplikasi yang dirender pada server atau pembuatan statis harus memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`.** React kemudian akan menghydrate (menggunakan ulang) node-node DOM dari HTML Anda, alih-alih menghancurkan dan membuat ulang node tersebut.
 
 </Pitfall>
 
@@ -287,7 +286,7 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 </Sandpack>
 
-Anda dapt juga membuat node DOM baru dengan [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) dan menambahkannya ke dalam dokumen secara langsung.
+Anda dapat juga membuat node DOM baru dengan [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) dan menambahkannya ke dalam dokumen secara langsung.
 
 ```js
 const domNode = document.createElement('div');
@@ -296,7 +295,7 @@ root.render(<Comment />);
 document.body.appendChild(domNode); // Anda dapat menambahkan kode ini di manapun dalam dokumen
 ```
 
-Untuk memusnahkan pohon React dari node DOM dan membersihka semua *resources* yang digunakan, panggil [`root.unmount`.](#root-unmount)
+Untuk memusnahkan pohon React dari node DOM dan membersihkan seluruh *resources* yang digunakan, panggil [`root.unmount`.](#root-unmount)
 
 ```js
 root.unmount();
@@ -306,7 +305,7 @@ Hal ini biasanya berguna saat komponen React Anda berada dalam aplikasi yang men
 
 ---
 
-### Memperbahrui Komponen Induk {/*updating-a-root-component*/}
+### Memperbarui Komponen Induk {/*updating-a-root-component*/}
 
 Anda dapat memanggil `render` lebih dari sekali untuk induk yang sama. Selama pohon komponen tersebut sama dengan yang sebelumnya telah dirender, React akan [menjaga statenya.](/learn/preserving-and-resetting-state) Perhatikan bagaimana Anda dapat mengetik pada *input*, yang berarti pembaruan dari pemanggilan `render` yang berulang setiap detik pada contoh ini tidak desktruktif.
 
@@ -359,7 +358,7 @@ root.render(<App />);
 Tidak akan ada yang tampil sampai hal tersebut Anda lakukan.
 
 ---
-### Saya Mendapatkan Pesan Kesalanan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### Saya Mendapatkan Pesan Kesalahan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
 Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah node DOM.
 
@@ -409,7 +408,7 @@ root.render(createApp());
 
 ### HTML yang Dirender oleh Server Selalu Dibuat Ulang dari Awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 
-Jika aplikasi Anda adalah aplikasi yang dirender oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat induk dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulag node-node DOM dari awal. Hal ini dapat memperlamat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
+Jika aplikasi Anda adalah aplikasi yang dirender oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat induk dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulang node-node DOM dari awal. Hal ini dapat memperlambat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
 
 Aplikasi yang dirender oleh server harus menggunakan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`:
 
@@ -423,4 +422,4 @@ hydrateRoot(
 );
 ```
 
-Mohon dicatat bahwa APInya berbeda. Khususnya, biasanya tidak akan ada lagi panggilan `root.render`.
+Mohon dicatat bahwa APInya berbeda. Lebih spesifiknya, biasanya tidak akan ada lagi panggilan `root.render`.
