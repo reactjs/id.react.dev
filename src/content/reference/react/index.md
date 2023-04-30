@@ -85,7 +85,7 @@ Cara yang umum untuk mengoptimalkan kinerja *rendering* ulang adalah melewatkan 
 Untuk melewatkan perhitungan dan *render* ulang yang tidak perlu, gunakan salah satu dari Hook ini:
 
 - [`useMemo`](/reference/react/useMemo) memungkinkan Anda menyimpan hasil perhitungan yang berat secara *cache*.
-- [`useCallback`](/reference/react/useCallback) memungkinkan Anda menyimpan definisi fungsi di cache sebelum melewatkannya ke komponen yang dioptimalkan.
+- [`useCallback`](/reference/react/useCallback) memungkinkan Anda menyimpan definisi fungsi di *cache* sebelum melewatkannya ke komponen yang dioptimalkan.
 
 ```js
 function TodoList({ todos, tab, theme }) {
