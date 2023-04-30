@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Langkah Selanjutnya {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+Sekarang, Anda telah mengetahui dasar-dasar cara menulis kode React!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Lihat [Tutorial](/learn/tutorial-tic-tac-toe) untuk mempraktikkannya dan membangun aplikasi mini pertama Anda dengan React.
