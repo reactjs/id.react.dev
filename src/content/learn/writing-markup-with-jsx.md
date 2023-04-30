@@ -16,19 +16,19 @@ JSX adalah perpanjangan sintaksis untuk menulis kode seperti *HTML* dalam file J
 
 </YouWillLearn>
 
-## JSX: Meletakkan *markup* ke JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX: Meletakkan markup ke JavaScript {/*jsx-putting-markup-into-javascript*/}
 
 Website selama ini terbuat dari HTML, CSS, dan JavaScript. Selama bertahun-tahun, pengembang *website* menaruh konten di HTML, desain di CSS, dan logika di JavaScript—tidak jarang di *file* yang berbeda! Konten dibangun di HTML sedangkan logika halaman disimpan secara terpisah dalam JavaScript:
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML markup with purple background and a div with two child tags: p and form. ">
+<Diagram name="writing_jsx_html" height={237} width={325} alt="markup HTML dengan latar belakang berwarna ungu dan sebuah div dengan dua children tag: p dan form. ">
 
 HTML
 
 </Diagram>
 
-<Diagram name="writing_jsx_js" height={237} width={325} alt="Three JavaScript handlers with yellow background: onSubmit, onLogin, and onClick.">
+<Diagram name="writing_jsx_js" height={237} width={325} alt="Tiga fungsi  JavaScript dengan latar belakang kuning: onSubmit, onLogin, and onClick.">
 
 JavaScript
 
@@ -40,13 +40,13 @@ Namun, seiring dengan situs yang makin iteraktif, logika semakin menentukan kont
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="Komponen React dengan HTML dan JavaScript digabung dari contoh sebelumnya. Fungsi bernama Sidebar yang memanggil fungsi isLoggedIn, berwarna kuning. Tag p dari sebelumnya bersarang dalam fungsi berwarna ungu, dan sebuah tag Form mereferensi ke komponen yang ada di diagram berikutnya.">
 
 Komponen React `Sidebar.js`
 
 </Diagram>
 
-<Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
+<Diagram name="writing_jsx_form" height={330} width={325} alt="Komponen React dengan HTML dan JavaScript dari contoh sebelumnya digabung. Fungsi bernama Form memiliki dua handler onClick dan onSubmit berwarna kuning. Setelah itu diikuti oleh HTML berwarna ungu. HTML tersebut memiliki elemen form dan elemen input di dalamnya, masing-masing dengan prop onClick.">
 
 Komponen React `Form.js`
 
@@ -60,14 +60,14 @@ Masing-masing komponen React adalah fungsi JavaScript yang bisa memiliki *markup
 
 <Note>
 
-JSX dan React adalah dua hal yang berbeda. Mereka masing-masing digunakan secara bersama, namun kamu *dapat* [digunakan sendiri secara independen](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform). 
+JSX dan React adalah dua hal yang berbeda. Mereka masing-masing digunakan secara bersama, namun anda *dapat* [digunakan sendiri secara independen](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform). 
 JSX merupakan ekstensi sintaks, sedangkan React adalah *library* JavaScript.
 
 </Note>
 
 ## Mengubah HTML menjadi JSX {/*converting-html-to-jsx*/}
 
-Anggap kamu memiliki HTML yang alid:
+Anggap anda memiliki HTML yang alid:
 
 ```html
 <h1>Daftar Tugas Putri</h1>
@@ -83,7 +83,7 @@ Anggap kamu memiliki HTML yang alid:
 </ul>
 ```
 
-Dan kamu ingin meletakkannya di komponen:
+Dan anda ingin meletakkannya di komponen:
 
 ```js
 export default function TodoList() {
@@ -93,7 +93,7 @@ export default function TodoList() {
 }
 ```
 
-Jika kamu salin dan tempel secara langsung, maka dia tidak akan bekerja:
+Jika anda salin dan tempel secara langsung, maka dia tidak akan bekerja:
 
 
 <Sandpack>
@@ -123,11 +123,11 @@ img { height: 90px }
 
 </Sandpack>
 
-Ini dikarenakan JSX lebih ketat dan memiliki banyak peraturan dibandingkan HTML! Jika kamu membaca pesan *error* yang tertera, pesan tersebut akan mengarahkanmu untuk memperbaiki *markup*, atau kamu bisa mengikuti panduan berikut.
+Ini dikarenakan JSX lebih ketat dan memiliki banyak peraturan dibandingkan HTML! Jika anda membaca pesan *error* yang tertera, pesan tersebut akan mengarahkanmu untuk memperbaiki *markup*, atau anda bisa mengikuti panduan berikut.
 
 <Note>
 
-Umumnya, pesan *error* pada React akan memandu kamu mencari sumber masalah yang ada di kode. Jangan lupa membaca pesan *error* jika kamu  *stuck*!
+Umumnya, pesan *error* pada React akan memandu anda mencari sumber masalah yang ada di kode. Jangan lupa membaca pesan *error* jika anda *stuck*!
 
 </Note>
 
@@ -137,7 +137,7 @@ Umumnya, pesan *error* pada React akan memandu kamu mencari sumber masalah yang 
 
 Untuk mengembalikan lebih dari satu elemen, **bungkus mereka dengan satu tag *parent*.**
 
-Contohnya, kamu dapat menggunakan tag `<div>`:
+Contohnya, anda dapat menggunakan tag `<div>`:
 
 ```js {1,11}
 <div>
@@ -154,7 +154,7 @@ Contohnya, kamu dapat menggunakan tag `<div>`:
 ```
 
 
-Jika kamu tidak ingin menambahkan `<div>` pada *markup*, kamu dapat `<>` dan `</>` saja:
+Jika anda tidak ingin menambahkan `<div>` pada *markup*, anda dapat `<>` dan `</>` saja:
 
 ```js {1,11}
 <>
@@ -174,13 +174,13 @@ Jika kamu tidak ingin menambahkan `<div>` pada *markup*, kamu dapat `<>` dan `</
 
 <DeepDive>
 
-#### Mengapa beberapa *tag* JSX perlu dibungkus? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+#### Mengapa beberapa tag JSX perlu dibungkus? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
-JSX mirip dengan HTML, namun di balik layar, mereka berubah menjadi objek *literal*  JavaScript. Kamu tidak bisa mengembalikan dua objek dari sebuah fungsi tanpa membungkus mereka ke sebuah *array*. Inilah mengapa kamu juga tidak bisa mengembalikan dua *tag* JSX tanpa membungkus mereka menjadi sebuah *fragment*.
+JSX mirip dengan HTML, namun di balik layar, mereka berubah menjadi objek *literal* JavaScript. Anda tidak bisa mengembalikan dua objek dari sebuah fungsi tanpa membungkus mereka ke sebuah senarai. Inilah mengapa anda juga tidak bisa mengembalikan dua *tag* JSX tanpa membungkus mereka menjadi sebuah *fragment*.
 
 </DeepDive>
 
-### 2. Tutup semua *tag* {/*2-close-all-the-tags*/}
+### 2. Tutup semua tag {/*2-close-all-the-tags*/}
 
 Semua *tag* JSX harus dapat ditutup: *tag* tunggal seperti `<img>` harus ditulis `<img />`, dan *tag* ganda seperti `<li>oranges` harus ditulis `<li>oranges</li>`.
 
@@ -201,7 +201,7 @@ Berikut adalah gambar dan daftar tugas Putri dengan *tag* ganda:
 </>
 ```
 
-### 3. Ubah <s>semua</s> sebagian menjadi *camelCase*! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. Ubah <s>semua</s> sebagian menjadi camelCase! {/*3-camelcase-salls-most-of-the-things*/}
 
 JSX berubah menjadi JavaScript dan atribut yang dituis di JSX menjadi *key* pada objek di JavaScript. Dalam komponen, atribut akan lebih mudah dibaca sebagai *variable*. Namun JavaScript memiliki beberapa batasan dalam menamai *variable*. Contohnya, nama *variable* tidak boleh terdiri dari karakter minus dan tidak boleh menggunakan nama pesanan tertentu seperti `class`.
 
@@ -215,8 +215,7 @@ Inilah mengapa di React, banyak atribut HTML dan SVG ditulis secara camelCase. C
 />
 ```
 
-Kamu dapat []
-You can [mencari semua atribut pada list DOM component berikut.](/reference/react-dom/components/common) Jika ada yang salah, jangan takut—React akan menampilkan pesan dengan koreksi ke [konsol pada peramban.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+Anda dapat [mencari semua atribut pada list DOM component berikut.](/reference/react-dom/components/common) Jika ada yang salah, jangan takut—React akan menampilkan pesan dengan koreksi ke [konsol di peramban.](https://developer.mozilla.org/docs/Tools/Browser_Console)
 
 <Pitfall>
 
@@ -224,7 +223,7 @@ Untuk beberapa alasan, atribut [`aria-*`](https://developer.mozilla.org/docs/Web
 
 </Pitfall>
 
-### Tip: Gunakan *JSX Converter* {/*pro-tip-use-a-jsx-converter*/}
+### Tip: Gunakan JSX Converter {/*pro-tip-use-a-jsx-converter*/}
 
 Mengubah atribut di markup yang sudah ada bisa menjadi membosankan! Kami sarankan untuk menggunakan *[converter](https://transform.tools/html-to-jsx)* untuk mengubah HTML dan SVG-mu menjadi JSX.
 Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
@@ -261,11 +260,11 @@ img { height: 90px }
 
 <Recap>
 
-Sekarang kamu paham mengapa ada JSX dan cara menggunakannya pada komponen:
+Sekarang anda paham mengapa ada JSX dan cara menggunakannya pada komponen:
 
 * Komponen React menggabungkan logika *render* dengan *markup* karena mereka berkaitan.
-* JSX mirip dengan HTML, dengan beberapa perbedaan. Kamu bisa menggunakan [converter](https://transform.tools/html-to-jsx) jika diperlukan.
-* Pesan error umumnya mengarahkan kamu ke sumber masalah pada *markup*.
+* JSX mirip dengan HTML, dengan beberapa perbedaan. Anda bisa menggunakan [converter](https://transform.tools/html-to-jsx) jika diperlukan.
+* Pesan error umumnya mengarahkan anda ke sumber masalah pada *markup*.
 
 </Recap>
 
@@ -286,7 +285,7 @@ export default function Bio() {
       <h1>Selamat datang di website saya!</h1>
     </div>
     <p class="summary">
-      Kamu dapat membaca uneg-unegku di sini.
+      Anda dapat membaca uneg-unegku di sini.
       <br><br>
       <b>Juga ada <i>foto</b></i> ilmuwan!
     </p>
@@ -311,7 +310,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Kamu bebas untuk mengubah secara manual atau menggunakan *converter*!
+Apakah melakukan dengan manual atau menggunakan *converter*, terserah pada Anda!
 
 <Solution>
 
@@ -325,7 +324,7 @@ export default function Bio() {
         <h1>Selamat datang di website saya!</h1>
       </div>
       <p className="summary">
-        Kamu dapat membaca uneg-unegku di sini.
+        Anda dapat menemukan pemikiran saya di sini.
         <br /><br />
         <b>Juga ada <i>foto</b></i> ilmuwan!
       </p>
