@@ -350,8 +350,7 @@ State adalah salah satu fitur tersebut, Anda akan menemui Hooks lainnya nanti.
 
 ### Anatomi dari `useState` {/*anatomy-of-usestate*/}
 
-Saat Anda memanggil [`useState`](/reference/react/useState), Anda memberitahu React bahwa komponen ini harus mengingat sesuatu:
-
+Saat Anda memanggil [`useState`](/reference/react/useState), Anda memberitahu React bahwa komponen ini harus mengingat sesuatu
 ```js
 const [index, setIndex] = useState(0);
 ```
@@ -589,8 +588,8 @@ function Gallery() {
   }
 
   let sculpture = sculptureList[index];
-  // This example doesn't use React, so
-  // return an output object instead of JSX.
+  // Contoh di bawah tidak menggunakan React,
+  // makanya yang dikembalikan adalah objek, bukan JSX.
   return {
     onNextClick: handleNextClick,
     onMoreClick: handleMoreClick,
@@ -920,11 +919,11 @@ Bagaimana jika Anda ingin menjaga state di kedua `Gallery` tetap sinkron? Cara y
 
 <Challenges>
 
-#### Complete the gallery {/*complete-the-gallery*/}
+#### Lengkapi galerinya {/*complete-the-gallery*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+Jika Anda menekan "Selanjunya" di gambar pahatan terakhir, kodenya akan berhenti bekerja. Coba perbaiki logikanya untuk mencegah hal tersebut. Anda bisa melakukannya dengan menambahkan pengecekan di event hanler atau menonaktifkan tombolnya saat tidak ada aksi yang mungkin terjadi.
 
-After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
+Setelah memperbaiki kesalahannya, tambahkan tombol "Sebelumnya" untuk menampilkan gambar pahatan yang sebelumnya. Kodenya harus berjalan lancar sampai gambar yang pertama tampil.
 
 <Sandpack>
 
@@ -948,17 +947,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -1066,7 +1065,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-This adds a guarding condition inside both event handlers and disables the buttons when needed:
+Kode ini menambahkan pengecekan di dalam event handler dan menonaktifkan tombol saat tidak diperlukan:
 
 <Sandpack>
 
@@ -1104,23 +1103,23 @@ export default function Gallery() {
         onClick={handlePrevClick}
         disabled={!hasPrev}
       >
-        Previous
+        Sebelumnya
       </button>
       <button
         onClick={handleNextClick}
         disabled={!hasNext}
       >
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -1226,13 +1225,13 @@ img { width: 120px; height: 120px; }
 
 </Sandpack>
 
-Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and inside the event handlers! This handy pattern works because event handler functions ["close over"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) any variables declared while rendering.
+Perhatikan bagaimana `hasPrev` dan `hasNext` bisa digunakan langsung di dalam blok JSK dan di dalam event handler! Ini pola yang tergolong praktis karena fungsi event handler [membaca variabel di lingkup sekitarnya](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 </Solution>
 
-#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+### Memperbaiki form masukan yang berhenti {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+Saat Anda mengetik di dalam kolom masukan, tidak ada yang muncul. Kolom masukkan terlihat "terjebak" menampilkan string kosong. `value` dari `<input>` yang pertama disetel untuk selalu membaca dari variabel `firstName`, dan `value` untuk `<input>` kedua disetel untuk membaca `lastName`. Sejauh ini benar. Kedua input memiliki event handler `onChange`, yang mana akan memperbarui nilai variabel berdasarkan masukan terbaru dari pengguna (`e.target.value`). Namun variabelnya seperti tidak "mengingat" nilai mereka antarrender. Perbaiki kode ini dengan menggunakan variable state.
 
 <Sandpack>
 
@@ -1257,17 +1256,17 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Nama Depan"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nama Belakang"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Hai, {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Setel Ulang</button>
     </form>
   );
 }
@@ -1281,7 +1280,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+Pertama, import `useState` dari React. Lalu ganti `firstName` dan `lastName` dengan variabel state yang dideklaraskan menggunakan `useState`. Terkahir, gnati setiap pemberian nilai `firstName = ...` dengan `setFirstName(...)`, dan lakukan hal yang sama untuk `lastName`. Jangan lupa untuk mengubah isi `handleReset` juga agar tombol `Setel Ulang` bekerja.
 
 <Sandpack>
 
@@ -1308,17 +1307,17 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Nama Depan"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nama Belakang"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Hai, {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Setel Ulang</button>
     </form>
   );
 }
@@ -1332,13 +1331,13 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-#### Fix a crash {/*fix-a-crash*/}
+#### Perbaiki kerusakan {/*fix-a-crash*/}
 
-Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
+Di bawah adalah form di mana pengguna bisa memberi masukan. Saat masukan dikirim, sebuah pesan "Terima kasih" seharusnya ditampilkan. Namun dia justru berhenti bekerja dan menampilkan pesan galat "Hooks yang dirender lebih sedikit dari yang seharusnya". Apakah Anda bisa menemukan kesalahan dan memperbaikinya?
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
+Apakah ada batasan mengenai _di mana_ Hooks bisa dipanggil? Apakah komponen ini melanggar aturan? Cek apakah ada komentar yang menonaktifkan pengecekan *linter*--sering di sini tempat bug bersembunyi.
 
 </Hint>
 
@@ -1350,23 +1349,23 @@ import { useState } from 'react';
 export default function FeedbackForm() {
   const [isSent, setIsSent] = useState(false);
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   } else {
     // eslint-disable-next-line
     const [message, setMessage] = useState('');
     return (
       <form onSubmit={e => {
         e.preventDefault();
-        alert(`Sending: "${message}"`);
+        alert(`Mengirim: "${message}"`);
         setIsSent(true);
       }}>
         <textarea
-          placeholder="Message"
+          placeholder="Pesan masukan"
           value={message}
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Kirim</button>
       </form>
     );
   }
@@ -1377,9 +1376,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+Hooks hanya dapat dipanggil di tingkat atas dari komponen fungsi. Di sini, deklarasi `isSent` pertama mengikuti aturan tersebut, namun tidak untuk `message` karena dia terletak di dalam blok kondisi.
 
-Move it out of the condition to fix the issue:
+Pindahkan dia ke luar dari blok kondisi untuk memperbaiki isu ini.
 
 <Sandpack>
 
@@ -1391,21 +1390,21 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   } else {
     return (
       <form onSubmit={e => {
         e.preventDefault();
-        alert(`Sending: "${message}"`);
+        alert(`Mengirim: "${message}"`);
         setIsSent(true);
       }}>
         <textarea
-          placeholder="Message"
+          placeholder="Pesan masukan"
           value={message}
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Kirim</button>
       </form>
     );
   }
@@ -1414,9 +1413,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Remember, Hooks must be called unconditionally and always in the same order!
+Ingat, Hooks hanya dapat dipanggil tanpa syarat dan selalu dengan urutan yang sama!
 
-You could also remove the unnecessary `else` branch to reduce the nesting. However, it's still important that all calls to Hooks happen *before* the first `return`.
+Anda juga bisa menghapus cabang `else` yang tidak perlu untuk mengurangi persarangan. Namun, yang penting adalah semua pemanggilan Hooks terjadi *sebelum* `return` yang pertama.
 
 <Sandpack>
 
@@ -1428,22 +1427,22 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   }
 
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      alert(`Sending: "${message}"`);
+      alert(`Mengirim: "${message}"`);
       setIsSent(true);
     }}>
       <textarea
-        placeholder="Message"
+        placeholder="Pesan masukan"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
       <br />
-      <button type="submit">Send</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -1451,19 +1450,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+Coba pindahkan pemanggilan `useState` kedua ke bawah kondisi `if` dan perhatikan kodenya berhenti bekerja lagi. 
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
+Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seharusnya melihat pesan galat saat melakukan kesalahan seperti ini. Jika Anda tidak melihatnya, Anda perlu memasang *linter* untuk proyek Anda.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Menghapus state yang tidak perlu {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+Saat tombol ditekan, pada contoh di bawah, sebuah kotak dialog akan muncul untuk diisi pengguna dan akan menambilkan pesan untuk menyapa mereka. Anda sudah coba menggunakan state untuk namanya, namun karena suatu hal dia tetap menampilkan "Halo, !" 
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+Untuk memperbaiki kode di bawah, hilangkan variabel state yang tidak perlu. (Kita akan bahas [mengapa hal tersebut tidak bekerja](/learn/state-as-a-snapshot) nanti.) 
 
-Can you explain why this state variable was unnecessary?
+Apakah Anda bisa menjelaskan mengapa variabel state ini tidak diperlukan?
 
 <Sandpack>
 
@@ -1474,13 +1473,13 @@ export default function FeedbackForm() {
   const [name, setName] = useState('');
 
   function handleClick() {
-    setName(prompt('What is your name?'));
-    alert(`Hello, ${name}!`);
+    setName(prompt('Siapa nama Anda?'));
+    alert(`Halo, ${name}!`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Sapa
     </button>
   );
 }
@@ -1490,7 +1489,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+Ini adalah versi yang sudah dibetulkan dengan menggunakan variabel biasa untuk `nama` di dalam fungsi yang membutuhkannya:
 
 <Sandpack>
 
@@ -1499,13 +1498,13 @@ import { useState } from 'react';
 
 export default function FeedbackForm() {
   function handleClick() {
-    const name = prompt('What is your name?');
-    alert(`Hello, ${name}!`);
+    const name = prompt('Siapa nama Anda?');
+    alert(`Halo, ${name}!`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Sapa
     </button>
   );
 }
@@ -1513,7 +1512,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+Sebuah variabel state hanya diperlukan untuk mempertahankan informasi antarrender di sebuah komponen. Di dalam event handler, variabel biasa sudah cukup. Jangan pakai variabel state jika bisa dicapai dengan variabel bias.
 
 </Solution>
 
