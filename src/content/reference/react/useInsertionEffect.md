@@ -22,11 +22,11 @@ useInsertionEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useInsertionEffect` to insert the styles before any DOM mutations:
+Panggil `useInsertionEffect` untuk menyertakan sebuah style sebelum terjadinya mutasi DOM:
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -40,23 +40,23 @@ function useCSS(rule) {
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lain dibawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is first added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function one last time.
+* `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Sebelum komponen pertama kali ditambahkan ke DOM, React akan menjalankan fungsi *setup*. Setelah setiap *re-render* dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan untuk terakhir kali.
  
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+* **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika linter Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan algoritma perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika Anda tidak menentukan sebuah dependensi sama sekali, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
 
 #### Returns {/*returns*/}
 
-`useInsertionEffect` returns `undefined`.
+`useInsertionEffect` mengembalikan `undefined`.
 
 #### Caveats {/*caveats*/}
 
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet, and DOM is not yet updated.
+* Efek hanya berjalan di sisi klien. Efek tidak berjalan ketika *server rendering*.
+* Anda tidak dapat mengupdate *state* dari dalam `useInsertionEffect`.
+* Pada saat `useInsertionEffect` berjalan, *refs* belum  terpasang, dan DOM belum diperbarui.
 
 ---
 
