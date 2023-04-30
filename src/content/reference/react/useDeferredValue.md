@@ -758,7 +758,7 @@ const SlowList = memo(function SlowList({ text }) {
 
 Namun, ini hanya membantu jika props `SlowList` *sama* dengan selama render sebelumnya. Masalah yang Anda hadapi sekarang adalah lambat saat *berbeda*, dan saat Anda benar-benar perlu menampilkan keluaran visual yang berbeda.
 
-Konkritnya, masalah kinerja utama adalah setiap kali Anda mengetik ke input, `SlowList` menerima properti baru, dan merender ulang seluruh pohonnya membuat pengetikan terasa tersendat. Dalam hal ini, `useDeferredValue` memungkinkan Anda memprioritaskan pembaruan input (yang harus cepat) daripada memperbarui daftar hasil (yang diizinkan lebih lambat):
+Konkritnya, masalah kinerja utama adalah setiap kali Anda mengetik ke input, `SlowList` menerima properti baru, dan me-*render* ulang seluruh pohonnya membuat pengetikan terasa tersendat. Dalam hal ini, `useDeferredValue` memungkinkan Anda memprioritaskan pembaruan input (yang harus cepat) daripada memperbarui daftar hasil (yang diizinkan lebih lambat):
 
 ```js {3,7}
 function App() {
