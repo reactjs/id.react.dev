@@ -953,6 +953,6 @@ Tidak seperti debouncing atau throttling, ini tidak memerlukan pemilihan penunda
 
 Selain itu, tidak seperti *debouncing* atau *throttling*, *rendering* ulang yang ditangguhkan yang dilakukan oleh `useDeferredValue` dapat diinterupsi secara *default*. Ini berarti bahwa jika React sedang me-*render* ulang daftar besar, tetapi pengguna membuat *keystroke* lain, React akan mengabaikan *render* ulang itu, menangani *keystroke*, dan kemudian mulai me-*render* di latar belakang lagi. Sebaliknya, *debouncing* dan *throttling* masih menghasilkan pengalaman tersendat karena keduanya *memblokir:* keduanya hanya menangguhkan momen saat me-*render* memblokir *keystroke*.
 
-Jika pekerjaan yang Anda optimalkan tidak terjadi selama rendering, debouncing dan throttling tetap berguna. Misalnya, mereka dapat membiarkan Anda memecat lebih sedikit permintaan jaringan. Anda juga dapat menggunakan teknik ini bersama-sama.
+Jika pekerjaan yang Anda optimalkan tidak terjadi selama *rendering*, *debouncing* dan *throttling* tetap berguna. Misalnya, mereka dapat membiarkan Anda memecat lebih sedikit permintaan jaringan. Anda juga dapat menggunakan teknik ini bersama-sama.
 
 </DeepDive>
