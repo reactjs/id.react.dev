@@ -732,7 +732,7 @@ input { margin: 10px; }
 
 ### Menangguhkan rendering ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
-Anda juga dapat menerapkan `useDeferredValue` sebagai pengoptimalan kinerja. Ini berguna ketika bagian dari UI Anda lambat untuk dirender ulang, tidak ada cara mudah untuk mengoptimalkannya, dan Anda ingin mencegahnya memblokir UI lainnya.
+Anda juga dapat menerapkan `useDeferredValue` sebagai pengoptimalan kinerja. Ini berguna ketika bagian dari UI Anda lambat untuk di-*render* ulang, tidak ada cara mudah untuk mengoptimalkannya, dan Anda ingin mencegahnya memblokir UI lainnya.
 
 Bayangkan Anda memiliki bidang teks dan komponen (seperti bagan atau daftar panjang) yang di-*render* ulang pada setiap penekanan tombol:
 
