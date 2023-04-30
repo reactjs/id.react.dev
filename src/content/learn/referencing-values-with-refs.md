@@ -92,7 +92,7 @@ export default function Stopwatch() {
   const [now, setNow] = useState(null);
 
   function handleStart() {
-    // Mulai menghitung
+    // Mulai menghitung.
     setStartTime(Date.now());
     setNow(Date.now());
 
