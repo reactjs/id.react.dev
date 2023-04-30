@@ -44,7 +44,7 @@ Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yan
 
 #### Caveats {/*caveats*/}
 
-- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar rendering. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
+- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
 - Ketika `useDeferredValue` menerima nilai yang berbeda (dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), di selain render saat ini (ketika masih menggunakan nilai sebelumnya), ia menjadwalkan render ulang di latar belakang dengan nilai baru. Render ulang latar belakang dapat diinterupsi: jika ada pembaruan lain pada `value`, React akan memulai lagi render ulang latar belakang dari awal. Misalnya, jika pengguna mengetik input lebih cepat daripada bagan yang menerima nilai yang ditangguhkan dapat render ulang, bagan hanya akan render ulang setelah pengguna berhenti mengetik.
 
@@ -507,7 +507,7 @@ Anda dapat menganggapnya terjadi dalam dua langkah:
 
 1. **Pertama, React me-*render* ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
 
-2. **Di latar belakang, React mencoba merender ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya rendering ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
+2. **Di latar belakang, React mencoba me-*render* ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
 Render "latar belakang" yang ditangguhkan dapat diinterupsi. Misalnya, jika Anda mengetik input lagi, React akan mengabaikannya dan memulai kembali dengan nilai baru. React akan selalu menggunakan nilai terbaru yang diberikan.
 
@@ -730,7 +730,7 @@ input { margin: 10px; }
 
 ---
 
-### Menangguhkan rendering ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
+### Menangguhkan *rendering* ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
 Anda juga dapat menerapkan `useDeferredValue` sebagai pengoptimalan kinerja. Ini berguna ketika bagian dari UI Anda lambat untuk di-*render* ulang, tidak ada cara mudah untuk mengoptimalkannya, dan Anda ingin mencegahnya memblokir UI lainnya.
 
@@ -748,7 +748,7 @@ function App() {
 }
 ```
 
-Pertama, optimalkan `SlowList` untuk melewati rendering ulang saat propertinya sama. Untuk melakukannya, [bungkus dalam `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+Pertama, optimalkan `SlowList` untuk melewati *rendering* ulang saat propertinya sama. Untuk melakukannya, [bungkus dalam `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
 
 ```js {1,3}
 const SlowList = memo(function SlowList({ text }) {
@@ -773,7 +773,7 @@ function App() {
 }
 ```
 
-Ini tidak mempercepat rendering ulang `SlowList`. Namun, ini memberi tahu React bahwa merender ulang daftar dapat diturunkan prioritasnya sehingga tidak memblokir penekanan tombol. Daftar akan "tertinggal" input dan kemudian "mengejar". Seperti sebelumnya, React akan berusaha memperbarui daftar sesegera mungkin, tetapi tidak akan menghalangi pengguna untuk mengetik.
+Ini tidak mempercepat *rendering* ulang `SlowList`. Namun, ini memberi tahu React bahwa me-*render* ulang daftar dapat diturunkan prioritasnya sehingga tidak memblokir penekanan tombol. Daftar akan "tertinggal" input dan kemudian "mengejar". Seperti sebelumnya, React akan berusaha memperbarui daftar sesegera mungkin, tetapi tidak akan menghalangi pengguna untuk mengetik.
 
 <Recipes titleText="Perbedaan antara useDeferredValue dan rendering ulang yang tidak dioptimalkan" titleId="examples">
 
@@ -947,9 +947,9 @@ Ada dua teknik pengoptimalan umum yang mungkin pernah Anda gunakan sebelumnya da
 - *Debouncing* berarti Anda akan menunggu pengguna berhenti mengetik (mis. sesaat) sebelum memperbarui daftar.
 - *Throttling* berarti Anda memperbarui daftar sesekali (mis. paling banyak sekali dalam satu detik).
 
-Meskipun teknik ini membantu dalam beberapa kasus, `useDeferredValue` lebih cocok untuk mengoptimalkan rendering karena sangat terintegrasi dengan React itu sendiri dan beradaptasi dengan perangkat pengguna.
+Meskipun teknik ini membantu dalam beberapa kasus, `useDeferredValue` lebih cocok untuk mengoptimalkan *rendering* karena sangat terintegrasi dengan React itu sendiri dan beradaptasi dengan perangkat pengguna.
 
-Tidak seperti debouncing atau throttling, ini tidak memerlukan pemilihan penundaan tetap. Jika perangkat pengguna cepat (misalnya laptop yang kuat), rendering ulang yang ditangguhkan akan segera terjadi dan tidak akan terlihat. Jika perangkat pengguna lambat, daftar akan "tertinggal" input secara proporsional dengan seberapa lambat perangkat tersebut.
+Tidak seperti debouncing atau throttling, ini tidak memerlukan pemilihan penundaan tetap. Jika perangkat pengguna cepat (misalnya laptop yang kuat), *rendering* ulang yang ditangguhkan akan segera terjadi dan tidak akan terlihat. Jika perangkat pengguna lambat, daftar akan "tertinggal" input secara proporsional dengan seberapa lambat perangkat tersebut.
 
 Selain itu, tidak seperti *debouncing* atau *throttling*, *rendering* ulang yang ditangguhkan yang dilakukan oleh `useDeferredValue` dapat diinterupsi secara *default*. Ini berarti bahwa jika React sedang me-*render* ulang daftar besar, tetapi pengguna membuat *keystroke* lain, React akan mengabaikan *render* ulang itu, menangani *keystroke*, dan kemudian mulai me-*render* di latar belakang lagi. Sebaliknya, *debouncing* dan *throttling* masih menghasilkan pengalaman tersendat karena keduanya *memblokir:* keduanya hanya menangguhkan momen saat me-*render* memblokir *keystroke*.
 
