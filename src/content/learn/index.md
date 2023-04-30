@@ -46,9 +46,9 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Perhatikan bahwa `<MyButton />` dimulai dengan huruf kapital. Dengan cara itulah Anda mengetahui bahwa itu adalah sebuah komponen React. Nama komponen React harus selalu dimulai dengan huruf kapital, sedangkan *tag* HTML harus menggunakan huruf kecil.
 
-Have a look at the result:
+Lihatlah hasilnya:
 
 <Sandpack>
 
