@@ -33,13 +33,13 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Sekarang setelah Anda mendeklarasikan `MyButton`, Anda dapat menyarangkannya dengan komponen lain:
 
 ```js {5}
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Selamat datang di aplikasi saya</h1>
       <MyButton />
     </div>
   );
