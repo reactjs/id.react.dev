@@ -30,7 +30,7 @@ const html = renderToStaticMarkup(<Page />);
 
 Keluaran yang diberikan adalah HTML non-interaktif dari komponen-komponen React Anda.
 
-[Lihat lebih banyak contoh dibawah.](#usage)
+[Lihat lebih banyak contoh di bawah.](#usage)
 
 #### Parameter {/*parameters*/}
 
@@ -40,9 +40,9 @@ Keluaran yang diberikan adalah HTML non-interaktif dari komponen-komponen React 
 
 Sebuah *string* HTML.
 
-#### Anjuran {/*caveats*/}
+#### Caveats {/*caveats*/}
 
-* Keluaran dari `renderToStaticMarkup` tidak dapat di hidrasi (*hydrate*).
+* Keluaran dari `renderToStaticMarkup` tidak dapat dihidrasi (*hydrate*).
 
 * `renderToStaticMarkup` mendukung penggunaan `Suspense` secara terbatas. Apabila sebuah komponen berada dalam kondisi *suspended*, `renderToStaticMarkup` segera mengirimkan *fallback*-nya sebagai HTML.
 
