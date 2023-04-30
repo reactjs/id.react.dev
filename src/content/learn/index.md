@@ -56,7 +56,7 @@ Lihatlah hasilnya:
 function MyButton() {
   return (
     <button>
-      I'm a button
+      Saya adalah tombol
     </button>
   );
 }
@@ -64,7 +64,7 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Selamat datang di aplikasi saya</h1>
       <MyButton />
     </div>
   );
@@ -73,7 +73,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+Kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info] (https://javascript.info/import-export) memiliki referensi yang bagus.
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
