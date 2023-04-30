@@ -73,9 +73,9 @@ Setelah Anda mengidentifikasi komponen-komponen dalam rancang bangun, susunlah k
 
 ## Langkah 2: Buat versi statis di React {/*step-2-build-a-static-version-in-react*/}
 
-Setelah Anda memiliki hierarki komponen, sekarang saatnya mengimplementasikan aplikasi Anda. Pendekatan yang paling mudah adalah membuat versi yang merender UI dari model data Anda tanpa menambahkan interaktivitas apa pun... untuk sementara! Sering kali lebih mudah untuk membuat versi statis terlebih dahulu dan menambahkan interaktivitas kemudian. Membangun versi statis membutuhkan banyak pengetikan dan tidak perlu berpikir, tetapi menambahkan interaktivitas membutuhkan banyak pemikiran dan tidak perlu banyak pengetikan.
+Setelah Anda memiliki hierarki komponen, sekarang saatnya mengimplementasikan aplikasi Anda. Pendekatan yang paling mudah adalah membuat versi yang me-*render* UI dari model data Anda tanpa menambahkan interaktivitas apa pun... untuk sementara! Sering kali lebih mudah untuk membuat versi statis terlebih dahulu dan menambahkan interaktivitas kemudian. Membangun versi statis membutuhkan banyak pengetikan dan tidak perlu berpikir, tetapi menambahkan interaktivitas membutuhkan banyak pemikiran dan tidak perlu banyak pengetikan.
 
-Untuk membuat versi statis dari aplikasi Anda yang merender model data Anda, Anda perlu membuat [komponen](/learn/your-first-component) yang menggunakan kembali komponen lain dan mengirimkan data menggunakan [props.](/learn/passing-props-to-a-component) Props adalah cara untuk mengoper data dari induk ke anak. (Jika Anda sudah terbiasa dengan konsep [state](/learn/state-a-components-memory), jangan gunakan state sama sekali untuk membangun versi statis ini. State hanya diperuntukkan bagi interaktivitas, yaitu data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi, Anda tidak memerlukannya).
+Untuk membuat versi statis dari aplikasi Anda yang me-*render* model data Anda, Anda perlu membuat [komponen](/learn/your-first-component) yang menggunakan kembali komponen lain dan mengirimkan data menggunakan [props.](/learn/passing-props-to-a-component) Props adalah cara untuk mengoper data dari induk ke anak. (Jika Anda sudah terbiasa dengan konsep [state](/learn/state-a-components-memory), jangan gunakan state sama sekali untuk membangun versi statis ini. State hanya diperuntukkan bagi interaktivitas, yaitu data yang berubah seiring waktu. Karena ini adalah versi statis dari aplikasi, Anda tidak memerlukannya).
 
 Anda bisa membangun "dari atas ke bawah" dengan memulai membangun komponen yang lebih tinggi dalam hierarki (seperti `FilterableProductTable`) atau "dari bawah ke atas" dengan bekerja dari komponen yang lebih rendah (seperti `ProductRow`). Dalam contoh yang lebih sederhana, biasanya lebih mudah untuk bekerja dari atas ke bawah, dan pada proyek yang lebih besar, lebih mudah untuk bekerja dari bawah ke atas.
 
@@ -197,7 +197,7 @@ td {
 
 (Jika kode ini terlihat menyeramkan, bacalah [Quick Start](/learn/) terlebih dahulu!)
 
-Setelah membuat komponen, Anda akan memiliki pustaka komponen yang dapat digunakan kembali untuk merender model data Anda. Karena ini adalah aplikasi statis, komponen-komponennya hanya akan mengembalikan JSX. Komponen di bagian atas hirarki (`FilterableProductTable`) akan mengambil model data Anda sebagai props. Ini disebut _aliran data satu arah (one-way data flow)_ karena data mengalir turun dari komponen tingkat atas ke komponen di bagian bawah pohon.
+Setelah membuat komponen, Anda akan memiliki pustaka komponen yang dapat digunakan kembali untuk me-*render* model data Anda. Karena ini adalah aplikasi statis, komponen-komponennya hanya akan mengembalikan JSX. Komponen di bagian atas hirarki (`FilterableProductTable`) akan mengambil model data Anda sebagai *props*. Ini disebut *aliran data satu arah (one-way data flow)* karena data mengalir turun dari komponen tingkat atas ke komponen di bagian bawah pohon.
 
 <Pitfall>
 
@@ -254,12 +254,12 @@ Setelah mengidentifikasi data state minimal aplikasi Anda, Anda perlu mengidenti
 
 Untuk setiap bagian state dalam aplikasi Anda:
 
-1. Identifikasi *setiap* komponen yang merender sesuatu berdasarkan state tersebut.
+1. Identifikasi *setiap* komponen yang me-*render* sesuatu berdasarkan *state* tersebut.
 2. Temukan komponen induk yang paling dekat--komponen yang berada di atas semua komponen dalam hirarki.
-3. Tentukan di mana state tersebut harus berada:
-    1. Sering kali, Anda dapat meletakkan state secara langsung ke dalam induknya.
-    2. Anda juga dapat menempatkan state ke dalam beberapa komponen di atas induknya.
-    3. Jika Anda tidak dapat menemukan komponen yang masuk akal untuk memiliki state, buatlah komponen baru hanya untuk menyimpan state dan tambahkan di suatu tempat di dalam hirarki di atas komponen induk umum.
+3. Tentukan di mana *state* tersebut harus berada:
+    1. Sering kali, Anda dapat meletakkan *state* secara langsung ke dalam induknya.
+    2. Anda juga dapat menempatkan *state* ke dalam beberapa komponen di atas induknya.
+    3. Jika Anda tidak dapat menemukan komponen yang masuk akal untuk memiliki *state*, buatlah komponen baru hanya untuk menyimpan *state* dan tambahkan di suatu tempat di dalam hirarki di atas komponen induk umum.
 
 Pada langkah sebelumnya, Anda menemukan dua bagian status dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
 
@@ -445,7 +445,7 @@ You provided a \`value\` prop to a form field without an \`onChange\` handler. T
 
 </ConsoleBlock>
 
-Pada *sandbox* di atas, `ProductTable` dan `SearchBar` membaca props `filterText` dan `inStockOnly` untuk merender tabel, input, dan kotak centang. Sebagai contoh, berikut ini cara `SearchBar` mengisi nilai input:
+Pada *sandbox* di atas, `ProductTable` dan `SearchBar` membaca props `filterText` dan `inStockOnly` untuk me-*render* tabel, input, dan kotak centang. Sebagai contoh, berikut ini cara `SearchBar` mengisi nilai input:
 
 ```js {1,6}
 function SearchBar({ filterText, inStockOnly }) {
