@@ -29,11 +29,11 @@ Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dima
 
 - `key` **opsional**: *Fragment* yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
-#### Peringatan {/*caveats*/}
+#### Caveats {/*caveats*/}
 
-- Jika Anda ingin mengoper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan merender `<Fragment key={yourKey}>...</Fragment>`.
+- Jika Anda ingin mengoper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan me-*render* `<Fragment key={yourKey}>...</Fragment>`.
 
-- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda merender dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda merender `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [disini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda me-*render* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda merender `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [disini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
@@ -158,9 +158,9 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Merender daftar *Fragment* {/*rendering-a-list-of-fragments*/}
+### Me-*render* daftar *Fragment* {/*rendering-a-list-of-fragments*/}
 
-Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [merender beberapa elemen dalam loop](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam loop adalah *Fragment*, Anda perlu menggunakan sintaksis elemen JSX normal untuk menyediakan atribut `key`:
+Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [me-*render* beberapa elemen dalam loop](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam loop adalah *Fragment*, Anda perlu menggunakan sintaksis elemen JSX normal untuk menyediakan atribut `key`:
 
 ```js {3,6}
 function Blog() {
