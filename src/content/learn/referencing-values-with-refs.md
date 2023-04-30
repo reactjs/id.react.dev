@@ -171,7 +171,7 @@ Ketika sebuah informasi digunakan untuk *rendering*, simpanlah di dalam *state*.
 
 ## Perbedaan antara *refs* dan *state* {/*differences-between-refs-and-state*/}
 
-Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *state* - Anda dapat memutasi *ref* daripada selalu harus menggunakan fungsi pengaturan *state*, misalnya. Tetapi dalam kebanyakan kasus, Anda akan ingin menggunakan *state*. *Ref* adalah "jalan keluar" yang tidak sering Anda butuhkan. Berikut adalah perbandingan antara *state* dan *ref*:
+Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *state*-Anda dapat memutasi *ref* daripada selalu harus menggunakan fungsi pengaturan *state*, misalnya. Tetapi dalam kebanyakan kasus, Anda akan ingin menggunakan *state*. *Ref* adalah "jalan keluar" yang tidak sering Anda butuhkan. Berikut adalah perbandingan antara *state* dan *ref*:
 
 | *refs*                                                                                  | *state*                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
