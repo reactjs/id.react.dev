@@ -175,9 +175,9 @@ Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *s
 
 | *refs*                                                                                  | *state*                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah variabel state dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
+| `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah state dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
 | Tidak memicu *render* ulang ketika Anda mengubahnya.                                         | Memicu *render* ulang ketika Anda mengubahnya.                                                                                    |
-| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur state untuk memodifikasi variabel state agar terjadwal ulang (*render* ulang).                       |
+| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur state untuk memodifikasi state agar terjadwal ulang (*render* ulang).                       |
 | Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca state kapan saja. Namun, setiap *render* state memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
 
 Berikut adalah tombol penghitung yang diimplementasikan dengan state:
@@ -249,7 +249,7 @@ function useRef(initialValue) {
 
 Pada saat render pertama kali, `useRef` akan mengembalikan nilai `{ current: initialValue }`. Objek ini akan disimpan oleh React, sehingga pada saat render berikutnya, objek yang sama akan dikembalikan. Perhatikan bahwa dalam contoh ini, pengatur dari *state* tidak digunakan. Pengatur *state* tidak diperlukan karena `useRef` selalu harus mengembalikan objek yang sama!
 
-React menyediakan versi bawaan dari `useRef` karena cukup umum dalam praktiknya. Namun, Anda bisa memikirkannya sebagai variabel state biasa tanpa pengatur. Jika Anda akrab dengan pemrograman berorientasi objek, *ref* mungkin mengingatkan Anda pada *instance fields*--tetapi bukannya `this.something`, Anda menulis `somethingRef.current`.
+React menyediakan versi bawaan dari `useRef` karena cukup umum dalam praktiknya. Namun, Anda bisa memikirkannya sebagai state biasa tanpa pengatur. Jika Anda akrab dengan pemrograman berorientasi objek, *ref* mungkin mengingatkan Anda pada *instance fields*--tetapi bukannya `this.something`, Anda menulis `somethingRef.current`.
 
 </DeepDive>
 
