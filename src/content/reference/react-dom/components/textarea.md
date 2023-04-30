@@ -330,7 +330,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks setelah setiap penekanan tombol ke `value` yang Anda berikan sebelumnya.
+**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks kembali ke `value` yang Anda berikan sebelumnya setelah setiap penekanan tombol.
 
 </Pitfall>
 
