@@ -86,7 +86,7 @@ Props `<input>` ini relevan untuk masukan tidak terkontrol dan masukan terkontro
 * [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): Sebuah string. Satu dari [tipe masukan.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 * [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  Sebuah string. Menentukan lebar gambar untuk masukan `type="image"`.
 
-#### Peringatan {/*caveats*/}
+#### Caveats {/*caveats*/}
 
 - Checkbox harus `checked` (atau `defaultChecked`), bukan `value` (atau `defaultValue`).
 - Jika sebuah masukan teks menerima sebuah prop string `value`, itu akan [diperlakukan sebagai terkontrol.](#controlling-an-input-with-a-state-variable)
