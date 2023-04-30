@@ -305,7 +305,7 @@ Secara default, *apapun* `<button>` di dalam sebuah `<form>` akan melakukan subm
 
 Sebuah masukan seperti `<input />` *tidaklah terkontrol.* Bahkan jika Anda [memberikan sebuah nilai awal](#providing-an-initial-value-for-an-input) seperti `<input defaultValue="Teks awal" />`, JSX Anda hanya menentukan nilai awal. Tidak mengontrol apa seharusnya nilai sekarang.
 
-**Untuk render sebuah masukan _terkontrol_, oper prop `value` ke dalamnya (atau `checked` untuk checkbox and radio).** React akan memaksa masukan untuk selalu memiliki `value` yang Anda berikan. Biasanya, Anda akan melakukan ini dengan mendeklarasikan sebuah [state variable:](/reference/react/useState)
+**Untuk render sebuah masukan _terkontrol_, oper prop `value` ke dalamnya (atau `checked` untuk checkbox and radio).** React akan memaksa masukan untuk selalu memiliki `value` yang Anda berikan. Biasanya, Anda akan melakukan ini dengan mendeklarasikan sebuah [variable *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function Form() {
@@ -320,7 +320,7 @@ function Form() {
 }
 ```
 
-Bagaimanapun sebuah masukan terkontrol masuk akal jika Anda membutuhkan state--contohnya, untuk rendering ulang UI Anda pada setiap pengeditan:
+Bagaimanapun sebuah masukan terkontrol masuk akal jika Anda membutuhkan *state*--contohnya, untuk rendering ulang UI Anda pada setiap pengeditan:
 
 ```js {2,9}
 function Form() {
@@ -335,7 +335,7 @@ function Form() {
       ...
 ```
 
-Ini juga berguna jika Anda ingin menawarkan berbagai cara untuk menyesuaikan state masukan (contohnya, dengan mengeklik tombol):
+Ini juga berguna jika Anda ingin menawarkan berbagai cara untuk menyesuaikan *state* masukan (contohnya, dengan mengeklik tombol):
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -356,7 +356,7 @@ function Form() {
         </button>
 ```
 
-`value` yang Anda berikan ke komponen terkontrol tidak boleh `undefined` or `null`. Jika Anda memerlukan nilai awal kosong (seperti dengan kolom `firstName` di bawah), inisialisasi variabel state Anda ke string kosong (`''`).
+`value` yang Anda berikan ke komponen terkontrol tidak boleh `undefined` or `null`. Jika Anda memerlukan nilai awal kosong (seperti dengan kolom `firstName` di bawah), inisialisasi variabel *state* Anda ke string kosong (`''`).
 
 <Sandpack>
 
@@ -408,7 +408,7 @@ p { font-weight: bold; }
 
 <Pitfall>
 
-**Jika Anda mengoper `value` tanpa `onChange`, tidak mungkin bisa untuk mengetik di dalam masukan.** Ketika Anda mengontrol sebuah masukan dengan memberikan beberapa `value` ke dalamnya, Andan *memaksanya* untuk selalu memiliki nilai yang Anda berikan. Jika Anda mengoper sebuah variabel state sebagai `value` tetapi lupa untuk memperbarui variabel state tersebut secara sinkron selama `onChange` event handler, React akan mengembalikan masukan setelah setiap keystroke kembali ke `value` yang Anda tentukan.
+**Jika Anda mengoper `value` tanpa `onChange`, tidak mungkin bisa untuk mengetik di dalam masukan.** Ketika Anda mengontrol sebuah masukan dengan memberikan beberapa `value` ke dalamnya, Andan *memaksanya* untuk selalu memiliki nilai yang Anda berikan. Jika Anda mengoper sebuah variabel *state* sebagai `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama `onChange` event handler, React akan mengembalikan masukan setelah setiap keystroke kembali ke `value` yang Anda tentukan.
 
 </Pitfall>
 
@@ -416,7 +416,7 @@ p { font-weight: bold; }
 
 ### Mengoptimalkan rendering ulang pada setiap penekanan tombol {/*optimizing-re-rendering-on-every-keystroke*/}
 
-Ketika Anda menggunakan masukan terkontrol, Anda mengatur state pada setiap penekanan tombol. Jika komponen yang berisi state Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja rendering ulang.
+Ketika Anda menggunakan masukan terkontrol, Anda mengatur *state* pada setiap penekanan tombol. Jika komponen yang berisi *state* Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja rendering ulang.
 
 Contohnya, misalkan Anda mulai dengan form yang me-*render* ulang semua konten halaman pada setiap penekanan tombol:
 
@@ -434,7 +434,7 @@ function App() {
 }
 ```
 
-Karena `<PageContent />` tidak bergantung pada masukan state, Anda dapat memindahkan masukan state ke dalam komponennya sendiri:
+Karena `<PageContent />` tidak bergantung pada masukan *state*, Anda dapat memindahkan masukan *state* ke dalam komponennya sendiri:
 
 ```js {4,10-17}
 function App() {
@@ -486,7 +486,7 @@ Seperti yang disarankan oleh pesan kesalahan, jika Anda hanya ingin [menentukan 
 <input defaultValue={something} />
 ```
 
-Jika Anda ingin [mengontrol masukan ini menggunakan sebuah variabel state,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
+Jika Anda ingin [mengontrol masukan ini menggunakan sebuah variabel *state*,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
 
 ```js
 // ✅ Bagus: masukan terkontrol dengan onChange
@@ -524,7 +524,7 @@ Seperti yang disarankan oleh pesan kesalahan, jika Anda hanya ingin [menentukan 
 <input type="checkbox" defaultChecked={something} />
 ```
 
-Jika Anda ingin [mengontrol masukan checkbox ini menggunakan sebuah variabel state,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
+Jika Anda ingin [mengontrol masukan checkbox ini menggunakan sebuah variabel *state*,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
 
 ```js
 // ✅ Bagus: checkbox terkontrol dengan onChange
@@ -548,7 +548,7 @@ Jika checkbox sengaja read-only, tambahkan prop `readOnly` untuk mendiamkan kesa
 
 ### Tanda sisipan saya melompat ke awal pada setiap penekanan tombol {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-Jika Anda [mengontrol sebuah masukan,](#controlling-an-input-with-a-state-variable) Anda harus memperbarui variabel statenya ke nilai masukan dari DOM selama `onChange`.
+Jika Anda [mengontrol sebuah masukan,](#controlling-an-input-with-a-state-variable) Anda harus memperbarui variabel *state*-nya ke nilai masukan dari DOM selama `onChange`.
 
 Anda tidak dapat memperbaruinya menjadi sesuatu selain `e.target.value` (atau `e.target.checked` untuk checkbox):
 
@@ -579,7 +579,7 @@ function handleChange(e) {
 }
 ```
 
-Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahkan kembali dari DOM pada setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang state](/learn/preserving-and-resetting-state) pada setiap render ulang, contohnya jika masukan atau salah satu parentnya selalu menerima atribut `key` yang berbeda, atau jika Anda menyusun definisi fungsi komponen (yang tidak didukung dan menyebabkan komponen "dalam" selalu dianggap pohon yang berbeda).
+Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahkan kembali dari DOM pada setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) pada setiap render ulang, contohnya jika masukan atau salah satu parentnya selalu menerima atribut `key` yang berbeda, atau jika Anda menyusun definisi fungsi komponen (yang tidak didukung dan menyebabkan komponen "dalam" selalu dianggap pohon yang berbeda).
 
 ---
 
