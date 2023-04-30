@@ -178,7 +178,7 @@ Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *s
 | `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah *state* dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
 | Tidak memicu *render* ulang ketika Anda mengubahnya.                                         | Memicu *render* ulang ketika Anda mengubahnya.                                                                                    |
 | *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur *state* untuk memodifikasi *state* agar terjadwal ulang (*render* ulang).                       |
-| Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca *state* kapan saja. Namun, setiap *render* *state* memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
+| Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca *state* kapan saja. Namun, setiap *render* terjadi *state* memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
 
 Berikut adalah tombol penghitung yang diimplementasikan dengan state:
 
