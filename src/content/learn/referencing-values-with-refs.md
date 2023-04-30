@@ -69,7 +69,7 @@ export default function Counter() {
 
 *Ref* tersebut mengacu pada sebuah angka, tetapi, seperti [*state*](/learn/state-a-components-memory), Anda juga dapat mengacu pada tipe data apapun: sebuah *string*, objek, atau bahkan sebuah fungsi. Berbeda dengan *state*, *ref* adalah sebuah objek JavaScript biasa dengan properti `current` yang dapat Anda baca dan ubah nilainya.
 
-Perhatikan bahwa **komponen tidak rerender setiap kali nilai pada *ref* ditambahkan.** Seperti *state*, nilai dari *refs* akan tetap disimpan atau dipertahankan oleh React saat rerender terjadi. Namun mengubah *state* akan memicu rerender pada komponen, sementara *ref* tidak akan melakukannya!
+Perhatikan bahwa **komponen tidak di-*render* ulang setiap kali nilai pada *ref* ditambahkan.** Seperti *state*, nilai dari *refs* akan tetap disimpan atau dipertahankan oleh React saat *render* ulang terjadi. Namun mengubah *state* akan memicu *render* ulang pada komponen, sementara *ref* tidak akan melakukannya!
 
 ## Contoh: Membangun *stopwatch* {/*example-building-a-stopwatch*/}
 
@@ -167,7 +167,7 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-Ketika sebuah informasi digunakan untuk *rendering*, simpanlah di dalam *state*. Ketika sebuah informasi hanya dibutuhkan oleh *event handler* dan perubahan informasi tersebut tidak memerlukan *rerender*, menggunakan *ref* mungkin akan lebih efisien.
+Ketika sebuah informasi digunakan untuk *rendering*, simpanlah di dalam *state*. Ketika sebuah informasi hanya dibutuhkan oleh *event handler* dan perubahan informasi tersebut tidak memerlukan *render* ulang, menggunakan *ref* mungkin akan lebih efisien.
 
 ## Perbedaan antara *refs* dan *state* {/*differences-between-refs-and-state*/}
 
@@ -176,8 +176,8 @@ Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *s
 | *refs*                                                                                  | *state*                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah variabel state dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
-| Tidak memicu *rerender* ketika Anda mengubahnya.                                         | Memicu *rerender* ketika Anda mengubahnya.                                                                                    |
-| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur state untuk memodifikasi variabel state agar terjadwal ulang (*rerender*).                       |
+| Tidak memicu *render* ulang ketika Anda mengubahnya.                                         | Memicu *render* ulang ketika Anda mengubahnya.                                                                                    |
+| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur state untuk memodifikasi variabel state agar terjadwal ulang (*render* ulang).                       |
 | Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca state kapan saja. Namun, setiap *render* state memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
 
 Berikut adalah tombol penghitung yang diimplementasikan dengan state:
@@ -204,9 +204,9 @@ export default function Counter() {
 
 </Sandpack>
 
-Karena nilai `count` ditampilkan, maka masuk akal untuk menggunakan nilai *state* untuk hal tersebut. Ketika nilai hitung diatur dengan `setCount()`, React akan *merender* ulang komponen dan layar akan diperbarui untuk mencerminkan hitungan baru.
+Karena nilai `count` ditampilkan, maka masuk akal untuk menggunakan nilai *state* untuk hal tersebut. Ketika nilai hitung diatur dengan `setCount()`, React akan me-*render* ulang komponen dan layar akan diperbarui untuk mencerminkan hitungan baru.
 
-Jika Anda mencoba mengimplementasikan ini dengan menggunakan *ref*, React tidak akan pernah melakukan *rerender* pada komponen, sehingga Anda tidak akan pernah melihat perubahan hitungan! Lihat bagaimana mengeklik tombol ini **tidak memperbarui teks-nya**:
+Jika Anda mencoba mengimplementasikan ini dengan menggunakan *ref*, React tidak akan pernah melakukan *render* ulang pada komponen, sehingga Anda tidak akan pernah melihat perubahan hitungan! Lihat bagaimana mengeklik tombol ini **tidak memperbarui teks-nya**:
 
 <Sandpack>
 
@@ -217,7 +217,7 @@ export default function Counter() {
   let countRef = useRef(0);
 
   function handleClick() {
-    // Hal ini tidak memicu rerender pada komponen
+    // Hal ini tidak memicu render ulang pada komponen
     countRef.current = countRef.current + 1;
   }
 
@@ -288,12 +288,12 @@ Anda dapat memberikan nilai apapun kepada *ref*. Namun, penggunaan *ref* yang pa
 
 <Recap>
 
-- *Ref* adalah "jalan keluar" untuk menyimpan nilai yang tidak digunakan untuk merender. Anda tidak akan membutuhkannya terlalu sering.
+- *Ref* adalah "jalan keluar" untuk menyimpan nilai yang tidak digunakan untuk me-*render*. Anda tidak akan membutuhkannya terlalu sering.
 - *Ref* adalah objek JavaScript biasa dengan satu properti yang disebut `current`, yang dapat Anda baca atau mengaturnya.
 - Anda dapat meminta React untuk memberikan Anda sebuah *ref* dengan memanggil Hook `useRef`.
-- Seperti *state*, *ref* memungkinkan Anda mempertahankan informasi antara *rerenders* dari komponen.
-- Tidak seperti *state*, mengatur nilai `current` dari *ref* tidak memicu *rerender*.
-- Jangan membaca atau mengubah `ref.current` selama *merender*. Hal ini membuat perilaku komponen Anda sulit diprediksi.
+- Seperti *state*, *ref* memungkinkan Anda mempertahankan informasi antara *render* ulang dari komponen.
+- Tidak seperti *state*, mengatur nilai `current` dari *ref* tidak memicu *render* ulang.
+- Jangan membaca atau mengubah `ref.current` selama me-*render*. Hal ini membuat perilaku komponen Anda sulit diprediksi.
 
 </Recap>
 
@@ -307,7 +307,7 @@ Ketikkan pesan dan klik "Kirim". Anda akan melihat ada penundaan tiga detik sebe
 
 <Hint>
 
-Variabel biasa seperti `let timeoutID` tidak "bertahan" antara *rerender* karena setiap *rerender* akan menjalankan komponen dari awal (dan menginisialisasi variabel-variabelnya) kembali. Apakah Anda harus menyimpan *timeout ID* di tempat lain?
+Variabel biasa seperti `let timeoutID` tidak "bertahan" antara *render* ulang karena setiap *render* ulang akan menjalankan komponen dari awal (dan menginisialisasi variabel-variabelnya) kembali. Apakah Anda harus menyimpan *timeout ID* di tempat lain?
 
 </Hint>
 
@@ -360,7 +360,7 @@ export default function Chat() {
 
 <Solution>
 
-Setiap kali komponen Anda *dirender* ulang (seperti saat Anda mengatur *state*), semua variabel lokal akan diinisialisasi dari awal. Inilah sebabnya mengapa Anda tidak dapat menyimpan *timeout ID* dalam variabel lokal seperti `timeoutID` dan kemudian mengharapkan *event handler* lainnya untuk "melihat"nya di masa depan. Sebaliknya, simpanlah *timeout ID* di dalam sebuah *ref*, yang akan dipertahankan oleh React antara *render*.
+Setiap kali komponen Anda di-*render* ulang (seperti saat Anda mengatur *state*), semua variabel lokal akan diinisialisasi dari awal. Inilah sebabnya mengapa Anda tidak dapat menyimpan *timeout ID* dalam variabel lokal seperti `timeoutID` dan kemudian mengharapkan *event handler* lainnya untuk "melihat"nya di masa depan. Sebaliknya, simpanlah *timeout ID* di dalam sebuah *ref*, yang akan dipertahankan oleh React antara *render*.
 
 <Sandpack>
 
@@ -412,7 +412,7 @@ export default function Chat() {
 </Solution>
 
 
-#### Perbaiki komponen yang gagal untuk *dirender* kembali {/*fix-a-component-failing-to-re-render*/}
+#### Perbaiki komponen yang gagal untuk di-*render* kembali {/*fix-a-component-failing-to-re-render*/}
 
 Tombol ini seharusnya beralih antara menunjukkan "Nyala" dan "Mati". Namun, selalu menunjukkan "Mati". Apa yang salah dengan kode ini? Perbaiki.
 
