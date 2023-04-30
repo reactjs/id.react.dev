@@ -175,10 +175,10 @@ Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *s
 
 | *refs*                                                                                  | *state*                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah state dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
+| `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah *state* dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
 | Tidak memicu *render* ulang ketika Anda mengubahnya.                                         | Memicu *render* ulang ketika Anda mengubahnya.                                                                                    |
-| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur state untuk memodifikasi state agar terjadwal ulang (*render* ulang).                       |
-| Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca state kapan saja. Namun, setiap *render* state memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
+| *Mutable*—Anda dapat memodifikasi dan memperbarui nilai `current` di luar proses rendering. | *Immutable*—Anda harus menggunakan fungsi pengatur *state* untuk memodifikasi *state* agar terjadwal ulang (*render* ulang).                       |
+| Anda sebaiknya tidak membaca (atau menulis) nilai `current` selama proses *rendering*. | Anda dapat membaca *state* kapan saja. Namun, setiap *render* *state* memiliki [snapshot](/learn/state-as-a-snapshot) sendiri yang tidak berubah.
 
 Berikut adalah tombol penghitung yang diimplementasikan dengan state:
 
@@ -249,7 +249,7 @@ function useRef(initialValue) {
 
 Pada saat render pertama kali, `useRef` akan mengembalikan nilai `{ current: initialValue }`. Objek ini akan disimpan oleh React, sehingga pada saat render berikutnya, objek yang sama akan dikembalikan. Perhatikan bahwa dalam contoh ini, pengatur dari *state* tidak digunakan. Pengatur *state* tidak diperlukan karena `useRef` selalu harus mengembalikan objek yang sama!
 
-React menyediakan versi bawaan dari `useRef` karena cukup umum dalam praktiknya. Namun, Anda bisa memikirkannya sebagai state biasa tanpa pengatur. Jika Anda akrab dengan pemrograman berorientasi objek, *ref* mungkin mengingatkan Anda pada *instance fields*--tetapi bukannya `this.something`, Anda menulis `somethingRef.current`.
+React menyediakan versi bawaan dari `useRef` karena cukup umum dalam praktiknya. Namun, Anda bisa memikirkannya sebagai *state* biasa tanpa pengatur. Jika Anda akrab dengan pemrograman berorientasi objek, *ref* mungkin mengingatkan Anda pada *instance fields*--tetapi bukannya `this.something`, Anda menulis `somethingRef.current`.
 
 </DeepDive>
 
@@ -269,7 +269,7 @@ Mengikuti prinsip-prinsip ini akan membuat komponen Anda lebih dapat diprediksi:
 
 - **Gunakan *refs* sebagai "jalan keluar"**. *Refs* berguna ketika Anda bekerja dengan sistem eksternal atau *API* peramban. Jika sebagian besar logika aplikasi dan aliran data bergantung pada *refs*, mungkin perlu untuk mempertimbangkan kembali pendekatan yang digunakan.
 
-- **Jangan membaca atau menulis `ref.current` selama proses rendering**. Jika beberapa informasi dibutuhkan selama *rendering*, gunakan [state](/learn/state-a-components-memory) sebagai gantinya. Karena React tidak mengetahui perubahan pada `ref.current`, bahkan membacanya selama *rendering* membuat perilaku komponen sulit diprediksi. (Satu-satunya pengecualian untuk ini adalah kode seperti `if (!ref.current) ref.current = new Thing()` yang hanya mengatur *ref* sekali selama *render* pertama.)
+- **Jangan membaca atau menulis `ref.current` selama proses rendering**. Jika beberapa informasi dibutuhkan selama *rendering*, gunakan [*state*](/learn/state-a-components-memory) sebagai gantinya. Karena React tidak mengetahui perubahan pada `ref.current`, bahkan membacanya selama *rendering* membuat perilaku komponen sulit diprediksi. (Satu-satunya pengecualian untuk ini adalah kode seperti `if (!ref.current) ref.current = new Thing()` yang hanya mengatur *ref* sekali selama *render* pertama.)
 
 Keterbatasan dari *state* di React tidak berlaku pada *refs*. Sebagai contoh, *state* bertindak seperti [snapshot untuk setiap render](/learn/state-as-a-snapshot) dan [tidak memperbarui sinkron secara langsung](/learn/queueing-a-series-of-state-updates). Namun ketika Anda memutasi nilai saat ini dari sebuah *ref*, perubahannya langsung terjadi:
 
@@ -438,7 +438,7 @@ export default function Toggle() {
 
 <Solution>
 
-Dalam contoh ini, nilai saat ini dari sebuah *ref* digunakan untuk menghitung output *rendering*: `{isOnRef.current ? 'Nyala' : 'Mati'}`. Ini menunjukkan bahwa informasi ini seharusnya tidak berada dalam sebuah *ref*, dan seharusnya disimpan dalam *state*. Untuk memperbaikinya, hapus *ref* dan gunakan state sebagai gantinya:
+Dalam contoh ini, nilai saat ini dari sebuah *ref* digunakan untuk menghitung output *rendering*: `{isOnRef.current ? 'Nyala' : 'Mati'}`. Ini menunjukkan bahwa informasi ini seharusnya tidak berada dalam sebuah *ref*, dan seharusnya disimpan dalam *state*. Untuk memperbaikinya, hapus *ref* dan gunakan *state* sebagai gantinya:
 
 <Sandpack>
 
@@ -579,7 +579,7 @@ button { display: block; margin: 10px; }
 
 #### Membaca nilai *state* terbaru {/*read-the-latest-state*/}
 
-Pada contoh ini, setelah Anda menekan "Kirim", ada jeda sebentar sebelum pesan ditampilkan. Ketikkan "halo", klik Kirim, lalu cepat edit input kembali. Meskipun Anda mengedit, alert masih akan menampilkan "halo" (yang merupakan nilai state [pada saat](/learn/state-as-a-snapshot#state-over-time) tombol diklik).
+Pada contoh ini, setelah Anda menekan "Kirim", ada jeda sebentar sebelum pesan ditampilkan. Ketikkan "halo", klik Kirim, lalu cepat edit input kembali. Meskipun Anda mengedit, alert masih akan menampilkan "halo" (yang merupakan nilai *state* [pada saat](/learn/state-as-a-snapshot#state-over-time) tombol diklik).
 
 Biasanya, perilaku ini yang Anda inginkan di dalam sebuah aplikasi. Namun, mungkin ada kasus-kasus tertentu di mana Anda ingin beberapa kode asinkron membaca versi *terbaru* dari suatu *state*. Bisakah Anda memikirkan cara untuk membuat *alert* menampilkan teks masukan *saat ini* daripada saat tombol diklik?
 
@@ -616,7 +616,7 @@ export default function Chat() {
 
 <Solution>
 
-Dalam contoh ini, state bekerja [seperti snapshot](/learn/state-as-a-snapshot), sehingga Anda tidak dapat membaca +state+ terbaru dari operasi asinkron seperti *timeout*. Namun, Anda dapat menyimpan teks input terbaru dalam *ref*. *Ref* bersifat *mutable* (dapat diubah), sehingga Anda dapat membaca properti `current` kapan saja. Karena teks saat ini juga digunakan untuk me-*render*, pada contoh ini, Anda akan memerlukan keduanya, variabel *state* (untuk me-*render*), dan *ref* (untuk membacanya di *timeout*). Anda harus memperbarui nilai *ref* saat ini secara manual.
+Dalam contoh ini, *state* bekerja [seperti snapshot](/learn/state-as-a-snapshot), sehingga Anda tidak dapat membaca +state+ terbaru dari operasi asinkron seperti *timeout*. Namun, Anda dapat menyimpan teks input terbaru dalam *ref*. *Ref* bersifat *mutable* (dapat diubah), sehingga Anda dapat membaca properti `current` kapan saja. Karena teks saat ini juga digunakan untuk me-*render*, pada contoh ini, Anda akan memerlukan keduanya, variabel *state* (untuk me-*render*), dan *ref* (untuk membacanya di *timeout*). Anda harus memperbarui nilai *ref* saat ini secara manual.
 
 <Sandpack>
 
