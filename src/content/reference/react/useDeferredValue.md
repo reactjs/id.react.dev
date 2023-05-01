@@ -4,7 +4,7 @@ title: useDeferredValue
 
 <Intro>
 
-`useDeferredValue` is a React Hook that lets you defer updating a part of the UI.
+`useDeferredValue` adalah React Hook yang memungkinkan Anda menangguhkan pembaruan bagian dari UI.
 
 ```js
 const deferredValue = useDeferredValue(value)
@@ -16,11 +16,11 @@ const deferredValue = useDeferredValue(value)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useDeferredValue(value)` {/*usedeferredvalue*/}
 
-Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
+Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk mendapatkan versi yang ditangguhkan dari nilai tersebut.
 
 ```js
 import { useState, useDeferredValue } from 'react';
@@ -32,37 +32,37 @@ function SearchPage() {
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `value`: The value you want to defer. It can have any type.
+* `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
 
 #### Returns {/*returns*/}
 
-During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in background with the new value (so it will return the updated value). 
+Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
 
 #### Caveats {/*caveats*/}
 
-- The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
+- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
-- When `useDeferredValue` receives a different value (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), in addition to the current render (when it still uses the previous value), it schedules a re-render in the background with the new value. The background re-render is interruptible: if there's another update to the `value`, React will restart the background re-render from scratch. For example, if the user is typing into an input faster than a chart receiving its deferred value can re-render, the chart will only re-render after the user stops typing.
+- Ketika `useDeferredValue` menerima nilai yang berbeda (dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), di selain render saat ini (ketika masih menggunakan nilai sebelumnya), ia menjadwalkan render ulang di latar belakang dengan nilai baru. Render ulang latar belakang dapat diinterupsi: jika ada pembaruan lain pada `value`, React akan memulai lagi render ulang latar belakang dari awal. Misalnya, jika pengguna mengetik input lebih cepat daripada bagan yang menerima nilai yang ditangguhkan dapat render ulang, bagan hanya akan render ulang setelah pengguna berhenti mengetik.
 
-- `useDeferredValue` is integrated with [`<Suspense>`.](/reference/react/Suspense) If the background update caused by a new value suspends the UI, the user will not see the fallback. They will see the old deferred value until the data loads.
+- `useDeferredValue` terintegrasi dengan [`<Suspense>`.](/reference/react/Suspense) Jika update latar belakang yang disebabkan oleh nilai baru menangguhkan UI, pengguna tidak akan melihat fallback. Mereka akan melihat nilai ditangguhkan yang lama hingga data dimuat.
 
-- `useDeferredValue` does not by itself prevent extra network requests.
+- `useDeferredValue` tidak dengan sendirinya mencegah permintaan jaringan tambahan.
 
-- There is no fixed delay caused by `useDeferredValue` itself. As soon as React finishes the original re-render, React will immediately start working on the background re-render with the new deferred value. Any updates caused by events (like typing) will interrupt the background re-render and get prioritized over it.
+- Tidak ada penundaan tetap yang disebabkan oleh `useDeferredValue` itu sendiri. Segera setelah React menyelesaikan render ulang asli, React akan segera mulai mengerjakan render ulang latar belakang dengan nilai baru yang ditangguhkan. Pembaruan apa pun yang disebabkan oleh peristiwa (seperti mengetik) akan mengganggu render ulang latar belakang dan mendapatkan prioritas di atasnya.
 
-- The background re-render caused by `useDeferredValue` does not fire Effects until it's committed to the screen. If the background re-render suspends, its Effects will run after the data loads and the UI updates.
+- Render ulang latar belakang yang disebabkan oleh `useDeferredValue` tidak mengaktifkan Efek hingga diterapkan ke layar. Jika render ulang latar belakang ditangguhkan, Efeknya akan berjalan setelah data dimuat dan pembaruan UI.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### Menampilkan konten basi saat konten segar sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-Call `useDeferredValue` at the top level of your component to defer updating some part of your UI.
+Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk menangguhkan pembaruan beberapa bagian dari UI Anda.
 
 ```js [[1, 5, "query"], [2, 5, "deferredQuery"]]
 import { useState, useDeferredValue } from 'react';
@@ -74,25 +74,25 @@ function SearchPage() {
 }
 ```
 
-During the initial render, the <CodeStep step={2}>deferred value</CodeStep> will be the same as the <CodeStep step={1}>value</CodeStep> you provided.
+Selama render awal, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan sama dengan <CodeStep step={1}>nilai</CodeStep> yang Anda berikan.
 
-During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in background.
+Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "tertinggal" dari <CodeStep step={1}>nilai</CodeStep> terbaru. Secara khusus, React pertama-tama akan render ulang *tanpa* memperbarui nilai yang ditangguhkan, dan kemudian mencoba render ulang dengan nilai yang baru diterima di latar belakang.
 
-**Let's walk through an example to see when this is useful.**
+**Mari telusuri contoh untuk melihat kapan ini berguna.**
 
 <Note>
 
-This example assumes you use one of Suspense-enabled data sources:
+Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan Suspense:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
 
-[Learn more about Suspense and its limitations.](/reference/react/Suspense)
+[Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
 
 </Note>
 
 
-In this example, the `SearchResults` component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
+Dalam contoh ini, komponen `SearchResults` [ditangguhkan](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) saat mengambil hasil penelusuran. Coba ketik `"a"`, tunggu hasilnya, lalu edit menjadi `"ab"`. Hasil untuk `"a"` diganti dengan fallback pemuatan.
 
 <Sandpack>
 
@@ -120,10 +120,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <SearchResults query={query} />
       </Suspense>
     </>
@@ -134,11 +134,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// itu belum tersedia di React versi stabil.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -159,8 +159,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo berjalan.
+// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -186,9 +186,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data bergantung pada
+// kerangka kerja yang Anda gunakan bersama Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -208,7 +208,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -284,7 +284,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down: 
+Pola UI alternatif yang umum adalah *menangguhkan* pembaruan daftar hasil dan terus menampilkan hasil sebelumnya hingga hasil baru siap. Panggil `useDeferredValue` untuk meneruskan versi kueri yang ditangguhkan:
 
 ```js {3,11}
 export default function App() {
@@ -293,10 +293,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <SearchResults query={deferredQuery} />
       </Suspense>
     </>
@@ -304,9 +304,9 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+`query` akan segera diperbarui, sehingga input akan menampilkan nilai baru. Namun, `deferredQuery` akan mempertahankan nilai sebelumnya sampai data telah dimuat, sehingga `SearchResults` akan menampilkan hasil lama untuk beberapa saat.
 
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the stale result list until the new results have loaded:
+Masukkan `"a"` pada contoh di bawah, tunggu hasil dimuat, lalu edit input menjadi `"ab"`. Perhatikan bagaimana alih-alih cadangan Suspense, Anda sekarang melihat daftar hasil basi hingga hasil baru dimuat:
 
 <Sandpack>
 
@@ -335,10 +335,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <SearchResults query={deferredQuery} />
       </Suspense>
     </>
@@ -349,11 +349,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// itu belum tersedia di React versi stabil.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -374,8 +374,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo berjalan.
+// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -401,9 +401,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data bergantung pada
+// kerangka kerja yang Anda gunakan bersama Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -423,7 +423,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -501,25 +501,25 @@ input { margin: 10px; }
 
 <DeepDive>
 
-#### How does deferring a value work under the hood? {/*how-does-deferring-a-value-work-under-the-hood*/}
+#### Bagaimana menangguhkan nilai bekerja dibalik layar? {/*how-does-deferring-a-value-work-under-the-hood*/}
 
-You can think of it as happening in two steps:
+Anda dapat menganggapnya terjadi dalam dua langkah:
 
-1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a")`.** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
+1. **Pertama, React me-*render* ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
 
-2. **In background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
+2. **Di latar belakang, React mencoba me-*render* ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
-The deferred "background" rendering is interruptible. For example, if you type into the input again, React will abandon it and restart with the new value. React will always use the latest provided value.
+Render "latar belakang" yang ditangguhkan dapat diinterupsi. Misalnya, jika Anda mengetik input lagi, React akan mengabaikannya dan memulai kembali dengan nilai baru. React akan selalu menggunakan nilai terbaru yang diberikan.
 
-Note that there is still a network request per each keystroke. What's being deferred here is displaying results (until they're ready), not the network requests themselves. Even if the user continues typing, responses for each keystroke get cached, so pressing Backspace is instant and doesn't fetch again.
+Perhatikan bahwa masih ada permintaan jaringan per setiap penekanan tombol. Apa yang ditangguhkan di sini adalah menampilkan hasil (sampai siap), bukan permintaan jaringan itu sendiri. Bahkan jika pengguna terus mengetik, respons untuk setiap ketukan tombol akan di-cache, sehingga menekan Backspace akan instan dan tidak mengambil lagi.
 
 </DeepDive>
 
 ---
 
-### Indicating that the content is stale {/*indicating-that-the-content-is-stale*/}
+### Menandakan bahwa konten tersebut sudah basi {/*indicating-that-the-content-is-stale*/}
 
-In the example above, there is no indication that the result list for the latest query is still loading. This can be confusing to the user if the new results take a while to load. To make it more obvious to the user that the result list does not match the latest query, you can add a visual indication when the stale result list is displayed:
+Pada contoh di atas, tidak ada indikasi bahwa daftar hasil kueri terbaru masih dimuat. Ini dapat membingungkan pengguna jika hasil baru membutuhkan waktu untuk dimuat. Untuk membuatnya lebih jelas bagi pengguna bahwa daftar hasil tidak cocok dengan kueri terbaru, Anda dapat menambahkan indikasi visual saat daftar hasil basi ditampilkan:
 
 ```js {2}
 <div style={{
@@ -529,7 +529,7 @@ In the example above, there is no indication that the result list for the latest
 </div>
 ```
 
-With this change, as soon as you start typing, the stale result list gets slightly dimmed until the new result list loads. You can also add a CSS transition to delay dimming so that it feels gradual, like in the example below:
+Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menjadi sedikit redup hingga daftar hasil baru dimuat. Anda juga bisa menambahkan transisi CSS untuk menangguhkan peredupan agar terasa bertahap, seperti pada contoh di bawah ini:
 
 <Sandpack>
 
@@ -559,10 +559,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <div style={{
           opacity: isStale ? 0.5 : 1,
           transition: isStale ? 'opacity 0.2s 0.2s linear' : 'opacity 0s 0s linear'
@@ -578,11 +578,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// itu belum tersedia di React versi stabil.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -603,8 +603,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo berjalan.
+// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -630,9 +630,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data bergantung pada
+// kerangka kerja yang Anda gunakan bersama Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -652,7 +652,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -730,11 +730,11 @@ input { margin: 10px; }
 
 ---
 
-### Deferring re-rendering for a part of the UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
+### Menangguhkan *rendering* ulang untuk bagian UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
-You can also apply `useDeferredValue` as a performance optimization. It is useful when a part of your UI is slow to re-render, there's no easy way to optimize it, and you want to prevent it from blocking the rest of the UI.
+Anda juga dapat menerapkan `useDeferredValue` sebagai pengoptimalan kinerja. Ini berguna ketika bagian dari UI Anda lambat untuk di-*render* ulang, tidak ada cara mudah untuk mengoptimalkannya, dan Anda ingin mencegahnya memblokir UI lainnya.
 
-Imagine you have a text field and a component (like a chart or a long list) that re-renders on every keystroke:
+Bayangkan Anda memiliki bidang teks dan komponen (seperti bagan atau daftar panjang) yang di-*render* ulang pada setiap penekanan tombol:
 
 ```js
 function App() {
@@ -748,7 +748,7 @@ function App() {
 }
 ```
 
-First, optimize `SlowList` to skip re-rendering when its props are the same. To do this, [wrap it in `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+Pertama, optimalkan `SlowList` untuk melewati *rendering* ulang saat propertinya sama. Untuk melakukannya, [bungkus dalam `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
 
 ```js {1,3}
 const SlowList = memo(function SlowList({ text }) {
@@ -756,9 +756,9 @@ const SlowList = memo(function SlowList({ text }) {
 });
 ```
 
-However, this only helps if the `SlowList` props are *the same* as during the previous render. The problem you're facing now is that it's slow when they're *different,* and when you actually need to show different visual output.
+Namun, ini hanya membantu jika props `SlowList` *sama* dengan selama render sebelumnya. Masalah yang Anda hadapi sekarang adalah lambat saat *berbeda*, dan saat Anda benar-benar perlu menampilkan keluaran visual yang berbeda.
 
-Concretely, the main performance problem is that whenever you type into the input, the `SlowList` receives new props, and re-rendering its entire tree makes the typing feel janky. In this case, `useDeferredValue` lets you prioritize updating the input (which must be fast) over updating the result list (which is allowed to be slower):
+Konkritnya, masalah kinerja utama adalah setiap kali Anda mengetik ke input, `SlowList` menerima properti baru, dan me-*render* ulang seluruh pohonnya membuat pengetikan terasa tersendat. Dalam hal ini, `useDeferredValue` memungkinkan Anda memprioritaskan pembaruan input (yang harus cepat) daripada memperbarui daftar hasil (yang diizinkan lebih lambat):
 
 ```js {3,7}
 function App() {
@@ -773,13 +773,13 @@ function App() {
 }
 ```
 
-This does not make re-rendering of the `SlowList` faster. However, it tells React that re-rendering the list can be deprioritized so that it doesn't block the keystrokes. The list will "lag behind" the input and then "catch up". Like before, React will attempt to update the list as soon as possible, but will not block the user from typing.
+Ini tidak mempercepat *rendering* ulang `SlowList`. Namun, ini memberi tahu React bahwa me-*render* ulang daftar dapat diturunkan prioritasnya sehingga tidak memblokir penekanan tombol. Daftar akan "tertinggal" input dan kemudian "mengejar". Seperti sebelumnya, React akan berusaha memperbarui daftar sesegera mungkin, tetapi tidak akan menghalangi pengguna untuk mengetik.
 
-<Recipes titleText="The difference between useDeferredValue and unoptimized re-rendering" titleId="examples">
+<Recipes titleText="Perbedaan antara useDeferredValue dan rendering ulang yang tidak dioptimalkan" titleId="examples">
 
-#### Deferred re-rendering of the list {/*deferred-re-rendering-of-the-list*/}
+#### Render ulang daftar yang ditangguhkan {/*deferred-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
+Dalam contoh ini, setiap item dalam komponen `SlowList` **diperlambat secara artifisial** sehingga Anda dapat melihat bagaimana `useDeferredValue` membuat input tetap responsif. Ketik input dan perhatikan bahwa mengetik terasa cepat sementara daftar "tertinggal".
 
 <Sandpack>
 
@@ -803,7 +803,7 @@ export default function App() {
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
-  // Log once. The actual slowdown is inside SlowItem.
+  // Log pada konsol sekali. Perlambatan sebenarnya ada di dalam SlowItem.
   console.log('[ARTIFICIALLY SLOW] Rendering 250 <SlowItem />');
 
   let items = [];
@@ -820,7 +820,7 @@ const SlowList = memo(function SlowList({ text }) {
 function SlowItem({ text }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Masuk sekali. Perlambatan sebenarnya ada di dalam SlowItem.
   }
 
   return (
@@ -853,11 +853,11 @@ export default SlowList;
 
 <Solution />
 
-#### Unoptimized re-rendering of the list {/*unoptimized-re-rendering-of-the-list*/}
+#### Render ulang daftar yang tidak dioptimalkan {/*unoptimized-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down**, but there is no `useDeferredValue`.
+Dalam contoh ini, setiap item dalam komponen `SlowList` **diperlambat secara artifisial**, tetapi tidak ada `useDeferredValue`.
 
-Notice how typing into the input feels very janky. This is because without `useDeferredValue`, each keystroke forces the entire list to re-render immediately in a non-interruptible way.
+Perhatikan bagaimana mengetik input terasa sangat tersendat. Ini karena tanpa `useDeferredValue`, setiap penekanan tombol memaksa seluruh daftar untuk segera di-*render* ulang dengan cara yang tidak dapat disela.
 
 <Sandpack>
 
@@ -880,7 +880,7 @@ export default function App() {
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
-  // Log once. The actual slowdown is inside SlowItem.
+  // Log pada konsol sekali. Perlambatan sebenarnya ada di dalam SlowItem.
   console.log('[ARTIFICIALLY SLOW] Rendering 250 <SlowItem />');
 
   let items = [];
@@ -897,7 +897,7 @@ const SlowList = memo(function SlowList({ text }) {
 function SlowItem({ text }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Tidak melakukan apa pun selama 1 md per item untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -934,25 +934,25 @@ export default SlowList;
 
 <Pitfall>
 
-This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/reference/react/memo) it would have to re-render anyway, defeating the point of the optimization.
+Optimalisasi ini membutuhkan `SlowList` untuk dibungkus dengan [`memo`.](/reference/react/memo) Hal ini karena setiap kali `text` berubah, React harus dapat me-*render* ulang komponen induk dengan cepat. Selama pe-*render*-an ulang itu, `deferredText` masih memiliki nilai sebelumnya, jadi `SlowList` dapat melewati pe-*render*-an ulang (propnya tidak berubah). Tanpa [`memo`,](/reference/react/memo) itu harus di-*render* ulang, mengalahkan poin pengoptimalan.
 
 </Pitfall>
 
 <DeepDive>
 
-#### How is deferring a value different from debouncing and throttling? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
+#### Bagaimana penangguhan nilai berbeda dari debouncing dan throttling? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
 
-There are two common optimization techniques you might have used before in this scenario:
+Ada dua teknik pengoptimalan umum yang mungkin pernah Anda gunakan sebelumnya dalam skenario ini:
 
-- *Debouncing* means you'd wait for the user to stop typing (e.g. for a second) before updating the list.
-- *Throttling* means you'd update the list every once in a while (e.g. at most once a second).
+- *Debouncing* berarti Anda akan menunggu pengguna berhenti mengetik (mis. sesaat) sebelum memperbarui daftar.
+- *Throttling* berarti Anda memperbarui daftar sesekali (mis. paling banyak sekali dalam satu detik).
 
-While these techniques are helpful in some cases, `useDeferredValue` is better suited to optimizing rendering because it is deeply integrated with React itself and adapts to the user's device.
+Meskipun teknik ini membantu dalam beberapa kasus, `useDeferredValue` lebih cocok untuk mengoptimalkan *rendering* karena sangat terintegrasi dengan React itu sendiri dan beradaptasi dengan perangkat pengguna.
 
-Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
+Tidak seperti debouncing atau throttling, ini tidak memerlukan pemilihan penundaan tetap. Jika perangkat pengguna cepat (misalnya laptop yang kuat), *rendering* ulang yang ditangguhkan akan segera terjadi dan tidak akan terlihat. Jika perangkat pengguna lambat, daftar akan "tertinggal" input secara proporsional dengan seberapa lambat perangkat tersebut.
 
-Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+Selain itu, tidak seperti *debouncing* atau *throttling*, *rendering* ulang yang ditangguhkan yang dilakukan oleh `useDeferredValue` dapat diinterupsi secara *default*. Ini berarti bahwa jika React sedang me-*render* ulang daftar besar, tetapi pengguna membuat *keystroke* lain, React akan mengabaikan *render* ulang itu, menangani *keystroke*, dan kemudian mulai me-*render* di latar belakang lagi. Sebaliknya, *debouncing* dan *throttling* masih menghasilkan pengalaman tersendat karena keduanya *memblokir:* keduanya hanya menangguhkan momen saat me-*render* memblokir *keystroke*.
 
-If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
+Jika pekerjaan yang Anda optimalkan tidak terjadi selama *rendering*, *debouncing* dan *throttling* tetap berguna. Misalnya, mereka dapat membiarkan Anda memecat lebih sedikit permintaan jaringan. Anda juga dapat menggunakan teknik ini bersama-sama.
 
 </DeepDive>
