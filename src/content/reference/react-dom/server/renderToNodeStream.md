@@ -10,7 +10,7 @@ API ini akan dihapus di versi utama React yang akan datang. Gunakan [`renderToPi
 
 <Intro>
 
-`renderToNodeStream` me-_render_ React _tree_ ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` me-*render* React *tree* ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -26,7 +26,7 @@ const stream = renderToNodeStream(reactNode)
 
 ### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
 
-Di server, panggil `renderToNodeStream` untuk mendapatkan [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons.
+Di server, panggil `renderToNodeStream` untuk mendapatkan [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons.
 
 ```js
 import { renderToNodeStream } from 'react-dom/server';
@@ -45,15 +45,15 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 #### Kembalian {/*returns*/}
 
-Sebuah [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan _string_ HTML.
+Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan *string* HTML.
 
 #### Peringatan {/*caveats*/}
 
-* Metode ini akan menunggu semua [_Suspense boundaries_](/reference/react/Suspense) selesai sebelum menampilkan keluaran apa pun.
+* Metode ini akan menunggu semua [*Suspense boundaries*](/reference/react/Suspense) selesai sebelum menampilkan keluaran apa pun.
 
-* Pada React 18, metode ini mem-_buffer_ semua keluarannya, sehingga tidak benar-benar memberikan manfaat _streaming_ apa pun. Inilah mengapa Anda disarankan untuk beralih ke [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
+* Pada React 18, metode ini mem-*buffer* semua keluarannya, sehingga tidak benar-benar memberikan manfaat *streaming* apa pun. Inilah mengapa Anda disarankan untuk beralih ke [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
 
-* _Stream_ yang dikembalikan adalah _stream_ byte yang di-enkode dalam utf-8. Jika Anda memerlukan _stream_ dalam enkode lain, lihat proyek seperti [_iconv-lite_](https://www.npmjs.com/package/iconv-lite), yang mengenkode _stream_ transformasi untuk _transcoding_ teks.
+* *Stream* yang dikembalikan adalah *stream* byte yang di-enkode dalam utf-8. Jika Anda memerlukan *stream* dalam enkode lain, lihat proyek seperti [*iconv-lite*](https://www.npmjs.com/package/iconv-lite), yang mengenkode *stream* transformasi untuk *transcoding* teks.
 
 ---
 
@@ -61,7 +61,7 @@ Sebuah [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-s
 
 ### Me-render React tree sebagai HTML ke Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
 
-Panggil `renderToNodeStream` untuk mendapatkan [_Node.js Readable Stream_](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons server Anda:
+Panggil `renderToNodeStream` untuk mendapatkan [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons server Anda:
 
 ```js {5-6}
 import { renderToNodeStream } from 'react-dom/server';
@@ -73,4 +73,4 @@ app.use('/', (request, response) => {
 });
 ```
 
-_Stream_ akan menghasilkan keluaran HTML non-interaktif awal dari komponen React Anda. Pada klien, Anda perlu memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk *menghidrasi* HTML yang dihasilkan server dan membuatnya interaktif.
+*Stream* akan menghasilkan keluaran HTML non-interaktif awal dari komponen React Anda. Pada klien, Anda perlu memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk *menghidrasi* HTML yang dihasilkan server dan membuatnya interaktif.
