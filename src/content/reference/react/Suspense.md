@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` memungkinkan Anda menampilkan fallback sampai komponent children selesai dimuat.
+`<Suspense>` memungkinkan Anda menampilkan fallback sampai komponen children selesai dimuat.
 
 
 ```js
