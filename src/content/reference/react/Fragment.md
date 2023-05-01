@@ -27,7 +27,7 @@ Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dima
 
 #### Props {/*props*/}
 
-- `key` **opsional**: *Fragment* yang dideklarasi dengan eksplisit sintaksis `<Fragment>` mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- `key` **opsional**: *Fragment* yang dideklarasi dengan sintaksis `<Fragment>` eksplisit mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Caveats {/*caveats*/}
 
