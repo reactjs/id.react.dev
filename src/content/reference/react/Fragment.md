@@ -27,19 +27,19 @@ Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dima
 
 #### Props {/*props*/}
 
-- `key` **opsional**: *Fragment* yang dideklarasi dengan sintaksis `<Fragment>` eksplisit mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- `key` **opsional**: *Fragment* yang dideklarasikan dengan sintaksis `<Fragment>` eksplisit mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Caveats {/*caveats*/}
 
 - Jika Anda ingin mengoper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan me-*render* `<Fragment key={yourKey}>...</Fragment>`.
 
-- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda me-*render* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda me-*render* `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat saja: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [di sini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda me-*render* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda me-*render* `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat kedalaman: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [di sini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
 ## Pengunaan {/*usage*/}
 
-### Mengembalikan banyak elemen {/*returning-multiple-elements*/}
+### Menetapkan banyak elemen {/*returning-multiple-elements*/}
 
 Gunakan `Fragment`, atau sintaksis `<>...</>`, untuk mengelompokkan beberapa elemen menjadi satu. Anda bisa menggunakannya untuk meletakkan banyak elemen dimana saja, dimana satu elemen itu bisa muncul. Misalnya, komponen hanya bisa mengembalikan satu elemen, tetapi dengan menggunakan *Fragment*, Anda dapat mengelompokkan beberapa elemen menjadi satu dan kemudian mengembalikannya sebagai grup:
 
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-*Fragment* sangat berguna karena mengelompokkan elemen dengan *Fragment* tidak akan mempengaruhi *layout* atau *style*, berbeda jika Anda membungkus elemen dalam wadah lain seperti elemen DOM. Jika Anda memeriksa contoh ini dengan alat *browser*, Anda akan melihat semua DOM *node* `<h1>` dan `<p>` muncul sebagai saudara tanpa pembungkus di sekitar mereka:
+*Fragment* sangat berguna karena mengelompokkan elemen dengan *Fragment* tidak akan mempengaruhi *layout* atau *style*, berbeda jika Anda membungkus elemen dalam wadah lain seperti elemen DOM. Jika Anda memeriksa contoh ini dengan peralatan yang disediakan peramban (*browser tools*), Anda akan melihat semua DOM *node* `<h1>` dan `<p>` muncul sebagai saudara (*siblings*) tanpa pembungkus di sekitar mereka:
 
 <Sandpack>
 
