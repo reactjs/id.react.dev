@@ -183,11 +183,11 @@ Coba ubah nilai `isActive` yang dituliskan langsung di dalam kode komponen `Acco
 
 ### Langkah 3: Tambahkan state ke komponen induk {/*step-3-add-state-to-the-common-parent*/}
 
-Memindahkan *state* keatas sering mengubah sifat apa yang Anda simpan sebagai *state*. 
+Memindahkan *state* ke atas seringkali mengubah sifat dari apa yang Anda simpan sebagai *state*. 
 
 
 
-Dalam contoh ini, Anda ingin mengubah `Accordion` sehingga hanya satu panel yang dapat dibuka pada satu waktu. Ini berarti bahwa komponen induk `Accordion` perlu melacak *panel mana* yang sedang aktif. Alih-alih nilai `boolean`, ini dapat menggunakan angka sebagai indeks `Panel` aktif untuk variabel *state*:
+Dalam contoh ini, Anda ingin mengubah `Accordion` sehingga hanya satu panel yang dapat dibuka pada satu waktu. Ini berarti bahwa komponen induk `Accordion` perlu melacak *panel mana* yang sedang aktif. Alih-alih nilai `boolean`, ia dapat menggunakan angka sebagai indeks `Panel` aktif untuk variabel *state*:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
@@ -195,7 +195,7 @@ const [activeIndex, setActiveIndex] = useState(0);
 
 Ketika `activeIndex` bernilai `0`, panel pertama aktif, dan ketika bernilai `1`, panel kedua aktif.
 
-Menekan tombol "Tampilkan" di salah satu `Panel` perlu mengubah indeks aktif di `Accordion`. Sebuah `Panel` tidak dapat mengatur *state* `activeIndex` secara langsung karena didefinisikan di dalam `Accordion`. Komponen `Accordion` perlu *mengeksplisitkan* komponen `Panel` untuk mengubah *state*-nya dengan [mengoper event handler sebagai prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Menekan tombol "Tampilkan" di salah satu `Panel` perlu mengubah indeks aktif di `Accordion`. Sebuah `Panel` tidak dapat mengatur *state* `activeIndex` secara langsung karena ia didefinisikan di dalam `Accordion`. Komponen `Accordion` perlu *secara ekplisit mengizinkan* komponen `Panel` untuk mengubah *state*-nya dengan [mengoper *event handler* sebagai prop](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
@@ -275,7 +275,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Dengan ini terselesaikan pengangkatan *state* ke atas! Memindahkan *state* ke komponen induk memungkinkan Anda untuk mengkoordinasikan kedua panel. Menggunakan indeks aktif daripada dua *flag* "ditampilkan" memastikan bahwa hanya satu panel yang aktif pada satu waktu. Dan mengoper *event handler* ke komponen anak memungkinkan komponen anak untuk mengubah *state* induknya.
+Dengan ini, terselesaikanlah pengangkatan *state* ke atas! Memindahkan *state* ke komponen induk memungkinkan Anda untuk mengkoordinasikan kedua panel. Menggunakan indeks aktif alih-alih dua *flag* "ditampilkan" memastikan bahwa hanya satu panel yang aktif pada satu waktu. Dan mengoper *event handler* ke komponen anak memungkinkan komponen anak untuk mengubah *state* induknya.
 
 <DiagramGroup>
 
