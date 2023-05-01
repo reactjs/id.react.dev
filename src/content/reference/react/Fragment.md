@@ -94,7 +94,7 @@ function PostBody({ body }) {
 
 <DeepDive>
 
-#### Bagaimana menulis *Fragment* tanpa spesial sintaksis? {/*how-to-write-a-fragment-without-the-special-syntax*/}
+#### Bagaimana menulis Fragment tanpa spesial sintaksis? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
 Contoh di atas sama dengan mengimpor `Fragment` dari React:
 
@@ -149,7 +149,7 @@ function DateRangePicker({ start, end }) {
     <>
       Dari
       <DatePicker date={start} />
-      Ke
+      ke
       <DatePicker date={end} />
     </>
   );
@@ -158,7 +158,7 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Me-*render* daftar *Fragment* {/*rendering-a-list-of-fragments*/}
+### Me-render daftar Fragment {/*rendering-a-list-of-fragments*/}
 
 Inilah situasi di mana Anda perlu menulis `Fragment` secara eksplisit daripada menggunakan sintaksis `<></>`. Saat Anda [me-*render* beberapa elemen dalam *loop*](/learn/rendering-lists), Anda perlu menetapkan `key` untuk setiap elemen. Jika elemen dalam *loop* adalah *Fragment*, Anda perlu menggunakan sintaksis elemen *JSX* normal untuk menyediakan atribut `key`:
 
