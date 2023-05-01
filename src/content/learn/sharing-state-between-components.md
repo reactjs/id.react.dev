@@ -317,7 +317,7 @@ Pada aplikasi React, banyak komponen akan memiliki *state* mereka sendiri. Beber
 
 **Untuk setiap potongan *state* yang unik, Anda akan memilih komponen yang "memilikinya".** Prinsip ini juga dikenal sebagai memiliki ["sumber kebenaran tunggal".](https://en.wikipedia.org/wiki/Single_source_of_truth) Ini tidak berarti bahwa semua *state* berada di satu tempat--tetapi bahwa untuk _setiap_ potongan *state*, ada _komponen_ tertentu yang memegang potongan informasi itu. Alih-alih menduplikasi *state* yang sama diantara komponen, *angkatlah* *state* tersebut ke induk mereka, dan oper ke anak-anak yang membutuhkannya.
 
-Aplikasi Anda akan berubah saat Anda bekerja di dalamnya. Biasanya Anda akan memindahkan *state* ke bawah atau kembali ke atas saat Anda masih mencari tahu di mana setiap potongan *state* "hidup". Semua ini adalah bagian dari proses!
+Aplikasi Anda akan berubah saat Anda mengerjakannya. Biasanya Anda akan memindahkan *state* ke bawah atau kembali ke atas saat Anda masih mencari tahu di mana setiap potongan *state* "hidup". Semua ini adalah bagian dari proses!
 
 Untuk mengetahui bagaimana penerapannya dalam praktik dengan beberapa komponen lebih banyak, baca [Berpikir dalam React.](/learn/thinking-in-react)
 
