@@ -123,7 +123,7 @@ function Panel({ title, children, isActive })
 Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper sebagai prop.](/learn/passing-props-to-a-component) Sebaliknya, komponen `Panel` sekarang tidak memiliki *kontrol* atas nilai `isActive`--sekarang terserah komponen induk!
 
 
-### Langkah 2: Oper data yang diperlukan dari komponen induk {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### Langkah 2: Oper data yang dituliskan langsung di dalam kode dari komponen induk {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
 Untuk mengangkat *state*, Anda harus menemukan komponen induk yang paling dekat dari *kedua* komponen anak yang ingin Anda koordinasikan:
 
