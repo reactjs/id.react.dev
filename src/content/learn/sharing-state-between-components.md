@@ -95,7 +95,7 @@ Menekan tombol `Panel` mana pun hanya akan memperbarui *state* `isActive` dari `
 
 </DiagramGroup>
 
-**Tetapi sekarang katakanlah Anda ingin mengubah panel tersebut sehingga hanya satu panel yang dibuka pada satu waktu.** Dengan desain diatas, membuka panel kedua harus menutup panel pertama. Bagaimanakah Anda akan melakukannya?
+**Tetapi sekarang katakanlah Anda ingin mengubah panel tersebut sehingga hanya satu panel yang dibuka pada satu waktu.** Dengan desain di atas, membuka panel kedua berarti secara otomatis menutup panel pertama. Bagaimanakah Anda akan melakukannya?
 
 Untuk mengkoordinasikan kedua panel ini, Anda perlu "mengangkat *state* mereka" ke komponen induk dalam tiga langkah:
 
