@@ -173,7 +173,7 @@ Ketika sebuah informasi digunakan untuk *rendering*, simpanlah di dalam *state*.
 
 Mungkin Anda berpikir bahwa *ref* terlihat kurang "ketat" dibandingkan dengan *state*-Anda dapat memutasi *ref* daripada selalu harus menggunakan fungsi pengaturan *state*, misalnya. Tetapi dalam kebanyakan kasus, Anda akan ingin menggunakan *state*. *Ref* adalah "jalan keluar" yang tidak sering Anda butuhkan. Berikut adalah perbandingan antara *state* dan *ref*:
 
-| *refs*                                                                                  | *state*                                                                                                                     |
+| *ref*                                                                                  | *state*                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `useRef(initialValue)` mengembalikan `{ current: initialValue }`                            | `useState(initialValue)` mengembalikan nilai saat ini dari sebuah *state* dan sebuah fungsi pengatur state. ( `[value, setValue]`) |
 | Tidak memicu *render* ulang ketika Anda mengubahnya.                                         | Memicu *render* ulang ketika Anda mengubahnya.                                                                                    |
