@@ -10,7 +10,7 @@ Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakuka
 
 <YouWillLearn>
 
-- Bagaimana cara berbagi state antar komponen dengan *lifting state up*
+- Bagaimana cara berbagi *state* antar komponen dengan menaikkan *state* ke atas (*lifting state up*)
 - Apa itu komponen terkendali dan tidak terkendali
 
 </YouWillLearn>
