@@ -299,15 +299,15 @@ Ketika nilai `activeIndex` dari `Accordion` berubah menjadi `1`, `Panel` kedua m
 
 #### Komponen terkendali dan tak terkendali {/*controlled-and-uncontrolled-components*/}
 
-Secara umum Anda dapat mengatakan bahwa komponen yang memiliki *state* lokal adalah "tidak terkendali". Misalnya, komponen `Panel` asli dengan variabel *state* `isActive` adalah tidak terkendali karena induknya tidak dapat mempengaruhi apakah panel aktif atau tidak.
+Secara umum Anda dapat mengatakan bahwa komponen yang memiliki *state* lokal adalah "tak terkendali". Misalnya, komponen `Panel` asli dengan variabel *state* `isActive` adalah tak terkendali karena induknya tidak dapat mempengaruhi apakah panel aktif atau tidak.
 
 Anda dapat mengatakan bahwa komponen "terkendali" ketika informasi penting di dalamnya didorong oleh *prop* daripada *state* lokalnya sendiri. Ini memungkinkan komponen induk untuk sepenuhnya menentukan perilakunya. Komponen `Panel` akhir dengan *prop* `isActive` dikendalikan oleh komponen `Accordion`.
 
-Komponen tidak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi kurang fleksibel ketika Anda ingin mengkoordinasikan mereka bersama. Komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
+Komponen tak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi kurang fleksibel ketika Anda ingin mengkoordinasikan mereka bersama. Komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
 
-Pada praktiknya, "terkendali" dan "tidak terkendali" bukan istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
+Pada praktiknya, "terkendali" dan "tak terkendali" bukan istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
 
-Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dikendalikan (melalui *props*), dan informasi apa yang harus tidak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi nanti.
+Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dikendalikan (melalui *props*), dan informasi apa yang harus tak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi nanti.
 
 </DeepDive>
 
@@ -326,7 +326,7 @@ Untuk mengetahui bagaimana penerapannya dalam praktik dengan beberapa komponen l
 * Ketika Anda ingin mengkoordinasikan dua komponen, pindahkan *state* mereka ke induknya.
 * Kemudian oper informasi yang diperlukan melalui *props* dari induk mereka.
 * Terakhir, oper *event handler* sehingga komponen anak-anak dapat mengubah *state* induk.
-* Dapat membantu jika Anda mempertimbangkan komponen sebagai "terkendali" (dikendalikan oleh *props*) atau "tidak terkendali" (dikendalikan oleh *state*).
+* Dapat membantu jika Anda mempertimbangkan komponen sebagai "terkendali" (dikendalikan oleh *props*) atau "tak terkendali" (dikendalikan oleh *state*).
 
 </Recap>
 
