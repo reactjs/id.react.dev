@@ -179,7 +179,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Coba edit nilai `isActive` yang telah ditentukan sebelumnya di komponen `Accordion` dan lihat hasilnya di layar.
+Coba ubah nilai `isActive` yang dituliskan langsung di dalam kode komponen `Accordion` dan lihat hasilnya di layar.
 
 ### Langkah 3: Tambahkan state ke komponen induk {/*step-3-add-state-to-the-common-parent*/}
 
