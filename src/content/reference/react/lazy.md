@@ -30,23 +30,23 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 [Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk me-*render* komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian me-*render* nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
 
-#### Returns {/*returns*/}
+#### Mengembalikan {/*returns*/}
 
 `lazy` mengembalikan komponen React yang dapat Anda *render* di dalam *tree*. Ketika kode untuk komponen *lazy* masih dimuat, mencoba me-*render*nya akan *suspend.* Gunakan [`<Suspense>`](/reference/react/Suspense) untuk menampilkan indikator pemuatan ketika komponen tersebut dimuat.
 
 ---
 
-### fungsi `load` {/*load*/}
+### Fungsi `load` {/*load*/}
 
-#### Parameters {/*load-parameters*/}
+#### Parameter {/*load-parameters*/}
 
 `load` tidak menerima parameter.
 
-#### Returns {/*load-returns*/}
+#### Mengembalikan {/*load-returns*/}
 
 Anda perlu mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). Pada akhirnya, komponen ini harus diselesaikan ke tipe komponen React yang valid, seperti sebuah fungsi, [`memo`](/reference/react/memo), atau [`forwardRef`](/reference/react/forwardRef) komponen.
 
@@ -183,7 +183,7 @@ Demo ini dimuat dengan penundaan buatan. Lain kali Anda menghapus centang dan me
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
-### komponen `lazy` saya disetel ulang secara tidak terduga {/*my-lazy-components-state-gets-reset-unexpectedly*/}
+### State komponen `lazy` saya disetel ulang secara tidak terduga {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 
 Jangan deklarasikan komponen `lazy` *di dalam* komponen lain:
 
