@@ -94,24 +94,24 @@ function AboutPage() {
 
 Jika Anda memiliki banyak HTML untuk di-*porting* ke JSX, Anda dapat menggunakan [konverter online.](https://transform.tools/html-to-jsx).
 
-## Adding styles {/*adding-styles*/}
+## Menambahkan styles {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+Di React, Anda menentukan kelas (*class*) CSS dengan `className`. Ini bekerja dengan cara yang sama seperti atribut HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class):
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Kemudian Anda menulis aturan CSS untuk itu di dalam berkas CSS terpisah:
 
 ```css
-/* In your CSS */
+/* Di dalam CSS Anda */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. Di dalam kasus yang paling sederhana, Anda akan menambahkan tag [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ke HTML Anda. Jika Anda menggunakan *build tool* atau *framework*, bacalah dokumentasinya untuk mempelajari bagaimana cara menambahkan berkas CSS ke dalam proyek Anda.
 
 ## Displaying data {/*displaying-data*/}
 
