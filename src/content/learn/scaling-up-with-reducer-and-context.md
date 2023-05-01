@@ -1340,7 +1340,6 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can think of `TasksProvider` as a part of the screen that knows how to deal with tasks, `useTasks` as a way to read them, and `useTasksDispatch` as a way to update them from any component below in the tree.
 Anda dapat memandang `TasksProvider` sebagai bagian dari layar yang tahu cara menangani tugas, `useTasks` sebagai cara untuk membacanya, dan `useTasksDispatch` sebagai cara untuk memperbaruinya dari komponen mana pun di bawah pohon.
 
 <Note>
