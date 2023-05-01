@@ -4,7 +4,7 @@ title: Tambahkan React ke Proyek yang sudah Ada
 
 <Intro>
 
-Jika Anda ingin menambahkan beberapa interaktivitas ke proyek Anda yang sudah ada, Anda tidak perlu menulis ulang menggunakan React. Tambahkan React ke proyek Anda, dan Anda dapat merender komponen interaktif React di mana saja.
+Jika Anda ingin menambahkan beberapa interaktivitas ke proyek Anda yang sudah ada, Anda tidak perlu menulis ulang menggunakan React. Tambahkan React ke proyek Anda, dan Anda dapat me-*render* komponen interaktif React di mana saja.
 
 </Intro>
 
@@ -30,11 +30,11 @@ Banyak *framework* berbasis React bersifat *full-stack* dan membiarkan aplikasi 
 
 ## Menggunakan React sebagai bagian dari halaman Anda yang sudah ada {/*using-react-for-a-part-of-your-existing-page*/}
 
-Katakanlah Anda memiliki halaman yang dibangun dengan teknologi lain (baik *server-based* seperti Rails, atau *client-based* seperti Backbone), dan Anda ingin merender komponen interaktif React di suatu tempat di halaman itu. Itu adalah cara umum untuk mengintegrasikan React sebenarnya, begitulah cara sebagian besar penggunaan React di Meta selama bertahun-tahun!
+Katakanlah Anda memiliki halaman yang dibangun dengan teknologi lain (baik *server-based* seperti Rails, atau *client-based* seperti Backbone), dan Anda ingin me-*render* komponen interaktif React di suatu tempat di halaman itu. Itu adalah cara umum untuk mengintegrasikan React sebenarnya, begitulah cara sebagian besar penggunaan React di Meta selama bertahun-tahun!
 
 Anda dapat melakukannya dengan dua cara:
 
-1. **Siapkan JavaScript environment Anda** yang memungkinkan Anda menggunakan [sintaks JSX](/learn/writing-markup-with-jsx), bagi kode Anda menjadi modul dengan sintaks [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export), dan gunakan paket (misalnya React) dari registri paket [npm](https://www.npmjs.com/).
+1. **Siapkan JavaScript *environment* Anda** yang memungkinkan Anda menggunakan [sintaks JSX](/learn/writing-markup-with-jsx), bagi kode Anda menjadi modul dengan sintaks [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export), dan gunakan paket (misalnya React) dari registri paket [npm](https://www.npmjs.com/).
 2. **Tampilkan komponen React Anda** di tempat yang ingin Anda lihat di halaman.
 
 Pendekatan yang tepat tergantung pada setup halaman Anda, jadi mari kita telusuri beberapa detail.
@@ -107,7 +107,7 @@ Tentu saja, Anda sebenarnya tidak ingin menghapus konten HTML yang ada!
 
 Hapus kode ini.
 
-Sebagai gantinya, Anda mungkin ingin merender komponen React Anda di tempat tertentu di HTML Anda. Buka halaman HTML Anda (atau *template server* yang membuatnya) dan tambahkan atribut [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) yang unik ke tag mana saja, sebagi contohnya:
+Sebagai gantinya, Anda mungkin ingin me-*render* komponen React Anda di tempat tertentu di HTML Anda. Buka halaman HTML Anda (atau *template server* yang membuatnya) dan tambahkan atribut [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) yang unik ke tag mana saja, sebagi contohnya:
 
 ```html
 <!-- ... somewhere in your html ... -->
@@ -115,7 +115,7 @@ Sebagai gantinya, Anda mungkin ingin merender komponen React Anda di tempat tert
 <!-- ... more html ... -->
 ```
 
-Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) dan meneruskannya ke [`createRoot`](/reference/react-dom/client/createRoot) sehingga Anda dapat merender komponen React Anda sendiri di dalam:
+Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) dan meneruskannya ke [`createRoot`](/reference/react-dom/client/createRoot) sehingga Anda dapat me-*render* komponen React Anda sendiri di dalam:
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ root.render(<NavigationBar />);
 
 </Sandpack>
 
-Perhatikan bagaimana konten HTML asli dari `index.html` dipertahankan, tetapi komponen React `NavigationBar` Anda sekarang muncul di dalam `<nav id="navigation">` HTML Anda. Baca [dokumentasi penggunaan `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) untuk mempelajari lebih lanjut tentang merender komponen React di dalam halaman HTML yang ada.
+Perhatikan bagaimana konten HTML asli dari `index.html` dipertahankan, tetapi komponen React `NavigationBar` Anda sekarang muncul di dalam `<nav id="navigation">` HTML Anda. Baca [dokumentasi penggunaan `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) untuk mempelajari lebih lanjut tentang me-*render* komponen React di dalam halaman HTML yang ada.
 
 Saat Anda mengadopsi React dalam proyek yang sudah ada, umumnya dimulai dengan komponen interaktif kecil (seperti tombol), dan kemudian secara bertahap terus "bergerak ke atas" hingga akhirnya seluruh halaman Anda dibuat dengan React. Jika Anda sudah mencapai titik itu, kami sarankan untuk segera bermigrasi ke [React *framework*](/learn/start-a-new-react-project) untuk mendapatkan hasil maksimal dari React.
 
