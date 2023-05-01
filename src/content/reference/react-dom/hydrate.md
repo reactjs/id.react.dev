@@ -12,7 +12,7 @@ Di React 18, `hydrate` digantikan oleh [`hydrateRoot`.](/reference/react-dom/cli
 
 <Intro>
 
-`hydrate` memungkinkan anda menampilkan komponen React di dalam node DOM browser yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React 17 dan yang lebih rendah.
+`hydrate` memungkinkan anda menampilkan komponen React di dalam node DOM peramban yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React 17 dan yang lebih rendah.
 
 ```js
 hydrate(reactNode, domNode, callback?)
@@ -62,7 +62,7 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 
 ## Penggunaan {/*usage*/}
 
-Panggil `hydrate` untuk melekatkan sebuah <CodeStep step={1}>React component</CodeStep> menjadi server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
+Panggil `hydrate` untuk melekatkan sebuah <CodeStep step={1}>React component</CodeStep> menjadi server-rendered <CodeStep step={2}>peramban DOM node</CodeStep>.
 
 ```js [[1, 3, "<App />"], [2, 3, "document.getElementById('root')"]]
 import { hydrate } from 'react-dom';
