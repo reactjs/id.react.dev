@@ -219,7 +219,7 @@ Misalnya, `TaskApp` meneruskan daftar tugas dan *event handlers* ke `TaskList`:
 />
 ```
 
-Dan `TaskList` meneruskan *event handlers* ke `Task`:
+Dan `TaskList` mengoper *event handlers* ke `Task`:
 
 ```js
 <Task
