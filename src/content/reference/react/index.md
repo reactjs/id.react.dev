@@ -4,7 +4,7 @@ title: "React Hook Bawaan"
 
 <Intro>
 
-*Hook* memungkinkan Anda menggunakan fitur React dari dalam komponen Anda. Anda dapat menggunakan Hook bawaan atau mengkombinasikan mereka untuk membuat hook Anda sendiri. Halaman ini mencantumkan daftar semua list Hook bawaan yang tersedia di React.
+*Hook* memungkinkan Anda menggunakan fitur React dari dalam komponen Anda. Anda dapat menggunakan Hook bawaan atau mengkombinasikan mereka untuk membuat hook Anda sendiri. Halaman ini mencantumkan daftar semua Hook bawaan yang tersedia di React.
 
 </Intro>
 
@@ -12,11 +12,11 @@ title: "React Hook Bawaan"
 
 ## Hook State {/*state-hooks*/}
 
-*State* memungkinkan sebuah komponen ["mengingat" informasi seperti masukan pengguna.](/learn/state-a-components-memory) Sebagai contoh, sebuah komponen formulir dapat menggunakan *state* untuk menyimpan nilai masukan, sementara komponen gambar galeri dapat menggunakan state untuk menyimpan indeks gambar yang terpilih. 
+*State* memungkinkan sebuah komponen ["mengingat" informasi seperti masukan pengguna.](/learn/state-a-components-memory) Sebagai contoh, sebuah komponen formulir dapat menggunakan *state* untuk menyimpan nilai masukan, sementara sebuah komponen galeri gambar dapat menggunakan *state* untuk menyimpan indeks gambar yang terpilih. 
 Untuk menambahkan *state* ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
 
-* [`useState`](/reference/react/useState) mendeklarasi sebuah variabel *state* yang dapat Anda perbarui secara langsung. 
-* [`useReducer`](/reference/react/useReducer) mendeklarasi sebuah variabel *state* dengan pembaruan logika dalam sebuah [fungsi reducer.](/learn/extracting-state-logic-into-a-reducer)
+* [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung. 
+* [`useReducer`](/reference/react/useReducer) mendeklarasikan sebuah variabel *state* dengan logika pembaruan yang tertulis di dalam sebuah [fungsi *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 function ImageGallery() {
@@ -28,7 +28,7 @@ function ImageGallery() {
 
 ## Hook Context {/*context-hooks*/}
 
-*Context* memungkinkan sebuah komponen [menerima informasi dari induk yang jauh tanpa mengopernya sebagai props.](/learn/passing-props-to-a-component) Sebagai contoh, komponen tingkat atas aplikasi Anda dapat meneruskan tema antarmuka pengguna (UI) saat ini ke semua komponen di bawah, tidak peduli seberapa dalam. 
+*Context* memungkinkan sebuah komponen [menerima informasi dari induk yang jauh tanpa mengopernya sebagai *props*.](/learn/passing-props-to-a-component) Sebagai contoh, komponen tingkat teratas aplikasi Anda dapat meneruskan tema antarmuka pengguna (UI) saat ini ke semua komponen di bawahnya, seberapa pun dalamnya.
 * [`useContext`](/reference/react/useContext) membaca dan berlangganan ke sebuah *context*.
 
 ```js
@@ -40,9 +40,10 @@ function Button() {
 ---
 
 ## Hook Ref {/*ref-hooks*/}
-*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk dirender](/learn/referencing-values-with-refs) seperti node DOM atau ID *timeout*. Tidak seperti state, memperbarui *ref* tidak merender ulang komponen Anda. Ref adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda membutuhkan untuk bekerja dengan sistem non-React, seperti *API* peramban bawaan.
 
-* [`useRef`](/reference/react/useRef) mendeklarasi *ref*. Anda dapat menyimpan nilai apapun didalamnya, tapi *ref* sering kali digunakan untuk menyimpan node DOM.
+*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk pe-*render*-an](/learn/referencing-values-with-refs) seperti simpul (*node*) DOM atau ID *timeout*. Tidak seperti *state*, memperbarui sebuah *ref* tidak me-*render* ulang komponen Anda. *Ref* adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda perlu untuk bekerja dengan sistem-sistem non-React, seperti *API-API* bawaan dari peramban.
+
+* [`useRef`](/reference/react/useRef) mendeklarasikan *ref*. Anda dapat menyimpan nilai apapun di dalamnya, tapi *ref* seringkali digunakan untuk menyimpan simpul DOM.
 * [`useImperativeHandle`](/reference/react/useImperativeHandle) memungkinkan Anda menyesuaikan *ref* yang terekspos oleh komponen Anda. Ini jarang sekali digunakan.
 
 ```js
@@ -55,7 +56,7 @@ function Form() {
 
 ## Hook Efek {/*effect-hooks*/}
 
-*Efek* memungkinkan sebuah komponen [terhubung dan menyesuaikan dengan sistem eksternal](/learn/synchronizing-with-effects) Ini termasuk berurusan dengan jaringan, DOM peramban, animasi, widget yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
+*Efek* memungkinkan sebuah komponen [terhubung dan menyesuaikan dengan sistem eksternal](/learn/synchronizing-with-effects). Termasuk di dalamnya yakni berurusan dengan jaringan, DOM peramban, animasi, *widget* yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
 
 * [`useEffect`](/reference/react/useEffect) menghubungkan sebuah komponen ke sebuah sistem eksternal.
 
@@ -69,23 +70,23 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatur aliran data aplikasi Anda. Jika Anda tidak berinteraksi dengan sistem eksternal, [Kemungkinan Besar Anda Tidak Memerlukan Efek](/learn/you-might-not-need-an-effect)
+Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatur aliran data aplikasi Anda. Jika Anda tidak berinteraksi dengan sistem eksternal, [kemungkinan besar Anda tidak memerlukan Efek](/learn/you-might-not-need-an-effect)
 
-Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu-nya
+Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu eksekusinya
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melukis ulang (*repaint*) layar. Anda dapat menggunakannya untuk mengukur layout pada tahap ini.
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka - pustaka dapat memasukkan CSS dinamik disini.
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melukis ulang (*repaint*) layar. Anda dapat menggunakannya untuk mengukur tata letak (*layout*) pada tahap ini.
+* [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka-pustaka (*libraries) lainnya dapat memasukkan CSS dinamik di sini.
 
 ---
 
-## Hook Performa {/*performance-hooks*/}
+## Hook Kinerja {/*performance-hooks*/}
 
-Cara yang umum untuk mengoptimalkan kinerja *rendering* ulang adalah melewatkan pekerjaan yang tidak perlu. Sebagai contoh, Anda dapat memberi tahu React untuk menggunakan kembali perhitungan yang sudah ada di dalam *cache* atau untuk melewatkan *render* ulang jika data tersebut tidak berubah sejak render sebelumnya.
+Cara yang umum untuk mengoptimalkan kinerja pe-*render*-an ulang adalah melewatkan pekerjaan yang tidak perlu. Sebagai contoh, Anda dapat memberi tahu React untuk menggunakan kembali perhitungan yang sudah ada di dalam *cache* atau untuk melewatkan *render* ulang jika data tersebut tidak berubah sejak *render* sebelumnya.
 
-Untuk melewatkan perhitungan dan *render* ulang yang tidak perlu, gunakan salah satu dari Hook ini:
+Untuk melewatkan perhitungan dan pe-*render*-an ulang yang tidak perlu, gunakan salah satu dari *Hook-hook* ini:
 
-- [`useMemo`](/reference/react/useMemo) memungkinkan Anda menyimpan hasil perhitungan yang berat secara *cache*.
-- [`useCallback`](/reference/react/useCallback) memungkinkan Anda menyimpan definisi fungsi di *cache* sebelum melewatkannya ke komponen yang dioptimalkan.
+- [`useMemo`](/reference/react/useMemo) memungkinkan Anda menyimpan hasil perhitungan yang berat di *cache*.
+- [`useCallback`](/reference/react/useCallback) memungkinkan Anda menyimpan definisi fungsi di *cache* sebelum melewatkannya ke komponen yang hendak dioptimasi.
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -94,11 +95,11 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Terkadang, Anda tidak dapat melewatkan *rendering* ulang karena layar sebenarnya perlu pembaruan. Di dalam kasus itu, Anda dapat meningkatkan performa dengan memisahkan memblokir pembaruan yang harus sinkron (seperti mengetik masukan) dari pembaruan non-pemblokiran yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
+Terkadang, Anda tidak dapat melewatkan pe-*render*-an ulang karena layar sebenarnya perlu pembaruan. Di dalam kasus itu, Anda dapat meningkatkan kinerja dengan memisahkan pembaruan penghalang yang harus sinkron (seperti mengetik masukan) dari pembaruan yang bukan penghalang yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
 
-Untuk memprioritaskan *rendering*, gunakan salah satu Hook ini:
+Untuk memprioritaskan pe-*render*-an, gunakan salah satu dari *Hook-hook* ini:
 
-- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi *state* sebagai non-pemblokiran dan mengizinkan pembaruan lain untuk menghentikannya.
+- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi *state* sebagai bukan penghalang dan mengizinkan pembaruan lain untuk menghentikannya.
 - [`useDeferredValue`](/reference/react/useDeferredValue) memungkinkan Anda menangguhkan pembaruan bagian antarmuka pengguna (UI) yang tidak penting dan membiarkan bagian lain memperbarui terlebih dahulu.
 
 ---
