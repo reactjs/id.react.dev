@@ -12,8 +12,8 @@ API `react-dom/client` memungkinkan Anda me-*render* komponen React di sisi klie
 
 ## API Klien {/*client-apis*/}
 
-* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan untuk membuat akar (*root*) yang digunakan untuk menampilkan komponen React di dalam simpul (*node*) DOM peramban.
-* [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan untuk menampilkan komponen React di dalam simpul DOM peramban  yang telah dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
+* [`createRoot`](/reference/react-dom/client/createRoot) memungkinkan Anda membuat akar (*root*) yang digunakan untuk menampilkan komponen React di dalam simpul (*node*) DOM peramban.
+* [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) memungkinkan Anda menampilkan komponen React di dalam simpul DOM peramban  yang telah dihasilkan oleh [`react-dom/server`.](/reference/react-dom/server)
 
 ---
 
