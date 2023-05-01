@@ -98,7 +98,7 @@ Terkadang, Anda tidak dapat melewatkan *rendering* ulang karena layar sebenarnya
 
 Untuk memprioritaskan *rendering*, gunakan salah satu Hook ini:
 
-- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi *state* sebagai non-blocking dan mengizinkan pembaruan lain untuk menghentikannya.
+- [`useTransition`](/reference/react/useTransition) memungkinkan Anda menandai transisi *state* sebagai non-pemblokiran dan mengizinkan pembaruan lain untuk menghentikannya.
 - [`useDeferredValue`](/reference/react/useDeferredValue) memungkinkan Anda menangguhkan pembaruan bagian antarmuka pengguna (UI) yang tidak penting dan membiarkan bagian lain memperbarui terlebih dahulu.
 
 ---
