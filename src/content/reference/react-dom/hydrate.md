@@ -110,11 +110,11 @@ Untuk informasi lebih lanjut tentang hidrasi, lihat dokumen untuk [`hydrateRoot`
 
 ---
 
-### Menghilangkan kesalahan ketidakcocokan hydration yang tidak dapat dihindari {/*suppressing-unavoidable-hydration-mismatch-errors*/}
+### Menghilangkan kesalahan ketidakcocokan hidrasi yang tidak dapat dihindari {/*suppressing-unavoidable-hydration-mismatch-errors*/}
 
-Jika satu atribut elemen atau konten teks secara tidak terhindarkan berbeda antara server dan klien (misalnya, timestamp), Anda dapat menghilangkan peringatan ketidakcocokan *hydration*.
+Jika satu atribut elemen atau konten teks secara tidak terhindarkan berbeda antara server dan klien (misalnya, timestamp), Anda dapat menghilangkan peringatan ketidakcocokan hidrasi.
 
-Untuk menghilangkan peringatan *hydration* pada elemen, tambahkan `suppressHydrationWarning={true}`:
+Untuk menghilangkan peringatan hidrasi pada elemen, tambahkan `suppressHydrationWarning={true}`:
 
 <Sandpack>
 
