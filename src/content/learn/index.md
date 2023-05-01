@@ -85,14 +85,14 @@ JSX lebih ketat daripada HTML. Anda harus menutup tag seperti `<br />`. Komponen
 function AboutPage() {
   return (
     <>
-      <h1>About</h1>
-      <p>Hello there.<br />How do you do?</p>
+      <h1>Tentang</h1>
+      <p>Halo.<br />Apa kabar?</p>
     </>
   );
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+Jika Anda memiliki banyak HTML untuk di-*porting* ke JSX, Anda dapat menggunakan [konverter online.](https://transform.tools/html-to-jsx).
 
 ## Adding styles {/*adding-styles*/}
 
