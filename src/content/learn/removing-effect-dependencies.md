@@ -1,5 +1,5 @@
 ---
-title: 'Removing Effect Dependencies'
+title: 'Menghilangkan pengaruh dependensi'
 ---
 
 <Intro>
