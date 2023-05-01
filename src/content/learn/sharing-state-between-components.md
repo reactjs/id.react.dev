@@ -100,7 +100,7 @@ Menekan tombol `Panel` mana pun hanya akan memperbarui *state* `isActive` dari `
 Untuk mengkoordinasikan kedua panel ini, Anda perlu "mengangkat *state* mereka" ke komponen induk dalam tiga langkah:
 
 1. **Hapus** *state* dari komponen anak.
-2. **Oper** data dari komponen induk.
+2. **Oper** data yang dituliskan langsung di dalam kode (*hardcoded*) dari komponen induk.
 3. **Tambahkan** *state* ke komponen induk dan oper bersamaan dengan *event handlers*.
 
 Cara ini akan memungkinkan komponen `Accordion` untuk mengkoordinasikan kedua `Panel` dan hanya membuka satu panel pada satu waktu.
