@@ -38,12 +38,12 @@ function MyComponent() {
 
 #### Returns {/*returns*/}
 
-`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext.Provider` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis merender ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
+`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext.Provider` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis me-*render* ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
 
 #### Caveats {/*caveats*/}
 
 * Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context.Provider>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
-* React **secara otomatis merender ulang** semua anak yang menggunakan konteks tertentu mulai dari penyedia yang menerima `nilai` yang berbeda. Nilai sebelumnya dan nilai berikutnya dibandingkan dengan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Melewatkan render ulang dengan [`memo`](/reference/react/memo) tidak mencegah anak-anak menerima nilai konteks yang baru.
+* React **secara otomatis me-*render* ulang** semua anak yang menggunakan konteks tertentu mulai dari penyedia yang menerima `nilai` yang berbeda. Nilai sebelumnya dan nilai berikutnya dibandingkan dengan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Melewatkan render ulang dengan [`memo`](/reference/react/memo) tidak mencegah anak-anak menerima nilai konteks yang baru.
 * Jika sistem build Anda menghasilkan modul duplikat pada keluaran (yang dapat terjadi pada *symlink*), ini dapat merusak konteks. Mengoper sesuatu melalui konteks hanya berfungsi jika `SomeContext` yang Anda gunakan untuk memberikan konteks dan `SomeContext` yang Anda gunakan untuk membacanya adalah objek yang sama persis, seperti yang ditentukan oleh perbandingan `===`.
 
 ---
@@ -195,13 +195,13 @@ function MyPage() {
 }
 ```
 
-Sekarang setiap `Button` di dalam penyedia akan menerima nilai `theme` saat ini. Jika Anda memanggil `setTheme` untuk memperbarui nilai `theme` yang Anda berikan ke penyedia, semua komponen `Button` akan dirender ulang dengan nilai `'light' yang baru.
+Sekarang setiap `Button` di dalam penyedia akan menerima nilai `theme` saat ini. Jika Anda memanggil `setTheme` untuk memperbarui nilai `theme` yang Anda berikan ke penyedia, semua komponen `Button` akan di-*render* ulang dengan nilai `'light' yang baru.
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
 #### Memperbarui nilai melalui konteks {/*updating-a-value-via-context*/}
 
-Dalam contoh ini, komponen `MyApp` menyimpan variabel status yang kemudian diteruskan ke penyedia `ThemeContext`. Mencentang kotak centang "Dark mode" akan memperbarui *state*. Mengubah nilai yang disediakan akan merender ulang semua komponen yang menggunakan konteks tersebut.
+Dalam contoh ini, komponen `MyApp` menyimpan variabel status yang kemudian diteruskan ke penyedia `ThemeContext`. Mencentang kotak centang "Dark mode" akan memperbarui *state*. Mengubah nilai yang disediakan akan me-*render* ulang semua komponen yang menggunakan konteks tersebut.
 
 
 <Sandpack>
@@ -964,7 +964,7 @@ Sering kali, alih-alih `null`, ada beberapa nilai yang lebih berarti yang dapat 
 const ThemeContext = createContext('light');
 ```
 
-Dengan cara ini, jika Anda secara tidak sengaja merender beberapa komponen tanpa penyedia yang sesuai, komponen tersebut tidak akan rusak. Hal ini juga membantu komponen Anda bekerja dengan baik di lingkungan pengujian tanpa menyiapkan banyak provider dalam pengujian.
+Dengan cara ini, jika Anda secara tidak sengaja me-*render* beberapa komponen tanpa penyedia yang sesuai, komponen tersebut tidak akan rusak. Hal ini juga membantu komponen Anda bekerja dengan baik di lingkungan pengujian tanpa menyiapkan banyak provider dalam pengujian.
 
 Pada contoh di bawah ini, tombol "Toggle theme" selalu berwarna terang karena tombol tersebut berada di luar penyedia konteks tema apa pun dan nilai tema konteks *default* adalah `'light'. Cobalah mengedit tema default menjadi 'dark'.
 
@@ -1310,7 +1310,7 @@ function MyApp() {
 }
 ```
 
-Di sini, <CodeStep step={2}>context value</CodeStep> adalah sebuah objek JavaScript dengan dua properti, salah satunya adalah sebuah fungsi. Setiap kali `MyApp` dirender ulang (misalnya, pada pembaruan rute), ini akan menjadi objek *berbeda* yang menunjuk ke fungsi *berbeda*, sehingga React juga harus me-render ulang semua komponen di dalam pohon yang memanggil `useContext(AuthContext)`.
+Di sini, <CodeStep step={2}>context value</CodeStep> adalah sebuah objek JavaScript dengan dua properti, salah satunya adalah sebuah fungsi. Setiap kali `MyApp` di-*render* ulang (misalnya, pada pembaruan rute), ini akan menjadi objek *berbeda* yang menunjuk ke fungsi *berbeda*, sehingga React juga harus me-render ulang semua komponen di dalam pohon yang memanggil `useContext(AuthContext)`.
 
 Pada aplikasi yang lebih kecil, hal ini tidak menjadi masalah. Namun, tidak perlu me-render ulang jika data yang mendasarinya, seperti `currentUser`, tidak berubah. Untuk membantu React memanfaatkan fakta tersebut, Anda dapat membungkus fungsi `login` dengan [`useCallback`](/reference/react/useCallback) dan membungkus pembuatan objek ke dalam [`useMemo`](/reference/react/useMemo). Hal ini merupakan pengoptimalan kinerja:
 
@@ -1338,7 +1338,7 @@ function MyApp() {
 }
 ```
 
-Sebagai hasil dari perubahan ini, meskipun `MyApp` perlu dirender ulang, komponen yang memanggil `useContext(AuthContext)` tidak perlu dirender ulang kecuali jika `currentUser` telah berubah.
+Sebagai hasil dari perubahan ini, meskipun `MyApp` perlu di-*render* ulang, komponen yang memanggil `useContext(AuthContext)` tidak perlu di-*render* ulang kecuali jika `currentUser` telah berubah.
 
 Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rendering-of-components) dan [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
 
@@ -1350,7 +1350,7 @@ Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rend
 
 Ada beberapa cara umum yang dapat menyebabkan hal ini terjadi:
 
-1. Anda merender `<SomeContext.Provider>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext.Provider>` *di atas dan di luar* komponen yang memanggil `useContext()`.
+1. Anda me-*render* `<SomeContext.Provider>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext.Provider>` *di atas dan di luar* komponen yang memanggil `useContext()`.
 2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext.Provider>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
 3. Anda mungkin mengalami masalah build dengan tooling Anda yang menyebabkan `SomeContext` yang terlihat dari komponen penyedia dan `SomeContext` yang terlihat oleh komponen pembacaan menjadi dua objek yang berbeda. Hal ini dapat terjadi jika Anda menggunakan *symlink*, misalnya. Anda dapat memverifikasi hal ini dengan menugaskan mereka ke global seperti `window.SomeContext1` dan `window.SomeContext2` dan kemudian memeriksa apakah `window.SomeContext1 === window.SomeContext2` di konsol. Jika tidak sama, perbaiki masalah tersebut di tingkat build tool.
 
