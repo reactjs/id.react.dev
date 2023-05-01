@@ -113,7 +113,7 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 });
 ```
 
-**Dengan perubahan ini, `ShippingForm` akan melewati *rendering* ulang jika semua *props* itu *sama* seperti *render* sebelumnya.** inilah kenapa meng-*cache* sebuah fungsi menjadi penting! misalkan Anda mendefinisikan `handleSubmit` tanpa `useCallback`:
+**Dengan perubahan ini, `ShippingForm` akan melewati *rendering* ulang jika semua *props* itu sama seperti *render* sebelumnya.** inilah kenapa meng-*cache* sebuah fungsi menjadi penting! misalkan Anda mendefinisikan `handleSubmit` tanpa `useCallback`:
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
@@ -155,7 +155,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-**Dengan membungkus `handleSubmit` dalam `useCallback`, Anda memastikan bahwa itu adalah fungsi yang *sama* antara setiap *render* ulang** (sampai dependensi berubah). Anda tidak *harus* bungkus sebuah fungsi dalam `useCallback`  kecuali jika Anda melakukannya untuk beberapa alasan tertentu. Dalam contoh ini, alasannya adalah Anda oper itu ke komponen yang dibungkus dalam [`memo`,](/reference/react/memo) dan ini memungkinkannya untuk lewati *render* ulang. ada alasan lain mengapa Anda mungkin butuh `useCallback` yang dijelaskan lebih lanjut di halaman ini.
+**Dengan membungkus `handleSubmit` dalam `useCallback`, Anda memastikan bahwa itu adalah fungsi yang sama antara setiap *render* ulang** (sampai dependensi berubah). Anda tidak harus bungkus sebuah fungsi dalam `useCallback` kecuali jika Anda melakukannya untuk beberapa alasan tertentu. Dalam contoh ini, alasannya adalah Anda oper itu ke komponen yang dibungkus dalam [`memo`,](/reference/react/memo) dan ini memungkinkannya untuk lewati *render* ulang. ada alasan lain mengapa Anda mungkin butuh `useCallback` yang dijelaskan lebih lanjut di halaman ini.
 
 <Note>
 
@@ -197,7 +197,7 @@ function ProductPage({ productId, referrer }) {
 Perbedaannya terletak pada *apa* yang Anda simpan dalam *cache*:
 
 * **[`useMemo`](/reference/react/useMemo) meng-*cache* *hasil* dari panggilan fungsi Anda.** Dalam contoh ini, itu meng-*cache* hasil pemanggilan fungsi `computeRequirements(product)` sehingga hasilnya tidak akan berubah kecuali `product` berubah. ini memungkinkan Anda untuk oper objek `requirements` tanpa perlu *render* ulang `ShippingForm`. Jika diperlukan, React akan memanggil fungsi yang telah Anda oper selama *rendering* untuk menghitung hasilnya.
-* **`useCallback` meng-*cache* *fungsi itu sendiri.*** Berbeda dengan `useMemo`, itu tidak akan memanggil fungsi yang Anda berikan. Sebaliknya, itu akan meng-*cache* fungsi yang telah Anda berikan sehingga `handleSubmit` *sendiri* tidak akan berubah kecuali `productId` atau `referrer` telah berubah. Ini memungkinan Anda untuk oper fungsi `handleSubmit` ke bawah tanpa perlu *render* ulang `ShippingForm`. Kode Anda tidak akan dijalankan sampai pengguna mengirimkan formulir.
+* **`useCallback` meng-*cache* fungsi itu sendiri.** Berbeda dengan `useMemo`, itu tidak akan memanggil fungsi yang Anda berikan. Sebaliknya, itu akan meng-*cache* fungsi yang telah Anda berikan sehingga `handleSubmit` sendiri tidak akan berubah kecuali `productId` atau `referrer` telah berubah. Ini memungkinan Anda untuk oper fungsi `handleSubmit` ke bawah tanpa perlu *render* ulang `ShippingForm`. Kode Anda tidak akan dijalankan sampai pengguna mengirimkan formulir.
 
 Jika Anda sudah terbiasa dengan [`useMemo`,](/reference/react/useMemo) Anda mungkin merasa terbantu dengan `useCallback` seperti ini:
 
@@ -225,7 +225,7 @@ Caching fungsi dengan `useCallback` hanya bermanfaat dalam beberapa kasus:
 
 Jika tidak ada manfaat dari membungkus sebuah fungsi dengan `useCallback` pada kasus lain. Tidak ada kerugian yang signifikan dari melakukan itu juga, sehingga beberapa tim memilih untuk tidak memikirkan kasus-kasus individu, dan memoize sebanyak mungkin. Kekurangannya adalah kode menjadi kurang mudah dibaca. Selain itu, tidak semua memoize efektif: sebuah nilai tunggal yang "selalu baru" sudah cukup untuk menghancurkan memoisasi untuk seluruh komponen.
 
-Perhatikan bahwa `useCallback` tidak mencegah *membuat* fungsi. Anda selalu membuat fungsi (dan itu bagus!), tapi React akan mengabaikannya dan memberi Anda kembali fungsi yang sudah di-*cache* jika tidak ada yang berubah.
+Perhatikan bahwa `useCallback` tidak mencegah membuat fungsi. Anda selalu membuat fungsi (dan itu bagus!), tapi React akan mengabaikannya dan memberi Anda kembali fungsi yang sudah di-*cache* jika tidak ada yang berubah.
 
 **Dalam praktiknya, Anda dapat menghindari penggunaan memoisasi yang berlebihan dengan mengikuti beberapa prinsip:**
 
@@ -691,7 +691,7 @@ function TodoList() {
   // ...
 ```
 
-Disini, bukannya menjadikan `todos`  sebagai dependensi dan membacanya di dalamnya, Anda memberikan instruksi tentang *bagaimana* to  memperbarui *state* (`todos => [...todos, newTodo]`) ke React. [Baca lebih lanjut tentang *updater functions*.](/reference/react/useState#updating-state-based-on-the-previous-state)
+Disini, bukannya menjadikan `todos`  sebagai dependensi dan membacanya di dalamnya, Anda memberikan instruksi tentang bagaimana untuk  memperbarui *state* (`todos => [...todos, newTodo]`) ke React. [Baca lebih lanjut tentang *updater functions*.](/reference/react/useState#updating-state-based-on-the-previous-state)
 
 ---
 
@@ -752,7 +752,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Ini memastikan bahwa fungsi `createOptions` sama antara pengulangan *render* jika `roomId` sama. **Namun, lebih baik lagi untuk menghilangkan kebutuhan akan dependensi fungsi.** Pindahkan fungsi Anda *ke dalam* *Effect*:
+Ini memastikan bahwa fungsi `createOptions` sama antara pengulangan *render* jika `roomId` sama. **Namun, lebih baik lagi untuk menghilangkan kebutuhan akan dependensi fungsi.** Pindahkan fungsi Anda ke dalam *Effect*:
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
