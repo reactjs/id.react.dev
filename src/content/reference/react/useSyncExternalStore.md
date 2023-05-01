@@ -51,7 +51,7 @@ function TodosApp() {
 
 *Snapshot* saat ini dari tempat penyimpanan yang dapat Anda gunakan di logika *render* Anda.
 
-#### *Caveat* {/*caveats*/}
+#### Caveat {/*caveats*/}
 
 * *Snapshot* tempat penyimpanan yang dikembalikan `getSnapshot` tidak boleh bisa dimutasi. Jika tempat penyimpanan mengandung data yang dapat dimutasi, Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi saat data berubah. Jika data tidak berubah, Anda dapat mengembalikan *snapshot* terakhir yang sudah di-*cache*.
 
@@ -222,7 +222,7 @@ function subscribe(callback) {
 
 ---
 
-### Mengekstrak logika ke *Hook* buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
+### Mengekstrak logika ke Hook buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
 
 Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `Hook` tersebut dari `Hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
 
@@ -307,7 +307,7 @@ function subscribe(callback) {
 
 ---
 
-### Menambahkan dukungan untuk *render* di server {/*adding-support-for-server-rendering*/}
+### Menambahkan dukungan untuk render di server {/*adding-support-for-server-rendering*/}
 
 Jika aplikasi React Anda melakukan [*render* di server](/reference/react-dom/server), komponen React Anda akan berjalan di luar lingkungan peramban untuk membuat HTML awal. Ini menimbulkan beberapa tantangan saat ingin berhubungan dengan tempat penyimpanan eksternal:
 
