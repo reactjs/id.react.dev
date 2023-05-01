@@ -35,7 +35,7 @@ function PasswordField() {
 
 `useId` tidak mengambil parameter apapun.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `useId` mengembalikan string ID unik yang terkait dengan panggilan `useId` tertentu dalam komponen khusus ini.
 
