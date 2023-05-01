@@ -119,4 +119,4 @@ useDebugValue(date, date => date.toDateString());
 
 Fungsi pemformatan Anda akan menerima <CodeStep step={1}>nilai debug</CodeStep> sebagai sebuah parameter dan akan mengembalikan sebuah <CodeStep step={2}>nilai tampilan yang telah diformat</CodeStep>. Ketika komponen Anda diperiksa, React DevTools akan memanggil fungsi ini dan menampilkan hasilnya.
 
-Ini memungkinkan Anda menghindari menjalankan logika pemformatan yang berpotensi mahal kecuali komponen benar-benar diperiksa. Sebagai contoh, jika `date` merupakan sebuah nilai *Date*, ini menghindari pemanggilan `toDateString()` pada setiap render.
+Ini memungkinkan Anda menghindari menjalankan logika pemformatan yang berpotensi mahal/berat (*potentially expensive formatting logic*) kecuali komponen benar-benar diperiksa. Sebagai contoh, jika `date` merupakan sebuah nilai *Date*, ini menghindari pemanggilan `toDateString()` pada setiap render.
