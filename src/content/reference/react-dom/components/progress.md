@@ -26,7 +26,7 @@ Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan peramb
 <progress value={0.5} />
 ```
 
-[Lihat contoh-contoh lainnya di bawah ini.](#usage)
+[Lihat lebih banyak contoh lainnya di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
@@ -43,9 +43,9 @@ Selain itu, `<progress>` juga mendukung *props*:
 
 ### Mengontrol indikator progres {/*controlling-a-progress-indicator*/}
 
-Untuk menampilkan indikator progres, render komponen `<progress>`. Anda dapat memberikan nilai `value` antara `0` dan nilai `max` yang anda tentukan. Jika Anda tidak memberikan nilai `max`, nilai tersebut akan dianggap sebagai `1` secara *default*.
+Untuk menampilkan indikator progres, render komponen `<progress>`. Anda dapat mengoper nilai `value` antara `0` dan nilai `max` yang anda tentukan. Jika Anda tidak memberikan nilai `max`, nilai tersebut akan dianggap sebagai `1` secara *default*.
 
-Jika operasi tidak sedang berlangsung, berikan `value={null}` untuk mendapatkan indikator progres ke status tidak tentu.
+Jika operasi tidak sedang berlangsung, berikan `value={null}` untuk mendapatkan indikator progres ke *state* tidak tentu *(indeterminate)*.
 
 <Sandpack>
 
