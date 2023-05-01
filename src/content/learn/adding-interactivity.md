@@ -1,30 +1,30 @@
 ---
-title: Adding Interactivity
+title: Menambahkan Interaktivitas
 ---
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Beberapa hal di layar berubah mengikuti masukan dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apapun, dan mengubahnya sesuai kebutuhan. Di bab ini, Anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan keluaran yang berbeda seiring berjalannya waktu.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Cara menangani events yang di-mulai oleh pengguna](/learn/responding-to-events)
+* [Cara membuat komponen "mengingat" informasi dengan menggunakan state](/learn/state-a-components-memory)
+* [Cara React memperbaharui UI dalam dua fase](/learn/render-and-commit)
+* [Mengapa state tidak langsung terbaharui setelah Anda mengubahnya](/learn/state-as-a-snapshot)
+* [Cara mengantrikan beberapa perubahan state](/learn/queueing-a-series-of-state-updates)
+* [Cara mengubah object di dalam state](/learn/updating-objects-in-state)
+* [Cara mengubah array di dalam state](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## Menanggapi events {/*responding-to-events*/}
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+React memungkinkan Anda untuk menambakan *event handlers* ke JSX Anda. *Event handlers* adalah fungsi milik Anda yang akan dipanggil sebagai respon terhadap interaksi dari pengguna seperti klik, *hover*, fokus pada masukan form, dan lain-lain.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+Komponen bawaan seperti `<button>` hanya mendukung *event* bawaan dari peramban seperti `onClick`. Namun, Anda juga dapat membuat komponen Anda sendiri, dan memberikannya *prop event handler* dengan nama apapun, spesifik terhadap aplikasi Anda.
 
 <Sandpack>
 
@@ -32,7 +32,7 @@ Built-in components like `<button>` only support built-in browser events like `o
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
+      onPlayMovie={() => alert('Memutar!')}
       onUploadImage={() => alert('Uploading!')}
     />
   );
@@ -42,10 +42,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Putar Film
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Upload Gambar
       </Button>
     </div>
   );
@@ -68,22 +68,22 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+Baca **[Menangani Event](/learn/responding-to-events)** untuk mempelajari cara menambahkan *event handler*.
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## State: Ingatan dari komponen {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Komponen sering perlu mengubah apa yang ada di layar sebagai hasil dari sebuah interaksi. Mengetik kedalam form dapat mengubah sebuah kolom masukan, mengeklik "next" pada sebuah *carousel* gambar mengubah gambar yang sedang ditampilkan, mengeklik "beli" menambahkan sebuah produk kedalam keranjang belanja. Komponen perlu "mengingat" berbagai hal: nilai masukan saat ini, gambar saat ini, keranjang belanja. Di React, jenis ingatan komponen seperti ini disebut *state.* 
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+Anda dapat menambahkan state kepada komponen dengan menggunakan Hook [`useState`](/reference/react/useState). *Hooks* adalah fungsi spesial yang memungkinkan komponen Anda untuk menggunakan fitur-fitur dari React (state adalah salah satu fitur tersebut). Hook `useState` memungkinkan Anda mendeklarasikan sebuah variabel state. Fungsi ini menerima state awal dan mengeluarkan sepasang nilai: state saat ini, dan sebuah fungsi *state setter*  yang memungkinkan Anda untuk mengubah state tersebut.
 
 ```js
 const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-Here is how an image gallery uses and updates state on click:
+Berikut adalah cara galeri gambar menggunakan dan mengubah state saat diklik:
 
 <Sandpack>
 
@@ -112,17 +112,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i>
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img
@@ -229,43 +229,43 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Read **[State: A Component's Memory](/learn/state-a-components-memory)** to learn how to remember a value and update it on interaction.
+Baca **[State: Ingatan dari komponen](/learn/state-a-components-memory)** untuk mempelajari cara untuk mengingat sebuah nilai dan mengubahnya saat berinteraksi.
 
 </LearnMore>
 
-## Render and commit {/*render-and-commit*/}
+## Render dan commit {/*render-and-commit*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Sebelum komponen Anda ditampilkan di layar, mereka harus di *render* oleh React. Memahami langkah-langkah dalam proses ini akan membantu Anda berpikir tentang bagaimana kode Anda akan dijalankan dan menjelaskan perilakunya.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Bayangkan bahwa komponen Anda adalah koki di dapur, menyusun hidangan lezat dari bahan-bahan dasar. Dalam skenario ini, React adalah pelayan yang mengajukan permintaan dari pelanggan dan membawakan pesanan mereka. Proses permintaan dan pelayanan UI ini memiliki tiga langkah:
 
-1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Memicu** *render* (mengirimkan pesanan pelanggan ke dapur)
+2. **Me-*render*** komponen (menyiapkan pesanan di dapur)
+3. **Commit** ke DOM (menempatkan pesanan di meja)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Memicu" alt="React sebagai pelayan di restoran, mengambil pesanan dari pengguna dan mengantarkannya ke Dapur Komponent" src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption={<>Me-<i>render</i></>} alt="Koki Card memberikan React komponen Card baru." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React mengantarkan Card ke pengguna di meja mereka" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
 
-Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of a UI update.
+Baca **[Render dan Commit](/learn/render-and-commit)** untuk mempelajari *lifecycle* dari perubahan UI.
 
 </LearnMore>
 
-## State as a snapshot {/*state-as-a-snapshot*/}
+## State sebagai snapshot {/*state-as-a-snapshot*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+Tidak seperti variabel Javascript biasa, state di React berperilaku lebih seperti *snapshot*. Mengubah state tidaklah mengubah variabel state yang Anda miliki sekarang, tetapi akan memicu *render* ulang. Ini bisa mengejutkan pada awalnya!
 
 ```js
 console.log(count);  // 0
-setCount(count + 1); // Request a re-render with 1
-console.log(count);  // Still 0!
+setCount(count + 1); // Meminta render ulang dengan 1
+console.log(count);  // Masih 0!
 ```
 
-This behavior help you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+Perilaku ini akan membantu Anda menghindari *bug* yang susah ditemukan. Berikut adalah aplikasi chat sederhana. Coba tebak apa yang terjadi jika Anda menekan "Kirim" terlebih dahulu dan *kemudian* mengubah penerima menjadi Bob. Nama siapa yang akan muncul di `alert` lima detik kemudian?
 
 <Sandpack>
 
@@ -274,19 +274,19 @@ import { useState } from 'react';
 
 export default function Form() {
   const [to, setTo] = useState('Alice');
-  const [message, setMessage] = useState('Hello');
+  const [message, setMessage] = useState('Halo');
 
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Anda mengatakan ${message} kepada ${to}`);
     }, 5000);
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        To:{' '}
+        Kepada:{' '}
         <select
           value={to}
           onChange={e => setTo(e.target.value)}>
@@ -299,7 +299,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -314,13 +314,13 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+Baca **[State sebagai Snapshot](/learn/state-as-a-snapshot)** untuk mempelajari mengapa state terlihat "tetap" dan tak berubah di dalam *event handler*.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## Mengantrikan serangkaian perubahan state {/*queueing-a-series-of-state-updates*/}
 
-This component is buggy: clicking "+3" increments the score only once.
+Komponent ini memiliki *bug*: mengeklik "+3" hanya akan menambahkan skor satu kali saja.
 
 <Sandpack>
 
@@ -342,7 +342,7 @@ export default function Counter() {
         increment();
         increment();
       }}>+3</button>
-      <h1>Score: {score}</h1>
+      <h1>Skor: {score}</h1>
     </>
   )
 }
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[State sebagai Snapshot](/learn/state-as-a-snapshot) menjelaskan mengapa ini terjadi. Mengubah state akan meminta *render* ulang baru, tetapi tidak akan mengubah state-nya di kode yang sudah berjalan. Jadi `score` tetap `0` setelah Anda memanggil `setScore(score + 1)`. 
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-You can fix this by passing an *updater function* when setting state. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
+Anda bisa memperbaiki ini dengan memberikan *updater function* ketika mengubah state. Perhatikan bagaimana mengganti `setScore(score + 1)` dengan `setScore(s => s + 1)` memperbaiki tombol "+3". Cara ini memungkinkan Anda untuk mengantrikan beberapa perubahan state.
 
 <Sandpack>
 
@@ -388,7 +388,7 @@ export default function Counter() {
         increment();
         increment();
       }}>+3</button>
-      <h1>Score: {score}</h1>
+      <h1>Skor: {score}</h1>
     </>
   )
 }
@@ -402,15 +402,16 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+Baca **[Mengantrikan serangkaian perubahan state](/learn/queueing-a-series-of-state-updates)** untuk mempelajari cara meng-*queue* sebuah rentetan perubahan state.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## Mengubah object di dalam state {/*updating-objects-in-state*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+State bisa memegang berbagai jenis nilai JavaScript, termasuk *object*. Tetapi Anda tidak boleh mengubah *object* dan *array* yang Anda simpan di dalam state React secara langsung. Melainkan, ketika Anda ingin mengubah *object* dan *array*, Anda perlu membuat *object* yang baru (atau membuat salinan dari *object* yang sudah ada), dan kemudian mengubah state-nya untuk menggunakan salinan tersebut.
 
-Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
+
+Biasanya, Anda akan menggunakan sintaks *spreads* `...` untuk menyalin *object* dan *array* yang ingin Anda ubah. Contohnya, mengubah *object* yang bersarang bisa terlihat seperti ini:
 
 <Sandpack>
 
@@ -467,28 +468,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Nama:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Judul:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Kota:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Gambar:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -496,10 +497,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' oleh '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (berada di {person.artwork.city})
       </p>
       <img
         src={person.artwork.image}
@@ -518,7 +519,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-If copying objects in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Jika menyalin *object* di kode terasa terlalu ribet, Anda bisa menggunakan library seperti [Immer](https://github.com/immerjs/use-immer) untuk mengurangi kode yang berulang-ulang:
 
 <Sandpack>
 
@@ -562,28 +563,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Nama:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Judul:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Kota:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Gambar:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -591,7 +592,7 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' oleh '}
         {person.name}
         <br />
         (located in {person.artwork.city})
@@ -633,13 +634,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn how to update objects correctly.
+Baca **[Mengubah Object di dalam State](/learn/updating-objects-in-state)** untuk mempelajari cara mengubah *object* dengan benar.
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## Mengubah array di dalam state {/*updating-arrays-in-state*/}
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
+Array adalah tipe object lain yang bersifat *mutable* di Javascript yang bisa Anda simpan di state dan harus diperlakukan sebagai *read-only*. Seperti *object*, ketika Anda ingin mengubah *array* yang disimpan di state, Anda perlu membuat *array* baru (atau membuat salinan dari *array* yang sudah ada), dan kemudian mengubah state-nya untuk menggunakan *array* baru tersebut:
 
 <Sandpack>
 
@@ -670,8 +671,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Bucket List Seni</h1>
+      <h2>Daftar seni untuk dilihat:</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -706,7 +707,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-If copying arrays in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Jika menyalin *array* di kode terasa terlalu ribet, Anda bisa menggunakan *library* seperti [Immer](https://github.com/immerjs/use-immer) untuk mengurangi kode yang berulang-ulang:
 
 <Sandpack>
 
@@ -735,8 +736,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Bucket List Seni</h1>
+      <h2>Daftar seni untuk dilihat:</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -791,12 +792,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn how to update arrays correctly.
+Baca **[Mengubah Array di dalam State](/learn/updating-arrays-in-state)** untuk mempelajari cara mengubah *array* dengan benar.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
+Lanjutkan ke [Menanggapi Event](/learn/responding-to-events) untuk mulai membaca bab ini halaman demi halaman!
 
-Or, if you're already familiar with these topics, why not read about [Managing State](/learn/managing-state)?
+Atau, jika Anda sudah akrab dengan topik ini, mengapa tidak membaca tentang [Mengatur State](/learn/managing-state)?
