@@ -127,7 +127,7 @@ Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper s
 
 Untuk mengangkat *state*, Anda harus menemukan komponen induk yang paling dekat dari *kedua* komponen anak yang ingin Anda koordinasikan:
 
-* `Accordion` *(Komponen induk terdekat)*
+* `Accordion` *(komponen induk terdekat)*
   - `Panel`
   - `Panel`
 
