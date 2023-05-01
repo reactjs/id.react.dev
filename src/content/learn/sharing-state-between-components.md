@@ -120,7 +120,7 @@ Lalu, tambahkan `isActive` ke daftar *prop* `Panel`:
 function Panel({ title, children, isActive }) 
 ```
 
-Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper sebagai prop.](/learn/passing-props-to-a-component) Sebaliknya, komponen `Panel` sekarang tidak memiliki *kontrol* atas nilai `isActive` - sekarang terserah komponen induk!
+Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper sebagai prop.](/learn/passing-props-to-a-component) Sebaliknya, komponen `Panel` sekarang tidak memiliki *kontrol* atas nilai `isActive`--sekarang terserah komponen induk!
 
 
 ### Langkah 2: Oper data yang diperlukan dari komponen induk {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
