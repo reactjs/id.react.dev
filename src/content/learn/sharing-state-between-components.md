@@ -313,7 +313,7 @@ Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dike
 
 ## Satu sumber kebenaran untuk setiap state {/*a-single-source-of-truth-for-each-state*/}
 
-Pada aplikasi React, banyak komponen akan memiliki *state* mereka sendiri. Beberapa *state* mungkin "hidup" dekat dengan komponen daun (komponen di bagian bawah pohon) seperti masukan. *State* lainnya mungkin "hidup" lebih dekat ke bagian atas aplikasi. Misalnya, bahkan pustaka rute pada sisi klien biasanya diimplementasikan dengan menyimpan rute saat ini di *state* React, dan mengopernya dengan *props*!
+Pada aplikasi React, banyak komponen akan memiliki *state* mereka sendiri. Beberapa *state* mungkin "hidup" dekat dengan komponen daun (komponen di bagian bawah pohon) seperti masukan-masukan (*inputs*). *State* lainnya mungkin "hidup" lebih dekat ke bagian atas aplikasi. Misalnya, bahkan pustaka-pustaka rute pada sisi klien (*client-side routing libraries*) biasanya diimplementasikan dengan menyimpan rute saat ini di *state* React, dan mengopernya dengan *props*!
 
 **Untuk setiap potongan *state* yang unik, Anda akan memilih komponen yang "memilikinya".** Prinsip ini juga dikenal sebagai memiliki ["sumber kebenaran tunggal".](https://en.wikipedia.org/wiki/Single_source_of_truth) Ini tidak berarti bahwa semua *state* berada di satu tempat--tetapi bahwa untuk _setiap_ potongan *state*, ada _komponen_ tertentu yang memegang potongan informasi itu. Alih-alih menduplikasi *state* yang sama diantara komponen, *angkatlah* *state* tersebut ke induk mereka, dan oper ke anak-anak yang membutuhkannya.
 
