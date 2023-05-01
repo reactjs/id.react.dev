@@ -10,7 +10,7 @@ title: renderToString
 
 <Intro>
 
-`renderToString` me-_render_ React _tree_ menjadi _string_ HTML.
+`renderToString` me-*render* React *tree* menjadi *string* HTML.
 
 ```js
 const html = renderToString(reactNode)
@@ -26,7 +26,7 @@ const html = renderToString(reactNode)
 
 ### `renderToString(reactNode)` {/*rendertostring*/}
 
-Di server, panggil `renderToString` untuk me-_render_ aplikasi Anda ke HTML.
+Di server, panggil `renderToString` untuk me-*render* aplikasi Anda ke HTML.
 
 ```js
 import { renderToString } from 'react-dom/server';
@@ -44,11 +44,11 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 #### Kembalian {/*returns*/}
 
-Sebuah _string_ HTML.
+Sebuah *string* HTML.
 
 #### Peringatan {/*caveats*/}
 
-* `renderToString` memiliki dukungan _Suspense_ yang terbatas. Jika komponen ditangguhkan, `renderToString` secara langsung mengirimkan kembaliannya sebagai HTML.
+* `renderToString` memiliki dukungan *Suspense* yang terbatas. Jika komponen ditangguhkan, `renderToString` secara langsung mengirimkan kembaliannya sebagai HTML.
 
 * `renderToString` bejerka di peramban, tapi menggunakannya di kode klien [tidak dirokemndasikan.](#removing-rendertostring-from-the-client-code)
 
@@ -58,7 +58,7 @@ Sebuah _string_ HTML.
 
 ### Me-render React tree sebagai HTML menjadi string {/*rendering-a-react-tree-as-html-to-a-string*/}
 
-Panggil `renderToString` untuk me-render aplikasi Anda ke _string_ HTML yang dapat Anda kirim dengan respons server Anda:
+Panggil `renderToString` untuk me-render aplikasi Anda ke *string* HTML yang dapat Anda kirim dengan respons server Anda:
 
 ```js {5-6}
 import { renderToString } from 'react-dom/server';
@@ -83,16 +83,16 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 ## Alternatif {/*alternatives*/}
 
-### Migrasi dari `renderToString` ke metode _streaming_ di server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
+### Migrasi dari `renderToString` ke metode streaming di server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
 
-`renderToString` segera mengembalikan _string_, sehingga tidak mendukung _streaming_ atau menunggu data.
+`renderToString` segera mengembalikan *string*, sehingga tidak mendukung *streaming* atau menunggu data.
 
 Jika memungkinkan, sebaiknya gunakan alternatif berfitur lengkap ini:
 
 * Jika Anda menggunakan Node.js, gunakan [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
-* Jika Anda menggunakan Deno atau _edge runtime_ modern dengan [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), gunakan [`renderToReadableStream`.](/reference/react-dom/server/renderToReadableStream)
+* Jika Anda menggunakan Deno atau *edge runtime* modern dengan [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams*API), gunakan [`renderToReadableStream`.](/reference/react-dom/server/renderToReadableStream)
 
-Anda dapat terus menggunakan `renderToString` jika _environment_ server Anda tidak mendukung _streaming_.
+Anda dapat terus menggunakan `renderToString` jika *environment* server Anda tidak mendukung *streaming*.
 
 ---
 
@@ -108,7 +108,7 @@ const html = renderToString(<MyIcon />);
 console.log(html); // Contohnya, "<svg>...</svg>"
 ```
 
-Mengimpor `react-dom/server` **pada klien** meningkatkan ukuran bundel Anda secara tidak perlu dan harus dihindari. Jika Anda perlu me-_render_ beberapa komponen ke HTML di browser, gunakan [`createRoot`](/reference/react-dom/client/createRoot) dan baca HTML dari DOM:
+Mengimpor `react-dom/server` **pada klien** meningkatkan ukuran bundel Anda secara tidak perlu dan harus dihindari. Jika Anda perlu me-*render* beberapa komponen ke HTML di peramban, gunakan [`createRoot`](/reference/react-dom/client/createRoot) dan baca HTML dari DOM:
 
 ```js
 import { createRoot } from 'react-dom/client';
@@ -130,8 +130,8 @@ Panggilan [`flushSync`](/reference/react-dom/flushSync) diperlukan agar DOM dipe
 
 ### Saat komponen ditangguhkan, HTML selalu berisi fallback {/*when-a-component-suspends-the-html-always-contains-a-fallback*/}
 
-`renderToString` tidak sepenuhnya mendukung _Suspense_.
+`renderToString` tidak sepenuhnya mendukung *Suspense*.
 
 Jika beberapa komponen ditangguhkan (misalnya, karena ditentukan dengan [`lazy`](/reference/react/lazy) atau mengambil data), `renderToString` tidak akan menunggu kontennya diselesaikan. Sebagai gantinya, `renderToString` akan menemukan batas [`<Suspense>`](/reference/react/Suspense) terdekat di atasnya dan merender prop `fallback` di HTML. Konten tidak akan muncul hingga kode klien dimuat.
 
-Untuk mengatasinya, gunakan salah satu [solusi _streaming_ yang disarankan.](#migrating-from-rendertostring-to-a-streaming-method-on-the-server) Mereka dapat melakukan _streaming_ konten dalam potongan-potongan saat diselesaikan di server sehingga pengguna melihat halaman diisi secara progresif sebelum kode klien dimuat.
+Untuk mengatasinya, gunakan salah satu [solusi *streaming* yang disarankan.](#migrating-from-rendertostring-to-a-streaming-method-on-the-server) Mereka dapat melakukan *streaming* konten dalam potongan-potongan saat diselesaikan di server sehingga pengguna melihat halaman diisi secara progresif sebelum kode klien dimuat.
