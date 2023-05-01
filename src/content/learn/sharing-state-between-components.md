@@ -305,7 +305,7 @@ Anda dapat mengatakan bahwa komponen "terkendali" ketika informasi penting di da
 
 Komponen-komponen tak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi mereka kurang fleksibel ketika Anda ingin mengkoordinasikannya bersamaan. Komponen-komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
 
-Pada praktiknya, "terkendali" dan "tak terkendali" bukan istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
+Pada praktiknya, "terkendali" dan "tak terkendali" bukanlah istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
 
 Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dikendalikan (melalui *props*), dan informasi apa yang harus tak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi nanti.
 
