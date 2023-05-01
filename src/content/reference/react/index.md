@@ -40,7 +40,7 @@ function Button() {
 ---
 
 ## Hook Ref {/*ref-hooks*/}
-*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk dirender](/learn/referencing-values-with-refs) seperti node DOM atau ID *timeout*. Tidak seperti state, memperbarui *ref* tidak merender ulang komponen Anda. Ref adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda membutuhkan untuk bekerja dengan sistem non-React, seperti *API* browser bawaan.
+*Refs* memungkinkan sebuah komponen [menyimpan beberapa informasi yang tidak digunakan untuk dirender](/learn/referencing-values-with-refs) seperti node DOM atau ID *timeout*. Tidak seperti state, memperbarui *ref* tidak merender ulang komponen Anda. Ref adalah jalan keluar dari paradigma React. *Ref* berguna ketika Anda membutuhkan untuk bekerja dengan sistem non-React, seperti *API* peramban bawaan.
 
 * [`useRef`](/reference/react/useRef) mendeklarasi *ref*. Anda dapat menyimpan nilai apapun didalamnya, tapi *ref* sering kali digunakan untuk menyimpan node DOM.
 * [`useImperativeHandle`](/reference/react/useImperativeHandle) memungkinkan Anda menyesuaikan *ref* yang terekspos oleh komponen Anda. Ini jarang sekali digunakan.
@@ -55,7 +55,7 @@ function Form() {
 
 ## Hook Efek {/*effect-hooks*/}
 
-*Efek* memungkinkan sebuah komponen [terhubung dan menyesuaikan dengan sistem eksternal](/learn/synchronizing-with-effects) Ini termasuk berurusan dengan jaringan, browser DOM, animasi, widget yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
+*Efek* memungkinkan sebuah komponen [terhubung dan menyesuaikan dengan sistem eksternal](/learn/synchronizing-with-effects) Ini termasuk berurusan dengan jaringan, DOM peramban, animasi, widget yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
 
 * [`useEffect`](/reference/react/useEffect) menghubungkan sebuah komponen ke sebuah sistem eksternal.
 
@@ -73,7 +73,7 @@ Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatu
 
 Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu-nya
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum browser melakukan repaint layar. Anda dapat menggunakannya untuk mengukur layout pada tahap ini.
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melakukan melukis ulang layar. Anda dapat menggunakannya untuk mengukur layout pada tahap ini.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka - pustaka dapat memasukkan CSS dinamik disini.
 
 ---
