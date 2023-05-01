@@ -4,7 +4,6 @@ title: API Klien React DOM
 
 <Intro>
 
-
 API `react-dom/client` memungkinkan Anda me-*render* komponen React di sisi klien (di peramban). Biasanya API ini digunakan pada level atas aplikasi React untuk menginisialisasi pohon React. Sebuah [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) mungkin memanggilnya untuk Anda. Biasanya komponen Anda tidak perlu mengimpor atau menggunakannya.
 
 </Intro>
