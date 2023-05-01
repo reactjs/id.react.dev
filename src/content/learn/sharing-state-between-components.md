@@ -299,7 +299,7 @@ Ketika nilai `activeIndex` dari `Accordion` berubah menjadi `1`, `Panel` kedua m
 
 #### Komponen terkendali dan tak terkendali {/*controlled-and-uncontrolled-components*/}
 
-Secara umum Anda dapat mengatakan bahwa komponen yang memiliki *state* lokal adalah "tak terkendali". Misalnya, komponen `Panel` asli dengan variabel *state* `isActive` adalah tak terkendali karena induknya tidak dapat mempengaruhi apakah panel aktif atau tidak.
+Secara umum Anda dapat menyebut sebuah komponen yang memiliki *state* lokal sebagai "tak terkendali". Misalnya, komponen `Panel` yang asli dengan variabel *state* `isActive` adalah tak terkendali karena induknya tidak dapat mempengaruhi apakah panel aktif atau tidak.
 
 Sebaliknya, Anda dapat menyebut sebuah komponen "terkendali" ketika informasi penting di dalamnya dikendalikan oleh *prop* daripada *state* lokalnya sendiri. Ini memungkinkan komponen induk untuk sepenuhnya menentukan perilakunya. Komponen `Panel` akhir dengan *prop* `isActive` dikendalikan oleh komponen `Accordion`.
 
