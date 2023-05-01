@@ -4,7 +4,7 @@ title: lazy
 
 <Intro>
 
-`lazy` memungkinkan Anda menunda pemuatan kode komponen hingga komponen tersebut di-*render* untuk pertama kalinya.
+`lazy` memungkinkan Anda menangguhkan (*defer*) pemuatan kode komponen hingga komponen tersebut di-*render* untuk pertama kalinya.
 
 ```js
 const SomeComponent = lazy(load)
