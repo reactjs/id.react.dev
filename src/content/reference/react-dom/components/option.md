@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk merender opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
+[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk me-*render* opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
 
 
 ```js
@@ -24,7 +24,7 @@ title: "<option>"
 
 ### `<option>` {/*option*/}
 
-[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk merender opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
+[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk me-*render* opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
@@ -45,7 +45,7 @@ Sebagai tambahan, `<option>` mendukung *props* ini:
 * [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): Sebuah *string*. Menentukan arti dari opsi. Jika tidak ditentukan, teks di dalam opsi akan digunakan.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): Nilai yang akan digunakan [ketika mengirimkan induk `<select>` dalam *form*](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) jika opsi ini dipilih.
 
-#### Peringatan {/*caveats*/}
+#### Caveats {/*caveats*/}
 
 * React tidak mendukung atribut `selected` dalam `<option>`. Sebagai gantinya, kirimkan `value` dari opsi ke elemen induk [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) untuk sebuah _uncontrolled_ _select box_, atau [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) untuk _controlled_ _select_.
 
@@ -55,7 +55,7 @@ Sebagai tambahan, `<option>` mendukung *props* ini:
 
 ### Menampilkan kotak select dengan opsi {/*displaying-a-select-box-with-options*/}
 
-Render sebuah `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilihan. Beri setiap `<option>` sebuah `value` yang merepresentasikan data yang akan dikirim dengan formulir.
+*Render* sebuah `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilihan. Beri setiap `<option>` sebuah `value` yang merepresentasikan data yang akan dikirim dengan formulir.
 
 [Baca lebih lanjut mengenai menampilkan `<select>` dengan daftar dari komponen `<option>`.](/reference/react-dom/components/select)
 
