@@ -10,7 +10,7 @@ title: createPortal
 ```js
 <div>
   <SomeComponent />
-  {createPortal(children, domNode)}
+  {createPortal(children, domNode, key?)}
 </div>
 ```
 
@@ -22,7 +22,7 @@ title: createPortal
 
 ## Referensi {/*reference*/}
 
-### `createPortal(children, domNode)` {/*createportal*/}
+### `createPortal(children, domNode, key?)` {/*createportal*/}
 
 Untuk membuat sebuah portal, panggil `createPortal`, dengan mengoper beberapa JSX, dan *node* DOM dimana tempat portal tersebut harus dirender:
 
@@ -49,6 +49,8 @@ Sebuah portal hanya mengubah penempatan kerangka dari *node* DOM. Dalam hal lain
 * `children`: Apapun yang dapat di-render dengan React, seperti bagian dari JSX (misalnya `<div />` atau `<SomeComponent />`), sebuah [Fragment](/reference/react/Fragment) (`<>...</>`), sebuah string atau angka, ataupun sebuah larik.
 
 * `domNode`: Beberapa *node* DOM, seperti yang dikembalikan oleh `document.getElementById()`. *Node* tersebut harus sudah ada. Melewatkan *node* DOM yang berbeda selama pembaruan akan menyebabkan konten portal dibuat ulang.
+
+* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
 
 #### Returns {/*returns*/}
 

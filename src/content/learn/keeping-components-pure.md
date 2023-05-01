@@ -1,41 +1,41 @@
 ---
-title: Keeping Components Pure
+title: Menjaga Kemurnian Komponen
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Beberapa fungsi JavaScript bersifat murni, yaitu hanya melakukan kalkulasi dan tidak lebih dari itu. Dengan menulis komponen sebagai fungsi murni, Anda bisa menghindari berbagai macam *bug* dan tingkah laku yang membingungkan dari aplikasi yang Anda bangun. Namun, ada beberapa aturan yang harus Anda ikuti untuk mencapai keadaan ini.
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* Apa itu kemurnian dan bagaimana hal tersebut dapat membantu Anda menghindari *bug*
+* Bagaimana cara menjaga kemurnian komponen dengan tidak melakukan pengubahan pada fase *render*
+* Bagaimana cara menggunakan *Strict Mode* untuk menemukan kesalahan pada komponen Anda
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## Kemurnian: Komponen sebagai rumus {/*purity-components-as-formulas*/}
 
-In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
+Dalam ilmu komputer, terutama di dunia pemrograman fungsional, [fungsi murni](https://wikipedia.org/wiki/Pure_function) adalah sebuah fungsi yang memenuhi kriteria berikut:
 
-* **It minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
+* **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan luaran yang sama.
 
-You might already be familiar with one example of pure functions: formulas in math.
+Anda mungkin sudah akrab dengan salah satu contoh fungsi murni, yaitu rumus-rumus dalam matematika.
 
-Consider this math formula: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
+Perhatikan rumus ini: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always. 
+Jika <Math><MathI>x</MathI> = 2</Math>, <Math><MathI>y</MathI> = 4</Math>. Selalu. 
 
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always. 
+Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selalu. 
 
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market. 
+Jika <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> tidak mungkin bernilai <Math>9</Math> ataupun <Math>–1</Math> ataupun <Math>2.5</Math> hanya karena ada pergantian hari atau pergerakan bursa saham. 
 
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>. 
+Jika <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dan <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> akan *selalu* bernilai <Math>6</Math>. 
 
-If we made this into a JavaScript function, it would look like this:
+Jika kita mengonversi rumus ini menjadi fungsi JavaScript, fungsi tersebut akan terlihat seperti ini:
 
 ```js
 function double(number) {
@@ -43,9 +43,9 @@ function double(number) {
 }
 ```
 
-In the above example, `double` is a **pure function.** If you pass it `3`, it will return `6`. Always.
+Pada contoh di atas, `double` adalah sebuah **fungsi murni**. Jika Anda masukkan `3`, fungsi itu akan mengembalikan `6`. Selalu.
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React dibuat berdasarkan konsep ini. **React berasumsi kalau setiap komponen yang Anda buat adalah fungsi murni**. Ini berarti komponen React yang Anda buat harus selalu menghasilkan JSX yang sama jika diberikan masukan yang sama:
 
 <Sandpack>
 
@@ -75,21 +75,21 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always. 
+Jika Anda memberikan `drinkers={2}` ke `Recipe`, komponen tersebut akan mengembalikan JSX yang berisi `2 cups of water`. Selalu. 
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Always.
+Jika Anda memberikan `drinkers={4}`, komponen tersebut akan mengembalikan JSX yang berisi `4 cups of water`. Selalu.
 
-Just like a math formula. 
+Seperti rumus matematika. 
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apapun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
 
-<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
+<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Sebuah resep teh untuk x orang: membutuhkan x gelas air, tambahkan teh sebanyak x sendok, tambahkan rempah sebanyak 0,5 sendok, dan 0,5 gelas susu" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## Efek Samping: Konsekuensi yang (tidak) diinginkan {/*side-effects-unintended-consequences*/}
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+Proses *render* React harus selalu murni. Komponen hanya *mengembalikan* JSX mereka dan tidak mengubah objek atau variabel apapun yang telah ada sebelumnya--ini membuat komponen tersebut menjadi tidak murni!
 
-Here is a component that breaks this rule:
+Ini contoh komponen yang tidak mengikuti aturan tersebut:
 
 <Sandpack>
 
@@ -97,7 +97,7 @@ Here is a component that breaks this rule:
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Buruk: mengubah variabel yang sudah ada!
   guest = guest + 1;
   return <h2>Tea cup for guest #{guest}</h2>;
 }
@@ -115,11 +115,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+Komponen ini membaca dan menulis sebuah variabel `guest` yang telah dideklarasi di luar komponen tersebut. Ini berarti **memanggil komponen JSX ini berkali-kali akan menghasilkan JSX yang berbeda pada setiap percobaan!** Bukan hanya itu, jika ada komponen **lain* yang juga membaca `guest`, komponen tersebut juga akan menghasilkan JSX yang berbeda, bergantung kepada kapan dia di-*render*. Hal ini sangat sulit untuk diprediksi.
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+Kembali ke rumus <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, meskipun <Math><MathI>x</MathI> = 2</Math>, kita tidak bisa menjamin <Math><MathI>y</MathI> = 4</Math>. Kasus uji kita akan gagal, pengguna kita menjadi sangat bingung, dan pesawat akan berjatuhan dari langit--Anda bisa melihat bagaimana ini akan berujung kepada *bug* yang sangat membingungkan!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+Anda bisa memperbaiki komponen ini dengan [memberikan `guest` sebagai sebuah *prop*](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -141,31 +141,31 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+Sekarang, komponen Anda menjadi murni karena JSX yang dikembalikan hanya bergantung kepada *prop* `guest`.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+Secara umum, Anda jangan mengharapkan komponen Anda untuk di-*render* mengikuti suatu urutan yang pasti. Meskipun Anda memanggil <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> sebelum atau sesudah <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>, kedua rumus tersebut akan berjalan secara independen. Oleh karena itu, setiap komponen sebaiknya hanya "mengurus dirinya sendiri" dan tidak mencoba untuk berkoordinasi atau bergantung kepada komponen lain selama proses *render* berjalan. Proses *render* mirip dengan ujian di sekolah, setiap komponen harus mengalkulasi JSX dia sendiri.
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### Mendeteksi kalkulasi tidak murni dengan *Strict Mode* {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+Walaupun Anda mungkin belum menggunakan semuanya, di React, ada tiga jenis masukan yang bisa dibaca saat proses *render*, yaitu [*prop*](/learn/passing-props-to-a-component), [*state*](/learn/state-a-components-memory), and [*context*](/learn/passing-data-deeply-with-context). Anda harus selalu menganggap masukan ini sebagai sesuatu yang hanya untuk dibaca (*read-only*).
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+Saat Anda ingin mengubah sesuatu sebagai respons dari masukan pengguna, Anda harus [mengubah *state*](/learn/state-a-components-memory), bukan menulis ke suatu variabel. Anda tidak boleh mengubah variabel atau objek yang sudah ada sebelumnya saat komponen Anda sedang di-*render*.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React menawarkan "*Strict Mode*" yang memanggil setiap komponen dua kali pada proses pengembangan. **Dengan memanggil setiap komponen dua kali, *Strict Mode* membantu Anda menemukan komponen-komponen yang melanggar aturan ini**.
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+Di contoh pertama, Anda dapat melihat apa yang ditampilkan adalah "*Guest #2*", "*Guest #4*", dan "*Guest #6*", bukan "*Guest #1*", "*Guest #2*", dan "*Guest #3*". Fungsi tersebut tidak murni sehingga saat dipanggil dua kali, dia rusak. Namun, fungsi yang sudah diperbaiki dan menjadi murni dapat bekerja dengan baik meskipun dijalankan dua kali pada setiap pemanggilan. **Fungsi murni hanya mengalkulasi sehingga memanggil dia dua kali tidak akan mengubah apapun**--seperti memanggil `double(2)` dua kali tidak akan mengubah hasilnya dan menyelesaikan <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dua kali tidak akan mengubah nilai <MathI>y</MathI>. Masukan yang sama, luaran yang sama. Selalu.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+*Strict Mode* tidak memberikan pengaruh apapun di tahap produksi sehingga tidak akan memperlambat aplikasi bagi pengguna Anda. Untuk mencoba *Strict Mode*, Anda bisa membungkus komponen akar Anda ke dalam `<React.StrictMode>`. Beberapa *framework* sudah melakukan ini untuk Anda tanpa perlu intervensi dari Anda.
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Mutasi lokal: Rahasia kecil bagi komponen Anda {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+Pada contoh di atas, masalah yang ditemukan adalah komponen tersebut mengubah variabel yang *sudah ada* sebelumnya saat melakukan proses *render*. Ini sering disebut **mutasi** agar terdengar lebih menakutkan. Fungsi murni tidak memutasi variabel yang ada di luar lingkup fungsi tersebut ataupun objek yang dibuat sebelum fungsi tersebut dipanggil--ini membuat fungsi tersebut menjadi tidak murni!
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+Namun, **mengubah variabel atau objek yang *baru saja* Anda buat saat proses *render* bukan menjadi masalah**. Pada contoh ini, Anda akan membuat sebuah senarai `[]`, memasukkannya ke variabel `cups`, kemudian `menambahkan` 1 lusin *cup* ke dalamnya dengan menggunakan *method* `push()`:
 
 <Sandpack>
 
@@ -185,43 +185,43 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+Jika variabel `cups` atau senarai `[]` dibuat di luar fungsi `TeaGathering`, ini akan menimbulkan masalah besar! Anda akan mengubah objek yang *sudah ada* sebelumnya dengan menambahkan benda baru ke dalam senarai tersebut.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+Namun, pada kasus ini, itu tidak menjadi masalah karena Anda membuatnya *bersamaan dengan proses render yang sama*, di dalam `TeaGathering`. Tidak ada kode di luar `TeaGathering` akan mengetahui kejadian ini. Inilah yang disebut sebagai **"mutasi lokal"**—rahasia kecil bagi komponen Anda.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## Di mana Anda *dapat* menimbulkan efek samping {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
+Walaupun pemrograman fungsional sangat bergantung terhadap kemurnian, ada beberapa situasi, *sesuatu* memang harus diubah. Itulah tujuan dari pemrograman! Perubahan ini-—memperbarui layar, memulai sebuah animasi, mengubah data-—disebut **efek samping**. Aktivitas tersebut terjadi *"di samping"*, bukan saat *render*.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+Di React, **efek samping biasanya berada di dalam [*event handlers*](/learn/responding-to-events)**. *Event handler* adalah fungsi yang dijalankan React saat Anda melakukan sebuah aksi-—misalnya, saat Anda menekan sebuah tombol. Meskipun *event handler* berada *di dalam* komponen Anda, dia tidak berjalan *saat* *render*! **Dengan demikian, *event handler* tidak perlu murni**.
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+Jika Anda sudah kehabisan pilihan dan tidak dapat menemukan *event handler* yang tepat untuk efek samping Anda, Anda masih dapat melampirkannya di JSX yang dikembalikan komponen Anda dengan memanggil [`useEffect`](/reference/react/useEffect) di dalam komponen Anda. Ini memberi tahu React untuk mengeksekusinya nanti, setelah *render*, saat efek samping sudah diperbolehkan. **Namun, metode ini sebaiknya menjadi pilihan terakhir Anda**.
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+Saat memungkinkan, Anda sebaiknya mencoba untuk menuliskan logika tersebut di proses *render*. Anda akan terkejut seberapa jauh ini dapat membantu Anda!
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### Mengapa React peduli terhadap kemurnian? {/*why-does-react-care-about-purity*/}
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+Menulis fungsi murni membutuhkan waktu dan kedisiplinan, tetapi ini membuka jalan bagi banyak kesempatan menakjubkan:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* Komponen Anda dapat berjalan di lingkungan yang berbeda-—misalnya, di server! Karena komponen tersebut selalu menghasilkan hal yang sama untuk masukan yang sama, sebuah komponen bisa melayani permintaan dari banyak pengguna.
+* Anda bisa meningkatkan performa dengan [melewati proses *render*](/reference/react/memo) dari komponen yang masukannya tidak berubah. Ini aman karena fungsi murni selalu memberikan hasil yang sama sehingga hasilnya bisa disimpan di *cache*.
+* Jika ada data yang berubah di tengah *render* dari sebuah pohon komponen yang dalam, React bisa mengulang proses *render* tanpa perlu menghabiskan waktu menyelesaikan *render* yang sudah tidak berlaku lagi. Kemurnian menjamin keamanan dari penghentian kalkulasi pada sembarang waktu.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. Dari pengambilan data hingga animasi dan performa. Menjaga kemurnian komponen membuka jalan bagi kemampuan asli dari paradigma React untuk bersinar.
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* Sebuah komponen harus murni, berarti:
+  * **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
+  * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama. 
+* *Render* bisa terjadi kapan saja, maka komponen sebaiknya tidak bergantung terhadap proses *render* satu sama lain.
+* Anda sebaiknya tidak memutasi masukan yang digunakan komponen Anda dalam proses *render*, termasuk *prop*, *state*, dan *context*. Untuk memperbarui layar, ["ubah" *state*](/learn/state-a-components-memory) daripada memutasi objek yang sudah ada sebelumnya.
+* Anda sebaiknya berusaha untuk menuliskan logika komponen di JSX yang akan dihasilkan komponen. Saat Anda ingin "mengubah sesuatu", Anda sebaiknya melakukannya di dalam *event handler*. Sebagai pilihan terakhir, Anda juga bisa menggunakan `useEffect`.
+* Menulis fungsi murni akan membutuhkan waktu, tetapi ini membuka jalan untuk memanfaatkan potensi paradigma React secara maksimal.
 
 </Recap>
 
@@ -229,15 +229,15 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### Memperbaiki jam rusak {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+Komponen ini ingin mengubah kelas CSS `<h1>` ke `"night"` dari tengah malam hingga pukul enam pagi dan `"day"` di waktu lain. Namun, ini tidak bekerja. Apakah Anda bisa memperbaiki jam ini?
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+Anda bisa memverifikasi solusi Anda dengan mengubah zona waktu komputer Anda. Saat waktu ada di antara tengah malam dan pukul enam pagi, warna jam berubah!
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+Pe-*render*-an adalah *kalkulasi*. Oleh karena itu, seharusnya *render* tidak berusaha untuk "mengubah" sesuatu. Apakah Anda bisa mengekpresikan ide yang sama dengan cara yang berbeda?
 
 </Hint>
 
@@ -301,7 +301,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+Anda bisa memperbaiki komponen ini dengan mengalkulasi `className` dan menyertakannya di luaran *render*:
 
 <Sandpack>
 
@@ -362,19 +362,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+Di contoh ini, efek samping (memodifikasi DOM) tidak perlu dilakukan. Anda hanya perlu mengembalikan JSX.
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### Memperbaiki profil rusak {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+Dua komponen `Profile` di-*render* secara berdampingan dengan data yang berbeda. Anda bisa menekan "*Collapse*" di profil pertama dan menekan "*Expand*". Anda akan melihat kedua profil menampilkan orang yang sama. Ini adalah sebuah *bug*.
 
-Find the cause of the bug and fix it.
+Anda diminta untuk menemukan *bug* tersebut dan memperbaikinya.
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+Kode yang bermasalah ada di `Profile.js`. Pastikan Anda membaca seluruh kode tersebut!
 
 </Hint>
 
@@ -475,9 +475,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+Masalahnya adalah komponen `Profile` menulis ke variabel yang sudah ada sebelumnya, yaitu `currentPerson`, dan komponen `Header`, serta `Avatar` membaca variabel tersebut. Ini mengakibatkan *tiga komponen ini* tidak murni dan sulit untuk diprediksi.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+Untuk memperbaikinya, hapus variabel `currentPerson`. Justru, serahkan semua informasi dari `Profile` ke `Header` dan `Avatar` melalui *prop*. Anda perlu menambahkan *prop* `person` ke dua komponen tersebut dan meneruskan informasi tersebut.
 
 <Sandpack>
 
@@ -571,15 +571,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+Anda harus ingat React tidak menjamin sebuah fungsi komponen akan dieksekusi berdasarkan suatu urutan sehingga Anda tidak bisa membangun komunikasi antarkomponen dengan menggunakan variabel. Smeua komunikasi harus dilakukan melalui *prop*.
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### Memperbaiki *story tray* rusak {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+*CEO* perusahaan Anda meminta Anda untuk menambahkan "*story*" ke aplikasi jam daring Anda dan Anda tidak bisa menolak permintaan tersebut. Anda telah menulis sebuah komponen `StoryTray` yang menerima daftar berisikan `stories`, kemudian diikuti *placeholder* "*Create Story*".
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+Anda telah mengimplementasi *placeholder* "*Create Story*" dengan menambahkan satu *story* palsu di akhir senarai `stories` yang Anda terima sebagai `prop`. Sayangnya, entah mengapa, "*Create Story*" muncul lebih dari satu kali. Anda diminta untuk memperbaiki ini.
 
 <Sandpack>
 
@@ -675,11 +675,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+Perhatikan bagaimana saat jam berubah, "*Create Story*" ditambahkan *dua kali*. Ini mengindikasikan komponen melakukan mutasi pada saat me-*render*--*Strict Mode* memanggil komponen dua kali untuk menunjukkan masalah ini.
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+Fungsi `StoryTray` tidak murni. Dengan memanggil `push` kepada senarai `stories` yang diterima (sebuah *prop*!), fungsi ini memutasi sebuah objek yang dibuat *sebelum* `StoryTray` mulai me-*render*. Ini yang mengakibatkan *bug* dan komponen menjadi sulit diprediksi.
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+Solusi paling sederhana adalah untuk tidak menyentuh senarai dan me-*render* "*Create Story*" secara terpisah:
 
 <Sandpack>
 
@@ -763,16 +763,16 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+Solusi alternatif adalah Anda bisa membuat sebuah senarai *baru* (dengan menyalin senarai yang sudah ada) sebelum Anda menambahkan anggota baru ke dalamnya:
 
 <Sandpack>
 
 ```js StoryTray.js active
 export default function StoryTray({ stories }) {
-  // Copy the array!
+  // Salin senarai!
   let storiesToDisplay = stories.slice();
 
-  // Does not affect the original array:
+  // Tidak mengubah senarai asli:
   storiesToDisplay.push({
     id: 'create',
     label: 'Create Story'
@@ -855,9 +855,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+Ini menjaga mutasi Anda tetap lokal dan proses *render* tetap murni. Namun, Anda tetap harus berhati-hati: misalnya, jika Anda berusaha untuk mengubah anggota dari senarai tersebut, Anda harus menyalin anggota tersebut terlebih dahulu sebelum mengubahnya.
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+Oleh karena itu, sangat penting bagi Anda untuk mengingat operasi yang memutasi senarai dan yang tidak. Misalnya, `push`, `pop`, `reverse`, dan `sort` memutasi senarai asli, tetapi `slice`, `filter`, dan `map` akan membuat senarai baru.
 
 </Solution>
 
