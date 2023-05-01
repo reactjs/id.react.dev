@@ -34,6 +34,10 @@ Sebagaimana yang bisa Anda lihat di *issue* https://github.com/reactjs/id.react.
 
 Oleh karena itu, terinspirasi dari mekanisme pembagian tugas di proyek [WargaBantuWarga](https://github.com/kawalcovid19/wargabantuwarga.com/blob/main/CONTRIBUTING.md#issue-assignment--communication), kami mengubah mekanismenya menjadi penugasan berbasis *Draft Pull Request*.
 
+Secara prinsip, siapa pun yang bersedia untuk menerjemahkan suatu halaman, silakan langsung buat *Draft Pull Request* sesegera mungkin terhadap *issue* terkait.
+Anda mungkin akan melihat beberapa *issue* yang mengandung deskripsi `Assignee: @<username>`. Teks tersebut hanyalah sisa dari proses penugasan yang sebelumnya, dan penugasan tersebut tidak ada artinya apabila tidak ada *Draft Pull Request* yang dibuat oleh kontributor yang ditugaskan di situ.
+Oleh karena itu, mulai saat ini, kami para pengelola repositori ini akan memprioritaskan *Pull Request* manapun (termasuk *Draft Pull Request*) sebagai suatu tanda penugasan diri Anda sendiri terhadap *issue* tersebut. Apabila ditemukan dua atau lebih *Pull Request* yang terkait dengan *issue* yang sama, maka kami akan memprioritaskan *Pull Request* yang lebih jauh kemajuannya dan lebih terkini pembaruannya.
+
 ### Klaim penerjemahan melalui *Draft Pull Request*
 
 *Draft Pull Request* merupakan *pull request* biasa, namun ia tidak dapat
