@@ -4,7 +4,7 @@ title: Mengantre Serangkaian Pembaruan State
 
 <Intro>
 
-Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terkadang Anda ingin melakukan beberapa operasi terhadap nilai sebelum menambahkan antran *render* sealnjutnya. Untuk melakukannya, pentin untuk memahami bagaimana React melakukan pembaruan *state* secara berkelompok.
+Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terkadang Anda ingin melakukan beberapa operasi terhadap nilai sebelum menambahkan antrean *render* selanjutnya. Untuk melakukannya, penting untuk memahami bagaimana React melakukan pembaruan *state* secara berkelompok.
 
 </Intro>
 
