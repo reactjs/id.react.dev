@@ -67,11 +67,13 @@ Ini memungkinkan Anda memperbarui beberapa variabel *state*--bahkan dari beberap
 
 **React tidak melakukan pengelompokkan pada beberapa *event* yang disengaja, seperti klik**--setiap klik ditangani secara terpisah. Pastikan bahwa React hanya melakukan pengelompokan ketika aman untuk dilakukan. Ini memastikan bahwa, misalnya, jika klik tombol pertama menonaktifkan *form*, klik kedua tidak akan mengirimkannya lagi.
 
-## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
+## Memperbarui state yang sama beberapa kali sebelum render selanjutnya {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
 It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
 
-Try incrementing the counter now:
+Ini bukanlah penggunaan yang umum, tetapi jika Anda ingin memperbarui variabel *state* yang sama berulang kali sebelum *render* selanjutnya, alih-alih mengoper nilai *state* selanjutnya seperti `setNumber(number + 1)`, Anda dapat mengoper *function* yang menghitung *state* selanjutnya berdasarkan nilai sebelumnya pada antrean, seperti `setNumber(n => n + 1)`. Ini adalah cara untuk memberi tahu React untuk "melakukan sesuatu dengan nilai *state*" daripada hanya menggantinya.
+
+Cobalah untuk menambahkan hitungan sekarang:
 
 <Sandpack>
 
@@ -101,10 +103,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here, `n => n + 1` is called an **updater function.** When you pass it to a state setter:
+Disini, `n => n + 1` disebut fungsi *updater.* Ketika Anda mengirimkannya ke pengatur (*setter*) state:
 
-1. React queues this function to be processed after all the other code in the event handler has run.
-2. During the next render, React goes through the queue and gives you the final updated state.
+1. React mengantre fungsi ini untuk diproses setelah semua kode lain dalam *event handler* dijalankan.  
+2. Saat render berikutnya, React akan melewati antrean dan memberi Anda *state* terakhir yang diperbarui.
 
 ```js
 setNumber(n => n + 1);
@@ -112,23 +114,23 @@ setNumber(n => n + 1);
 setNumber(n => n + 1);
 ```
 
-Here's how React works through these lines of code while executing the event handler:
+Berikut adalah cara kerja React melalui baris kode ini saat menjalankan *event handler*:
 
 1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
 1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
 1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
 
-When you call `useState` during the next render, React goes through the queue. The previous `number` state was `0`, so that's what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:
+Ketika Anda memanggil `useState` saat *render* berikutnya, React akan melewati antrean. *State* `number` sebelumnya adalah `0`, jadi itulah yang akan diteruskan React ke fungsi *updater* pertama sebagai argumen `n`. Kemudian React mengambil hasil dari fungsi *updater* sebelumnya dan meneruskannya ke *updater* berikutnya sebagai `n`, dan begitu seterusnya:
 
-|  queued update | `n` | returns |
+|  antrean diperbarui | `n` | hasil |
 |--------------|---------|-----|
 | `n => n + 1` | `0` | `0 + 1 = 1` |
 | `n => n + 1` | `1` | `1 + 1 = 2` |
 | `n => n + 1` | `2` | `2 + 1 = 3` |
 
-React stores `3` as the final result and returns it from `useState`.
+React menyimpan `3` sebagai hasil akhir dan mengembalikannya dari `useState`.
 
-This is why clicking "+3" in the above example correctly increments the value by 3.
+Inila mengapa mengklik "+3" pada contoh di atas dengan benar meningkatkan nilai sebesar 3.
 ### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
 
 What about this event handler? What do you think `number` will be in the next render?
