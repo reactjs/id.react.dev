@@ -4,50 +4,50 @@ title: Memilih Struktur State
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Menata struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah di-modifikasi dan di-*debug*, dan komponen yang menjadi sumber kesalahan yang konstan. Berikut adalah beberapa tips yang harus Anda pertimbangkan saat menata struktur *state*.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Kapan harus menggunakan satu variabel *state* vs beberapa variabel *state*
+* Apa yang harus dihindari ketika mengatur *state*
+* Bagaimana cara mengatasi masalah umum dengan struktur *state*
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Prinsip-prinsip untuk menstrukturkan *state*. {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Ketika Anda menulis komponen yang memegang beberapa *state*, Anda harus membuat pilihan tentang berapa banyak variabel *state* yang harus digunakan dan bagaimana bentuk datanya. Meskipun mungkin saja menulis program yang benar dengan struktur *state* yang kurang optimal, ada beberapa prinsip yang dapat membimbing Anda untuk membuat pilihan yang lebih baik:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Kelompokkan *state* yang terkait.** Jika Anda selalu memperbarui dua atau lebih variabel *state* secara bersamaan, pertimbangkan untuk menggabungkannya menjadi satu variabel *state* tunggal.
+2. **Hindari kontradiksi dalam *state*.**  Saat *state* diorganisir sedemikian rupa sehingga beberapa bagian *state* dapat saling bertentangan dan "tidak sependapat" satu sama lain, maka ini bisa meninggalkan celah untuk kesalahan. Coba hindari hal ini.
+3. **Hindari *state* yang redundan.** Jika Anda dapat menghitung beberapa informasi dari *prop* komponen atau variabel *state* yang sudah ada selama *rendering*, maka Anda tidak perlu memasukkan informasi tersebut ke dalam *state* komponen tersebut.
+4. **Hindari duplikasi dalam *state*.** Ketika data yang sama terduplikasi antara beberapa variabel *state*, atau dalam objek bertingkat, maka akan sulit menjaga sinkronisasi antara mereka. Kurangi duplikasi ketika memungkinkan.
+5. **Hindari *state* yang sangat bertingkat.** *State* yang sangat hierarkis tidak sangat mudah untuk diperbarui. Ketika memungkinkan, lebih baik struktur *state* secara datar.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Tujuan di balik prinsip-prinsip ini adalah membuat *state* mudah diperbarui tanpa memperkenalkan kesalahan. Menghapus *data* yang redundan dan duplikat dari *state* membantu memastikan bahwa semua bagian *state* tetap sinkron. Ini mirip dengan bagaimana seorang insinyur *database* mungkin ingin [mengnormalisasi struktur *database*](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) untuk mengurangi kemungkinan *bug*. Untuk mem-*parafrase* Albert Einstein, **"Jadikan *state* Anda se-sederhana mungkin - tetapi tidak lebih sederhana dari itu.."**
 
-Now let's see how these principles apply in action.
+Sekarang mari kita lihat bagaimana prinsip-prinsip tersebut diterapkan dalam tindakan.
 
-## Group related state {/*group-related-state*/}
+## Mengelompokkan *state* terkait. {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+Anda mungkin kadang-kadang tidak yakin antara menggunakan satu variabel *state* atau beberapa variabel *state*.
 
-Should you do this?
+Haruskah Anda melakukan hal ini?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+atau ini?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Teknisnya, Anda dapat menggunakan kedua pendekatan ini. Namun, **jika dua variabel *state* selalu berubah bersama-sama, mungkin ide yang baik untuk menggabungkannya menjadi satu variabel *state***. Dengan begitu, Anda tidak akan lupa untuk selalu menjaga keduanya selalu sinkron, seperti dalam contoh ini di mana menggerakkan kursor memperbarui kedua koordinat titik merah:
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Ada kasus lain di mana Anda akan mengelompokkan data ke dalam objek atau senarai ketika Anda tidak tahu berapa banyak bagian dari *state* yang Anda butuhkan. Sebagai contoh, ini berguna ketika Anda memiliki formulir di mana pengguna dapat menambahkan bidang kustom.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+Jika variable *state* Anda adalah sebuah objek, ingatlah bahwa [Anda tidak dapat memperbarui hanya satu bidang di dalamnya](/learn/updating-objects-in-state) tanpa menyalin secara eksplisit bidang lainnya. Misalnya, Anda tidak dapat melakukan `setPosition({ x: 100 })` pada contoh di atas karena tidak akan memiliki properti `y` sama sekali! Sebagai gantinya, jika Anda ingin mengatur `x` saja, Anda akan melakukan `setPosition({ ...position, x: 100 })`, atau membaginya menjadi dua variabel *state* dan lakukan `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Hindari kontradiksi dalam *state* {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Berikut adalah formulir umpan balik hotel dengan variabel *state* `isSending` dan `isSent`:
 
 <Sandpack>
 
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+Saat kode ini dijalankan, kode masih memungkinkan terjadinya keadaan "tidak mungkin". Contohnya, jika kita lupa memanggil `setIsSent` dan `setIsSending` bersama-sama, kita dapat berakhir dalam situasi di mana kedua `isSending` dan `isSent` bernilai `true` pada saat yang sama. Semakin kompleks komponen Anda, semakin sulit untuk memahami apa yang terjadi
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Sejak `isSending` dan `isSent` seharusnya tidak pernah bernilai `true` pada saat yang sama,  lebih baik menggantinya dengan satu variabel *state* `status` yang dapat mengambil salah satu dari tiga status yang valid:** `'typing'` (initial), `'sending'`, and `'sent'`:
 
 <Sandpack>
 
@@ -204,7 +204,7 @@ export default function FeedbackForm() {
   );
 }
 
-// Pretend to send a message.
+// Berpura-puralah mengirim pesan.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+Anda masih bisa mendeklarasikan beberapa konstanta untuk keterbacaan:
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+Tetapi itu bukan variabel *state*, jadi Anda tidak perlu khawatir tentang kesalahan sinkronisasi antar variabel.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Hindari *state* yang redundan {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+Jika Anda dapat menghitung beberapa informasi dari *prop* komponen atau variabel *state* yang sudah ada selama me-*render*, Anda **tidak harus** meletakkan informasi tersebut ke dalam *state* komponen tersebut.
 
-For example, take this form. It works, but can you find any redundant state in it?
+Sebagai contoh, ambil formulir ini. Ini berfungsi, tetapi dapatkah Anda menemukan keadaan yang redundan di dalamnya?
 
 <Sandpack>
 
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+Formulir ini mempunya 3 variabel *state*: `firstName`, `lastName`, dan `fullName`. Namun, `fullName` adalah redundan. **Y Anda selalu dapat menghitung `fullName` dari `firstName` dan `lastName` selama *render*, sehingga hapus dari keadaan.**
 
-This is how you can do it:
+Ini adalah bagaimana Anda dapat melakukannya:
 
 <Sandpack>
 
@@ -334,50 +334,50 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Di sini, `fullName` bukan merupakan sebuah variabel *state*. Sebaliknya, nilai `fullName` dihitung saat *render*:
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+Sebagai hasilnya, pengontrol perubahan tidak perlu melakukan apa pun khusus untuk memperbarui `fullName`. Ketika Anda memanggil `setFirstName` atau `setLastName`, Anda memicu *render* ulang, dan kemudian `fullName` berikutnya akan dihitung dari *data* terbaru.
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### Jangan meniru *props* di dalam *state* {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+Contoh umum code yang memiliki *state* yang redundan seperti dibawah ini:
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Di sini, sebuah variabel *state* `color` di-inisialisasi dengan *prop* `messageColor`. Masalahnya adalah bahwa **jika komponen induk memberikan nilai `messageColor` berbeda (misalnya, `'red'` daripada `'blue'`), variabel *state* `color` tidak akan diperbarui!**  State hanya di-inisialisasi selama *render* pertama.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+Ini mengapa "menirukan" beberapa *prop* pada variabel *state* dapat menyebabkan kebingungan. Sebaliknya, gunakan *prop* `messageColor`  langsung dalam kode Anda. Jika Anda ingin memberinya nama yang lebih pendek, gunakan konstanta:
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+Dengan cara ini, *state* tidak akan keluar dari sinkron dengan *prop* yang dilewatkan dari komponen induk.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+"Menggandakan" *props* ke dalam *state* hanya masuk akal ketika Anda ingin mengabaikan semua pembaruan untuk *prop* tertentu.  Secara konvensional, awali nama *prop* dengan `initial` atau `default` untuk menjelaskan bahwa nilai baru *prop* tersebut diabaikan:
 
 ```js
 function Message({ initialColor }) {
-  // The `color` state variable holds the *first* value of `initialColor`.
-  // Further changes to the `initialColor` prop are ignored.
+  // Variabel state `color` menyimpan nilai pertama kali dari `initialColor`.
+  // Perubahan lebih lanjut pada prop `initialColor` diabaikan.
   const [color, setColor] = useState(initialColor);
 ```
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Hindari duplikasi dalam *state* {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+Komponen daftar menu ini memungkinkan Anda memilih satu camilan dari beberapa pilihan:
 
 <Sandpack>
 
@@ -422,9 +422,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Saat ini, komponen daftar menu ini menyimpan *item* yang dipilih sebagai objek dalam variabel *state* `selectedItem`. Namun, hal ini tidak bagus: **isi `selectedItem` adalah objek yang sama dengan salah satu *item* dalam daftar `items`.** Ini berarti informasi tentang *item* itu sendiri diduplikasi di dua tempat.
 
-Why is this a problem? Let's make each item editable:
+Mengapa ini menjadi masalah? Mari kita buat setiap *item* dapat diedit:
 
 <Sandpack>
 
@@ -487,9 +487,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Perhatikan bahwa jika Anda pertama kali mengklik "Pilih" pada *item* dan kemudian mengeditnya, ***input* akan diperbarui tetapi label di bagian bawah tidak mencerminkan suntingan tersebut.** Hal ini terjadi karena adanya duplikasi *state*, dan kamu lupa untuk memperbarui `selectedItem`.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Meskipun Anda bisa memperbarui `selectedItem` juga, perbaikan yang lebih mudah adalah menghilangkan duplikasi. Pada contoh ini, daripada menggunakan objek `selectedItem` (yang menciptakan duplikasi dengan objek yang ada di dalam `items`), Anda menyimpan `selectedId` di dalam *state*, dan kemudian mendapatkan `selectedItem` dengan mencari senarai `items` untuk *item* dengan ID tersebut:
 
 <Sandpack>
 
@@ -554,25 +554,25 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Alternatively, you may hold the selected index in state.)
+(Sebagai alternatif, Anda dapat menyimpan indeks yang dipilih di dalam *state*.)
 
-The state used to be duplicated like this:
+*State* sebelumnya diduplikasi seperti ini:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-But after the change it's like this:
+Tetapi setelah diubah menjadi seperti ini:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+Duplikasi data sudah tidak ada lagi, dan hanya menyimpan *state* yang penting!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Sekarang jika Anda mengedit *item* yang *dipilih*, pesan di bawahnya akan segera diperbarui. Ini karena `setItems` memicu *render* ulang, dan `items.find(...)` akan menemukan item dengan judul yang diperbarui. Anda tidak perlu menyimpan *item* yang dipilih di *state*, karena hanya *ID* yang dipilih yang penting. Yang lain dapat dihitung selama *render*.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Hindari *state* yang sangat bertingkat {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+Bayangkan rencana perjalanan yang terdiri dari planet, benua, dan negara. Anda mungkin tergoda untuk mengatur *state*-nya menggunakan objek dan senarai yang bersarang, seperti contoh ini:
 
 <Sandpack>
 
@@ -818,11 +818,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Sekarang katakanlah Anda ingin menambahkan tombol untuk menghapus tempat yang telah Anda kunjungi. Bagaimana cara melakukannya? [Memperbarui *state* yang bertingkat](/learn/updating-objects-in-state#updating-a-nested-object) melibatkan membuat salinan objek sepanjang jalan dari bagian yang berubah. Menghapus tempat yang sangat tertanam akan melibatkan menyalin seluruh rantai tempat induknya. Kode semacam itu bisa sangat panjang.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**Jika *state* terlalu bersarang untuk diperbarui dengan mudah, pertimbangkan untuk membuatnya "datar".** Berikut adalah salah satu cara Anda dapat memperbarui struktur *data* ini. Alih-alih struktur seperti pohon di mana setiap `tempat` memiliki sebuah senarai dari tempat anaknya, Anda dapat membuat setiap tempat memegang sebuah senarai dari *ID* tempat anaknya. Kemudian simpan pemetaan dari setiap ID tempat ke tempat yang sesuai.
 
-This data restructuring might remind you of seeing a database table:
+*Data restructuring* ini mungkin mengingatkan Anda melihat table *database*:
 
 <Sandpack>
 
@@ -1129,14 +1129,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Sekarang karena *state*-nya "datar" (juga dikenal sebagai "dinarmalisasi"), memperbarui *item* yang bersarang menjadi lebih mudah.**
 
-In order to remove a place now, you only need to update two levels of state:
+Untuk menghapus sebuah tempat sekarang, Anda hanya perlu memperbarui dua level *state*:
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- Versi terbaru dari *parent* tempatnya harus menghapus *ID* yang dihapus dari senarai `childIds`.
+- Versi terbaru dari objek "*table*" induk harus mencakup versi terbaru dari tempat parentnya.
 
-Here is an example of how you could go about it:
+Berikut adalah contoh bagaimana Anda bisa melakukannya:
 
 <Sandpack>
 
@@ -1149,17 +1149,17 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Create a new version of the parent place
-    // that doesn't include this child ID.
+    // Buatlah versi baru dari induk tempat tersebut
+    // Buatlah versi baru dari parent place yang tidak termasuk ID child ini
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Update the root state object...
+    // Perbarui objek state root...
     setPlan({
       ...plan,
-      // ...so that it has the updated parent.
+      // ...Perbarui objek state induk sehingga memiliki parent yang telah diperbarui.
       [parentId]: nextParent
     });
   }
@@ -1474,13 +1474,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+Anda dapat menempatkan *state* sebanyak yang Anda inginkan, tetapi membuatnya menjadi "datar" dapat memecahkan banyak masalah. Ini membuat *state* lebih mudah diperbarui, dan membantu memastikan Anda tidak memiliki duplikasi di bagian yang berbeda dari objek bertingkat
 
 <DeepDive>
 
-#### Improving memory usage {/*improving-memory-usage*/}
+#### Meningkatkan penggunaan memori {/*improving-memory-usage*/}
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+Idealnya, Anda juga harus menghapus *item* yang dihapus (dan anak-anaknya!) dari objek "table" untuk meningkatkan penggunaan memori. Versi ini melakukan itu. ini juga [menggunakan *Immer*](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) untuk membuat logika pembaruan lebih ringkas.
 
 <Sandpack>
 
@@ -1493,12 +1493,12 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Remove from the parent place's child IDs.
+      // Hapus ID anak dari tempat induknya.
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Forget this place and all its subtree.
+      // Melupakan tempat ini dan semua subtree-nya.
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
         const place = draft[id];
@@ -1838,25 +1838,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Kadang-kadang, Anda juga dapat mengurangi penempelan status dengan memindahkan beberapa penempelan status ke komponen anak. Ini bekerja dengan baik untuk status *UI* sementara yang tidak perlu disimpan, seperti apakah sebuah item di-*hover*.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* Jika dua variabel *state* selalu diperbarui bersama, pertimbangkan untuk menggabungkannya menjadi satu. 
+* Pilih variabel *state* dengan hati-hati untuk menghindari menciptakan keadaan yang "mustahil".
+* Strukturkan *state* Anda sedemikian rupa sehingga mengurangi kemungkinan kesalahan saat memperbarui *state*.
+* Hindari penggunaan *state* yang redundan dan duplikat sehingga tidak perlu menjaga sinkronisasi.
+* Jangan memasukkan *props* ke dalam *state* kecuali Anda secara khusus ingin mencegah pembaruan.
+* Untuk pola *UI* seperti pemilihan, simpan *ID* atau indeks dalam state daripada objek itu sendiri.
+* Jika memperbarui *state* yang sangat berlapis-lapis menjadi rumit, coba datanya di-flat-kan.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Sesuaikan komponen yang tidak terupdate {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+Komponen `Clock` ini menerima dua *prop*: `color` dan `time`. Ketika Anda memilih warna yang berbeda pada kotak pilihan, `Clock` menerima *prop* `color` yang berbeda dari komponen induknya. Namun, warna yang ditampilkan tidak diperbarui. Mengapa? Perbaiki masalahnya.
 
 <Sandpack>
 
@@ -1911,7 +1911,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+Masalahnya adalah komponen ini memiliki *state* `color` yang diinisialisasi dengan nilai awal dari *prop* `color`. Namun ketika *prop* `color` berubah, ini tidak mempengaruhi variabel *state*! Sehingga keduanya tidak sinkron. Untuk memperbaiki masalah ini, hapus variabel *state*, dan gunakan *prop* `color` langsung.
 
 <Sandpack>
 
@@ -2017,13 +2017,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Perbaiki daftar bawaan yang rusak {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+Daftar bawaan ini memiliki *footer* yang menunjukkan berapa *item* yang sudah dikemas, dan berapa total *item* yang ada. Pada awalnya, *footer* ini tampak berfungsi, namun terdapat *bug*. Sebagai contoh, jika Anda menandai sebuah *item* sebagai sudah dikemas, lalu menghapusnya, hitungan tidak akan ter-*update* dengan benar. Perbaiki hitungannya agar selalu benar.
 
 <Hint>
 
-Is any state in this example redundant?
+Apakah ada *state* yang redundan dalam contoh ini?
 
 </Hint>
 
@@ -2164,7 +2164,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Meskipun Anda dapat mengubah setiap *event handler* dengan hati-hati untuk memperbarui penghitung `total` dan `packed` dengan benar, masalah inti adalah bahwa variabel *state* ini ada. Mereka redundan karena Anda selalu dapat menghitung jumlah *item* (terpaket atau total) dari senarai `items` itu sendiri. Hapus *state* yang redundan untuk memperbaiki *bug*:
 
 <Sandpack>
 
@@ -2297,15 +2297,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+Perhatikan bagaimana *event handler* hanya berkaitan dengan memanggil `setItems` setelah perubahan dilakukan. Jumlah *item* dihitung kembali selama *render* berikutnya dari `items`, sehingga selalu diperbarui.
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Memperbaiki pilihan yang menghilang {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+Ada daftar `letters` dalam *state*. Ketika kamu mengarahkan atau fokus pada huruf tertentu, huruf tersebut di-*highlight*. Huruf yang saat ini di-*highlight* disimpan dalam variabel *state* `highlightedLetter`. Kamu dapat "menyimpan" dan "menghapus" huruf tertentu, yang memperbarui senarai `letters` dalam *state*.
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+Kode ini berfungsi, tetapi terdapat sedikit *glitch UI*. Saat kamu menekan "*Star*" atau "*Unstar*", *highlighting*-nya hilang sejenak. Namun, itu muncul kembali begitu kamu memindahkan *pointer* atau beralih ke huruf lain dengan *keyboard*. Mengapa ini terjadi? Perbaiki agar *highlighting* tidak hilang setelah klik tombol.
 
 <Sandpack>
 
@@ -2412,9 +2412,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+Masalahnya adalah Anda menyimpan objek huruf di dalam `highlightedLetter`. Namun, Anda juga menyimpan informasi yang sama di dalam senarai `letters`. Jadi, keadaan Anda memiliki duplikasi! Saat Anda memperbarui senarai `letters` setelah klik tombol, Anda membuat objek huruf baru yang berbeda dari `highlightedLetter`. Inilah sebabnya mengapa pemeriksaan `highlightedLetter === letter` menjadi `false`, dan sorotannya menghilang. Ini muncul lagi saat Anda memanggil `setHighlightedLetter` saat penunjuk bergerak.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+Untuk memperbaiki masalahnya, hilangkan duplikasi dari *state*. Alih-alih menyimpan sendiri huruf di dua tempat, simpan `highlightedId` saja. Kemudian Anda dapat memeriksa `isHighlighted` untuk setiap huruf dengan `letter.id === highlightedId`, yang akan berfungsi bahkan jika objek `letter` telah berubah sejak *render* terakhir.
 
 <Sandpack>
 
@@ -2523,13 +2523,13 @@ li { border-radius: 5px; }
 
 #### Implement multiple selection {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+Dalam contoh ini, setiap `Letter` memiliki *prop* `isSelected` dan *handler* `onToggle` yang menandai bahwa itu terpilih. Ini berfungsi, tetapi status disimpan sebagai `selectedId` (entah `null` atau sebuah *ID*), sehingga hanya satu huruf yang bisa terpilih pada suatu waktu.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Ubah struktur *state* untuk mendukung pemilihan ganda. (Bagaimana Anda akan mengatur struktur tersebut? Pikirkan tentang ini sebelum menulis kode.) Setiap *checkbox* harus menjadi independen dari yang lain. Mengklik huruf yang telah terpilih harus membatal pilihannya. Terakhir, *footer* harus menunjukkan jumlah *item* yang dipilih dengan benar.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Daripada menggunakan satu *ID* terpilih, Anda mungkin ingin menyimpan senarai atau [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) dari *ID* terpilih di dalam *state*.
 
 </Hint>
 
@@ -2543,11 +2543,11 @@ import Letter from './Letter.js';
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
 
-  // TODO: allow multiple selection
+  // TODO: mengizinkan seleksi ganda
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // TODO: allow multiple selection
+    // TODO: mengizinkan seleksi ganda
     setSelectedId(toggledId);
   }
 
@@ -2560,7 +2560,7 @@ export default function MailClient() {
             key={letter.id}
             letter={letter}
             isSelected={
-              // TODO: allow multiple selection
+              // TODO: mengizinkan seleksi ganda
               letter.id === selectedId
             }
             onToggle={handleToggle}
@@ -2630,7 +2630,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+Daripada menggunakan `selectedId` tunggal, gunakan senarai `selectedIds` dalam *state*. Sebagai contoh, jika Anda memilih huruf pertama dan terakhir, maka nilainya akan menjadi `[0, 2]`. Ketika tidak ada yang dipilih, nilai tersebut akan menjadi senarai kosong `[]`:
 
 <Sandpack>
 
@@ -2645,14 +2645,14 @@ export default function MailClient() {
   const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // Was it previously selected?
+    // Apakah sebelumnya sudah dipilih?
     if (selectedIds.includes(toggledId)) {
-      // Then remove this ID from the array.
+      // Lalu hapus ID ini dari senarai tersebut.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
     } else {
-      // Otherwise, add this ID to the array.
+      // Jika tidak, tambahkan ID ini ke dalam senarai.
       setSelectedIds([
         ...selectedIds,
         toggledId
@@ -2736,9 +2736,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+Satu kelemahan kecil dari menggunakan senarai adalah bahwa untuk setiap *item*, Anda memanggil `selectedIds.includes(letter.id)` untuk memeriksa apakah itu dipilih. Jika senarai sangat besar, ini dapat menjadi masalah kinerja karena pencarian senarai dengan [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) membutuhkan waktu *linear*, dan Anda melakukan pencarian ini untuk setiap *item* individu.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+Untuk memperbaikinya, Anda dapat menyimpan [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) di dalam *state* sebagai gantinya, yang menyediakan operasi [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) yang cepat:
 
 <Sandpack>
 
@@ -2841,9 +2841,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+Sekarang setiap *item* melakukan pemeriksaan `selectedIds.has(letter.id)`, yang sangat cepat.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Perlu diingat bahwa Anda [tidak diizinkan mengubah objek di dalam *state*](/learn/updating-objects-in-state),dan itu termasuk *Sets*. Oleh karena itu, fungsi `handleToggle` membuat `salinan` *Set* terlebih dahulu, dan kemudian memperbarui salinan tersebut.
 
 </Solution>
 
