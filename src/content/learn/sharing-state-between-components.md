@@ -307,7 +307,7 @@ Komponen-komponen tak terkendali lebih mudah digunakan dalam induknya karena mem
 
 Pada praktiknya, "terkendali" dan "tak terkendali" bukanlah istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
 
-Ketika menulis komponen, pertimbangkan informasi apa di dalamnya yang harus dikendalikan (melalui *props*), dan informasi apa yang harus tak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi nanti.
+Ketika menulis komponen, pertimbangkan informasi manakah di dalamnya yang seharusnya dikendalikan (melalui *props*), dan informasi manakah yang seharusnya tak terkendali (melalui *state*). Tetapi Anda selalu dapat mengubah pikiran Anda dan melakukan refaktorasi belakangan.
 
 </DeepDive>
 
