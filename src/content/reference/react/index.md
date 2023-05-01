@@ -73,7 +73,7 @@ Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatu
 
 Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu-nya
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melakukan melukis ulang layar. Anda dapat menggunakannya untuk mengukur layout pada tahap ini.
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melukis ulang (*repaint*) layar. Anda dapat menggunakannya untuk mengukur layout pada tahap ini.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka - pustaka dapat memasukkan CSS dinamik disini.
 
 ---
