@@ -10,14 +10,14 @@ Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terk
 
 <YouWillLearn>
 
-* What "batching" is and how React uses it to process multiple state updates
-* How to apply several updates to the same state variable in a row
+* Apa itu "pengelompokan (*batching*)" dan bagaimana React menggunakannya untuk memproses beberapa pembaruan *state*
+* Bagaimana menerapkan beberapa pembaruan ke variabel *state* yang sama secara berurutan
 
 </YouWillLearn>
 
-## React batches state updates {/*react-batches-state-updates*/}
+## Mengelompokkan pembaruan state dalam React  {/*react-batches-state-updates*/}
 
-You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
+Anda mungkin berharap bahwa menekan tombol "+3" akan menambahkan hitungan tiga kali karena memanggil `setNumber(number + 1)` tiga kali:
 
 <Sandpack>
 
@@ -47,7 +47,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-However, as you might recall from the previous section, [each render's state values are fixed](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), so the value of `number` inside the first render's event handler is always `0`, no matter how many times you call `setNumber(1)`:
+Namun, seperti yang mungkin Anda ingat dari bagian sebelumnya, [nilai *state* setiap *render* adalah tetap](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), sehingga nilai `number` di dalam *event handler* *render* pertama selalu `0`, tidak peduli berapa kali Anda memanggil `setNumber(1)`:
+
+```js
 
 ```js
 setNumber(0 + 1);
@@ -55,15 +57,15 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+Akan tetapi, ada satu faktor lain yang berperan di sini. **React menunggu sampai semua kode dalam *event handler* selesai dijalankan sebelum memproses pembaruan *state* Anda.** Inilah sebabnya mengapa *re-render* hanya terjadi setelah semua `setNumber()` dipanggil.
 
-This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
+Ini mungkin mengingatkan Anda pada seorang pelayan yang menerima pesanan di restoran. Seorang pelayan tidak berlari ke dapur saat Anda menyebutkan hidangan pertama Anda! Sebaliknya, mereka membiarkan Anda menyelesaikan pesanan Anda, membiarkan Anda mengubahnya, dan bahkan menerima pesanan dari orang lain di meja tersebut.
 
-<Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
+<Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="Sebuah kursor elegan di sebuah restoran memesan beberapa kali dengan React, memainkan peran pelayan. Setelah dia memanggil setState() beberapa kali, pelayan menulis yang terakhir yang dia minta sebagai pesanan akhirnya." />
 
-This lets you update multiple state variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
+Ini memungkinkan Anda memperbarui beberapa variabel *state*--bahkan dari beberapa komponen--tanpa memicu terlalu banyak [*re-render*.](/learn/render-and-commit#re-renders-when-state-updates) Akan tetapi, hal ini ini membuat UI tidak akan diperbarui hingga _setelah_ *event handler* Anda, dan kode apa pun di dalamnya, selesai dijalankan. Perilaku ini, juga dikenal sebagai **pengelompokan,** membuat aplikasi React Anda berjalan lebih cepat. Ini juga menghindari penanganan *render* "setengah jadi" yang membingungkan ketika hanya beberapa variabel yang diperbarui.
 
-**React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
+**React tidak melakukan pengelompokkan pada beberapa *event* yang disengaja, seperti klik**--setiap klik ditangani secara terpisah. Pastikan bahwa React hanya melakukan pengelompokan ketika aman untuk dilakukan. Ini memastikan bahwa, misalnya, jika klik tombol pertama menonaktifkan *form*, klik kedua tidak akan mengirimkannya lagi.
 
 ## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
