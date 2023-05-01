@@ -113,9 +113,9 @@ Kemudian Anda menulis aturan CSS untuk itu di dalam berkas CSS terpisah:
 
 React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. Di dalam kasus yang paling sederhana, Anda akan menambahkan tag [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ke HTML Anda. Jika Anda menggunakan *build tool* atau *framework*, bacalah dokumentasinya untuk mempelajari bagaimana cara menambahkan berkas CSS ke dalam proyek Anda.
 
-## Displaying data {/*displaying-data*/}
+## Menampilkan data {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX memungkinkan Anda memasukkan *markup* ke dalam JavaScript. Kurung kurawal (*curly braces*) memungkinkan Anda "melarikan diri" (*escape back*) ke dalam JavaScript sehingga Anda dapat menyematkan (*embed*) beberapa variabel dari kode Anda dan menampilkannya kepada pengguna. Sebagai contoh, ini akan menampilkan `user.name`:
 
 ```js {3}
 return (
