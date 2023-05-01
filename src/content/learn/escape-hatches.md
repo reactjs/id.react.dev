@@ -4,7 +4,7 @@ title: Escape Hatches
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi dengan sistem di luar React. Misalkan, Anda mungkin ingin memfokuskan sebuah input dengan menggunakan API peramban, memutar dan menjeda sebuah pemutar video yang diimplementasi tanpa React, atau menghubungkan dan mendengarkan pesan-pesan dari sebuah *remote server*. Pada bab ini, Anda akan mempelajari *escape hatches* yang membiarkan Anda "melangkah keluar" dari aturan React dan menghubungkannya ke sistem luar. Sebagian besar logika aplikasi dan aliran data Anda sebaiknya tidak bergantung pada fitur-fitur ini.
 
 </Intro>
 
@@ -227,7 +227,7 @@ function Form() {
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+However, you *do* need Effects to synchronize with external systems.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
@@ -388,7 +388,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -521,7 +521,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
