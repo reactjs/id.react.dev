@@ -44,7 +44,7 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 
 * `reactNode`: Node "React" digunakan untuk me-*render* HTML yang sudah ada. Ini biasanya berupa potongan JSX seperti `<App />` yang di-*render* dengan `ReactDOM Server` metode seperti `renderToString(<App />)` di React 17.
 
-* `domNode`: Sebuah [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element) yang di-render sebagai elemen root di server.
+* `domNode`: Sebuah [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element) yang di-*render* sebagai elemen root di server.
 
 * **optional**: `callback`: Sebuah fungsi. Jika diberikan, React akan memanggilnya setelah komponen anda *hydrated*.
 
@@ -192,10 +192,10 @@ export default function App() {
 
 </Sandpack>
 
-Dengan cara ini, proses render awal akan me-*render* konten yang sama dengan server, menghindari ketidakcocokan, tetapi ada tambahan proses synchronously setelah hydration.
+Dengan cara ini, proses *render* awal akan me-*render* konten yang sama dengan server, menghindari ketidakcocokan, tetapi ada tambahan proses synchronously setelah hydration.
 
 <Pitfall>
 
-Metode ini membuat hydration lebih lambat karena komponen Anda harus di-*render* dua kali. Pertimbangkan pengalaman pengguna pada koneksi lambat. Kode JavaScript dapat dimuat jauh setelah render HTML awal, sehingga me-*render* UI yang berbeda langsung setelah hydrasi dapat terasa tidak nyaman bagi pengguna..
+Metode ini membuat hydration lebih lambat karena komponen Anda harus di-*render* dua kali. Pertimbangkan pengalaman pengguna pada koneksi lambat. Kode JavaScript dapat dimuat jauh setelah *render* HTML awal, sehingga me-*render* UI yang berbeda langsung setelah hydrasi dapat terasa tidak nyaman bagi pengguna..
 
 </Pitfall>
