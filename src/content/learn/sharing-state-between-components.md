@@ -11,7 +11,7 @@ Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakuka
 <YouWillLearn>
 
 - Bagaimana cara berbagi *state* antar komponen dengan menaikkan *state* ke atas (*lifting state up*)
-- Apa itu komponen terkendali dan tidak terkendali
+- Apa itu komponen terkendali (*controlled component*) dan tak terkendali (*uncontrolled component*)
 
 </YouWillLearn>
 
