@@ -222,7 +222,7 @@ Ini memungkinkan Anda menghindari pemanggilan `useId` untuk setiap elemen yang m
 
 ### Menentukan prefiks bersama untuk semua ID yang dihasilkan {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
-Jika Anda merender beberapa aplikasi React independen pada satu halaman, berikan `identifierPrefix` sebagai opsi untuk panggilan [`createRoot`](/reference/react-dom/client/createRoot#parameters) atau [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) Anda. Hal ini memastikan bahwa ID yang dihasilkan oleh dua aplikasi berbeda tidak pernah berbenturan karena setiap pengenal yang dibuat dengan `useId` akan dimulai dengan awalan berbeda yang telah Anda tentukan.
+Jika Anda me-*render* beberapa aplikasi React independen pada satu halaman, berikan `identifierPrefix` sebagai opsi untuk panggilan [`createRoot`](/reference/react-dom/client/createRoot#parameters) atau [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) Anda. Hal ini memastikan bahwa ID yang dihasilkan oleh dua aplikasi berbeda tidak pernah berbenturan karena setiap pengenal yang dibuat dengan `useId` akan dimulai dengan awalan berbeda yang telah Anda tentukan.
 
 <Sandpack>
 
