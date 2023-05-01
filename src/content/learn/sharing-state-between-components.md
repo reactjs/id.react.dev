@@ -4,7 +4,7 @@ title: Berbagi State Antar Komponen
 
 <Intro>
 
-Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakukannya, hapus *state* dari kedua komponen, pindahkan ke komponen induk terdekat, dan kemudian oper ke komponen tersebut melalui *props*. Ini dikenal sebagai mengangkat *state* keatas, dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
+Terkadang, Anda ingin 2 komponen selalu berubah secara bersamaan. Untuk melakukannya, hapus *state* dari kedua komponen, pindahkan ke komponen induk terdekat, dan kemudian oper ke komponen tersebut melalui *props*. Ini dikenal sebagai *mengangkat state ke atas*, dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
 
 </Intro>
 
