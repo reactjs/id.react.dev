@@ -1345,7 +1345,7 @@ Anda dapat memandang `TasksProvider` sebagai bagian dari layar yang tahu cara me
 
 <Note>
 
-Fungsi-fungsi seperti `useTasks` dan `useTasksDispatch` disebut dengan *[Custom Hooks](/learn/reusing-logic-with-custom-hooks)*. Fungsi Anda dianggap sebagai custom Hook jika namanya dimulai dengan `use`. Ini memungkinkan Anda menggunakan Hooks lain, seperti `useContext`, di dalamnya.
+Fungsi-fungsi seperti `useTasks` dan `useTasksDispatch` disebut dengan *[Hook Custom](/learn/reusing-logic-with-custom-hooks)*. Fungsi Anda dianggap sebagai *Hook custom* jika namanya dimulai dengan `use`. Ini memungkinkan Anda menggunakan Hooks lain, seperti `useContext`, di dalamnya.
 
 </Note>
 
@@ -1360,7 +1360,7 @@ Seiring dengan pertumbuhan aplikasi Anda, mungkin Anda akan memiliki banyak pasa
   3. Gunakan salah satu *context* dari komponen yang perlu membacanya.
 - Anda dapat memindahkan seluruh penghubung ke satu *file* untuk memperjelas komponen.
   - Anda dapat mengekspor komponen seperti `TasksProvider` yang menyediakan *context*.
-  - Anda juga dapat mengekspor Custom Hooks seperti `useTasks` dan `useTasksDispatch` untuk membacanya.
+  - Anda juga dapat mengekspor *Hooks Custom* seperti `useTasks` dan `useTasksDispatch` untuk membacanya.
 - Anda dapat memiliki banyak pasangan *context-reducer* seperti ini di aplikasi Anda.
 
 </Recap>
