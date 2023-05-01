@@ -4,7 +4,7 @@ title: hydrate
 
 <Deprecated>
 
-API ini akan dihapus pada React mayor versi berikutnya.
+API ini akan dihapus pada React versi mayor berikutnya.
 
 Di React 18, `hydrate` digantikan oleh [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Menggunakan `hydrate` di React 18 akan memberi peringatan bahwa aplikasi Anda akan berperilaku seakan-akan sedang berjalan di React 17. Pelajari selengkapnya [di sini.](/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis)
 
@@ -12,7 +12,7 @@ Di React 18, `hydrate` digantikan oleh [`hydrateRoot`.](/reference/react-dom/cli
 
 <Intro>
 
-`hydrate` memungkinkan anda menampilkan komponen React di dalam node DOM peramban yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React 17 dan yang lebih rendah.
+`hydrate` memungkinkan Anda menampilkan komponen React di dalam simpul DOM peramban yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React 17 dan yang lebih rendah.
 
 ```js
 hydrate(reactNode, domNode, callback?)
@@ -36,7 +36,7 @@ import { hydrate } from 'react-dom';
 hydrate(reactNode, domNode);
 ```
 
-React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pengelolaan DOM di dalamnya. Sebuah aplikasi yang sepenuhnya dibangun dengan React biasanya hanya akan memiliki satu `hydrate` pemanggilan dengan komponen akarnya.
+React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pengelolaan DOM di dalamnya. Sebuah aplikasi yang sepenuhnya dibangun dengan React biasanya hanya akan memiliki satu pemanggilan `hydrate` dengan komponen akarnya.
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
@@ -46,7 +46,7 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 
 * `domNode`: Sebuah [elemen DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element) yang di-*render* sebagai elemen akar di *server*.
 
-* **opsional**: `callback`: Sebuah fungsi. Jika diberikan, React akan memanggilnya setelah komponen anda terhidrasi (*hydrated*).
+* **opsional**: `callback`: Sebuah fungsi. Jika diberikan, React akan memanggilnya setelah komponen Anda terhidrasi (*hydrated*).
 
 #### Kembalian {/*returns*/}
 
@@ -56,7 +56,7 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 * `hydrate` mengharapkan konten yang di-*render* identik dengan konten yang di-*render* di *server*. React dapat memperbaiki perbedaan dalam konten teks, tetapi Anda seharusnya memperlakukan ketidakcocokan tersebut sebagai *bug* dan memperbaikinya sendiri.
 * Dalam mode pengembangan, React memberi peringatan tentang ketidakcocokan selama hidrasi (*hydration*). Tidak ada jaminan bahwa perbedaan atribut akan diperbaiki dalam kasus ketidakcocokan. Ini penting untuk alasan kinerja karena dalam sebagian besar aplikasi, ketidakcocokan jarang terjadi, sehingga memvalidasi semua markup akan menjadi sangat mahal.
 * Kemungkinan Anda hanya akan memiliki satu pemanggilan `hydrate` dalam aplikasi Anda. Jika Anda menggunakan sebuah *framework*, mungkin *framework* tersebut melakukan panggilan ini untuk Anda.
-* Jika aplikasi anda di-*render* oleh klien tanpa HTML yang sudah di-*render* sebelumnya, penggunaan `hydrate()` tidak didukung. Alih-alih menggunakan `hydrate()`, gunakanlah [render()](/reference/react-dom/render) (untuk React 17 dan lebih rendah) or [createRoot()](/reference/react-dom/client/createRoot) (untuk React 18+).
+* Jika aplikasi Anda di-*render* oleh klien tanpa HTML yang sudah di-*render* sebelumnya, penggunaan `hydrate()` tidak didukung. Alih-alih menggunakan `hydrate()`, gunakanlah [render()](/reference/react-dom/render) (untuk React 17 dan lebih rendah) atau [createRoot()](/reference/react-dom/client/createRoot) (untuk React 18+).
 
 ---
 
@@ -76,7 +76,7 @@ Penggunaan `hydrate()` untuk me-*render* aplikasi hanya di sisi klien (aplikasi 
 
 Di React, "hidrasi" adalah bagaimana React "melekatkan" ke HTML yang sudah ada sebelumnya yang telah di-*render* oleh React di lingkungan *server*. Selama hidrasi, React akan mencoba untuk melekatkan *event listeners* ke *markup* yang ada dan mengambil alih pe-*render*-an aplikasi pada sisi klien.
 
-Pada aplikasi yang sepenuhnya dibangun dengan React, **biasanya Anda hanya akan meng-hidrasi satu "akar" ("*root*"), yakni sekali saat memulai menjalankan seluruh aplikasi Anda"**.
+Pada aplikasi yang sepenuhnya dibangun dengan React, **biasanya Anda hanya akan menghidrasi satu "akar" ("*root*"), yakni sekali saat memulai menjalankan seluruh aplikasi Anda"**.
 
 <Sandpack>
 
@@ -104,7 +104,7 @@ export default function App() {
 
 </Sandpack>
 
-Biasanya anda tidak perlu memanggil `hydrate` lagi atau memanggilnya di tempat lain. Dari titik ini, React akan mengelola DOM dari aplikasi anda. Untuk memperbarui UI, komponen akan [menggunakan state.](/reference/react/useState)
+Biasanya Anda tidak perlu memanggil `hydrate` lagi atau memanggilnya di tempat lain. Dari titik ini, React akan mengelola DOM dari aplikasi Anda. Untuk memperbarui UI, komponen akan [menggunakan state.](/reference/react/useState)
 
 Untuk informasi lebih lanjut tentang hidrasi, lihat dokumen untuk [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot)
 
@@ -146,13 +146,13 @@ export default function App() {
 
 </Sandpack>
 
-Hal ini hanya berfungsi untuk satu level kedalaman saja dan dimaksudkan untuk menjadi jalan keluar ketika tidak ada pilihan lain. Jangan terlalu sering menggunakannya. Kecuali jika itu adalah konten teks, React masih tidak akan mencoba memperbaikinya, sehingga konten tersebut mungkin tetap tidak konsisten sampai dengan update yang akan datang.
+Cara ini hanya berfungsi untuk satu tingkat kedalaman dan dimaksudkan untuk menjadi jalan keluar ketika tidak ada pilihan lain. Jangan terlalu sering menggunakannya. Kecuali jika itu adalah konten teks, React masih tidak akan mencoba memperbaikinya, sehingga konten tersebut mungkin tetap tidak konsisten sampai dengan pembaruan di versi-versi mendatang.
 
 ---
 
 ### Mengatasi konten berbeda antara client dan server {/*handling-different-client-and-server-content*/}
 
-Jika anda sengaja perlu me-*render* sesuatu yang berbeda di server dan klien, anda dapat melakukan dua kali pe-*render*-an. Komponen yang me-*render* sesuatu yang berbeda pada sisi klien dapat di baca di [*variabel state*](/reference/react/useState) seperti `isClient`, yang dapat ditetapkan ke `true` dalam sebuah [efek](/reference/react/useEffect):
+Jika Anda sengaja perlu me-*render* sesuatu yang berbeda di server dan klien, Anda dapat melakukan dua kali pe-*render*-an. Komponen yang me-*render* sesuatu yang berbeda pada sisi klien dapat di baca di [*variabel state*](/reference/react/useState) seperti `isClient`, yang dapat ditetapkan ke `true` dalam sebuah [efek](/reference/react/useEffect):
 
 <Sandpack>
 
