@@ -25,7 +25,7 @@ title: <Suspense>
 
 #### Props {/*props*/}
 * `children`: UI aktual yang ingin Anda render. Jika `children` ditangguhkan sewaktu merender, batas Suspense akan beralih merender `fallback`.
-* `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
+* `fallback`: UI alternatif untuk dirender menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan rendering, itu akan mengaktifkan induk terdekat dari Suspense Boundary.
 
 #### Caveats {/*caveats*/}
 
