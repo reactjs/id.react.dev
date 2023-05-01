@@ -129,7 +129,7 @@ React akan memasukkan [doctype](https://developer.mozilla.org/en-US/docs/Glossar
 <script src="/main.js" async=""></script>
 ```
 
-On the client, your bootstrap script should [hydrate the entire `document` with a call to `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
+Di klien, skrip bootstrap Anda harus [menghidrasi seluruh `dokumen` dengan panggilan ke `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
 
 ```js [[1, 4, "<App />"]]
 import { hydrateRoot } from 'react-dom/client';
@@ -138,22 +138,27 @@ import App from './App.js';
 hydrateRoot(document, <App />);
 ```
 
-This will attach event listeners to the server-generated HTML and make it interactive.
+Ini akan melampirkan _event listeners_ ke HTML yang dihasilkan server dan membuatnya interaktif.
 
 <DeepDive>
 
-#### Reading CSS and JS asset paths from the build output {/*reading-css-and-js-asset-paths-from-the-build-output*/}
+#### Membaca jalur aset CSS dan JS dari output _build_ {/*reading-css-and-js-asset-paths-from-the-build-output*/}
 
 The final asset URLs (like JavaScript and CSS files) are often hashed after the build. For example, instead of `styles.css` you might end up with `styles.123456.css`. Hashing static asset filenames guarantees that every distinct build of the same asset will have a different filename. This is useful because it lets you safely enable long-term caching for static assets: a file with a certain name would never change content.
 
 However, if you don't know the asset URLs until after the build, there's no way for you to put them in the source code. For example, hardcoding `"/styles.css"` into JSX like earlier wouldn't work. To keep them out of your source code, your root component can read the real filenames from a map passed as a prop:
+
+
+URL aset final (seperti file JavaScript dan CSS) sering kali di-_hash_ setelah dibuat. Misalnya, alih-alih `styles.css` Anda mungkin berakhir dengan `styles.123456.css`. _Hashing_ nama file aset statis menjamin bahwa setiap build berbeda dari aset yang sama akan memiliki nama file yang berbeda pula. Ini berguna karena memungkinkan Anda mengaktifkan _caching_ jangka panjang dengan aman untuk aset statis: konten file dengan nama tertentu tidak akan pernah berubah.
+
+Namun, jika Anda tidak mengetahui URL aset hingga setelah pembuatan, tidak ada cara bagi Anda untuk memasukkannya ke dalam kode sumber. Misalnya, _hardcoding_ `"/styles.css"` ke dalam JSX seperti sebelumnya tidak akan berfungsi. Untuk menjauhkannya dari kode sumber Anda, komponen _root_ Anda dapat membaca nama file asli dari _map_ yang diteruskan sebagai _prop_:
 
 ```js {1,6}
 export default function App({ assetMap }) {
   return (
     <html>
       <head>
-        <title>My app</title>
+        <title>Aplikasiku</title>
         <link rel="stylesheet" href={assetMap['styles.css']}></link>
       </head>
       ...
@@ -162,10 +167,10 @@ export default function App({ assetMap }) {
 }
 ```
 
-On the server, render `<App assetMap={assetMap} />` and pass your `assetMap` with the asset URLs:
+Di server, _render_ `<App assetMap={assetMap} />` dan teruskan `assetMap` Anda dengan URL aset:
 
 ```js {1-5,8,9}
-// You'd need to get this JSON from your build tooling, e.g. read it from the build output.
+// Anda perlu mendapatkan JSON ini dari tooling build Anda, mis. membacanya dari keluaran build.
 const assetMap = {
   'styles.css': '/styles.123456.css',
   'main.js': '/main.123456.js'
@@ -181,10 +186,11 @@ async function handler(request) {
 }
 ```
 
-Since your server is now rendering `<App assetMap={assetMap} />`, you need to render it with `assetMap` on the client too to avoid hydration errors. You can serialize and pass `assetMap` to the client like this:
+Karena server Anda sekarang me-_render_ `<App assetMap={assetMap} />`, Anda juga perlu me-_render_-nya dengan `assetMap` pada klien untuk menghindari error hidrasi. Anda dapat men-_serialize_ dan meneruskan `assetMap` ke klien seperti ini:
+
 
 ```js {9-10}
-// You'd need to get this JSON from your build tooling.
+// Anda perlu mendapatkan JSON ini dari tooling build Anda
 const assetMap = {
   'styles.css': '/styles.123456.css',
   'main.js': '/main.123456.js'
@@ -192,7 +198,7 @@ const assetMap = {
 
 async function handler(request) {
   const stream = await renderToReadableStream(<App assetMap={assetMap} />, {
-    // Careful: It's safe to stringify() this because this data isn't user-generated.
+    // Hati-hati: Aman untuk stringify() ini karena data ini tidak dibuat oleh pengguna.
     bootstrapScriptContent: `window.assetMap = ${JSON.stringify(assetMap)};`,
     bootstrapScripts: [assetMap['/main.js']],
   });
@@ -202,7 +208,7 @@ async function handler(request) {
 }
 ```
 
-In the example above, the `bootstrapScriptContent` option adds an extra inline `<script>` tag that sets the global `window.assetMap` variable on the client. This lets the client code read the same `assetMap`:
+Pada contoh di atas, opsi `bootstrapScriptContent` menambahkan tag `<script>` sebaris tambahan yang menyetel variabel global `window.assetMap` pada klien. Ini memungkinkan kode klien membaca `assetMap` yang sama:
 
 ```js {4}
 import { hydrateRoot } from 'react-dom/client';
@@ -211,15 +217,15 @@ import App from './App.js';
 hydrateRoot(document, <App assetMap={window.assetMap} />);
 ```
 
-Both client and server render `App` with the same `assetMap` prop, so there are no hydration errors.
+Klien dan server merender `App` dengan prop `assetMap` yang sama, sehingga tidak ada error hidrasi.
 
 </DeepDive>
 
 ---
 
-### Streaming more content as it loads {/*streaming-more-content-as-it-loads*/}
+### Streaming lebih banyak konten saat dimuat {/*streaming-more-content-as-it-loads*/}
 
-Streaming allows the user to start seeing the content even before all the data has loaded on the server. For example, consider a profile page that shows a cover, a sidebar with friends and photos, and a list of posts:
+_Streaming_ memungkinkan pengguna untuk mulai melihat konten bahkan sebelum semua data dimuat di server. Misalnya, pertimbangkan halaman profil yang menampilkan sebuah sampul, _sidebar_ dengan teman dan foto, dan daftar postingan:
 
 ```js
 function ProfilePage() {
@@ -236,7 +242,7 @@ function ProfilePage() {
 }
 ```
 
-Imagine that loading data for `<Posts />` takes some time. Ideally, you'd want to show the rest of the profile page content to the user without waiting for the posts. To do this, [wrap `Posts` in a `<Suspense>` boundary:](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading)
+Bayangkan bahwa memuat data untuk `<Posts />` membutuhkan waktu. Idealnya, Anda ingin menampilkan konten halaman profil lainnya kepada pengguna tanpa menunggu kiriman. Untuk melakukannya, [bungkus `Posts` dalam batas `<Suspense>`:](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading)
 
 ```js {9,11}
 function ProfilePage() {
@@ -255,9 +261,9 @@ function ProfilePage() {
 }
 ```
 
-This tells React to start streaming the HTML before `Posts` loads its data. React will send the HTML for the loading fallback (`PostsGlimmer`) first, and then, when `Posts` finishes loading its data, React will send the remaining HTML along with an inline `<script>` tag that replaces the loading fallback with that HTML. From the user's perspective, the page will first appear with the `PostsGlimmer`, later replaced by the `Posts`.
+Ini memberitahu React untuk memulai _streaming_ HTML sebelum `Posts` memuat datanya. React akan mengirimkan HTML untuk _fallback_ pemuatan (`PostsGlimmer`) terlebih dahulu, dan kemudian, ketika `Posts` selesai memuat datanya, React akan mengirimkan HTML yang tersisa bersama dengan tag `<script>` sebaris yang menggantikan _fallback_ pemuatan dengan HTML itu. Dari perspektif pengguna, halaman pertama akan muncul dengan `PostsGlimmer`, kemudian diganti dengan `Posts`.
 
-You can further [nest `<Suspense>` boundaries](/reference/react/Suspense#revealing-nested-content-as-it-loads) to create a more granular loading sequence:
+Anda dapat lebih jauh [menyatukan batas `<Suspense>`](/reference/react/Suspense#revealing-nested-content-as-it-loads) untuk membuat urutan pemuatan yang lebih terperinci:
 
 ```js {5,13}
 function ProfilePage() {
@@ -626,3 +632,4 @@ async function handler(request) {
 ```
 
 React will flush the remaining loading fallbacks as HTML, and will attempt to render the rest on the client.
+
