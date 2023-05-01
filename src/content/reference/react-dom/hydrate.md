@@ -74,7 +74,7 @@ Menggunakan `hydrate()` untuk me-*render* aplikasi hanya di sisi klien (aplikasi
 
 ### Hydrating HTML yang di-*render* oleh server {/*hydrating-server-rendered-html*/}
 
-Di React, "hydration" adalah bagaimana React "attaches" ke HTML yang sudah ada sebelumnya yang telah di-*render* oleh React di lingkungan server. Selama hydration, React akan mencoba untuk melekatkan event listener ke markup yang ada dan mengambil alih rendering aplikasi pada klien.
+Di React, "hydration" adalah bagaimana React "attaches" ke HTML yang sudah ada sebelumnya yang telah di-*render* oleh React di lingkungan server. Selama *hydration*, React akan mencoba untuk melekatkan *event* *listener* ke *markup* yang ada dan mengambil alih rendering aplikasi pada klien.
 
 Pada aplikasi yang sepenuhnya dibangun dengan React, **biasanya hanya akan ada satu hydrate "root", sekali saat memulai untuk seluruh aplikasi anda"**.
 
@@ -106,15 +106,15 @@ export default function App() {
 
 Biasanya anda tidak perlu memanggil `hydrate` lagi atau memanggilnya di tempat lain. Dari titik ini, React akan mengelola DOM dari aplikasi anda. Untuk memperbarui UI, komponen akan [use state.](/reference/react/useState)
 
-Untuk informasi lebih lanjut tentang hydration, lihat dokumen untuk [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot)
+Untuk informasi lebih lanjut tentang *hydration*, lihat dokumen untuk [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot)
 
 ---
 
 ### Menghilangkan kesalahan ketidakcocokan hydration yang tidak dapat dihindari {/*suppressing-unavoidable-hydration-mismatch-errors*/}
 
-Jika satu atribut elemen atau konten teks secara tidak terhindarkan berbeda antara server dan klien (misalnya, timestamp), Anda dapat menghilangkan peringatan ketidakcocokan hydration.
+Jika satu atribut elemen atau konten teks secara tidak terhindarkan berbeda antara server dan klien (misalnya, timestamp), Anda dapat menghilangkan peringatan ketidakcocokan *hydration*.
 
-Untuk menghilangkan peringatan hydration pada elemen, tambahkan `suppressHydrationWarning={true}`:
+Untuk menghilangkan peringatan *hydration* pada elemen, tambahkan `suppressHydrationWarning={true}`:
 
 <Sandpack>
 
@@ -192,10 +192,10 @@ export default function App() {
 
 </Sandpack>
 
-Dengan cara ini, proses *render* awal akan me-*render* konten yang sama dengan server, menghindari ketidakcocokan, tetapi ada tambahan proses synchronously setelah hydration.
+Dengan cara ini, proses *render* awal akan me-*render* konten yang sama dengan server, menghindari ketidakcocokan, tetapi ada tambahan proses synchronously setelah *hydration*.
 
 <Pitfall>
 
-Metode ini membuat hydration lebih lambat karena komponen Anda harus di-*render* dua kali. Pertimbangkan pengalaman pengguna pada koneksi lambat. Kode JavaScript dapat dimuat jauh setelah *render* HTML awal, sehingga me-*render* UI yang berbeda langsung setelah hydrasi dapat terasa tidak nyaman bagi pengguna..
+Metode ini membuat *hydration* lebih lambat karena komponen Anda harus di-*render* dua kali. Pertimbangkan pengalaman pengguna pada koneksi lambat. Kode JavaScript dapat dimuat jauh setelah *render* HTML awal, sehingga me-*render* UI yang berbeda langsung setelah *hydration* dapat terasa tidak nyaman bagi pengguna..
 
 </Pitfall>
