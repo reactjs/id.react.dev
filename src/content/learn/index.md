@@ -92,7 +92,7 @@ function AboutPage() {
 }
 ```
 
-Jika Anda memiliki banyak HTML untuk di-*porting* ke JSX, Anda dapat menggunakan [konverter online.](https://transform.tools/html-to-jsx).
+Jika Anda memiliki banyak HTML untuk dipindahkan (*port*) ke JSX, Anda dapat menggunakan [konverter online.](https://transform.tools/html-to-jsx).
 
 ## Menambahkan styles {/*adding-styles*/}
 
