@@ -75,11 +75,11 @@ export default function MyApp() {
 
 Kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info] (https://javascript.info/import-export) memiliki referensi yang bagus.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+Sintaksis markup yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal] (/learn/installation) mendukung JSX secara langsung.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX lebih ketat daripada HTML. Anda harus menutup tag seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa tag JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
 
 ```js {3,6}
 function AboutPage() {
