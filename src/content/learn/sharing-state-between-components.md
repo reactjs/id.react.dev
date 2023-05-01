@@ -303,7 +303,7 @@ Secara umum Anda dapat mengatakan bahwa komponen yang memiliki *state* lokal ada
 
 Anda dapat mengatakan bahwa komponen "terkendali" ketika informasi penting di dalamnya didorong oleh *prop* daripada *state* lokalnya sendiri. Ini memungkinkan komponen induk untuk sepenuhnya menentukan perilakunya. Komponen `Panel` akhir dengan *prop* `isActive` dikendalikan oleh komponen `Accordion`.
 
-Komponen tak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi kurang fleksibel ketika Anda ingin mengkoordinasikan mereka bersama. Komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
+Komponen-komponen tak terkendali lebih mudah digunakan dalam induknya karena membutuhkan konfigurasi yang lebih sedikit. Tetapi mereka kurang fleksibel ketika Anda ingin mengkoordinasikannya bersamaan. Komponen-komponen terkendali sepenuhnya fleksibel, tetapi mereka membutuhkan komponen induk untuk sepenuhnya mengkonfigurasi mereka dengan *props*.
 
 Pada praktiknya, "terkendali" dan "tak terkendali" bukan istilah teknis yang ketat--setiap komponen biasanya memiliki beberapa campuran dari kedua *state* lokal dan *props*. Namun, ini adalah cara yang berguna untuk berbicara tentang bagaimana komponen dirancang dan kemampuan apa yang mereka tawarkan.
 
