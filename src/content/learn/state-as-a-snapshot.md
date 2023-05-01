@@ -21,7 +21,7 @@ title: State Sebagai Sebuah Snapshot
 
 Anda mungkin berpikir bahwa antarmuka pengguna Anda berubah seketika sebagai respons terhadap *event* pengguna seperti sebuah *event* klik. Pada React, cara kerjanya sedikit berbeda dari model mental ini. Pada halaman sebelumnya, Anda dapat melihat bahwa [mengubah *state* mengirim permintaan *render* ulang](/learn/render-and-commit#step-1-trigger-a-render) kepada React. Artinya, agar antarmuka pengguna pada aplikasi Anda dapat bereaksi terhadap *event* tersebut, Anda perlu *memperbarui state tersebut*.
 
-Pada contoh dibawah, ketika Anda menekan tombol "Kirim". `setIsSent(true)` memberi tahu React untuk melakukan *render* ulang terhadap UI:
+Pada contoh dibawah, ketika Anda menekan tombol "Kirim", `setIsSent(true)` memberi tahu React untuk melakukan *render* ulang terhadap UI:
 
 <Sandpack>
 
@@ -61,18 +61,17 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Here's what happens when you click the button:
 Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh diatas:
 
 1. *Event handler* `onSubmit` dijalankan.
-2. `setIsSent(true)` mengubah `isSent` menjadi `true` dan memasukkan antrian *render* baru.
+2. `setIsSent(true)` mengubah nilai `isSent` menjadi `true` dan memasukkan antrian *render* baru.
 3. React melakukan *render* ulang pada komponen tersebut sesuai dengan nilai `isSent` yang baru.  
 
 Mari kita lihat lebih dekat hubungan antara *state* dan *rendering*.
 
-## Rendering mengambil sebuah snapshot pada waktunya {/*rendering-takes-a-snapshot-in-time*/}
+## Rendering mengambil sebuah snapshot pada waktu tersebut {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) berarti React memanggil komponen Anda, yang merupakan sebuah fungsi. JSX yang Anda kembalikan dari fungsi tersebut layaknya seperti sebuah *snapshot* UI pada waktu *render* tersebut. *Props*, *event handler*, dan variabel lokal semuanya dihitung *menggunakan state pada komponen tersebut pada saat render*.
+["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) berarti React memanggil komponen Anda, yang merupakan sebuah fungsi. JSX yang Anda kembalikan dari fungsi tersebut layaknya seperti sebuah *snapshot* UI pada waktu *render* tersebut. *Props*, *event handler*, dan variabel lokal semuanya dikalkulasi *menggunakan state pada komponen tersebut pada saat render*.
 
 Tidak seperti sebuah foto atau sebuah bingkai film, "*snapshot*" antarmuka yang Anda kembalikan bersifat interaktif. Ini termasuk logika seperti *event handler* yang menentukan apa yang terjadi sebagai respons terhadap suatu input. React memperbarui antarmuka agar sesuai dengan *snapshot* ini dan menghubungkan *event handler*. Sebagai hasilnya, menekan sebuah tombol akan memicu *handler* klik dari JSX Anda.
 
@@ -88,7 +87,7 @@ Ketika React melakukan *render* ulang pada sebuah komponen:
     <Illustration caption="Memperbarui pohon DOM" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-Sebagai memori dari sebuah komponen, *state* tidak seperti variabel biasa yang hilang setelah fungsi Anda selesai. *State* sebenarnya "hidup" didalam React itu sendiri--seolah-olah di sebuah rak!--di luar fungsi Anda. Ketika React memanggil komponen Anda, React memberi Anda snapshot dari *state* untuk *render* tersebut. Komponen Anda mengembalikan *snapshot* UI dengan kumpulan *props* dan *event handler* baru di JSX tersebut, yang semuanya dihitung **menggunakan nilai *state* dari *render* tersebut!**
+Sebagai memori dari sebuah komponen, *state* tidak seperti variabel biasa yang hilang setelah fungsi Anda selesai. *State* sebenarnya "hidup" didalam React itu sendiri--seolah-olah di sebuah rak!--di luar fungsi Anda. Ketika React memanggil komponen Anda, React memberi Anda *snapshot* dari *state* untuk *render* tersebut. Komponen Anda mengembalikan *snapshot* UI dengan kumpulan *props* dan *event handler* baru di JSX tersebut, yang semuanya dikalkulasi **menggunakan nilai *state* dari *render* tersebut!**
 
 <IllustrationBlock sequential>
   <Illustration caption="Anda memberi tahu React untuk memperbarui suatu state" src="/images/docs/illustrations/i_state-snapshot1.png" />
@@ -175,7 +174,7 @@ Inilah sebabnya mengapa menekan tombol lagi akan mengubah mengubah perhitunganny
 
 ## State dari waktu ke waktu {/*state-over-time*/}
 
-Yah, itu menyenangkan. Coba tebak apa yang akan ditampilkan oleh *alert* dengan mengklik tombol ini:
+Yah, itu menyenangkan. Coba tebak apa yang akan ditampilkan oleh *alert* dengan menekan tombol ini:
 
 <Sandpack>
 
@@ -243,8 +242,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
-Terkejut? Jika Anda menggunakan metode substitusi, Anda dapat melihat "snapshot" dari *state* tersebut diteruskan kepada *alert*.
+Terkejut? Jika Anda menggunakan metode substitusi, Anda dapat melihat "*snapshot*" dari *state* tersebut diteruskan kepada *alert*.
 
 ```js
 setNumber(0 + 5);
@@ -253,17 +251,13 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+*State* yang disimpan di React mungkin telah berubah pada saat *alert* dijalankan, akan tetapi ia dijadwalkan untuk dijalankan menggunakan *snapshot* dari *state* pada saat pengguna berinteraksi dengannya!
 
-*state* yang disimpan di React mungkin telah berubah pada saat *alert* dijalankan, akan tetapi ia dijadwalkan untuk dijalankan menggunakan *snapshot* dari *state* pada saat pengguna berinteraksi dengannya!
+**Nilai dari *state* tidak pernah berubah pada saat render,** bahkan jika kode *event handler*-nya bersifat asinkron. Didalam `onClick` pada *render* tersebut, nilai dari `number` tetaplah `0`, bahkan setelah `setNumber(number + 5)` dipanggil. Nilainya sudah ditetapkan pada saat React "mengambil *snapshot*" dari UI dengan memanggil komponen Anda.
 
-**Nilai dari *state* tidak pernah berubah pada saat render,** bahkan jika kode *event handler*-nya bersifat asinkron. Didalam `onClick` pada *render* tersebut, nilai dari `number` tetaplah `0` bahkan setelah `setNumber(number + 5)` dipanggil. Nilainya sudah ditetapkan pada saat React "mengambil *snapshot*" dari UI dengan memanggil Komponen Anda.
+Berikut adalah contoh bagaimana hal tersebut membuat *event handler* Anda tidak terlalu rentan terhadap kesalahan perkiraan waktu. Di bawah ini adalah *form* yang mengirimkan pesan dengan jeda selama lima detik. Bayangkan skenario ini:
 
-Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
-
-Berikut adalah contoh bagaimana hal tersebut membuat *event handler* Anda tidak terlalu rentan terhadap kesalahan waktu. Di bawah ini adalah *form* yang mengirimkan pesan dengan jeda selama lima detik. Bayangkan skenario ini:
-
-1. Anda menekan tombol "Kirim", mengirim pesan "Hello" kepada Alice.
+1. Anda menekan tombol "Kirim", mengirim pesan "Halo" kepada Alice.
 2. Sebelum jeda lima detik berakhir, Anda mengganti nilai dari *field* "To" menjadi "Bob"
 
 Apa yang Anda perkirakan akan ditampilkan oleh `alert`? Apakah ia akan menampilkan, "Anda berkata Halo kepada Alice"? Atau apakah ia akan menampilkan, "Anda berkata Halo kepada Bob"? Silahkan menebak berdasarkan apa yang Anda ketahui, lalu coba:
@@ -312,16 +306,16 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React menjaga nilai *state* "tetap" dalam satu *event handler* didalam render.** Anda tidak perlu khawatir apakah *state* telah berubah saat kode sedang berjalan.
+**React menjaga *state* bernilai "tetap" dalam satu *event handler* didalam render.** Anda tidak perlu khawatir apakah *state* Anda telah berubah saat kode sedang berjalan.
 
-Tetapi bagaimana jika Anda ingin membaca *state* terakhir sebelum sebuah *render* ulang? Anda dapat menggunakan [state updater function](/learn/queueing-a-series-of-state-updates), yang akan dibahas di halaman selanjutnya!
+Tetapi bagaimana jika Anda ingin membaca *state* terakhir sebelum sebuah *render* ulang? Anda dapat menggunakan [*state updater function*](/learn/queueing-a-series-of-state-updates), yang akan dibahas di halaman selanjutnya!
 
 <Recap>
 
 * Mengubah *state* mengirim permintaan *render* ulang
 * React menyimpang *state* diluar komponen Anda, seolah-olah berada di rak.
 * Ketika Anda memanggil `useState`, React memberikan Anda *snapshot* dari *state* untuk *render* tersebut.
-* Variabel and *event handlers* tidak "bertahan" pada saat terjadi *render* ulang. Setiap *render* memiliki *event handlers*-nya sendiri.
+* Variabel dan *event handlers* tidak "bertahan" pada saat terjadi *render* ulang. Setiap *render* memiliki *event handlers*-nya sendiri.
 * Setiap *render* (dan fungsi didalamnya) akan selalu "melihat" *snapshot* dari *state* yang diberikan oleh React pada *render* tersebut.
 * Anda dapat melakukan substitusi nilai *state* pada *event handlers* didalam benak anda, mirip dengan apa yang anda pikirkan tentang JSX yang sudah di-*render*. 
 * *Event handlers* yang dibuat di masa lalu memiliki nilai *state* dari *render* tempat mereka dibuat.
@@ -369,7 +363,7 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Tambahkan sebuah `alert` didalam *handler* klik. Ketika lampu menyala hijau dan tertulis "Jalan", menekan tombol harus mengubah tulisannya menjadi "Selanjutnya adalah berhenti". Ketika lampu menyala merah dan tertulis "Berhenti", menekan tombol harus mengubah tulisannya menjadi "Selanjutnya adalah berjalan." 
+Tambahkan sebuah `alert` didalam *handler* klik. Ketika lampu menyala hijau dan tertulis "Jalan", menekan tombol harus menampilkan "Selanjutnya adalah berhenti". Ketika lampu menyala merah dan tertulis "Berhenti", menekan tombol harus menampilkan "Selanjutnya adalah berjalan." 
 
 Apakah terdapat perbedaan ketika anda menaruh `alert` sebelum atau sesudah `setWalk` dipanggil?
 
