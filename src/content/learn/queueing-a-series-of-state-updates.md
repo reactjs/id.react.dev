@@ -1,10 +1,10 @@
 ---
-title: Queueing a Series of State Updates
+title: Mengantre Serangkaian Pembaruan State
 ---
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terkadang Anda ingin melakukan beberapa operasi terhadap nilai sebelum menambahkan antran *render* sealnjutnya. Untuk melakukannya, pentin untuk memahami bagaimana React melakukan pembaruan *state* secara berkelompok.
 
 </Intro>
 
