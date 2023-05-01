@@ -89,7 +89,7 @@ Awalnya, setiap `Panel` memiliki state `isActive` dengan nilai `false`, sehingga
 <Diagram name="sharing_state_child_clicked" height={367} width={480} alt="Diagram yang sama seperti sebelumnya, dengan isActive dari komponen Panel anak pertama yang disorot menunjukkan klik dengan nilai isActive diatur ke true. Komponen Panel anak kedua masih berisi nilai false." >
 
 
-Menekan tombol `Panel` mana pun hanya akan memperbarui state `isActive` dari `Panel` itu sendiri
+Menekan tombol `Panel` mana pun hanya akan memperbarui *state* `isActive` dari `Panel` itu sendiri
 
 </Diagram>
 
