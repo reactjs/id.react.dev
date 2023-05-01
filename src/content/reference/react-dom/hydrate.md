@@ -55,7 +55,7 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 #### Catatan {/*caveats*/}
 * `hydrate` mengharapkan konten yang di-*render* identik dengan konten yang di-*render* di server. React dapat memperbaiki perbedaan dalam konten teks, tetapi anda harus memperlakukan ketidakcocokan sebagai bug dan memperbaikinya.
 * Dalam mode pengembangan, React memberi peringatan tentang ketidakcocokan selama hydration. Tidak ada jaminan bahwa perbedaan atribut akan diperbaiki dalam kasus ketidakcocokan. Ini penting untuk alasan kinerja karena dalam sebagian besar aplikasi, ketidakcocokan jarang terjadi, sehingga memvalidasi semua markup akan menjadi sangat mahal.
-* Kemungkinan anda hanya akan memiliki satu `hydrate` panggilan dalam aplikasi anda. Jika anda menggunakan sebuah framework, mungkin framework tersebut melakukan panggilan ini untuk anda.
+* Kemungkinan anda hanya akan memiliki satu `hydrate` panggilan dalam aplikasi anda. Jika anda menggunakan sebuah *framework*, mungkin *framework* tersebut melakukan panggilan ini untuk anda.
 * Jika aplikasi anda di-*render* oleh klien tanpa HTML yang sudah di-*render* sebelumnya, menggunakan `hydrate()` tidak didukung. Gunakan [render()](/reference/react-dom/render) (untuk React 17 dan lebih rendah) or [createRoot()](/reference/react-dom/client/createRoot) (untuk React 18+) sebaliknya.
 
 ---
