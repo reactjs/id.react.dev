@@ -4,7 +4,7 @@ title: Mengoper Data Secara Mendalam dengan Context
 
 <Intro>
 
-Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak melalui *props*. Tapi mengoper *props* bisa menjadi bertele-tele dan merepotkan jika Anda harus mengopernya melalui banyak komponen di tengah-tengah, atau jika banyak komponen di aplikasi Anda membutuhkan informasi yang sama. *Context* memungkinkan komponen induk untuk membuat beberapa informasi tersedia di komponen lain di pohon di bawahnya—tidak peduli seberapa dalam—tanpa mengopernya secara eksplisit melalui *props*.
+Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak melalui *props*. Tapi mengoper *props* bisa menjadi bertele-tele dan merepotkan jika Anda harus mengopernya melalui banyak komponen di tengah-tengah, atau jika banyak komponen di aplikasi Anda membutuhkan informasi yang sama. *Context* memungkinkan komponen induk untuk membuat beberapa informasi tersedia di komponen lain di pohon (*tree*) di bawahnya—tidak peduli seberapa dalam—tanpa mengopernya secara eksplisit melalui *props*.
 
 </Intro>
 
@@ -19,7 +19,7 @@ Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak mela
 
 ## Masalah ketika mengoper props {/*the-problem-with-passing-props*/}
 
-[Mengoper *props*](/learn/passing-props-to-a-component) adalah cara yang bagus untuk menyalurkan data secara eksplisit melalui pohon UI Anda ke komponen yang menggunakanya.
+[Mengoper *props*](/learn/passing-props-to-a-component) adalah cara yang bagus untuk menyalurkan data secara eksplisit melalui pohon (*tree*) UI Anda ke komponen yang menggunakanya.
 
 Tapi mengoper *props* bisa menjadi bertele-tele dan tidak nyaman ketika Anda perlu mengoper beberapa *prop* secara mendalam melalui pohon (*tree*), atau jika banyak komponen membutuhkan *prop* yang sama. Leluhur umum terdekat bisa jadi jauh dari komponen yang membutuhkan data, dan [memindahkan *state* ke atas](/learn/sharing-state-between-components) dapat menyebabkan yang disebut "*prop drilling*".
 
@@ -38,11 +38,11 @@ Prop drilling
 
 </DiagramGroup>
 
-Bukankah lebih bagus jika ada cara untuk "memindahkan" data ke komponen di dalam pohon yang membutuhkannya tanpa harus mengoper *props*? Dengan fitur *context* React, ternyata ada!
+Bukankah lebih bagus jika ada cara untuk "memindahkan" data ke komponen di dalam pohon (*tree*) yang membutuhkannya tanpa harus mengoper *props*? Dengan fitur *context* React, ternyata ada!
 
 ## *Context*: sebuah alternatif untuk mengoper *props* {/*context-an-alternative-to-passing-props*/}
 
-*Context* memungkinkan sebuah komponen induk menyediakan data untuk seluruh pohon di bawahnya. Ada banyak kegunaan dari *context*. Berikut ini salah satu contohnya. Perhatikan komponen `Heading` ini yang menerima `level` untuk ukurannya:
+*Context* memungkinkan sebuah komponen induk menyediakan data untuk seluruh pohon (*tree*) di bawahnya. Ada banyak kegunaan dari *context*. Berikut ini salah satu contohnya. Perhatikan komponen `Heading` ini yang menerima `level` untuk ukurannya:
 
 <Sandpack>
 
@@ -200,7 +200,7 @@ Akan lebih baik jika Anda dapat mengoper *prop* `level` ke komponen `<Section>` 
 </Section>
 ```
 
-Tapi bagaimana komponen `<Heading>` dapat mengetahui level `<Section>` yang terdekat? **Hal ini akan membutuhkan suatu cara untuk "meminta" data dari suatu tempat di atas pohon.**
+Tapi bagaimana komponen `<Heading>` dapat mengetahui level `<Section>` yang terdekat? **Hal ini akan membutuhkan suatu cara untuk "meminta" data dari suatu tempat di atas pohon (_tree_).**
 
 Anda tidak bisa melakukannya dengan *props* sendirian. Di sinilah *context* berperan penting. Anda akan melakukannya dalam tiga langkah:
 
@@ -208,7 +208,7 @@ Anda tidak bisa melakukannya dengan *props* sendirian. Di sinilah *context* berp
 2. **Gunakan** *context* tersebut dari komponen yang membutuhkan data. (`Heading` akan menggunakan `LevelContext`.)
 3. **Sediakan** *context* tersebut dari komponen yang menentukan data. (`Section` akan menyediakan `LevelContext`.)
 
-*Context* memungkinkan sebuah induk--bahkan yang jauh sekalipun!--menyediakan beberapa data kepada seluruh komponen pohon di dalamnya.
+*Context* memungkinkan sebuah induk--bahkan yang jauh sekalipun!--menyediakan beberapa data kepada seluruh komponen pohon (*tree*) di dalamnya.
 
 <DiagramGroup>
 
@@ -476,7 +476,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-Ini memberitahu React: "jika ada komponen di dalam `<Section>` ini yang meminta `LevelContext`, berikan `level` ini." Komponen akan menggunakan nilai dari `<LevelContext.Provider>` terdekat di pohon UI tree di atasnya.
+Ini memberitahu React: "jika ada komponen di dalam `<Section>` ini yang meminta `LevelContext`, berikan `level` ini." Komponen akan menggunakan nilai dari `<LevelContext.Provider>` terdekat di pohon UI (*tree*) di atasnya.
 
 <Sandpack>
 
@@ -699,7 +699,7 @@ Sekarang keduanya `Heading` dan `Section` membaca `LevelContext` untuk mencari t
 
 <Note>
 
-Contoh ini menggunakan *heading levels* karena mereka menunjukkan secara visual bagaimana komponen bersarang dapat menimpa *context*. Tapi *context* juga berguna untuk banyak kasus penggunaan lainnya. Anda dapat mengoper ke bawah informasi apa pun yang dibutuhkan oleh seluruh *sub*-pohon: tema warna saat ini, pengguna yang sedang masuk, dan seterusnya.
+Contoh ini menggunakan *heading levels* karena mereka menunjukkan secara visual bagaimana komponen bersarang dapat menimpa *context*. Tapi *context* juga berguna untuk banyak kasus penggunaan lainnya. Anda dapat mengoper ke bawah informasi apa pun yang dibutuhkan oleh seluruh *sub*-pohon (*tree*): tema warna saat ini, pengguna yang sedang masuk, dan seterusnya.
 
 </Note>
 
@@ -832,7 +832,7 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-Anda tidak perlu melakukan sesuatu yang khusus untuk pekerjaan ini. `Section` menentukan *context* untuk pohon di dalamnya, jadi Anda dapat menyisipkan `<Heading>` di mana saja, dan akan memiliki ukuran yang benar. Cobalah di kotak pasir di atas!
+Anda tidak perlu melakukan sesuatu yang khusus untuk pekerjaan ini. `Section` menentukan *context* untuk pohon (*tree*) di dalamnya, jadi Anda dapat menyisipkan `<Heading>` di mana saja, dan akan memiliki ukuran yang benar. Cobalah di kotak pasir di atas!
 
 **_Context_ memungkinkan Anda untuk menulis komponen yang "beradaptasi dengan sekitar mereka" dan menampilkan diri mereka secara berbeda tergantung di mana (atau, dalam kata lain, _dalam context apa_) mereka akan diberikan.**
 
@@ -854,17 +854,17 @@ Jika tidak satu pun dari pendekatan ini yang cocok untuk Anda, pertimbangkan *co
 ## Kasus penggunakan untuk *context* {/*use-cases-for-context*/}
 
 * **Tema:** Jika aplikasi Anda memungkinkan pengguna mengganti penampilannya (misalnya mode gelap), Anda dapat menempatkan penyedia *context* di paling atas aplikasi Anda, dan menggunakan konteksnya di komponen yang membutuhkan  untuk menyesuaikan tampilan visual mereka.
-* **Akun saat ini:** Banyak komponen yang mungkin perlu mengetahui pengguna yang sedang masuk. Menempatkannya dalam konteks akan memudahkan untuk membacanya di mana saja di dalam pohon. Beberapa aplikasi memungkinkan Anda mengoperasikan beberapa akun pada saat yang sama (misalnya untuk memberikan komentar sebagai pengguna yang berbeda). Dalam kasus tersebut, akan lebih mudah untuk membungkus bagian dari UI ke dalam penyedia bersarang dengan nilai akun saat ini yang berbeda.
+* **Akun saat ini:** Banyak komponen yang mungkin perlu mengetahui pengguna yang sedang masuk. Menempatkannya dalam konteks akan memudahkan untuk membacanya di mana saja di dalam pohon (*tree*). Beberapa aplikasi memungkinkan Anda mengoperasikan beberapa akun pada saat yang sama (misalnya untuk memberikan komentar sebagai pengguna yang berbeda). Dalam kasus tersebut, akan lebih mudah untuk membungkus bagian dari UI ke dalam penyedia bersarang dengan nilai akun saat ini yang berbeda.
 * **Routing:** Sebagian besar solusi *routing* menggunakan *context* secara internal untuk menyimpan rute saat ini. Dengan cara inilah setiap link "mengetahui" apakah ia aktif atau tidak. Jika Anda membuat *router* anda sendiri, Anda mungkin ingin melakukannya juga.
 * **Mengelola _state_:** Seiring pertumbuhan aplikasi Anda, Anda mungkin akan menempatkan banyak *state* yang lebih dekat ke bagian atas aplikasi Anda. Banyak komponen yang jauh di bawahnya mungkin ingin untuk mengubahnya. Ini adalah hal yang umum untuk [menggunakan reducer bersama dengan *context*](/learn/scaling-up-with-reducer-and-context) untuk mengelola *state* yang kompleks dan mengopernya ke komponen yang jauh ke bawah tanpa terlalu banyak kerumitan.
   
 *Context* tidak terbatas pada nilai statis. Jika anda memberikan nilai yang berbeda pada render berikutnya, React akan memperbarui semua komponen yang membacanya di bawahnya! Inilah sebabnya mengapa *context* sering digunakan bersama degan *state*.
 
-Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di beberapa bagian pohon, ini adalah indikasi yang bagus bahwa *context* akan membantu Anda.
+Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di beberapa bagian pohon (*tree*), ini adalah indikasi yang bagus bahwa *context* akan membantu Anda.
 
 <Recap>
 
-* *Context* memungkinkan komponen menyediakan beberapa informasi ke keseluruhan pohon di bawahnya.
+* *Context* memungkinkan komponen menyediakan beberapa informasi ke keseluruhan pohon (*tree*) di bawahnya.
 * Untuk mengoper *context*:
   1. Buat dan ekspor ia dengan `export const MyContext = createContext(defaultValue)`.
   2. Oper ke `useContext(MyContext)` *Hook* untuk membacanya di komponen anak manapun, tidak peduli seberapa dalam.
