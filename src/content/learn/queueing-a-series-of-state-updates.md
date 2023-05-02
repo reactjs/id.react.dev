@@ -171,7 +171,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 Begini cara *event handler* memberitahu React apa yang harus dilakukan:
 
-1. `setNumber(number + 5)`: `number` adalah `0`, jadi `setNumber(0 + 5)`. React menambahkan "ganti dengan `5`" ke antreannya.
+1. `setNumber(number + 5)`: `number` adalah `0` maka `setNumber(0 + 5)`. React menambahkan "ganti dengan `5`" ke antreannya.
 2. `setNumber(n => n + 1)`: `n => n + 1` merupakan fungsi *updater*. React menambahkan fungsi tersebut ke antreannya.
 
 Selama *render* berikutnya, React melewati antrean *state*:
@@ -189,9 +189,9 @@ Anda mungkin sadar bahwa `setState(5)` sebenarnya bekerja seperti `setState(n =>
 
 </Note>
 
-### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
+### Apa yang terjadi jika Anda mengganti state setelah memperbaruinya {/*what-happens-if-you-replace-state-after-updating-it*/}
 
-Let's try one more example. What do you think `number` will be in the next render?
+Mari kita coba satu contoh lagi. Menurut Anda berapa nilai `number` pada *render* berikutnya?
 
 ```js
 <button onClick={() => {
@@ -229,28 +229,28 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's how React works through these lines of code while executing this event handler:
+Begini cara React bekerja melalui baris kode ini saat menjalankan *event handler*:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
-3. `setNumber(42)`: React adds *"replace with `42`"* to its queue.
+1. `setNumber(number + 5) : `number` adalah `0` maka `setNumber(0 + 5)`. React menambahkan "ganti dengan `5`" ke antreannya.
+2. `setNumber(n => n + 1)`: `n => n + 1` adalah fungsi *updater*. React menambahkan fungsi tersebut ke antreannya.
+3. `setNumber(42)`: React menambahkan "ganti dengan `42`" ke antreannya.
 
-During the next render, React goes through the state queue:
+Selama *render* berikutnya, React melewati antrean *state*:
 
-|   queued update       | `n` | returns |
+|   antrean diperbarui       | `n` | hasil |
 |--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
+| "ganti dengan `5`" | `0` (tak terpakai) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
-| "replace with `42`" | `6` (unused) | `42` |
+| "ganti dengan `42`" | `6` (tak terpakai) | `42` |
 
-Then React stores `42` as the final result and returns it from `useState`.
+Akibatnya, React menyiapkan `42` sebagai hasil akhir dan mengembalikannya dari `useState`.
 
-To summarize, here's how you can think of what you're passing to the `setNumber` state setter:
+Jadi, kesimpulannya adalah berikut cara Anda dapat memikirkan apa yang anda oper ke pengatur *state* `setNumber`:
 
-* **An updater function** (e.g. `n => n + 1`) gets added to the queue.
-* **Any other value** (e.g. number `5`) adds "replace with `5`" to the queue, ignoring what's already queued.
+* **Sebuah fungsi *updater*** (misalnya `n => n + 1`) ditambahkan ke antrean.
+* **Apapun nilai lainnya** (misalnya angka `5`) menambahkan "ganti dengan `5`" ke antrean, mengabaikan apa yang sudah ada di antrean.
 
-After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+Setelah *event handler* selesai, React akan memicu *re-render*. Selama *re-render*, React akan memproses antrean. Fungsi *updater* berjalan selama proses *render*, jadi **fungsi *updater* harus [murni](/learn/keeping-components-pure)** dan hanya mengembalikan hasilnya. Jangan mencoba mengatur *state* dari dalamnya atau menjalankan efek samping lainnya. Dalam *Strict Mode*, React akan menjalankan setiap fungsi *updater* dua kali (tetapi membuang hasil kedua) untuk membantu Anda menemukan kesalahan.
 
 ### Naming conventions {/*naming-conventions*/}
 
