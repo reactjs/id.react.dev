@@ -260,10 +260,10 @@ export function createTodos() {
 }
 
 export function filterTodos(todos, tab) {
-  console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos for "' + tab + '" tab.');
+  console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melewati apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -389,7 +389,7 @@ export function filterTodos(todos, tab) {
   console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melewati apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -714,7 +714,7 @@ export default function TodoList({ todos, theme, tab }) {
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
-  console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak' + items.length);
+  console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
     // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
