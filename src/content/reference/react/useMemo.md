@@ -99,7 +99,7 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Biasanya, hal ini tidak menjadi masalah karena kebanyakan perhitungan dilakukan dengan sangat cepat. Namun, jika Anda melakukan penyaringan atau mengubah seranai (*array*) yang besar, atau melakukan komputasi yang mahal, Anda mungkin ingin melewatkan melakukannya lagi jika data tidak berubah. Jika `todos` dan `tab` sama seperti *render* terakhir, mengemas perhitungan tersebut dalam `useMemo` seperti sebelumnya memungkinkan Anda menggunakan kembali `visibleTodos` yang telah Anda hitung sebelumnya.
+Biasanya, hal ini tidak menjadi masalah karena kebanyakan perhitungan dilakukan dengan sangat cepat. Namun, jika Anda melakukan penyaringan atau mengubah senarai (*array*) yang besar, atau melakukan komputasi yang mahal, Anda mungkin ingin melewatkan melakukannya lagi jika data tidak berubah. Jika `todos` dan `tab` sama seperti *render* terakhir, mengemas perhitungan tersebut dalam `useMemo` seperti sebelumnya memungkinkan Anda menggunakan kembali `visibleTodos` yang telah Anda hitung sebelumnya.
 
 Tipe *caching* ini disebut dengan *[memoisasi.](https://en.wikipedia.org/wiki/Memoization)*
 
@@ -548,9 +548,9 @@ Anda dapat menambahkan jumlah *item* todo pada `utils.js` dan lihat bagaimana pe
 
 ---
 
-### Skipping re-rendering of components {/*skipping-re-rendering-of-components*/}
+### Melewati *rendering* ulang pada komponen {/*skipping-re-rendering-of-components*/}
 
-In some cases, `useMemo` can also help you optimize performance of re-rendering child components. To illustrate this, let's say this `TodoList` component passes the `visibleTodos` as a prop to the child `List` component:
+Dalam beberapa kasus, `useMemo` juga dapat membantu Anda mengoptimalkan kinerja komponen *child* dalam *rendering* ulang. Untuk menggambarkan ini, anggap komponen `TodoList` memberikan `visibleTodos` sebagai *prop* kepada komponen *child* `List`:
 
 ```js {5}
 export default function TodoList({ todos, tab, theme }) {
@@ -563,9 +563,9 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<List />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `List` component.
+Anda telah memerhatikan bahwa mengubah *prop* `theme` membekukan aplikasi sesaat, tetapi jika Anda menghapus `<List />` dari JSX anda, rasanya jadi cepat. Hal ini memberitahu Anda bahwa ada baiknya untuk mencoba mengoptimalkan komponen `List`.
 
-**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `TodoList` re-renders with a different `theme`, the `List` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `List` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`:](/reference/react/memo)
+**Secara bawaan, ketika komponen me*render* ulang, React akan me*render* semua *children*-nya secara berulang** Inilah sebabnya, ketika `TodoList` me*render* ulang dengan `theme` yang berbeda, komponen `List` *juga* me*render* ulang. Hal ini bagus untuk komponen yang tidak memerlukan banyak perhitungan untuk *render* ulang. Namun jika anda telah memeriksa bahwa *render* ulang berjalan lambat, Anda dapat memberi tahu `List` untuk melewatkan *rendering* ulang jika *props*-nya sama seperti *render* sebelumnya dengan membungkusnya dalam [`memo`:](/reference/react/memo)
 
 ```js {3,5}
 import { memo } from 'react';
@@ -575,33 +575,33 @@ const List = memo(function List({ items }) {
 });
 ```
 
-**With this change, `List` will skip re-rendering if all of its props are the *same* as on the last render.** This is where caching the calculation becomes important! Imagine that you calculated `visibleTodos` without `useMemo`:
+**Dengan perubahan ini, `List` akan melewati *rendering* ulang jika seluruh *props*-nya *sama* dengan *render* terakhir.** Disinilah meng-*cache* perhitungan menjadi penting! Bayangkan Anda menghitung `visibleTodos` tanpa `useMemo`:
 
 ```js {2-3,6-7}
 export default function TodoList({ todos, tab, theme }) {
-  // Every time the theme changes, this will be a different array...
+  // Setiap tema berganti, ini akan menjadi senarai (array) yang berbeda...
   const visibleTodos = filterTodos(todos, tab);
   return (
     <div className={theme}>
-      {/* ... so List's props will never be the same, and it will re-render every time */}
+      {/* ... prop dari List tidak akan sama, dan akan melakukan render ulang tiap saat */}
       <List items={visibleTodos} />
     </div>
   );
 }
 ```
 
-**In the above example, the `filterTodos` function always creates a *different* array,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that `List` props will never be the same, and your [`memo`](/reference/react/memo) optimization won't work. This is where `useMemo` comes in handy:
+**Pada contoh di atas, fungsi `filterTodos` selalu membuat senarai (*array*) yang *berbeda*,** mirip dengan objek literal `{}` selalu membuat objek baru. Biasanya, hal ini tidak menjadi masalah, tapi ini berarti bahwa *prop* dari `List` tidak akan sama, dan optimalisasi [`memo`](/reference/react/memo) tidak akan berjalan. Di sinilah `useMemo` berguna:
 
 ```js {2-3,5,9-10}
 export default function TodoList({ todos, tab, theme }) {
-  // Tell React to cache your calculation between re-renders...
+  // Memberitahu React untuk meng-cache perhitungan Anda di antara render ulang...
   const visibleTodos = useMemo(
     () => filterTodos(todos, tab),
-    [todos, tab] // ...so as long as these dependencies don't change...
+    [todos, tab] // ...selama dependency ini tidak berubah...
   );
   return (
     <div className={theme}>
-      {/* ...List will receive the same props and can skip re-rendering */}
+      {/* ...List akan menerima prop yang sama dan dapat melewati rendering ulang */}
       <List items={visibleTodos} />
     </div>
   );
@@ -609,13 +609,13 @@ export default function TodoList({ todos, tab, theme }) {
 ```
 
 
-**By wrapping the `visibleTodos` calculation in `useMemo`, you ensure that it has the *same* value between the re-renders** (until dependencies change). You don't *have to* wrap a calculation in `useMemo` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/reference/react/memo) and this lets it skip re-rendering. There are a few other reasons to add `useMemo` which are described further on this page.
+**Dengan membungkus perhitungan `visibleTodos` pada `useMemo`, Anda pastikan bahwa itu mempunyai nilai yang *sama* di antara *render* ulang** (sampai *dependency* berubah). Kamu tidak *perlu* untuk membungkus perhitungan dalam `useMemo` kecuali Anda melakukan itu untuk alasan yang spesifik. Pada contoh ini, alasannya adalah Anda memberikannya ke komponen yang dibungkus dengan [`memo`,](/reference/react/memo) dan ini memungkinkannya melewatkan *rendering* ulang. Terdapat alasan-alasan lain untuk menambahkan `useMemo` yang dijelaskan lebih lanjut pada halaman ini.
 
 <DeepDive>
 
-#### Memoizing individual JSX nodes {/*memoizing-individual-jsx-nodes*/}
+#### Memoisasi *node* JSX secara individu {/*memoizing-individual-jsx-nodes*/}
 
-Instead of wrapping `List` in [`memo`](/reference/react/memo), you could wrap the `<List />` JSX node itself in `useMemo`:
+Daripada membungkus `List` dalam .., Anda dapat membungkus *node* JSX `<List />` itu sendiri dalam `useMemo`:
 
 ```js {3,6}
 export default function TodoList({ todos, tab, theme }) {
@@ -629,26 +629,25 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-The behavior would be the same. If the `visibleTodos` haven't changed, `List` won't be re-rendered.
+Perilakunya akan sama. Jika `visibleTodos` tidak berubah, `List` tidak akan di*render* ulang.
 
-A JSX node like `<List items={visibleTodos} />` is an object like `{ type: List, props: { items: visibleTodos } }`. Creating this object is very cheap, but React doesn't know whether its contents is the same as last time or not. This is why by default, React will re-render the `List` component.
+*Node* JSX seperti `<List items={visibleTodos} />` merupakan objek seperti `{ type: List, props: { items: visibleTodos } }`. Membuat objek ini sangat murah, tapi React tidak mengetahui apakah kontennya sama dengan sebelumnya atau tidak. Inilah mengapa secara bawaan, React akan me*render* ulang komponen `List`.
 
-However, if React sees the same exact JSX as during the previous render, it won't try to re-render your component. This is because JSX nodes are [immutable.](https://en.wikipedia.org/wiki/Immutable_object) A JSX node object could not have changed over time, so React knows it's safe to skip a re-render. However, for this to work, the node has to *actually be the same object*, not merely look the same in code. This is what `useMemo` does in this example.
+Namun, jika React melihat JSX yang sama persis seperti saat *render* sebelumnya, React tidak akan mencoba me*render* ulang komponen Anda. Hal ini karena node JSX [tidak dapat diubah (*immutable*).](https://en.wikipedia.org/wiki/Immutable_object) Objek *node* JSX tidak dapat diubah dari waktu ke waktu, jadi React tahu bahwa aman untuk melakukan *render* ulang. Namun, agar berfungsi, *node* harus *benar-benar menjadi objek yang sama*, bukan hanya terlihat sama dalam kode. Inilah yang dilakukan `useMemo` pada contoh ini.
 
-Manually wrapping JSX nodes into `useMemo` is not convenient. For example, you can't do this conditionally. This is usually why you would wrap components with [`memo`](/reference/react/memo) instead of wrapping JSX nodes.
+Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya, Anda tidak dapat melakukannya secara bersyarat. Itulah mengapa biasanya Anda akan membungkus komponen dengan [`memo`](/reference/react/memo) daripada membungkus *node* JSX.
 
 </DeepDive>
 
-<Recipes titleText="The difference between skipping re-renders and always re-rendering" titleId="examples-rerendering">
+<Recipes titleText="Perbedaan antara melewati render ulang dan selalu rendering ulang" titleId="examples-rerendering">
 
-#### Skipping re-rendering with `useMemo` and `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
+#### Melewati *rendering* ulang dengan `useMemo` dan `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
 
-In this example, the `List` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
+Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
-Switching the tabs feels slow because it forces the slowed down `List` to re-render. That's expected because the `tab` has changed, and so you need to reflect the user's new choice on the screen.
+Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar. 
 
-Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleItems` array has not changed since the last render. The `visibleItems` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
-
+Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** *Rendering* ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
 <Sandpack>
 
 ```js App.js
@@ -704,7 +703,7 @@ export default function TodoList({ todos, theme, tab }) {
   );
   return (
     <div className={theme}>
-      <p><b>Note: <code>List</code> is artificially slowed down!</b></p>
+      <p><b>Catatan: <code>List</code> diperlambat secara artifisial!</b></p>
       <List items={visibleTodos} />
     </div>
   );
@@ -715,10 +714,10 @@ export default function TodoList({ todos, theme, tab }) {
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
-  console.log('[ARTIFICIALLY SLOW] Rendering <List /> with ' + items.length + ' items');
+  console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Do nothing for 500 ms to emulate extremely slow code
+    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -785,11 +784,11 @@ label {
 
 <Solution />
 
-#### Always re-rendering a component {/*always-re-rendering-a-component*/}
+#### Selalu lakukan *rendering* ulang pada komponen {/*always-re-rendering-a-component*/}
 
-In this example, the `List` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
+Pada contoh ini, implementasi `List` juga **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika beberapa komponen React yang Anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
-Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so the `visibleTodos` is always a different array, and the slowed down `List` component can't skip re-rendering.
+Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat sekarang! Hal ini karena **tidak adanya pemanggilan *useMemo* pada versi ini,** sehingga senarai (*array*) `visibleTodos` selalu berbeda, dan *rendering* ulang untuk komponen `List` yang diperlambat tidak dapat dilewati.
 
 <Sandpack>
 
@@ -842,7 +841,7 @@ export default function TodoList({ todos, theme, tab }) {
   const visibleTodos = filterTodos(todos, tab);
   return (
     <div className={theme}>
-      <p><b>Note: <code>List</code> is artificially slowed down!</b></p>
+      <p><b>Catatan: <code>List</code> diperlambat secara artifisial!</b></p>
       <List items={visibleTodos} />
     </div>
   );
@@ -853,10 +852,10 @@ export default function TodoList({ todos, theme, tab }) {
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
-  console.log('[ARTIFICIALLY SLOW] Rendering <List /> with ' + items.length + ' items');
+  console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Do nothing for 500 ms to emulate extremely slow code
+    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -921,7 +920,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed.** Does the lack of `useMemo` feel noticeable or not?
+Namun, ini adalah kode yang sama **tanpa pelambatan buatan.** Apakah tidak adanya `useMemo` terasa?
 
 <Sandpack>
 
@@ -1046,9 +1045,9 @@ label {
 
 </Sandpack>
 
-Quite often, code without memoization works fine. If your interactions are fast enough, you don't need memoization.
+Seringnya, kode tanpa memoisasi berjalan dengan baik. Jika interaksi Anda cukup cepat, Anda tidak memerlukan memoisasi.
 
-Keep in mind that you need to run React in production mode, disable [React Developer Tools](/learn/react-developer-tools), and use devices similar to the ones your app's users have in order to get a realistic sense of what's actually slowing down your app.
+Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [React Developer Tools](/learn/react-developer-tools), dan gunakan perangkat yang mirip dengan punya pengguna Anda guna mendapatkan pengertian terhadap apa yang memperlambat aplikasi Anda.
 
 <Solution />
 
