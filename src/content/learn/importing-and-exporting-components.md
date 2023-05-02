@@ -20,7 +20,7 @@ Keajaiban komponen terletak pada kemampuannya yang dapat digunakan kembali: Anda
 
 ## File komponen root {/*the-root-component-file*/}
 
-Pada [Komponen Pertama Anda](/learn/your-first-component), Anda membuat komponen `Profile` dan komponen `Gallery` yang merender:
+Pada [Komponen Pertama Anda](/learn/your-first-component), Anda membuat komponen `Profile` dan komponen `Gallery` yang me-*render*:
 
 <Sandpack>
 
@@ -252,7 +252,7 @@ Pada halaman ini Anda belajar:
 
 Saat ini, `Gallery.js` mengekspor kedua `Profile` dan `Gallery`, yang mana sedikit membingungkan.
 
-Pindahkan komponen `Profile` pada miliknya sendiri `Profile.js`, dan ubah komponen `App` untuk merender kedua `<Profile />` dan `<Gallery />` satu setelah lainnya.
+Pindahkan komponen `Profile` pada miliknya sendiri `Profile.js`, dan ubah komponen `App` untuk me-*render* kedua `<Profile />` dan `<Gallery />` satu setelah lainnya.
 
 Anda mungkin menggukanan salah satu dari **default** atau **named** eskpor untuk `Profile`, tetapi pastikan bahwa Anda menggunakan sintaksis impor pada kedua `App.js` dan `Gallery.js`. Anda dapat merujuk pada table dari bagian **deep dive** di atas:
 
