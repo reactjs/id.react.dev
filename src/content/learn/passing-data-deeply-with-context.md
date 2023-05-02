@@ -21,13 +21,13 @@ Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak mela
 
 [Mengoper *props*](/learn/passing-props-to-a-component) adalah cara yang bagus untuk menyalurkan data secara eksplisit melalui pohon UI Anda ke komponen yang menggunakanya.
 
-Tapi mengoper *props* bisa menjadi bertele-tele dan tidak nyaman ketika Anda perlu mengoper beberapa *prop* secara mendalam melalui pohon, atau jika banyak komponen membutuhkan *prop* yang sama. Leluhur umum terdekat bisa jadi jauh dari komponen yang membutuhkan data, dan [memindahkan state ke atas](/learn/sharing-state-between-components) dapat menyebabkan yang disebut "*prop drilling*".
+Tapi mengoper *props* bisa menjadi bertele-tele dan tidak nyaman ketika Anda perlu mengoper beberapa *prop* secara mendalam melalui pohon, atau jika banyak komponen membutuhkan *prop* yang sama. Leluhur umum terdekat bisa jadi jauh dari komponen yang membutuhkan data, dan [memindahkan *state* ke atas](/learn/sharing-state-between-components) dapat menyebabkan yang disebut "*prop drilling*".
 
 <DiagramGroup>
 
 <Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
 
-Memindahkan state ke atas
+Memindahkan *state* ke atas
 
 </Diagram>
 <Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root node contains a bubble representing a value highlighted in purple. The value flows down through the two children, each of which pass the value but do not contain it. The left child passes the value down to two children which are both highlighted purple. The right child of the root passes the value through to one of its two children - the right one, which is highlighted purple. That child passed the value through its single child, which passes it down to both of its two children, which are highlighted purple.">
@@ -856,7 +856,7 @@ Jika tidak satu pun dari pendekatan ini yang cocok untuk Anda, pertimbangkan *co
 * **Tema:** Jika aplikasi Anda memungkinkan pengguna mengganti penampilannya (misalnya mode gelap), Anda dapat menempatkan penyedia *context* di paling atas aplikasi Anda, dan menggunakan konteksnya di komponen yang membutuhkan  untuk menyesuaikan tampilan visual mereka.
 * **Akun saat ini:** Banyak komponen yang mungkin perlu mengetahui pengguna yang sedang masuk. Menempatkannya dalam konteks akan memudahkan untuk membacanya di mana saja di dalam pohon. Beberapa aplikasi memungkinkan Anda mengoperasikan beberapa akun pada saat yang sama (misalnya untuk memberikan komentar sebagai pengguna yang berbeda). Dalam kasus tersebut, akan lebih mudah untuk membungkus bagian dari UI ke dalam penyedia bersarang dengan nilai akun saat ini yang berbeda.
 * **Routing:** Sebagian besar solusi *routing* menggunakan *context* secara internal untuk menyimpan rute saat ini. Dengan cara inilah setiap link "mengetahui" apakah ia aktif atau tidak. Jika Anda membuat *router* anda sendiri, Anda mungkin ingin melakukannya juga.
-* **Mengelola state:** Seiring pertumbuhan aplikasi Anda, Anda mungkin akan menempatkan banyak *state* yang lebih dekat ke bagian atas aplikasi Anda. Banyak komponen yang jauh di bawahnya mungkin ingin untuk mengubahnya. Ini adalah hal yang umum untuk [menggunakan reducer bersama dengan *context*](/learn/scaling-up-with-reducer-and-context) untuk mengelola *state* yang kompleks dan mengopernya ke komponen yang jauh ke bawah tanpa terlalu banyak kerumitan.
+* **Mengelola _state_:** Seiring pertumbuhan aplikasi Anda, Anda mungkin akan menempatkan banyak *state* yang lebih dekat ke bagian atas aplikasi Anda. Banyak komponen yang jauh di bawahnya mungkin ingin untuk mengubahnya. Ini adalah hal yang umum untuk [menggunakan reducer bersama dengan *context*](/learn/scaling-up-with-reducer-and-context) untuk mengelola *state* yang kompleks dan mengopernya ke komponen yang jauh ke bawah tanpa terlalu banyak kerumitan.
   
 *Context* tidak terbatas pada nilai statis. Jika anda memberikan nilai yang berbeda pada render berikutnya, React akan memperbarui semua komponen yang membacanya di bawahnya! Inilah sebabnya mengapa *context* sering digunakan bersama degan *state*.
 
@@ -879,7 +879,7 @@ Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di bebe
 
 #### Ganti *prop drilling* dengan *context* {/*replace-prop-drilling-with-context*/}
 
-Pada contoh ini, mengganti checkbox akan mengubah `imageSize` *prop* yang diteruskan ke setiap `<PlaceImage>`. checkbox state akan disimpan di komponen paling atas komponen `App`, tapi tiap `<PlaceImage>` harus menyadarinya.
+Pada contoh ini, mengganti checkbox akan mengubah `imageSize` *prop* yang diteruskan ke setiap `<PlaceImage>`. checkbox *state* akan disimpan di komponen paling atas komponen `App`, tapi tiap `<PlaceImage>` harus menyadarinya.
 
 Saat ini, `App` mengoper `imageSize` ke `List`, yang mana mengopernya ke tiap `Place`, yang mana mengopernya ke tiap `PlaceImage`. Hapus *prop* `imageSize`, dan sebagai gantinya oper ia dari komponen `App` ke `PlaceImage` secara langsung.
 
