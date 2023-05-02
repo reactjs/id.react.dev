@@ -4,7 +4,7 @@ title: Mempertahankan dan Mengatur Ulang State
 
 <Intro>
 
-*State* diisolasi antar komponen. React melacak *state* mana yang dimiliki oleh komponen mana berdasarkan tempatnya di pohon antarmuka pengguna (UI). Anda dapat mengontrol kapan harus mempertahankan *state* dan kapan harus mengatur ulang di antara render ulang (re-*render*).
+*State* diisolasi antar komponen. React melacak *state* mana yang dimiliki oleh komponen mana berdasarkan tempatnya di pohon antarmuka pengguna (UI). Anda dapat mengontrol kapan harus mempertahankan *state* dan kapan harus mengatur ulang di antara *render* ulang (re-*render*).
 
 </Intro>
 
@@ -1253,10 +1253,10 @@ Apapun strategi yang Anda pilih, obrolan *dengan Alice* secara konseptual berbed
 
 <Recap>
 
-- React keeps state for as long as the same component is rendered at the same position.
-- State is not kept in JSX tags. It's associated with the tree position in which you put that JSX.
-- You can force a subtree to reset its state by giving it a different key.
-- Don't nest component definitions, or you'll reset state by accident.
+- React menyimpan *state* selama komponen yang sama di-*render* pada posisi yang sama.
+- State tidak disimpan dalam tag JSX. Hal ini terkait dengan posisi pohon tempat Anda meletakkan JSX tersebut.
+- Anda dapat memaksa subpohon untuk mengatur ulang *state*-nya dengan memberikan *key* yang berbeda.
+- Jangan membuat sarang definisi komponen, atau Anda akan mengatur ulang *state* secara tidak sengaja.
 
 </Recap>
 
@@ -1264,9 +1264,9 @@ Apapun strategi yang Anda pilih, obrolan *dengan Alice* secara konseptual berbed
 
 <Challenges>
 
-#### Fix disappearing input text {/*fix-disappearing-input-text*/}
+#### Memperbaiki teks masukan yang menghilang {/*fix-disappearing-input-text*/}
 
-This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
+Contoh ini menunjukkan pesan apabila Anda menekan tombol. Namun, menekan tombol juga secara tidak sengaja mengatur ulang masukan. Mengapa hal ini bisa terjadi? Perbaiki agar penekanan tombol tidak mengatur ulang teks masukan.
 
 <Sandpack>
 
@@ -1315,9 +1315,9 @@ textarea { display: block; margin: 10px 0; }
 
 <Solution>
 
-The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the state every time the component type changes.
+Masalahnya adalah `Form` di-*render* dalam posisi yang berbeda. Pada cabang `if`, ini adalah anak kedua dari `<div>`, tetapi pada cabang `else`, ini adalah anak pertama. Oleh karena itu, jenis komponen di tiap posisi berubah. Posisi pertama berubah antara menahan `p` dan `Form`, sedangkan posisi kedua berubah antara menahan `Form` dan `tombol`. React mengatur ulang *state* setiap kali tipe komponen berubah.
 
-The easiest solution is to unify the branches so that `Form` always renders in the same position:
+Solusi termudah adalah dengan menyatukan cabang-cabang sehingga `Form` selalu dirender pada posisi yang sama:
 
 <Sandpack>
 
@@ -1363,7 +1363,7 @@ textarea { display: block; margin: 10px 0; }
 </Sandpack>
 
 
-Technically, you could also add `null` before `<Form />` in the `else` branch to match the `if` branch structure:
+Secara teknis, Anda juga dapat menambahkan `null` sebelum `<Form />` pada cabang `else` untuk mencocokkan struktur cabang `if`:
 
 <Sandpack>
 
@@ -1411,19 +1411,19 @@ textarea { display: block; margin: 10px 0; }
 
 </Sandpack>
 
-This way, `Form` is always the second child, so it stays in the same position and keeps its state. But this approach is much less obvious and introduces a risk that someone else will remove that `null`.
+Dengan cara ini, `Form` selalu menjadi anak kedua, sehingga tetap berada di posisi yang sama dan mempertahankan *state*-nya. Tetapi pendekatan ini kurang jelas dan menimbulkan risiko bahwa orang lain akan menghapus `null` tersebut.
 
 </Solution>
 
-#### Swap two form fields {/*swap-two-form-fields*/}
+#### Menukar dua bidang formulir {/*swap-two-form-fields*/}
 
-This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
+Formulir ini memungkinkan Anda memasukkan nama depan dan belakang. Formulir ini juga memiliki *checkbox* yang mengontrol bidang mana yang harus diisi terlebih dahulu. Ketika Anda mencentang *checkbox*, kolom "Last name" akan muncul sebelum kolom "First name".
 
-It almost works, but there is a bug. If you fill in the "First name" input and tick the checkbox, the text will stay in the first input (which is now "Last name"). Fix it so that the input text *also* moves when you reverse the order.
+Ini hampir berhasil, tetapi ada *bug*. Jika Anda mengisi input "First name" dan mencentang *checkbox*, teks akan tetap berada di masukan pertama (yang sekarang menjadi "Last name"). Perbaiki agar teks masukan *juga* berpindah ketika Anda membalikkan urutannya.
 
 <Hint>
 
-It seems like for these fields, their position within the parent is not enough. Is there some way to tell React how to match up the state between re-renders?
+Sepertinya untuk bidang-bidang ini, posisinya di dalam induk tidak cukup. Apakah ada cara untuk memberi tahu React bagaimana cara mencocokkan *state* di antara *render* ulang?
 
 </Hint>
 
@@ -1487,7 +1487,7 @@ label { display: block; margin: 10px 0; }
 
 <Solution>
 
-Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct state for either `<Field>` even if their order within the parent changes:
+Berikan `key` pada kedua komponen `<Field>` di cabang `if` dan `else`. Hal ini memberi tahu React bagaimana cara "mencocokkan" *state* yang benar untuk salah satu `<Field>` meskipun urutannya di dalam induk berubah:
 
 <Sandpack>
 
@@ -1549,11 +1549,11 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-#### Reset a detail form {/*reset-a-detail-form*/}
+#### Mengatur ulang formulir detail {/*reset-a-detail-form*/}
 
-This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
+Ini adalah daftar kontak yang dapat diedit. Anda dapat mengedit detail kontak yang dipilih, lalu tekan "Save" untuk memperbaruinya, atau "Reset" untuk membatalkan perubahan.
 
-When you select a different contact (for example, Alice), the state updates but the form keeps showing the previous contact's details. Fix it so that the form gets reset when the selected contact changes.
+Ketika Anda memilih kontak yang berbeda (misalnya, Alice), *state* akan diperbarui namun formulir tetap menampilkan detail kontak sebelumnya. Perbaiki agar formulir diatur ulang ketika kontak yang dipilih berubah.
 
 <Sandpack>
 
@@ -1705,7 +1705,7 @@ button {
 
 <Solution>
 
-Give `key={selectedId}` to the `EditContact` component. This way, switching between different contacts will reset the form:
+Berikan `key={selectedId}` pada komponen `EditContact`. Dengan cara ini, beralih di antara kontak yang berbeda akan mengatur ulang formulir:
 
 <Sandpack>
 
@@ -1858,13 +1858,13 @@ button {
 
 </Solution>
 
-#### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
+#### Menghapus gambar saat sedang dimuat {/*clear-an-image-while-its-loading*/}
 
-When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
+Ketika Anda menekan "Next", peramban akan mulai memuat gambar berikutnya. Namun, karena ditampilkan dalam tag `<img>` yang sama, secara *default* Anda masih akan melihat gambar sebelumnya sampai gambar berikutnya dimuat. Hal ini mungkin tidak diinginkan jika teks harus selalu sesuai dengan gambar. Ubahlah supaya saat Anda menekan "Next", gambar sebelumnya segera dihapus.
 
 <Hint>
 
-Is there a way to tell React to re-create the DOM instead of reusing it?
+Apakah ada cara untuk memberitahu React untuk membuat ulang DOM daripada menggunakannya kembali?
 
 </Hint>
 
@@ -1934,7 +1934,7 @@ img { width: 150px; height: 150px; }
 
 <Solution>
 
-You can provide a `key` to the `<img>` tag. When that `key` changes, React will re-create the `<img>` DOM node from scratch. This causes a brief flash when each image loads, so it's not something you'd want to do for every image in your app. But it makes sense if you want to ensure the image always matches the text.
+Anda dapat memberikan `key` pada tag `<img>`. Ketika `key` tersebut berubah, React akan membuat ulang simpul DOM `<img>` dari awal. Hal ini menyebabkan kilatan singkat ketika setiap gambar dimuat, jadi ini bukanlah sesuatu yang ingin Anda lakukan untuk setiap gambar dalam aplikasi Anda. Namun, hal ini masuk akal jika Anda ingin memastikan gambar selalu sesuai dengan teks.
 
 <Sandpack>
 
@@ -2002,11 +2002,11 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Memperbaiki *state* yang salah tempat dalam *list* {/*fix-misplaced-state-in-the-list*/}
 
-In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
+Dalam *list* ini, setiap `Kontak` memiliki *state* yang menentukan apakah "Show email" telah ditekan untuknya. Tekan "Show email" untuk Alice, lalu centang *checkbox* "Show in reverse order". Anda akan melihat bahwa email *Taylor* yang sekarang diperluas, tetapi email Alice--yang telah dipindahkan ke bagian bawah--tampak menciut.
 
-Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
+Perbaiki agar *state* yang diperluas dikaitkan dengan setiap kontak, terlepas dari urutan yang dipilih.
 
 <Sandpack>
 
@@ -2096,16 +2096,16 @@ button {
 
 <Solution>
 
-The problem is that this example was using index as a `key`:
+Masalahnya adalah contoh ini menggunakan indeks sebagai `key`:
 
 ```js
 {displayedContacts.map((contact, i) =>
   <li key={i}>
 ```
 
-However, you want the state to be associated with _each particular contact_.
+Namun, Anda ingin *state* dikaitkan dengan *setiap kontak tertentu*.
 
-Using the contact ID as a `key` instead fixes the issue:
+Menggunakan ID kontak sebagai `key` dapat mengatasi masalah ini:
 
 <Sandpack>
 
@@ -2193,7 +2193,7 @@ button {
 
 </Sandpack>
 
-State is associated with the tree position. A `key` lets you specify a named position instead of relying on order.
+*State* dikaitkan dengan posisi pohon. Sebuah `key` memungkinkan Anda menentukan posisi yang diberi nama daripada mengandalkan urutan.
 
 </Solution>
 
