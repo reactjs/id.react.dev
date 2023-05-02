@@ -252,9 +252,9 @@ Jadi, kesimpulannya adalah berikut cara Anda dapat memikirkan apa yang anda oper
 
 Setelah *event handler* selesai, React akan memicu *re-render*. Selama *re-render*, React akan memproses antrean. Fungsi *updater* berjalan selama proses *render*, jadi **fungsi *updater* harus [murni](/learn/keeping-components-pure)** dan hanya mengembalikan hasilnya. Jangan mencoba mengatur *state* dari dalamnya atau menjalankan efek samping lainnya. Dalam *Strict Mode*, React akan menjalankan setiap fungsi *updater* dua kali (tetapi membuang hasil kedua) untuk membantu Anda menemukan kesalahan.
 
-### Naming conventions {/*naming-conventions*/}
+### Konvensi penamaan {/*naming-conventions*/}
 
-It's common to name the updater function argument by the first letters of the corresponding state variable:
+Seringkali nama fungsi *updater* diambil dari huruf pertama variabel *state* yang sesuai:
 
 ```js
 setEnabled(e => !e);
@@ -262,13 +262,13 @@ setLastName(ln => ln.reverse());
 setFriendCount(fc => fc * 2);
 ```
 
-If you prefer more verbose code, another common convention is to repeat the full state variable name, like `setEnabled(enabled => !enabled)`, or to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
+Jika Anda lebih suka kode yang lebih panjang, konvensi umum lainnya adalah mengulangi nama variabel *state* lengkap, seperti `setEnabled(enabled => !enabled)`, atau menggunakan awalan seperti `setEnabled(prevEnabled => !prevEnabled)`.
 
 <Recap>
 
-* Setting state does not change the variable in the existing render, but it requests a new render.
-* React processes state updates after event handlers have finished running. This is called batching.
-* To update some state multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
+* Mengatur *state* tidak mengubah variabel dalam *render* yang sudah ada, tetapi meminta *render* baru.
+* React memproses pembaruan *state* setelah *event handler* selesai berjalan. Ini disebut pengelompokan.
+* untuk memperbarui beberapa *state* beberapa kali dalam satu *event*, Anda dapat menggunakan fungsi *updater* `setNumber(n => n + 1)`.
 
 </Recap>
 
