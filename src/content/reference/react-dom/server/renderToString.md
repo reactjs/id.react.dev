@@ -4,13 +4,13 @@ title: renderToString
 
 <Pitfall>
 
-`renderToString` tidak mendukung streaming atau menunggu data. [Lihat alternatif.](#alternatives)
+`renderToString` tidak mendukung streaming atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`renderToString` me-*render* React *tree* menjadi *string* HTML.
+`renderToString` me-*render* pohon (*tree*) React menjadi *string* HTML.
 
 ```js
 const html = renderToString(reactNode)
@@ -75,7 +75,7 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 <Pitfall>
 
-`renderToString` tidak mendukung streaming atau menunggu data. [Lihat alternatif.](#alternatives)
+`renderToString` tidak mendukung streaming atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Pitfall>
 
