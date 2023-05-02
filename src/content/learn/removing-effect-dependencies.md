@@ -14,7 +14,7 @@ Saat anda menulis sebuah Effect, linter akan memverifikasi bahwa anda telah mema
 - Apa yang harus dilakukan bila anda ingin menghapus dependensi?
 - Cara membaca nilai dari Effect anda tanpa "bereaksi" dengannya?
 - Bagaimana dan mengapa menghindari objek dan fungsi dependensi?
-- Mengapa memadamkan linter dependensi berbahaya, dan alih-alih apa yang harus dilakukan?
+- Mengapa menekan linter dependensi berbahaya, dan alih-alih apa yang harus dilakukan?
 
 </YouWillLearn>
 
@@ -171,24 +171,24 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-### To remove a dependency, prove that it's not a dependency {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
+### Untuk menghapus dependensi, pastikan bahwa itu bukan dependensi {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Notice that you can't "choose" the dependencies of your Effect. Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared in your dependency list. The dependency list is determined by the surrounding code:
+Perhatikan bahwa anda tidak dapat "memilih" dependensi dari Effect anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan ole kode Effect anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
 
-function ChatRoom({ roomId }) { // This is a reactive value
+function ChatRoom({ roomId }) { // Ini adalah nilai reaktif
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // This Effect reads that reactive value
+    const connection = createConnection(serverUrl, roomId); // Effect ini membaca nilai reaktif tersebut
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ So you must specify that reactive value as a dependency of your Effect
+  }, [roomId]); // ✅ Jadi anda harus menentukan nilai reaktif tersebut sebagai dependesi dari Effect anda
   // ...
 }
 ```
 
-[Reactive values](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) include props and all variables and functions declared directly inside of your component. Since `roomId` is a reactive value, you can't remove it from the dependency list. The linter wouldn't allow it:
+[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk props dan semua variable dan fungsi dideklrasaikan langsung di dalam komponen anda. Ketika `roomId` adalah nilai reaktif, anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
 
 ```js {8}
 const serverUrl = 'https://localhost:1234';
@@ -198,30 +198,30 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // 🔴 React Hook useEffect has a missing dependency: 'roomId'
+  }, []); // 🔴 React Hook useEffect memiliki dependensi yang hilang: 'roomId'
   // ...
 }
 ```
 
-And the linter would be right! Since `roomId` may change over time, this would introduce a bug in your code.
+Dan linter akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini akan menimbulkan bug dalam kode anda.
 
-**To remove a dependency, "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your component to prove that it's not reactive and won't change on re-renders:
+**Untuk menghapus dependensi, "buktikan" kepada linter bahwa itu *tidak perlu* menjadi sebuah dependensi.** Misalnya, anda dapat mengeluarkan `roomId` dari komponen  untuk membuktikan bahwa ia tidak reaktif dan tidak akan berubah saat render ulang:
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
-const roomId = 'music'; // Not a reactive value anymore
+const roomId = 'musik'; // Bukan nilai reaktif lagi
 
 function ChatRoom() {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ Semua dependensi dideklarasikan
   // ...
 }
 ```
 
-Now that `roomId` is not a reactive value (and can't change on a re-render), it doesn't need to be a dependency:
+Sekarang `roomId` bukan nilai reaktif (dan tidak berubah dalam render ulang), ia tidak perlu menjadi sebuah dependensi:
 
 <Sandpack>
 
@@ -230,7 +230,7 @@ import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 const serverUrl = 'https://localhost:1234';
-const roomId = 'music';
+const roomId = 'musik';
 
 export default function ChatRoom() {
   useEffect(() => {
@@ -238,13 +238,13 @@ export default function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi nyata sebenarnya akan terhubung ke server
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -263,43 +263,44 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This is why you could now specify an [empty (`[]`) dependency list.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Your Effect *really doesn't* depend on any reactive value anymore, so it *really doesn't* need to re-run when any of the component's props or state change.
+Inilah mengapa anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Effect anda *benar-benar tidak* bergantung pada nilai reaktif lagi, jadi itu *benar-benar tidak* dijalankan ulang ketika salah satu props atau state komponen berubah.
 
-### To change the dependencies, change the code {/*to-change-the-dependencies-change-the-code*/}
+### Untuk mengubah dependensi, ubah kodenya {/*to-change-the-dependencies-change-the-code*/}
 
-You might have noticed a pattern in your workflow:
+Anda mungkin memperhatikan pola dalam alur kerja anda:
 
-1. First, you **change the code** of your Effect or how your reactive values are declared.
-2. Then, you follow the linter and adjust the dependencies to **match the code you have changed.**
-3. If you're not happy with the list of dependencies, you **go back to the first step** (and change the code again).
+1. Pertama, anda **mengubah kode** kode Effect anda atau bagaimana nilai reaktif anda dideklarasikan.
+2. Kemudian, anda mengikuti linter dan menyesuaikan dependensi agar **sesuai dengan kode yang anda ubah.**
+3. Jika kamu tidak puas dengan daftar dependensi, anda **kembali ke langkah pertama** (dan mengubah kodenya kembali).
 
-The last part is important. **If you want to change the dependencies, change the surrounding code first.** You can think of the dependency list as [a list of all the reactive values used by your Effect's code.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) You don't *choose* what to put on that list. The list *describes* your code. To change the dependency list, change the code.
+Bagian terakhir ini penting. **Jika anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode Effect anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode anda. Untuk mengubah daftar dependensi, ubah kodenya.
 
-This might feel like solving an equation. You might start with a goal (for example, to remove a dependency), and you need to "find" the code matching that goal. Not everyone finds solving equations fun, and the same thing could be said about writing Effects! Luckily, there is a list of common recipes that you can try below.
+Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan tujuan (misalnya, untuk menghapus dependensi), dan anda perlu "menemukan" kode yang sesuai dengan tujuan tersebut. Tidak semua orang menganggap memecahkan persamaan itu menyenangkan, dan hal yang sama bisa dikatakan tentang menulis Effect! Untungnya, ada daftar dari cara umum yang bisa anda coba di bawah ini.
 
 <Pitfall>
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+Jika anda memiliki basis kode yang sudah ada, anda mungkin memiliki beberapa Effect yang menekan linter seperti ini:
 
 ```js {3-4}
 useEffect(() => {
   // ...
-  // 🔴 Avoid suppressing the linter like this:
+  // 🔴 Hindari menekan linter seperti ini:
   // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
 
-**When dependencies don't match the code, there is a very high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on.
+**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan linter, anda "bohong" kepada React tentang nilai yang bergantung pada Effect anda.
 
-Instead, use the techniques below.
+Sebagai gantinya, gunakan teknik di bawah ini.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is suppressing the dependency linter so dangerous? {/*why-is-suppressing-the-dependency-linter-so-dangerous*/}
+#### Mengapa menekan linter dependensi sangat berbahaya? {/*why-is-suppressing-the-dependency-linter-so-dangerous*/}
 
-Suppressing the linter leads to very unintuitive bugs that are hard to find and fix. Here's one example:
+
+Menekan linter menyebabkan bug yang sangat tidak intuitif yang sulit ditemukan dan diperbaiki. Berikut salah satu contohnya:
 
 <Sandpack>
 
@@ -323,12 +324,12 @@ export default function Timer() {
   return (
     <>
       <h1>
-        Counter: {count}
+        Pencacah: {count}
         <button onClick={() => setCount(0)}>Reset</button>
       </h1>
       <hr />
       <p>
-        Every second, increment by:
+        Setiap detik, kenaikan sebesar:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -348,13 +349,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Let's say that you wanted to run the Effect "only on mount". You've read that [empty (`[]`) dependencies](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) do that, so you've decided to ignore the linter, and forcefully specified `[]` as the dependencies.
+Katakanlah anda ingin menjalankan Effect "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi anda memutuskan untuk mengabaikan linter, dan dengan paksa menentukan `[]` sebagai dependensi.
 
-This counter was supposed to increment every second by the amount configurable with the two buttons. However, since you "lied" to React that this Effect doesn't depend on anything, React forever keeps using the `onTick` function from the initial render. [During that render,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` was `0` and `increment` was `1`. This is why `onTick` from that render always calls `setCount(0 + 1)` every second, and you always see `1`. Bugs like this are harder to fix when they're spread across multiple components.
+Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena anda "berbohong" kepada React bahwa Effect ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
 
-There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
+Selalu ada solusi yang lebih baik daripada mengabaikan linter! Untuk memperbaiki kode ini, anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
-**We recommend treating the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
+**Sebaiknya perlakukan eror lint dependensi sebagai eror kompilasi. Jika anda tidak menekannya, anda tidak akan pernah melihat eror seperti ini.** Sisa dari halaman ini mendokumentasikan untuk kasus ini dan kasus lainnya.
 
 </DeepDive>
 
