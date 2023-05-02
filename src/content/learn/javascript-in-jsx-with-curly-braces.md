@@ -1,25 +1,25 @@
 ---
-title: JavaScript in JSX with Curly Braces
+title: JavaScript di JSX menggunakan Curly Braces
 ---
 
 <Intro>
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
+JSX memungkinkan Anda menulis markup mirip HTML di dalam file JavaScript, sehingga membuat logika rendering dan konten berada pada satu tempat yang sama. Terkadang Anda akan ingin menambahkan sedikit logika JavaScript atau merujuk pada properti yang dinamis di dalam markup tersebut. Dalam situasi ini, Anda dapat menggunakan tanda kurung kurawal pada JSX untuk membuka akses ke JavaScript.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass strings with quotes
-* How to reference a JavaScript variable inside JSX with curly braces
-* How to call a JavaScript function inside JSX with curly braces
-* How to use a JavaScript object inside JSX with curly braces
+* Bagaimana cara untuk oper *strings* dengan tanda kutip
+* Bagaimana cara mereferensikan variabel didalam JSX dengan kurung kurawal
+* Bagaimana cara memanggil fungsi Javascript didalam JSX dengan kurung kurawal
+* Bagaimana cara menggunakan objek Javascript didalam JSX dengan kurung kurawal
 
 </YouWillLearn>
 
-## Passing strings with quotes {/*passing-strings-with-quotes*/}
+## Mengoper *strings* dengan tanda kutip {/*passing-strings-with-quotes*/}
 
-When you want to pass a string attribute to JSX, you put it in single or double quotes:
+Ketika Anda ingin oper atribut *string* ke JSX, Anda memasukkannya ke dalam tanda kutip tunggal atau ganda:
 
 <Sandpack>
 
@@ -41,9 +41,10 @@ export default function Avatar() {
 
 </Sandpack>
 
-Here, `"https://i.imgur.com/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
+Disini, `"https://i.imgur.com/7vQD0fPs.jpg"` dan `"Gregorio Y. Zara"` sedang dioper sebagai *strings*.
 
-But what if you want to dynamically specify the `src` or `alt` text? You could **use a value from JavaScript by replacing `"` and `"` with `{` and `}`**:
+Namun bagaimana jika Anda ingin secara dinamis menentukan teks `src` atau `alt? Anda dapat **menggunakan nilai dari JavaScript dengan mengganti `"` dan `"` dengan `{` dan `}`**:
+
 
 <Sandpack>
 
@@ -67,11 +68,11 @@ export default function Avatar() {
 
 </Sandpack>
 
-Notice the difference between `className="avatar"`, which specifies an `"avatar"` CSS class name that makes the image round, and `src={avatar}` that reads the value of the JavaScript variable called `avatar`. That's because curly braces let you work with JavaScript right there in your markup!
+Perhatikan perbedaan antara `className="avatar"`, yang menentukan nama kelas CSS `"avatar"` yang membuat gambar bulat, dan `src={avatar}` yang membaca nilai variabel JavaScript disebut `avatar`. Hal itu terjadi karena kurung kurawal memungkinkan Anda bekerja dengan JavaScript langsung di markup Anda!
 
-## Using curly braces: A window into the JavaScript world {/*using-curly-braces-a-window-into-the-javascript-world*/}
+## Menggunakan kurung kurawal: Jendela ke dunia JavaScript {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
-JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces `{ }`. The example below first declares a name for the scientist, `name`, then embeds it with curly braces inside the `<h1>`:
+JSX merupakan cara khusus dalam menulis JavaScript. Artinya, memungkinkan untuk menggunakan JavaScript di dalamnya - dengan kurung kurawal `{ }`. Contohnya di bawah ini pertama-tama mendeklarasikan sebuah nama untuk ilmuwan, `name`, kemudian menyematkannya dengan kurung kurawal di dalam `<h1>`:
 
 <Sandpack>
 
@@ -86,7 +87,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?
+Coba ubah nilai `name` dari `'Gregorio Y. Zara'` menjadi `'Hedy Lamarr'`. Lihat bagaimana judul daftar berubah?
 
 Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
 
