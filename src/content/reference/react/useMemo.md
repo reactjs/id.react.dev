@@ -1101,9 +1101,9 @@ Sekarang perhitungan Anda bergantung dengan `text` secara langsung (yang merupak
 
 ---
 
-### Memoizing a function {/*memoizing-a-function*/}
+### Memoisasi sebuah fungsi {/*memoizing-a-function*/}
 
-Suppose the `Form` component is wrapped in [`memo`.](/reference/react/memo) You want to pass a function to it as a prop:
+Misalkan komponen `Form` dibungkus dengan [`memo`.](/reference/react/memo) Anda ingin meneruskan fungsi sebagai *prop* dari komponen tersebut:
 
 ```js {2-7}
 export default function ProductPage({ productId, referrer }) {
@@ -1118,9 +1118,10 @@ export default function ProductPage({ productId, referrer }) {
 }
 ```
 
-Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, presumably you want to skip re-rendering it when no props have changed. A prop that is *always* different would defeat the point of memoization.
+Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi, 
+Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, dengan asumsi Anda ingin melewati *rendering* ulang ketika tidak ada *prop* yang berubah. Sebuah *prop* yang *selalu* berbeda akan menggagalkan poin memoisasipresumably you want to skip re-rendering it when no props have changed.
 
-To memoize a function with `useMemo`, your calculation function would have to return another function:
+Untuk memoisasi fungsi dengan `useMemo`, fungsi perhitungan Anda harus mengembalikan fungsi lain:
 
 ```js {2-3,8-9}
 export default function Page({ productId, referrer }) {
@@ -1137,7 +1138,7 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-This looks clunky! **Memoizing functions is common enough that React has a built-in Hook specifically for that. Wrap your functions into [`useCallback`](/reference/react/useCallback) instead of `useMemo`** to avoid having to write an extra nested function:
+Ini terlihat kikuk! **Fungsi memoisasi cukup umum sehingga React memiliki Hook bawaan khusus untuk itu. Bungkus fungsi Anda ke dalam [`useCallback`](/reference/react/useCallback) alih-alih `useMemo`** untuk menghindari keharusan menulis *nested function* tambahan:
 
 ```js {2,7}
 export default function Page({ productId, referrer }) {
@@ -1152,7 +1153,7 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-The two examples above are completely equivalent. The only benefit to `useCallback` is that it lets you avoid writing an extra nested function inside. It doesn't do anything else. [Read more about `useCallback`.](/reference/react/useCallback)
+Dua contoh di atas sepenuhnya setara. Satu-satunya manfaat `useCallback` adalah memungkinkan Anda menghindari penulisan *nested function* tambahan di dalamnya, tidak melakukan hal lain. [Baca selengkapnya tentang `useCallback`.](/reference/react/useCallback)
 
 ---
 
