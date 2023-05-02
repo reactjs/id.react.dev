@@ -301,7 +301,7 @@ label {
 
 #### Selalu hitung ulang suatu nilai {/*always-recalculating-a-value*/}
 
-Pada contoh ini, implementasi `filterTodos` juga **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika beberapa fungsi JavaScript yang Anda panggil ketika *rendering* sangat lambat. Coba ganti *tab* dan ubah temanya.
+Pada contoh ini, implementasi `filterTodos` juga **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika beberapa fungsi JavaScript yang Anda panggil ketika pe-*render*-an sangat lambat. Coba ganti *tab* dan ubah temanya.
 
 Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat! Hal ini karena **tidak adanya pemanggilan `useMemo` di versi ini**, sehingga `filterTodos` yang dilambatkan secara artifisial terpanggil tiap *render* ulang. Ini akan dipanggil walaupun hanya `theme` yang berubah.
 
@@ -540,7 +540,7 @@ label {
 
 Seringnya, kode tanpa memoisasi berjalan dengan baik. Jika interaksi Anda cukup cepat, Anda mungkin tidak membutuhkan memoisasi.
 
-Anda dapat menambahkan jumlah *item* todo pada `utils.js` dan lihat bagaimana perilaku berubah. Perhitungan ini awalnya memang tidak terlalu mahal, namun jika jumlah todo bertambah secara signifikan, sebagian besar biaya akan terletak pada *rendering* ulang daripada *filtering*. Baca terus di bawah untuk melihat bagaimana Anda dapat mengoptimalkan *rendering* ulang dengan `useMemo`.
+Anda dapat menambahkan jumlah *item* todo pada `utils.js` dan lihat bagaimana perilaku berubah. Perhitungan ini awalnya memang tidak terlalu mahal, namun jika jumlah todo bertambah secara signifikan, sebagian besar biaya akan terletak pada pe-*render*-an ulang daripada *filtering*. Baca terus di bawah untuk melihat bagaimana Anda dapat mengoptimalkan pe-*render*-an ulang dengan `useMemo`.
 
 <Solution />
 
@@ -548,9 +548,9 @@ Anda dapat menambahkan jumlah *item* todo pada `utils.js` dan lihat bagaimana pe
 
 ---
 
-### Melewati *rendering* ulang pada komponen {/*skipping-re-rendering-of-components*/}
+### Melewati pe-*render*-an ulang pada komponen {/*skipping-re-rendering-of-components*/}
 
-Dalam beberapa kasus, `useMemo` juga dapat membantu Anda mengoptimalkan kinerja komponen *child* dalam *rendering* ulang. Untuk menggambarkan ini, anggap komponen `TodoList` memberikan `visibleTodos` sebagai *prop* kepada komponen *child* `List`:
+Dalam beberapa kasus, `useMemo` juga dapat membantu Anda mengoptimalkan kinerja komponen *child* dalam pe-*render*-an ulang. Untuk menggambarkan ini, anggap komponen `TodoList` memberikan `visibleTodos` sebagai *prop* kepada komponen *child* `List`:
 
 ```js {5}
 export default function TodoList({ todos, tab, theme }) {
@@ -565,7 +565,7 @@ export default function TodoList({ todos, tab, theme }) {
 
 Anda telah memerhatikan bahwa mengubah *prop* `theme` membekukan aplikasi sesaat, tetapi jika Anda menghapus `<List />` dari JSX anda, rasanya jadi cepat. Hal ini memberitahu Anda bahwa ada baiknya untuk mencoba mengoptimalkan komponen `List`.
 
-**Secara bawaan, ketika komponen me*render* ulang, React akan me*render* semua *children*-nya secara berulang** Inilah sebabnya, ketika `TodoList` me*render* ulang dengan `theme` yang berbeda, komponen `List` *juga* me*render* ulang. Hal ini bagus untuk komponen yang tidak memerlukan banyak perhitungan untuk *render* ulang. Namun jika anda telah memeriksa bahwa *render* ulang berjalan lambat, Anda dapat memberi tahu `List` untuk melewatkan *rendering* ulang jika *props*-nya sama seperti *render* sebelumnya dengan membungkusnya dalam [`memo`:](/reference/react/memo)
+**Secara bawaan, ketika komponen me*render* ulang, React akan me*render* semua *children*-nya secara berulang** Inilah sebabnya, ketika `TodoList` me*render* ulang dengan `theme` yang berbeda, komponen `List` *juga* me*render* ulang. Hal ini bagus untuk komponen yang tidak memerlukan banyak perhitungan untuk *render* ulang. Namun jika anda telah memeriksa bahwa *render* ulang berjalan lambat, Anda dapat memberi tahu `List` untuk melewatkan pe-*render*-an ulang jika *props*-nya sama seperti *render* sebelumnya dengan membungkusnya dalam [`memo`:](/reference/react/memo)
 
 ```js {3,5}
 import { memo } from 'react';
@@ -575,7 +575,7 @@ const List = memo(function List({ items }) {
 });
 ```
 
-**Dengan perubahan ini, `List` akan melewati *rendering* ulang jika seluruh *props*-nya *sama* dengan *render* terakhir.** Disinilah meng-*cache* perhitungan menjadi penting! Bayangkan Anda menghitung `visibleTodos` tanpa `useMemo`:
+**Dengan perubahan ini, `List` akan melewati pe-*render*-an ulang jika seluruh *props*-nya *sama* dengan *render* terakhir.** Disinilah meng-*cache* perhitungan menjadi penting! Bayangkan Anda menghitung `visibleTodos` tanpa `useMemo`:
 
 ```js {2-3,6-7}
 export default function TodoList({ todos, tab, theme }) {
@@ -609,7 +609,7 @@ export default function TodoList({ todos, tab, theme }) {
 ```
 
 
-**Dengan membungkus perhitungan `visibleTodos` pada `useMemo`, Anda pastikan bahwa itu mempunyai nilai yang *sama* di antara *render* ulang** (sampai *dependency* berubah). Kamu tidak *perlu* untuk membungkus perhitungan dalam `useMemo` kecuali Anda melakukan itu untuk alasan yang spesifik. Pada contoh ini, alasannya adalah Anda memberikannya ke komponen yang dibungkus dengan [`memo`,](/reference/react/memo) dan ini memungkinkannya melewatkan *rendering* ulang. Terdapat alasan-alasan lain untuk menambahkan `useMemo` yang dijelaskan lebih lanjut pada halaman ini.
+**Dengan membungkus perhitungan `visibleTodos` pada `useMemo`, Anda pastikan bahwa itu mempunyai nilai yang *sama* di antara *render* ulang** (sampai *dependency* berubah). Kamu tidak *perlu* untuk membungkus perhitungan dalam `useMemo` kecuali Anda melakukan itu untuk alasan yang spesifik. Pada contoh ini, alasannya adalah Anda memberikannya ke komponen yang dibungkus dengan [`memo`,](/reference/react/memo) dan ini memungkinkannya melewatkan pe-*render*-an ulang. Terdapat alasan-alasan lain untuk menambahkan `useMemo` yang dijelaskan lebih lanjut pada halaman ini.
 
 <DeepDive>
 
@@ -641,13 +641,13 @@ Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya,
 
 <Recipes titleText="Perbedaan antara melewati render ulang dan selalu rendering ulang" titleId="examples-rerendering">
 
-#### Melewati *rendering* ulang dengan `useMemo` dan `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
+#### Melewati pe-*render*-an ulang dengan `useMemo` dan `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
 
 Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
 Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar. 
 
-Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** *Rendering* ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
+Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** Pe-*render*-an ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
 <Sandpack>
 
 ```js App.js
@@ -784,11 +784,11 @@ label {
 
 <Solution />
 
-#### Selalu lakukan *rendering* ulang pada komponen {/*always-re-rendering-a-component*/}
+#### Selalu lakukan pe-*render*-an ulang pada komponen {/*always-re-rendering-a-component*/}
 
 Pada contoh ini, implementasi `List` juga **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika beberapa komponen React yang Anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
-Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat sekarang! Hal ini karena **tidak adanya pemanggilan *useMemo* pada versi ini,** sehingga senarai (*array*) `visibleTodos` selalu berbeda, dan *rendering* ulang untuk komponen `List` yang diperlambat tidak dapat dilewati.
+Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat sekarang! Hal ini karena **tidak adanya pemanggilan *useMemo* pada versi ini,** sehingga senarai (*array*) `visibleTodos` selalu berbeda, dan pe-*render*-an ulang untuk komponen `List` yang diperlambat tidak dapat dilewati.
 
 <Sandpack>
 
@@ -1119,7 +1119,7 @@ export default function ProductPage({ productId, referrer }) {
 ```
 
 Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi, 
-Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, dengan asumsi Anda ingin melewati *rendering* ulang ketika tidak ada *prop* yang berubah. Sebuah *prop* yang *selalu* berbeda akan menggagalkan poin memoisasipresumably you want to skip re-rendering it when no props have changed.
+Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, dengan asumsi Anda ingin melewati pe-*render*-an ulang ketika tidak ada *prop* yang berubah. Sebuah *prop* yang *selalu* berbeda akan menggagalkan poin memoisasipresumably you want to skip re-rendering it when no props have changed.
 
 Untuk memoisasi fungsi dengan `useMemo`, fungsi perhitungan Anda harus mengembalikan fungsi lain:
 
