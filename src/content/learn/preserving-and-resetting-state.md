@@ -755,9 +755,9 @@ Setiap kali Anda mengklik tombol, *state* masukan akan menghilang! Hal ini diseb
 
 </Pitfall>
 
-## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
+## Mengatur ulang *state* pada posisi yang sama {/*resetting-state-at-the-same-position*/}
 
-By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
+Secara *default*, React mempertahankan *state* dari sebuah komponen ketika komponen tersebut berada pada posisi yang sama. Biasanya, ini adalah hal yang Anda inginkan, sehingga masuk akal jika ini menjadi perilaku *default*. Namun terkadang, Anda mungkin ingin mengatur ulang *state* sebuah komponen. Pertimbangkan aplikasi ini yang memungkinkan dua pemain melacak skor mereka selama setiap giliran:
 
 <Sandpack>
 
@@ -827,19 +827,19 @@ h1 {
 
 </Sandpack>
 
-Currently, when you change the player, the score is preserved. The two `Counter`s appear in the same position, so React sees them as *the same* `Counter` whose `person` prop has changed.
+Saat ini, ketika Anda mengganti pemain, skor tetap dipertahankan. Kedua `Counter` muncul di posisi yang sama, sehingga React melihat mereka sebagai `Counter` yang *sama* yang mana props `person` telah berubah.
 
-But conceptually, in this app they should be two separate counters. They might appear in the same place in the UI, but one is a counter for Taylor, and another is a counter for Sarah.
+Namun secara konseptual, dalam aplikasi ini mereka seharusnya menjadi dua penghitung yang terpisah. Mereka mungkin muncul di tempat yang sama di UI, tetapi yang satu adalah penghitung untuk Taylor, dan yang lainnya adalah penghitung untuk Sarah.
 
-There are two ways to reset state when switching between them:
+Ada dua opsi untuk mengatur ulang *state* ketika beralih di antara keduanya:
 
-1. Render components in different positions
-2. Give each component an explicit identity with `key`
+1. Merender komponen dalam posisi yang berbeda
+2. Berikan setiap komponen identitas eksplisit dengan `key`
 
 
-### Option 1: Rendering a component in different positions {/*option-1-rendering-a-component-in-different-positions*/}
+### Opsi 1: Me-*render* komponen pada posisi yang berbeda {/*option-1-rendering-a-component-in-different-positions*/}
 
-If you want these two `Counter`s to be independent, you can render them in two different positions:
+Jika Anda ingin kedua `Counter` ini independen, Anda dapat membuat mereka dalam dua posisi yang berbeda:
 
 <Sandpack>
 
@@ -910,42 +910,42 @@ h1 {
 
 </Sandpack>
 
-* Initially, `isPlayerA` is `true`. So the first position contains `Counter` state, and the second one is empty.
-* When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
+* Awalnya, `isPlayerA` adalah `true`. Jadi posisi pertama berisi *state* `Counter`, dan posisi kedua kosong.
+* Ketika Anda mengklik tombol "Next player", posisi pertama akan hilang, namun posisi kedua sekarang berisi `Counter`.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
 
-Initial state
+*State* awal
 
 </Diagram>
 
 <Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
 
-Clicking "next"
+Mengklik "next"
 
 </Diagram>
 
 <Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
 
-Clicking "next" again
+Mengklik "next" lagi
 
 </Diagram>
 
 </DiagramGroup>
 
-Each `Counter`'s state gets destroyed each time its removed from the DOM. This is why they reset every time you click the button.
+Setiap *state* `Counter` akan dihancurkan setiap kali dihapus dari DOM. Inilah sebabnya mengapa mereka mengatur ulang setiap kali Anda mengklik tombol.
 
-This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
+Solusi ini nyaman ketika Anda hanya memiliki beberapa komponen independen yang di-*render* di tempat yang sama. Dalam contoh ini, Anda hanya memiliki dua komponen, sehingga tidak merepotkan untuk me-*render* keduanya secara terpisah di JSX.
 
-### Option 2: Resetting state with a key {/*option-2-resetting-state-with-a-key*/}
+### Opsi 2: Mengatur ulang *state* dengan *key* {/*option-2-resetting-state-with-a-key*/}
 
-There is also another, more generic, way to reset a component's state.
+Ada juga cara lain yang lebih umum untuk mengatur ulang *state* komponen.
 
-You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+Anda mungkin pernah melihat `key` ketika [merender *list*.](/learn/rendering-lists#keeping-list-items-in-order-with-key) *Key* tidak hanya untuk *list*! Anda dapat menggunakan *key* untuk membuat React membedakan antar komponen. Secara *default*, React menggunakan urutan di dalam induk ("penghitung pertama", "penghitung kedua") untuk membedakan antar komponen. Tetapi dengan *key*, Anda dapat memberi tahu React bahwa ini bukan hanya penghitung *pertama*, atau penghitung *kedua*, tetapi penghitung yang spesifik--sebagai contoh, penghitung *Taylor*. Dengan cara ini, React akan mengetahui penghitung *Taylor* di mana pun dia muncul di dalam pohon!
 
-In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
+Pada contoh ini, kedua `<Counter />` tidak berbagi *state* meskipun keduanya muncul di tempat yang sama di JSX:
 
 <Sandpack>
 
@@ -1015,7 +1015,7 @@ h1 {
 
 </Sandpack>
 
-Switching between Taylor and Sarah does not preserve the state. This is because **you gave them different `key`s:**
+Beralih antara Taylor dan Sarah tidak akan mempertahankan *state*. Ini karena **Anda memberi mereka `key` yang berbeda:**
 
 ```js
 {isPlayerA ? (
@@ -1025,19 +1025,19 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 )}
 ```
 
-Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, React sees them as two different counters, and so they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
+Menentukan sebuah `key` memberitahu React untuk menggunakan `key` itu sendiri sebagai bagian dari posisi, bukan urutan mereka di dalam induk. Inilah sebabnya, meskipun Anda me-*render* mereka di tempat yang sama di JSX, React melihat mereka sebagai dua penghitung yang berbeda, sehingga mereka tidak akan pernah berbagi *state*. Setiap kali penghitung muncul di layar, *state*-nya dibuat. Setiap kali dihapus, *state*-nya akan dihancurkan. Mengalihkan di antara keduanya akan mengatur ulang *state* mereka berulang kali.
 
 <Note>
 
-Remember that keys are not globally unique. They only specify the position *within the parent*.
+Ingatlah bahwa *key* tidak unik secara global. Mereka hanya menentukan posisi *dalam induk*.
 
 </Note>
 
-### Resetting a form with a key {/*resetting-a-form-with-a-key*/}
+### Mengatur ulang formulir dengan tombol {/*resetting-a-form-with-a-key*/}
 
-Resetting state with a key is particularly useful when dealing with forms.
+Mengatur ulang *state* dengan tombol sangat berguna terutama ketika berurusan dengan formulir.
 
-In this chat app, the `<Chat>` component contains the text input state:
+Dalam aplikasi obrolan ini, komponen `<Chat>` berisi *state* masukan teks:
 
 <Sandpack>
 
@@ -1132,17 +1132,17 @@ textarea {
 
 </Sandpack>
 
-Try entering something into the input, and then press "Alice" or "Bob" to choose a different recipient. You will notice that the input state is preserved because the `<Chat>` is rendered at the same position in the tree.
+Coba masukkan sesuatu ke dalam input, lalu tekan "Alice" atau "Bob" untuk memilih penerima yang berbeda. Anda akan melihat bahwa *state* masukan dipertahankan karena `<Chat>` di-*render* pada posisi yang sama di pohon.
 
-**In many apps, this may be the desired behavior, but not in a chat app!** You don't want to let the user send a message they already typed to a wrong person due to an accidental click. To fix it, add a `key`:
+**Di banyak aplikasi, ini mungkin merupakan perilaku yang diinginkan, tetapi tidak di aplikasi obrolan!** Anda tidak ingin membiarkan pengguna mengirim pesan yang telah mereka ketik ke orang yang salah karena klik yang tidak disengaja. Untuk memperbaikinya, tambahkan `key`:
 
 ```js
 <Chat key={to.id} contact={to} />
 ```
 
-This ensures that when you select a different recipient, the `Chat` component will be recreated from scratch, including any state in the tree below it. React will also re-create the DOM elements instead of reusing them.
+Hal ini memastikan bahwa ketika Anda memilih penerima yang berbeda, komponen `Chat` akan dibuat ulang dari awal, termasuk *state* apa pun di dalam pohon di bawahnya. React juga akan membuat ulang elemen DOM daripada menggunakannya kembali.
 
-Now switching the recipient always clears the text field:
+Sekarang, mengganti penerima selalu mengosongkan bidang teks:
 
 <Sandpack>
 
@@ -1239,15 +1239,15 @@ textarea {
 
 <DeepDive>
 
-#### Preserving state for removed components {/*preserving-state-for-removed-components*/}
+#### Mempertahankan *state* untuk komponen yang dilepas {/*preserving-state-for-removed-components*/}
 
-In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
+Dalam aplikasi obrolan yang sebenarnya, Anda mungkin ingin memulihkan *state* masukan ketika pengguna memilih penerima sebelumnya lagi. Ada beberapa cara untuk menjaga *state* "hidup" untuk komponen yang tidak lagi terlihat:
 
-- You could render _all_ chats instead of just the current one, but hide all the others with CSS. The chats would not get removed from the tree, so their local state would be preserved. This solution works great for simple UIs. But it can get very slow if the hidden trees are large and contain a lot of DOM nodes.
-- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
-- You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
+- Anda dapat merender *semua* obrolan, bukan hanya obrolan yang sedang berlangsung, tetapi menyembunyikan semua obrolan lainnya dengan CSS. Obrolan tidak akan dihapus dari pohon, sehingga *state* lokalnya akan dipertahankan. Solusi ini bekerja dengan baik untuk UI yang sederhana. Tetapi ini bisa menjadi sangat lambat jika pohon yang disembunyikan berukuran besar dan berisi banyak simpul DOM.
+- Anda dapat [mengangkat *state*](/learn/sharing-state-between-components) dan menyimpan pesan yang tertunda untuk setiap penerima di komponen induk. Dengan cara ini, ketika komponen anak dihapus, tidak menjadi masalah, karena induklah yang menyimpan informasi penting. Ini adalah solusi yang paling umum.
+- Anda juga dapat menggunakan sumber yang berbeda selain *state* React. Sebagai contoh, Anda mungkin ingin draf pesan tetap ada meskipun pengguna tidak sengaja menutup halaman. Untuk mengimplementasikan hal ini, Anda dapat membuat komponen `Chat` menginisialisasi *state*-nya dengan membaca dari [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), dan menyimpan draft di sana juga.
 
-No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
+Apapun strategi yang Anda pilih, obrolan *dengan Alice* secara konseptual berbeda dengan obrolan *dengan Bob*, sehingga masuk akal untuk memberikan `key` pada pohon `<Chat>` berdasarkan penerima saat ini.
 
 </DeepDive>
 
