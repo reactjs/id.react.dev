@@ -89,7 +89,7 @@ export default function TodoList() {
 
 Coba ubah nilai `name` dari `'Gregorio Y. Zara'` menjadi `'Hedy Lamarr'`. Lihat bagaimana judul daftar berubah?
 
-Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
+Setiap ekspresi JavaScript akan berfungsi di antara kurung kurawal, termasuk fungsi seperti  `formatDate()`:
 
 <Sandpack>
 
@@ -112,18 +112,18 @@ export default function TodoList() {
 
 </Sandpack>
 
-### Where to use curly braces {/*where-to-use-curly-braces*/}
+### Dimana menggunakan kurung kurawal? {/*where-to-use-curly-braces*/}
 
-You can only use curly braces in two ways inside JSX:
+Anda hanya dapat menggunakan kurung keriting (curly braces) dalam dua cara di dalam JSX:
 
-1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
-2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
+1. **Sebagai teks** langsung di dalam tag JSX: `<h1>Daftar Tugas {name}</h1>` berfungsi, tetapi `<{tag}>Daftar Tugas Gregorio Y. Zara</{tag}>` tidak akan berhasil.
+2. **Sebagai atribut** yang segera mengikuti tanda dengan `=`: `src={avatar}` akan membaca variabel `avatar`, tetapi `src="{avatar}"` akan mengoper string `"{avatar}"`.
 
-## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
+## Menggunakan "kurung kurawal ganda": CSS dan objek lain di JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
-In addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like `{ name: "Hedy Lamarr", inventions: 5 }`. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
+Selain string, angka, dan ekspresi JavaScript lainnya, Anda bahkan dapat oper objek dalam JSX. Objek juga ditandai dengan kurung kurawal, seperti `{ name: "Hedy Lamarr", inventions: 5 }`. Oleh karena itu, untuk oper objek JavaScript di JSX, Anda harus membungkus objek tersebut dalam sepasang kurung kurawal lainnya: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
 
-You may see this with inline CSS styles in JSX. React does not require you to use inline styles (CSS classes work great for most cases). But when you need an inline style, you pass an object to the `style` attribute:
+Anda mungkin melihat ini pada gaya CSS *inline* dalam JSX. React tidak mengharuskan Anda untuk menggunakan gaya *inline* (kelas CSS berfungsi lebih baik untuk kebanyakan kasus). Namun, ketika Anda membutuhkan gaya *inline*, Anda dapat oper objek ke atribut `style`:
 
 <Sandpack>
 
@@ -149,9 +149,10 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 </Sandpack>
 
-Try changing the values of `backgroundColor` and `color`.
+Coba ubah nilai dari `backgroundColor` dan `color`.
 
-You can really see the JavaScript object inside the curly braces when you write it like this:
+Anda dapat melihat objek JavaScript di dalam kurung kurawal dengan jelas ketika Anda menulisnya seperti ini:
+
 
 ```js {2-5}
 <ul style={
@@ -162,17 +163,18 @@ You can really see the JavaScript object inside the curly braces when you write 
 }>
 ```
 
-The next time you see `{{` and `}}` in JSX, know that it's nothing more than an object inside the JSX curlies!
+Ketika Anda melihat `{{` dan `}}` di dalam JSX, Anda akan tahu bahwa itu tidak lebih dari objek di dalam kurung kurawal JSX!
+
 
 <Pitfall>
 
-Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
+Properti `style` dalam bentuk *inline* ditulis menggunakan gaya *camelCase* di dalam JSX. Sebagai contoh, jika pada HTML Anda menuliskan `<ul style="background-color: black">`, maka pada komponen React Anda harus menulisnya sebagai `<ul style={{ backgroundColor: 'black' }}>`.
 
 </Pitfall>
 
-## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}
+## Lebih banyak kesenangan dengan objek JavaScript dan kurung kurawal {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
-You can move several expressions into one object, and reference them in your JSX inside curly braces:
+Anda dapat memasukkan beberapa ekspresi ke dalam satu objek, dan merujuk pada objek tersebut di dalam JSX menggunakan kurung kurawal. Sebagai contoh:
 
 <Sandpack>
 
@@ -212,7 +214,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-In this example, the `person` JavaScript object contains a `name` string and a `theme` object:
+Pada contoh ini, objek JavaScript `person` berisi sebuah string `name` dan sebuah objek `theme`:
 
 ```js
 const person = {
@@ -224,23 +226,24 @@ const person = {
 };
 ```
 
-The component can use these values from `person` like so:
+Komponen dapat menggunakan nilai-nilai dari objek `person` seperti ini:
+
 
 ```js
 <div style={person.theme}>
   <h1>{person.name}'s Todos</h1>
 ```
 
-JSX is very minimal as a templating language because it lets you organize data and logic using JavaScript.
+JSX sangat sederhana sebagai bahasa templating karena memungkinkan Anda untuk mengorganisir data dan logika menggunakan JavaScript.
 
 <Recap>
 
-Now you know almost everything about JSX:
+Sekarang Anda hampir tahu segalanya tentang JSX:
 
-* JSX attributes inside quotes are passed as strings.
-* Curly braces let you bring JavaScript logic and variables into your markup.
-* They work inside the JSX tag content or immediately after `=` in attributes.
-* `{{` and `}}` is not special syntax: it's a JavaScript object tucked inside JSX curly braces.
+* Atribut JSX di dalam tanda kutip dianggap sebagai string.
+* Kurung kurawal memungkinkan Anda membawa logika JavaScript dan variabel ke dalam markup.
+* Kurung kurawal berfungsi di dalam konten tag JSX atau segera setelah `=` pada atribut.
+* `{{` dan `}}` bukanlah sintaks khusus: itu adalah objek JavaScript yang tersembunyi di dalam kurung kurawal JSX.
 
 </Recap>
 
