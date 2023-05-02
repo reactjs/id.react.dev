@@ -21,7 +21,7 @@ Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak mela
 
 [Mengoper *props*](/learn/passing-props-to-a-component) adalah cara yang bagus untuk menyalurkan data secara eksplisit melalui pohon UI Anda ke komponen yang menggunakanya.
 
-Tapi mengoper *props* bisa menjadi bertele-tele dan tidak nyaman ketika Anda perlu mengoper beberapa *prop* secara mendalam melalui pohon, atau jika banyak komponen membutuhkan *prop* yang sama. Leluhur umum terdekat bisa jadi jauh dari komponen yang membutuhkan data, dan [memindahkan *state* ke atas](/learn/sharing-state-between-components) dapat menyebabkan yang disebut "*prop drilling*".
+Tapi mengoper *props* bisa menjadi bertele-tele dan tidak nyaman ketika Anda perlu mengoper beberapa *prop* secara mendalam melalui pohon (*tree*), atau jika banyak komponen membutuhkan *prop* yang sama. Leluhur umum terdekat bisa jadi jauh dari komponen yang membutuhkan data, dan [memindahkan *state* ke atas](/learn/sharing-state-between-components) dapat menyebabkan yang disebut "*prop drilling*".
 
 <DiagramGroup>
 
