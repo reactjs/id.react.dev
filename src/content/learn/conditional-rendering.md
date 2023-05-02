@@ -4,7 +4,7 @@ title: Conditional Rendering
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Komponen anda akan sering untuk menampilkan tampilan yang berbeda tergantung dari beberapa kondisi yang berbeda. Di React, anda dapat melakukan render jsx menggunakan bahasa JavaScript seperti `if` statements, `&&`, dan `? :` operator.
 
 </Intro>
 
