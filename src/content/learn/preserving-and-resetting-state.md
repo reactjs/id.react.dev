@@ -498,9 +498,9 @@ Pada kedua kasus tersebut, komponen `App` mengembalikan `<div>` dengan `<Counter
 
 </Pitfall>
 
-## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
+## Komponen yang berbeda pada posisi *state* reset yang sama {/*different-components-at-the-same-position-reset-state*/}
 
-In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
+Pada contoh ini, mencentang *checkbox* akan menggantikan `<Counter>` dengan `<p>`:
 
 <Sandpack>
 
@@ -577,13 +577,13 @@ label {
 
 </Sandpack>
 
-Here, you switch between _different_ component types at the same position. Initially, the first child of the `<div>` contained a `Counter`. But when you swapped in a `p`, React removed the `Counter` from the UI tree and destroyed its state.
+Di sini, Anda beralih di antara jenis komponen yang *berbeda* pada posisi yang sama. Awalnya, anak pertama dari `<div>` berisi sebuah `Counter`. Namun ketika Anda menukar `p`, React menghapus `Counter` dari pohon UI dan menghancurkan *state*-nya.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'p', highlighted in yellow.">
 
-When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
+Ketika `Counter` berubah menjadi `p`, `Counter` dihapus dan `p` ditambahkan
 
 </Diagram>
 
@@ -593,13 +593,13 @@ When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
 
 <Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'p'. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, highlighted in yellow.">
 
-When switching back, the `p` is deleted and the `Counter` is added
+Saat beralih kembali, `p` dihapus dan `Counter` ditambahkan
 
 </Diagram>
 
 </DiagramGroup>
 
-Also, **when you render a different component in the same position, it resets the state of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
+Selain itu, **ketika Anda merender komponen yang berbeda pada posisi yang sama, komponen tersebut akan mengatur ulang *state* seluruh subpohonnya.** Untuk melihat cara kerjanya, tingkatkan penghitungnya, lalu centang *checkbox*:
 
 <Sandpack>
 
@@ -688,13 +688,13 @@ label {
 
 </Sandpack>
 
-The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When the child `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+*State* penghitung akan diatur ulang saat Anda mengklik *checkbox*. Meskipun Anda me-*render* `Counter`, anak pertama dari `div` berubah dari `div` menjadi `section`. Ketika anak `div` dihapus dari DOM, seluruh pohon di bawahnya (termasuk `Counter` dan *state*-nya) juga dihancurkan.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When `section` changes to `div`, the `section` is deleted and the new `div` is added
+Ketika `section` berubah menjadi `div`, `section` akan dihapus dan `div` yang baru ditambahkan
 
 </Diagram>
 
@@ -704,19 +704,19 @@ When `section` changes to `div`, the `section` is deleted and the new `div` is a
 
 <Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'div', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 0. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'section', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When switching back, the `div` is deleted and the new `section` is added
+Saat beralih kembali, `div` akan dihapus dan `section` yang baru ditambahkan
 
 </Diagram>
 
 </DiagramGroup>
 
-As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
+Sebagai aturan praktis, **jika Anda ingin mempertahankan *state* di antara *render* ulang, struktur pohon Anda harus "cocok"** dari satu *render* ke *render* lainnya. Jika strukturnya berbeda, *state* akan dihancurkan karena React menghancurkan *state* ketika menghapus sebuah komponen dari pohon.
 
 <Pitfall>
 
-This is why you should not nest component function definitions.
+Inilah alasan mengapa Anda tidak boleh menyarangkan definisi fungsi komponen.
 
-Here, the `MyTextField` component function is defined *inside* `MyComponent`:
+Di sini, fungsi komponen `MyTextField` didefinisikan *di dalam* `MyComponent`:
 
 <Sandpack>
 
@@ -751,7 +751,7 @@ export default function MyComponent() {
 </Sandpack>
 
 
-Every time you click the button, the input state disappears! This is because a *different* `MyTextField` function is created for every render of `MyComponent`. You're rendering a *different* component in the same position, so React resets all state below. This leads to bugs and performance problems. To avoid this problem, **always declare component functions at the top level, and don't nest their definitions.**
+Setiap kali Anda mengklik tombol, *state* masukan akan menghilang! Hal ini disebabkan karena fungsi `MyTextField` yang *berbeda* dibuat untuk setiap *render* `MyComponent`. Anda me-*render* komponen yang *berbeda* pada posisi yang sama, sehingga React akan mengatur ulang semua *state* di bawah ini. Hal ini menyebabkan *bug* dan masalah performa. Untuk menghindari masalah ini, **selalu deklarasikan fungsi komponen pada level teratas, dan jangan menumpuk definisinya.**.
 
 </Pitfall>
 
