@@ -47,7 +47,7 @@ Sebagai tambahan, `<option>` mendukung *props* ini:
 
 #### Caveats {/*caveats*/}
 
-* React tidak mendukung atribut `selected` dalam `<option>`. Sebagai gantinya, kirimkan `value` dari opsi ke elemen induk [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) untuk sebuah *uncontrolled select box*, atau [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) untuk *controlled select*.
+* React tidak mendukung atribut `selected` dalam `<option>`. Sebagai gantinya, oper `value` dari opsi ke elemen induk [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) untuk sebuah *uncontrolled select box*, atau [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) untuk *controlled select*.
 
 ---
 
