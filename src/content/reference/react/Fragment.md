@@ -23,7 +23,7 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dimana Anda membutuhkan satu elemen. Mengelompokkan elemen di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; Hal ini sama dengan tidak mengelompokkan elemen. *Tag JSX* kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
+Bungkus elemen-elemen di dalam `<Fragment>` untuk mengelompokkan mereka dalam situasi di mana Anda membutuhkan satu elemen. Mengelompokkan elemen di dalam `Fragment` tidak akan mempengaruhi hasil pada DOM; elemen-elemen tersebut seolah-olah seperti tidak dikelompokkan. *Tag JSX* kosong `<></>` adalah singkatan untuk `<Fragment></Fragment>` dalam banyak kasus.
 
 #### Props {/*props*/}
 
@@ -41,7 +41,7 @@ Bungkus elemen di dalam `<Fragment>` untuk mengelompokkan elemen di situasi dima
 
 ### Menetapkan banyak elemen {/*returning-multiple-elements*/}
 
-Gunakan `Fragment`, atau sintaksis `<>...</>`, untuk mengelompokkan beberapa elemen menjadi satu. Anda bisa menggunakannya untuk meletakkan banyak elemen dimana saja, dimana satu elemen itu bisa muncul. Misalnya, komponen hanya bisa mengembalikan satu elemen, tetapi dengan menggunakan *Fragment*, Anda dapat mengelompokkan beberapa elemen menjadi satu dan kemudian mengembalikannya sebagai grup:
+Gunakan `Fragment`, atau sintaksis `<>...</>`, untuk mengelompokkan beberapa elemen menjadi satu. Anda bisa menggunakannya untuk meletakkan banyak elemen di mana saja, di mana satu elemen itu bisa muncul. Misalnya, komponen hanya bisa mengembalikan satu elemen, tetapi dengan menggunakan *Fragment*, Anda dapat mengelompokkan beberapa elemen menjadi satu dan kemudian mengembalikannya sebagai sebuah kelompok:
 
 ```js {3,6}
 function Post() {
@@ -173,7 +173,7 @@ function Blog() {
 }
 ```
 
-Anda bisa memeriksa DOM untuk memastikan bahwa tidak ada elemen pembungkus di sekitar anak *Fragment*:
+Anda bisa memeriksa DOM untuk memastikan bahwa tidak ada elemen pembungkus di sekitar anak-anak (*children*) *Fragment*:
 
 <Sandpack>
 
