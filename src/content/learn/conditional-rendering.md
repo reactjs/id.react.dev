@@ -540,7 +540,6 @@ export default function PackingList() {
 
 Dalam contoh ini, setiap `Item` menerima sebuah proposisi `penting` numerik. Gunakan operator `&&` untuk membuat "*(Kepentingan: X)*" dalam huruf miring, tetapi hanya untuk item yang memiliki tingkat kepentingan bukan nol. Daftar item Anda akan terlihat seperti ini:
 
-
 * Pakaian luar angkasa *(Kepentingan: 9)*
 * Helm berwarna emas
 * Foto Tam *(Kepentingan: 6)*
