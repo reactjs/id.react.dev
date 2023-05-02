@@ -1,26 +1,26 @@
 ---
-title: 'Menghilangkan pengaruh dependensi'
+title: 'Menghilangkan Effect dependensi'
 ---
 
 <Intro>
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. Follow this guide to review and remove unnecessary dependencies from your Effects.
+Saat anda menulis sebuah Effect, linter akan memverifikasi bahwa anda telah memasukan setiap nilai reaktif (seperti props dan state) yang dibaca Effect dalam daftar dependensi Effect. Ini memastikan bahwa Effect anda tetap tersinkronisasi dengan props dan state terbaru dari komponen anda. Dependensi yang tidak perlu dapat menyebabkan Effect anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Effect anda.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to fix infinite Effect dependency loops
-- What to do when you want to remove a dependency
-- How to read a value from your Effect without "reacting" to it
-- How and why to avoid object and function dependencies
-- Why suppressing the dependency linter is dangerous, and what to do instead
+- Cara memperbaiki Effect tak terbatas perulangan dependensi?
+- Apa yang harus dilakukan bila anda ingin menghapus dependensi?
+- Cara membaca nilai dari Effect anda tanpa "bereaksi" dengannya?
+- Bagaimana dan mengapa menghindari objek dan fungsi dependensi?
+- Mengapa memadamkan linter dependensi berbahaya, dan alih-alih apa yang harus dilakukan?
 
 </YouWillLearn>
 
-## Dependencies should match the code {/*dependencies-should-match-the-code*/}
+## Dependensi harus sesuai dengan kode {/*dependencies-should-match-the-code*/}
 
-When you write an Effect, you first specify how to [start and stop](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) whatever you want your Effect to be doing:
+Saat anda menulis sebuah Effect, pertama anda menentukan cara [memulai dan menghentikan](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) apa pun yang anda ingin dari Effect anda lakukan:
 
 ```js {5-7}
 const serverUrl = 'https://localhost:1234';
@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Then, if you leave the Effect dependencies empty (`[]`), the linter will suggest the correct dependencies:
+Kemudian, jika anda membiarkan dependensi Effect kosong (`[]`), linter akan menyarankan dependensi yang tepat:
 
 <Sandpack>
 
@@ -49,23 +49,23 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // <-- Fix the mistake here!
-  return <h1>Welcome to the {roomId} room!</h1>;
+  }, []); // <-- Perbaiki kesalahan disini!
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('umum');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih runag obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -77,13 +77,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi nyata sebenarnya akan terhubung ke server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
@@ -96,7 +96,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Fill them in according to what the linter says:
+Isi sesuai dengan apa yang linter katakan:
 
 ```js {6}
 function ChatRoom({ roomId }) {
@@ -104,12 +104,12 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies declared
+  }, [roomId]); // ✅ Semua dependensi dideklrasikan
   // ...
 }
 ```
 
-[Effects "react" to reactive values.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Since `roomId` is a reactive value (it can change due to a re-render), the linter verifies that you've specified it as a dependency. If `roomId` receives a different value, React will re-synchronize your Effect. This ensures that the chat stays connected to the selected room and "reacts" to the dropdown:
+[Effect "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena render ulang), linter memverifikasi bahwa anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Effect anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan dropdown:
 
 <Sandpack>
 
@@ -125,7 +125,7 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 
 export default function App() {
@@ -133,14 +133,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -152,13 +152,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Impelementasi nyata sebenarnya akan terhubung ke server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
