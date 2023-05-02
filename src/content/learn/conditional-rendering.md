@@ -106,7 +106,7 @@ Perhatikan bagaimana Anda membuat logika bercabang dengan pernyataan `if` dan `r
 
 ### Tidak mengembalikan elemen apa pun secara kondisional dengan `null` {/*conditionally-returning-nothing-with-null*/}
 
-Dalam beberapa situasi, Anda tidak ingin merender apa pun. Sebagai contoh, katakanlah Anda tidak ingin menampilkan item yang dikemas sama sekali. Sebuah komponen harus mengembalikan sesuatu. Dalam kasus ini, Anda dapat mengembalikan `null`:
+Dalam beberapa situasi, Anda tidak ingin me-*render* apa pun. Sebagai contoh, katakanlah Anda tidak ingin menampilkan item yang dikemas sama sekali. Sebuah komponen harus mengembalikan sesuatu. Dalam kasus ini, Anda dapat mengembalikan `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-Jika nilai `isPacked` adalah *true*, komponen tidak akan mengembalikan apa-apa, `null`. Jika tidak, komponen ini akan mengembalikan JSX untuk dirender.
+Jika nilai `isPacked` adalah *true*, komponen tidak akan mengembalikan apa-apa, `null`. Jika tidak, komponen ini akan mengembalikan JSX untuk di-*render*.
 
 <Sandpack>
 
@@ -156,7 +156,7 @@ Dalam praktiknya, mengembalikan `null` dari sebuah komponen tidaklah umum karena
 
 ## Menyertakan JSX secara kondisional {/*conditionally-including-jsx*/}
 
-Pada contoh sebelumnya, Anda mengontrol pohon JSX mana (jika ada!) yang akan dikembalikan oleh komponen. Anda mungkin telah melihat beberapa duplikasi pada output render:
+Pada contoh sebelumnya, Anda mengontrol pohon JSX mana (jika ada!) yang akan dikembalikan oleh komponen. Anda mungkin telah melihat beberapa duplikasi pada keluaran *render*:
 
 ```js
 <li className="item">{name} ✔</li>
@@ -183,7 +183,7 @@ Meskipun duplikasi ini tidak berbahaya, namun dapat membuat kode Anda menjadi le
 
 JavaScript memiliki sintaks yang ringkas untuk menulis ekspresi bersyarat -- the [operator kondisional](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) atau "operator *ternary*".
 
-Alih-alih ini:
+Daripada ini:
 
 ```js
 if (isPacked) {
@@ -208,7 +208,7 @@ Anda dapat membacanya sebagai *"jika nilai `isPacked` adalah true, maka (`?`) re
 
 #### Apakah kedua contoh ini sepenuhnya setara? {/*are-these-two-examples-fully-equivalent*/}
 
-Jika Anda berasal dari latar belakang pemrograman berorientasi objek, Anda mungkin berasumsi bahwa kedua contoh di atas sangat berbeda karena salah satu contoh tersebut dapat membuat dua "*instance*" yang berbeda dari `<li>`. Tetapi elemen JSX bukanlah "*instance*" karena mereka tidak memiliki state internal dan bukan merupakan node DOM yang sebenarnya. Mereka adalah deskripsi ringan, seperti cetak biru. Jadi, kedua contoh ini, pada kenyataannya, *sebenarnya* sepenuhnya setara. [Mempertahankan dan Mengatur Ulang State](/learn/preserving-and-resetting-state) menjelaskan secara detail tentang cara kerjanya.
+Jika Anda berasal dari latar belakang pemrograman berorientasi objek, Anda mungkin berasumsi bahwa kedua contoh di atas sangat berbeda karena salah satu contoh tersebut dapat membuat dua "*instance*" yang berbeda dari `<li>`. Tetapi elemen JSX bukanlah "*instance*" karena mereka tidak memiliki *state* internal dan bukan merupakan simpul DOM yang sebenarnya. Mereka adalah deskripsi ringan, seperti cetak biru. Jadi, kedua contoh ini, pada kenyataannya, *sebenarnya* sepenuhnya setara. [Mempertahankan dan Mengatur Ulang State](/learn/preserving-and-resetting-state) menjelaskan secara detail tentang cara kerjanya.
 
 </DeepDive>
 
@@ -319,7 +319,7 @@ export default function PackingList() {
 
 Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi boolean secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai tersebut (`0`), dan React akan dengan senang hati me-render `0` daripada tidak sama sekali.
 
-Sebagai contoh, kesalahan yang sering terjadi adalah menulis kode seperti `messageCount && <p>Pesan baru</p>`. Sangat mudah untuk mengasumsikan bahwa kode tersebut tidak melakukan apa-apa ketika `messageCount` bernilai `0`, namun sebenarnya kode tersebut benar-benar me-render `0` itu sendiri!
+Sebagai contoh, kesalahan yang sering terjadi adalah menulis kode seperti `messageCount && <p>Pesan baru</p>`. Sangat mudah untuk mengasumsikan bahwa kode tersebut tidak melakukan apa-apa ketika `messageCount` bernilai `0`, namun sebenarnya kode tersebut benar-benar me-*render* `0` itu sendiri!
 
 For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
 
@@ -538,13 +538,12 @@ export default function PackingList() {
 
 #### Tunjukkan tingkat kepentingan item dengan `&&` {/*show-the-item-importance-with-*/}
 
-Dalam contoh ini, setiap `Item` menerima sebuah proposisi `penting` numerik. Gunakan operator `&&` untuk membuat "_(Kepentingan: X)_" dalam huruf miring, tetapi hanya untuk item yang memiliki tingkat kepentingan bukan nol. Daftar item Anda akan terlihat seperti ini:
+Dalam contoh ini, setiap `Item` menerima sebuah proposisi `penting` numerik. Gunakan operator `&&` untuk membuat "*(Kepentingan: X)*" dalam huruf miring, tetapi hanya untuk item yang memiliki tingkat kepentingan bukan nol. Daftar item Anda akan terlihat seperti ini:
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
 
-* Pakaian luar angkasa _(Kepentingan: 9)_
+* Pakaian luar angkasa *(Kepentingan: 9)*
 * Helm berwarna emas
-* Foto Tam _(Kepentingan: 6)_
+* Foto Tam *(Kepentingan: 6)*
 
 Don't forget to add a space between the two labels!
 
