@@ -276,13 +276,13 @@ Jika Anda lebih suka kode yang lebih panjang, konvensi umum lainnya adalah mengu
 
 <Challenges>
 
-#### Fix a request counter {/*fix-a-request-counter*/}
+#### Perbaiki hitungan permintaan {/*fix-a-request-counter*/}
 
-You're working on an art marketplace app that lets the user submit multiple orders for an art item at the same time. Each time the user presses the "Buy" button, the "Pending" counter should increase by one. After three seconds, the "Pending" counter should decrease, and the "Completed" counter should increase.
+Anda bekerja pada aplikasi pasar seni yang memungkinkan pengguna mengirimkan beberapa pesanan untuk item seni pada saat yang sama. Setiap kali pengguna menekan tombol "Buy", hitungan "Pending" harus bertambah satu. Setelah tiga detik, hitungan "Pending" harus berkurang, dan hitungan "Completed" harus bertambah.
 
-However, the "Pending" counter does not behave as intended. When you press "Buy", it decreases to `-1` (which should not be possible!). And if you click fast twice, both counters seem to behave unpredictably.
+Akan tetapi, hitungan "Pending" tidak berperilaku seperti yang diharapkan. Ketika Anda menekan "Buy", ia berkurang menjadi `-1` (yang seharusnya tidak mungkin!). Dan jika Anda mengklik cepat dua kali, kedua hitungan tampaknya berperilaku diluar kendali.
 
-Why does this happen? Fix both counters.
+Mengapa ini terjadi? Perbaiki kedua hitungan.
 
 <Sandpack>
 
@@ -326,7 +326,7 @@ function delay(ms) {
 
 <Solution>
 
-Inside the `handleClick` event handler, the values of `pending` and `completed` correspond to what they were at the time of the click event. For the first render, `pending` was `0`, so `setPending(pending - 1)` becomes `setPending(-1)`, which is wrong. Since you want to *increment* or *decrement* the counters, rather than set them to a concrete value determined during the click, you can instead pass the updater functions:
+Di dalam *event handler* `handleClick`, nilai `pending` dan `completed` sesuai dengan apa yang mereka lakukan pada saat klik. Untuk *render* pertama, `pending` adalah `0` sehingga `setPending(pending - 1)` menjadi `setPending(-1)`, ini salah. Karena Anda ingin menambah atau mengurangi hitungan, bukan mengaturnya ke nilai konkret yang ditentukan selama klik, Anda dapat mengirimkan fungsi *updater*:
 
 <Sandpack>
 
@@ -368,23 +368,23 @@ function delay(ms) {
 
 </Sandpack>
 
-This ensures that when you increment or decrement a counter, you do it in relation to its *latest* state rather than what the state was at the time of the click.
+Ini memastikan bahwa ketika Anda menambah atau mengurangi hitungan, Anda melakukannya dalam kaitannya dengan *state* terbaru daripada *state* pada saat klik.
 
 </Solution>
 
-#### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
+#### Implementasikan antrean state sendiri {/*implement-the-state-queue-yourself*/}
 
-In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
+Dalam tantangan ini, Anda akan mengimplementasikan kembali bagian kecil dari React dari awal! Ini tidak sesulit kedengarannya.
 
-Scroll through the sandbox preview. Notice that it shows **four test cases.** They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
+Gulir (*scroll*) melalui pratinjau (*preview*) *sandbox*. Perhatikan bahwa itu menunjukkan **empat kasus uji.** Mereka sesuai dengan contoh yang telah Anda lihat sebelumnya di halaman ini. Tugas Anda adalah mengimplementasikan fungsi `getFinalState` sehingga mengembalikan hasil yang benar untuk masing-masing kasus tersebut. Jika Anda mengimplementasikannya dengan benar, keempat tes harus lulus.
 
-You will receive two arguments: `baseState` is the initial state (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
+Anda akan menerima dua argumen: `baseState` adalah *state* awal (seperti `0`), dan `queue` adalah array yang berisi campuran angka (seperti `5`) dan fungsi *updater* (seperti `n => n + 1`) sesuai dengan urutan mereka ditambahkan.
 
-Your task is to return the final state, just like the tables on this page show!
+Tugas Anda adalah mengembalikan *state* akhir, seperti tabel pada halaman ini menunjukkan!
 
 <Hint>
 
-If you're feeling stuck, start with this code structure:
+Jika Anda merasa terjebak, mulailah dengan struktur kode ini:
 
 ```js
 export function getFinalState(baseState, queue) {
@@ -402,7 +402,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-Fill out the missing lines!
+Isi baris yang hilang!
 
 </Hint>
 
@@ -499,7 +499,7 @@ function TestCase({
 
 <Solution>
 
-This is the exact algorithm described on this page that React uses to calculate the final state:
+Ini merupakan algoritma paling tepat yang digunakan React untuk menghitung state akhir:
 
 <Sandpack>
 
@@ -600,7 +600,7 @@ function TestCase({
 
 </Sandpack>
 
-Now you know how this part of React works!
+Sekarang Anda tahu bagaimana bagian React ini bekerja!
 
 </Solution>
 
