@@ -42,13 +42,13 @@ function TodoList({ todos, tab }) {
 
 * `dependencies`: Daftar dari semua nilai reaktif yang direferensikan dalam kode `calculatedValue`. Nilai reaktif termasuk *props*, *state*, serta seluruh variabel dan fungsi yang dideklarasi langsung dalam badan komponen. Jika *linter* Anda sudah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* akan memeriksa setiap nilai reaktif sudah dispesifikasikan sebagai sebuah *dependency* dengan benar. Daftar `dependency` harus memiliki jumlah *item* yang tetap dan dituliskan dalam sebaris seperti `[dep1, dep2, dep3]`. React akan membandingkan tiap `dependency` dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 Pada *render* pertama kali, `useMemo` mengembalikan hasil pemanggilan `calculateValue` tanpa argumen.
 
 Saat *render* selanjutnya, akan mengembalikan nilai yang telah disimpan dari *render* selanjutnya (apabila `dependency` belum berubah), atau kembali memanggil `calculateValue`, dan mengembalikan hasil yang dikembalikan oleh `calculateValue`.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
 * `useMemo` merupakan Hook, jadi Anda hanya dapat memanggilnya **di tingkat atas komponen Anda** atau pada Hook Anda sendiri. Anda tidak bisa memanggilnya di dalam perulangan atau suatu kondisi. Jika Anda memerlukannya, ekstrak komponen baru dan pindahkan *state* tersebut ke dalamnya.
 * Pada *Strict Mode*, React akan **memanggil fungsi perhitungan Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian (*impurity*) yang tidak disengaja.](#my-calculation-runs-twice-on-every-re-render) Perlakuan ini hanya terjadi pada *development* dan tidak memengaruhi *production*. Jika fungsi perhitungan Anda murni (sebagaimana mestinya), maka seharusnya tidak memengaruhi logika Anda. Hasil dari salah satu pemanggilan akan diabaikan.
