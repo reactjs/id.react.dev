@@ -1055,9 +1055,10 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ---
 
-### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
+### Memoisasi sebuah *dependency* dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
 
-Suppose you have a calculation that depends on an object created directly in the component body:
+
+Misalkan Anda mempunyai perhitungan yang bergantung pada objek yang dibuat langsung pada badan komponen:
 
 ```js {2}
 function Dropdown({ allItems, text }) {
@@ -1065,38 +1066,38 @@ function Dropdown({ allItems, text }) {
 
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
-  }, [allItems, searchOptions]); // 🚩 Caution: Dependency on an object created in the component body
+  }, [allItems, searchOptions]); // 🚩 Peringatan: Dependency pada sebuah objek dibuat pada badan komponen
   // ...
 ```
 
-Depending on an object like this defeats the point of memoization. When a component re-renders, all of the code directly inside the component body runs again. **The lines of code creating the `searchOptions` object will also run on every re-render.** Since `searchOptions` is a dependency of your `useMemo` call, and it's different every time, React knows the dependencies are different, and recalculate `searchItems` every time.
+Tergantung pada objek seperti ini menggagalkan tujuan memoisasi. Ketika komponen me*render* ulang, seluruh kode yang langsung di dalam badan komponen berjalan lagi. **Baris kode yang membuat objek `searchOptions` juga akan berjalan pada setiap *render* ulang.** Karena `searchOptions` merupakan *dependency* dari pemanggilan `useMemo` Anda, dan berbeda setiap saat, React mengetahui *dependency* tersebut berbeda, kemudian menghitung ulang `searchItems`tiap saat.
 
-To fix this, you could memoize the `searchOptions` object *itself* before passing it as a dependency:
+Untuk memperbaiki ini, Anda dapat memoisasi objek `searchOptions` itu *sendiri* sebelum memberikannya sebagai *dependency*:
 
 ```js {2-4}
 function Dropdown({ allItems, text }) {
   const searchOptions = useMemo(() => {
     return { matchMode: 'whole-word', text };
-  }, [text]); // ✅ Only changes when text changes
+  }, [text]); // ✅ Hanya berubah ketika `text` berubah
 
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
-  }, [allItems, searchOptions]); // ✅ Only changes when allItems or searchOptions changes
+  }, [allItems, searchOptions]); // ✅ Hanya berubah ketika `allItems` atau `searchOptions` berubah
   // ...
 ```
 
-In the example above, if the `text` did not change, the `searchOptions` object also won't change. However, an even better fix is to move the `searchOptions` object declaration *inside* of the `useMemo` calculation function:
+Dalam contoh di atas, jika `text` tidak berubah, maka objek `searchOptions` juga tidak akan berubah. Namun, lebih baik untuk memindahkan deklarasi object `searchOptions` *ke dalam* fungsi perhitungan `useMemo`:
 
 ```js {3}
 function Dropdown({ allItems, text }) {
   const visibleItems = useMemo(() => {
     const searchOptions = { matchMode: 'whole-word', text };
     return searchItems(allItems, searchOptions);
-  }, [allItems, text]); // ✅ Only changes when allItems or text changes
+  }, [allItems, text]); // ✅ Hanya berubah ketika `allItems` atau `text` berubah
   // ...
 ```
 
-Now your calculation depends on `text` directly (which is a string and can't "accidentally" become different).
+Sekarang perhitungan Anda bergantung dengan `text` secara langsung (yang merupakan string dan tidak bisa "secara tidak sengaja" menjadi berbeda).
 
 ---
 
