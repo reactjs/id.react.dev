@@ -34,7 +34,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 * `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk me-*render* komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian me-*render* nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
 
-#### Mengembalikan {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `lazy` mengembalikan komponen React yang dapat Anda *render* di dalam *tree*. Ketika kode untuk komponen *lazy* masih dimuat, mencoba me-*render*nya akan *suspend.* Gunakan [`<Suspense>`](/reference/react/Suspense) untuk menampilkan indikator pemuatan ketika komponen tersebut dimuat.
 
@@ -46,7 +46,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 `load` tidak menerima parameter.
 
-#### Mengembalikan {/*load-returns*/}
+#### Kembalian {/*load-returns*/}
 
 Anda perlu mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). Pada akhirnya, komponen ini harus diselesaikan ke tipe komponen React yang valid, seperti sebuah fungsi, [`memo`](/reference/react/memo), atau [`forwardRef`](/reference/react/forwardRef) komponen.
 
