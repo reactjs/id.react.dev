@@ -314,7 +314,7 @@ Baca **[Mengoper Props ke sebuah Komponen](/learn/passing-props-to-a-component)*
 
 </LearnMore>
 
-## Merender Secara Kondisional {/*conditional-rendering*/}
+## Me-render Secara Kondisional {/*conditional-rendering*/}
 
 Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
@@ -358,11 +358,11 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Baca **[Merender Secara Kondisional](/learn/conditional-rendering)** untuk mempelajari cara merender konten secara kondisional.
+Baca **[Me-*render* Secara Kondisional](/learn/conditional-rendering)** untuk mempelajari cara me-*render* konten secara kondisional.
 
 </LearnMore>
 
-## Merender List {/*rendering-lists*/}
+## Me-render List {/*rendering-lists*/}
 
 Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk menyaring dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
@@ -458,7 +458,7 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Baca **[Merender List](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
+Baca **[Me-*render* List](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
 
 </LearnMore>
 
