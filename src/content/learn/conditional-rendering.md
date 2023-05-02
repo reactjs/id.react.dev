@@ -4,21 +4,21 @@ title: Conditional Rendering
 
 <Intro>
 
-Komponen anda akan sering untuk menampilkan tampilan yang berbeda tergantung dari beberapa kondisi yang berbeda. Di React, anda dapat melakukan render jsx menggunakan bahasa JavaScript seperti `if` statements, `&&`, dan `? :` operator.
+Komponen anda sering diperlukan untuk menampilkan hal yang berbeda tergantung dari beberapa kondisi yang berbeda. Di React, anda dapat melakukan render JSX secara bersyarat menggunakan sintaks JavaScript seperti pernyataan `if`, `&&`, dan `? :` operator.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to return different JSX depending on a condition
-* How to conditionally include or exclude a piece of JSX
-* Common conditional syntax shortcuts you’ll encounter in React codebases
+* Cara mengembalikan JSX yang berbeda tergantung dari suatu kondisi
+* Bagaimana cara memasukkan atau mengecualikan sepotong JSX secara bersyarat
+* Pintasan sintaks bersyarat umum yang akan anda temukan di basis kode React
 
 </YouWillLearn>
 
-## Conditionally returning JSX {/*conditionally-returning-jsx*/}
+## Mengembalikan JSX secara Bersyarat {/*conditionally-returning-jsx*/}
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+Katakanlah anda memiliki komponen `PackingList` yang melakukan render pada beberapa `Item`s, yang dapat ditandai secara dikemas atau tidak:
 
 <Sandpack>
 
@@ -30,7 +30,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -52,9 +52,9 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Perhatikan bahwa beberapa komponen `Item` memiliki properti `isPacked` yang disetel menjadi `true` daripada `false`. Anda ingin menambahkan tanda centang (✔) ke `Item` yang dikemas jika `isPacked={true}`.
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+Anda dapat menulis ini sebagai pernyataan [`if`/`else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) seperti ini:
 
 ```js
 if (isPacked) {
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
+Jika properti `isPacked` adalah `true`, kode ini **mengembalikan JSX tree yang berbeda.** Dengan perubahan ini, beberapa `item` mendapat tanda centang di bagian akhir:
 
 <Sandpack>
 
@@ -78,7 +78,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -100,13 +100,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-Try editing what gets returned in either case, and see how the result changes!
+Coba melakukan edit apa yang dikembalikan dalam kedua kasus tersebut, dan lihat bagaimana hasilnya berubah!
 
-Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
+Perhatikan bagaimana anda membuat logika bercabang dengan pernyataan `if` dan `return` menggunakan JavaScript. Di React, alur kontrol (seperti kondisi) ditangani oleh JavaScript.
 
-### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
+### Tidak mengembalikan apa pun secara bersyarat dengan `null` {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+Dalam kondisi tertentu, anda tidak ingin me-*render* apa pun. Sebagai Contoh, katakan anda tidak mau menampilkan `item` yang dikemas. Sebuah komponen harus mengembalikan sesuatu. Dalam kasus ini, anda dapat mengambalikan `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+Jika `isPacked` adalah `true`, komponen tidak akan mengembalikan apa pun, `null`. Jika tidak, itu akan mengembalikan JSX untuk di-*render*.
 
 <Sandpack>
 
@@ -130,7 +130,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -152,23 +152,23 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+Dalam praktiknya, mengembalikan `null` dari sebuah komponen itu tidak umum karena dapat mengejutkan *developer* yang mencoba untuk me-*render*-nya. Lebih sering, anda akan menyertakan atau mengecualikan komponen secara bersyarat di komponen induk JSX. Berikut adalah cara untuk melakukannya!
 
-## Conditionally including JSX {/*conditionally-including-jsx*/}
+## Secara Bersyarat memasukkan JSX {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+Pada contoh sebelumnya, anda mengontrol JSX *tree* mana (*if any!*) yang akan dikembalikan oleh komponen. Anda mungkin telah memperhatikan beberapa duplikasi dalam hasil *render*:
 
 ```js
 <li className="item">{name} ✔</li>
 ```
 
-is very similar to
+mirip dengan
 
 ```js
 <li className="item">{name}</li>
 ```
 
-Both of the conditional branches return `<li className="item">...</li>`:
+Kedua *branches* bersyarat tersebut mengembalikan `<li className="item">...</li>`:
 
 ```js
 if (isPacked) {
@@ -177,13 +177,13 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+Meskipun duplikasi ini tidak berbahaya, ini dapat membuka kode anda lebih susah untuk di-*maintain*. Bagaimana jika anda ingi mengganti `className`nya? Anda harus melakukannya di dua tempat dalam kode anda! Dalam situasi seperti itu, anda dapat menyertakan sedikit JSX secara bersyarat untuk membuat kode anda lebih [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
-### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
+### Operator (`? :`) bersyarat (ternary) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator".
+JavaScript memiliki syntax yang ringkas untuk menulis ekspresi bersyarat -- [operator bersyarat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) atau sering disebut sebagai *"ternary operator"*.
 
-Instead of this:
+Daripada ini:
 
 ```js
 if (isPacked) {
@@ -192,7 +192,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-You can write this:
+Anda dapat menulis ini:
 
 ```js
 return (
@@ -202,17 +202,17 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+anda dapat membacanya sebagai *"jika `isPacked` adalah `true`, maka (`?`) render `name + ' ✔'`, jika tidak (`:`) render `name`"*.
 
 <DeepDive>
 
-#### Are these two examples fully equivalent? {/*are-these-two-examples-fully-equivalent*/}
+#### Apakah kedua contoh tersebut sepenuhnya sama? {/*are-these-two-examples-fully-equivalent*/}
 
-If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
+Jika anda berasal dari latar belakang pemrograman berorientasi objek, anda mungkin berasumsi bahwa kedua contoh tersebut sedikit berbeda karena salah satunya dapat membuat dua jenis "instansi" `<li>` berbeda. Tetapi elemen JSX bukan "instansi" karena mereka tidak memiliki *state* internal dan bukan node DOM yang sebenarnya. Itu deskripsi ringan, seperti cetak biru. Jadi kedua contoh ini, sebenarnya, *adalah* benar-benar sama. [Preserving and Resetting State](/learn/preserving-and-resetting-state) menjelaskan lebih detil bagaimana hal ini bekerja.
 
 </DeepDive>
 
-Now let's say you want to wrap the completed item's text into another HTML tag, like `<del>` to strike it out. You can add even more newlines and parentheses so that it's easier to nest more JSX in each of the cases:
+Sekarang katakanlah anda ingin membungkus teks `item` yang sudah selesai ke dalam tag HTML lain, seperti `<del>` untuk mencoretnya. Anda bahkan dapat menambahkan lebih banyak baris baru dan tanda kurung sehingga lebih mudah untuk menyarankan lebih banyak JSX di setiap kasus:
 
 <Sandpack>
 
@@ -234,7 +234,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -256,11 +256,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+Gaya ini bekerja dengan baik untuk kondisi yang sederhana, tetapi gunakan dengan secukupnya. Jika komponen anda berantakan dengan terlalu banyak *markup* bersyarat bersarang (*nested conditional markup*), pertimbangkan untuk mengekstrak komponen turunan untuk membersihkan semuanya. Di React, *markup* adalah bagian dari kode anda, sehingga anda dapat menggunakan alat seperti variabel (`variables`) dan fungsi (`functions`) untuk merapikan ekspresi yang kompleks.
 
-### Logical AND operator (`&&`) {/*logical-and-operator-*/}
+### Operator Logis AND (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Pintasan umum lainnya yang akan anda temui adalah [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Di Dalam komponen React, hal tersebut sering muncul ketika anda ingin me-*render* beberapa JSX apabila memiliki kondisi `true`, **atau tidak me-*render* sebaliknya.** Dengan `&&`, anda dapat me-*render* tanda centang secara bersyarat hanya jika `isPacked` adalah `true`:
 
 ```js
 return (
@@ -270,9 +270,9 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+Anda dapat membaca ini sebagai *"jika `isPacked`, maka (`&&`) render tanda centang, jika tidak, tidak render apa pun"*.
 
-Here it is in action:
+Seperti berikut:
 
 <Sandpack>
 
@@ -288,7 +288,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -310,18 +310,18 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+[Ekspresi && JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) mengembalikan nilai sisi kanannya (dalam kasus ini, tanda centang) jika sisi kirinya (kondisi kita) adalah `true`. Tetapi jika kondisinya adalah `false`, seluruh ekspresi menjadi `false`. React menganggap `false` sebagai sebuah "lubang" pada JSX *tree*, sama seperti `null` atau `undefined`, dan tidak me-*render* apa pun di tempatnya.
 
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**Jangan menaruh angka di sisi kiri `&&`.**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi sebuah `*boolean*` secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai (`0`) tesebut, dan React akan dengan senang hati me-*render* `0` daripada tidak sama sekali.
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+Sebagai contoh, kesalahan umum yang sering terjadi adalah menulis kode seperti `messageCount && <p>Pesan Baru</p>`. Sangat mudah untuk berasumsi bahwa itu tidak me-*render*/menghasilkan apa-apa ketika `messageCount` adalah `0`, tapi itu benar-benar me-*render* `0` itu sendiri!
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+Untuk memperbaikinya, jadikan sisi kiri sebagai `*boolean*`: `messageCount > 0 && <p>Pesan Baru</p>`.
 
 </Pitfall>
 
