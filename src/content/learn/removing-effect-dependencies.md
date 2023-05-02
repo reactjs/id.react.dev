@@ -359,21 +359,21 @@ Selalu ada solusi yang lebih baik daripada mengabaikan linter! Untuk memperbaiki
 
 </DeepDive>
 
-## Removing unnecessary dependencies {/*removing-unnecessary-dependencies*/}
+## Menghapus dependensi yang tidak perlu {/*removing-unnecessary-dependencies*/}
 
-Every time you adjust the Effect's dependencies to reflect the code, look at the dependency list. Does it make sense for the Effect to re-run when any of these dependencies change? Sometimes, the answer is "no":
+Setiap kali Anda mengatur dependensi Efek untuk merefleksikan kode, lihat pada daftar dependensi. Apakah masuk akal jika Efek dijalankan ulang ketika salah satu dependensi ini berubah? Terkadang, jawabannya adalah "tidak":
 
-* You might want to re-execute *different parts* of your Effect under different conditions.
-* You might want to only read the *latest value* of some dependency instead of "reacting" to its changes.
-* A dependency may change too often *unintentionally* because it's an object or a function.
+* Anda mungkin ingin menjalankan kembali *bagian yang berbeda* dalam kondisi yang berbeda.
+* Anda mungkin ingin hanya membaca *nilai terbaru* dari beberapa dependensi alih-alih "bereaksi" terhadap perubahannya.
+* Sebuah dependensi dapat berubah terlalu sering *secara tidak sengaja* karena merupakan objek atau fungsi.
 
-To find the right solution, you'll need to answer a few questions about your Effect. Let's walk through them.
+Untuk menemukan solusi yang tepat, Anda harus menjawab beberapa pertanyaan tentang Efek Anda. Mari kita telusuri pertanyaan-pertanyaan tersebut.
 
-### Should this code move to an event handler? {/*should-this-code-move-to-an-event-handler*/}
+### Haruskah kode ini dipindahkan ke event handler? {/*should-this-code-move-to-an-event-handler*/}
 
-The first thing you should think about is whether this code should be an Effect at all.
+Hal pertama yang harus Anda pikirkan adalah apakah kode ini harus menjadi Efek atau tidak.
 
-Imagine a form. On submit, you set the `submitted` state variable to `true`. You need to send a POST request and show a notification. You've put this logic inside an Effect that "reacts" to `submitted` being `true`:
+Bayangkan sebuah formlir. Ketika dikirim, Anda mengatur variabel *state* `submitted` menjadi `true`. Anda perlu mengirim permintaan POST dan menampilkan notifikasi. Anda telah memasukan logika ini ke dalam Efek yang "bereaksi" terhadap `submitted` yang bernilai `true`:
 
 ```js {6-8}
 function Form() {
@@ -381,9 +381,9 @@ function Form() {
 
   useEffect(() => {
     if (submitted) {
-      // 🔴 Avoid: Event-specific logic inside an Effect
+      // 🔴 Hindari: Logika Event-specific di dalam Efek
       post('/api/register');
-      showNotification('Successfully registered!');
+      showNotification('Berhasil mendaftar!');
     }
   }, [submitted]);
 
@@ -395,7 +395,7 @@ function Form() {
 }
 ```
 
-Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, so you add it as a dependency:
+Kemudian, Anda ingin menyesuaikan pesan notifikasi sesuai dengan tema saat ini, sehingga Anda membaca tema saat ini. Ketika `theme` dideklarasikan di badan komponen, tema merupakan nilai reaktif, jadi anda menambahkannya sebagai dependensi:
 
 ```js {3,9,11}
 function Form() {
@@ -404,11 +404,11 @@ function Form() {
 
   useEffect(() => {
     if (submitted) {
-      // 🔴 Avoid: Event-specific logic inside an Effect
+      // 🔴 Hindari: Logika Event-specific di dalam Efek
       post('/api/register');
       showNotification('Successfully registered!', theme);
     }
-  }, [submitted, theme]); // ✅ All dependencies declared
+  }, [submitted, theme]); // ✅ Semua dependensi dideklarasikan
 
   function handleSubmit() {
     setSubmitted(true);
@@ -418,31 +418,31 @@ function Form() {
 }
 ```
 
-By doing this, you've introduced a bug. Imagine you submit the form first and then switch between Dark and Light themes. The `theme` will change, the Effect will re-run, and so it will display the same notification again!
+Dengan melakukan hal ini, Anda telah memunculkan *bug*. Bayangkan Anda mengirimkan formulir terlebih dahulu kemudian beralih antara tema Gelap dan Terang. `theme` akan berubah, Efek akan berjalan kembali, sehingga akan menampilkan notifikasi yang sama lagi!
 
-**The problem here is that this shouldn't be an Effect in the first place.** You want to send this POST request and show the notification in response to *submitting the form,* which is a particular interaction. To run some code in response to particular interaction, put that logic directly into the corresponding event handler:
+**Masalahnya di sini adalah ini seharusnya tidak menjadi Efek sejak awal.** Anda ingin mengririm permintaan POST tersebut dan menampilkan notifikasi sebagai respon atas *pengiriman formulir,* yang merupakan interaksi tertentu. Untuk menjalankan beberapa kode sebagai respon terhadap interaksi tertentu, letakkan logika tersebut langsung ke dalam *event handler* yang sesuai:
 
 ```js {6-7}
 function Form() {
   const theme = useContext(ThemeContext);
 
   function handleSubmit() {
-    // ✅ Good: Event-specific logic is called from event handlers
+    // ✅ Baik: Logika Event-specific dipanggil dari event handler
     post('/api/register');
-    showNotification('Successfully registered!', theme);
+    showNotification('Berhasil mendaftar!', theme);
   }  
 
   // ...
 }
 ```
 
-Now that the code is in an event handler, it's not reactive--so it will only run when the user submits the form. Read more about [choosing between event handlers and Effects](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) and [how to delete unnecessary Effects.](/learn/you-might-not-need-an-effect)
+Sekarang kode tersebut berada di dalam *event handler*, kode tersebut tidak reaktif--jadi itu hanya akan berjalan saat pengguna mengirimkan formulir. Baca slebih lanjut tentang [memilih antara event handlers dan Efek](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) dan [cara menghapus Efrk yang tidak perlu.](/learn/you-might-not-need-an-effect)
 
-### Is your Effect doing several unrelated things? {/*is-your-effect-doing-several-unrelated-things*/}
+### Apakah Efek Anda melakukan beberapa hal yang tidak terkait? {/*is-your-effect-doing-several-unrelated-things*/}
 
-The next question you should ask yourself is whether your Effect is doing several unrelated things.
+Pertanyaan berikutnya yang harus Anda tanyakan pada diri sendiri adalah apakah Efek Anda melakukan beberapa hal yang tidak berhubungan.
 
-Imagine you're creating a shipping form where the user needs to choose their city and area. You fetch the list of `cities` from the server according to the selected `country` to show them in a dropdown:
+Bayangkan Anda membuat formulir pengiriman di mana pengguna perlu memilih kota dan wilayah mereka. Anda mengambil daftar `cities` dari server sesuai dengan `country` yang dipilih untuk menampilkannya dalam menu *dropdown*:
 
 ```js
 function ShippingForm({ country }) {
@@ -461,14 +461,14 @@ function ShippingForm({ country }) {
     return () => {
       ignore = true;
     };
-  }, [country]); // ✅ All dependencies declared
+  }, [country]); // ✅ Semua dependensi dideklarasikan
 
   // ...
 ```
 
-This is a good example of [fetching data in an Effect.](/learn/you-might-not-need-an-effect#fetching-data) You are synchronizing the `cities` state with the network according to the `country` prop. You can't do this in an event handler because you need to fetch as soon as `ShippingForm` is displayed and whenever the `country` changes (no matter which interaction causes it).
+Ini adalah contoh yang baik untuk [mengambil data dari Efek.](/learn/you-might-not-need-an-effect#fetching-data) Anda menyinkronkan *state* `cities` dengan jaringan sesuai dengan *props* `country`. Anda tidak dapat melakukan hal ini di dalam *event handler* karena Anda harus mengambil data segera setelah `ShippingForm` ditampilkan dan setiap kali `country` berubah (tidak peduli interaksi mana yang menyebabkannya).
 
-Now let's say you're adding a second select box for city areas, which should fetch the `areas` for the currently selected `city`. You might start by adding a second `fetch` call for the list of areas inside the same Effect:
+Sekarang katakanlah Anda menambahkan kotak pilihan kedua untuk area kota, yang akan mengambil `areas` untuk `city` yang sedang dipilih. Anda dapat memulai dengan menambahkan panggilan `fetch` kedua untuk daftar area di dalam Efek yang sama:
 
 ```js {15-24,28}
 function ShippingForm({ country }) {
@@ -485,7 +485,7 @@ function ShippingForm({ country }) {
           setCities(json);
         }
       });
-    // 🔴 Avoid: A single Effect synchronizes two independent processes
+    // 🔴 Hindari: Satu Efek menyinkronkan dua proses independen
     if (city) {
       fetch(`/api/areas?city=${city}`)
         .then(response => response.json())
@@ -498,19 +498,19 @@ function ShippingForm({ country }) {
     return () => {
       ignore = true;
     };
-  }, [country, city]); // ✅ All dependencies declared
+  }, [country, city]); // ✅ Semua dependensi dideklarasikan
 
   // ...
 ```
 
-However, since the Effect now uses the `city` state variable, you've had to add `city` to the list of dependencies. That, in turn, introduced a problem: when the user selects a different city, the Effect will re-run and call `fetchCities(country)`. As a result, you will be unnecessarily refetching the list of cities many times.
+Namun, karena Efek sekarang menggunakan variabel *state* `city`, nda harus menambahkan `city` ke dalam daftar dependensi. Hal ini, pada akhirnya, menimbulkan masalah: ketika pengguna memilih kota yang berbeda, Efek akan menjalankan ulang dan memanggil  `fetchCities(country)`. Akibatnya, Anda akan mengambil ulang daftar kota berkali-kali.
 
-**The problem with this code is that you're synchronizing two different unrelated things:**
+**Masalah dengan kode ini adalah Anda menyinkronkan dua hal berbeda yang tidak berhubungan:**
 
-1. You want to synchronize the `cities` state to the network based on the `country` prop.
-1. You want to synchronize the `areas` state to the network based on the `city` state.
+1. Anda ingin menyinkronkan *state* `cities` ke jaringan berdasarkan *prop* `country`.
+1. Anda ingin menyinkronkan *state* `areas` state ke jaringan berdasarkan *prop* `city`.
 
-Split the logic into two Effects, each of which reacts to the prop that it needs to synchronize with:
+Membagi logika menjadi dua Efek, yang masing-masing bereaksi terhadap *prop* yang perlu disinkronkan:
 
 ```js {19-33}
 function ShippingForm({ country }) {
@@ -527,7 +527,7 @@ function ShippingForm({ country }) {
     return () => {
       ignore = true;
     };
-  }, [country]); // ✅ All dependencies declared
+  }, [country]); // ✅ Semua dependensi dideklarasikan
 
   const [city, setCity] = useState(null);
   const [areas, setAreas] = useState(null);
@@ -545,14 +545,13 @@ function ShippingForm({ country }) {
         ignore = true;
       };
     }
-  }, [city]); // ✅ All dependencies declared
-
+  }, [city]); // ✅ Semua dependensi dideklarasikan
   // ...
 ```
 
-Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they won't trigger each other unintentionally.
+Sekarang, Efek pertama hanya akan berjalan kembali jika `country` berubah, sedangkan Efek kedua akan berjalan kembali jika `city` berubah. Anda telah memisahkannya dengan tujuan: dua hal yang berbeda disinkronkan oleh dua Efek yang terpisah. Dua Efek yang terpisah memiliki dua daftar dependensi yang terpisah, jadi keduanya tidak akan memicu satu sama lain secara tidak sengaja.
 
-The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This means they *synchronize different things,* and it's good to split them up. If you're concerned about duplication, you can improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+Kode akhir lebih panjang dari aslinya, tetapi pemisahan Efek ini masih benar. [Setiap Efek harus mewakili proses sinkronisasi independen.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) Dalam contoh ini, menghapus satu Efek tidak merusak logika Efek lainnya. Ini berarti mereka *menyinkronkan hal-hal yang berbeda,* dan akan lebih baik jika dipisahkan. Jika Anda khawatir tentang duplikasi, Anda dapat mengembangkan kode ini dengan [mengekstrak logika berulang ke dalam Hook khusus.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 ### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
