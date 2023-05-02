@@ -4,7 +4,7 @@ title: renderToNodeStream
 
 <Deprecated>
 
-API ini akan dihapus di versi utama React yang akan datang. Gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
+API ini akan dihapus pada React versi mayor berikutnya. Gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
 
 </Deprecated>
 
@@ -47,7 +47,7 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan *string* HTML.
 
-#### Peringatan {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
 * Metode ini akan menunggu semua [*Suspense boundaries*](/reference/react/Suspense) selesai sebelum menampilkan keluaran apa pun.
 
