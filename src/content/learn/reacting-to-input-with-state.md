@@ -4,34 +4,35 @@ title: Reacting to Input with State
 
 <Intro>
 
-React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai keadaan komponen, dan mengubahnya sebagai respons terhadap masukan pengguna. Ini mirip dengan bagaimana desainer memikirkan tentang UI.
 
 </Intro>
 
 <YouWillLearn>
 
-* How declarative UI programming differs from imperative UI programming
-* How to enumerate the different visual states your component can be in
-* How to trigger the changes between the different visual states from code
+* Bagaimana declative UI programming berbeda dengan imperative UI programming
+* Bagaimana menjabarkan berbagai keadaan visual pada suatu komponen
+* Bagaimana cara memicu perubahan dari berbagai keadaan
 
 </YouWillLearn>
 
-## How declarative UI compares to imperative {/*how-declarative-ui-compares-to-imperative*/}
+## Bagaimana perbedaan declative UI dengan Imperative UI {/*how-declarative-ui-compares-to-imperative*/}
 
-When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
+Ketika Anda mendesain interaksi antarmuka, Anda mungkin berfikir tentang bagaimana antarmuka berubah karena respon dari aksi pengguna. Sebagai contoh, suatu form yang memungkan pengguna untuk melakukan submit jawaban ketika:
 
-* When you type something into the form, the "Submit" button **becomes enabled.**
-* When you press "Submit", both the form and the button **become disabled,** and a spinner **appears.**
-* If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
-* If the network request fails, an error message **appears,** and the form **becomes enabled** again.
+* Anda mengetikan sesuatu kedalam form, maka tombol submit menjadi **aktif**
+* Anda mengklik tombol "Submit", baik form maupun tombol "Submit" tersebut menjadi **nonaktif** dan _spinner_ muncul.
+* Apabila network request berhasil, form disembunyikan dan pesan "Terima Kasih" muncul
+* Apabila network request gagal, pesan galat muncul dan form menjadi aktif kembali.
 
-In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
+
+Pada **pemrograman imperatif**, yang disebutkan diatas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi. Anda harus menulis intruksi yang tepat untuk memanipulasi UI tergantung apa yang sedang terjadi. Berikit ini adalah cara lain untuk memahami hal ini: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
 
-They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
+Dia tidak tahu kemana Anda ingin pergi, dia hanya mengikuti perintah yang anda berikan (dan apabila Anda memberikan arah yang salah, Anda akan sampai ditempat yang salah juga). Hal tersebut dinamakan *imperatif*, karena Anda harus *memberikan perintah* setiap element, mulai dari _spinner_ hingga tombol dengan memberitahu komputer untuk mengupdate antarmuka. 
 
-In this example of imperative UI programming, the form is built *without* React. It only uses the browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+Pada contoh pemrograman antarmuka imperatif, form dibangun tanpa menggunakan React, hanya mengguna browse [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
 <Sandpack>
 
@@ -131,11 +132,11 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-Manipulating the UI imperatively works well enough for isolated examples, but it gets exponentially more difficult to manage in more complex systems. Imagine updating a page full of different forms like this one. Adding a new UI element or a new interaction would require carefully checking all existing code to make sure you haven't introduced a bug (for example, forgetting to show or hide something).
+Memanipulasi antarmuka secara imperatif bekerja dengan baik pada contoh yang terisolasi, tetapi akan semakin sulit untuk diatur pada sistem yang kompleks. Bayangkan meng-update banyak form yang berbeda pada satu halaman seperti contoh diatas. Menambahkan elemen antarmuka atau menambah interaksi harus mengecek semua code yang ada secara hati-hati untuk memastikan bahwa Anda tidak menambahkan bug (misalnya lupa untuk menampilkan atau menyembunyikannya).
 
-React was built to solve this problem.
+React dibangun untuk mengatasi masalah ini.
 
-In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
+Pada React, Anda tidak perlu memanipulasi antarmuka secara langsung, maksudnya anda tidak perlu mengaktifkan, menonaktifkan, menampilkan, atau menyembunyikan suatu component secara langsung. Melainkan, Anda dapat **menyatakan apa yang ingin anda tampilkan**, dan React akan mengupdate antarmuka tersebut. Pikirkan Anda menyewa taksi dan memberitahu pengemudinya kemana Anda akan pergi, daripada memberitahukan dimana harus berbelok. Itu adalah tugas pengemudi untuk mencari tahu bagaimana mengantar Anda ke tujuannya, bahkan dia bisa menemukan jalan pintas yang tidak anda tahu.
 
 <Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
