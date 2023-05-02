@@ -116,9 +116,9 @@ setNumber(n => n + 1);
 
 Berikut adalah cara kerja React melalui baris kode ini saat menjalankan *event handler*:
 
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
+1. `setNumber(n => n + 1)`: `n => n + 1` adalah sebuah fungsi. React menambahkannya ke dalam antrean.
+2. `setNumber(n => n + 1)`: `n => n + 1` adalah sebuah fungsi. React menambahkannya ke dalam antrean.
+3. `setNumber(n => n + 1)`: `n => n + 1` adalah sebuah fungsi. React menambahkannya ke dalam antrean.
 
 Ketika Anda memanggil `useState` saat *render* berikutnya, React akan melewati antrean. *State* `number` sebelumnya adalah `0`, jadi itulah yang akan diteruskan React ke fungsi *updater* pertama sebagai argumen `n`. Kemudian React mengambil hasil dari fungsi *updater* sebelumnya dan meneruskannya ke *updater* berikutnya sebagai `n`, dan begitu seterusnya:
 
