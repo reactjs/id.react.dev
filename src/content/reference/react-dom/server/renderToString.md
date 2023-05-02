@@ -56,7 +56,7 @@ Sebuah *string* HTML.
 
 ## Penggunaan {/*usage*/}
 
-### Me-render React tree sebagai HTML menjadi string {/*rendering-a-react-tree-as-html-to-a-string*/}
+### Me-render pohon React sebagai HTML menjadi string {/*rendering-a-react-tree-as-html-to-a-string*/}
 
 Panggil `renderToString` untuk me-render aplikasi Anda ke *string* HTML yang dapat Anda kirim dengan respons server Anda:
 
