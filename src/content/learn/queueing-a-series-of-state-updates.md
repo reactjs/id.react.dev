@@ -131,9 +131,9 @@ Ketika Anda memanggil `useState` saat *render* berikutnya, React akan melewati a
 React menyimpan `3` sebagai hasil akhir dan mengembalikannya dari `useState`.
 
 Inila mengapa mengklik "+3" pada contoh di atas dengan benar meningkatkan nilai sebesar 3.
-### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
+### Apa yang terjadi jika Anda memperbarui state setelah menggantinya {/*what-happens-if-you-update-state-after-replacing-it*/}
 
-What about this event handler? What do you think `number` will be in the next render?
+Bagaimana dengan *event handler* ini? Menurut Anda berapa nilai `number` pada *render* berikutnya?
 
 ```js
 <button onClick={() => {
@@ -169,23 +169,23 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's what this event handler tells React to do:
+Begini cara *event handler* memberitahu React apa yang harus dilakukan:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
+1. `setNumber(number + 5)`: `number` adalah `0`, jadi `setNumber(0 + 5)`. React menambahkan "ganti dengan `5`" ke antreannya.
+2. `setNumber(n => n + 1)`: `n => n + 1` merupakan fungsi *updater*. React menambahkan fungsi tersebut ke antreannya.
 
-During the next render, React goes through the state queue:
+Selama *render* berikutnya, React melewati antrean *state*:
 
-|   queued update       | `n` | returns |
+|   antrean diperbarui       | `n` | hasil |
 |--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
+| "ganti dengan `5`" | `0` (tak terpakai) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
-React stores `6` as the final result and returns it from `useState`. 
+React menyimpan `6` sebagai hasil akhir dan mengembalikannya dari `useState`.
 
 <Note>
 
-You may have noticed that `setState(5)` actually works like `setState(n => 5)`, but `n` is unused!
+Anda mungkin sadar bahwa `setState(5)` sebenarnya bekerja seperti `setState(n => 5)`, tetapi `n` tidak terpakai! 
 
 </Note>
 
