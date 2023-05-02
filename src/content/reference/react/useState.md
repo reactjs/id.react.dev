@@ -4,7 +4,7 @@ title: useState
 
 <Intro>
 
-`useState` merupakan React Hook yang memungkinkan anda untuk menambahkan [state variable](/learn/state-a-components-memory) pada komponen anda.
+`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [*state variable*](/learn/state-a-components-memory) pada komponen anda.
 
 ```js
 const [state, setState] = useState(initialState);
@@ -16,11 +16,11 @@ const [state, setState] = useState(initialState);
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useState(initialState)` {/*usestate*/}
 
-Call `useState` at the top level of your component to declare a [state variable.](/learn/state-a-components-memory)
+Panggil fungsi `useState` di tingkat atas komponen Anda untuk mendeklarasikan sebuah [*state variable*.](/learn/state-a-components-memory)
 
 ```js
 import { useState } from 'react';
@@ -32,21 +32,21 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai *state variable* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
-  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
+* `initialState`: Nilai awal pada sebuah *state*. Nilainya dapat berupa jenis apa saja, namun terdapat perilaku khusus untuk fungsi. Argumen ini diabaikan setelah rendering awal.
+  * Jika Anda mengoper sebuah fungsi sebagai `initialState`, itu akan diperlakukan sebagai *initializer function*. Fungsi tersebut harus bersih (*pure*), tidak boleh menerima argumen, dan harus mengembalikan nilai dengan tipe apa pun. React akan memanggil *initializer function* ketika menginisialisasi komponen, dan menyimpan nilai kembaliannya sebagai *state* awal. [Lihat contoh lainnya di bawah ini.](#avoiding-recreating-the-initial-state)
 
 #### Returns {/*returns*/}
 
-`useState` returns an array with exactly two values:
+`useState` mengembalikan sebuah senarai dengan tepat dua nilai:
 
-1. The current state. During the first render, it will match the `initialState` you have passed.
-2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
+1. *State* saat ini. Pada saat pertama kali *render*, itu akan cocok dengan `initialState` yang anda oper sebelumnya.
+2. Fungsi [*`set` function*](#setstate) yang memungkinkan Anda memperbarui *state* menjadi nilai yang berbeda dan memicu pembaruan ulang (*re-render*).
 
 #### Caveats {/*caveats*/}
 
