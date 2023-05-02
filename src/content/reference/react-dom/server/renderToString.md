@@ -4,7 +4,7 @@ title: renderToString
 
 <Pitfall>
 
-`renderToString` tidak mendukung streaming atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
+`renderToString` tidak mendukung *streaming* atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Pitfall>
 
@@ -75,7 +75,7 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 <Pitfall>
 
-`renderToString` tidak mendukung streaming atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
+`renderToString` tidak mendukung *streaming* atau menunggu data. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Pitfall>
 
