@@ -4,7 +4,7 @@ title: renderToPipeableStream
 
 <Intro>
 
-`renderToPipeableStream` me-*render* pohon React menjadi [Node.js Stream](https://nodejs.org/api/stream.html) yang *pipeable*.
+`renderToPipeableStream` me-*render* pohon (*tree*) React menjadi [Node.js Stream](https://nodejs.org/api/stream.html) yang *pipeable*.
 
 ```js
 const { pipe, abort } = renderToPipeableStream(reactNode, options?)
