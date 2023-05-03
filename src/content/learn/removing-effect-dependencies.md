@@ -1,18 +1,18 @@
 ---
-title: 'Menghilangkan Effect dependensi'
+title: 'Menghilangkan Efek dependensi'
 ---
 
 <Intro>
 
-Saat anda menulis sebuah Effect, linter akan memverifikasi bahwa anda telah memasukan setiap nilai reaktif (seperti props dan state) yang dibaca Effect dalam daftar dependensi Effect. Ini memastikan bahwa Effect anda tetap tersinkronisasi dengan props dan state terbaru dari komponen anda. Dependensi yang tidak perlu dapat menyebabkan Effect anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Effect anda.
+Saat Anda menulis sebuah Efek, linter akan memverifikasi bahwa Anda telah memasukan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
 
 </Intro>
 
 <YouWillLearn>
 
-- Cara memperbaiki Effect tak terbatas perulangan dependensi?
-- Apa yang harus dilakukan bila anda ingin menghapus dependensi?
-- Cara membaca nilai dari Effect anda tanpa "bereaksi" dengannya?
+- Cara memperbaiki Efek tak terbatas perulangan dependensi?
+- Apa yang harus dilakukan bila Anda ingin menghapus dependensi?
+- Cara membaca nilai dari Efek Anda tanpa "bereaksi" dengannya?
 - Bagaimana dan mengapa menghindari objek dan fungsi dependensi?
 - Mengapa menekan linter dependensi berbahaya, dan alih-alih apa yang harus dilakukan?
 
@@ -20,7 +20,7 @@ Saat anda menulis sebuah Effect, linter akan memverifikasi bahwa anda telah mema
 
 ## Dependensi harus sesuai dengan kode {/*dependencies-should-match-the-code*/}
 
-Saat anda menulis sebuah Effect, pertama anda menentukan cara [memulai dan menghentikan](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) apa pun yang anda ingin dari Effect anda lakukan:
+Saat Anda menulis sebuah Efek, pertama Anda menentukan cara [memulai dan menghentikan](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) apa pun yang Anda ingin dari Efek Anda lakukan:
 
 ```js {5-7}
 const serverUrl = 'https://localhost:1234';
@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Kemudian, jika anda membiarkan dependensi Effect kosong (`[]`), linter akan menyarankan dependensi yang tepat:
+Kemudian, jika Anda membiarkan dependensi Efek kosong (`[]`), linter akan menyarankan dependensi yang tepat:
 
 <Sandpack>
 
@@ -54,7 +54,7 @@ function ChatRoom({ roomId }) {
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('umum');
+  const [roomId, setRoomId] = useState('general');
   return (
     <>
       <label>
@@ -77,10 +77,10 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // Implementasi nyata sebenarnya akan terhubung ke server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
       console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
@@ -109,7 +109,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[Effect "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena render ulang), linter memverifikasi bahwa anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Effect anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan dropdown:
+[Efek "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena render ulang), linter memverifikasi bahwa Anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Efek Anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan *dropdown*:
 
 <Sandpack>
 
@@ -152,10 +152,10 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // Impelementasi nyata sebenarnya akan terhubung ke server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
       console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
@@ -173,22 +173,22 @@ button { margin-left: 10px; }
 
 ### Untuk menghapus dependensi, pastikan bahwa itu bukan dependensi {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Perhatikan bahwa anda tidak dapat "memilih" dependensi dari Effect anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan ole kode Effect anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
+Perhatikan bahwa Anda tidak dapat "memilih" dependensi dari Efek Anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan ole kode Efek Anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId }) { // Ini adalah nilai reaktif
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Effect ini membaca nilai reaktif tersebut
+    const connection = createConnection(serverUrl, roomId); // Efek ini membaca nilai reaktif tersebut
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ Jadi anda harus menentukan nilai reaktif tersebut sebagai dependesi dari Effect anda
+  }, [roomId]); // ✅ Jadi Anda harus menentukan nilai reaktif tersebut sebagai dependesi dari Efek Anda
   // ...
 }
 ```
 
-[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk props dan semua variable dan fungsi dideklrasaikan langsung di dalam komponen anda. Ketika `roomId` adalah nilai reaktif, anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
+[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk *props* dan semua variable dan fungsi dideklrasaikan langsung di dalam komponen Anda. Ketika `roomId` adalah nilai reaktif, Anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
 
 ```js {8}
 const serverUrl = 'https://localhost:1234';
@@ -203,9 +203,9 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Dan linter akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini akan menimbulkan bug dalam kode anda.
+Dan linter akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini akan menimbulkan bug dalam kode Anda.
 
-**Untuk menghapus dependensi, "buktikan" kepada linter bahwa itu *tidak perlu* menjadi sebuah dependensi.** Misalnya, anda dapat mengeluarkan `roomId` dari komponen  untuk membuktikan bahwa ia tidak reaktif dan tidak akan berubah saat render ulang:
+**Untuk menghapus dependensi, "buktikan" kepada linter bahwa itu *tidak perlu* menjadi sebuah dependensi.** Misalnya, Anda dapat mengeluarkan `roomId` dari komponen  untuk membuktikan bahwa ia tidak reaktif dan tidak akan berubah saat render ulang:
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
@@ -244,13 +244,13 @@ export default function ChatRoom() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // Implementasi nyata sebenarnya akan terhubung ke server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
@@ -263,23 +263,23 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Inilah mengapa anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Effect anda *benar-benar tidak* bergantung pada nilai reaktif lagi, jadi itu *benar-benar tidak* dijalankan ulang ketika salah satu props atau state komponen berubah.
+Inilah mengapa Anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Efek Anda *benar-benar tidak* bergantung pada nilai reaktif lagi, jadi itu *benar-benar tidak* dijalankan ulang ketika salah satu *props* atau *state* komponen berubah.
 
 ### Untuk mengubah dependensi, ubah kodenya {/*to-change-the-dependencies-change-the-code*/}
 
-Anda mungkin memperhatikan pola dalam alur kerja anda:
+Anda mungkin memperhatikan pola dalam alur kerja Anda:
 
-1. Pertama, anda **mengubah kode** kode Effect anda atau bagaimana nilai reaktif anda dideklarasikan.
-2. Kemudian, anda mengikuti linter dan menyesuaikan dependensi agar **sesuai dengan kode yang anda ubah.**
-3. Jika kamu tidak puas dengan daftar dependensi, anda **kembali ke langkah pertama** (dan mengubah kodenya kembali).
+1. Pertama, Anda **mengubah kode** kode Efek Anda atau bagaimana nilai reaktif Anda dideklarasikan.
+2. Kemudian, Anda mengikuti linter dan menyesuaikan dependensi agar **sesuai dengan kode yang Anda ubah.**
+3. Jika kamu tidak puas dengan daftar dependensi, Anda **kembali ke langkah pertama** (dan mengubah kodenya kembali).
 
-Bagian terakhir ini penting. **Jika anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode Effect anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode anda. Untuk mengubah daftar dependensi, ubah kodenya.
+Bagian terakhir ini penting. **Jika Anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode Efek Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode Anda. Untuk mengubah daftar dependensi, ubah kodenya.
 
-Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan tujuan (misalnya, untuk menghapus dependensi), dan anda perlu "menemukan" kode yang sesuai dengan tujuan tersebut. Tidak semua orang menganggap memecahkan persamaan itu menyenangkan, dan hal yang sama bisa dikatakan tentang menulis Effect! Untungnya, ada daftar dari cara umum yang bisa anda coba di bawah ini.
+Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan tujuan (misalnya, untuk menghapus dependensi), dan Anda perlu "menemukan" kode yang sesuai dengan tujuan tersebut. Tidak semua orang menganggap memecahkan persamaan itu menyenangkan, dan hal yang sama bisa dikatakan tentang menulis Efek! Untungnya, ada daftar dari cara umum yang bisa Anda coba di bawah ini.
 
 <Pitfall>
 
-Jika anda memiliki basis kode yang sudah ada, anda mungkin memiliki beberapa Effect yang menekan linter seperti ini:
+Jika Anda memiliki basis kode yang sudah ada, Anda mungkin memiliki beberapa Efek yang menekan linter seperti ini:
 
 ```js {3-4}
 useEffect(() => {
@@ -289,7 +289,7 @@ useEffect(() => {
 }, []);
 ```
 
-**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan linter, anda "bohong" kepada React tentang nilai yang bergantung pada Effect anda.
+**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan linter, Anda "bohong" kepada React tentang nilai yang bergantung pada Efek Anda.
 
 Sebagai gantinya, gunakan teknik di bawah ini.
 
@@ -349,13 +349,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Katakanlah anda ingin menjalankan Effect "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi anda memutuskan untuk mengabaikan linter, dan dengan paksa menentukan `[]` sebagai dependensi.
+Katakanlah Anda ingin menjalankan Efek "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi Anda memutuskan untuk mengabaikan linter, dan dengan paksa menentukan `[]` sebagai dependensi.
 
-Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena anda "berbohong" kepada React bahwa Effect ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
+Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena Anda "berbohong" kepada React bahwa Efek ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan Anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
 
-Selalu ada solusi yang lebih baik daripada mengabaikan linter! Untuk memperbaiki kode ini, anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
+Selalu ada solusi yang lebih baik daripada mengabaikan linter! Untuk memperbaiki kode ini, Anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
-**Sebaiknya perlakukan eror lint dependensi sebagai eror kompilasi. Jika anda tidak menekannya, anda tidak akan pernah melihat eror seperti ini.** Sisa dari halaman ini mendokumentasikan untuk kasus ini dan kasus lainnya.
+**Sebaiknya perlakukan eror lint dependensi sebagai eror kompilasi. Jika Anda tidak menekannya, Anda tidak akan pernah melihat eror seperti ini.** Sisa dari halaman ini mendokumentasikan untuk kasus ini dan kasus lainnya.
 
 </DeepDive>
 
@@ -395,7 +395,7 @@ function Form() {
 }
 ```
 
-Kemudian, Anda ingin menyesuaikan pesan notifikasi sesuai dengan tema saat ini, sehingga Anda membaca tema saat ini. Ketika `theme` dideklarasikan di badan komponen, tema merupakan nilai reaktif, jadi anda menambahkannya sebagai dependensi:
+Kemudian, Anda ingin menyesuaikan pesan notifikasi sesuai dengan tema saat ini, sehingga Anda membaca tema saat ini. Ketika `theme` dideklarasikan di badan komponen, tema merupakan nilai reaktif, jadi Anda menambahkannya sebagai dependensi:
 
 ```js {3,9,11}
 function Form() {
@@ -508,7 +508,7 @@ Namun, karena Efek sekarang menggunakan variabel *state* `city`, nda harus menam
 **Masalah dengan kode ini adalah Anda menyinkronkan dua hal berbeda yang tidak berhubungan:**
 
 1. Anda ingin menyinkronkan *state* `cities` ke jaringan berdasarkan *prop* `country`.
-1. Anda ingin menyinkronkan *state* `areas` state ke jaringan berdasarkan *prop* `city`.
+1. Anda ingin menyinkronkan *state* `areas` ke jaringan berdasarkan *prop* `city`.
 
 Membagi logika menjadi dua Efek, yang masing-masing bereaksi terhadap *prop* yang perlu disinkronkan:
 
@@ -657,7 +657,7 @@ function ChatRoom({ roomId }) {
 
 Masalahnya adalah setiap kali `isMuted` berubah (misalnya, saat pengguna menekan tombol "Muted"), Efek dakan menyinkronkan ulang, dan menghubungkan kembali ke obrloan. Ini bukan *user experience* yang diinginkan! (Dalam contoh ini, bahkan menonaktifkan linter pun tidak akan berhasil--jika Anda melakukannya, `isMuted` akan "terjebak" dengan nilai sebelumnya.)
 
-Untuk mengatasi masalah ini, Anda perlu mengekstrak logika yang seharusnya tidak reaktif dari Efek. Anda tidak ingin Efek ini "bereaksi" terhadap perubahan dari `isMuted`. [Pindahkan logika non-reaktif ini ke dalam Efek Event:](/learn/separating-events-from-effects#declaring-an-effect-event)
+Untuk mengatasi masalah ini, Anda perlu mengekstrak logika yang seharusnya tidak reaktif dari Efek. Anda tidak ingin Efek ini "bereaksi" terhadap perubahan dari `isMuted`. [Pindahkan logika non-reaktif ini ke dalam Event Efek:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
 ```js {1,7-12,18,21}
 import { useState, useEffect, useEffectEvent } from 'react';
@@ -684,7 +684,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Efek Event memungkinkan Anda membagi Efek menjadi bagian reaktif (yang seharusnya "bereaksi" terhadap nilai reaktif seperti `roomId` dan perubahannya) dan bagian non-reaktif (yang hanya membaca nilai terbarunya, seperti `onMessage` membaca `isMuted`). **Sekarang setelah Anda membaca `isMuted` di dalam Efek Event, ia tidak perlu menjadi dependensi Efek Anda.** Hasilnya, obrolan tidak akan tehubung kembali saat Anda men-*toggle* pengaturan "Dibisukan", dan menyelesaikan masalah aslinya!
+Event Efek memungkinkan Anda membagi Efek menjadi bagian reaktif (yang seharusnya "bereaksi" terhadap nilai reaktif seperti `roomId` dan perubahannya) dan bagian non-reaktif (yang hanya membaca nilai terbarunya, seperti `onMessage` membaca `isMuted`). **Sekarang setelah Anda membaca `isMuted` di dalam Event Efek, ia tidak perlu menjadi dependensi Efek Anda.** Hasilnya, obrolan tidak akan tehubung kembali saat Anda men-*toggle* pengaturan "Dibisukan", dan menyelesaikan masalah aslinya!
 
 #### Membungkus event handler dari props {/*wrapping-an-event-handler-from-the-props*/}
 
@@ -716,7 +716,7 @@ Misalkan komponen induk meneruskan fungsi `onReceiveMessage` *yang berbeda* pada
 />
 ```
 
-Karena `onReceiveMessage` adalah sebuah dependensi, ini akan menyebabkan Efek untuk menyinkronkan ulang setelah setiap induk dirender ulang. Hal ini akan membuat terhubung kembali ke obrolan. Untuk mengatasi ini, bungkus panggilan tersebut dalam sebuah Efek Event:
+Karena `onReceiveMessage` adalah sebuah dependensi, ini akan menyebabkan Efek untuk menyinkronkan ulang setelah setiap induk dirender ulang. Hal ini akan membuat terhubung kembali ke obrolan. Untuk mengatasi ini, bungkus panggilan tersebut dalam sebuah Event Efek:
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -737,13 +737,13 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Efek Event tidak reaktif, jadi Anda tidak perlu menetapkannya sebagai dependensi. Hasilnya, obrolan tidak akan terhubung kembali meskipun komponen induk meneruskan fungsi yang berbeda pada setiap render ulang.
+Event Efek tidak reaktif, jadi Anda tidak perlu menetapkannya sebagai dependensi. Hasilnya, obrolan tidak akan terhubung kembali meskipun komponen induk meneruskan fungsi yang berbeda pada setiap render ulang.
 
 #### Memisahkan kode reaktif dan non-reaktif {/*separating-reactive-and-non-reactive-code*/}
 
 Dalam contoh ini, Anda ingin mencatat kunjungan setiap kali `roomId` berubah. Anda ingin memasukkan `notificationCount` saat ini dengan setiap *log*, namun Anda *tidak* ingin perubahan `notificationCount` memicu *log event*.
 
-Solusinya adalah sekali lagi membagi kode non-reaktif menjadi Efek Event:
+Solusinya adalah sekali lagi membagi kode non-reaktif menjadi Event Efek:
 
 ```js {2-4,7}
 function Chat({ roomId, notificationCount }) {
@@ -758,7 +758,7 @@ function Chat({ roomId, notificationCount }) {
 }
 ```
 
-Anda ingin logika Anda menjadi reaktif terhadap `roomId`, sehingga Anda membaca `roomId` di dalam Efek Anda. Nmaun, Anda tidak ingin perubahan pada `notificationCount` untuk mencatat kunjungan tambahan, jadi Anda membaca `notificationCount` di dalam Efek Event. [Pelajari lebih lanjut tentang membaca props dan state dari Efek menggunakan Efek Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+Anda ingin logika Anda menjadi reaktif terhadap `roomId`, sehingga Anda membaca `roomId` di dalam Efek Anda. Nmaun, Anda tidak ingin perubahan pada `notificationCount` untuk mencatat kunjungan tambahan, jadi Anda membaca `notificationCount` di dalam Event Efek. [Pelajari lebih lanjut tentang membaca *props* dan *state* dari Efek menggunakan Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 ### Apakah beberapa nilai reaktif berubah secara tidak sengaja {/*does-some-reactive-value-change-unintentionally*/}
 
@@ -851,7 +851,7 @@ export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
       console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
@@ -886,7 +886,7 @@ console.log(Object.is(options1, options2)); // false
 
 **Dependensi objek dan fungsi dapat membuat Efek Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
 
-Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi Efek Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam Effect, atau mengekstrak nilai primitif dari komponen tersebut.
+Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi Efek Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam Efek, atau mengekstrak nilai primitif dari komponen tersebut.
 
 #### Memindahkan objek dan fungsi statis di luar komponen Anda {/*move-static-objects-and-functions-outside-your-component*/}
 
@@ -957,7 +957,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Sekarang `options` dideklarasikan di dalam Effect Anda, tidak lagi menjadi dependensi dari Efek Anda. Sebaliknya, satu-satunya nilai reaktif yang digunakan oleh Efek Anda adalah `roomId`. Karena `roomId` bukan objek atau fungsi, Anda dapat yakin bahwa itu tidak akan *berbeda secara tidak sengaja*. Dalam JavaScript, *numbers* dan *string* dibandingkan berdasarkan isinya:
+Sekarang `options` dideklarasikan di dalam Efek Anda, tidak lagi menjadi dependensi dari Efek Anda. Sebaliknya, satu-satunya nilai reaktif yang digunakan oleh Efek Anda adalah `roomId`. Karena `roomId` bukan objek atau fungsi, Anda dapat yakin bahwa itu tidak akan *berbeda secara tidak sengaja*. Dalam JavaScript, *numbers* dan *string* dibandingkan berdasarkan isinya:
 
 ```js {7-8}
 // Selama render pertama
@@ -1028,7 +1028,7 @@ export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Terhubung ke ruang "' + roomId + '" pada ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
       console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
@@ -1154,32 +1154,32 @@ function ChatRoom({ getOptions }) {
   // ...
 ```
 
-Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena aman untuk dipanggil selama *rendering*. Jika fungsi Anda adalah sebuah *event handler*, tetapi Anda tidak ingin perubahannya menyinkronkan ulang Efek Anda, [bungkuslah menjadi sebuah Efek Event](#do-you-want-to-read-a-value-without-reacting-to-its-changes).
+Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena aman untuk dipanggil selama *rendering*. Jika fungsi Anda adalah sebuah *event handler*, tetapi Anda tidak ingin perubahannya menyinkronkan ulang Efek Anda, [bungkuslah menjadi sebuah Event Efek](#do-you-want-to-read-a-value-without-reacting-to-its-changes).
 
 <Recap>
 
-- Dependencies should always match the code.
-- When you're not happy with your dependencies, what you need to edit is the code.
-- Suppressing the linter leads to very confusing bugs, and you should always avoid it.
-- To remove a dependency, you need to "prove" to the linter that it's not necessary.
-- If some code should run in response to a specific interaction, move that code to an event handler.
-- If different parts of your Effect should re-run for different reasons, split it into several Effects.
-- If you want to update some state based on the previous state, pass an updater function.
-- If you want to read the latest value without "reacting" it, extract an Effect Event from your Effect.
-- In JavaScript, objects and functions are considered different if they were created at different times.
-- Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
+- Dependensi harus selalu sesuai dengan kodenya.
+- Ketika Anda tidak puas dengan dependensi Anda, yang perlu Anda edit adalah kodenya.
+- Menekan linter akan menyebabkan *bug* yang sangat membingungkan, dan Anda harus selalu menghindarinya.
+- Untuk menghapus sebuah dependensi, Anda perlu "membuktikan" kepada linter bahwa dependensi tersebut tidak diperlukan.
+- Jika beberapa kode harus berjalan sebagai respons terhadap interaksi tertentu, pindahkan kode tersebut ke *event handler*.
+- Jika beberapa bagian dari Efek Anda harus dijalankan ulang karena alasan yang berbeda, pisahkan menjadi beberapa Efek.
+- Jika Anda ingin memperbarui beberapa *state* berdasarkan *state* sebelumnya, berikan fungsi *updater*.
+- Jika Anda ingin membaca nilai terbaru tanpa "bereaksi", ekstrak Event Efek dari Efek Anda.
+- Dalam JavaScript, objek dan fungsi dianggap berbeda jika dibuat pada waktu yang berbeda.
+- Cobalah untuk menghindari ketergantungan objek dan fungsi. Pindahkan mereka di luar komponen atau di dalam Efek.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a resetting interval {/*fix-a-resetting-interval*/}
+#### Memperbaiki interval pengaturan ulang {/*fix-a-resetting-interval*/}
 
-This Effect sets up an interval that ticks every second. You've noticed something strange happening: it seems like the interval gets destroyed and re-created every time it ticks. Fix the code so that the interval doesn't get constantly re-created.
+Efek ini menetapkan interval yang berdetak setiap detik. Anda telah memperhatikan sesuatu yang aneh terjadi: sepertinya interval tersebut dihancurkan dan dibuat ulang setiap kali berdetak. Perbaiki kode sehingga interval tidak terus-menerus dibuat ulang.
 
 <Hint>
 
-It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` state based on its previous value without adding a dependency on that value.
+Sepertinya kode Efek ini bergantung pada `count`. Apakah ada cara untuk tidak memerlukan dependensi ini? Seharusnya ada cara untuk memperbarui *state* `count` berdasarkan nilai sebelumnya tanpa menambahkan dependensi pada nilai tersebut.
 
 </Hint>
 
@@ -1203,7 +1203,7 @@ export default function Timer() {
     };
   }, [count]);
 
-  return <h1>Counter: {count}</h1>
+  return <h1>Pencacah: {count}</h1>
 }
 ```
 
@@ -1211,9 +1211,9 @@ export default function Timer() {
 
 <Solution>
 
-You want to update the `count` state to be `count + 1` from inside the Effect. However, this makes your Effect depend on `count`, which changes with every tick, and that's why your interval gets re-created on every tick.
+Anda ingin memperbarui *state* `count` menjadi `count + 1` dari dalam Efek. Namun, hal ini membuat Efek Anda bergantung pada `count`, yang berubah setiap kali ada ketukan, dan itulah mengapa interval Anda dibuat ulang setiap kali ada ketukan.
 
-To solve this, use the [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) and write `setCount(c => c + 1)` instead of `setCount(count + 1)`:
+Untuk mengatasi hal ini, gunakan [fungsi updater](/reference/react/useState#updating-state-based-on-the-previous-state) dan tuliskan `setCount(c => c + 1)` bukan `setCount(count + 1)`:
 
 <Sandpack>
 
@@ -1235,25 +1235,25 @@ export default function Timer() {
     };
   }, []);
 
-  return <h1>Counter: {count}</h1>
+  return <h1>Pencacah: {count}</h1>
 }
 ```
 
 </Sandpack>
 
-Instead of reading `count` inside the Effect, you pass a `c => c + 1` instruction ("increment this number!") to React. React will apply it on the next render. And since you don't need to read the value of `count` inside your Effect anymore, so you can keep your Effect's dependencies empty (`[]`). This prevents your Effect from re-creating the interval on every tick.
+Alih-alih membaca `count` di dalam Efek, Anda mengoper instruksi `c => c + 1` ("increment this number!") ke React. React akan menerapkannya pada *render* berikutnya. Dan karena Anda tidak perlu membaca nilai `count` di dalam Efek Anda lagi, maka Anda bisa membiarkan dependensi Efek Anda kosong (`[]`). Hal ini mencegah Efek Anda untuk membuat ulang interval pada setiap ketukan.
 
 </Solution>
 
-#### Fix a retriggering animation {/*fix-a-retriggering-animation*/}
+#### Memperbaiki animasi pemicu ulang {/*fix-a-retriggering-animation*/}
 
-In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
+Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di file `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk *node* DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
 
-This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
+Kode ini sudah berfungsi, tetapi ada sesuatu yang ingin Anda ubah. Saat ini, saat Anda menggerakkan *slider* yang mengontrol variabel *state* `duration`, *slider* tersebut akan memicu ulang animasi. Ubah perilakunya sehingga Efek tidak "bereaksi" terhadap variabel `duration`. Saat Anda menekan "Tampilkan", Efek seharusnya menggunakan `duration` saat ini pada *silder*. Namun demikian, menggerakkan *slider* itu sendiri seharusnya tidak dengan sendirinya memicu ulang animasi.
 
 <Hint>
 
-Is there a line of code inside the Effect that should not be reactive? How can you move non-reactive code out of the Effect?
+Apakah ada baris kode di dalam Efek yang tidak boleh reaktif? Bagaimana cara memindahkan kode non-reaktif keluar dari Efek?
 
 </Hint>
 
@@ -1303,7 +1303,7 @@ function Welcome({ duration }) {
         backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
       }}
     >
-      Welcome
+      Selamat datang
     </h1>
   );
 }
@@ -1343,11 +1343,11 @@ export class FadeInAnimation {
   start(duration) {
     this.duration = duration;
     if (this.duration === 0) {
-      // Jump to end immediately
+      // Lompat ke akhir dengan segera
       this.onProgress(1);
     } else {
       this.onProgress(0);
-      // Start animating
+      // Memulai animasi
       this.startTime = performance.now();
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
@@ -1357,7 +1357,7 @@ export class FadeInAnimation {
     const progress = Math.min(timePassed / this.duration, 1);
     this.onProgress(progress);
     if (progress < 1) {
-      // We still have more frames to paint
+      // Kita masih memiliki lebih banyak bingkai untuk dilukis
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
   }
@@ -1382,7 +1382,7 @@ html, body { min-height: 300px; }
 
 <Solution>
 
-Your Effect needs to read the latest value of `duration`, but you don't want it to "react" to changes in `duration`. You use `duration` to start the animation, but starting animation isn't reactive. Extract the non-reactive line of code into an Effect Event, and call that function from your Effect.
+Efek Anda perlu membaca nilai terbaru dari `duration`, tetapi Anda tidak ingin efek tersebut "bereaksi" terhadap perubahan dalam `suration`. Anda menggunakan `duration` untuk memulai animasi, tetapi memulai animasi tidak reaktif. Ekstrak baris kode non-reaktif ke dalam Event Efek, dan panggil fungsi itu dari Efek Anda.
 
 <Sandpack>
 
@@ -1482,7 +1482,7 @@ export class FadeInAnimation {
     const progress = Math.min(timePassed / this.duration, 1);
     this.onProgress(progress);
     if (progress < 1) {
-      // We still have more frames to paint
+      // Kita masih memiliki lebih banyak bingkai untuk dilukis
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
   }
@@ -1505,19 +1505,19 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Effect Events like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
+Event Efek seperti `onAppear` tidak reaktif, sehingga Anda dapat membaca `duration` di dalamnya tanpa memicu ulang animasi.
 
 </Solution>
 
-#### Fix a reconnecting chat {/*fix-a-reconnecting-chat*/}
+#### Memperbaiki obrolan yang tersambung kembali {/*fix-a-reconnecting-chat*/}
 
-In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit the Server URL or choose a different chat room.
+Dalam contoh ini, setiap kali Anda menekan "Alihkan tema", obrolan akan terhubung kembali. Mengapa hal ini terjadi? Perbaiki kesalahan tersebut sehingga obrolan terhubung kembali hanya jika Anda mengedit URL Server atau memilih ruang obrolan yang berbeda.
 
-Treat `chat.js` as an external third-party library: you can consult it to check its API, but don't edit it.
+Perlakukan `chat.js` sebagai pustaka pihak ketiga eksternal: Anda dapat berkonsultasi untuk memeriksa API-nya, tetapi jangan mengeditnya.
 
 <Hint>
 
-There's more than one way to fix this, but ultimately you want to avoid having an object as your dependency.
+Ada lebih dari satu cara untuk memperbaikinya, tetapi pada akhirnya Anda ingin menghindari memiliki objek sebagai dependensi Anda.
 
 </Hint>
 
@@ -1550,14 +1550,14 @@ export default function App() {
         />
       </label>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -1578,13 +1578,13 @@ export default function ChatRoom({ options }) {
     return () => connection.disconnect();
   }, [options]);
 
-  return <h1>Welcome to the {options.roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {options.roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -1593,10 +1593,10 @@ export function createConnection({ serverUrl, roomId }) {
   }
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
@@ -1611,9 +1611,9 @@ label, button { display: block; margin-bottom: 5px; }
 
 <Solution>
 
-Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
+Efek Anda dijalankan ulang karena bergantung pada objek `options`. Objek dapat dibuat ulang tanpa disengaja, Anda harus mencoba menghindarinya sebagai dependensi Efek Anda bila memungkinkan.
 
-The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnection`:
+Perbaikan yang paling tidak invasif adalah dengan membaca `roomId` dan `serverUrl` tepat di luar Efek, dan kemudian membuat Efek bergantung pada nilai primitif tersebut (yang tidak dapat berubah secara tidak sengaja). Di dalam Efek, buat sebuah objek dan berikan ke `createConnection`:
 
 <Sandpack>
 
@@ -1644,14 +1644,14 @@ export default function App() {
         />
       </label>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -1676,13 +1676,13 @@ export default function ChatRoom({ options }) {
     return () => connection.disconnect();
   }, [roomId, serverUrl]);
 
-  return <h1>Welcome to the {options.roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {options.roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -1691,10 +1691,10 @@ export function createConnection({ serverUrl, roomId }) {
   }
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
@@ -1707,7 +1707,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-It would be even better to replace the object `options` prop with the more specific `roomId` and `serverUrl` props:
+Akan lebih baik lagi jika mengganti *prop* objek `options` dengan *prop* `roomId` dan `serverUrl` yang lebih spesifik:
 
 <Sandpack>
 
@@ -1733,14 +1733,14 @@ export default function App() {
         />
       </label>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -1767,13 +1767,13 @@ export default function ChatRoom({ roomId, serverUrl }) {
     return () => connection.disconnect();
   }, [roomId, serverUrl]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamt datang di ruang {roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -1782,10 +1782,10 @@ export function createConnection({ serverUrl, roomId }) {
   }
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" pada ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Terputus dari ruang "' + roomId + '" pada ' + serverUrl);
     }
   };
 }
@@ -1798,25 +1798,26 @@ label, button { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Sticking to primitive props where possible makes it easier to optimize your components later.
+
+Menggunakan *props* primitif bilamana memungkinkan, akan lebih mudah untuk mengoptimalkan komponen Anda nanti.
 
 </Solution>
 
-#### Fix a reconnecting chat, again {/*fix-a-reconnecting-chat-again*/}
+#### Memperbaiki obrolan yang tersambung kembali, lagi {/*fix-a-reconnecting-chat-again*/}
 
-This example connects to the chat either with or without encryption. Toggle the checkbox and notice the different messages in the console when the encryption is on and off. Try changing the room. Then, try toggling the theme. When you're connected to a chat room, you will receive new messages every few seconds. Verify that their color matches the theme you've picked.
+Contoh ini terhubung ke obrolan baik dengan atau tanpa enkripsi. *Toogle* kotak centang dan perhatikan pesan yang berbeda di konsol ketika enkripsi aktif dan nonaktif. Coba ubah ruangan. Kemudian, coba ganti tema. Ketika Anda terhubung ke ruang obrolan, Anda akan menerima pesan baru setiap beberapa detik. Pastikan warnanya sesuai dengan tema yang Anda pilih.
 
-In this example, the chat re-connects every time you try to change the theme. Fix this. After the fix, changing the theme should not re-connect the chat, but toggling encryption settings or changing the room should re-connect.
+Dalam contoh ini, obrolan tersambung kembali setiap kali Anda mencoba mengubah tema. Perbaiki ini. Setelah diperbaiki, mengubah tema seharusnya tidak menyambungkan kembali obrolan, tetapi mengganti pengaturan enkripsi atau mengubah ruangan seharusnya menyambungkan kembali.
 
-Don't change any code in `chat.js`. Other than that, you can change any code as long as it results in the same behavior. For example, you may find it helpful to change which props are being passed down.
+Jangan ubah kode apa pun di `chat.js`. Selain itu, Anda dapat mengubah kode apa pun selama kode tersebut menghasilkan perilaku yang sama. Sebagai contoh, Anda mungkin merasa terbantu dengan mengubah *props* mana yang diturunkan.
 
 <Hint>
 
-You're passing down two functions: `onMessage` and `createConnection`. Both of them are created from scratch every time `App` re-renders. They are considered to be new values every time, which is why they re-trigger your Effect.
+Anda mewariskan dua fungsi: `onMessage` dan `createConnection`. Keduanya dibuat dari awal setiap kali `Aplikasi` di-*render* ulang. Keduanya dianggap sebagai nilai baru setiap saat, dan itulah sebabnya mereka memicu ulang Efek Anda.
 
-One of these functions is an event handler. Do you know some way to call an event handler an Effect without "reacting" to the new values of the event handler function? That would come in handy!
+Salah satu dari fungsi ini adalah *event handler*. Apakah Anda tahu beberapa cara untuk memanggil *event handler* sebagai Efek tanpa "bereaksi" terhadap nilai baru dari fungsi *event handler*? Itu akan sangat berguna!
 
-Another of these functions only exists to pass some state to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
+Fungsi lain dari fungsi ini hanya ada untuk mengoper beberapa *state* ke metode API yang diimpor. Apakah fungsi ini benar-benar diperlukan? Apa informasi penting yang diturunkan? Anda mungkin perlu memindahkan beberapa impor dari `App.js` ke `ChatRoom.js`.
 
 </Hint>
 
@@ -1861,7 +1862,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan tema gelap
       </label>
       <label>
         <input
@@ -1869,17 +1870,17 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        Aktifkan enkripsi
       </label>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <hr />
@@ -1917,13 +1918,13 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
     return () => connection.disconnect();
   }, [createConnection, onMessage]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createEncryptedConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -1934,7 +1935,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
   let messageCallback;
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '" room... (encrypted)');
+      console.log('✅ 🔐 Menghubungkan ke ruang "' + roomId + '" ... (encrypted)');
       clearInterval(intervalId);
       intervalId = setInterval(() => {
         if (messageCallback) {
@@ -1949,7 +1950,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
     disconnect() {
       clearInterval(intervalId);
       messageCallback = null;
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 Terputus dari ruang "' + roomId + '" (encrypted)');
     },
     on(event, callback) {
       if (messageCallback) {
@@ -1975,7 +1976,7 @@ export function createUnencryptedConnection({ serverUrl, roomId }) {
   let messageCallback;
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room (unencrypted)...');
+      console.log('✅ Menghubungkan ke ruang "' + roomId + '" (unencrypted)...');
       clearInterval(intervalId);
       intervalId = setInterval(() => {
         if (messageCallback) {
@@ -1990,7 +1991,7 @@ export function createUnencryptedConnection({ serverUrl, roomId }) {
     disconnect() {
       clearInterval(intervalId);
       messageCallback = null;
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ Terputus dari ruang "' + roomId + '" (unencrypted)');
     },
     on(event, callback) {
       if (messageCallback) {
@@ -2031,11 +2032,13 @@ label, button { display: block; margin-bottom: 5px; }
 
 <Solution>
 
-There's more than one correct way to solve this, but here is one possible solution.
+To fix the problem with `onMessage`, you needed to wrap it into an Event Efek:
 
-In the original example, toggling the theme caused different `onMessage` and `createConnection` functions to be created and passed down. Since the Effect depended on these functions, the chat would re-connect every time you toggle the theme.
+Ada lebih dari satu cara yang benar untuk mengatasi hal ini, tetapi berikut ini adalah salah satu solusi yang mungkin.
 
-To fix the problem with `onMessage`, you needed to wrap it into an Effect Event:
+Pada contoh asli, mengganti tema menyebabkan fungsi `onMessage` dan `createConnection` yang berbeda dibuat dan diturunkan. Karena Efek bergantung pada fungsi-fungsi ini, obrolan akan tersambung kembali setiap kali Anda mengganti tema.
+
+Untuk memperbaiki masalah pada `onMessage`, Anda perlu membungkusnya menjadi sebuah Event Efek:
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
@@ -2047,9 +2050,9 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
     // ...
 ```
 
-Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
+Tidak seperti *prop* `onMessage`, Event Efek `onReceiveMessage` tidak bersifat reaktif. Inilah sebabnya mengapa ia tidak perlu menjadi dependensi Efek Anda. Akibatnya, perubahan pada `onMessage` tidak akan menyebabkan obrolan tersambung kembali.
 
-You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
+Anda tidak dapat melakukan hal yang sama dengan `createConnection` karena ia *harus* reaktif. Anda *ingin* Efeknya terpicu kembali jika pengguna beralih antara koneksi terenkripsi dan tidak terenkripsi, atau jika pengguna berpindah ruangan. Namun, karena `createConnection` adalah sebuah fungsi, Anda tidak dapat memeriksa apakah informasi yang dibacanya telah *benar-benar* berubah atau tidak. Untuk mengatasi hal ini, alih-alih meneruskan `createConnection` dari komponen `App`, berikan nilai mentah `roomId` dan `isEncrypted`:
 
 ```js {2-3}
       <ChatRoom
@@ -2061,7 +2064,7 @@ You can't do the same with `createConnection` because it *should* be reactive. Y
       />
 ```
 
-Now you can move the `createConnection` function *inside* the Effect instead of passing it down from the `App`:
+Sekarang Anda dapat memindahkan fungsi `createConnection` ke dalam Efek alih-alih meneruskannya dari `App`:
 
 ```js {1-4,6,10-20}
 import {
@@ -2087,19 +2090,19 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
     // ...
 ```
 
-After these two changes, your Effect no longer depends on any function values:
+Setelah kedua perubahan ini, Efek Anda tidak lagi bergantung pada nilai fungsi apa pun:
 
 ```js {1,8,10,21}
-export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reactive values
-  const onReceiveMessage = useEffectEvent(onMessage); // Not reactive
+export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Nilai reaktif
+  const onReceiveMessage = useEffectEvent(onMessage); // Tidak reaktif
 
   useEffect(() => {
     function createConnection() {
       const options = {
         serverUrl: 'https://localhost:1234',
-        roomId: roomId // Reading a reactive value
+        roomId: roomId // Membaca nilai reaktif
       };
-      if (isEncrypted) { // Reading a reactive value
+      if (isEncrypted) { // Membaca nilai reaktif
         return createEncryptedConnection(options);
       } else {
         return createUnencryptedConnection(options);
@@ -2110,10 +2113,10 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reacti
     connection.on('message', (msg) => onReceiveMessage(msg));
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, isEncrypted]); // ✅ All dependencies declared
+  }, [roomId, isEncrypted]); // ✅ Semua dependensi dideklarasikan
 ```
 
-As a result, the chat re-connects only when something meaningful (`roomId` or `isEncrypted`) changes:
+Hasilnya, obrolan akan tersambung kembali hanya jika ada sesuatu yang berarti (`roomId` atau `isEncrypted`) berubah:
 
 <Sandpack>
 
@@ -2153,7 +2156,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan tema gelap
       </label>
       <label>
         <input
@@ -2161,10 +2164,10 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        Hidupkan enkripsi
       </label>
       <label>
-        Choose the chat room:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
@@ -2217,13 +2220,13 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
     return () => connection.disconnect();
   }, [roomId, isEncrypted]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 ```
 
 ```js chat.js
 export function createEncryptedConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -2234,7 +2237,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
   let messageCallback;
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '" room... (encrypted)');
+      console.log('✅ 🔐 Mengubungkan ke ruang "' + roomId + '" ... (encrypted)');
       clearInterval(intervalId);
       intervalId = setInterval(() => {
         if (messageCallback) {
@@ -2249,7 +2252,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
     disconnect() {
       clearInterval(intervalId);
       messageCallback = null;
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 Terputus dari ruang "' + roomId + '" (encrypted)');
     },
     on(event, callback) {
       if (messageCallback) {
@@ -2264,7 +2267,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
 }
 
 export function createUnencryptedConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -2290,7 +2293,7 @@ export function createUnencryptedConnection({ serverUrl, roomId }) {
     disconnect() {
       clearInterval(intervalId);
       messageCallback = null;
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ Terputus dari ruang "' + roomId + '" (unencrypted)');
     },
     on(event, callback) {
       if (messageCallback) {
