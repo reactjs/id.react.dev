@@ -36,7 +36,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `ref`: *ref* yang Anda terima sebagai argumen ke-dua dari [fungsi *render* `forwardRef`.](/reference/react/forwardRef#render-function)
 
