@@ -104,7 +104,7 @@ Coba melakukan edit apa yang dikembalikan dalam kedua kasus tersebut, dan lihat 
 
 Perhatikan bagaimana anda membuat logika bercabang dengan pernyataan `if` dan `return` menggunakan JavaScript. Di React, alur kontrol (seperti kondisi) ditangani oleh JavaScript.
 
-### Tidak mengembalikan apa pun secara bersyarat dengan `null` {/*conditionally-returning-nothing-with-null*/}
+### Tidak mengembalikan Apa Pun secara Bersyarat dengan `null` {/*conditionally-returning-nothing-with-null*/}
 
 Dalam kondisi tertentu, anda tidak ingin me-*render* apa pun. Sebagai Contoh, katakan anda tidak mau menampilkan `item` yang dikemas. Sebuah komponen harus mengembalikan sesuatu. Dalam kasus ini, anda dapat mengambalikan `null`:
 
@@ -179,7 +179,7 @@ return <li className="item">{name}</li>;
 
 Meskipun duplikasi ini tidak berbahaya, ini dapat membuka kode anda lebih susah untuk di-*maintain*. Bagaimana jika anda ingi mengganti `className`nya? Anda harus melakukannya di dua tempat dalam kode anda! Dalam situasi seperti itu, anda dapat menyertakan sedikit JSX secara bersyarat untuk membuat kode anda lebih [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
-### Operator (`? :`) bersyarat (ternary) {/*conditional-ternary-operator--*/}
+### Operator (`? :`) Bersyarat (ternary) {/*conditional-ternary-operator--*/}
 
 JavaScript memiliki syntax yang ringkas untuk menulis ekspresi bersyarat -- [operator bersyarat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) atau sering disebut sebagai *"ternary operator"*.
 
@@ -315,25 +315,25 @@ export default function PackingList() {
 
 <Pitfall>
 
-**Jangan menaruh angka di sisi kiri `&&`.**
+**Jangan menaruh Angka di sisi kiri `&&`.**
 
-Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi sebuah `*boolean*` secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai (`0`) tesebut, dan React akan dengan senang hati me-*render* `0` daripada tidak sama sekali.
+Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi sebuah *`boolean`* secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai (`0`) tesebut, dan React akan dengan senang hati me-*render* `0` daripada tidak sama sekali.
 
 Sebagai contoh, kesalahan umum yang sering terjadi adalah menulis kode seperti `messageCount && <p>Pesan Baru</p>`. Sangat mudah untuk berasumsi bahwa itu tidak me-*render*/menghasilkan apa-apa ketika `messageCount` adalah `0`, tapi itu benar-benar me-*render* `0` itu sendiri!
 
-Untuk memperbaikinya, jadikan sisi kiri sebagai `*boolean*`: `messageCount > 0 && <p>Pesan Baru</p>`.
+Untuk memperbaikinya, jadikan sisi kiri sebagai *`boolean`*: `messageCount > 0 && <p>Pesan Baru</p>`.
 
 </Pitfall>
 
-### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}
+### Menugaskan JSX secara Bersyarat ke sebuah Variabel {/*conditionally-assigning-jsx-to-a-variable*/}
 
-When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
+Saat pintasan menghalangi dalam penulisan kode biasa, coba gunakan pernyataan `if` dan sebuah variabel. Anda dapat menetapkan ulang variabel yang telah ditentukan dengan menggunakan [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), jadi mulailah dengan menyediakan konten *default* yang ingin anda tampilkan, namanya:
 
 ```js
 let itemContent = name;
 ```
 
-Use an `if` statement to reassign a JSX expression to `itemContent` if `isPacked` is `true`:
+Gunakan pernyataan `if` untuk menetapkan kembali ekspresi JSX ke `itemContent` jika `isPacked` adalah `true`:
 
 ```js
 if (isPacked) {
@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[Curly braces open the "window into JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Embed the variable with curly braces in the returned JSX tree, nesting the previously calculated expression inside of JSX:
+[Kurung kurawal membuka "jendela ke JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Menyematkan variabel dengan kurung kurawal di JSX *tree* yang dikembalikan, menyarangkan ekspresi yang sebelumnya dihitung di dalam JSX:
 
 ```js
 <li className="item">
@@ -349,7 +349,7 @@ if (isPacked) {
 </li>
 ```
 
-This style is the most verbose, but it's also the most flexible. Here it is in action:
+Gaya ini paling bertele-tele, tetapi juga yang paling fleksibel. Berikut adalah caranya:
 
 <Sandpack>
 
@@ -369,7 +369,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -391,7 +391,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Like before, this works not only for text, but for arbitrary JSX too:
+Seperti sebelumnya, cara ini bekerja tidak hanya pada teks, tetapi juga pada JSX yang sewenang-wenang:
 
 <Sandpack>
 
@@ -437,16 +437,16 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+Jika anda tidak terbiasa dengan JavaScript, variasi dari gaya ini mungkin tampak berlebihan pada awalnya. Namun, mempelajarinya akan membantu anda dalam membaca dan menulis kode JavaScript apa pun -- dan bukan hanya komponen React! Pilih salah satu yang anda sukai sebagai permulaan, dan lihat kembali referensi ini jika anda lupa cara kerja yang lain.
 
 <Recap>
 
-* In React, you control branching logic with JavaScript.
-* You can return a JSX expression conditionally with an `if` statement.
-* You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
-* In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
-* The shortcuts are common, but you don't have to use them if you prefer plain `if`.
+* Di React, anda mengontrol logika percabangan dengan JavaScript.
+* Anda dapat mengembalikan ekspresi JSX secara bersyarat menggunakan pernyataan `if`.
+* Anda dapat menyimpan beberapa JSX ke dalam sebuah variabel secara bersyarat dan kemudian memasukkannya ke dalam JSX yang lain dengan menggunakan kurung kurawal.
+* Di JSX, `{cond ? <A /> : <B />}` berarti *"jika `cond`, render `<A />`, jika tidak `<B />`"*.
+* Di JSX, `{cond && <A />}` berarti *"jika `cond`, render `<A />`, jika tidak render apa pun"*.
+* Pintasan itu umum, tapi anda tidak harus menggunakannya jika anda lebih menyukai pernyataan `if`.
 
 </Recap>
 
@@ -454,9 +454,9 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Tampilkan ikon untuk item yang tidak lengkap dengan menggunakan `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+Gunakan operator bersyarat (`cond ? a : b`) untuk me-*render* sebuah ❌ jika `isPacked` bukan `true`.
 
 <Sandpack>
 
@@ -472,7 +472,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -510,7 +510,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -534,15 +534,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### Tunjukan *importance* item dengan menggunakan `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+Dalam contoh ini, setiap `Item` menerima sebuah properti numerik `importance`. Gunakan operator `&&` untuk me-*render* "_(Importance: X)_" dalam *italics*, tapi hanya untuk *items* yang memiliki properti importance bukan nol. Kumpulan *item* anda akan terlihat seperti ini:
 
 * Space suit _(Importance: 9)_
 * Helmet with a golden leaf
 * Photo of Tam _(Importance: 6)_
 
-Don't forget to add a space between the two labels!
+Jangan lupa untuk menambahkan spasi di antara kedua label tersebut!
 
 <Sandpack>
 
@@ -558,7 +558,7 @@ function Item({ name, importance }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           importance={9} 
@@ -582,7 +582,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+Berikut adalah cara penyelesaiannya:
 
 <Sandpack>
 
@@ -602,7 +602,7 @@ function Item({ name, importance }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           importance={9} 
@@ -624,15 +624,15 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+Catat bahwa andar harus menulis `importance > 0 && ...` daripada `importance && ...` sehingga jika `importance` adalah `0`, `0` tidak akan di-*render* sebagai hasilnya!
 
-In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+Dalam solusi ini, dua kondisi berbeda digunakan untuk menambahkan spasi diantara nama dan label *`importance`. Alternatifnya, anda bisa menggunakan *`fragment`* dengan spasi terdepan: `importance > 0 && <> <i>...</i></>` atau menambahkan spasi tepat di dalam  `<i>`:  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
-#### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### Lakukan Refactor terhadap serangkaian kondisi `? :` menjadi menggunakan `if` dan variabel {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+Komponen `Drink` menggunakan serangkaian kondisi `? :` untuk menampilkan informasi berbeda tergantung dari properti `name` bernilai `"tea"` atau `"coffee"`. Masalahnya adalah informasi setiap *`drink`* tersebar di berbagai kondisi. Lakukan *refactor* pada kode ini untuk menggunakan satu pernyataan `if` daripada menggunakan 3 kondisi `? :`.
 
 <Sandpack>
 
@@ -665,11 +665,11 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Once you've refactored the code to use `if`, do you have further ideas on how to simplify it?
+Setelah anda melakukan *refactor* kode tersebut menggunakan pernyataan `if`, apakah anda memiliki ide lebih lanjut untuk menyederhanakannya?
 
 <Solution>
 
-There are multiple ways you could go about this, but here is one starting point:
+Ada banyak cara untuk melakukannya, tetapi berikut adalah salah satu titik awal:
 
 <Sandpack>
 
@@ -712,9 +712,9 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Here the information about each drink is grouped together instead of being spread across multiple conditions. This makes it easier to add more drinks in the future.
+Disini informasi tentang setiap *drink* dikelompokkan bersama, bukannya disebarkan ke berbagai kondisi. Ini membuatnya lebih mudah untuk menambahkan lebih banyak *drinks* di masa mendatang.
 
-Another solution would be to remove the condition altogether by moving the information into objects:
+Solusi lainnya adalah menghapus kondisi bersamaan dengan memindahkan infomasi ke dalam objek.
 
 <Sandpack>
 
