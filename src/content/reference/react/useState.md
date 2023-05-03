@@ -316,27 +316,28 @@ Karena tidak ada pembaruan antrian lainnya, maka React akan menyimpan `45` sebag
 
 Secara konvensi, umumnya disepakati untuk memberi nama argumen *state* tertunda dengan huruf pertama dari nama variabel *state*, seperti `a` untuk `age`. Namun, Anda juga dapat memberinya nama seperti `prevAge` atau sesuatu yang menurut Anda lebih jelas.
 
-React mungkin [akan memanggil pembaruan Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah merika [murni.](/learn/keeping-components-pure)
+React mungkin [akan memanggil pembaruan Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah mereka [murni.](/learn/keeping-components-pure)
 
 <DeepDive>
 
-#### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
+#### Apakah selalu lebih disarankan untuk menggunakan fungsi pembaruan? {/*is-using-an-updater-always-preferred*/}
 
-You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+Anda mungkin mendengar rekomendasi untuk selalu menulis kode seperti `setAge(a => a + 1)` jika *state* yang Anda atur d
+ikalkulasi dari *state* sebelumnya. Tidak ada masalah dengan itu, tetapi juga tidak selalu diperlukan.
 
-In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler.
+Pada kebanyakan kasus, tidak ada perbedaan antara kedua pendekatan tersebut. React selalu memastikan bahwa untuk tindakan pengguna yang disengaja, seperti klik, variabel *state* `age` akan diperbarui sebelum klik berikutnya. Ini berarti tidak ada risiko klik *handler* melihat `age` yang "usang" di awal *event handler*.
 
-However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+Namun, jika Anda melakukan beberapa pembaruan dalam satu *event*, fungsi pembaruan dapat membantu. Mereka juga membantu jika mengakses variabel *state* itu sendiri merepotkan (Anda mungkin mengalaminya saat mengoptimalkan re-*render*).
 
-If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
+Jika Anda lebih suka konsistensi daripada sintaks yang sedikit lebih panjang, masuk akal untuk selalu menulis fungsi pembaruan jika *state* yang Anda atur dikalkulasi dari *state* sebelumnya. Jika dihitung dari *state* sebelumnya dari beberapa variabel *state* yang lain, Anda mungkin ingin menggabungkannya menjadi satu objek dan [menggunakan *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
 </DeepDive>
 
 <Recipes titleText="The difference between passing an updater and passing the next state directly" titleId="examples-updater">
 
-#### Passing the updater function {/*passing-the-updater-function*/}
+#### Mengoper fungsi pembaruan {/*passing-the-updater-function*/}
 
-This example passes the updater function, so the "+3" button works.
+Contoh ini menggunakan fungsi pembaruan, sehingga tombol "+3" berfungsi.
 
 <Sandpack>
 
@@ -375,9 +376,9 @@ h1 { display: block; margin: 10px; }
 
 <Solution />
 
-#### Passing the next state directly {/*passing-the-next-state-directly*/}
+#### Mengoper *state* selanjutnya secara langsung {/*passing-the-next-state-directly*/}
 
-This example **does not** pass the updater function, so the "+3" button **doesn't work as intended**.
+Contoh ini **tidak** mengoper fungsi pembaruan, sehinggal tombol "+3" **tidak berfungsi seperti yang diharapkan**.
 
 <Sandpack>
 
@@ -420,9 +421,9 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
+### Mengupdate objek dan senarai di dalam *state*. {/*updating-objects-and-arrays-in-state*/}
 
-You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
+Anda dapat menempatkan objek dan senarai ke dalam *state*. Di React, *state* dianggap sebagai sesuatu yang hanya bisa dibaca, sehingga **Anda harus menggantinya (*replace*) daripada mutasi (*mutate*) objek yang sudah ada**. Misalnya, jika Anda memiliki objek `form` di dalam *state*, jangan mutasi (*mutate*) secara langsung:
 
 ```js
 // 🚩 Don't mutate an object in state like this:
@@ -439,13 +440,13 @@ setForm({
 });
 ```
 
-Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+Baca [memperbarui objek pada *state*](/learn/updating-objects-in-state) dan [memperbarui senarai pada *state](/learn/updating-arrays-in-state) untuk belajar lebih lanjut.
 
 <Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
 
-#### Form (object) {/*form-object*/}
+#### *Form* (objek) {/*form-object*/}
 
-In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
+Pada contoh ini, variabel *state* `form` menampung sebuah objek. Setiap masukan memiliki pengendali perubahan yang memanggil `setForm` dengan *state* berikutnya dari keseluruhan *form*. *Spead syntax* `{ ...form }` memastikan bahwa objek *state* diganti daripada dimutasi (*mutated*).
 
 <Sandpack>
 
@@ -516,9 +517,9 @@ input { margin-left: 5px; }
 
 <Solution />
 
-#### Form (nested object) {/*form-nested-object*/}
+#### *Form* (objek bersarang) {/*form-nested-object*/}
 
-In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
+Pada contoh ini, *state*-nya bersarang. Ketika Anda memperbarui *state* yang bersarang, Anda perlu membuat salinan dari objek yang Anda perbarui, serta setiap objek "yang terkandung" di sepanjang jalurnya ke atas. [memperbarui objek bersarang](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
 
 <Sandpack>
 
@@ -628,9 +629,9 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-#### List (array) {/*list-array*/}
+#### Daftar (senarai) {/*list-array*/}
 
-In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
+Dalam contoh ini, variabel *state* `todos` menyimpan sebuah senarai. setiap pengendali tombol memanggil `setTodos` dengan versi selanjutnya dari senarai tersebut. *Speading syntax* `[...todos]`, `todos.map()`, dan `todos.filter()` memastikan senarai *state* diganti daripada dimutasi (*mutate*).
 
 <Sandpack>
 
@@ -795,9 +796,9 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Menulis logika pembaruan ringkas menggunakan Immer {/*writing-concise-update-logic-with-immer*/}
 
-If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+Jika terasa merepotkan untuk memperbarui senarai dan objek tanpa *mutation*, Anda dapat menggunakan pustaka seperti [Immer](https://github.com/immerjs/use-immer) untuk mengurangi kode yang berulang. Immer memungkinkan Anda menulis kode yang ringkas seolah-olah Anda melakukan mutasi pada objek, tetapi sebenarnya ia melakukan pembaruan *immutable* di belakang layar:
 
 <Sandpack>
 
@@ -886,9 +887,9 @@ function ItemList({ artworks, onToggle }) {
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Menghindari membuat ulang *state* awal {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React menyimpan *state* awal sekali dan mengabaikannya pada *render* berikutnya.
 
 ```js
 function TodoList() {
@@ -896,9 +897,9 @@ function TodoList() {
   // ...
 ```
 
-Although the result of `createInitialTodos()` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating large arrays or performing expensive calculations.
+Meskipun hasil dari `createInitialTodos()` hanya digunakan untuk *render* awal, Anda tetap memanggil fungsi ini pada setiap render. Hal ini dapat menjadi pemborosan jika membuat senarai yang besar atau melakukan kalkulasi yang mahal
 
-To solve this, you may **pass it as an _initializer_ function** to `useState` instead:
+Untuk mengatasi hal tersebut, kamu dapat **mengopernya sebagai fungsi *initializer*** ke `useState` sebagai gantinya:
 
 ```js
 function TodoList() {
@@ -906,9 +907,9 @@ function TodoList() {
   // ...
 ```
 
-Notice that you’re passing `createInitialTodos`, which is the *function itself*, and not `createInitialTodos()`, which is the result of calling it. If you pass a function to `useState`, React will only call it during initialization.
+Perhatikan bahwa Anda mengoper `createInitialTodos`, yang merupakan *fungsi itu sendiri* dan bukan `createInitialTodos()`, yang merupakan hasil dari pemanggilannya. Jika Anda mengoper sebuah fungsi ke `useState`, React hanya akan memanggilnya selama inisialisasi.
 
-React may [call your initializers twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React dapat [memanggil inisialisator Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah mereka [murni.](/learn/keeping-components-pure)
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
