@@ -91,11 +91,11 @@ Fungsi `set` tidak memiliki nilai kembali.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Adding state to a component {/*adding-state-to-a-component*/}
+### Menambahkan *state* pada sebuah komponen {/*adding-state-to-a-component*/}
 
-Call `useState` at the top level of your component to declare one or more [state variables.](/learn/state-a-components-memory)
+Memanggil `useState` di tingkat atas komponen Anda untuk mendeklarasikan satu atau lebih [*state variables*.](/learn/state-a-components-memory)
 
 ```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
 import { useState } from 'react';
@@ -106,14 +106,16 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai *state variable* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
-`useState` returns an array with exactly two items:
+`useState` mengembalikan sebuah senarai dengan tepat dua nilai:
+
+[comment]: # (TODO)
 
 1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
 2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
 
-To update what’s on the screen, call the `set` function with some next state:
+Untuk memperbarui tampilan layar, panggil fungsi `set` dengan *state* berikutnya:
 
 ```js [[2, 2, "setName"]]
 function handleClick() {
@@ -121,11 +123,11 @@ function handleClick() {
 }
 ```
 
-React will store the next state, render your component again with the new values, and update the UI.
+React akan menyimpan *state* berikutnya, me-*render* komponen Anda kembali dengan nilai baru, dan memperbarui antarmuka pengguna.
 
 <Pitfall>
 
-Calling the `set` function [**does not** change the current state in the already executing code](#ive-updated-the-state-but-logging-gives-me-the-old-value):
+Memanggil fungsi `set` [**tidak mengubah** keadaan saat ini dalam kode yang sudah dieksekusi](#ive-updated-the-state-but-logging-gives-me-the-old-value):
 
 ```js {3}
 function handleClick() {
@@ -134,7 +136,7 @@ function handleClick() {
 }
 ```
 
-It only affects what `useState` will return starting from the *next* render.
+Ini hanya mempengaruhi apa yang akan dikembalikan oleh `useState` mulai dari *render* berikutnya.
 
 </Pitfall>
 
@@ -142,7 +144,7 @@ It only affects what `useState` will return starting from the *next* render.
 
 #### Counter (number) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+Dalam contoh ini, variabel *state* `count` menyimpan sebuah angka. Dengan mengklik tombol, angka tersebut akan bertambah.
 
 <Sandpack>
 
@@ -170,7 +172,7 @@ export default function Counter() {
 
 #### Text field (string) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+Dalam contoh ini, variabel *state* `text` menyimpan sebuah string. Ketika Anda mengetik, `handleChange` membaca nilai masukan terbaru dari elemen DOM masukan pada peramban, dan memanggil `setText` untuk memperbarui keadaan. Ini memungkinkan Anda untuk menampilkan `text` saat ini di bawahnya.
 
 <Sandpack>
 
@@ -202,7 +204,7 @@ export default function MyInput() {
 
 #### Checkbox (boolean) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+Dalam contoh ini, variabel *state* `liked` menyimpan sebuah boolean. Ketika Anda mengklik input, `setLiked` memperbarui variabel *state* `liked` dengan nilai *true* atau *false* tergantung pada apakah masukan *checkbox* pada peramban dicentang atau tidak. Variabel `liked` digunakan untuk me-*render* teks di bawah *checkbox*.
 
 <Sandpack>
 
@@ -238,7 +240,7 @@ export default function MyCheckbox() {
 
 #### Form (two variables) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+Anda dapat mendeklarasikan lebih dari satu variabel *state* dalam komponen yang sama. Setiap variabel *state* sepenuhnya bersifat independen.
 
 <Sandpack>
 
@@ -276,9 +278,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
+### Memperbarui *state* berdasarkan *state* sebelumnya {/*updating-state-based-on-the-previous-state*/}
 
-Suppose the `age` is `42`. This handler calls `setAge(age + 1)` three times:
+Misalkan `age` adalah `42`. Lalu *handler* ini memanggil `setAge(age + 1)` sebanyak tiga kali:
 
 ```js
 function handleClick() {
@@ -288,9 +290,9 @@ function handleClick() {
 }
 ```
 
-However, after one click, `age` will only be `43` rather than `45`! This is because calling the `set` function [does not update](/learn/state-as-a-snapshot) the `age` state variable in the already running code. So each `setAge(age + 1)` call becomes `setAge(43)`.
+Namun, setelah satu kali klik, `age` hanya akan menjadi `43` daripada `45`! Hal ini terjadi karena memanggil fungsi `set` [tidak memperbarui](/learn/state-as-a-snapshot) variabel *state* `age` pada kode yang sudah dieksekusi. Oleh karena itu, setiap panggilan `setAge(age + 1)` menjadi `setAge(43)`.
 
-To solve this problem, **you may pass an *updater function*** to `setAge` instead of the next state:
+Untuk memecahkan masalah ini, **anda dapat mengoper sebuah fungsi pembaruan (*updater function*)** pada `setAge` daripada *state* berikutnya:
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
@@ -300,19 +302,21 @@ function handleClick() {
 }
 ```
 
+[comment]: # (TODO)
+
 Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pending state</CodeStep> and calculates the <CodeStep step={2}>next state</CodeStep> from it.
 
-React puts your updater functions in a [queue.](/learn/queueing-a-series-of-state-updates) Then, during the next render, it will call them in the same order:
+React menempatkan fungsi pembaruan Anda dalam sebuah [antrian.](/learn/queueing-a-series-of-state-updates) Selanjutnya, selama *render* berikutnya, React akan memanggil fungsi-fungsi tersebut dalam urutan yang sama:
 
-1. `a => a + 1` will receive `42` as the pending state and return `43` as the next state.
-1. `a => a + 1` will receive `43` as the pending state and return `44` as the next state.
-1. `a => a + 1` will receive `44` as the pending state and return `45` as the next state.
+1. `a => a + 1` akan menerima `42` sebagai *state* yang tertunda dan mengembalikan `43` sebagai *state* berikutnya.
+1. `a => a + 1` akan menerima `43` sebagai *state* yang tertunda dan mengembalikan `44` sebagai *state* berikutnya.
+1. `a => a + 1` akan menerima `44` sebagai *state* yang tertunda dan mengembalikan `45` sebagai *state* berikutnya.
 
-There are no other queued updates, so React will store `45` as the current state in the end.
+Karena tidak ada pembaruan antrian lainnya, maka React akan menyimpan `45` sebagai *state* saat ini.
 
-By convention, it's common to name the pending state argument for the first letter of the state variable name, like `a` for `age`. However, you may also call it like `prevAge` or something else that you find clearer.
+Secara konvensi, umumnya disepakati untuk memberi nama argumen *state* tertunda dengan huruf pertama dari nama variabel *state*, seperti `a` untuk `age`. Namun, Anda juga dapat memberinya nama seperti `prevAge` atau sesuatu yang menurut Anda lebih jelas.
 
-React may [call your updaters twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React mungkin [akan memanggil pembaruan Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah merika [murni.](/learn/keeping-components-pure)
 
 <DeepDive>
 
