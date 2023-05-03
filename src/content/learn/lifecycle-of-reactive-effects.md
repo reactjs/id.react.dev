@@ -4,7 +4,7 @@ title: 'Lifecycle of Reactive Effects'
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Effects mempunyai _lifecycle_ yang berbeda dari komponen. Komponen dapat melakukan pemasangan, pembaruan, ataupun pelepasan. Sebuah Effect hanya dapat melakukan dua hal: untuk memulai sinkronisasi sesuatu, dan nantinya dapat memberhentikan sinkronisasi. _Cycle_ ini dapat terjadi beberapa kali jika Effect bergantung terhadap _props_ dan _state_ yang berubah sewaktu-waktu. React memberikan sebuah _linter rule_ untuk memastikan bahwa Anda telah menyebutkan dependensi dari Effects yang Anda buat dengan benar. Ini akan menjaga Effects Anda tersinkronisasi dengan _props_ dan _state_ yang terbaru.
 
 </Intro>
 
