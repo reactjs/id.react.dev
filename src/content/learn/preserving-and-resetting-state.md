@@ -25,7 +25,7 @@ React juga menggunakan struktur pohon untuk mengelola dan memodelkan UI yang And
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram dengan tiga bagian yang disusun secara horizontal. Pada bagian pertama, terdapat tiga persegi panjang yang ditumpuk secara vertikal, dengan label 'Komponen A', 'Komponen B', dan 'Komponen C'. Transisi ke panel berikutnya adalah sebuah panah dengan logo React di bagian atas yang berlabel 'React'. Bagian tengah berisi sebuah pohon komponen, dengan akar berlabel 'A' dan dua anak berlabel 'B' dan 'C'. Bagian selanjutnya ditransisikan lagi menggunakan panah dengan logo React di bagian atas berlabel 'React'. Bagian ketiga dan terakhir adalah model rangka dari sebuah browser, yang berisi sebuah pohon dengan 8 node, yang hanya memiliki sebuah subset yang disorot (menunjukkan subpohon dari bagian tengah).">
 
 Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* DOM
 
@@ -106,7 +106,7 @@ Beginilah tampilannya sebagai pohon:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Masing-masing anak diberi label 'Counter' dan keduanya berisi gelembung state berlabel 'count' dengan nilai 0.">
 
 Pohon React
 
@@ -181,7 +181,7 @@ Seperti yang dapat Anda lihat, ketika satu penghitung diperbarui, hanya *state* 
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
+<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 1. Gelembung state dari anak kanan disorot dengan warna kuning untuk mengindikasikan bahwa nilainya telah diperbarui.">
 
 Memperbarui *state*
 
@@ -268,7 +268,7 @@ Perhatikan bagaimana saat Anda berhenti me-*render* penghitung kedua, *state*-ny
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the component being deleted from the tree.">
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan tidak ada, dan sebagai gantinya adalah gambar 'poof' berwarna kuning, menyoroti komponen yang dihapus dari pohon.">
 
 Menghapus komponen
 
@@ -280,7 +280,7 @@ Ketika Anda mencentang "Render the second counter", `Counter` kedua dan *state*-
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Seluruh simpul anak kanan disorot dengan warna kuning, yang menandakan bahwa simpul tersebut baru saja ditambahkan ke dalam pohon.">
 
 Menambahkan komponen
 
@@ -381,7 +381,7 @@ Ketika Anda mencentang atau menghapus *checkbox*, *state* penghitung tidak diatu
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.">
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram dengan dua bagian yang dipisahkan oleh panah yang bertransisi di antara keduanya. Setiap bagian berisi tata letak komponen dengan induk berlabel 'App' yang berisi gelembung state berlabel isFancy. Komponen ini memiliki satu anak berlabel 'div', yang mengarah ke gelembung prop yang berisi isFancy (disorot dengan warna ungu) yang diturunkan ke satu-satunya anak. Anak terakhir diberi label 'Counter' dan berisi gelembung state dengan label 'count' dan nilai 3 di kedua diagram. Di bagian kiri diagram, tidak ada yang disorot dan nilai state induk isFancy adalah false. Di bagian kanan diagram, nilai state induk isFancy telah berubah menjadi true dan disorot dengan warna kuning, begitu juga dengan gelembung prop di bawahnya, yang juga telah mengubah nilai isFancy menjadi true.">
 
 Memperbarui *state* `App` tidak mengatur ulang `Counter` karena `Counter` tetap berada di posisi yang sama
 
@@ -581,7 +581,7 @@ Di sini, Anda beralih di antara jenis komponen yang *berbeda* pada posisi yang s
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'p', highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 3. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen turunannya telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'p', disorot dengan warna kuning.">
 
 Ketika `Counter` berubah menjadi `p`, `Counter` dihapus dan `p` ditambahkan
 
@@ -591,7 +591,7 @@ Ketika `Counter` berubah menjadi `p`, `Counter` dihapus dan `p` ditambahkan
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'p'. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React yang diberi label 'p'. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen anak sekarang telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'Counter' yang berisi state bubble berlabel 'count' dengan nilai 0, disorot dengan warna kuning.">
 
 Saat beralih kembali, `p` dihapus dan `Counter` ditambahkan
 
@@ -692,7 +692,7 @@ label {
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'section', yang memiliki satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 3. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen turunannya telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'div', disorot dengan warna kuning, juga dengan anak baru berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0, semuanya disorot dengan warna kuning.">
 
 Ketika `section` berubah menjadi `div`, `section` akan dihapus dan `div` yang baru ditambahkan
 
@@ -702,7 +702,7 @@ Ketika `section` berubah menjadi `div`, `section` akan dihapus dan `div` yang ba
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'div', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 0. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'section', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'div', yang memiliki satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen anak sekarang telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'section', disorot dengan warna kuning, juga dengan anak baru berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0, semuanya disorot dengan warna kuning.">
 
 Saat beralih kembali, `div` akan dihapus dan `section` yang baru ditambahkan
 
@@ -915,19 +915,19 @@ h1 {
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
+<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'true'. Satu-satunya anak, yang diatur ke kiri, diberi label Counter dengan gelembung state berlabel 'count' dan bernilai 0. Semua anak di sebelah kiri disorot dengan warna kuning, yang menandakan bahwa anak tersebut telah ditambahkan.">
 
 *State* awal
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'false'. State bubble disorot dengan warna kuning, menandakan bahwa gelembung state tersebut telah berubah. Anak sebelah kiri diganti dengan gambar 'poof' berwarna kuning yang menandakan bahwa anak tersebut telah dihapus dan terdapat anak baru di sebelah kanan, yang disorot dengan warna kuning yang menandakan bahwa anak tersebut telah ditambahkan. Anak baru ini diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0.">
 
 Mengklik "next"
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
+<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'true'. State bubble disorot dengan warna kuning, menandakan bahwa gelembung state tersebut telah berubah. Ada anak baru di sebelah kiri, disorot dengan warna kuning yang menandakan bahwa anak tersebut telah ditambahkan. Anak baru ini diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak di sebelah kanan diganti dengan gambar 'poof' berwarna kuning yang menandakan bahwa anak tersebut telah dihapus.">
 
 Mengklik "next" lagi
 
