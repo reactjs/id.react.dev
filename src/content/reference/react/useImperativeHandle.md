@@ -166,7 +166,7 @@ input {
 
 ---
 
-### Mengekspos *methods* imperatif Anda sendiri {/*exposing-your-own-imperative-methods*/}
+### Mengekspos methods imperatif Anda sendiri {/*exposing-your-own-imperative-methods*/}
 
 *Methods* yang diekspos melalui penanganan imperatif tidak harus sesuai dengan *DOM Method* secara persis. Sebagai contoh, komponen `Post` berikut mengekspos sebuah *method* `scrollAndFocusAddComment` melalui penanganan imperatif. Hal ini memungkinkan induk `Page` menggulir daftar komentar *dan* memfokuskan bidang input ketika Anda mengklik tombol:
 
