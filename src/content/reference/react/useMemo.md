@@ -1157,53 +1157,53 @@ Dua contoh di atas sepenuhnya setara. Satu-satunya manfaat `useCallback` adalah 
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### My calculation runs twice on every re-render {/*my-calculation-runs-twice-on-every-re-render*/}
+### Perhitungan saya berjalan dua kali setiap *render* ulang {/*my-calculation-runs-twice-on-every-re-render*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+Dalam [Strict Mode](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali, bukan sekali:
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {
-  // This component function will run twice for every render.
+  // Fungsi komponen ini akan berjalan dua kali tiap *render*.
 
   const visibleTodos = useMemo(() => {
-    // This calculation will run twice if any of the dependencies change.
+    // Perhitungan ini akan berjalan dua kali jika sebuah dependency berubah.
     return filterTodos(todos, tab);
   }, [todos, tab]);
 
   // ...
 ```
 
-This is expected and shouldn't break your code.
+Hal ini wajar dan tidak merusak kode Anda.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component and calculation functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice and fix the mistake.
+Perlakuan **hanya pada *development*** ini membantu Anda untuk [menjaga komponen tetap murni.](/learn/keeping-components-pure) React menggunakan hasil dari salah satu pemanggilan tersebut, dan mengabaikan hasil dari pemanggilan lain. Selama fungsi komponen dan perhitungan Anda murni, hal ini seharusnya tidak memengaruhi logika Anda. Akan tetapi, jika secara tidak sengaja menjadi tidak murni, hal ini membantu Anda untuk menyadari dan memperbaiki masalah tersebut.
 
-For example, this impure calculation function mutates an array you received as a prop:
+Misalnya, fungsi perhitungan yang tidak murni ini memutasikan senarai (*array*) yang Anda terima sebagai *prop*:
 
 ```js {2-3}
   const visibleTodos = useMemo(() => {
-    // 🚩 Mistake: mutating a prop
+    // 🚩 Masalah: memutasikan sebuah `prop`
     todos.push({ id: 'last', text: 'Go for a walk!' });
     const filtered = filterTodos(todos, tab);
     return filtered;
   }, [todos, tab]);
 ```
 
-React calls your function twice, so you'd notice the todo is added twice. Your calculation shouldn't change any existing objects, but it's okay to change any *new* objects you created during the calculation. For example, if the `filterTodos` function always returns a *different* array, you can mutate *that* array instead:
+React memanggil fungsi Anda sebanyak dua kali, jadi Anda akan melihat bahwa todo ditambahkan dua kali. Perhitungan Anda seharusnya tidak mengubah objek yang sudah ada, tapi tidak masalah mengubah objek *baru* yang Anda buat selama perhitungan. Sebagai contoh, jika fungsi `filterTodos` selalu mengembalikan senarai (*array*) yang berbeda, Anda dapat memutasikan senarai (*array*) itu sebagai gantinya:
 
 ```js {3,4}
   const visibleTodos = useMemo(() => {
     const filtered = filterTodos(todos, tab);
-    // ✅ Correct: mutating an object you created during the calculation
+    // ✅ Benar: memutasikan objek yang Anda buat selama perhitungan
     filtered.push({ id: 'last', text: 'Go for a walk!' });
     return filtered;
   }, [todos, tab]);
 ```
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more about purity.
+Baca [menjaga komponen agar tetao murni](/learn/keeping-components-pure) untuk belajar lebih lanjut tentang kemurnian.
 
-Also, check out the guides on [updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) without mutation.
+Lihat juga panduan tentang [memperbarui objek](/learn/memperbarui-objek-dalam-status) dan [memperbarui senarai (*array*)](/belajar/memperbarui-array-dalam-status) tanpa mutasi.
 
 ---
 
