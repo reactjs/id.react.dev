@@ -18,7 +18,7 @@ Komponen anda sering diperlukan untuk menampilkan hal yang berbeda tergantung da
 
 ## Mengembalikan JSX secara Bersyarat {/*conditionally-returning-jsx*/}
 
-Katakanlah anda memiliki komponen `PackingList` yang melakukan render pada beberapa `Item`s, yang dapat ditandai secara dikemas atau tidak:
+Katakanlah anda memiliki komponen `PackingList` yang melakukan render pada beberapa `Item`, yang dapat ditandai secara dikemas atau tidak:
 
 <Sandpack>
 
@@ -100,7 +100,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Coba melakukan edit apa yang dikembalikan dalam kedua kasus tersebut, dan lihat bagaimana hasilnya berubah!
+Coba melakukan *edit* pada apa yang dikembalikan dalam kedua kasus tersebut, dan lihat bagaimana hasilnya berubah!
 
 Perhatikan bagaimana anda membuat logika bercabang dengan pernyataan `if` dan `return` menggunakan JavaScript. Di React, alur kontrol (seperti kondisi) ditangani oleh JavaScript.
 
@@ -156,7 +156,7 @@ Dalam praktiknya, mengembalikan `null` dari sebuah komponen itu tidak umum karen
 
 ## Secara Bersyarat memasukkan JSX {/*conditionally-including-jsx*/}
 
-Pada contoh sebelumnya, anda mengontrol JSX *tree* mana (*if any!*) yang akan dikembalikan oleh komponen. Anda mungkin telah memperhatikan beberapa duplikasi dalam hasil *render*:
+Pada contoh sebelumnya, anda mengontrol JSX *tree* mana (if any!) yang akan dikembalikan oleh komponen. Anda mungkin telah memperhatikan beberapa duplikasi dalam hasil *render*:
 
 ```js
 <li className="item">{name} ✔</li>
@@ -177,7 +177,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-Meskipun duplikasi ini tidak berbahaya, ini dapat membuka kode anda lebih susah untuk di-*maintain*. Bagaimana jika anda ingi mengganti `className`nya? Anda harus melakukannya di dua tempat dalam kode anda! Dalam situasi seperti itu, anda dapat menyertakan sedikit JSX secara bersyarat untuk membuat kode anda lebih [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+Meskipun duplikasi ini tidak berbahaya, ini dapat membuka kode anda lebih susah untuk di-*maintain*. Bagaimana jika anda ingin mengganti `className`nya? Anda harus melakukannya di dua tempat dalam kode anda! Dalam situasi seperti itu, anda dapat menyertakan sedikit JSX secara bersyarat untuk membuat kode anda lebih [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
 ### Operator (`? :`) Bersyarat (ternary) {/*conditional-ternary-operator--*/}
 
@@ -258,7 +258,7 @@ export default function PackingList() {
 
 Gaya ini bekerja dengan baik untuk kondisi yang sederhana, tetapi gunakan dengan secukupnya. Jika komponen anda berantakan dengan terlalu banyak *markup* bersyarat bersarang (*nested conditional markup*), pertimbangkan untuk mengekstrak komponen turunan untuk membersihkan semuanya. Di React, *markup* adalah bagian dari kode anda, sehingga anda dapat menggunakan alat seperti variabel (`variables`) dan fungsi (`functions`) untuk merapikan ekspresi yang kompleks.
 
-### Operator Logis AND (`&&`) {/*logical-and-operator-*/}
+### Operator Logika `AND` (`&&`) {/*logical-and-operator-*/}
 
 Pintasan umum lainnya yang akan anda temui adalah [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Di Dalam komponen React, hal tersebut sering muncul ketika anda ingin me-*render* beberapa JSX apabila memiliki kondisi `true`, **atau tidak me-*render* sebaliknya.** Dengan `&&`, anda dapat me-*render* tanda centang secara bersyarat hanya jika `isPacked` adalah `true`:
 
@@ -415,7 +415,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Andrian Ride's Packing List</h1>
       <ul>
         <Item 
           isPacked={true} 
@@ -630,7 +630,7 @@ Dalam solusi ini, dua kondisi berbeda digunakan untuk menambahkan spasi diantara
 
 </Solution>
 
-#### Lakukan Refactor terhadap serangkaian kondisi `? :` menjadi menggunakan `if` dan variabel {/*refactor-a-series-of---to-if-and-variables*/}
+#### Lakukan *refactor* terhadap serangkaian kondisi `? :` menjadi menggunakan `if` dan variabel {/*refactor-a-series-of---to-if-and-variables*/}
 
 Komponen `Drink` menggunakan serangkaian kondisi `? :` untuk menampilkan informasi berbeda tergantung dari properti `name` bernilai `"tea"` atau `"coffee"`. Masalahnya adalah informasi setiap *`drink`* tersebar di berbagai kondisi. Lakukan *refactor* pada kode ini untuk menggunakan satu pernyataan `if` daripada menggunakan 3 kondisi `? :`.
 
