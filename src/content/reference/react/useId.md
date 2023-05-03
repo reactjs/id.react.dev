@@ -41,7 +41,7 @@ function PasswordField() {
 
 #### Caveats {/*caveats*/}
 
-* `useId` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat atas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam loop atau kondisi. Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan *state* ke dalamnya.
+* `useId` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat teratas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan (*loop*) atau kondisi (*conditions*). Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan *state* ke dalamnya.
 
 * `useId` **tidak boleh digunakan untuk menghasilkan *key*** dalam daftar. [*Key* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
 
@@ -78,7 +78,7 @@ Anda kemudian dapat meneruskan <CodeStep step={1}>ID yang dihasilkan</CodeStep> 
 
 **Mari telusuri contoh untuk melihat kapan ini berguna.**
 
-[Atribut aksesibilitas HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) seperti [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) membiarkan Anda menentukan bahwa dua tag terkait satu sama lain. Misalnya, Anda dapat menentukan bahwa suatu elemen (seperti input) dijelaskan oleh elemen lain (seperti paragraf).
+[Atribut aksesibilitas HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) seperti [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) membiarkan Anda menentukan bahwa dua *tag* terkait satu sama lain. Misalnya, Anda dapat menentukan bahwa suatu elemen (seperti sebuah masukan (`input`)) dijelaskan oleh elemen lain (seperti sebuah paragraf (`p`)).
 
 Dalam HTML biasa, Anda akan menulisnya seperti ini:
 
@@ -95,7 +95,7 @@ Dalam HTML biasa, Anda akan menulisnya seperti ini:
 </p>
 ```
 
-Namun, memaksakan ID seperti ini bukanlah praktik yang baik di React. Sebuah komponen dapat dirender lebih dari sekali pada halaman—namun ID harus unik! Alih-alih melakukan pemaksaan ID, buat ID unik dengan `useId`:
+Namun, menuliskan ID secara langsung di dalam kode (*hardcoding*) seperti ini bukanlah praktik yang baik di React. Sebuah komponen dapat dirender lebih dari sekali pada halaman—namun ID harus unik! Alih-alih melakukan pemaksaan ID, buat ID unik dengan `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -119,7 +119,7 @@ function PasswordField() {
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+Sekarang, meskipun `PasswordField` muncul beberapa kali di layar, ID yang dihasilkan tidak akan berbenturan.
 
 <Sandpack>
 
@@ -178,7 +178,7 @@ Anda mungkin bertanya-tanya mengapa `useId` lebih baik daripada menambahkan vari
 
 Manfaat utama `useId` adalah React memastikan bahwa ia bekerja dengan [rendering server.](/reference/react-dom/server) Selama rendering server, komponen Anda menghasilkan keluaran HTML. Kemudian, pada klien, [hidrasi](/reference/react-dom/client/hydrateRoot) melampirkan *event handler* Anda ke HTML yang dihasilkan. Agar hidrasi berfungsi, output klien harus cocok dengan HTML server.
 
-Ini sangat sulit untuk menjamin dengan penghitung kenaikan karena urutan di mana komponen klien terhidrasi mungkin tidak sesuai dengan urutan di mana HTML server dipancarkan. Dengan memanggil `useId`, Anda memastikan bahwa hidrasi akan berfungsi, dan hasilnya akan cocok antara server dan klien.
+Hal ini sangat sulit untuk dijamin dengan penghitung kenaikan karena urutan di mana komponen klien terhidrasi mungkin tidak sesuai dengan urutan di mana HTML dari *server* dipancarkan. Dengan memanggil `useId`, Anda memastikan bahwa hidrasi akan berfungsi, dan hasilnya akan cocok antara *server* dan klien.
 
 
 Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggil. Inilah sebabnya, jika klien dan pohon server sama, "jalur induk" akan cocok terlepas dari urutan rendering.
@@ -189,7 +189,7 @@ Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggi
 
 ### Menghasilkan ID untuk beberapa elemen terkait {/*generating-ids-for-several-related-elements*/}
 
-Jika Anda perlu memberikan ID ke beberapa elemen terkait, Anda dapat memanggil `useId` untuk menghasilkan prefiks bersama untuknya:
+Jika Anda perlu memberikan ID ke beberapa elemen terkait, Anda dapat memanggil `useId` untuk menghasilkan awalan bersama untuk mereka:
 
 <Sandpack>
 
@@ -220,7 +220,7 @@ Ini memungkinkan Anda menghindari pemanggilan `useId` untuk setiap elemen yang m
 
 ---
 
-### Menentukan prefiks bersama untuk semua ID yang dihasilkan {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### Menentukan awalan bersama untuk semua ID yang dihasilkan {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
 Jika Anda me-*render* beberapa aplikasi React independen pada satu halaman, berikan `identifierPrefix` sebagai opsi untuk panggilan [`createRoot`](/reference/react-dom/client/createRoot#parameters) atau [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) Anda. Hal ini memastikan bahwa ID yang dihasilkan oleh dua aplikasi berbeda tidak pernah berbenturan karena setiap pengenal yang dibuat dengan `useId` akan dimulai dengan awalan berbeda yang telah Anda tentukan.
 
