@@ -315,7 +315,7 @@ export default function PackingList() {
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**Jangan menaruh angka di sisi kiri `&&`.**
 
 Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi boolean secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai tersebut (`0`), dan React akan dengan senang hati me-render `0` daripada tidak sama sekali.
 
