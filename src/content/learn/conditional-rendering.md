@@ -315,13 +315,11 @@ export default function PackingList() {
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**Jangan menaruh angka di sisi kiri `&&`.**
 
 Untuk menguji kondisi tersebut, JavaScript mengubah sisi kiri menjadi boolean secara otomatis. Namun, jika sisi kiri adalah `0`, maka seluruh ekspresi akan mendapatkan nilai tersebut (`0`), dan React akan dengan senang hati me-render `0` daripada tidak sama sekali.
 
 Sebagai contoh, kesalahan yang sering terjadi adalah menulis kode seperti `messageCount && <p>Pesan baru</p>`. Sangat mudah untuk mengasumsikan bahwa kode tersebut tidak melakukan apa-apa ketika `messageCount` bernilai `0`, namun sebenarnya kode tersebut benar-benar me-*render* `0` itu sendiri!
-
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
 
 Untuk memperbaikinya, buatlah sisi kiri menjadi boolean: `messageCount > 0 && <p>Pesan baru</p>`.
 
