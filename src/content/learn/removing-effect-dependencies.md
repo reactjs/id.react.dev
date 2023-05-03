@@ -188,7 +188,7 @@ function ChatRoom({ roomId }) { // Ini adalah nilai reaktif
 }
 ```
 
-[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk *props* dan semua variable dan fungsi dideklrasaikan langsung di dalam komponen Anda. Ketika `roomId` adalah nilai reaktif, Anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
+[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk *props* dan semua variabel dan fungsi dideklarasikan langsung di dalam komponen Anda. Ketika `roomId` adalah nilai reaktif, Anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
 
 ```js {8}
 const serverUrl = 'https://localhost:1234';
@@ -209,7 +209,7 @@ Dan linter akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini 
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
-const roomId = 'musik'; // Bukan nilai reaktif lagi
+const roomId = 'music'; // Bukan nilai reaktif lagi
 
 function ChatRoom() {
   useEffect(() => {
@@ -230,7 +230,7 @@ import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 const serverUrl = 'https://localhost:1234';
-const roomId = 'musik';
+const roomId = 'music';
 
 export default function ChatRoom() {
   useEffect(() => {
@@ -1192,13 +1192,13 @@ export default function Timer() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log('✅ Creating an interval');
+    console.log('✅ Membuat interval');
     const id = setInterval(() => {
-      console.log('⏰ Interval tick');
+      console.log('⏰ Ketukan interval');
       setCount(count + 1);
     }, 1000);
     return () => {
-      console.log('❌ Clearing an interval');
+      console.log('❌ Membersihkan interval');
       clearInterval(id);
     };
   }, [count]);
@@ -1224,13 +1224,13 @@ export default function Timer() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log('✅ Creating an interval');
+    console.log('✅ Membuat interval');
     const id = setInterval(() => {
-      console.log('⏰ Interval tick');
+      console.log('⏰ Ketukan interval');
       setCount(c => c + 1);
     }, 1000);
     return () => {
-      console.log('❌ Clearing an interval');
+      console.log('❌ Membersihkan interval');
       clearInterval(id);
     };
   }, []);
@@ -1323,10 +1323,10 @@ export default function App() {
           onChange={e => setDuration(Number(e.target.value))}
         />
         <br />
-        Fade in duration: {duration} ms
+        Durasi fade in: {duration} ms
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Remove' : 'Show'}
+        {show ? 'Hapus' : 'Tampilkan'}
       </button>
       <hr />
       {show && <Welcome duration={duration} />}
@@ -1454,10 +1454,10 @@ export default function App() {
           onChange={e => setDuration(Number(e.target.value))}
         />
         <br />
-        Fade in duration: {duration} ms
+        Durasi fade in: {duration} ms
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Remove' : 'Show'}
+        {show ? 'Hapus' : 'Tamoilkan'}
       </button>
       <hr />
       {show && <Welcome duration={duration} />}
@@ -1540,10 +1540,10 @@ export default function App() {
   return (
     <div className={isDark ? 'dark' : 'light'}>
       <button onClick={() => setIsDark(!isDark)}>
-        Toggle theme
+        Toggle tena
       </button>
       <label>
-        Server URL:{' '}
+        URL Server:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
@@ -1634,10 +1634,10 @@ export default function App() {
   return (
     <div className={isDark ? 'dark' : 'light'}>
       <button onClick={() => setIsDark(!isDark)}>
-        Toggle theme
+        Toggle tema
       </button>
       <label>
-        Server URL:{' '}
+        URL Server:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
@@ -1965,7 +1965,7 @@ export function createEncryptedConnection({ serverUrl, roomId }) {
 }
 
 export function createUnencryptedConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
