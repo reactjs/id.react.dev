@@ -1286,16 +1286,16 @@ Ketika Anda menemukan *dependency* mana yang menggagalkan memoisasi, temukan car
 
 ---
 
-### I need to call `useMemo` for each list item in a loop, but it's not allowed {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
+### Saya butuh memanggil `useMemo` untuk tiap daftar *item* pada perulangan, tapi tidak diperbolehkan {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
-Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
+Misalkan komponen `Chart` dibungkus dalam [`memo`](/reference/react/memo). Anda ingin melewati pe-*render*-an ulang setiap `Chart` dalam daftar ketika komponen `ReportList` me-*render* ulang. Namun, Anda tidak dapat memanggil `useMemo` dalam perulangan:
 
 ```js {5-11}
 function ReportList({ items }) {
   return (
     <article>
       {items.map(item => {
-        // 🔴 You can't call useMemo in a loop like this:
+        // 🔴 Anda tidak dapat memanggil useMemo dalam perulangan seperti ini
         const data = useMemo(() => calculateReport(item), [item]);
         return (
           <figure key={item.id}>
@@ -1308,7 +1308,7 @@ function ReportList({ items }) {
 }
 ```
 
-Instead, extract a component for each item and memoize data for individual items:
+Alih-alih, ekstrak komponen untuk setiap *item* dan memoisasi data untuk masing-masing *item*:
 
 ```js {5,12-18}
 function ReportList({ items }) {
@@ -1322,7 +1322,7 @@ function ReportList({ items }) {
 }
 
 function Report({ item }) {
-  // ✅ Call useMemo at the top level:
+  // ✅ Panggil useMemo pada tingkat atas:
   const data = useMemo(() => calculateReport(item), [item]);
   return (
     <figure>
@@ -1332,7 +1332,7 @@ function Report({ item }) {
 }
 ```
 
-Alternatively, you could remove `useMemo` and instead wrap `Report` itself in [`memo`.](/reference/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
+Sebagai alternatif, Anda dapat menghapus `useMemo` dan membungkus `Report` sendiri di [`memo`.](/reference/react/memo) Jika *prop* `item` tidak berubah, `Report` akan melewatkan pe-*render*-an ulang, jadi `Chart` juga akan melewatkan pe-*render*-an ulang:
 
 ```js {5,6,12}
 function ReportList({ items }) {
