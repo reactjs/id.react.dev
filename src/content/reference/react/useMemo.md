@@ -20,7 +20,7 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 ### `useMemo(calculateValue, dependencies)` {/*usememo*/}
 
-Panggil `useMemo` di tingkat atas komponen Anda untuk meng-*cache* hasil perhitungan pada tiap *render.
+Panggil `useMemo` di tingkat atas komponen Anda untuk meng-*cache* hasil perhitungan pada tiap *render*.
 
 ```js
 import { useMemo } from 'react';
@@ -90,7 +90,7 @@ Dengan kata lain, `useMemo` meng-*cache* hasil perhitungan antara *render* ulang
 
 **Mari telusuri contoh untuk melihat kapan ini berguna.**
 
-Secara bawaan, React akan menjalankan ulang seluruh badan kompoenn Anda setiap *render* ulang. Sebagai contoh, jika `TodoList` memperbarui *state*-nya atau mendapatkan *props* baru dari *parent*-nya, fungsi `filterTodos` akan dijalankan kembali:
+Secara bawaan, React akan menjalankan ulang seluruh badan komponen Anda setiap *render* ulang. Sebagai contoh, jika `TodoList` memperbarui *state*-nya atau mendapatkan *props* baru dari induknya (*parent*), fungsi `filterTodos` akan dijalankan kembali:
 
 ```js {2}
 function TodoList({ todos, tab, theme }) {
@@ -99,13 +99,13 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Biasanya, hal ini tidak menjadi masalah karena kebanyakan perhitungan dilakukan dengan sangat cepat. Namun, jika Anda melakukan penyaringan atau mengubah senarai (*array*) yang besar, atau melakukan komputasi yang mahal, Anda mungkin ingin melewatkan melakukannya lagi jika data tidak berubah. Jika `todos` dan `tab` sama seperti *render* terakhir, mengemas perhitungan tersebut dalam `useMemo` seperti sebelumnya memungkinkan Anda menggunakan kembali `visibleTodos` yang telah Anda hitung sebelumnya.
+Biasanya, hal ini tidak menjadi masalah karena kebanyakan perhitungan dilakukan dengan sangat cepat. Namun, jika Anda melakukan penyaringan atau mengubah senarai (*array*) yang besar, atau melakukan komputasi yang mahal (*expensive computation*), Anda mungkin ingin melewatkan melakukannya lagi jika data tidak berubah. Jika `todos` dan `tab` sama seperti *render* terakhir, mengemas perhitungan tersebut dalam `useMemo` seperti sebelumnya memungkinkan Anda menggunakan kembali `visibleTodos` yang telah Anda hitung sebelumnya.
 
 Tipe *caching* ini disebut dengan *[memoisasi.](https://en.wikipedia.org/wiki/Memoization)*
 
 <Note>
 
-**Anda sebaiknya hanya mengandalkan `useMemo` untuk pengoptimalan kinerja.** Jika koda Anda tidak berjalan tanpanya, temukan masalah dasarnya dan perbaiki terlebih dahulu. Kemudian Anda dapat menambahkan `useMemo` untuk meningkatkan kinerja.
+**Anda sebaiknya hanya mengandalkan `useMemo` untuk pengoptimalan kinerja.** Jika kode Anda tidak berjalan tanpanya, temukan masalah dasarnya dan perbaiki terlebih dahulu. Kemudian Anda dapat menambahkan `useMemo` untuk meningkatkan kinerja.
 
 </Note>
 
@@ -121,7 +121,7 @@ const visibleTodos = filterTodos(todos, tab);
 console.timeEnd('filter array');
 ```
 
-Lakukan interaksi yang adna ukur (misalnya, mengetik ke dalam masukan). Anda akan melihat *log* seperti `filter array: 0.15ms` pada *console* Anda. Jika keseluruhan waktu yang dicatat bertambah hingga jumlah yang signifikan (seperti `1ms` atau lebih), mungkin masuk akal untuk memoisasi perhitungan tersebut. Sebagai percobaan, Anda kemudian dapat membungkus perhitungan tersebut dalam `useMemo` untuk mengecek apakah total waktu yang dicatat untuk interaksi tersebut berkurang atau tidak:
+Lakukan interaksi yang Anda ukur (misalnya, mengetik ke dalam masukan). Anda akan melihat *log* seperti `filter array: 0.15ms` pada *console* Anda. Jika keseluruhan waktu yang dicatat bertambah hingga jumlah yang signifikan (seperti `1ms` atau lebih), mungkin masuk akal untuk memoisasi perhitungan tersebut. Sebagai percobaan, Anda kemudian dapat membungkus perhitungan tersebut dalam `useMemo` untuk mengecek apakah total waktu yang dicatat untuk interaksi tersebut berkurang atau tidak:
 
 ```js
 console.time('filter array');
@@ -641,7 +641,7 @@ Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya,
 
 <Recipes titleText="Perbedaan antara melewati render ulang dan selalu rendering ulang" titleId="examples-rerendering">
 
-#### Melewati pe-*render*-an ulang dengan `useMemo` dan `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
+#### Melewati pe-render-an ulang dengan `useMemo` dan `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
 
 Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
@@ -784,7 +784,7 @@ label {
 
 <Solution />
 
-#### Selalu lakukan pe-*render*-an ulang pada komponen {/*always-re-rendering-a-component*/}
+#### Selalu lakukan pe-render-an ulang pada komponen {/*always-re-rendering-a-component*/}
 
 Pada contoh ini, implementasi `List` juga **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika beberapa komponen React yang Anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
@@ -1055,7 +1055,7 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ---
 
-### Memoisasi sebuah *dependency* dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
+### Memoisasi sebuah dependency dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
 
 
 Misalkan Anda mempunyai perhitungan yang bergantung pada objek yang dibuat langsung pada badan komponen:
@@ -1159,7 +1159,7 @@ Dua contoh di atas sepenuhnya setara. Satu-satunya manfaat `useCallback` adalah 
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
-### Perhitungan saya berjalan dua kali setiap *render* ulang {/*my-calculation-runs-twice-on-every-re-render*/}
+### Perhitungan saya berjalan dua kali setiap render ulang {/*my-calculation-runs-twice-on-every-re-render*/}
 
 Dalam [Strict Mode](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali, bukan sekali:
 
@@ -1286,7 +1286,7 @@ Ketika Anda menemukan *dependency* mana yang menggagalkan memoisasi, temukan car
 
 ---
 
-### Saya butuh memanggil `useMemo` untuk tiap daftar *item* pada perulangan, tapi tidak diperbolehkan {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
+### Saya butuh memanggil `useMemo` untuk tiap daftar item pada perulangan, tapi tidak diperbolehkan {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
 Misalkan komponen `Chart` dibungkus dalam [`memo`](/reference/react/memo). Anda ingin melewati pe-*render*-an ulang setiap `Chart` dalam daftar ketika komponen `ReportList` me-*render* ulang. Namun, Anda tidak dapat memanggil `useMemo` dalam perulangan:
 
