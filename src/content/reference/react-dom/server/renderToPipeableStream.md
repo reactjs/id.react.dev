@@ -62,7 +62,7 @@ Di sisi klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
   * `progressiveChunkSize` **(opsional)**: Jumlah bita dalam sebuah *chunk.* [Baca lebih lanjut tentang *default heuristic.*](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)
 
 
-#### Hasil yang dikembalikan {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `renderToPipeableStream` mengembalikan objek dengan dua metode:
 
