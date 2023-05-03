@@ -1245,44 +1245,44 @@ Untuk menghindari kesalahan ini, tulis pernyataan `return` secara eksplisit:
 
 ---
 
-### Every time my component renders, the calculation in `useMemo` re-runs {/*every-time-my-component-renders-the-calculation-in-usememo-re-runs*/}
+### Setiap kali komponen saya me-*render* ulang, perhitungan dalam `useMemo` berjalan kembali {/*every-time-my-component-renders-the-calculation-in-usememo-re-runs*/}
 
-Make sure you've specified the dependency array as a second argument!
+Pastikan anda telah menentukan senarai (*array*) *dependency* sebagai argumen kedua!
 
-If you forget the dependency array, `useMemo` will re-run the calculation every time:
+Jika Anda melupakan senarai (*array*) *dependency*, `useMemo` akan menjalankan ulang perhitungan setiap saat:
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // 🔴 Recalculates every time: no dependency array
+  // 🔴 Menghitung ulang setiap saat: tanpa senarai (array) dependency
   const visibleTodos = useMemo(() => filterTodos(todos, tab));
   // ...
 ```
 
-This is the corrected version passing the dependency array as a second argument:
+Ini merupakan versi terkoreksi yang memberikan senarai (*array*) *dependency* sebagai argumen kedua:
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // ✅ Does not recalculate unnecessarily
+  // ✅ Tidak menghitung ulang
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   // ...
 ```
 
-If this doesn't help, then the problem is that at least one of your dependencies is different from the previous render. You can debug this problem by manually logging your dependencies to the console:
+Jika ini tidak membantu, maka masalahnya adalah setidaknya salah satu `dependency` Anda berbeda dari *render* terakhir. Anda dapat men-*debug* masalah ini dengan mencatat *dependency* anda secara manual ke *console*:
 
 ```js
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   console.log([todos, tab]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+Anda kemudian dapat mengklik kanan pada senarai (*array*) dari *render* ulang yang berbeda di *console* dan pilih "Simpan sebagai variabel *global*" untuk keduanya. Dengan asumsi yang pertama disimpan sebagai `temp1` dan yang kedua disimpan sebagai `temp2`, kemudian Anda dapat menggunakan *console* peramban (*browser*) untuk mengecek apakah tiap *dependency* pada kedua senarai (*array*) sama:
 
 ```js
-Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
-Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
-Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
+Object.is(temp1[0], temp2[0]); // Apakah dependency pertama sama di antara senarai (array)?
+Object.is(temp1[1], temp2[1]); // Apakah dependency kedua sama di antara seranai (array)?
+Object.is(temp1[2], temp2[2]); // ... dan sebagainya untuk tiap dependency ...
 ```
 
-When you find which dependency breaks memoization, either find a way to remove it, or [memoize it as well.](#memoizing-a-dependency-of-another-hook)
+Ketika Anda menemukan *dependency* mana yang menggagalkan memoisasi, temukan cara untuk menghapusnya, atau [memoisasikannya juga.](#memoizing-a-dependency-of-another-hook)
 
 ---
 
