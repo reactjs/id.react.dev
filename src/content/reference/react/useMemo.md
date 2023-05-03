@@ -1207,34 +1207,34 @@ Lihat juga panduan tentang [memperbarui objek](/learn/memperbarui-objek-dalam-st
 
 ---
 
-### My `useMemo` call is supposed to return an object, but returns undefined {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
+### Pemanggilan `useMemo` saya seharusnya mengembalikan objek, tetapi mengembalikan undefined {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
 
-This code doesn't work:
+Kode ini tidak bekerja:
 
 ```js {1-2,5}
-  // 🔴 You can't return an object from an arrow function with () => {
+  // 🔴 Anda tidak dapat mengembalikan objek dari arrow function dengan () => {
   const searchOptions = useMemo(() => {
     matchMode: 'whole-word',
     text: text
   }, [text]);
 ```
 
-In JavaScript, `() => {` starts the arrow function body, so the `{` brace is not a part of your object. This is why it doesn't return an object, and leads to mistakes. You could fix it by adding parentheses like `({` and `})`:
+Dalam JavaScript, `() => {` memulai badan *arrow function*, sehingga kurawal `{` bukan bagian dari objek Anda. Inilah mengapa hal tersebut tidak mengembalikan objek dan dapat menyebabkan kesalahan. Anda dapat memperbaikinya dengan menambahkan tand kurung seperti `({` dan `})`:
 
 ```js {1-2,5}
-  // This works, but is easy for someone to break again
+  // Ini bekerja, tetapi mudah bagi seseorang untuk merusaknya lagi
   const searchOptions = useMemo(() => ({
     matchMode: 'whole-word',
     text: text
   }), [text]);
 ```
 
-However, this is still confusing and too easy for someone to break by removing the parentheses.
+Namun, hal ini tetap membingungkan dan terlalu mudah bagi seseorang untuk merusaknya lagi dengan menghilangkan tanda kurung.
 
-To avoid this mistake, write a `return` statement explicitly:
+Untuk menghindari kesalahan ini, tulis pernyataan `return` secara eksplisit:
 
 ```js {1-3,6-7}
-  // ✅ This works and is explicit
+  // ✅ Ini berfungsi dan eksplisit
   const searchOptions = useMemo(() => {
     return {
       matchMode: 'whole-word',
