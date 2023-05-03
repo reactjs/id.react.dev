@@ -16,7 +16,7 @@ const { pipe, abort } = renderToPipeableStream(reactNode, options?)
 
 <Note>
 
-API ini spesifik untuk Node.js. *Environment* dengan [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) seperti Deno dan lingkungan waktu larian *edge* modern, harus menggunakan [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) sebagai gantinya.
+API ini spesifik untuk Node.js. *Environment* dengan [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) seperti Deno dan *edge runtime* modern, harus menggunakan [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) sebagai gantinya.
 
 </Note>
 
