@@ -1,5 +1,5 @@
 ---
-title: Managing State
+title: Mengelola State
 ---
 
 <Intro>
