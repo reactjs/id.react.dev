@@ -4,27 +4,27 @@ title: Managing State
 
 <Intro>
 
-Ketika aplikasi Anda berkembang, penting untuk lebih memperhatikan bagaimana keadaan (*state*) Anda diorganisasi dan bagaimana aliran data antara komponen-komponen Anda. Keadaan yang redundan atau duplikat adalah sumber umum dari bug. Di bab ini, Anda akan belajar bagaimana mengatur keadaan (*state*) dengan baik, bagaimana menjaga logika pembaruan keadaan (*state*) agar mudah dikelola, dan bagaimana berbagi keadaan (*state*) antara komponen-komponen yang jauh.
+Ketika aplikasi Anda berkembang, penting untuk lebih memperhatikan bagaimana *state* Anda diorganisasi dan bagaimana aliran data antara komponen-komponen Anda. *State* yang redundan atau duplikat adalah sumber umum dari bug. Di bab ini, Anda akan belajar bagaimana mengatur *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana berbagi *state* antara komponen-komponen yang jauh.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [Bagaimana memikirkan perubahan UI sebagai perubahan keadaan (*state*)](/learn/reacting-to-input-with-state)
-* [Bagaimana mengatur keadaan (*state*) dengan baik](/learn/choosing-the-state-structure)
-* [Bagaimana "mengangkat keadaan (*state*) ke atas" untuk dibagikan antara komponen-komponen](/learn/sharing-state-between-components)
-* [Bagaimana mengontrol apakah keadaan (*state*) akan dipertahankan atau direset](/learn/preserving-and-resetting-state)
-* [Bagaimana menggabungkan logika keadaan (*state*) yang kompleks dalam sebuah fungsi](/learn/extracting-state-logic-into-a-reducer)
+* [Bagaimana memikirkan perubahan UI sebagai perubahan *state*](/learn/reacting-to-input-with-state)
+* [Bagaimana mengatur *state* dengan baik](/learn/choosing-the-state-structure)
+* [Bagaimana "mengangkat *state* ke atas" untuk dibagikan antara komponen-komponen](/learn/sharing-state-between-components)
+* [Bagaimana mengontrol apakah *state* akan dipertahankan atau direset](/learn/preserving-and-resetting-state)
+* [Bagaimana menggabungkan logika *state* yang kompleks dalam sebuah fungsi](/learn/extracting-state-logic-into-a-reducer)
 * [Bagaimana mengirimkan informasi tanpa "*prop drilling*"](/learn/passing-data-deeply-with-context)
-* [Bagaimana mengembangkan manajemen keadaan (*state*) saat aplikasi Anda berkembang](/learn/scaling-up-with-reducer-and-context)
+* [Bagaimana meningkatkan manajemen *state* saat aplikasi Anda berkembang](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Merespon masukan dengan keadaan (*state*) {/*reacting-to-input-with-state*/}
+## Merespon masukan dengan *State* {/*reacting-to-input-with-state*/}
 
-Dalam React, Anda tidak akan mengubah UI dari kode secara langsung. Misalnya, Anda tidak akan menulis perintah seperti "nonaktifkan tombol", "aktifkan tombol", "tampilkan pesan sukses", dll. Sebaliknya, Anda akan menggambarkan UI yang ingin Anda lihat untuk berbagai keadaan visual dari komponen Anda ("keadaan awal", "keadaan mengetik", "keadaan sukses"), dan kemudian memicu perubahan keadaan sebagai respons terhadap masukan pengguna. Hal ini mirip dengan bagaimana desainer memikirkan tentang UI.
+Dalam React, Anda tidak akan mengubah UI dari kode secara langsung. Misalnya, Anda tidak akan menulis perintah seperti "nonaktifkan tombol", "aktifkan tombol", "tampilkan pesan sukses", dll. Sebaliknya, Anda akan menggambarkan UI yang ingin Anda lihat untuk berbagai *states* visual dari komponen Anda ("*state* awal", "*state* mengetik", "*state* sukses"), dan kemudian memicu perubahan *state* sebagai respons terhadap masukan pengguna. Hal ini mirip dengan bagaimana desainer memikirkan tentang UI.
 
-Berikut adalah sebuah formulir kuis yang dibangun menggunakan React. Perhatikan bagaimana ia menggunakan variabel keadaan (*state*) `status` untuk menentukan apakah tombol kirim diaktifkan atau dinonaktifkan, dan apakah pesan sukses ditampilkan sebagai gantinya.
+Berikut adalah sebuah formulir kuis yang dibangun menggunakan React. Perhatikan bagaimana ia menggunakan variabel *state* `status` untuk menentukan apakah tombol kirim diaktifkan atau dinonaktifkan, dan apakah pesan sukses ditampilkan sebagai gantinya.
 
 <Sandpack>
 
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Baca **[Merespon Masukan dengan Keadaan (*State*)](/learn/reacting-to-input-with-state)** untuk belajar bagaimana mendekati interaksi dengan mindset yang didorong oleh keadaan (*state*).
+Baca **[Reacting to Input with State](/learn/reacting-to-input-with-state)** untuk belajar bagaimana mendekati interaksi dengan mindset yang didorong oleh *state*.
 
 </LearnMore>
 
-## Memilih struktur keadaan (*state*) {/*choosing-the-state-structure*/}
+## Memilih Struktur *State* {/*choosing-the-state-structure*/}
 
-Mengatur struktur keadaan dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang menjadi sumber kesalahan yang konstan. Prinsip paling penting adalah bahwa keadaan (state) tidak boleh mengandung informasi yang tidak perlu atau duplikat. Jika ada keadaan yang tidak perlu, mudah untuk lupa untuk memperbarui keadaan tersebut, dan memperkenalkan kesalahan!
+Mengatur struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang menjadi sumber kesalahan yang konstan. Prinsip paling penting adalah bahwa *state* tidak boleh mengandung informasi yang tidak perlu atau duplikat. Jika ada *state* yang tidak perlu, mudah untuk lupa untuk memperbarui *state* tersebut, dan memperkenalkan kesalahan!
 
-Misalnya, formulir ini memiliki variabel keadaan `fullName` yang **redundan**:
+Misalnya, formulir ini memiliki variabel *state* `fullName` yang **redundan**:
 
 <Sandpack>
 
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Anda dapat menghapusnya dan menyederhanakan kode dengan menghitung `fullName` saat komponen dirender:
+Anda dapat menghapusnya dan menyederhanakan kode dengan menghitung `fullName` saat komponen di-*render*:
 
 <Sandpack>
 
@@ -208,7 +208,7 @@ export default function Form() {
         />
       </label>
       <p>
-        Tiket Anda akan diberikan kepadao: <b>{fullName}</b>
+        Tiket Anda akan diberikan kepada: <b>{fullName}</b>
       </p>
     </>
   );
@@ -225,15 +225,15 @@ Ini mungkin terlihat seperti perubahan kecil, tetapi banyak bug pada aplikasi Re
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Baca **[Memilih Struktur Keadaan (State)](/learn/choosing-the-state-structure)** untuk belajar cara merancang bentuk keadaan (*state*) untuk menghindari kesalahan (*bugs*).
+Baca **[Choosing the State Structure](/learn/choosing-the-state-structure)** untuk belajar cara merancang bentuk *state* untuk menghindari kesalahan (*bugs*).
 
 </LearnMore>
 
-## Berbagi keadaan (*state*) antar komponen {/*sharing-state-between-components*/}
+## Berbagi *State* Antar Komponen {/*sharing-state-between-components*/}
 
-Terkadang, Anda ingin keadaan (*state*) dari dua komponen selalu berubah bersama. Untuk melakukannya, hapus keadaan dari keduanya, pindahkan keadaan tersebut ke induk (*parent*) paling dekat yang bersamaan, dan kemudian teruskan ke kedua komponen melalui `props`. Hal ini dikenal sebagai "mengangkat keadaan (*state*) ke atas" (*lifting state up*), dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
+Terkadang, Anda ingin *state* dari dua komponen selalu berubah bersama. Untuk melakukannya, hapus *state* dari keduanya, pindahkan *state* tersebut ke induk (*parent*) paling dekat yang bersamaan, dan kemudian teruskan ke kedua komponen melalui *props*. Hal ini dikenal sebagai "mengangkat *state* ke atas" (*lifting state up*), dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
 
-Pada contoh ini, hanya satu panel yang harus aktif pada satu waktu. Untuk mencapainya, daripada menyimpan keadaan aktif di setiap panel secara individu, komponen parent menyimpan keadaan dan menentukan `props` untuk anak-anaknya (*children*).
+Pada contoh ini, hanya satu panel yang harus aktif pada satu waktu. Untuk mencapainya, daripada menyimpan *state* aktif di setiap panel secara individu, komponen parent menyimpan *state* dan menentukan *props* untuk anak-anaknya.
 
 <Sandpack>
 
@@ -296,13 +296,13 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Baca **[Sharing State Between Components](/learn/sharing-state-between-components)** untuk mempelajari cara mengangkat *state* ke atas dan menjaga sinkronisasi antar komponen.
+Baca **[Berbagi *State* Antar Komponen](/learn/sharing-state-between-components)** untuk mempelajari cara mengangkat *state* ke atas dan menjaga sinkronisasi antar komponen.
 
 </LearnMore>
 
-## Memperjelas dan Mengatur Ulang Keadaan (*state*) {/*preserving-and-resetting-state*/}
+## Memperjelas dan Mengatur Ulang *State* {/*preserving-and-resetting-state*/}
 
-Saat Anda merender ulang sebuah komponen, React perlu memutuskan bagian mana dari pohon untuk dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React sudah cukup baik. Secara default, React mempertahankan bagian-bagian pohon yang "cocok" dengan pohon komponen yang sebelumnya dirender.
+Saat Anda me-*render* ulang sebuah komponen, React perlu memutuskan bagian mana dari pohon untuk dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React sudah cukup baik. Secara *default*, React mempertahankan bagian-bagian pohon yang "cocok" dengan pohon komponen yang sebelumnya di-*render*.
 
 Namun, terkadang ini bukan yang Anda inginkan. Dalam aplikasi obrolan ini, mengetik pesan dan kemudian mengubah penerima tidak akan mengatur ulang input. Hal ini dapat membuat pengguna secara tidak sengaja mengirim pesan ke orang yang salah:
 
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React memungkinkan Anda untuk mengesampingkan perilaku *default*, dan *memaksa* sebuah komponen untuk mengatur ulang statusnya (*state*) dengan memberikan `key` yang berbeda, seperti `<Chat key={email} />`. Hal ini memberitahu React bahwa jika penerima berbeda, itu harus dianggap sebagai komponen `Chat` yang *berbeda* yang perlu dibuat kembali dari awal dengan data (dan UI seperti input) yang baru. Sekarang, beralih antara penerima mengatur ulang input - meskipun Anda merender komponen yang sama.
+React memungkinkan Anda untuk mengesampingkan perilaku *default*, dan *memaksa* sebuah komponen untuk mengatur ulang statusnya (*state*) dengan memberikan `key` yang berbeda, seperti `<Chat key={email} />`. Hal ini memberitahu React bahwa jika penerima berbeda, itu harus dianggap sebagai komponen `Chat` yang *berbeda* yang perlu dibuat kembali dari awal dengan data (dan UI seperti input) yang baru. Sekarang, beralih antara penerima mengatur ulang input - meskipun Anda me-*render* komponen yang sama.
 
 <Sandpack>
 
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Baca **[Memperjelas dan Mengatur Ulang Keadaan (*state)](/learn/preserving-and-resetting-state)** untuk mempelajari masa hidup status dan cara mengendalikannya.
+Baca **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** untuk mempelajari masa hidup status dan cara mengendalikannya.
 
 </LearnMore>
 
-## Mengekstrak logika keadaan (*state*) ke dalam *reducer* {/*extracting-state-logic-into-a-reducer*/}
+## Mengekstrak logika *State* ke dalam *Reducer* {/*extracting-state-logic-into-a-reducer*/}
 
-Komponen dengan banyak pembaruan keadaan (*state*) yang tersebar di banyak `event handler` dapat menjadi sangat membingungkan. Untuk kasus-kasus ini, Anda dapat mengkonsolidasikan semua logika pembaruan keadaan (*state*) di luar komponen Anda dalam sebuah fungsi tunggal, yang disebut "*reducer*". `Event handler` Anda menjadi lebih ringkas karena hanya menentukan "aksi" pengguna. Di bagian bawah file, fungsi reducer menentukan bagaimana keadaan (*state*) harus diperbarui sebagai respons terhadap setiap aksi!
+Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handler* dapat menjadi sangat membingungkan. Untuk kasus-kasus ini, Anda dapat mengkonsolidasikan semua logika pembaruan *state* di luar komponen Anda dalam sebuah fungsi tunggal, yang disebut "*reducer*". *Event handler* Anda menjadi lebih ringkas karena hanya menentukan "aksi" pengguna. Di bagian bawah file, fungsi reducer menentukan bagaimana *state* harus diperbarui sebagai respons terhadap setiap aksi!
 
 <Sandpack>
 
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Baca **[Mengekstrak Logika Keadaan (*State*) ke dalam Reducer](/learn/extracting-state-logic-into-a-reducer)** untuk mempelajari cara mengkonsolidasikan logika dalam fungsi reducer.
+Baca **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** untuk mempelajari cara mengkonsolidasikan logika dalam fungsi reducer.
 
 </LearnMore>
 
-## Melewatkan data secara dalam dengan *context* {/*passing-data-deeply-with-context*/}
+## Melewatkan data secara dalam dengan *Context* {/*passing-data-deeply-with-context*/}
 
-Biasanya, Anda akan melewatkan informasi dari komponen induk (*parent*) ke komponen anak (*children*) melalui `props`. Namun, melewatkan `props` dapat menjadi merepotkan jika Anda perlu melewatkan beberapa `prop` melalui banyak komponen, atau jika banyak komponen membutuhkan informasi yang sama. *Context* memungkinkan komponen induk membuat beberapa informasi tersedia untuk setiap komponen di bawahnya—tidak peduli seberapa dalam itu—tanpa melewatkan secara eksplisit melalui `props`.
+Biasanya, Anda akan melewatkan informasi dari komponen induk ke komponen anak (*children*) melalui *props*. Namun, melewatkan *props* dapat menjadi merepotkan jika Anda perlu melewatkan beberapa *prop* melalui banyak komponen, atau jika banyak komponen membutuhkan informasi yang sama. *Context* memungkinkan komponen induk membuat beberapa informasi tersedia untuk setiap komponen di bawahnya—tidak peduli seberapa dalam itu—tanpa melewatkan secara eksplisit melalui *props*.
 
-Di sini, komponen `Heading` menentukan tingkat judulnya dengan "bertanya" pada `Section` terdekat untuk tingkatnya. Setiap `Section` melacak tingkatnya sendiri dengan bertanya pada `Section` induk dan menambahkan satu. Setiap `Section` menyediakan informasi kepada semua komponen di bawahnya tanpa melewatkan `props`—itu dilakukan melalui *context*.
+Di sini, komponen `Heading` menentukan tingkat judulnya dengan "bertanya" pada `Section` terdekat untuk tingkatnya. Setiap `Section` melacak tingkatnya sendiri dengan bertanya pada `Section` induk dan menambahkan satu. Setiap `Section` menyediakan informasi kepada semua komponen di bawahnya tanpa melewatkan *props*—itu dilakukan melalui *context*.
 
 <Sandpack>
 
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Baca **[Melewatkan Data Secara Dalam dengan *Context*](/learn/passing-data-deeply-with-context)** untuk mempelajari penggunaan context sebagai alternatif dari melewatkan `props`.
+Baca **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** untuk mempelajari penggunaan context sebagai alternatif dari melewatkan *props*.
 
 </LearnMore>
 
-## Mengembangkan Skala dengan *Reducer* dan *Context* {/*scaling-up-with-reducer-and-context*/}
+## Peningkatan Skala dengan Reducer dan Context {/*scaling-up-with-reducer-and-context*/}
 
-*Reducer* memungkinkan Anda mengonsolidasikan logika pembaruan keadaan (*state*) dari sebuah komponen. *Context* memungkinkan Anda melewatkan informasi ke komponen lain secara dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola *state* dari layar yang kompleks.
+*Reducer* memungkinkan Anda mengonsolidasikan logika pembaruan *state* dari sebuah komponen. *Context* memungkinkan Anda melewatkan informasi ke komponen lain secara dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola *state* dari layar yang kompleks.
 
-Dengan pendekatan ini, sebuah komponen induk (*parent*) dengan keadaan (*state*) yang kompleks dikelola dengan *reducer*. Komponen lain di dalam *tree* dapat membaca *state*-nya melalui *context*. Mereka juga dapat melakukan *dispatch* tindakan untuk memperbarui keadaan (*state*) tersebut.
+Dengan pendekatan ini, sebuah komponen induk dengan *state* yang kompleks dikelola dengan *reducer*. Komponen lain di dalam *tree* dapat membaca *state*-nya melalui *context*. Mereka juga dapat melakukan *dispatch* tindakan untuk memperbarui *state* tersebut.
 
 <Sandpack>
 
@@ -909,7 +909,7 @@ export default function AddTask({ onAddTask }) {
           id: nextId++,
           text: text,
         });
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   );
 }
@@ -989,7 +989,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1006,12 +1006,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Baca **[Mengembangkan Skala dengan *Reducer* dan *Context*](/learn/scaling-up-with-reducer-and-context)** untuk mempelajari bagaimana pengelolaan keadaan (*state*) mengembang pada aplikasi yang berkembang.
+Baca **[Peningkatan Skala dengan Reducer dan Context](/learn/scaling-up-with-reducer-and-context)** untuk mempelajari bagaimana pengelolaan *state* mengembang pada aplikasi yang berkembang.
 
 </LearnMore>
 
 ## Apa selanjutnya? {/*whats-next*/}
 
-Lanjut ke halaman [Reacting to Input with State](/learn/reacting-to-input-with-state) untuk mulai membaca bab ini halaman per halaman!
+Lanjut ke halaman [Reacting to Input with *State*](/learn/reacting-to-input-with-state) untuk mulai membaca bab ini halaman per halaman!
 
 Atau, jika Anda sudah familiar dengan topik-topik ini, mengapa tidak membaca tentang [Escape Hatches](/learn/escape-hatches)?
