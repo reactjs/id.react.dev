@@ -50,7 +50,7 @@ Sebuah *string* HTML.
 
 * `renderToString` memiliki dukungan *Suspense* yang terbatas. Jika komponen ditangguhkan, `renderToString` secara langsung mengirimkan kembaliannya sebagai HTML.
 
-* `renderToString` bejerka di peramban, tapi menggunakannya di kode klien [tidak dirokemndasikan.](#removing-rendertostring-from-the-client-code)
+* `renderToString` bekerja di peramban, tapi menggunakannya di kode klien [tidak direkomendasikan.](#removing-rendertostring-from-the-client-code)
 
 ---
 
@@ -58,12 +58,12 @@ Sebuah *string* HTML.
 
 ### Me-render pohon React sebagai HTML menjadi string {/*rendering-a-react-tree-as-html-to-a-string*/}
 
-Panggil `renderToString` untuk me-render aplikasi Anda ke *string* HTML yang dapat Anda kirim dengan respons server Anda:
+Panggil `renderToString` untuk me-*render* aplikasi Anda ke *string* HTML yang dapat Anda kirim dengan respons server Anda:
 
 ```js {5-6}
 import { renderToString } from 'react-dom/server';
 
-// Sintaks pengendali rute bergantung pada framework backend Anda
+// Sintaksis pengendali rute bergantung pada framework backend Anda
 app.use('/', (request, response) => {
   const html = renderToString(<App />);
   response.send(html);
@@ -85,7 +85,7 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 ### Migrasi dari `renderToString` ke metode streaming di server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
 
-`renderToString` segera mengembalikan *string*, sehingga tidak mendukung *streaming* atau menunggu data.
+`renderToString` mengembalikan *string* dengan seketika, sehingga tidak mendukung *streaming* atau menunggu data.
 
 Jika memungkinkan, sebaiknya gunakan alternatif berfitur lengkap ini:
 
