@@ -4,7 +4,7 @@ title: 'Menghilangkan Efek dependensi'
 
 <Intro>
 
-Saat Anda menulis sebuah Efek, linter akan memverifikasi bahwa Anda telah memasukan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
+Saat Anda menulis sebuah Efek, linter akan memverifikasi bahwa Anda telah memasukkan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
 
 </Intro>
 
@@ -373,7 +373,7 @@ Untuk menemukan solusi yang tepat, Anda harus menjawab beberapa pertanyaan tenta
 
 Hal pertama yang harus Anda pikirkan adalah apakah kode ini harus menjadi Efek atau tidak.
 
-Bayangkan sebuah formlir. Ketika dikirim, Anda mengatur variabel *state* `submitted` menjadi `true`. Anda perlu mengirim permintaan POST dan menampilkan notifikasi. Anda telah memasukan logika ini ke dalam Efek yang "bereaksi" terhadap `submitted` yang bernilai `true`:
+Bayangkan sebuah formlir. Ketika dikirim, Anda mengatur variabel *state* `submitted` menjadi `true`. Anda perlu mengirim permintaan POST dan menampilkan notifikasi. Anda telah memasukkan logika ini ke dalam Efek yang "bereaksi" terhadap `submitted` yang bernilai `true`:
 
 ```js {6-8}
 function Form() {
