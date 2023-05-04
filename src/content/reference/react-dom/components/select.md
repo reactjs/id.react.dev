@@ -4,12 +4,12 @@ title: "<select>"
 
 <Intro>
 
-The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render a select box with options.
+[Komponen peramban bawaan `<select>`] memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="someOption">Sebuah opsi</option>
+  <option value="otherOption">Opsi lainnya</option>
 </select>
 ```
 
