@@ -1,5 +1,5 @@
 ---
-title: 'Memisahkan Event dari Effect'
+title: 'Membedakan Event dengan Effect'
 ---
 
 <Intro>
