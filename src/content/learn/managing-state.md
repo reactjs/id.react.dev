@@ -4,7 +4,7 @@ title: Mengelola State
 
 <Intro>
 
-Ketika aplikasi Anda berkembang, penting untuk lebih memperhatikan bagaimana *state* Anda diorganisasi dan bagaimana aliran data antara komponen-komponen Anda. *State* yang redundan atau duplikat adalah sumber umum dari bug. Di bab ini, Anda akan belajar bagaimana mengatur *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana berbagi *state* antara komponen-komponen yang jauh.
+Seiring dengan bertumbuhnya aplikasi Anda, penting untuk lebih memperhatikan bagaimana *state* Anda diorganisasi dan bagaimana data mengalir di antara komponen-komponen Anda. *State* yang redundan atau duplikat adalah sumber umum dari *bug*. Di bab ini, Anda akan belajar bagaimana menstrukturkan *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana berbagi *state* antara komponen-komponen yang jauh.
 
 </Intro>
 
