@@ -29,9 +29,9 @@ Sekarang, bayangkan bahwa kita ingin menerapkan suatu komponen untuk ruang obrol
 
 Setelah kita mengimplementasikan kode untuk kebutuhan tersebut, mungkin akan timbul kebingungan dalam memilih tempat untuk meletakkannya. Apakah kita perlu menggunakan event handler atau malah menggunakan Effect? Setiap kali kita menghadapi pertanyaan seperti ini, penting untuk mempertimbangkan [*mengapa* kode tersebut perlu dijalankan](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events).
 
-### Event handlers run in response to specific interactions {/*event-handlers-run-in-response-to-specific-interactions*/}
+### Event handler tereksekusi karena interaksi tertentu {/*event-handlers-run-in-response-to-specific-interactions*/}
 
-From the user's perspective, sending a message should happen *because* the particular "Send" button was clicked. The user will get rather upset if you send their message at any other time or for any other reason. This is why sending a message should be an event handler. Event handlers let you handle specific interactions:
+Dari sudut pandang pengguna, pengiriman pesan harus terjadi karena tombol "Kirim" tertentu diklik. Pengguna akan agak kesal jika kita mengirim pesan mereka di waktu lain atau karena alasan lain. Inilah sebabnya mengapa mengirim pesan harus menjadi event handler. Event handler memungkinkan Anda menangani interaksi tertentu:
 
 ```js {4-6}
 function ChatRoom({ roomId }) {
@@ -50,7 +50,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With an event handler, you can be sure that `sendMessage(message)` will *only* run if the user presses the button.
+Dengan event handler, kita bisa yakin bahwa `sendMessage(message)` *hanya* akan tereksekusi jika pengguna menekan tombol. 
 
 ### Effects run whenever synchronization is needed {/*effects-run-whenever-synchronization-is-needed*/}
 
