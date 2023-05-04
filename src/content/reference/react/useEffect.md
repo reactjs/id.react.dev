@@ -48,11 +48,11 @@ function ChatRoom({ roomId }) {
  
 * `dependensi` **opsional**: Daftar semua nilai reaktif yang direferensikan di dalam kode `setup`. Nilai reaktif meliputi *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam *body* komponen Anda. Jika *linter* Anda [dikonfigurasi untuk React](/learn/editor-setup#linting), itu akan memverifikasi bahwa setiap nilai reaktif dijelaskan dengan benar sebagai dependensi. Daftar dependensi harus memiliki jumlah item yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) . Jika Anda mengabaikan argumen ini, *Effect* Anda akan berjalan ulang setelah setiap re-*render* dari komponen. [Lihat perbedaan antara melewatkan array dependensi, array kosong, dan tidak ada dependensi sama sekali.](#examples-dependencies)
 
-#### Mengembalikan {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `useEffect` mengembalikan `undefined`.
 
-#### Peringatan {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
 * `useEffect` adalah Hook, sehingga Anda hanya dapat memanggilnya **di level atas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam *loop* atau kondisi. Jika Anda membutuhkannya, ekstraklah komponen baru dan pindahkan *state* ke dalamnya.
 
