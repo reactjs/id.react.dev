@@ -4,7 +4,7 @@ title: renderToReadableStream
 
 <Intro>
 
-`renderToReadableStream` me-_render_ sebuah React _tree_ menjadi [_Readable Web Stream._](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+`renderToReadableStream` me-*render* sebuah pohon (*tree*) React menjadi [*Readable Web Stream.*](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 const stream = await renderToReadableStream(reactNode, options?)
@@ -16,7 +16,7 @@ const stream = await renderToReadableStream(reactNode, options?)
 
 <Note>
 
-API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) untuk Node.js, gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
+API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) Untuk Node.js, gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
 
 </Note>
 
@@ -26,7 +26,7 @@ API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/
 
 ### `renderToReadableStream(reactNode, options?)` {/*rendertoreadablestream*/}
 
-Panggil `renderToReadableStream` untuk me-_render_ React _tree_ Anda ke dalam [_Node.js Stream._](https://nodejs.org/api/stream.html#writable-streams)
+Panggil `renderToReadableStream` untuk me-*render* pohon React Anda ke dalam [_Node.js Stream._](https://nodejs.org/api/stream.html#writable-streams)
 
 ```js
 import { renderToReadableStream } from 'react-dom/server';
@@ -47,30 +47,26 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 #### Parameter {/*parameters*/}
 
-* `reactNode`: Node React yang ingin Anda _render_ ke HTML. Contohnya, sebuah elemen JSX seperti `<App />`. Diharapkan untuk mewakili keseluruhan dokumen, sehingga komponen `App` harus me-_render_ tag `<html>`.
+* `reactNode`: Node React yang ingin Anda *render* ke HTML. Contohnya, sebuah elemen JSX seperti `<App />`. Diharapkan untuk mewakili keseluruhan dokumen, sehingga komponen `App` harus me-*render* tag `<html>`.
 
-* **opsional** `options`: Objek dengan opsi _streaming_.
-   * **opsional** `bootstrapScriptContent`: Jika ditentukan, _string_ ini akan ditempatkan dalam tag sebaris `<script>`.
+* **opsional** `options`: Objek dengan opsi *streaming*.
+   * **opsional** `bootstrapScriptContent`: Jika ditentukan, *string* ini akan ditempatkan dalam tag sebaris `<script>`.
    * **opsional** `bootstrapScripts`: Senarai URL string untuk tag `<script>` yang akan dikeluarkan di halaman. Gunakan ini untuk menyertakan `<script>` yang memanggil [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Abaikan jika Anda sama sekali tidak ingin menjalankan React pada klien.
    * **opsional** `bootstrapModules`: Seperti `bootstrapScripts`, tetapi mengeluarkan [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/ Panduan/Modul) sebagai gantinya.
-   * **opsional** `identifierPrefix`: Prefiks _string_ yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk menghindari konflik saat menggunakan beberapa _root_ pada halaman yang sama. Harus memiliki awalan yang sama dengan yang diteruskan ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
-   * **opsional** `namespaceURI`: _String_ dengan _root_ [_namespace URI_](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) untuk _streaming_. _Default_ ke HTML biasa. Tambahkan `'http://www.w3.org/2000/svg'` untuk SVG atau `'http://www.w3.org/1998/Math/MathML'` untuk MathML.
-   * **opsional** `nonce`: _String_ [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) digunakan untuk mengizinkan skrip untuk [` script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-   * **opsional** `onError`: _Callback_ yang aktif setiap kali ada kesalahan server, baik [dapat dipulihkan](#recovering-from-errors-outside-the-shell) atau [tidak.](#recovering-from-errors-inside-the-shell) Secara bawaan, ini hanya memanggil `console.error`. Jika Anda menimpanya ke [laporan kerusakan log,](#logging-crashes-on-the-server) pastikan Anda masih memanggil `console.error`. Anda juga dapat menggunakannya untuk [menyesuaikan kode status](#setting-the-status-code) sebelum _shell_ dikeluarkan.
+   * **opsional** `identifierPrefix`: Prefiks *string* yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk menghindari konflik saat menggunakan beberapa *root* pada halaman yang sama. Harus memiliki awalan yang sama dengan yang diteruskan ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
+   * **opsional** `namespaceURI`: *String* dengan *root* [*namespace URI*](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important*namespace*uris) untuk *streaming*. *Default* ke HTML biasa. Tambahkan `'http://www.w3.org/2000/svg'` untuk SVG atau `'http://www.w3.org/1998/Math/MathML'` untuk MathML.
+   * **opsional** `nonce`: *String* [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) digunakan untuk mengizinkan skrip untuk [` script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
+   * **opsional** `onError`: *Callback* yang aktif setiap kali ada kesalahan server, baik [dapat dipulihkan](#recovering-from-errors-outside-the-shell) atau [tidak.](#recovering-from-errors-inside-the-shell) Secara bawaan, ini hanya memanggil `console.error`. Jika Anda menimpanya ke [laporan kerusakan log,](#logging-crashes-on-the-server) pastikan Anda masih memanggil `console.error`. Anda juga dapat menggunakannya untuk [menyesuaikan kode status](#setting-the-status-code) sebelum *shell* dikeluarkan.
    * **opsional** `progressiveChunkSize`: Jumlah byte dalam potongan. [Baca selengkapnya tentang heuristik default.](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)
-   * **opsional** `signal`: Sebuah [_abort signal_](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) yang memungkinkan Anda [membatalkan _render_ di server](#aborting-server-rendering) dan me-_render_ sisanya pada klien.
+   * **opsional** `signal`: Sebuah [*abort signal*](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) yang memungkinkan Anda [membatalkan *render* di server](#aborting-server-rendering) dan me-*render* sisanya pada klien.
 
 
 #### Kembalian {/*returns*/}
 
-`renderToReadableStream` mengembalikan sebuah _Promise_:
+`renderToReadableStream` mengembalikan sebuah *Promise*:
 
-- Jika _render [shell_](#specifying-what-goes-into-the-shell) berhasil, _Promise_ tersebut akan diselesaikan menjadi [_Readable Web Stream_.](https://developer.mozilla.org/en-US /docs/Web/API/ReadableStream)
-- Jika _render shell_ gagal, _Promise_ akan ditolak. [Gunakan ini untuk mengeluarkan _Shell_ cadangan.](#recovering-from-errors-inside-the-shell)
-
-The returned stream has an additional property:
-
-* `allReady`: A Promise that resolves when all rendering is complete, including both the [shell](#specifying-what-goes-into-the-shell) and all additional [content.](#streaming-more-content-as-it-loads) You can `await stream.allReady` before returning a response [for crawlers and static generation.](#waiting-for-all-content-to-load-for-crawlers-and-static-generation) If you do that, you won't get any progressive loading. The stream will contain the final HTML.
+- Jika *render [shell*](#specifying-what-goes-into-the-shell) berhasil, *Promise* tersebut akan diselesaikan menjadi [*Readable Web Stream*.](https://developer.mozilla.org/en-US /docs/Web/API/ReadableStream)
+- Jika *render shell* gagal, *Promise* akan ditolak. [Gunakan ini untuk mengeluarkan *Shell* cadangan.](#recovering-from-errors-inside-the-shell)
 
 _Stream_ yang dikembalikan memiliki properti tambahan:
 
@@ -80,9 +76,9 @@ _Stream_ yang dikembalikan memiliki properti tambahan:
 
 ## Penggunaan {/*usage*/}
 
-### Me-render React tree sebagai HTML ke Readable Web Stream {/*rendering-a-react-tree-as-html-to-a-readable-web-stream*/}
+### Me-*render* pohon React sebagai HTML ke *Readable Web Stream* {/*rendering-a-react-tree-as-html-to-a-readable-web-stream*/}
 
-Panggil `renderToReadableStream` untuk me-_render_ React _tree_ anda sebagai HTML ke [_Readable Web Stream_:](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+Panggil `renderToReadableStream` untuk me-*render* React *tree* anda sebagai HTML ke [*Readable Web Stream*:](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js [[1, 4, "<App />"], [2, 5, "['/main.js']"]]
 import { renderToReadableStream } from 'react-dom/server';
@@ -97,7 +93,7 @@ async function handler(request) {
 }
 ```
   
-Bersamaan dengan <CodeStep step={1}>root component</CodeStep>, Anda perlu memberikan daftar <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Komponen root Anda harus mengembalikan **seluruh dokumen termasuk tag root `<html>`.**
+Bersamaan dengan <CodeStep step={1}>root component</CodeStep>, Anda perlu memberikan daftar <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Komponen root Anda harus mengembalikan **seluruh dokumen termasuk tag root `<html>`.
 
 Misalnya, mungkin terlihat seperti ini:
 
@@ -119,7 +115,7 @@ export default function App() {
 }
 ```
 
-React akan memasukkan [doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) dan <CodeStep step={2}>bootstrap `<script>` tags</CodeStep> Anda ke _stream_ HTML yang dihasilkan:
+React akan memasukkan [doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) dan <CodeStep step={2}>bootstrap `<script>` tags</CodeStep> Anda ke *stream* HTML yang dihasilkan:
 
 ```html [[2, 5, "/main.js"]]
 <!DOCTYPE html>
@@ -129,7 +125,7 @@ React akan memasukkan [doctype](https://developer.mozilla.org/en-US/docs/Glossar
 <script src="/main.js" async=""></script>
 ```
 
-Di klien, skrip bootstrap Anda harus [menghidrasi seluruh `dokumen` dengan panggilan ke `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
+Di klien, skrip *bootstrap* Anda harus [menghidrasi seluruh `dokumen` dengan panggilan ke `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
 
 ```js [[1, 4, "<App />"]]
 import { hydrateRoot } from 'react-dom/client';
@@ -138,16 +134,11 @@ import App from './App.js';
 hydrateRoot(document, <App />);
 ```
 
-Ini akan melampirkan _event listeners_ ke HTML yang dihasilkan server dan membuatnya interaktif.
+Ini akan melampirkan *event listeners* ke HTML yang dihasilkan server dan membuatnya interaktif.
 
 <DeepDive>
 
-#### Membaca jalur aset CSS dan JS dari output _build_ {/*reading-css-and-js-asset-paths-from-the-build-output*/}
-
-The final asset URLs (like JavaScript and CSS files) are often hashed after the build. For example, instead of `styles.css` you might end up with `styles.123456.css`. Hashing static asset filenames guarantees that every distinct build of the same asset will have a different filename. This is useful because it lets you safely enable long-term caching for static assets: a file with a certain name would never change content.
-
-However, if you don't know the asset URLs until after the build, there's no way for you to put them in the source code. For example, hardcoding `"/styles.css"` into JSX like earlier wouldn't work. To keep them out of your source code, your root component can read the real filenames from a map passed as a prop:
-
+#### Membaca jalur aset CSS dan JS dari output *build* {/*reading-css-and-js-asset-paths-from-the-build-output*/}
 
 URL aset final (seperti file JavaScript dan CSS) sering kali di-_hash_ setelah dibuat. Misalnya, alih-alih `styles.css` Anda mungkin berakhir dengan `styles.123456.css`. _Hashing_ nama file aset statis menjamin bahwa setiap build berbeda dari aset yang sama akan memiliki nama file yang berbeda pula. Ini berguna karena memungkinkan Anda mengaktifkan _caching_ jangka panjang dengan aman untuk aset statis: konten file dengan nama tertentu tidak akan pernah berubah.
 
@@ -167,7 +158,7 @@ export default function App({ assetMap }) {
 }
 ```
 
-Di server, _render_ `<App assetMap={assetMap} />` dan teruskan `assetMap` Anda dengan URL aset:
+Di server, *render* `<App assetMap={assetMap} />` dan teruskan `assetMap` Anda dengan URL aset:
 
 ```js {1-5,8,9}
 // Anda perlu mendapatkan JSON ini dari tooling build Anda, mis. membacanya dari keluaran build.
@@ -186,7 +177,7 @@ async function handler(request) {
 }
 ```
 
-Karena server Anda sekarang me-_render_ `<App assetMap={assetMap} />`, Anda juga perlu me-_render_-nya dengan `assetMap` pada klien untuk menghindari error hidrasi. Anda dapat men-_serialize_ dan meneruskan `assetMap` ke klien seperti ini:
+Karena server Anda sekarang me-*render* `<App assetMap={assetMap} />`, Anda juga perlu me-*render*-nya dengan `assetMap` pada klien untuk menghindari error hidrasi. Anda dapat men-*serialize* dan meneruskan `assetMap` ke klien seperti ini:
 
 
 ```js {9-10}
@@ -225,7 +216,7 @@ Klien dan server merender `App` dengan prop `assetMap` yang sama, sehingga tidak
 
 ### Streaming lebih banyak konten saat dimuat {/*streaming-more-content-as-it-loads*/}
 
-_Streaming_ memungkinkan pengguna untuk mulai melihat konten bahkan sebelum semua data dimuat di server. Misalnya, pertimbangkan halaman profil yang menampilkan sebuah sampul, _sidebar_ dengan teman dan foto, dan daftar postingan:
+*Streaming* memungkinkan pengguna untuk mulai melihat konten bahkan sebelum semua data dimuat di server. Misalnya, pertimbangkan halaman profil yang menampilkan sebuah sampul, *sidebar* dengan teman dan foto, dan daftar postingan:
 
 ```js
 function ProfilePage() {
@@ -261,7 +252,7 @@ function ProfilePage() {
 }
 ```
 
-Ini memberitahu React untuk memulai _streaming_ HTML sebelum `Posts` memuat datanya. React akan mengirimkan HTML untuk _fallback_ pemuatan (`PostsGlimmer`) terlebih dahulu, dan kemudian, ketika `Posts` selesai memuat datanya, React akan mengirimkan HTML yang tersisa bersama dengan tag `<script>` sebaris yang menggantikan _fallback_ pemuatan dengan HTML itu. Dari perspektif pengguna, halaman pertama akan muncul dengan `PostsGlimmer`, kemudian diganti dengan `Posts`.
+Ini memberitahu React untuk memulai *streaming* HTML sebelum `Posts` memuat datanya. React akan mengirimkan HTML untuk *fallback* pemuatan (`PostsGlimmer`) terlebih dahulu, dan kemudian, ketika `Posts` selesai memuat datanya, React akan mengirimkan HTML yang tersisa bersama dengan tag `<script>` sebaris yang menggantikan *fallback* pemuatan dengan HTML itu. Dari perspektif pengguna, halaman pertama akan muncul dengan `PostsGlimmer`, kemudian diganti dengan `Posts`.
 
 Anda dapat lebih jauh [menyatukan batas `<Suspense>`](/reference/react/Suspense#revealing-nested-content-as-it-loads) untuk membuat urutan pemuatan yang lebih terperinci:
 
@@ -284,33 +275,32 @@ function ProfilePage() {
 }
 ```
 
+Dalam contoh ini, React dapat memulai *streaming* halaman lebih awal. Hanya `ProfileLayout` dan `ProfileCover` yang harus menyelesaikan *render* terlebih dahulu karena tidak terbungkus dalam batas `<Suspense>`. Namun, jika `Sidebar`, `Friends`, atau `Photos` perlu memuat beberapa data, React akan mengirimkan HTML untuk *fallback* `BigSpinner` sebagai gantinya. Kemudian, ketika lebih banyak data tersedia, lebih banyak konten akan terus ditampilkan hingga semuanya terlihat.
 
-In this example, React can start streaming the page even earlier. Only `ProfileLayout` and `ProfileCover` must finish rendering first because they are not wrapped in any `<Suspense>` boundary. However, if `Sidebar`, `Friends`, or `Photos` need to load some data, React will send the HTML for the `BigSpinner` fallback instead. Then, as more data becomes available, more content will continue to be revealed until all of it becomes visible.
+*Streaming* tidak perlu menunggu React sendiri dimuat di peramban, atau aplikasi Anda menjadi interaktif. Konten HTML dari server akan ditampilkan secara progresif sebelum tag `<script>` mana pun dimuat.
 
-Streaming does not need to wait for React itself to load in the browser, or for your app to become interactive. The HTML content from the server will get progressively revealed before any of the `<script>` tags load.
-
-[Read more about how streaming HTML works.](https://github.com/reactwg/react-18/discussions/37)
+[Baca selengkapnya tentang cara kerja *streaming* HTML.](https://github.com/reactwg/react-18/discussions/37)
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Hanya sumber data yang mengaktifkan *Suspense* yang akan mengaktifkan komponen Suspense.** Sumber tersebut meliputi:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Pengambilan data dengan *framework* yang mendukung *Suspense* seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+*Suspense* **tidak** mendeteksi saat data diambil di dalam *Effect* atau *event handler*.
 
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+Cara persis Anda memuat data dalam komponen `Posts` di atas bergantung pada *framework* Anda. Jika Anda menggunakan *framework* dengan dukungan *Suspense*, Anda akan menemukan detailnya dalam dokumentasi pengambilan datanya.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Pengambilan data dengan dukungan *suspense* tanpa menggunakan *opinionated framework* belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung *Suspense* tidak stabil dan tidak terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan *Suspense* akan dirilis dalam versi React yang akan datang.
 
 </Note>
 
 ---
 
-### Specifying what goes into the shell {/*specifying-what-goes-into-the-shell*/}
+### Menentukan apa yang masuk ke dalam *shell* {/*specifying-what-goes-into-the-shell*/}
 
-The part of your app outside of any `<Suspense>` boundaries is called *the shell:*
+Bagian aplikasi Anda di luar batas `<Suspense>` disebut *shell:*
 
 ```js {3-5,13,14}
 function ProfilePage() {
@@ -331,7 +321,7 @@ function ProfilePage() {
 }
 ```
 
-It determines the earliest loading state that the user may see:
+Ini menentukan status pemuatan paling awal yang mungkin dilihat pengguna:
 
 ```js {3-5,13
 <ProfileLayout>
@@ -340,9 +330,9 @@ It determines the earliest loading state that the user may see:
 </ProfileLayout>
 ```
 
-If you wrap the whole app into a `<Suspense>` boundary at the root, the shell will only contain that spinner. However, that's not a pleasant user experience because seeing a big spinner on the screen can feel slower and more annoying than waiting a bit more and seeing the real layout. This is why usually you'll want to place the `<Suspense>` boundaries so that the shell feels *minimal but complete*--like a skeleton of the entire page layout.
+Jika Anda menggabungkan seluruh aplikasi ke dalam batas `<Suspense>` di akar, *shell* hanya akan berisi pemintal tersebut. Namun, itu bukan pengalaman pengguna yang menyenangkan karena melihat pemintal besar di layar bisa terasa lebih lambat dan lebih menyebalkan daripada menunggu lebih lama dan melihat tata letak yang sebenarnya. Inilah mengapa biasanya Anda ingin menempatkan batas `<Suspense>` sehingga *shell* terasa *minimal tetapi lengkap*--seperti kerangka dari keseluruhan tata letak halaman.
 
-The async call to `renderToReadableStream` will resolve to a `stream` as soon as the entire shell has been rendered. Usually, you'll start streaming then by creating and returning a response with that `stream`:
+Panggilan asinkronus ke `renderToReadableStream` akan berubah menjadi `stream` segera setelah seluruh *shell* di-*render*. Biasanya, Anda akan memulai *streaming* kemudian dengan membuat dan mengembalikan respons dengan `stream` itu:
 
 ```js {5}
 async function handler(request) {
@@ -355,13 +345,13 @@ async function handler(request) {
 }
 ```
 
-By the time the `stream` is returned, components in nested `<Suspense>` boundaries might still be loading data.
+Pada saat `stream` dikembalikan, komponen di batas `<Suspense>` bersarang mungkin masih memuat data.
 
 ---
 
-### Logging crashes on the server {/*logging-crashes-on-the-server*/}
+### *Logging* eror di server {/*logging-crash-on-the-server*/}
 
-By default, all errors on the server are logged to console. You can override this behavior to log crash reports:
+Secara *default*, semua kesalahan di server dicatat ke konsol. Anda dapat mengganti perilaku ini untuk mencatat laporan kerusakan:
 
 ```js {4-7}
 async function handler(request) {
@@ -378,13 +368,13 @@ async function handler(request) {
 }
 ```
 
-If you provide a custom `onError` implementation, don't forget to also log errors to the console like above.
+Jika Anda memberikan implementasi `onError` khusus, jangan lupa juga mencatat kesalahan ke konsol seperti di atas.
 
 ---
 
-### Recovering from errors inside the shell {/*recovering-from-errors-inside-the-shell*/}
+### Memulihkan dari kesalahan di dalam *shell* {/*recovering-from-errors-inside-the-shell*/}
 
-In this example, the shell contains `ProfileLayout`, `ProfileCover`, and `PostsGlimmer`:
+Dalam contoh ini, *shell* berisi `ProfileLayout`, `ProfileCover`, dan `PostsGlimmer`:
 
 ```js {3-5,7-8}
 function ProfilePage() {
@@ -399,7 +389,7 @@ function ProfilePage() {
 }
 ```
 
-If an error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Wrap your `renderToReadableStream` call in a `try...catch` to send a fallback HTML that doesn't rely on server rendering as the last resort:
+Jika terjadi kesalahan saat me-*render* komponen tersebut, React tidak akan memiliki HTML yang berarti untuk dikirim ke klien. Bungkus panggilan `renderToReadableStream` Anda dalam `try...catch` untuk mengirimkan HTML *fallback* yang tidak bergantung pada *render* server sebagai upaya terakhir:
 
 ```js {2,13-18}
 async function handler(request) {
@@ -423,13 +413,13 @@ async function handler(request) {
 }
 ```
 
-If there is an error while generating the shell, both `onError` and your `catch` block will fire. Use `onError` for error reporting and use the `catch` block to send the fallback HTML document. Your fallback HTML does not have to be an error page. Instead, you may include an alternative shell that renders your app on the client only.
+Jika ada kesalahan saat membuat *shell*, `onError` dan blok `catch` Anda akan aktif. Gunakan `onError` untuk pelaporan kesalahan dan gunakan blok `catch` untuk mengirim dokumen HTML *fallback*. HTML *fallback* Anda tidak harus berupa halaman kesalahan. Sebagai gantinya, Anda dapat menyertakan *shell* alternatif yang merender aplikasi Anda hanya pada klien.
 
 ---
 
-### Recovering from errors outside the shell {/*recovering-from-errors-outside-the-shell*/}
+### Memulihkan dari kesalahan di luar *shell* {/*recovering-from-errors-outside-the-shell*/}
 
-In this example, the `<Posts />` component is wrapped in `<Suspense>` so it is *not* a part of the shell:
+Dalam contoh ini, komponen `<Posts />` dibungkus dengan `<Suspense>` sehingga *bukan* merupakan bagian dari shell:
 
 ```js {6}
 function ProfilePage() {
@@ -444,23 +434,23 @@ function ProfilePage() {
 }
 ```
 
-If an error happens in the `Posts` component or somewhere inside it, React will [try to recover from it:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+Jika kesalahan terjadi pada komponen `Posts` atau di suatu tempat di dalamnya, React akan [mencoba memulihkannya:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
 
-1. It will emit the loading fallback for the closest `<Suspense>` boundary (`PostsGlimmer`) into the HTML.
-2. It will "give up" on trying to render the `Posts` content on the server anymore.
-3. When the JavaScript code loads on the client, React will *retry* rendering `Posts` on the client.
+1. Ini akan menampilkan *fallback* pemuatan untuk batas `<Suspense>` terdekat (`PostsGlimmer`) ke dalam HTML.
+2. Ini akan "menyerah" untuk mencoba me-*render* konten `Posts` di server lagi.
+3. Saat kode JavaScript dimuat di klien, React akan *coba lagi* me-*render* `Posts` di klien.
 
-If retrying rendering `Posts` on the client *also* fails, React will throw the error on the client. As with all the errors thrown during rendering, the [closest parent error boundary](/reference/react/Component#static-getderivedstatefromerror) determines how to present the error to the user. In practice, this means that the user will see a loading indicator until it is certain that the error is not recoverable.
+Jika mencoba merender `Posts` pada klien *juga* gagal, React akan melempar kesalahan pada klien. Seperti semua eror yang terjadi selama proses *render*, [batas error induk terdekat](/reference/react/Component#static-getderivedstatefromerror) menentukan cara menyajikan error kepada pengguna. Dalam praktiknya, ini berarti bahwa pengguna akan melihat indikator pemuatan hingga dipastikan bahwa kesalahan tidak dapat dipulihkan.
 
-If retrying rendering `Posts` on the client succeeds, the loading fallback from the server will be replaced with the client rendering output. The user will not know that there was a server error. However, the server `onError` callback and the client [`onRecoverableError`](/reference/react-dom/client/hydrateRoot#hydrateroot) callbacks will fire so that you can get notified about the error.
+Jika percobaan ulang rendering `Posts` pada klien berhasil, *fallback* pemuatan dari server akan diganti dengan hasil proses *render* klien. Pengguna tidak akan tahu bahwa ada kesalahan server. Namun, *callback* `onError` server dan *callback* [`onRecoverableError`](/reference/react-dom/client/hydrateRoot#hydrateroot) klien akan aktif sehingga Anda bisa mendapatkan pemberitahuan tentang error tersebut.
 
 ---
 
-### Setting the status code {/*setting-the-status-code*/}
+### Menyetel kode status {/*setting-the-status-code*/}
 
-Streaming introduces a tradeoff. You want to start streaming the page as early as possible so that the user can see the content sooner. However, once you start streaming, you can no longer set the response status code.
+*Streaming* memperkenalkan keuntungan dan kerugian. Anda ingin memulai *streaming* halaman sedini mungkin agar pengguna dapat melihat konten lebih cepat. Namun, begitu Anda memulai *streaming*, Anda tidak dapat lagi menyetel kode status respons.
 
-By [dividing your app](#specifying-what-goes-into-the-shell) into the shell (above all `<Suspense>` boundaries) and the rest of the content, you've already solved a part of this problem. If the shell errors, your `catch` block will run which lets you set the error status code. Otherwise, you know that the app may recover on the client, so you can send "OK".
+Dengan [membagi aplikasi Anda](#specifying-what-goes-into-the-shell) ke dalam *shell* (di atas semua batas `<Suspense>`) dan konten lainnya, Anda telah menyelesaikan sebagian dari masalah ini. Jika shell error, blok `catch` Anda akan berjalan yang memungkinkan Anda mengatur kode status eror. Jika tidak, Anda tahu bahwa aplikasi dapat pulih pada klien, sehingga Anda dapat mengirimkan "OK".
 
 ```js {11}
 async function handler(request) {
@@ -485,9 +475,9 @@ async function handler(request) {
 }
 ```
 
-If a component *outside* the shell (i.e. inside a `<Suspense>` boundary) throws an error, React will not stop rendering. This means that the `onError` callback will fire, but your code will continue running without getting into the `catch` block. This is because React will try to recover from that error on the client, [as described above.](#recovering-from-errors-outside-the-shell)
+Jika sebuah komponen *di luar shell* (yaitu di dalam batas `<Suspense>`) melontarkan kesalahan, React tidak akan berhenti me-*render*. Ini berarti *callback* `onError` akan diaktifkan, tetapi kode Anda akan terus berjalan tanpa masuk ke blok `catch`. Ini karena React akan mencoba memulihkan dari kesalahan itu pada klien, [seperti yang dijelaskan di atas.](#recovering-from-errors-outside-the-shell)
 
-However, if you'd like, you can use the fact that something has errored to set the status code:
+Namun, jika mau, Anda dapat menggunakan fakta bahwa ada kesalahan untuk menyetel kode status:
 
 ```js {3,7,13}
 async function handler(request) {
@@ -514,13 +504,13 @@ async function handler(request) {
 }
 ```
 
-This will only catch errors outside the shell that happened while generating the initial shell content, so it's not exhaustive. If knowing whether an error occurred for some content is critical, you can move it up into the shell.
+Ini hanya akan menangkap kesalahan di luar *shell* yang terjadi saat membuat konten *shell* awal, jadi tidak lengkap. Jika mengetahui apakah terjadi kesalahan untuk beberapa konten sangat penting, Anda dapat memindahkannya ke dalam *shell*.
 
 ---
 
-### Handling different errors in different ways {/*handling-different-errors-in-different-ways*/}
+### Menangani berbagai eror dengan cara berbeda {/*handling-different-errors-in-different-ways*/}
 
-You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your component. Then you can save the error in `onError` and do something different before returning the response depending on the error type:
+Anda dapat [membuat sub-kelas `Error` Anda sendiri](https://javascript.info/custom-errors) dan menggunakan [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator untuk memeriksa kesalahan mana yang dilemparkan. Misalnya, Anda dapat menentukan `NotFoundError` khusus dan membuangnya dari komponen Anda. Kemudian Anda dapat menyimpan kesalahan di `onError` dan melakukan sesuatu yang berbeda sebelum mengembalikan respons tergantung pada jenis kesalahannya:
 
 ```js {2-3,5-15,22,28,33}
 async function handler(request) {
@@ -562,17 +552,17 @@ async function handler(request) {
 }
 ```
 
-Keep in mind that once you emit the shell and start streaming, you can't change the status code.
+Perlu diingat bahwa setelah Anda memancarkan *shell* dan memulai *streaming*, Anda tidak dapat mengubah kode status.
 
 ---
 
-### Waiting for all content to load for crawlers and static generation {/*waiting-for-all-content-to-load-for-crawlers-and-static-generation*/}
+### Menunggu semua konten dimuat untuk *crawler* dan *static generation* {/*waiting-for-all-content-to-load-for-crawlers-and-static-generation*/}
 
-Streaming offers a better user experience because the user can see the content as it becomes available.
+*Streaming* menawarkan pengalaman pengguna yang lebih baik karena pengguna dapat melihat konten saat tersedia.
 
-However, when a crawler visits your page, or if you're generating the pages at the build time, you might want to let all of the content load first and then produce the final HTML output instead of revealing it progressively.
+Namun, saat *crawlers* mengunjungi halaman Anda, atau jika Anda membuat halaman pada waktu pembuatan, Anda mungkin ingin membiarkan semua konten dimuat terlebih dahulu, lalu menghasilkan keluaran HTML akhir alih-alih menampilkannya secara bertahap.
 
-You can wait for all the content to load by awaiting the `stream.allReady` Promise:
+Anda dapat menunggu semua konten dimuat dengan menunggu *Promise* `stream.allReady`:
 
 ```js {12-15}
 async function handler(request) {
@@ -586,7 +576,7 @@ async function handler(request) {
         logServerCrashReport(error);
       }
     });
-    let isCrawler = // ... depends on your bot detection strategy ...
+    let isCrawler = // ... tergantung pada strategi deteksi bot Anda ...
     if (isCrawler) {
       await stream.allReady;
     }
@@ -603,13 +593,13 @@ async function handler(request) {
 }
 ```
 
-A regular visitor will get a stream of progressively loaded content. A crawler will receive the final HTML output after all the data loads. However, this also means that the crawler will have to wait for *all* data, some of which might be slow to load or error. Depending on your app, you could choose to send the shell to the crawlers too.
+Pengunjung reguler akan mendapatkan aliran konten yang dimuat secara progresif. *Crawlers* akan menerima hasil akhir HTML setelah semua data dimuat. Namun, ini juga berarti *crawler* harus menunggu *semua* data, beberapa di antaranya mungkin lambat dimuat atau error. Bergantung pada aplikasi Anda, Anda juga dapat memilih untuk mengirim *shell* ke *crawler*.
 
 ---
 
-### Aborting server rendering {/*aborting-server-rendering*/}
+### Membatalkan proses *render* di server {/*aborting-server-rendering*/}
 
-You can force the server rendering to "give up" after a timeout:
+Anda dapat memaksa proses *render* di server untuk "menyerah" setelah waktu habis:
 
 ```js {3,4-6,9}
 async function handler(request) {
@@ -631,5 +621,4 @@ async function handler(request) {
     // ...
 ```
 
-React will flush the remaining loading fallbacks as HTML, and will attempt to render the rest on the client.
-
+React akan menghapus *fallback* pemuatan yang tersisa sebagai HTML, dan akan mencoba merender sisanya pada klien.
