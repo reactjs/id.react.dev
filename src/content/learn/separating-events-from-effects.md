@@ -4,17 +4,17 @@ title: 'Membedakan Event dengan Effect'
 
 <Intro>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
+Event handler hanya akan tereksekusi ketika kita melakukan interaksi yang berhubungan dengan event handler tersebut. Berbeda dengan event handler, Effect akan tereksekusi ulang jika nilai yang ada di _dependency array Effect_ berbeda/berubah dari nilai sebelumnya. Kadang kita juga ingin menggunakan memanfaatkan keduanya: Effect yang tereksekusi ketika beberapa nilai berubah, tetapi tidak pada yang lain. Halaman ini akan mengajari Anda cara melakukannya.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to choose between an event handler and an Effect
-- Why Effects are reactive, and event handlers are not
-- What to do when you want a part of your Effect's code to not be reactive
-- What Effect Events are, and how to extract them from your Effects
-- How to read the latest props and state from Effects using Effect Events
+- Cara menentukan kapan menggunakan event handler atau Effect
+- Mengapa Effect bersifat reaktif, dan event handler tidak
+- Bagaimana cara kita membuat beberapa bagian dari kode Effect agar tidak reaktif
+- Apa yang dimaksud Effect Events, dan bagaimana cara kita menggunakannya di Effect
+- Cara membaca nilai props dan state dari Effects menggunakan Effect Events
 
 </YouWillLearn>
 
