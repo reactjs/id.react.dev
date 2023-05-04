@@ -38,7 +38,7 @@ Konvensi dalam menamai *state variable* adalah menggunakan pola `[something, set
 
 #### Parameter {/*parameters*/}
 
-* `initialState`: Nilai awal pada sebuah *state*. Nilainya dapat berupa jenis apa saja, namun terdapat perilaku khusus untuk fungsi. Argumen ini diabaikan setelah rendering awal.
+* `initialState`: Nilai awal pada sebuah *state*. Nilainya dapat berupa jenis apa saja, namun terdapat perilaku khusus untuk fungsi. Argumen ini diabaikan setelah *rendering* awal.
   * Jika Anda mengoper sebuah fungsi sebagai `initialState`, itu akan diperlakukan sebagai *initializer function*. Fungsi tersebut harus murni (*pure*), tidak boleh menerima argumen, dan harus mengembalikan nilai dengan tipe apa pun. React akan memanggil *initializer function* ketika menginisialisasi komponen, dan menyimpan nilai kembaliannya sebagai *state* awal. [Lihat contoh lainnya di bawah ini.](#avoiding-recreating-the-initial-state)
 
 #### Mengembalikan {/*returns*/}
@@ -913,9 +913,9 @@ React dapat [memanggil inisialisator Anda dua kali](#my-initializer-or-updater-f
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
-#### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Mengoper fungsi inisialisasi {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+Contoh ini mengoper sebuah fungsi inisialisasi, sehingga fungsi `createInitialTodos` hanya berjalan ketika inisalisasi. Ini tidak berjalan ketika komponen di-*render* ulang, seperti ketika Anda mengetikkan masukan.
 
 <Sandpack>
 
@@ -966,9 +966,9 @@ export default function TodoList() {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Mengoper *state* awal secara langsung {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+Contoh ini **tidak** mengoper fungsi inisialisasi, sehingga fungsi `createInitialTodos` akan berjalan pada setiap *render*, seperti ketika Anda mengetikkan suatu masukan. Tidak ada perbedaan perilaku yang terlihat, tetapi kode ini kurang efisien.
 
 <Sandpack>
 
@@ -1023,13 +1023,13 @@ export default function TodoList() {
 
 ---
 
-### Resetting state with a key {/*resetting-state-with-a-key*/}
+### Mereset *state* menggunakan kunci (*key*) {/*resetting-state-with-a-key*/}
 
-You'll often encounter the `key` attribute when [rendering lists.](/learn/rendering-lists) However, it also serves another purpose.
+Anda sering melihat atribut `key` saat [me-*render* daftar.](/learn/rendering-lists) Namun, atribut ini juga memiliki tujuan lain.
 
-You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+Anda dapat **mereset *state* komponen dengan memberikan `key` yang berbeda pada komponen.** Pada contoh ini, tombol Reset mengubah variabel *state* `version`, yang kami oper sebagai `key` pada `Form`. Ketika `key` berubah, React membuat ulang komponen `Form` (dan semua komponen anaknya) dari awal, sehingga *state*-nya di reset.
 
-Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
+Baca [menjaga dan mereset *state*](/learn/preserving-and-resetting-state) untuk mempelajari lebih lanjut.
 
 <Sandpack>
 
@@ -1074,19 +1074,19 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Storing information from previous renders {/*storing-information-from-previous-renders*/}
+### Menyimpan informasi dari *render* sebelumnya {/*storing-information-from-previous-renders*/}
 
-Usually, you will update state in event handlers. However, in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes.
+Biasanya, Anda akan memperbarui *state* pada *event handler*. Namun, dalam kasus yang jarang terjadi, Anda mungkin ingin menyesuaikan *state* sebagai respons terhadap *rendering* -- misalnya, Anda mungkin ingin mengubah variabel *state* ketika *prop* berubah.
 
-In most cases, you don't need this:
+Dalam kebanyakan kasus, Anda tika memerlukannya:
 
-* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)** If you're worried about recomputing too often, the [`useMemo` Hook](/reference/react/useMemo) can help.
-* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
-* If you can, update all the relevant state in the event handlers.
+* **Jika nilai yang Anda butuhkan dapat dikomputasi sepenuhnya dari *props* saat ini atau *state* lain, , [hapus *state* yang redundan tersebut.](/learn/choosing-the-state-structure#avoid-redundant-state)** Jika Anda khawatir tentang komputasi ulang yang terlalu sering, [`useMemo` Hook](/reference/react/useMemo) dapat membantu.
+* Jika Anda ingin mereset seluruh *state* komponen, [berikan `key` yang berbeda pada komponen Anda.](#resetting-state-with-a-key)
+* Jika Anda bisa, perbarui semua *state* yang relevan pada *event handler*.
 
-In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
+Dalam kasus yang jarang terjadi bahwa tidak satu pun dari yang disebutkan di atas berlaku, ada pola yang dapat Anda gunakan untuk memperbarui *state* berdasarkan nilai-nilai yang telah di-*render*, dengan memanggil fungsi `set` ketika komponen Anda sedang di-*render*..
 
-Here's an example. This `CountLabel` component displays the `count` prop passed to it:
+Berikut contohnya. Komponen `CountLabel` ini menampilkan *prop* `count` yang dioper kepadanya::
 
 ```js CountLabel.js
 export default function CountLabel({ count }) {
@@ -1094,7 +1094,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*.
+Misalkan Anda ingin menunjukan apakah penghitung telah meningkat atau menurun sejak perubahan terakhir. *Prop* `count` tidak memberi tahu hal ini -- Anda perlu menelusuri dari nilai sebelumnya. Tambahkan variabel *state* `prevCount` untuk menelusurinya. Tambahkan variabel *state* lain bernama `rend` untuk menampung apakah hitungan telah meningkat atau menurun. Bandingkan `prevCount` dengan `count`, dan jika tidak sama, perbarui `prevCount` dan `trend`. Sekarang Anda dapat menampilkan *prop* hitungan saat ini dan bagaimana ia telah berubah sejak *render* terakhir.
 
 <Sandpack>
 
@@ -1143,9 +1143,9 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
+Perhatikan bahwa jika Anda memanggil fungsi `set` saat *rendering*, itu harus berada dalam kondisi seperti `prevCount !== count`, dan harus ada pemanggilan seperti `setPrevCount(count)` di dalam kondisi tersebut. Jika tidak, komponen Anda akan di-*render* dalam perulangan hingga terjadi *crash*. Selain itu, Anda hanya dapat memperbarui *state* dari komponen yang sedang di-*render* seperti ini. Memanggil fungsi `set` dari komponen lain selama *rending* adalah kesalahan. Terakhir, pemanggilan `set` Anda harus [memperbarui *state* tanpa mutasi](#updating-objects-and-arrays-in-state) -- ini bukan berarti Anda dapat melanggar aturan [fungsi murni.](/learn/keeping-components-pure)
 
-This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
+Pola ini bisa sulit dipahami dan biasanya lebih baik untuk dihindari. Namun, ini lebih baik daripada memperbarui *state* dalam efek. Ketika Anda memanggil fungsi `set` selamat *render*, React akan me-*render* ulang komponen tersebut segera setelah komponen Anda keluar dengan pernyataan `return`, dan sebelum me-*render* anak-anak. Dengan begitu, anak-anak tidak perlu me-*render* dua kali. Sisa fungsi komponen Anda tetap akan dieksekusi (dan hasilnya akan dibuang). Jika kondisi Anda berada di bawah semua panggilan Hook, Anda dapat menambahkan `return` lebih awal untuk memulai ulang *render* sebelumnya.
 
 ---
 
