@@ -69,7 +69,7 @@ Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh di atas:
 
 Mari kita lihat lebih dekat hubungan antara *state* dan *rendering*.
 
-## Rendering mengambil sebuah snapshot pada waktu tersebut {/*rendering-takes-a-snapshot-in-time*/}
+## Rendering mengambil sebuah snapshot pada waktu render tersebut {/*rendering-takes-a-snapshot-in-time*/}
 
 ["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) berarti React memanggil komponen Anda, yang merupakan sebuah fungsi. JSX yang Anda kembalikan dari fungsi tersebut layaknya seperti sebuah *snapshot* UI pada waktu *render* tersebut. *Props*, *event handler*, dan variabel lokal semuanya dikalkulasi *menggunakan state pada komponen tersebut pada saat render*.
 
