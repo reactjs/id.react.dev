@@ -1,5 +1,5 @@
 ---
-title: "Komponen umum (e.g. <div>)"
+title: "Komponen umum (cth. <div>)"
 ---
 
 <Intro>
