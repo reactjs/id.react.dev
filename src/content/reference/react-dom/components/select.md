@@ -66,13 +66,13 @@ Jika `<select>` Anda tidak terkontrol, Anda dapat memberikan *prop* `defaultValu
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): Sebuah *boolean*. Jika nilai `true`, nilai harus disediakan untuk formulir (*form*) dikirim.
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size): Sebuah angka. Untuk pemilihan (*select*) dengan `multiple={true}`, tentukan jumlah awal *item* terlihat yang diinginkan.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-- Unlike in HTML, passing a `selected` attribute to `<option>` is not supported. Instead, use [`<select defaultValue>`](#providing-an-initially-selected-option) for uncontrolled select boxes and [`<select value>`](#controlling-a-select-box-with-a-state-variable) for controlled select boxes.
-- If a select box receives a `value` prop, it will be [treated as controlled.](#controlling-a-select-box-with-a-state-variable)
-- A select box can't be both controlled and uncontrolled at the same time.
-- A select box cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled select box needs an `onChange` event handler that synchronously updates its backing value.
+- Berbeda dengan HTML, memberikan atribut `selected` pada `option` tidak didukung. Sebagai gantinya, gunakan [`<select defaultValue>`](#providing-an-initially-selected-option) untuk kotak pilih (*selected box*) yang tidak terkontrol dan [`<select value>`](#controlling-a-select-box-with-a-state-variable) untuk kotak pilih (*selected box*) yang terkontrol.
+- Jika kotak pilih (*select box*) meneripa *prop* value, maka *prop* tersebut akan [diperlakukan sebagai terkontrol.](#controlling-a-select-box-with-a-state-variable)
+- Sebuah kotak pilih (*select box*) tidak dapat menjadi terkontrol dan tidak terkontrol pada waktu yang sama.
+- Sebuah kotak pilih (*select box*) tidak dapat berganti menjadi terkontrol atau tidak terkontrol selama masa hidupnya.
+- Setiap kotak pilih (*select box*) terkontrol membutuhkan *event handler* `onChange` yang secara sinkron memperbarui nilai yang ada di belakangnya.
 
 ---
 
