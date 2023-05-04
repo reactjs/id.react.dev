@@ -40,7 +40,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `ref`: *ref* yang Anda terima sebagai argumen kedua dari [fungsi *render* `forwardRef`.](/reference/react/forwardRef#render-function)
 
-* `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan ref yang ingin Anda ekspos. Penanganan ref tersebut dapat memiliki tipe *any*. Biasanya, Anda akan mengembalikan sebuah object dengan sekumpulan metode yang ingin Anda ekspos.
+* `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan *ref* yang ingin Anda ekspos. Penanganan *ref* tersebut dapat memiliki tipe apapun. Biasanya, Anda akan mengembalikan sebuah objek dengan sekumpulan metode yang ingin Anda ekspos.
 
 * `dependencies` **opsional**: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam tubuh komponen. Jika *linter* Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika sebuah *render* ulang menghasilkan sebuah perubahan terhadap beberapa *dependency*, atau jika Anda menghilangkan argumen ini, fungsi `createHandle` Anda akan dijalankan ulang, dan penanganan yang baru dibuat akan ditetapkan kepada `ref` tersebut.
 
@@ -54,7 +54,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### Mengekspos sebuah penanganan ref kustom kepada komponen induk {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-Secara bawaan, komponen tidak mengekspos *DOM nodes* kepada komponen induk. Sebagai contoh, jika Anda menginginkan komponen induk dari `MyInput` untuk [memiliki akses](/learn/manipulating-the-dom-with-refs) terhadap *DOM node* dari `<input>`, Anda harus menyertakannya dengan [`forwardRef`:](/reference/react/forwardRef)
+Secara bawaan, komponen tidak mengekspos simpul-simpul DOM (*DOM Nodes*) kepada komponen induk. Sebagai contoh, jika Anda menginginkan komponen induk dari `MyInput` untuk [memiliki akses](/learn/manipulating-the-dom-with-refs) terhadap simpul DOM dari `<input>`, Anda harus menyertakannya dengan [`forwardRef`:](/reference/react/forwardRef)
 
 ```js {4}
 import { forwardRef } from 'react';
@@ -168,7 +168,7 @@ input {
 
 ### Mengekspos methods imperatif Anda sendiri {/*exposing-your-own-imperative-methods*/}
 
-*Methods* yang diekspos melalui penanganan imperatif tidak harus sesuai dengan *DOM methods* secara persis. Sebagai contoh, komponen `Post` berikut mengekspos sebuah *method* `scrollAndFocusAddComment` melalui penanganan imperatif. Hal ini memungkinkan induk `Page` menggulir daftar komentar *dan* memfokuskan bidang input ketika Anda mengklik tombol:
+*Methods* yang diekspos melalui penanganan imperatif tidak harus sesuai dengan *DOM methods* secara persis. Sebagai contoh, komponen `Post` berikut mengekspos sebuah *method* `scrollAndFocusAddComment` melalui penanganan imperatif. Hal ini memungkinkan induk `Page` menggulir (*scroll*) daftar komentar *dan* memfokuskan bidang input ketika Anda mengklik tombol:
 
 <Sandpack>
 
