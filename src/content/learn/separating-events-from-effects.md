@@ -154,13 +154,13 @@ input, select { margin-right: 20px; }
 
 </Sandpack>
 
-## Reactive values and reactive logic {/*reactive-values-and-reactive-logic*/}
+## Nilai reaktif dan logika reaktif {/*reactive-values-and-reactive-logic*/}
 
-Intuitively, you could say that event handlers are always triggered "manually", for example by clicking a button. Effects, on the other hand, are "automatic": they run and re-run as often as it's needed to stay synchronized.
+Secara intuitif, kita bisa mengatakan bahwa event handler selalu dipicu "secara manual", misalnya dengan mengklik sebuah tombol. Sementara itu, Effects berjalan "secara otomatis". Mereka berjalan dan berjalan kembali sesering yang diperlukan untuk memastikan sinkronisasi tetap terjaga.
 
-There is a more precise way to think about this.
+Namun, ada cara yang lebih tepat untuk memikirkan perbedaan antara keduanya. 
 
-Props, state, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
+Props, status, dan variabel yang dideklarasikan di dalam tubuh komponen disebut <CodeStep step={2}>nilai reaktif</CodeStep>. Dalam contoh ini, `serverUrl` bukan merupakan nilai reaktif, melainkan `roomId` dan `message`. Keduanya berpartisipasi dalam aliran data rendering, sehingga harus diatur sebagai nilai reaktif agar sinkronisasi dapat terjaga:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -172,12 +172,12 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects respond to changes differently:
+Nilai reaktif seperti ini dapat berubah karena rendering ulang suatu komponen. Misalnya, pengguna dapat melakukan beberapa tindakan, seperti mengedit `message` atau memilih `roomId` yang berbeda di menu drop-down. Event handler dan Effect merespon perubahan tersebut dengan cara yang berbeda:
 
-- **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (e.g. a click) again. Event handlers can read reactive values without "reacting" to their changes.
-- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
+- **Logika di dalam event handler bersifat *non-reaktif.*** Ketika sebuah event handler dijalankan (mengikuti tindakan pengguna seperti klik), mereka membaca nilai reaktif tanpa bereaksi terhadap perubahannya. Artinya, jika Anda ingin event handler membaca suatu nilai reaktif, mereka tidak akan merespon ketika nilainya berubah kecuali tindakan pengguna yang sama kembali dijalankan.
+- **Logika di dalam Effect bersifat *reaktif.*** Jika Anda menggunakan Effects untuk membaca nilai reaktif, Anda harus [mendeklarasikannya sebagai salah satu dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Kemudian jika render ulang menyebabkan nilai tersebut berubah, React akan menjalankan kembali logika Effect Anda dengan nilai yang baru, sehingga memastikan sinkronisasi data terjaga. 
 
-Let's revisit the previous example to illustrate this difference.
+Mari kita lihat kembali contoh sebelumnya untuk mengilustrasikan perbedaan ini.
 
 ### Logic inside event handlers is not reactive {/*logic-inside-event-handlers-is-not-reactive*/}
 
