@@ -87,7 +87,7 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 `renderToString` mengembalikan *string* dengan seketika, sehingga tidak mendukung *streaming* atau menunggu data.
 
-Jika memungkinkan, sebaiknya gunakan alternatif berfitur lengkap ini:
+Saat memungkinkan, kami merekomendasikan untuk menggunakan alternatif yang berfitur lengkap ini:
 
 * Jika Anda menggunakan Node.js, gunakan [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
 * Jika Anda menggunakan Deno atau *edge runtime* modern dengan [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams*API), gunakan [`renderToReadableStream`.](/reference/react-dom/server/renderToReadableStream)
@@ -122,7 +122,7 @@ flushSync(() => {
 console.log(div.innerHTML); // Contohnya, "<svg>...</svg>"
 ```
 
-Panggilan [`flushSync`](/reference/react-dom/flushSync) diperlukan agar DOM diperbarui sebelum membaca [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Elemen/innerHTML).
+Memanggil [`flushSync`](/reference/react-dom/flushSync) diperlukan agar DOM diperbarui sebelum membaca [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Elemen/innerHTML).
 
 ---
 
