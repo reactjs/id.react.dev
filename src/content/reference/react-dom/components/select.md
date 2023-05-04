@@ -4,7 +4,7 @@ title: "<select>"
 
 <Intro>
 
-[Komponen peramban bawaan `<select>`] memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
+[Komponen peramban (*browser*) bawaan `<select>`] memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
 
 ```js
 <select>
@@ -19,52 +19,52 @@ title: "<select>"
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<select>` {/*select*/}
 
-To display a select box, render the [built-in browser `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) component.
+Untuk menampilkan kotak pilih (*select box*), *render* komponen [peramban (*browser*) bawaan `<select>`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="someOption">Sebuah opsi</option>
+  <option value="otherOption">Opsi lainnya</option>
 </select>
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
-`<select>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<select>` mendukung seluruh [*props* elemen umum.](/reference/react-dom/components/common#props)
 
-You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
+Anda dapat [membuat sebuah kotak pilih (*select box*) terkontrol](#controlling-a-select-box-with-a-state-variable) dengan memberikan *prop* `<value>`:
 
-* `value`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Controls which option is selected. Every value string match the `value` of some `<option>` nested inside the `<select>`.
+* `value`: Sebuah *string* (atau senarai (*array*) *string* untuk [`multiple={true}`](#enabling-multiple-selection)). Mengontrol opsi mana yang dipilih. Setiap *string* nilai harus sama dengan nilai `value` dari beberapa `<option>` yang tertanam di dalam `<select>`.
 
-When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
+Ketika Anda memberikan `value`, Anda juga harus memberikan *handler* `onChange` yang memperbarui nilai yang diberi.
 
-If your `<select>` is uncontrolled, you may pass the `defaultValue` prop instead:
+Jika `<select>` Anda tidak terkontrol, Anda dapat memberikan *prop* `defaultValue`:
 
-* `defaultValue`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Specifies [the initially selected option.](#providing-an-initially-selected-option)
+* `defaultValue`: Sebuah *string* (atau senarai (*array*) *string* untuk [`multiple={true}`](#enabling-multiple-selection)). Menentukan [pilihan yang dipilih di awal.](#providing-an-initially-selected-option)
 
-These `<select>` props are relevant both for uncontrolled and controlled select boxes:
+*Props* `<select>` ini relevan baik untuk kotak pilih (*select box*) yang terkontrol maupun tidak terkontrol:
 
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus): A boolean. If `true`, React will focus the element on mount.
-* `children`: `<select>` accepts [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), and [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup) components as children. You can also pass your own components as long as they eventually render one of the allowed components. If you pass your own components that eventually render `<option>` tags, each `<option>` you render must have a `value`.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-disabled): A boolean. If `true`, the select box will not be interactive and will appear dimmed.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-form): A string. Specifies the `id` of the `<form>` this select box belongs to. If omitted, it's the closest parent form.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-multiple): A boolean. If `true`, the browser allows [multiple selection.](#enabling-multiple-selection)
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name): A string. Specifies the name for this select box that's [submitted with the form.](#reading-the-select-box-value-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
+* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autocomplete): Sebuah *string*. Menentukan salah satu dari kemungkinan [perilaku *autocomplete*.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus): Sebuah *boolean*. Jika bernilai `true`, React akan fokus pada elemen yang terpasang (*mount*). 
+* `children`: `<select>` menerima komponen [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), dan [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup) sebagai anak (*children*). Anda juga dapat memberikan komponen Anda sendiri selama akhirnya salah satu dari komponen yang diizinkan akan di-*render*. Jika Anda memberikan komponen Anda yang pada akhirnya me-*render* *tag* `<option>`, setiap `<option>` yang Anda *render* harus mempunyai nilai `value`.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-disabled): Sebuah *boolean*. Jika bernilai `true`, kotak pilih (*select box*) tidak akan interaktif dan akan tampak redup.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-form): Sebuah *string*. Menentukan `id` dari `<form>` yang dimiliki oleh kotak pilih (*select box*). Jika tidak diisi, maka Specifies the `id` of the `<form>` this select box belongs to. Jika dihilangkan, maka menjadi formulir induk (*parent form*) terdekat.
+* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-multiple): Sebuah *boolean*. Jika bernilai `true`, peramban (*browser*) mengizinkan [pilihan ganda.](#enabling-multiple-selection)
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name): Sebuah *string*. Menentukan nama untuk kotak pilih (*select box*) yang [dikirim dengan formulir (*form*).]
+* `onChange`: Sebuah fungsi [`Event` *handler* ](/reference/react-dom/components/common#event-handler). Diperlukan untuk [kotak pilih (*select box*) terkontrol.](#controlling-a-select-box-with-a-state-variable) Terpicu segera ketika pengguna memilih opsi berbeda. Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) peramban.
+* `onChangeCapture`:  Sebuah versi dari `onChange` yang terpicu saat [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi [`Event` *handler*.](/reference/react-dom/components/common#event-handler) Terpicu segera saat nilai diubah oleh pengguna. Untuk alasan sejarah, di React lebih umum menggunakan `onChange` yang bekerja dengan cara yang sama.
+* `onInputCapture`: Sebuah versi dari `onInput` yang terpicu pada [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi [`Event` handler.](/reference/react-dom/components/common#event-handler) Terpicu jika masukan gagal divalidasi pada pengiriman formulir (*form submit*). Berbeda dengan event bawaan `invalid`, event React `onInvalid` menyebar.
+* `onInvalidCapture`: Sebuah versi dari `onInvalid` yang terpicu pada  fires in the [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): Sebuah *boolean*. Jika nilai `true`, nilai harus disediakan untuk formulir (*form*) dikirim.
+* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size): Sebuah angka. Untuk pemilihan (*select*) dengan `multiple={true}`, tentukan jumlah awal *item* terlihat yang diinginkan.
 
 #### Caveats {/*caveats*/}
 
