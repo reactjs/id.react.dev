@@ -44,7 +44,7 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <input value={message} onChange={e => setMessage(e.target.value)} />
-      <button onClick={handleSendClick}>Send</button>;
+      <button onClick={handleSendClick}>Kirim</button>;
     </>
   );
 }
@@ -52,11 +52,11 @@ function ChatRoom({ roomId }) {
 
 Dengan event handler, kita bisa yakin bahwa `sendMessage(message)` *hanya* akan tereksekusi jika pengguna menekan tombol. 
 
-### Effects run whenever synchronization is needed {/*effects-run-whenever-synchronization-is-needed*/}
+### Effect tereksekusi ketika sinkronisasi diperlukan {/*effects-run-whenever-synchronization-is-needed*/}
 
-Recall that you also need to keep the component connected to the chat room. Where does that code go?
+Jangan lupa bahwa kita juga harus menjaga agar komponen kita tetap terhubung dengan ruang obrolan. Kita perlu memikirkan ke mana kode tersebut seharusnya ditempatkan.
 
-The *reason* to run this code is not some particular interaction. It doesn't matter why or how the user navigated to the chat room screen. Now that they're looking at it and could interact with it, the component needs to stay connected to the selected chat server. Even if the chat room component was the initial screen of your app, and the user has not performed any interactions at all, you would *still* need to connect. This is why it's an Effect:
+Kita harus menjalankan kode tersebut untuk memastikan komponen ini tetap terhubung ke server obrolan yang dipilih, *bukan* karena interaksi tertentu. Tidak peduli bagaimana atau mengapa pengguna berpindah ke layar ruang obrolan, yang penting adalah sekarang mereka melihatnya dan dapat berinteraksi dengannya. Oleh karena itu, kita perlu memastikan komponen kita tetap terhubung ke server obrolan yang dipilih, bahkan jika pengguna tidak berinteraksi dengan aplikasi kita sama sekali. Inilah sebab mengapa kita perlu menggunakan Effect untuk memastikan hal tersebut terjadi:
 
 ```js {3-9}
 function ChatRoom({ roomId }) {
@@ -72,7 +72,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With this code, you can be sure that there is always an active connection to the currently selected chat server, *regardless* of the specific interactions performed by the user. Whether the user has only opened your app, selected a different room, or navigated to another screen and back, your Effect ensures that the component will *remain synchronized* with the currently selected room, and will [re-connect whenever it's necessary.](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
+Dengan kode ini, kita dapat memastikan adanya koneksi aktif ke server obrolan yang dipilih saat ini, *tanpa* perlu bergantung pada interaksi pengguna. Tidak peduli apakah pengguna hanya membuka aplikasi kita, memilih ruangan yang berbeda, atau menavigasi ke layar lain kemudian kembali, Effect dapat memberikan jaminan bahwa komponen akan *tetap disinkronisasi* dengan ruangan obrolan yang dipilih saat ini. Sehingga, komponen akan selalu terhubung ke server obrolan yang dipilih saat ini dan akan [tersambung kembali setiap kali diperlukan.](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
 
 <Sandpack>
 
@@ -97,9 +97,9 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Selamat datang di room {roomId}!</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
-      <button onClick={handleSendClick}>Send</button>
+      <button onClick={handleSendClick}>Kirim</button>
     </>
   );
 }
@@ -110,18 +110,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Tutup chat' : 'Buka chat'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -132,17 +132,17 @@ export default function App() {
 
 ```js chat.js
 export function sendMessage(message) {
-  console.log('🔵 You sent: ' + message);
+  console.log('🔵 Anda mengirim: ' + message);
 }
 
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sesungguhnya akan terhubung ke server.
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Menghubungkan ke room "' + roomId + '" pada url ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Room "' + roomId + '" terputus pada url ' + serverUrl);
     }
   };
 }
