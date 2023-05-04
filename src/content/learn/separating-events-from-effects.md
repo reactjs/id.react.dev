@@ -24,8 +24,9 @@ Mari kita mulai dengan merangkum perbedaan antara event handler dan Effect.
 
 Sekarang, bayangkan bahwa kita ingin menerapkan suatu komponen untuk ruang obrolan (_chatroom_). Persyaratan utamanya meliputi:
 
-Komponen harus terhubung secara otomatis ke ruang obrolan yang sudah dipilih.
-Ketika tombol 'Kirim' ditekan, kita harus dapat mengirimkan pesan ke dalam ruang obrolan.
+1. Komponen harus terhubung secara otomatis ke ruang obrolan yang sudah dipilih.
+1. Ketika tombol 'Kirim' ditekan, kita harus dapat mengirimkan pesan ke dalam ruang obrolan.
+
 Setelah kita mengimplementasikan kode untuk kebutuhan tersebut, mungkin akan timbul kebingungan dalam memilih tempat untuk meletakkannya. Apakah kita perlu menggunakan event handler atau malah menggunakan Effect? Setiap kali kita menghadapi pertanyaan seperti ini, penting untuk mempertimbangkan [*mengapa* kode tersebut perlu dijalankan](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events).
 
 ### Event handlers run in response to specific interactions {/*event-handlers-run-in-response-to-specific-interactions*/}
