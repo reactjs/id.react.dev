@@ -78,7 +78,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### Mengekspos sebuah simpul DOM ke komponen induk {/*exposing-a-dom-node-to-the-parent-component*/}
 
-Secara *default*, setiap simpul-simpul DOM dari komponen bersifat privat. Namun, terkadang berguna untuk mengekspos simpul DOM ke induknya - misalnya, untuk memungkinkan pemfokusan. Untuk ikut serta, bungkus definisi komponen Anda ke dalam `forwardRef()`:
+Secara *default*, simpul-simpul DOM dari setiap komponen bersifat privat. Namun, terkadang berguna untuk mengekspos simpul DOM ke induknya - misalnya, untuk memungkinkan pemfokusan. Untuk ikut serta, bungkus definisi komponen Anda ke dalam `forwardRef()`:
 
 ```js {3,11}
 import { forwardRef } from 'react';
