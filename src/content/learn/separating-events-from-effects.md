@@ -4,7 +4,7 @@ title: 'Membedakan Event dengan Effect'
 
 <Intro>
 
-Event handler hanya akan tereksekusi ketika kita melakukan interaksi yang berhubungan dengan event handler tersebut. Berbeda dengan event handler, Effect akan tereksekusi ulang jika nilai yang ada di _dependency array Effect_ berbeda/berubah dari nilai sebelumnya. Kadang kita juga ingin menggunakan memanfaatkan keduanya: Effect yang tereksekusi ketika beberapa nilai berubah, tetapi tidak pada yang lain. Halaman ini akan mengajari Anda cara melakukannya.
+Event handler hanya akan tereksekusi ketika kita melakukan interaksi yang berhubungan dengan event handler tersebut. Berbeda dengan event handler, Effect akan tereksekusi ulang jika nilai yang ada di _dependency array Effect_ berbeda/berubah dari nilai sebelumnya. Kadang kita juga ingin memanfaatkan keduanya: Effect yang tereksekusi ketika beberapa nilai berubah, tetapi tidak pada yang lain. Halaman ini akan mengajari Anda cara melakukannya.
 
 </Intro>
 
