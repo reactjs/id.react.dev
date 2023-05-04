@@ -61,7 +61,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh diatas:
+Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh di atas:
 
 1. *Event handler* `onSubmit` dijalankan.
 2. `setIsSent(true)` mengubah nilai `isSent` menjadi `true` dan memasukkan antrian *render* baru.
