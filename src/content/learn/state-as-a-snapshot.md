@@ -150,7 +150,7 @@ Berikut adalah apa yang *handler* klik pada tombol tersebut beri tahu kepada Rea
 
 Walaupun Anda memanggil `setNumber(number + 1)` sebanyak tiga kali, dalam *event handler* pada *render* ini nilai `number` selalu `0`, sehingga Anda mengubah *state* tersebut menjadi `1` sebanyak tiga kali. Inilah sebabnya, setelah *event handler* Anda selesai dijalankan, React melakukan *render* ulang pada komponen tersebut dengan `number` bernilai `1`, bukan `3`. 
 
-Anda juga dapat memvisualisasikan hal ini pada benak Anda dengan mengganti variabel *state* dengan nilai aselinya pada kode Anda. Karena variabel *state* `number` adalah `0` untuk *render* ini, *event handler*-nya terlihat seperti ini:
+Anda juga dapat memvisualisasikan hal ini pada benak Anda dengan mengganti variabel *state* dengan nilai aslinya pada kode Anda. Karena variabel *state* `number` adalah `0` untuk *render* ini, *event handler*-nya terlihat seperti ini:
 
 ```js
 <button onClick={() => {
