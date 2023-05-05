@@ -4,7 +4,7 @@ title: "<select>"
 
 <Intro>
 
-[Komponen peramban (*browser*) bawaan `<select>`] memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
+[Komponen peramban (*browser*) bawaan `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)  memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
 
 ```js
 <select>
@@ -54,22 +54,22 @@ Jika `<select>` Anda tidak terkontrol, Anda dapat memberikan *prop* `defaultValu
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus): Sebuah *boolean*. Jika bernilai `true`, React akan fokus pada elemen yang terpasang (*mount*). 
 * `children`: `<select>` menerima komponen [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), dan [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup) sebagai anak (*children*). Anda juga dapat memberikan komponen Anda sendiri selama akhirnya salah satu dari komponen yang diizinkan akan di-*render*. Jika Anda memberikan komponen Anda yang pada akhirnya me-*render* *tag* `<option>`, setiap `<option>` yang Anda *render* harus mempunyai nilai `value`.
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-disabled): Sebuah *boolean*. Jika bernilai `true`, kotak pilih (*select box*) tidak akan interaktif dan akan tampak redup.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-form): Sebuah *string*. Menentukan `id` dari `<form>` yang dimiliki oleh kotak pilih (*select box*). Jika tidak diisi, maka Specifies the `id` of the `<form>` this select box belongs to. Jika dihilangkan, maka menjadi formulir induk (*parent form*) terdekat.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-form): Sebuah *string*. Menentukan `id` dari `<form>` yang dimiliki oleh kotak pilih (*select box*). Jika tidak diisi, maka menjadi formulir induk (*parent form*) terdekat.
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-multiple): Sebuah *boolean*. Jika bernilai `true`, peramban (*browser*) mengizinkan [pilihan ganda.](#enabling-multiple-selection)
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name): Sebuah *string*. Menentukan nama untuk kotak pilih (*select box*) yang [dikirim dengan formulir (*form*).]
-* `onChange`: Sebuah fungsi [`Event` *handler* ](/reference/react-dom/components/common#event-handler). Diperlukan untuk [kotak pilih (*select box*) terkontrol.](#controlling-a-select-box-with-a-state-variable) Terpicu segera ketika pengguna memilih opsi berbeda. Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) peramban.
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name): Sebuah *string*. Menentukan nama untuk kotak pilih (*select box*) yang [dikirim dengan formulir (*form*).](#reading-the-select-box-value-when-submitting-a-form)
+* `onChange`: Sebuah fungsi [`Event` *handler* ](/reference/react-dom/components/common#event-handler). Diperlukan untuk [kotak pilih (*select box*) terkontrol.](#controlling-a-select-box-with-a-state-variable) Terpicu segera ketika pengguna memilih opsi berbeda. Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`:  Sebuah versi dari `onChange` yang terpicu saat [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi [`Event` *handler*.](/reference/react-dom/components/common#event-handler) Terpicu segera saat nilai diubah oleh pengguna. Untuk alasan sejarah, di React lebih umum menggunakan `onChange` yang bekerja dengan cara yang sama.
 * `onInputCapture`: Sebuah versi dari `onInput` yang terpicu pada [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi [`Event` handler.](/reference/react-dom/components/common#event-handler) Terpicu jika masukan gagal divalidasi pada pengiriman formulir (*form submit*). Berbeda dengan event bawaan `invalid`, event React `onInvalid` menyebar.
-* `onInvalidCapture`: Sebuah versi dari `onInvalid` yang terpicu pada  fires in the [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): Sebuah *boolean*. Jika nilai `true`, nilai harus disediakan untuk formulir (*form*) dikirim.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi [`Event` handler.](/reference/react-dom/components/common#event-handler) Terpicu jika masukan gagal divalidasi pada pengiriman formulir (*form submit*). Berbeda dengan *event* bawaan `invalid`, *event* React `onInvalid` menyebar.
+* `onInvalidCapture`: Sebuah versi dari `onInvalid` yang terpicu pada [fase penangkapan (*capture phase*).](/learn/responding-to-events#capture-phase-events)
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): Sebuah *boolean*. Jika nilai `true`, nilai harus diisi untuk formulir (*form*) dapat dikirim.
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size): Sebuah angka. Untuk pemilihan (*select*) dengan `multiple={true}`, tentukan jumlah awal *item* terlihat yang diinginkan.
 
 #### Catatan Penting {/*caveats*/}
 
 - Berbeda dengan HTML, memberikan atribut `selected` pada `option` tidak didukung. Sebagai gantinya, gunakan [`<select defaultValue>`](#providing-an-initially-selected-option) untuk kotak pilih (*selected box*) yang tidak terkontrol dan [`<select value>`](#controlling-a-select-box-with-a-state-variable) untuk kotak pilih (*selected box*) yang terkontrol.
-- Jika kotak pilih (*select box*) meneripa *prop* value, maka *prop* tersebut akan [diperlakukan sebagai terkontrol.](#controlling-a-select-box-with-a-state-variable)
+- Jika kotak pilih (*select box*) menerima *prop* value, maka *prop* tersebut akan [diperlakukan sebagai terkontrol.](#controlling-a-select-box-with-a-state-variable)
 - Sebuah kotak pilih (*select box*) tidak dapat menjadi terkontrol dan tidak terkontrol pada waktu yang sama.
 - Sebuah kotak pilih (*select box*) tidak dapat berganti menjadi terkontrol atau tidak terkontrol selama masa hidupnya.
 - Setiap kotak pilih (*select box*) terkontrol membutuhkan *event handler* `onChange` yang secara sinkron memperbarui nilai yang ada di belakangnya.
@@ -80,7 +80,7 @@ Jika `<select>` Anda tidak terkontrol, Anda dapat memberikan *prop* `defaultValu
 
 ### Menampilkan kotak pilih (select box) dengan opsi {/*displaying-a-select-box-with-options*/}
 
-*Render* `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilih (*select box*). Beri setiap `<opsi>` sebuah `nilai` yang mewakili data yang akan dikirimkan bersama formulir (*form*).
+*Render* `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilih (*select box*). Beri setiap `<opsi>` sebuah `value` yang mewakili data yang akan dikirimkan bersama formulir (*form*).
 
 <Sandpack>
 
@@ -111,7 +111,7 @@ select { margin: 5px; }
 
 Biasanya, Anda akan menempatkan setiap `<select>` di dalam *tag* [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu peramban (*browser*) bahwa label ini dikaitkan dengan kotak pilih (*select box*) tersebut. Saat pengguna mengeklik labelnya, peramban (*browser*) secara otomatis akan memfokuskan kotak pilih (*select box*). Hal ini juga penting untuk aksesibilitas: pembaca layar (*screen reader*) akan membacakan keterangan label saat pengguna memfokuskan kotak pilih (*select box*).
 
-Jika Anda tidak dapat menumpuk `<select>` ke dalam `<label>`, kaitkan keduanya dengan meneruskan ID yang sama ke `<select id>` dan [`<label htmlFor>`.](https://developer. mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instans (*instance*) dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat menumpuk `<select>` ke dalam `<label>`, kaitkan keduanya dengan meneruskan ID yang sama ke `<select id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instans (*instance*) dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -223,7 +223,7 @@ select { display: block; margin-top: 10px; width: 200px; }
 
 ### Membaca nilai kotak pilih saat mengirimkan formulir {/*reading-the-select-box-value-when-submitting-a-form*/}
 
-Tambahkan [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) di sekitar kotak pilih (*select box*) Anda dengan [`<button type="submit"> `](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil *event handler* `<form onSubmit>` Anda. Secara bawaan, peramban (*browser*) akan mengirimkan data formulir (*form data*) ke URL yang sedang digunakan dan menyegarkan (*refresh*) halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data formulir (*form data*) dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Tambahkan [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) di sekitar kotak pilih (*select box*) Anda dengan [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil *event handler* `<form onSubmit>` Anda. Secara bawaan, peramban (*browser*) akan mengirimkan data formulir (*form data*) ke URL yang sedang digunakan dan menyegarkan (*refresh*) halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data formulir (*form data*) dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
@@ -292,17 +292,17 @@ Jika Anda menggunakan `<select multiple={true}>`, [`FormData`](https://developer
 
 <Pitfall>
 
-Secara bawaan, *setiap* `<button>` di dalam `<form>` akan mengirimkannya. Hal ini dapat mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input /button) bukan `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan formulir (*form*).
+Secara bawaan, *setiap* `<button>` di dalam `<form>` akan mengirimkannya. Hal ini dapat mengejutkan! Jika Anda memiliki komponen React `Button` kustom, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) bukan `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan formulir (*form*).
 
 </Pitfall>
 
 ---
 
-### Mengontrol kotak pilih (select box) dengan variabel status {/*controlling-a-select-box-with-a-state-variable*/}
+### Mengontrol kotak pilih (select box) dengan variabel state {/*controlling-a-select-box-with-a-state-variable*/}
 
-Kotak pilih (*select box*) seperti `<select/>` *tidak terkontrol*. Bahkan jika Anda [memberikan nilai awal yang terpilih](#providing-an-initially-selected-option) seperti `<select defaultValue="orange">`, JSX Anda hanya menentukan nilai awal, bukan nilai saat ini.
+Kotak pilih (*select box*) seperti `<select/>` *tidak terkontrol*. Bahkan jika Anda [nilai pilihan awal](#providing-an-initially-selected-option) seperti `<select defaultValue="orange">`, JSX Anda hanya menentukan nilai awal, bukan nilai saat ini.
 
-**Untuk me-*render* kotak pilih _controlled_, berikan *prop* `value` padanya.** React akan memaksa kotak pilih (*select box*) untuk selalu mempunyai nilai `value` yang Anda berikan. Biasanya, Anda akan mengrontrol kotak pilih (*select box*) dengan mendeklarasikan [variabel *state*:](/reference/react/useState)
+**Untuk me-*render* kotak pilih (*select box*) _controlled_, berikan *prop* `value` padanya.** React akan memaksa kotak pilih (*select box*) untuk selalu mempunyai nilai `value` yang Anda berikan. Biasanya, Anda akan mengrontrol kotak pilih (*select box*) dengan mendeklarasikan [variabel *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function FruitPicker() {
@@ -377,8 +377,8 @@ select { margin-bottom: 10px; display: block; }
 
 <Pitfall>
 
-**Jika Anda memberikan nilai `value` tanpa `onChange`, maka tidak akan mungkin untuk memilih opsi.**. Ketika Anda mengontrol sebuah kotak pilih (*select box*) dengan memberikan sebuah nilai `value`, Anda *memaksa* kotak tersebut untuk selalu memiliki nilai yang Anda berikan. Jadi, jika Anda memberikan variabel *state* sebagai nilai dari `value` tetapi lupa memperbarui variabel *state* secara sinkron selama *event handler* `onChange`, React akan mengembalikan kotak pilih (*select box*) ke nilai `value` yang Anda tentukan setelah setiap penekanan tombol
+**Jika Anda memberikan nilai `value` tanpa `onChange`, maka tidak akan mungkin untuk memilih opsi.** Ketika Anda mengontrol sebuah kotak pilih (*select box*) dengan memberikan sebuah nilai `value`, Anda *memaksa* kotak tersebut untuk selalu memiliki nilai yang Anda berikan. Jadi, jika Anda memberikan variabel *state* sebagai nilai dari `value` tetapi lupa memperbarui variabel *state* secara sinkron selama *event handler* `onChange`, React akan mengembalikan kotak pilih (*select box*) ke nilai `value` yang Anda tentukan setelah setiap penekanan tombol.
 
-Berbeda dengan HTML, memberikan atribut selected ke <option> individual tidak didukung.
+Berbeda dengan HTML, memberikan atribut selected ke `<option>` individual tidak didukung.
 
 </Pitfall>
