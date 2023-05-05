@@ -160,7 +160,7 @@ Secara intuitif, kita bisa mengatakan bahwa event handler selalu dipicu "secara 
 
 Namun, ada cara yang lebih tepat untuk memikirkan perbedaan antara keduanya. 
 
-Props, status, dan variabel yang dideklarasikan di dalam tubuh komponen disebut <CodeStep step={2}>nilai reaktif</CodeStep>. Dalam contoh ini, `serverUrl` bukan merupakan nilai reaktif, melainkan `roomId` dan `message`. Keduanya berpartisipasi dalam aliran data rendering, sehingga harus diatur sebagai nilai reaktif agar sinkronisasi dapat terjaga:
+Props, status, dan variabel yang dideklarasikan di dalam komponen disebut <CodeStep step={2}>nilai reaktif</CodeStep>. Dalam contoh ini, `serverUrl` bukan merupakan nilai reaktif, melainkan `roomId` dan `message`. Keduanya berpartisipasi dalam aliran data rendering, sehingga harus diatur sebagai nilai reaktif agar sinkronisasi dapat terjaga:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -179,9 +179,9 @@ Nilai reaktif seperti ini dapat berubah karena rendering ulang suatu komponen. M
 
 Mari kita lihat kembali contoh sebelumnya untuk mengilustrasikan perbedaan ini.
 
-### Logic inside event handlers is not reactive {/*logic-inside-event-handlers-is-not-reactive*/}
+### Kode di dalam event handler bersifat tidak reaktif {/*logic-inside-event-handlers-is-not-reactive*/}
 
-Take a look at this line of code. Should this logic be reactive or not?
+Mari kita lihat baris kode ini. Apakah kode ini seharusnya merupakan nilai reaktif atau tidak?
 
 ```js [[2, 2, "message"]]
     // ...
@@ -189,7 +189,7 @@ Take a look at this line of code. Should this logic be reactive or not?
     // ...
 ```
 
-From the user's perspective, **a change to the `message` does _not_ mean that they want to send a message.** It only means that the user is typing. In other words, the logic that sends a message should not be reactive. It should not run again only because the <CodeStep step={2}>reactive value</CodeStep> has changed. That's why it belongs in the event handler:
+Dari sudut pandang pengguna, **perubahan dalam nilai `message` _tidak_ selalu berarti mereka hendak mengirim pesan**. Hal ini mungkin hanya berarti bahwa pengguna sedang mengetik. Oleh karena itu, logika pengiriman pesan tidak seharusnya diatur sebagai <CodeStep step={2}>nilai reaktif</CodeStep>, agar tidak dipicu secara otomatis setiap kali nilai message berubah. Sebaliknya, logika ini sebaiknya diimplementasikan pada event handler:
 
 ```js {2}
   function handleSendClick() {
@@ -197,11 +197,11 @@ From the user's perspective, **a change to the `message` does _not_ mean that th
   }
 ```
 
-Event handlers aren't reactive, so `sendMessage(message)` will only run when the user clicks the Send button.
+Event handler bersifat tidak reaktif, jadi `sendMessage(message)` hanya akan tereksekusi saat pengguna mengklik tombol Kirim.
 
-### Logic inside Effects is reactive {/*logic-inside-effects-is-reactive*/}
+### Kode didalam Effect bersifat reaktif {/*logic-inside-effects-is-reactive*/}
 
-Now let's return to these lines:
+Sekarang mari kita kembali ke baris ini:
 
 ```js [[2, 2, "roomId"]]
     // ...
@@ -210,7 +210,7 @@ Now let's return to these lines:
     // ...
 ```
 
-From the user's perspective, **a change to the `roomId` *does* mean that they want to connect to a different room.** In other words, the logic for connecting to the room should be reactive. You *want* these lines of code to "keep up" with the <CodeStep step={2}>reactive value</CodeStep>, and to run again if that value is different. That's why it belongs in an Effect:
+Dari sudut pandang pengguna, **perubahan pada `roomId` _berarti_ mereka ingin terhubung ke ruangan yang berbeda**. Dengan kata lain, logika untuk menghubungkan ke _chatroom_ harus reaktif. Kita _ingin_ baris kode ini "mengikuti" <CodeStep step={2}>nilai reaktif</CodeStep>, dan berjalan lagi jika nilai tersebut berubah. Itu sebabnya kita implementasikan sebagai Effect:
 
 ```js {2-3}
   useEffect(() => {
@@ -222,43 +222,43 @@ From the user's perspective, **a change to the `roomId` *does* mean that they wa
   }, [roomId]);
 ```
 
-Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
+Effect bersifat reaktif, jadi `createConnection(serverUrl, roomId)` dan `connection.connect()` akan terksekusi setiap kali nilai `roomId` berubah. Effect ini membantu kita menjaga koneksi tetap tersinkronasi sesuai _chatroom_ yang dipilih saat ini.
 
-## Extracting non-reactive logic out of Effects {/*extracting-non-reactive-logic-out-of-effects*/}
+## Mengekstrak logika non-reaktif dari Effect {/*extracting-non-reactive-logic-out-of-effects*/}
 
-Things get more tricky when you want to mix reactive logic with non-reactive logic.
+Semuanya menjadi lebih kompleks ketika kita ingin menggabungkan logika reaktif dengan logika non-reaktif.
 
-For example, imagine that you want to show a notification when the user connects to the chat. You read the current theme (dark or light) from the props so that you can show the notification in the correct color:
+Misalnya, pertimbangkan skenario di mana kita ingin menampilkan notifikasi saat pengguna terhubung ke obrolan. Serta kita juga ingin membaca nilai tema saat ini (terang atau gelap) dari props, sehingga notifikasi yang ditampilkan akan memiliki warna yang tepat sesuai dengan tema yang digunakan:
 
 ```js {1,4-6}
 function ChatRoom({ roomId, theme }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      showNotification('Connected!', theme);
+      showNotification('Terhubung!', theme);
     });
     connection.connect();
     // ...
 ````
 
-However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
+Namun, `theme` adalah nilai reaktif (dapat berubah sebagai hasil dari re-render), dan [setiap nilai reaktif yang dibaca oleh Effect harus dideklarasikan sebagai dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Sekarang kita harus menentukan `theme` sebagai dependensi Effect:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      showNotification('Connected!', theme);
+      showNotification('Terhubung!', theme);
     });
     connection.connect();
     return () => {
       connection.disconnect()
     };
-  }, [roomId, theme]); // ✅ All dependencies declared
+  }, [roomId, theme]); // ✅ Semua dependensi telah didelarasikan
   // ...
 ````
 
-Play with this example and see if you can spot the problem with this user experience:
+Cobalah contoh di bawah ini dan cari tahu apakah kamu bisa menemukan masalah pada program berikut:
 
 <Sandpack>
 
@@ -290,13 +290,13 @@ function ChatRoom({ roomId, theme }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      showNotification('Connected!', theme);
+      showNotification('Terhubung!', theme);
     });
     connection.connect();
     return () => connection.disconnect();
   }, [roomId, theme]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Selamat datang di room {roomId}!</h1>
 }
 
 export default function App() {
@@ -305,14 +305,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <label>
@@ -321,7 +321,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Pakai dark theme
       </label>
       <hr />
       <ChatRoom
@@ -335,7 +335,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi sebenarnya akan terhubung ke server
   let connectedCallback;
   let timeout;
   return {
@@ -386,9 +386,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-When the `roomId` changes, the chat re-connects as you would expect. But since `theme` is also a dependency, the chat *also* re-connects every time you switch between the dark and the light theme. That's not great!
+Ketika `roomId` berubah, chat terhubung kembali seperti yang diharapkan. Tetapi karena `theme` juga termasuk dependensi Effect, chat *juga* terhubung kembali setiap kita beralih antara tema gelap dan terang. Itu tidak bagus!
 
-In other words, you *don't* want this line to be reactive, even though it is inside an Effect (which is reactive):
+Dengan kata lain, kita *tidak* ingin baris ini menjadi reaktif, meskipun berada di dalam Effect (yang reaktif):
 
 ```js
       // ...
@@ -396,52 +396,52 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
 ```
 
-You need a way to separate this non-reactive logic from the reactive Effect around it.
+Kita memerlukan cara untuk memisahkan logika non-reaktif ini dari Effect reaktif di sekitarnya.
 
-### Declaring an Effect Event {/*declaring-an-effect-event*/}
+### Mendeklarasikan Effect Event {/*declaring-an-effect-event*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Bagian ini menjelaskan **API eksperimental yang belum dirilis** dalam versi React yang stabil.
 
 </Wip>
 
-Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
+Gunakan Hook khusus [`useEffectEvent`](/reference/react/experimental_useEffectEvent) untuk mengekstrak logika non-reaktif ini dari Effect:
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Connected!', theme);
+    showNotification('Terhubung!', theme);
   });
   // ...
 ````
 
-Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
+Disini, `onConnected` disebut dengan *Effect Event.* Meskipun merupakan bagian dari logika Effect, namun mempunyai sifat seperti event handler. Logika di dalamnya tidak reaktif, dan selalu memperhatikan nilai terbaru dari props dan state.
 
-Now you can call the `onConnected` Effect Event from inside your Effect:
+Sekarang Anda dapat memanggil Effect Event `onConnected` dari dalam Effect:
 
 ```js {2-4,9,13}
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Connected!', theme);
+    showNotification('Terhubung!', theme);
   });
 
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      onConnected();
+      onConnected(); 
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies declared
+  }, [roomId]); // ✅ Semua dependensi dideklarasikan, karena theme tidak lagi merupakan dependensi Effect, maka tidak akan tereksekusi ulang jika nilai theme berubah.
   // ...
 ```
 
-This solves the problem. Note that you had to *remove* `onConnected` from the list of your Effect's dependencies. **Effect Events are not reactive and must be omitted from dependencies.**
+Masalah terpecahkan.  Perhatikan bahwa Anda harus *menghapus* `onConnected` dari daftar dependensi Effect. **Effect Event tidak reaktif dan harus dihilangkan dari dependensi.**
 
-Verify that the new behavior works as you would expect:
+Pastikan bahwa program baru berfungsi seperti yang kita harapkan:
 
 <Sandpack>
 
@@ -472,7 +472,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Connected!', theme);
+    showNotification('Terhubung!', theme);
   });
 
   useEffect(() => {
@@ -484,7 +484,7 @@ function ChatRoom({ roomId, theme }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Selamat datang di room {roomId}!</h1>
 }
 
 export default function App() {
@@ -493,14 +493,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
+          <option value="general">umum</option>
           <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="music">musik</option>
         </select>
       </label>
       <label>
@@ -509,7 +509,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan dark theme
       </label>
       <hr />
       <ChatRoom
@@ -523,7 +523,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
   let timeout;
   return {
@@ -574,7 +574,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
+Anda dapat menganggap Effect Event sangat mirip dengan event handler. Perbedaan utamanya adalah event handler dijalankan sebagai respons terhadap interaksi pengguna, sedangkan Effect Event dipicu oleh Anda dari Effect. Effect Event memungkinkan kita "memutus rantai" antara reaktivitas Effect dan kode yang seharusnya tidak reaktif.
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
