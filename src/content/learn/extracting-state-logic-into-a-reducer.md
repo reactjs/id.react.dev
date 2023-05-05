@@ -1,5 +1,5 @@
 ---
-title: Extracting State Logic into a Reducer
+title: Mengekstraksi Logika State ke Sebuah Reducer
 ---
 
 <Intro>
@@ -10,16 +10,16 @@ Components with many state updates spread across many event handlers can get ove
 
 <YouWillLearn>
 
-- What a reducer function is
-- How to refactor `useState` to `useReducer`
-- When to use a reducer
-- How to write one well
+- Apa itu fungsi _reducer_
+- Bagaimana cara untuk menuliskan kembali `useState` menjadi `useReducer`   
+- Kapan menggunakan _reducer_
+- Bagaimana cara menulis dengan baik
 
 </YouWillLearn>
 
-## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
+## Mengkonsolidasikan logika state menggunakan reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-As your components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
+Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui state komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponent `TaskApp` dibawah menyimpan senarai `tasks` dalam state dan menggunakan tiga _handler_ untuk menabahkan, menghapus dan menyunting tasks:
 
 <Sandpack>
 
@@ -73,9 +73,9 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visit Kafka Museum', done: true},
-  {id: 1, text: 'Watch a puppet show', done: false},
-  {id: 2, text: 'Lennon Wall pic', done: false},
+  {id: 0, text: 'Mengunjungi Museum Kafka', done: true},
+  {id: 1, text: 'Tonton pertunjukan boneka', done: false},
+  {id: 2, text: 'Foto Lennon Wall', done: false},
 ];
 ```
 
@@ -179,17 +179,17 @@ li {
 
 </Sandpack>
 
-Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer".**
+Setiap _event handler_ pada komponen `TaskApp` akan memangil `setTask` untuk melakukan pembaharuan _state_. Saat komponen ini bertumbuh besar, logika _state_ akan semakin rumit. Untuk mengurangi kompleksitas dan menyimpan semua logika Anda di satu tempat yang mudah diakses. Anda dapat memindahkan logika status tersebut ke dalam satu fungsi di luar komponen Anda, **disebut _"reducer"_.**
 
-Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
+_Reducer_ merupakan sebuah alternatif untuk menangani _state_. Anda dapat migrasi dari `useState` ke `useReducer` dalam tiga langkah:
 
-1. **Move** from setting state to dispatching actions.
-2. **Write** a reducer function.
-3. **Use** the reducer from your component.
+1. **Pindah** dari memanggil fungsi menetapkan _state_ menjadi aksi _dispatch_.
+2. **Tulis** fungsi _reducer_.
+3. **Gunakan** _reducer_ pada komponen Anda.
 
-### Step 1: Move from setting state to dispatching actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### Langkah 1: Pindah dari memanggil fungsi menetapkan state menjadi aksi dispatch {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
-Your event handlers currently specify _what to do_ by setting state:
+_Event handler_ Anda sekarang menentukan apa _yang harus dilakukan_ dengan memanggil menetapkan state:
 
 ```js
 function handleAddTask(text) {
@@ -220,13 +220,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Remove all the state setting logic. What you are left with are three event handlers:
+Hapus semua logika untuk mengatur _state_. Yang tersisa adalah tiga _event handlers_:
 
-- `handleAddTask(text)` is called when the user presses "Add".
-- `handleChangeTask(task)` is called when the user toggles a task or presses "Save".
-- `handleDeleteTask(taskId)` is called when the user presses "Delete".
+- `handleAddTask(text)` akan dipanggil ketika pengguna menekan tombol "Add".
+- `handleChangeTask(task)` akan dipanggil ketika pengguna matikan sebuah task atau menekan tombol "Save".
+- `handleDeleteTask(taskId)` akan dipanggil ketika pengguna menekan tombol "Delete".
 
-Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
+Mengelola _state_ dengan fungsi _reducer_ sedikit berbeda dari memanggil fungsi untuk menetapkan _state_ secara langsung. Alih-alih memberi tahu React "apa yang harus dilakukan" dengan menetapkan _state_, Anda merincis "apa yang baru saja dilakukan pengguna" dengan mengirim "aksi" dari _event handler_ Anda. (Logika pembaruan _state_ akan berada di tempat lain!) Jadi, alih-alih "mengatur `tasks`" melalui _event handler_, Anda mengirim aksi "menambahkan/mengubah/menghapus task". Cara ini lebih deskriptif untuk mengetahui intensi pengguna.
 
 ```js
 function handleAddTask(text) {
@@ -252,12 +252,12 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-The object you pass to `dispatch` is called an "action":
+Objek yang anda masukan ke `dispatch` dapat disebut dengan "aksi":
 
 ```js {3-7}
 function handleDeleteTask(taskId) {
   dispatch(
-    // "action" object:
+    // obyek "aksi":
     {
       type: 'deleted',
       id: taskId,
@@ -266,43 +266,43 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
+Contoh diatas merupakan objek JavaScript biasa. Anda dapat menentukan objek apa yang akan dimasukkan ke dalamnya, tetapi umumnya harus berisi sebuah objek yang setidaknya berisi informasi _Apa yang terjadi_. (Anda akan menambahkan fungsi `dispatch` itu sendiri di langkah selanjutnya.)
 
 <Note>
 
-An action object can have any shape.
+Objek aksi bisa memiliki berbagai macam bentuk.
 
-By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
+Secara konvensi, umumnya objek aksi diberikan sebuah properti `type` bertipe _string_ yang menjelaskan aksi apa yang telah terjadi. Dan menambahkan informasi tambahan pada properti lainnya. Properti `type` ini khusus untuk komponen, maka untuk contoh ini nilai `'added'` atau `'added_task'` akan baik-baik saja diberikan pada properti `type`. Tentukan nama yang dapat menjelaskan aksi apa yang terjadi!
 
 ```js
 dispatch({
-  // specific to component
+  // khusus untuk komponen
   type: 'what_happened',
-  // other fields go here
+  // properti lain disini
 });
 ```
 
 </Note>
 
-### Step 2: Write a reducer function {/*step-2-write-a-reducer-function*/}
+### Langkah 2: Tulis fungsi reducer {/*step-2-write-a-reducer-function*/}
 
-A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
+Fungsi _reducer_ merupakan tempat dimana Anda meletakkan logika _state_. Fungsi _reducer_ menerima dua argumen yaitu _state_ sekarang dan object aksi, dan mengembalikan _state_ berikutnya:
 
 ```js
 function yourReducer(state, action) {
-  // return next state for React to set
+  // mengembalikan state berikutnya untuk di tetapkan oleh React
 }
 ```
 
-React will set the state to what you return from the reducer.
+React akan menetapkan _state_ yang dikembalikan oleh _reducer_ Anda.
 
-To move your state setting logic from your event handlers to a reducer function in this example, you will:
+Untuk memindahkan logika fungsi penetap _state_ dari _event handler_ Anda menjadi fungsi reducer pada contoh berikut, Anda akan:
 
-1. Declare the current state (`tasks`) as the first argument.
-2. Declare the `action` object as the second argument.
-3. Return the _next_ state from the reducer (which React will set the state to).
+1. Deklarasikan _state_(`tasks`) saat ini sebagai argumen pertama.
+2. Deklarasikan objek `action` sebagai argumen kedua.
+3. Mengembalikan _state_ berikutnya melalui reducer (di mana React akan mengatur statusnya).
 
-Here is all the state setting logic migrated to a reducer function:
+Berikut merupakan logika funsi penetapan _state_ yang dimigrasikan ke fungsi _reducer_:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -330,14 +330,14 @@ function tasksReducer(tasks, action) {
   }
 }
 ```
-
-Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
+Karena fungsi _reducer_ menerima _state_ (`tasks`) sebagai sebuah argument, **Anda dapat mendeklarisikannya di luar komponen Anda.** Dengan ini kode yang Anda tulis tingkat indentasinya akan berkurang dan akan lebih mudah di baca.
 
 <Note>
 
-The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance.
+Kode di atas menggunakan pernyataan _if/else_, namun secara konvensi ketika menggunakan fungsi reducer Anda harus menggunakan [pernyataan _switch_](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) pada fungsi tersebut. Secara hasil akan sama, tetapi akan lebih mudah dibaca secara sekilas.
 
-We'll be using them throughout the rest of this documentation like so:
+
+Kami akan menggunakan pernyataan _switch_ sepanjang sisa dokumentasi ini seperti berikut:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -371,19 +371,19 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-We recommend wrapping each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
+Kami merekomendasikan sebaiknya menggabungkan masing-masing blok `case` ke dalam kurung kurawal `{` dan `}` sehingga variabel yang dideklarasikan di dalam `case` berbeda tidak bentrok satu sama lain. Dan juga, sebuah `case` biasanya diakhiri dengan `return`. Jika Anda lupa mengakhiri dengan `return`, kode akan lanjut ke `case` berikutnya, yang akan menyebabkan keselahan.
 
-If you're not yet comfortable with switch statements, using if/else is completely fine.
+Jika Anda belum nyaman menggunakan pernyataan _switch_, menggunakan pernyataan _if/else_ itu tidak apa-apa.
 
 </Note>
 
 <DeepDive>
 
-#### Why are reducers called this way? {/*why-are-reducers-called-this-way*/}
+#### Mengapa fungsi _reducer_ disebut seperti ini? {/*why-are-reducers-called-this-way*/}
 
-Although reducers can "reduce" the amount of code inside your component, they are actually named after the [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) operation that you can perform on arrays.
+Meskipun reducer dapat "mengurangi" jumlah kode di dalam komponen Anda, sebenarnya mereka dinamakan setelah operasi [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) yang dapat dilakukan pada senarai.
 
-The `reduce()` operation lets you take an array and "accumulate" a single value out of many:
+Operasi `reduce()` memungkinkan Anda untuk mengambil sebuah senarai dan "mengakumulasi" sebuah nilai tunggal dari banyak nilai:
 
 ```
 const arr = [1, 2, 3, 4, 5];
@@ -392,9 +392,9 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_, and return the _next state._ In this way, they accumulate actions over time into state.
+Fungsi yang Anda berikan ke `reduce` dikenal sebagai "reducer". Fungsi tersebut mengambil _hasil sejauh ini_ dan _item saat ini_, kemudian mengembalikan _hasil berikutnya_. _Reducer_ di React adalah contoh dari ide yang sama: mereka mengambil _state sejauh ini_ dan _aksi_, lalu mengembalikan state berikutnya. Dengan cara ini, _reducer_ mengakumulasi aksi dari waktu ke waktu ke dalam _state_.
 
-You could even use the `reduce()` method with an `initialState` and an array of `actions` to calculate the final state by passing your reducer function to it:
+Anda bahkan dapat menggunakan metode `reduce()` dengan `initialState` dan sebuah senarai `aksi` untuk menghitung state akhir dengan melewatkan fungsi _reducer_ ke dalamnya:
 
 <Sandpack>
 
@@ -453,43 +453,43 @@ export default function tasksReducer(tasks, action) {
 
 </Sandpack>
 
-You probably won't need to do this yourself, but this is similar to what React does!
+Anda mungkin tidak perlu melakukannya sendiri, tetapi ini mirip dengan apa yang dilakukan oleh React!
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
+### Langkah 3: Gunakan reducer pada komponen Anda {/*step-3-use-the-reducer-from-your-component*/}
 
-Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
+Terakhir, Anda perlu menghubungkan `tasksReducer` ke komponen Anda. Impor _Hook_ `useReducer` dari React:
 
 ```js
 import { useReducer } from 'react';
 ```
 
-Then you can replace `useState`:
+Kemudian Anda dapat mengganti `useState`:
 
 ```js
 const [tasks, setTasks] = useState(initialTasks);
 ```
 
-with `useReducer` like so:
+dengan `useReducer` seperti ini:
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-The `useReducer` Hook is similar to `useState`—you must pass it an initial state and it returns a stateful value and a way to set state (in this case, the dispatch function). But it's a little different.
+Hook `useReducer` mirip dengan `useState` — Anda harus melewatkan state awal ke dalamnya dan ia mengembalikan nilai _stateful_ dan cara untuk mengatur _state_ (dalam kasus ini, fungsi _dispatch_). Namun, sedikit berbeda.
 
-The `useReducer` Hook takes two arguments:
+_Hook_ `useReducer` mengambil dua argumen:
 
-1. A reducer function
-2. An initial state
+1. Fungsi _reducer_
+2. _State_ awal
 
-And it returns:
+Dan _hook_ `useReducer` mengembalikan:
 
-1. A stateful value
-2. A dispatch function (to "dispatch" user actions to the reducer)
+1. Nilai _stateful_
+2. Fungsi _dispatch_ (untuk "men-dispatch" aksi pengguna ke _reducer_)
 
-Now it's fully wired up! Here, the reducer is declared at the bottom of the component file:
+Sekarang fungsi _reducer_ sudah sepenuhnya terhubung! Di sini, _reducer_ dinyatakan di bagian bawah file komponen:
 
 <Sandpack>
 
@@ -674,7 +674,7 @@ li {
 
 </Sandpack>
 
-If you want, you can even move the reducer to a different file:
+Hal ini opsional, namun jika Anda ingin, Anda bahkan dapat memindahkan reducer ke file yang berbeda:
 
 <Sandpack>
 
@@ -862,30 +862,30 @@ li {
 
 </Sandpack>
 
-Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
+Logika komponen dapat lebih mudah dibaca ketika Anda memisahkan aspek seperti ini. Sekarang, handler acara hanya menentukan _apa yang terjadi_ dengan mengirimkan aksi, dan fungsi reducer menentukan _bagaimana state diperbarui_ sebagai respons terhadapnya.
 
-## Comparing `useState` and `useReducer` {/*comparing-usestate-and-usereducer*/}
+## Membandingkan `useState` dan `useReducer` {/*comparing-usestate-and-usereducer*/}
 
-Reducers are not without downsides! Here's a few ways you can compare them:
+_Reducers_ tidaklah tanpa kekurangan! Berikut adalah beberapa cara untuk membandingkannya:
 
-- **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
-- **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
-- **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.
-- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
-- **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!
+- **Ukuran kode:** Secara umum, dengan `useState` kamu harus menulis lebih sedikit kode di awal. Dengan `useReducer`, kamu harus menulis baik fungsi reducer _dan_ dispatch actions. Namun, `useReducer` dapat membantu mengurangi jumlah kode jika banyak event handler memodifikasi state dengan cara yang serupa.
+- **Keterbacaan:** `useState` sangat mudah dibaca ketika pembaruan state sederhana. Ketika pembaruan semakin kompleks, mereka dapat membesarkan kode komponen dan sulit untuk dipindai. Dalam hal ini, `useReducer` memungkinkan kamu untuk memisahkan dengan jelas _bagaimana_ logika pembaruan dipisahkan dari _apa yang terjadi_ pada _event handler_.
+- **Debugging:** Ketika kamu memiliki bug dengan `useState`, sulit untuk mengetahui di mana state diatur dengan tidak benar, dan mengapa. Dengan `useReducer`, kamu dapat menambahkan log konsol ke reducer kamu untuk melihat setiap pembaruan state, dan _mengapa_ itu terjadi (karena `aksi` apa). Jika setiap `aksi` benar, kamu akan tahu bahwa kesalahan ada di logika reducer itu sendiri. Namun, kamu harus melalui kode yang lebih banyak daripada `useState`.
+- **Testing:** Sebuah reducer adalah fungsi murni yang tidak bergantung pada komponen kamu. Ini berarti kamu dapat mengekspor dan mengujinya secara terpisah dalam isolasi. Meskipun secara umum lebih baik untuk menguji komponen dalam lingkungan yang lebih realistis, untuk logika pembaruan state yang kompleks dapat berguna untuk menegaskan bahwa reducer kamu mengembalikan state tertentu untuk initialState dan action tertentu.
+- **Preferensi pribadi:** Beberapa orang suka reducers, yang lain tidak. Itu oke. Ini adalah masalah preferensi. Kamu selalu dapat mengonversi antara `useState` dan `useReducer` bolak-balik: mereka setara!
 
-We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
+Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi bug karena pembaruan state yang salah di beberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan reducers untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
 
-## Writing reducers well {/*writing-reducers-well*/}
+## Menulis fungsi reduksi dengan baik {/*writing-reducers-well*/}
 
 Keep these two tips in mind when writing reducers:
 
-- **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
-- **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
+- **Reducer harus murni (pure).** Sama seperti [fungsi updater state](/learn/queueing-a-series-of-state-updates), reducer dijalankan selama proses rendering! (Aksi diantre sampai render selanjutnya.) Ini berarti bahwa reducer [harus murni](/learn/keeping-components-pure) - input yang sama selalu menghasilkan output yang sama. Mereka tidak boleh mengirim permintaan, menjadwalkan waktu tunggu, atau melakukan efek samping (operasi yang memengaruhi hal-hal di luar komponen). Mereka harus memperbarui [objek](/learn/updating-objects-in-state) dan [senarai](/learn/updating-arrays-in-state) tanpa mutasi.
+- **Setiap aksi menjelaskan satu interaksi pengguna, meskipun itu mengakibatkan beberapa perubahan pada data.** Sebagai contoh, jika pengguna menekan "Reset" pada formulir dengan lima field yang dikelola oleh reducer, lebih baik untuk mengirimkan satu aksi `reset_form` daripada lima aksi `set_field` terpisah. Jika Anda mencatat setiap aksi dalam reducer, log tersebut harus cukup jelas bagi Anda untuk merekonstruksi interaksi atau respon apa yang terjadi dalam urutan apa. Ini membantu dalam proses debugging!
 
-## Writing concise reducers with Immer {/*writing-concise-reducers-with-immer*/}
+## Menulis Reducer yang singkat dengan Immer {/*writing-concise-reducers-with-immer*/}
 
-Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
+Sama seperti [memperbarui objek](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) dan [array](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) pada state biasa, Anda dapat menggunakan pustaka Immer untuk membuat reducer lebih ringkas. Di sini, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) memungkinkan Anda memutasi state dengan `push` atau `arr[i] =` assignment:
 
 <Sandpack>
 
@@ -1082,34 +1082,36 @@ li {
 
 </Sandpack>
 
-Reducers must be pure, so they shouldn't mutate state. But Immer provides you with a special `draft` object which is safe to mutate. Under the hood, Immer will create a copy of your state with the changes you made to the `draft`. This is why reducers managed by `useImmerReducer` can mutate their first argument and don't need to return state.
+Reducers harus bersifat pure, sehingga tidak boleh mengubah state. Tetapi Immer memberikan objek khusus `draft` yang aman untuk dimutasi. Di bawah kap mesin, Immer akan membuat salinan dari state Anda dengan perubahan yang dibuat pada `draft`. Inilah sebabnya mengapa reducer yang dikelola oleh `useImmerReducer` dapat memutasi argumen pertama mereka dan tidak perlu mengembalikan state.
 
 <Recap>
 
-- To convert from `useState` to `useReducer`:
-  1. Dispatch actions from event handlers.
-  2. Write a reducer function that returns the next state for a given state and action.
-  3. Replace `useState` with `useReducer`.
-- Reducers require you to write a bit more code, but they help with debugging and testing.
-- Reducers must be pure.
-- Each action describes a single user interaction.
-- Use Immer if you want to write reducers in a mutating style.
+- Untuk mengkonversi dari `useState` ke `useReducer`:
+  1. Kirim aksi dari _event handler_.
+  2. Tulis fungsi _reducer_ yang mengembalikan state selanjutnya untuk state dan aksi yang diberikan.
+  3. Ganti `useState` dengan `useReducer`.
+- Reducer membutuhkan Anda untuk menulis sedikit lebih banyak kode, tetapi membantu dengan debugging dan pengujian.
+- Reducer harus murni.
+- Setiap aksi menggambarkan satu interaksi pengguna.
+- Gunakan Immer jika Anda ingin menulis reducer dalam gaya yang dapat dimutasi.
 
 </Recap>
 
 <Challenges>
 
-#### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
+#### Meneruskan aksi dari event handlers {/*dispatch-actions-from-event-handlers*/}
 
-Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
+Meneruskan tindakan dari penangan acara
 
-Replace these two `// TODO`s with the code to `dispatch` the corresponding actions. To see the expected shape and the type of the actions, check the reducer in `messengerReducer.js`. The reducer is already written so you won't need to change it. You only need to dispatch the actions in `ContactList.js` and `Chat.js`.
+Saat ini, penangan acara di `ContactList.js` dan `Chat.js` memiliki komentar `// TODO`. Inilah mengapa mengetik ke input tidak berfungsi, dan mengklik tombol tidak mengubah penerima yang dipilih.
+
+Gantikan dua `// TODO` ini dengan kode untuk `meneruskan` tindakan yang sesuai. Untuk melihat bentuk yang diharapkan dan jenis tindakan, periksa pengurang dalam `messengerReducer.js`. Pengurang sudah ditulis sehingga Anda tidak perlu mengubahnya. Anda hanya perlu meneruskan tindakan di `ContactList.js` dan `Chat.js`.
 
 <Hint>
 
-The `dispatch` function is already available in both of these components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
+Fungsi `dispatch` sudah tersedia di kedua komponen ini karena telah dilewatkan sebagai prop. Jadi, Anda perlu memanggil `dispatch` dengan objek tindakan yang sesuai.
 
-To check the action object shape, you can look at the reducer and see which `action` fields it expects to see. For example, the `changed_selection` case in the reducer looks like this:
+Untuk memeriksa bentuk objek tindakan, Anda dapat melihat reducer dan melihat bidang `action` apa yang diharapkan. Misalnya, kasus `changed_selection` dalam reducer terlihat seperti ini:
 
 ```js
 case 'changed_selection': {
@@ -1119,8 +1121,7 @@ case 'changed_selection': {
   };
 }
 ```
-
-This means that your action object should have a `type: 'changed_selection'`. You also see the `action.contactId` being used, so you need to include a `contactId` property into your action.
+Ini berarti bahwa objek aksi Anda harus memiliki `type: 'changed_selection'`. Anda juga melihat penggunaan `action.contactId`, sehingga Anda perlu menyertakan properti `contactId` ke dalam aksi Anda.
 
 </Hint>
 
@@ -1256,7 +1257,7 @@ textarea {
 
 <Solution>
 
-From the reducer code, you can infer that actions need to look like this:
+Dari kode reducer, kamu dapat menyimpulkan bahwa tampilan aksi seperti ini:
 
 ```js
 // When the user presses "Alice"
@@ -1272,7 +1273,7 @@ dispatch({
 });
 ```
 
-Here is the example updated to dispatch the corresponding messages:
+Berikut adalah contoh yang diperbarui untuk mengirimkan pesan yang sesuai:
 
 <Sandpack>
 
@@ -1411,12 +1412,12 @@ textarea {
 
 </Solution>
 
-#### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
+#### Kosongkan input setelah mengirim pesan {/*clear-the-input-on-sending-a-message*/}
 
-Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
+Saat ini, menekan tombol "Kirim" tidak melakukan apa-apa. Tambahkan handler acara ke tombol "Kirim" yang akan:
 
-1. Show an `alert` with the recipient's email and the message.
-2. Clear the message input.
+1. Menampilkan `alert` dengan email penerima dan pesan.
+2. Membersihkan input pesan.
 
 <Sandpack>
 
@@ -1555,7 +1556,7 @@ textarea {
 
 <Solution>
 
-There are a couple of ways you could do it in the "Send" button event handler. One approach is to show an alert and then dispatch an `edited_message` action with an empty `message`:
+Ada beberapa cara yang dapat Anda lakukan pada event handler tombol "Kirim". Salah satu pendekatan yang bisa digunakan adalah menampilkan sebuah alert dan kemudian melewatkan aksi `edited_message` dengan `message` kosong:
 
 <Sandpack>
 
@@ -1701,9 +1702,9 @@ textarea {
 
 </Sandpack>
 
-This works and clears the input when you hit "Send".
+Ini bekerja dan menghapus input saat Anda mengklik "Kirim".
 
-However, _from the user's perspective_, sending a message is a different action than editing the field. To reflect that, you could instead create a _new_ action called `sent_message`, and handle it separately in the reducer:
+Namun, _dari perspektif pengguna_, mengirim pesan adalah tindakan yang berbeda dengan mengedit kolom input. Untuk mencerminkan hal tersebut, Anda dapat membuat tindakan _baru_ yang disebut `sent_message`, dan menanganinya secara terpisah di reducer:
 
 <Sandpack>
 
@@ -1854,15 +1855,15 @@ textarea {
 
 </Sandpack>
 
-The resulting behavior is the same. But keep in mind that action types should ideally describe "what the user did" rather than "how you want the state to change". This makes it easier to later add more features.
+Perilaku hasilnya sama. Namun, perlu diingat bahwa jenis tindakan sebaiknya menjelaskan "apa yang dilakukan pengguna" daripada "bagaimana Anda ingin mengubah status". Ini memudahkan untuk menambahkan fitur lebih lanjut di kemudian hari.
 
-With either solution, it's important that you **don't** place the `alert` inside a reducer. The reducer should be a pure function--it should only calculate the next state. It should not "do" anything, including displaying messages to the user. That should happen in the event handler. (To help catch mistakes like this, React will call your reducers multiple times in Strict Mode. This is why, if you put an alert in a reducer, it fires twice.)
+Dengan salah satu solusi tersebut, penting bahwa Anda **tidak** menempatkan `alert` di dalam reducer. Reducer harus menjadi fungsi murni - hanya menghitung status selanjutnya. Ini tidak boleh "melakukan" apa pun, termasuk menampilkan pesan ke pengguna. Itu harus terjadi di event handler. (Untuk membantu menangkap kesalahan seperti ini, React akan memanggil reducer Anda beberapa kali di Strict Mode. Ini sebabnya, jika Anda menempatkan alert dalam reducer, alert itu akan muncul dua kali.)
 
 </Solution>
 
-#### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
+#### Memulihkan nilai input saat beralih antar tab {/*restore-input-values-when-switching-between-tabs*/}
 
-In this example, switching between different recipients always clears the text input:
+Pada contoh ini, beralih antara penerima yang berbeda selalu menghapus input teks:
 
 ```js
 case 'changed_selection': {
@@ -1873,13 +1874,13 @@ case 'changed_selection': {
   };
 ```
 
-This is because you don't want to share a single message draft between several recipients. But it would be better if your app "remembered" a draft for each contact separately, restoring them when you switch contacts.
+Ini karena Anda tidak ingin membagikan draf pesan tunggal di antara beberapa penerima. Namun, lebih baik jika aplikasi Anda "mengingat" draf untuk setiap kontak secara terpisah, mengembalikannya saat Anda beralih kontak.
 
-Your task is to change the way the state is structured so that you remember a separate message draft _per contact_. You would need to make a few changes to the reducer, the initial state, and the components.
+Tugas Anda adalah mengubah cara struktur state sehingga Anda mengingatkan draf pesan terpisah per kontak. Anda perlu melakukan beberapa perubahan pada reducer, state awal, dan komponen.
 
 <Hint>
 
-You can structure your state like this:
+Anda dapat strukturkan state Anda seperti ini:
 
 ```js
 export const initialState = {
@@ -1891,7 +1892,7 @@ export const initialState = {
 };
 ```
 
-The `[key]: value` [computed property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names) syntax can help you update the `messages` object:
+Syntax `[key]: value` [properti terhitung](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names) dapat membantu Anda memperbarui objek `messages`:
 
 ```js
 {
@@ -2053,7 +2054,7 @@ textarea {
 
 <Solution>
 
-You'll need to update the reducer to store and update a separate message draft per contact:
+Anda perlu memperbarui reducer untuk menyimpan dan memperbarui draft pesan terpisah untuk setiap kontak:
 
 ```js
 // When the input is edited
@@ -2071,13 +2072,13 @@ case 'edited_message': {
 }
 ```
 
-You would also update the `Messenger` component to read the message for the currently selected contact:
+Anda juga harus memperbarui komponen `Messenger` untuk membaca pesan untuk kontak yang sedang dipilih:
 
 ```js
 const message = state.messages[state.selectedId];
 ```
 
-Here is the complete solution:
+Inilah solusi lengkapnya:
 
 <Sandpack>
 
@@ -2237,19 +2238,19 @@ textarea {
 
 </Sandpack>
 
-Notably, you didn't need to change any of the event handlers to implement this different behavior. Without a reducer, you would have to change every event handler that updates the state.
+Anda tidak perlu mengubah event handler mana pun untuk mengimplementasikan perilaku yang berbeda ini. Tanpa pengurang, Anda harus mengubah setiap event handler yang memperbarui state.
 
 </Solution>
 
-#### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
+#### Menerapkan `useReducer` dari awal {/*implement-usereducer-from-scratch*/}
 
-In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement _the `useReducer` Hook itself!_ Here is a stub to get you started. It shouldn't take more than 10 lines of code.
+Pada contoh sebelumnya, Anda mengimpor Hook `useReducer` dari React. Kali ini, Anda akan mengimplementasikan Hook `useReducer` itu sendiri! Berikut adalah kerangka kode untuk memulai. Ini tidak memerlukan lebih dari 10 baris kode.
 
-To test your changes, try typing into the input or select a contact.
+Untuk menguji perubahan Anda, coba ketik ke input atau pilih kontak.
 
 <Hint>
 
-Here is a more detailed sketch of the implementation:
+Berikut adalah gambaran implementasi yang lebih detail:
 
 ```js
 export function useReducer(reducer, initialState) {
@@ -2263,7 +2264,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-Recall that a reducer function takes two arguments--the current state and the action object--and it returns the next state. What should your `dispatch` implementation do with it?
+Ingat bahwa sebuah fungsi reducer memiliki dua argumen--state saat ini dan objek action--dan mengembalikan state berikutnya. Apa yang seharusnya dilakukan oleh implementasi `dispatch` Anda dengannya?
 
 </Hint>
 
@@ -2439,7 +2440,7 @@ textarea {
 
 <Solution>
 
-Dispatching an action calls a reducer with the current state and the action, and stores the result as the next state. This is what it looks like in code:
+Mengirimkan aksi akan memanggil reducer dengan state saat ini dan aksi tersebut, dan menyimpan hasilnya sebagai state berikutnya. Ini adalah contoh kodenya:
 
 <Sandpack>
 
@@ -2614,7 +2615,7 @@ textarea {
 
 </Sandpack>
 
-Though it doesn't matter in most cases, a slightly more accurate implementation looks like this:
+Meskipun tidak terlalu penting dalam kebanyakan kasus, implementasi yang sedikit lebih akurat terlihat seperti ini:
 
 ```js
 function dispatch(action) {
@@ -2622,7 +2623,7 @@ function dispatch(action) {
 }
 ```
 
-This is because the dispatched actions are queued until the next render, [similar to the updater functions.](/learn/queueing-a-series-of-state-updates)
+Ini karena tindakan yang dipicu akan diantre sampai render berikutnya, serupa dengan fungsi updater.
 
 </Solution>
 
