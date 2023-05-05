@@ -107,11 +107,11 @@ select { margin: 5px; }
 
 ---
 
-### Providing a label for a select box {/*providing-a-label-for-a-select-box*/}
+### Memberikan label untuk kotak pilih (select box) {/*providing-a-label-for-a-select-box*/}
 
-Typically, you will place every `<select>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that select box. When the user clicks the label, the browser will automatically focus the select box. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the select box.
+Biasanya, Anda akan menempatkan setiap `<select>` di dalam *tag* [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu peramban (*browser*) bahwa label ini dikaitkan dengan kotak pilih (*select box*) tersebut. Saat pengguna mengeklik labelnya, peramban (*browser*) secara otomatis akan memfokuskan kotak pilih (*select box*). Hal ini juga penting untuk aksesibilitas: pembaca layar (*screen reader*) akan membacakan keterangan label saat pengguna memfokuskan kotak pilih (*select box*).
 
-If you can't nest `<select>` into a `<label>`, associate them by passing the same ID to `<select id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat menumpuk `<select>` ke dalam `<label>`, kaitkan keduanya dengan meneruskan ID yang sama ke `<select id>` dan [`<label htmlFor>`.](https://developer. mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instans (*instance*) dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -123,21 +123,21 @@ export default function Form() {
   return (
     <>
       <label>
-        Pick a fruit:
+        Pilih buah:
         <select name="selectedFruit">
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
+          <option value="apple">Apel</option>
+          <option value="banana">Pisang</option>
+          <option value="orange">Jeruk</option>
         </select>
       </label>
       <hr />
       <label htmlFor={vegetableSelectId}>
-        Pick a vegetable:
+        Pilih sayuran:
       </label>
       <select id={vegetableSelectId} name="selectedVegetable">
-        <option value="cucumber">Cucumber</option>
-        <option value="corn">Corn</option>
-        <option value="tomato">Tomato</option>
+        <option value="cucumber">Timun</option>
+        <option value="corn">Jagung</option>
+        <option value="tomato">Tomat</option>
       </select>
     </>
   );
@@ -165,9 +165,9 @@ export default function FruitPicker() {
     <label>
       Pick a fruit:
       <select name="selectedFruit" defaultValue="orange">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="orange">Orange</option>
+        <option value="apple">Apel</option>
+        <option value="banana">Pisang</option>
+        <option value="orange">Jeruk</option>
       </select>
     </label>
   );
@@ -204,9 +204,9 @@ export default function FruitPicker() {
         defaultValue={['orange', 'banana']}
         multiple={true}
       >
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="orange">Orange</option>
+        <option value="apple">Apel</option>
+        <option value="banana">Pisang</option>
+        <option value="orange">Jeruk</option>
       </select>
     </label>
   );
@@ -250,9 +250,9 @@ export default function EditPost() {
       <label>
         Pick your favorite fruit:
         <select name="selectedFruit" defaultValue="orange">
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
+          <option value="apple">Apel</option>
+          <option value="banana">Pisang</option>
+          <option value="orange">Jeruk</option>
         </select>
       </label>
       <label>
@@ -262,9 +262,9 @@ export default function EditPost() {
           multiple={true}
           defaultValue={['corn', 'tomato']}
         >
-          <option value="cucumber">Cucumber</option>
-          <option value="corn">Corn</option>
-          <option value="tomato">Tomato</option>
+          <option value="cucumber">Timun</option>
+          <option value="corn">Jagung</option>
+          <option value="tomato">Tomat</option>
         </select>
       </label>
       <hr />
@@ -313,9 +313,9 @@ function FruitPicker() {
       value={selectedFruit} // ...force the select's value to match the state variable...
       onChange={e => setSelectedFruit(e.target.value)} // ... and update the state variable on any change!
     >
-      <option value="apple">Apple</option>
-      <option value="banana">Banana</option>
-      <option value="orange">Orange</option>
+      <option value="apple">Apel</option>
+      <option value="banana">Pisang</option>
+      <option value="orange">Jeruk</option>
     </select>
   );
 }
@@ -339,9 +339,9 @@ export default function FruitPicker() {
           value={selectedFruit}
           onChange={e => setSelectedFruit(e.target.value)}
         >
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
+          <option value="apple">Apel</option>
+          <option value="banana">Pisang</option>
+          <option value="orange">Jeruk</option>
         </select>
       </label>
       <hr />
@@ -356,9 +356,9 @@ export default function FruitPicker() {
             setSelectedVegs(values);
           }}
         >
-          <option value="cucumber">Cucumber</option>
-          <option value="corn">Corn</option>
-          <option value="tomato">Tomato</option>
+          <option value="cucumber">Timun</option>
+          <option value="corn">Jagung</option>
+          <option value="tomato">Tomat</option>
         </select>
       </label>
       <hr />
