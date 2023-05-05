@@ -707,9 +707,9 @@ Di sini, nilai `url` di dalam `onVisit` merujuk pada nilai `url` yang *terbaru* 
 
 <DeepDive>
 
-#### Is it okay to suppress the dependency linter instead? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
+#### Apakah boleh untuk tetap menonaktifkan _dependency linter_? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
 
-In the existing codebases, you may sometimes see the lint rule suppressed like this:
+Di dalam basis kode yang sudah ada, terkadang kamu akan melihat aturan lint dinonaktifkan seperti ini:
 
 ```js {7-9}
 function Page({ url }) {
@@ -725,13 +725,13 @@ function Page({ url }) {
 }
 ```
 
-After `useEffectEvent` becomes a stable part of React, we recommend **never suppressing the linter**.
+Setelah `useEffectEvent` menjadi bagian versi stabil dari React, kami merekomendasikan untuk tidak menonaktifkan linter.
 
-The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
+Kekurangan pertama dari menonaktifkan aturan tersebut adalah bahwa React tidak akan memberikan peringatan lagi ketika Effect yang kamu buat perlu "bereaksi" terhadap dependensi reaktif baru yang kamu tambahkan ke dalam kode. Pada contoh sebelumnya, kamu menambahkan `url` sebagai dependensi karena React mengingatkannya. Jika kamu menonaktifkan linter, secara otomatis tidak akan ada lagi pengingat yang sama untuk perubahan Effect tersebut ke depannya. Hal ini dapat menyebabkan terjadinya bug.
 
-Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
+Berikut ini contoh dari bug yang membingungkan yang terjadi karena penonaktifan linter. Pada contoh ini, fungsi `handleMove` seharusnya membaca nilai variabel state `canMove` yang terbaru untuk menentukan apakah titik harus mengikuti kursor atau tidak. Namun, `canMove` selalu bernilai `true` di dalam `handleMove`.
 
-Can you see why?
+Apakah kamu dapat melihat penyebabnya?
 
 <Sandpack>
 
@@ -789,14 +789,13 @@ body {
 
 </Sandpack>
 
+Masalah pada kode tersebut terletak pada penonaktifan lint dependency. Jika kamu menghapus penonaktifannya, maka kamu akan melihat bahwa Effect tersebut harus membutuhkan fungsi `handleMove` sebagai dependensi. Hal ini masuk akal, karena `handleMove` dideklarasikan di dalam badan komponen, yang membuatnya menjadi sebuah nilai reaktif. Setiap nilai reaktif harus dijadikan dependensi, jika tidak, maka nilai tersebut berpotensi menjadi usang dari waktu ke waktu!
 
-The problem with this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+Penulis kode tersebut "membohongi" React dengan mengatakan bahwa Effect tersebut tidak memiliki dependensi (`[]`) pada nilai yang reaktif. Inilah yang menyebabkan React tidak mensinkronisasikan kembali Effect tersebut setelah terjadinya perubahan pada `canMove` (dan `handleMove`). Karena React tidak mensinkronisasikan kembali Effect tersebut, maka `handleMove` yang digunakan sebagai listener adalah fungsi `handleMove` yang dibuat selama render awal. Selama render awal, `canMove` bernilai `true`, itulah sebabnya fungsi `handleMove` dari render awal akan selalu melihat nilai tersebut.
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+**Dengan tidak pernah menonaktifkan linter dependency, kamu tidak akan pernah mengalami masalah dengan nilai yang usang.**
 
-**If you never suppress the linter, you will never see problems with stale values.**
-
-With `useEffectEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
+Dengan `useEffectEvent`, tidak perlu "berbohong" pada linter, dan kode dapat bekerja sesuai dengan yang kamu harapkan:
 
 <Sandpack>
 
@@ -870,9 +869,9 @@ body {
 
 </Sandpack>
 
-This doesn't mean that `useEffectEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. In the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Effect Event.
+Hal ini tidak berarti bahwa `useEffectEvent` *selalu* menjadi solusi yang tepat. Kamu hanya perlu menerapkannya pada baris kode yang tidak ingin bersifat reaktif. Di dalam sandbox di atas, kamu tidak ingin kode Effect bersifat reaktif terhadap `canMove`. Itulah sebabnya masuk akal untuk mengekstrak ke Effect Event.
 
-Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
+Baca [Menghapus dependensi Effect](/learn/removing-effect-dependencies) untuk mengetahui alternatif lain yang tepat selain menonaktifkan linter.
 
 </DeepDive>
 
