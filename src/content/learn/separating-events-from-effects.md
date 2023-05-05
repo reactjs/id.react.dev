@@ -576,17 +576,17 @@ label { display: block; margin-top: 10px; }
 
 Anda dapat menganggap Effect Event sangat mirip dengan event handler. Perbedaan utamanya adalah event handler dijalankan sebagai respons terhadap interaksi pengguna, sedangkan Effect Event dipicu oleh Anda dari Effect. Effect Event memungkinkan kita "memutus rantai" antara reaktivitas Effect dan kode yang seharusnya tidak reaktif.
 
-### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
+### Membaca props dan state terbaru dengan Effect Event {/*reading-latest-props-and-state-with-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Bagian ini menjelaskan **API eksperimental yang belum dirilis** dalam versi React yang stabil.
 
 </Wip>
 
-Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
+Effect Event memungkinkan kita memperbaiki banyak pola di mana kamu mungkin tergoda untuk _supress_ warning dari _dependency linter_.
 
-For example, say you have an Effect to log the page visits:
+Misalnya, kita memiliki Effect untuk mencatat _log_ kunjungan halaman:
 
 ```js
 function Page() {
@@ -597,7 +597,7 @@ function Page() {
 }
 ```
 
-Later, you add multiple routes to your site. Now your `Page` component receives a `url` prop with the current path. You want to pass the `url` as a part of your `logVisit` call, but the dependency linter complains:
+Kemudian, kita menambahkan beberapa rute ke situs tersebut. Sekarang komponen `Page` kita menerima prop `url` dengan _path_ saat ini. Kita ingin pass `url` ke parameter function `logVisit`, tetapi _dependency linter_ pasti akan mengeluarkan warning:
 
 ```js {1,3}
 function Page({ url }) {
@@ -608,18 +608,18 @@ function Page({ url }) {
 }
 ```
 
-Think about what you want the code to do. You *want* to log a separate visit for different URLs since each URL represents a different page. In other words, this `logVisit` call *should* be reactive with respect to the `url`. This is why, in this case, it makes sense to follow the dependency linter, and add `url` as a dependency:
+Sekarang mari pikirkan apa tujuan awal dari kode ini. Kita *ingin* mencatat setiap kunjungan terpisah untuk tiap URL karena setiap URL merepresentasikan halaman yang berbeda. Artinya, pemanggilan `logVisit` ini seharusnya _berperilaku reaktif_ terhadap `url`. Oleh karena itu, dalam kasus ini, akan lebih baik jika kita mengikuti _dependency linter_ dan menambahkan `url` sebagai salah satu dependensi Effect.
 
 ```js {4}
 function Page({ url }) {
   useEffect(() => {
     logVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ Semua dependensi telah dideklarasikan
   // ...
 }
 ```
 
-Now let's say you want to include the number of items in the shopping cart together with every page visit:
+Sekarang katakanlah kita ingin memasukkan jumlah barang di keranjang belanja bersama dengan setiap kunjungan halaman:
 
 ```js {2-3,6}
 function Page({ url }) {
@@ -633,9 +633,9 @@ function Page({ url }) {
 }
 ```
 
-You used `numberOfItems` inside the Effect, so the linter asks you to add it as a dependency. However, you *don't* want the `logVisit` call to be reactive with respect to `numberOfItems`. If the user puts something into the shopping cart, and the `numberOfItems` changes, this *does not mean* that the user visited the page again. In other words, *visiting the page* is, in some sense, an "event". It happens at a precise moment in time.
+Kamu menggunakan `numberOfItems` di dalam Effect, sehingga linter meminta agar kamu menambahkannya sebagai salah satu dependensi. Namun, sebenarnya kamu *tidak ingin* memanggil `logVisit` secara reaktif terhadap `numberOfItems`. Jika pengguna menambahkan barang ke dalam keranjang belanja dan `numberOfItems` berubah, ini tidak berarti bahwa pengguna telah mengunjungi kembali halaman tersebut. Dalam artian lain, melakukan *kunjungan ke halaman* adalah suatu "peristiwa (_event_)" yang terjadi pada saat tertentu.
 
-Split the code in two parts:
+Sebaiknya, pisahkan kode tersebut menjadi dua bagian:
 
 ```js {5-7,10}
 function Page({ url }) {
@@ -648,20 +648,20 @@ function Page({ url }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ Semua dependensi telah dideklarasikan
   // ...
 }
 ```
 
-Here, `onVisit` is an Effect Event. The code inside it isn't reactive. This is why you can use `numberOfItems` (or any other reactive value!) without worrying that it will cause the surrounding code to re-execute on changes.
+Di sini, `onVisit` adalah suatu Effect Event. Kode di dalamnya tidak bersifat reaktif. Oleh karena itu, kta dapat menggunakan `numberOfItems` (atau reactive value lain!) tanpa khawatir mengakibatkan kode di sekitarnya dijalankan ulang saat terjadi perubahan.
 
-On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` Effect Event.
+Namun di sisi lain, Effect itu sendiri tetap bersifat reaktif. Kode di dalam Effect menggunakan prop `url`, sehingga Effect tersebut akan dijalankan ulang setelah setiap render dengan `url` yang berbeda. Hal ini pada akhirnya akan memanggil Effect Event `onVisit`.
 
-As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
+Akibatnya, `logVisit` akan terpanggil untuk setiap perubahan pada `url`, dan selalu membaca `numberOfItems` yang terbaru. Namun jika hanya nilai `numberOfItems` yang berubah, hal ini tidak akan menyebabkan kode berjalan ulang.
 
 <Note>
 
-You might be wondering if you could call `onVisit()` with no arguments, and read the `url` inside it:
+Mungkin kamu bertanya-tanya apakah bisa memanggil `onVisit()` tanpa argumen, dan membaca nilai `url` di dalamnya:
 
 ```js {2,6}
   const onVisit = useEffectEvent(() => {
@@ -673,7 +673,7 @@ You might be wondering if you could call `onVisit()` with no arguments, and read
   }, [url]);
 ```
 
-This would work, but it's better to pass this `url` to the Effect Event explicitly. **By passing `url` as an argument to your Effect Event, you are saying that visiting a page with a different `url` constitutes a separate "event" from the user's perspective.** The `visitedUrl` is a *part* of the "event" that happened:
+Cara tersebut memang bisa dilakukan, tetapi sebaiknya kita memasukkan nilai `url` secara eksplisit ke dalam Effect Event. **Dengan memasukkan `url` sebagai argumen ke dalam Effect Event, kita menyatakan bahwa kunjungan halaman dengan `url` yang berbeda merupakan sebuah "_event_" yang terpisah bagi pengguna.** Artinya, `visitedUrl` merupakan *bagian* dari "_event_" tersebut.
 
 ```js {1-2,6}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -685,9 +685,9 @@ This would work, but it's better to pass this `url` to the Effect Event explicit
   }, [url]);
 ```
 
-Since your Effect Event explicitly "asks" for the `visitedUrl`, now you can't accidentally remove `url` from the Effect's dependencies. If you remove the `url` dependency (causing distinct page visits to be counted as one), the linter will warn you about it. You want `onVisit` to be reactive with regards to the `url`, so instead of reading the `url` inside (where it wouldn't be reactive), you pass it *from* your Effect.
+Karena Effect Event kita secara eksplisit "meminta" nilai `visitedUrl`, maka sekarang kita tidak dapat secara tidak sengaja menghapus `url` dari dependensi Effect tersebut. Jika kamu menghapus `url` dari dependensi (dan menyebabkan penghitungan kunjungan halaman yang berbeda terhitung sebagai satu), maka linter akan memberikan peringatan. Kamu ingin `onVisit` berperilaku reaktif terhadap `url`, sehingga daripada membaca nilai `url` dari dalam (yang tidak bersifat reaktif), kamu _pass_ nilai url *dari* dalam Effect.
 
-This becomes especially important if there is some asynchronous logic inside the Effect:
+Hal ini menjadi semakin penting jika terdapat beberapa logika asinkron di dalam Efek tersebut:  
 
 ```js {6,8}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -701,7 +701,7 @@ This becomes especially important if there is some asynchronous logic inside the
   }, [url]);
 ```
 
-Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have already changed), but `visitedUrl` corresponds to the `url` that originally caused this Effect (and this `onVisit` call) to run.
+Di sini, nilai `url` di dalam `onVisit` merujuk pada nilai `url` yang *terbaru* (yang mungkin sudah berubah), sedangkan `visitedUrl` merujuk pada `url` yang awalnya menyebabkan Effect ini (dan pemanggilan `onVisit` ini) dijalankan.
 
 </Note>
 
