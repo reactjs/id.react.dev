@@ -115,9 +115,9 @@ export default function App() {
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">umum</option>
+          <option value="general">general</option>
           <option value="travel">travel</option>
-          <option value="music">musik</option>
+          <option value="music">music</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
@@ -310,9 +310,9 @@ export default function App() {
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">umum</option>
+          <option value="general">general</option>
           <option value="travel">travel</option>
-          <option value="music">musik</option>
+          <option value="music">music</option>
         </select>
       </label>
       <label>
@@ -498,9 +498,9 @@ export default function App() {
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">umum</option>
+          <option value="general">general</option>
           <option value="travel">travel</option>
-          <option value="music">musik</option>
+          <option value="music">music</option>
         </select>
       </label>
       <label>
@@ -962,7 +962,7 @@ Effect Event merupakan "bagian" yang tidak reaktif dari kode Effect. Effect Even
 
 Komponen `Timer` ini menyimpan variabel state `count` yang bertambah setiap satu detik. Nilai penambahan disimpan di dalam variabel state `increment`. Kamu dapat mengontrol variabel `increment` dengan tombol plus dan minus.
 
-Namun, tidak peduli berapa kali kamu menekan tombol plus, nilai `count` selalu bertambah satu setiap satu detik. Apa yang salah dengan kode ini? Mengapa `increment` selalu sama dengan `1` di dalam kode Efek? Cari kesalahan tersebut dan perbaiki.
+Namun, tidak peduli berapa kali kamu menekan tombol plus, nilai `count` selalu bertambah satu setiap satu detik. Apa yang salah dengan kode ini? Mengapa `increment` selalu sama dengan `1` di dalam kode Effect? Cari kesalahan tersebut dan perbaiki.
 
 <Hint>
 
@@ -1693,7 +1693,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Effect yang menghubungkan ke ruangan `"travel"` (sehingga mengubah nilai `roomId` menjadi `"travel"`) akan menampilkan notifikasi untuk ruangan `"travel"`. Efek yang menghubungkan ke ruangan `"music"` (sehingga mengubah nilai `roomId` menjadi `"music"`) akan menampilkan notifikasi untuk ruangan `"music"`. Dengan kata lain, `connectedRoomId` berasal dari Effect-mu (yang bersifat reaktif), sedangkan `theme` selalu menggunakan nilai terbaru.
+Effect yang menghubungkan ke ruangan `"travel"` (sehingga mengubah nilai `roomId` menjadi `"travel"`) akan menampilkan notifikasi untuk ruangan `"travel"`. Effect yang menghubungkan ke ruangan `"music"` (sehingga mengubah nilai `roomId` menjadi `"music"`) akan menampilkan notifikasi untuk ruangan `"music"`. Dengan kata lain, `connectedRoomId` berasal dari Effect-mu (yang bersifat reaktif), sedangkan `theme` selalu menggunakan nilai terbaru.
 
 Untuk menyelesaikan tantangan tambahan, simpan ID timeout notifikasi dan bersihkan di dalam fungsi cleanup Effect-mu:
 
