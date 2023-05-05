@@ -1151,9 +1151,9 @@ Pola ini bisa sulit dipahami dan biasanya lebih baik untuk dihindari. Namun, ini
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+### Saya sudah memperbarui *state*, tetapi saat saya mencetak log nilainya masih yang lama {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 
-Calling the `set` function **does not change state in the running code**:
+Memanggil fungsi `set` **tidak mengubah *state* pada kode yang sedang berjalan**:
 
 ```js {4,5,8}
 function handleClick() {
@@ -1168,9 +1168,9 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
+Ini terjadi karena [*state* berperilaku seperti *snapshot*.](/learn/state-as-a-snapshot) Memperbarui *state* membutuhkan *render* ulang dengan nilai *state* baru, tetapi tidak memengaruhi variabel JavaScript `count` pada *event handler* yang sedang berjalan.
 
-If you need to use the next state, you can save it in a variable before passing it to the `set` function:
+Jika Anda perlu menggunakan *state* selanjutnya, Anda dapat menyimpannya dalam variabel sebelum mengopernya pada fungsi `set`:
 
 ```js
 const nextCount = count + 1;
@@ -1182,16 +1182,16 @@ console.log(nextCount); // 1
 
 ---
 
-### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+### Saya telah memperbarui *state*, tetapi tidak ada perbaruan pada layar {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React akan **mengabaikan pembaruan Anda jika *state* berikutnya sama dengan state sebelumnya,** yang ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Ini biasanya terjadi ketika Anda mengubah objek atau senarai di dalam *state* secara langsung:
 
 ```js
 obj.x = 10;  // 🚩 Wrong: mutating existing object
 setObj(obj); // 🚩 Doesn't do anything
 ```
 
-You mutated an existing `obj` object and passed it back to `setObj`, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+Anda mengubah objek `obj` yang ada dan mengirimkannya kemabli ke `setObj`, sehingga React mengabaikan pembaruan tersebut. Untuk memperbaikinya, pastikan Anda selalu [_mengganti_ objek dan senarai di dalam *state* daripada _memutasi_ mereka](#updating-objects-and-arrays-in-state):
 
 ```js
 // ✅ Correct: creating a new object
@@ -1203,9 +1203,9 @@ setObj({
 
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### Saya mendapatkan galat: *"Too many re-renders"* {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+Anda mungkin mendapatkan galat yang mengatakan: `*Too many re-renders*. React membatasi jumlah render untuk mencegah pengulangan tak terbatas.` Biasanya ini berarti bahwa Anda secara tidak kondisional mengatur *state* selama *render*, sehingga komponen Anda masuk ke dalam perulangan: *render*, *set state* (yang menyebabkan *render*), *render*, *set state* (yang menyebabkan render), dan seterusnya. Sangat sering, ini disebabkan oleh kesalahan dalam menentukan *event handler*:
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1218,13 +1218,13 @@ return <button onClick={handleClick}>Click me</button>
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+Jika Anda tidak dapat menemukan penyebab kesalahan ini, klik pada panah di sebelah galat pada konsol dan lihat melalui tumpukan JavaScript untuk menemukan panggilan fungsi `set` yang bertanggung jawab atas kesalahan tersebut.
 
 ---
 
-### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
+### Fungsi inisialisasi atau pembaruan saya berjalan dua kali {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+Pada [*Strict Mod*e*](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali alih-alih satu kali:
 
 ```js {2,5-6,11-12}
 function TodoList() {
@@ -1244,11 +1244,11 @@ function TodoList() {
   // ...
 ```
 
-This is expected and shouldn't break your code.
+Ini sesuatu yang sudah diperkirakan dan seharusnya tidak meruka kode Anda.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+Perikalu ini hanya terjadi pada **saat pengembangan** dan membantu Anda [menjaga komponen bersifat murni.](/learn/keeping-components-pure) React menggunakan hasil dari salah satu pangiglan, dan mengabaikan hasil panggilan yang lain. Selama fungsi komponen, insialisasi, dan pembaruan Anda murni, ini tidak akan mempengaruhi logika Anda. Namun, jika secara tidak sengaja terdapat fungsi tidak murni (*impurse*), ini akan membantu Anda untuk mengetahui kesalahan.
 
-For example, this impure updater function mutates an array in state:
+Sebagai contoh, fungsi pembaruan tidak murni ini mengubah sebuah senarai di dalam *state*:
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1257,7 +1257,7 @@ setTodos(prevTodos => {
 });
 ```
 
-Because React calls your updater function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](#updating-objects-and-arrays-in-state):
+Karena React memanggil fungsi pembaruan dua kali, Anda akan melihat *todo* ditambahkan dua kali, sehingga Anda akan tahu bahwa ada kesalahan. Dalam contoh ini, Anda dapat memperbaiki kesalahan dengan [mengganti senarai tersebut daripada memutasi](#updating-objects-and-arrays-in-state):
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1266,15 +1266,15 @@ setTodos(prevTodos => {
 });
 ```
 
-Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+Apabila fungsi pembaruan ini murni, memanggilnya beberapa kali tidak membuat perbedaan perilaku. Inilah mengapa React memanggilnya dua kali untuk membantu Anda menemukan kesalahan. **Hanya fungsi komponen, inisialisasi, dan pembaruan yang perlu bersifat murni.** *Event handler* tidak perlu murni, sehingga React tidak akan pernah memanggil *event handler* Anda dua kali.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Baca [menjaga komponen murni](/learn/keeping-components-pure) untuk belajar lebih lanjut.
 
 ---
 
-### I'm trying to set state to a function, but it gets called instead {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
+### Saya mencoba mengatur *state* ke sebuah fungsi, namun malah dipanggil {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
 
-You can't put a function into state like this:
+Anda tidak dapat mengoper sebuah fungsi ke dalam *state* seperti ini.:
 
 ```js
 const [fn, setFn] = useState(someFunction);
@@ -1284,7 +1284,8 @@ function handleClick() {
 }
 ```
 
-Because you're passing a function, React assumes that `someFunction` is an [initializer function](#avoiding-recreating-the-initial-state), and that `someOtherFunction` is an [updater function](#updating-state-based-on-the-previous-state), so it tries to call them and store the result. To actually *store* a function, you have to put `() =>` before them in both cases. Then React will store the functions you pass.
+Karena Anda mengoper sebuah fungsi, React menganggap bahwa `someFunction` adalah [fungsi inisialisasi](#avoiding-recreating-the-initial-state), dan bahwa `someOtherFunction` adalah [fungsi pembaruan](#updating-state-based-on-the-previous-state), sehingga mencoba memanggil mereka dan menyimpan hasilnya. Untuk *benar-benar* menyimpan fungsi, Anda harus menambahkan `() =>` sebelum keduanya. Kemudian React akan menyimpan fungsi yang Anda oper.
+
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);
