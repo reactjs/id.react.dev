@@ -4,7 +4,7 @@ title: "<select>"
 
 <Intro>
 
-[Komponen peramban (*browser*) bawaan `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)  memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
+[Komponen `<select>` bawaan peramban (*browser*)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)  memungkinkan anda untuk me-*render* sebuah kotak pilih (*select box*) dengan opsi.
 
 ```js
 <select>
@@ -23,7 +23,7 @@ title: "<select>"
 
 ### `<select>` {/*select*/}
 
-Untuk menampilkan kotak pilih (*select box*), *render* komponen [peramban (*browser*) bawaan `<select>`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
+Untuk menampilkan kotak pilih (*select box*), *render* komponen [`<select>` bawaan peramban (*browser*).](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
 
 ```js
 <select>
