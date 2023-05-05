@@ -76,11 +76,11 @@ Jika `<select>` Anda tidak terkontrol, Anda dapat memberikan *prop* `defaultValu
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Menampilkan kotak pilih (select box) dengan opsi {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+*Render* `<select>` dengan daftar komponen `<option>` di dalamnya untuk menampilkan sebuah kotak pilih (*select box*). Beri setiap `<opsi>` sebuah `nilai` yang mewakili data yang akan dikirimkan bersama formulir (*form*).
 
 <Sandpack>
 
@@ -88,11 +88,11 @@ Render a `<select>` with a list of `<option>` components inside to display a sel
 export default function FruitPicker() {
   return (
     <label>
-      Pick a fruit:
+      Pilih buah
       <select name="selectedFruit">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="orange">Orange</option>
+        <option value="apple">Apel</option>
+        <option value="banana">Pisang</option>
+        <option value="orange">Jeruk</option>
       </select>
     </label>
   );
