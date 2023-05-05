@@ -153,9 +153,9 @@ select { margin: 5px; }
 
 ---
 
-### Providing an initially selected option {/*providing-an-initially-selected-option*/}
+### Memberikan opsi awal yang dipilih {/*providing-an-initially-selected-option*/}
 
-By default, the browser will select the first `<option>` in the list. To select a different option by default, pass that `<option>`'s `value` as the `defaultValue` to the `<select>` element.
+Secara bawaan, peramban (*browser*) akan memilih `<opsi>` pertama dalam daftar. Untuk memilih opsi yang berbeda secara default, teruskan nilai `value` dari `<option>` tersebut sebagai `defaultValue` ke elemen `<select>`.
 
 <Sandpack>
 
@@ -163,7 +163,7 @@ By default, the browser will select the first `<option>` in the list. To select 
 export default function FruitPicker() {
   return (
     <label>
-      Pick a fruit:
+      Pilih buah:
       <select name="selectedFruit" defaultValue="orange">
         <option value="apple">Apel</option>
         <option value="banana">Pisang</option>
@@ -182,7 +182,7 @@ select { margin: 5px; }
 
 <Pitfall>
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+Tidak seperti di HTML, meneruskan atribut `selected` ke `<option>` individual tidak didukung.
 
 </Pitfall>
 
@@ -334,7 +334,7 @@ export default function FruitPicker() {
   return (
     <>
       <label>
-        Pick a fruit:
+        Pilih buah:
         <select
           value={selectedFruit}
           onChange={e => setSelectedFruit(e.target.value)}
