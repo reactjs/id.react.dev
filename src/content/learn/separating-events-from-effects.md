@@ -633,7 +633,7 @@ function Page({ url }) {
 }
 ```
 
-Kamu menggunakan `numberOfItems` di dalam Effect, sehingga linter meminta agar kamu menambahkannya sebagai salah satu dependensi. Namun, sebenarnya kamu *tidak ingin* memanggil `logVisit` secara reaktif terhadap `numberOfItems`. Jika pengguna menambahkan barang ke dalam keranjang belanja dan `numberOfItems` berubah, ini tidak berarti bahwa pengguna telah mengunjungi kembali halaman tersebut. Dalam artian lain, melakukan *kunjungan ke halaman* adalah suatu "peristiwa (_event_)" yang terjadi pada saat tertentu.
+Kita menggunakan `numberOfItems` di dalam Effect, sehingga linter meminta agar kita menambahkannya sebagai salah satu dependensi. Namun, sebenarnya kita *tidak ingin* memanggil `logVisit` secara reaktif terhadap `numberOfItems`. Jika pengguna menambahkan barang ke dalam keranjang belanja dan `numberOfItems` berubah, ini tidak berarti bahwa pengguna telah mengunjungi kembali halaman tersebut. Dalam artian lain, melakukan *kunjungan ke halaman* adalah suatu "peristiwa (_event_)" yang terjadi pada saat tertentu.
 
 Sebaiknya, pisahkan kode tersebut menjadi dua bagian:
 
@@ -653,7 +653,7 @@ function Page({ url }) {
 }
 ```
 
-Di sini, `onVisit` adalah suatu Effect Event. Kode di dalamnya tidak bersifat reaktif. Oleh karena itu, kta dapat menggunakan `numberOfItems` (atau reactive value lain!) tanpa khawatir mengakibatkan kode di sekitarnya dijalankan ulang saat terjadi perubahan.
+Di sini, `onVisit` adalah suatu Effect Event. Kode di dalamnya tidak bersifat reaktif. Oleh karena itu, kita dapat menggunakan `numberOfItems` (atau reactive value lain!) tanpa khawatir mengakibatkan kode di sekitarnya dijalankan ulang saat terjadi perubahan.
 
 Namun di sisi lain, Effect itu sendiri tetap bersifat reaktif. Kode di dalam Effect menggunakan prop `url`, sehingga Effect tersebut akan dijalankan ulang setelah setiap render dengan `url` yang berbeda. Hal ini pada akhirnya akan memanggil Effect Event `onVisit`.
 
@@ -685,9 +685,9 @@ Cara tersebut memang bisa dilakukan, tetapi sebaiknya kita memasukkan nilai `url
   }, [url]);
 ```
 
-Karena Effect Event kita secara eksplisit "meminta" nilai `visitedUrl`, maka sekarang kita tidak dapat secara tidak sengaja menghapus `url` dari dependensi Effect tersebut. Jika kamu menghapus `url` dari dependensi (dan menyebabkan penghitungan kunjungan halaman yang berbeda terhitung sebagai satu), maka linter akan memberikan peringatan. Kamu ingin `onVisit` berperilaku reaktif terhadap `url`, sehingga daripada membaca nilai `url` dari dalam (yang tidak bersifat reaktif), kamu _pass_ nilai url *dari* dalam Effect.
+Karena Effect Event kita secara eksplisit "meminta" nilai `visitedUrl`, maka sekarang kita tidak dapat secara tidak sengaja menghapus `url` dari dependensi Effect tersebut. Jika kita menghapus `url` dari dependensi (dan menyebabkan penghitungan kunjungan halaman yang berbeda terhitung sebagai satu), maka linter akan memberikan peringatan. Kita ingin `onVisit` berperilaku reaktif terhadap `url`, sehingga daripada membaca nilai `url` dari dalam (yang tidak bersifat reaktif), kita _pass_ nilai url *dari* dalam Effect.
 
-Hal ini menjadi semakin penting jika terdapat beberapa logika asinkron di dalam Efek tersebut:  
+Hal ini menjadi semakin penting jika terdapat beberapa logika asinkron di dalam Effect tersebut:
 
 ```js {6,8}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -727,11 +727,11 @@ function Page({ url }) {
 
 Setelah `useEffectEvent` menjadi bagian versi stabil dari React, kami merekomendasikan untuk tidak menonaktifkan linter.
 
-Kekurangan pertama dari menonaktifkan aturan tersebut adalah bahwa React tidak akan memberikan peringatan lagi ketika Effect yang kamu buat perlu "bereaksi" terhadap dependensi reaktif baru yang kamu tambahkan ke dalam kode. Pada contoh sebelumnya, kamu menambahkan `url` sebagai dependensi karena React mengingatkannya. Jika kamu menonaktifkan linter, secara otomatis tidak akan ada lagi pengingat yang sama untuk perubahan Effect tersebut ke depannya. Hal ini dapat menyebabkan terjadinya bug.
+Kekurangan pertama dari menonaktifkan aturan tersebut adalah bahwa React tidak akan memberikan peringatan lagi ketika Effect yang kamu buat perlu "bereaksi" terhadap dependensi reaktif baru yang kita tambahkan ke dalam kode. Pada contoh sebelumnya, kita menambahkan `url` sebagai dependensi karena React mengingatkannya. Jika kita menonaktifkan linter, secara otomatis tidak akan ada lagi pengingat yang sama untuk perubahan Effect tersebut ke depannya. Hal ini dapat menyebabkan terjadinya bug.
 
 Berikut ini contoh dari bug yang membingungkan yang terjadi karena penonaktifan linter. Pada contoh ini, fungsi `handleMove` seharusnya membaca nilai variabel state `canMove` yang terbaru untuk menentukan apakah titik harus mengikuti kursor atau tidak. Namun, `canMove` selalu bernilai `true` di dalam `handleMove`.
 
-Apakah kamu dapat melihat penyebabnya?
+Apakah kamu dapat menemukan penyebabnya?
 
 <Sandpack>
 
@@ -761,7 +761,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)}
         />
-        The dot is allowed to move
+        Titik bisa bergerak
       </label>
       <hr />
       <div style={{
@@ -841,7 +841,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)}
         />
-        The dot is allowed to move
+        Titik bisa bergerak
       </label>
       <hr />
       <div style={{
@@ -869,26 +869,26 @@ body {
 
 </Sandpack>
 
-Hal ini tidak berarti bahwa `useEffectEvent` *selalu* menjadi solusi yang tepat. Kamu hanya perlu menerapkannya pada baris kode yang tidak ingin bersifat reaktif. Di dalam sandbox di atas, kamu tidak ingin kode Effect bersifat reaktif terhadap `canMove`. Itulah sebabnya masuk akal untuk mengekstrak ke Effect Event.
+Hal ini tidak berarti bahwa `useEffectEvent` *selalu* menjadi solusi yang tepat. Kita hanya perlu menerapkannya pada baris kode yang tidak ingin bersifat reaktif. Di dalam sandbox di atas, kita tidak ingin kode Effect bersifat reaktif terhadap `canMove`. Itulah sebabnya masuk akal untuk mengekstrak ke Effect Event.
 
 Baca [Menghapus dependensi Effect](/learn/removing-effect-dependencies) untuk mengetahui alternatif lain yang tepat selain menonaktifkan linter.
 
 </DeepDive>
 
-### Limitations of Effect Events {/*limitations-of-effect-events*/}
+### Keterbatasan Effect Event {/*limitations-of-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Bagian ini menjelaskan **API eksperimental yang belum dirilis** dalam versi React yang stabil.
 
 </Wip>
 
-Effect Events are very limited in how you can use them:
+Effect Event memiliki keterbatasan sebagai berikut:
 
-* **Only call them from inside Effects.**
-* **Never pass them to other components or Hooks.**
+* **Kita hanya bisa memanggilnya dari dalam Effect.**
+* **Kita tidak boleh _pass_ Effect Event (sebagai argumen) ke komponen atau Hook lain.**
 
-For example, don't declare and pass an Effect Event like this:
+Sebagai contoh, jangan menggunakan Effect Event seperti ini:
 
 ```js {4-6,8}
 function Timer() {
@@ -898,7 +898,7 @@ function Timer() {
     setCount(count + 1);
   });
 
-  useTimer(onTick, 1000); // 🔴 Avoid: Passing Effect Events
+  useTimer(onTick, 1000); // 🔴 Hindari: Pass Effect Event
 
   return <h1>{count}</h1>
 }
@@ -911,11 +911,11 @@ function useTimer(callback, delay) {
     return () => {
       clearInterval(id);
     };
-  }, [delay, callback]); // Need to specify "callback" in dependencies
+  }, [delay, callback]); // Harus mendeklarasikan "callback" pada dependensi
 }
 ```
 
-Instead, always declare Effect Events directly next to the Effects that use them:
+Sebaliknya, selalu deklarasikan Effect Event di dekat Effect yang menggunakannya:
 
 ```js {10-12,16,21}
 function Timer() {
@@ -933,40 +933,40 @@ function useTimer(callback, delay) {
 
   useEffect(() => {
     const id = setInterval(() => {
-      onTick(); // ✅ Good: Only called locally inside an Effect
+      onTick(); // ✅ Bagus: Hanya dipanggil di dalam Effect
     }, delay);
     return () => {
       clearInterval(id);
     };
-  }, [delay]); // No need to specify "onTick" (an Effect Event) as a dependency
+  }, [delay]); // Tidak perlu mendeklarasikan "onTick" (Effect Event) sebagai dependensi
 }
 ```
 
-Effect Events are non-reactive "pieces" of your Effect code. They should be next to the Effect using them.
+Effect Event merupakan "bagian" yang tidak reaktif dari kode Effect. Effect Event harus dideklarasikan di dekat Effect yang menggunakannya.
 
 <Recap>
 
-- Event handlers run in response to specific interactions.
-- Effects run whenever synchronization is needed.
-- Logic inside event handlers is not reactive.
-- Logic inside Effects is reactive.
-- You can move non-reactive logic from Effects into Effect Events.
-- Only call Effect Events from inside Effects.
-- Don't pass Effect Events to other components or Hooks.
+- Event handler berjalan sebagai respons terhadap interaksi tertentu.
+- Effect berjalan ketika sinkronisasi diperlukan.
+- Logika di dalam event handler tidak bersifat reaktif.
+- Logika di dalam Effect bersifat reaktif.
+- Kita dapat memindahkan logika yang tidak bersifat reaktif dari Effect ke dalam Effect Event.
+- Hanya panggil Effect Event dari dalam Effect.
+- Jangan _pass_ Effect Event (sebagai argumen) ke dalam komponen atau Hook lain.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+#### Memperbaiki variabel yang tidak terupdate {/*fix-a-variable-that-doesnt-update*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
+Komponen `Timer` ini menyimpan variabel state `count` yang bertambah setiap satu detik. Nilai penambahan disimpan di dalam variabel state `increment`. Kamu dapat mengontrol variabel `increment` dengan tombol plus dan minus.
 
-However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
+Namun, tidak peduli berapa kali kamu menekan tombol plus, nilai `count` selalu bertambah satu setiap satu detik. Apa yang salah dengan kode ini? Mengapa `increment` selalu sama dengan `1` di dalam kode Efek? Cari kesalahan tersebut dan perbaiki.
 
 <Hint>
 
-To fix this code, it's enough to follow the rules.
+Untuk memperbaiki kode ini, hanya perlu mengikuti aturannya saja.
 
 </Hint>
 
@@ -997,7 +997,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Every second, increment by:
+        Setiap detik, nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1018,10 +1018,10 @@ button { margin: 10px; }
 </Sandpack>
 
 <Solution>
+  
+Sama seperti biasanya, jika kamu mencari bug di dalam Effect, mulailah dengan mencari comment yang menonaktifkan linter.
 
-As usual, when you're looking for bugs in Effects, start by searching for linter suppressions.
-
-If you remove the suppression comment, React will tell you that this Effect's code depends on `increment`, but you "lied" to React by claiming that this Effect does not depend on any reactive values (`[]`). Add `increment` to the dependency array:
+Jika kamu menghapus comment tersebut, React akan memberitahumu bahwa kode Effect ini bergantung pada nilai `increment`, tetapi kamu "berbohong" kepada React dengan mengatakan bahwa Effect tersebut tidak memiliki dependensi pada nilai reaktif manapun (`[]`). Tambahkan `increment` ke dalam array dependency:
 
 <Sandpack>
 
@@ -1049,7 +1049,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Every second, increment by:
+        Setiap detik, nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1069,19 +1069,19 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Now, when `increment` changes, React will re-synchronize your Effect, which will restart the interval.
+Sekarang, ketika nilai `increment` berubah, React akan mensinkronisasi kembali Effect, dan interval akan diulang kembali.
 
 </Solution>
 
-#### Fix a freezing counter {/*fix-a-freezing-counter*/}
+#### Memperbaiki counter yang hang {/*fix-a-freezing-counter*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
+Komponen `Timer` ini menyimpan variabel state `count` yang bertambah setiap satu detik. Nilai penambahan disimpan di dalam variabel state `increment`, yang dapat kamu kendalikan dengan tombol plus dan minus. Sebagai contoh, coba tekan tombol plus sembilan kali, dan perhatikan jika `count` sekarang bertambah sepuluh setiap satu detik daripada satu.
 
-There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
+Ada masalah kecil dengan antarmuka pengguna ini. Kamu mungkin melihatnya, jika kamu terus menekan tombol plus atau minus lebih cepat dari sekali dalam satu detik, timer tampaknya terhenti. Timer baru akan berjalan lagi setelah satu detik berlalu sejak terakhir kali kamu menekan tombol tersebut. Temukan penyebabnya dan perbaiki masalah sehingga timer berjalan *setiap detik* tanpa jeda.
 
 <Hint>
 
-It seems like the Effect which sets up the timer "reacts" to the `increment` value. Does the line that uses the current `increment` value in order to call `setCount` really need to be reactive?
+Tampaknya Effect yang mengatur timer "bereaksi" terhadap nilai `increment`. Apakah baris yang menggunakan nilai `increment` terbaru untuk memanggil `setCount` benar-benar perlu bersifat reaktif?
 
 </Hint>
 
@@ -1128,7 +1128,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Every second, increment by:
+        Setiap detik, nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1150,9 +1150,9 @@ button { margin: 10px; }
 
 <Solution>
 
-The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
+Masalahnya adalah kode di dalam Effect menggunakan variabel state `increment`. Karena itu menjadi sebuah dependensi dari Effect-mu, setiap kali terjadi perubahan pada variabel `increment`, Effect akan tereksekusi kembali, yang menyebabkan interval tersebut terhapus. Jika kamu terus menghapus interval sebelum sempat berjalan, maka timer akan terlihat terhenti.
 
-To solve the issue, extract an `onTick` Effect Event from the Effect:
+Untuk memperbaiki masalahnya, extract ke Effect Event `onTick` dari dalam Effect-mu:
 
 <Sandpack>
 
@@ -1201,7 +1201,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Every second, increment by:
+        Setiap detik, nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1222,17 +1222,17 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Since `onTick` is an Effect Event, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
+Karena `onTick` merupakan sebuah Effect Event, kode di dalamnya tidak bersifat reaktif. Perubahan pada `increment` tidak akan memicu Effect apapun.
 
 </Solution>
 
-#### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+#### Memperbaiki waktu jeda yang tidak dapat disesuaikan {/*fix-a-non-adjustable-delay*/}
 
-In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
+Pada contoh ini, kamu dapat menyesuaikan waktu jeda interval. Nilainya disimpan di dalam variabel state `delay` yang diperbarui oleh dua tombol. Namun, bahkan jika kamu menekan tombol "tambah 100 ms" beberapa kali sampai nilai delay menjadi 1000 milidetik (yakni satu detik), kamu akan melihat bahwa timer masih bertambah sangat cepat (setiap 100 ms). Seolah-olah perubahan dalam variabel delay diabaikan. Temukan dan perbaiki kesalahannya.
 
 <Hint>
 
-Code inside Effect Events is not reactive. Are there cases in which you would _want_ the `setInterval` call to re-run?
+Kode di dalam Effect Event tidak bersifat reaktif. Apakah ada kasus di mana kamu ingin memanggil `setInterval` kembali?
 
 </Hint>
 
@@ -1288,7 +1288,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Increment by:
+        Nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1298,7 +1298,7 @@ export default function Timer() {
         }}>+</button>
       </p>
       <p>
-        Increment delay:
+        Delay penambahan sebanyak:
         <button disabled={delay === 100} onClick={() => {
           setDelay(d => d - 100);
         }}>–100 ms</button>
@@ -1321,7 +1321,7 @@ button { margin: 10px; }
 
 <Solution>
 
-The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
+Masalah pada contoh di atas adalah kode mengekstrak sebuah Effect Event bernama `onMount` tanpa mempertimbangkan apa yang seharusnya dilakukan oleh kode tersebut. Kamu harus hanya mengekstrak Effect Event untuk alasan tertentu: ketika ingin membuat bagian dari kodemu bersifat tak reaktif. Namun, `setInterval` memang *harus* bersifat reaktif terhadap variabel state `delay`. Jika `delay` berubah, kamu ingin menyiapkan interval tersebut kembali dari awal! Untuk memperbaiki kode ini, letakkan semua kode yang bersifat reaktif di dalam Effect: 
 
 <Sandpack>
 
@@ -1371,7 +1371,7 @@ export default function Timer() {
       </h1>
       <hr />
       <p>
-        Increment by:
+        Nilai bertambah sebanyak:
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
@@ -1381,7 +1381,7 @@ export default function Timer() {
         }}>+</button>
       </p>
       <p>
-        Increment delay:
+        Delay penambahan sebanyak:
         <button disabled={delay === 100} onClick={() => {
           setDelay(d => d - 100);
         }}>–100 ms</button>
@@ -1401,7 +1401,7 @@ button { margin: 10px; }
 
 </Sandpack>
 
-In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Effect Events should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Effect Event names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Effect Events after *what the user thinks has happened,* not when some code happened to run.
+Pada umumnya, kamu harus meragukan fungsi seperti `onMount` yang berfokus pada *timing* daripada *tujuan* suatu dari bagian kode. Pada awalnya, hal tersebut mungkin terasa "lebih deskriptif", tetapi hal itu dapat menyembunyikan niatmu. Sebagai aturan praktis, Effect Event harus sesuai dengan sesuatu yang terjadi dari *perspektif pengguna.* Misalnya, `onMessage`, `onTick`, `onVisit`, atau `onConnected` adalah nama Effect Event yang baik. Kode di dalamnya mungkin tidak perlu bersifat reaktif. Di sisi lain, `onMount`, `onUpdate`, `onUnmount`, atau `onAfterRender` terlalu generik sehingga mudah untuk secara tidak sengaja menambahkan kode yang *harus* bersifat reaktif ke dalamnya. Oleh karena itu, kamu harus memberikan nama pada Effect Event dengan cara yang sesuai terhadap *apa yang pengguna pikirkan telah terjadi,* dan bukan pada saat kapan kode dijalankan.
 
 </Solution>
 
