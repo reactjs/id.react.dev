@@ -13,8 +13,8 @@ Event handler hanya akan tereksekusi ketika kita melakukan interaksi tertentu. B
 - Cara menentukan kapan menggunakan event handler atau Effect
 - Mengapa Effect bersifat reaktif, dan event handler tidak
 - Bagaimana cara kita membuat beberapa bagian dari kode Effect agar tidak reaktif
-- Apa yang dimaksud Effect Events, dan bagaimana cara kita menggunakannya di Effect
-- Cara membaca nilai props dan state dari Effects menggunakan Effect Events
+- Apa yang dimaksud Effect Event, dan bagaimana cara kita menggunakannya di Effect
+- Cara membaca nilai props dan state dari Effect menggunakan Effect Event
 
 </YouWillLearn>
 
@@ -31,7 +31,7 @@ Setelah kita mengimplementasikan kode untuk kebutuhan tersebut, mungkin akan tim
 
 ### Event handler tereksekusi karena interaksi tertentu {/*event-handlers-run-in-response-to-specific-interactions*/}
 
-Dari sudut pandang pengguna, pengiriman pesan harus terjadi karena tombol "Kirim" tertentu diklik. Pengguna akan agak kesal jika kita mengirim pesan mereka di waktu lain atau karena alasan lain. Inilah sebabnya mengapa mengirim pesan harus menjadi event handler. Event handler memungkinkan Anda menangani interaksi tertentu:
+Dari sudut pandang pengguna, pengiriman pesan harus terjadi karena tombol "Kirim" tertentu diklik. Pengguna akan agak kesal jika kita mengirim pesan mereka di waktu lain atau karena alasan lain. Inilah sebabnya mengapa mengirim pesan harus menjadi event handler. Event handler memungkinkan kita menangani interaksi tertentu:
 
 ```js {4-6}
 function ChatRoom({ roomId }) {
@@ -156,7 +156,7 @@ input, select { margin-right: 20px; }
 
 ## Nilai reaktif dan logika reaktif {/*reactive-values-and-reactive-logic*/}
 
-Secara intuitif, kita bisa mengatakan bahwa event handler selalu dipicu "secara manual", misalnya dengan mengklik sebuah tombol. Sementara itu, Effects berjalan "secara otomatis". Mereka berjalan dan berjalan kembali sesering yang diperlukan untuk memastikan sinkronisasi tetap terjaga.
+Secara intuitif, kita bisa mengatakan bahwa event handler selalu dipicu "secara manual", misalnya dengan mengklik sebuah tombol. Sementara itu, Effect berjalan "secara otomatis". Mereka berjalan dan berjalan kembali sesering yang diperlukan untuk memastikan sinkronisasi tetap terjaga.
 
 Namun, ada cara yang lebih tepat untuk memikirkan perbedaan antara keduanya. 
 
@@ -174,8 +174,8 @@ function ChatRoom({ roomId }) {
 
 Nilai reaktif seperti ini dapat berubah karena rendering ulang suatu komponen. Misalnya, pengguna dapat melakukan beberapa tindakan, seperti mengedit `message` atau memilih `roomId` yang berbeda di menu drop-down. Event handler dan Effect merespon perubahan tersebut dengan cara yang berbeda:
 
-- **Logika di dalam event handler bersifat *non-reaktif.*** Ketika sebuah event handler dijalankan (mengikuti tindakan pengguna seperti klik), mereka membaca nilai reaktif tanpa bereaksi terhadap perubahannya. Artinya, jika Anda ingin event handler membaca suatu nilai reaktif, mereka tidak akan merespon ketika nilainya berubah kecuali tindakan pengguna yang sama kembali dijalankan.
-- **Logika di dalam Effect bersifat *reaktif.*** Jika Anda menggunakan Effects untuk membaca nilai reaktif, Anda harus [mendeklarasikannya sebagai salah satu dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Kemudian jika render ulang menyebabkan nilai tersebut berubah, React akan menjalankan kembali logika Effect Anda dengan nilai yang baru, sehingga memastikan sinkronisasi data terjaga. 
+- **Logika di dalam event handler bersifat *non-reaktif.*** Ketika sebuah event handler dijalankan (mengikuti tindakan pengguna seperti klik), mereka membaca nilai reaktif tanpa bereaksi terhadap perubahannya. Artinya, jika kita ingin event handler membaca suatu nilai reaktif, mereka tidak akan merespon ketika nilainya berubah kecuali tindakan pengguna yang sama kembali dijalankan.
+- **Logika di dalam Effect bersifat *reaktif.*** Jika kita menggunakan Effect untuk membaca nilai reaktif, kita harus [mendeklarasikannya sebagai salah satu dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Kemudian jika render ulang menyebabkan nilai tersebut berubah, React akan menjalankan kembali logika Effect dengan nilai yang baru, sehingga memastikan sinkronisasi data terjaga. 
 
 Mari kita lihat kembali contoh sebelumnya untuk mengilustrasikan perbedaan ini.
 
@@ -420,7 +420,7 @@ function ChatRoom({ roomId, theme }) {
 
 Disini, `onConnected` disebut dengan *Effect Event.* Meskipun merupakan bagian dari logika Effect, namun mempunyai sifat seperti event handler. Logika di dalamnya tidak reaktif, dan selalu memperhatikan nilai terbaru dari props dan state.
 
-Sekarang Anda dapat memanggil Effect Event `onConnected` dari dalam Effect:
+Sekarang kita dapat memanggil Effect Event `onConnected` dari dalam Effect:
 
 ```js {2-4,9,13}
 function ChatRoom({ roomId, theme }) {
@@ -439,7 +439,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Masalah terpecahkan.  Perhatikan bahwa Anda harus *menghapus* `onConnected` dari daftar dependensi Effect. **Effect Event tidak reaktif dan harus dihilangkan dari dependensi.**
+Masalah terpecahkan.  Perhatikan bahwa kita harus *menghapus* `onConnected` dari daftar dependensi Effect. **Effect Event tidak reaktif dan harus dihilangkan dari dependensi.**
 
 Pastikan bahwa program baru berfungsi seperti yang kita harapkan:
 
@@ -574,7 +574,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Anda dapat menganggap Effect Event sangat mirip dengan event handler. Perbedaan utamanya adalah event handler dijalankan sebagai respons terhadap interaksi pengguna, sedangkan Effect Event dipicu oleh Anda dari Effect. Effect Event memungkinkan kita "memutus rantai" antara reaktivitas Effect dan kode yang seharusnya tidak reaktif.
+Kita dapat menganggap Effect Event sangat mirip dengan event handler. Perbedaan utamanya adalah event handler dijalankan sebagai respons terhadap interaksi pengguna, sedangkan Effect Event dipicu oleh Anda dari Effect. Effect Event memungkinkan kita "memutus rantai" antara reaktivitas Effect dan kode yang seharusnya tidak reaktif.
 
 ### Membaca props dan state terbaru dengan Effect Event {/*reading-latest-props-and-state-with-effect-events*/}
 
@@ -727,7 +727,7 @@ function Page({ url }) {
 
 Setelah `useEffectEvent` menjadi bagian versi stabil dari React, kami merekomendasikan untuk tidak menonaktifkan linter.
 
-Kekurangan pertama dari menonaktifkan aturan tersebut adalah bahwa React tidak akan memberikan peringatan lagi ketika Effect yang kamu buat perlu "bereaksi" terhadap dependensi reaktif baru yang kita tambahkan ke dalam kode. Pada contoh sebelumnya, kita menambahkan `url` sebagai dependensi karena React mengingatkannya. Jika kita menonaktifkan linter, secara otomatis tidak akan ada lagi pengingat yang sama untuk perubahan Effect tersebut ke depannya. Hal ini dapat menyebabkan terjadinya bug.
+Kekurangan pertama dari menonaktifkan aturan tersebut adalah bahwa React tidak akan memberikan peringatan lagi ketika Effect yang kita buat perlu "bereaksi" terhadap dependensi reaktif baru yang kita tambahkan ke dalam kode. Pada contoh sebelumnya, kita menambahkan `url` sebagai dependensi karena React mengingatkannya. Jika kita menonaktifkan linter, secara otomatis tidak akan ada lagi pengingat yang sama untuk perubahan Effect tersebut ke depannya. Hal ini dapat menyebabkan terjadinya bug.
 
 Berikut ini contoh dari bug yang membingungkan yang terjadi karena penonaktifan linter. Pada contoh ini, fungsi `handleMove` seharusnya membaca nilai variabel state `canMove` yang terbaru untuk menentukan apakah titik harus mengikuti kursor atau tidak. Namun, `canMove` selalu bernilai `true` di dalam `handleMove`.
 
@@ -789,13 +789,13 @@ body {
 
 </Sandpack>
 
-Masalah pada kode tersebut terletak pada penonaktifan lint dependency. Jika kamu menghapus penonaktifannya, maka kamu akan melihat bahwa Effect tersebut harus membutuhkan fungsi `handleMove` sebagai dependensi. Hal ini masuk akal, karena `handleMove` dideklarasikan di dalam badan komponen, yang membuatnya menjadi sebuah nilai reaktif. Setiap nilai reaktif harus dijadikan dependensi, jika tidak, maka nilai tersebut berpotensi menjadi usang dari waktu ke waktu!
+Masalah pada kode tersebut terletak pada penonaktifan lint dependency. Jika kita hapus penonaktifannya, maka kita akan melihat bahwa Effect tersebut harus membutuhkan fungsi `handleMove` sebagai dependensi. Hal ini masuk akal, karena `handleMove` dideklarasikan di dalam badan komponen, yang membuatnya menjadi sebuah nilai reaktif. Setiap nilai reaktif harus dijadikan dependensi, jika tidak, maka nilai tersebut berpotensi menjadi usang dari waktu ke waktu!
 
 Penulis kode tersebut "membohongi" React dengan mengatakan bahwa Effect tersebut tidak memiliki dependensi (`[]`) pada nilai yang reaktif. Inilah yang menyebabkan React tidak mensinkronisasikan kembali Effect tersebut setelah terjadinya perubahan pada `canMove` (dan `handleMove`). Karena React tidak mensinkronisasikan kembali Effect tersebut, maka `handleMove` yang digunakan sebagai listener adalah fungsi `handleMove` yang dibuat selama render awal. Selama render awal, `canMove` bernilai `true`, itulah sebabnya fungsi `handleMove` dari render awal akan selalu melihat nilai tersebut.
 
-**Dengan tidak pernah menonaktifkan linter dependency, kamu tidak akan pernah mengalami masalah dengan nilai yang usang.**
+**Dengan tidak pernah menonaktifkan linter dependency, kita tidak akan pernah mengalami masalah dengan nilai yang usang.**
 
-Dengan `useEffectEvent`, tidak perlu "berbohong" pada linter, dan kode dapat bekerja sesuai dengan yang kamu harapkan:
+Dengan `useEffectEvent`, tidak perlu "berbohong" pada linter, dan kode dapat bekerja sesuai dengan yang kita harapkan:
 
 <Sandpack>
 
