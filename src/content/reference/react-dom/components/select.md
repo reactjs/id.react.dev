@@ -188,9 +188,9 @@ Tidak seperti di HTML, meneruskan atribut `selected` ke `<option>` individual ti
 
 ---
 
-### Enabling multiple selection {/*enabling-multiple-selection*/}
+### Mengaktifkan banyak pilihan {/*enabling-multiple-selection*/}
 
-Pass `multiple={true}` to the `<select>` to let the user select multiple options. In that case, if you also specify `defaultValue` to choose the initially selected options, it must be an array.
+Berikan `multiple={true}` ke `<select>` agar pengguna dapat memilih beberapa opsi. Dalam hal ini, jika Anda juga menentukan `defaultValue` untuk menentukan opsi awal yang dipilih, maka harus dalam bentuk senarai (*array*).
 
 <Sandpack>
 
@@ -198,7 +198,7 @@ Pass `multiple={true}` to the `<select>` to let the user select multiple options
 export default function FruitPicker() {
   return (
     <label>
-      Pick some fruits:
+      Pilih beberapa buah:
       <select
         name="selectedFruit"
         defaultValue={['orange', 'banana']}
