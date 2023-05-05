@@ -1405,17 +1405,17 @@ Pada umumnya, kamu harus meragukan fungsi seperti `onMount` yang berfokus pada *
 
 </Solution>
 
-#### Fix a delayed notification {/*fix-a-delayed-notification*/}
+#### Memperbaiki notifikasi yang terlambat {/*fix-a-delayed-notification*/}
 
-When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
+Ketika kamu bergabung dengan _chat room_, komponen ini menampilkan notifikasi. Namun, notifikasi tersebut tidak ditampilkan secara langsung. Sebaliknya, notifikasi tertunda selama dua detik agar pengguna memiliki kesempatan untuk melihat-lihat UI.
 
-This almost works, but there is a bug. Try changing the dropdown from "general" to "travel" and then to "music" very quickly. If you do it fast enough, you will see two notifications (as expected!) but they will *both* say "Welcome to music".
+Ini hampir berhasil, tetapi terdapat bug. Cobalah untuk mengubah dropdown dari "general" menjadi "travel" kemudian ke "music" dengan sangat cepat. Jika kamu melakukannya dengan cepat, kamu akan melihat dua notifikasi (seperti yang diharapkan!) tetapi *keduanya* akan mengatakan "Selamat Datang di music".
 
-Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music". (For an additional challenge, assuming you've *already* made the notifications show the correct rooms, change the code so that only the latter notification is displayed.)
+Perbaikilah, sehingga ketika kamu beralih dari "general" ke "travel" dan kemudian ke "music" dengan sangat cepat, kamu akan melihat dua notifikasi, yang pertama adalah "Selamat datang di travel" dan yang kedua adalah "Selamat datang di music". (Untuk tantangan tambahan, jika kamu *sudah* membuat notifikasi agar menampilkan ruangan yang tepat, ubahlah kode agar hanya notifikasi terakhir yang ditampilkan.)
 
 <Hint>
 
-Your Effect knows which room it connected to. Is there any information that you might want to pass to your Effect Event?
+Effect-mu mengetahui ruangan mana yang terhubung. Adakah informasi yang mungkin ingin kamu _pass_ ke dalam Effect Event-mu?
 
 </Hint>
 
@@ -1448,7 +1448,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Welcome to ' + roomId, theme);
+    showNotification('Selamat datang di ' + roomId, theme);
   });
 
   useEffect(() => {
@@ -1462,7 +1462,7 @@ function ChatRoom({ roomId, theme }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Selamat datang di room {roomId}!</h1>
 }
 
 export default function App() {
@@ -1471,7 +1471,7 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
@@ -1487,7 +1487,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan dark theme
       </label>
       <hr />
       <ChatRoom
@@ -1501,7 +1501,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
   let timeout;
   return {
@@ -1554,11 +1554,11 @@ label { display: block; margin-top: 10px; }
 
 <Solution>
 
-Inside your Effect Event, `roomId` is the value *at the time Effect Event was called.*
+Di dalam Effect Event-mu, `roomId` adalah nilai *pada saat Effect Event dipanggil.*
 
-Your Effect Event is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
+Effect Event-mu dipanggil dengan jeda dua detik. Jika kamu dengan cepat beralih dari ruangan travel ke ruangan music, pada saat notifikasi ruangan travel ditampilkan, `roomId` sudah menjadi "music". Inilah alasan mengapa kedua notifikasi akan mengatakan "Selamat Datang di music".
 
-To fix the issue, instead of reading the *latest* `roomId` inside the Effect Event, make it a parameter of your Effect Event, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
+Untuk memperbaiki masalahnya, ketimbang membaca nilai `roomId` *terbaru* di dalam Effect Event-mu, jadikan `roomId` sebagai parameter dari Effect Event-mu, seperti `connectedRoomId` di bawah ini. Lalu _pass_ `roomId` dari Effect dengan memanggil `onConnected(roomId)`:
 
 <Sandpack>
 
@@ -1589,7 +1589,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(connectedRoomId => {
-    showNotification('Welcome to ' + connectedRoomId, theme);
+    showNotification('Selamat Datang di ' + connectedRoomId, theme);
   });
 
   useEffect(() => {
@@ -1603,7 +1603,7 @@ function ChatRoom({ roomId, theme }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Selamat datang di room {roomId}!</h1>
 }
 
 export default function App() {
@@ -1612,7 +1612,7 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
@@ -1628,7 +1628,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan dark theme
       </label>
       <hr />
       <ChatRoom
@@ -1642,7 +1642,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
   let timeout;
   return {
@@ -1693,9 +1693,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"` room) will show the notification for `"travel"`. The Effect that had `roomId` set to `"music"` (so it connected to the `"music"` room) will show the notification for `"music"`. In other words, `connectedRoomId` comes from your Effect (which is reactive), while `theme` always uses the latest value.
+Effect yang menghubungkan ke ruangan `"travel"` (sehingga mengubah nilai `roomId` menjadi `"travel"`) akan menampilkan notifikasi untuk ruangan `"travel"`. Efek yang menghubungkan ke ruangan `"music"` (sehingga mengubah nilai `roomId` menjadi `"music"`) akan menampilkan notifikasi untuk ruangan `"music"`. Dengan kata lain, `connectedRoomId` berasal dari Effect-mu (yang bersifat reaktif), sedangkan `theme` selalu menggunakan nilai terbaru.
 
-To solve the additional challenge, save the notification timeout ID and clear it in the cleanup function of your Effect:
+Untuk menyelesaikan tantangan tambahan, simpan ID timeout notifikasi dan bersihkan di dalam fungsi cleanup Effect-mu:
 
 <Sandpack>
 
@@ -1726,7 +1726,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(connectedRoomId => {
-    showNotification('Welcome to ' + connectedRoomId, theme);
+    showNotification('Selamat Datang di ' + connectedRoomId, theme);
   });
 
   useEffect(() => {
@@ -1746,7 +1746,7 @@ function ChatRoom({ roomId, theme }) {
     };
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Selamat datang di room {roomId}!</h1>
 }
 
 export default function App() {
@@ -1755,7 +1755,7 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Pilih chat room:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
@@ -1771,7 +1771,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Gunakan dark theme
       </label>
       <hr />
       <ChatRoom
@@ -1785,7 +1785,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi sesungguhnya akan menggunakan koneksi server
   let connectedCallback;
   let timeout;
   return {
@@ -1836,7 +1836,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This ensures that already scheduled (but not yet displayed) notifications get cancelled when you change rooms.
+Langkah ini memastikan bahwa pemberitahuan yang sudah dijadwalkan (namun belum ditampilkan) akan dibatalkan ketika kamu mengubah ruangan.
 
 </Solution>
 
