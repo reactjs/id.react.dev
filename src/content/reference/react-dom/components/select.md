@@ -292,26 +292,26 @@ Jika Anda menggunakan `<select multiple={true}>`, [`FormData`](https://developer
 
 <Pitfall>
 
-Secara default, *setiap* `<button>` di dalam `<form>` akan mengirimkannya. Hal ini dapat mengejutkan! Jika Anda memiliki komponen React `Button` khusus Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input /button) bukan `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan formulir (*form*).
+Secara bawaan, *setiap* `<button>` di dalam `<form>` akan mengirimkannya. Hal ini dapat mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input /button) bukan `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan formulir (*form*).
 
 </Pitfall>
 
 ---
 
-### Controlling a select box with a state variable {/*controlling-a-select-box-with-a-state-variable*/}
+### Mengontrol kotak pilih (select box) dengan variabel status {/*controlling-a-select-box-with-a-state-variable*/}
 
-A select box like `<select />` is *uncontrolled.* Even if you [pass an initially selected value](#providing-an-initially-selected-option) like `<select defaultValue="orange" />`, your JSX only specifies the initial value, not the value right now.
+Kotak pilih (*select box*) seperti `<select/>` *tidak terkontrol*. Bahkan jika Anda [memberikan nilai awal yang terpilih](#providing-an-initially-selected-option) seperti `<select defaultValue="orange">`, JSX Anda hanya menentukan nilai awal, bukan nilai saat ini.
 
-**To render a _controlled_ select box, pass the `value` prop to it.** React will force the select box to always have the `value` you passed. Typically, you will control a select box by declaring a [state variable:](/reference/react/useState)
+**Untuk me-*render* kotak pilih _controlled_, berikan *prop* `value` padanya.** React akan memaksa kotak pilih (*select box*) untuk selalu mempunyai nilai `value` yang Anda berikan. Biasanya, Anda akan mengrontrol kotak pilih (*select box*) dengan mendeklarasikan [variabel *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function FruitPicker() {
-  const [selectedFruit, setSelectedFruit] = useState('orange'); // Declare a state variable...
+  const [selectedFruit, setSelectedFruit] = useState('orange'); // Deklarasikan variabel state...
   // ...
   return (
     <select
-      value={selectedFruit} // ...force the select's value to match the state variable...
-      onChange={e => setSelectedFruit(e.target.value)} // ... and update the state variable on any change!
+      value={selectedFruit} // ...memaksa nilai select agar cocok dengan variabel state...
+      onChange={e => setSelectedFruit(e.target.value)} // ... dan memperbarui variabel state pada setiap perubahan!
     >
       <option value="apple">Apel</option>
       <option value="banana">Pisang</option>
@@ -321,7 +321,7 @@ function FruitPicker() {
 }
 ```
 
-This is useful if you want to re-render some part of the UI in response to every selection.
+Hal ini berguna jika Anda ingin me-*render* ulang beberapa bagian UI sebagai respons terhadap setiap pilihan.
 
 <Sandpack>
 
@@ -346,7 +346,7 @@ export default function FruitPicker() {
       </label>
       <hr />
       <label>
-        Pick all your favorite vegetables:
+        Pilih semua sayur kesukaan Anda:
         <select
           multiple={true}
           value={selectedVegs}
@@ -362,8 +362,8 @@ export default function FruitPicker() {
         </select>
       </label>
       <hr />
-      <p>Your favorite fruit: {selectedFruit}</p>
-      <p>Your favorite vegetables: {selectedVegs.join(', ')}</p>
+      <p>Buah kesukaan Anda: {selectedFruit}</p>
+      <p>Sayur kesukaan Anda: {selectedVegs.join(', ')}</p>
     </>
   );
 }
@@ -377,8 +377,8 @@ select { margin-bottom: 10px; display: block; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to select an option.** When you control a select box by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the select box after every keystroke back to the `value` that you specified.
+**Jika Anda memberikan nilai `value` tanpa `onChange`, maka tidak akan mungkin untuk memilih opsi.**. Ketika Anda mengontrol sebuah kotak pilih (*select box*) dengan memberikan sebuah nilai `value`, Anda *memaksa* kotak tersebut untuk selalu memiliki nilai yang Anda berikan. Jadi, jika Anda memberikan variabel *state* sebagai nilai dari `value` tetapi lupa memperbarui variabel *state* secara sinkron selama *event handler* `onChange`, React akan mengembalikan kotak pilih (*select box*) ke nilai `value` yang Anda tentukan setelah setiap penekanan tombol
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+Berbeda dengan HTML, memberikan atribut selected ke <option> individual tidak didukung.
 
 </Pitfall>
