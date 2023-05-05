@@ -221,34 +221,34 @@ select { display: block; margin-top: 10px; width: 200px; }
 
 ---
 
-### Reading the select box value when submitting a form {/*reading-the-select-box-value-when-submitting-a-form*/}
+### Membaca nilai kotak pilih saat mengirimkan formulir {/*reading-the-select-box-value-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your select box with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Tambahkan [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) di sekitar kotak pilih (*select box*) Anda dengan [`<button type="submit"> `](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil *event handler* `<form onSubmit>` Anda. Secara bawaan, peramban (*browser*) akan mengirimkan data formulir (*form data*) ke URL yang sedang digunakan dan menyegarkan (*refresh*) halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data formulir (*form data*) dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
 export default function EditPost() {
   function handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    // Mencegah peramban (browser) memuat ulang halaman
     e.preventDefault();
-    // Read the form data
+    // Baca data formulir (form data)
     const form = e.target;
     const formData = new FormData(form);
-    // You can pass formData as a fetch body directly:
+    // Anda dapat meneruskan formData sebagai badan pengambilan (fetch body) secara langsung:
     fetch('/some-api', { method: form.method, body: formData });
-    // You can generate a URL out of it, as the browser does by default:
+    // Anda dapat membuat URL darinya, seperti yang dilakukan peramban (browser) secara bawaan:
     console.log(new URLSearchParams(formData).toString());
-    // You can work with it as a plain object.
+    // Anda dapat menggunakannya sebagai objek biasa.
     const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson); // (!) This doesn't include multiple select values
-    // Or you can get an array of name-value pairs.
+    console.log(formJson); // (!) Tidak termasuk beberapa nilai pilihan
+    // Atau Anda bisa mendapatkan senarai (array) pasangan nama-nilai.
     console.log([...formData.entries()]);
   }
 
   return (
     <form method="post" onSubmit={handleSubmit}>
       <label>
-        Pick your favorite fruit:
+        Pilih buah kesukaan Anda:
         <select name="selectedFruit" defaultValue="orange">
           <option value="apple">Apel</option>
           <option value="banana">Pisang</option>
@@ -256,7 +256,7 @@ export default function EditPost() {
         </select>
       </label>
       <label>
-        Pick all your favorite vegetables:
+        Pilih semua sayur kesukaan Anda:
         <select
           name="selectedVegetables"
           multiple={true}
@@ -269,7 +269,7 @@ export default function EditPost() {
       </label>
       <hr />
       <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -284,15 +284,15 @@ label { margin-bottom: 20px; }
 
 <Note>
 
-Give a `name` to your `<select>`, for example `<select name="selectedFruit" />`. The `name` you specified will be used as a key in the form data, for example `{ selectedFruit: "orange" }`.
+Berikan nilai `name` ke `<select>` Anda, misalnya `<select name="selectedFruit" />`. `name` yang Anda tentukan akan digunakan sebagai kunci dalam data formulir (*form data*), misalnya `{ selectedFruit: "orange" }`.
 
-If you use `<select multiple={true}>`, the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) you'll read from the form will include each selected value as a separate name-value pair. Look closely at the console logs in the example above.
+Jika Anda menggunakan `<select multiple={true}>`, [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) yang akan Anda baca dari formulir (*form*) akan menyertakan setiap nilai yang dipilih sebagai pasangan nama-nilai yang terpisah. Perhatikan baik-baik log konsol pada contoh di atas.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Secara default, *setiap* `<button>` di dalam `<form>` akan mengirimkannya. Hal ini dapat mengejutkan! Jika Anda memiliki komponen React `Button` khusus Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input /button) bukan `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan formulir (*form*).
 
 </Pitfall>
 
