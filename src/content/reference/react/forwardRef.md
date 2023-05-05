@@ -4,7 +4,7 @@ title: forwardRef
 
 <Intro>
 
-`forwardRef` memungkinkan Anda mengekspos sebuah *DOM node* sebagai sebuah [ref](/learn/manipulating-the-dom-with-refs) kepada induknya.
+`forwardRef` memungkinkan Anda mengekspos sebuah simpul DOM sebagai sebuah [ref](/learn/manipulating-the-dom-with-refs) kepada induknya.
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -32,11 +32,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 [Lihat contoh lainnya di bawah ini.] (#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `render`: Fungsi *render* untuk komponen Anda. React memanggil fungsi ini dengan *props* dan `ref` yang diterima komponen Anda dari induknya. JSX yang Anda kembalikan akan menjadi keluaran dari komponen Anda.
 
-#### Mengembalikan {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `forwardRef` mengembalikan komponen React yang dapat Anda *render* di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` juga dapat menerima *prop* `ref`.
 
@@ -62,13 +62,13 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### Parameter {/*render-parameters*/}
 
 * `props`: *props* yang dioperkan oleh komponen induk.
 
 * `ref`: Atribut `ref` yang dioper oleh komponen induk. `ref` dapat berupa objek atau fungsi. Jika komponen induk tidak mengoper *ref*, maka akan menjadi `null`. Anda harus mengoper `ref` yang Anda terima ke komponen lain, atau mengopernya ke [`useImperativeHandle`.](/reference/react/useImperativeHandle)
 
-#### Returns {/*render-returns*/}
+#### Kembalian {/*render-returns*/}
 
 `forwardRef` mengembalikan komponen React yang dapat Anda *render* di JSX. Tidak seperti komponen React yang didefinisikan sebagai fungsi biasa, komponen yang dikembalikan oleh `forwardRef` dapat mengambil sebuah *prop* `ref`.
 
@@ -76,9 +76,9 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ## Penggunaan {/*usage*/}
 
-### Mengekspos DOM node ke komponen induk {/*exposing-a-dom-node-to-the-parent-component*/}
+### Mengekspos sebuah simpul DOM ke komponen induk {/*exposing-a-dom-node-to-the-parent-component*/}
 
-Secara *default*, setiap *DOM nodes* komponen bersifat privat. Namun, terkadang berguna untuk mengekspos *DOM node* ke induknya - misalnya, untuk memungkinkan pemfokusan. Untuk ikut serta, bungkus definisi komponen Anda ke dalam `forwardRef()`:
+Secara *default*, simpul-simpul DOM dari setiap komponen bersifat privat. Namun, terkadang berguna untuk mengekspos simpul DOM ke induknya - misalnya, untuk memungkinkan pemfokusan. Untuk ikut serta, bungkus definisi komponen Anda ke dalam `forwardRef()`:
 
 ```js {3,11}
 import { forwardRef } from 'react';
@@ -94,7 +94,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Anda akan menerima <CodeStep step={1}>ref</CodeStep> sebagai argumen kedua setelah props. Berikan ke *DOM node* yang ingin Anda ekspos:
+Anda akan menerima <CodeStep step={1}>ref</CodeStep> sebagai argumen kedua setelah props. Berikan ke simpul DOM yang ingin Anda ekspos:
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -131,9 +131,9 @@ function Form() {
 }
 ```
 
-Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya, komponen `Form` dapat mengakses *DOM node* `<input>` tersebut dan memanggil fungsi [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) di atasnya.
+Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya, komponen `Form` dapat mengakses simpul DOM `<input>` tersebut dan memanggil fungsi [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) di atasnya.
 
-Perlu diingat bahwa mengekspos *ref* ke *DOM node* di dalam komponen Anda akan mempersulit untuk mengubah internal komponen Anda di kemudian hari. Anda biasanya akan mengekspos *DOM node* dari komponen tingkat rendah yang dapat digunakan kembali seperti tombol atau input teks, tetapi Anda tidak akan melakukannya untuk komponen tingkat aplikasi seperti avatar atau komentar.
+Perlu diingat bahwa mengekspos *ref* ke simpul DOM di dalam komponen Anda akan mempersulit untuk mengubah internal komponen Anda di kemudian hari. Anda biasanya akan mengekspos simpul DOM dari komponen tingkat rendah yang dapat digunakan kembali seperti tombol atau input teks, tetapi Anda tidak akan melakukannya untuk komponen tingkat aplikasi seperti avatar atau komentar.
 
 
 <Recipes title="Examples of forwarding a ref">
@@ -194,7 +194,7 @@ input {
 
 #### Memutar dan menjeda video {/*playing-and-pausing-a-video*/}
 
-Mengeklik tombol akan memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada *DOM node* `<video>`. Komponen `Aplikasi` mendefinisikan sebuah ref dan meneruskannya ke komponen `MyVideoPlayer`. Komponen `MyVideoPlayer` meneruskan *ref* tersebut ke *node* `<video>` pada peramban. Hal ini memungkinkan komponen `Aplikasi` memainkan dan menjeda `<video>`.
+Mengeklik tombol akan memanggil [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) pada simpul DOM `<video>`. Komponen `Aplikasi` mendefinisikan sebuah *ref* dan meneruskannya ke komponen `MyVideoPlayer`. Komponen `MyVideoPlayer` meneruskan *ref* tersebut ke simpul `<video>` pada peramban. Hal ini memungkinkan komponen `Aplikasi` memainkan dan menjeda `<video>`.
 
 <Sandpack>
 
@@ -367,9 +367,9 @@ input, button {
 
 ---
 
-### Mengekspos penanganan imperatif daripada DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### Mengekspos penanganan imperatif alih-alih sebuah simpul DOM {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
 
-Daripada mengekspos seluruh *DOM node*, Anda dapat mengekspos objek khusus, yang disebut *imperative handle,* dengan sekumpulan metode yang lebih terbatas. Untuk melakukan ini, Anda harus mendefinisikan *ref* terpisah untuk menampung *DOM node*:
+Daripada mengekspos seluruh simpul DOM, Anda dapat mengekspos objek khusus, yang disebut penanganan imperatif (*imperative handle*), dengan sekumpulan *methods* yang lebih terbatas. Untuk melakukan ini, Anda harus mendefinisikan *ref* terpisah untuk menampung *DOM node*:
 
 
 ```js {2,6}
@@ -405,7 +405,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Jika beberapa komponen mendapatkan referensi ke `MyInput`, komponen tersebut hanya akan menerima objek `{ focus, scrollIntoView }`, bukan *DOM node*. Hal ini memungkinkan Anda membatasi informasi yang Anda paparkan tentang *DOM node* seminimal mungkin.
+Jika beberapa komponen mendapatkan referensi ke `MyInput`, komponen tersebut hanya akan menerima objek `{ focus, scrollIntoView }`, bukan simpul DOM. Hal ini memungkinkan Anda membatasi informasi yang Anda paparkan tentang simpul DOM seminimal mungkin.
 
 <Sandpack>
 
@@ -468,9 +468,9 @@ input {
 
 <Pitfall>
 
-**Jangan terlalu sering menggunakan refs.** Anda hanya boleh menggunakan *refs* untuk perilaku *imperatif* yang tidak dapat Anda ungkapkan sebagai *props*: misalnya, menggulir ke sebuah *node*, memfokuskan sebuah *node*, memicu sebuah animasi, memilih teks, dan sebagainya.
+**Jangan terlalu sering menggunakan refs.** Anda hanya boleh menggunakan *refs* untuk perilaku *imperatif* yang tidak dapat Anda ungkapkan sebagai *props*: misalnya, menggulir ke sebuah simpul, memfokuskan sebuah simpul, memicu sebuah animasi, memilih teks, dan sebagainya.
 
-**Jika Anda dapat mengekspresikan sesuatu sebagai *prop*, Anda tidak boleh menggunakan *ref*.** Sebagai contoh, daripada mengekspos penanganan imperatif seperti `{ open, close }` dari komponen `Modal`, lebih baik menggunakan `isOpen` sebagai *prop* seperti `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) dapat membantu Anda mengekspos perilaku imperatif melalui  *props*.
+**Jika Anda dapat mengekspresikan sesuatu sebagai *prop*, Anda tidak seharusnya menggunakan *ref*.** Sebagai contoh, alih-alih mengekspos sebuah penanganan imperatif seperti `{ open, close }` dari sebuah komponen `Modal`, lebih baik menggunakan `isOpen` sebagai *prop* seperti `<Modal isOpen={isOpen} />`. [Efek](/learn/synchronizing-with-effects) dapat membantu Anda mengekspos perilaku imperatif melalui *props*.
 
 </Pitfall>
 
@@ -495,7 +495,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-Untuk memperbaikinya, berikan `ref` ke *DOM node* atau komponen lain yang dapat menerima *ref*:
+Untuk memperbaikinya, berikan `ref` ke simpul DOM atau komponen lain yang dapat menerima *ref*:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -521,7 +521,7 @@ const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
 });
 ```
 
-Jika `showInput` bernilai `false`, maka *ref* tidak akan diteruskan ke *node* mana pun, dan *ref* ke `MyInput` akan tetap kosong. Hal ini sangat mudah terlewatkan jika kondisi tersebut tersembunyi di dalam komponen lain, seperti `Panel` pada contoh ini:
+Jika `showInput` bernilai `false`, maka *ref* tidak akan diteruskan ke simpul mana pun, dan *ref* ke `MyInput` akan tetap kosong. Hal ini sangat mudah terlewatkan jika kondisi tersebut tersembunyi di dalam komponen lain, seperti `Panel` pada contoh ini:
 
 ```js {5,7}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
