@@ -4,7 +4,7 @@ title: useState
 
 <Intro>
 
-`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [*state variable*](/learn/state-a-components-memory) pada komponen anda.
+`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [variabel *state*](/learn/state-a-components-memory) pada komponen anda.
 
 ```js
 const [state, setState] = useState(initialState);
@@ -20,7 +20,7 @@ const [state, setState] = useState(initialState);
 
 ### `useState(initialState)` {/*usestate*/}
 
-Panggil fungsi `useState` di tingkat atas komponen Anda untuk mendeklarasikan sebuah [*state variable*.](/learn/state-a-components-memory)
+Panggil fungsi `useState` di tingkat atas komponen Anda untuk mendeklarasikan sebuah [variabel *state*.](/learn/state-a-components-memory)
 
 ```js
 import { useState } from 'react';
@@ -32,32 +32,32 @@ function MyComponent() {
   // ...
 ```
 
-Konvensi dalam menamai *state variable* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai variable *state* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Parameter {/*parameters*/}
 
 * `initialState`: Nilai awal pada sebuah *state*. Nilainya dapat berupa jenis apa saja, namun terdapat perilaku khusus untuk fungsi. Argumen ini diabaikan setelah *rendering* awal.
-  * Jika Anda mengoper sebuah fungsi sebagai `initialState`, itu akan diperlakukan sebagai *initializer function*. Fungsi tersebut harus murni (*pure*), tidak boleh menerima argumen, dan harus mengembalikan nilai dengan tipe apa pun. React akan memanggil *initializer function* ketika menginisialisasi komponen, dan menyimpan nilai kembaliannya sebagai *state* awal. [Lihat contoh lainnya di bawah ini.](#avoiding-recreating-the-initial-state)
+  * Jika Anda mengoper sebuah fungsi sebagai `initialState`, itu akan diperlakukan sebagai fungsi inisialisasi (*initializer function*). Fungsi tersebut harus murni (*pure*), tidak boleh menerima argumen, dan harus mengembalikan nilai dengan tipe apa pun. React akan memanggil fungsi inisialisasi ketika menginisialisasi komponen, dan menyimpan nilai kembaliannya sebagai *state* awal. [Lihat contoh lainnya di bawah ini.](#avoiding-recreating-the-initial-state)
 
-#### Mengembalikan {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `useState` mengembalikan sebuah senarai dengan tepat dua nilai:
 
 1. *State* saat ini. Pada saat pertama kali *render*, itu akan cocok dengan `initialState` yang anda oper sebelumnya.
 2. Fungsi [*`set` function*](#setstate) yang memungkinkan Anda memperbarui *state* menjadi nilai yang berbeda dan memicu pembaruan ulang (*re-render*).
 
-#### Peringatan {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* `useState` merupakan sebuah *Hook*, sehingga Anda hanya dapat memanggilnya **di level atas komponen Anda** atau *Hooks* Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan atau kondisi. Jika Anda membutuhkannya, Anda dapat membuat komponen baru dan pindahkan state ke dalamnya.
+* `useState` merupakan sebuah *Hook*, sehingga Anda hanya dapat memanggilnya **di level atas komponen Anda** atau *Hooks* Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan atau kondisi. Jika Anda membutuhkannya, Anda dapat membuat komponen baru dan pindahkan *state* ke dalamnya.
 * Dalam *Strict Mode*, React akan **memanggil fungsi inisialisasi Anda dua kali** untuk [membantu Anda menemukan kejadian yang tidak diharapkan.](#my-initializer-or-updater-function-runs-twice) Hal ini hanya terjadi pada pengembangan dan tidak mempengaruhi produksi. Jika *initializer function* Anda murni (sebagaimana mestinya), ini seharusnya tidak mempengaruhi perilakunya. Hasil dari salah satu pemanggilan akan diabaikan.
 
 ---
 
 ### Fungsi `set`, seperti `setSomething(nextState)` {/*setstate*/}
 
-Fungsi `set` yang dikembalikan oleh `useState` memungkinkan Anda memperbarui state ke nilai yang berbeda dan memicu pembaruan ulang (*re-render*). Anda dapat mengoper *state* berikutnya secara langsung, atau sebuah fungsi yang mengkalkulasi dari *state* sebelumnya:
+Fungsi `set` yang dikembalikan oleh `useState` memungkinkan Anda memperbarui *state* ke nilai yang berbeda dan memicu pembaruan ulang (*re-render*). Anda dapat mengoper *state* berikutnya secara langsung, atau sebuah fungsi yang mengkalkulasi dari *state* sebelumnya:
 
 ```js
 const [name, setName] = useState('Edward');
@@ -68,16 +68,16 @@ function handleClick() {
   // ...
 ```
 
-#### Parameters {/*setstate-parameters*/}
+#### Parameter {/*setstate-parameters*/}
 
 * `nextState`: Nilai yang anda inginkan untuk menjadi *state* berikutnya. Ini dapat berupa nilai dari jenis apa pun, tetapi ada perilaku khusus untuk sebuah fungsi.
-  * Jika Anda mengoper sebuah fungsi sebagai `nextState`, itu akan diperlakukan sebagai fungsi pembaruan (*updater function*). Fungsi ini harus murni (*pure*), hanya menerima *state* yang tertunda sebagai argumen satu-satunya, dan harus mengembalikan state berikutnya. React akan menempatkan fungsi pembaruan Anda dalam antrian dan memperbarui ulang komponen Anda. Selama *render* berikutnya, React akan mengkalkulasi *state* berikutnya dengan menerapkan semua pembaruan dalam antrian ke state sebelumnya [Lihat contoh lainnya di bawah ini.](#updating-state-based-on-the-previous-state)
+  * Jika Anda mengoper sebuah fungsi sebagai `nextState`, itu akan diperlakukan sebagai fungsi pembaruan (*updater function*). Fungsi ini harus murni (*pure*), hanya menerima *state* yang tertunda sebagai argumen satu-satunya, dan harus mengembalikan *state* berikutnya. React akan menempatkan fungsi pembaruan Anda dalam antrian dan memperbarui ulang komponen Anda. Selama *render* berikutnya, React akan mengkalkulasi *state* berikutnya dengan menerapkan semua pembaruan dalam antrian ke *state* sebelumnya [Lihat contoh lainnya di bawah ini.](#updating-state-based-on-the-previous-state)
 
-#### Returns {/*setstate-returns*/}
+#### Kembalian {/*setstate-returns*/}
 
 Fungsi `set` tidak memiliki nilai kembali.
 
-#### Peringatan {/*setstate-caveats*/}
+#### Catatan Penting {/*setstate-caveats*/}
 
 * Fungsi `set` **hanya memperbarui variabel *state* untuk *render* berikutnya**. Jika Anda membaca variabel *state* setelah memanggil fungsi `set`, [Anda akan tetap mendapatkan nilai lama](#ive-updated-the-state-but-logging-gives-me-the-old-value) yang ada di layar sebelum panggilan Anda.
 
@@ -106,14 +106,12 @@ function MyComponent() {
   // ...
 ```
 
-Konvensi dalam menamai *state variable* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai variable *state* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
 `useState` mengembalikan sebuah senarai dengan tepat dua nilai:
 
-[comment]: # (TODO)
-
-1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
-2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
+1. <CodeStep step={1}>*state* saat ini</CodeStep> dari variabel *state* ini, awalnya diatur ke <CodeStep step={3}>*state* awal</CodeStep> yang Anda berikan.
+2. <CodeStep step={2}>fungsi `set`</CodeStep> yang memungkinkan Anda mengubahnya ke nilai lain sebagai respons terhadap suatu interaksi.
 
 Untuk memperbarui tampilan layar, panggil fungsi `set` dengan *state* berikutnya:
 
@@ -202,7 +200,7 @@ export default function MyInput() {
 
 <Solution />
 
-#### Checkbox (boolean) {/*checkbox-boolean*/}
+#### *Checkbox* (*boolean*) {/*checkbox-boolean*/}
 
 Dalam contoh ini, variabel *state* `liked` menyimpan sebuah boolean. Ketika Anda mengklik input, `setLiked` memperbarui variabel *state* `liked` dengan nilai *true* atau *false* tergantung pada apakah masukan *checkbox* pada peramban dicentang atau tidak. Variabel `liked` digunakan untuk me-*render* teks di bawah *checkbox*.
 
@@ -238,7 +236,7 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### *Form* (dua variabel) {/*form-two-variables*/}
 
 Anda dapat mendeklarasikan lebih dari satu variabel *state* dalam komponen yang sama. Setiap variabel *state* sepenuhnya bersifat independen.
 
@@ -302,9 +300,7 @@ function handleClick() {
 }
 ```
 
-[comment]: # (TODO)
-
-Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pending state</CodeStep> and calculates the <CodeStep step={2}>next state</CodeStep> from it.
+Di sini, `a => a + 1` adalah fungsi pembaruan Anda. Fungsi ini mengambil <CodeStep step={1}>*state* tertunda</CodeStep> dan mengkalkulasi <CodeStep step={2}>*state* selanjutnya</CodeStep> darinya.
 
 React menempatkan fungsi pembaruan Anda dalam sebuah [antrian.](/learn/queueing-a-series-of-state-updates) Selanjutnya, selama *render* berikutnya, React akan memanggil fungsi-fungsi tersebut dalam urutan yang sama:
 
@@ -327,7 +323,7 @@ ikalkulasi dari *state* sebelumnya. Tidak ada masalah dengan itu, tetapi juga ti
 
 Pada kebanyakan kasus, tidak ada perbedaan antara kedua pendekatan tersebut. React selalu memastikan bahwa untuk tindakan pengguna yang disengaja, seperti klik, variabel *state* `age` akan diperbarui sebelum klik berikutnya. Ini berarti tidak ada risiko klik *handler* melihat `age` yang "usang" di awal *event handler*.
 
-Namun, jika Anda melakukan beberapa pembaruan dalam satu *event*, fungsi pembaruan dapat membantu. Mereka juga membantu jika mengakses variabel *state* itu sendiri merepotkan (Anda mungkin mengalaminya saat mengoptimalkan re-*render*).
+Namun, jika Anda melakukan beberapa pembaruan dalam satu *event*, fungsi pembaruan dapat membantu. Mereka juga membantu jika mengakses variabel *state* itu sendiri merepotkan (Anda mungkin mengalaminya saat mengoptimalkan *render* ulang).
 
 Jika Anda lebih suka konsistensi daripada sintaks yang sedikit lebih panjang, masuk akal untuk selalu menulis fungsi pembaruan jika *state* yang Anda atur dikalkulasi dari *state* sebelumnya. Jika dihitung dari *state* sebelumnya dari beberapa variabel *state* yang lain, Anda mungkin ingin menggabungkannya menjadi satu objek dan [menggunakan *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
@@ -421,7 +417,7 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Mengupdate objek dan senarai di dalam *state*. {/*updating-objects-and-arrays-in-state*/}
+### Memperbarui objek dan senarai di dalam *state*. {/*updating-objects-and-arrays-in-state*/}
 
 Anda dapat menempatkan objek dan senarai ke dalam *state*. Di React, *state* dianggap sebagai sesuatu yang hanya bisa dibaca, sehingga **Anda harus menggantinya (*replace*) daripada mutasi (*mutate*) objek yang sudah ada**. Misalnya, jika Anda memiliki objek `form` di dalam *state*, jangan mutasi (*mutate*) secara langsung:
 
