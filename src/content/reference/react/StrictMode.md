@@ -393,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
+**Strict Mode *selalu* memanggil fungsi rendering Anda dua kali, sehingga Anda dapat langsung melihat kesalahannya** ("Create Story" muncul dua kali). Ini memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki komponen untuk dirender dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan  memproduksi bug di masa mendatang seperti fungsi hover sebelumnya:
 
 <Sandpack>
 
@@ -483,29 +483,29 @@ li {
 
 </Sandpack>
 
-Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
+Tanpa Strict Mode, mudah untuk melewatkan bug sampai Anda menambahkan lebih banyak render ulang. Strict Mode membuat bug yang sama segera muncul. Strict Mode membantu Anda menemukan bug sebelum mendorongnya ke tim dan pengguna Anda.
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[Baca lebih lanjut tentang menjaga kemurnian komponen.](/learn/keeping-components-pure)
 
 <Note>
 
-If you have [React DevTools](/learn/react-developer-tools) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+Jika Anda telah menginstal [React DevTools](/learn/react-developer-tools), setiap panggilan `console.log` selama panggilan render kedua akan tampak sedikit redup. React DevTools juga menawarkan pengaturan (dinonaktifkan secara default) untuk menekannya sepenuhnya.
 
 </Note>
 
 ---
 
-### Fixing bugs found by re-running Effects in development {/*fixing-bugs-found-by-re-running-effects-in-development*/}
+### Memperbaiki bug yang ditemukan dengan menjalankan kembali Efek dalam pengembangan {/*fixing-bugs-found-by-re-running-effects-in-development*/}
 
-Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
+Strict Mode juga dapat membantu menemukan bug di [Effects.](/learn/synchronizing-with-effects)
 
-Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
+Setiap Efek memiliki beberapa setup code dan mungkin memiliki beberapa kode pembersihan. Biasanya, React memanggil setup ketika komponen *mounts* (ditambahkan ke layar) dan memanggil pembersihan ketika komponen *unmounts* (dihapus dari layar). React kemudian memanggil pembersihan dan setup lagi jika dependensinya berubah setelah render terakhir.
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+Saat Strict Mode aktif, React juga akan menjalankan **satu siklus setup+pembersihan tambahan dalam pengembangan untuk setiap Efek.** Ini mungkin terasa mengejutkan, tetapi membantu mengungkapkan bug tak kentara yang sulit ditangkap secara manual.
 
-**Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
+**Berikut adalah contoh untuk mengilustrasikan bagaimana menjalankan kembali Efek dalam Strict Mode membantu Anda menemukan bug lebih awal.**
 
-Consider this example that connects a component to a chat:
+Pertimbangkan contoh ini yang menghubungkan komponen ke obrolan:
 
 <Sandpack>
 
@@ -562,9 +562,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-There is an issue with this code, but it might not be immediately clear.
+Ada masalah dengan kode ini, tetapi mungkin tidak segera jelas.
 
-To make the issue more obvious, let's implement a feature. In the example below, `roomId` is not hardcoded. Instead, the user can select the `roomId` that they want to connect to from a dropdown. Click "Open chat" and then select different chat rooms one by one. Keep track of the number of active connections in the console:
+Untuk memperjelas masalah, mari terapkan sebuah fitur. Pada contoh di bawah, `roomId` tidak di-hardcode. Sebagai gantinya, pengguna dapat memilih `roomId` yang ingin mereka sambungkan dari dropdown. Klik "Buka obrolan" lalu pilih ruang obrolan yang berbeda satu per satu. Lacak jumlah koneksi aktif di konsol:
 
 <Sandpack>
 
@@ -646,7 +646,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
+Anda akan melihat bahwa jumlah koneksi aktif selalu terus bertambah. Dalam aplikasi nyata, ini akan menyebabkan masalah kinerja dan jaringan. Masalahnya adalah [Efek Anda tidak memiliki fungsi pembersihan:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
 
 ```js {4}
   useEffect(() => {
@@ -656,9 +656,9 @@ You'll notice that the number of open connections always keeps growing. In a rea
   }, [roomId]);
 ```
 
-Now that your Effect "cleans up" after itself and destroys the outdated connections, the leak is solved. However, notice that the problem did not become visible until you've added more features (the select box).
+Sekarang Efek Anda "membersihkan" setelahnya sendiri dan menghancurkan koneksi yang sudah tidak digunakan, kebocorannya teratasi. Namun, perhatikan bahwa masalahnya tidak terlihat hingga Anda menambahkan lebih banyak fitur (select box).
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**Dalam contoh aslinya, bug itu tidak terlihat jelas. Sekarang mari bungkus kode asli (buggy) dalam `<StrictMode>`:**
 
 <Sandpack>
 
@@ -720,9 +720,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem** (the number of active connections jumps to 2). Strict Mode runs an extra setup+cleanup cycle for every Effect. This Effect has no cleanup logic, so it creates an extra connection but doesn't destroy it. This is a hint that you're missing a cleanup function.
+**Dengan Strict Mode, Anda segera melihat bahwa ada masalah** (jumlah koneksi aktif melonjak menjadi 2). Strict Mode menjalankan siklus setup+pembersihan ekstra untuk setiap Efek. Efek ini tidak memiliki logika pembersihan, sehingga membuat koneksi ekstra tetapi tidak menghancurkan. Ini adalah petunjuk bahwa Anda melewatkan fungsi pembersihan.
 
-Strict Mode lets you notice such mistakes early in the process. When you fix your Effect by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the select box from before:
+Strict Mode memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki Efek dengan menambahkan fungsi pembersihan dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan memproduksi bug di masa mendatang seperti select box sebelumnya:
 
 <Sandpack>
 
@@ -810,21 +810,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how the active connection count in the console doesn't keep growing anymore.
+Perhatikan bagaimana jumlah koneksi aktif di konsol tidak bertambah lagi.
 
 Without Strict Mode, it was easy to miss that your Effect needed cleanup. By running *setup → cleanup → setup* instead of *setup* for your Effect in development, Strict Mode made the missing cleanup logic more noticeable.
+Tanpa Strict Mode, mudah untuk luput bahwa Efek Anda perlu dibersihkan. Dengan menjalankan *setup → cleanup → setup* alih-alih *setup* untuk Efek Anda dalam pengembangan, Strict Mode membuat logika pembersihan yang hilang menjadi lebih terlihat.
 
-[Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[Baca lebih lanjut tentang menerapkan pembersihan Efek.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
-
+### Memperbaiki peringatan penghentian yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), and [`getChildContext`](/reference/react/Component#getchildcontext)). [See alternatives.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* [`findDOMNode`](/reference/react-dom/findDOMNode). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
+* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), dan [`getChildContext`](/reference/react/Component#getchildcontext)). [Lihat alternatif.](/reference/react/createContext)
+* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+API ini terutama digunakan di masa lalu [class components](/reference/react/Component) jadi jarang muncul di aplikasi modern.
