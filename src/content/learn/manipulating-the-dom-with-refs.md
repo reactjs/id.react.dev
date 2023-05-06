@@ -4,22 +4,22 @@ title: 'Memanipulasi DOM dengan Refs'
 
 <Intro>
 
-React secara otomatis memperbarui [DOM (*Document Object Model*)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) agar sesuai dengan keluaran *render*, sehingga komponen Anda tidak perlu sering memanipulasinya. Namun, terkadang Anda mungkin perlu mengakses elemen DOM yang dikelola oleh React--misalnya, untuk memberikan fokus pada sebuah *node*, menggulir ke sana, atau mengukur ukuran dan posisinya. Tidak ada cara bawaan untuk melakukan hal-hal tersebut di React, sehingga Anda memerlukan *ref* ke *node* DOM.
+React secara otomatis memperbarui [DOM (*Document Object Model*)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) agar sesuai dengan keluaran *render*, sehingga komponen Anda tidak perlu sering memanipulasinya. Namun, terkadang Anda mungkin perlu mengakses elemen DOM yang dikelola oleh React--misalnya, untuk memberikan fokus pada sebuah simpul (*node*), menggulir ke sana, atau mengukur ukuran dan posisinya. Tidak ada cara bawaan untuk melakukan hal-hal tersebut di React, sehingga Anda memerlukan *ref* ke simpul DOM.
 
 </Intro>
 
 <YouWillLearn>
 
-- Bagaimana cara mengakses sebuah *node* DOM yang diatur React dengan atribut `ref`
+- Bagaimana cara mengakses sebuah simpul DOM yang diatur React dengan atribut `ref`
 - Bagaimana atribut JSX `ref` berelasi dengan Hook `useRef`
-- Bagaimana cara mengakses *node* DOM dari komponen lain
+- Bagaimana cara mengakses simpul DOM dari komponen lain
 - Dalam kasus seperti apa memodifikasi DOM yang diatur React dengan aman.
 
 </YouWillLearn>
 
-## Mendapatkan sebuah ref untuk node {/*getting-a-ref-to-the-node*/}
+## Mendapatkan sebuah ref untuk simpul {/*getting-a-ref-to-the-node*/}
 
-Untuk mengakses sebuah *node* DOM yang diatur React, pertama, impor Hook `useRef`:
+Untuk mengakses sebuah simpul DOM yang diatur React, pertama, impor Hook `useRef`:
 
 ```js
 import { useRef } from 'react';
@@ -31,13 +31,13 @@ Kemudian, deklarasikan *ref* di dalam komponen Anda:
 const myRef = useRef(null);
 ```
 
-Terakhir, oper ke DOM node sebagai atribut `ref`:
+Terakhir, oper ke simpul DOM sebagai atribut `ref`:
 
 ```js
 <div ref={myRef}>
 ```
 
-Hook `useRef` mengembalikan objek dengan properti tunggal bernama `current`. Awalnya, `myRef.current` akan bernilai `null`. Saat React membuat *node* DOM untuk `<div>`, React akan mereferensikan *node* ini ke dalam `myRef.current`. Anda bisa mengakses *node* DOM ini dari [*event handlers*](/learn/responding-to-events) Anda dan menggunakan [API peramban](https://developer.mozilla.org/docs/Web/API/Element) bawaan.
+Hook `useRef` mengembalikan objek dengan properti tunggal bernama `current`. Awalnya, `myRef.current` akan bernilai `null`. Saat React membuat simpul DOM untuk `<div>`, React akan mereferensikan simpul ini ke dalam `myRef.current`. Anda bisa mengakses simpul DOM ini dari [*event handlers*](/learn/responding-to-events) Anda dan menggunakan [API peramban](https://developer.mozilla.org/docs/Web/API/Element) bawaan.
 
 ```js
 // Anda dapat menggunakan API peramban apa saja, sebagai contoh:
@@ -76,15 +76,15 @@ export default function Form() {
 Penerapannya:
 
 1. Deklarasikan `inputRef` dengan `useRef` Hook.
-2. Oper sebagai `<input ref={inputRef}>`. React akan **meletakkan `<input>` *node* DOM ke dalam `inputRef.current`.**
-3. Pada fungsi `handleClick`, baca input *node* DOM dari `inputRef.current` dan panggil [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) menggunakan `inputRef.current.focus()`.
+2. Oper sebagai `<input ref={inputRef}>`. React akan **meletakkan `<input>` simpul DOM ke dalam `inputRef.current`.**
+3. Pada fungsi `handleClick`, baca input simpul DOM dari `inputRef.current` dan panggil [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) menggunakan `inputRef.current.focus()`.
 4. Oper `handleClick` *event handler* ke `<button>` menggunakan `onClick`.
 
 Mesikpun manipulasi DOM merupakan hal yang sangat umum untuk *ref*, Hook `useRef` dapat digunakan untuk menyimpan hal-hal lain di luar React, seperti ID *timer*. Sama halnya dengan *state*, *ref* tetap sama di antara proses *render*. *Ref* sama seperti variabel *state* yang tidak memicu banyak *render* saat Anda mengaturnya. Baca tentang *ref* pada [Mereferensikan nilai dengan *Ref*.](/learn/referencing-values-with-refs)
 
 ### Contoh: Menggulir ke sebuah Elemen {/*example-scrolling-to-an-element*/}
 
-Anda dapat memiliki lebih dari satu *ref* dalam sebuah komponen. Pada contoh, terdapat *carousel* terdiri dari 3 gambar. Setiap tombol mengarahkan ke pusat gambar dengan memanggil metode peramban [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) pada *node* DOM terkait:
+Anda dapat memiliki lebih dari satu *ref* dalam sebuah komponen. Pada contoh, terdapat *carousel* terdiri dari 3 gambar. Setiap tombol mengarahkan ke pusat gambar dengan memanggil metode peramban [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) pada simpul DOM terkait:
 
 <Sandpack>
 
@@ -211,9 +211,9 @@ Ini dikarenakan **Hooks hanya dapat dipanggil di tingkat atas komponen Anda.** A
 
 Satu cara yang memungkinkan adalah mendapatkan *ref* tunggal dari elemen *parent*, lalu gunakan metode manipulasi DOM seperti  [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) untuk "menemukan" masing-masing *child node*. Namun, hal ini beresiko kacau jika struktur DOM Anda berubah.
 
-Solusi lainnya adalah dengan **mengoper fungsi pada atribut `ref`.** hal ini dinamakan [`ref` callback.](/reference/react-dom/components/common#ref-callback) React akan memanggil *ref callback* Anda dengan *node DOM* saat menyiapkan *ref*, dan dengan `null` saat menghapusnya. hal ini memungkinkan anda mengatur *Array* Anda sendiri atau sebuah [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), dan mengakses *ref* dengan indeks atau sejenis ID.
+Solusi lainnya adalah dengan **mengoper fungsi pada atribut `ref`.** hal ini dinamakan [`ref` callback.](/reference/react-dom/components/common#ref-callback) React akan memanggil *ref callback* Anda dengan *simpul DOM* saat menyiapkan *ref*, dan dengan `null` saat menghapusnya. hal ini memungkinkan anda mengatur *Array* Anda sendiri atau sebuah [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), dan mengakses *ref* dengan indeks atau sejenis ID.
 
-Contoh di bawah menunjukan bagaimana Anda dapat menggunakan pendekatan ini untuk menggulir *node* di dalam daftar yang panjang:
+Contoh di bawah menunjukan bagaimana Anda dapat menggunakan pendekatan ini untuk menggulir simpul di dalam daftar yang panjang:
 
 <Sandpack>
 
@@ -318,7 +318,7 @@ li {
 
 </Sandpack>
 
-Pada contoh ini, `itemsRef` tidak menyimpan *node* DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke *node* DOM. ([Refs dapat menyimpan nilai apapun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
+Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apapun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
 
 ```js
 <li
@@ -336,13 +336,13 @@ Pada contoh ini, `itemsRef` tidak menyimpan *node* DOM. Namun,menyimpan sebuah [
 >
 ```
 
-Hal ini memungkinkan Anda membaca *node* DOM individu dari *Map* nanti.
+Hal ini memungkinkan Anda membaca simpul DOM individu dari *Map* nanti.
 
 </DeepDive>
 
-## Mengakses node DOM komponen lain {/*accessing-another-components-dom-nodes*/}
+## Mengakses simpul DOM komponen lain {/*accessing-another-components-dom-nodes*/}
 
-Saat Anda memasang *ref* pada komponen bawaan yang mana hasilnya adalah elemen peramban seperti `<input />`, React akan mengatur properti `current` *ref* pada *node* DOM tersebut (seperti aktual `<input />` pada peramban).
+Saat Anda memasang *ref* pada komponen bawaan yang mana hasilnya adalah elemen peramban seperti `<input />`, React akan mengatur properti `current` *ref* pada simpul DOM tersebut (seperti aktual `<input />` pada peramban).
 
 Namun, jika Anda mencoba mengatur *ref* pada komponen Anda sendiri, seperti `<MyInput />`, secara *default* Anda akan mendapatkan `null`. Ini contohnya. Perhatikan bagaimana meng-klik tombol **tidak** membuat fokus pada input:
 
@@ -383,9 +383,9 @@ Perhatian: fungsional komponen tidak dapat menerima *ref*. Mencoba mengaksesnya 
 
 </ConsoleBlock>
 
-Ini terjadi karena secara *default* React tidak mengizinkan komponen mengakses *node* DOM dari komponen lain. Bahkan *children* dari komponen tersebut! ini ada alasannya. *Ref* merupakan jalan darurat yang seharusnya jarang digunakan. Memanipulasi *node* DOM komponen lain secara manual membuat kode Anda lebih rentan.
+Ini terjadi karena secara *default* React tidak mengizinkan komponen mengakses simpul DOM dari komponen lain. Bahkan *children* dari komponen tersebut! ini ada alasannya. *Ref* merupakan jalan darurat yang seharusnya jarang digunakan. Memanipulasi simpul DOM komponen lain secara manual membuat kode Anda lebih rentan.
 
-Sebaliknya, komponen yang _ingin_ mengekspos *node* DOM harus *memilih* perilaku tersebut. Sebuah komponen dapat menentukan untuk meneruskan *ref* ke salah satu *children*nya. Contoh bagaimana `MyInput` dapat menggunakan API `forwardRef`:
+Sebaliknya, komponen yang _ingin_ mengekspos simpul DOM harus *memilih* perilaku tersebut. Sebuah komponen dapat menentukan untuk meneruskan *ref* ke salah satu *children*nya. Contoh bagaimana `MyInput` dapat menggunakan API `forwardRef`:
 
 ```js
 const MyInput = forwardRef((props, ref) => {
@@ -395,7 +395,7 @@ const MyInput = forwardRef((props, ref) => {
 
 Ini cara kerjanya:
 
-1. `<MyInput ref={inputRef} />` memberitahu React untuk meletakkan *node* DOM yang sesuai ke dalam `inputRef.current`. Namun, itu terserah komponen `MyInput` untuk mengikutinya--secara *default*, tidak.
+1. `<MyInput ref={inputRef} />` memberitahu React untuk meletakkan simpul DOM yang sesuai ke dalam `inputRef.current`. Namun, itu terserah komponen `MyInput` untuk mengikutinya--secara *default*, tidak.
 2. Komponen `MyInput` menggunakan `forwardRef`. **Dengan ini komponen menerima `inputRef` dari atas sebagai argumen `ref` kedua** yang dideklarasikan setelah `props`.
 3. `MyInput` itu sendiri mengoper `ref` yang diterima ke dalam `<input>`.
 
@@ -430,7 +430,7 @@ export default function Form() {
 
 </Sandpack>
 
-Dalam sistem desain, merupakan pola umum untuk komponen level rendah seperti tombol, input dan sejenisnya untuk meneruskan *ref* ke *node* DOM. Sebaliknya, komponen level atas seperti *form*, *list* atau bagian dari halaman biasanya tidak mengekspos *node* DOM untuk menghindari dependensi yang tidak disengaja pada struktur DOM.
+Dalam sistem desain, merupakan pola umum untuk komponen level rendah seperti tombol, input dan sejenisnya untuk meneruskan *ref* ke simpul DOM. Sebaliknya, komponen level atas seperti *form*, *list* atau bagian dari halaman biasanya tidak mengekspos simpul DOM untuk menghindari dependensi yang tidak disengaja pada struktur DOM.
 
 <DeepDive>
 
@@ -478,7 +478,7 @@ export default function Form() {
 
 </Sandpack>
 
-Di sini, `realInputRef` di dalam `MyInput` memegang aktual *node* DOM input. Namun, `useImperativeHandle` menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan *node* DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan `useImperativeHandle`.
+Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, `useImperativeHandle` menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan `useImperativeHandle`.
 
 </DeepDive>
 
@@ -489,9 +489,9 @@ Dalam React, setiap pembaruan dibagi menjadi [dua fase](/learn/render-and-commit
 * Selama proses **render,** React memanggil komponen Anda untuk mencari tahu apa yang seharusnya berada di layar.
 * Selama proses **commit,** React menerapkan perubahan pada DOM.
 
-Secara umum, Anda [tidak ingin](/learn/referencing-values-with-refs#best-practices-for-refs) mengakses *ref* selama proses *rendering*. Keadaan dimana *ref* menyimpan *node* DOM. Selama proses *render* pertama, *node* DOM belum dibuat, jadi `ref.current` bernilai `null`. Dan selama proses pembaharuan *render*, *node* DOM belum diperbarui. Jadi terlalu awal untuk membacanya.
+Secara umum, Anda [tidak ingin](/learn/referencing-values-with-refs#best-practices-for-refs) mengakses *ref* selama proses *rendering*. Keadaan dimana *ref* menyimpan simpul DOM. Selama proses *render* pertama, simpul DOM belum dibuat, jadi `ref.current` bernilai `null`. Dan selama proses pembaharuan *render*, simpul DOM belum diperbarui. Jadi terlalu awal untuk membacanya.
 
-React mengatur nilai `ref.current` selama commit. Sebelum memperbarui DOM, React mengatur nilai `ref.current` yang terpengaruh menjadi `null`. Setelah memperbarui DOM, React segera mengatur nilai `ref.current` tersebut menjadi *node* DOM yang sesuai.
+React mengatur nilai `ref.current` selama commit. Sebelum memperbarui DOM, React mengatur nilai `ref.current` yang terpengaruh menjadi `null`. Setelah memperbarui DOM, React segera mengatur nilai `ref.current` tersebut menjadi simpul DOM yang sesuai.
 
 Biasanya, Anda akan mengakses ref dari *event handler*. Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada cara tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
 
@@ -681,18 +681,18 @@ button {
 
 Setelah Anda menghapus elemen DOM secara manual, mencoba menggunakan `setState` untuk menampilkannya lagi akan menyebabkan masalah. Hal ini terjadi karena Anda telah mengubah DOM, dan React tidak tahu bagaimana melanjutkan mengelolanya dengan benar.
 
-**Hindari mengubah node DOM yang dikelola oleh React.** Memodifikasi, menambahkan *children*, atau menghapus *children* dari elemen yang dikelola oleh React dapat menyebabkan hasil visual yang tidak konsisten atau masalah seperti di atas.
+**Hindari mengubah simpul DOM yang dikelola oleh React.** Memodifikasi, menambahkan *children*, atau menghapus *children* dari elemen yang dikelola oleh React dapat menyebabkan hasil visual yang tidak konsisten atau masalah seperti di atas.
 
 Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apapun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
 
 <Recap>
 
 - Ref adalah konsep yang umum, tetapi paling sering digunakan untuk menyimpan elemen-elemen DOM.
-- Anda menginstruksikan React untuk menempatkan node DOM ke `myRef.current` dengan mengoper `<div ref={myRef}>`.
+- Anda menginstruksikan React untuk menempatkan simpul DOM ke `myRef.current` dengan mengoper `<div ref={myRef}>`.
 - Biasanya, Anda akan menggunakan *ref* untuk tindakan non-destruktif seperti fokus, *scrolling*, atau mengukur elemen-elemen DOM.
-- Komponen tidak secara *default* mengekspos *node* DOM-nya. Anda dapat memilih untuk mengekspos *node* DOM dengan menggunakan `forwardRef` dan mengoper argumen `ref` kedua ke *node* yang spesifik.
-- Hindari mengubah *node* DOM yang dikelola oleh React.
-- Jika Anda mengubah *node* DOM yang dikelola oleh React, ubah bagian yang tidak perlu diperbarui oleh React.
+- Komponen tidak secara *default* mengekspos simpul DOM-nya. Anda dapat memilih untuk mengekspos simpul DOM dengan menggunakan `forwardRef` dan mengoper argumen `ref` kedua ke simpul yang spesifik.
+- Hindari mengubah simpul DOM yang dikelola oleh React.
+- Jika Anda mengubah simpul DOM yang dikelola oleh React, ubah bagian yang tidak perlu diperbarui oleh React.
 
 </Recap>
 
@@ -825,7 +825,7 @@ button { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-Tambahkan *ref* ke dalam input, dan panggil `focus()` pada *node* DOM untuk fokus:
+Tambahkan *ref* ke dalam input, dan panggil `focus()` pada simpul DOM untuk fokus:
 
 <Sandpack>
 
@@ -862,7 +862,7 @@ button { display: block; margin-bottom: 10px; }
 
 #### Menggulir sebuah carousel gambar. {/*scrolling-an-image-carousel*/}
 
-Karusel gambar ini memiliki tombol "Next" yang mengubah gambar aktif. Buat galeri bergulir secara horizontal ke gambar aktif saat tombol ditekan. Anda mungkin ingin memanggil [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) pada node DOM dari gambar aktif:
+Karusel gambar ini memiliki tombol "Next" yang mengubah gambar aktif. Buat galeri bergulir secara horizontal ke gambar aktif saat tombol ditekan. Anda mungkin ingin memanggil [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) pada simpul DOM dari gambar aktif:
 
 ```js
 node.scrollIntoView({
@@ -975,7 +975,7 @@ Anda dapat mendeklarasikan `selectedRef`, dan kemudian mengoper ref ini secara k
 <li ref={index === i ? selectedRef : null}>
 ```
 
-Ketika `index === i`, artinya gambar adalah yang dipilih, `<li>` akan menerima `selectedRef`. React akan memastikan bahwa `selectedRef.current` selalu menunjuk pada *node* DOM yang benar.
+Ketika `index === i`, artinya gambar adalah yang dipilih, `<li>` akan menerima `selectedRef`. React akan memastikan bahwa `selectedRef.current` selalu menunjuk pada simpul DOM yang benar.
 
 Perlu diperhatikan bahwa panggilan `flushSync` diperlukan untuk memaksa React memperbarui DOM sebelum scroll. Jika tidak, `selectedRef.current` akan selalu menunjuk pada item yang sebelumnya dipilih.
 
@@ -1092,7 +1092,7 @@ Buat agar saat tombol "Search" diklik, fokus masuk ke dalam input. Perhatikan ba
 
 <Hint>
 
-Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah *node* DOM dari komponen Anda sendiri seperti `SearchInput`.
+Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah simpul DOM dari komponen Anda sendiri seperti `SearchInput`.
 
 </Hint>
 
@@ -1142,7 +1142,7 @@ button { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-Anda perlu menambahkan prop `onClick` ke `SearchButton`, dan membuat `SearchButton` meneruskannya ke peramban `<button>`. Anda juga akan meneruskan *ref* ke `<SearchInput>`, yang akan meneruskannya ke `<input>` yang sebenarnya lalu mengisinya. Terakhir, dalam handler klik, Anda akan memanggil `focus` pada *node* DOM yang disimpan dalam *ref* tersebut.
+Anda perlu menambahkan prop `onClick` ke `SearchButton`, dan membuat `SearchButton` meneruskannya ke peramban `<button>`. Anda juga akan meneruskan *ref* ke `<SearchInput>`, yang akan meneruskannya ke `<input>` yang sebenarnya lalu mengisinya. Terakhir, dalam handler klik, Anda akan memanggil `focus` pada simpul DOM yang disimpan dalam *ref* tersebut.
 
 <Sandpack>
 
