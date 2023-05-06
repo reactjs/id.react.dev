@@ -4,7 +4,7 @@ title: "State: A Component's Memory"
 
 <Intro>
 
-Seringkali komponen mengubah tampilan di layar sebagai respons terjadinya interaksi dari pengguna. Mengetik di dalam form akan memperbarui kolom masukan, menekan tombol "Selanjutnya" pada slide gambar akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambahkan barang ke dalam keranjang. Komponen perlu "mengingat" informasi-informasi ini: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan yang dimiliki komponen ini disebut *state*.
+Seringkali komponen perlu mengubah tampilan di layar sebagai respons terjadinya interaksi dari pengguna. Mengetik di dalam form akan memperbarui kolom masukan (*input field*), menekan tombol "Selanjutnya" pada slide gambar akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambahkan barang ke dalam keranjang. Komponen perlu "mengingat" informasi-informasi ini: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan (*memory*) yang dimiliki komponen ini disebut *state*.
 
 </Intro>
 
