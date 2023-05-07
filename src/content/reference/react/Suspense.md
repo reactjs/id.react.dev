@@ -38,9 +38,9 @@ title: <Suspense>
 
 ## Pengunaan {/*usage*/}
 
-### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
+### Menampilkan fallback saat konten sedang dimuat {/*displaying-a-fallback-while-content-is-loading*/}
 
-You can wrap any part of your application with a Suspense boundary:
+Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan Batas Suspense:
 
 ```js [[1, 1, "<Loading />"], [2, 2, "<Albums />"]]
 <Suspense fallback={<Loading />}>
@@ -48,9 +48,9 @@ You can wrap any part of your application with a Suspense boundary:
 </Suspense>
 ```
 
-React will display your <CodeStep step={1}>loading fallback</CodeStep> until all the code and data needed by <CodeStep step={2}>the children</CodeStep> has been loaded.
+React akan menampilkan kode <CodeStep step={1}>loading fallback</CodeStep> sampai semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>the children</CodeStep> telah dimuat.
 
-In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
+Pada contoh di bawah ini, Komponen `Albums` *menangguhkan* saat mengambil daftar album. Hingga siap untuk dirender, React mengganti batas Suspense terdekat di atas untuk menunjukkan fallback--Anda  `Loading` Komponen. Kemudian, saat data dimuat, React menyembunyikan fallback `Loading` dan merender komponen `Albums` dengan data.
 
 <Sandpack>
 
@@ -117,11 +117,11 @@ function Loading() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -136,8 +136,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -163,9 +163,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data tergantung pada
+// kerangka kerja yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -185,7 +185,7 @@ async function getData(url) {
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu untuk membuat penantian menjadi nyata.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -250,24 +250,28 @@ async function getAlbums() {
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Hanya sumber data yang diaktifkan Suspense yang akan mengaktifkan komponen Suspense.** Mereka termasuk:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau event handler.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada kerangka kerja Anda. Jika Anda menggunakan kerangka kerja yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
+
+Pengambilan data yang mendukung Suspense tanpa menggunakan kerangka kerja yang mendukung belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
+ 
 
 </Note>
 
 ---
 
-### Revealing content together at once {/*revealing-content-together-at-once*/}
+### Mengungkap konten secara bersamaan sekaligus {/*revealing-content-together-at-once*/}
 
-By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
+
+Secara default, seluruh pohon di dalam Suspense diperlakukan sebagai satu kesatuan. Sebagai contoh, meskipun *hanya satu* dari komponen-komponen ini yang tertahan menunggu beberapa data, *semua* komponen tersebut akan digantikan oleh indikator pemuatan:
+
 
 ```js {2-5}
 <Suspense fallback={<Loading />}>
@@ -278,9 +282,9 @@ By default, the whole tree inside Suspense is treated as a single unit. For exam
 </Suspense>
 ```
 
-Then, after all of them are ready to be displayed, they will all appear together at once.
+Kemudian, setelah semuanya siap untuk ditampilkan, semuanya akan muncul sekaligus.
 
-In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these components always "pop in" together at the same time.
+Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena dikelompokkan di bawah satu batas Suspense, komponen-komponen ini selalu "muncul" bersamaan.
 
 <Sandpack>
 
