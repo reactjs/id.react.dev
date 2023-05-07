@@ -19,7 +19,7 @@ title: <Suspense>
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<Suspense>` {/*suspense*/}
 
@@ -27,16 +27,16 @@ title: <Suspense>
 * `children`: UI aktual yang ingin Anda render. Jika `children` ditangguhkan sewaktu merender, batas Suspense akan beralih merender `fallback`.
 * `fallback`: UI alternatif untuk dirender menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan rendering, itu akan mengaktifkan induk terdekat dari batas Suspense.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
 - React tidak menyimpan state apa pun untuk render yang ditangguhkan sebelum dapat dimuat untuk pertama kalinya. Ketika komponen sudah dimuat, React akan mencoba merender ulang komponen yang ditangguhkan dari awal.
 - Jika Suspense menampilkan konten untuk komponen, namun kemudian ditangguhkan lagi, `fallback` akan ditampilkan lagi kecuali jika pembaruan yang menyebabkannya, disebabkan oleh [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
-- Jika React perlu menyembunyikan konten yang sudah terlihat karena ditangguhkan lagi, ini akan membersihkan [layout Effects](/reference/react/useLayoutEffect) yang ada di dalam konten komponen. Ketika konten siap untuk ditampilkan lagi, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
-- React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+- Jika React perlu menyembunyikan konten yang sudah terlihat karena ditangguhkan lagi, ini akan membersihkan [layout Effects](/reference/react/useLayoutEffect) yang ada di dalam konten komponen. Ketika konten siap untuk ditampilkan lagi, React akan menjalankan Efek tata letak lagi. Hal ini memastikan bahwa Efek yang mengukur tata letak DOM tidak mencoba melakukan hal ini saat konten disembunyikan.
+- React menyertakan pengoptimalan di *under the hood* *Streaming Server Rendering* dan *Selective Hydration* yang terintegrasi dengan Suspense. Baca [tinjauan arsitektural](https://github.com/reactwg/react-18/discussions/37) dan tonton [sebuah pembicaraan teknis](https://www.youtube.com/watch?v=pj5N-Khihgc) untuk belajar lebih lanjut.
 
 ---
 
-## Usage {/*usage*/}
+## Pengunaan {/*usage*/}
 
 ### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
 
