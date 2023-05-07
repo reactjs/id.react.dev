@@ -899,7 +899,7 @@ Inilah yang membedakan *state* dengan variabel biasa yang Anda deklarasikan di t
 
 Perhatikan juga bagaimana komponen `Page` tidak "mengetahui" tentang *state* milik `Gallery` atau bahkan ada-tidaknya. Tidak seperti *props*, **state bersifat privat ke komponen tempat dia dideklarasikan.** Komponen *parent* tidak dapat mengubahnya. Sehingga Anda bisa menambahkan atau menghapus *state* tanpa memengaruhi komponen lainnya.
 
-Bagaimana jika Anda ingin menjaga *state* di kedua `Gallery` tetap sinkron? Cara yang benar dalam React adalah *menghapus* *state* dari komponen *child* dan memindahkannya ke komponen *parent* terdekat yang sama. Beberapa halaman berikutnya akan fokus ke mengatur *state* dalam sebuah komponen, tapi kita akan kembali ke topic ini di [Sharing *State* Between Components.](/learn/sharing-state-between-components)
+Bagaimana jika Anda ingin menjaga *state* di kedua `Gallery` tetap sinkron? Cara yang benar dalam React adalah *menghapus* *state* dari komponen anak (*child*) dan memindahkannya ke komponen Induk (*parent*) terdekat yang sama. Beberapa halaman berikutnya akan fokus ke mengatur *state* dalam sebuah komponen, tapi kita akan kembali ke topic ini di [Sharing *State* Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
