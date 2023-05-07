@@ -23,7 +23,7 @@ title: <Suspense>
 
 ### `<Suspense>` {/*suspense*/}
 
-#### Props {/*props*/}
+#### *Props* {/*props*/}
 * `children`: UI aktual yang ingin Anda render. Jika `children` ditangguhkan sewaktu merender, batas Suspense akan beralih merender `fallback`.
 * `fallback`: UI alternatif untuk dirender menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan rendering, itu akan mengaktifkan induk terdekat dari batas Suspense.
 
