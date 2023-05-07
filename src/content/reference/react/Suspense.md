@@ -366,11 +366,11 @@ export default function Panel({ children }) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -381,8 +381,8 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -410,11 +410,11 @@ function use(promise) {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -429,8 +429,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -456,9 +456,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data tergantung pada
+// kerangka kerja yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -566,7 +566,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Components that load data don't have to be direct children of the Suspense boundary. For example, you can move `Biography` and `Albums` into a new `Details` component. This doesn't change the behavior. `Biography` and `Albums` share the same closest parent Suspense boundary, so their reveal is coordinated together.
+Komponen yang memuat data tidak harus menjadi anak langsung dari batas Suspense. Sebagai contoh, Anda dapat memindahkan `Biografi` dan `Album` ke dalam komponen `Rincian` yang baru. Hal ini tidak akan mengubah perilakunya. `Biografi` dan `Albums` memiliki batas Suspense induk terdekat yang sama, sehingga pengungkapannya dikoordinasikan bersama.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -587,9 +587,9 @@ function Details({ artistId }) {
 
 ---
 
-### Revealing nested content as it loads {/*revealing-nested-content-as-it-loads*/}
+### Mengungkap konten yang tersusun saat dimuat {/*revealing-nested-content-as-it-loads*/}
 
-When a component suspends, the closest parent Suspense component shows the fallback. This lets you nest multiple Suspense components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
+Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menampilkan fallback. Hal ini memungkinkan Anda menyatukan beberapa komponen Suspense untuk membuat urutan pemuatan. Fallback setiap batas Suspense akan terisi saat tingkat konten berikutnya tersedia. Sebagai contoh, Anda dapat memberikan daftar album dengan fallback tersendiri:
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -602,14 +602,14 @@ When a component suspends, the closest parent Suspense component shows the fallb
 </Suspense>
 ```
 
-With this change, displaying the `Biography` doesn't need to "wait" for the `Albums` to load.
+Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" sampai `Album` dimuat.
 
-The sequence will be:
+Urutan nya adalah sebagai berikut:
 
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-1. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-1. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-1. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+1. Jika `Biography` belum dimuat, `BigSpinner` ditampilkan sebagai pengganti seluruh area konten.
+2. Setelah `Biography` selesai dimuat, `BigSpinner` digantikan oleh konten.
+3. Jika `Albums` belum dimuat, `AlbumsGlimmer` ditampilkan sebagai pengganti `Albums` dan induknya `Panel`.
+4. Akhirnya, setelah `Albums` selesai dimuat, dia akan menggantikan `AlbumsGlimmer`.
 
 <Sandpack>
 
@@ -703,11 +703,11 @@ export default function Panel({ children }) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -718,8 +718,9 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
+
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -747,11 +748,11 @@ function use(promise) {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -766,8 +767,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -793,9 +794,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data tergantung pada
+// kerangka kerja yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -920,13 +921,13 @@ async function getAlbums() {
 
 </Sandpack>
 
-Suspense boundaries let you coordinate which parts of your UI should always "pop in" together at the same time, and which parts should progressively reveal more content in a sequence of loading states. You can add, move, or delete Suspense boundaries in any place in the tree without affecting the rest of your app's behavior.
+Batas suspense memungkinkan Anda mengoordinasikan bagian mana dari UI Anda yang harus selalu "muncul" bersamaan, dan bagian mana yang harus menampilkan lebih banyak konten secara bertahap dalam urutan status pemuatan. Anda dapat menambah, memindahkan, atau menghapus batas-batas Suspense di mana saja di dalam pohon tanpa memengaruhi perilaku aplikasi Anda yang lain.
 
-Don't put a Suspense boundary around every component. Suspense boundaries should not be more granular than the loading sequence that you want the user to experience. If you work with a designer, ask them where the loading states should be placed--it's likely that they've already included them in their design wireframes.
+Jangan memberikan batas Suspense pada setiap komponen. Batas suspense tidak boleh lebih terperinci daripada urutan pemuatan yang Anda inginkan untuk dialami pengguna. Jika Anda bekerja dengan desainer, tanyakan kepada mereka di mana status pemuatan harus ditempatkan - kemungkinan mereka sudah memasukkannya dalam wireframe desain mereka.
 
 ---
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### Menampilkan konten yang sudah basi saat konten baru sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
 In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
 
