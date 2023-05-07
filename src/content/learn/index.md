@@ -115,7 +115,7 @@ React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. D
 
 ## Menampilkan data {/*displaying-data*/}
 
-JSX memungkinkan Anda memasukkan *markup* ke dalam JavaScript. Kurung kurawal (*curly braces*) memungkinkan Anda "melarikan diri" (*escape back*) ke dalam JavaScript sehingga Anda dapat menyematkan (*embed*) beberapa variabel dari kode Anda dan menampilkannya kepada pengguna. Sebagai contoh, ini akan menampilkan `user.name`:
+JSX memungkinkan Anda memasukkan *markup* ke dalam JavaScript. Kurung kurawal (*curly braces*) memungkinkan Anda "kembali" (*escape back*) ke dalam JavaScript sehingga Anda dapat menanamkan (*embed*) beberapa variabel dari kode Anda dan menampilkannya kepada pengguna. Sebagai contoh, ini akan menampilkan `user.name`:
 
 ```js {3}
 return (
@@ -127,6 +127,8 @@ return (
 
 You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
 
+Anda juga dapat "kembali ke JavaScript" dari atribut JSX, tetapi Anda harus menggunakan tanda kurung kurawal *daripada* tanda kutip (*quotes*). Sebagai contoh, `className="avatar"` meneruskan *string* `"avatar"` sebagai kelas CSS (*CSS class*), tetapi `src={user.imageUrl}` membaca nilai variabel JavaScript `user.imageUrl`, dan kemudian meneruskan nilai tersebut sebagai atribut `src`:
+
 ```js {3,4}
 return (
   <img
@@ -136,7 +138,7 @@ return (
 );
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+Anda dapat menaruh ekspresi yang lebih kompleks (*complex expressions*) di dalam kurung kurawal JSX juga, contohnya, [penggabungan *string*](https://javascript.info/operators#string-concatenation-with-binary) (*string concatenation*):
 
 <Sandpack>
 
@@ -154,7 +156,7 @@ export default function Profile() {
       <img
         className="avatar"
         src={user.imageUrl}
-        alt={'Photo of ' + user.name}
+        alt={'Foto ' + user.name}
         style={{
           width: user.imageSize,
           height: user.imageSize
@@ -177,7 +179,7 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+Pada contoh di atas, `style={{}}` bukanlah sintaksis khusus, melainkan objek `{}` biasa di dalam kurung kurawal JSX. Anda dapat menggunakan atribut `style` ketika *styles* Anda bergantung pada variabel JavaScript.
 
 ## Conditional rendering {/*conditional-rendering*/}
 
