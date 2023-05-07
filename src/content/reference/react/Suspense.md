@@ -929,7 +929,7 @@ Jangan memberikan batas Suspense pada setiap komponen. Batas suspense tidak bole
 
 ### Menampilkan konten yang sudah basi saat konten baru sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
+Dalam contoh ini, komponen `SearchResults` ditangguhkan saat mengambil hasil pencarian. Ketik `"a"`, tunggu untuk hasil, dan kemudian edit menjadi `"ab"`. Hasil untuk `"a"` akan tergantikan oleh *loading fallback*.
 
 <Sandpack>
 
@@ -971,11 +971,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -996,8 +996,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1023,9 +1023,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data tergantung pada
+// kerangka kerja yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
@@ -1121,7 +1121,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down: 
+Pola UI alternatif yang umum adalah untuk *menunda* memperbarui daftar dan terus menampilkan hasil sebelumnya hingga hasil yang baru siap. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook memungkinkan Anda meneruskan versi kueri yang ditangguhkan: 
 
 ```js {3,11}
 export default function App() {
@@ -1141,9 +1141,9 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+`query` akan segera diperbarui, sehingga input akan menampilkan nilai baru. Namun, `deferredQuery` akan menyimpan nilai sebelumnya sampai data dimuat, jadi `SearchResults` akan menunjukkan hasil yang sebelumnya untuk sementara waktu.
 
-To make it more obvious to the user, you can add a visual indication when the stale result list is displayed:
+Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visual apabila daftar hasil basi ditampilkan:
 
 ```js {2}
 <div style={{
@@ -1153,7 +1153,7 @@ To make it more obvious to the user, you can add a visual indication when the st
 </div>
 ```
 
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the dimmed stale result list until the new results have loaded:
+Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu edit input ke `"ab"`. Perhatikan, bahwa alih-alih fallback Suspense, Anda sekarang melihat daftar hasil sebelumnya yang diredupkan sampai hasil yang baru dimuat:
 
 
 <Sandpack>
@@ -1200,11 +1200,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di versi stabil React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -1225,8 +1225,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1252,9 +1252,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Catatan: cara Anda melakukan pengambilan data tergantung pada
+// kerangka kerja yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam kerangka kerja.
 
 let cache = new Map();
 
