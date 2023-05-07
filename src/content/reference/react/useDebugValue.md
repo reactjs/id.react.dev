@@ -4,7 +4,7 @@ title: useDebugValue
 
 <Intro>
 
-`useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)
+`useDebugValue` merupakan React Hook yang memungkinkan Anda untuk menambahkan label ke sebuah Hook kustom di dalam [React DevTools.](/learn/react-developer-tools)
 
 ```js
 useDebugValue(value, format?)
@@ -16,11 +16,11 @@ useDebugValue(value, format?)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+Panggil `useDebugValue` di bagian atas [Hook kustom](/learn/reusing-logic-with-custom-hooks) Anda untuk manampilkan nilai *debug* yang dapat dibaca:
 
 ```js
 import { useDebugValue } from 'react';
@@ -32,22 +32,22 @@ function useOnlineStatus() {
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+* `value`: Nilai yang Anda inginkan untuk ditampilkan di dalam React DevTools. Nilai tersebut dapat memiliki tipe apa pun.
+* `format` **opsional**: Fungsi untuk pemformatan. Ketika komponen diperiksa, React DevTools akan memanggil fungsi pemformatan dengan `value` sebagai argumennya, dan kemudian menampilkan nilai kembalian yang telah diformat (yang mungkin memiliki jenis apapun). Jika Anda tidak menentukan fungsi pemformatan, `value` asli itu sendiri yang akan ditampilkan.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`useDebugValue` does not return anything.
+`useDebugValue` tidak mengembalikan apapun.
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Adding a label to a custom Hook {/*adding-a-label-to-a-custom-hook*/}
+### Menambahkan sebuah label ke sebuah Hook kustom {/*adding-a-label-to-a-custom-hook*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable <CodeStep step={1}>debug value</CodeStep> for [React DevTools.](/learn/react-developer-tools)
+Panggil `useDebugValue` pada bagian atas [Hook kustom](/learn/reusing-logic-with-custom-hooks) Anda untuk menampilkan <CodeStep step={1}>nilai debug</CodeStep> yang dapat dibaca untuk [React DevTools.](/learn/react-developer-tools)
 
 ```js [[1, 5, "isOnline ? 'Online' : 'Offline'"]]
 import { useDebugValue } from 'react';
@@ -59,11 +59,11 @@ function useOnlineStatus() {
 }
 ```
 
-This gives components calling `useOnlineStatus` a label like `OnlineStatus: "Online"` when you inspect them:
+Hal ini akan mengakibatkan komponen yang memanggil  `useOnlineStatus` memiliki label seperti `OnlineStatus: "Online"` ketika Anda memeriksanya:
 
-![A screenshot of React DevTools showing the debug value](/images/docs/react-devtools-usedebugvalue.png)
+![Sebuah tangkapan layar React DevTools yang menunjukan nilai debug](/images/docs/react-devtools-usedebugvalue.png)
 
-Without the `useDebugValue` call, only the underlying data (in this example, `true`) would be displayed.
+Tanpa panggilan `useDebugValue`, hanya data yang mendasarinya (dalam contoh ini, `true`) yang akan ditampilkan.
 
 <Sandpack>
 
@@ -103,20 +103,20 @@ function subscribe(callback) {
 
 <Note>
 
-Don't add debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries and that have a complex internal data structure that's difficult to inspect.
+Jangan menambahkan nilai *debug* untuk setiap Hook kustom. Nilai tersebut paling berharga untuk Hooks kustom yang merupakan bagian dari pustaka bersama dan memiliki struktur data internal yang kompleks sehingga sulit untuk diperiksa.
 
 </Note>
 
 ---
 
-### Deferring formatting of a debug value {/*deferring-formatting-of-a-debug-value*/}
+### Menunda pemformatan nilai *debug* {/*deferring-formatting-of-a-debug-value*/}
 
-You can also pass a formatting function as the second argument to `useDebugValue`:
+Anda juga bisa meneruskan fungsi pemformatan sebagai argumen kedua ke `useDebugValue`:
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
 ```
 
-Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call this function and display its result.
+Fungsi pemformatan Anda akan menerima <CodeStep step={1}>nilai debug</CodeStep> sebagai sebuah parameter dan akan mengembalikan sebuah <CodeStep step={2}>nilai tampilan yang telah diformat</CodeStep>. Ketika komponen Anda diperiksa, React DevTools akan memanggil fungsi ini dan menampilkan hasilnya.
 
-This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.
+Ini memungkinkan Anda menghindari menjalankan logika pemformatan yang berpotensi mahal/berat (*potentially expensive formatting logic*) kecuali komponen benar-benar diperiksa. Sebagai contoh, jika `date` merupakan sebuah nilai *Date*, ini menghindari pemanggilan `toDateString()` pada setiap render.
