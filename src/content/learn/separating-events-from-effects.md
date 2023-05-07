@@ -14,7 +14,7 @@ Event handler hanya akan tereksekusi ketika kita melakukan interaksi tertentu. B
 - Mengapa Effect bersifat reaktif, dan event handler tidak
 - Bagaimana cara kita membuat beberapa bagian dari kode Effect agar tidak reaktif
 - Apa yang dimaksud Effect Event, dan bagaimana cara kita menggunakannya di Effect
-- Cara membaca nilai props dan state dari Effect menggunakan Effect Event
+- Cara membaca nilai *props* dan *state* dari Effect menggunakan Effect Event
 
 </YouWillLearn>
 
