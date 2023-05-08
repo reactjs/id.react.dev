@@ -47,7 +47,11 @@ function Tooltip() {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Sebelum komponen pertama kali ditambahkan ke DOM, React akan menjalankan fungsi *setup*. Setelah setiap *re-render* dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan untuk terakhir kali.
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+>>>>>>> da93812c7802e916d75bbb293889fda42c8d06aa
  
 * **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika *linter* Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika argumen ini diabaikan, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
 
@@ -732,6 +736,7 @@ Namun, jika mengalami masalah tersebut, terdapat beberapa opsi yang tersedia:
 
 - Ubah `useLayoutEffect` menjadi [`useEffect`.](/reference/react/useEffect) Hal tersebut menginformasikan React bahwa hasil *render* awal dapat ditampilkan tanpa memblokir proses melukis (karena HTML asli akan terlihat sebelum Efek dijalankan).
 
+<<<<<<< HEAD
 - Sebagai alternatif, [tandai komponen Anda sebagai khusus klien (*client-only*).](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) Hal tersebut menginformasikan React untuk mengganti kontennya hingga [`<Suspense>`](/reference/react/Suspense) terdekat dengan *fallback loading* (Sebagai contoh, *spinner* atau *glimmer*) selama *server rendering*.
 
 - Sebagai alternatif, Anda dapat me-*render* komponen dengan `useLayoutEffect` hanya setelah proses hidrasi (*hydration*). Tambahkan *state boolean* `isMounted` yang diinisialisasi dengan nilai `false`, dan atur nilainya menjadi `true` di dalam panggilan `useEffect`. Logika me-*render* Anda dapat dituliskan seperti ini: `return isMounted ? <RealContent /> : <FallbackContent />`. Selama di sisi *server* atau proses hidrasi, pengguna akan melihat `FallbackContent` yang tidak memanggil `useLayoutEffect`. Kemudian React akan menggantinya dengan `RealContent` yang hanya dijalankan di sisi klien dan juga dapat mencakup pemanggilan `useLayoutEffect`.
@@ -739,3 +744,10 @@ Namun, jika mengalami masalah tersebut, terdapat beberapa opsi yang tersedia:
 - Jika Anda menyinkronkan komponen dengan penyimpanan data eksternal menggunakan `useLayoutEffect` untuk penggunaan selain dari pengukuran tata letak, pertimbangkan [`useSyncExternalStore`](/reference/react/useSyncExternalStore) yang [mendukung *server rendering*](reference/react/useSyncExternalStore#adding-support-for-server-rendering) sebagai gantinya.
 
 
+=======
+- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+
+- Alternatively, you can render a component with `useLayoutEffect` only after hydration. Keep a boolean `isMounted` state that's initialized to `false`, and set it to `true` inside a `useEffect` call. Your rendering logic can then be like `return isMounted ? <RealContent /> : <FallbackContent />`. On the server and during the hydration, the user will see `FallbackContent` which should not call `useLayoutEffect`. Then React will replace it with `RealContent` which runs on the client only and can include `useLayoutEffect` calls.
+
+- If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](/reference/react/useSyncExternalStore) instead which [supports server rendering.](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)
+>>>>>>> da93812c7802e916d75bbb293889fda42c8d06aa

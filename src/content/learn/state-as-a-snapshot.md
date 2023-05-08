@@ -328,7 +328,11 @@ Tetapi bagaimana jika Anda ingin membaca *state* terakhir sebelum sebuah *render
 
 #### Implementasikan sebuah lampu lalu lintas {/*implement-a-traffic-light*/}
 
+<<<<<<< HEAD
 Berikut adalah komponen lampu penyeberangan yang menyala saat tombol ditekan:
+=======
+Here is a crosswalk light component that toggles when the button is pressed:
+>>>>>>> da93812c7802e916d75bbb293889fda42c8d06aa
 
 <Sandpack>
 
