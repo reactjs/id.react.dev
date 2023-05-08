@@ -18,7 +18,7 @@ title: 'Membedakan Event dengan Effect'
 
 </YouWillLearn>
 
-## Cara menentukan kapan menggunakan *event handler* atau Effect {/*choosing-between-event-handlers-and-effects*/}
+## Memilih antara *event handler* atau Effect {/*choosing-between-event-handlers-and-effects*/}
 
 Mari kita mulai dengan merangkum perbedaan antara *event handler* dan Effect.
 
