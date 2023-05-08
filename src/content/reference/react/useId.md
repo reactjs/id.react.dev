@@ -95,7 +95,7 @@ Dalam HTML biasa, Anda akan menulisnya seperti ini:
 </p>
 ```
 
-Namun, menuliskan ID secara langsung di dalam kode (*hardcoding*) seperti ini bukanlah praktik yang baik di React. Sebuah komponen dapat dirender lebih dari sekali pada halaman—namun ID harus unik! Alih-alih melakukan pemaksaan ID, buat ID unik dengan `useId`:
+Namun, menuliskan ID secara langsung di dalam kode (*hardcoding*) seperti ini bukanlah praktik yang baik di React. Sebuah komponen dapat di-*render* lebih dari sekali pada halaman—namun ID harus unik! Alih-alih melakukan pemaksaan ID, buat ID unik dengan `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -166,7 +166,7 @@ input { margin: 5px; }
 
 <Pitfall>
 
-Dengan [rendering server](/reference/react-dom/server), **`useId` membutuhkan pohon komponen yang identik di server dan klien**. Jika pohon yang Anda render di server dan klien tidak sama persis, ID yang dihasilkan tidak akan cocok.
+Dengan [rendering server](/reference/react-dom/server), **`useId` membutuhkan pohon komponen yang identik di server dan klien**. Jika pohon yang Anda *render* di server dan klien tidak sama persis, ID yang dihasilkan tidak akan cocok.
 
 </Pitfall>
 
