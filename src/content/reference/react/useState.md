@@ -4,7 +4,7 @@ title: useState
 
 <Intro>
 
-`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [variabel *state*](/learn/state-a-components-memory) pada komponen anda.
+`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [variabel *state*](/learn/state-a-components-memory) pada komponen Anda.
 
 ```js
 const [state, setState] = useState(initialState);
@@ -34,7 +34,7 @@ function MyComponent() {
 
 Konvensi dalam menamai variable *state* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
-[Lihat contoh lainnya di bawah ini.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
 #### Parameter {/*parameters*/}
 
@@ -45,7 +45,7 @@ Konvensi dalam menamai variable *state* adalah menggunakan pola `[something, set
 
 `useState` mengembalikan sebuah senarai yang memiliki dua nilai:
 
-1. *State* saat ini. Pada saat pertama kali *render*, itu akan sama dengan `initialState` yang anda oper sebelumnya.
+1. *State* saat ini. Pada saat pertama kali *render*, itu akan sama dengan `initialState` yang Anda oper sebelumnya.
 2. Fungsi [*`set` function*](#setstate) yang memungkinkan Anda memperbarui *state* menjadi nilai yang berbeda dan memicu pembaruan ulang (*re-render*).
 
 #### Catatan Penting {/*caveats*/}
@@ -70,7 +70,7 @@ function handleClick() {
 
 #### Parameter {/*setstate-parameters*/}
 
-* `nextState`: Nilai yang anda inginkan untuk menjadi *state* berikutnya. Ini dapat berupa nilai dari jenis apa pun, tetapi ada perilaku khusus untuk sebuah fungsi.
+* `nextState`: Nilai yang Anda inginkan untuk menjadi *state* berikutnya. Ini dapat berupa nilai dari jenis apa pun, tetapi ada perilaku khusus untuk sebuah fungsi.
   * Jika Anda mengoper sebuah fungsi sebagai `nextState`, itu akan diperlakukan sebagai fungsi pembaruan (*updater function*). Fungsi ini harus murni (*pure*), hanya menerima *state* yang tertunda sebagai argumen satu-satunya, dan harus mengembalikan *state* berikutnya. React akan menempatkan fungsi pembaruan Anda dalam antrian dan memperbarui ulang komponen Anda. Selama *render* berikutnya, React akan mengkalkulasi *state* berikutnya dengan menerapkan semua pembaruan dalam antrian ke *state* sebelumnya [Lihat contoh lainnya di bawah ini.](#updating-state-based-on-the-previous-state)
 
 #### Kembalian {/*setstate-returns*/}
@@ -290,7 +290,7 @@ function handleClick() {
 
 Namun, setelah satu kali klik, `age` hanya akan menjadi `43` daripada `45`! Hal ini terjadi karena memanggil fungsi `set` [tidak memperbarui](/learn/state-as-a-snapshot) variabel *state* `age` pada kode yang sudah dieksekusi. Oleh karena itu, setiap panggilan `setAge(age + 1)` menjadi `setAge(43)`.
 
-Untuk memecahkan masalah ini, **anda dapat mengoper sebuah fungsi pembaruan (*updater function*)** pada `setAge` daripada mengoper *state* berikutnya:
+Untuk memecahkan masalah ini, **Anda dapat mengoper sebuah fungsi pembaruan (*updater function*)** pada `setAge` daripada mengoper *state* berikutnya:
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
