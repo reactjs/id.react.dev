@@ -117,9 +117,9 @@ Biasanya Anda tidak memerlukan cara ini kecuali Anda perlu [mengoper `key` ke `F
 
 ---
 
-### Menentukan banyak elemen ke variabel {/*assigning-multiple-elements-to-a-variable*/}
+### Menetapkan banyak elemen ke variabel {/*assigning-multiple-elements-to-a-variable*/}
 
-Seperti komponen yang lain, Anda bisa menentukan elemen *Fragment* ke variabel, dan mengoper mereka sebagai *props*, dan seterusnya:
+Seperti komponen yang lain, Anda bisa menetapkan elemen *Fragment* ke variabel, dan mengoper mereka sebagai *props*, dan seterusnya:
 
 ```js
 function CloseDialog() {
