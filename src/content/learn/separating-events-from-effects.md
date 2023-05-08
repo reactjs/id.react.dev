@@ -160,7 +160,7 @@ Secara intuitif, kita bisa mengatakan bahwa event handler selalu dipicu "secara 
 
 Namun, ada cara yang lebih tepat untuk memikirkan perbedaan antara keduanya. 
 
-*Props*, *state*, dan variabel yang dideklarasikan di dalam komponen disebut <CodeStep step={2}>nilai reaktif</CodeStep>. Dalam contoh ini, `serverUrl` bukan merupakan nilai reaktif, melainkan `roomId` dan `message`. Keduanya berpartisipasi dalam aliran data rendering, sehingga harus diatur sebagai nilai reaktif agar sinkronisasi dapat terjaga:
+*Props*, *state*, dan variabel yang dideklarasikan di dalam komponen disebut <CodeStep step={2}>nilai reaktif</CodeStep>. Dalam contoh ini, `serverUrl` bukan merupakan nilai reaktif, melainkan `roomId` dan `message`. Keduanya berpartisipasi dalam aliran data *rendering*, sehingga harus diatur sebagai nilai reaktif agar sinkronisasi dapat terjaga:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -172,10 +172,10 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Nilai reaktif seperti ini dapat berubah karena rendering ulang suatu komponen. Misalnya, pengguna dapat melakukan beberapa tindakan, seperti mengedit `message` atau memilih `roomId` yang berbeda di menu drop-down. *Event handler* dan Effect merespon perubahan tersebut dengan cara yang berbeda:
+Nilai reaktif seperti ini dapat berubah karena *rendering* ulang suatu komponen. Misalnya, pengguna dapat melakukan beberapa tindakan, seperti mengedit `message` atau memilih `roomId` yang berbeda di menu drop-down. *Event handler* dan Effect merespon perubahan tersebut dengan cara yang berbeda:
 
 - **Kode di dalam *event handler* bersifat *non-reaktif.*** Ketika sebuah *event handler* dijalankan (yang disebabkan oleh tindakan pengguna seperti tombol diklik), mereka membaca nilai reaktif tanpa bereaksi terhadap perubahannya. Artinya, jika kita ingin *event handler* membaca suatu nilai reaktif, mereka tidak akan merespon ketika nilainya berubah kecuali tindakan pengguna yang sama kembali dijalankan.
-- **Kode di dalam Effect bersifat *reaktif.*** Jika kita menggunakan Effect untuk membaca nilai reaktif, kita harus [mendeklarasikannya sebagai salah satu dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Kemudian jika render ulang menyebabkan nilai tersebut berubah, React akan menjalankan kembali logika Effect dengan nilai yang baru, sehingga memastikan sinkronisasi data terjaga. 
+- **Kode di dalam Effect bersifat *reaktif.*** Jika kita menggunakan Effect untuk membaca nilai reaktif, kita harus [mendeklarasikannya sebagai salah satu dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Kemudian jika *render* ulang menyebabkan nilai tersebut berubah, React akan menjalankan kembali logika Effect dengan nilai yang baru, sehingga memastikan sinkronisasi data terjaga. 
 
 Mari kita lihat kembali contoh sebelumnya untuk mengilustrasikan perbedaan ini.
 
@@ -241,7 +241,7 @@ function ChatRoom({ roomId, theme }) {
     // ...
 ````
 
-Namun, `theme` adalah nilai reaktif (dapat berubah sebagai hasil dari re-render), dan [setiap nilai reaktif yang dibaca oleh Effect harus dideklarasikan sebagai dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Sekarang kita harus menentukan `theme` sebagai dependensi Effect:
+Namun, `theme` adalah nilai reaktif (dapat berubah sebagai hasil dari *render* ulang), dan [setiap nilai reaktif yang dibaca oleh Effect harus dideklarasikan sebagai dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Sekarang kita harus menentukan `theme` sebagai dependensi Effect:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -655,7 +655,7 @@ function Page({ url }) {
 
 Di sini, `onVisit` adalah suatu Effect Event. Kode di dalamnya tidak bersifat reaktif. Oleh karena itu, kita dapat menggunakan `numberOfItems` (atau reactive value lain!) tanpa khawatir mengakibatkan kode di sekitarnya dijalankan ulang saat terjadi perubahan.
 
-Namun di sisi lain, Effect itu sendiri tetap bersifat reaktif. Kode di dalam Effect menggunakan *prop* `url`, sehingga Effect tersebut akan dijalankan ulang setelah setiap render dengan `url` yang berbeda. Hal ini pada akhirnya akan memanggil Effect Event `onVisit`.
+Namun di sisi lain, Effect itu sendiri tetap bersifat reaktif. Kode di dalam Effect menggunakan *prop* `url`, sehingga Effect tersebut akan dijalankan ulang setelah setiap *render* dengan `url` yang berbeda. Hal ini pada akhirnya akan memanggil Effect Event `onVisit`.
 
 Akibatnya, `logVisit` akan terpanggil untuk setiap perubahan pada `url`, dan selalu membaca `numberOfItems` yang terbaru. Namun jika hanya nilai `numberOfItems` yang berubah, hal ini tidak akan menyebabkan kode berjalan ulang.
 
@@ -791,7 +791,7 @@ body {
 
 Masalah pada kode tersebut terletak pada penonaktifan *lint dependency*. Jika kita hapus penonaktifannya, maka kita akan melihat bahwa Effect tersebut harus membutuhkan fungsi `handleMove` sebagai dependensi. Hal ini masuk akal, karena `handleMove` dideklarasikan di dalam badan komponen, yang membuatnya menjadi sebuah nilai reaktif. Setiap nilai reaktif harus dijadikan dependensi, jika tidak, maka nilai tersebut berpotensi menjadi usang dari waktu ke waktu!
 
-Penulis kode tersebut "membohongi" React dengan mengatakan bahwa Effect tersebut tidak memiliki dependensi (`[]`) pada nilai yang reaktif. Inilah yang menyebabkan React tidak mensinkronisasikan kembali Effect tersebut setelah terjadinya perubahan pada `canMove` (dan `handleMove`). Karena React tidak mensinkronisasikan kembali Effect tersebut, maka `handleMove` yang digunakan sebagai *listener* adalah fungsi `handleMove` yang dibuat selama render awal. Selama render awal, `canMove` bernilai `true`, itulah sebabnya fungsi `handleMove` dari render awal akan selalu melihat nilai tersebut.
+Penulis kode tersebut "membohongi" React dengan mengatakan bahwa Effect tersebut tidak memiliki dependensi (`[]`) pada nilai yang reaktif. Inilah yang menyebabkan React tidak mensinkronisasikan kembali Effect tersebut setelah terjadinya perubahan pada `canMove` (dan `handleMove`). Karena React tidak mensinkronisasikan kembali Effect tersebut, maka `handleMove` yang digunakan sebagai *listener* adalah fungsi `handleMove` yang dibuat selama *render* awal. Selama *render* awal, `canMove` bernilai `true`, itulah sebabnya fungsi `handleMove` dari *render* awal akan selalu melihat nilai tersebut.
 
 **Dengan tidak pernah menonaktifkan *linter dependency*, kita tidak akan pernah mengalami masalah dengan nilai yang usang.**
 
