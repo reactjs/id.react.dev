@@ -30,9 +30,9 @@ Untuk menampilkan sebuah area teks, *render* [komponen bawaan peramban `<textare
 
 #### Props {/*props*/}
 
-`<textarea>` mendukung semua [elemen props yang umum.](/reference/react-dom/components/common#props)
+`<textarea>` mendukung semua [elemen *props* yang umum.](/reference/react-dom/components/common#props)
 
-Anda dapat [membuat sebuah area teks yang terkendali](#controlling-a-text-area-with-a-state-variable) dengan cara memberikan sebuah prop `value`:
+Anda dapat [membuat sebuah area teks yang terkendali](#controlling-a-text-area-with-a-state-variable) dengan cara memberikan sebuah *prop* `value`:
 
 * `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
@@ -42,11 +42,11 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 
 * `defaultValue`: Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-a-text-area) untuk sebuah area teks.
 
-`<textarea>` props ini relevan baik untuk area text terkendali maupun tidak terkendali:
+`<textarea>` *props* ini relevan baik untuk area text terkendali maupun tidak terkendali:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Nilainya `'on'` atau `'off'`. Menentukan perilaku penyelesaian otomatis.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen ketika terpasang.
-* `children`: `<textarea>` tidak menerima *children*. Untuk Menentukan nilai awal, gunakan `defaultValue`.
+* `children`: `<textarea>` tidak menerima anak (*children*). Untuk Menentukan nilai awal, gunakan `defaultValue`.
 * [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols): Sebuah bilangan. Menentukan lebar bawaaan pada rata-rata lebar karakter. Nilai bawaan adalah `20`.
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): Sebuah boolean. Jika `true`, input tidak akan menjadi interaktif dan akan terlihat redup.
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): Sebuah string. Menentukan `id` pada suatu `<form>` yang memiliki input tersebut. Jika dihilangkan, nilainya mengacu pada induk formulir terdekat.
@@ -69,7 +69,7 @@ Jika `<textarea>` Anda tidak terkendali, Anda boleh memberikan `defaultValue` se
 
 #### Caveats {/*caveats*/}
 
-- Memberikan *children* seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
+- Memberikan anak (*children*) seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
 - Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
 - Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
 - Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
@@ -349,7 +349,7 @@ Jika Anda *render* sebuah area teks dengan `value` tetapi tanpa `onChange`, Anda
 
 <ConsoleBlock level="error">
 
-Anda memberikan sebuah prop `value` ke sebuah *field* formulir tanpa sebuah *handler* `onChange`. area teksnya akan ter-*render* menjadi sebuah *field* yang hanya untuk dibaca. Jika *field*-nya harus *mutable*, gunakan `defaultValue`. Selain itu, berikan `onChange` atau `readOnly`.
+Anda memberikan sebuah *prop* `value` ke sebuah *field* formulir tanpa sebuah *handler* `onChange`. area teksnya akan ter-*render* menjadi sebuah *field* yang hanya untuk dibaca. Jika *field*-nya harus *mutable*, gunakan `defaultValue`. Selain itu, berikan `onChange` atau `readOnly`.
 
 </ConsoleBlock>
 
