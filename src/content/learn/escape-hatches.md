@@ -10,14 +10,14 @@ Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi den
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [Bagaimana cara "mengingat" informasi tanpa harus melakukan rendering kembali](/learn/referencing-values-with-refs)
+* [Bagaimana cara mengakses elemen DOM yang dikelola oleh React](/learn/manipulating-the-dom-with-refs)
+* [Bagaimana cara menyinkronkan komponen dengan sistem eksternal](/learn/synchronizing-with-effects)
+* [Bagaimana cara menghapus *Effect* yang tidak perlu dari komponen Anda](/learn/you-might-not-need-an-effect)
+* [Bagaimana sebuah *Effect's lifecycle* berbeda dari komponen](/learn/lifecycle-of-reactive-effects)
+* [Bagaimana mencegah beberapa nilai dari pemanggilan *Effects* kembali](/learn/separating-events-from-effects)
+* [Bagaiaman membuat *Effect* Anda berjalan kembali lebih sering](/learn/removing-effect-dependencies)
+* [Bagaimana membagi logika antara komponen](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
