@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda me-*render* berbagai jenis masukan form.
+Komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda me-*render* berbagai jenis masukan form.
 
 ```js
 <input />
@@ -20,7 +20,7 @@ Komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web
 
 ### `<input>` {/*input*/}
 
-Untuk menampilkan sebuah masukan, render komponen [bawaan browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+Untuk menampilkan sebuah masukan, render komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
@@ -148,7 +148,7 @@ input { margin: 5px; }
 
 ### Memberikan label untuk sebuah masukan {/*providing-a-label-for-an-input*/}
 
-Biasanya, Anda akan menaruh setiap `<input>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu browser bahwa label ini dikaitkan dengan masukan itu. Saat pengguna melakukan klik pada label, browser akan secara otomatis memfokuskan input. Ini juga penting untuk aksesibilitas: pembaca layar akan memberitahukan keterangan label saat pengguna memfokuskan masukan terkait.
+Biasanya, Anda akan menaruh setiap `<input>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu peramban bahwa label ini dikaitkan dengan masukan itu. Saat pengguna melakukan klik pada label, peramban akan secara otomatis memfokuskan input. Ini juga penting untuk aksesibilitas: pembaca layar akan memberitahukan keterangan label saat pengguna memfokuskan masukan terkait.
 
 Jika Anda tidak dapat menumpuk `<input>` pada sebuah `<label>`, katikan keduanya dengan mengoper ID yang sama ke `<input id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instance dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
 
@@ -235,13 +235,13 @@ input { margin: 5px; }
 
 ### Membaca nilai input saat mengirimkan form {/*reading-the-input-values-when-submitting-a-form*/}
 
-Tambahkan sebuah [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) disekitar masukan Anda dengan [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil event handler `<form onSubmit>`. Secara default, browser akan mengirimkan data form ke URL saat ini dan menyegarkan halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data form dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Tambahkan sebuah [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) disekitar masukan Anda dengan [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil event handler `<form onSubmit>`. Secara default, peramban akan mengirimkan data form ke URL saat ini dan menyegarkan halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data form dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
 export default function MyForm() {
   function handleSubmit(e) {
-    // Cegah browser memuat ulang halaman
+    // Cegah peramban memuat ulang halaman
     e.preventDefault();
 
     // Membaca data form
