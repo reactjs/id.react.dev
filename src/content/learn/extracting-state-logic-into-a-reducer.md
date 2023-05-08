@@ -4,22 +4,22 @@ title: Mengekstraksi Logika State ke Sebuah Reducer
 
 <Intro>
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a _reducer._
+Komponen dengan banyak pembaruan _state_ yang tersebar di banyak _event handlers_ bisa menjadi sangat membingungkan. Untuk kasus seperti ini, Anda dapat menggabungkan semua logika pembaruan _state_ di luar komponen Anda dalam satu fungsi, yang disebut sebagai _reducer_.
 
 </Intro>
 
 <YouWillLearn>
 
 - Apa itu fungsi _reducer_
-- Bagaimana cara untuk menuliskan kembali `useState` menjadi `useReducer`   
-- Kapan menggunakan _reducer_
-- Bagaimana cara menulis dengan baik
+- Bagaimana cara untuk migrasi dari fungsi `useState` menjadi `useReducer`   
+- Kapan menggunakan fungsi _reducer_
+- Bagaimana cara menulis fungsi _reducer_ dengan baik
 
 </YouWillLearn>
 
 ## Mengkonsolidasikan logika state menggunakan reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui state komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponent `TaskApp` dibawah menyimpan senarai `tasks` dalam state dan menggunakan tiga _handler_ untuk menabahkan, menghapus dan menyunting tasks:
+Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui state komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponent `TaskApp` dibawah menyimpan senarai `tasks` dalam _state_ dan menggunakan tiga _handler_ untuk menabahkan, menghapus dan mengubah `tasks`:
 
 <Sandpack>
 
@@ -179,17 +179,17 @@ li {
 
 </Sandpack>
 
-Setiap _event handler_ pada komponen `TaskApp` akan memangil `setTask` untuk melakukan pembaharuan _state_. Saat komponen ini bertumbuh besar, logika _state_ akan semakin rumit. Untuk mengurangi kompleksitas dan menyimpan semua logika Anda di satu tempat yang mudah diakses. Anda dapat memindahkan logika status tersebut ke dalam satu fungsi di luar komponen Anda, **disebut _"reducer"_.**
+Setiap _event handler_ pada komponen `TaskApp` akan memangil fungsi `setTask` untuk melakukan pembaharuan _state_. Saat komponen ini bertumbuh semakin besar, logika _state_ akan semakin rumit. Untuk mengurangi kompleksitas dan menyimpan semua logika Anda di satu tempat yang mudah diakses. Anda dapat memindahkan logika _state_ tersebut ke sebuah fungsi di luar komponen Anda, yang **disebut _"reducer"_.**
 
 _Reducer_ merupakan sebuah alternatif untuk menangani _state_. Anda dapat migrasi dari `useState` ke `useReducer` dalam tiga langkah:
 
-1. **Pindah** dari memanggil fungsi menetapkan _state_ menjadi aksi _dispatch_.
+1. **Pindah** dari memanggil fungsi penetap _state_ menjadi aksi _dispatch_.
 2. **Tulis** fungsi _reducer_.
 3. **Gunakan** _reducer_ pada komponen Anda.
 
-### Langkah 1: Pindah dari memanggil fungsi menetapkan state menjadi aksi dispatch {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### Langkah 1: Pindah dari memanggil fungsi penetap state menjadi aksi dispatch {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
-_Event handler_ Anda sekarang menentukan apa _yang harus dilakukan_ dengan memanggil menetapkan state:
+_Event handler_ Anda sekarang menentukan apa _yang harus dilakukan_ dengan memanggil menetapkan _state_:
 
 ```js
 function handleAddTask(text) {
@@ -220,13 +220,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Hapus semua logika untuk mengatur _state_. Yang tersisa adalah tiga _event handlers_:
+Hapus semua logika untuk mengatur _state_. Maka yang tersisa adalah tiga _event handlers_:
 
 - `handleAddTask(text)` akan dipanggil ketika pengguna menekan tombol "Add".
 - `handleChangeTask(task)` akan dipanggil ketika pengguna matikan sebuah task atau menekan tombol "Save".
 - `handleDeleteTask(taskId)` akan dipanggil ketika pengguna menekan tombol "Delete".
 
-Mengelola _state_ dengan fungsi _reducer_ sedikit berbeda dari memanggil fungsi untuk menetapkan _state_ secara langsung. Alih-alih memberi tahu React "apa yang harus dilakukan" dengan menetapkan _state_, Anda merincis "apa yang baru saja dilakukan pengguna" dengan mengirim "aksi" dari _event handler_ Anda. (Logika pembaruan _state_ akan berada di tempat lain!) Jadi, alih-alih "mengatur `tasks`" melalui _event handler_, Anda mengirim aksi "menambahkan/mengubah/menghapus task". Cara ini lebih deskriptif untuk mengetahui intensi pengguna.
+Mengelola _state_ dengan fungsi _reducer_ akan sedikit berbeda dari memanggil fungsi penetap _state_ secara langsung. Alih-alih memberi tahu React "apa yang harus dilakukan" dengan menetapkan _state_, Anda merincis "apa yang baru saja dilakukan pengguna" dengan mengirim "aksi" dari _event handler_ Anda. (Logika pembaruan _state_ akan berada di tempat lain!) Jadi, alih-alih "mengatur `tasks`" melalui _event handler_, Anda mengirim aksi "menambahkan/mengubah/menghapus task". Cara ini lebih deskriptif untuk mengetahui intensi aksi pengguna.
 
 ```js
 function handleAddTask(text) {
@@ -252,12 +252,12 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Objek yang anda masukan ke `dispatch` dapat disebut dengan "aksi":
+Objek yang anda masukan ke `dispatch` dapat disebut sebagai "aksi":
 
 ```js {3-7}
 function handleDeleteTask(taskId) {
   dispatch(
-    // obyek "aksi":
+    // objek "aksi":
     {
       type: 'deleted',
       id: taskId,
@@ -266,7 +266,7 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Contoh diatas merupakan objek JavaScript biasa. Anda dapat menentukan objek apa yang akan dimasukkan ke dalamnya, tetapi umumnya harus berisi sebuah objek yang setidaknya berisi informasi _Apa yang terjadi_. (Anda akan menambahkan fungsi `dispatch` itu sendiri di langkah selanjutnya.)
+Contoh diatas merupakan objek JavaScript biasa. Anda dapat menentukan objek apapun yang akan dimasukkan ke dalamnya, tetapi umumnya harus berisi sebuah objek yang setidaknya berisi informasi _Apa yang terjadi_. (Anda akan menambahkan fungsi `dispatch` itu sendiri di langkah selanjutnya.)
 
 <Note>
 
@@ -302,7 +302,7 @@ Untuk memindahkan logika fungsi penetap _state_ dari _event handler_ Anda menjad
 2. Deklarasikan objek `action` sebagai argumen kedua.
 3. Mengembalikan _state_ berikutnya melalui reducer (di mana React akan mengatur statusnya).
 
-Berikut merupakan logika funsi penetapan _state_ yang dimigrasikan ke fungsi _reducer_:
+Berikut merupakan logika funsi penetap _state_ yang dimigrasikan ke fungsi _reducer_:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -330,14 +330,14 @@ function tasksReducer(tasks, action) {
   }
 }
 ```
-Karena fungsi _reducer_ menerima _state_ (`tasks`) sebagai sebuah argument, **Anda dapat mendeklarisikannya di luar komponen Anda.** Dengan ini kode yang Anda tulis tingkat indentasinya akan berkurang dan akan lebih mudah di baca.
+Karena fungsi _reducer_ menerima _state_ (`tasks`) sebagai sebuah argument, **Anda dapat mendeklarasikan fungsi _reducer_ di luar komponen Anda.** Dengan ini kode yang Anda tulis tingkat indentasinya akan berkurang dan akan lebih mudah di baca.
 
 <Note>
 
 Kode di atas menggunakan pernyataan _if/else_, namun secara konvensi ketika menggunakan fungsi reducer Anda harus menggunakan [pernyataan _switch_](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) pada fungsi tersebut. Secara hasil akan sama, tetapi akan lebih mudah dibaca secara sekilas.
 
 
-Kami akan menggunakan pernyataan _switch_ sepanjang sisa dokumentasi ini seperti berikut:
+Kami akan menggunakan pernyataan _switch_ sepanjang sisa dokumentasi ini sebagai berikut:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -459,35 +459,35 @@ Anda mungkin tidak perlu melakukannya sendiri, tetapi ini mirip dengan apa yang 
 
 ### Langkah 3: Gunakan reducer pada komponen Anda {/*step-3-use-the-reducer-from-your-component*/}
 
-Terakhir, Anda perlu menghubungkan `tasksReducer` ke komponen Anda. Impor _Hook_ `useReducer` dari React:
+Terakhir, Anda perlu menghubungkan fungsi `tasksReducer` ke komponen Anda. Impor fungsi _hook_ `useReducer` dari React:
 
 ```js
 import { useReducer } from 'react';
 ```
 
-Kemudian Anda dapat mengganti `useState`:
+Kemudian Anda dapat mengganti fungsi `useState`:
 
 ```js
 const [tasks, setTasks] = useState(initialTasks);
 ```
 
-dengan `useReducer` seperti ini:
+dengan fungsi `useReducer` seperti ini:
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-Hook `useReducer` mirip dengan `useState` — Anda harus melewatkan state awal ke dalamnya dan ia mengembalikan nilai _stateful_ dan cara untuk mengatur _state_ (dalam kasus ini, fungsi _dispatch_). Namun, sedikit berbeda.
+Fungsi hook `useReducer` mirip dengan fungsi `useState`—Anda harus melewatkan _state_ awal ke dalamnya dan ia mengembalikan nilai _stateful_ dan cara untuk mengatur _state_ (dalam kasus ini, fungsi _dispatch_). Namun, sedikit berbeda.
 
-_Hook_ `useReducer` mengambil dua argumen:
+Fungsi _hook_ `useReducer` mengambil dua argumen:
 
-1. Fungsi _reducer_
-2. _State_ awal
+1. Fungsi _reducer_.
+2. _State_ awal.
 
-Dan _hook_ `useReducer` mengembalikan:
+Dan fungsi _hook_ `useReducer` mengembalikan:
 
-1. Nilai _stateful_
-2. Fungsi _dispatch_ (untuk "men-dispatch" aksi pengguna ke _reducer_)
+1. Nilai _stateful_.
+2. Fungsi _dispatch_ (untuk "men-dispatch" aksi pengguna ke _reducer_).
 
 Sekarang fungsi _reducer_ sudah sepenuhnya terhubung! Di sini, _reducer_ dinyatakan di bagian bawah file komponen:
 
@@ -674,7 +674,7 @@ li {
 
 </Sandpack>
 
-Hal ini opsional, namun jika Anda ingin, Anda bahkan dapat memindahkan reducer ke file yang berbeda:
+Hal ini opsional, namun jika Anda ingin melakukannya, Anda bahkan dapat memindahkan reducer ke file yang berbeda:
 
 <Sandpack>
 
@@ -862,7 +862,7 @@ li {
 
 </Sandpack>
 
-Logika komponen dapat lebih mudah dibaca ketika Anda memisahkan aspek seperti ini. Sekarang, handler acara hanya menentukan _apa yang terjadi_ dengan mengirimkan aksi, dan fungsi reducer menentukan _bagaimana state diperbarui_ sebagai respons terhadapnya.
+Logika komponen akan dapat lebih mudah dibaca ketika Anda memisahkan aspek seperti ini. Sekarang, _event handler_ hanya menentukan _apa yang terjadi_ dengan mengirimkan aksi, dan fungsi reducer menentukan _bagaimana state diperbarui_ sebagai respons terhadapnya.
 
 ## Membandingkan `useState` dan `useReducer` {/*comparing-usestate-and-usereducer*/}
 
@@ -870,17 +870,17 @@ _Reducers_ tidaklah tanpa kekurangan! Berikut adalah beberapa cara untuk memband
 
 - **Ukuran kode:** Secara umum, dengan `useState` kamu harus menulis lebih sedikit kode di awal. Dengan `useReducer`, kamu harus menulis baik fungsi reducer _dan_ dispatch actions. Namun, `useReducer` dapat membantu mengurangi jumlah kode jika banyak event handler memodifikasi state dengan cara yang serupa.
 - **Keterbacaan:** `useState` sangat mudah dibaca ketika pembaruan state sederhana. Ketika pembaruan semakin kompleks, mereka dapat membesarkan kode komponen dan sulit untuk dipindai. Dalam hal ini, `useReducer` memungkinkan kamu untuk memisahkan dengan jelas _bagaimana_ logika pembaruan dipisahkan dari _apa yang terjadi_ pada _event handler_.
-- **Debugging:** Ketika kamu memiliki bug dengan `useState`, sulit untuk mengetahui di mana state diatur dengan tidak benar, dan mengapa. Dengan `useReducer`, kamu dapat menambahkan log konsol ke reducer kamu untuk melihat setiap pembaruan state, dan _mengapa_ itu terjadi (karena `aksi` apa). Jika setiap `aksi` benar, kamu akan tahu bahwa kesalahan ada di logika reducer itu sendiri. Namun, kamu harus melalui kode yang lebih banyak daripada `useState`.
-- **Testing:** Sebuah reducer adalah fungsi murni yang tidak bergantung pada komponen kamu. Ini berarti kamu dapat mengekspor dan mengujinya secara terpisah dalam isolasi. Meskipun secara umum lebih baik untuk menguji komponen dalam lingkungan yang lebih realistis, untuk logika pembaruan state yang kompleks dapat berguna untuk menegaskan bahwa reducer kamu mengembalikan state tertentu untuk initialState dan action tertentu.
-- **Preferensi pribadi:** Beberapa orang suka reducers, yang lain tidak. Itu oke. Ini adalah masalah preferensi. Kamu selalu dapat mengonversi antara `useState` dan `useReducer` bolak-balik: mereka setara!
+- **Debugging:** Ketika kamu memiliki _bug_ dengan `useState`, sulit untuk mengetahui di mana state diatur dengan tidak benar, dan mengapa. Dengan `useReducer`, kamu dapat menambahkan log konsol ke _reducer_ kamu untuk melihat setiap pembaruan _state_, dan _mengapa_ itu terjadi (karena `aksi` apa). Jika setiap `aksi` benar, kamu akan tahu bahwa kesalahan ada di logika _reducer_ itu sendiri. Namun, kamu harus melalui kode yang lebih banyak daripada `useState`.
+- **Testing:** Sebuah _reducer_ adalah fungsi murni yang tidak bergantung pada komponen kamu. Ini berarti kamu dapat mengekspor dan mengujinya secara terpisah secara isolasi. Meskipun secara umum lebih baik untuk menguji komponen dalam lingkungan yang lebih realistis, untuk logika pembaharuan _state_ yang kompleks dapat berguna untuk menegaskan bahwa _reducer_ kamu mengembalikan _state_ tertentu untuk initialState dan action tertentu.
+- **Preferensi pribadi:** Beberapa orang suka _reducers_, yang lain tidak. Itu tidak apa-apa. Ini hanya masalah preferensi. Kamu selalu dapat mengonversi antara fungsi `useState` dan `useReducer` bolak-balik: mereka setara!
 
-Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi bug karena pembaruan state yang salah di beberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan reducers untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
+Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi _bug_ karena pembaruan state yang salah di beberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan reducers untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
 
 ## Menulis fungsi reduksi dengan baik {/*writing-reducers-well*/}
 
 Keep these two tips in mind when writing reducers:
 
-- **Reducer harus murni (pure).** Sama seperti [fungsi updater state](/learn/queueing-a-series-of-state-updates), reducer dijalankan selama proses rendering! (Aksi diantre sampai render selanjutnya.) Ini berarti bahwa reducer [harus murni](/learn/keeping-components-pure) - input yang sama selalu menghasilkan output yang sama. Mereka tidak boleh mengirim permintaan, menjadwalkan waktu tunggu, atau melakukan efek samping (operasi yang memengaruhi hal-hal di luar komponen). Mereka harus memperbarui [objek](/learn/updating-objects-in-state) dan [senarai](/learn/updating-arrays-in-state) tanpa mutasi.
+- **Reducer harus murni (pure).** Sama seperti [fungsi updater state](/learn/queueing-a-series-of-state-updates), _reducer_ dijalankan selama proses _rendering_! (Aksi diantre sampai _render_ selanjutnya.) Ini berarti bahwa _reducer_ [harus murni](/learn/keeping-components-pure) - input yang sama selalu menghasilkan output yang sama. Mereka tidak boleh mengirim permintaan, menjadwalkan waktu tunggu, atau melakukan efek samping (operasi yang memengaruhi hal-hal di luar komponen). Mereka harus memperbarui [objek](/learn/updating-objects-in-state) dan [senarai](/learn/updating-arrays-in-state) tanpa mutasi.
 - **Setiap aksi menjelaskan satu interaksi pengguna, meskipun itu mengakibatkan beberapa perubahan pada data.** Sebagai contoh, jika pengguna menekan "Reset" pada formulir dengan lima field yang dikelola oleh reducer, lebih baik untuk mengirimkan satu aksi `reset_form` daripada lima aksi `set_field` terpisah. Jika Anda mencatat setiap aksi dalam reducer, log tersebut harus cukup jelas bagi Anda untuk merekonstruksi interaksi atau respon apa yang terjadi dalam urutan apa. Ini membantu dalam proses debugging!
 
 ## Menulis Reducer yang singkat dengan Immer {/*writing-concise-reducers-with-immer*/}
