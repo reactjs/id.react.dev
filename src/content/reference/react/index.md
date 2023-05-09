@@ -56,7 +56,7 @@ function Form() {
 
 ## Hook Efek {/*effect-hooks*/}
 
-*Efek* memungkinkan sebuah komponen [terhubung dan menyesuaikan dengan sistem eksternal](/learn/synchronizing-with-effects). Termasuk di dalamnya yakni berurusan dengan jaringan, DOM peramban, animasi, *widget* yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
+*Efek* memungkinkan sebuah komponen [terhubung dan menyinkronkan dengan sistem eksternal](/learn/synchronizing-with-effects). Termasuk di dalamnya yakni berurusan dengan jaringan, DOM peramban, animasi, *widget* yang ditulis menggunakan UI pustaka lain, dan kode non-React lainnya.
 
 * [`useEffect`](/reference/react/useEffect) menghubungkan sebuah komponen ke sebuah sistem eksternal.
 
@@ -75,7 +75,7 @@ Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatu
 Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu eksekusinya
 
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melukis ulang (*repaint*) layar. Anda dapat menggunakannya untuk mengukur tata letak (*layout*) pada tahap ini.
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka-pustaka (*libraries) lainnya dapat memasukkan CSS dinamik di sini.
+* [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka-pustaka (*libraries*) lainnya dapat memasukkan CSS dinamik di sini.
 
 ---
 
@@ -95,7 +95,7 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Terkadang, Anda tidak dapat melewatkan pe-*render*-an ulang karena layar sebenarnya perlu pembaruan. Di dalam kasus itu, Anda dapat meningkatkan kinerja dengan memisahkan pembaruan penghalang yang harus sinkron (seperti mengetik masukan) dari pembaruan yang bukan penghalang yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
+Terkadang, Anda tidak dapat melewatkan pe-*render*-an ulang karena layar memang benar-benar memerlukan pembaruan. Di dalam kasus itu, Anda dapat meningkatkan kinerja dengan memisahkan pembaruan penghalang (*blocking updates*) yang harus sinkron (seperti mengetik masukan) dari pembaruan yang bukan penghalang (*non-blocking updates*) yang tidak perlu memblokir antarmuka pengguna (seperti memperbarui bagan).
 
 Untuk memprioritaskan pe-*render*-an, gunakan salah satu dari *Hook-hook* ini:
 
