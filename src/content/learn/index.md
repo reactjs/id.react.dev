@@ -181,9 +181,9 @@ export default function Profile() {
 
 Pada contoh di atas, `style={{}}` bukanlah sintaksis khusus, melainkan objek `{}` biasa di dalam kurung kurawal JSX. Anda dapat menggunakan atribut `style` ketika *styles* Anda bergantung pada variabel JavaScript.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Pe-render-an secara kondisional {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+Di dalam React, tidak ada sintaksis khusus untuk menulis kondisi. Sebagai gantinya, Anda akan menggunakan teknik yang sama dengan yang Anda gunakan saat menulis kode JavaScript biasa. Sebagai contoh, Anda dapat menggunakan pernyataan (*statement*) [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) untuk menyertakan JSX secara kondisional:
 
 ```js
 let content;
@@ -199,7 +199,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+Jika Anda lebih menyukai kode yang lebih ringkas, Anda dapat menggunakan [operator kondisional `?`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Tidak seperti `if`, operator ini bekerja di dalam JSX:
 
 ```js
 <div>
@@ -211,7 +211,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Ketika Anda tidak membutuhkan cabang (*branch*) `lain`, Anda juga dapat menggunakan sintaksis [logika `&&` yang lebih pendek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -219,7 +219,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Semua pendekatan ini juga dapat digunakan untuk menentukan atribut secara kondisional. Jika Anda tidak terbiasa dengan beberapa sintaksis JavaScript ini, Anda dapat memulai dengan selalu menggunakan `if...else`.
 
 ## Rendering lists {/*rendering-lists*/}
 
