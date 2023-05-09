@@ -19,7 +19,7 @@ Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handlers
 
 ## Mengkonsolidasikan logika state menggunakan reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui state komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponent `TaskApp` dibawah menyimpan senarai `tasks` dalam _state_ dan menggunakan tiga *handler* untuk menabahkan, menghapus dan mengubah `tasks`:
+Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui *state* komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponen `TaskApp` di bawah menyimpan senarai `tasks` dalam *state* dan menggunakan tiga *handler* untuk menabahkan, menghapus dan mengubah `tasks`:
 
 <Sandpack>
 
@@ -189,7 +189,7 @@ _Reducer_ merupakan sebuah alternatif untuk menangani *state*. Anda dapat migras
 
 ### Langkah 1: Pindah dari memanggil fungsi penetap state menjadi aksi dispatch {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
-*Event handler* Anda sekarang menentukan apa *yang harus dilakukan* dengan memanggil menetapkan *state*:
+*Event handler* Anda sekarang menentukan apa *yang harus dilakukan* dengan memanggil fungsi penetap *state*:
 
 ```js
 function handleAddTask(text) {
@@ -381,7 +381,7 @@ Jika Anda belum nyaman menggunakan pernyataan *switch*, menggunakan pernyataan *
 
 #### Mengapa fungsi reducer disebut seperti ini? {/*why-are-reducers-called-this-way*/}
 
-Meskipun reducer dapat "mengurangi" jumlah kode di dalam komponen Anda, sebenarnya mereka dinamakan setelah operasi [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) yang dapat dilakukan pada senarai.
+Meskipun *reducer* dapat "mengurangi" jumlah kode di dalam komponen Anda, sebenarnya mereka dinamakan setelah operasi [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) yang dapat dilakukan pada senarai.
 
 Operasi `reduce()` memungkinkan Anda untuk mengambil sebuah senarai dan "mengakumulasi" sebuah nilai tunggal dari banyak nilai:
 
@@ -486,10 +486,10 @@ Fungsi *hook* `useReducer` mengambil dua argumen:
 
 Dan fungsi *hook* `useReducer` mengembalikan:
 
-1. Nilai *stateful*.
-2. Fungsi *dispatch* (untuk "men-dispatch" aksi pengguna ke *reducer*).
+1. Nilai *statefull*.
+2. Fungsi *dispatch* (untuk "men-dispatch" aksi pengguna ke fungsi *reducer*).
 
-Sekarang fungsi *reducer* sudah sepenuhnya terhubung! Di sini, *reducer* dinyatakan di bagian bawah file komponen:
+Sekarang fungsi *reducer* sudah sepenuhnya terhubung! Di sini, fungsi *reducer* dinyatakan di bagian bawah file komponen:
 
 <Sandpack>
 
@@ -868,24 +868,24 @@ Logika komponen akan dapat lebih mudah dibaca ketika Anda memisahkan aspek seper
 
 *Reducers* tidaklah tanpa kekurangan! Berikut adalah beberapa cara untuk membandingkannya:
 
-- **Ukuran kode:** Secara umum, dengan `useState` kamu harus menulis lebih sedikit kode di awal. Dengan `useReducer`, kamu harus menulis baik fungsi reducer *dan* dispatch actions. Namun, `useReducer` dapat membantu mengurangi jumlah kode jika banyak *event handler* memodifikasi *state* dengan cara yang serupa.
+- **Ukuran kode:** Secara umum, dengan `useState` kamu harus menulis lebih sedikit kode di awal. Dengan `useReducer`, kamu harus menulis baik fungsi *reducer* *dan* dispatch actions. Namun, `useReducer` dapat membantu mengurangi jumlah kode jika banyak *event handler* memodifikasi *state* dengan cara yang serupa.
 - **Keterbacaan:** `useState` sangat mudah dibaca ketika pembaruan *state* sederhana. Ketika pembaruan semakin kompleks, mereka dapat membesarkan kode komponen dan sulit untuk dipindai. Dalam hal ini, `useReducer` memungkinkan kamu untuk memisahkan dengan jelas *bagaimana* logika pembaruan dipisahkan dari *apa yang terjadi* pada *event handler*.
 - **Debugging:** Ketika kamu memiliki *bug* dengan `useState`, sulit untuk mengetahui di mana *state* diatur dengan tidak benar, dan mengapa. Dengan `useReducer`, kamu dapat menambahkan log konsol ke *reducer* kamu untuk melihat setiap pembaruan *state*, dan *mengapa* itu terjadi (karena `aksi` apa). Jika setiap `aksi` benar, kamu akan tahu bahwa kesalahan ada di logika *reducer* itu sendiri. Namun, kamu harus melalui kode yang lebih banyak daripada `useState`.
 - **Testing:** Sebuah *reducer* adalah fungsi murni yang tidak bergantung pada komponen kamu. Ini berarti kamu dapat mengekspor dan mengujinya secara terpisah secara isolasi. Meskipun secara umum lebih baik untuk menguji komponen dalam lingkungan yang lebih realistis, untuk logika pembaruan *state* yang kompleks dapat berguna untuk menegaskan bahwa *reducer* kamu mengembalikan *state* tertentu untuk *state* awal dan aksi tertentu.
 - **Preferensi pribadi:** Beberapa orang suka *reducers*, yang lain tidak. Itu tidak apa-apa. Ini hanya masalah preferensi. Kamu selalu dapat mengonversi antara fungsi `useState` dan `useReducer` bolak-balik: mereka setara!
 
-Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi *bug* karena pembaruan state yang salah di beberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan fungsi *reducers* untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
+Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi *bug* karena pembaruan state yang salah dibeberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan fungsi *reducers* untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
 
 ## Menulis fungsi reduksi dengan baik {/*writing-reducers-well*/}
 
-Keep these two tips in mind when writing reducers:
+Ingatlah dua tips ini saat menulis fungsi reducers:
 
 - **Reducer harus murni (pure).** Sama seperti [fungsi updater state](/learn/queueing-a-series-of-state-updates), *reducer* dijalankan selama proses *rendering*! (Aksi diantre sampai *render* selanjutnya.) Ini berarti bahwa *reducer* [harus murni](/learn/keeping-components-pure) - input yang sama selalu menghasilkan output yang sama. Mereka tidak boleh mengirim permintaan, menjadwalkan waktu tunggu, atau melakukan efek samping (operasi yang memengaruhi hal-hal di luar komponen). Mereka harus memperbarui [objek](/learn/updating-objects-in-state) dan [senarai](/learn/updating-arrays-in-state) tanpa mutasi.
 - **Setiap aksi menjelaskan satu interaksi pengguna, meskipun itu mengakibatkan beberapa perubahan pada data.** Sebagai contoh, jika pengguna menekan "Reset" pada formulir dengan lima field yang dikelola oleh reducer, lebih baik untuk mengirimkan satu aksi `reset_form` daripada lima aksi `set_field` terpisah. Jika Anda mencatat setiap aksi dalam fungsi *reducer*, log tersebut harus cukup jelas bagi Anda untuk merekonstruksi interaksi atau respon apa yang terjadi dalam urutan apa. Ini membantu dalam proses debugging!
 
 ## Menulis Reducer yang singkat dengan Immer {/*writing-concise-reducers-with-immer*/}
 
-Sama seperti [memperbarui objek](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) dan [senarai](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) pada *state* biasa, Anda dapat menggunakan pustaka Immer untuk membuat *reducer* lebih ringkas. Di sini, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) memungkinkan Anda memutasi *state* dengan `push` atau `arr[i] =` assignment:
+Sama seperti [memperbarui objek](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) dan [senarai](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) pada *state* biasa, Anda dapat menggunakan pustaka *Immer* untuk membuat *reducer* lebih ringkas. Di sini, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) memungkinkan Anda memutasi *state* dengan `push` atau `arr[i] =` assignment:
 
 <Sandpack>
 
@@ -1221,7 +1221,7 @@ export default function Chat({contact, message, dispatch}) {
         placeholder={'Chat to ' + contact.name}
         onChange={(e) => {
           // TODO: dispatch edited_message
-          // (Read the input value from e.target.value)
+          // (Baca nilai input dari e.target.value.)
         }}
       />
       <br />
@@ -1870,7 +1870,7 @@ case 'changed_selection': {
   return {
     ...state,
     selectedId: action.contactId,
-    message: '' // Clears the input
+    message: '' // Mengosongkan input
   };
 ```
 
