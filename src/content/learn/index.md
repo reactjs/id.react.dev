@@ -425,7 +425,7 @@ Awalnya, *state* `count` `MyApp` adalah `0` dan diturunkan ke kedua anak (*child
 
 <Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut diturunkan." >
 
-Saat diklik, `MyApp` memperbarui *state* `hitung` menjadi `1` dan meneruskannya ke kedua anak
+Saat diklik, `MyApp` memperbarui *state* `count` menjadi `1` dan meneruskannya ke kedua anak
 
 </Diagram>
 
