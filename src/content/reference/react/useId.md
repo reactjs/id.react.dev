@@ -41,7 +41,7 @@ function PasswordField() {
 
 #### Caveats {/*caveats*/}
 
-* `useId` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat teratas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan (*loop*) atau kondisi (*conditions*). Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan *state* ke dalamnya.
+* `useId` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat teratas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan (*loops*) atau kondisi (*conditions*). Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan *state* ke dalamnya.
 
 * `useId` **tidak boleh digunakan untuk menghasilkan *key*** dalam daftar. [*Key* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
 
@@ -166,7 +166,7 @@ input { margin: 5px; }
 
 <Pitfall>
 
-Dengan [rendering server](/reference/react-dom/server), **`useId` membutuhkan pohon komponen yang identik di server dan klien**. Jika pohon yang Anda *render* di server dan klien tidak sama persis, ID yang dihasilkan tidak akan cocok.
+Dengan [*server rendering*](/reference/react-dom/server), **`useId` membutuhkan pohon komponen yang identik di *server* dan klien**. Jika pohon yang Anda *render* di *server* dan klien tidak sama persis, ID yang dihasilkan tidak akan cocok.
 
 </Pitfall>
 
@@ -176,12 +176,12 @@ Dengan [rendering server](/reference/react-dom/server), **`useId` membutuhkan po
 
 Anda mungkin bertanya-tanya mengapa `useId` lebih baik daripada menambahkan variabel global seperti `nextId++`.
 
-Manfaat utama `useId` adalah React memastikan bahwa ia bekerja dengan [rendering server.](/reference/react-dom/server) Selama rendering server, komponen Anda menghasilkan keluaran HTML. Kemudian, pada klien, [hidrasi](/reference/react-dom/client/hydrateRoot) melampirkan *event handler* Anda ke HTML yang dihasilkan. Agar hidrasi berfungsi, output klien harus cocok dengan HTML server.
+Manfaat utama `useId` adalah React memastikan bahwa ia bekerja dengan [*server rendering*.](/reference/react-dom/server) Selama *server rendering*, komponen Anda menghasilkan keluaran HTML. Kemudian, pada klien, [hidrasi](/reference/react-dom/client/hydrateRoot) melampirkan *event handler* Anda ke HTML yang dihasilkan. Agar hidrasi berfungsi, output klien harus cocok dengan HTML dari *server*.
 
 Hal ini sangat sulit untuk dijamin dengan penghitung kenaikan karena urutan di mana komponen klien terhidrasi mungkin tidak sesuai dengan urutan di mana HTML dari *server* dipancarkan. Dengan memanggil `useId`, Anda memastikan bahwa hidrasi akan berfungsi, dan hasilnya akan cocok antara *server* dan klien.
 
 
-Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggil. Inilah sebabnya, jika klien dan pohon server sama, "jalur induk" akan cocok terlepas dari urutan rendering.
+Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggil. Inilah sebabnya, jika pohon di klien dan *server* sama, "jalur induk" akan cocok terlepas dari urutan *rendering*.
 
 </DeepDive>
 
