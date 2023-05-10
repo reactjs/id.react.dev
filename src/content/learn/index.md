@@ -125,9 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
-
-Anda juga dapat "kembali ke JavaScript" dari atribut JSX, tetapi Anda harus menggunakan tanda kurung kurawal *daripada* tanda kutip (*quotes*). Sebagai contoh, `className="avatar"` meneruskan *string* `"avatar"` sebagai kelas CSS (*CSS class*), tetapi `src={user.imageUrl}` membaca nilai variabel JavaScript `user.imageUrl`, dan kemudian meneruskan nilai tersebut sebagai atribut `src`:
+Anda juga dapat "kembali ke JavaScript" dari atribut JSX, tetapi Anda harus menggunakan tanda kurung kurawal *daripada* tanda kutip (*quotes*). Sebagai contoh, `className="avatar"` mengoper *string* `"avatar"` sebagai kelas CSS (*CSS class*), tetapi `src={user.imageUrl}` membaca nilai variabel JavaScript `user.imageUrl`, dan kemudian mengoper nilai tersebut sebagai atribut `src`:
 
 ```js {3,4}
 return (
@@ -425,7 +423,7 @@ Awalnya, *state* `count` `MyApp` adalah `0` dan diturunkan ke kedua anak (*child
 
 <Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut diturunkan." >
 
-Saat diklik, `MyApp` memperbarui *state* `count` menjadi `1` dan meneruskannya ke kedua anak
+Saat diklik, `MyApp` memperbarui *state* `count` menjadi `1` dan menurunkannya ke kedua anak
 
 </Diagram>
 
@@ -478,7 +476,7 @@ export default function MyApp() {
 }
 ```
 
-Informasi yang Anda berikan seperti ini disebut *props*. Sekarang komponen `MyApp` berisi *state* `count` dan *event handler* `handleClick`, dan *meneruskan keduanya sebagai props* ke masing-masing tombol.
+Informasi yang Anda berikan seperti ini disebut *props*. Sekarang komponen `MyApp` berisi *state* `count` dan *event handler* `handleClick`, dan *mengoper keduanya sebagai props* ke masing-masing tombol.
 
 Terakhir, ubah `MyButton` untuk *membaca* *props* yang telah Anda lewati dari komponen induknya:
 
@@ -492,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-Ketika Anda mengeklik tombol, *handler* `onClick` akan dijalankan (*fires*). *Prop* `onClick` pada setiap tombol diatur ke fungsi `handleClick` di dalam `MyApp`, sehingga kode di dalamnya dapat berjalan. Kode tersebut memanggil `setCount(count + 1)`, yang menambah variabel *state* `count`. Nilai `count` yang baru diteruskan sebagai *prop* ke setiap tombol, sehingga semuanya menampilkan nilai yang baru. Hal ini disebut "mengangkat state ke atas" (*"lifting state up"*). Dengan mengangkat *state* ke atas, Anda telah membagikannya di antara komponen.
+Ketika Anda mengeklik tombol, *handler* `onClick` akan dijalankan (*fires*). *Prop* `onClick` pada setiap tombol diatur ke fungsi `handleClick` di dalam `MyApp`, sehingga kode di dalamnya dapat berjalan. Kode tersebut memanggil `setCount(count + 1)`, yang menambah variabel *state* `count`. Nilai `count` yang baru dioper sebagai *prop* ke setiap tombol, sehingga semuanya menampilkan nilai yang baru. Hal ini disebut "mengangkat state ke atas" (*"lifting state up"*). Dengan mengangkat *state* ke atas, Anda telah membagikannya di antara komponen.
 
 <Sandpack>
 
