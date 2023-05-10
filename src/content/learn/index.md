@@ -79,7 +79,7 @@ Kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). 
 
 Sintaksis *markup* yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal] (/learn/installation) mendukung JSX secara langsung.
 
-JSX lebih ketat daripada HTML. Anda harus menutup tag seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa tag JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
+JSX lebih ketat daripada HTML. Anda harus menutup *tag* seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa *tag* JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
 
 ```js {3,6}
 function AboutPage() {
@@ -111,7 +111,7 @@ Kemudian Anda menulis aturan CSS untuk itu di dalam berkas CSS terpisah:
 }
 ```
 
-React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. Di dalam kasus yang paling sederhana, Anda akan menambahkan tag [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ke HTML Anda. Jika Anda menggunakan *build tool* atau *framework*, bacalah dokumentasinya untuk mempelajari bagaimana cara menambahkan berkas CSS ke dalam proyek Anda.
+React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. Di dalam kasus yang paling sederhana, Anda akan menambahkan *tag* [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ke HTML Anda. Jika Anda menggunakan *build tool* atau *framework*, bacalah dokumentasinya untuk mempelajari bagaimana cara menambahkan berkas CSS ke dalam proyek Anda.
 
 ## Menampilkan data {/*displaying-data*/}
 
@@ -458,7 +458,7 @@ function MyButton() {
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Kemudian, *oper state ke bawah* dari `MyApp` ke setiap `MyButton`, bersama dengan penangan klik bersama (*shared click handler*). Anda dapat mengoper informasi ke `MyButton` menggunakan kurung kurawal JSX, seperti yang sebelumnya Anda lakukan dengan *tag* bawaan seperti `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
