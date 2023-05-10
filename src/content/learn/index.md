@@ -287,12 +287,12 @@ Anda dapat merespon ke *event* dengan mendeklarasikan fungsi *event handler* di 
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Anda mengklik saya!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Klik saya
     </button>
   );
 }
@@ -300,17 +300,17 @@ function MyButton() {
 
 Perhatikan bagaimana `onClick={handleClick}` tidak memiliki tanda kurung (*parentheses*) di bagian akhir! Jangan _memanggil_ fungsi *event handler*: Anda hanya perlu *mengopernya ke bawah*. React akan memanggil *event handler* Anda ketika pengguna mengklik tombol.
 
-## Updating the screen {/*updating-the-screen*/}
+## Memperbarui layar {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Sering kali, Anda ingin komponen Anda "mengingat" beberapa informasi dan menampilkannya. Sebagai contoh, mungkin Anda ingin menghitung berapa kali sebuah tombol diklik. Untuk melakukan hal ini, tambahkan *state* ke komponen Anda.
 
-First, import [`useState`](/reference/react/useState) from React:
+Pertama, impor [`useState`](/reference/react/useState) dari React:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Sekarang Anda dapat mendeklarasikan *variabel state* di dalam komponen Anda:
 
 ```js
 function MyButton() {
@@ -318,9 +318,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+Anda akan mendapatkan dua hal dari `useState`: *state* saat ini (`count`), dan fungsi yang memungkinkan Anda memperbaruinya (`setCount`). Anda dapat memberi nama apa saja, tetapi konvensi yang berlaku adalah menulis `[something, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+Saat pertama kali tombol ditampilkan, `count` akan menjadi `0` karena Anda mengoper `0` ke `useState()`. Ketika Anda ingin mengubah *state*, panggil `setCount()` dan berikan nilai baru padanya. Mengklik tombol ini akan menambah penghitung (*counter*):
 
 ```js {5}
 function MyButton() {
@@ -332,15 +332,15 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React akan memanggil fungsi komponen Anda lagi. Kali ini, `count` akan menjadi `1`. Kemudian akan menjadi `2`. Dan seterusnya.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+Jika Anda me-*render* komponen yang sama beberapa kali, masing-masing akan mendapatkan *state*-nya sendiri. Klik setiap tombol secara terpisah:
 
 <Sandpack>
 
@@ -350,7 +350,7 @@ import { useState } from 'react';
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Penghitung yang diperbarui secara terpisah</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -366,7 +366,7 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
@@ -381,7 +381,7 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Perhatikan bagaimana setiap tombol "mengingat" *state* `count`-nya sendiri dan tidak memengaruhi tombol lainnya.
 
 ## Using Hooks {/*using-hooks*/}
 
