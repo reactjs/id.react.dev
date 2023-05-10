@@ -237,6 +237,8 @@ const products = [
 
 Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
 
+Di dalam komponen Anda, gunakan fungsi `map()` untuk mengubah serangkaian produk menjadi serangkaian *item* `<li>`:
+
 ```js
 const listItems = products.map(product =>
   <li key={product.id}>
@@ -249,7 +251,7 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+Perhatikan bagaimana `<li>` memiliki atribut `key`. Untuk setiap *item* dalam daftar, Anda harus mengoper *string* atau angka yang secara unik mengidentifikasi *item* tersebut di antara saudara-saudaranya (*siblings*). Biasanya, *key* harus berasal dari data Anda, seperti ID basis data (*database*). React menggunakan *key* untuk mengetahui apa yang terjadi jika Anda menyisipkan (*insert*), menghapus, atau mengurutkan ulang *item*.
 
 <Sandpack>
 
