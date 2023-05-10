@@ -36,9 +36,9 @@ Anda dapat [membuat sebuah area teks yang terkendali (*controlled*)](#controllin
 
 * `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
-Ketika Anda memberikan `value`, Anda harus memberikan juga sebuah *handler* `onChange` yang memperbarui nilai yang diberikan sebelumnya.
+Ketika Anda memberikan `value`, Anda harus mengoper juga sebuah *handler* `onChange` yang memperbarui nilai yang dioper sebelumnya.
 
-Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh memberikan `defaultValue` sebagai gantinya:
+Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `defaultValue` sebagai gantinya:
 
 * `defaultValue`: Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-a-text-area) untuk sebuah area teks.
 
@@ -111,7 +111,7 @@ label, textarea { display: block; }
 
 Umumnya, Anda akan meletakkan setiap `<textarea>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberitahu suatu peramban apabila label ini berkaitan dengan area teks tertentu. Ketika pengguna mengeklik label tersebut, peramban akan memfokuskan area teks. Hal ini juga diperlukan untuk aksesbilitas: sebuah layar pembaca akan memberitahu keterangan label ketika pengguna memfokuskan area teks tertentu.
 
-Jika Anda tidak dapat menyusun `<textarea>` di dalam sebuah `<label>`, hubungkanlah mereka dengan memberikan ID yang sama kepada `<textarea id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) untuk menghindari konflik antara *instances* pada satu komponen, buatlah sebuah ID dengan [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat menyusun `<textarea>` di dalam sebuah `<label>`, hubungkanlah mereka dengan mengoper ID yang sama kepada `<textarea id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) untuk menghindari konflik antara *instances* pada satu komponen, buatlah sebuah ID dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ input { margin: 5px; }
 
 ### Menyediakan sebuah nilai awal pada sebuah area teks {/*providing-an-initial-value-for-a-text-area*/}
 
-Kamu dapat menentukan nilai awal pada suatu area teks secara opsional. Untuk memberikan nilai awal, gunakan `defaultValue` dengan tipe string.
+Kamu dapat menentukan nilai awal pada suatu area teks secara opsional. Untuk mengoper nilai awal, gunakan `defaultValue` dengan tipe string.
 
 <Sandpack>
 
@@ -198,7 +198,7 @@ export default function EditPost() {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Anda dapat mengirimakn *formData* sebagai *fetch body* secara langsung:
+    // Anda dapat mengoper *formData* sebagai *fetch body* secara langsung:
     fetch('/some-api', { method: form.method, body: formData });
 
     // Atau anda dapat menggunakannya sebagai objek sederhana:
@@ -251,7 +251,7 @@ Secara *default*, *setiap* `<button>` yang berada di dalam sebuah `<form>` akan 
 
 ### Mengendalikan sebuah area teks dengan sebuah variabel state {/*controlling-a-text-area-with-a-state-variable*/}
 
-Sebuah area teks seperti `<textarea />` bersifat *tak terkendali (uncontrolled).* Meskipun jika Anda [memberikan sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
+Sebuah area teks seperti `<textarea />` bersifat *tak terkendali (uncontrolled).* Meskipun jika Anda [mengoper sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
 
 **Untuk me-*render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, kamu akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
 
@@ -330,7 +330,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**Jika Anda memberikan `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang diberikan. Sehingga jika Anda memberikan sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks kembali ke `value` yang Anda berikan sebelumnya setelah setiap penekanan tombol.
+**Jika Anda mengoper `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang dioper. Sehingga jika Anda mengoper sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks kembali ke `value` yang Anda berikan sebelumnya setelah setiap penekanan tombol.
 
 </Pitfall>
 
