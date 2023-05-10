@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Sekarang setelah Anda mendeklarasikan `MyButton`, Anda dapat menyarangkannya dengan komponen lain:
+Sekarang setelah Anda mendeklarasikan `MyButton`, Anda dapat menyarangkannya ke dalam komponen lain:
 
 ```js {5}
 export default function MyApp() {
@@ -219,7 +219,7 @@ Ketika Anda tidak membutuhkan cabang (*branch*) `lain`, Anda juga dapat mengguna
 
 Semua pendekatan ini juga dapat digunakan untuk menentukan atribut secara kondisional. Jika Anda tidak terbiasa dengan beberapa sintaksis JavaScript ini, Anda dapat memulai dengan selalu menggunakan `if...else`.
 
-## Me-render daftar (*lists*) {/*rendering-lists*/}
+## Me-render daftar {/*rendering-lists*/}
 
 Anda akan mengandalkan fitur JavaScript seperti perulangan [`for`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) dan [fungsi senarai (*array*) `map()`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk me-render daftar komponen.
 
@@ -247,7 +247,7 @@ return (
 );
 ```
 
-Perhatikan bagaimana `<li>` memiliki atribut `key`. Untuk setiap *item* dalam daftar, Anda harus mengoper *string* atau angka yang secara unik mengidentifikasi *item* tersebut di antara saudara-saudaranya (*siblings*). Biasanya, *key* harus berasal dari data Anda, seperti ID basis data (*database*). React menggunakan *key* untuk mengetahui apa yang terjadi jika Anda menyisipkan (*insert*), menghapus, atau mengurutkan ulang *item*.
+Perhatikan bagaimana `<li>` memiliki atribut `key`. Untuk setiap *item* dalam daftar, Anda harus mengoper *string* atau angka yang secara unik mengidentifikasi *item* tersebut di antara saudara-saudaranya (*siblings*). Biasanya, *key* harus berasal dari data Anda, seperti sebuah ID basis data (*database*). React menggunakan *key* untuk mengetahui apa yang terjadi jika Anda menyisipkan (*insert*), menghapus, atau mengurutkan ulang *item*.
 
 <Sandpack>
 
