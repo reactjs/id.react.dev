@@ -11,7 +11,7 @@ Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan
 <YouWillLearn>
 
 - Cara membuat dan menyarangkan (*nest*) komponen-komponen
-- Cara menambahkan *markup* dan penggayaan (*styles*)
+- Cara menambahkan *markup* dan *styles*
 - Cara menampilkan data
 - Cara me-*render* kondisi dan daftar (*lists*)
 - Cara merespons *events* dan memperbarui layar
@@ -77,7 +77,7 @@ Kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). 
 
 ## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
-Sintaksis markup yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal] (/learn/installation) mendukung JSX secara langsung.
+Sintaksis *markup* yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal] (/learn/installation) mendukung JSX secara langsung.
 
 JSX lebih ketat daripada HTML. Anda harus menutup tag seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa tag JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
 
