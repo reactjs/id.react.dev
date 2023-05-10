@@ -287,7 +287,7 @@ Anda dapat merespon ke *event* dengan mendeklarasikan fungsi *event handler* di 
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('Anda mengklik saya!');
+    alert('Anda mengeklik saya!');
   }
 
   return (
@@ -298,7 +298,7 @@ function MyButton() {
 }
 ```
 
-Perhatikan bagaimana `onClick={handleClick}` tidak memiliki tanda kurung (*parentheses*) di bagian akhir! Jangan _memanggil_ fungsi *event handler*: Anda hanya perlu *mengopernya ke bawah*. React akan memanggil *event handler* Anda ketika pengguna mengklik tombol.
+Perhatikan bagaimana `onClick={handleClick}` tidak memiliki tanda kurung (*parentheses*) di bagian akhir! Jangan _memanggil_ fungsi *event handler*: Anda hanya perlu *mengopernya ke bawah*. React akan memanggil *event handler* Anda ketika pengguna mengeklik tombol.
 
 ## Memperbarui layar {/*updating-the-screen*/}
 
@@ -320,7 +320,7 @@ function MyButton() {
 
 Anda akan mendapatkan dua hal dari `useState`: *state* saat ini (`count`), dan fungsi yang memungkinkan Anda memperbaruinya (`setCount`). Anda dapat memberi nama apa saja, tetapi konvensi yang berlaku adalah menulis `[something, setSomething]`.
 
-Saat pertama kali tombol ditampilkan, `count` akan menjadi `0` karena Anda mengoper `0` ke `useState()`. Ketika Anda ingin mengubah *state*, panggil `setCount()` dan berikan nilai baru padanya. Mengklik tombol ini akan menambah penghitung (*counter*):
+Saat pertama kali tombol ditampilkan, `count` akan menjadi `0` karena Anda mengoper `0` ke `useState()`. Ketika Anda ingin mengubah *state*, panggil `setCount()` dan berikan nilai baru padanya. Mengeklik tombol ini akan menambah penghitung (*counter*):
 
 ```js {5}
 function MyButton() {
@@ -389,51 +389,51 @@ Fungsi yang dimulai dengan `use` disebut dengan *Hooks*. `useState` adalah *Hook
 
 *Hooks* lebih terbatas dibandingkan fungsi-fungsi lainnya. Anda hanya bisa memanggil *Hooks* *di bagian atas* komponen Anda (atau *Hooks* lainnya). Jika Anda ingin menggunakan `useState` dalam sebuah kondisi atau perulangan, ekstrak komponen baru dan letakkan di sana.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Berbagi data antar komponen {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+Pada contoh sebelumnya, setiap `MyButton` memiliki `count` tersendiri, dan ketika setiap tombol diklik, hanya `count` untuk tombol yang diklik yang berubah:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram yang menunjukkan sebuah pohon dengan tiga komponen, satu induk berlabel MyApp dan dua anak berlabel MyButton. Kedua komponen MyButton berisi hitungan (count) dengan nilai nol.">
 
-Initially, each `MyButton`'s `count` state is `0`
+Awalnya, setiap *state* `count` `MyButton` adalah `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyButton anak pertama yang disorot mengindikasikan klik dengan nilai hitungan yang bertambah satu. Komponen MyButton kedua masih berisi nilai nol." >
 
-The first `MyButton` updates its `count` to `1`
+`MyButton` pertama memperbarui `count`-nya menjadi `1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+Namun, sering kali Anda memerlukan komponen untuk *berbagi data dan selalu diperbarui bersamaan*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+Untuk membuat kedua komponen `MyButton` menampilkan `count` yang sama dan memperbarui secara bersamaan, Anda harus memindahkan *state* dari masing-masing tombol "ke atas" ke komponen terdekat yang berisi semuanya.
 
-In this example, it is `MyApp`:
+Dalam contoh ini, adalah `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram yang menunjukkan sebuah pohon yang terdiri dari tiga komponen, satu induk (parent) berlabel MyApp dan dua anak (children) berlabel MyButton. MyApp berisi nilai hitungan nol yang diturunkan ke kedua komponen MyButton, yang juga menunjukkan nilai nol." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Awalnya, *state* `count` `MyApp` adalah `0` dan diturunkan ke kedua anak (*children*)
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut diturunkan." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+Saat diklik, `MyApp` memperbarui *state* `hitung` menjadi `1` dan meneruskannya ke kedua anak
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Sekarang ketika Anda mengeklik salah satu tombol, `count` di `MyApp` akan berubah, yang akan mengubah kedua hitungan di `MyButton`. Berikut adalah cara untuk mengekspresikannya di dalam kode.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+Pertama, *pindahkan state ke atas* dari `MyButton` ke `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -445,7 +445,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Penghitung yang diperbarui secara terpisah</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -453,7 +453,7 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... kita memindahkan kode dari sini ...
 }
 
 ```
@@ -478,21 +478,21 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+Informasi yang Anda berikan seperti ini disebut *props*. Sekarang komponen `MyApp` berisi *state* `count` dan *event handler* `handleClick`, dan *meneruskan keduanya sebagai props* ke masing-masing tombol.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Terakhir, ubah `MyButton` untuk *membaca* *props* yang telah Anda lewati dari komponen induknya:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+Ketika Anda mengeklik tombol, *handler* `onClick` akan dijalankan (*fires*). *Prop* `onClick` pada setiap tombol diatur ke fungsi `handleClick` di dalam `MyApp`, sehingga kode di dalamnya dapat berjalan. Kode tersebut memanggil `setCount(count + 1)`, yang menambah variabel *state* `count`. Nilai `count` yang baru diteruskan sebagai *prop* ke setiap tombol, sehingga semuanya menampilkan nilai yang baru. Hal ini disebut "mengangkat state ke atas" (*"lifting state up"*). Dengan mengangkat *state* ke atas, Anda telah membagikannya di antara komponen.
 
 <Sandpack>
 
@@ -508,7 +508,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Penghitung yang diperbarui bersamaan</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -518,7 +518,7 @@ export default function MyApp() {
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
