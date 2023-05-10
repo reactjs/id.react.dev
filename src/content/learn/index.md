@@ -235,8 +235,6 @@ const products = [
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
-
 Di dalam komponen Anda, gunakan fungsi `map()` untuk mengubah serangkaian produk menjadi serangkaian *item* `<li>`:
 
 ```js
