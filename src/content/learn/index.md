@@ -383,11 +383,11 @@ button {
 
 Perhatikan bagaimana setiap tombol "mengingat" *state* `count`-nya sendiri dan tidak memengaruhi tombol lainnya.
 
-## Using Hooks {/*using-hooks*/}
+## Mengggunakan Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Fungsi yang dimulai dengan `use` disebut dengan *Hooks*. `useState` adalah *Hook* bawaan yang disediakan oleh React. Anda dapat menemukan *Hooks* bawaan lainnya di [referensi API.](/reference/react) Anda juga dapat menulis *Hooks* Anda sendiri dengan menggabungkan *Hooks* yang sudah ada.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+*Hooks* lebih terbatas dibandingkan fungsi-fungsi lainnya. Anda hanya bisa memanggil *Hooks* *di bagian atas* komponen Anda (atau *Hooks* lainnya). Jika Anda ingin menggunakan `useState` dalam sebuah kondisi atau perulangan, ekstrak komponen baru dan letakkan di sana.
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
