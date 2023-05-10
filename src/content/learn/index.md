@@ -298,7 +298,7 @@ function MyButton() {
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Perhatikan bagaimana `onClick={handleClick}` tidak memiliki tanda kurung (*parentheses*) di bagian akhir! Jangan _memanggil_ fungsi *event handler*: Anda hanya perlu *mengopernya ke bawah*. React akan memanggil *event handler* Anda ketika pengguna mengklik tombol.
 
 ## Updating the screen {/*updating-the-screen*/}
 
