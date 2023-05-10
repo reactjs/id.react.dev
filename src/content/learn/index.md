@@ -280,9 +280,9 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Merespon ke event {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+Anda dapat merespon ke *event* dengan mendeklarasikan fungsi *event handler* di dalam komponen Anda:
 
 ```js {2-4,7}
 function MyButton() {
@@ -458,7 +458,7 @@ function MyButton() {
 
 ```
 
-Kemudian, *oper state ke bawah* dari `MyApp` ke setiap `MyButton`, bersama dengan penangan klik bersama (*shared click handler*). Anda dapat mengoper informasi ke `MyButton` menggunakan kurung kurawal JSX, seperti yang sebelumnya Anda lakukan dengan *tag* bawaan seperti `<img>`:
+Kemudian, *oper state ke bawah* dari `MyApp` ke setiap `MyButton`, bersama dengan *shared click handler*. Anda dapat mengoper informasi ke `MyButton` menggunakan kurung kurawal JSX, seperti yang sebelumnya Anda lakukan dengan *tag* bawaan seperti `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
