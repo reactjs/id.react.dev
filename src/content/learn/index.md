@@ -221,17 +221,17 @@ Ketika Anda tidak membutuhkan cabang (*branch*) `lain`, Anda juga dapat mengguna
 
 Semua pendekatan ini juga dapat digunakan untuk menentukan atribut secara kondisional. Jika Anda tidak terbiasa dengan beberapa sintaksis JavaScript ini, Anda dapat memulai dengan selalu menggunakan `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Me-render daftar (*lists*) {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Anda akan mengandalkan fitur JavaScript seperti perulangan [`for`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) dan [fungsi senarai (*array*) `map()`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk me-render daftar komponen.
 
-For example, let's say you have an array of products:
+Sebagai contoh, katakanlah Anda memiliki serangkaian (*array*) produk:
 
 ```js
 const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+  { title: 'Kubis', id: 1 },
+  { title: 'Bawang Putih', id: 2 },
+  { title: 'Apel', id: 3 },
 ];
 ```
 
