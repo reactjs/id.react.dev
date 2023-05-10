@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-Komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda me-*render* teks input dengan banyak baris.
+Komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda me-*render* masukan teks dengan banyak baris (*multiline*).
 
 ```js
 <textarea />
@@ -48,16 +48,16 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh memberikan 
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen ketika terpasang.
 * `children`: `<textarea>` tidak menerima anak (*children*). Untuk menentukan nilai awal, gunakan `defaultValue`.
 * [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols): Sebuah angka. Menentukan lebar bawaaan pada rata-rata lebar karakter. Nilai bawaan adalah `20`.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): Sebuah boolean. Jika `true`, input tidak akan menjadi interaktif dan akan terlihat redup.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): Sebuah string. Menentukan `id` pada suatu `<form>` yang memiliki input tersebut. Jika dihilangkan, nilainya mengacu pada induk formulir terdekat.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): Sebuah boolean. Jika `true`, masukan tidak akan menjadi interaktif dan akan terlihat redup.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): Sebuah string. Menentukan `id` pada suatu `<form>` yang memiliki masukan tersebut. Jika dihilangkan, nilainya mengacu pada induk formulir terdekat.
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): Sebuah angka. Menentukan panjang maksimum teks.
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): Sebuah angka. Menentukan panjang minimum teks.
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada input yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
-* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali (*controlled*).](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu input diubah oleh pengguna (misalkan, beroperasi setiap penekanan tombol). Berperilaku seperti [event `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada masukan yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
+* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali (*controlled*).](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu masukan diubah oleh pengguna (misalkan, beroperasi setiap penekanan tombol). Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`: Sebuah versi `onChange` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
 * `onInputCapture`: Sebuah versi `onInput` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi jika sebuah input gagal memvalidasi pada pengiriman formulir. Tidak seperti *event* bawaan `invalid`, `onInvalid` *event* pada React menggelembung.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi jika sebuah masukan gagal memvalidasi pada pengiriman formulir. Tidak seperti *event* bawaan `invalid`, `onInvalid` *event* pada React menggelembung.
 * `onInvalidCapture`: Sebuah versi `onInvalid` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi setelah pemilihan di dalam `<textarea>` berubah. React memperluas `onSelect` *event* untuk juga mengaktifkan pemilihan kosong dan pengeditan (dapat mempengaruhi pemilihan).
 * `onSelectCapture`: Sebuah versi `onSelect` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
@@ -261,7 +261,7 @@ function NewPost() {
   // ...
   return (
     <textarea
-      value={postContent} // ...memaksa nilai dari input untuk mencocokan variabel state...
+      value={postContent} // ...memaksa nilai dari masukan untuk mencocokan variabel state...
       onChange={e => setPostContent(e.target.value)} // ... dan memperbarui variabel state di setiap pengeditan!
     />
   );
@@ -384,7 +384,7 @@ Anda tidak dapat memperbarui nilainya dengan sesuatu selain `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: memperbarui sebuah input dengan sesuatu selain e.target.value
+  // 🔴 Bug: memperbarui sebuah masukan dengan sesuatu selain e.target.value
   setFirstName(e.target.value.toUpperCase());
 }
 ```
@@ -393,7 +393,7 @@ Anda juga tidak dapat memperbaruinya secara asinkron:
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: memperbarui sebuah input secara asinkron
+  // 🔴 Bug: memperbarui sebuah masukan secara asinkron
   setTimeout(() => {
     setFirstName(e.target.value);
   }, 100);
@@ -404,7 +404,7 @@ Untuk memperbaiki kode Anda, perbarui secara sinkron ke `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // ✅ Memperbarui sebuah input terkendali (*controlled*) ke e.target.value secara sinkron
+  // ✅ Memperbarui sebuah masukan terkendali (*controlled*) ke e.target.value secara sinkron
   setFirstName(e.target.value);
 }
 ```
@@ -413,7 +413,7 @@ Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan dit
 
 ---
 
-### Saya menerima sebuah error: "Sebuah komponen sedang mengubah input yang tidak terkendali (*uncontrolled*) menjadi terkendali (*controlled*)" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Saya menerima sebuah error: "Sebuah komponen sedang mengubah masukan yang tidak terkendali (*uncontrolled*) menjadi terkendali (*controlled*)" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
 Jika Anda memberikan sebuah `value` ke komponen, nilai tersebut harus tetap berupa string selama masa pakainya.
