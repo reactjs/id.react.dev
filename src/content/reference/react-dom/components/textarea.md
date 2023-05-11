@@ -413,7 +413,7 @@ Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan dit
 
 ---
 
-### Saya menerima sebuah error: "Sebuah komponen sedang mengubah masukan yang tidak terkendali (*uncontrolled*) menjadi terkendali (*controlled*)" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Saya menerima sebuah error: "Sebuah komponen sedang mengubah masukan yang tidak terkendali (uncontrolled) menjadi terkendali (controlled)" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
 Jika Anda memberikan sebuah `value` ke komponen, nilai tersebut harus tetap berupa string selama masa pakainya.
