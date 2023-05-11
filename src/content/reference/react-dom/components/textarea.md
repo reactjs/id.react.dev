@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-Komponen [bawaan peramban `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda me-*render* masukan teks dengan banyak baris (*multiline*).
+Komponen [bawaan peramban (*browser*) `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) yang memungkinkan Anda me-*render* masukan teks dengan banyak baris (*multiline*).
 
 ```js
 <textarea />
@@ -42,7 +42,7 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `d
 
 * `defaultValue`: Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-a-text-area) untuk sebuah area teks.
 
-`<textarea>` *props* ini relevan baik untuk area text terkendali (*controlled*) maupun tidak terkendali (*uncontrolled*):
+`<textarea>` *props* ini relevan baik untuk area text terkendali maupun tidak terkendali:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Nilainya `'on'` atau `'off'`. Menentukan perilaku penyelesaian otomatis.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen ketika terpasang.
@@ -53,7 +53,7 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `d
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): Sebuah angka. Menentukan panjang maksimum teks.
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): Sebuah angka. Menentukan panjang minimum teks.
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama pada masukan yang [dikirim dengan formulir tertentu.](#reading-the-textarea-value-when-submitting-a-form)
-* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali (*controlled*).](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu masukan diubah oleh pengguna (misalkan, beroperasi setiap penekanan tombol). Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
+* `onChange`: Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)* . Dibutuhkan untuk [area teks terkendali.](#controlling-a-text-area-with-a-state-variable) Beroperasi secara langsung ketika nilai suatu masukan diubah oleh pengguna (misalkan, beroperasi setiap penekanan tombol). Berperilaku seperti [*event* `input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) pada peramban.
 * `onChangeCapture`: Sebuah versi `onChange` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi *[`Event` handler](/reference/react-dom/components/common#event-handler)*. Beroperasi secara langsung ketika suatu nilai diubah oleh pengguna. Untuk alasan historis, dalam React penggunaan `onChange` menjadi idiomatik yang berfungsi dengan cara yang serupa.
 * `onInputCapture`: Sebuah versi `onInput` yang beroperasi pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
@@ -70,10 +70,10 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `d
 #### Caveats {/*caveats*/}
 
 - Memberikan anak (*children*) seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
-- Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali (*controlled*).](#controlling-a-text-area-with-a-state-variable)
-- Sebuah area teks tidak dapat menjadi terkendali (*controlled*) dan tidak terkendali (*uncontrolled*) secara bersamaan.
-- Sebuah area teks tidak dapat beralih menjadi terkendali (*controlled*) atau tidak terkendali (*uncontrolled*) selama masa pakainya.
-- Setiap area teks terkendali (*controlled*) membutuhkan sebuah *event handler* `onChange` yang memperbarui nilai pendukungnya secara sinkron.
+- Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
+- Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
+- Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
+- Setiap area teks terkendali membutuhkan sebuah *event handler* `onChange` yang memperbarui nilai pendukungnya secara sinkron.
 
 ---
 
@@ -251,7 +251,7 @@ Secara *default*, *setiap* `<button>` yang berada di dalam sebuah `<form>` akan 
 
 ### Mengendalikan sebuah area teks dengan sebuah variabel state {/*controlling-a-text-area-with-a-state-variable*/}
 
-Sebuah area teks seperti `<textarea />` bersifat *tak terkendali (uncontrolled).* Meskipun jika Anda [mengoper sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
+Sebuah area teks seperti `<textarea />` bersifat *tak terkendali.* Meskipun jika Anda [mengoper sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
 
 **Untuk me-*render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, Anda akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
 
@@ -343,7 +343,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 Jika Anda me-*render* sebuah area teks dengan `value` tetapi tanpa `onChange`, Anda akan melihat sebuah *error* di konsol:
 
 ```js
-// 🔴 Bug: area teks terkendali (*controlled*) tanpa handler onChange
+// 🔴 Bug: area teks terkendali tanpa handler onChange
 <textarea value={something} />
 ```
 
@@ -356,14 +356,14 @@ Anda memberikan sebuah *prop* `value` ke sebuah *field* formulir tanpa sebuah *h
 Seperti yang disarankan pada pesan *error* berikut, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-a-text-area) berikan `defaultValue` sebagai gantinya:
 
 ```js
-// ✅ Good: area teks tidak terkendali (*uncontrolled*) dengan sebuah nilai awal
+// ✅ Good: area teks tidak terkendali dengan sebuah nilai awal
 <textarea defaultValue={something} />
 ```
 
 Jika Anda ingin [mengendalikan area teks ini dengan sebuah variabel *state*,](#controlling-a-text-area-with-a-state-variable) Tentukanlah sebuah *handler* `onChange`:
 
 ```js
-// ✅ Good: area teks terkendali (*controlled*) dengan onChange
+// ✅ Good: area teks terkendali dengan onChange
 <textarea value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
@@ -404,7 +404,7 @@ Untuk memperbaiki kode Anda, perbarui secara sinkron ke `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // ✅ Memperbarui sebuah masukan terkendali (*controlled*) ke e.target.value secara sinkron
+  // ✅ Memperbarui sebuah masukan terkendali ke e.target.value secara sinkron
   setFirstName(e.target.value);
 }
 ```
@@ -413,7 +413,7 @@ Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan dit
 
 ---
 
-### Saya menerima sebuah error: "Sebuah komponen sedang mengubah masukan yang tidak terkendali (uncontrolled) menjadi terkendali (controlled)" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Saya menerima sebuah error: "Sebuah komponen sedang mengubah masukan yang tidak terkendali menjadi terkendali" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
 Jika Anda memberikan sebuah `value` ke komponen, nilai tersebut harus tetap berupa string selama masa pakainya.
