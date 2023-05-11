@@ -73,7 +73,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-Kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info] (https://javascript.info/import-export) memiliki referensi yang bagus.
+Kata-kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info] (https://javascript.info/import-export) memiliki referensi yang bagus.
 
 ## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
@@ -415,13 +415,13 @@ Dalam contoh ini, adalah `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram yang menunjukkan sebuah pohon yang terdiri dari tiga komponen, satu induk (parent) berlabel MyApp dan dua anak (children) berlabel MyButton. MyApp berisi nilai hitungan nol yang diturunkan ke kedua komponen MyButton, yang juga menunjukkan nilai nol." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram yang menunjukkan sebuah pohon yang terdiri dari tiga komponen, satu induk (parent) berlabel MyApp dan dua anak (children) berlabel MyButton. MyApp berisi nilai hitungan nol yang dioper ke bawah ke kedua komponen MyButton, yang juga menunjukkan nilai nol." >
 
-Awalnya, *state* `count` `MyApp` adalah `0` dan diturunkan ke kedua anak (*children*)
+Awalnya, *state* `count` `MyApp` adalah `0` dan dioper ke bawah ke kedua anak (*children*)
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut diturunkan." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut dioper ke bawah." >
 
 Saat diklik, `MyApp` memperbarui *state* `count` menjadi `1` dan menurunkannya ke kedua anak
 
