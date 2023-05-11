@@ -81,7 +81,7 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `d
 
 ### Menampilkan sebuah area teks {/*displaying-a-text-area*/}
 
-*Render* `<textarea>` untuk menampilkan sebuah area teks. Kamu dapat menentukan ukuran bawaanya dengan atribut [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) dan [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols), tapi secara bawaan user dapat mengubah ukurannya. Untuk menonaktifkan pengubahan ukuran, kamu dapat menentukan `resize: none` di dalam CSS.
+*Render* `<textarea>` untuk menampilkan sebuah area teks. Anda dapat menentukan ukuran bawaanya dengan atribut [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) dan [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols), tapi secara bawaan user dapat mengubah ukurannya. Untuk menonaktifkan pengubahan ukuran, Anda dapat menentukan `resize: none` di dalam CSS.
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ input { margin: 5px; }
 
 ### Menyediakan sebuah nilai awal pada sebuah area teks {/*providing-an-initial-value-for-a-text-area*/}
 
-Kamu dapat menentukan nilai awal pada suatu area teks secara opsional. Untuk mengoper nilai awal, gunakan `defaultValue` dengan tipe string.
+Anda dapat menentukan nilai awal pada suatu area teks secara opsional. Untuk mengoper nilai awal, gunakan `defaultValue` dengan tipe string.
 
 <Sandpack>
 
@@ -253,7 +253,7 @@ Secara *default*, *setiap* `<button>` yang berada di dalam sebuah `<form>` akan 
 
 Sebuah area teks seperti `<textarea />` bersifat *tak terkendali (uncontrolled).* Meskipun jika Anda [mengoper sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
 
-**Untuk me-*render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, kamu akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
+**Untuk me-*render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, Anda akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function NewPost() {
