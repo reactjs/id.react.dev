@@ -4,13 +4,13 @@ title: PureComponent
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+Kami menyarankan untuk membuat komponen sebagai fungsi, bukan kelas. [Lihat cara migrasinya.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`PureComponent` is similar to [`Component`](/reference/react/Component) but it skips re-renders for same props and state. Class components are still supported by React, but we don't recommend using them in new code.
+`PureComponent` mirip dengan [`Component`](/reference/react/Component) tetapi melewatkan proses render ulang untuk props dan state yang sama. Komponen kelas masih didukung oleh React, tetapi kami tidak menyarankan untuk menggunakannya dalam kode baru.
 
 ```js
 class Greeting extends PureComponent {
@@ -26,11 +26,10 @@ class Greeting extends PureComponent {
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `PureComponent` {/*purecomponent*/}
-
-To skip re-rendering a class component for same props and state, extend `PureComponent` instead of [`Component`:](/reference/react/Component)
+Untuk melewatkan render ulang sebuah komponen kelas untuk props dan state yang sama, perluas `PureComponent`, bukan [`Component`:](/reference/react/Component)
 
 ```js
 import { PureComponent } from 'react';
@@ -42,18 +41,18 @@ class Greeting extends PureComponent {
 }
 ```
 
-`PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/reference/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
+`PureComponent` adalah subkelas dari `Component` dan mendukung [semua API `Component`.](/reference/react/Component#reference) Memperluas `PureComponent` sama dengan mendefinisikan sebuah metode kustom [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) yang membandingkan props dan state secara dangkal.
 
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Skipping unnecessary re-renders for class components {/*skipping-unnecessary-re-renders-for-class-components*/}
+### Melewatkan render ulang yang tidak perlu untuk komponen kelas {/*skipping-unnecessary-re-renders-for-class-components*/}
 
-React normally re-renders a component whenever its parent re-renders. As an optimization, you can create a component that React will not re-render when its parent re-renders so long as its new props and state are the same as the old props and state. [Class components](/reference/react/Component) can opt into this behavior by extending `PureComponent`:
+React umumnya me-*render* ulang sebuah komponen setiap kali induknya me-*render* ulang. Untuk mengoptimalkannya, Anda dapat membuat komponen yang tidak akan di-*render* ulang oleh React ketika induknya di-*render* ulang selama props dan state yang baru sama dengan props dan state yang lama. [Komponen kelas](/reference/react/Component) dapat memilih perilaku ini dengan memperluas `PureComponent`:
 
 ```js {1}
 class Greeting extends PureComponent {
@@ -63,9 +62,9 @@ class Greeting extends PureComponent {
 }
 ```
 
-A React component should always have [pure rendering logic.](/learn/keeping-components-pure) This means that it must return the same output if its props, state, and context haven't changed. By using `PureComponent`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as its props and state haven't changed. However, your component will still re-render if a context that it's using changes.
+Sebuah komponen React harus selalu memiliki [logika merender murni.](/learn/keeping-components-pure) Ini berarti komponen tersebut harus mengembalikan output yang sama jika props, state, dan konteksnya tidak berubah. Dengan menggunakan `PureComponent`, Anda memberi tahu React bahwa komponen Anda memenuhi persyaratan ini, sehingga React tidak perlu me-*render* ulang selama props dan state-nya belum berubah. Namun, komponen Anda akan tetap di-*render* ulang jika konteks yang digunakan berubah.
 
-In this example, notice that the `Greeting` component re-renders whenever `name` is changed (because that's one of its props), but not when `address` is changed (because it's not passed to `Greeting` as a prop):
+Pada contoh ini, perhatikan bahwa komponen `Greeting` di-*render* ulang setiap kali `name` diubah (karena itu adalah salah satu props-nya), tetapi tidak ketika `address` diubah (karena tidak dioper ke `Greeting` sebagai props):
 
 <Sandpack>
 
@@ -109,17 +108,17 @@ label {
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+Kami menyarankan untuk membuat komponen sebagai fungsi, bukan kelas. [Lihat cara migrasinya.](#alternatives)
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
-### Migrating from a `PureComponent` class component to a function {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
+### Migrasi dari komponen kelas `PureComponent` ke sebuah fungsi {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `PureComponent`, here is how you can convert them. This is the original code:
+Kami menyarankan untuk menggunakan komponen fungsi daripada [komponen kelas](/reference/react/Component) dalam kode baru. Jika Anda memiliki beberapa komponen kelas yang sudah ada menggunakan `PureComponent`, berikut ini cara mengonversinya. Ini adalah kode aslinya:
 
 <Sandpack>
 
@@ -161,7 +160,7 @@ label {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) wrap it in [`memo`:](/reference/react/memo)
+Saat Anda [mengonversi komponen ini dari kelas ke fungsi,](/reference/react/Component#alternatives) bungkus komponen ini dengan [`memo`](/reference/react/memo):
 
 <Sandpack>
 
@@ -203,6 +202,6 @@ label {
 
 <Note>
 
-Unlike `PureComponent`, [`memo`](/reference/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/reference/react/useState#setstate) with the same state [already prevents re-renders by default,](/reference/react/memo#updating-a-memoized-component-using-state) even without `memo`.
+Tidak seperti `PureComponent`, [`memo`](/reference/react/memo) tidak membandingkan state yang baru dan state yang lama. Pada komponen fungsi, memanggil [fungsi `set`](/reference/react/useState#setstate) dengan state yang sama [sudah mencegah render ulang secara default,](/reference/react/memo#updating-a-memoized-component-using-state) bahkan tanpa `memo`.
 
 </Note>
