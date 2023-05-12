@@ -381,7 +381,7 @@ button {
 
 Perhatikan bagaimana setiap tombol "mengingat" *state* `count`-nya sendiri dan tidak memengaruhi tombol lainnya.
 
-## Mengggunakan Hooks {/*using-hooks*/}
+## Menggunakan Hooks {/*using-hooks*/}
 
 Fungsi yang dimulai dengan `use` disebut dengan *Hooks*. `useState` adalah *Hook* bawaan yang disediakan oleh React. Anda dapat menemukan *Hooks* bawaan lainnya di [referensi API.](/reference/react) Anda juga dapat menulis *Hooks* Anda sendiri dengan menggabungkan *Hooks* yang sudah ada.
 
