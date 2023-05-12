@@ -4,7 +4,7 @@ title: isValidElement
 
 <Intro>
 
-`isValidElement` checks whether a value is a React element.
+`isValidElement` memeriksa apakah suatu nilai (*value*) adalah elemen React.
 
 ```js
 const isElement = isValidElement(value)
@@ -16,72 +16,72 @@ const isElement = isValidElement(value)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `isValidElement(value)` {/*isvalidelement*/}
 
-Call `isValidElement(value)` to check whether `value` is a React element.
+Panggil `isValidElement(value)` untuk memeriksa apakah `value` adalah elemen React.
 
 ```js
 import { isValidElement, createElement } from 'react';
 
-// ✅ React elements
+// ✅ Elemen React
 console.log(isValidElement(<p />)); // true
 console.log(isValidElement(createElement('p'))); // true
 
-// ❌ Not React elements
+// ❌ Bukan elemen React
 console.log(isValidElement(25)); // false
 console.log(isValidElement('Hello')); // false
 console.log(isValidElement({ age: 42 })); // false
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `value`: The `value` you want to check. It can be any a value of any type.
+* `value`: Sebuah nilai yang ingin diperiksa. Itu dapat berupa nilai apa pun dari jenis apa pun.
 
-#### Returns {/*returns*/}
+#### Pengembalian {/*returns*/}
 
-`isValidElement` returns `true` if the `value` is a React element. Otherwise, it returns `false`.
+`isValidElement` mengembalikan `true` jika `value` adalah elemen React. Jika bukan, ia mengembalikan `false`.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **Hanya [tag JSX](/learn/writing-markup-with-jsx) dan objek yang dikembalikan oleh [`createElement`](/reference/react/createElement) yang dianggap sebagai elemen React.** Misalnya, meskipun angka seperti 42 adalah *node* React yang valid (dan dapat dikembalikan dari komponen), itu bukan elemen React yang valid. *Array* dan portal yang dibuat dengan [`createPortal`](/reference/react-dom/createPortal) juga tidak dianggap sebagai elemen React.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Checking if something is a React element {/*checking-if-something-is-a-react-element*/}
+### Memeriksa apakah ada elemen React {/*checking-if-something-is-a-react-element*/}
 
-Call `isValidElement` to check if some value is a *React element.*
+Panggil `isValidElement` untuk memeriksa apakah beberapa nilai merupakan *elemen React*.
 
-React elements are:
+Elemen React adalah:
 
-- Values produced by writing a [JSX tag](/learn/writing-markup-with-jsx)
-- Values produced by calling [`createElement`](/reference/react/createElement)
+- Nilai yang dihasilkan dengan menulis [tag JSX](/learn/writing-markup-with-jsx)
+- Nilai yang dihasilkan oleh pemanggilan [`createElement`](/reference/react/createElement)
 
-For React elements, `isValidElement` returns `true`:
+Untuk elemen React, `isValidElement` mengembalikan `true`:
 
 ```js
 import { isValidElement, createElement } from 'react';
 
-// ✅ JSX tags are React elements
+// ✅ Tag JSX adalah elemen React
 console.log(isValidElement(<p />)); // true
 console.log(isValidElement(<MyComponent />)); // true
 
-// ✅ Values returned by createElement are React elements
+// ✅ Nilai yang dikembalikan oleh createElement adalah elemen React
 console.log(isValidElement(createElement('p'))); // true
 console.log(isValidElement(createElement(MyComponent))); // true
 ```
 
-Any other values, such as strings, numbers, or arbitrary objects and arrays, are not React elements.
+Nilai lainnya, seperti string, angka, atau objek arbitrer dan *array*, bukan elemen React.
 
-For them, `isValidElement` returns `false`:
+Untuk nilai-nilai tersebut, `isValidElement` mengembalikan `false`: 
 
 ```js
-// ❌ These are *not* React elements
+// ❌ Ini adalah *bukan* elemen React
 console.log(isValidElement(null)); // false
 console.log(isValidElement(25)); // false
 console.log(isValidElement('Hello')); // false
@@ -90,39 +90,39 @@ console.log(isValidElement([<div />, <div />])); // false
 console.log(isValidElement(MyComponent)); // false
 ```
 
-It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/reference/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
+`isValidElement` sangat jarang diperlukan. Ini sangat berguna jika Anda memanggil API lain yang *hanya* menerima elemen (seperti halnya [`cloneElement`](/reference/react/cloneElement)) dan Anda ingin menghindari kesalahan saat argumen Anda bukan elemen React.
 
-Unless you have some very specific reason to add an `isValidElement` check, you probably don't need it.
+Kecuali Anda memiliki alasan yang sangat spesifik untuk menambahkan pemeriksaan `isValidElement`, Anda mungkin tidak membutuhkannya.
 
 <DeepDive>
 
-#### React elements vs React nodes {/*react-elements-vs-react-nodes*/}
+#### Element React vs *node* React {/*react-elements-vs-react-nodes*/}
 
-When you write a component, you can return any kind of *React node* from it:
-
-```js
-function MyComponent() {
-  // ... you can return any React node ...
-}
-```
-
-A React node can be:
-
-- A React element created like `<div />` or `createElement('div')`
-- A portal created with [`createPortal`](/reference/react-dom/createPortal)
-- A string
-- A number
-- `true`, `false`, `null`, or `undefined` (which are not displayed)
-- An array of other React nodes
-
-**Note `isValidElement` checks whether the argument is a *React element,* not whether it's a React node.** For example, `42` is not a valid React element. However, it is a perfectly valid React node:
+Saat Anda menulis sebuah komponen, Anda dapat mengembalikan *node React* apa pun darinya:
 
 ```js
 function MyComponent() {
-  return 42; // It's ok to return a number from component
+  // ... anda dapat mengembalikan node React apapun ...
 }
 ```
 
-This is why you shouldn't use `isValidElement` as a way to check whether something can be rendered.
+Node React dapat berupa:
+
+- Elemen React yang dibuat seperti `<div />` atau `createElement('div')`
+- Portal yang dibuat dengan [`createPortal`](/reference/react-dom/createPortal)
+- Sebuah *string*
+- Sebuah Angka
+- `true`, `false`, `null`, atau `undefined` (yang tidak ditampilkan)
+- Array *node* React lainnya
+
+**Catatan `isValidElement` memeriksa apakah argumennya adalah *elemen React,* bukan apakah itu node React.** Misalnya, `42` bukan elemen React yang valid. Namun, ini adalah *node* React yang benar-benar valid:
+
+```js
+function MyComponent() {
+  return 42; // Tidak apa-apa untuk mengembalikan angka dari komponen
+}
+```
+
+Inilah sebabnya mengapa Anda tidak boleh menggunakan `isValidElement` sebagai cara untuk memeriksa apakah sesuatu dapat dirender.
 
 </DeepDive>
