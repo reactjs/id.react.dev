@@ -41,11 +41,11 @@ console.log(isValidElement({ age: 42 })); // false
 
 * `value`: Sebuah nilai yang ingin diperiksa. Itu dapat berupa nilai apa pun dari jenis apa pun.
 
-#### Pengembalian {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `isValidElement` mengembalikan `true` jika `value` adalah elemen React. Jika bukan, ia mengembalikan `false`.
 
-#### Peringatan {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
 * **Hanya [tag JSX](/learn/writing-markup-with-jsx) dan objek yang dikembalikan oleh [`createElement`](/reference/react/createElement) yang dianggap sebagai elemen React.** Misalnya, meskipun angka seperti 42 adalah *node* React yang valid (dan dapat dikembalikan dari komponen), itu bukan elemen React yang valid. *Array* dan portal yang dibuat dengan [`createPortal`](/reference/react-dom/createPortal) juga tidak dianggap sebagai elemen React.
 
@@ -96,7 +96,7 @@ Kecuali Anda memiliki alasan yang sangat spesifik untuk menambahkan pemeriksaan 
 
 <DeepDive>
 
-#### Element React vs *node* React {/*react-elements-vs-react-nodes*/}
+#### Elemen React vs *node* React {/*react-elements-vs-react-nodes*/}
 
 Saat Anda menulis sebuah komponen, Anda dapat mengembalikan *node React* apa pun darinya:
 
