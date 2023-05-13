@@ -4,17 +4,17 @@ title: 'Menghilangkan Efek dependensi'
 
 <Intro>
 
-Saat Anda menulis sebuah Efek, linter akan memverifikasi bahwa Anda telah memasukkan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
+Saat Anda menulis sebuah Efek, *linter* akan memverifikasi bahwa Anda telah memasukkan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
 
 </Intro>
 
 <YouWillLearn>
 
-- Cara memperbaiki Efek tak terbatas perulangan dependensi?
-- Apa yang harus dilakukan bila Anda ingin menghapus dependensi?
-- Cara membaca nilai dari Efek Anda tanpa "bereaksi" dengannya?
+- Bagaimana untuk memperbaiki perulangan dependensi Efek tak terbatas (*Inifinite Effect*)?
+- Apa yang harus dilakukan ketika Anda ingin menghapus dependensi?
+- Bagaimana untuk membaca nilai dari Efek Anda tanpa "bereaksi" kepadanya?
 - Bagaimana dan mengapa menghindari objek dan fungsi dependensi?
-- Mengapa menekan linter dependensi berbahaya, dan alih-alih apa yang harus dilakukan?
+- Mengapa menekan dependensi *linter* itu berbahaya, dan apa yang seharusnya dilakukan?
 
 </YouWillLearn>
 
@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Kemudian, jika Anda membiarkan dependensi Efek kosong (`[]`), linter akan menyarankan dependensi yang tepat:
+Kemudian, jika Anda membiarkan dependensi Efek kosong (`[]`), *linter* akan menyarankan dependensi yang tepat:
 
 <Sandpack>
 
@@ -58,7 +58,7 @@ export default function App() {
   return (
     <>
       <label>
-        Pilih runag obrolan:{' '}
+        Pilih ruang obrolan:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
@@ -96,7 +96,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Isi sesuai dengan apa yang linter katakan:
+Isi sesuai dengan apa yang *linter* katakan:
 
 ```js {6}
 function ChatRoom({ roomId }) {
@@ -104,12 +104,12 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ Semua dependensi dideklrasikan
+  }, [roomId]); // ✅ Semua dependensi dideklarasikan
   // ...
 }
 ```
 
-[Efek "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena render ulang), linter memverifikasi bahwa Anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Efek Anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan *dropdown*:
+[Efek "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena *render* ulang), *linter* memverifikasi bahwa Anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Efek Anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan *dropdown*:
 
 <Sandpack>
 
@@ -173,7 +173,7 @@ button { margin-left: 10px; }
 
 ### Untuk menghapus dependensi, pastikan bahwa itu bukan dependensi {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Perhatikan bahwa Anda tidak dapat "memilih" dependensi dari Efek Anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan ole kode Efek Anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
+Perhatikan bahwa Anda tidak dapat "memilih" dependensi dari Efek Anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan oleh kode Efek Anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
@@ -188,7 +188,7 @@ function ChatRoom({ roomId }) { // Ini adalah nilai reaktif
 }
 ```
 
-[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk *props* dan semua variabel dan fungsi dideklarasikan langsung di dalam komponen Anda. Ketika `roomId` adalah nilai reaktif, Anda tidak dapat menghapusnya dari daftar dependensi. Linter tidak akan mengizinkannya:
+[Nilai reaktif](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) termasuk *props* dan semua variabel dan fungsi dideklarasikan langsung di dalam komponen Anda. Ketika `roomId` adalah nilai reaktif, Anda tidak dapat menghapusnya dari daftar dependensi. *Linter* tidak akan mengizinkannya:
 
 ```js {8}
 const serverUrl = 'https://localhost:1234';
@@ -203,9 +203,9 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Dan linter akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini akan menimbulkan bug dalam kode Anda.
+Dan *linter* akan benar! Ketika `roomId` mungkin berubah dari waktu ke waktu, ini akan menimbulkan bug dalam kode Anda.
 
-**Untuk menghapus dependensi, "buktikan" kepada linter bahwa itu *tidak perlu* menjadi sebuah dependensi.** Misalnya, Anda dapat mengeluarkan `roomId` dari komponen  untuk membuktikan bahwa ia tidak reaktif dan tidak akan berubah saat render ulang:
+**Untuk menghapus dependensi, "buktikan" kepada *linter* bahwa itu *tidak perlu* menjadi sebuah dependensi.** Misalnya, Anda dapat mengeluarkan `roomId` dari komponen  untuk membuktikan bahwa ia tidak reaktif dan tidak akan berubah saat render ulang:
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
@@ -270,7 +270,7 @@ Inilah mengapa Anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.]
 Anda mungkin memperhatikan pola dalam alur kerja Anda:
 
 1. Pertama, Anda **mengubah kode** kode Efek Anda atau bagaimana nilai reaktif Anda dideklarasikan.
-2. Kemudian, Anda mengikuti linter dan menyesuaikan dependensi agar **sesuai dengan kode yang Anda ubah.**
+2. Kemudian, Anda mengikuti *linter* dan menyesuaikan dependensi agar **sesuai dengan kode yang Anda ubah.**
 3. Jika kamu tidak puas dengan daftar dependensi, Anda **kembali ke langkah pertama** (dan mengubah kodenya kembali).
 
 Bagian terakhir ini penting. **Jika Anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode Efek Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode Anda. Untuk mengubah daftar dependensi, ubah kodenya.
@@ -279,7 +279,7 @@ Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan 
 
 <Pitfall>
 
-Jika Anda memiliki basis kode yang sudah ada, Anda mungkin memiliki beberapa Efek yang menekan linter seperti ini:
+Jika Anda memiliki basis kode yang sudah ada, Anda mungkin memiliki beberapa Efek yang menekan *linter* seperti ini:
 
 ```js {3-4}
 useEffect(() => {
@@ -289,7 +289,7 @@ useEffect(() => {
 }, []);
 ```
 
-**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan linter, Anda "bohong" kepada React tentang nilai yang bergantung pada Efek Anda.
+**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan *linter*, Anda "bohong" kepada React tentang nilai yang bergantung pada Efek Anda.
 
 Sebagai gantinya, gunakan teknik di bawah ini.
 
@@ -300,7 +300,7 @@ Sebagai gantinya, gunakan teknik di bawah ini.
 #### Mengapa menekan linter dependensi sangat berbahaya? {/*why-is-suppressing-the-dependency-linter-so-dangerous*/}
 
 
-Menekan linter menyebabkan bug yang sangat tidak intuitif yang sulit ditemukan dan diperbaiki. Berikut salah satu contohnya:
+Menekan *linter* menyebabkan bug yang sangat tidak intuitif yang sulit ditemukan dan diperbaiki. Berikut salah satu contohnya:
 
 <Sandpack>
 
@@ -349,11 +349,11 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Katakanlah Anda ingin menjalankan Efek "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi Anda memutuskan untuk mengabaikan linter, dan dengan paksa menentukan `[]` sebagai dependensi.
+Katakanlah Anda ingin menjalankan Efek "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi Anda memutuskan untuk mengabaikan *linter*, dan dengan paksa menentukan `[]` sebagai dependensi.
 
 Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena Anda "berbohong" kepada React bahwa Efek ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan Anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
 
-Selalu ada solusi yang lebih baik daripada mengabaikan linter! Untuk memperbaiki kode ini, Anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
+Selalu ada solusi yang lebih baik daripada mengabaikan *linter*! Untuk memperbaiki kode ini, Anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
 **Sebaiknya perlakukan eror lint dependensi sebagai eror kompilasi. Jika Anda tidak menekannya, Anda tidak akan pernah melihat eror seperti ini.** Sisa dari halaman ini mendokumentasikan untuk kasus ini dan kasus lainnya.
 
@@ -655,7 +655,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Masalahnya adalah setiap kali `isMuted` berubah (misalnya, saat pengguna menekan tombol "Muted"), Efek dakan menyinkronkan ulang, dan menghubungkan kembali ke obrloan. Ini bukan *user experience* yang diinginkan! (Dalam contoh ini, bahkan menonaktifkan linter pun tidak akan berhasil--jika Anda melakukannya, `isMuted` akan "terjebak" dengan nilai sebelumnya.)
+Masalahnya adalah setiap kali `isMuted` berubah (misalnya, saat pengguna menekan tombol "Muted"), Efek dakan menyinkronkan ulang, dan menghubungkan kembali ke obrloan. Ini bukan *user experience* yang diinginkan! (Dalam contoh ini, bahkan menonaktifkan *linter* pun tidak akan berhasil--jika Anda melakukannya, `isMuted` akan "terjebak" dengan nilai sebelumnya.)
 
 Untuk mengatasi masalah ini, Anda perlu mengekstrak logika yang seharusnya tidak reaktif dari Efek. Anda tidak ingin Efek ini "bereaksi" terhadap perubahan dari `isMuted`. [Pindahkan logika non-reaktif ini ke dalam Event Efek:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
@@ -909,7 +909,7 @@ function ChatRoom() {
   // ...
 ```
 
-Dengan cara ini, Anda *membuktikan* kepada linter bahwa itu tidak reaktif. Ini tidak dapat berubah sebagai hasil dari *render* ulang, jadi tidak perlu menjadi dependensi. Sekarang me-*render* ulang `ChatRoom` tidak akan menyebabkan Efek Anda melakukan sinkronisasi ulang.
+Dengan cara ini, Anda *membuktikan* kepada *linter* bahwa itu tidak reaktif. Ini tidak dapat berubah sebagai hasil dari *render* ulang, jadi tidak perlu menjadi dependensi. Sekarang me-*render* ulang `ChatRoom` tidak akan menyebabkan Efek Anda melakukan sinkronisasi ulang.
 
 Ini juga berlaku untuk fungsi:
 
@@ -1160,8 +1160,8 @@ Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena 
 
 - Dependensi harus selalu sesuai dengan kodenya.
 - Ketika Anda tidak puas dengan dependensi Anda, yang perlu Anda edit adalah kodenya.
-- Menekan linter akan menyebabkan *bug* yang sangat membingungkan, dan Anda harus selalu menghindarinya.
-- Untuk menghapus sebuah dependensi, Anda perlu "membuktikan" kepada linter bahwa dependensi tersebut tidak diperlukan.
+- Menekan *linter* akan menyebabkan *bug* yang sangat membingungkan, dan Anda harus selalu menghindarinya.
+- Untuk menghapus sebuah dependensi, Anda perlu "membuktikan" kepada *linter* bahwa dependensi tersebut tidak diperlukan.
 - Jika beberapa kode harus berjalan sebagai respons terhadap interaksi tertentu, pindahkan kode tersebut ke *event handler*.
 - Jika beberapa bagian dari Efek Anda harus dijalankan ulang karena alasan yang berbeda, pisahkan menjadi beberapa Efek.
 - Jika Anda ingin memperbarui beberapa *state* berdasarkan *state* sebelumnya, berikan fungsi *updater*.
@@ -1247,7 +1247,7 @@ Alih-alih membaca `count` di dalam Efek, Anda mengoper instruksi `c => c + 1` ("
 
 #### Memperbaiki animasi pemicu ulang {/*fix-a-retriggering-animation*/}
 
-Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di file `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk *node* DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
+Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di file `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk simpul DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
 
 Kode ini sudah berfungsi, tetapi ada sesuatu yang ingin Anda ubah. Saat ini, saat Anda menggerakkan *slider* yang mengontrol variabel *state* `duration`, *slider* tersebut akan memicu ulang animasi. Ubah perilakunya sehingga Efek tidak "bereaksi" terhadap variabel `duration`. Saat Anda menekan "Tampilkan", Efek seharusnya menggunakan `duration` saat ini pada *silder*. Namun demikian, menggerakkan *slider* itu sendiri seharusnya tidak dengan sendirinya memicu ulang animasi.
 
