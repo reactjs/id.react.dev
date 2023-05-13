@@ -16,7 +16,7 @@ Menata struktur *state* dengan baik dapat membuat perbedaan antara komponen yang
 
 </YouWillLearn>
 
-## Prinsip-prinsip untuk menstrukturkan *state*. {/*principles-for-structuring-state*/}
+## Prinsip-prinsip untuk menata *state*. {/*principles-for-structuring-state*/}
 
 Ketika Anda menulis komponen yang memegang beberapa *state*, Anda harus membuat pilihan tentang berapa banyak variabel *state* yang harus digunakan dan bagaimana bentuk datanya. Meskipun mungkin saja menulis program yang benar dengan struktur *state* yang kurang optimal, ada beberapa prinsip yang dapat membimbing Anda untuk membuat pilihan yang lebih baik:
 
@@ -24,9 +24,9 @@ Ketika Anda menulis komponen yang memegang beberapa *state*, Anda harus membuat 
 2. **Hindari kontradiksi dalam *state*.**  Saat *state* diorganisir sedemikian rupa sehingga beberapa bagian *state* dapat saling bertentangan dan "tidak sependapat" satu sama lain, maka ini bisa meninggalkan celah untuk kesalahan. Coba hindari hal ini.
 3. **Hindari *state* yang redundan.** Jika Anda dapat menghitung beberapa informasi dari *prop* komponen atau variabel *state* yang sudah ada selama *rendering*, maka Anda tidak perlu memasukkan informasi tersebut ke dalam *state* komponen tersebut.
 4. **Hindari duplikasi dalam *state*.** Ketika data yang sama terduplikasi antara beberapa variabel *state*, atau dalam objek bertingkat, maka akan sulit menjaga sinkronisasi antara mereka. Kurangi duplikasi ketika memungkinkan.
-5. **Hindari *state* yang sangat bertingkat.** *State* yang sangat hierarkis tidak sangat mudah untuk diperbarui. Ketika memungkinkan, lebih baik struktur *state* secara datar.
+5. **Hindari *state* yang sangat bertingkat.** *State* dengan hierarkis yang dalam sangat tidak mudah untuk diperbarui. Saat memungkinkan, lebih baik menata *state* dengan datar.
 
-Tujuan di balik prinsip-prinsip ini adalah membuat *state* mudah diperbarui tanpa memperkenalkan kesalahan. Menghapus *data* yang redundan dan duplikat dari *state* membantu memastikan bahwa semua bagian *state* tetap sinkron. Ini mirip dengan bagaimana seorang insinyur *database* mungkin ingin [mengnormalisasi struktur *database*](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) untuk mengurangi kemungkinan *bug*. Untuk mem-*parafrase* Albert Einstein, **"Jadikan *state* Anda se-sederhana mungkin - tetapi tidak lebih sederhana dari itu.."**
+Tujuan di balik prinsip-prinsip ini adalah membuat *state* mudah diperbarui tanpa memperkenalkan kesalahan. Menghapus *data* yang redundan dan duplikat dari *state* membantu memastikan bahwa semua bagian *state* tetap sinkron. Ini mirip dengan bagaimana seorang insinyur *database* mungkin ingin [menormalisasi struktur *database*](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) untuk mengurangi kemungkinan *bug*. Untuk mem-*parafrase* Albert Einstein, **"Jadikan *state* Anda sesederhana mungkin - tetapi jangan terlalu sederhana."**
 
 Sekarang mari kita lihat bagaimana prinsip-prinsip tersebut diterapkan dalam tindakan.
 
@@ -353,7 +353,7 @@ function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Di sini, sebuah variabel *state* `color` di-inisialisasi dengan *prop* `messageColor`. Masalahnya adalah bahwa **jika komponen induk memberikan nilai `messageColor` berbeda (misalnya, `'red'` daripada `'blue'`), variabel *state* `color` tidak akan diperbarui!**  State hanya di-inisialisasi selama *render* pertama.
+Di sini, sebuah variabel *state* `color` diinisialisasi dengan *prop* `messageColor`. Masalahnya adalah bahwa **jika komponen induk memberikan nilai `messageColor` berbeda (misalnya, `'red'` daripada `'blue'`), variabel *state* `color` tidak akan diperbarui!**  State hanya di-inisialisasi selama *render* pertama.
 
 Ini mengapa "menirukan" beberapa *prop* pada variabel *state* dapat menyebabkan kebingungan. Sebaliknya, gunakan *prop* `messageColor`  langsung dalam kode Anda. Jika Anda ingin memberinya nama yang lebih pendek, gunakan konstanta:
 
@@ -568,7 +568,7 @@ Tetapi setelah diubah menjadi seperti ini:
 
 Duplikasi data sudah tidak ada lagi, dan hanya menyimpan *state* yang penting!
 
-Sekarang jika Anda mengedit *item* yang *dipilih*, pesan di bawahnya akan segera diperbarui. Ini karena `setItems` memicu *render* ulang, dan `items.find(...)` akan menemukan item dengan judul yang diperbarui. Anda tidak perlu menyimpan *item* yang dipilih di *state*, karena hanya *ID* yang dipilih yang penting. Yang lain dapat dihitung selama *render*.
+Sekarang jika Anda mengubah *item* yang *dipilih*, pesan di bawahnya akan segera diperbarui. Ini karena `setItems` memicu *render* ulang, dan `items.find(...)` akan menemukan item dengan judul yang diperbarui. Anda tidak perlu menyimpan *item* yang dipilih di *state*, karena hanya *ID* yang dipilih yang penting. Yang lain dapat dihitung selama *render*.
 
 ## Hindari *state* yang sangat bertingkat {/*avoid-deeply-nested-state*/}
 
@@ -822,7 +822,7 @@ Sekarang katakanlah Anda ingin menambahkan tombol untuk menghapus tempat yang te
 
 **Jika *state* terlalu bersarang untuk diperbarui dengan mudah, pertimbangkan untuk membuatnya "datar".** Berikut adalah salah satu cara Anda dapat memperbarui struktur *data* ini. Alih-alih struktur seperti pohon di mana setiap `tempat` memiliki sebuah senarai dari tempat anaknya, Anda dapat membuat setiap tempat memegang sebuah senarai dari *ID* tempat anaknya. Kemudian simpan pemetaan dari setiap ID tempat ke tempat yang sesuai.
 
-*Data restructuring* ini mungkin mengingatkan Anda melihat table *database*:
+*Penataan data* ini mungkin mengingatkan Anda pada tabel di basis data:
 
 <Sandpack>
 
@@ -1129,7 +1129,7 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Sekarang karena *state*-nya "datar" (juga dikenal sebagai "dinarmalisasi"), memperbarui *item* yang bersarang menjadi lebih mudah.**
+**Sekarang karena *state*-nya "datar" (juga dikenal sebagai "dinormalisasi"), memperbarui *item* yang bersarang menjadi lebih mudah.**
 
 Untuk menghapus sebuah tempat sekarang, Anda hanya perlu memperbarui dua level *state*:
 
@@ -1848,13 +1848,13 @@ Kadang-kadang, Anda juga dapat mengurangi penempelan status dengan memindahkan b
 * Hindari penggunaan *state* yang redundan dan duplikat sehingga tidak perlu menjaga sinkronisasi.
 * Jangan memasukkan *props* ke dalam *state* kecuali Anda secara khusus ingin mencegah pembaruan.
 * Untuk pola *UI* seperti pemilihan, simpan *ID* atau indeks dalam state daripada objek itu sendiri.
-* Jika memperbarui *state* yang sangat berlapis-lapis menjadi rumit, coba datanya di-flat-kan.
+* Jika memperbarui *state* yang sangat berlapis-lapis menjadi rumit, coba datanya didatarkan.
 
 </Recap>
 
 <Challenges>
 
-#### Sesuaikan komponen yang tidak terupdate {/*fix-a-component-thats-not-updating*/}
+#### Sesuaikan komponen yang tidak terbarui {/*fix-a-component-thats-not-updating*/}
 
 Komponen `Clock` ini menerima dua *prop*: `color` dan `time`. Ketika Anda memilih warna yang berbeda pada kotak pilihan, `Clock` menerima *prop* `color` yang berbeda dari komponen induknya. Namun, warna yang ditampilkan tidak diperbarui. Mengapa? Perbaiki masalahnya.
 
@@ -2019,7 +2019,7 @@ export default function App() {
 
 #### Perbaiki daftar bawaan yang rusak {/*fix-a-broken-packing-list*/}
 
-Daftar bawaan ini memiliki *footer* yang menunjukkan berapa *item* yang sudah dikemas, dan berapa total *item* yang ada. Pada awalnya, *footer* ini tampak berfungsi, namun terdapat *bug*. Sebagai contoh, jika Anda menandai sebuah *item* sebagai sudah dikemas, lalu menghapusnya, hitungan tidak akan ter-*update* dengan benar. Perbaiki hitungannya agar selalu benar.
+Daftar bawaan ini memiliki *footer* yang menunjukkan berapa *item* yang sudah dikemas, dan berapa total *item* yang ada. Pada awalnya, *footer* ini tampak berfungsi, namun terdapat *bug*. Sebagai contoh, jika Anda menandai sebuah *item* sebagai sudah dikemas, lalu menghapusnya, hitungan tidak akan diperbarui dengan benar. Perbaiki hitungannya agar selalu benar.
 
 <Hint>
 
@@ -2303,9 +2303,9 @@ Perhatikan bagaimana *event handler* hanya berkaitan dengan memanggil `setItems`
 
 #### Memperbaiki pilihan yang menghilang {/*fix-the-disappearing-selection*/}
 
-Ada daftar `letters` dalam *state*. Ketika kamu mengarahkan atau fokus pada huruf tertentu, huruf tersebut di-*highlight*. Huruf yang saat ini di-*highlight* disimpan dalam variabel *state* `highlightedLetter`. Kamu dapat "menyimpan" dan "menghapus" huruf tertentu, yang memperbarui senarai `letters` dalam *state*.
+Ada daftar `letters` dalam *state*. Ketika kamu mengarahkan atau fokus pada huruf tertentu, huruf tersebut disorot. Huruf yang saat ini disorot disimpan dalam variabel *state* `highlightedLetter`. Kamu dapat "menyimpan" dan "menghapus" huruf tertentu, yang memperbarui senarai `letters` dalam *state*.
 
-Kode ini berfungsi, tetapi terdapat sedikit *glitch UI*. Saat kamu menekan "*Star*" atau "*Unstar*", *highlighting*-nya hilang sejenak. Namun, itu muncul kembali begitu kamu memindahkan *pointer* atau beralih ke huruf lain dengan *keyboard*. Mengapa ini terjadi? Perbaiki agar *highlighting* tidak hilang setelah klik tombol.
+Kode ini berfungsi, tetapi terdapat sedikit *glitch UI*. Saat kamu menekan "*Star*" atau "*Unstar*", sorotannya hilang sejenak. Namun, itu muncul kembali begitu kamu memindahkan *pointer* atau beralih ke huruf lain dengan *keyboard*. Mengapa ini terjadi? Perbaiki agar *highlighting* tidak hilang setelah klik tombol.
 
 <Sandpack>
 
