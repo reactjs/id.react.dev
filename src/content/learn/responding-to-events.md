@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+judul: Menanggapi Events
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React memungkinkan Anda menambahkan *event handlers* ke dalam JSX Anda. Event handler adalah fungsi-fungsi yang akan dipicu sebagai respons terhadap interaksi seperti mengklik, mengarahkan kursor, fokus pada input formulir, dan sebagainya.
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* Berbagai cara untuk menulis event handler
+* Bagaimana cara melewatkan logika penanganan event dari komponen induk
+* Bagaimana events berpropagasi dan cara menghentikannya
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## Menambahkan event handlers {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+Untuk menambahkan event handler, pertama-tama Anda akan mendefinisikan sebuah fungsi dan kemudian [mengirimkannya sebagai prop](/learn/passing-props-to-a-component) ke tag JSX yang sesuai. Sebagai contoh, berikut adalah sebuah tombol yang belum melakukan apa pun:
 
 <Sandpack>
 
@@ -26,7 +26,7 @@ To add an event handler, you will first define a function and then [pass it as a
 export default function Button() {
   return (
     <button>
-      I don't do anything
+      Saya tidak melakukan apa pun
     </button>
   );
 }
@@ -34,23 +34,23 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+Anda dapat membuatnya menampilkan pesan ketika pengguna mengklik dengan mengikuti tiga langkah berikut:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. Deklarasikan sebuah fungsi bernama `handleClick` *di dalam* komponen `Button` Anda.
+2. Implementasikan logika di dalam fungsi tersebut (gunakan `alert` untuk menampilkan pesan).
+3. Tambahkan `onClick={handleClick}` ke tag JSX `<button>`.
 
 <Sandpack>
 
 ```js
 export default function Button() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Anda mengklik saya!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Klik saya
     </button>
   );
 }
@@ -62,61 +62,60 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+Anda mendefinisikan fungsi `handleClick` dan kemudian [mengirimkannya sebagai prop](/learn/passing-props-to-a-component) ke `<button>`.  `handleClick` adalah sebuah **event handler.** Fungsi event handler:
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* Biasanya didefinisikan *di dalam* komponen Anda.
+* Memiliki nama yang diawali dengan `handle`, diikuti oleh nama event.
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+Secara umum, menjadi kebiasaan untuk memberi nama event handler dengan format `handle` diikuti oleh nama event. Anda sering melihat contoh seperti `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, dan lain sebagainya.
 
-Alternatively, you can define an event handler inline in the JSX:
+Sebagai alternatif, Anda juga dapat mendefinisikan event handler secara langsung dalam JSX:
 
 ```jsx
 <button onClick={function handleClick() {
-  alert('You clicked me!');
+  alert('Anda mengklik saya!');
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+Atau, lebih singkatnya, menggunakan fungsi panah (arrow function):
 
 ```jsx
 <button onClick={() => {
-  alert('You clicked me!');
+  alert('Anda mengklik saya!');
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+Semua gaya penulisan tersebut memiliki arti yang sama. Inline event handler sangat praktis untuk fungsi-fungsi yang singkat.
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+Fungsi yang dikirimkan ke event handler harus dikirimkan, bukan dipanggil. Sebagai contoh:
 
-| passing a function (correct)     | calling a function (incorrect)     |
+| mengirimkan fungsi (benar)       | memanggil fungsi (salah)           |
 | -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+Perbedaannya tipis. Pada contoh pertama, fungsi `handleClick` dikirimkan sebagai event handler onClick. Ini memberitahu React untuk mengingatnya dan hanya memanggil fungsi tersebut ketika pengguna mengklik tombol.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+Pada contoh kedua, tanda `()` di akhir `handleClick()` akan menjalankan fungsi tersebut *langsung* saat [rendering](/learn/render-and-commit), tanpa adanya klik. Hal ini karena JavaScript di dalam tag [JSX `{` dan `}`](/learn/javascript-in-jsx-with-curly-braces) dieksekusi langsung.
 
-When you write code inline, the same pitfall presents itself in a different way:
+Ketika Anda menuliskan kode secara inline, masalah yang sama muncul dengan cara yang berbeda:
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| mengirimkan fungsi (benar)              | memanggil fungsi (salah)          |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+Mengirimkan kode dalam baris seperti ini tidak akan berjalan saat diklik—kode tersebut akan dijalankan setiap kali komponen dirender:
 
 ```jsx
-// This alert fires when the component renders, not when clicked!
-<button onClick={alert('You clicked me!')}>
+// Alert ini berjalan saat komponen dirender, bukan saat diklik!
+<button onClick={alert('Anda mengklik saya!')}>
 ```
-
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+Jika Anda ingin mendefinisikan event handler secara langsung, Anda dapat melakukannya dengan membungkusnya dalam sebuah fungsi anonim, seperti berikut:
 
 ```jsx
-<button onClick={() => alert('You clicked me!')}>
+<button onClick={() => alert('Anda mengklik saya!')}>
 ```
 
 Rather than executing the code inside with every render, this creates a function to be called later.
