@@ -249,9 +249,9 @@ Sekarang Anda hampir tahu segalanya tentang JSX:
 
 <Challenges>
 
-#### Fix the mistake {/*fix-the-mistake*/}
+#### Perbaiki Kesalahan {/*fix-the-mistake*/}
 
-This code crashes with an error saying `Objects are not valid as a React child`:
+Kode ini mengalami crash dengan pesan galat yang menyatakan `Objects are not valid as a React child`:
 
 <Sandpack>
 
@@ -291,15 +291,15 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Can you find the problem?
+Bisakah Anda menemukan masalahnya?
 
-<Hint>Look for what's inside the curly braces. Are we putting the right thing there?</Hint>
+<Hint>Periksa apa yang ada di dalam kurung kurawal. Apakah kita meletakkan sesuatu yang benar di sana?</Hint>
 
 <Solution>
 
-This is happening because this example renders *an object itself* into the markup rather than a string: `<h1>{person}'s Todos</h1>` is trying to render the entire `person` object! Including raw objects as text content throws an error because React doesn't know how you want to display them.
+Ini terjadi karena contoh ini *merender* *objek itu sendiri* ke dalam markup bukan string: `<h1>{person}'s Todos</h1>` mencoba *render* seluruh objek `person`! Menyertakan objek mentah sebagai konten teks menghasilkan kesalahan karena React tidak tahu bagaimana Anda ingin menampilkannya.
 
-To fix it, replace `<h1>{person}'s Todos</h1>` with `<h1>{person.name}'s Todos</h1>`:
+Untuk memperbaikinya, ganti `<h1>{person}'s Todos</h1>` dengan `<h1>{person.name}'s Todos</h1>`:
 
 <Sandpack>
 
@@ -341,9 +341,9 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Extract information into an object {/*extract-information-into-an-object*/}
+#### Ekstrak informasi ke dalam sebuah objek {/*extract-information-into-an-object*/}
 
-Extract the image URL into the `person` object.
+Ekstrak URL gambar ke dalam objek `person`.
 
 <Sandpack>
 
@@ -385,7 +385,7 @@ body > div > div { padding: 20px; }
 
 <Solution>
 
-Move the image URL into a property called `person.imageUrl` and read it from the `<img>` tag using the curlies:
+Pindahkan URL gambar ke dalam properti yang disebut `person.imageUrl` dan baca dari tag `<img>` menggunakan kurung kurawal:
 
 <Sandpack>
 
@@ -428,13 +428,13 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
+#### Menulis ekspresi di dalam kurung kurawal JSX {/*write-an-expression-inside-jsx-curly-braces*/}
 
-In the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.
+Pada objek di bawah ini, URL lengkap gambar dibagi menjadi empat bagian: URL dasar, `imageId`, `imageSize`, dan ekstensi file.
 
-We want the image URL to combine these attributes together: base URL (always `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
+Kita ingin URL gambar menggabungkan atribut-atribut ini bersama-sama: URL dasar (selalu `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), dan ekstensi file (selalu `'.jpg'`). Namun, ada yang salah dengan bagaimana tag `<img>` menentukan `src`.
 
-Can you fix it?
+Bisakah anda memperbaikinya?
 
 <Sandpack>
 
@@ -478,15 +478,15 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-To check that your fix worked, try changing the value of `imageSize` to `'b'`. The image should resize after your edit.
+Untuk memeriksa apakah perbaikan Anda berhasil, coba ubah nilai dari `imageSize` menjadi `'b'`. Gambar harus menyesuaikan ukuran setelah diubah.
 
 <Solution>
 
-You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
+Anda bisa menuliskannya seperti ini `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
-1. `{` opens the JavaScript expression
-2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string
-3. `}` closes the JavaScript expression
+1. `{` membuka ekspresi JavaScript
+2. `baseUrl + person.imageId + person.imageSize + '.jpg'` menghasilkan string URL yang benar
+3. `}` menutup ekspresi JavaScript.
 
 <Sandpack>
 
@@ -529,7 +529,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-You can also move this expression into a separate function like `getImageUrl` below:
+Anda juga dapat memindahkan ekspresi ini ke fungsi terpisah seperti `getImageUrl` di bawah ini.
 
 <Sandpack>
 
@@ -584,7 +584,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Variables and functions can help you keep the markup simple!
+Variabel dan fungsi dapat membantu Anda menjaga markup tetap sederhana!
 
 </Solution>
 
