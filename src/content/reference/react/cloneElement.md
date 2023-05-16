@@ -4,7 +4,7 @@ title: cloneElement
 
 <Pitfall>
 
-Using `cloneElement` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
+Menggunakan `cloneElement` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
 
 </Pitfall>
 
