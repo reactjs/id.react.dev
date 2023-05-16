@@ -50,7 +50,7 @@ export default function App() {
 
 #### Parameter {/*parameters*/}
 
-* `type`: Argumen `type` harus merupakan tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti 'div' atau 'span'), atau komponen React (fungsi, kelas, atau komponen khusus seperti (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
+* `type`: Argumen `type` harus merupakan tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti 'div' atau 'span'), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
 
 #### Kembalian {/*returns*/}
 
