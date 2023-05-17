@@ -446,9 +446,9 @@ Ketika Anda perlu membagikan state itu sendiri antara beberapa komponen, [angkat
 
 ## Mengirimkan nilai reaktif antara Hooks {/*passing-reactive-values-between-hooks*/}
 
-Kode di dalam Custom Hooks akan dijalankan kembali setiap kali komponen Anda dirender ulang. Oleh karena itu, seperti halnya komponen, Custom Hooks [harus bersifat murni.](/learn/keeping-components-pure) Bayangkan kode Custom Hooks sebagai bagian dari badan komponen Anda!
+Kode di dalam kustom Hooks akan dijalankan kembali setiap kali komponen Anda di-*render* ulang. Oleh karena itu, seperti halnya komponen, Custom Hooks [harus bersifat murni.](/learn/keeping-components-pure) Bayangkan kode kustom Hooks sebagai bagian dari badan komponen Anda!
 
-Karena Custom Hooks di-render ulang bersama komponen Anda, mereka selalu menerima prop dan state terbaru. Untuk mengetahui apa artinya, pertimbangkan contoh ruang obrolan ini. Ubah URL server atau ruang obrolannya:
+Karena Custom Hooks di-*render* ulang bersama komponen Anda, mereka selalu menerima prop dan state terbaru. Untuk mengetahui apa artinya, pertimbangkan contoh ruang obrolan ini. Ubah URL server atau ruang obrolannya:
 
 <Sandpack>
 
@@ -832,7 +832,7 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
-Setiap kali komponen `ChatRoom` Anda di-render ulang, komponen `roomId` dan `serverUrl` terbaru diteruskan ke Hook Anda. Inilah sebabnya Effect Anda terhubung kembali ke obrolan setiap kali nilainya berbeda setelah render ulang. (Jika Anda pernah bekerja dengan perangkat lunak pemrosesan audio atau video, merantai Hooks seperti ini mungkin mengingatkan Anda pada efek visual atau audio yang saling terkait. Seolah-olah output dari `useState` "diumpankan ke dalam" input dari `useChatRoom`.)
+Setiap kali komponen `ChatRoom` Anda di-*render* ulang, komponen `roomId` dan `serverUrl` terbaru diteruskan ke Hook Anda. Inilah sebabnya Effect Anda terhubung kembali ke obrolan setiap kali nilainya berbeda setelah render ulang. (Jika Anda pernah bekerja dengan perangkat lunak pemrosesan audio atau video, merantai Hooks seperti ini mungkin mengingatkan Anda pada efek visual atau audio yang saling terkait. Seolah-olah output dari `useState` "diumpankan ke dalam" input dari `useChatRoom`.)
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
@@ -898,7 +898,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 
 Ini akan berhasil, tetapi ada satu peningkatan lagi yang dapat Anda lakukan ketika custom Hook Anda menerima event handler.
 
-Menambahkan dependensi pada `onReceiveMessage` tidak ideal karena akan menyebabkan chat terhubung kembali setiap kali komponen di-render ulang. [Bungkus event handler ini ke dalam Effect Event untuk menghapusnya dari dependensi:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
+Menambahkan dependensi pada `onReceiveMessage` tidak ideal karena akan menyebabkan chat terhubung kembali setiap kali komponen di-*render* ulang. [Bungkus event handler ini ke dalam Effect Event untuk menghapusnya dari dependensi:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
 
 ```js {1,4,5,15,18}
 import { useEffect, useEffectEvent } from 'react';
@@ -922,7 +922,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 }
 ```
 
-Sekarang obrolan tidak akan terhubung kembali setiap kali komponen `ChatRoom` di-render ulang. Berikut adalah demo yang berfungsi penuh untuk meneruskan event handler ke custom Hook yang dapat Anda mainkan:
+Sekarang obrolan tidak akan terhubung kembali setiap kali komponen `ChatRoom` di-*render* ulang. Berikut adalah demo yang berfungsi penuh untuk meneruskan event handler ke custom Hook yang dapat Anda mainkan:
 
 <Sandpack>
 
@@ -1877,7 +1877,7 @@ Terkadang, Anda bahkan tidak perlu menggunakan Hook!
 - Custom Hook harus diberi nama yang dimulai dengan `use` diikuti oleh huruf kapital.
 - Custom Hook hanya berbagi logika yang berhubungan dengan state, bukan state itu sendiri.
 - Anda dapat meneruskan nilai reaktif dari satu Hook ke Hook lainnya, dan nilai tersebut tetap up-to-date.
-- Semua Hook dijalankan ulang setiap kali komponen Anda dirender ulang.
+- Semua Hook dijalankan ulang setiap kali komponen Anda di-*render* ulang.
 - Kode dari custom Hook Anda harus bersifat murni, seperti kode komponen Anda.
 - Bungkus event handler yang diterima oleh custom Hook menjadi Effect Events.
 - Jangan membuat Custom Hook seperti `useMount`. Jaga agar tujuan mereka tetap spesifik.
@@ -2251,7 +2251,7 @@ export function useInterval(onTick, delay) {
 
 Di dalam `useInterval`, bungkus callback tick menjadi sebuah Event Effect, seperti yang Anda lakukan [sebelumnya di halaman ini.](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)
 
-Ini akan memungkinkan Anda menghilangkan `onTick` dari dependensi Effect Anda. Effect tidak akan disinkronkan setiap kali komponen dirender ulang, sehingga interval perubahan warna latar belakang halaman tidak akan diatur ulang setiap detik sebelum sempat aktif.
+Ini akan memungkinkan Anda menghilangkan `onTick` dari *dependensi* Effect Anda. Effect tidak akan disinkronkan setiap kali komponen di-*render* ulang, sehingga interval perubahan warna latar belakang halaman tidak akan diatur ulang setiap detik sebelum sempat aktif.
 
 Dengan perubahan ini, kedua interval akan berfungsi seperti yang diharapkan dan tidak saling mengganggu:
 
@@ -2324,7 +2324,7 @@ export function useInterval(callback, delay) {
 
 Dalam contoh ini, Hook `usePointerPosition()` melacak posisi pointer saat ini. Coba gerakkan kursor atau jari Anda ke area pratinjau dan lihat titik merah mengikuti gerakan Anda. Posisinya disimpan dalam variabel `pos1`.
 
-Faktanya, ada lima (!) titik merah yang berbeda yang dirender. Anda tidak melihat semuanya karena saat ini mereka semua muncul di posisi yang sama. Inilah yang perlu Anda perbaiki. Yang ingin Anda implementasikan adalah gerakan "bergiliran": setiap titik harus "mengikuti" jalur titik sebelumnya. Misalnya, jika Anda memindahkan kursor dengan cepat, titik pertama harus segera mengikuti dengan segera, titik kedua harus mengikuti titik pertama dengan penundaan kecil, titik ketiga harus mengikuti titik kedua, dan seterusnya.
+Faktanya, ada lima (!) titik merah yang berbeda yang di-*render*. Anda tidak melihat semuanya karena saat ini mereka semua muncul di posisi yang sama. Inilah yang perlu Anda perbaiki. Yang ingin Anda implementasikan adalah gerakan "bergiliran": setiap titik harus "mengikuti" jalur titik sebelumnya. Misalnya, jika Anda memindahkan kursor dengan cepat, titik pertama harus segera mengikuti dengan segera, titik kedua harus mengikuti titik pertama dengan penundaan kecil, titik ketiga harus mengikuti titik kedua, dan seterusnya.
 
 Anda perlu mengimplementasikan custom Hook `useDelayedValue`. Implementasi saat ini mengembalikan `value` yang diberikan kepadanya. Sebagai gantinya, Anda ingin mengembalikan nilai dari `delay` milidetik yang lalu. Anda mungkin memerlukan beberapa state dan sebuah Effect untuk melakukannya.
 
