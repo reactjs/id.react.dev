@@ -93,7 +93,7 @@ Fungsi `set` tidak memiliki nilai kembalian.
 
 ## Penggunaan {/*usage*/}
 
-### Menambahkan *state* pada sebuah komponen {/*adding-state-to-a-component*/}
+### Menambahkan state pada sebuah komponen {/*adding-state-to-a-component*/}
 
 Memanggil `useState` di tingkat atas komponen Anda untuk mendeklarasikan satu atau lebih [variabel *state*.](/learn/state-a-components-memory)
 
@@ -168,7 +168,7 @@ export default function Counter() {
 
 <Solution />
 
-#### *Text field* (*string*) {/*text-field-string*/}
+#### Text field (string) {/*text-field-string*/}
 
 Dalam contoh ini, variabel *state* `text` menyimpan sebuah *string*. Ketika Anda mengetik, `handleChange` membaca nilai masukan terbaru dari elemen DOM masukan pada peramban, dan memanggil `setText` untuk memperbarui keadaan. Ini memungkinkan Anda untuk menampilkan `text` saat ini di bawahnya.
 
@@ -200,7 +200,7 @@ export default function MyInput() {
 
 <Solution />
 
-#### *Checkbox* (*boolean*) {/*checkbox-boolean*/}
+#### Checkbox (boolean) {/*checkbox-boolean*/}
 
 Dalam contoh ini, variabel *state* `liked` menyimpan sebuah *boolean*. Ketika Anda mengklik input, `setLiked` memperbarui variabel *state* `liked` dengan nilai *true* atau *false* tergantung pada apakah masukan *checkbox* pada peramban dicentang atau tidak. Variabel `liked` digunakan untuk me-*render* teks di bawah *checkbox*.
 
@@ -236,7 +236,7 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### *Form* (dua variabel) {/*form-two-variables*/}
+#### Form (dua variabel) {/*form-two-variables*/}
 
 Anda dapat mendeklarasikan lebih dari satu variabel *state* dalam komponen yang sama. Setiap variabel *state* sepenuhnya bersifat independen.
 
@@ -276,7 +276,7 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Memperbarui *state* berdasarkan *state* sebelumnya {/*updating-state-based-on-the-previous-state*/}
+### Memperbarui state berdasarkan state sebelumnya {/*updating-state-based-on-the-previous-state*/}
 
 Misalkan `age` adalah `42`. Lalu *handler* ini memanggil `setAge(age + 1)` sebanyak tiga kali:
 
@@ -416,7 +416,7 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Memperbarui objek dan senarai di dalam *state*. {/*updating-objects-and-arrays-in-state*/}
+### Memperbarui objek dan senarai di dalam state {/*updating-objects-and-arrays-in-state*/}
 
 Anda dapat menempatkan objek dan senarai ke dalam *state*. Di React, *state* dianggap sebagai sesuatu yang hanya bisa dibaca, sehingga **Anda harus menggantinya (*replace*) daripada mutasi (*mutate*) objek yang sudah ada**. Misalnya, jika Anda memiliki objek `form` di dalam *state*, jangan mutasi secara langsung:
 
@@ -439,7 +439,7 @@ Baca [memperbarui objek pada *state*](/learn/updating-objects-in-state) dan [mem
 
 <Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
 
-#### *Form* (objek) {/*form-object*/}
+#### Form (objek) {/*form-object*/}
 
 Pada contoh ini, variabel *state* `form` menampung sebuah objek. Setiap masukan memiliki pengendali perubahan yang memanggil `setForm` dengan *state* berikutnya dari keseluruhan *form*. *Spead syntax* `{ ...form }` memastikan bahwa objek *state* diganti daripada dimutasi (*mutated*).
 
@@ -512,7 +512,7 @@ input { margin-left: 5px; }
 
 <Solution />
 
-#### *Form* (objek bersarang) {/*form-nested-object*/}
+#### Form (objek bersarang) {/*form-nested-object*/}
 
 Pada contoh ini, *state*-nya bersarang. Ketika Anda memperbarui *state* yang bersarang, Anda perlu membuat salinan dari objek yang Anda perbarui, serta setiap objek "yang terkandung" di sepanjang jalurnya ke atas. [memperbarui objek bersarang](/learn/updating-objects-in-state#updating-a-nested-object) untuk belajar lebih lanjut.
 
@@ -882,7 +882,7 @@ function ItemList({ artworks, onToggle }) {
 
 ---
 
-### Menghindari membuat ulang *state* awal {/*avoiding-recreating-the-initial-state*/}
+### Menghindari membuat ulang state awal {/*avoiding-recreating-the-initial-state*/}
 
 React menyimpan *state* awal sekali dan mengabaikannya pada *render* berikutnya.
 
@@ -961,7 +961,7 @@ export default function TodoList() {
 
 <Solution />
 
-#### Mengoper *state* awal secara langsung {/*passing-the-initial-state-directly*/}
+#### Mengoper state awal secara langsung {/*passing-the-initial-state-directly*/}
 
 Contoh ini **tidak** mengoper fungsi inisialisasi, sehingga fungsi `createInitialTodos` akan berjalan pada setiap *render*, seperti ketika Anda mengetikkan suatu masukan. Tidak ada perbedaan perilaku yang terlihat, tetapi kode ini kurang efisien.
 
@@ -1018,13 +1018,13 @@ export default function TodoList() {
 
 ---
 
-### Mereset *state* menggunakan kunci (*key*) {/*resetting-state-with-a-key*/}
+### Menyetel ulang state menggunakan kunci (key) {/*resetting-state-with-a-key*/}
 
 Anda sering melihat atribut `key` saat [me-*render* daftar.](/learn/rendering-lists) Namun, atribut ini juga memiliki tujuan lain.
 
-Anda dapat **mereset *state* komponen dengan memberikan `key` yang berbeda pada komponen.** Pada contoh ini, tombol Reset mengubah variabel *state* `version`, yang kami oper sebagai `key` pada `Form`. Ketika `key` berubah, React membuat ulang komponen `Form` (dan semua komponen anaknya) dari awal, sehingga *state*-nya di reset.
+Anda dapat **menyetel ulang *state* komponen dengan memberikan `key` yang berbeda pada komponen.** Pada contoh ini, tombol Reset mengubah variabel *state* `version`, yang kami oper sebagai `key` pada `Form`. Ketika `key` berubah, React membuat ulang komponen `Form` (dan semua komponen anaknya) dari awal, sehingga *state*-nya disetel ulang.
 
-Baca [menjaga dan mereset *state*](/learn/preserving-and-resetting-state) untuk mempelajari lebih lanjut.
+Baca [menjaga dan menyetel ulang *state*](/learn/preserving-and-resetting-state) untuk mempelajari lebih lanjut.
 
 <Sandpack>
 
@@ -1069,14 +1069,14 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Menyimpan informasi dari *render* sebelumnya {/*storing-information-from-previous-renders*/}
+### Menyimpan informasi dari render sebelumnya {/*storing-information-from-previous-renders*/}
 
 Biasanya, Anda akan memperbarui *state* pada *event handler*. Namun, dalam kasus yang jarang terjadi, Anda mungkin ingin menyesuaikan *state* sebagai respons terhadap *rendering* -- misalnya, Anda mungkin ingin mengubah variabel *state* ketika *prop* berubah.
 
 Dalam kebanyakan kasus, Anda tidak memerlukannya:
 
 * **Jika nilai yang Anda butuhkan dapat dikomputasi sepenuhnya dari *props* saat ini atau *state* lain, [hapus *state* yang redundan tersebut.](/learn/choosing-the-state-structure#avoid-redundant-state)** Jika Anda khawatir tentang komputasi ulang yang terlalu sering, [`useMemo` Hook](/reference/react/useMemo) dapat membantu.
-* Jika Anda ingin mereset seluruh *state* komponen, [berikan `key` yang berbeda pada komponen Anda.](#resetting-state-with-a-key)
+* Jika Anda ingin menyetel ulang seluruh *state* komponen, [berikan `key` yang berbeda pada komponen Anda.](#resetting-state-with-a-key)
 * Jika Anda bisa, perbarui semua *state* yang relevan pada *event handler*.
 
 Dalam kasus yang jarang terjadi bahwa tidak satu pun dari yang disebutkan di atas berlaku, ada pola yang dapat Anda gunakan untuk memperbarui *state* berdasarkan nilai-nilai yang telah di-*render*, dengan memanggil fungsi `set` ketika komponen Anda sedang di-*render*..
@@ -1144,9 +1144,9 @@ Pola ini bisa sulit dipahami dan biasanya lebih baik untuk dihindari. Namun, ini
 
 ---
 
-## Pemecahan Masalah {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### Saya sudah memperbarui *state*, tetapi saat saya mencetak log nilainya masih yang lama {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+### Saya sudah memperbarui state, tetapi saat saya mencetak log nilainya masih yang lama {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 
 Memanggil fungsi `set` **tidak mengubah *state* pada kode yang sedang berjalan**:
 
@@ -1177,7 +1177,7 @@ console.log(nextCount); // 1
 
 ---
 
-### Saya telah memperbarui *state*, tetapi tidak ada perbaruan pada layar {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+### Saya telah memperbarui state, tetapi tidak ada perbaruan pada layar {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
 React akan **mengabaikan pembaruan Anda jika *state* berikutnya sama dengan state sebelumnya,** yang ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Ini biasanya terjadi ketika Anda mengubah objek atau senarai di dalam *state* secara langsung:
 
@@ -1198,7 +1198,7 @@ setObj({
 
 ---
 
-### Saya mendapatkan galat: *"Too many re-renders"* {/*im-getting-an-error-too-many-re-renders*/}
+### Saya mendapatkan galat: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
 Anda mungkin mendapatkan galat yang mengatakan: `*Too many re-renders*. React membatasi jumlah render untuk mencegah pengulangan tak terbatas.` Biasanya ini berarti bahwa Anda secara tidak kondisional mengatur *state* selama *render*, sehingga komponen Anda masuk ke dalam perulangan: *render*, *set state* (yang menyebabkan *render*), *render*, *set state* (yang menyebabkan render), dan seterusnya. Sangat sering, ini disebabkan oleh kesalahan dalam menentukan *event handler*:
 
@@ -1219,7 +1219,7 @@ Jika Anda tidak dapat menemukan penyebab kesalahan ini, klik pada panah di sebel
 
 ### Fungsi inisialisasi atau pembaruan saya berjalan dua kali {/*my-initializer-or-updater-function-runs-twice*/}
 
-Pada [*Strict Mod*e*](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali alih-alih hanya satu kali:
+Pada [*Strict Mode*](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali alih-alih hanya satu kali:
 
 ```js {2,5-6,11-12}
 function TodoList() {
@@ -1267,7 +1267,7 @@ Baca [menjaga komponen murni](/learn/keeping-components-pure) untuk belajar lebi
 
 ---
 
-### Saya mencoba mengatur *state* ke sebuah fungsi, namun malah dipanggil {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
+### Saya mencoba mengatur state ke sebuah fungsi, namun malah dipanggil {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
 
 Anda tidak dapat mengoper sebuah fungsi ke dalam *state* seperti ini.:
 
