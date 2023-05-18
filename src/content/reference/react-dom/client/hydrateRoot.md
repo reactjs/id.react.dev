@@ -79,7 +79,7 @@ React akan memperbarui `<App />` di dalam *hydrated* `root`.
 
 `root.render` mengembalikan `undefined`.
 
-#### Caveats {/*root-render-caveats*/}
+#### Catatan penting {/*root-render-caveats*/}
 
 * Jika Anda memanggil `root.render` sebelum akar selesai melakukan *hydrating*, React akan menghapus konten HTML yang di-render oleh *server* dan mengalihkan seluruh akar ke render klien.
 
