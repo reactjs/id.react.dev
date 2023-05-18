@@ -33,7 +33,7 @@ React akan ditambahkan ke dalam HTML yang ada di dalam `domNode`, dan mengambil 
 
 [Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `domNode`: [Elemen DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element) yang di-render sebagai elemen akar di *server*.
 
