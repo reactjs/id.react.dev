@@ -29,6 +29,7 @@ class Greeting extends PureComponent {
 ## Referensi {/*reference*/}
 
 ### `PureComponent` {/*purecomponent*/}
+
 Untuk melewatkan render ulang sebuah komponen kelas untuk props dan state yang sama, perluas `PureComponent`, bukan [`Component`:](/reference/react/Component)
 
 ```js
