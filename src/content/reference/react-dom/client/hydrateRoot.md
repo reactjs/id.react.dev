@@ -45,7 +45,7 @@ React akan ditambahkan ke dalam HTML yang ada di dalam `domNode`, dan mengambil 
   * **opsional** `identifierPrefix`: Awalan string yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk menghindari konflik ketika menggunakan beberapa akar pada halaman yang sama. Harus awalan yang sama dengan yang digunakan pada *server*.
 
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `hydrateRoot` mengembalikan objek dengan dua *method*: [`render`](#root-render) dan [`unmount`.](#root-unmount)
 
