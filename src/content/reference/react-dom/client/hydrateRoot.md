@@ -109,7 +109,7 @@ Memanggil `root.unmount` akan melepas semua komponen di root dan "melepaskan" Re
 
 `render` mengembalikan `null`.
 
-#### Caveats {/*root-unmount-caveats*/}
+#### Catatan penting {/*root-unmount-caveats*/}
 
 * Memanggil `root.unmount` akan melepas semua komponen di dalam pohon dan "melepaskan" React dari akar DOM node.
 
