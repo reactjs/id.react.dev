@@ -10,7 +10,7 @@ Kami menyarankan untuk membuat komponen sebagai fungsi, bukan kelas. [Lihat cara
 
 <Intro>
 
-`PureComponent` mirip dengan [`Component`](/reference/react/Component) tetapi melewatkan proses render ulang untuk props dan state yang sama. Komponen kelas masih didukung oleh React, tetapi kami tidak menyarankan untuk menggunakannya dalam kode baru.
+`PureComponent` mirip dengan [`Component`](/reference/react/Component) tetapi melewatkan proses *render* ulang untuk props dan state yang sama. Komponen kelas masih didukung oleh React, tetapi kami tidak menyarankan untuk menggunakannya dalam kode baru.
 
 ```js
 class Greeting extends PureComponent {
@@ -30,7 +30,7 @@ class Greeting extends PureComponent {
 
 ### `PureComponent` {/*purecomponent*/}
 
-Untuk melewatkan render ulang sebuah komponen kelas untuk props dan state yang sama, perluas `PureComponent`, bukan [`Component`:](/reference/react/Component)
+Untuk melewatkan *render* ulang sebuah komponen kelas untuk props dan state yang sama, perluas `PureComponent`, bukan [`Component`:](/reference/react/Component)
 
 ```js
 import { PureComponent } from 'react';
@@ -51,7 +51,7 @@ class Greeting extends PureComponent {
 
 ## Penggunaan {/*usage*/}
 
-### Melewatkan render ulang yang tidak perlu untuk komponen kelas {/*skipping-unnecessary-re-renders-for-class-components*/}
+### Melewatkan *render* ulang yang tidak perlu untuk komponen kelas {/*skipping-unnecessary-re-renders-for-class-components*/}
 
 React umumnya me-*render* ulang sebuah komponen setiap kali induknya me-*render* ulang. Untuk mengoptimalkannya, Anda dapat membuat komponen yang tidak akan di-*render* ulang oleh React ketika induknya di-*render* ulang selama props dan state yang baru sama dengan props dan state yang lama. [Komponen kelas](/reference/react/Component) dapat memilih perilaku ini dengan memperluas `PureComponent`:
 
@@ -63,7 +63,7 @@ class Greeting extends PureComponent {
 }
 ```
 
-Sebuah komponen React harus selalu memiliki [logika merender murni.](/learn/keeping-components-pure) Ini berarti komponen tersebut harus mengembalikan output yang sama jika props, state, dan konteksnya tidak berubah. Dengan menggunakan `PureComponent`, Anda memberi tahu React bahwa komponen Anda memenuhi persyaratan ini, sehingga React tidak perlu me-*render* ulang selama props dan state-nya belum berubah. Namun, komponen Anda akan tetap di-*render* ulang jika konteks yang digunakan berubah.
+Sebuah komponen React harus selalu memiliki [logika me-*render* murni.](/learn/keeping-components-pure) Ini berarti komponen tersebut harus mengembalikan output yang sama jika props, state, dan konteksnya tidak berubah. Dengan menggunakan `PureComponent`, Anda memberi tahu React bahwa komponen Anda memenuhi persyaratan ini, sehingga React tidak perlu me-*render* ulang selama props dan state-nya belum berubah. Namun, komponen Anda akan tetap di-*render* ulang jika konteks yang digunakan berubah.
 
 Pada contoh ini, perhatikan bahwa komponen `Greeting` di-*render* ulang setiap kali `name` diubah (karena itu adalah salah satu props-nya), tetapi tidak ketika `address` diubah (karena tidak dioper ke `Greeting` sebagai props):
 
@@ -203,6 +203,6 @@ label {
 
 <Note>
 
-Tidak seperti `PureComponent`, [`memo`](/reference/react/memo) tidak membandingkan state yang baru dan state yang lama. Pada komponen fungsi, memanggil [fungsi `set`](/reference/react/useState#setstate) dengan state yang sama [sudah mencegah render ulang secara default,](/reference/react/memo#updating-a-memoized-component-using-state) bahkan tanpa `memo`.
+Tidak seperti `PureComponent`, [`memo`](/reference/react/memo) tidak membandingkan state yang baru dan state yang lama. Pada komponen fungsi, memanggil [fungsi `set`](/reference/react/useState#setstate) dengan state yang sama [sudah mencegah *render* ulang secara default,](/reference/react/memo#updating-a-memoized-component-using-state) bahkan tanpa `memo`.
 
 </Note>
