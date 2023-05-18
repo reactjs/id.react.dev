@@ -12,7 +12,7 @@ API ini diekspor dari paket `react`, tapi tidak disarankan untuk digunakan dalam
 
 ## API Lama {/*legacy-apis*/}
 
-* [`Children`](/reference/react/Children) memungkinakn Anda memanipulasi dan mengubah JSX yang diterima sebagai *prop* `children`. [Lihat alternatif.](/reference/react/Children#alternatives)
+* [`Children`](/reference/react/Children) memungkinkan Anda memanipulasi dan mengubah JSX yang diterima sebagai *prop* `children`. [Lihat alternatif.](/reference/react/Children#alternatives)
 * [`cloneElement`](/reference/react/cloneElement) memungkinkan Anda membuat elemen React menggunakan elemen lain sebagai titik awal. [Lihat alternatif.](/reference/react/cloneElement#alternatives)
 * [`Component`](/reference/react/Component) memungkinkan Anda mendefinisikan komponen React sebagai kelas JavaScript. [Lihat alternatif.](/reference/react/Component#alternatives)
 * [`createElement`](/reference/react/createElement) memungkinkan Anda membuat elemen React. Biasanya Anda akan menggunakan JSX sebagai gantinya.
@@ -26,7 +26,7 @@ API ini diekspor dari paket `react`, tapi tidak disarankan untuk digunakan dalam
 
 <Deprecated>
 
-API ini akan dihapus di versi utama React yang akan datang.
+API-API ini akan dihapus di versi mayor React yang akan datang.
 
 </Deprecated>
 
