@@ -100,7 +100,7 @@ Hal ini sangat berguna jika akar React DOM node (atau salah satu dari induknya) 
 Memanggil `root.unmount` akan melepas semua komponen di root dan "melepaskan" React dari akar DOM node, termasuk menghapus semua *event handler* atau *state* di dalam pohon. 
 
 
-#### Parameters {/*root-unmount-parameters*/}
+#### Parameter {/*root-unmount-parameters*/}
 
 `root.unmount` tidak menerima parameter apa pun.
 
