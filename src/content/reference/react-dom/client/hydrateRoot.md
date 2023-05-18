@@ -127,7 +127,7 @@ Jika HTML aplikasi Anda dibuat oleh [`react-dom/server`](/reference/react-dom/cl
 import { hydrateRoot } from 'react-dom/client';
 
 hydrateRoot(document.getElementById('root'), <App />);
-````
+```
 
 Ini akan meng-*hydrate* *server* HTML di dalam <CodeStep step={1}>peramban DOM node</CodeStep> dengan <CodeStep step={2}>komponen React</CodeStep> untuk aplikasi Anda. Biasanya, Anda akan melakukannya sekali pada saat dijalankan. Jika Anda menggunakan framework, framework tersebut mungkin akan melakukan hal ini di belakang layar untuk Anda.
 
