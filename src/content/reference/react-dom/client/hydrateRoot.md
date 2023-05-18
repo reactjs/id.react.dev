@@ -75,7 +75,7 @@ React akan memperbarui `<App />` di dalam *hydrated* `root`.
 * `reactNode`: Sebuah "React node" yang ingin Anda perbarui. Biasanya berupa bagian dari JSX seperti `<App />`, tetapi Anda juga dapat mengoper elemen React yang dibangun dengan [`createElement()`](/reference/react/createElement), sebuah *string*, sebuah angka, `null`, atau `undefined`.
 
 
-#### Returns {/*root-render-returns*/}
+#### Kembalian {/*root-render-returns*/}
 
 `root.render` mengembalikan `undefined`.
 
