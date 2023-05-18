@@ -70,7 +70,7 @@ React akan memperbarui `<App />` di dalam *hydrated* `root`.
 
 [Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*root-render-parameters*/}
+#### Parameter {/*root-render-parameters*/}
 
 * `reactNode`: Sebuah "React node" yang ingin Anda perbarui. Biasanya berupa bagian dari JSX seperti `<App />`, tetapi Anda juga dapat mengoper elemen React yang dibangun dengan [`createElement()`](/reference/react/createElement), sebuah *string*, sebuah angka, `null`, atau `undefined`.
 
