@@ -49,7 +49,7 @@ React akan ditambahkan ke dalam HTML yang ada di dalam `domNode`, dan mengambil 
 
 `hydrateRoot` mengembalikan objek dengan dua *method*: [`render`](#root-render) dan [`unmount`.](#root-unmount)
 
-#### Caveats {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
 * `hydrateRoot()` mengharapkan konten yang di-render identik dengan konten yang di-render *server*. Anda harus memperlakukan ketidakcocokan sebagai bug dan memperbaikinya.
 * Dalam mode pengembangan, React memperingatkan tentang ketidakcocokan selama *hydration*. Tidak ada jaminan bahwa perbedaan atribut akan diperbaiki jika terjadi ketidakcocokan. Hal ini penting untuk alasan performa karena pada sebagian besar aplikasi, ketidakcocokan jarang terjadi, sehingga memvalidasi semua *markup* akan sangat mahal.
