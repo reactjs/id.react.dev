@@ -4,7 +4,7 @@ title: createElement
 
 <Intro>
 
-`createElement` lets you create a React element. It serves as an alternative to writing [JSX.](/learn/writing-markup-with-jsx)
+`createElement` memungkinkan Anda membuat elemen React. Ini berfungsi sebagai alternatif untuk menulis [JSX.](/learn/writing-markup-with-jsx)
 
 ```js
 const element = createElement(type, props, ...children)
@@ -20,7 +20,7 @@ const element = createElement(type, props, ...children)
 
 ### `createElement(type, props, ...children)` {/*createelement*/}
 
-Call `createElement` to create a React element with the given `type`, `props`, and `children`.
+Panggil `createElement` untuk membuat elemen React dengan parameter `type`, `props`, dan `children`.
 
 ```js
 import { createElement } from 'react';
@@ -34,15 +34,15 @@ function Greeting({ name }) {
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh lainnya di bawah ini.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: Argument `type` harus berupa tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti `'div'` atau `'span'`), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
 
-* `props`: The `props` argument must either be an object or `null`. If you pass `null`, it will be treated the same as an empty object. React will create an element with props matching the `props` you have passed. Note that `ref` and `key` from your `props` object are special and will *not* be available as `element.props.ref` and `element.props.key` on the returned `element`. They will be available as `element.ref` and `element.key`.
+* `props`: Argumen `props` harus berupa objek atau `null`. Jika Anda mengoper `null`, itu akan diperlakukan sama seperti objek kosong. React akan membuat elemen dengan *props* yang cocok dengan `props` yang telah Anda oper. Perhatikan bahwa `ref` dan `key` dari objek `props` Anda adalah spesial dan *tidak* akan tersedia sebagai `element.props.ref` dan `element.props.key` pada  `element` yang dikembalikan. Mereka akan tersedia sebagai `element.ref` dan `element.key`.
 
-* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+* **optional** `...children`: Nol atau lebih simpul anak. Mereka bisa berupa simpul React apa saja, termasuk elemen React, string, angka, [portal](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan array simpul React.
 
 #### Returns {/*returns*/}
 
