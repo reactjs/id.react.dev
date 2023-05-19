@@ -67,7 +67,6 @@ Ini memungkinkan Anda memperbarui beberapa variabel *state*--bahkan dari beberap
 
 ## Memperbarui state yang sama beberapa kali sebelum render selanjutnya {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
-
 Ini bukanlah penggunaan yang umum, tetapi jika Anda ingin memperbarui variabel *state* yang sama berulang kali sebelum *render* selanjutnya, alih-alih mengoper nilai *state* selanjutnya seperti `setNumber(number + 1)`, Anda dapat mengoper *function* yang menghitung *state* selanjutnya berdasarkan nilai sebelumnya pada antrean, seperti `setNumber(n => n + 1)`. Ini adalah cara untuk memberi tahu React untuk "melakukan sesuatu dengan nilai *state*" daripada hanya menggantinya.
 
 Cobalah untuk menambahkan hitungan sekarang:
