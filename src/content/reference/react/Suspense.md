@@ -24,12 +24,12 @@ title: <Suspense>
 ### `<Suspense>` {/*suspense*/}
 
 #### *Props* {/*props*/}
-* `children`: UI aktual yang ingin Anda render. Jika `children` ditangguhkan sewaktu merender, batas Suspense akan beralih merender `fallback`.
-* `fallback`: UI alternatif untuk dirender menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan rendering, itu akan mengaktifkan induk terdekat dari batas Suspense.
+* `children`: UI aktual yang ingin Anda *render*. Jika `children` ditangguhkan sewaktu me-*render*, batas Suspense akan beralih me-*render* `fallback`.
+* `fallback`: UI alternatif untuk di-*render* menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan *rendering*, itu akan mengaktifkan induk terdekat dari batas Suspense.
 
 #### Catatan Penting {/*caveats*/}
 
-- React tidak menyimpan state apa pun untuk render yang ditangguhkan sebelum dapat dimuat untuk pertama kalinya. Ketika komponen sudah dimuat, React akan mencoba merender ulang komponen yang ditangguhkan dari awal.
+- React tidak menyimpan state apa pun untuk me-*render* yang ditangguhkan sebelum dapat dimuat untuk pertama kalinya. Ketika komponen sudah dimuat, React akan mencoba me-*render* ulang komponen yang ditangguhkan dari awal.
 - Jika Suspense menampilkan konten untuk komponen, namun kemudian ditangguhkan lagi, `fallback` akan ditampilkan lagi kecuali jika pembaruan yang menyebabkannya, disebabkan oleh [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
 - Jika React perlu menyembunyikan konten yang sudah terlihat karena ditangguhkan lagi, ini akan membersihkan [layout Effects](/reference/react/useLayoutEffect) yang ada di dalam konten komponen. Ketika konten siap untuk ditampilkan lagi, React akan menjalankan Efek tata letak lagi. Hal ini memastikan bahwa Efek yang mengukur tata letak DOM tidak mencoba melakukan hal ini saat konten disembunyikan.
 - React menyertakan pengoptimalan di *under the hood* *Streaming Server Rendering* dan *Selective Hydration* yang terintegrasi dengan Suspense. Baca [tinjauan arsitektural](https://github.com/reactwg/react-18/discussions/37) dan tonton [sebuah pembicaraan teknis](https://www.youtube.com/watch?v=pj5N-Khihgc) untuk belajar lebih lanjut.
@@ -50,7 +50,7 @@ Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan Batas Suspense:
 
 React akan menampilkan kode <CodeStep step={1}>loading fallback</CodeStep> sampai semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>the children</CodeStep> telah dimuat.
 
-Pada contoh di bawah ini, Komponen `Albums` *menangguhkan* saat mengambil daftar album. Hingga siap untuk dirender, React mengganti batas Suspense terdekat di atas untuk menunjukkan fallback--Anda  `Loading` Komponen. Kemudian, saat data dimuat, React menyembunyikan fallback `Loading` dan merender komponen `Albums` dengan data.
+Pada contoh di bawah ini, Komponen `Albums` *menangguhkan* saat mengambil daftar album. Hingga siap untuk di-*render*, React mengganti batas Suspense terdekat di atas untuk menunjukkan fallback--Anda  `Loading` Komponen. Kemudian, saat data dimuat, React menyembunyikan fallback `Loading` dan me-*render* komponen `Albums` dengan data.
 
 <Sandpack>
 
@@ -1729,7 +1729,7 @@ main {
 
 </Sandpack>
 
-Saat Anda menekan tombol, `Router` komponen merender `ArtistPage` sebagai gantinya `IndexPage`.Komponen di dalam `ArtistPage` tertangguhkan, sehingga batas Suspense terdekat mulai menunjukkan *fallback*. Batas Suspense terdekat berada di dekat root, sehingga seluruh tata letak situs diganti dengan `BigSpinner`.
+Saat Anda menekan tombol, `Router` komponen me-*render* `ArtistPage` sebagai gantinya `IndexPage`.Komponen di dalam `ArtistPage` tertangguhkan, sehingga batas Suspense terdekat mulai menunjukkan *fallback*. Batas Suspense terdekat berada di dekat root, sehingga seluruh tata letak situs diganti dengan `BigSpinner`.
 
 Untuk mencegah hal ini, Anda dapat menandai pembaruan status navigasi sebagai *transition* dengan [`startTransition`:](/reference/react/startTransition)
 
@@ -2520,10 +2520,10 @@ Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang ber
 ---
 ### Menyediakan fallback untuk kesalahan server dan konten khusus klien {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
-Jika Anda menggunakan salah satu dari [API perenderan server streaming](/reference/react-dom/server) (atau kerangka kerja yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan render server. Sebagai gantinya, React akan menemukan komponen `<Suspense>` terdekat di atasnya dan menyertakan fallback-nya (seperti *spiner*) ke dalam HTML server yang dihasilkan. Pengguna akan melihat pemintal pada awalnya.
+Jika Anda menggunakan salah satu dari [API perenderan server streaming](/reference/react-dom/server) (atau kerangka kerja yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan menemukan komponen `<Suspense>` terdekat di atasnya dan menyertakan fallback-nya (seperti *spiner*) ke dalam HTML server yang dihasilkan. Pengguna akan melihat pemintal pada awalnya.
 
 
-Pada klien, React akan mencoba merender komponen yang sama lagi. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [ErrorBoundary terdekat.] (/reference/react/Component/Component#static-getderivedstatefromerror) Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
+Pada klien, React akan mencoba me-*render* komponen yang sama lagi. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [ErrorBoundary terdekat.] (/reference/react/Component/Component#static-getderivedstatefromerror) Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
 
 Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan fallback:
 
@@ -2561,8 +2561,8 @@ function handleNextPageClick() {
 }
 ```
 
-Ini akan menghindari menyembunyikan konten yang ada. Namun, setiap batas `Suspense` yang baru dirender masih akan segera menampilkan fallback untuk menghindari pemblokiran UI dan membiarkan pengguna melihat konten saat tersedia.
+Ini akan menghindari menyembunyikan konten yang ada. Namun, setiap batas `Suspense` yang baru di-*render* masih akan segera menampilkan fallback untuk menghindari pemblokiran UI dan membiarkan pengguna melihat konten saat tersedia.
 
-**React hanya akan mencegah fallback yang tidak diinginkan selama pembaruan yang tidak mendesak**. Ini tidak akan menunda render jika itu adalah hasil dari pembaruan yang mendesak. Anda harus ikut serta dengan API seperti [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
+**React hanya akan mencegah fallback yang tidak diinginkan selama pembaruan yang tidak mendesak**. Ini tidak akan menunda *render* jika itu adalah hasil dari pembaruan yang mendesak. Anda harus ikut serta dengan API seperti [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
 
 Jika router Anda terintegrasi dengan Suspense, router akan membungkus pembaruannya menjadi [`startTransition`](/reference/react/startTransition) secara otomatis.
