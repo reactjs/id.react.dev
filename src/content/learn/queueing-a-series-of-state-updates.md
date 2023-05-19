@@ -49,7 +49,6 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 Namun, seperti yang mungkin Anda ingat dari bagian sebelumnya, [nilai *state* setiap *render* adalah tetap](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), sehingga nilai `number` di dalam *event handler* *render* pertama selalu `0`, tidak peduli berapa kali Anda memanggil `setNumber(1)`:
 
-
 ```js
 setNumber(0 + 1);
 setNumber(0 + 1);
