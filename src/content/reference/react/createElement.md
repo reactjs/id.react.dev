@@ -46,32 +46,32 @@ function Greeting({ name }) {
 
 #### Returns {/*returns*/}
 
-`createElement` returns a React element object with a few properties:
+`createElement` mengembalikan objek elemen React dengan beberapa properti:
 
-* `type`: The `type` you have passed.
-* `props`: The `props` you have passed except for `ref` and `key`. If the `type` is a component with legacy `type.defaultProps`, then any missing or undefined `props` will get the values from `type.defaultProps`.
-* `ref`: The `ref` you have passed. If missing, `null`.
-* `key`: The `key` you have passed, coerced to a string. If missing, `null`.
+* `type`: `type` yang telah Anda oper.
+* `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`. Jika `type` adalah komponen warisan `type.defaultProps`, lalu ada yang hilang atau tidak terdefinisi `props` akan mendapatkan nilai dari `type.defaultProps`.
+* `ref`: `ref` yang telah Anda oper. Jika hilang, `null`.
+* `key`: `key` yang telah Anda oper, dipaksa untuk string. Jika hilang, `null`.
 
-Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
+Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya anak dari elemen lain. Meskipun Anda dapat membaca properti elemen, yang terbaik adalah memperlakukan setiap elemen sebagai buram setelah dibuat, dan hanya merendernya.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* You must **treat React elements and their props as [immutable](https://en.wikipedia.org/wiki/Immutable_object)** and never change their contents after creation. In development, React will [freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) the returned element and its `props` property shallowly to enforce this.
+* Anda harus **memperlakukan elemen React dan propertinya sebagai [kekal](https://en.wikipedia.org/wiki/Immutable_object)** dan tidak pernah mengubah isinya setelah dibuat. Dalam pengembangan, React akan [membekukan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) elemen yang dikembalikan dan `props` properti dangkal untuk menegakkan ini.
 
-* When you use JSX, **you must start a tag with a capital letter to render your own custom component.** In other words, `<Something />` is equivalent to `createElement(Something)`, but `<something />` (lowercase) is equivalent to `createElement('something')` (note it's a string, so it will be treated as a built-in HTML tag).
+* Saat Anda menggunakan JSX, **Anda harus memulai tag dengan huruf kapital untuk merender komponen kustom Anda sendiri.** Dengan kata lain, `<Something />` setara dengan `createElement(Something)`, tetapi `<something />` (huruf kecil) setara dengan `createElement('something')` (perhatikan itu adalah string, sehingga akan diperlakukan sebagai tag HTML bawaan).
 
-* You should only **pass children as multiple arguments to `createElement` if they are all statically known,** like `createElement('h1', {}, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `createElement('ul', {}, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
+* Anda hanya boleh **mengoper anak sebagai beberapa argumen untuk `createElement` jika semuanya diketahui secara statis,** seperti `createElement('h1', {}, child1, child2, child3)`. Jika anak Anda dinamis, oper seluruh array sebagai argumen ketiga: `createElement('ul', {}, listItems)`. Ini memastikan bahwa React akan [memperingatkan Anda tentang *`key`* yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap daftar dinamis. Untuk daftar statis ini tidak diperlukan karena mereka tidak pernah menyusun ulang.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Creating an element without JSX {/*creating-an-element-without-jsx*/}
+### Membuat elemen tanpa JSX {/*creating-an-element-without-jsx*/}
 
-If you don't like [JSX](/learn/writing-markup-with-jsx) or can't use it in your project, you can use `createElement` as an alternative.
+Jika Anda tidak menyukai [JSX](/learn/writing-markup-with-jsx) atau tidak dapat menggunakannya dalam proyek Anda, Anda dapat menggunakan `createElement` sebagai alternatif.
 
-To create an element without JSX, call `createElement` with some <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>props</CodeStep>, and <CodeStep step={3}>children</CodeStep>:
+Untuk membuat elemen tanpa JSX, panggil `createElement` dengan beberapa <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>*props*</CodeStep>, dan <CodeStep step={3}>children</CodeStep>:
 
 ```js [[1, 5, "'h1'"], [2, 6, "{ className: 'greeting' }"], [3, 7, "'Hello ',"], [3, 8, "createElement('i', null, name),"], [3, 9, "'. Welcome!'"]]
 import { createElement } from 'react';
@@ -87,7 +87,7 @@ function Greeting({ name }) {
 }
 ```
 
-The <CodeStep step={3}>children</CodeStep> are optional, and you can pass as many as you need (the example above has three children). This code will display a `<h1>` header with a greeting. For comparison, here is the same example rewritten with JSX:
+<CodeStep step={3}>Anak</CodeStep> bersifat *optional*, dan Anda dapat mengoper sebanyak yang Anda butuhkan (contoh di atas memiliki tiga anak). Kode ini akan menampilkan header `<h1>` dengan salam. Sebagai perbandingan, berikut adalah contoh yang sama yang ditulis ulang dengan JSX:
 
 ```js [[1, 3, "h1"], [2, 3, "className=\\"greeting\\""], [3, 4, "Hello <i>{name}</i>. Welcome!"], [1, 5, "h1"]]
 function Greeting({ name }) {
@@ -99,7 +99,7 @@ function Greeting({ name }) {
 }
 ```
 
-To render your own React component, pass a function like `Greeting` as the <CodeStep step={1}>type</CodeStep> instead of a string like `'h1'`:
+Untuk merender komponen React Anda sendiri, oper fungsi seperti `Greeting` sebagai <CodeStep step={1}>type</CodeStep> bukan string seperti `'h1'`:
 
 ```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Taylor' }"]]
 export default function App() {
@@ -107,7 +107,7 @@ export default function App() {
 }
 ```
 
-With JSX, it would look like this:
+Dengan JSX, akan terlihat seperti ini:
 
 ```js [[1, 2, "Greeting"], [2, 2, "name=\\"Taylor\\""]]
 export default function App() {
@@ -115,7 +115,7 @@ export default function App() {
 }
 ```
 
-Here is a complete example written with `createElement`:
+Berikut adalah contoh lengkap yang ditulis dengan `createElement`:
 
 <Sandpack>
 
@@ -149,7 +149,7 @@ export default function App() {
 
 </Sandpack>
 
-And here is the same example written using JSX:
+Dan berikut adalah contoh yang sama yang ditulis menggunakan JSX:
 
 <Sandpack>
 
@@ -176,13 +176,13 @@ export default function App() {
 
 </Sandpack>
 
-Both coding styles are fine, so you can use whichever one you prefer for your project. The main benefit of using JSX compared to `createElement` is that it's easy to see which closing tag corresponds to which opening tag.
+Kedua gaya pengkodean baik-baik saja, sehingga Anda dapat menggunakan mana yang Anda sukai untuk proyek Anda. Manfaat utama menggunakan JSX dibandingkan dengan `createElement` adalah mudah untuk melihat tag penutup mana yang sesuai dengan tag pembuka mana.
 
 <DeepDive>
 
-#### What is a React element, exactly? {/*what-is-a-react-element-exactly*/}
+#### Apa itu elemen React, tepatnya? {/*what-is-a-react-element-exactly*/}
 
-An element is a lightweight description of a piece of the user interface. For example, both `<Greeting name="Taylor" />` and `createElement(Greeting, { name: 'Taylor' })` produce an object like this:
+Elemen adalah deskripsi ringan dari bagian antarmuka pengguna. Misalnya, keduanya `<Greeting name="Taylor" />` dan `createElement(Greeting, { name: 'Taylor' })` menghasilkan objek seperti ini:
 
 ```js
 // Slightly simplified
@@ -196,10 +196,10 @@ An element is a lightweight description of a piece of the user interface. For ex
 }
 ```
 
-**Note that creating this object does not render the `Greeting` component or create any DOM elements.**
+**Perhatikan bahwa membuat objek ini tidak merender komponen `Greeting` atau membuat elemen DOM apa pun.**
 
-A React element is more like a description--an instruction for React to later render the `Greeting` component. By returning this object from your `App` component, you tell React what to do next.
+Elemen React lebih seperti deskripsi—instruksi untuk React untuk merender komponen `Greeting` nanti. Dengan mengembalikan objek ini dari komponen `App` Anda, Anda memberi tahu React apa yang harus dilakukan selanjutnya.
 
-Creating elements is extremely cheap so you don't need to try to optimize or avoid it.
+Membuat elemen sangatlah murah sehingga Anda tidak perlu mencoba mengoptimalkan atau menghindarinya.
 
 </DeepDive>
