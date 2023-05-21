@@ -532,7 +532,7 @@ function ChatRoom({ roomId }) {
     serverUrl: serverUrl
   });
   // ...
-````
+```
 
 Ada juga banyak *custom Hooks* yang sangat bagus untuk setiap tujuan yang tersedia di ekosistem React.
 
