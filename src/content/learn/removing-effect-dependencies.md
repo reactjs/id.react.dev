@@ -1247,7 +1247,7 @@ Alih-alih membaca `count` di dalam Efek, Anda mengoper instruksi `c => c + 1` ("
 
 #### Memperbaiki animasi pemicu ulang {/*fix-a-retriggering-animation*/}
 
-Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di file `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk simpul DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
+Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di berkas `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk simpul DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
 
 Kode ini sudah berfungsi, tetapi ada sesuatu yang ingin Anda ubah. Saat ini, saat Anda menggerakkan *slider* yang mengontrol variabel *state* `duration`, *slider* tersebut akan memicu ulang animasi. Ubah perilakunya sehingga Efek tidak "bereaksi" terhadap variabel `duration`. Saat Anda menekan "Tampilkan", Efek seharusnya menggunakan `duration` saat ini pada *silder*. Namun demikian, menggerakkan *slider* itu sendiri seharusnya tidak dengan sendirinya memicu ulang animasi.
 
@@ -1511,7 +1511,7 @@ Event Efek seperti `onAppear` tidak reaktif, sehingga Anda dapat membaca `durati
 
 #### Memperbaiki obrolan yang tersambung kembali {/*fix-a-reconnecting-chat*/}
 
-Dalam contoh ini, setiap kali Anda menekan "Alihkan tema", obrolan akan terhubung kembali. Mengapa hal ini terjadi? Perbaiki kesalahan tersebut sehingga obrolan terhubung kembali hanya jika Anda mengedit URL Server atau memilih ruang obrolan yang berbeda.
+Dalam contoh ini, setiap kali Anda menekan "Alihkan tema", obrolan akan terhubung kembali. Mengapa hal ini terjadi? Perbaiki kesalahan tersebut sehingga obrolan terhubung kembali hanya jika Anda mengubah URL Server atau memilih ruang obrolan yang berbeda.
 
 Perlakukan `chat.js` sebagai pustaka pihak ketiga eksternal: Anda dapat berkonsultasi untuk memeriksa API-nya, tetapi jangan mengeditnya.
 
@@ -1767,7 +1767,7 @@ export default function ChatRoom({ roomId, serverUrl }) {
     return () => connection.disconnect();
   }, [roomId, serverUrl]);
 
-  return <h1>Selamt datang di ruang {roomId}!</h1>;
+  return <h1>Selamat datang di ruang {roomId}!</h1>;
 }
 ```
 
@@ -1813,7 +1813,7 @@ Jangan ubah kode apa pun di `chat.js`. Selain itu, Anda dapat mengubah kode apa 
 
 <Hint>
 
-Anda mewariskan dua fungsi: `onMessage` dan `createConnection`. Keduanya dibuat dari awal setiap kali `Aplikasi` di-*render* ulang. Keduanya dianggap sebagai nilai baru setiap saat, dan itulah sebabnya mereka memicu ulang Efek Anda.
+Anda mengoper dua fungsi: `onMessage` dan `createConnection`. Keduanya dibuat dari awal setiap kali `Aplikasi` di-*render* ulang. Keduanya dianggap sebagai nilai baru setiap saat, dan itulah sebabnya mereka memicu ulang Efek Anda.
 
 Salah satu dari fungsi ini adalah *event handler*. Apakah Anda tahu beberapa cara untuk memanggil *event handler* sebagai Efek tanpa "bereaksi" terhadap nilai baru dari fungsi *event handler*? Itu akan sangat berguna!
 
