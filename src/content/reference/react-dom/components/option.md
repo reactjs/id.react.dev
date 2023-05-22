@@ -67,9 +67,9 @@ export default function FruitPicker() {
     <label>
       Pilih buah:
       <select name="selectedFruit">
-        <option value="apel">Apel</option>
-        <option value="pisang">Pisang</option>
-        <option value="jeruk">Jeruk</option>
+        <option value="apple">Apel</option>
+        <option value="banana">Pisang</option>
+        <option value="orange">Jeruk</option>
       </select>
     </label>
   );
