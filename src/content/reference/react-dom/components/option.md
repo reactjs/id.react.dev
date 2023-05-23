@@ -9,8 +9,8 @@ title: "<option>"
 
 ```js
 <select>
-  <option value="sebuahOpsi">Sebuah opsi</option>
-  <option value="opsiLain">Opsi lain</option>
+  <option value="someOption">Sebuah opsi</option>
+  <option value="otherOption">Opsi lain</option>
 </select>
 ```
 
@@ -28,8 +28,8 @@ title: "<option>"
 
 ```js
 <select>
-  <option value="sebuahOpsi">Sebuah opsi</option>
-  <option value="opsiLain">Opsi lain</option>
+  <option value="someOption">Sebuah opsi</option>
+  <option value="otherOption">Opsi lain</option>
 </select>
 ```
 
