@@ -1799,7 +1799,7 @@ label, button { display: block; margin-bottom: 5px; }
 </Sandpack>
 
 
-Menggunakan *props* primitif bilamana memungkinkan, akan lebih mudah untuk mengoptimalkan komponen Anda nanti.
+Tetap menggunakan *props* primitif saat memungkinkan akan mempermudah untuk mengoptimalkan komponen Anda nantinya.
 
 </Solution>
 
@@ -2031,8 +2031,6 @@ label, button { display: block; margin-bottom: 5px; }
 </Sandpack>
 
 <Solution>
-
-To fix the problem with `onMessage`, you needed to wrap it into an Event Efek:
 
 Ada lebih dari satu cara yang benar untuk mengatasi hal ini, tetapi berikut ini adalah salah satu solusi yang mungkin.
 
