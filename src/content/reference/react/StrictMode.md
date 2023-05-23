@@ -42,7 +42,7 @@ root.render(
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
+- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh *rendering* yang tidak murni.
 - Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan bug yang disebabkan oleh tidak adanya pembersihan Efek.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
@@ -85,7 +85,7 @@ Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemerik
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
+- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh *rendering* yang tidak murni.
 - Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan bug yang disebabkan oleh tidak adanya pembersihan Efek.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
@@ -122,7 +122,7 @@ Dalam contoh ini, pemeriksaan Strict Mode tidak akan dijalankan terhadap kompone
 
 ---
 
-### Memperbaiki bug yang ditemukan oleh rendering ganda dalam pengembangan {/*fixing-bugs-found-by-double-rendering-in-development*/}
+### Memperbaiki bug yang ditemukan oleh *rendering* ganda dalam pengembangan {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
 [React mengasumsikan bahwa setiap komponen yang Anda tulis adalah fungsi murni.](/learn/keeping-components-pure) Ini berarti bahwa komponen React yang Anda tulis harus selalu mengembalikan JSX yang sama dengan masukan yang sama (props, state, and context).
 
@@ -134,7 +134,7 @@ Komponen yang melanggar aturan ini berperilaku tidak terduga dan menyebabkan bug
 
 Jika fungsi murni, menjalankannya dua kali tidak mengubah perilakunya karena fungsi murni menghasilkan hasil yang sama setiap waktu. Namun, jika suatu fungsi tidak murni (misalnya, memutasikan data yang diterimanya), menjalankannya dua kali cenderung terlihat (itulah yang membuatnya tidak murni!) Ini membantu Anda menemukan dan memperbaiki bug lebih awal.
 
-**Berikut adalah contoh untuk mengilustrasikan bagaimana rendering ganda dalam Strict Mode membantu Anda menemukan bug lebih awal.**
+**Berikut adalah contoh untuk mengilustrasikan bagaimana *rendering* ganda dalam Strict Mode membantu Anda menemukan bug lebih awal.**
 
 Komponen `StoryTray` mengambil larik `stories` dan menambahkan satu item terakhir "Create Story" di bagian akhir:
 
@@ -214,7 +214,7 @@ li {
 
 Ada kesalahan pada kode di atas. Namun, mudah untuk terlewatkan karena hasil awal terlih benar.
 
-Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` dirender ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
+Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` di-*render* ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
 
 <Sandpack>
 
@@ -310,7 +310,7 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-Ini akan [membuat fungsi `StoryTray` murni.](/learn/keeping-components-pure) Setiap kali dipanggil, ini hanya akan memodifikasi salinan baru dari larik, dan tidak akan memengaruhi objek atau variabel eksternal apa pun. Ini menyelesaikan bug, tetapi Anda harus membuat komponen dirender ulang lebih sering sebelum menjadi jelas bahwa ada yang salah dengan perilakunya.
+Ini akan [membuat fungsi `StoryTray` murni.](/learn/keeping-components-pure) Setiap kali dipanggil, ini hanya akan memodifikasi salinan baru dari larik, dan tidak akan memengaruhi objek atau variabel eksternal apa pun. Ini menyelesaikan bug, tetapi Anda harus membuat komponen di-*render* ulang lebih sering sebelum menjadi jelas bahwa ada yang salah dengan perilakunya.
 
 **Dalam contoh aslinya, bug itu tidak terlihat jelas. Sekarang mari kita bungkus kode asli (penuh dengan bug) `<StrictMode>`:**
 
@@ -393,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Strict Mode *selalu* memanggil fungsi rendering Anda dua kali, sehingga Anda dapat langsung melihat kesalahannya** ("Create Story" muncul dua kali). Ini memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki komponen untuk dirender dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan  memproduksi bug di masa mendatang seperti fungsi hover sebelumnya:
+**Strict Mode *selalu* memanggil fungsi *rendering* Anda dua kali, sehingga Anda dapat langsung melihat kesalahannya** ("Create Story" muncul dua kali). Ini memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki komponen untuk di-*render* dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan  memproduksi bug di masa mendatang seperti fungsi hover sebelumnya:
 
 <Sandpack>
 
