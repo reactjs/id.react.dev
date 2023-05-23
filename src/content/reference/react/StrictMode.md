@@ -63,7 +63,7 @@ Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 Strict Mode memungkinkan pemeriksaan tambahan khusus pengembangan untuk seluruh pohon komponen di dalam komponen `<StrictMode>`. Pemeriksaan ini membantu Anda menemukan bug umum di komponen Anda di awal proses pengembangan.
 
 
-Untuk mengaktifkan Strict Mode pada seluruh aplikasi Anda, bungkus komponen akar Anda dengan `<StrictMode>` ketika Anda me-render:
+Untuk mengaktifkan Strict Mode pada seluruh aplikasi Anda, bungkus komponen akar Anda dengan `<StrictMode>` ketika Anda me-*render*:
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -85,7 +85,7 @@ Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemerik
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Komponen Anda akan [me-render ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
+- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari bug yang disebabkan oleh rendering yang tidak murni.
 - Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan bug yang disebabkan oleh tidak adanya pembersihan Efek.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
@@ -214,7 +214,7 @@ li {
 
 Ada kesalahan pada kode di atas. Namun, mudah untuk terlewatkan karena hasil awal terlih benar.
 
-Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-render ulang beberapa kali. Misalnya, mari buat `StoryTray` dirender ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
+Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` dirender ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
 
 <Sandpack>
 
@@ -299,7 +299,7 @@ li {
 
 </Sandpack>
 
-Perhatikan bagaimana setiap kali Anda mengarahkan kursor ke komponen `StoryTray`, "Buat Cerita" akan ditambahkan ke daftar lagi. Maksud dari kode tersebut adalah untuk menambahkannya sekali di bagian akhir. Tapi `StoryTray` secara langsung memodifikasi larik `stories` dari props. Setiap kali `StoryTray` me-render, ia menambahkan "Buat Cerita" lagi di akhir larik yang sama. Dengan kata lain, `StoryTray` bukan fungsi murni--menjalankannya berkali-kali menghasilkan hasil yang berbeda.
+Perhatikan bagaimana setiap kali Anda mengarahkan kursor ke komponen `StoryTray`, "Buat Cerita" akan ditambahkan ke daftar lagi. Maksud dari kode tersebut adalah untuk menambahkannya sekali di bagian akhir. Tapi `StoryTray` secara langsung memodifikasi larik `stories` dari props. Setiap kali `StoryTray` me-*render*, ia menambahkan "Buat Cerita" lagi di akhir larik yang sama. Dengan kata lain, `StoryTray` bukan fungsi murni--menjalankannya berkali-kali menghasilkan hasil yang berbeda.
 
 Untuk memperbaiki masalah ini, Anda dapat membuat salinan larik, dan memodifikasi salinan tersebut, bukan yang asli:
 
@@ -483,13 +483,13 @@ li {
 
 </Sandpack>
 
-Tanpa Strict Mode, mudah untuk melewatkan bug sampai Anda menambahkan lebih banyak render ulang. Strict Mode membuat bug yang sama segera muncul. Strict Mode membantu Anda menemukan bug sebelum mendorongnya ke tim dan pengguna Anda.
+Tanpa Strict Mode, mudah untuk melewatkan bug sampai Anda menambahkan lebih banyak *render* ulang. Strict Mode membuat bug yang sama segera muncul. Strict Mode membantu Anda menemukan bug sebelum mendorongnya ke tim dan pengguna Anda.
 
 [Baca lebih lanjut tentang menjaga kemurnian komponen.](/learn/keeping-components-pure)
 
 <Note>
 
-Jika Anda telah menginstal [React DevTools](/learn/react-developer-tools), setiap panggilan `console.log` selama panggilan render kedua akan tampak sedikit redup. React DevTools juga menawarkan pengaturan (dinonaktifkan secara default) untuk menekannya sepenuhnya.
+Jika Anda telah menginstal [React DevTools](/learn/react-developer-tools), setiap panggilan `console.log` selama panggilan *render* kedua akan tampak sedikit redup. React DevTools juga menawarkan pengaturan (dinonaktifkan secara default) untuk menekannya sepenuhnya.
 
 </Note>
 
@@ -499,7 +499,7 @@ Jika Anda telah menginstal [React DevTools](/learn/react-developer-tools), setia
 
 Strict Mode juga dapat membantu menemukan bug di [Effects.](/learn/synchronizing-with-effects)
 
-Setiap Efek memiliki beberapa setup code dan mungkin memiliki beberapa kode pembersihan. Biasanya, React memanggil setup ketika komponen *mounts* (ditambahkan ke layar) dan memanggil pembersihan ketika komponen *unmounts* (dihapus dari layar). React kemudian memanggil pembersihan dan setup lagi jika dependensinya berubah setelah render terakhir.
+Setiap Efek memiliki beberapa setup code dan mungkin memiliki beberapa kode pembersihan. Biasanya, React memanggil setup ketika komponen *mounts* (ditambahkan ke layar) dan memanggil pembersihan ketika komponen *unmounts* (dihapus dari layar). React kemudian memanggil pembersihan dan setup lagi jika dependensinya berubah setelah *render* terakhir.
 
 Saat Strict Mode aktif, React juga akan menjalankan **satu siklus setup+pembersihan tambahan dalam pengembangan untuk setiap Efek.** Ini mungkin terasa mengejutkan, tetapi membantu mengungkapkan bug tak kentara yang sulit ditangkap secara manual.
 
