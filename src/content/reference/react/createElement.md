@@ -36,7 +36,7 @@ function Greeting({ name }) {
 
 [Lihat lebih banyak contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `type`: Argument `type` harus berupa tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti `'div'` atau `'span'`), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
 
@@ -44,18 +44,18 @@ function Greeting({ name }) {
 
 * **optional** `...children`: Nol atau lebih simpul anak. Mereka bisa berupa simpul React apa saja, termasuk elemen React, string, angka, [portal](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan array simpul React.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `createElement` mengembalikan objek elemen React dengan beberapa properti:
 
 * `type`: `type` yang telah Anda oper.
-* `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`. Jika `type` adalah komponen warisan `type.defaultProps`, lalu ada yang hilang atau tidak terdefinisi `props` akan mendapatkan nilai dari `type.defaultProps`.
+* `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`. Jika `type` adalah komponen *legacy* `type.defaultProps`, lalu ada yang hilang atau tidak terdefinisi `props` akan mendapatkan nilai dari `type.defaultProps`.
 * `ref`: `ref` yang telah Anda oper. Jika hilang, `null`.
 * `key`: `key` yang telah Anda oper, dipaksa untuk string. Jika hilang, `null`.
 
 Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya anak dari elemen lain. Meskipun Anda dapat membaca properti elemen, yang terbaik adalah memperlakukan setiap elemen sebagai buram setelah dibuat, dan hanya merendernya.
 
-#### Peringatan {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
 * Anda harus **memperlakukan elemen React dan propertinya sebagai [kekal](https://en.wikipedia.org/wiki/Immutable_object)** dan tidak pernah mengubah isinya setelah dibuat. Dalam pengembangan, React akan [membekukan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) elemen yang dikembalikan dan `props` properti dangkal untuk menegakkan ini.
 
