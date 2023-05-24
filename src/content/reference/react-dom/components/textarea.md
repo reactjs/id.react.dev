@@ -36,7 +36,7 @@ Anda dapat [membuat sebuah area teks yang terkendali (*controlled*)](#controllin
 
 * `value`: Sebuah string. Mengontrol teks di dalam area teks.
 
-Ketika Anda memberikan `value`, Anda harus mengoper juga sebuah *handler* `onChange` yang memperbarui nilai yang dioper sebelumnya.
+Ketika Anda mengoper `value`, Anda harus mengoper juga sebuah *handler* `onChange` yang memperbarui nilai yang dioper sebelumnya.
 
 Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `defaultValue` sebagai gantinya:
 
@@ -69,7 +69,7 @@ Jika `<textarea>` Anda tidak terkendali (*uncontrolled*), Anda boleh mengoper `d
 
 #### Caveats {/*caveats*/}
 
-- Memberikan anak (*children*) seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
+- Mengoper anak (*children*) seperti `<textarea>something</textarea>` tidak diperbolehkan. [Gunakan `defaultValue` untuk konten awal.](#providing-an-initial-value-for-a-text-area)
 - Jika menerima sebuah *prop* `value` string, sebuah area teks akan [dianggap sebagai komponen terkendali.](#controlling-a-text-area-with-a-state-variable)
 - Sebuah area teks tidak dapat menjadi terkendali dan tidak terkendali secara bersamaan.
 - Sebuah area teks tidak dapat beralih menjadi terkendali atau tidak terkendali selama masa pakainya.
@@ -177,7 +177,7 @@ label, textarea { display: block; }
 
 <Pitfall>
 
-Tidak seperti HTML, memberikan teks awal seperti `<textarea>Some content</textarea>` tidak didukung.
+Tidak seperti HTML, mengoper teks awal seperti `<textarea>Some content</textarea>` tidak didukung.
 
 </Pitfall>
 
@@ -253,7 +253,7 @@ Secara *default*, *setiap* `<button>` yang berada di dalam sebuah `<form>` akan 
 
 Sebuah area teks seperti `<textarea />` bersifat *tak terkendali.* Meskipun jika Anda [mengoper sebuah nilai awal](#providing-an-initial-value-for-a-text-area) seperti `<textarea defaultValue="Initial text" />`, JSX Anda hanya menetapkan nilai awal, bukan nilai saat ini.
 
-**Untuk me-*render* sebuah teks area _terkendali_, berikan *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, Anda akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
+**Untuk me-*render* sebuah teks area _terkendali_, oper *prop* `value` kepada area teksnya.** React akan memaksa area teks tersebut agar selalu mempunyai `value` yang Anda berikan. Umumnya, Anda akan mengendalikan sebuah area teks dengan mendeklarasikan sebuah [variabel *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function NewPost() {
@@ -330,7 +330,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**Jika Anda mengoper `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan memberikan beberapa `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang dioper. Sehingga jika Anda mengoper sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks kembali ke `value` yang Anda berikan sebelumnya setelah setiap penekanan tombol.
+**Jika Anda mengoper `value` tanpa `onChange`, mengetik di area teks tersebut akan menjadi mustahil.** Jika Anda mengontrol sebuah area teks dengan mengoper suatu `value` kepadanya, Anda *memaksa* area teks tersebut untuk selalu mempunyai nilai yang dioper. Sehingga jika Anda mengoper sebuah variabel *state* sebagai sebuah `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama *event handler* `onChange`, React akan mengembalikan area teks kembali ke `value` yang Anda berikan sebelumnya setelah setiap penekanan tombol.
 
 </Pitfall>
 
@@ -353,7 +353,7 @@ Anda memberikan sebuah *prop* `value` ke sebuah *field* formulir tanpa sebuah *h
 
 </ConsoleBlock>
 
-Seperti yang disarankan pada pesan *error* berikut, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-a-text-area) berikan `defaultValue` sebagai gantinya:
+Seperti yang disarankan pada pesan *error* berikut, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-a-text-area) oper `defaultValue` sebagai gantinya:
 
 ```js
 // ✅ Good: area teks tidak terkendali dengan sebuah nilai awal
@@ -418,6 +418,6 @@ Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan dit
 
 Jika Anda memberikan sebuah `value` ke komponen, nilai tersebut harus tetap berupa string selama masa pakainya.
 
-Anda tidak dapat memberikan `value={undefined}` terlebih dahulu dan kemudian memberikan `value="some string"` karena React tidak akan mengetahui apakah anda ingin komponennya menjadi tidak terkontrol atau terkontrol. Sebuah *controlled component* harus selalu menerima sebuah string `value`, bukan `null` atau `undefined`.
+Anda tidak dapat mengoper `value={undefined}` terlebih dahulu dan kemudian oper `value="some string"` karena React tidak akan mengetahui apakah anda ingin komponennya menjadi tidak terkontrol atau terkontrol. Sebuah *controlled component* harus selalu menerima sebuah string `value`, bukan `null` atau `undefined`.
 
-Jika `value` Anda berasal dari sebuah API atau sebuah variabel *state*, nilai tersebut mungkin diinisiasi ke `null` atau `undefined`. Dalam hal ini, Berikan sebuah string kosong (`''`) pada awalnya, atau berikan `value={someValue ?? ''}` untuk memastikan `value`-nya adalah string.
+Jika `value` Anda berasal dari sebuah API atau sebuah variabel *state*, nilai tersebut mungkin diinisiasi ke `null` atau `undefined`. Dalam hal ini, Berikan sebuah string kosong (`''`) pada awalnya, atau oper `value={someValue ?? ''}` untuk memastikan `value`-nya adalah string.
