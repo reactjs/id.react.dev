@@ -17,7 +17,7 @@ Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terk
 
 ## Mengelompokkan pembaruan state dalam React  {/*react-batches-state-updates*/}
 
-Anda mungkin berharap bahwa menekan tombol "+3" akan menambahkan hitungan tiga kali karena memanggil `setNumber(number + 1)` tiga kali:
+Anda mungkin berharap bahwa menekan tombol "+3" akan menambahkan penghitung tiga kali karena memanggil `setNumber(number + 1)` tiga kali:
 
 <Sandpack>
 
@@ -67,9 +67,9 @@ Ini memungkinkan Anda memperbarui beberapa variabel *state*--bahkan dari beberap
 
 ## Memperbarui state yang sama beberapa kali sebelum render selanjutnya {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
-Ini bukanlah penggunaan yang umum, tetapi jika Anda ingin memperbarui variabel *state* yang sama berulang kali sebelum *render* selanjutnya, alih-alih mengoper nilai *state* selanjutnya seperti `setNumber(number + 1)`, Anda dapat mengoper *function* yang menghitung *state* selanjutnya berdasarkan nilai sebelumnya pada antrean, seperti `setNumber(n => n + 1)`. Ini adalah cara untuk memberi tahu React untuk "melakukan sesuatu dengan nilai *state*" daripada hanya menggantinya.
+Ini bukanlah penggunaan yang umum, tetapi jika Anda ingin memperbarui variabel *state* yang sama berulang kali sebelum *render* selanjutnya, daripada mengoper nilai *state* selanjutnya seperti `setNumber(number + 1)`, Anda dapat mengoper sebuah fungsi yang menghitung *state* selanjutnya berdasarkan nilai sebelumnya pada antrean, seperti `setNumber(n => n + 1)`. Ini adalah cara untuk memberi tahu React untuk "melakukan sesuatu dengan nilai *state*" daripada hanya menggantinya.
 
-Cobalah untuk menambahkan hitungan sekarang:
+Cobalah untuk menambahkan penghitung sekarang:
 
 <Sandpack>
 
@@ -99,10 +99,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Disini, `n => n + 1` disebut fungsi *updater.* Ketika Anda mengirimkannya ke pengatur (*setter*) state:
+Di sini, `n => n + 1` disebut fungsi *updater.* Ketika Anda mengirimkannya ke pengatur (*setter*) state:
 
 1. React mengantre fungsi ini untuk diproses setelah semua kode lain dalam *event handler* dijalankan.  
-2. Saat render berikutnya, React akan melewati antrean dan memberi Anda *state* terakhir yang diperbarui.
+2. Saat *render* berikutnya, React akan melewati antrean dan memberi Anda *state* terakhir yang diperbarui.
 
 ```js
 setNumber(n => n + 1);
@@ -272,13 +272,13 @@ Jika Anda lebih suka kode yang lebih panjang, konvensi umum lainnya adalah mengu
 
 <Challenges>
 
-#### Perbaiki hitungan permintaan {/*fix-a-request-counter*/}
+#### Memperbaiki penghitung permintaan {/*fix-a-request-counter*/}
 
-Anda bekerja pada aplikasi pasar seni yang memungkinkan pengguna mengirimkan beberapa pesanan untuk item seni pada saat yang sama. Setiap kali pengguna menekan tombol "Buy", hitungan "Pending" harus bertambah satu. Setelah tiga detik, hitungan "Pending" harus berkurang, dan hitungan "Completed" harus bertambah.
+Anda bekerja pada aplikasi pasar seni yang memungkinkan pengguna mengirimkan beberapa pesanan untuk item seni pada saat yang sama. Setiap kali pengguna menekan tombol "Buy", penghitung "Pending" harus bertambah satu. Setelah tiga detik, penghitung "Pending" harus berkurang, dan penghitung "Completed" harus bertambah.
 
-Akan tetapi, hitungan "Pending" tidak berperilaku seperti yang diharapkan. Ketika Anda menekan "Buy", ia berkurang menjadi `-1` (yang seharusnya tidak mungkin!). Dan jika Anda mengklik cepat dua kali, kedua hitungan tampaknya berperilaku diluar kendali.
+Akan tetapi, penghitung "Pending" tidak berperilaku seperti yang diharapkan. Ketika Anda menekan "Buy", ia berkurang menjadi `-1` (yang seharusnya tidak mungkin!). Dan jika Anda mengklik cepat dua kali, kedua penghitung tampaknya berperilaku diluar kendali.
 
-Mengapa ini terjadi? Perbaiki kedua hitungan.
+Mengapa ini terjadi? Perbaikilah kedua penghitung.
 
 <Sandpack>
 
@@ -322,7 +322,7 @@ function delay(ms) {
 
 <Solution>
 
-Di dalam *event handler* `handleClick`, nilai `pending` dan `completed` sesuai dengan apa yang mereka lakukan pada saat klik. Untuk *render* pertama, `pending` adalah `0` sehingga `setPending(pending - 1)` menjadi `setPending(-1)`, ini salah. Karena Anda ingin menambah atau mengurangi hitungan, bukan mengaturnya ke nilai konkret yang ditentukan selama klik, Anda dapat mengirimkan fungsi *updater*:
+Di dalam *event handler* `handleClick`, nilai `pending` dan `completed` sesuai dengan apa yang mereka lakukan pada saat klik. Untuk *render* pertama, `pending` adalah `0` sehingga `setPending(pending - 1)` menjadi `setPending(-1)`, ini salah. Karena Anda ingin menambah atau mengurangi penghitung, bukan mengaturnya ke nilai konkret yang ditentukan selama klik, Anda dapat mengirimkan fungsi *updater*:
 
 <Sandpack>
 
@@ -364,7 +364,7 @@ function delay(ms) {
 
 </Sandpack>
 
-Ini memastikan bahwa ketika Anda menambah atau mengurangi hitungan, Anda melakukannya dalam kaitannya dengan *state* terbaru daripada *state* pada saat klik.
+Ini memastikan bahwa ketika Anda menambah atau mengurangi penghitung, Anda melakukannya dalam kaitannya dengan *state* terbaru daripada *state* pada saat klik.
 
 </Solution>
 
