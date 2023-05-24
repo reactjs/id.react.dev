@@ -426,7 +426,7 @@ Dengan pendekatan ini, `Row` tidak perlu menerima _prop_ `isHighlighted` sama se
 export default function Row({ title }) {
   const isHighlighted = useContext(HighlightContext);
   // ...
-````
+```
 
 Hal ini memungkinkan komponen pemanggil untuk tidak mengetahui atau peduli tentang pengoperan `isHighlighted` ke `<Row>`:
 

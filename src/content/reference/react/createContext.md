@@ -166,7 +166,7 @@ import { createContext } from 'react';
 
 export const ThemeContext = createContext('light');
 export const AuthContext = createContext(null);
-````
+```
 
 Komponen yang dideklarasikan di *file* lain dapat menggunakan pernyataan [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) untuk membaca atau menyediakan konteks ini:
 
