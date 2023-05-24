@@ -26,7 +26,7 @@ API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/
 
 ### `renderToReadableStream(reactNode, options?)` {/*rendertoreadablestream*/}
 
-Panggil `renderToReadableStream` untuk me-*render* pohon React Anda ke dalam [_Node.js Stream._](https://nodejs.org/api/stream.html#writable-streams)
+Panggil `renderToReadableStream` untuk me-*render* pohon React Anda ke dalam [_Readable Web Stream_.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 import { renderToReadableStream } from 'react-dom/server';
