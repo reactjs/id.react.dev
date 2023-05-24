@@ -70,7 +70,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Efek adalah jalan keluar dari paradigma React. Jangan gunakan Efek untuk mengatur aliran data aplikasi Anda. Jika Anda tidak berinteraksi dengan sistem eksternal, [kemungkinan besar Anda tidak memerlukan Efek](/learn/you-might-not-need-an-effect)
+Efek adalah "jalan keluar" dari paradigma React. Jangan gunakan Efek untuk mengatur aliran data aplikasi Anda. Jika Anda tidak berinteraksi dengan sistem eksternal, [kemungkinan besar Anda tidak memerlukan Efek.](/learn/you-might-not-need-an-effect)
 
 Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pada waktu eksekusinya
 
