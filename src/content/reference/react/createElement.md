@@ -57,7 +57,7 @@ Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya a
 
 #### Catatan penting {/*caveats*/}
 
-* Anda harus **memperlakukan elemen React dan propertinya sebagai [kekal](https://en.wikipedia.org/wiki/Immutable_object)** dan tidak pernah mengubah isinya setelah dibuat. Dalam pengembangan, React akan [membekukan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) elemen yang dikembalikan dan `props` properti dangkal untuk menegakkan ini.
+* Anda harus **memperlakukan elemen React dan propertinya sebagai [*Immutable*](https://en.wikipedia.org/wiki/Immutable_object)** dan tidak pernah mengubah isinya setelah dibuat. Dalam pengembangan, React akan [membekukan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) elemen yang dikembalikan dan `props` properti dangkal untuk menegakkan ini.
 
 * Saat Anda menggunakan JSX, **Anda harus memulai tag dengan huruf kapital untuk merender komponen kustom Anda sendiri.** Dengan kata lain, `<Something />` setara dengan `createElement(Something)`, tetapi `<something />` (huruf kecil) setara dengan `createElement('something')` (perhatikan itu adalah string, sehingga akan diperlakukan sebagai tag HTML bawaan).
 
