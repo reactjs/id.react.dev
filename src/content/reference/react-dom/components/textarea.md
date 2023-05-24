@@ -409,7 +409,7 @@ function handleChange(e) {
 }
 ```
 
-Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan ditambahkan kembali dari DOM di setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) di setiap *render* ulang. Misalkan, ini dapat terjadi jika area teksnya atau salah satu dari *parents*-nya selalu menerima sebuah atribut `key` yang berbeda, atau jika Anda menyusun definisi komponen (dimana hal ini tidak diizinkan React dan menyebabkan komponen "dalam" terpasang ulang di setiap *render*).
+Jika ini tidak menyelesaikan masalah, ada kemungkinan area teks terhapus dan ditambahkan kembali dari DOM di setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) di setiap *render* ulang. Misalkan, ini dapat terjadi jika area teksnya atau salah satu dari *parents*-nya selalu menerima sebuah atribut `key` yang berbeda, atau jika Anda menyusun definisi komponen (dimana hal ini tidak diizinkan React dan menyebabkan komponen "dalam" ter-*mount* ulang di setiap *render*).
 
 ---
 
