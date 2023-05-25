@@ -53,13 +53,13 @@ function Greeting({ name }) {
 * `ref`: `ref` yang telah Anda oper. Jika hilang, `null`.
 * `key`: `key` yang telah Anda oper, dipaksa untuk string. Jika hilang, `null`.
 
-Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya anak dari elemen lain. Meskipun Anda dapat membaca properti elemen, yang terbaik adalah memperlakukan setiap elemen sebagai buram setelah dibuat, dan hanya merendernya.
+Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya anak dari elemen lain. Meskipun Anda dapat membaca properti elemen, yang terbaik adalah memperlakukan setiap elemen sebagai buram setelah dibuat, dan hanya me-*render*-nya.
 
 #### Catatan penting {/*caveats*/}
 
 * Anda harus **memperlakukan elemen React dan propertinya sebagai [*Immutable*](https://en.wikipedia.org/wiki/Immutable_object)** dan tidak pernah mengubah isinya setelah dibuat. Dalam pengembangan, React akan [membekukan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) elemen yang dikembalikan dan `props` properti dangkal untuk menegakkan ini.
 
-* Saat Anda menggunakan JSX, **Anda harus memulai tag dengan huruf kapital untuk merender komponen kustom Anda sendiri.** Dengan kata lain, `<Something />` setara dengan `createElement(Something)`, tetapi `<something />` (huruf kecil) setara dengan `createElement('something')` (perhatikan itu adalah string, sehingga akan diperlakukan sebagai tag HTML bawaan).
+* Saat Anda menggunakan JSX, **Anda harus memulai tag dengan huruf kapital untuk me-*render* komponen kustom Anda sendiri.** Dengan kata lain, `<Something />` setara dengan `createElement(Something)`, tetapi `<something />` (huruf kecil) setara dengan `createElement('something')` (perhatikan itu adalah string, sehingga akan diperlakukan sebagai tag HTML bawaan).
 
 * Anda hanya boleh **mengoper anak sebagai beberapa argumen untuk `createElement` jika semuanya diketahui secara statis,** seperti `createElement('h1', {}, child1, child2, child3)`. Jika anak Anda dinamis, oper seluruh array sebagai argumen ketiga: `createElement('ul', {}, listItems)`. Ini memastikan bahwa React akan [memperingatkan Anda tentang *`key`* yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap daftar dinamis. Untuk daftar statis ini tidak diperlukan karena mereka tidak pernah menyusun ulang.
 
@@ -99,7 +99,7 @@ function Greeting({ name }) {
 }
 ```
 
-Untuk merender komponen React Anda sendiri, oper fungsi seperti `Greeting` sebagai <CodeStep step={1}>type</CodeStep> bukan string seperti `'h1'`:
+Untuk me-*render* komponen React Anda sendiri, oper fungsi seperti `Greeting` sebagai <CodeStep step={1}>type</CodeStep> bukan string seperti `'h1'`:
 
 ```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Taylor' }"]]
 export default function App() {
@@ -196,9 +196,9 @@ Elemen adalah deskripsi ringan dari bagian antarmuka pengguna. Misalnya, keduany
 }
 ```
 
-**Perhatikan bahwa membuat objek ini tidak merender komponen `Greeting` atau membuat elemen DOM apa pun.**
+**Perhatikan bahwa membuat objek ini tidak me-*render* komponen `Greeting` atau membuat elemen DOM apa pun.**
 
-Elemen React lebih seperti deskripsi—instruksi untuk React untuk merender komponen `Greeting` nanti. Dengan mengembalikan objek ini dari komponen `App` Anda, Anda memberi tahu React apa yang harus dilakukan selanjutnya.
+Elemen React lebih seperti deskripsi—instruksi untuk React untuk me-*render* komponen `Greeting` nanti. Dengan mengembalikan objek ini dari komponen `App` Anda, Anda memberi tahu React apa yang harus dilakukan selanjutnya.
 
 Membuat elemen sangatlah murah sehingga Anda tidak perlu mencoba mengoptimalkan atau menghindarinya.
 
