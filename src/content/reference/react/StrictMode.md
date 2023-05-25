@@ -38,7 +38,7 @@ root.render(
 );
 ```
 
-[Lihat contoh lainnya dibawah.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
