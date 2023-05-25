@@ -4,7 +4,7 @@ title: useInsertionEffect
 
 <Pitfall>
 
-`useInsertionEffect` digunakan untuk pengguna library CSS-in-JS. Kecuali jika Anda sedang mengerjakan sebuah pustaka CSS-in-JS dan butuh sebuah tempat untuk menyisipkan *style*, Anda mungkin lebih menginginka [`useEffect`](/reference/react/useEffect) atau [`useLayoutEffect`](/reference/react/useLayoutEffect).
+`useInsertionEffect` digunakan untuk pengguna library CSS-in-JS. Kecuali jika Anda sedang mengerjakan sebuah pustaka CSS-in-JS dan butuh sebuah tempat untuk menyisipkan *style*, Anda mungkin lebih menginginkan [`useEffect`](/reference/react/useEffect) atau [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
 </Pitfall>
 
