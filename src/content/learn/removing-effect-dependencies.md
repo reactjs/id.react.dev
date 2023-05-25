@@ -882,7 +882,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 
 // Ini adalah dua objek yang berbeda!
 console.log(Object.is(options1, options2)); // false
-````
+```
 
 **Dependensi objek dan fungsi dapat membuat Efek Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
 
@@ -968,7 +968,7 @@ const roomId2 = 'music';
 
 // Kedua string ini sama!
 console.log(Object.is(roomId1, roomId2)); // true
-````
+```
 
 Berkat perbaikan ini, obrolan tidak lagi terhubung kembali jika Anda mengedit masukan:
 
