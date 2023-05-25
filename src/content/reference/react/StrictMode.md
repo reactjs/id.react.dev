@@ -79,7 +79,7 @@ root.render(
 
 Kami merekomendasikan untuk membungkus seluruh aplikasi Anda dalam Strict Mode, terutama untuk aplikasi yang baru dibuat. Jika Anda menggunakan framework yang memanggil [`createRoot`](/reference/react-dom/client/createRoot) untuk Anda, periksa dokumentasinya untuk cara mengaktifkan Strict Mode.
 
-Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemeriksaan ini membantu Anda menemukan bug yang sudah ada dalam kode Anda, tetapi sulit untuk direproduksi secara andal dalam produksi. Mode Ketat memungkinkan Anda memperbaiki bug sebelum pengguna melaporkannya.
+Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemeriksaan ini membantu Anda menemukan bug yang sudah ada dalam kode Anda, tetapi sulit untuk direproduksi secara andal dalam produksi. Strict Mode memungkinkan Anda memperbaiki bug sebelum pengguna melaporkannya.
 
 <Note>
 
