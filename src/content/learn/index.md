@@ -73,11 +73,11 @@ export default function MyApp() {
 
 </Sandpack>
 
-Kata-kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info] (https://javascript.info/import-export) memiliki referensi yang bagus.
+Kata-kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info](https://javascript.info/import-export) memiliki referensi yang bagus.
 
 ## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
-Sintaksis *markup* yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal] (/learn/installation) mendukung JSX secara langsung.
+Sintaksis *markup* yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal](/learn/installation) mendukung JSX secara langsung.
 
 JSX lebih ketat daripada HTML. Anda harus menutup *tag* seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa *tag* JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
 
@@ -221,7 +221,7 @@ Semua pendekatan ini juga dapat digunakan untuk menentukan atribut secara kondis
 
 ## Me-render daftar {/*rendering-lists*/}
 
-Anda akan mengandalkan fitur JavaScript seperti perulangan [`for`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) dan [fungsi senarai (*array*) `map()`] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk me-render daftar komponen.
+Anda akan mengandalkan fitur JavaScript seperti perulangan [`for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) dan [fungsi senarai (*array*) `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk me-render daftar komponen.
 
 Sebagai contoh, katakanlah Anda memiliki serangkaian (*array*) produk:
 
