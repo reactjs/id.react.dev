@@ -37,9 +37,9 @@ title: "<option>"
 
 #### Props {/*props*/}
 
-`<option>` mendukung semua [props element umum.](/reference/react-dom/components/common#props)
+`<option>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
 
-Sebagai tambahan, `<option>` mendukung *props* ini:
+Sebagai tambahan, `<option>` mendukung *props* berikut:
 
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): Sebuah *boolean*. Jika `true`, opsi akan tidak dapat dipilih dan akan tampak redup.
 * [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): Sebuah *string*. Menentukan arti dari opsi. Jika tidak ditentukan, teks di dalam opsi akan digunakan.
