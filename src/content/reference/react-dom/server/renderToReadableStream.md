@@ -16,7 +16,7 @@ const stream = await renderToReadableStream(reactNode, options?)
 
 <Note>
 
-API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) Untuk Node.js, gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
+API ini bergantung ke [*Web Streams*.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) Untuk Node.js, gunakan [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) sebagai gantinya.
 
 </Note>
 
@@ -26,7 +26,7 @@ API ini bergantung ke [_Web Streams_.](https://developer.mozilla.org/en-US/docs/
 
 ### `renderToReadableStream(reactNode, options?)` {/*rendertoreadablestream*/}
 
-Panggil `renderToReadableStream` untuk me-*render* pohon React Anda ke dalam [_Readable Web Stream_.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+Panggil `renderToReadableStream` untuk me-*render* pohon React Anda ke dalam [*Readable Web Stream*.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 import { renderToReadableStream } from 'react-dom/server';
@@ -68,9 +68,9 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 - Jika *render [shell*](#specifying-what-goes-into-the-shell) berhasil, *Promise* tersebut akan diselesaikan menjadi [*Readable Web Stream*.](https://developer.mozilla.org/en-US /docs/Web/API/ReadableStream)
 - Jika *render shell* gagal, *Promise* akan ditolak. [Gunakan ini untuk mengeluarkan *Shell* cadangan.](#recovering-from-errors-inside-the-shell)
 
-_Stream_ yang dikembalikan memiliki properti tambahan:
+*Stream* yang dikembalikan memiliki properti tambahan:
 
-* `allReady`: _Promise_ yang diselesaikan saat semua preose _render_ selesai, termasuk [_shell_](#specifying-what-goes-into-the-shell) dan semua [konten](#streaming-more-content-as-it-loads) tambahan. Anda dapat menggunakan`await stream.allReady` sebelum mengembalikan respons [untuk _crawler_ dan _static generation_.](#waiting-for-all-content-to-load-for-crawlers-and-static-generation) Jika Anda melakukannya, Anda tidak akan mendapatkan pemuatan progresif. _Stream_ akan berisi HTML final.
+* `allReady`: *Promise* yang diselesaikan saat semua preose *render* selesai, termasuk [*shell*](#specifying-what-goes-into-the-shell) dan semua [konten](#streaming-more-content-as-it-loads) tambahan. Anda dapat menggunakan`await stream.allReady` sebelum mengembalikan respons [untuk *crawler* dan *static generation*.](#waiting-for-all-content-to-load-for-crawlers-and-static-generation) Jika Anda melakukannya, Anda tidak akan mendapatkan pemuatan progresif. *Stream* akan berisi HTML final.
 
 ---
 
@@ -140,9 +140,9 @@ Ini akan melampirkan *event listeners* ke HTML yang dihasilkan server dan membua
 
 #### Membaca jalur aset CSS dan JS dari output *build* {/*reading-css-and-js-asset-paths-from-the-build-output*/}
 
-URL aset final (seperti file JavaScript dan CSS) sering kali di-_hash_ setelah dibuat. Misalnya, alih-alih `styles.css` Anda mungkin berakhir dengan `styles.123456.css`. _Hashing_ nama file aset statis menjamin bahwa setiap build berbeda dari aset yang sama akan memiliki nama file yang berbeda pula. Ini berguna karena memungkinkan Anda mengaktifkan _caching_ jangka panjang dengan aman untuk aset statis: konten file dengan nama tertentu tidak akan pernah berubah.
+URL aset final (seperti file JavaScript dan CSS) sering kali di-*hash* setelah dibuat. Misalnya, alih-alih `styles.css` Anda mungkin berakhir dengan `styles.123456.css`. *Hashing* nama file aset statis menjamin bahwa setiap build berbeda dari aset yang sama akan memiliki nama file yang berbeda pula. Ini berguna karena memungkinkan Anda mengaktifkan *caching* jangka panjang dengan aman untuk aset statis: konten file dengan nama tertentu tidak akan pernah berubah.
 
-Namun, jika Anda tidak mengetahui URL aset hingga setelah pembuatan, tidak ada cara bagi Anda untuk memasukkannya ke dalam kode sumber. Misalnya, _hardcoding_ `"/styles.css"` ke dalam JSX seperti sebelumnya tidak akan berfungsi. Untuk menjauhkannya dari kode sumber Anda, komponen _root_ Anda dapat membaca nama file asli dari _map_ yang diteruskan sebagai _prop_:
+Namun, jika Anda tidak mengetahui URL aset hingga setelah pembuatan, tidak ada cara bagi Anda untuk memasukkannya ke dalam kode sumber. Misalnya, *hardcoding* `"/styles.css"` ke dalam JSX seperti sebelumnya tidak akan berfungsi. Untuk menjauhkannya dari kode sumber Anda, komponen *root* Anda dapat membaca nama file asli dari *map* yang diteruskan sebagai *prop*:
 
 ```js {1,6}
 export default function App({ assetMap }) {
