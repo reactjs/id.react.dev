@@ -130,7 +130,7 @@ function useCSS(rule) {
 
 <DeepDive>
 
-#### Bagaimana ini bisa lebih baik daripada menyisipkan *style* saat *render* atau useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
+#### Bagaimana ini bisa lebih baik daripada menyisipkan style saat render atau useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
 Jika kamu menambahkan *style* saat rendering dan React sedang memproses [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) peramban akan menghitung ulang *style* setiap *frame* saat me-*render* sebuah pohon (*tree*) komponen, yang dapat **sangat lambat.**
 
