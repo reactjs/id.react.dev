@@ -819,6 +819,7 @@ Tanpa Strict Mode, mudah untuk luput bahwa Efek Anda perlu dibersihkan. Dengan m
 ---
 
 ### Memperbaiki peringatan penghentian yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
 * [`findDOMNode`](/reference/react-dom/findDOMNode). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
