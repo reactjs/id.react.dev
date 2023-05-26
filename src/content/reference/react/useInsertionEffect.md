@@ -62,7 +62,7 @@ function useCSS(rule) {
 
 ## Penggunaan {/*usage*/}
 
-### Menyisipkan *style* dimanis dari pustaka CSS-in-JS {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
+### Menyisipkan style dinamis dari pustaka CSS-in-JS {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 
 Secara tradisional, kamu dapat menata komponen-komponen React menggunakan CSS biasa.
 
