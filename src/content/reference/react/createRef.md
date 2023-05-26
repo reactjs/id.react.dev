@@ -55,7 +55,7 @@ class MyComponent extends Component {
 #### Caveats {/*caveats*/}
 
 * `createRef` selalu mengembalikan objek yang berbeda. Sama halnya dengan menulis `{ current: null }` manual.
-* Dalam komponen fungsional, Anda mungkin menginginkan [`useRef`](/reference/react/useRef) yang selalu mengembalikan obyek yang sama.
+* Dalam komponen fungsi, Anda mungkin menginginkan [`useRef`](/reference/react/useRef) yang selalu mengembalikan obyek yang sama.
 * `const ref = useRef()` sama dengan `const [ref, _] = useState(() => createRef(null))`.
 
 ---
@@ -107,7 +107,7 @@ export default class Form extends Component {
 
 <Pitfall>
 
-`createRef` kebanyakan digunakan untuk [komponen kelas.](/reference/react/Component) sedangkan komponen fungsional biasanya mengandalkan [`useRef`](/reference/react/useRef).
+`createRef` kebanyakan digunakan untuk [komponen kelas.](/reference/react/Component) sedangkan komponen fungsi biasanya mengandalkan [`useRef`](/reference/react/useRef).
 
 </Pitfall>
 
