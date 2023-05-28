@@ -76,7 +76,7 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 ## Penggunaan {/*usage*/}
 
-### Me-*render* pohon React sebagai HTML ke *Readable Web Stream* {/*rendering-a-react-tree-as-html-to-a-readable-web-stream*/}
+### Me-render pohon React sebagai HTML ke Readable Web Stream {/*rendering-a-react-tree-as-html-to-a-readable-web-stream*/}
 
 Panggil `renderToReadableStream` untuk me-*render* React *tree* anda sebagai HTML ke [*Readable Web Stream*:](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
@@ -349,7 +349,7 @@ Pada saat `stream` dikembalikan, komponen di batas `<Suspense>` bersarang mungki
 
 ---
 
-### *Logging* eror di server {/*logging-crash-on-the-server*/}
+### Logging eror di server {/*logging-crash-on-the-server*/}
 
 Secara *default*, semua kesalahan di server dicatat ke konsol. Anda dapat mengganti perilaku ini untuk mencatat laporan kerusakan:
 
@@ -372,7 +372,7 @@ Jika Anda memberikan implementasi `onError` khusus, jangan lupa juga mencatat ke
 
 ---
 
-### Memulihkan dari kesalahan di dalam *shell* {/*recovering-from-errors-inside-the-shell*/}
+### Memulihkan dari kesalahan di dalam shell {/*recovering-from-errors-inside-the-shell*/}
 
 Dalam contoh ini, *shell* berisi `ProfileLayout`, `ProfileCover`, dan `PostsGlimmer`:
 
@@ -417,7 +417,7 @@ Jika ada kesalahan saat membuat *shell*, `onError` dan blok `catch` Anda akan ak
 
 ---
 
-### Memulihkan dari kesalahan di luar *shell* {/*recovering-from-errors-outside-the-shell*/}
+### Memulihkan dari kesalahan di luar shell {/*recovering-from-errors-outside-the-shell*/}
 
 Dalam contoh ini, komponen `<Posts />` dibungkus dengan `<Suspense>` sehingga *bukan* merupakan bagian dari shell:
 
