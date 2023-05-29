@@ -4,7 +4,7 @@ title: Memilih Struktur State
 
 <Intro>
 
-Menata struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah di-modifikasi dan di-*debug*, dan komponen yang menjadi sumber kesalahan yang konstan. Berikut adalah beberapa tips yang harus Anda pertimbangkan saat menata struktur *state*.
+Menata struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan di-*debug*, dan komponen yang menjadi sumber kesalahan yang konstan. Berikut adalah beberapa tips yang harus Anda pertimbangkan saat menata struktur *state*.
 
 </Intro>
 
