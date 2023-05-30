@@ -4,18 +4,18 @@ title: Component
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+Kami merekomendasikan mendefinisikan komponen sebagai fungsi dari pada kelas. [Lihat bagaimana cara migrasi.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`Component` is the base class for the React components defined as [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Class components are still supported by React, but we don't recommend using them in new code.
+`Component` adalah kelas dasar untuk komponen React yang didefinisikan segabai [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Kelas komponen masih disuport oleh React, tetapi kami tidak merekomendasikan untuk menggunakannya di kode baru.
 
 ```js
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Halo, {this.props.name}!</h1>;
   }
 }
 ```
@@ -26,33 +26,33 @@ class Greeting extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `Component` {/*component*/}
 
-To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
+Untuk mendefinisikan sebuah komponen React sebagai sebuah kelas, *extend* kelas `Component` bawaan dan definisikan [`render` method:](#render)
 
 ```js
 import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Halo, {this.props.name}!</h1>;
   }
 }
 ```
 
-Only the `render` method is required, other methods are optional.
+Hanya `render` *method* yang diperlukan, *methods* yang lain adalah opsional.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah](#usage)
 
 ---
 
 ### `context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
+[Context](/learn/passing-data-deeply-with-context) dari sebuah *class component* tersedia sebagai `this.context`. Ini hanya tersedia jika Anda menentukan context *yang mana* yang ingin Anda terima menggunakan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (deprecated).
 
-A class component can only read one context at a time.
+*Class component* hanya bisa membaca satu *context* pada satu waktu.
 
 ```js {2,5}
 class Button extends Component {
@@ -73,9 +73,9 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+Membaca `this.context` pada *class components* setara dengan [`useContext`](/reference/react/useContext) pada *function components*.
 
-[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
 </Note>
 
@@ -83,12 +83,12 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `props` {/*props*/}
 
-The props passed to a class component are available as `this.props`.
+*props* yang dioper ke sebuah *class component* tersedia sebagai `this.props`.
 
 ```js {3}
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Halo, {this.props.name}!</h1>;
   }
 }
 
@@ -97,9 +97,9 @@ class Greeting extends Component {
 
 <Note>
 
-Reading `this.props` in class components is equivalent to [declaring props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) in function components.
+Membaca `this.props` pada *class components* setara dengan [mendeklarasikan props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) pada *function components*.
 
-[See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Note>
 
@@ -109,11 +109,11 @@ Reading `this.props` in class components is equivalent to [declaring props](/lea
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `createRef` instead.](/reference/react/createRef)
+API ini akan dihapus pada versi utama React di masa depan. [Gunakan `createRef` sebagai gantinya.](/reference/react/createRef)
 
 </Deprecated>
 
-Lets you access [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) for this component.
+Memungkinkan Anda mengakses [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) pada komponen ini.
 
 ---
 
