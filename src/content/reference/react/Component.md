@@ -119,7 +119,7 @@ Memungkinkan Anda mengakses [legacy string refs](https://reactjs.org/docs/refs-a
 
 ### `state` {/*state*/}
 
-The state of a class component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
+*State* dari *class component* tersedia sebagai `this.state`. *Field state* harus berupa objek. Jangan mengubah *state* secara langsung. Jika Anda ingin mengubah *state*, panggil `setState` dengan *state* baru.
 
 ```js {2-4,7-9,18}
 class Counter extends Component {
@@ -148,9 +148,9 @@ class Counter extends Component {
 
 <Note>
 
-Defining `state` in class components is equivalent to calling [`useState`](/reference/react/useState) in function components.
+Mendefinisikan `state` pada *class components* setara dengan [`useState`](/reference/react/useState) pada *function components*.
 
-[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Note>
 
@@ -158,7 +158,7 @@ Defining `state` in class components is equivalent to calling [`useState`](/refe
 
 ### `constructor(props)` {/*constructor*/}
 
-The [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) runs before your class component *mounts* (gets added to the screen). Typically, a constructor is only used for two purposes in React. It lets you declare state and [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) your class methods to the class instance:
+[Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) dijalankan sebelum *class component* Anda *dipasang* (ditambahkan ke layar). Biasanya, sebuah *constructor* hanya digunakan untuk dua tujuan dalam React. Ini memungkinkan Anda mendeklarasikan *state* dan [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) *class methods* Anda ke *class instance*:
 
 ```js {2-6}
 class Counter extends Component {
@@ -173,7 +173,7 @@ class Counter extends Component {
   }
 ```
 
-If you use modern JavaScript syntax, constructors are rarely needed. Instead, you can rewrite this code above using the [public class field syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) which is supported both by modern browsers and tools like [Babel:](https://babeljs.io/)
+Jika Anda menggunakan sintaksis JavaScript modern, *constructors* jarang diperlukan. Sebagai gantinya, Anda dapat menulis ulang kode di atas menggunakan [public class field syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) yang didukung oleh browser modern dan alat seperti [Babel:](https://babeljs.io/)
 
 ```js {2,4}
 class Counter extends Component {
@@ -184,31 +184,31 @@ class Counter extends Component {
   }
 ```
 
-A constructor should not contain any side effects or subscriptions.
+Sebuah *constructor* sebaiknya tidak mengandung *side effects* atau *subscriptions*.
 
 #### Parameters {/*constructor-parameters*/}
 
-* `props`: The component's initial props.
+* `props`: Props awal komponen.
 
 #### Returns {/*constructor-returns*/}
 
-`constructor` should not return anything.
+`constructor` seharusnya tidak mengembalikan apapun.
 
 #### Caveats {/*constructor-caveats*/}
 
-* Do not run any side effects or subscriptions in the constructor. Instead, use [`componentDidMount`](#componentdidmount) for that.
+* Jangan menjalankan *side effects* atau *subscriptions* dalam *constructor*. Sebagai gantinya, gunakan [`componentDidMount`](#componentdidmount) untuk itu.
 
-* Inside a constructor, you need to call `super(props)` before any other statement. If you don't do that, `this.props` will be `undefined` while the constructor runs, which can be confusing and cause bugs.
+* Dalam sebuah *constructor*, Anda perlu memanggil `super(props)` sebelum pernyataan lainnya. Jika Anda tidak melakukannya, `this.props` akan menjadi `undefined` saat *constructor* berjalan, yang dapat membingungkan dan menyebabkan bug.
 
-* Constructor is the only place where you can assign [`this.state`](#state) directly. In all other methods, you need to use [`this.setState()`](#setstate) instead. Do not call `setState` in the constructor.
+* *Constructor* adalah satu-satunya tempat di mana Anda dapat langsung mengisi nilai [`this.state`](#state). Pada semua metode lainnya, Anda perlu menggunakan [`this.setState()`](#setstate) sebagai gantinya. Jangan memanggil `setState` di dalam *constructor*.
 
-* When you use [server rendering,](/reference/react-dom/server) the constructor will run on the server too, followed by the [`render`](#render) method. However, lifecycle methods like `componentDidMount` or `componentWillUnmount` will not run on the server.
+* Ketika Anda menggunakan [pe-render-an di server,](/reference/react-dom/server) *constructor* juga akan dijalankan di server, diikuti oleh metode [`render`](#render). Namun, *lifecycle methods* seperti `componentDidMount` atau `componentWillUnmount` tidak akan dijalankan di server.
 
-* When [Strict Mode](/reference/react/StrictMode) is on, React will call `constructor` twice in development and then throw away one of the instances. This helps you notice the accidental side effects that need to be moved out of the `constructor`.
+* Ketika [Strict Mode](/reference/react/StrictMode) diaktifkan, React akan memanggil `constructor` dua kali dalam pengembangan kemudian membuang salah satu *instances*. Ini membantu Anda memperhatikan *side effects* yang tidak disengaja yang perlu dipindahkan dari `constructor`.
 
 <Note>
 
-There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/reference/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/reference/react/useState#avoiding-recreating-the-initial-state)
+Tidak ada yang setara dengan `constructor` pada *function components*. Untuk mendeklarasikan *state* pada *function component*, panggil [`useState`.](/reference/react/useState) Untuk menghindari perhitungan ulang pada *state* awal, [oper fungsi ke `useState`.](/reference/react/useState#avoiding-recreating-the-initial-state)
 
 </Note>
 
@@ -216,31 +216,31 @@ There is no exact equivalent for `constructor` in function components. To declar
 
 ### `componentDidCatch(error, info)` {/*componentdidcatch*/}
 
-If you define `componentDidCatch`, React will call it when some child component (including distant children) throws an error during rendering. This lets you log that error to an error reporting service in production.
+Jika Anda mendefinisikan `componentDidCatch`, React akan memanggilnya ketika beberapa komponen anak(termasuk anak-anak yang jauh) melempar sebuah kesalahan saat rendering. Hal ini memungkinkan Anda untuk mencatat kesalahan tersebut ke *error reporting service* di produksi.
 
-Typically, it is used together with [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. A component with these methods is called an *error boundary.*
+Biasanya, digunakan bersama dengan [`static getDerivedStateFromError`](#static-getderivedstatefromerror) yang memungkinkan Anda memperbarui *state* sebagai respons terhadap kesalahan dan menampilkan pesan kesalahan kepada pengguna. Komponen dengan metode-metode ini disebut sebagai *error boundary*.
 
-[See an example.](#catching-rendering-errors-with-an-error-boundary)
+[Lihat contoh.](#catching-rendering-errors-with-an-error-boundary)
 
 #### Parameters {/*componentdidcatch-parameters*/}
 
-* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+* `error`: *Error* yang dilempar. Pada praktiknya, biasanya akan berupa sebuah *instance* dari [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) tetapi ini tidak dijamin karena JavaScript memungkinkan untuk [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) nilai apa pun, termasuk string atau bahkan null.
 
-* `info`: An object containing additional information about the error. Its `componentStack` field contains a stack trace with the component that threw, as well as the names and source locations of all its parent components. In production, the component names will be minified. If you set up production error reporting, you can decode the component stack using sourcemaps the same way as you would do for regular JavaScript error stacks.
+* `info`: Objek yang berisi informasi tambahan tentang *error*. *Field* `componentStack` berisi jejak tumpukan(*stack trace*) dengan komponen yang melempar kesalahan, serta nama-nama dan lokasi sumber dari semua komponen induknya. Di produksi, nama komponennya akan di-*minified*. Jika Anda mengatur *error reporting* di produksi, Anda dapat mendekode jejak tumpukan(*stack trace*) komponen menggunakan *sourcemaps* dengan cara yang sama seperti yang Anda lakukan untuk jejak tumpukan(*stack trace*) kesalahan JavaScript biasa.
 
 #### Returns {/*componentdidcatch-returns*/}
 
-`componentDidCatch` should not return anything.
+`componentDidCatch` seharusnya tidak mengembalikan apapun.
 
 #### Caveats {/*componentdidcatch-caveats*/}
 
-* In the past, it was common to call `setState` inside `componentDidCatch` in order to update the UI and display the fallback error message. This is deprecated in favor of defining [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
+* Di masa lalu, umumnya memanggil `setState` di dalam `componentDidCatch` untuk memperbarui antarmuka pengguna(UI) dan menampilkan pesan kesalahan pengganti. Ini sudah ditinggalkan karena mendefinisikan [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
 
-* Production and development builds of React slightly differ in the way `componentDidCatch` handles errors. In development, the errors will bubble up to `window`, which means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch`. In production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch`.
+* Build produksi dan pengembangan dari React sedikit berbeda dalam cara `componentDidCatch` menangani kesalahan. Pada pengembangan, kesalahan akan naik ke `window`, yang berarti `window.onerror` atau `window.addEventListener('error', callback)` akan menangkap kesalahan yang telah ditangkap oleh `componentDidCatch`. Pada produksi, sebaliknya, kesalahan tidak akan naik, yang berarti penangan kesalahan induk hanya akan menerima kesalahan yang tidak ditangkap secara eksplisit oleh `componentDidCatch`.
 
 <Note>
 
-There is no direct equivalent for `componentDidCatch` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, you can use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that for you.
+Belum ada yang setara dengan `componentDidCatch` pada *function components*. Jika Anda ingin menghindari membuat *class components*, tulis satu komponen `ErrorBoundary` seperti di atas dan gunakan di seluruh aplikasi Anda. Sebagai alternatif, Anda dapat menggunakan paket  [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) yang akan melakukannya untuk Anda.
 
 </Note>
 
@@ -280,15 +280,15 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
 #### Parameters {/*componentdidmount-parameters*/}
 
-`componentDidMount` does not take any parameters.
+`componentDidMount` tidak mengambil parameter apa pun.
 
 #### Returns {/*componentdidmount-returns*/}
 
-`componentDidMount` should not return anything.
+`componentDidMount` seharusnya tidak mengembalikan apapun.
 
 #### Caveats {/*componentdidmount-caveats*/}
 
