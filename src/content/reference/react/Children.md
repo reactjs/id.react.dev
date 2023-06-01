@@ -4,7 +4,7 @@ title: Children
 
 <Pitfall>
 
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
+Menggunakan `Children` jarang terjadi dan dapat menyebabkan kode rapuh. [Lihat alternatif yang umum.](#alternatives)
 
 </Pitfall>
 
