@@ -16,7 +16,7 @@ Menata struktur *state* dengan baik dapat membuat perbedaan antara komponen yang
 
 </YouWillLearn>
 
-## Prinsip-prinsip untuk menata *state*. {/*principles-for-structuring-state*/}
+## Prinsip-prinsip untuk menata state {/*principles-for-structuring-state*/}
 
 Ketika Anda menulis komponen yang memegang beberapa *state*, Anda harus membuat pilihan tentang berapa banyak variabel *state* yang harus digunakan dan bagaimana bentuk datanya. Meskipun mungkin saja menulis program yang benar dengan struktur *state* yang kurang optimal, ada beberapa prinsip yang dapat membimbing Anda untuk membuat pilihan yang lebih baik:
 
@@ -2525,7 +2525,7 @@ li { border-radius: 5px; }
 
 Dalam contoh ini, setiap `Letter` memiliki *prop* `isSelected` dan *handler* `onToggle` yang menandai bahwa itu terpilih. Ini berfungsi, tetapi status disimpan sebagai `selectedId` (entah `null` atau sebuah *ID*), sehingga hanya satu huruf yang bisa terpilih pada suatu waktu.
 
-Ubah struktur *state* untuk mendukung pemilihan ganda. (Bagaimana Anda akan mengatur struktur tersebut? Pikirkan tentang ini sebelum menulis kode.) Setiap *checkbox* harus menjadi independen dari yang lain. Mengklik huruf yang telah terpilih harus membatal pilihannya. Terakhir, *footer* harus menunjukkan jumlah *item* yang dipilih dengan benar.
+Ubah struktur *state* untuk mendukung pemilihan ganda. (Bagaimana Anda akan mengatur struktur tersebut? Pikirkan tentang ini sebelum menulis kode.) Setiap *checkbox* harus menjadi independen dari yang lain. Mengeklik huruf yang telah terpilih harus membatal pilihannya. Terakhir, *footer* harus menunjukkan jumlah *item* yang dipilih dengan benar.
 
 <Hint>
 
@@ -2647,7 +2647,7 @@ export default function MailClient() {
   function handleToggle(toggledId) {
     // Apakah sebelumnya sudah dipilih?
     if (selectedIds.includes(toggledId)) {
-      // Lalu hapus ID ini dari senarai tersebut.
+      // Jika iya, hapus ID ini dari senarai tersebut.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
