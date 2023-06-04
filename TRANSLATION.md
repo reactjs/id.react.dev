@@ -22,7 +22,7 @@ Untuk menjalankan situs id.react.dev secara lokal, ikuti langkah-langkah berikut
 4. Jalankan `yarn dev` untuk menjalankan *server* lokal.
 5. Buka alamat `localhost:3000` dalam peramban web Anda.
 
-Konten dari situs id.react.dev terdapat dalam folder `content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
+Konten dari situs id.react.dev terdapat dalam folder `src/content`, dan disimpan dalam format Markdown. Buka proyek id.react.dev dalam program penyunting teks Anda, dan mulailah menyunting. Konten dalam situs lokal akan diperbarui secara otomatis.
 
 ## Klaim halaman supaya tidak ada pekerjaan ganda
 
@@ -33,6 +33,10 @@ Proses penerjemahan akan dilacak dalam *issue* https://github.com/reactjs/id.rea
 Sebagaimana yang bisa Anda lihat di *issue* https://github.com/reactjs/id.react.dev/issues/330, pada awalnya kami menggunakan penugasan terjemahan berbasis komentar. Namun proses tersebut terlalu menyulitkan dan berpotensi menghambat proses penerjemahan akibat aksi saling menunggu konfirmasi dan potensi miskomunikasi.
 
 Oleh karena itu, terinspirasi dari mekanisme pembagian tugas di proyek [WargaBantuWarga](https://github.com/kawalcovid19/wargabantuwarga.com/blob/main/CONTRIBUTING.md#issue-assignment--communication), kami mengubah mekanismenya menjadi penugasan berbasis *Draft Pull Request*.
+
+Secara prinsip, siapa pun yang bersedia untuk menerjemahkan suatu halaman, silakan langsung buat *Draft Pull Request* sesegera mungkin terhadap *issue* terkait.
+Anda mungkin akan melihat beberapa *issue* yang mengandung deskripsi `Assignee: @<username>`. Teks tersebut hanyalah sisa dari proses penugasan yang sebelumnya, dan penugasan tersebut tidak ada artinya apabila tidak ada *Draft Pull Request* yang dibuat oleh kontributor yang ditugaskan di situ.
+Oleh karena itu, mulai saat ini, kami para pengelola repositori ini akan memprioritaskan *Pull Request* manapun (termasuk *Draft Pull Request*) sebagai suatu tanda penugasan diri Anda sendiri terhadap *issue* tersebut. Apabila ditemukan dua atau lebih *Pull Request* yang terkait dengan *issue* yang sama, maka kami akan memprioritaskan *Pull Request* yang lebih jauh kemajuannya dan lebih terkini pembaruannya.
 
 ### Klaim penerjemahan melalui *Draft Pull Request*
 

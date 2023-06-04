@@ -47,7 +47,7 @@ function TabContainer() {
 
 `startTransition` tidak memiliki nilai balik apapun.
 
-#### Anjuran {/*caveats*/}
+#### Caveats {/*caveats*/}
 
 * `startTransition` tidak menyediakan penanda untuk mengetahui apakah sebuah transisi sedang *pending* atau tidak. Untuk menampilkan indikator *pending* ketika sebuah transisi sedang berjalan, Anda dapat menggunakan [`useTransition`.](/reference/react/useTransition)
 

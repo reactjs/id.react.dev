@@ -32,8 +32,10 @@ Bungkus pohon komponen dalam `<Profiler>` untuk mengukur performa *rendering*.
 
 #### Props {/*props*/}
 
+
 * `id`: String yang mengidentifikasi bagian UI yang sedang Anda ukur.
 * `onRender`: Sebuah [`onRender` *callback*](#onrender-callback) yang dipanggil oleh React setiap kali komponen dalam pohon yang diprofilkan diperbarui. Menerima informasi tentang apa yang di-*render* dan berapa lama waktu yang dibutuhkan.
+
 
 #### *Caveats* {/*caveats*/}
 
