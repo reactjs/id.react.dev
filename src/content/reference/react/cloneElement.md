@@ -49,9 +49,9 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 
 * `element`: Argumen `element` harus merupakan elemen React yang valid. Misalnya, dapat berupa simpul JSX seperti `<Something />`, hasil dari pemanggilan [`createElement`](/reference/react/createElement), atau hasil dari pemanggilan `cloneElement` lainnya.
 
-* `props`: Argumen `props` harus berupa objek atau `null`. Jika anda mengoper `null`, elemen yang di-kloning akan mempertahankan semua  `element.props` yang orisinal. Sebaliknya, untuk setiap _prop_ di objek `props`, elemen yang dikembalikan akan "memilih" nilai dari `props` daripada nilai dari `element.props`. Sisa _props_ lainnya akan diisi dari `element.props` yang orisinal. Jika anda mengoper `props.key` atau `props.ref`, mereka akan menggantikan yang orisinal.
+* `props`: Argumen `props` harus berupa objek atau `null`. Jika anda mengoper `null`, elemen yang di-kloning akan mempertahankan semua  `element.props` yang orisinal. Sebaliknya, untuk setiap *prop* di objek `props`, elemen yang dikembalikan akan "memilih" nilai dari `props` daripada nilai dari `element.props`. Sisa *props* lainnya akan diisi dari `element.props` yang orisinal. Jika anda mengoper `props.key` atau `props.ref`, mereka akan menggantikan yang orisinal.
 
-* **opsional** `...children`: Nol atau lebih simpul anak. Bisa dari simpul React apa pun, termasuk elemen React, _string_, dan _number_. [_portal_](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan senarai dari simpul-simpul React. Jika anda tidak mengoper argumen `...children` apa pun, `element.props.children` yang orisinal akan tetap dipertahankan.
+* **opsional** `...children`: Nol atau lebih simpul anak. Bisa dari simpul React apa pun, termasuk elemen React, *string*, dan *number*. [*portal*](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan senarai dari simpul-simpul React. Jika anda tidak mengoper argumen `...children` apa pun, `element.props.children` yang orisinal akan tetap dipertahankan.
 
 #### Kembalian {/*returns*/}
 
@@ -68,7 +68,7 @@ Biasanya, anda akan mengembalikan elemen dari sebuah komponen atau membuatnya se
 
 * Mengkloning sebuah elemen **tidak mengubah elemen yang orisinal**.
 
-* Sebaiknya anda hanya **mengoper _children_ sebagai beberapa argumen ke `cloneElement` jika semuanya diketahui secara statis,** seperti `cloneElement(element, null, child1, child2, child3)`. Jika _children_ anda dinamis, oper seluruh senarai sebagai argumen ketiga: `cloneElement(element, null, listItems)`. Ini memastikan bahwa React akan [memperingatkan anda tentang `key` yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap _list_ dinamis. Untuk _list_ statis hal tersebut tidak diperlukan karena tidak pernah diurutkan ulang.
+* Sebaiknya anda hanya **mengoper *children* sebagai beberapa argumen ke `cloneElement` jika semuanya diketahui secara statis,** seperti `cloneElement(element, null, child1, child2, child3)`. Jika *children* anda dinamis, oper seluruh senarai sebagai argumen ketiga: `cloneElement(element, null, listItems)`. Ini memastikan bahwa React akan [memperingatkan anda tentang `key` yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap *list* dinamis. Untuk *list* statis hal tersebut tidak diperlukan karena tidak pernah diurutkan ulang.
 
 * `cloneElement` membuat pelacakan aliran data lebih sulit, jadi **cobalah beberapa [alternatif](#alternatives) sebagai gantinya.**
 
@@ -76,9 +76,9 @@ Biasanya, anda akan mengembalikan elemen dari sebuah komponen atau membuatnya se
 
 ## Penggunaan {/*usage*/}
 
-### Menimpa _props_ dari suatu elemen {/*overriding-props-of-an-element*/}
+### Menimpa props dari suatu elemen {/*overriding-props-of-an-element*/}
 
-Untuk menimpa _prop_ dari beberapa <CodeStep step={1}>elemen React</CodeStep>, oper ke `cloneElement` dengan <CodeStep step={2}>_props_ yang ingin anda timpa</CodeStep>:
+Untuk menimpa *prop* dari beberapa <CodeStep step={1}>elemen React</CodeStep>, oper ke `cloneElement` dengan <CodeStep step={2}>*props* yang ingin anda timpa</CodeStep>:
 
 ```js [[1, 5, "<Row title=\\"Cabbage\\" />"], [2, 6, "{ isHighlighted: true }"], [3, 4, "clonedElement"]]
 import { cloneElement } from 'react';
@@ -94,7 +94,7 @@ Hasil dari <CodeStep step={3}>elemen yang dikloning</CodeStep> akan menjadi `<Ro
 
 **Mari telusuri contoh untuk melihat kapan hal tersebut berguna.**
 
-Bayangkan komponen `List` yang me-_render_ [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children)nya sebagai daftar baris yang dapat dipilih dengan tombol "Next" yang dapat merubah baris mana yang dipilih. Komponen `List` perlu me-_render_ `Row` yang dipilih secara terpisah, lalu mengkloning setiap anak `<Row>` yang telah diterima, dan menambahkan _prop_ `isHighlighted: true` atau `isHighlighted: false`:
+Bayangkan komponen `List` yang me-*render* [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children)nya sebagai daftar baris yang dapat dipilih dengan tombol "Next" yang dapat merubah baris mana yang dipilih. Komponen `List` perlu me-*render* `Row` yang dipilih secara terpisah, lalu mengkloning setiap anak `<Row>` yang telah diterima, dan menambahkan *prop* `isHighlighted: true` atau `isHighlighted: false`:
 
 ```js {6-8}
 export default function List({ children }) {
@@ -137,7 +137,7 @@ Dengan mengkloning anaknya, `List` dapat meneruskan informasi tambahan ke setiap
 </List>
 ```
 
-Perhatikan saat menekan "Next" akan memperbarui _state_ dari `List`, dan menyorot baris yang berbeda:
+Perhatikan saat menekan "Next" akan memperbarui *state* dari `List`, dan menyorot baris yang berbeda:
 
 <Sandpack>
 
@@ -232,11 +232,11 @@ button {
 
 </Sandpack>
 
-Ringkasnya, `List` mengkloning elemen `<Row />` yang diterimanya dan menambahkan _prop_ tambahan ke dalamnya.
+Ringkasnya, `List` mengkloning elemen `<Row />` yang diterimanya dan menambahkan *prop* tambahan ke dalamnya.
 
 <Pitfall>
 
-Mengkloning _children_ mempersulit untuk mengetahui bagaimana aliran data di aplikasi anda. Coba salah satu [alternatif.](#alternatives)
+Mengkloning *children* mempersulit untuk mengetahui bagaimana aliran data di aplikasi anda. Coba salah satu [alternatif.](#alternatives)
 
 </Pitfall>
 
@@ -244,9 +244,9 @@ Mengkloning _children_ mempersulit untuk mengetahui bagaimana aliran data di apl
 
 ## Alternatif {/*alternatives*/}
 
-### Mengoper data dengan _render prop_ {/*passing-data-with-a-render-prop*/}
+### Mengoper data dengan render prop {/*passing-data-with-a-render-prop*/}
 
-Daripada menggunakan `cloneElement`, pertimbangkan untuk menerima *render prop* seperti `renderItem`. Di sini, `List` menerima `renderItem` sebagai _prop_. `List` memanggil `renderItem` untuk setiap item dan mengoper `isHighlighted` sebagai argumen:
+Daripada menggunakan `cloneElement`, pertimbangkan untuk menerima *render prop* seperti `renderItem`. Di sini, `List` menerima `renderItem` sebagai *prop*. `List` memanggil `renderItem` untuk setiap item dan mengoper `isHighlighted` sebagai argumen:
 
 ```js {1,7}
 export default function List({ items, renderItem }) {
@@ -259,7 +259,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-_Prop_ `renderItem` disebut "render prop" karena merupakan _prop_ yang menentukan cara me-_render_ sesuatu. Misalnya, anda dapat mengoper `renderItem` yang me-_render_ `<Row>` dengan nilai `isHighlighted` yang diberikan:
+*Prop* `renderItem` disebut "render prop" karena merupakan *prop* yang menentukan cara me-*render* sesuatu. Misalnya, anda dapat mengoper `renderItem` yang me-*render* `<Row>` dengan nilai `isHighlighted` yang diberikan:
 
 ```js {3,7}
 <List
@@ -393,9 +393,9 @@ Pola ini lebih anjurkan daripada `cloneElement` karena lebih eksplisit.
 
 ---
 
-### Mengoper data melalui _context_ {/*passing-data-through-context*/}
+### Mengoper data melalui context {/*passing-data-through-context*/}
 
-Alternatif lain untuk `cloneElement` adalah [mengoper data melalui _context_.](/learn/passing-data-deeply-with-context)
+Alternatif lain untuk `cloneElement` adalah [mengoper data melalui *context*.](/learn/passing-data-deeply-with-context)
 
 Sebagai contoh, anda dapat memanggil [`createContext`](/reference/react/createContext) untuk mendefinisikan `HighlightContext`:
 
@@ -403,7 +403,7 @@ Sebagai contoh, anda dapat memanggil [`createContext`](/reference/react/createCo
 export const HighlightContext = createContext(false);
 ```
 
-Komponen `List` dapat menggabungkan setiap item yang di-_render_ ke dalam _provider_ `HighlightContext`:
+Komponen `List` dapat menggabungkan setiap item yang di-*render* ke dalam *provider* `HighlightContext`:
 
 ```js {8,10}
 export default function List({ items, renderItem }) {
@@ -420,7 +420,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-Dengan pendekatan ini, `Row` tidak perlu menerima _prop_ `isHighlighted` sama sekali. Sebaliknya, dengan membaca _context_-nya:
+Dengan pendekatan ini, `Row` tidak perlu menerima *prop* `isHighlighted` sama sekali. Sebaliknya, dengan membaca *context*-nya:
 
 ```js Row.js {2}
 export default function Row({ title }) {
@@ -439,7 +439,7 @@ Hal ini memungkinkan komponen pemanggil untuk tidak mengetahui atau peduli tenta
 />
 ```
 
-Sebagai gantinya, `List` dan `Row` mengoordinasikan logika penyorotan melalui _context_.
+Sebagai gantinya, `List` dan `Row` mengoordinasikan logika penyorotan melalui *context*.
 
 <Sandpack>
 
@@ -549,13 +549,13 @@ button {
 
 </Sandpack>
 
-[Pelajari lebih lanjut tentang mengoper data melalui _context_.](/reference/react/useContext#passing-data-deeply-into-the-tree)
+[Pelajari lebih lanjut tentang mengoper data melalui *context*.](/reference/react/useContext#passing-data-deeply-into-the-tree)
 
 ---
 
 ### Mengekstraksi logika ke dalam Hook kustom {/*extracting-logic-into-a-custom-hook*/}
 
-Pendekatan lain yang dapat anda coba adalah mengekstrak logika "non-visual" ke dalam Hook anda sendiri, dan menggunakan informasi yang dikembalikan oleh Hook anda untuk memutuskan apa yang akan di-_render_. Misalnya, anda dapat menulis Hook kustom `useList` seperti ini:
+Pendekatan lain yang dapat anda coba adalah mengekstrak logika "non-visual" ke dalam Hook anda sendiri, dan menggunakan informasi yang dikembalikan oleh Hook anda untuk memutuskan apa yang akan di-*render*. Misalnya, anda dapat menulis Hook kustom `useList` seperti ini:
 
 ```js
 import { useState } from 'react';
@@ -597,7 +597,7 @@ export default function App() {
 }
 ```
 
-Aliran datanya eksplisit, tetapi _state_ ada di dalam Hook kustom `useList` yang dapat anda gunakan dari komponen apa pun:
+Aliran datanya eksplisit, tetapi *state* ada di dalam Hook kustom `useList` yang dapat anda gunakan dari komponen apa pun:
 
 <Sandpack>
 
