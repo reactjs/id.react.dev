@@ -1,54 +1,54 @@
 ---
-title: Quick Start
+title: Mulai Cepat
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan tentang 80% konsep React yang akan Anda gunakan sehari-hari.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- Cara membuat dan menyarangkan (*nest*) komponen-komponen
+- Cara menambahkan *markup* dan *styles*
+- Cara menampilkan data
+- Cara me-*render* kondisi dan daftar (*lists*)
+- Cara merespons *events* dan memperbarui layar
+- Cara berbagi data antar komponen
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Membuat dan menyarangkan (nesting) komponen {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+Aplikasi React dibuat dari *komponen*. Komponen adalah bagian dari UI (*user interface*, antarmuka pengguna) yang memiliki logika dan tampilan tersendiri. Sebuah komponen dapat berukuran sekecil tombol, atau sebesar seluruh halaman.
 
-React components are JavaScript functions that return markup:
+Komponen React adalah fungsi JavaScript yang mengembalikan *markup*:
 
 ```js
 function MyButton() {
   return (
-    <button>I'm a button</button>
+    <button>Saya adalah tombol</button>
   );
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Sekarang setelah Anda mendeklarasikan `MyButton`, Anda dapat menyarangkannya ke dalam komponen lain:
 
 ```js {5}
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Selamat datang di aplikasi saya</h1>
       <MyButton />
     </div>
   );
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Perhatikan bahwa `<MyButton />` dimulai dengan huruf kapital. Dengan cara itulah Anda mengetahui bahwa itu adalah sebuah komponen React. Nama komponen React harus selalu dimulai dengan huruf kapital, sedangkan *tag* HTML harus menggunakan huruf kecil.
 
-Have a look at the result:
+Lihatlah hasilnya:
 
 <Sandpack>
 
@@ -56,7 +56,7 @@ Have a look at the result:
 function MyButton() {
   return (
     <button>
-      I'm a button
+      Saya adalah tombol
     </button>
   );
 }
@@ -64,7 +64,7 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Selamat datang di aplikasi saya</h1>
       <MyButton />
     </div>
   );
@@ -73,49 +73,49 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+Kata-kata kunci `export default` menentukan komponen utama di dalam berkas (*file*). Jika Anda tidak terbiasa dengan beberapa bagian dari sintaksis JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) dan [javascript.info](https://javascript.info/import-export) memiliki referensi yang bagus.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+Sintaksis *markup* yang Anda lihat di atas disebut dengan *JSX*. JSX ini opsional, tetapi sebagian besar proyek React menggunakan JSX untuk kenyamanannya. Semua [alat yang kami rekomendasikan untuk pengembangan lokal](/learn/installation) mendukung JSX secara langsung.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX lebih ketat daripada HTML. Anda harus menutup *tag* seperti `<br />`. Komponen Anda juga tidak boleh mengembalikan beberapa *tag* JSX. Anda harus membungkusnya menjadi induk bersama (*shared parent*), seperti `<div>...</div>` atau sebuah pembungkus kosong `<>...</>`:
 
 ```js {3,6}
 function AboutPage() {
   return (
     <>
-      <h1>About</h1>
-      <p>Hello there.<br />How do you do?</p>
+      <h1>Tentang</h1>
+      <p>Halo.<br />Apa kabar?</p>
     </>
   );
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+Jika Anda memiliki banyak HTML untuk dipindahkan (*port*) ke JSX, Anda dapat menggunakan [konverter online.](https://transform.tools/html-to-jsx).
 
-## Adding styles {/*adding-styles*/}
+## Menambahkan styles {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+Di React, Anda menentukan kelas (*class*) CSS dengan `className`. Ini bekerja dengan cara yang sama seperti atribut HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class):
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Kemudian Anda menulis aturan CSS untuk itu di dalam berkas CSS terpisah:
 
 ```css
-/* In your CSS */
+/* Di dalam CSS Anda */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React tidak mengatur (*prescribe*) bagaimana cara Anda menambahkan berkas CSS. Di dalam kasus yang paling sederhana, Anda akan menambahkan *tag* [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ke HTML Anda. Jika Anda menggunakan *build tool* atau *framework*, bacalah dokumentasinya untuk mempelajari bagaimana cara menambahkan berkas CSS ke dalam proyek Anda.
 
-## Displaying data {/*displaying-data*/}
+## Menampilkan data {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX memungkinkan Anda memasukkan *markup* ke dalam JavaScript. Kurung kurawal (*curly braces*) memungkinkan Anda "kembali" (*escape back*) ke dalam JavaScript sehingga Anda dapat menanamkan (*embed*) beberapa variabel dari kode Anda dan menampilkannya kepada pengguna. Sebagai contoh, ini akan menampilkan `user.name`:
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+Anda juga dapat "kembali ke JavaScript" dari atribut JSX, tetapi Anda harus menggunakan tanda kurung kurawal *daripada* tanda kutip (*quotes*). Sebagai contoh, `className="avatar"` mengoper *string* `"avatar"` sebagai kelas CSS (*CSS class*), tetapi `src={user.imageUrl}` membaca nilai variabel JavaScript `user.imageUrl`, dan kemudian mengoper nilai tersebut sebagai atribut `src`:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+Anda dapat menaruh ekspresi yang lebih kompleks (*complex expressions*) di dalam kurung kurawal JSX juga, contohnya, [penggabungan *string*](https://javascript.info/operators#string-concatenation-with-binary) (*string concatenation*):
 
 <Sandpack>
 
@@ -154,7 +154,7 @@ export default function Profile() {
       <img
         className="avatar"
         src={user.imageUrl}
-        alt={'Photo of ' + user.name}
+        alt={'Foto ' + user.name}
         style={{
           width: user.imageSize,
           height: user.imageSize
@@ -177,11 +177,11 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+Pada contoh di atas, `style={{}}` bukanlah sintaksis khusus, melainkan objek `{}` biasa di dalam kurung kurawal JSX. Anda dapat menggunakan atribut `style` ketika *styles* Anda bergantung pada variabel JavaScript.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Pe-render-an secara kondisional {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+Di dalam React, tidak ada sintaksis khusus untuk menulis kondisi. Sebagai gantinya, Anda akan menggunakan teknik yang sama dengan yang Anda gunakan saat menulis kode JavaScript biasa. Sebagai contoh, Anda dapat menggunakan pernyataan (*statement*) [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) untuk menyertakan JSX secara kondisional:
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+Jika Anda lebih menyukai kode yang lebih ringkas, Anda dapat menggunakan [operator kondisional `?`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Tidak seperti `if`, operator ini bekerja di dalam JSX:
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Ketika Anda tidak membutuhkan cabang (*branch*) `lain`, Anda juga dapat menggunakan sintaksis [logika `&&` yang lebih pendek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -217,23 +217,23 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Semua pendekatan ini juga dapat digunakan untuk menentukan atribut secara kondisional. Jika Anda tidak terbiasa dengan beberapa sintaksis JavaScript ini, Anda dapat memulai dengan selalu menggunakan `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Me-render daftar {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Anda akan mengandalkan fitur JavaScript seperti perulangan [`for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) dan [fungsi senarai (*array*) `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) untuk me-render daftar komponen.
 
-For example, let's say you have an array of products:
+Sebagai contoh, katakanlah Anda memiliki serangkaian (*array*) produk:
 
 ```js
 const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+  { title: 'Kubis', id: 1 },
+  { title: 'Bawang Putih', id: 2 },
+  { title: 'Apel', id: 3 },
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Di dalam komponen Anda, gunakan fungsi `map()` untuk mengubah serangkaian produk menjadi serangkaian *item* `<li>`:
 
 ```js
 const listItems = products.map(product =>
@@ -247,15 +247,15 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+Perhatikan bagaimana `<li>` memiliki atribut `key`. Untuk setiap *item* dalam daftar, Anda harus mengoper *string* atau angka yang secara unik mengidentifikasi *item* tersebut di antara saudara-saudaranya (*siblings*). Biasanya, *key* harus berasal dari data Anda, seperti sebuah ID basis data (*database*). React menggunakan *key* untuk mengetahui apa yang terjadi jika Anda menyisipkan (*insert*), menghapus, atau mengurutkan ulang *item*.
 
 <Sandpack>
 
 ```js
 const products = [
-  { title: 'Cabbage', isFruit: false, id: 1 },
-  { title: 'Garlic', isFruit: false, id: 2 },
-  { title: 'Apple', isFruit: true, id: 3 },
+  { title: 'Kubis', isFruit: false, id: 1 },
+  { title: 'Bawang Putih', isFruit: false, id: 2 },
+  { title: 'Apel', isFruit: true, id: 3 },
 ];
 
 export default function ShoppingList() {
@@ -278,37 +278,37 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Merespon ke event {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+Anda dapat merespon ke *event* dengan mendeklarasikan fungsi *event handler* di dalam komponen Anda:
 
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Anda mengeklik saya!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Klik saya
     </button>
   );
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Perhatikan bagaimana `onClick={handleClick}` tidak memiliki tanda kurung (*parentheses*) di bagian akhir! Jangan _memanggil_ fungsi *event handler*: Anda hanya perlu *mengopernya ke bawah*. React akan memanggil *event handler* Anda ketika pengguna mengeklik tombol.
 
-## Updating the screen {/*updating-the-screen*/}
+## Memperbarui layar {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Sering kali, Anda ingin komponen Anda "mengingat" beberapa informasi dan menampilkannya. Sebagai contoh, mungkin Anda ingin menghitung berapa kali sebuah tombol diklik. Untuk melakukan hal ini, tambahkan *state* ke komponen Anda.
 
-First, import [`useState`](/reference/react/useState) from React:
+Pertama, impor [`useState`](/reference/react/useState) dari React:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Sekarang Anda dapat mendeklarasikan *variabel state* di dalam komponen Anda:
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+Anda akan mendapatkan dua hal dari `useState`: *state* saat ini (`count`), dan fungsi yang memungkinkan Anda memperbaruinya (`setCount`). Anda dapat memberi nama apa saja, tetapi konvensi yang berlaku adalah menulis `[something, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+Saat pertama kali tombol ditampilkan, `count` akan menjadi `0` karena Anda mengoper `0` ke `useState()`. Ketika Anda ingin mengubah *state*, panggil `setCount()` dan berikan nilai baru padanya. Mengeklik tombol ini akan menambah penghitung (*counter*):
 
 ```js {5}
 function MyButton() {
@@ -330,15 +330,15 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React akan memanggil fungsi komponen Anda lagi. Kali ini, `count` akan menjadi `1`. Kemudian akan menjadi `2`. Dan seterusnya.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+Jika Anda me-*render* komponen yang sama beberapa kali, masing-masing akan mendapatkan *state*-nya sendiri. Klik setiap tombol secara terpisah:
 
 <Sandpack>
 
@@ -348,7 +348,7 @@ import { useState } from 'react';
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Penghitung yang diperbarui secara terpisah</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -364,7 +364,7 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
@@ -379,59 +379,59 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Perhatikan bagaimana setiap tombol "mengingat" *state* `count`-nya sendiri dan tidak memengaruhi tombol lainnya.
 
-## Using Hooks {/*using-hooks*/}
+## Menggunakan Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Fungsi yang dimulai dengan `use` disebut dengan *Hooks*. `useState` adalah *Hook* bawaan yang disediakan oleh React. Anda dapat menemukan *Hooks* bawaan lainnya di [referensi API.](/reference/react) Anda juga dapat menulis *Hooks* Anda sendiri dengan menggabungkan *Hooks* yang sudah ada.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+*Hooks* lebih terbatas dibandingkan fungsi-fungsi lainnya. Anda hanya bisa memanggil *Hooks* *di bagian atas* komponen Anda (atau *Hooks* lainnya). Jika Anda ingin menggunakan `useState` dalam sebuah kondisi atau perulangan, ekstrak komponen baru dan letakkan di sana.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Berbagi data antar komponen {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+Pada contoh sebelumnya, setiap `MyButton` memiliki `count` tersendiri, dan ketika setiap tombol diklik, hanya `count` untuk tombol yang diklik yang berubah:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram yang menunjukkan sebuah pohon dengan tiga komponen, satu induk berlabel MyApp dan dua anak berlabel MyButton. Kedua komponen MyButton berisi hitungan (count) dengan nilai nol.">
 
-Initially, each `MyButton`'s `count` state is `0`
+Awalnya, setiap *state* `count` `MyButton` adalah `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyButton anak pertama yang disorot mengindikasikan klik dengan nilai hitungan yang bertambah satu. Komponen MyButton kedua masih berisi nilai nol." >
 
-The first `MyButton` updates its `count` to `1`
+`MyButton` pertama memperbarui `count`-nya menjadi `1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+Namun, sering kali Anda memerlukan komponen untuk *berbagi data dan selalu diperbarui bersamaan*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+Untuk membuat kedua komponen `MyButton` menampilkan `count` yang sama dan memperbarui secara bersamaan, Anda harus memindahkan *state* dari masing-masing tombol "ke atas" ke komponen terdekat yang berisi semuanya.
 
-In this example, it is `MyApp`:
+Dalam contoh ini, adalah `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram yang menunjukkan sebuah pohon yang terdiri dari tiga komponen, satu induk (parent) berlabel MyApp dan dua anak (children) berlabel MyButton. MyApp berisi nilai hitungan nol yang dioper ke bawah ke kedua komponen MyButton, yang juga menunjukkan nilai nol." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Awalnya, *state* `count` `MyApp` adalah `0` dan dioper ke bawah ke kedua anak (*children*)
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Diagram yang sama dengan diagram sebelumnya, dengan hitungan komponen MyApp induk yang disorot menunjukkan klik dengan nilai bertambah menjadi satu. Aliran ke kedua anak komponen MyButton juga disorot, dan nilai hitungan di setiap anak diatur ke satu yang menunjukkan nilai tersebut dioper ke bawah." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+Saat diklik, `MyApp` memperbarui *state* `count` menjadi `1` dan menurunkannya ke kedua anak
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Sekarang ketika Anda mengeklik salah satu tombol, `count` di `MyApp` akan berubah, yang akan mengubah kedua hitungan di `MyButton`. Berikut adalah cara untuk mengekspresikannya di dalam kode.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+Pertama, *pindahkan state ke atas* dari `MyButton` ke `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -443,7 +443,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Penghitung yang diperbarui secara terpisah</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -451,12 +451,12 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... kita memindahkan kode dari sini ...
 }
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Kemudian, *oper state ke bawah* dari `MyApp` ke setiap `MyButton`, bersama dengan *shared click handler*. Anda dapat mengoper informasi ke `MyButton` menggunakan kurung kurawal JSX, seperti yang sebelumnya Anda lakukan dengan *tag* bawaan seperti `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -476,21 +476,21 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+Informasi yang Anda berikan seperti ini disebut *props*. Sekarang komponen `MyApp` berisi *state* `count` dan *event handler* `handleClick`, dan *mengoper keduanya sebagai props* ke masing-masing tombol.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Terakhir, ubah `MyButton` untuk *membaca* *props* yang telah Anda lewati dari komponen induknya:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+Ketika Anda mengeklik tombol, *handler* `onClick` akan dijalankan (*fires*). *Prop* `onClick` pada setiap tombol diatur ke fungsi `handleClick` di dalam `MyApp`, sehingga kode di dalamnya dapat berjalan. Kode tersebut memanggil `setCount(count + 1)`, yang menambah variabel *state* `count`. Nilai `count` yang baru dioper sebagai *prop* ke setiap tombol, sehingga semuanya menampilkan nilai yang baru. Hal ini disebut "mengangkat state ke atas" (*"lifting state up"*). Dengan mengangkat *state* ke atas, Anda telah membagikannya di antara komponen.
 
 <Sandpack>
 
@@ -506,7 +506,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Penghitung yang diperbarui bersamaan</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -516,7 +516,7 @@ export default function MyApp() {
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Diklik {count} kali
     </button>
   );
 }
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Langkah Selanjutnya {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+Sekarang, Anda telah mengetahui dasar-dasar cara menulis kode React!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Lihat [Tutorial](/learn/tutorial-tic-tac-toe) untuk mempraktikkannya dan membangun aplikasi mini pertama Anda dengan React.
