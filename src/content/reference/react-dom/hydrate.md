@@ -68,7 +68,7 @@ Panggil `hydrate` untuk melekatkan sebuah <CodeStep step={1}>komponen React</Cod
 import { hydrate } from 'react-dom';
 
 hydrate(<App />, document.getElementById('root'));
-````
+```
 
 Penggunaan `hydrate()` untuk me-*render* aplikasi hanya di sisi klien (aplikasi tanpa HTML yang di-*render* oleh server) tidak didukung. Alih-alih menggunakan `hydrate()`, gunakanlah [`render()`](/reference/react-dom/render) (di React 17 dan lebih rendah) atau [`createRoot()`](/reference/react-dom/client/createRoot) (di React 18+).
 
