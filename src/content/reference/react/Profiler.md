@@ -43,7 +43,7 @@ Bungkus pohon komponen dalam `<Profiler>` untuk mengukur performa *rendering*.
 
 ### `onRender` *callback* {/*onrender-callback*/}
 
-React akan memanggil `onRender` callback Anda dengan informasi tentang apa yang sudah di-*render*.
+React akan memanggil `onRender` *callback* Anda dengan informasi tentang apa yang sudah di-*render*.
 
 ```js
 function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
@@ -53,7 +53,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 
 #### Parameters {/*onrender-parameters*/}
 
-* `id`: String `id` prop dari pohon `<Profiler>` yang baru saja di*commit*. Ini memungkinkan Anda mengidentifikasi bagian mana dari pohon yang di*commit* jika Anda menggunakan beberapa *profiler*.
+* `id`: String `id` prop dari pohon `<Profiler>` yang baru saja di-*commit*. Ini memungkinkan Anda mengidentifikasi bagian mana dari pohon yang di-*commit* jika Anda menggunakan beberapa *profiler*.
 * `phase`: `"mount"`, `"update"` atau `"nested-update"`. Hal ini memungkinkan Anda mengetahui, apakah pohon baru saja dipasang untuk pertama kali, atau di-*render* ulang karena ada perubahan pada *props*, status, atau *hooks*.
 * `actualDuration`: Jumlah milidetik yang dihabiskan untuk me-*render* `<Profiler>` dan turunannya untuk pembaruan terkini. Ini mengindikasikan seberapa baik *sub*-pohon menggunakan memoisasi (contohnya [`memo`](/reference/react/memo) dan [`useMemo`](/reference/react/useMemo)). Idealnya, nilai ini akan berkurang secara signifikan setelah pemasangan awal, karena banyak keturunan yang hanya perlu me-*render* ulang jika *props* tertentu mereka berubah.
 * `baseDuration`: Jumlah milidetik yang memperkirakan berapa lama waktu yang dibutuhkan untuk me-*render* ulang seluruh *sub*-pohon `<Profiler>` tanpa pengoptimalan apa pun. Dihitung dengan menjumlahkan durasi *render* terbaru dari setiap komponen dalam pohon. Nilai ini memperkirakan biaya kasus terburuk dari *rendering* (misalnya, pemasangan awal atau pohon tanpa memoisasi). Bandingkan `actualDuration` dengan nilai ini untuk melihat apakah memoisasi berfungsi.
