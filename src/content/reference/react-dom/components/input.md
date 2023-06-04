@@ -20,7 +20,7 @@ Komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/We
 
 ### `<input>` {/*input*/}
 
-Untuk menampilkan sebuah masukan, render komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
@@ -101,7 +101,7 @@ Props `<input>` ini relevan untuk masukan tidak terkontrol dan masukan terkontro
 
 ### Menampilkan masukan dari berbagai jenis {/*displaying-inputs-of-different-types*/}
 
-Untuk menampilkan masukan, render sebuah komponen `<input>`. Secara default, itu akan menjadi masukan teks. Anda dapat mengopen `type="checkbox"` untuk sebuah checkbox, `type="radio"` untuk sebuah tombol radio, [atau salah satu dari jenis masukan lainnya.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+Untuk menampilkan masukan, *render* sebuah komponen `<input>`. Secara default, itu akan menjadi masukan teks. Anda dapat mengopen `type="checkbox"` untuk sebuah checkbox, `type="radio"` untuk sebuah tombol radio, [atau salah satu dari jenis masukan lainnya.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 
 <Sandpack>
 
@@ -305,7 +305,7 @@ Secara default, *apapun* `<button>` di dalam sebuah `<form>` akan melakukan subm
 
 Sebuah masukan seperti `<input />` *tidaklah terkontrol.* Bahkan jika Anda [memberikan sebuah nilai awal](#providing-an-initial-value-for-an-input) seperti `<input defaultValue="Teks awal" />`, JSX Anda hanya menentukan nilai awal. Tidak mengontrol apa seharusnya nilai sekarang.
 
-**Untuk render sebuah masukan _terkontrol_, oper prop `value` ke dalamnya (atau `checked` untuk checkbox and radio).** React akan memaksa masukan untuk selalu memiliki `value` yang Anda berikan. Biasanya, Anda akan melakukan ini dengan mendeklarasikan sebuah [variable *state*:](/reference/react/useState)
+**Untuk *render* sebuah masukan _terkontrol_, oper prop `value` ke dalamnya (atau `checked` untuk checkbox and radio).** React akan memaksa masukan untuk selalu memiliki `value` yang Anda berikan. Biasanya, Anda akan melakukan ini dengan mendeklarasikan sebuah [variable *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function Form() {
@@ -320,7 +320,7 @@ function Form() {
 }
 ```
 
-Bagaimanapun sebuah masukan terkontrol masuk akal jika Anda membutuhkan *state*--contohnya, untuk rendering ulang UI Anda pada setiap pengeditan:
+Bagaimanapun sebuah masukan terkontrol masuk akal jika Anda membutuhkan *state*--contohnya, untuk *render*-ing ulang UI Anda pada setiap pengeditan:
 
 ```js {2,9}
 function Form() {
@@ -414,9 +414,9 @@ p { font-weight: bold; }
 
 ---
 
-### Mengoptimalkan rendering ulang pada setiap penekanan tombol {/*optimizing-re-rendering-on-every-keystroke*/}
+### Mengoptimalkan *render*-ing ulang pada setiap penekanan tombol {/*optimizing-re-rendering-on-every-keystroke*/}
 
-Ketika Anda menggunakan masukan terkontrol, Anda mengatur *state* pada setiap penekanan tombol. Jika komponen yang berisi *state* Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja rendering ulang.
+Ketika Anda menggunakan masukan terkontrol, Anda mengatur *state* pada setiap penekanan tombol. Jika komponen yang berisi *state* Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja *render*-ing ulang.
 
 Contohnya, misalkan Anda mulai dengan form yang me-*render* ulang semua konten halaman pada setiap penekanan tombol:
 
@@ -456,9 +456,9 @@ function SignupForm() {
 }
 ```
 
-Ini secara signifikan meningkatkan kinerja karena sekarang hanya `SignupForm` yang dirender ulang pada setiap penekanan tombol.
+Ini secara signifikan meningkatkan kinerja karena sekarang hanya `SignupForm` yang di-*render* ulang pada setiap penekanan tombol.
 
-Jika tidak ada cara untuk menghindari perenderan ulang (contohnya, jika `PageContent` bergantung pada nilai masukan pencarian), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) memungkinkan Anda menjaga masukan yang dikontrol tetap responsif bahkan di tengah render ulang yang besar.
+Jika tidak ada cara untuk menghindari pe-*render*-an ulang (contohnya, jika `PageContent` bergantung pada nilai masukan pencarian), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) memungkinkan Anda menjaga masukan yang dikontrol tetap responsif bahkan di tengah *render* ulang yang besar.
 
 ---
 
@@ -579,7 +579,7 @@ function handleChange(e) {
 }
 ```
 
-Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahkan kembali dari DOM pada setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) pada setiap render ulang, contohnya jika masukan atau salah satu parentnya selalu menerima atribut `key` yang berbeda, atau jika Anda menyusun definisi fungsi komponen (yang tidak didukung dan menyebabkan komponen "dalam" selalu dianggap pohon yang berbeda).
+Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahkan kembali dari DOM pada setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) pada setiap *render* ulang, contohnya jika masukan atau salah satu parentnya selalu menerima atribut `key` yang berbeda, atau jika Anda menyusun definisi fungsi komponen (yang tidak didukung dan menyebabkan komponen "dalam" selalu dianggap pohon yang berbeda).
 
 ---
 
