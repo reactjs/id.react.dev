@@ -81,7 +81,7 @@ Nilai lainnya, seperti string, angka, atau objek sembarang dan *array*, bukan el
 Untuk nilai-nilai tersebut, `isValidElement` mengembalikan `false`: 
 
 ```js
-// ❌ Ini adalah *bukan* elemen React
+// ❌ Berikut ini *bukan* elemen React
 console.log(isValidElement(null)); // false
 console.log(isValidElement(25)); // false
 console.log(isValidElement('Hello')); // false
@@ -102,16 +102,16 @@ Saat Anda menulis sebuah komponen, Anda dapat mengembalikan *node React* apa pun
 
 ```js
 function MyComponent() {
-  // ... anda dapat mengembalikan node React apapun ...
+  // ... Anda dapat mengembalikan node React apapun ...
 }
 ```
 
-Node React dapat berupa:
+*Node* React dapat berupa:
 
 - Elemen React yang dibuat seperti `<div />` atau `createElement('div')`
 - Portal yang dibuat dengan [`createPortal`](/reference/react-dom/createPortal)
 - Sebuah *string*
-- Sebuah Angka
+- Sebuah angka
 - `true`, `false`, `null`, atau `undefined` (yang tidak ditampilkan)
 - Array *node* React lainnya
 
