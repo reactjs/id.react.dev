@@ -1,5 +1,5 @@
 ---
-title: "State: A Component's Memory"
+title: "State: Memori dari Sebuah Komponen"
 ---
 
 <Intro>
@@ -381,7 +381,7 @@ const [index, setIndex] = useState(0);
 3. **Render kedua** React masih membaca `useState(0)`, namun karena sebelumnya dia *ingat* kalau Anda sudah mengatur nilai `index` ke `1`, ia mengembalikan `[1, setIndex]`.
 4. Dan pola ini berlanjut seterusnya!
 
-## Memberikan beberapa variabel *state* kepada komponen {/*giving-a-component-multiple-state-variables*/}
+## Memberikan beberapa variabel state kepada komponen {/*giving-a-component-multiple-state-variables*/}
 
 Anda bisa memberikan sebanyak mungkin variabel *state* dengan berbagai macam tipe data ke sebuah komponen. Komponen di bawah memiliki dua variabel state, sebuah bilangan `index` dan boolean `showMore` yang berganti nilai saat Anda menekan "Tampilkan Detail"
 
@@ -527,7 +527,7 @@ Baiknya memang ada beberapa variabel *state* jika mereka tidak saling berhubunga
 
 <DeepDive>
 
-#### Bagaimana React tahu *state* mana yang harus dikembalikan? {/*how-does-react-know-which-state-to-return*/}
+#### Bagaimana React tahu state mana yang harus dikembalikan? {/*how-does-react-know-which-state-to-return*/}
 
 Anda mungkin memperhatikan kalau dalam pemanggilan `useState` tidak ada informasi mengenai *state* *mana* yang terbaru. Tidak ada *tanda pengenal* yang dioper ke `useState`, jadi bagaimana dia bisa tahu variabel *state* yang harus dikembalikan? Apakah ada cara ajaib seperti memproses fungsi Anda? Jawabannya adalah tidak.
 
@@ -543,37 +543,39 @@ Contoh di bawah **tidak menggunakan React** namun bisa memberi gambaran bagaiman
 let componentHooks = [];
 let currentHookIndex = 0;
 
-// How useState works inside React (simplified).
+// Penjelasan sederhana tentang 
+// cara kerja useState di dalam React
 function useState(initialState) {
   let pair = componentHooks[currentHookIndex];
   if (pair) {
-    // This is not the first render,
-    // so the *state* pair already exists.
-    // Return it and prepare for next Hook call.
+    // Karena bukan render pertama
+    // pasangan variable *state* sudah ada.
+    // Langsung kembalikan dan tunggu pemanggilan Hook selanjutnya 
     currentHookIndex++;
     return pair;
   }
 
-  // This is the first time we're rendering,
-  // so create a *state* pair and store it.
+  // Ini render pertama, maka buat dan simpan
+  // pasangan nilai *state*
   pair = [initialState, setState];
 
   function setState(nextState) {
-    // When the user requests a *state* change,
-    // put the new value into the pair.
+    // Saat pengguna melakukan perubahan *state*,
+    // simpan nilai barunya ke dalam pasangan nilai
     pair[0] = nextState;
     updateDOM();
   }
 
-  // Store the pair for future renders
-  // and prepare for the next Hook call.
+  // Simpan pasangan nilai untuk render berikutnya
+  // dan tunggu pemanggilan Hook selanjutnya 
   componentHooks[currentHookIndex] = pair;
   currentHookIndex++;
   return pair;
 }
 
 function Gallery() {
-  // Each useState() call will get the next pair.
+  // Tiap pemanggilan useState() akan mengembalikan
+  // pasangan nilai yang berikutnya 
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
 
@@ -601,13 +603,13 @@ function Gallery() {
 }
 
 function updateDOM() {
-  // Reset the current Hook index
-  // before rendering the component.
+  // Setel ulang index terbaru dari Hook 
+  // sebelum merender komponen
   currentHookIndex = 0;
   let output = Gallery();
 
-  // Update the DOM to match the output.
-  // This is the part React does for you.
+  // Perbarui DOM untuk menyamakannya dengan `output`
+  // Ini bagian yang React lakukan untuk Anda
   nextButton.onclick = output.onNextClick;
   header.textContent = output.header;
   moreButton.onclick = output.onMoreClick;
@@ -732,7 +734,7 @@ Anda tidak perlu mendalaminya untuk menggunakan React, tapi bisa memberi Anda ga
 
 </DeepDive>
 
-## *State* terisolasi dan privat {/*state-is-isolated-and-private*/}
+## State terisolasi dan privat {/*state-is-isolated-and-private*/}
 
 Lingkup *state* terbatas pada komponen di mana dia dipanggil. Dalam kata lain, **jika Anda merender komponen yang sama dua kali, tiap komponen akan memiliki *state* yang terpisah!** Mengubah salah satunya tidak kan memengaruhi yang satunya.
 
@@ -1454,7 +1456,7 @@ Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seha
 
 </Solution>
 
-#### Menghapus *state* yang tidak perlu {/*remove-unnecessary-state*/}
+#### Menghapus state yang tidak perlu {/*remove-unnecessary-state*/}
 
 Saat tombol ditekan, pada contoh di bawah, sebuah kotak dialog akan muncul untuk diisi pengguna dan akan menambilkan pesan untuk menyapa mereka. Anda sudah coba menggunakan *state* untuk namanya, namun karena suatu hal dia tetap menampilkan "Halo, !" 
 
