@@ -46,15 +46,15 @@ Di sisi klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 
 #### Parameter {/*parameters*/}
 
-* `reactNode`: Node React yang ingin anda *render* menjadi HTML. Contohnya, sebuah elemen JSX seperti `<App />`. Ini diharapakan mewakili keseluruhan dokumen. Jadi, komponen `App` harus me-*render* tag `<html>`.
+* `reactNode`: Node React yang ingin anda *render* menjadi HTML. Contohnya, sebuah elemen JSX seperti `<App />`. Ini diharapkan mewakili keseluruhan dokumen. Jadi, komponen `App` harus me-*render* tag `<html>`.
 
 * `options` **(opsional)**: Objek berisi opsi *streaming*.
-  * `bootstrapScriptContent` **(opsional)**: Jika ditentukan, string ini akan diletakkan di dalam tag `<script>` *inline*.
-  * `bootstrapScripts` **(opsional)**: Senarai URL string untuk tag `<script>` yang akan di-*emit* di halaman. Gunakan ini untuk menyertakan `<script>` yang memanggil [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Abaikan jika Anda sama sekali tidak ingin menjalankan React di sisi klien.
+  * `bootstrapScriptContent` **(opsional)**: Jika ditentukan, *string* ini akan diletakkan di dalam tag `<script>` *inline*.
+  * `bootstrapScripts` **(opsional)**: Senarai URL *string* untuk tag `<script>` yang akan di-*emit* di halaman. Gunakan ini untuk menyertakan `<script>` yang memanggil [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Abaikan jika Anda sama sekali tidak ingin menjalankan React di sisi klien.
   * `bootstrapModules` **(opsional)**: Sama seperti `bootstrapScripts`, tetapi meng-*emit* [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) sebagai gantinya.
-  * `identifierPrefix` **(opsional)**: Awalan string yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk menghindari konflik saat menggunakan banyak *root* di halaman yang sama. Harus sama dengan awalan yang dioper ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
-  * `namespaceURI` **(opsional)**: String dengan [URI namespace](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) *root* untuk *streaming.* *Default* ke HTML biasa. Berikan `'http://www.w3.org/2000/svg'` untuk SVG atau `'http://www.w3.org/1998/Math/MathML'` untuk MathML.
-  * `nonce` **(opsional)**: String [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) untuk mengizinkan skrip untuk [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
+  * `identifierPrefix` **(opsional)**: Awalan *string* yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk menghindari konflik saat menggunakan banyak *root* di halaman yang sama. Harus sama dengan awalan yang dioper ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
+  * `namespaceURI` **(opsional)**: *String* dengan [URI namespace](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) *root* untuk *streaming.* *Default* ke HTML biasa. Berikan `'http://www.w3.org/2000/svg'` untuk SVG atau `'http://www.w3.org/1998/Math/MathML'` untuk MathML.
+  * `nonce` **(opsional)**: *String* [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) untuk mengizinkan skrip untuk [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
   * `onAllReady` **(opsional)**: *Callback* yang diaktifkan saat semua proses *rendering* selesai, termasuk [*shell*](#specifying-what-goes-into-the-shell) dan semua [konten](#streaming-more-content-as-it-loads) tambahan. Anda dapat menggunakan ini sebagai ganti `onShellReady` [untuk *crawler* dan *static generation*.](#waiting-for-all-content-to-load-for-crawlers-and-static-generation) Jika Anda memulai *streaming* di sini, Anda tidak akan mendapatkan *progressive loading* apa pun. *Stream* akan berisi HTML final.
   * `onError` **(opsional)**: *Callback* yang diaktifkan setiap kali ada kesalahan server, baik yang [dapat dipulihkan](#recovering-from-errors-outside-the-shell) atau [tidak.](#recovering-from-errors-inside-the-shell) Secara default, ini hanya memanggil `console.error`. Jika Anda menggantinya untuk [mencatat laporan kerusakan,](#logging-crashes-on-the-server) pastikan anda masih memanggil `console.error`. Anda juga dapat menggunakannya untuk [menyesuaikan kode status](#setting-the-status-code) sebelum *shell* di-*emit.*
   * `onShellReady` **(opsional)**: *Callback* yang diaktifkan tepat setelah [*shell* awal](#specifying-what-goes-into-the-shell) di-*render*. Anda dapat [mengatur kode status](#setting-the-status-code) dan memanggil `pipe` di sini untuk memulai *streaming.* React akan [mengalirkan konten tambahan](#streaming-more-content-as-it-loads) setelah shell bersama tag `<script>` *inline* yang menggantikan *fallback* pemuatan HTML dengan konten.
@@ -217,7 +217,7 @@ Baik klien maupun server me-*render* `App` dengan prop `assetMap` yang sama, seh
 
 ### Streaming lebih banyak konten saat dimuat {/*streaming-more-content-as-it-loads*/}
 
-Streaming memungkinkan pengguna untuk mulai melihat konten bahkan sebelum semua data dimuat di server. Misalnya, perhatikan halaman profil yang menampilkan sampul, sidebar dengan daftar teman dan foto, dan daftar postingan:
+*Streaming* memungkinkan pengguna untuk mulai melihat konten bahkan sebelum semua data dimuat di server. Misalnya, perhatikan halaman profil yang menampilkan sampul, sidebar dengan daftar teman dan foto, dan daftar postingan:
 
 ```js
 function ProfilePage() {
