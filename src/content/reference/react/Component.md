@@ -248,9 +248,9 @@ Belum ada yang setara dengan `componentDidCatch` pada *function components*. Jik
 
 ### `componentDidMount()` {/*componentdidmount*/}
 
-If you define the `componentDidMount` method, React will call it when your component is added *(mounted)* to the screen. This is a common place to start data fetching, set up subscriptions, or manipulate the DOM nodes.
+Jika Anda mendefinisikan metode `componentDidMount`, React akan memanggilnya ketika komponen Anda ditambahkan*(mounted)* ke layar. Ini adalah tempat umum untuk memulai pengambilan data, menyiapkan *subscriptions*, atau memanipulasi *DOM nodes*.
 
-If you implement `componentDidMount`, you usually need to implement other lifecycle methods to avoid bugs. For example, if `componentDidMount` reads some state or props, you also have to implement [`componentDidUpdate`](#componentdidupdate) to handle their changes, and [`componentWillUnmount`](#componentwillunmount) to clean up whatever `componentDidMount` was doing.
+Jika Anda mengimplementasikan `componentDidMount`, biasanya Anda juga perlu mengimplementasikan *lifecycle methods* lainnya untuk menghindari bug. Sebagai contoh, jika `componentDidMount` membaca sebuah *state* atau *props*, Anda juga harus mengimplementasikan [`componentDidUpdate`](#componentdidupdate) untuk menangani perubahan mereka, dan [`componentWillUnmount`](#componentwillunmount) untuk membersihkan apa pun yang dilakukan oleh `componentDidMount`.
 
 ```js {6-8}
 class ChatRoom extends Component {
@@ -292,15 +292,15 @@ class ChatRoom extends Component {
 
 #### Caveats {/*componentdidmount-caveats*/}
 
-- When [Strict Mode](/reference/react/StrictMode) is on, in development React will call `componentDidMount`, then immediately call [`componentWillUnmount`,](#componentwillunmount) and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+- Ketika [Strict Mode](/reference/react/StrictMode) aktif, di pengembangan React kan memanggil `componentDidMount`, kemudian segera memanggil [`componentWillUnmount`,](#componentwillunmount) dan kemudian memanggil `componentDidMount` lagi. Ini membantu Anda melihai jika Anda lupa untuk mengimplementasikan `componentWillUnmount` atau jika logikanya tidak sepenuhnya "mencerminkan" apa yang dilakukan oleh `componentDidMount`.
 
-- Although you may call [`setState`](#setstate) immediately in `componentDidMount`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the [`constructor`](#constructor) instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+- Meskipun Anda dapat langsung memanggil [`setState`](#setstate) di `componentDidMount`, sebaiknya hindari hal itu jika bisa. Ini akan memicu *render*-ing ekstra, tetapi itu akan terjadi sebelum browser memperbarui layar. Ini menjamin bahwa meskipun [`render`](#render) akan dipanggil dua kali dalam kasus ini, pengguna tidak akan melihat *state* perantara. Gunakan pola ini dengan hati-hati karena sering menyebabkan masalah performa. Dalam kebanyakan kasus, Anda seharusnya dapat menetapkan *state* awal di [`constructor`](#constructor) sebagai gantinya. Namun, dalam beberapa kasus seperti *modal* dan *tooltip* ketika Anda perlu mengukur sebuah *DOM node* sebelum me-*render* sesuatu yang bergantung pada ukuran atau posisinya.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` bersama pada *class components* itu setara dengan memanggil [`useEffect`](/reference/react/useEffect) pada *function components*. Dalam kasus yang jarang terjadi di mana penting bagi kode untuk dijalankan sebelum tampilan browser dilakukan, [`useLayoutEffect`](/reference/react/useLayoutEffect) merupakan pilihan yang lebih tepat.
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Note>
 
