@@ -31,7 +31,7 @@ Kemudian, deklarasikan *ref* di dalam komponen Anda:
 const myRef = useRef(null);
 ```
 
-Terakhir, oper ke simpul DOM sebagai atribut `ref`:
+Terakhir, oper ref Anda sebagai atribut `ref` ke tag JSX yang Anda ingin dapatkan simpul DOM-nya:
 
 ```js
 <div ref={myRef}>
