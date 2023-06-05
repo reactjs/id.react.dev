@@ -31,7 +31,11 @@ Kemudian, deklarasikan *ref* di dalam komponen Anda:
 const myRef = useRef(null);
 ```
 
+<<<<<<< HEAD
 Terakhir, oper ke simpul DOM sebagai atribut `ref`:
+=======
+Finally, pass your ref as the `ref` attribute to the JSX tag for which you want to get the DOM node:
+>>>>>>> ca93140eb98a7ff4364a719075fccea980c55b55
 
 ```js
 <div ref={myRef}>
