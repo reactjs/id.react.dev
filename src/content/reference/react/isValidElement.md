@@ -123,6 +123,6 @@ function MyComponent() {
 }
 ```
 
-Inilah sebabnya mengapa Anda tidak boleh menggunakan `isValidElement` sebagai cara untuk memeriksa apakah sesuatu dapat dirender.
+Inilah sebabnya mengapa Anda tidak boleh menggunakan `isValidElement` sebagai cara untuk memeriksa apakah sesuatu dapat di-*render*.
 
 </DeepDive>
