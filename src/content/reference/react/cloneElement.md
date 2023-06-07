@@ -10,7 +10,7 @@ Menggunakan `cloneElement` adalah hal yang jarang terjadi dan dapat menyebabkan 
 
 <Intro>
 
-`cloneElement` memungkinkan anda untuk membuat elemen React baru dengan menggunakan elemen lain sebagai titik awal.
+`cloneElement` memungkinkan Anda untuk membuat elemen React baru dengan menggunakan elemen lain sebagai titik awal.
 
 ```js
 const clonedElement = cloneElement(element, props, ...children)
@@ -49,26 +49,26 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 
 * `element`: Argumen `element` harus merupakan elemen React yang valid. Misalnya, dapat berupa simpul JSX seperti `<Something />`, hasil dari pemanggilan [`createElement`](/reference/react/createElement), atau hasil dari pemanggilan `cloneElement` lainnya.
 
-* `props`: Argumen `props` harus berupa objek atau `null`. Jika anda mengoper `null`, elemen yang di-kloning akan mempertahankan semua  `element.props` yang orisinal. Sebaliknya, untuk setiap *prop* di objek `props`, elemen yang dikembalikan akan "memilih" nilai dari `props` daripada nilai dari `element.props`. Sisa *props* lainnya akan diisi dari `element.props` yang orisinal. Jika anda mengoper `props.key` atau `props.ref`, mereka akan menggantikan yang orisinal.
+* `props`: Argumen `props` harus berupa objek atau `null`. Jika Anda mengoper `null`, elemen yang di-kloning akan mempertahankan semua  `element.props` yang orisinal. Sebaliknya, untuk setiap *prop* di objek `props`, elemen yang dikembalikan akan "memilih" nilai dari `props` daripada nilai dari `element.props`. Sisa *props* lainnya akan diisi dari `element.props` yang orisinal. Jika Anda mengoper `props.key` atau `props.ref`, mereka akan menggantikan yang orisinal.
 
-* **opsional** `...children`: Nol atau lebih simpul anak. Bisa dari simpul React apa pun, termasuk elemen React, *string*, dan *number*. [*portal*](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan senarai dari simpul-simpul React. Jika anda tidak mengoper argumen `...children` apa pun, `element.props.children` yang orisinal akan tetap dipertahankan.
+* **opsional** `...children`: Nol atau lebih simpul anak. Bisa dari simpul React apa pun, termasuk elemen React, *string*, dan *number*. [*portal*](/reference/react-dom/createPortal), simpul kosong (`null`, `undefined`, `true`, dan `false`), dan senarai dari simpul-simpul React. Jika Anda tidak mengoper argumen `...children` apa pun, `element.props.children` yang orisinal akan tetap dipertahankan.
 
 #### Kembalian {/*returns*/}
 
 `cloneElement` mengembalikan objek elemen React dengan beberapa properti:
 
 * `type`: Sama seperti `element.type`.
-* `props`: Hasil dari penggabungan dangkal antara `element.props` dengan `props` yang anda oper untuk menimpanya.
+* `props`: Hasil dari penggabungan dangkal antara `element.props` dengan `props` yang Anda oper untuk menimpanya.
 * `ref`: `element.ref` yang orisinal, kecuali telah ditimpa oleh `props.ref`.
 * `key`: `element.key`, yang orisinal, kecuali telah ditimpa oleh `props.key`.
 
-Biasanya, anda akan mengembalikan elemen dari sebuah komponen atau membuatnya sebagai anak dari elemen lain. Meskipun anda mungkin membaca properti elemen tersebut, sebaiknya anda memperlakukan setiap elemen sebagai objek tersembunyi setelah dibuat, dan hanya me-*render*-nya.
+Biasanya, Anda akan mengembalikan elemen dari sebuah komponen atau membuatnya sebagai anak dari elemen lain. Meskipun Anda mungkin membaca properti elemen tersebut, sebaiknya Anda memperlakukan setiap elemen sebagai objek tersembunyi setelah dibuat, dan hanya me-*render*-nya.
 
 #### Catatan penting {/*caveats*/}
 
 * Mengkloning sebuah elemen **tidak mengubah elemen yang orisinal**.
 
-* Sebaiknya anda hanya **mengoper *children* sebagai beberapa argumen ke `cloneElement` jika semuanya diketahui secara statis,** seperti `cloneElement(element, null, child1, child2, child3)`. Jika *children* anda dinamis, oper seluruh senarai sebagai argumen ketiga: `cloneElement(element, null, listItems)`. Ini memastikan bahwa React akan [memperingatkan anda tentang `key` yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap *list* dinamis. Untuk *list* statis hal tersebut tidak diperlukan karena tidak pernah diurutkan ulang.
+* Sebaiknya Anda hanya **mengoper *children* sebagai beberapa argumen ke `cloneElement` jika semuanya diketahui secara statis,** seperti `cloneElement(element, null, child1, child2, child3)`. Jika *children* Anda dinamis, oper seluruh senarai sebagai argumen ketiga: `cloneElement(element, null, listItems)`. Ini memastikan bahwa React akan [memperingatkan Anda tentang `key` yang hilang](/learn/rendering-lists#keeping-list-items-in-order-with-key) untuk setiap *list* dinamis. Untuk *list* statis hal tersebut tidak diperlukan karena tidak pernah diurutkan ulang.
 
 * `cloneElement` membuat pelacakan aliran data lebih sulit, jadi **cobalah beberapa [alternatif](#alternatives) sebagai gantinya.**
 
@@ -78,7 +78,7 @@ Biasanya, anda akan mengembalikan elemen dari sebuah komponen atau membuatnya se
 
 ### Menimpa props dari suatu elemen {/*overriding-props-of-an-element*/}
 
-Untuk menimpa *prop* dari beberapa <CodeStep step={1}>elemen React</CodeStep>, oper ke `cloneElement` dengan <CodeStep step={2}>*props* yang ingin anda timpa</CodeStep>:
+Untuk menimpa *prop* dari beberapa <CodeStep step={1}>elemen React</CodeStep>, oper ke `cloneElement` dengan <CodeStep step={2}>*props* yang ingin Anda timpa</CodeStep>:
 
 ```js [[1, 5, "<Row title=\\"Cabbage\\" />"], [2, 6, "{ isHighlighted: true }"], [3, 4, "clonedElement"]]
 import { cloneElement } from 'react';
@@ -236,7 +236,7 @@ Ringkasnya, `List` mengkloning elemen `<Row />` yang diterimanya dan menambahkan
 
 <Pitfall>
 
-Mengkloning *children* mempersulit untuk mengetahui bagaimana aliran data di aplikasi anda. Coba salah satu [alternatif.](#alternatives)
+Mengkloning *children* mempersulit untuk mengetahui bagaimana aliran data di aplikasi Anda. Coba salah satu [alternatif.](#alternatives)
 
 </Pitfall>
 
@@ -259,7 +259,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-*Prop* `renderItem` disebut "render prop" karena merupakan *prop* yang menentukan cara me-*render* sesuatu. Misalnya, anda dapat mengoper `renderItem` yang me-*render* `<Row>` dengan nilai `isHighlighted` yang diberikan:
+*Prop* `renderItem` disebut "render prop" karena merupakan *prop* yang menentukan cara me-*render* sesuatu. Misalnya, Anda dapat mengoper `renderItem` yang me-*render* `<Row>` dengan nilai `isHighlighted` yang diberikan:
 
 ```js {3,7}
 <List
@@ -293,7 +293,7 @@ Hasil akhirnya sama dengan `cloneElement`:
 </List>
 ```
 
-Namun, anda dapat dengan mudah melacak dari mana nilai `isHighlighted` berasal.
+Namun, Anda dapat dengan mudah melacak dari mana nilai `isHighlighted` berasal.
 
 <Sandpack>
 
@@ -397,7 +397,7 @@ Pola ini lebih anjurkan daripada `cloneElement` karena lebih eksplisit.
 
 Alternatif lain untuk `cloneElement` adalah [mengoper data melalui *context*.](/learn/passing-data-deeply-with-context)
 
-Sebagai contoh, anda dapat memanggil [`createContext`](/reference/react/createContext) untuk mendefinisikan `HighlightContext`:
+Sebagai contoh, Anda dapat memanggil [`createContext`](/reference/react/createContext) untuk mendefinisikan `HighlightContext`:
 
 ```js
 export const HighlightContext = createContext(false);
@@ -555,7 +555,7 @@ button {
 
 ### Mengekstraksi logika ke dalam Hook kustom {/*extracting-logic-into-a-custom-hook*/}
 
-Pendekatan lain yang dapat anda coba adalah mengekstrak logika "non-visual" ke dalam Hook anda sendiri, dan menggunakan informasi yang dikembalikan oleh Hook anda untuk memutuskan apa yang akan di-*render*. Misalnya, anda dapat menulis Hook kustom `useList` seperti ini:
+Pendekatan lain yang dapat Anda coba adalah mengekstrak logika "non-visual" ke dalam Hook Anda sendiri, dan menggunakan informasi yang dikembalikan oleh Hook Anda untuk memutuskan apa yang akan di-*render*. Misalnya, Anda dapat menulis Hook kustom `useList` seperti ini:
 
 ```js
 import { useState } from 'react';
@@ -574,7 +574,7 @@ export default function useList(items) {
 }
 ```
 
-Lalu anda dapat menggunakannya seperti ini:
+Lalu Anda dapat menggunakannya seperti ini:
 
 ```js {2,9,13}
 export default function App() {
@@ -597,7 +597,7 @@ export default function App() {
 }
 ```
 
-Aliran datanya eksplisit, tetapi *state* ada di dalam Hook kustom `useList` yang dapat anda gunakan dari komponen apa pun:
+Aliran datanya eksplisit, tetapi *state* ada di dalam Hook kustom `useList` yang dapat Anda gunakan dari komponen apa pun:
 
 <Sandpack>
 
@@ -690,4 +690,4 @@ button {
 
 </Sandpack>
 
-Pendekatan ini sangat berguna jika anda ingin menggunakan kembali logika ini di komponen yang berbeda.
+Pendekatan ini sangat berguna jika Anda ingin menggunakan kembali logika ini di komponen yang berbeda.
