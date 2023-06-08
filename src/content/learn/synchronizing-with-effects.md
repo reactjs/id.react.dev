@@ -22,7 +22,7 @@ Beberapa komponen membutuhkan sinkronisasi dengan sistem eksternal. Contohnya, m
 
 Sebelum menulusuri Effect, anda harus terbiasa dengan dua tipe logika dalam komponen React:
 
-- **Pe-*render*-an code** (dikenalkan dalam [Mendeskripsikan UI](/learn/describing-the-ui)) ada di puncak komponen anda. Ini adalah tempat dimana anda mengambil *props* dan *state*, mentransformasikannya, dan mengembalikan JSX yang ingin anda lihat di layar. [Pe-*render*-an kode harus murni](/learn/keeping-components-pure) Seperti rumus matematika; per-*render*-an kode hanya menghitung hasil; dan tidak melakukan hal lain.
+- **Pe-*render*-an code** (dikenalkan dalam [Mendeskripsikan UI](/learn/describing-the-ui)) ada di puncak komponen anda. Ini adalah tempat dimana anda mengambil *props* dan *state*, mentransformasikannya, dan mengembalikan JSX yang ingin anda lihat di layar. [Pe-*render*-an kode harus murni.](/learn/keeping-components-pure) Seperti rumus matematika; per-*render*-an kode hanya menghitung hasil; dan tidak melakukan hal lain.
 
 - **Event handlers** (dikenalkan dalam [Menambahkan Interaktifitas](/learn/adding-interactivity)) adalah fungsi bersarang di dalam komponen anda yang tidak hanya menghitung, tetapi juga *melakukan* sesuatu. Sebuah *event handler* mungkin memperbarui sebuah *field* masukan, mengirimkan permintaan HTTP POST untuk membeli produk, atau mengarahkan pengguna ke layar lain. *Event handler* memiliki ["efek samping"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (mereka merubah *state* program) yang disebabkan oleh tindakan pengguna (contohnya seperti klik tombol atau pengetikan).
 
