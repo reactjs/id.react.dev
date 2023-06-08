@@ -1,4 +1,4 @@
----klik
+---
 title: 'Sinkronisasi dengan Effect'
 ---
 
