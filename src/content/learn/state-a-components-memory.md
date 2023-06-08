@@ -1,25 +1,25 @@
 ---
-title: "State: A Component's Memory"
+title: "State: Memori dari Sebuah Komponen"
 ---
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Seringkali komponen perlu mengubah tampilan di layar sebagai respons terjadinya interaksi dari pengguna. Mengetik di dalam form akan memperbarui kolom masukan (*input field*), menekan tombol "Selanjutnya" pada slide gambar akan mengganti gambar yang ditampilkan, menekan "Beli" akan menambahkan barang ke dalam keranjang. Komponen perlu "mengingat" informasi-informasi ini: nilai kolom input, gambar, dan isi keranjang belanja. Dalam React, ingatan (*memory*) yang dimiliki komponen ini disebut *state*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* Bagaimana menambahkan *state* dengan Hook [`useState`](/reference/react/useState)
+* Pasangan variabel yang dikembalikan oleh Hook `useState`
+* Bagaimana menambahkan lebih dari satu variabel *state*
+* Mengapa lingkup *state* bersifat lokal ke komponen
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## Saat variabel biasa kurang memadai {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Di bawah adalah komponen yang merender sebuah gambar pahatan. Menekan tombol "Selanjutnya" seharusnya menampilkan gambar pahatan yang berikutnya dengan mengganti nilai `index` menjadi `1`, lalu `2`, dan seterusnya. Namun, komponen ini **belum bekerja** (Boleh Anda cek!):
 
 <Sandpack>
 
@@ -37,14 +37,14 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <img 
         src={sculpture.url} 
@@ -57,6 +57,7 @@ export default function Gallery() {
   );
 }
 ```
+
 
 ```js data.js
 export const sculptureList = [{
@@ -151,46 +152,47 @@ button {
 
 </Sandpack>
 
-The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+*event handler* `handleClick` memperbarui nilai variabel `index`. Namun dua hal mencegah pembaruan tersebut ditampilkan ke pengguna:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Variabel lokal tidak dipertahankan antarrender.** Saat React merender komponen ini untuk kedua kalinya, dia membuatnya ulang dari awal—tidak memerhatikan adanya perubahan ke variabel tersebut.
+2. **Perubahan terhadap variabel lokal tidak memicu *render*.** React tidak menyadari kalau dia perlu melakukan *render*ulang dengan data yang baru.
 
-To update a component with new data, two things need to happen:
+Untuk memperbarui komponen dengan data baru, dua hal perlu terjadi:
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **Mempertahankan** data antarrender.
+2. **Memicu** React untuk merender ulang komponennya dengan data baru.
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+Dua hal tersebut bisa dicapai dengan Hook [`useState`](/reference/react/useState):
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. Sebuah **variabel state** untuk mempertahankan data antarrender.
+2. Sebuah **fungsi *state* setter** untuk memperbarui variabel dan memicu React untuk merender ulang komponen.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Menambahkan variabel *state* {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+Untuk menambahkan variabel state, impor `useState` dari React di paling atas *file*: 
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+Lalu, ubah baris berikut:
 
 ```js
 let index = 0;
 ```
 
-with
+menjadi
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` merupakan variabel *state* dan `setIndex` adalah fungsi setter.
 
-> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> Sintaks yang menggunakan `"["` dan `"]"` digunakan untuk [membongkar isi array](https://javascript.info/destructuring-assignment) dan memungkinkan Anda untuk membaca elemen dalam array tersebut. Array yang dikembalikan oleh `useState` akan selalu berisi dua elemen.
 
-This is how they work together in `handleClick`:
+
+Ini cara mereka bekerja dalam `handleClick`:
 
 ```js
 function handleClick() {
@@ -198,7 +200,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+Sekarang, menekan tombol "Selanjutnya" akan mengganti gambar pahatan:
 
 <Sandpack>
 
@@ -217,14 +219,14 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <img 
         src={sculpture.url} 
@@ -237,6 +239,7 @@ export default function Gallery() {
   );
 }
 ```
+
 
 ```js data.js
 export const sculptureList = [{
@@ -331,57 +334,56 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### Menggunakan Hook pertama Anda {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
+Dalam React, `useState`, dan fungsi lainnya yang berawalan "`use`", disebut sebuah Hook.
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+*Hooks* adalah fungsi spesial yang hanya tersedia hanya pada proses [rendering](/learn/render-and-commit#step-1-trigger-a-render) (yang akan kita bahas lebih detail di halaman selanjutnya). Mereka memberikan Anda akses ke berbagai fitur React.
 
-State is just one of those features, but you will meet the other Hooks later.
+State adalah salah satu fitur tersebut, Anda akan menemui Hooks lainnya nanti.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Fungsi-fungsi Hook yang diawali `use`—hanya bisa dipanggil pada tingkat atas komponen Anda atau [hooks Anda sendiri](/learn/reusing-logic-with-custom-hooks)** Anda tidak bisa memanggil  Hook di dalam blok kode kondisi, perulangan, atau fungsi bersarang lainnya. Hook sendiri adalah fungsi, tapi penting untuk ingat deklarasi mereka tidak bergantung pada pemanggilan bersyarat. Anda bisa menggunakan fitur React di tingkat atas komponen seperti Anda mengimpor modul di bagian atas file.
 
 </Pitfall>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### Anatomi dari `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
-
+Saat Anda memanggil [`useState`](/reference/react/useState), Anda memberitahu React bahwa komponen ini harus mengingat sesuatu
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-In this case, you want React to remember `index`.
+Dalam kasus ini, Anda ingin React untuk mengingat `index`.
 
 <Note>
 
-The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
+Dalam penamaan pasangan variabel dari `useState`, kesepakatannya yang diikuti adalah `const [something, setSomething]`. Walaupun sebenarnya Anda tidak harus mengikuti ini, pola penamaan yang konsisten membuat kode lebih mudah dimengerti. 
 
 </Note>
 
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
 
-Every time your component renders, `useState` gives you an array containing two values:
+Nilai yang dimasukan ke `useState` adalah **nilai awal** dari variabel state. Dalam kasus ini, nilai awal `index` disetel ke 0 dengan `useState(0)`.
 
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+Tiap kali komponen Anda dirender, `useState` kan mengembalikan array dengan dua elemen:
+1. **Variabel state** (`index`) dengan nilai yang Anda simpan.
+2. **Fungsi *state* setter** (`setIndex`) yang akan memperbarui variabel *state* dan memicu React untuk melakukan *render* ulang.
 
-Here's how that happens in action:
+Ini urutan yang terjadi:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
-4. And so on!
+1. **Komponen Anda *render* untuk pertama kali.** Karena Anda memberikan `0` ke `useState` sebagai nilai awal untuk `index`, dia akan mengembalikan `[0, setIndex]`. React akan menandai `0` sebagai nilai *state* terbaru.
+2. **Anda memperbarui state** Saat pengguna menekan tombol, dia akan memanggil `setIndex(index + 1)` di saat `index` bernilai `0`, sehingga menjadi `setIndex(1)`. Kali ini React akan mengingat nilai *state* terbaru adalah `1` dan memicu *render* lain.
+3. **Render kedua** React masih membaca `useState(0)`, namun karena sebelumnya dia *ingat* kalau Anda sudah mengatur nilai `index` ke `1`, ia mengembalikan `[1, setIndex]`.
+4. Dan pola ini berlanjut seterusnya!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Memberikan beberapa variabel state kepada komponen {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+Anda bisa memberikan sebanyak mungkin variabel *state* dengan berbagai macam tipe data ke sebuah komponen. Komponen di bawah memiliki dua variabel state, sebuah bilangan `index` dan boolean `showMore` yang berganti nilai saat Anda menekan "Tampilkan Detail"
 
 <Sandpack>
 
@@ -405,17 +407,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -426,6 +428,7 @@ export default function Gallery() {
   );
 }
 ```
+
 
 ```js data.js
 export const sculptureList = [{
@@ -520,19 +523,19 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+Baiknya memang ada beberapa variabel *state* jika mereka tidak saling berhubungan, misal `index` dan `showMore` dalam contoh tadi. Tapi kalau Anda merasa dua *state* akan sering berganti nilai bersama, ada baiknya untuk menggabungkannya. Misal, jika Anda mempunyai form dengan beberapa kolom, akan lebih mudah jika ada satu variabel *state* berupa objek daripada ada variabel *state* untuk masing-masing kolom. Baca [Memilih struktur state](/learn/choosing-the-state-structure) untuk tips lainnya.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### Bagaimana React tahu state mana yang harus dikembalikan? {/*how-does-react-know-which-state-to-return*/}
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+Anda mungkin memperhatikan kalau dalam pemanggilan `useState` tidak ada informasi mengenai *state* *mana* yang terbaru. Tidak ada *tanda pengenal* yang dioper ke `useState`, jadi bagaimana dia bisa tahu variabel *state* yang harus dikembalikan? Apakah ada cara ajaib seperti memproses fungsi Anda? Jawabannya adalah tidak.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Untuk dapat tetap memakai sintaks yang singkat, Hook **bergantung pada pemanggilan yang konsisten di tiap *render* dalam komponen yang sama**. Dalam prakteknya ini berjalan dengan baik karena jika Anda mengikuti ketentuan di atas ("panggil Hook hanya pada tingkat atas"), Hook akan selalu dipanggil dengan urutan yang sama. Sebagai tambahan, [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) akan memberitahu Anda kalau ada kesalahan yang luput.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+Di balik layar, React menyimpan sebuah array berisi pasangan *state* untuk tiap komponen. Dia juga menandai pasangan *state* terbaru, yang mana diatur menjadi `0` sebelum *render*. Tiap kali pemanggilan `useState`, React akan memberi pasangan *state* dan menambah nilai *index*. Anda bisa membaca lebih lanjut tentang mekanisme ini di [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
-This example **doesn't use React** but it gives you an idea of how `useState` works internally:
+Contoh di bawah **tidak menggunakan React** namun bisa memberi gambaran bagaimana `useState` bekerja:
 
 <Sandpack>
 
@@ -540,37 +543,39 @@ This example **doesn't use React** but it gives you an idea of how `useState` wo
 let componentHooks = [];
 let currentHookIndex = 0;
 
-// How useState works inside React (simplified).
+// Penjelasan sederhana tentang 
+// cara kerja useState di dalam React
 function useState(initialState) {
   let pair = componentHooks[currentHookIndex];
   if (pair) {
-    // This is not the first render,
-    // so the state pair already exists.
-    // Return it and prepare for next Hook call.
+    // Karena bukan render pertama
+    // pasangan variable *state* sudah ada.
+    // Langsung kembalikan dan tunggu pemanggilan Hook selanjutnya 
     currentHookIndex++;
     return pair;
   }
 
-  // This is the first time we're rendering,
-  // so create a state pair and store it.
+  // Ini render pertama, maka buat dan simpan
+  // pasangan nilai *state*
   pair = [initialState, setState];
 
   function setState(nextState) {
-    // When the user requests a state change,
-    // put the new value into the pair.
+    // Saat pengguna melakukan perubahan *state*,
+    // simpan nilai barunya ke dalam pasangan nilai
     pair[0] = nextState;
     updateDOM();
   }
 
-  // Store the pair for future renders
-  // and prepare for the next Hook call.
+  // Simpan pasangan nilai untuk render berikutnya
+  // dan tunggu pemanggilan Hook selanjutnya 
   componentHooks[currentHookIndex] = pair;
   currentHookIndex++;
   return pair;
 }
 
 function Gallery() {
-  // Each useState() call will get the next pair.
+  // Tiap pemanggilan useState() akan mengembalikan
+  // pasangan nilai yang berikutnya 
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
 
@@ -583,8 +588,8 @@ function Gallery() {
   }
 
   let sculpture = sculptureList[index];
-  // This example doesn't use React, so
-  // return an output object instead of JSX.
+  // Contoh di bawah tidak menggunakan React,
+  // makanya yang dikembalikan adalah objek, bukan JSX.
   return {
     onNextClick: handleNextClick,
     onMoreClick: handleMoreClick,
@@ -598,13 +603,13 @@ function Gallery() {
 }
 
 function updateDOM() {
-  // Reset the current Hook index
-  // before rendering the component.
+  // Setel ulang index terbaru dari Hook 
+  // sebelum merender komponen
   currentHookIndex = 0;
   let output = Gallery();
 
-  // Update the DOM to match the output.
-  // This is the part React does for you.
+  // Perbarui DOM untuk menyamakannya dengan `output`
+  // Ini bagian yang React lakukan untuk Anda
   nextButton.onclick = output.onNextClick;
   header.textContent = output.header;
   moreButton.onclick = output.onMoreClick;
@@ -624,6 +629,7 @@ let header = document.getElementById('header');
 let moreButton = document.getElementById('moreButton');
 let description = document.getElementById('description');
 let image = document.getElementById('image');
+
 let sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -724,15 +730,15 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-You don't have to understand it to use React, but you might find this a helpful mental model.
+Anda tidak perlu mendalaminya untuk menggunakan React, tapi bisa memberi Anda gambaran kasar tentang cara kerjanya.
 
 </DeepDive>
 
-## State is isolated and private {/*state-is-isolated-and-private*/}
+## State terisolasi dan privat {/*state-is-isolated-and-private*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+Lingkup *state* terbatas pada komponen di mana dia dipanggil. Dalam kata lain, **jika Anda merender komponen yang sama dua kali, tiap komponen akan memiliki *state* yang terpisah!** Mengubah salah satunya tidak kan memengaruhi yang satunya.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+Dalam contoh di bawah, komponen `Gallery` dari sebelumnya dirender dua kali tanpa perubahan ke logikanya. Coba tekan tombol di dalam tiap galeri. Perhatikan bagaimana *state* mereka tidak saling memengaruhi
 
 <Sandpack>
 
@@ -770,17 +776,17 @@ export default function Gallery() {
   return (
     <section>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -891,21 +897,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+Inilah yang membedakan *state* dengan variabel biasa yang Anda deklarasikan di tingkat atas komponen. *State* tidak terikat ke pemanggilan fungsi tertentu atau lokasi di dalam kode, tapi dia "bersifat lokal" ke komponen spesifik di laman web. Anda merender dua buah komponen `<Gallery />` makan *state* mereka disimpan secara terpisah.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Perhatikan juga bagaimana komponen `Page` tidak "mengetahui" tentang *state* milik `Gallery` atau bahkan ada-tidaknya. Tidak seperti *props*, **state bersifat privat ke komponen tempat dia dideklarasikan.** Komponen *parent* tidak dapat mengubahnya. Sehingga Anda bisa menambahkan atau menghapus *state* tanpa memengaruhi komponen lainnya.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+Bagaimana jika Anda ingin menjaga *state* di kedua `Gallery` tetap sinkron? Cara yang benar dalam React adalah *menghapus* *state* dari komponen anak (*child*) dan memindahkannya ke komponen Induk (*parent*) terdekat yang sama. Beberapa halaman berikutnya akan fokus ke mengatur *state* dalam sebuah komponen, tapi kita akan kembali ke topic ini di [Sharing *State* Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
-* State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* Gunakan variabel *state* saat komponen perlu *mengingat* informasi antarrender.
+* Variabel *state* dideklarasikan dengan Hook `useState`.
+* Hooks adalah fungsi spesial yang diawali `use`. Mereka memberi Anda akses ke fitur-fitur React seperti *state*.
+* Hooks mungkin mengingatkan Anda ke pernyataan impor: mereka perlu dipanggil tanpa syarat. Memanggil Hooks, termasuk `useState`, hanya bisa pada tingkat atas sebuah komponen atau Hook lainnya.
+* Hook `useState` mengembalikan pasangan nilai: nilai *state* terbaru dan fungsi untuk memperbaruinya.
+* Anda bisa memliki lebih dari satu variabel *state*. Di balik layar, React akan menandainya sesuai urutan pemanggilannya.
+* *State* bersifat privat ke komponennya. Jika Anda merendernya di dua tempat, tiap komponen memiliki *state* masing-masing.
 
 </Recap>
 
@@ -913,11 +919,11 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-#### Complete the gallery {/*complete-the-gallery*/}
+#### Lengkapi galerinya {/*complete-the-gallery*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+Jika Anda menekan "Selanjunya" di gambar pahatan terakhir, kodenya akan berhenti bekerja. Coba perbaiki logikanya untuk mencegah hal tersebut. Anda bisa melakukannya dengan menambahkan pengecekan di event hanler atau menonaktifkan tombolnya saat tidak ada aksi yang mungkin terjadi.
 
-After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
+Setelah memperbaiki kesalahannya, tambahkan tombol "Sebelumnya" untuk menampilkan gambar pahatan yang sebelumnya. Kodenya harus berjalan lancar sampai gambar yang pertama tampil.
 
 <Sandpack>
 
@@ -941,17 +947,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -1059,7 +1065,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-This adds a guarding condition inside both event handlers and disables the buttons when needed:
+Kode ini menambahkan pengecekan di dalam event handler dan menonaktifkan tombol saat tidak diperlukan:
 
 <Sandpack>
 
@@ -1097,23 +1103,23 @@ export default function Gallery() {
         onClick={handlePrevClick}
         disabled={!hasPrev}
       >
-        Previous
+        Sebelumnya
       </button>
       <button
         onClick={handleNextClick}
         disabled={!hasNext}
       >
-        Next
+        Selanjutnya
       </button>
       <h2>
         <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        oleh {sculpture.artist}
       </h2>
       <h3>  
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
       </button>
       {showMore && <p>{sculpture.description}</p>}
       <img 
@@ -1219,13 +1225,13 @@ img { width: 120px; height: 120px; }
 
 </Sandpack>
 
-Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and inside the event handlers! This handy pattern works because event handler functions ["close over"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) any variables declared while rendering.
+Perhatikan bagaimana `hasPrev` dan `hasNext` bisa digunakan langsung di dalam blok JSK dan di dalam event handler! Ini pola yang tergolong praktis karena fungsi event handler [membaca variabel di lingkup sekitarnya](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 </Solution>
 
-#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+#### Memperbaiki form masukan {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+Saat Anda mengetik di dalam kolom masukan, tidak ada yang muncul. Kolom masukkan terlihat "terjebak" menampilkan string kosong. `value` dari `<input>` yang pertama disetel untuk selalu membaca dari variabel `firstName`, dan `value` untuk `<input>` kedua disetel untuk membaca `lastName`. Sejauh ini benar. Kedua input memiliki event handler `onChange`, yang mana akan memperbarui nilai variabel berdasarkan masukan terbaru dari pengguna (`e.target.value`). Namun variabelnya seperti tidak "mengingat" nilai mereka antarrender. Perbaiki kode ini dengan menggunakan variabel *state*.
 
 <Sandpack>
 
@@ -1250,17 +1256,17 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Nama Depan"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nama Belakang"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Hai, {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Setel Ulang</button>
     </form>
   );
 }
@@ -1274,7 +1280,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+Pertama, impor `useState` dari React. Lalu ganti `firstName` dan `lastName` dengan variabel *state* yang dideklaraskan menggunakan `useState`. Terkahir, gnati setiap pemberian nilai `firstName = ...` dengan `setFirstName(...)`, dan lakukan hal yang sama untuk `lastName`. Jangan lupa untuk mengubah isi `handleReset` juga agar tombol `Setel Ulang` bekerja.
 
 <Sandpack>
 
@@ -1301,17 +1307,17 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Nama Depan"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nama Belakang"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Hai, {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Setel Ulang</button>
     </form>
   );
 }
@@ -1325,13 +1331,13 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-#### Fix a crash {/*fix-a-crash*/}
+#### Perbaiki kerusakan {/*fix-a-crash*/}
 
-Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
+Di bawah adalah form di mana pengguna bisa memberi masukan. Saat masukan dikirim, sebuah pesan "Terima kasih" seharusnya ditampilkan. Namun dia justru berhenti bekerja dan menampilkan pesan galat "Hooks yang dirender lebih sedikit dari yang seharusnya". Apakah Anda bisa menemukan kesalahan dan memperbaikinya?
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
+Apakah ada batasan mengenai *di mana* Hooks bisa dipanggil? Apakah komponen ini melanggar aturan? Cek apakah ada komentar yang menonaktifkan pengecekan *linter*--sering di sini tempat bug bersembunyi.
 
 </Hint>
 
@@ -1343,23 +1349,23 @@ import { useState } from 'react';
 export default function FeedbackForm() {
   const [isSent, setIsSent] = useState(false);
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   } else {
     // eslint-disable-next-line
     const [message, setMessage] = useState('');
     return (
       <form onSubmit={e => {
         e.preventDefault();
-        alert(`Sending: "${message}"`);
+        alert(`Mengirim: "${message}"`);
         setIsSent(true);
       }}>
         <textarea
-          placeholder="Message"
+          placeholder="Pesan masukan"
           value={message}
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Kirim</button>
       </form>
     );
   }
@@ -1370,9 +1376,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+Hooks hanya dapat dipanggil di tingkat atas dari komponen fungsi. Di sini, deklarasi `isSent` pertama mengikuti aturan tersebut, namun tidak untuk `message` karena dia terletak di dalam blok kondisi.
 
-Move it out of the condition to fix the issue:
+Pindahkan dia ke luar dari blok kondisi untuk memperbaiki isu ini.
 
 <Sandpack>
 
@@ -1384,21 +1390,21 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   } else {
     return (
       <form onSubmit={e => {
         e.preventDefault();
-        alert(`Sending: "${message}"`);
+        alert(`Mengirim: "${message}"`);
         setIsSent(true);
       }}>
         <textarea
-          placeholder="Message"
+          placeholder="Pesan masukan"
           value={message}
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Kirim</button>
       </form>
     );
   }
@@ -1407,9 +1413,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Remember, Hooks must be called unconditionally and always in the same order!
+Ingat, Hooks hanya dapat dipanggil tanpa syarat dan selalu dengan urutan yang sama!
 
-You could also remove the unnecessary `else` branch to reduce the nesting. However, it's still important that all calls to Hooks happen *before* the first `return`.
+Anda juga bisa menghapus cabang `else` yang tidak perlu untuk mengurangi persarangan. Namun, yang penting adalah semua pemanggilan Hooks terjadi *sebelum* `return` yang pertama.
 
 <Sandpack>
 
@@ -1421,22 +1427,22 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Terima kasih!</h1>;
   }
 
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      alert(`Sending: "${message}"`);
+      alert(`Mengirim: "${message}"`);
       setIsSent(true);
     }}>
       <textarea
-        placeholder="Message"
+        placeholder="Pesan masukan"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
       <br />
-      <button type="submit">Send</button>
+      <button type="submit">Kirim</button>
     </form>
   );
 }
@@ -1444,19 +1450,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+Coba pindahkan pemanggilan `useState` kedua ke bawah kondisi `if` dan perhatikan kodenya berhenti bekerja lagi. 
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
+Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seharusnya melihat pesan galat saat melakukan kesalahan seperti ini. Jika Anda tidak melihatnya, Anda perlu memasang *linter* untuk proyek Anda.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Menghapus state yang tidak perlu {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+Saat tombol ditekan, pada contoh di bawah, sebuah kotak dialog akan muncul untuk diisi pengguna dan akan menambilkan pesan untuk menyapa mereka. Anda sudah coba menggunakan *state* untuk namanya, namun karena suatu hal dia tetap menampilkan "Halo, !" 
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+Untuk memperbaiki kode di bawah, hilangkan variabel *state* yang tidak perlu. (Kita akan bahas [mengapa hal tersebut tidak bekerja](/learn/state-as-a-snapshot) nanti.) 
 
-Can you explain why this state variable was unnecessary?
+Apakah Anda bisa menjelaskan mengapa variabel *state* ini tidak diperlukan?
 
 <Sandpack>
 
@@ -1467,13 +1473,13 @@ export default function FeedbackForm() {
   const [name, setName] = useState('');
 
   function handleClick() {
-    setName(prompt('What is your name?'));
-    alert(`Hello, ${name}!`);
+    setName(prompt('Siapa nama Anda?'));
+    alert(`Halo, ${name}!`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Sapa
     </button>
   );
 }
@@ -1483,7 +1489,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+Ini adalah versi yang sudah dibetulkan dengan menggunakan variabel biasa untuk `nama` di dalam fungsi yang membutuhkannya:
 
 <Sandpack>
 
@@ -1492,13 +1498,13 @@ import { useState } from 'react';
 
 export default function FeedbackForm() {
   function handleClick() {
-    const name = prompt('What is your name?');
-    alert(`Hello, ${name}!`);
+    const name = prompt('Siapa nama Anda?');
+    alert(`Halo, ${name}!`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Sapa
     </button>
   );
 }
@@ -1506,7 +1512,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+Sebuah variabel *state* hanya diperlukan untuk mempertahankan informasi antarrender di sebuah komponen. Di dalam event handler, variabel biasa sudah mencukupi. Jangan pakai variabel *state* jika tujuannya bisa dicapai dengan variabel biasa.
 
 </Solution>
 
