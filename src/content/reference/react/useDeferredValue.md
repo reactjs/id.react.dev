@@ -84,7 +84,7 @@ Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "te
 
 Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan Suspense:
 
-- Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
 
 [Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
