@@ -1,5 +1,5 @@
 ---
-title: JavaScript di JSX menggunakan Curly Braces
+title: JavaScript di JSX Menggunakan Kurung Kurawal
 ---
 
 <Intro>
@@ -10,14 +10,14 @@ JSX memungkinkan Anda menulis markup mirip HTML di dalam file JavaScript, sehing
 
 <YouWillLearn>
 
-* Bagaimana cara untuk oper *strings* dengan tanda kutip
+* Bagaimana cara mengoper *string* dengan tanda kutip
 * Bagaimana cara mereferensikan variabel didalam JSX dengan kurung kurawal
 * Bagaimana cara memanggil fungsi Javascript didalam JSX dengan kurung kurawal
 * Bagaimana cara menggunakan objek Javascript didalam JSX dengan kurung kurawal
 
 </YouWillLearn>
 
-## Mengoper *strings* dengan tanda kutip {/*passing-strings-with-quotes*/}
+## Mengoper string dengan tanda kutip {/*passing-strings-with-quotes*/}
 
 Ketika Anda ingin oper atribut *string* ke JSX, Anda memasukkannya ke dalam tanda kutip tunggal atau ganda:
 
@@ -41,7 +41,7 @@ export default function Avatar() {
 
 </Sandpack>
 
-Disini, `"https://i.imgur.com/7vQD0fPs.jpg"` dan `"Gregorio Y. Zara"` sedang dioper sebagai *strings*.
+Di sini, `"https://i.imgur.com/7vQD0fPs.jpg"` dan `"Gregorio Y. Zara"` sedang dioper sebagai *string*.
 
 Namun bagaimana jika Anda ingin secara dinamis menentukan teks `src` atau `alt? Anda dapat **menggunakan nilai dari JavaScript dengan mengganti `"` dan `"` dengan `{` dan `}`**:
 
@@ -114,16 +114,16 @@ export default function TodoList() {
 
 ### Dimana menggunakan kurung kurawal? {/*where-to-use-curly-braces*/}
 
-Anda hanya dapat menggunakan kurung keriting (curly braces) dalam dua cara di dalam JSX:
+Anda hanya dapat menggunakan kurung kurawal (curly braces) dalam dua cara di dalam JSX:
 
 1. **Sebagai teks** langsung di dalam tag JSX: `<h1>Daftar Tugas {name}</h1>` berfungsi, tetapi `<{tag}>Daftar Tugas Gregorio Y. Zara</{tag}>` tidak akan berhasil.
 2. **Sebagai atribut** yang segera mengikuti tanda dengan `=`: `src={avatar}` akan membaca variabel `avatar`, tetapi `src="{avatar}"` akan mengoper string `"{avatar}"`.
 
 ## Menggunakan "kurung kurawal ganda": CSS dan objek lain di JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
-Selain string, angka, dan ekspresi JavaScript lainnya, Anda bahkan dapat oper objek dalam JSX. Objek juga ditandai dengan kurung kurawal, seperti `{ name: "Hedy Lamarr", inventions: 5 }`. Oleh karena itu, untuk oper objek JavaScript di JSX, Anda harus membungkus objek tersebut dalam sepasang kurung kurawal lainnya: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
+Selain string, angka, dan ekspresi JavaScript lainnya, Anda bahkan dapat mengoper objek dalam JSX. Objek juga ditandai dengan kurung kurawal, seperti `{ name: "Hedy Lamarr", inventions: 5 }`. Oleh karena itu, untuk mengoper objek JavaScript di JSX, Anda harus membungkus objek tersebut dalam sepasang kurung kurawal lainnya: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
 
-Anda mungkin melihat ini pada gaya CSS *inline* dalam JSX. React tidak mengharuskan Anda untuk menggunakan gaya *inline* (kelas CSS berfungsi lebih baik untuk kebanyakan kasus). Namun, ketika Anda membutuhkan gaya *inline*, Anda dapat oper objek ke atribut `style`:
+Anda mungkin melihat ini pada gaya CSS *inline* dalam JSX. React tidak mengharuskan Anda untuk menggunakan gaya *inline* (kelas CSS berfungsi lebih baik untuk kebanyakan kasus). Namun, ketika Anda membutuhkan gaya *inline*, Anda dapat mengoper objek ke atribut `style`:
 
 <Sandpack>
 
@@ -251,7 +251,7 @@ Sekarang Anda hampir tahu segalanya tentang JSX:
 
 #### Perbaiki Kesalahan {/*fix-the-mistake*/}
 
-Kode ini mengalami crash dengan pesan galat yang menyatakan `Objects are not valid as a React child`:
+Kode ini mengalami *crash* dengan pesan galat yang menyatakan `Objects are not valid as a React child`:
 
 <Sandpack>
 
@@ -297,7 +297,7 @@ Bisakah Anda menemukan masalahnya?
 
 <Solution>
 
-Ini terjadi karena contoh ini *merender* *objek itu sendiri* ke dalam markup bukan string: `<h1>{person}'s Todos</h1>` mencoba *render* seluruh objek `person`! Menyertakan objek mentah sebagai konten teks menghasilkan kesalahan karena React tidak tahu bagaimana Anda ingin menampilkannya.
+Ini terjadi karena contoh ini me-*render* *objek itu sendiri* ke dalam markup bukan string: `<h1>{person}'s Todos</h1>` mencoba *render* seluruh objek `person`! Menyertakan objek mentah sebagai konten teks menghasilkan kesalahan karena React tidak tahu bagaimana Anda ingin menampilkannya.
 
 Untuk memperbaikinya, ganti `<h1>{person}'s Todos</h1>` dengan `<h1>{person.name}'s Todos</h1>`:
 
