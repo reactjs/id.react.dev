@@ -24,7 +24,7 @@ title: "<option>"
 
 ### `<option>` {/*option*/}
 
-[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) memungkinkan Anda untuk me-*render* opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
+[Komponen `<option>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) memungkinkan Anda untuk me-*render* opsi di dalam kotak [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>

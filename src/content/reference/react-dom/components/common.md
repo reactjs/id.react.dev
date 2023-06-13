@@ -169,7 +169,6 @@ Berikut *events* yang hanya aktif untuk elemen [`<dialog>`](https://developer.mo
 
 * [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event):  Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat pengguna mencoba untuk mengabaikan/menutup dialog.
 * `onCancelCapture`: Sebuah versi dari `onCancel` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-capture-phase-events)
 * [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sebuah dialog telah ditutup.
 * `onCloseCapture`: Sebuah versi dari `onClose` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 
@@ -260,7 +259,7 @@ React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *call
 
 #### Parameter {/*ref-callback-parameters*/}
 
-* `node`: Sebuah *node* DOM atau `null`. React alan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
+* `node`: Sebuah *node* DOM atau `null`. React akan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
 
 #### Pengembalian (Returns) {/*returns*/}
 
