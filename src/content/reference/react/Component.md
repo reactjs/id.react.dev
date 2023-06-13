@@ -308,9 +308,9 @@ Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDid
 
 ### `componentDidUpdate(prevProps, prevState, snapshot?)` {/*componentdidupdate*/}
 
-If you define the `componentDidUpdate` method, React will call it immediately after your component has been re-rendered with updated props or state.  This method is not called for the initial render.
+Jika Anda mendefinisikan metode `componentDidUpdate`, React akan memanggilnya segera setelah komponen Anda di-*render* ulang dengan *prop* atau *state* yang diperbarui. Metode ini tidak dipanggil saat *render* awal.
 
-You can use it to manipulate the DOM after an update. This is also a common place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed). Typically, you'd use it together with [`componentDidMount`](#componentdidmount) and [`componentWillUnmount`:](#componentwillunmount)
+Anda dapat menggunakannya untuk memanipulasi DOM setelah pembaruan. Ini juga tempat umum untuk melakukan permintaan jaringan selama Anda membandingkan *prop* saat ini dengan *prop* sebelumnya (misalnya, permintaan jaringan mungkin tidak diperlukan jika *prop* tidak berubah). Biasanya, Anda akan menggunakannya bersama dengan [`componentDidMount`](#componentdidmount) dan [`componentWillUnmount`:](#componentwillunmount)
 
 ```js {10-18}
 class ChatRoom extends Component {
@@ -340,34 +340,34 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
 
 #### Parameters {/*componentdidupdate-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevProps`: Props sebelum update. Membandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `prevState`: State sebelum update. Membandingkan `prevState` ke [`this.state`](#state) untuk menentukan apa yang berubah.
 
-* `snapshot`: If you implemented [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` will contain the value you returned from that method. Otherwise, it will be `undefined`.
+* `snapshot`: Jika Anda mengimplementasikan [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` akan berisi nilai yang Anda kembalikan dari metode tersebut. Jika tidak, nilainya akan `undefined`.
 
 #### Returns {/*componentdidupdate-returns*/}
 
-`componentDidUpdate` should not return anything.
+`componentDidUpdate` seharusnya tidak mengembalikan apapun.
 
 #### Caveats {/*componentdidupdate-caveats*/}
 
-- `componentDidUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `componentDidUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) didefinisikan dan mengembalikan `false`.
 
-- The logic inside `componentDidUpdate` should usually be wrapped in conditions comparing `this.props` with `prevProps`, and `this.state` with `prevState`. Otherwise, there's a risk of creating infinite loops.
+- Logika di dalam `componentDidUpdate` biasanya harus dibungkus dalam kondisi yang membandingkan `this.props` dengan `prevProps`, dan `this.state` dengan `prevState`. Jika tidak, ada risiko terjadi perulangan tak terbatas.
 
-- Although you may call [`setState`](#setstate) immediately in `componentDidUpdate`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. This pattern often causes performance issues, but it may be necessary for rare cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+- Meskipun Anda dapat memanggil [`setState`](#setstate) langsung di dalam `componentDidUpdate`, sebaiknya hindari hal itu jika memungkinkan. Ini akan memicu *render* tambahan, tetapi akan terjadi sebelum browser memperbarui tampilan. Ini menjamin bahwa meskipun [`render`](#render) akan dipanggil dua kali dalam kasus ini, pengguna tidak akan melihat *intermediate state*. Pola ini sering menyebabkan isu *performance*, tetapi mungkin diperlukan untuk kasus-kasus langka seperti *modal* dan *tooltip* ketika Anda perlu mengukur node DOM sebelum me-*render* sesuatu yang bergantung pada ukuran atau posisinya.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` bersama dalam *class components* setara dengan menggunakan [`useEffect`](/reference/react/useEffect) di *function components*. Dalam kasus yang jarang terjadi di mana penting bagi kode untuk dijalankan sebelum tampilan browser, [`useLayoutEffect`](/reference/react/useLayoutEffect) adalah pilihan yang lebih cocok.
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Note>
 ---
