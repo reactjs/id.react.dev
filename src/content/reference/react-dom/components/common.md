@@ -17,7 +17,7 @@ Semua komponen bawaan dari sebuah peramban web (*browser*), seperti [`<div>`](ht
 ### Komponen umum (e.g. `<div>`) {/*common*/}
 
 ```js
-<div className="wrapper">beberapa konten</div>
+<div className="wrapper">Konten sembarang</div>
 ```
 
 [See more examples below.](#usage)
