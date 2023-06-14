@@ -365,7 +365,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` bersama dalam *class components* setara dengan menggunakan [`useEffect`](/reference/react/useEffect) di *function components*. Dalam kasus yang jarang terjadi di mana penting bagi kode untuk dijalankan sebelum tampilan browser, [`useLayoutEffect`](/reference/react/useLayoutEffect) adalah pilihan yang lebih cocok.
+Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` bersama dalam *class components* setara dengan menggunakan [`useEffect`](/reference/react/useEffect) di *function components*. Dalam kasus yang jarang terjadi di mana penting bagi kode untuk dijalankan sebelum tampilan browser, [`useLayoutEffect`](/reference/react/useLayoutEffect) adalah pilihan yang lebih tepat.
 
 [Lihat bagaimana cara migrasi.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -376,9 +376,9 @@ Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDid
 
 <Deprecated>
 
-This API has been renamed from `componentWillMount` to [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) The old name has been deprecated. In a future major version of React, only the new name will work.
+API ini telah diganti namanya dari `componentWillMount` ke [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
 </Deprecated>
 
@@ -388,9 +388,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 <Deprecated>
 
-This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) The old name has been deprecated. In a future major version of React, only the new name will work.
+API ini telah diganti namanya dari `componentWillReceiveProps` ke [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
 </Deprecated>
 
@@ -400,9 +400,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 <Deprecated>
 
-This API has been renamed from `componentWillUpdate` to [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) The old name has been deprecated. In a future major version of React, only the new name will work.
+API ini telah diganti namanya dari `componentWillUpdate` ke [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
 </Deprecated>
 
@@ -410,9 +410,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 ### `componentWillUnmount()` {/*componentwillunmount*/}
 
-If you define the `componentWillUnmount` method, React will call it before your component is removed *(unmounted)* from the screen. This is a common place to cancel data fetching or remove subscriptions.
+Jika Anda mendefinisikan metode `componentWillUnmount`, React akan memanggilnya sebelum komponen Anda dihapus *(unmounted)* dari layar. Ini adalah tempat umum untuk membatalkan pengambilan data atau menghapus langganan.
 
-The logic inside `componentWillUnmount` should "mirror" the logic inside [`componentDidMount`.](#componentdidmount) For example, if `componentDidMount` sets up a subscription, `componentWillUnmount` should clean up that subscription. If the cleanup logic in your `componentWillUnmount` reads some props or state, you will usually also need to implement [`componentDidUpdate`](#componentdidupdate) to clean up resources (such as subscriptions) corresponding to the old props and state.
+Logika di dalam `componentWillUnmount` harus "mencerminkan" logika di dalam [`componentDidMount`.](#componentdidmount) Sebagai contoh, jika `componentDidMount` mempersiapkan langganan, `componentWillUnmount` harus membersihkan langganan itu. Jika logika pembersihan di `componentWillUnmount` membaca beberapa *props* atau *state*, Anda biasanya juga perlu menerapkan [`componentDidUpdate`](#componentdidupdate) untuk membersihkan sumber daya (seperti langganan) yang sesuai dengan *props* dan *state* lama.
 
 ```js {20-22}
 class ChatRoom extends Component {
@@ -442,25 +442,25 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
 #### Parameters {/*componentwillunmount-parameters*/}
 
-`componentWillUnmount` does not take any parameters.
+`componentWillUnmount` tidak mengambil parameter apapun.
 
 #### Returns {/*componentwillunmount-returns*/}
 
-`componentWillUnmount` should not return anything.
+`componentWillUnmount` seharusnya tidak mengembalikan apapun.
 
 #### Caveats {/*componentwillunmount-caveats*/}
 
-- When [Strict Mode](/reference/react/StrictMode) is on, in development React will call [`componentDidMount`,](#componentdidmount) then immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+- Ketika [Strict Mode](/reference/react/StrictMode) aktif, pada *development* React akan memanggil [`componentDidMount`,](#componentdidmount) kemudian segera memanggil `componentWillUnmount`, dan kemudian memanggil `componentDidMount` lagi. Ini membantu Anda memperhatikan jika Anda lupa menerapkan `componentWillUnmount` atau jika logikanya tidak sepenuhnya "mencerminkan" apa yang `componentDidMount` lakukan.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDidUpdate`, dan `componentWillUnmount` bersama pada *class components* setara dengan memanggil [`useEffect`](/reference/react/useEffect) pada *function components*. Dalam kasus yang jarang terjadi di mana penting bagi kode untuk dijalankan sebelum tampilan browser, [`useLayoutEffect`](/reference/react/useLayoutEffect) adalah pilihan yang lebih tepat.
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Note>
 
@@ -468,27 +468,27 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 ### `forceUpdate(callback?)` {/*forceupdate*/}
 
-Forces a component to re-render.
+Memaksa komponen untuk me-*render* ulang.
 
-Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you call [`setState`](#setstate) inside your component or one of its parents. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
+Biasanya, ini tidak perlu. Jika metode [`render`](#render) komponen Anda hanya baca(only reads) dari [`this.props`](#props), [`this.state`](#state), atau [`this.context`,](#context) akan me-*render* ulang otomatis ketika Anda memanggil [`setState`](#setstate) di dalam komponen Anda atau salah satu dari *parent*. Namun, Jika metode `render` komponen Anda membaca secara langsung dari sumber data eksternal, Anda harus memberi tahu React untuk memperbarui antarmuka pengguna saat sumber data itu berubah. Itulah yang `forceUpdate` memungkinkan Anda melakukannya.
 
-Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
+Cobalah untuk menghindari semua penggunaan `forceUpdate` dan hanya membaca dari `this.props` dan `this.state` pada `render`.
 
 #### Parameters {/*forceupdate-parameters*/}
 
-* **optional** `callback` If specified, React will call the `callback` you've provided after the update is committed.
+* **optional** `callback` Jika ditentukan, React akan memanggil `callback` yang Anda berikan setelah pembaruan dilakukan.
 
 #### Returns {/*forceupdate-returns*/}
 
-`forceUpdate` does not return anything.
+`forceUpdate` tidak mengembalikan apapun.
 
 #### Caveats {/*forceupdate-caveats*/}
 
-- If you call `forceUpdate`, React will re-render without calling [`shouldComponentUpdate`.](#shouldcomponentupdate)
+- Jika Anda memanggil `forceUpdate`, React akan me-*render* ulang tanpa memanggil [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
 <Note>
 
-Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/reference/react/useSyncExternalStore) in function components.
+Membaca sumber data eksternal dan memaksa komponen kelas untuk me-*render* ulang sebagai respons terhadap perubahannya `forceUpdate` telah digantikan oleh [`useSyncExternalStore`](/reference/react/useSyncExternalStore) pada *function components*.
 
 </Note>
 
@@ -498,11 +498,11 @@ Reading an external data source and forcing class components to re-render in res
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `Context.Provider` instead.](/reference/react/createContext#provider)
+API ini akan dihapus di versi utama React yang akan datang. [Gunakan `Context.Provider` sebagai gantinya.](/reference/react/createContext#provider)
 
 </Deprecated>
 
-Lets you specify the values for the [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Memungkinkan Anda menentukan nilai untuk [legacy context](https://reactjs.org/docs/legacy-context.html) yang disediakan oleh komponen ini.
 
 ---
 
