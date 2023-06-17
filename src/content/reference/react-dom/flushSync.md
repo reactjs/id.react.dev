@@ -4,7 +4,7 @@ title: flushSync
 
 <Pitfall>
 
-Using `flushSync` is uncommon and can hurt the performance of your app.
+Menggunakan `flushSync` dapat menurunkan performa aplikasi anda dan ini tidak umum.
 
 </Pitfall>
 
