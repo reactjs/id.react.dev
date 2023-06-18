@@ -40,16 +40,16 @@ Seringnya, `flushSync` dapat dihindari. Gunakan `flushSync` sebagai pilihan tera
 
 [Lihat lebih banyak contoh di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 
 * `callback`: Sebuah fungsi. React akan langsung memanggil *callback* ini dan menge-*flush* pembaruan di dalamnya secara sinkron. React juga dapat menge-*flush* pembaruan tertunda, atau *Effects*, atau pembaruan di dalam *Effects*. Jika sebuah pembaruan tertunda karena pemanggilan `flushSync` ini, *fallback*-nya dapat ditampilkan kembali.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `flushSync` mengembalikan `undefined`.
 
-#### Perhatian {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
 * `flushSync` dapat menurunkan performa secara signifikan. Jangan gunakan terlalu sering.
 * `flushSync` dapat memaksa batas *Suspense* tertunda untuk menampilkan *state* `fallback`-nya.
