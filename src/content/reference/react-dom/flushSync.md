@@ -10,7 +10,7 @@ Penggunaan `flushSync` tidak umum dan dapat menyebabkan penurunan kinerja aplika
 
 <Intro>
 
-`flushSync` dapat memaksa React untuk menge-*flush* pembaruan dalam *callback* yang diberikan secara sinkron.
+`flushSync` dapat memaksa React untuk menge-*flush* pembaruan dalam *callback* yang diberikan secara sinkron. Ini memastikan bahwa DOM diperbarui dengan segera.
 
 ```js
 flushSync(callback)
