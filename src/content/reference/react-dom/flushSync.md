@@ -52,34 +52,34 @@ Seringnya, `flushSync` dapat dihindari. Gunakan `flushSync` sebagai pilihan tera
 #### Perhatian {/*caveats*/}
 
 * `flushSync` dapat menurunkan performa secara signifikan. Jangan gunakan terlalu sering.
-* `flushSync` dapat memaksa batas *Suspense* tertunda untuk menampilkan state `fallback`-nya.
-* `flushSync` may run pending effects and synchronously apply any updates they contain before returning.
-* `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+* `flushSync` dapat memaksa batas *Suspense* tertunda untuk menampilkan *state* `fallback`-nya.
+* `flushSync` dapat menjakankan *effects* tertunda dan secara sinkron menerapkan pembaruan di dalamnya sebelum mengembalikan.
+* `flushSync` dapat menge-*flush* pembaruan di luar *callback* ketika perlu untuk menge-*flush* pembaruan di dalam *callback*. Misalnya, jika ada pembaruan tertunda dari sebuah klik, React dapat menge-*flush* pembaruan tersebut sebelum menge-*flush* pembaruan di dalam *callback*.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
+### Menge-*flush* pembaruan untuk integrasi pihak ketiga {/*flushing-updates-for-third-party-integrations*/}
 
-When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates. Use `flushSync` to force React to flush any <CodeStep step={1}>state updates</CodeStep> inside the callback synchronously:
+Saat berintegrasi dengan kode pihak ketiga seperti API browser atau pustaka UI, mungkin akan diperlukan untuk memaksa React menge-*flush* pembaruan. Gunakan `flushSync` untuk memaksa react menge-*flush* <CodeStep step={1}>pembaruan *state*</CodeStep> di dalam callback secara sinkron:
 
 ```js [[1, 2, "setSomething(123)"]]
 flushSync(() => {
   setSomething(123);
 });
-// By this line, the DOM is updated.
+// Pada baris ini, DOM sudah diperbarui.
 ```
 
-This ensures that, by the time the next line of code runs, React has already updated the DOM.
+Ini memastikan bahwa, pada saat baris berikutnya berjalan, React sudah memperbarui DOM.
 
-**Using `flushSync` is uncommon, and using it often can significantly hurt the performance of your app.** If your app only uses React APIs, and does not integrate with third-party libraries, `flushSync` should be unnecessary.
+**Penggunaan `flushSync` tidak umum, dan menggunakannya dengan sering dapat menurunkan performa aplikasi Anda secara signifikan.** Jika aplikasi Anda hanya menggunakan API React, dan tidak berintegrasi dengan pustaka pihak ketiga, `flushSync` seharusnya tidak perlu digunakan.
 
-However, it can be helpful for integrating with third-party code like browser APIs.
+Namun, `flushSync` dapat berguna untuk berintegrasi dengan kode pihak ketiga seperti API peramban.
 
-Some browser APIs expect results inside of callbacks to be written to the DOM synchronously, by the end of the callback, so the browser can do something with the rendered DOM. In most cases, React handles this for you automatically. But in some cases it may be necessary to force a synchronous update.
+Beberapa API peramban mengekspektasikan hasil di dalam *callback* ditulis ke DOM secara sinkron di akhir *callback*, sehingga peramban dapat melakukan sesuatu dengan DOM yang telah di-*render*. Dalam kebanyakan kasus, React menangani ini untuk Anda secara otomatis. Namun, dalam beberapa kasus, mungkin tidak diperlukan untuk memaksakan pembaruan sinkron.
 
-For example, the browser `onbeforeprint` API allows you to change the page immediately before the print dialog opens. This is useful for applying custom print styles that allow the document to display better for printing. In the example below, you use `flushSync` inside of the `onbeforeprint` callback to immediately "flush" the React state to the DOM. Then, by the time the print dialog opens, `isPrinting` displays "yes":
+Sebagai contoh, API peramban `onbeforeprint` memungkinkan Anda untuk mengubah halaman dengan segera sebelum dialog cetak terbuka. Ini berguna untuk menerapkan gaya cetak tersuai yang memungkinkan dokumen untuk tampil lebih baik untuk dicetak. Pada contoh di bawah, Anda menggunakan `flushSync` di dalam *callback* `onbeforeprint` untuk dengan segera "menge-*flush*" *state* React ke DOM. Kemudian, pada saat dialog cetak terbuka, `isPrinting` akan menampilkan "yes":
 
 <Sandpack>
 
@@ -122,12 +122,12 @@ export default function PrintApp() {
 
 </Sandpack>
 
-Without `flushSync`, when the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
+Tanpa `flushSync`, dialog cetak akan menampilkan `isPrinting` sebagai "no". Ini terjadi karena React menumpakkan pembaruan secara asinkron dan dialog cetak ditampilkan sebelum *state* diperbarui.
 
 <Pitfall>
 
-`flushSync` can significantly hurt performance, and may unexpectedly force pending Suspense boundaries to show their fallback state.
+`flushSync` dapat menurunkan performa secara signifikan, dan dapat secara tidak terduga memaksa batas *Suspense* tertunda untuk menampilkan *fallback state*-nya.
 
-Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resort.
+Seringnya, `flushSync` dapat dihindari. Gunakan `flushSync` sebagai pilihan terakhir.
 
 </Pitfall>
