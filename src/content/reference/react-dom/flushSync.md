@@ -79,7 +79,7 @@ Namun, `flushSync` dapat berguna untuk berintegrasi dengan kode pihak ketiga sep
 
 Beberapa API peramban mengekspektasikan hasil di dalam *callback* ditulis ke DOM secara sinkron di akhir *callback*, sehingga peramban dapat melakukan sesuatu dengan DOM yang telah di-*render*. Dalam kebanyakan kasus, React menangani ini untuk Anda secara otomatis. Namun, dalam beberapa kasus, mungkin tidak diperlukan untuk memaksakan pembaruan sinkron.
 
-Sebagai contoh, API peramban `onbeforeprint` memungkinkan Anda untuk mengubah halaman dengan segera sebelum dialog cetak terbuka. Ini berguna untuk menerapkan gaya cetak tersuai yang memungkinkan dokumen untuk tampil lebih baik untuk dicetak. Pada contoh di bawah, Anda menggunakan `flushSync` di dalam *callback* `onbeforeprint` untuk dengan segera "menge-*flush*" *state* React ke DOM. Kemudian, pada saat dialog cetak terbuka, `isPrinting` akan menampilkan "yes":
+Sebagai contoh, API peramban `onbeforeprint` memungkinkan Anda untuk mengubah halaman dengan segera sebelum dialog cetak (*print dialog*) terbuka. Ini berguna untuk menerapkan gaya cetak tersuai (*custom print styles*) yang memungkinkan dokumen untuk tampil lebih baik untuk dicetak. Dalam contoh di bawah, Anda menggunakan `flushSync` di dalam *callback* `onbeforeprint` untuk dengan segera "menge-*flush*" *state* React ke DOM. Kemudian, pada saat dialog cetak terbuka, `isPrinting` akan menampilkan "yes":
 
 <Sandpack>
 
@@ -126,8 +126,8 @@ Tanpa `flushSync`, dialog cetak akan menampilkan `isPrinting` sebagai "no". Ini 
 
 <Pitfall>
 
-`flushSync` dapat menurunkan performa secara signifikan, dan dapat secara tidak terduga memaksa batas *Suspense* tertunda untuk menampilkan *fallback state*-nya.
+`flushSync` dapat menurunkan performa secara signifikan, dan mungkin tiba-tiba memaksa batas *Suspense* yang tertunda untuk menampilkan *state* *fallback*-nya.
 
-Seringnya, `flushSync` dapat dihindari. Gunakan `flushSync` sebagai pilihan terakhir.
+Seringnya, `flushSync` dapat dihindari, maka gunakan `flushSync` sebagai pilihan terakhir.
 
 </Pitfall>
