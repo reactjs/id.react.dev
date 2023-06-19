@@ -122,7 +122,7 @@ export default function PrintApp() {
 
 </Sandpack>
 
-Tanpa `flushSync`, dialog cetak akan menampilkan `isPrinting` sebagai "no". Ini terjadi karena React menumpakkan pembaruan secara asinkron dan dialog cetak ditampilkan sebelum *state* diperbarui.
+Tanpa `flushSync`, dialog cetak akan menampilkan `isPrinting` sebagai "no". Ini terjadi karena React mengelompokkan (*batch*) pembaruan secara asinkron dan dialog cetak ditampilkan sebelum *state* diperbarui.
 
 <Pitfall>
 
