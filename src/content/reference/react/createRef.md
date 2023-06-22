@@ -4,13 +4,13 @@ title: createRef
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` kebanyakan digunakan untuk [komponen kelas.](/reference/react/Component) Sedangkan komponen fungsi biasanya mengandalkan [`useRef`](/reference/react/useRef).
 
 </Pitfall>
 
 <Intro>
 
-`createRef` creates a [ref](/learn/referencing-values-with-refs) object which can contain arbitrary value.
+`createRef` membuat sebuah objek [*ref*](/learn/referencing-values-with-refs) yang menyimpan nilai apapun.
 
 ```js
 class MyInput extends Component {
@@ -25,11 +25,11 @@ class MyInput extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `createRef()` {/*createref*/}
 
-Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class component.](/reference/react/Component)
+Panggil `createRef` untuk mendeklarasikan sebuah [*ref*](/learn/referencing-values-with-refs) di dalam sebuah [komponen kelas.](/reference/react/Component)
 
 ```js
 import { createRef, Component } from 'react';
@@ -40,31 +40,31 @@ class MyComponent extends Component {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lebih banyak di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-`createRef` takes no parameters.
+`createRef` tidak memerlukan parameter.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`createRef` returns an object with a single property:
+`createRef` mengembalikan sebuah objek dengan properti tunggal:
 
-* `current`: Initially, it's set to the `null`. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
+* `current`: Awalnya, bernilai `null`. Anda dapat menggantinya dengan nilai lain kemudian. Jika Anda mengoper objek *ref* ke React sebagai sebuah atribut `ref` di dalam simpul JSX, React akan menetapkannya sebagai properti `current`.
 
 #### Caveats {/*caveats*/}
 
-* `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
-* In a function component, you probably want [`useRef`](/reference/react/useRef) instead which always returns the same object.
-* `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
+* `createRef` selalu mengembalikan objek yang berbeda. Sama halnya dengan menulis `{ current: null }` manual.
+* Dalam komponen fungsi, Anda mungkin menginginkan [`useRef`](/reference/react/useRef) yang selalu mengembalikan obyek yang sama.
+* `const ref = useRef()` sama dengan `const [ref, _] = useState(() => createRef(null))`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Declaring a ref in a class component {/*declaring-a-ref-in-a-class-component*/}
+### Mendeklarasikan sebuah ref di dalam komponen kelas {/*declaring-a-ref-in-a-class-component*/}
 
-To declare a ref inside a [class component,](/reference/react/Component) call `createRef` and assign its result to a class field:
+Untuk mendeklarasikan *ref* di dalam sebuah [komponen kelas,](/reference/react/Component) panggil `createRef` dan tetapkan hasilnya ke anggota (*field*) kelas:
 
 ```js {4}
 import { Component, createRef } from 'react';
@@ -76,7 +76,7 @@ class Form extends Component {
 }
 ```
 
-If you now pass `ref={this.inputRef}` to an `<input>` in your JSX, React will populate `this.inputRef.current` with the input DOM node. For example, here is how you make a button that focuses the input:
+Jika Anda mengoper `ref={this.inputRef}` ke sebuah `<input>` di dalam JSX Anda, React akan menempatkan input simpul DOM ke `this.inputRef.current`. Ini Contohnya bagaimana Anda membuat tombol yang memfokuskan ke input:
 
 <Sandpack>
 
@@ -107,17 +107,17 @@ export default class Form extends Component {
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` kebanyakan digunakan untuk [komponen kelas.](/reference/react/Component) sedangkan komponen fungsi biasanya mengandalkan [`useRef`](/reference/react/useRef).
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
-### Migrating from a class with `createRef` to a function with `useRef` {/*migrating-from-a-class-with-createref-to-a-function-with-useref*/}
+### Migrasi dari kelas dengan `createRef` ke fungsi dengan `useRef` {/*migrating-from-a-class-with-createref-to-a-function-with-useref*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `createRef`, here is how you can convert them. This is the original code:
+Kami merekomendasikan untuk menggunakan komponen fungsi dari pada [komponen kelas](/reference/react/Component) pada kode baru. Jika Anda memiliki komponen kelas yang menggunakan `createRef`, ini cara bagaimana mengubahnya. Ini merupakan kode awal:
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ export default class Form extends Component {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/reference/react/useRef)
+Saat Anda [mengubah komponen ini dari kelas ke fungsi,](/reference/react/Component#alternatives) ganti pemanggilan `createRef` dengan [`useRef`:](/reference/react/useRef)
 
 <Sandpack>
 
