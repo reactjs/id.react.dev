@@ -466,7 +466,7 @@ Baca **[Me-*render* List](/learn/rendering-lists)** untuk mempelajari cara me-*r
 
 Sebagian fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
-* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apapun yang ada sebelum fungsi dipanggil.
+* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apa pun yang ada sebelum fungsi dipanggil.
 * **_Input_ sama, _output_ sama.**  Dengan *input* yang sama, sebuah fungsi murni harus selalu memiliki *output* yang sama.
 
 Dengan hanya benar-benar menulis komponen Anda sebagai fungsi murni, Anda dapat menghindari seluruh *bug* yang membingungkan dan perilaku yang tidak dapat diprediksi saat kode Anda berkembang. Berikut ini adalah contoh komponen tidak murni:

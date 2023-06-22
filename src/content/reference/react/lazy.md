@@ -20,7 +20,7 @@ const SomeComponent = lazy(load)
 
 ### `lazy(load)` {/*lazy*/}
 
-Panggil fungsi `lazy` di luar komponen apapun untuk mendeklarasikan *lazy-loaded* komponen React:
+Panggil fungsi `lazy` di luar komponen apa pun untuk mendeklarasikan *lazy-loaded* komponen React:
 
 ```js
 import { lazy } from 'react';

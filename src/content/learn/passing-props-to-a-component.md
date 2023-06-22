@@ -4,7 +4,7 @@ title: Mengoper Props ke Komponen
 
 <Intro>
 
-Komponen React menggunakan *props* untuk berkomunikasi antara satu dengan yang lainnya. Setiap komponen induk bisa mengirim beberapa informasi pada komponen-komponen anaknya dengan memberikan mereka *props*. *Props* mungkin akan mengingatkan Anda dengan atribut HTML, namun Anda bisa mengirim nilai JavaScript apapun melalui itu, termasuk objek, senarai, bahkan fungsi.
+Komponen React menggunakan *props* untuk berkomunikasi antara satu dengan yang lainnya. Setiap komponen induk bisa mengirim beberapa informasi pada komponen-komponen anaknya dengan memberikan mereka *props*. *Props* mungkin akan mengingatkan Anda dengan atribut HTML, namun Anda bisa mengirim nilai JavaScript apa pun melalui itu, termasuk objek, senarai, bahkan fungsi.
 
 </Intro>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-*Props* yang bisa dikirimkan pada tag `<img>` sudah didefinisikan sebelumnya (ReactDOM menyesuaikan dengan [standar HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Namun Anda bisa mengirimkan *props* apapun pada komponen Anda *sendiri*, Misalnya `<Avatar>`, untuk dikustomisasi. Begini caranya!
+*Props* yang bisa dikirimkan pada tag `<img>` sudah didefinisikan sebelumnya (ReactDOM menyesuaikan dengan [standar HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Namun Anda bisa mengirimkan *props* apa pun pada komponen Anda *sendiri*, Misalnya `<Avatar>`, untuk dikustomisasi. Begini caranya!
 
 ## Mengoper *props* ke komponen {/*passing-props-to-a-component*/}
 
-Pada kode ini, komponen `Profile` tidak mengirimkan *props* apapun pada komponen anaknya, yaitu `Avatar`:
+Pada kode ini, komponen `Profile` tidak mengirimkan *props* apa pun pada komponen anaknya, yaitu `Avatar`:
 
 ```js
 export default function Profile() {
@@ -347,7 +347,7 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Cobalah ubah `<Avatar>` yang ada di dalam `<Card>` dengan teks untuk melihat bagaimana komponen `Card` bisa disisipkan konten apapun. Komponen tersebut tidak perlu "mengetahui" apa yang di-*render* di dalamnya. Anda lihat betapa fleksibelnya hal ini.
+Cobalah ubah `<Avatar>` yang ada di dalam `<Card>` dengan teks untuk melihat bagaimana komponen `Card` bisa disisipkan konten apa pun. Komponen tersebut tidak perlu "mengetahui" apa yang di-*render* di dalamnya. Anda lihat betapa fleksibelnya hal ini.
 
 Anda bisa menganggap bahwa komponen dengan *prop* `children` itu mempunyai "lubang" yang bisa "diisi" oleh komponen induknya dengan JSX secara bebas. Anda akan sering menggunakan *prop* `children` sebagai pembungkus: *panels*, *grids*, dan lainnya.
 
@@ -630,7 +630,7 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Perhatikan bahwa Anda tidak memerlukan *prop* `awardCount` secara terpisah jika `awards` adalah sebuah senarai. Lalu Anda bisa menggunakan `awards.length` untuk menghitung jumlah penghargaan. Ingatlah bahwa *props* bisa menerima nilai apapun, dan itu termasuk senarai!
+Perhatikan bahwa Anda tidak memerlukan *prop* `awardCount` secara terpisah jika `awards` adalah sebuah senarai. Lalu Anda bisa menggunakan `awards.length` untuk menghitung jumlah penghargaan. Ingatlah bahwa *props* bisa menerima nilai apa pun, dan itu termasuk senarai!
 
 Solusi lain, yang mana lebih mirip dengan contoh-contoh yang ada di halaman ini, adalah dengan menyatukan semua informasi tentang orang pada satu objek, dan mengirim objek tersebut sebagai satu *prop*:
 
@@ -983,7 +983,7 @@ h1 {
 
 <Hint>
 
-JSX apapun yang Anda taruh di dalam tag komponen akan terkirim sebagai *prop* `children` bagi komponen tersebut.
+JSX apa pun yang Anda taruh di dalam tag komponen akan terkirim sebagai *prop* `children` bagi komponen tersebut.
 
 </Hint>
 

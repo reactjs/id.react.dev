@@ -10,7 +10,7 @@ title: createRef
 
 <Intro>
 
-`createRef` membuat sebuah objek [*ref*](/learn/referencing-values-with-refs) yang menyimpan nilai apapun.
+`createRef` membuat sebuah objek [*ref*](/learn/referencing-values-with-refs) yang menyimpan nilai apa pun.
 
 ```js
 class MyInput extends Component {
