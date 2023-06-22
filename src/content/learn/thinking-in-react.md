@@ -209,7 +209,7 @@ Pada titik ini, Anda tidak perlu menggunakan nilai state apa pun. Itu untuk lang
 
 Untuk membuat UI interaktif, Anda harus mengizinkan pengguna mengubah model data yang mendasarinya. Anda akan menggunakan *state* untuk ini.
 
-Bayangkan state sebagai kumpulan data perubahan minimal yang perlu diingat oleh aplikasi Anda. Prinsip paling penting dalam menyusun state adalah menjaganya agar tetap [DRY (*Don't Repeat Yourself*)] (https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Cari tahu representasi minimal absolut dari state yang dibutuhkan aplikasi Anda dan hitung semua yang lain sesuai permintaan. Sebagai contoh, jika Anda membuat daftar belanja, Anda dapat menyimpan item sebagai array dalam state. Jika Anda juga ingin menampilkan jumlah item dalam daftar, jangan simpan jumlah item sebagai nilai state lain--sebagai gantinya, baca panjang senarai Anda.
+Bayangkan state sebagai kumpulan data perubahan minimal yang perlu diingat oleh aplikasi Anda. Prinsip paling penting dalam menyusun state adalah menjaganya agar tetap [DRY (*Don't Repeat Yourself*)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Cari tahu representasi minimal absolut dari state yang dibutuhkan aplikasi Anda dan hitung semua yang lain sesuai permintaan. Sebagai contoh, jika Anda membuat daftar belanja, Anda dapat menyimpan item sebagai array dalam state. Jika Anda juga ingin menampilkan jumlah item dalam daftar, jangan simpan jumlah item sebagai nilai state lain--sebagai gantinya, baca panjang senarai Anda.
 
 Sekarang pikirkan semua bagian data dalam contoh aplikasi ini:
 
