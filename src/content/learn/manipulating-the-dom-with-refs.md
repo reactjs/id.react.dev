@@ -318,7 +318,7 @@ li {
 
 </Sandpack>
 
-Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apapun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
+Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
 
 ```js
 <li
@@ -683,7 +683,7 @@ Setelah Anda menghapus elemen DOM secara manual, mencoba menggunakan `setState` 
 
 **Hindari mengubah simpul DOM yang dikelola oleh React.** Memodifikasi, menambahkan *children*, atau menghapus *children* dari elemen yang dikelola oleh React dapat menyebabkan hasil visual yang tidak konsisten atau masalah seperti di atas.
 
-Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apapun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
+Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apa pun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
 
 <Recap>
 

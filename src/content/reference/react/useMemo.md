@@ -38,7 +38,7 @@ function TodoList({ todos, tab }) {
 
 #### Parameters {/*parameters*/}
 
-* `calculateValue`: Fungsi untuk menghitung nilai yang ingin Anda *cache*. Nilai harus murni, tidak mempunyai argumen, dan harus membalikkan nilai dari tipe data apapun. React akan memanggil fungsi tersebut pada *render* awal. Pada *render* selanjutnya, React akan mengembalikan nilai yang sama jika `dependencies` tidak berubah dari *render* terakhir. Sebaliknya, React akan memanggil `calculateValue`, mengembalikan hasil nilainya, dan disimpan sehingga nilai tersebut dapat digunakan kembali nantinya.
+* `calculateValue`: Fungsi untuk menghitung nilai yang ingin Anda *cache*. Nilai harus murni, tidak mempunyai argumen, dan harus membalikkan nilai dari tipe data apa pun. React akan memanggil fungsi tersebut pada *render* awal. Pada *render* selanjutnya, React akan mengembalikan nilai yang sama jika `dependencies` tidak berubah dari *render* terakhir. Sebaliknya, React akan memanggil `calculateValue`, mengembalikan hasil nilainya, dan disimpan sehingga nilai tersebut dapat digunakan kembali nantinya.
 
 * `dependencies`: Daftar dari semua nilai reaktif yang direferensikan dalam kode `calculatedValue`. Nilai reaktif termasuk *props*, *state*, serta seluruh variabel dan fungsi yang dideklarasi langsung dalam badan komponen. Jika *linter* Anda sudah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* akan memeriksa setiap nilai reaktif sudah dispesifikasikan sebagai sebuah *dependency* dengan benar. Daftar `dependency` harus memiliki jumlah *item* yang tetap dan dituliskan dalam sebaris seperti `[dep1, dep2, dep3]`. React akan membandingkan tiap `dependency` dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
@@ -161,7 +161,7 @@ Tidak ada manfaat untuk membungkus perhitungan dalam `useMemo` pada kasus lainny
 1. Hindari [Effect tidak berguna yang memperbarui state.](/learn/you-might-not-need-an-effect) Sebagian besar masalah kinerja di aplikasi React disebabkan oleh rantai pembaruan yang berasal dari Effect yang menyebabkan komponen Anda me*render* berulang kali.
 1. Cobalah untuk [menghilangkan *dependency* yang tidak perlu dari Effect Anda.](/learn/removing-effect-dependencies) Sebagai contoh, dibandingkan memoisasi, seringkali lebih mudah untuk memindahkan beberapa objek atau fungsi di dalam Effect atau di luar komponen.
 
-Jika interaksi tertentu masih terasa lamban, [gunakan *profiler* React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) untuk melihat komponen mana yang paling diuntungkan dengan memoisasi dan tambahkan memoisasi jika diperlukan. Prinsip ini akan menjadikan komponen Anda lebih gampang di-*debug* dan dipahami, jadi ada baiknya untuk mengikutinya dalam hal apapun. Dalam jangka panjang, kami sedang meneliti [melakukan memoisasi terperinci secara otomatis](https://www.youtube.com/watch?v=lGEMwh32soc) untuk menyelesaikan masalah ini sekali dan untuk selamanya.
+Jika interaksi tertentu masih terasa lamban, [gunakan *profiler* React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) untuk melihat komponen mana yang paling diuntungkan dengan memoisasi dan tambahkan memoisasi jika diperlukan. Prinsip ini akan menjadikan komponen Anda lebih gampang di-*debug* dan dipahami, jadi ada baiknya untuk mengikutinya dalam hal apa pun. Dalam jangka panjang, kami sedang meneliti [melakukan memoisasi terperinci secara otomatis](https://www.youtube.com/watch?v=lGEMwh32soc) untuk menyelesaikan masalah ini sekali dan untuk selamanya.
 
 </DeepDive>
 
@@ -263,7 +263,7 @@ export function filterTodos(todos, tab) {
   console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -389,7 +389,7 @@ export function filterTodos(todos, tab) {
   console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -717,7 +717,7 @@ const List = memo(function List({ items }) {
   console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -855,7 +855,7 @@ const List = memo(function List({ items }) {
   console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (

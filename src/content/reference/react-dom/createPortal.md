@@ -46,7 +46,7 @@ Sebuah portal hanya mengubah penempatan kerangka dari simpul DOM. Dalam hal lain
 
 #### Parameters {/*parameters*/}
 
-* `children`: Apapun yang dapat di-*render* dengan React, seperti bagian dari JSX (misalnya `<div />` atau `<SomeComponent />`), sebuah [Fragment](/reference/react/Fragment) (`<>...</>`), sebuah *string* atau angka, ataupun sebuah larik.
+* `children`: Apa pun yang dapat di-*render* dengan React, seperti bagian dari JSX (misalnya `<div />` atau `<SomeComponent />`), sebuah [Fragment](/reference/react/Fragment) (`<>...</>`), sebuah *string* atau angka, ataupun sebuah larik.
 
 * `domNode`: Beberapa simpul DOM, seperti yang dikembalikan oleh `document.getElementById()`. Simpul tersebut harus sudah ada. Melewatkan simpul DOM yang berbeda selama pembaruan akan menyebabkan konten portal dibuat ulang.
 
