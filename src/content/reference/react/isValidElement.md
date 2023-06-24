@@ -102,7 +102,7 @@ Saat Anda menulis sebuah komponen, Anda dapat mengembalikan *node React* apa pun
 
 ```js
 function MyComponent() {
-  // ... Anda dapat mengembalikan node React apapun ...
+  // ... Anda dapat mengembalikan node React apa pun ...
 }
 ```
 

@@ -40,7 +40,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `ref`: *ref* yang Anda terima sebagai argumen kedua dari [fungsi *render* `forwardRef`.](/reference/react/forwardRef#render-function)
 
-* `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan *ref* yang ingin Anda ekspos. Penanganan *ref* tersebut dapat memiliki tipe apapun. Biasanya, Anda akan mengembalikan sebuah objek dengan sekumpulan metode yang ingin Anda ekspos.
+* `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan *ref* yang ingin Anda ekspos. Penanganan *ref* tersebut dapat memiliki tipe apa pun. Biasanya, Anda akan mengembalikan sebuah objek dengan sekumpulan metode yang ingin Anda ekspos.
 
 * `dependencies` **opsional**: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam tubuh komponen. Jika *linter* Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika sebuah *render* ulang menghasilkan sebuah perubahan terhadap beberapa *dependency*, atau jika Anda menghilangkan argumen ini, fungsi `createHandle` Anda akan dijalankan ulang, dan penanganan yang baru dibuat akan ditetapkan kepada `ref` tersebut.
 

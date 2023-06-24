@@ -237,7 +237,7 @@ Jika linter Anda [dikonfigurasi untuk React,](/learn/editor-setup#linting) maka 
 
 Tidak. Fungsi yang tidak *memanggil* Hooks tidak perlu *menjadi* Hooks.
 
-Jika fungsi Anda tidak memanggil Hooks apapun, hindari awalan `use`. Sebagai gantinya, tulislah sebagai fungsi biasa *tanpa* awalan `use`. Misalnya, `useSorted` di bawah ini tidak memanggil Hooks, jadi panggil saja `getSorted`:
+Jika fungsi Anda tidak memanggil Hooks apa pun, hindari awalan `use`. Sebagai gantinya, tulislah sebagai fungsi biasa *tanpa* awalan `use`. Misalnya, `useSorted` di bawah ini tidak memanggil Hooks, jadi panggil saja `getSorted`:
 
 ```js
 // 🔴 Hindari: Sebuah Hook yang tidak menggunakan Hooks
