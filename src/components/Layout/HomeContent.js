@@ -926,8 +926,8 @@ function Example1() {
           <Video
             video={{
               id: 'ex1-0',
-              title: 'My video',
-              description: 'Video description',
+              title: 'Video saya',
+              description: 'Deskripsi video',
               image: 'blue',
               url: null,
             }}
@@ -950,20 +950,20 @@ function Example2() {
   const videos = [
     {
       id: 'ex2-0',
-      title: 'First video',
-      description: 'Video description',
+      title: 'Video pertama',
+      description: 'Deskripsi video',
       image: 'blue',
     },
     {
       id: 'ex2-1',
-      title: 'Second video',
-      description: 'Video description',
+      title: 'Video kedua',
+      description: 'Deskripsi video',
       image: 'red',
     },
     {
       id: 'ex2-2',
-      title: 'Third video',
-      description: 'Video description',
+      title: 'Video ketiga',
+      description: 'Deskripsi video',
       image: 'green',
     },
   ];
