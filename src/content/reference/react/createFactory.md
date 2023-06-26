@@ -4,7 +4,7 @@ Judul : createFactory
 
 <Deprecated>
 
-API ini akan dihapus pada versi utama React di masa depan [Lihat beberapa alternatifnya.](#alternatives)
+API ini akan dihapus pada versi mayor React berikutnya. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Deprecated>
 
@@ -26,7 +26,7 @@ const factory = createFactory(type)
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Panggil `createFactory(type)` untuk membuat fungsi pabrik yang menghasilkan elemen-elemen React dengan `type` yang ditentukan.
+Panggil `createFactory(type)` untuk membuat sebuah fungsi pabrik (*factory function*) yang menghasilkan elemen-elemen React dengan `type` yang ditentukan.
 
 ```js
 import { createFactory } from 'react';
@@ -50,7 +50,7 @@ export default function App() {
 
 #### Parameter {/*parameters*/}
 
-* `type`: Argumen `type` harus merupakan tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti 'div' atau 'span'), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
+* `type`: Argumen `type` harus merupakan tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti `'div'` atau `'span'`), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
 
 #### Kembalian {/*returns*/}
 
