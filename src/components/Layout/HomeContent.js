@@ -131,7 +131,7 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            The library for web and native user interfaces
+            Pustaka untuk antarmuka pengguna web dan native
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -139,29 +139,29 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn React">
-              Learn React
+              label="Belajar React">
+              Belajar React
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
               type="secondary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="API Reference">
-              API Reference
+              label="Referensi API">
+              Referensi API
             </ButtonLink>
           </div>
         </div>
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>Membuat antarmuka pengguna dari komponen</Header>
             <Para>
-              React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
-              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
-              <Code>Video</Code>. Then combine them into entire screens, pages,
-              and apps.
+              React memungkinkan Anda membangun antarmuka penguna dari
+              bagian-bagian yang disebut komponen. Buat komponen React Anda
+              sendiri seperti <Code>Thumbnail</Code>, <Code>LikeButton</Code>,
+              dan <Code>Video</Code>. Kemudian gabungkan komponen-komponen
+              tersebut ke dalam seluruh layar, halaman, dan aplikasi.
             </Para>
           </Center>
           <FullBleed>
@@ -169,22 +169,23 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Whether you work on your own or with thousands of other
-              developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
-              teams, and organizations.
+              Baik Anda bekerja sendiri atau dengan ribuan pengembang lain,
+              menggunakan React akan terasa sama. React dirancang untuk
+              memungkinkan Anda menggabungkan komponen yang dirancang oleh
+              pengembang independen, tim, dan organisasi besar secara mulus.
             </Para>
           </Center>
         </Section>
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>Menulis komponen dengan kode dan markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show some
-              content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              Komponen React adalah fungsi JavaScript. Ingin menampilkan
+              beberapa konten secara kondisional? Gunakan pernyataan{' '}
+              <Code>if</Code>. Menampilkan sebuah daftar? Gunakan fungsi{' '}
+              <Code>map()</Code> ke sebuah senarai. Belajar React adalah belajar
+              pemrograman.
             </Para>
           </Center>
           <FullBleed>
@@ -192,22 +193,25 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              This markup syntax is called JSX. It is a JavaScript syntax
-              extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
-              maintain, and delete.
+              Sintaksis markup ini disebut dengan JSX. Ini adalah ekstensi
+              sintaksis JavaScript yang dipopulerkan oleh React. Menempatkan
+              markup JSX dekat dengan logika rendering yang terkait membuat
+              komponen React mudah untuk dibuat, dipelihara, dan dihapus.
             </Para>
           </Center>
         </Section>
 
         <Section background="left-card">
           <Center>
-            <Header>Add interactivity wherever you need it</Header>
+            <Header>
+              Menambahkan interaktivitas di mana pun Anda membutuhkannya
+            </Header>
             <Para>
-              React components receive data and return what should appear on the
-              screen. You can pass them new data in response to an interaction,
-              like when the user types into an input. React will then update the
-              screen to match the new data.
+              Komponen React menerima data dan mengembalikan apa yang seharusnya
+              muncul di layar. Anda dapat memberikan data baru sebagai respons
+              dari sebuah interaksi, seperti ketika pengguna mengetikkan sebuah
+              input. React kemudian akan memperbarui layar agar sesuai dengan
+              data baru.
             </Para>
           </Center>
           <FullBleed>
@@ -215,16 +219,16 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add React to
-              your existing HTML page, and render interactive React components
-              anywhere on it.
+              Anda tidak perlu membangun seluruh halaman Anda di React.
+              Tambahkan React ke halaman HTML yang sudah ada, dan render
+              komponen React interaktif di mana saja di halaman tersebut.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
                 href="/learn/add-react-to-an-existing-project">
-                Add React to your page
+                Tambahkan React ke halaman Anda
               </CTA>
             </div>
           </Center>
