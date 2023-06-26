@@ -982,7 +982,7 @@ function Example2() {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
+    const noun = 'Video';
     heading = count + ' ' + noun;
   }
   return (
@@ -1024,7 +1024,7 @@ function Example3() {
     {
       id: 'vids-0',
       title: 'React: The Documentary',
-      description: 'The origin story of React',
+      description: 'Sejarah awal mula React',
       image: '/images/home/videos/documentary.webp',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
@@ -1045,14 +1045,14 @@ function Example3() {
     {
       id: 'vids-3',
       title: 'Introducing React Hooks',
-      description: 'Sophie Alpert and Dan Abramov (2018)',
+      description: 'Sophie Alpert dan Dan Abramov (2018)',
       image: '/images/home/videos/hooks.jpg',
       url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
       id: 'vids-4',
       title: 'Introducing Server Components',
-      description: 'Dan Abramov and Lauren Tan (2020)',
+      description: 'Dan Abramov dan Lauren Tan (2020)',
       image: '/images/home/videos/rsc.jpg',
       url: 'https://www.youtube.com/watch?v=TQQPAU21ZUw',
     },
@@ -1095,10 +1095,10 @@ function SearchableVideoList({ videos }) {
             contentMarginTop="72px"
             height="30rem">
             <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
-              React Videos
+              Video-video React
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-              A brief history of React
+              Sejarah singkat React
             </p>
             <div className="px-4 pb-4">
               <SearchableVideoList videos={videos} />
@@ -1446,7 +1446,7 @@ function VideoList({videos, emptyHeading}) {
   let heading = emptyHeading;
   const count = videos.length;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
+    const noun = 'Video';
     heading = count + ' ' + noun;
   }
   return (
@@ -1473,7 +1473,7 @@ function SearchInput({value, onChange}) {
       data-hover="SearchInput"
       onSubmit={(e) => e.preventDefault()}>
       <label htmlFor={id} className="sr-only">
-        Search
+        Telusuri
       </label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -1483,7 +1483,7 @@ function SearchInput({value, onChange}) {
           type="text"
           id={id}
           className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
-          placeholder="Search"
+          placeholder="Telusuri"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
@@ -2393,7 +2393,7 @@ function fetchTalks(confId) {
           {
             id: 'conf-2021-0',
             title: 'React 18 Keynote',
-            description: 'The React Team',
+            description: 'Tim React',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [
@@ -2506,7 +2506,7 @@ function fetchTalks(confId) {
           {
             id: 'conf-2021-12',
             title: 'React Native Desktop',
-            description: 'Eric Rozell and Steven Moyes',
+            description: 'Eric Rozell dan Steven Moyes',
             url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
             image: {
               speakers: [
@@ -2648,7 +2648,7 @@ function fetchTalks(confId) {
           {
             id: 'conf-2019-8',
             title: 'Building (And Re-Building) the Airbnb Design System',
-            description: 'Maja Wichrowska and Tae Kim',
+            description: 'Maja Wichrowska dan Tae Kim',
             url: 'https://www.youtube.com/watch?v=fHQ1WSx41CA&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=13',
             image: {
               speakers: [
