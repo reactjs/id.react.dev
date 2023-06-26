@@ -502,15 +502,15 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="" />
-              React community
+              Selamat datang di <br className="" />
+              komunitas React
             </Header>
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
-              label="Take the Tutorial">
-              Get Started
+              label="Ikuti Tutorial">
+              Memulai
             </ButtonLink>
           </div>
         </Section>
