@@ -67,6 +67,10 @@ function Para({children}) {
   );
 }
 
+function Italic({children}) {
+  return <em className="italic">{children}</em>;
+}
+
 function Left({children}) {
   return (
     <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
@@ -171,8 +175,8 @@ export function HomeContent() {
             <Para>
               Baik Anda bekerja sendiri atau dengan ribuan pengembang lain,
               menggunakan React akan terasa sama. React dirancang untuk
-              memungkinkan Anda menggabungkan komponen yang dirancang oleh
-              pengembang independen, tim, dan organisasi besar secara mulus.
+              memungkinkan Anda menggabungkan komponen secara mulus yang
+              dirancang oleh pengembang independen, tim, dan organisasi.
             </Para>
           </Center>
         </Section>
@@ -184,8 +188,8 @@ export function HomeContent() {
               Komponen React adalah fungsi JavaScript. Ingin menampilkan
               beberapa konten secara kondisional? Gunakan pernyataan{' '}
               <Code>if</Code>. Menampilkan sebuah daftar? Gunakan fungsi{' '}
-              <Code>map()</Code> ke sebuah senarai. Belajar React adalah belajar
-              pemrograman.
+              <Code>map()</Code> ke sebuah senarai (<Italic>array</Italic>).
+              Belajar React adalah belajar pemrograman.
             </Para>
           </Center>
           <FullBleed>
