@@ -4,7 +4,7 @@ title: useReducer
 
 <Intro>
 
-`useReducer` is a React Hook that lets you add a [reducer](/learn/extracting-state-logic-into-a-reducer) to your component.
+`useReducer` adalah React Hook yang memungkinkan Anda menambahkan [reducer](/learn/extracting-state-logic-into-a-reducer) ke komponen Anda.
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init?)
@@ -20,7 +20,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?)
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
-Call `useReducer` at the top level of your component to manage its state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
+Panggil `useReducer` di tingkat atas komponen anda untuk mengelola statenya dengan [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 import { useReducer } from 'react';
@@ -34,31 +34,31 @@ function MyComponent() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types. 
-* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
-* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+* `reducer`: Fungsi reducer yang menentukan bagaimana *state* diperbarui. Itu harus murni, harus mengambil *state* dan *action* sebagai argumen, dan harus mengembalikan *state* berikutnya. *State* dan *action* bisa dari tipe apa saja.
+* `initialArg`: Nilai dari mana *initial state* dihitung. Bisa menjadi nilai dari tipe apapun. Bagaimana *initial state* dihitung darinya bergantung pada argumen `init` berikutnya.
+* **opsional** `init`: Fungsi penginisialisasi yang harus mengembalikan *initial state*. Jika tidak ditentukan, *initial state* disetel ke `initialArg`. Jika tidak, *initial state* disetel ke hasil pemanggilan `init(initialArg)`.
 
-#### Returns {/*returns*/}
+#### Pengembalian {/*returns*/}
 
-`useReducer` returns an array with exactly two values:
+`useReducer` mengembalikan sebuah array dengan dua nilai:
 
-1. The current state. During the first render, it's set to `init(initialArg)` or `initialArg` (if there's no `init`).
-2. The [`dispatch` function](#dispatch) that lets you update the state to a different value and trigger a re-render.
+1. State saat ini. Selama render pertama, ini disetel ke `init(initialArg)` atau `initialArg` (jika tidak ada `init`).
+2. [Fungsi `dispatch`](#dispatch) yang memungkinkan anda memperbarui state ke nilai yang berbeda dan memicu render ulang.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
+* `useReducer` adalah sebuah Hook, jadi anda hanya dapat memanggilnya **di tingkat atas komponen anda** atau Hook anda sendiri. Anda tidak dapat memanggilnya di dalam loop atau pengkondisian. Jika anda perlu melakukannya, ekstrak komponen baru dan pindahkan state ke dalamnya.
+* Dalam Strict Mode, React akan **memanggil reducer dan inisialisasi anda sebanyak dua kali** untuk [membantu anda menemukan ketidakmurnian yang tidak disengaja.](#my-reducer-or-initializer-function-runs-twice) Ini adalah perilaku khusus untuk tahap pengembangan dan tidak mempengaruhi tahap produksi. Jika reducer dan inisialisasi anda murni (sebagai mestinya), ini tidak akan mempengaruhi logika anda. Hasil dari salah satu panggilan diabaikan.
 
 ---
 
-### `dispatch` function {/*dispatch*/}
+### Fungsi `dispatch` {/*dispatch*/}
 
-The `dispatch` function returned by `useReducer` lets you update the state to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
+Fungsi `dispatch` yang dikembalikan oleh `useReducer` memungkinkan anda memperbarui state ke nilai yang berbeda dan memicu render ulang. Anda harus meneruskan action sebagai satu-satunya argumen ke fungsi `dispatch`:
 
 ```js
 const [state, dispatch] = useReducer(reducer, { age: 42 });
@@ -68,31 +68,31 @@ function handleClick() {
   // ...
 ```
 
-React will set the next state to the result of calling the `reducer` function you've provided with the current `state` and the action you've passed to `dispatch`.
+React akan mengatur state berikutnya ke hasil pemanggilan fungsi `reducer` yang telah anda sediakan dengan `state` saat ini dan action yang telah anda teruskan ke `dispatch`.
 
-#### Parameters {/*dispatch-parameters*/}
+#### Parameter {/*dispatch-parameters*/}
 
-* `action`: The action performed by the user. It can be a value of any type. By convention, an action is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
+* `action`: Tindakan yang dilakukan oleh pengguna. Ini bisa menjadi nilai tipe apapun. Menurut konvensi, suatu action biasanya berupa objek dengan properti `type` yang mengidentifikasinya dan, secara opsional, properti lain dengan informasi tambahan.
 
-#### Returns {/*dispatch-returns*/}
+#### Pengembalian {/*dispatch-returns*/}
 
-`dispatch` functions do not have a return value.
+Fungsi `dispatch` tidak memiliki nilai pengembalian.
 
-#### Caveats {/*setstate-caveats*/}
+#### Peringatan {/*setstate-caveats*/}
 
-* The `dispatch` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `dispatch` function, [you will still get the old value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) that was on the screen before your call.
+* Fungsi `dispatch` **hanya memperbarui variabel state untuk render berikutnya**. Jika anda membaca variabel state setelah memanggil fungsi `dispatch`, [anda masih akan mendapatkan nilai lama](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) yang ada di layar sebelum panggilan anda.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. React may still need to call your component before ignoring the result, but it shouldn't affect your code.
+* Jika nilai baru yang anda berikan identik dengan `state` saat ini, sebagaimana ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React akan **melewati rendering ulang komponen dan childrennya.** Ini adalah pengoptimalan. React mungkin masih perlu memanggil komponen anda sebelum mengabaikan hasilnya, tetapi itu tidak akan memengaruhi kode anda.
 
-* React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+* React [mengelompokkan pembaruan state.](/learn/queueing-a-series-of-state-updates) Itu memperbarui layar **setelah semua event handler berjalan** dan telah memanggil fungsi `set` mereka. Ini mencegah beberapa render ulang selama event tunggal. Dalam kasus yang jarang terjadi, anda perlu memaksa React untuk memperbarui layar lebih awal, misalnya untuk mengakses DOM, anda dapat menggunakan [`flushSync`.](/reference/react-dom/flushSync)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Adding a reducer to a component {/*adding-a-reducer-to-a-component*/}
+### Menambahkan reducer ke komponen {/*adding-a-reducer-to-a-component*/}
 
-Call `useReducer` at the top level of your component to manage state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
+Panggil `useReducer` di tingkat atas komponen anda untuk mengelola state dengan [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js [[1, 8, "state"], [2, 8, "dispatch"], [4, 8, "reducer"], [3, 8, "{ age: 42 }"]]
 import { useReducer } from 'react';
@@ -106,12 +106,12 @@ function MyComponent() {
   // ...
 ```
 
-`useReducer` returns an array with exactly two items:
+`useReducer` mengembalikan sebuah array dengan dua item:
 
-1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
-2. The <CodeStep step={2}>`dispatch` function</CodeStep> that lets you change it in response to interaction.
+1. <CodeStep step={1}>State saat ini</CodeStep> dari variabel state, awalnya diatur ke <CodeStep step={3}>initial state</CodeStep> yang anda berikan.
+2. <CodeStep step={2}>Fungsi `dispatch`</CodeStep> yang memungkinkan anda mengubahnya sebagai respon terhadap interaksi.
 
-To update what's on the screen, call <CodeStep step={2}>`dispatch`</CodeStep> with an object representing what the user did, called an *action*:
+Untuk memperbarui apa yang ada di layar, panggil <CodeStep step={2}>`dispatch`</CodeStep> dengan objek yang mewakili apa yang dilakukan pengguna, yang disebut *action*:
 
 ```js [[2, 2, "dispatch"]]
 function handleClick() {
@@ -119,7 +119,7 @@ function handleClick() {
 }
 ```
 
-React will pass the current state and the action to your <CodeStep step={4}>reducer function</CodeStep>. Your reducer will calculate and return the next state. React will store that next state, render your component with it, and update the UI.
+React akan meneruskan state saat ini dan action ke <CodeStep step={4}>fungsi reducer</CodeStep> anda. Reducer anda akan menghitung dan mengembalikan state berikutnya. React akan menyimpan state berikutnya, merender komponen anda dengannya, dan memperbarui UI.
 
 <Sandpack>
 
@@ -132,7 +132,7 @@ function reducer(state, action) {
       age: state.age + 1
     };
   }
-  throw Error('Unknown action.');
+  throw Error('Action tidak diketahui.');
 }
 
 export default function Counter() {
@@ -143,9 +143,9 @@ export default function Counter() {
       <button onClick={() => {
         dispatch({ type: 'incremented_age' })
       }}>
-        Increment age
+        Tambahkan umur
       </button>
-      <p>Hello! You are {state.age}.</p>
+      <p>Halo! Anda berumur {state.age}.</p>
     </>
   );
 }
@@ -157,13 +157,13 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-`useReducer` is very similar to [`useState`](/reference/react/useState), but it lets you move the state update logic from event handlers into a single function outside of your component. Read more about [choosing between `useState` and `useReducer`.](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
+`useReducer` sangat mirip dengan [`useState`](/reference/react/useState), tetapi memungkinkan anda memindahkan logika pembaruan state dari event handler ke dalam satu fungsi di luar komponen anda. Baca selengkapnya tentang [memilih antara `useState` dan `useReducer`.](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
 
 ---
 
-### Writing the reducer function {/*writing-the-reducer-function*/}
+### Menulis fungsi reducer {/*writing-the-reducer-function*/}
 
-A reducer function is declared like this:
+Fungsi reducer dideklarasikan seperti ini:
 
 ```js
 function reducer(state, action) {
@@ -171,7 +171,7 @@ function reducer(state, action) {
 }
 ```
 
-Then you need to fill in the code that will calculate and return the next state. By convention, it is common to write it as a [`switch` statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) For each `case` in the `switch`, calculate and return some next state.
+Lalu anda perlu mengisi kode yang akan menghitung dan mengembalikan state berikutnya. Menurut konvensi, biasanya ditulis sebagai [`switch` statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) Untuk setiap `case` di `switch`, hitung dan kembalikan beberapa state berikutnya.
 
 ```js {4-7,10-13}
 function reducer(state, action) {
@@ -189,11 +189,11 @@ function reducer(state, action) {
       };
     }
   }
-  throw Error('Unknown action: ' + action.type);
+  throw Error('Action tidak diketahui: ' + action.type);
 }
 ```
 
-Actions can have any shape. By convention, it's common to pass objects with a `type` property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next state.
+Action dapat berbentuk apa saja. Menurut konvensi, meneruskan objek dengan properti `type` yang mengidentifikasi action adalah hal yang umum. Itu harus mencakup informasi minimal yang diperlukan yang dibutuhkan reducer untuk menghitung state berikutnya.
 
 ```js {5,9-12}
 function Form() {
@@ -212,31 +212,31 @@ function Form() {
   // ...
 ```
 
-The action type names are local to your component. [Each action describes a single interaction, even if that leads to multiple changes in data.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) The shape of the state is arbitrary, but usually it'll be an object or an array.
+Nama action type bersifat lokal untuk komponen anda. [Setiap action menjelaskan satu interaksi, meskipun hal itu menyebabkan beberapa perubahan pada data.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) Bentuk dari state bersifat arbitrer, tetapi biasanya berupa objek atau array.
 
-Read [extracting state logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
+Baca [mengekstrak logika state menjadi reducer](/learn/extracting-state-logic-into-a-reducer) untuk mempelajari lebih lanjut.
 
 <Pitfall>
 
-State is read-only. Don't modify any objects or arrays in state:
+State bersifat read-only. Jangan ubah objek atau array apapun dalam state:
 
 ```js {4,5}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // 🚩 Don't mutate an object in state like this:
+      // 🚩 Jangan memutasikan objek dalam state seperti ini:
       state.age = state.age + 1;
       return state;
     }
 ```
 
-Instead, always return new objects from your reducer:
+Sebagai gantinya, selalu kembalikan objek baru dari reducer anda:
 
 ```js {4-8}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // ✅ Instead, return a new object
+      // ✅ Sebagai gantinya, kembalikan objek baru
       return {
         ...state,
         age: state.age + 1
@@ -244,15 +244,15 @@ function reducer(state, action) {
     }
 ```
 
-Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+Baca [memperbarui objek dalam state](/learn/updating-objects-in-state) dan [memperbarui array dalam state](/learn/updating-arrays-in-state) untuk mempelajari lebih lanjut.
 
 </Pitfall>
 
-<Recipes titleText="Basic useReducer examples" titleId="examples-basic">
+<Recipes titleText="Contoh penggunaan dasar useReducer" titleId="examples-basic">
 
 #### Form (object) {/*form-object*/}
 
-In this example, the reducer manages a state object with two fields: `name` and `age`.
+Dalam contoh ini, reducer mengelola objek state dengan dua field: `name` dan `age`
 
 <Sandpack>
 
@@ -274,7 +274,7 @@ function reducer(state, action) {
       };
     }
   }
-  throw Error('Unknown action: ' + action.type);
+  throw Error('Action tidak diketahui: ' + action.type);
 }
 
 const initialState = { name: 'Taylor', age: 42 };
@@ -300,9 +300,9 @@ export default function Form() {
         onChange={handleInputChange}
       />
       <button onClick={handleButtonClick}>
-        Increment age
+        Tambahkan umur
       </button>
-      <p>Hello, {state.name}. You are {state.age}.</p>
+      <p>Halo, {state.nama}. Anda berumur {state.umur}.</p>
     </>
   );
 }
@@ -318,7 +318,7 @@ button { display: block; margin-top: 10px; }
 
 #### Todo list (array) {/*todo-list-array*/}
 
-In this example, the reducer manages an array of tasks. The array needs to be updated [without mutation.](/learn/updating-arrays-in-state)
+Dalam contoh ini, reducer memgelola sebuah array serangkaian tugas. Array perlu diperbarui [tanpa mutasi.](/learn/updating-arrays-in-state)
 
 <Sandpack>
 
@@ -349,7 +349,7 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Action tidak diketahui: ' + action.type);
     }
   }
 }
@@ -384,7 +384,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Rencana perjalanan Praha</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -399,9 +399,9 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  { id: 0, text: 'Kunjungi Museum Kafka', done: true },
+  { id: 1, text: 'Menonton pertunjukan boneka', done: false },
+  { id: 2, text: 'Foto Lennon Wall', done: false }
 ];
 ```
 
@@ -413,14 +413,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Tambah tugas"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -464,7 +464,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -492,7 +492,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -509,9 +509,9 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Menulis logika pembaruan yang ringkas dengan Immer {/*writing-concise-update-logic-with-immer*/}
 
-If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer#useimmerreducer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+Jika memperbarui array dan objek tanpa mutasi terasa membosankan, Anda bisa menggunakan library seperti Immer untuk mengurangi kode yang berulang. Immer memungkinkan anda menulis kode ringkas seolah-olah anda melakukan mutasi objek, tetapi di balik itu, Immer melakukan pembaruan yang tidak berubah:
 
 <Sandpack>
 
@@ -576,7 +576,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Rencana perjalanan Praha</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -591,9 +591,9 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false },
+  { id: 0, text: 'Kunjungi Museum Kafka', done: true },
+  { id: 1, text: 'Menonton pertunjukan boneka', done: false },
+  { id: 2, text: 'Foto Lennon Wall', done: false },
 ];
 ```
 
@@ -612,7 +612,7 @@ export default function AddTask({ onAddTask }) {
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -656,7 +656,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -684,7 +684,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -723,9 +723,9 @@ ul, li { margin: 0; padding: 0; }
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Menghindari membuat ulang initial state {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React menyimpan initial state sekali dan mengabaikannya pada render berikutnya.
 
 ```js
 function createInitialState(username) {
@@ -737,9 +737,9 @@ function TodoList({ username }) {
   // ...
 ```
 
-Although the result of `createInitialState(username)` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating large arrays or performing expensive calculations.
+Meskipun hasil dari `createInitialState(username)` hanya digunakan untuk render awal, Anda tetap memanggil fungsi ini pada setiap render. Hal ini dapat menjadi boros jika anda membuat array yang besar atau melakukan perhitungan yang rumit.
 
-To solve this, you may **pass it as an _initializer_ function** to `useReducer` as the third argument instead:
+Untuk mengatasi hal ini, Anda dapat **meneruskannya sebagai fungsi _initializer_** ke `useReducer` sebagai argumen ketiga:
 
 ```js {6}
 function createInitialState(username) {
@@ -751,15 +751,15 @@ function TodoList({ username }) {
   // ...
 ```
 
-Notice that you’re passing `createInitialState`, which is the *function itself*, and not `createInitialState()`, which is the result of calling it. This way, the initial state does not get re-created after initialization.
+Perhatikan bahwa anda meneruskan `createInitialState` yang merupakan *fungsi itu sendiri*, dan bukan `createInitialState()`, yang merupakan hasil dari pemanggilan fungsi tersebut. Dengan cara ini, initial state tidak dibuat ulang setelah inisialisasi.
 
-In the above example, `createInitialState` takes a `username` argument. If your initializer doesn't need any information to compute the initial state, you may pass `null` as the second argument to `useReducer`.
+Pada contoh di atas, `createInitialState` mengambil argumen `username`. Jika inisialisasi anda tidak memerlukan informasi apa pun untuk menghitung initial state, Anda bisa meneruskan `null` sebagai argumen kedua ke `useReducer`.
 
-<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
+<Recipes titleText="Perbedaan antara meneruskan inisialisasi dan meneruskan initial state secara langsung" titleId="examples-initializer">
 
-#### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Meneruskan fungsi inisialisasi {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialState` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+Contoh ini meneruskan fungsi inisialisasi, sehingga fungsi `createInitialState` hanya berjalan selama inisialisasi. Fungsi ini tidak berjalan ketika komponen dirender ulang, seperti ketika anda mengetikkan input.
 
 <Sandpack>
 
@@ -806,7 +806,7 @@ function reducer(state, action) {
       }
     }
   }
-  throw Error('Unknown action: ' + action.type);
+  throw Error('Action tidak diketahui: ' + action.type);
 }
 
 export default function TodoList({ username }) {
@@ -828,7 +828,7 @@ export default function TodoList({ username }) {
       />
       <button onClick={() => {
         dispatch({ type: 'added_todo' });
-      }}>Add</button>
+      }}>Tambah</button>
       <ul>
         {state.todos.map(item => (
           <li key={item.id}>
@@ -845,9 +845,9 @@ export default function TodoList({ username }) {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Meneruskan initial state secara langsung {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialState` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+Contoh ini **tidak** meneruskan fungsi inisialisasi, sehingga fungsi `createInitialState` berjalan pada setiap render, seperti saat anda mengetikkan input. Tidak ada perbedaan perilaku yang dapat diamati, tetapi kode ini kurang efisien.
 
 <Sandpack>
 
@@ -894,7 +894,7 @@ function reducer(state, action) {
       }
     }
   }
-  throw Error('Unknown action: ' + action.type);
+  throw Error('Action tidak diketahui: ' + action.type);
 }
 
 export default function TodoList({ username }) {
@@ -915,7 +915,7 @@ export default function TodoList({ username }) {
       />
       <button onClick={() => {
         dispatch({ type: 'added_todo' });
-      }}>Add</button>
+      }}>Tambah</button>
       <ul>
         {state.todos.map(item => (
           <li key={item.id}>
@@ -936,28 +936,28 @@ export default function TodoList({ username }) {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### I've dispatched an action, but logging gives me the old state value {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
+### Saya telah mendispatch suatu action, tetapi catatan log memberi saya nilai state lama {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
 
-Calling the `dispatch` function **does not change state in the running code**:
+Memanggil fungsi `dispatch` **tidak mengubah state dalam kode yang sedang berjalan**:
 
 ```js {4,5,8}
 function handleClick() {
-  console.log(state.age);  // 42
+  console.log(state.umur);  // 42
 
-  dispatch({ type: 'incremented_age' }); // Request a re-render with 43
-  console.log(state.age);  // Still 42!
+  dispatch({ type: 'incremented_age' }); // Request render ulang dengan 43
+  console.log(state.umur);  // Masih 42!
 
   setTimeout(() => {
-    console.log(state.age); // Also 42!
+    console.log(state.umur); // Juga masih 42!
   }, 5000);
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
+Hal ini karena [state berperilaku seperti snapshot.](/learn/state-as-a-snapshot) Memperbarui state akan merequest render ulang dengan nilai state yang baru, tetapi tidak memengaruhi variabel JavaScript `state` di dalam event handler yang sudah berjalan.
 
-If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
+Jika anda perlu menebak nilai state berikutnya, Anda dapat menghitungnya secara manual dengan memanggil reducer sendiri:
 
 ```js
 const action = { type: 'incremented_age' };
@@ -970,20 +970,20 @@ console.log(nextState); // { age: 43 }
 
 ---
 
-### I've dispatched an action, but the screen doesn't update {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
+### Saya telah mendispatch sebuah action, tetapi layar tidak diperbarui {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React akan **mengabaikan pembaruan Anda jika state berikutnya sama dengan state sebelumnya,** seperti yang ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Hal ini biasanya terjadi ketika anda mengubah sebuah objek atau sebuah array pada state secara langsung:
 
 ```js {4-5,9-10}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // 🚩 Wrong: mutating existing object
+      // 🚩 Salah: mengubah objek yang sudah ada
       state.age++;
       return state;
     }
     case 'changed_name': {
-      // 🚩 Wrong: mutating existing object
+      // 🚩 Salah: mengubah objek yang sudah ada
       state.name = action.nextName;
       return state;
     }
@@ -992,20 +992,20 @@ function reducer(state, action) {
 }
 ```
 
-You mutated an existing `state` object and returned it, so React ignored the update. To fix this, you need to ensure that you're always [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) instead of mutating them:
+Anda mengubah objek `state` yang sudah ada dan mengembalikannya, sehingga React mengabaikan pembaruan tersebut. Untuk memperbaikinya, Anda harus memastikan bahwa anda selalu [memperbarui objek dalam state](/learn/updating-objects-in-state) dan [memperbarui array dalam state](/learn/updating-arrays-in-state), bukannya memutasi objek tersebut:
 
 ```js {4-8,11-15}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // ✅ Correct: creating a new object
+      // ✅ Benar: membuat objek baru
       return {
         ...state,
         age: state.age + 1
       };
     }
     case 'changed_name': {
-      // ✅ Correct: creating a new object
+      // ✅ Benar: membuat objek baru
       return {
         ...state,
         name: action.nextName
@@ -1018,29 +1018,29 @@ function reducer(state, action) {
 
 ---
 
-### A part of my reducer state becomes undefined after dispatching {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
+### Bagian dari reducer state menjadi undefined setelah dispatching {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
 
-Make sure that every `case` branch **copies all of the existing fields** when returning the new state:
+Pastikan bahwa setiap cabang `case` **menyalin semua field yang ada** saat mengembalikan state yang baru:
 
 ```js {5}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
       return {
-        ...state, // Don't forget this!
+        ...state, // Jangan lupakan ini!
         age: state.age + 1
       };
     }
     // ...
 ```
 
-Without `...state` above, the returned next state would only contain the `age` field and nothing else.
+Tanpa `...state` di atas, state berikutnya yang dikembalikan hanya akan berisi field `age` dan tidak ada yang lain.
 
 ---
 
-### My entire reducer state becomes undefined after dispatching {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
+### Seluruh reducer state saya menjadi undefined setelah dispatching {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
 
-If your state unexpectedly becomes `undefined`, you're likely forgetting to `return` state in one of the cases, or your action type doesn't match any of the `case` statements. To find why, throw an error outside the `switch`:
+Jika state anda secara tidak terduga menjadi `undefined`, kemungkinan anda lupa untuk `return` state di salah satu case, atau action type anda tidak sesuai dengan pernyataan `case` mana pun. Untuk mengetahui penyebabnya, buat Throw error di luar `switch`:
 
 ```js {10}
 function reducer(state, action) {
@@ -1052,46 +1052,46 @@ function reducer(state, action) {
       // ...
     }
   }
-  throw Error('Unknown action: ' + action.type);
+  throw Error('Action tidak diketahui: ' + action.type);
 }
 ```
 
-You can also use a static type checker like TypeScript to catch such mistakes.
+Anda juga dapat menggunakan pemeriksa tipe statis seperti TypeScript untuk menangkap error tersebut.
 
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### Saya mendapat error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally dispatching an action *during render*, so your component enters a loop: render, dispatch (which causes a render), render, dispatch (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+Anda mungkin akan mendapatkan pesan error yang berbunyi: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Biasanya, ini berarti anda mendispatch sebuah action tanpa syarat *selama render*, sehingga komponen anda masuk ke dalam perulangan: render, dispatch (yang menyebabkan render), dan seterusnya. Sering kali, hal ini disebabkan oleh kesalahan dalam menentukan event handler:
 
 ```js {1-2}
-// 🚩 Wrong: calls the handler during render
-return <button onClick={handleClick()}>Click me</button>
+// 🚩 Salah: memanggil handler selama render
+return <button onClick={handleClick()}>Klik aku</button>
 
-// ✅ Correct: passes down the event handler
-return <button onClick={handleClick}>Click me</button>
+// ✅ Benar: meneruskan event handler
+return <button onClick={handleClick}>Klik aku</button>
 
-// ✅ Correct: passes down an inline function
-return <button onClick={(e) => handleClick(e)}>Click me</button>
+// ✅ Benar: meneruskan fungsi sebaris
+return <button onClick={(e) => handleClick(e)}>Klik aku</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `dispatch` function call responsible for the error.
+Jika Anda tidak dapat menemukan penyebab error ini, klik tanda panah di samping error di konsol dan lihat tumpukan JavaScript untuk menemukan pemanggilan fungsi `dispatch` yang bertanggungjawab atas error tersebut.
 
 ---
 
-### My reducer or initializer function runs twice {/*my-reducer-or-initializer-function-runs-twice*/}
+### Fungsi reducer atau inisialisasi saya berjalan dua kali {/*my-reducer-or-initializer-function-runs-twice*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call your reducer and initializer functions twice. This shouldn't break your code.
+Pada [Strict Mode](/reference/react/StrictMode), React akan memanggil fungsi reducer dan inisialisasi dua kali. Hal ini seharusnya tidak akan merusak kode Anda.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and reducer functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+Perilaku **development-only** ini membantu Anda [menjaga komponen tetap murni.](/learn/keeping-components-pure) React menggunakan hasil dari salah satu pemanggilan, dan mengabaikan hasil dari pemanggilan lainnya. Selama fungsi komponen, inisialisasi, dan reducer Anda murni, hal ini tidak akan mempengaruhi logika anda. Namun, jika mereka tidak murni secara tidak sengaja, hal ini akan membantu Anda untuk mengetahui kesalahannya.
 
-For example, this impure reducer function mutates an array in state:
+Sebagai contoh, fungsi reducer yang tidak murni ini mengubah sebuah array dalam state:
 
 ```js {4-6}
 function reducer(state, action) {
   switch (action.type) {
     case 'added_todo': {
-      // 🚩 Mistake: mutating state
+      // 🚩 Kesalahan: mengubah state
       state.todos.push({ id: nextId++, text: action.text });
       return state;
     }
@@ -1100,13 +1100,13 @@ function reducer(state, action) {
 }
 ```
 
-Because React calls your reducer function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](/learn/updating-arrays-in-state#adding-to-an-array):
+Karena React memanggil fungsi reducer dua kali, Anda akan melihat todo ditambahkan dua kali, sehingga anda akan tahu bahwa ada kesalahan. Pada contoh ini, Anda dapat memperbaiki kesalahan dengan [mengganti array alih-alih melakukan mutasi](/learn/updating-arrays-in-state#adding-to-an-array):
 
 ```js {4-11}
 function reducer(state, action) {
   switch (action.type) {
     case 'added_todo': {
-      // ✅ Correct: replacing with new state
+      // ✅ Benar: mengganti dengan state baru
       return {
         ...state,
         todos: [
@@ -1120,6 +1120,6 @@ function reducer(state, action) {
 }
 ```
 
-Now that this reducer function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and reducer functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+Karena fungsi reducer ini murni, maka memanggilnya sebagai waktu tambahan tidak akan membuat perbedaan pada perilakunya. Inilah sebabnya mengapa React memanggilnya dua kali akan membantu Anda menemukan kesalahan. **Hanya fungsi komponen, inisialisasi, dan reducer yang harus murni.** Event handler tidak perlu murni, sehingga React tidak akan pernah memanggil event handler dua kali.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Baca [menjaga komponen tetap murni](/learn/keeping-components-pure) untuk mempelajari lebih lanjut.
