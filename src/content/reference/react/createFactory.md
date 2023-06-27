@@ -1,5 +1,5 @@
 ---
-Judul : createFactory
+title: createFactory
 ---
 
 <Deprecated>
