@@ -1477,7 +1477,7 @@ function SearchInput({value, onChange}) {
       data-hover="SearchInput"
       onSubmit={(e) => e.preventDefault()}>
       <label htmlFor={id} className="sr-only">
-        Telusuri
+        Cari
       </label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -1487,7 +1487,7 @@ function SearchInput({value, onChange}) {
           type="text"
           id={id}
           className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
-          placeholder="Telusuri"
+          placeholder="Cari"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
