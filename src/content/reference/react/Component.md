@@ -508,9 +508,9 @@ Memungkinkan Anda menentukan nilai untuk [legacy context](https://reactjs.org/do
 
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
-If you implement `getSnapshotBeforeUpdate`, React will call it immediately before React updates the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to [`componentDidUpdate`.](#componentdidupdate)
+Jika Anda mengimplementasikan `getSnapshotBeforeUpdate`, React akan segera memanggilnya sebelum React memperbarui DOM. Ini memungkinkan komponen Anda untuk menangkap beberapa informasi dari DOM (e.g. posisi *scroll*) sebelum berpotensi diubah. Nilai apa pun yang dikembalikan oleh *lifecycle method* ini akan diteruskan sebagai parameter ke [`componentDidUpdate`.](#componentdidupdate)
 
-For example, you can use it in a UI like a chat thread that needs to preserve its scroll position during updates:
+Misalnya, Anda dapat menggunakannya di UI seperti utas obrolan yang perlu mempertahankan posisi *scroll*-nya selama pembaruan:
 
 ```js {7-15,17}
 class ScrollingList extends React.Component {
@@ -547,25 +547,25 @@ class ScrollingList extends React.Component {
 }
 ```
 
-In the above example, it is important to read the `scrollHeight` property directly in `getSnapshotBeforeUpdate`. It is not safe to read it in [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), or [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) because there is a potential time gap between these methods getting called and React updating the DOM.
+Pada contoh di atas, penting untuk membaca properti `scrollHeight` secara langsung di `getSnapshotBeforeUpdate`. Tidak aman untuk membacanya di [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), atau [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) karena ada potensi jeda waktu antara pemanggilan metode ini dan React memperbarui DOM.
 
 #### Parameters {/*getsnapshotbeforeupdate-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevProps`: *Props* sebelum pembaharuan. Membandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `prevState`: State sebelum pembaharuan. Membandingkan `prevState` ke [`this.state`](#state) untuk menentukan apa yang berubah.
 
 #### Returns {/*getsnapshotbeforeupdate-returns*/}
 
-You should return a snapshot value of any type that you'd like, or `null`. The value you returned will be passed as the third argument to [`componentDidUpdate`.](#componentdidupdate)
+Anda harus mengembalikan nilai snapshot dari jenis apa pun yang Anda inginkan, atau `null`. Nilai yang Anda kembalikan akan diteruskan sebagai argumen ketiga pada [`componentDidUpdate`.](#componentdidupdate)
 
 #### Caveats {/*getsnapshotbeforeupdate-caveats*/}
 
-- `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `getSnapshotBeforeUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) didefinisikan dan mengembalikan `false`.
 
 <Note>
 
-At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a class component.
+Saat ini, tidak ada yang setara dengan `getSnapshotBeforeUpdate` untuk *function components*. Kasus penggunaan ini sangat jarang, tetapi jika Anda membutuhkannya, untuk sekarang Anda harus menulis sebuah *class component*.
 
 </Note>
 
@@ -573,9 +573,9 @@ At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function 
 
 ### `render()` {/*render*/}
 
-The `render` method is the only required method in a class component.
+Metode `render` adalah satu-satunya metode yang diperlukan dalam *class component*.
 
-The `render` method should specify what you want to appear on the screen, for example:
+Metode `render` harus menentukan apa yang ingin Anda tampilkan di layar, misalnya:
 
 ```js {4-6}
 import { Component } from 'react';
@@ -587,35 +587,35 @@ class Greeting extends Component {
 }
 ```
 
-React may call `render` at any moment, so you shouldn't assume that it runs at a particular time. Usually, the `render` method should return a piece of [JSX](/learn/writing-markup-with-jsx), but a few [other return types](#render-returns) (like strings) are supported. To calculate the returned JSX, the `render` method can read [`this.props`](#props), [`this.state`](#state), and [`this.context`](#context).
+React dapat memanggil `render` kapan saja, jadi Anda tidak boleh berasumsi bahwa itu berjalan pada waktu tertentu. Biasanya, metode `render` harus mengembalikan sebagian dari [JSX](/learn/writing-markup-with-jsx), tetapi beberapa [jenis *return* lainnya](#render-returns) (seperti strings) didukung. Untuk menghitung JSX yang dikembalikan, metode `render` dapat membaca[`this.props`](#props), [`this.state`](#state), dan [`this.context`](#context).
 
-You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
+Anda harus menulis metode `render` sebagai *pure function*, artinya ia harus mengembalikan hasil yang sama jika *props*, *state*, dan *context*-nya sama. Itu juga tidak boleh mengandung *side effects* (seperti menyiapkan *subscriptions*) atau interaksi dengan API peramban. Side effects harus terjadi baik dalam *event handlers* atau metode seperti [`componentDidMount`.](#componentdidmount)
 
 #### Parameters {/*render-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevProps`: *Props* sebelum pembaruan. Bandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `prevState`: State sebelum pembaruan. Bandingkan `prevState` ke [`this.state`](#state) untuk menentukan apa yang berubah.
 
 #### Returns {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` dapat mengembalikan *node* React apa pun yang valid. Ini termasuk elemen-elemen React seperti `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), *nodes* kosong (`null`, `undefined`, `true`, dan `false`), dan arrays dari React *nodes*.
 
 #### Caveats {/*render-caveats*/}
 
-- `render` should be written as a pure function of props, state, and context. It should not have side effects.
+- `render` harus ditulis sebagai pure function dari *props*, *state*, dan *context*. Seharusnya tidak memiliki *side effects*.
 
-- `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `render` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) didefinisikan dan mengembalikan `false`.
 
-- When [Strict Mode](/reference/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+- Ketika [Strict Mode](/reference/react/StrictMode) aktif, React akan memanggil `render` dua kali dalam *development* dan kemudian membuang salah satu hasilnya. Ini membantu Anda melihat efek samping yang tidak disengaja yang perlu dipindahkan dari metode `render`.
 
-- There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
+- Tidak ada korespondensi one-to-one antara panggilan `render` dan panggilan `componentDidMount` atau panggilan `componentDidUpdate`. Beberapa hasil panggilan `render` mungkin dibuang oleh React jika bermanfaat.
 
 ---
 
 ### `setState(nextState, callback?)` {/*setstate*/}
 
-Call `setState` to update the state of your React component.
+Memanggil `setState` untuk mengupdate *state* dari komponen React Anda.
 
 ```js {8-10}
 class Form extends Component {
@@ -641,11 +641,11 @@ class Form extends Component {
 }
 ```
 
-`setState` enqueues changes to the component state. It tells React that this component and its children need to re-render with the new state. This is the main way you'll update the user interface in response to interactions.
+`setState` mengantrekan perubahan ke *state* komponen. Ini memberi tahu React bahwa komponen ini dan turunannya perlu di-*render* ulang dengan *state* baru. Ini adalah cara utama Anda memperbarui antarmuka pengguna sebagai respons terhadap interaksi.
 
 <Pitfall>
 
-Calling `setState` **does not** change the current state in the already executing code:
+Memanggil `setState` **tidak** mengubah *state* saat ini di kode yang sudah dieksekusi:
 
 ```js {6}
 function handleClick() {
@@ -657,11 +657,11 @@ function handleClick() {
 }
 ```
 
-It only affects what `this.state` will return starting from the *next* render.
+Ini hanya memengaruhi apa yang akan dikembalikan oleh `this.state` mulai dari render *berikutnya*.
 
 </Pitfall>
 
-You can also pass a function to `setState`. It lets you update state based on the previous state:
+Anda juga dapat meneruskan fungsi ke `setState`. Ini memungkinkan Anda memperbarui *state* berdasarkan *state* sebelumnya:
 
 ```js {2-6}
   handleIncreaseAge = () => {
@@ -673,31 +673,31 @@ You can also pass a function to `setState`. It lets you update state based on th
   }
 ```
 
-You don't have to do this, but it's handy if you want to update state multiple times during the same event.
+Anda tidak harus melakukan ini, tetapi akan berguna jika Anda ingin memperbarui *state* beberapa kali selama *event* yang sama.
 
 #### Parameters {/*setstate-parameters*/}
 
-* `nextState`: Either an object or a function.
-  * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state and props as arguments, and should return the object to be shallowly merged into `this.state`. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state.
+* `nextState`: Baik objek atau fungsi.
+  * Jika Anda meneruskan objek sebagai `nextState`, objek tersebut akan digabungkan secara dangkal ke dalam `this.state`.
+  * Jika Anda meneruskan fungsi sebagai `nextState`, fungsi tersebut akan diperlakukan sebagai _updater function_. Itu harus murni, harus mengambil `state` dan `props` yang tertunda sebagai argumen, dan harus mengembalikan objek untuk digabungkan secara dangkal ke dalam `this.state`. React akan menempatkan fungsi pembaru Anda dalam antrean dan merender ulang komponen Anda. Selama render berikutnya, React akan menghitung *state* selanjutnya dengan menerapkan semua pembaruan yang antri ke *state* sebelumnya.
 
-* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
+* **opsional** `callback`: Jika ditentukan, React akan memanggil `callback` yang Anda berikan setelah pembaruan dilakukan.
 
 #### Returns {/*setstate-returns*/}
 
-`setState` does not return anything.
+`setState` tidak mengembalikan apapun.
 
 #### Caveats {/*setstate-caveats*/}
 
-- Think of `setState` as a *request* rather than an immediate command to update the component. When multiple components update their state in response to an event, React will batch their updates and re-render them together in a single pass at the end of the event. In the rare case that you need to force a particular state update to be applied synchronously, you may wrap it in [`flushSync`,](/reference/react-dom/flushSync) but this may hurt performance.
+- Pikirkan `setState` sebagai *permintaan* daripada perintah langsung untuk memperbarui komponen. Ketika beberapa komponen memperbarui *state*-nya sebagai respons terhadap suatu *event*, React akan mengelompokkan pembaruannya dan merendernya kembali bersama-sama dalam satu lintasan di akhir *event*. Dalam kasus yang jarang terjadi saat Anda perlu memaksa pembaruan *state* tertentu untuk diterapkan secara sinkron, Anda dapat menggabungkannya dalam [`flushSync`,](/reference/react-dom/flushSync) tetapi ini dapat mengganggu kinerja.
 
-- `setState` does not update `this.state` immediately. This makes reading `this.state` right after calling `setState` a potential pitfall. Instead, use [`componentDidUpdate`](#componentdidupdate) or the setState `callback` argument, either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, you can pass a function to `nextState` as described above.
+- `setState` tidak segera memperbarui `this.state`. Hal ini membuat pembacaan `this.state` tepat setelah memanggil `setState` menjadi potensial jebakan. Sebagai gantinya, gunakan [`componentDidUpdate`](#componentdidupdate) atau argumen setState `callback`, yang keduanya dijamin akan aktif setelah pembaruan diterapkan. Jika Anda perlu menyetel *state* berdasarkan *state* sebelumnya, Anda dapat meneruskan fungsi ke `nextState` seperti yang dijelaskan di atas.
 
 <Note>
 
-Calling `setState` in class components is similar to calling a [`set` function](/reference/react/useState#setstate) in function components.
+Memanggil `setState` pada *class components* mirip dengan memanggil [fungsi `set`](/reference/react/useState#setstate) pada *function components*.
 
-[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Note>
 
