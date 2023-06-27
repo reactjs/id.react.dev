@@ -20,7 +20,7 @@ Seiring berkembangnya aplikasi Anda, penting untuk memperhatikan bagaimana *stat
 
 </YouWillLearn>
 
-## Merespon masukan dengan *State* {/*reacting-to-input-with-state*/}
+## Merespon masukan dengan state {/*reacting-to-input-with-state*/}
 
 Dalam React, Anda tidak perlu mengubah kode secara langsung untuk mengubah antar muka (UI). Misalnya, menulis baris perintah "nonaktifkan tombol ketika", "aktifkan tombol ketika", "tampilkan pesan sukses ketika", dll disetiap baris. Melainkan, cukup menggambarkan antar muka yang ingin ditampilkan sebagai *states* visual dari komponen Anda ("*state* awal", "*state* mengetik", "*state* sukses"), dan kemudian memicu perubahan *state* sebagai respons terhadap masukan pengguna. Sekilas mirip dengan bagaimana desainer merencanakan antar muka.
 
@@ -86,7 +86,7 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Anggap kode ini melakukan *request* ke jaringan.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
@@ -112,7 +112,7 @@ Baca **[Reacting to Input with State](/learn/reacting-to-input-with-state)** unt
 
 </LearnMore>
 
-## Memilih Struktur *State* {/*choosing-the-state-structure*/}
+## Memilih struktur state {/*choosing-the-state-structure*/}
 
 Mengatur struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang selalu menjadi sumber kesalahan. Perlu dicatat bahwa *state* tidak boleh mengandung informasi yang tidak perlu atau duplikat. Karena jika ada *state* yang tidak perlu, mudah untuk lupa memperbarui *state* tersebut, yang akhirnya memperkenalkan masalah baru!
 
@@ -229,7 +229,7 @@ Baca **[Choosing the State Structure](/learn/choosing-the-state-structure)** unt
 
 </LearnMore>
 
-## Berbagi *State* Antar Komponen {/*sharing-state-between-components*/}
+## Berbagi state antar komponen {/*sharing-state-between-components*/}
 
 Terkadang, Anda ingin *state* dari dua komponen yang berbeda selalu berubah bersama. Untuk melakukannya, hapus *state* dari keduanya, pindahkan *state* tersebut ke bagian induk (*parent*) yang paling berdekatan, dan kemudian teruskan ke kedua komponen melalui *props*. Hal ini dikenal sebagai "menjunjung *state*" (*lifting state up*), dan ini adalah salah satu hal lumrah saat menulis kode React.
 
@@ -300,7 +300,7 @@ Baca **[Berbagi *State* Antar Komponen](/learn/sharing-state-between-components)
 
 </LearnMore>
 
-## Mempertahankan dan Mengatur Ulang *State* {/*preserving-and-resetting-state*/}
+## Mempertahankan dan mengatur ulang state {/*preserving-and-resetting-state*/}
 
 Saat Anda me-*render* ulang sebuah komponen, React perlu memutuskan bagian pohon mana yang dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React ini sudah cukup baik. Secara *default*, React akan mempertahankan bagian-bagian pohon yang "cocok" dengan struktur pohon yang sebelumnya telah di-*render*.
 
@@ -500,7 +500,7 @@ Baca **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 </LearnMore>
 
-## Mengekstrak logika *State* ke dalam *Reducer* {/*extracting-state-logic-into-a-reducer*/}
+## Mengekstrak logika state ke dalam reducer {/*extracting-state-logic-into-a-reducer*/}
 
 Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handler* dapat menjadi sangat membingungkan. Untuk kasus-kasus ini, Anda dapat mengkonsolidasikan semua logika pembaruan *state* di luar komponen Anda dalam sebuah fungsi tunggal, yang disebut "*reducer*". *Event handler* Anda menjadi lebih ringkas karena hanya menentukan "aksi" pengguna. Di bagian bawah file, fungsi reducer menentukan bagaimana *state* harus diperbarui sebagai respons terhadap setiap aksi!
 
@@ -697,7 +697,7 @@ Baca **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 </LearnMore>
 
-## Melewatkan data secara dalam dengan *Context* {/*passing-data-deeply-with-context*/}
+## Melewatkan data secara dalam dengan context {/*passing-data-deeply-with-context*/}
 
 Biasanya, Anda akan melewatkan informasi dari komponen induk ke komponen anak (*children*) melalui *props*. Namun, melewatkan *props* dapat menjadi merepotkan jika Anda perlu melewatkan beberapa *prop* melalui banyak komponen, atau jika banyak komponen membutuhkan informasi yang sama. *Context* memungkinkan komponen induk membuat beberapa informasi tersedia untuk setiap komponen di bawahnya—tidak peduli seberapa dalam itu—tanpa melewatkan secara eksplisit melalui *props*.
 
@@ -799,7 +799,7 @@ Baca **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-contex
 
 </LearnMore>
 
-## Peningkatan Skala dengan Reducer dan Context {/*scaling-up-with-reducer-and-context*/}
+## Peningkatan skala dengan reducer dan context {/*scaling-up-with-reducer-and-context*/}
 
 *Reducer* memungkinkan Anda mengonsolidasikan logika pembaruan *state* dari sebuah komponen. *Context* memungkinkan Anda melewatkan informasi ke komponen lain secara dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola *state* dari layar yang kompleks.
 
