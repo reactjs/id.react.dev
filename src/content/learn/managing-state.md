@@ -4,7 +4,7 @@ title: Mengelola State
 
 <Intro>
 
-Seiring dengan bertumbuhnya aplikasi Anda, penting untuk lebih memperhatikan bagaimana *state* Anda diorganisasi dan bagaimana data mengalir di antara komponen-komponen Anda. *State* yang redundan atau duplikat adalah sumber umum dari *bug*. Di bab ini, Anda akan belajar bagaimana menstrukturkan *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana berbagi *state* antara komponen-komponen yang jauh.
+Seiring berkembangnya aplikasi Anda, penting untuk memperhatikan bagaimana *state* Anda diatur dan memperhatikan bagaimana data mengalir diantara komponen-komponen yang ada. *State* yang redundan atau duplikat adalah sumber dari *bug* dikemudian hari. Dalam babak ini, Anda akan belajar bagaimana menata *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana Anda dapat berbagi *state* dengan komponen yang berjauhan.
 
 </Intro>
 
@@ -12,19 +12,19 @@ Seiring dengan bertumbuhnya aplikasi Anda, penting untuk lebih memperhatikan bag
 
 * [Bagaimana memikirkan perubahan UI sebagai perubahan *state*](/learn/reacting-to-input-with-state)
 * [Bagaimana mengatur *state* dengan baik](/learn/choosing-the-state-structure)
-* [Bagaimana "mengangkat *state* ke atas" untuk dibagikan antara komponen-komponen](/learn/sharing-state-between-components)
-* [Bagaimana mengontrol apakah *state* akan dipertahankan atau direset](/learn/preserving-and-resetting-state)
+* [Bagaimana "menjunjung *state*" untuk dibagikan ke komponen lain](/learn/sharing-state-between-components)
+* [Bagaimana menentukan apakah *state* akan dipertahankan atau dimusnahkan](/learn/preserving-and-resetting-state)
 * [Bagaimana menggabungkan logika *state* yang kompleks dalam sebuah fungsi](/learn/extracting-state-logic-into-a-reducer)
 * [Bagaimana mengirimkan informasi tanpa "*prop drilling*"](/learn/passing-data-deeply-with-context)
-* [Bagaimana meningkatkan manajemen *state* saat aplikasi Anda berkembang](/learn/scaling-up-with-reducer-and-context)
+* [Bagaimana meningkatkan manajemen *state* saat aplikasi masih dikembangkan](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
 ## Merespon masukan dengan *State* {/*reacting-to-input-with-state*/}
 
-Dalam React, Anda tidak akan mengubah UI dari kode secara langsung. Misalnya, Anda tidak akan menulis perintah seperti "nonaktifkan tombol", "aktifkan tombol", "tampilkan pesan sukses", dll. Sebaliknya, Anda akan menggambarkan UI yang ingin Anda lihat untuk berbagai *states* visual dari komponen Anda ("*state* awal", "*state* mengetik", "*state* sukses"), dan kemudian memicu perubahan *state* sebagai respons terhadap masukan pengguna. Hal ini mirip dengan bagaimana desainer memikirkan tentang UI.
+Dalam React, Anda tidak perlu mengubah kode secara langsung untuk mengubah antar muka (UI). Misalnya, menulis baris perintah "nonaktifkan tombol ketika", "aktifkan tombol ketika", "tampilkan pesan sukses ketika", dll disetiap baris. Melainkan, cukup menggambarkan antar muka yang ingin ditampilkan sebagai *states* visual dari komponen Anda ("*state* awal", "*state* mengetik", "*state* sukses"), dan kemudian memicu perubahan *state* sebagai respons terhadap masukan pengguna. Sekilas mirip dengan bagaimana desainer merencanakan antar muka.
 
-Berikut adalah sebuah formulir kuis yang dibangun menggunakan React. Perhatikan bagaimana ia menggunakan variabel *state* `status` untuk menentukan apakah tombol kirim diaktifkan atau dinonaktifkan, dan apakah pesan sukses ditampilkan sebagai gantinya.
+Berikut contoh formulir kuis yang dibangun menggunakan React. Perhatikan bagaimana ia menggunakan variabel *state* `status` untuk menentukan apakah tombol kirim diaktifkan atau dinonaktifkan, dan apakah pesan sukses ditampilkan sebagai gantinya.
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ Baca **[Reacting to Input with State](/learn/reacting-to-input-with-state)** unt
 
 ## Memilih Struktur *State* {/*choosing-the-state-structure*/}
 
-Mengatur struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang menjadi sumber kesalahan yang konstan. Prinsip paling penting adalah bahwa *state* tidak boleh mengandung informasi yang tidak perlu atau duplikat. Jika ada *state* yang tidak perlu, mudah untuk lupa untuk memperbarui *state* tersebut, dan memperkenalkan kesalahan!
+Mengatur struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang selalu menjadi sumber kesalahan. Perlu dicatat bahwa *state* tidak boleh mengandung informasi yang tidak perlu atau duplikat. Karena jika ada *state* yang tidak perlu, mudah untuk lupa memperbarui *state* tersebut, yang akhirnya memperkenalkan masalah baru!
 
 Misalnya, formulir ini memiliki variabel *state* `fullName` yang **redundan**:
 
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Anda dapat menghapusnya dan menyederhanakan kode dengan menghitung `fullName` saat komponen di-*render*:
+Anda dapat menghapus dan menyederhanakan kode dengan menghitung `fullName` saat komponen di-*render*:
 
 <Sandpack>
 
@@ -221,7 +221,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ini mungkin terlihat seperti perubahan kecil, tetapi banyak bug pada aplikasi React dapat diperbaiki dengan cara ini.
+Sekilas seperti perubahan sepele, tetapi umumnya cara ini banyak memperbaiki bug yang ada pada aplikasi React.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
@@ -231,9 +231,9 @@ Baca **[Choosing the State Structure](/learn/choosing-the-state-structure)** unt
 
 ## Berbagi *State* Antar Komponen {/*sharing-state-between-components*/}
 
-Terkadang, Anda ingin *state* dari dua komponen selalu berubah bersama. Untuk melakukannya, hapus *state* dari keduanya, pindahkan *state* tersebut ke induk (*parent*) paling dekat yang bersamaan, dan kemudian teruskan ke kedua komponen melalui *props*. Hal ini dikenal sebagai "mengangkat *state* ke atas" (*lifting state up*), dan ini adalah salah satu hal yang paling umum yang akan Anda lakukan saat menulis kode React.
+Terkadang, Anda ingin *state* dari dua komponen yang berbeda selalu berubah bersama. Untuk melakukannya, hapus *state* dari keduanya, pindahkan *state* tersebut ke bagian induk (*parent*) yang paling berdekatan, dan kemudian teruskan ke kedua komponen melalui *props*. Hal ini dikenal sebagai "menjunjung *state*" (*lifting state up*), dan ini adalah salah satu hal lumrah saat menulis kode React.
 
-Pada contoh ini, hanya satu panel yang harus aktif pada satu waktu. Untuk mencapainya, daripada menyimpan *state* aktif di setiap panel secara individu, komponen parent menyimpan *state* dan menentukan *props* untuk anak-anaknya.
+Pada contoh ini, dalam satu waktu hanya akan ada satu panel yang aktif. Untuk mencapainya, daripada menyimpan *state* aktif di setiap panel secara individu, komponen induk menyimpan *state* dan menentukan *props* untuk anak-anaknya.
 
 <Sandpack>
 
@@ -300,11 +300,11 @@ Baca **[Berbagi *State* Antar Komponen](/learn/sharing-state-between-components)
 
 </LearnMore>
 
-## Memperjelas dan Mengatur Ulang *State* {/*preserving-and-resetting-state*/}
+## Mempertahankan dan Mengatur Ulang *State* {/*preserving-and-resetting-state*/}
 
-Saat Anda me-*render* ulang sebuah komponen, React perlu memutuskan bagian mana dari pohon untuk dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React sudah cukup baik. Secara *default*, React mempertahankan bagian-bagian pohon yang "cocok" dengan pohon komponen yang sebelumnya di-*render*.
+Saat Anda me-*render* ulang sebuah komponen, React perlu memutuskan bagian pohon mana yang dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React ini sudah cukup baik. Secara *default*, React akan mempertahankan bagian-bagian pohon yang "cocok" dengan struktur pohon yang sebelumnya telah di-*render*.
 
-Namun, terkadang ini bukan yang Anda inginkan. Dalam aplikasi obrolan ini, mengetik pesan dan kemudian mengubah penerima tidak akan mengatur ulang input. Hal ini dapat membuat pengguna secara tidak sengaja mengirim pesan ke orang yang salah:
+Namun, ada kalanya hal ini bukan yang Anda harapkan. Dalam contoh aplikasi obrolan ini, ketika Anda mengetik pesan dan kemudian mengubah penerima pesan, itu tidak mengatur ulang bidang masukan yang ada. Hal ini bisa membuat pengguna secara tidak sengaja mengirim pesan ke orang yang salah:
 
 <Sandpack>
 
