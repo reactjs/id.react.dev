@@ -262,7 +262,7 @@ const listItems = chemists.map(person => { // Kurung kurawal
 });
 ```
 
-*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apapun!
+*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apa pun!
 
 </Pitfall>
 

@@ -35,7 +35,7 @@ function TabContainer() {
 
 #### Parameters {/*parameters*/}
 
-`useTransition` tidak menerima parameter apapun.
+`useTransition` tidak menerima parameter apa pun.
 
 #### Returns {/*returns*/}
 
@@ -70,7 +70,7 @@ function TabContainer() {
 
 #### Returns {/*starttransition-returns*/}
 
-`startTransition` tidak mengembalikan apapun.
+`startTransition` tidak mengembalikan apa pun.
 
 #### Perhatian {/*starttransition-caveats*/}
 

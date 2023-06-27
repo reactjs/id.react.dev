@@ -4,7 +4,7 @@ title: 'Tutorial: Tic-Tac-Toe'
 
 <Intro>
 
-Dalam tutorial ini, Anda akan membuat sebuah gim *tic-tac-toe* sederhana. Tutorial ini berasumsi anda tidak memiliki pengetahuan sebelumnya mengenai React. Teknik-teknik yang akan Anda pelajari di tutorial ini akan menjadi fundamental untuk membuat aplikasi apapun dengan React, dan memahami ini dengan sepenuhnya akan memberikan Anda pemahaman mendalam mengenai React.
+Dalam tutorial ini, Anda akan membuat sebuah gim *tic-tac-toe* sederhana. Tutorial ini berasumsi anda tidak memiliki pengetahuan sebelumnya mengenai React. Teknik-teknik yang akan Anda pelajari di tutorial ini akan menjadi fundamental untuk membuat aplikasi apa pun dengan React, dan memahami ini dengan sepenuhnya akan memberikan Anda pemahaman mendalam mengenai React.
 
 </Intro>
 

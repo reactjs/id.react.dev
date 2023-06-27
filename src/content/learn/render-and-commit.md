@@ -125,7 +125,7 @@ img { margin: 0 10px 10px 0; }
 </Sandpack>
 
 * **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
-* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apapun sampai tahapan selanjutnya, yaitu fase *commit*. 
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*. 
 
 <Pitfall>
 

@@ -244,7 +244,7 @@ Akibatnya, React menyiapkan `42` sebagai hasil akhir dan mengembalikannya dari `
 Jadi, kesimpulannya adalah berikut cara Anda dapat memikirkan apa yang anda oper ke pengatur *state* `setNumber`:
 
 * **Sebuah fungsi *updater*** (misalnya `n => n + 1`) ditambahkan ke antrean.
-* **Apapun nilai lainnya** (misalnya angka `5`) menambahkan "ganti dengan `5`" ke antrean, mengabaikan apa yang sudah ada di antrean.
+* **Apa pun nilai lainnya** (misalnya angka `5`) menambahkan "ganti dengan `5`" ke antrean, mengabaikan apa yang sudah ada di antrean.
 
 Setelah *event handler* selesai, React akan memicu *re-render*. Selama *re-render*, React akan memproses antrean. Fungsi *updater* berjalan selama proses *render*, jadi **fungsi *updater* harus [murni](/learn/keeping-components-pure)** dan hanya mengembalikan hasilnya. Jangan mencoba mengatur *state* dari dalamnya atau menjalankan efek samping lainnya. Dalam *Strict Mode*, React akan menjalankan setiap fungsi *updater* dua kali (tetapi membuang hasil kedua) untuk membantu Anda menemukan kesalahan.
 

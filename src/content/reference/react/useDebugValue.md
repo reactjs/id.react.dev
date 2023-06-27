@@ -37,11 +37,11 @@ function useOnlineStatus() {
 #### Parameter {/*parameters*/}
 
 * `value`: Nilai yang Anda inginkan untuk ditampilkan di dalam React DevTools. Nilai tersebut dapat memiliki tipe apa pun.
-* `format` **opsional**: Fungsi untuk pemformatan. Ketika komponen diperiksa, React DevTools akan memanggil fungsi pemformatan dengan `value` sebagai argumennya, dan kemudian menampilkan nilai kembalian yang telah diformat (yang mungkin memiliki jenis apapun). Jika Anda tidak menentukan fungsi pemformatan, `value` asli itu sendiri yang akan ditampilkan.
+* `format` **opsional**: Fungsi untuk pemformatan. Ketika komponen diperiksa, React DevTools akan memanggil fungsi pemformatan dengan `value` sebagai argumennya, dan kemudian menampilkan nilai kembalian yang telah diformat (yang mungkin memiliki jenis apa pun). Jika Anda tidak menentukan fungsi pemformatan, `value` asli itu sendiri yang akan ditampilkan.
 
 #### Kembalian {/*returns*/}
 
-`useDebugValue` tidak mengembalikan apapun.
+`useDebugValue` tidak mengembalikan apa pun.
 
 ## Penggunaan {/*usage*/}
 

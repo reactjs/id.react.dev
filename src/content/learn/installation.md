@@ -4,7 +4,7 @@ title: Pemasangan
 
 <Intro>
 
-React didesain sejak awal untuk dapat diapdopsi secara bertahap. Anda dapat menggunakan React sedikit atau sebanyak apapun sesuai dengan kebutuhan Anda. Baik jika Anda hanya ingin mencoba React, menambahkan interaktivitas ke halaman HTML, atau mulai mengembangkan aplikasi kompleks berbasis React, bagian ini akan membantu Anda untuk mulai menggunakan React.
+React didesain sejak awal untuk dapat diapdopsi secara bertahap. Anda dapat menggunakan React sedikit atau sebanyak apa pun sesuai dengan kebutuhan Anda. Baik jika Anda hanya ingin mencoba React, menambahkan interaktivitas ke halaman HTML, atau mulai mengembangkan aplikasi kompleks berbasis React, bagian ini akan membantu Anda untuk mulai menggunakan React.
 
 </Intro>
 
@@ -19,7 +19,7 @@ React didesain sejak awal untuk dapat diapdopsi secara bertahap. Anda dapat meng
 
 ## Mencoba React {/*try-react*/}
 
-Anda tidak perlu memasang apapun untuk mulai menggunakan React. Coba ubah *sandbox* di bawah ini!
+Anda tidak perlu memasang apa pun untuk mulai menggunakan React. Coba ubah *sandbox* di bawah ini!
 
 <Sandpack>
 
