@@ -300,7 +300,7 @@ export default function TopNav({
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
                 <div className="flex md:hidden">
                   <button
-                    aria-label="Telusuri"
+                    aria-label="Cari"
                     type="button"
                     className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
                     onClick={onOpenSearch}>
