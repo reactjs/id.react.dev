@@ -300,7 +300,7 @@ export default function TopNav({
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
                 <div className="flex md:hidden">
                   <button
-                    aria-label="Search"
+                    aria-label="Cari"
                     type="button"
                     className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
                     onClick={onOpenSearch}>
@@ -310,7 +310,7 @@ export default function TopNav({
                 <div className="flex dark:hidden">
                   <button
                     type="button"
-                    aria-label="Use Dark Mode"
+                    aria-label="Gunakan Mode Gelap"
                     onClick={() => {
                       window.__setPreferredTheme('dark');
                     }}
@@ -321,7 +321,7 @@ export default function TopNav({
                 <div className="hidden dark:flex">
                   <button
                     type="button"
-                    aria-label="Use Light Mode"
+                    aria-label="Gunakan Mode Terang"
                     onClick={() => {
                       window.__setPreferredTheme('light');
                     }}
@@ -334,7 +334,7 @@ export default function TopNav({
                     href="https://github.com/facebook/react/releases"
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="Open on GitHub"
+                    aria-label="Buka di GitHub"
                     className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {githubIcon}
                   </Link>
@@ -361,17 +361,17 @@ export default function TopNav({
                 <Suspense fallback={null}>
                   <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
-                      Learn
+                      Belajar
                     </NavItem>
                     <NavItem
                       isActive={section === 'reference'}
                       url="/reference/react">
-                      Reference
+                      Referensi
                     </NavItem>
                     <NavItem
                       isActive={section === 'community'}
                       url="/community">
-                      Community
+                      Komunitas
                     </NavItem>
                     <NavItem isActive={section === 'blog'} url="/blog">
                       Blog
