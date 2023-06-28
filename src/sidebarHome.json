@@ -1,29 +1,29 @@
 {
-  "title": "React Docs",
+  "title": "Dokumentasi React",
   "path": "/",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "MEMULAI"
     },
     {
-      "title": "Quick Start",
+      "title": "Mulai Cepat",
       "path": "/learn"
     },
     {
-      "title": "Installation",
+      "title": "Pemasangan",
       "path": "/learn/installation"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "BELAJAR REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Menggambarkan Antarmuka Pengguna (UI)",
       "path": "/learn/describing-the-ui"
     },
     {
-      "title": "Adding Interactivity",
+      "title": "Menambahkan Interaktivitas",
       "path": "/learn/adding-interactivity"
     },
     {
@@ -36,14 +36,14 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT API"
+      "sectionHeader": "API REACT"
     },
     {
       "title": "Hooks",
       "path": "/reference/react"
     },
     {
-      "title": "Components",
+      "title": "Komponen",
       "path": "/reference/react/components"
     },
     {
@@ -51,15 +51,15 @@
       "path": "/reference/react/apis"
     },
     {
-      "title": "Legacy APIs",
+      "title": "API React Lama",
       "path": "/reference/react/legacy"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT DOM API"
+      "sectionHeader": "API REACT DOM"
     },
     {
-      "title": "Components",
+      "title": "Komponen",
       "path": "/reference/react-dom/components"
     },
     {
@@ -67,11 +67,11 @@
       "path": "/reference/react-dom"
     },
     {
-      "title": "Client APIs",
+      "title": "API Klien",
       "path": "/reference/react-dom/client"
     },
     {
-      "title": "Server APIs",
+      "title": "API Server",
       "path": "/reference/react-dom/server"
     },
     {
