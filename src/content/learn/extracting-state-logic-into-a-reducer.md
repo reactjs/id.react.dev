@@ -183,13 +183,13 @@ Setiap *event handler* pada komponen `TaskApp` akan memangil fungsi `setTask` un
 
 _Reducer_ merupakan sebuah alternatif untuk menangani *state*. Anda dapat migrasi dari `useState` ke `useReducer` dalam tiga langkah:
 
-1. **Pindah** dari memanggil fungsi penetap *state* menjadi aksi *dispatch*.
+1. **Pindah** dari menyetel *state* menjadi men-*dispatch* *action*
 2. **Tulis** fungsi *reducer*.
 3. **Gunakan** *reducer* pada komponen Anda.
 
-### Langkah 1: Pindah dari memanggil fungsi penetap state menjadi aksi dispatch {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### Langkah 1: Pindah dari menyetel state menjadi men-dispatch action {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
-*Event handler* Anda sekarang menentukan apa *yang harus dilakukan* dengan memanggil fungsi penetap *state*:
+*Event handler* Anda sekarang menentukan apa *yang harus dilakukan* dengan menyetel *state*:
 
 ```js
 function handleAddTask(text) {
