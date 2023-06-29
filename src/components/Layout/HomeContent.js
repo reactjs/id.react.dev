@@ -67,10 +67,6 @@ function Para({children}) {
   );
 }
 
-function Italic({children}) {
-  return <em className="italic">{children}</em>;
-}
-
 function Left({children}) {
   return (
     <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
@@ -188,8 +184,8 @@ export function HomeContent() {
               Komponen React adalah fungsi JavaScript. Ingin menampilkan
               beberapa konten secara kondisional? Gunakan pernyataan{' '}
               <Code>if</Code>. Menampilkan sebuah daftar? Gunakan fungsi{' '}
-              <Code>map()</Code> ke sebuah senarai (<Italic>array</Italic>).
-              Belajar React adalah belajar pemrograman.
+              <Code>map()</Code> ke sebuah senarai (<i>array</i>). Belajar React
+              adalah belajar pemrograman.
             </Para>
           </Center>
           <FullBleed>
@@ -241,14 +237,16 @@ export function HomeContent() {
         <Section background="right-card">
           <Center>
             <Header>
-              Go full-stack <br className="hidden lg:inline" />
-              with a framework
+              Pengembangan <i>full-stack</i> dengan kerangka kerja (
+              <i>framework</i>)
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              React adalah sebuah pustaka. React memungkinkan Anda untuk
+              menyatukan komponen-komponen, tetapi tidak menentukan bagaimana
+              cara melakukan <i>routing</i> dan pengambilan data. Untuk
+              membangun aplikasi secara keseluruhan dengan React, kami
+              merekomendasikan kerangka kerja <i>full-stack</i> React seperti{' '}
+              <Link href="https://nextjs.org">Next.js</Link> atau{' '}
               <Link href="https://remix.run">Remix</Link>.
             </Para>
           </Center>
@@ -257,17 +255,18 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React is also an architecture. Frameworks that implement it let
-              you fetch data in asynchronous components that run on the server
-              or even during the build. Read data from a file or a database, and
-              pass it down to your interactive components.
+              React juga merupakan sebuah arsitektur. Kerangka kerja yang
+              mengimplementasikannya memungkinkan Anda mengambil data dalam
+              komponen asinkron (<i>asynchronous</i>) yang berjalan di server
+              atau bahkan saat pembuatan. Baca data dari berkas atau database,
+              dan oper data tersebut ke komponen interaktif Anda.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="framework"
                 href="/learn/start-a-new-react-project">
-                Get started with a framework
+                Memulai dengan framework
               </CTA>
             </div>
           </Center>
@@ -275,12 +274,16 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>
+                Gunakan yang terbaik untuk setiap <i>platform</i>
+              </Header>
               <Para>
-                People love web and native apps for different reasons. React
-                lets you build both web apps and native apps using the same
-                skills. It leans upon each platform’s unique strengths to let
-                your interfaces feel just right on every platform.
+                Pengguna aplikasi Anda menyukai aplikasi web dan aplikasi{' '}
+                <i>native</i> karena berbagai alasan. React memungkinkan Anda
+                membangun aplikasi web dan aplikasi <i>native</i> menggunakan
+                keterampilan yang sama. React memanfaatkan kekuatan unik dari
+                setiap <i>platform</i> untuk membuat antarmuka Anda terasa mulus
+                di setiap <i>platform</i>.
               </Para>
             </div>
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
@@ -294,15 +297,17 @@ export function HomeContent() {
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
                       <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
-                        Stay true to the web
+                        Tetap dekat dengan web
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        People expect web app pages to load fast. On the server,
-                        React lets you start streaming HTML while you’re still
-                        fetching data, progressively filling in the remaining
-                        content before any JavaScript code loads. On the client,
-                        React can use standard web APIs to keep your UI
-                        responsive even in the middle of rendering.
+                        Orang-orang mengharapkan halaman aplikasi web dimuat
+                        dengan cepat. Di server, React memungkinkan Anda untuk
+                        mulai melakukan <i>streaming</i> HTML ketika Anda masih
+                        mengambil data, mengisi sisa konten secara progresif
+                        sebelum koda JavaScript dimuat. Pada <i>client</i>,
+                        React dapat menggunakan API web standar untuk menjaga UI
+                        Anda tetap responsif bahkan di tengah-tengah proses pe-
+                        <i>render</i>-an.
                       </p>
                     </div>
                   </div>
@@ -380,21 +385,25 @@ export function HomeContent() {
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
-                          Go truly native
+                          Rangkul pengembangan <i>native</i>
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                          People expect native apps to look and feel like their
-                          platform.{' '}
+                          Orang-orang mengharapkan aplikasi <i>native</i>
+                          terlihat dan terasa seperti <i>
+                            platform
+                          </i> mereka.{' '}
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
-                          and{' '}
+                          dan{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
+                          memungkinkan Anda membuat aplikasi dengan React untuk
+                          Android, iOS, dan lainnya. Aplikasi-aplikasi tersebut
+                          terlihat dan terasa native karena UI mereka{' '}
+                          <i>benar-benar</i> native. Ini bukan <i>web view</i>
+                          —komponen React Anda me-<i>render</i> <i>view</i>{' '}
+                          Android dan iOS asli yang disediakan oleh{' '}
+                          <i>platform</i> masing-masing.
                         </p>
                       </div>
                     </div>
@@ -404,14 +413,16 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                Dengan React, Anda dapat menjadi seorang pengembang web{' '}
+                <i>dan</i> pengembang <i>native</i>. Tim Anda dapat meluncurkan
+                aplikasi ke banyak platform tanpa mengorbankan pengalaman
+                pengguna (<i>user experience</i>, <i>UX</i>). Organisasi Anda
+                dapat menjembatani silo <i>platform</i>, dan membentuk tim yang
+                memiliki seluruh fitur secara <i>end-to-end</i>.
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Build for native platforms
+                  Membangun untuk platform native.
                 </CTA>
               </div>
             </div>
@@ -446,7 +457,7 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12">
                 <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
                   <IconChevron />
-                  Latest React News
+                  Berita React terbaru
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
                   <div className="flex-1 min-w-[40%]">
@@ -477,13 +488,12 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
+                  Bergabung dalam komunitas beranggotakan jutaan orang
                 </Header>
                 <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
+                  Anda tidak sendirian. Dua juta pengembang dari seluruh dunia
+                  mengunjungi dokumentasi React setiap bulannya. React adalah
+                  pustaka yang dapat disetujui oleh semua orang dan tim.
                 </Para>
               </Center>
             </div>
@@ -491,13 +501,14 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
+                  Inilah mengapa React lebih dari sekedar pustaka, arsitektur,
+                  atau bahkan sebuah ekosistem. React adalah sebuah komunitas.
+                  Ini adalah tempat di mana Anda dapat meminta bantuan,
+                  menemukan peluang kerja, dan bertemu teman baru. Anda akan
+                  bertemu dengan para pengembang dan desainer, pemula dan ahli,
+                  peneliti dan seniman, pengajar dan murid. Latar belakang kita
+                  mungkin sangat berbeda, tetapi React memungkinkan kita semua
+                  membuat antarmuka pengguna bersama-sama.
                 </Para>
               </Center>
             </div>
