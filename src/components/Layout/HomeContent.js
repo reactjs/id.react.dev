@@ -422,7 +422,7 @@ export function HomeContent() {
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Membangun untuk platform native.
+                  Membangun untuk platform native
                 </CTA>
               </div>
             </div>
@@ -433,23 +433,28 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>
+                  <i>Upgrade</i> ketika fitur baru telah siap
+                </Header>
                 <Para>
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
-                  every migration strategy.
+                  React melakukan pendekatan perubahan dengan hati-hati. Setiap
+                  <i>commit</i> yang dilakukan React diuji pada lapisan aplikasi
+                  sangat penting dengan lebih dari satu miliar pengguna. Lebih
+                  dari 100.000 komponen React di Meta membantu memvalidasi
+                  setiap strategi migrasi.
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
-                    The React team is always researching how to improve React.
-                    Some research takes years to pay off. React has a high bar
-                    for taking a research idea into production. Only proven
-                    approaches become a part of React.
+                    Tim React selalu meneliti bagaimana cara meningkatkan React.
+                    Beberapa penelitian membutuhkan waktu bertahun-tahun untuk
+                    membuahkan hasil. React memiliki standar yang tinggi untuk
+                    membawa ide penelitian ke dalam lingkungan produksi. Hanya
+                    pendekatan yang telah terbukti yang akan menjadi bagian dari
+                    React.
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
-                      Read more React news
+                      Baca berita React lebih lengkap
                     </CTA>
                   </div>
                 </div>
