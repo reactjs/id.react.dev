@@ -388,10 +388,8 @@ export function HomeContent() {
                           Rangkul pengembangan <i>native</i>
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                          Orang-orang mengharapkan aplikasi <i>native</i>
-                          terlihat dan terasa seperti <i>
-                            platform
-                          </i> mereka.{' '}
+                          Orang-orang mengharapkan aplikasi <i>native</i>{' '}
+                          terlihat dan terasa seperti <i>platform</i> mereka.{' '}
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
