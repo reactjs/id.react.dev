@@ -19,7 +19,7 @@ Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handlers
 
 ## Mengkonsolidasikan logika state menggunakan reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbaharui *state* komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponen `TaskApp` di bawah menyimpan senarai `tasks` dalam *state* dan menggunakan tiga *handler* untuk menabahkan, menghapus dan mengubah `tasks`:
+Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai cara memperbarui *state* komponen dalam kode menjadi sulit untuk dilihat secara sekilas. Contoh, komponen `TaskApp` di bawah menyimpan senarai `tasks` dalam *state* dan menggunakan tiga *handler* untuk menambahkan, menghapus dan mengubah `tasks`:
 
 <Sandpack>
 
