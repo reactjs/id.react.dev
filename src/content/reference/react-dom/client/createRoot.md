@@ -4,7 +4,7 @@ title: createRoot
 
 <Intro>
 
-`createRoot` memungkinkan Anda untuk membuat sebuah akar untuk menampikan komponen React dalam node DOM pada browser.
+`createRoot` memungkinkan Anda untuk membuat sebuah akar untuk menampikan komponen React dalam node DOM pada peramban.
 
 ```js
 const root = createRoot(domNode, options?)
@@ -20,7 +20,7 @@ const root = createRoot(domNode, options?)
 
 ### `createRoot(domNode, options?)` {/*createroot*/}
 
-Panggil `createRoot` untuk membuat akar React untuk menampilkan konten di elemen DOM di browser.
+Panggil `createRoot` untuk membuat akar React untuk menampilkan konten di elemen DOM pada peramban.
 
 ```js
 import { createRoot } from 'react-dom/client';
@@ -60,7 +60,7 @@ Aplikasi yang sepenuhnya dibuat dengan React biasanya cukup memanggil `createRoo
 
 ### `root.render(reactNode)` {/*root-render*/}
 
-Panggil `root.render` untuk menampilkan sebuah [JSX](/learn/writing-markup-with-jsx) ("*React node*") dalam node DOM milik akar React pada browser.
+Panggil `root.render` untuk menampilkan sebuah [JSX](/learn/writing-markup-with-jsx) ("*React node*") dalam node DOM milik akar React pada peramban.
 
 ```js
 root.render(<App />);
@@ -135,7 +135,7 @@ root.render(<App />);
 
 Biasanya, Anda cukup menjalankan kode ini sekali saja pada *startup*. Kode ini akan:
 
-1. Mencari <CodeStep step={1}>node DOM pada browser</CodeStep>, yang didefinisikan di HTML Anda.
+1. Mencari <CodeStep step={1}>node DOM pada peramban</CodeStep>, yang didefinisikan di HTML Anda.
 2. Menampilkan <CodeStep step={2}>komponen React</CodeStep> untuk aplikasi Anda didalamnya.
 
 <Sandpack>
