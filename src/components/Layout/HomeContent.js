@@ -53,7 +53,7 @@ function Section({children, background = null}) {
 
 function Header({children}) {
   return (
-    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-2xl">
       {children}
     </h2>
   );
