@@ -112,7 +112,7 @@ Memanggil `root.unmount` akan mengunmount seluruh komponen di dalam induk, dan "
 
 `root.unmount` mengembalikan `undefined`.
 
-#### Peringatan {/*root-unmount-caveats*/}
+#### Catatan Penting {/*root-unmount-caveats*/}
 
 * Pemanggilan `root.unmount` akan meng-*unmount* seluruh komponen pada pohon dan "melepaskan" React dari node DOM induk.
 
