@@ -39,22 +39,22 @@ Aplikasi yang sepenuhnya dibuat dengan React biasanya cukup memanggil `createRoo
 
 [Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan membuat induk untuk elemen DOM ini dan memungkinkan Anda untuk memanggil fungsi lain pada induk, seperti `render` untuk menampilkan konten React yang sudah dirender.
+* `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan membuat induk untuk elemen DOM ini dan memungkinkan Anda untuk memanggil fungsi lain pada induk, seperti `render` untuk menampilkan konten React yang sudah di-*render*.
 
 * **opsional** `options`: Sebuah objek dengan opsi-opsi berikut untuk induk React ini.
   * **opsional** `onRecoverableError`: *Callback* yang dipanggil saat React berhasil pulih secara otomatis dari kesalahan.
   * **opsional** `identifierPrefix`: sebuah *string* yang React gunakan untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Berguna untuk mencegah konflik saat menggunakan banyak induk pada halaman yang sama.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `createRoot` mengembalikan sebuah objek dengan dua *method*: [`render`](#root-render) dan [`unmount`.](#root-unmount)
 
-#### Peringatan {/*caveats*/}
-* Jika aplikasi Anda dirender oleh server, penggunaan `createRoot()` tidak didukung. Sebagai gantinya, gunakan [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot).
+#### Catatan Penting {/*caveats*/}
+* Jika aplikasi Anda di-*render* oleh server, penggunaan `createRoot()` tidak didukung. Sebagai gantinya, gunakan [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot).
 * Anda mungkin hanya akan memiliki satu panggilan `createRoot` pada aplikasi Anda. Jika Anda menggunakan *framework*, biasanya pemanggilan fungsi ini sudah dilakukan oleh *framework* tersebut.
-* Saat Anda ingin merender sebagian JSX pada bagian lain dari pohon DOM yang bukan turunan dari komponen Anda (contohnya *modal* atau *tooltip*), gunakan [`createPortal`](/reference/react-dom/createPortal), bukan `createRoot`.
+* Saat Anda ingin me-*render* sebagian JSX pada bagian lain dari pohon DOM yang bukan turunan dari komponen Anda (contohnya *modal* atau *tooltip*), gunakan [`createPortal`](/reference/react-dom/createPortal), bukan `createRoot`.
 
 ---
 
@@ -70,27 +70,27 @@ React akan menampilkan `<App />` dalam `root`, dan mengambil alih pengelolaan DO
 
 [Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*root-render-parameters*/}
+#### Parameter {/*root-render-parameters*/}
 
 * `reactNode`: Sebuah *React Node* yang Anda ingin tampilkan. Biasanya berupa sebuah JSX seperti `<App />`, namun Ada juga dapat memberikan sebuah elemen React yang dibuat dengan [`createElement()`](/reference/react/createElement), sebuah *string*, sebuah angka (*number*), `null` atau `undefined`.
 
-#### Returns {/*root-render-returns*/}
+#### Kembalian {/*root-render-returns*/}
 
 `root.render` mengembalikan `undefined`.
 
-#### Peringatan {/*root-render-caveats*/}
+#### Catatan Penting {/*root-render-caveats*/}
 
-* Pada pemanggilan `root.render` pertama kali, React akan menghapus seluruh konten HTML yang ada pada induk React, sebelum merender komponen React di dalamnya.
+* Pada pemanggilan `root.render` pertama kali, React akan menghapus seluruh konten HTML yang ada pada induk React, sebelum me-*render* komponen React di dalamnya.
 
 * Jika node DOM induk Anda memiliki HTML yang dibuat oleh React pada server, atau proses *build*, gunakan [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot) agar *event handler* dapat dikaitkan dengan HTML yang ada.
 
-* Jika Anda memanggil `render` pada induk yang sama berulang kali, React akan memperbarui DOM sebisa mungkin hingga menyamai JSX terakhir yang Anda berikan. React akan memutuskan bagian mana dari DOM yang dapat digunakan kembali dan bagian mana yang perlu dibuat ulang, dengan melakukan ["pencocokan"](/learn/preserving-and-resetting-state) dengan pohon yang telah dirender sebelumnya. Pemanggilan kembali `render` di induk yang sama mirip dengan memanggil [fungsi `set`](/reference/react/useState#setstate) pada komponen induk: React menghindari pembaharuan DOM yang tidak diperlukan.
+* Jika Anda memanggil `render` pada induk yang sama berulang kali, React akan memperbarui DOM sebisa mungkin hingga menyamai JSX terakhir yang Anda berikan. React akan memutuskan bagian mana dari DOM yang dapat digunakan kembali dan bagian mana yang perlu dibuat ulang, dengan melakukan ["pencocokan"](/learn/preserving-and-resetting-state) dengan pohon yang telah di-*render* sebelumnya. Pemanggilan kembali `render` di induk yang sama mirip dengan memanggil [fungsi `set`](/reference/react/useState#setstate) pada komponen induk: React menghindari pembaharuan DOM yang tidak diperlukan.
 
 ---
 
 ### `root.unmount()` {/*root-unmount*/}
 
-Panggil `root.unmount` untuk memusnakan pohon yang telah dirender dalam induk React.
+Panggil `root.unmount` untuk memusnakan pohon yang telah di-*render* dalam induk React.
 
 ```js
 root.unmount();
@@ -100,15 +100,15 @@ Sebuah aplikasi yang dibuat sepenuhnya dengan React biasanya tidak perlu memangg
 
 Fungsi ini biasanya berguna saat node DOM pada induk React (atau turunan lainnya) mungkin dapat terhapus dari DOM oleh kode lain. Sebagai contoh, bayangkan sebuah panel tab jQuery yang menghapus tab nonaktif dari DOM. Jika tab tersebut terhapus, seluruh isi dari DOM tersebut (termasuk induk React) juga akan ikut terhapus. Pada kasus ini, Anda perlu memberitahukan React untuk "stop" mengelola konten DOM induk yang terhapus dengan memanggil `root.unmount`. Jika tidak, komponen yang ada di dalam induk tersebut tidak tahu kalau mereka harus membersihkan dan membebaskan *resources* global seperti *subscriptions*.
 
-Memanggil `root.unmount` akan mengunmount seluruh komponen di dalam induk, dan "melepaskan" React dari dalam node DOM induk, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
+Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam induk, dan "melepaskan" React dari dalam node DOM induk, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
 
 
-#### Parameters {/*root-unmount-parameters*/}
+#### Parameter {/*root-unmount-parameters*/}
 
 `root.unmount` tidak menerima parameter apapun.
 
 
-#### Returns {/*root-unmount-returns*/}
+#### Kembalian {/*root-unmount-returns*/}
 
 `root.unmount` mengembalikan `undefined`.
 
@@ -116,13 +116,13 @@ Memanggil `root.unmount` akan mengunmount seluruh komponen di dalam induk, dan "
 
 * Pemanggilan `root.unmount` akan meng-*unmount* seluruh komponen pada pohon dan "melepaskan" React dari node DOM induk.
 
-* Begitu Anda memanggil `root.unmount`, Anda tidak dapat memanggil `root.render` kembali pada induk yang sama. Percobaan memanggil `root.render` pada induk yang sudah diunmount akan menyebabkan kesalahan "*Cannot update an unmounted root*". Walaupun begitu, Anda dapat membuat induk yang baru untuk node DOM yang sama setelah node pada induk sebelumnya telah diunmount.
+* Begitu Anda memanggil `root.unmount`, Anda tidak dapat memanggil `root.render` kembali pada induk yang sama. Percobaan memanggil `root.render` pada induk yang sudah di-*unmount* akan menyebabkan kesalahan "*Cannot update an unmounted root*". Walaupun begitu, Anda dapat membuat induk yang baru untuk node DOM yang sama setelah node pada induk sebelumnya telah di-*unmount*.
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-### Merender Aplikasi yang Dibuat Sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
+### Me-*render* Aplikasi yang Dibuat Sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
 
 Jika aplikasi Anda dibuat sepenuhnya dengan React, buatlah sebuah induk untuk seluruh bagian aplikasi Anda.
 
@@ -202,17 +202,17 @@ Ini dapat terasa sangat lambat! Untuk mengatasi masalah ini, Anda dapat membuat 
 
 <Pitfall>
 
-**Aplikasi yang dirender pada server atau pembuatan statis harus memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`.** React kemudian akan menghydrate (menggunakan ulang) node-node DOM dari HTML Anda, alih-alih menghancurkan dan membuat ulang node tersebut.
+**Aplikasi yang di-*render* pada server atau pembuatan statis harus memanggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`.** React kemudian akan meng-*hydrate* (menggunakan ulang) node-node DOM dari HTML Anda, alih-alih menghancurkan dan membuat ulang node tersebut.
 
 </Pitfall>
 
 ---
 
-### Merender halaman yang sebagian dibuat dengan React {/*rendering-a-page-partially-built-with-react*/}
+### Me-*render* halaman yang sebagian dibuat dengan React {/*rendering-a-page-partially-built-with-react*/}
 
 Jika halaman Anda [tidak dibuat sepenuhnya dengan React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), Anda dapat memanggil `createRoot` lebih dari sekali untuk membuat induk dari setiap bagian level teratas yang dikelola React. Anda dapat menampilkan konten yang berbeda untuk setip induk dengan memanggil [`root.render`.](#root-render)
 
-Di sini, dua komponen React yang berbeda dirender kedalam dua node DOM yang didefinisikan dalam file `index.html`.
+Di sini, dua komponen React yang berbeda di-*render* kedalam dua node DOM yang didefinisikan dalam file `index.html`.
 
 <Sandpack>
 
@@ -223,7 +223,7 @@ Di sini, dua komponen React yang berbeda dirender kedalam dua node DOM yang dide
   <body>
     <nav id="navigation"></nav>
     <main>
-      <p>Paragraf ini tidak dirender oleh React (buka index.html untuk memastikan).</p>
+      <p>Paragraf ini tidak di-*render* oleh React (buka index.html untuk memastikan).</p>
       <section id="comments"></section>
     </main>
   </body>
@@ -307,7 +307,7 @@ Hal ini biasanya berguna saat komponen React Anda berada dalam aplikasi yang men
 
 ### Memperbarui Komponen Induk {/*updating-a-root-component*/}
 
-Anda dapat memanggil `render` lebih dari sekali untuk induk yang sama. Selama pohon komponen tersebut sama dengan yang sebelumnya telah dirender, React akan [menjaga statenya.](/learn/preserving-and-resetting-state) Perhatikan bagaimana Anda dapat mengetik pada *input*, yang berarti pembaruan dari pemanggilan `render` yang berulang setiap detik pada contoh ini tidak desktruktif.
+Anda dapat memanggil `render` lebih dari sekali untuk induk yang sama. Selama pohon komponen tersebut sama dengan yang sebelumnya telah di-*render*, React akan [menjaga statenya.](/learn/preserving-and-resetting-state) Perhatikan bagaimana Anda dapat mengetik pada *input*, yang berarti pembaruan dari pemanggilan `render` yang berulang setiap detik pada contoh ini tidak desktruktif.
 
 <Sandpack>
 
@@ -345,7 +345,7 @@ Pemanggilan `render` berulang kali biasanya tidak wajar. Pada umumnya komponen A
 
 ### Saya Telah Membuat Sebuah Induk, Namun Tidak Ada yang Tampil {/*ive-created-a-root-but-nothing-is-displayed*/}
 
-Pastikan Anda tidak lupa untuk merender aplikasi Anda dalam induknya:
+Pastikan Anda tidak lupa untuk me-*render* aplikasi Anda dalam induknya:
 
 ```js {5}
 import { createRoot } from 'react-dom/client';
@@ -362,7 +362,7 @@ Tidak akan ada yang tampil sampai hal tersebut Anda lakukan.
 
 Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah node DOM.
 
-Jika Anda tidak yakin apa yang terjadi, cobalah menglog variabel tersebut:
+Jika Anda tidak yakin apa yang terjadi, cobalah meng-*log* variabel tersebut:
 
 ```js {2}
 const domNode = document.getElementById('root');
@@ -406,11 +406,11 @@ root.render(createApp());
 
 ---
 
-### HTML yang Dirender oleh Server Selalu Dibuat Ulang dari Awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
+### HTML yang Di-*render* oleh Server Selalu Dibuat Ulang dari Awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 
-Jika aplikasi Anda adalah aplikasi yang dirender oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat induk dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulang node-node DOM dari awal. Hal ini dapat memperlambat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
+Jika aplikasi Anda adalah aplikasi yang di-*render* oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat induk dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulang node-node DOM dari awal. Hal ini dapat memperlambat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
 
-Aplikasi yang dirender oleh server harus menggunakan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`:
+Aplikasi yang di-*render* oleh server harus menggunakan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot), bukan `createRoot`:
 
 ```js {1,4-7}
 import { hydrateRoot } from 'react-dom/client';
