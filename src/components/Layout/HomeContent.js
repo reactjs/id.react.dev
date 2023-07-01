@@ -193,10 +193,11 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Sintaksis markup ini disebut dengan JSX. Ini adalah ekstensi
-              sintaksis JavaScript yang dipopulerkan oleh React. Menempatkan
-              markup JSX dekat dengan logika rendering yang terkait membuat
-              komponen React mudah untuk dibuat, dipelihara, dan dihapus.
+              Sintaksis <i>markup</i> ini disebut dengan JSX. Ini adalah
+              ekstensi sintaksis JavaScript yang dipopulerkan oleh React.
+              Menempatkan markup JSX dekat dengan logika rendering yang terkait
+              membuat komponen React mudah untuk dibuat, dipelihara, dan
+              dihapus.
             </Para>
           </Center>
         </Section>
@@ -435,7 +436,7 @@ export function HomeContent() {
                   <i>Upgrade</i> ketika fitur baru telah siap
                 </Header>
                 <Para>
-                  React melakukan pendekatan perubahan dengan hati-hati. Setiap
+                  React melakukan pendekatan perubahan dengan hati-hati. Setiap{' '}
                   <i>commit</i> yang dilakukan React diuji pada lapisan aplikasi
                   sangat penting dengan lebih dari satu miliar pengguna. Lebih
                   dari 100.000 komponen React di Meta membantu memvalidasi
@@ -1099,7 +1100,7 @@ function SearchableVideoList({ videos }) {
         onChange={newText => setSearchText(newText)} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={\`No matches for “\${searchText}”\`} />
+        emptyHeading={\`Kata kunci “\${searchText}” tidak ditemukan\`} />
     </>
   );
 }`}</div>
@@ -1438,7 +1439,7 @@ function SearchableVideoList({videos}) {
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={`No matches for “${searchText}”`}
+        emptyHeading={`Kata kunci “${searchText}” tidak ditemukan`}
       />
     </div>
   );
