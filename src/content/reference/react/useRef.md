@@ -228,7 +228,11 @@ function MyComponent() {
 
 Jika Anda *harus* membaca [atau menulis](/reference/react/useState#storing-information-from-previous-renders) sesuatu selama rendering, [gunakan state](/reference/react/useState) sebagai gantinya.
 
+<<<<<<< HEAD
 Ketika Anda melanggar beberapa aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
+=======
+When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)
+>>>>>>> 292534e97563f13e66fe7c9f004a637c97ca51b9
 
 </Pitfall>
 
