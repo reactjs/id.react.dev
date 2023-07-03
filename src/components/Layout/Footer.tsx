@@ -296,7 +296,7 @@ export function Footer() {
           <FooterLink href="/learn/adding-interactivity">
             Menambahkan Interaktivitas
           </FooterLink>
-          <FooterLink href="/learn/managing-state">Managing State</FooterLink>
+          <FooterLink href="/learn/managing-state">Mengelola State</FooterLink>
           <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
         </div>
         <div className="flex flex-col">
