@@ -85,7 +85,7 @@ Atau, lebih singkatnya, menggunakan *arrow function*:
 }}>
 ```
 
-Semua gaya penulisan tersebut equivalen. *Inline event handler* sangat praktis untuk fungsi-fungsi yang singkat.
+Semua gaya penulisan tersebut ekuivalen. *Inline event handler* sangat praktis untuk fungsi-fungsi yang singkat.
 
 <Pitfall>
 
