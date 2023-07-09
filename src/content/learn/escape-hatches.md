@@ -21,15 +21,15 @@ Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi den
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## Mereferensikan nilai menggunakan refs {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+Ketika Anda ingin sebuah komponen "mengingat" beberapa informasi, tapi Anda tidak ingin informasi tersebut [memicu *render* baru](/learn/render-and-commit), Anda dapat menggunakan *ref*:
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+Sama seperti *state*, *refs* disimpan oleh React diantara pe-*render*-an ulang. Namun, mengatur *state* menyebabkan komponen di-*render* ulang. Mengganti sebuah *ref* tidak! Anda dapat mengakses nilai saat ini dari *ref* tersebut melalui properti `ref.current`.
 
 <Sandpack>
 
@@ -41,12 +41,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Anda mengeklik ' + ref.current + ' kali!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Klik saya!
     </button>
   );
 }
@@ -54,11 +54,11 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+*Ref* seperti sebuah kantong rahasia dari komponen Anda yang tidak dilacak oleh React. Misalkan, Anda dapat menggunakan *refs* untuk menyimpan [*timeout IDs*](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [elemen-elemen DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element), dan objek lainnya yang tidak memengaruhi hasil *render* sebuah komponen.
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+Baca **[Mereferensikan Nilai menggunakan Refs](/learn/referencing-values-with-refs)** untuk mempelajari bagaimana menggunakan *refs* untuk mengingat informasi.
 
 </LearnMore>
 
