@@ -62,9 +62,9 @@ Baca **[Mereferensikan Nilai menggunakan Refs](/learn/referencing-values-with-re
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## Manipulasi DOM dengan Refs {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+React secara otomatis memperbarui DOM agar sesuai dengan keluaran *render*, sehingga komponen Anda tidak perlu sering memanipulasinya. Namun, terkadang Anda mungkin perlu mengakses elemen DOM yang dikelola oleh React—misalnya, memberikan fokus pada sebuah simpul (*node*), menggulir ke sana, atau mengukur ukuran dan posisinya. Tidak ada cara bawaan untuk melakukan hal-hal tersebut di React, sehingga Anda memerlukan *ref* ke simpul DOM. Sebagai contoh, mengklik tombol akan memfokuskan input menggunakan sebuah *ref*:
 
 <Sandpack>
 
@@ -82,7 +82,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Focus the input
+        Memfokuskan Input
       </button>
     </>
   );
@@ -93,7 +93,7 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** untuk mempelajari bagaimana cara mengakses elemen DOM yang dikelola oleh React.
 
 </LearnMore>
 
