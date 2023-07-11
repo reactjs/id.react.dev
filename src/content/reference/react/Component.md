@@ -803,37 +803,37 @@ Memanggil [`setState`](#setstate) di dalam `UNSAFE_componentWillMount` dalam *cl
 
 ### `UNSAFE_componentWillReceiveProps(nextProps, nextContext)` {/*unsafe_componentwillreceiveprops*/}
 
-If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Jika Anda mendefinisikan `UNSAFE_componentWillReceiveProps`, React akan memanggilnya ketika komponen menerima *props* baru. Itu hanya ada karena alasan historis dan tidak boleh digunakan dalam kode baru apa pun. Sebagai gantinya, gunakan salah satu alternatif:
 
-- If you need to **run a side effect** (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to **avoid re-computing some data only when a prop changes,** use a [memoization helper](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization) instead.
-- If you need to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
-- If you need to **"adjust" some state when a prop changes,** check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops) instead.
+- Jika Anda perlu **menjalankan efek samping** (misalnya, mengambil data, menjalankan animasi, atau menginisialisasi ulang langganan) sebagai respons terhadap perubahan *prop*, pindahkan logika tersebut ke [`componentDidUpdate`](#componentdidupdate) sebagai gantinya.
+- Jika Anda perlu **menghindari komputasi ulang beberapa data hanya saat prop berubah,** gunakan [memoization helper](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization) sebagai gantinya.
+- Jika Anda perlu **"mereset" beberapa state saat prop berubah,** pertimbangkan untuk membuat komponen [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) atau [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) sebagai gantinya.
+- Jika Anda perlu **"menyesuaikan" beberapa status saat prop berubah,** periksa apakah Anda dapat menghitung semua informasi yang diperlukan hanya dari *prop* selama *render*-ing. Jika tidak bisa, gunakan [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops) sebagai gantinya.
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
+[Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
 
 #### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
 
-- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextProps`: *Props* berikutnya yang akan diterima komponen dari komponen induknya. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
+- `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
 
 #### Returns {/*unsafe_componentwillreceiveprops-returns*/}
 
-`UNSAFE_componentWillReceiveProps` should not return anything.
+`UNSAFE_componentWillReceiveProps` seharusnya tidak mengembalikan apa pun.
 
 #### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
 
-- `UNSAFE_componentWillReceiveProps` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillReceiveProps` tidak akan dipanggil jika komponen mengimplementasikan [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) atau [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
-- Despite its naming, `UNSAFE_componentWillReceiveProps` does not guarantee that the component *will* receive those props if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- Terlepas dari namanya, `UNSAFE_componentWillReceiveProps` tidak menjamin bahwa komponen *akan* menerima props tersebut jika aplikasi Anda menggunakan fitur React modern seperti [`Suspense`.](/reference/react/Suspense) Jika upaya *render* ditangguhkan (misalnya , karena kode untuk beberapa komponen anak belum dimuat), React akan membuang pohon yang sedang dalam proses dan mencoba membangun komponen dari awal selama upaya berikutnya. Pada saat percobaan *render* berikutnya, *props* mungkin berbeda. Inilah mengapa metode ini "tidak aman". Kode yang harus dijalankan hanya untuk pembaruan yang dilakukan (seperti menyetel ulang langganan) harus masuk ke [`componentDidUpdate`.](#componentdidupdate)
 
-- `UNSAFE_componentWillReceiveProps` does not mean that the component has received *different* props than the last time. You need to compare `nextProps` and `this.props` yourself to check if something changed.
+- `UNSAFE_componentWillReceiveProps` tidak berarti bahwa komponen telah menerima props yang *berbeda* dari sebelumnya. Anda perlu membandingkan `nextProps` dan `this.props` sendiri untuk memeriksa apakah ada yang berubah.
 
-- React doesn't call `UNSAFE_componentWillReceiveProps` with initial props during mounting. It only calls this method if some of component's props are going to be updated. For example, calling [`setState`](#setstate) doesn't generally trigger `UNSAFE_componentWillReceiveProps` inside the same component.
+- React tidak memanggil `UNSAFE_componentWillReceiveProps` dengan *props awal* selama *mounting*. Itu hanya memanggil metode ini jika beberapa *props* komponen akan diperbarui. Misalnya, memanggil [`setState`](#setstate) biasanya tidak memicu `UNSAFE_componentWillReceiveProps` di dalam komponen yang sama.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Memanggil [`setState`](#setstate) dalam `UNSAFE_componentWillReceiveProps` pada *class component* untuk "menyesuaikan" state sama dengan  [memanggil fungsi `set` dari `useState` selama *render*-ing](/reference/react/useState#storing-information-from-previous-renders) dalam *function component*.
 
 </Note>
 
