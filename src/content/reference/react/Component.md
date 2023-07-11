@@ -705,9 +705,9 @@ Memanggil `setState` pada *class components* mirip dengan memanggil [fungsi `set
 
 ### `shouldComponentUpdate(nextProps, nextState, nextContext)` {/*shouldcomponentupdate*/}
 
-If you define `shouldComponentUpdate`, React will call it to determine whether a re-render can be skipped.
+Jika Anda mendefinisikan `shouldComponentUpdate`, React akan memanggilnya untuk menentukan apakah *render* ulang dapat dilewati.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
+Jika Anda yakin ingin menulisnya dengan tangan, Anda dapat membandingkan `this.props` dengan `nextProps` dan `this.state` dengan `nextState` dan mengembalikan `false` untuk memberi tahu React bahwa pembaruan dapat dilewati.
 
 ```js {6-18}
 class Rectangle extends Component {
@@ -734,35 +734,35 @@ class Rectangle extends Component {
 
 ```
 
-React calls `shouldComponentUpdate` before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when [`forceUpdate`](#forceupdate) is used.
+React memanggil `shouldComponentUpdate` sebelum *render*-ing ketika *props* baru atau *state* sedang diterima. Default `true`. Metode ini tidak dipanggil untuk *render* awal atau saat [`forceUpdate`](#forceupdate) digunakan.
 
 #### Parameters {/*shouldcomponentupdate-parameters*/}
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextProps`: Props berikutnya yang akan dirender oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
+- `nextState`: *State* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#props) untuk menentukan apa yang berubah.
+- `nextContext`: Konteks berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttypes) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
 
 #### Returns {/*shouldcomponentupdate-returns*/}
 
-Return `true` if you want the component to re-render. That's the default behavior.
+Mengembalikan `true` jika Anda ingin komponen di-*render* ulang. Itu merupakan perilaku default.
 
-Return `false` to tell React that re-rendering can be skipped.
+Mengembalikan `false` untuk memberitahu React bahwa *render* ulang dapat dilewati.
 
 #### Caveats {/*shouldcomponentupdate-caveats*/}
 
-- This method *only* exists as a performance optimization. If your component breaks without it, fix that first. 
+- Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu. 
 
-- Consider using [`PureComponent`](/reference/react/PureComponent) instead of writing `shouldComponentUpdate` by hand. `PureComponent` shallowly compares props and state, and reduces the chance that you'll skip a necessary update.
+- Pertimbangkan untuk menggunakan [`PureComponent`](/reference/react/PureComponent) daripada menulis `shouldComponentUpdate` secara manual. `PureComponent` secara dangkal membandingkan *props* dan *state*, dan mengurangi kemungkinan Anda melewati pembaruan yang diperlukan.
 
-- We do not recommend doing deep equality checks or using `JSON.stringify` in `shouldComponentUpdate`. It makes performance unpredictable and dependent on the data structure of every prop and state. In the best case, you risk introducing multi-second stalls to your application, and in the worst case you risk crashing it.
+- Kami tidak menyarankan melakukan pemeriksaan kesetaraan mendalam atau menggunakan `JSON.stringify` di `shouldComponentUpdate`. Itu membuat kinerja tidak dapat diprediksi dan bergantung pada struktur data setiap *prop* dan *state*. Dalam kasus terbaik, Anda berisiko memperkenalkan henti selama beberapa detik pada aplikasi Anda, dan dalam kasus terburuk Anda berisiko membuatnya crash.
 
-- Returning `false` does not prevent child components from re-rendering when *their* state changes.
+- Mengembalikan `false` tidak mencegah komponen turunan dari *render*-ing ulang ketika *state* *mereka* berubah.
 
-- Returning `false` does not *guarantee* that the component will not re-render. React will use the return value as a hint but it may still choose to re-render your component if it makes sense to do for other reasons.
+- Mengembalikan `false` tidak *menjamin* bahwa komponen tidak akan di-*render* ulang. React akan menggunakan nilai yang dikembalikan sebagai petunjuk tetapi mungkin masih memilih untuk me-*render* ulang komponen Anda jika masuk akal untuk dilakukan karena alasan lain.
 
 <Note>
 
-Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/reference/react/memo) Function components also offer more granular optimization with [`useMemo`.](/reference/react/useMemo)
+Mengoptimalkan *class components* dengan `shouldComponentUpdate` serupa dengan mengoptimalkan *function components* dengan [`memo`.](/reference/react/memo) *Function components* juga menawarkan pengoptimalan yang lebih terperinci dengan [`useMemo`.](/reference/react/useMemo)
 
 </Note>
 
@@ -770,32 +770,32 @@ Optimizing class components with `shouldComponentUpdate` is similar to optimizin
 
 ### `UNSAFE_componentWillMount()` {/*unsafe_componentwillmount*/}
 
-If you define `UNSAFE_componentWillMount`, React will call it immediately after the [`constructor`.](#constructor) It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Jika Anda mendefinisikan `UNSAFE_componentWillMount`, React akan memanggilnya segera setelah [`constructor`.](#constructor) Itu hanya ada karena alasan historis dan tidak boleh digunakan dalam kode baru apa pun. Sebagai gantinya, gunakan salah satu alternatif:
 
-- To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
-- If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
+- Untuk menginisialisasi *state*, deklarasikan [`state`](#state) sebagai bidang kelas atau setel `this.state` di dalam [`konstruktor`.](#konstruktor)
+- Jika Anda perlu menjalankan efek samping atau menyiapkan langganan, pindahkan logika tersebut ke [`componentDidMount`](#componentdidmount) sebagai gantinya.
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+[Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
 #### Parameters {/*unsafe_componentwillmount-parameters*/}
 
-`UNSAFE_componentWillMount` does not take any parameters.
+`UNSAFE_componentWillMount` tidak menggunakan parameter apa pun.
 
 #### Returns {/*unsafe_componentwillmount-returns*/}
 
-`UNSAFE_componentWillMount` should not return anything.
+`UNSAFE_componentWillMount` seharusnya tidak mengembalikan apa pun.
 
 #### Caveats {/*unsafe_componentwillmount-caveats*/}
 
-- `UNSAFE_componentWillMount` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillMount` tidak akan dipanggil jika komponen mengimplementasikan [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) atau [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
-- Despite its naming, `UNSAFE_componentWillMount` does not guarantee that the component *will* get mounted if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. This is why this method is "unsafe". Code that relies on mounting (like adding a subscription) should go into [`componentDidMount`.](#componentdidmount)
+- Terlepas dari namanya, `UNSAFE_componentWillMount` tidak menjamin bahwa komponen *akan* dipasang jika aplikasi Anda menggunakan fitur React modern seperti [`Suspense`.](/reference/react/Suspense) Jika upaya render ditangguhkan (misalnya, karena kode untuk beberapa komponen anak belum dimuat), React akan membuang pohon yang sedang berjalan dan mencoba membangun komponen dari awal selama upaya berikutnya. Inilah mengapa metode ini "tidak aman". Kode yang bergantung pada pemasangan (seperti menambahkan langganan) harus masuk ke [`componentDidMount`.](#componentdidmount)
 
-- `UNSAFE_componentWillMount` is the only lifecycle method that runs during [server rendering.](/reference/react-dom/server) For all practical purposes, it is identical to [`constructor`,](#constructor) so you should use the `constructor` for this type of logic instead.
+- `UNSAFE_componentWillMount` adalah satu-satunya metode siklus hidup yang berjalan selama [server rendering.](/reference/react-dom/server) Untuk semua tujuan praktis, ini identik dengan [`constructor`,](#constructor) sehingga Anda harus menggunakan `konstruktor` untuk jenis logika ini.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/reference/react/useState) in a function component.
+Memanggil [`setState`](#setstate) di dalam `UNSAFE_componentWillMount` dalam *class component* untuk menginisialisasi *state* sama dengan meneruskan *state* tersebut sebagai *state* awal ke [`useState`](/reference/react/useState) dalam *function components*.
 
 </Note>
 
