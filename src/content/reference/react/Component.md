@@ -842,39 +842,39 @@ Memanggil [`setState`](#setstate) dalam `UNSAFE_componentWillReceiveProps` pada 
 ### `UNSAFE_componentWillUpdate(nextProps, nextState)` {/*unsafe_componentwillupdate*/}
 
 
-If you define `UNSAFE_componentWillUpdate`, React will call it before rendering with the new props or state. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Jika Anda mendefinisikan `UNSAFE_componentWillUpdate`, React akan memanggilnya sebelum me-*render* dengan *props* atau *state* baru. Itu hanya ada karena alasan historis dan tidak boleh digunakan dalam kode baru apa pun. Sebagai gantinya, gunakan salah satu alternatif:
 
-- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
+- Jika Anda perlu menjalankan efek samping (misalnya, mengambil data, menjalankan animasi, atau menginisialisasi ulang langganan) sebagai respons terhadap perubahan *prop* atau *state*, pindahkan logika tersebut ke [`componentDidUpdate`](#componentdidupdate) sebagai gantinya.
+- Jika Anda perlu membaca beberapa informasi dari DOM (misalnya, untuk menyimpan posisi gulir saat ini) sehingga Anda dapat menggunakannya di [`componentDidUpdate`](#componentdidupdate) nanti, baca di dalam [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate ) sebagai gantinya.
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+[Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
 #### Parameters {/*unsafe_componentwillupdate-parameters*/}
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#state) to determine what changed.
+- `nextProps`: *Props* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
+- `nextState`: *State* selanjutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#state) untuk menentukan apa yang berubah.
 
 #### Returns {/*unsafe_componentwillupdate-returns*/}
 
-`UNSAFE_componentWillUpdate` should not return anything.
+`UNSAFE_componentWillUpdate` seharusnya tidak mengembalikan apa pun.
 
 #### Caveats {/*unsafe_componentwillupdate-caveats*/}
 
-- `UNSAFE_componentWillUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `UNSAFE_componentWillUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) ditentukan dan mengembalikan `false`.
 
-- `UNSAFE_componentWillUpdate` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillUpdate` tidak akan dipanggil jika komponen mengimplementasikan [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) atau [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
-- It's not supported to call [`setState`](#setstate) (or any method that leads to `setState` being called, like dispatching a Redux action) during `componentWillUpdate`.
+- Tidak didukung untuk memanggil [`setState`](#setstate) (atau metode apa pun yang menyebabkan `setState` dipanggil, seperti *dispatching Redux action*) selama `componentWillUpdate`.
 
-- Despite its naming, `UNSAFE_componentWillUpdate` does not guarantee that the component *will* update if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props and state might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- Terlepas dari namanya, `UNSAFE_componentWillUpdate` tidak menjamin bahwa komponen *akan* diupdate jika aplikasi Anda menggunakan fitur React modern seperti [`Suspense`.](/reference/react/Suspense) Jika upaya *render* ditangguhkan (misalnya, karena kode untuk beberapa komponen anak belum dimuat), React akan membuang pohon yang sedang berjalan dan mencoba membangun komponen dari awal selama upaya berikutnya. Pada saat upaya *render* berikutnya, *props* dan *state* mungkin berbeda. Inilah mengapa metode ini "tidak aman". Kode yang harus dijalankan hanya untuk pembaruan yang dilakukan (seperti menyetel ulang langganan) harus masuk ke [`componentDidUpdate`.](#componentdidupdate)
 
-- `UNSAFE_componentWillUpdate` does not mean that the component has received *different* props or state than the last time. You need to compare `nextProps` with `this.props` and `nextState` with `this.state` yourself to check if something changed.
+- `UNSAFE_componentWillUpdate` tidak berarti bahwa komponen telah menerima *props* atau *state* yang *berbeda* dari sebelumnya. Anda perlu membandingkan `nextProps` dengan `this.props` dan `nextState` dengan `this.state` sendiri untuk memeriksa apakah ada yang berubah.
 
-- React doesn't call `UNSAFE_componentWillUpdate` with initial props and state during mounting.
+- React tidak memanggil `UNSAFE_componentWillUpdate` dengan *props* awal dan *state* selama pemasangan.
 
 <Note>
 
-There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
+Tidak ada persamaan langsung dengan `UNSAFE_componentWillUpdate` dalam *function components*.
 
 </Note>
 
@@ -884,11 +884,11 @@ There is no direct equivalent to `UNSAFE_componentWillUpdate` in function compon
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+API ini akan dihapus di versi utama React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
 
 </Deprecated>
 
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-context.html) mana yang disediakan oleh komponen ini.
 
 ---
 
@@ -896,11 +896,11 @@ Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+API ini akan dihapus di versi utama React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
 
 </Deprecated>
 
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is consumed by this component.
+Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-context.html) yang dikonsumsi oleh komponen ini.
 
 ---
 
