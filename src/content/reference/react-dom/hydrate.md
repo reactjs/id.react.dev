@@ -12,7 +12,7 @@ Di React 18, `hydrate` digantikan oleh [`hydrateRoot`.](/reference/react-dom/cli
 
 <Intro>
 
-`hydrate` memungkinkan Anda menampilkan komponen React di dalam simpul DOM peramban yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React 17 dan yang lebih rendah.
+`hydrate` memungkinkan Anda menampilkan komponen React di dalam simpul DOM peramban yang konten HTML-nya sebelumnya telah dihasilkan oleh [`react-dom/server`](/reference/react-dom/server) di React versi 17 ke bawah.
 
 ```js
 hydrate(reactNode, domNode, callback?)
@@ -40,9 +40,9 @@ React akan melekat pada HTML yang ada di dalam `domNode`, dan mengambil alih pen
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `reactNode`: "Node "React" digunakan untuk me-*render* HTML yang sudah ada. Ini biasanya berupa potongan JSX seperti `<App />` yang di-*render* dengan metode (*method*) `ReactDOM Server` seperti `renderToString(<App />)` di React 17.
+* `reactNode`: "Simpul React" yang digunakan untuk me-*render* HTML yang sudah ada. Ini biasanya berupa potongan JSX seperti `<App />` yang di-*render* dengan metode (*method*) `ReactDOM Server` seperti `renderToString(<App />)` di React 17.
 
 * `domNode`: Sebuah [elemen DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element) yang di-*render* sebagai elemen akar di *server*.
 
@@ -82,8 +82,8 @@ Pada aplikasi yang sepenuhnya dibangun dengan React, **biasanya Anda hanya akan 
 
 ```html public/index.html
 <!--
-  HTML content inside <div id="root">...</div>
-  was generated from App by react-dom/server.
+  Konten HTML di dalam <div id="root">...</div>
+  di-*generate* dari App oleh react-dom/server.
 -->
 <div id="root"><h1>Halo, dunia!</h1></div>
 ```
