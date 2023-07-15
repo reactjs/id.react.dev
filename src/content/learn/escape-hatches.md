@@ -97,11 +97,11 @@ Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** unt
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## Menyinkronkan dengan *Effects* {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Beberapa komponen perlu menyinkronkan dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen *non-React* berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk menyinkronkan komponen Anda dengan sistem di luar React.
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+Menekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
 
 <Sandpack>
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+Banyak *Effects* juga melakukan "pemberishan" setelah mereka selesai. Misalkan, sebuah *Effect* yang mengatur koneksi ke *chat server* harus mengembalikan fungsi pembersih (*cleanup function*) yang memberi tahu React bagaimana cara memutuskan koneksi komponen Anda dari *server* tersebut:
 
 <Sandpack>
 
@@ -183,11 +183,11 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+Di mode pengembangan (*development*), React akan segera menjalankan dan membersihkan *Effect* Anda dengan satu kali tambahan. Inilah mengapa Anda melihat `"✅ Connecting..."` tercetak dua kali. Ini memastikan Anda tidak lupa untuk mengimplementasikan fungsi pembersih.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Baca **[Menyinkronkan dengan *Effects*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
 
 </LearnMore>
 
