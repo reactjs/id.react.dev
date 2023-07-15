@@ -4,7 +4,7 @@ title: Escape Hatches
 
 <Intro>
 
-Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi dengan sistem di luar React. Misalkan, Anda mungkin ingin memfokuskan sebuah input dengan menggunakan API peramban, memutar dan menjeda sebuah pemutar video yang diimplementasi tanpa React, atau menghubungkan dan mendengarkan pesan-pesan dari sebuah *remote server*. Pada bab ini, Anda akan mempelajari *escape hatches* yang membiarkan Anda "melangkah keluar" dari aturan React dan menghubungkannya ke sistem luar. Sebagian besar logika aplikasi dan aliran data Anda sebaiknya tidak bergantung pada fitur-fitur ini.
+Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi dengan sistem di luar React. Misalkan, Anda mungkin ingin memfokuskan sebuah input dengan menggunakan API peramban, memutar dan menjeda sebuah pemutar video yang diimplementasi tanpa React, atau menghubungkan dan mendengarkan pesan-pesan dari sebuah *remote server*. Pada bab ini, Anda akan mempelajari jalan keluar (*escape hatches*) yang membiarkan Anda "melangkah keluar" dari aturan React dan menghubungkannya ke sistem luar. Sebagian besar logika aplikasi dan aliran data Anda sebaiknya tidak bergantung pada fitur-fitur ini.
 
 </Intro>
 
@@ -191,15 +191,15 @@ Baca **[Menyinkronkan dengan *Effects*](/learn/synchronizing-with-effects)** unt
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## Anda mungkin tidak membutuhkan *Effect* {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+*Effects* adalah sebuah jalan keluar dari paradigma React. Mereka membiarkan Anda untuk "keluar" dari React dan menyinkronkan komponen Anda dengan beberapa sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan sebuah *Effect*. Hilangkan *Effects* yang tidak pelu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
+- **Anda tidak perlu menggunakan *Effects* untuk mengubah data saat pe-*render*-an.**
+- **Anda tidak perlu menggunakan *Effects* untuk menangani *events* pengguna.**
 
-For example, you don't need an Effect to adjust some state based on other state:
+Sebagai contoh, Anda tidak perlu menggunakan *Effect* untuk menyesuaikan beberapa *state* berdasarkan *state* lainnya:
 
 ```js {5-9}
 function Form() {
@@ -215,23 +215,23 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+Sebaliknya, lakukan perhitungan sebanyak mungkin saat *render*:
 
 ```js {4-5}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  // ✅ Good: Melakukan perhitungan selama render
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems.
+Namun, anda perlu menggunakan *Effects* untuk menyinkronkannya dengan sistem eksternal.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Baca **[Anda mungkin tidak membutuhkan *Effect*](/learn/you-might-not-need-an-effect)** untuk memplejari bagaimana menghilangkan *Effects* yang tidak perlu.
 
 </LearnMore>
 
