@@ -41,11 +41,11 @@ function TabContainer() {
 
 #### Parameter {/*parameters*/}
 
-* `scope`: Fungsi yang memperbarui sebuah *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` tanpa parameter apapun dan menandai seluruh pembaruan *state* yang berada di dalam fungsi `scope` sebagai transisi. Mereka akan bersifat [*non-blocking*](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
+* `scope`: Fungsi yang memperbarui sebuah *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` tanpa parameter apa pun dan menandai seluruh pembaruan *state* yang berada di dalam fungsi `scope` sebagai transisi. Mereka akan bersifat [*non-blocking*](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
 
 #### Nilai Balik {/*returns*/}
 
-`startTransition` tidak memiliki nilai balik apapun.
+`startTransition` tidak memiliki nilai balik apa pun.
 
 #### Caveats {/*caveats*/}
 

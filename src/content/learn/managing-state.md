@@ -1,30 +1,30 @@
 ---
-title: Managing State
+title: Mengelola State
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+Seiring berkembangnya aplikasi Anda, penting untuk memperhatikan bagaimana *state* Anda diatur dan memperhatikan bagaimana data mengalir diantara komponen-komponen yang ada. *State* yang redundan atau duplikat adalah sumber dari *bug* dikemudian hari. Dalam babak ini, Anda akan belajar bagaimana menata *state* dengan baik, bagaimana menjaga logika pembaruan *state* agar mudah dikelola, dan bagaimana Anda dapat berbagi *state* dengan komponen yang berjauhan.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [Bagaimana memikirkan perubahan UI sebagai perubahan *state*](/learn/reacting-to-input-with-state)
+* [Bagaimana mengatur *state* dengan baik](/learn/choosing-the-state-structure)
+* [Bagaimana "menjunjung *state*" untuk dibagikan ke komponen lain](/learn/sharing-state-between-components)
+* [Bagaimana menentukan apakah *state* akan dipertahankan atau dimusnahkan](/learn/preserving-and-resetting-state)
+* [Bagaimana menggabungkan logika *state* yang kompleks dalam sebuah fungsi](/learn/extracting-state-logic-into-a-reducer)
+* [Bagaimana mengirimkan informasi tanpa "*prop drilling*"](/learn/passing-data-deeply-with-context)
+* [Bagaimana meningkatkan manajemen *state* saat aplikasi masih dikembangkan](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Merespon masukan dengan state {/*reacting-to-input-with-state*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+Dalam React, Anda tidak perlu mengubah kode secara langsung untuk mengubah antar muka (UI). Misalnya, menulis baris perintah "nonaktifkan tombol ketika", "aktifkan tombol ketika", "tampilkan pesan sukses ketika", dll disetiap baris. Melainkan, cukup menggambarkan antar muka yang ingin ditampilkan sebagai *states* visual dari komponen Anda ("*state* awal", "*state* mengetik", "*state* sukses"), dan kemudian memicu perubahan *state* sebagai respons terhadap masukan pengguna. Sekilas mirip dengan bagaimana desainer merencanakan antar muka.
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+Berikut contoh formulir kuis yang dibangun menggunakan React. Perhatikan bagaimana ia menggunakan variabel *state* `status` untuk menentukan apakah tombol kirim diaktifkan atau dinonaktifkan, dan apakah pesan sukses ditampilkan sebagai gantinya.
 
 <Sandpack>
 
@@ -37,7 +37,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>Itu Benar!</h1>
   }
 
   async function handleSubmit(e) {
@@ -58,9 +58,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kuis Kota</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Di kota manakah terdapat papan reklame yang mengubah udara menjadi air minum?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -86,12 +86,12 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Anggap kode ini melakukan *request* ke jaringan.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Tebakan yang bagus tetapi jawaban salah. Silahkan coba lagi!'));
       } else {
         resolve();
       }
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+Baca **[Reacting to Input with State](/learn/reacting-to-input-with-state)** untuk belajar bagaimana mendekati interaksi dengan mindset yang didorong oleh *state*.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Memilih struktur state {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+Mengatur struktur *state* dengan baik dapat membuat perbedaan antara komponen yang mudah dimodifikasi dan didebug, dan komponen yang selalu menjadi sumber kesalahan. Perlu dicatat bahwa *state* tidak boleh mengandung informasi yang tidak perlu atau duplikat. Karena jika ada *state* yang tidak perlu, mudah untuk lupa memperbarui *state* tersebut, yang akhirnya memperkenalkan masalah baru!
 
-For example, this form has a **redundant** `fullName` state variable:
+Misalnya, formulir ini memiliki variabel *state* `fullName` yang **redundan**:
 
 <Sandpack>
 
@@ -140,23 +140,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Izinkan kami memeriksa Anda</h2>
       <label>
-        First name:{' '}
+        Nama depan:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nama belakang:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Tiket Anda akan diberikan kepada: <b>{fullName}</b>
       </p>
     </>
   );
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+Anda dapat menghapus dan menyederhanakan kode dengan menghitung `fullName` saat komponen di-*render*:
 
 <Sandpack>
 
@@ -192,23 +192,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Izinkan kami memeriksa Anda</h2>
       <label>
-        First name:{' '}
+        Nama depan:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nama belakang:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Tiket Anda akan diberikan kepada: <b>{fullName}</b>
       </p>
     </>
   );
@@ -221,19 +221,19 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+Sekilas seperti perubahan sepele, tetapi umumnya cara ini banyak memperbaiki bug yang ada pada aplikasi React.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+Baca **[Choosing the State Structure](/learn/choosing-the-state-structure)** untuk belajar cara merancang bentuk *state* untuk menghindari kesalahan (*bugs*).
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Berbagi state antar komponen {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+Terkadang, Anda ingin *state* dari dua komponen yang berbeda selalu berubah bersama. Untuk melakukannya, hapus *state* dari keduanya, pindahkan *state* tersebut ke bagian induk (*parent*) yang paling berdekatan, dan kemudian teruskan ke kedua komponen melalui *props*. Hal ini dikenal sebagai "menjunjung *state*" (*lifting state up*), dan ini adalah salah satu hal lumrah saat menulis kode React.
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+Pada contoh ini, dalam satu waktu hanya akan ada satu panel yang aktif. Untuk mencapainya, daripada menyimpan *state* aktif di setiap panel secara individu, komponen induk menyimpan *state* dan menentukan *props* untuk anak-anaknya.
 
 <Sandpack>
 
@@ -250,14 +250,14 @@ export default function Accordion() {
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Dengan populasi sekitar 2 juta orang, Almaty adalah kota terbesar di Kazakhstan. Dari tahun 1929 hingga 1997, kota ini menjadi ibu kota Kazakhstan.
       </Panel>
       <Panel
         title="Etymology"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Nama "Almaty" berasal dari kata <span lang="kk-KZ">алма</span>,dalam bahasa Kazakh yang berarti "apel"dan sering diterjemahkan sebagai "penuh dengan apel". Sebenarnya, wilayah sekitar Almaty dipercaya sebagai asal usul apel, dan <i lang="la">Malus sieversii</i> liar dianggap sebagai kandidat yang mungkin menjadi nenek moyang apel domestik modern.
       </Panel>
     </>
   );
@@ -276,7 +276,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Tampilkan
         </button>
       )}
     </section>
@@ -296,15 +296,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+Baca **[Berbagi *State* Antar Komponen](/learn/sharing-state-between-components)** untuk mempelajari cara mengangkat *state* ke atas dan menjaga sinkronisasi antar komponen.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## Mempertahankan dan mengatur ulang state {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+Saat Anda me-*render* ulang sebuah komponen, React perlu memutuskan bagian pohon mana yang dipertahankan (dan diperbarui), serta bagian mana yang harus dibuang atau dibuat kembali dari awal. Pada kebanyakan kasus, perilaku otomatis React ini sudah cukup baik. Secara *default*, React akan mempertahankan bagian-bagian pohon yang "cocok" dengan struktur pohon yang sebelumnya telah di-*render*.
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+Namun, ada kalanya hal ini bukan yang Anda harapkan. Dalam contoh aplikasi obrolan ini, ketika Anda mengetik pesan dan kemudian mengubah penerima pesan, itu tidak mengatur ulang bidang masukan yang ada. Hal ini bisa membuat pengguna secara tidak sengaja mengirim pesan ke orang yang salah:
 
 <Sandpack>
 
@@ -367,11 +367,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Mengobrol dengan ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Kirim ke {contact.email}</button>
     </section>
   );
 }
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+React memungkinkan Anda untuk mengesampingkan perilaku *default*, dan *memaksa* sebuah komponen untuk mengatur ulang statusnya (*state*) dengan memberikan `key` yang berbeda, seperti `<Chat key={email} />`. Hal ini memberitahu React bahwa jika penerima berbeda, itu harus dianggap sebagai komponen `Chat` yang *berbeda* yang perlu dibuat kembali dari awal dengan data (dan UI seperti input) yang baru. Sekarang, beralih antara penerima mengatur ulang input - meskipun Anda me-*render* komponen yang sama.
 
 <Sandpack>
 
@@ -462,11 +462,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Mengobrol dengan ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Kirim ke {contact.email}</button>
     </section>
   );
 }
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+Baca **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** untuk mempelajari masa hidup status dan cara mengendalikannya.
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Mengekstrak logika state ke dalam reducer {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handler* dapat menjadi sangat membingungkan. Untuk kasus-kasus ini, Anda dapat mengkonsolidasikan semua logika pembaruan *state* di luar komponen Anda dalam sebuah fungsi tunggal, yang disebut "*reducer*". *Event handler* Anda menjadi lebih ringkas karena hanya menentukan "aksi" pengguna. Di bagian bawah file, fungsi reducer menentukan bagaimana *state* harus diperbarui sebagai respons terhadap setiap aksi!
 
 <Sandpack>
 
@@ -541,7 +541,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Rencana perjalanan Praha</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -583,9 +583,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  { id: 0, text: 'Mengunjungi Musium Kafka', done: true },
+  { id: 1, text: 'Menonton Pertujukan Boneka', done: false },
+  { id: 2, text: 'Foto Tembok Lennon', done: false }
 ];
 ```
 
@@ -597,14 +597,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Tambah tugas"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   )
 }
@@ -648,7 +648,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -657,7 +657,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Sunting
         </button>
       </>
     );
@@ -676,7 +676,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+Baca **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** untuk mempelajari cara mengkonsolidasikan logika dalam fungsi reducer.
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Melewatkan data secara dalam dengan context {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Biasanya, Anda akan melewatkan informasi dari komponen induk ke komponen anak (*children*) melalui *props*. Namun, melewatkan *props* dapat menjadi merepotkan jika Anda perlu melewatkan beberapa *prop* melalui banyak komponen, atau jika banyak komponen membutuhkan informasi yang sama. *Context* memungkinkan komponen induk membuat beberapa informasi tersedia untuk setiap komponen di bawahnya—tidak peduli seberapa dalam itu—tanpa melewatkan secara eksplisit melalui *props*.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+Di sini, komponen `Heading` menentukan tingkat judulnya dengan "bertanya" pada `Section` terdekat untuk tingkatnya. Setiap `Section` melacak tingkatnya sendiri dengan bertanya pada `Section` induk dan menambahkan satu. Setiap `Section` menyediakan informasi kepada semua komponen di bawahnya tanpa melewatkan *props*—itu dilakukan melalui *context*.
 
 <Sandpack>
 
@@ -712,19 +712,19 @@ import Section from './Section.js';
 export default function Page() {
   return (
     <Section>
-      <Heading>Title</Heading>
+      <Heading>Judul</Heading>
       <Section>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
+        <Heading>Judul</Heading>
+        <Heading>Judul</Heading>
+        <Heading>Judul</Heading>
         <Section>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
+          <Heading>Sub-judul</Heading>
+          <Heading>Sub-judul</Heading>
+          <Heading>Sub-judul</Heading>
           <Section>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sub-sub-judul</Heading>
+            <Heading>Sub-sub-judul</Heading>
+            <Heading>Sub-sub-judul</Heading>
           </Section>
         </Section>
       </Section>
@@ -757,7 +757,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error('Judul harus berada di dalam Bagian!');
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Baca **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** untuk mempelajari penggunaan context sebagai alternatif dari melewatkan *props*.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Peningkatan skala dengan reducer dan context {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+*Reducer* memungkinkan Anda mengonsolidasikan logika pembaruan *state* dari sebuah komponen. *Context* memungkinkan Anda melewatkan informasi ke komponen lain secara dalam. Anda dapat menggabungkan *reducer* dan *context* bersama-sama untuk mengelola *state* dari layar yang kompleks.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+Dengan pendekatan ini, sebuah komponen induk dengan *state* yang kompleks dikelola dengan *reducer*. Komponen lain di dalam *tree* dapat membaca *state*-nya melalui *context*. Mereka juga dapat melakukan *dispatch* tindakan untuk memperbarui *state* tersebut.
 
 <Sandpack>
 
@@ -815,7 +815,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Hari libur di Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -882,9 +882,9 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Jalan Filsuf', done: true },
+  { id: 1, text: 'Kunjungi Kuil', done: false },
+  { id: 2, text: 'Meminum matcha', done: false }
 ];
 ```
 
@@ -898,7 +898,7 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Tambah Tugas"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -909,7 +909,7 @@ export default function AddTask({ onAddTask }) {
           id: nextId++,
           text: text,
         });
-      }}>Add</button>
+      }}>Tambah</button>
     </>
   );
 }
@@ -953,7 +953,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Simpan
         </button>
       </>
     );
@@ -962,7 +962,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Sunting
         </button>
       </>
     );
@@ -989,7 +989,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Hapus
       </button>
     </label>
   );
@@ -1006,12 +1006,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+Baca **[Peningkatan Skala dengan Reducer dan Context](/learn/scaling-up-with-reducer-and-context)** untuk mempelajari bagaimana pengelolaan *state* mengembang pada aplikasi yang berkembang.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+Lanjut ke halaman [Reacting to Input with *State*](/learn/reacting-to-input-with-state) untuk mulai membaca bab ini halaman per halaman!
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+Atau, jika Anda sudah familiar dengan topik-topik ini, mengapa tidak membaca tentang [Escape Hatches](/learn/escape-hatches)?

@@ -1,5 +1,5 @@
 ---
-title: React DOM APIs
+title: API React DOM
 ---
 
 <Intro>

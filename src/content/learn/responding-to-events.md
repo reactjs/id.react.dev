@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+title: Menanggapi Event
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React memungkinkan Anda menambahkan *event handler* ke dalam JSX Anda. *Event handler* adalah fungsi-fungsi yang akan dipicu sebagai respons terhadap interaksi seperti mengeklik, mengarahkan kursor, memfokuskan pada input formulir, dan sebagainya.
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* Berbagai cara untuk menulis event handler
+* Bagaimana cara mengoper logika penanganan event dari komponen induk
+* Bagaimana *event* berpropagasi dan cara menghentikannya
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## Menambahkan event handler {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+Untuk menambahkan *event handler*, pertama-tama Anda akan mendefinisikan sebuah fungsi dan kemudian [mengopernya sebagai *prop*](/learn/passing-props-to-a-component) ke *tag* JSX yang sesuai. Sebagai contoh, berikut adalah sebuah tombol yang belum melakukan apa pun:
 
 <Sandpack>
 
@@ -34,11 +34,11 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+Anda dapat membuatnya menampilkan pesan ketika pengguna mengeklik dengan mengikuti tiga langkah berikut:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. Deklarasikan sebuah fungsi bernama `handleClick` *di dalam* komponen `Button` Anda.
+2. Implementasikan logika di dalam fungsi tersebut (gunakan `alert` untuk menampilkan pesan).
+3. Tambahkan `onClick={handleClick}` ke *tag* JSX `<button>`.
 
 <Sandpack>
 
@@ -62,14 +62,14 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+Anda mendefinisikan fungsi `handleClick` dan kemudian [mengopernya sebagai *prop*](/learn/passing-props-to-a-component) ke `<button>`. `handleClick` adalah sebuah ***event handler.*** Fungsi *event handler*:
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* Biasanya didefinisikan *di dalam* komponen Anda.
+* Memiliki nama yang diawali dengan `handle`, diikuti oleh nama *event*.
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+Berdasarkan konvensi, adalah hal yang umum untuk memberi nama *event* handler dengan format `handle`, diikuti oleh nama *event*. Anda sering melihat contoh seperti `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, dan lain sebagainya.
 
-Alternatively, you can define an event handler inline in the JSX:
+Sebagai alternatif, Anda juga dapat mendefinisikan *event handler* secara *inline* dalam JSX:
 
 ```jsx
 <button onClick={function handleClick() {
@@ -77,7 +77,7 @@ Alternatively, you can define an event handler inline in the JSX:
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+Atau, lebih singkatnya, menggunakan *arrow function*:
 
 ```jsx
 <button onClick={() => {
@@ -85,54 +85,54 @@ Or, more concisely, using an arrow function:
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+Semua gaya penulisan tersebut ekuivalen. *Inline event handler* sangat praktis untuk fungsi-fungsi yang singkat.
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+Fungsi yang dioper ke *event handler* harus dioper, bukan dipanggil. Sebagai contoh:
 
-| passing a function (correct)     | calling a function (incorrect)     |
+| mengoper fungsi (benar)          | memanggil fungsi (salah)           |
 | -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+Perbedaannya tipis. Pada contoh pertama, fungsi `handleClick` dioper sebagai *event handler* `onClick`. Ini memberitahu React untuk mengingatnya dan hanya memanggil fungsi tersebut ketika pengguna mengeklik tombolnya.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+Pada contoh kedua, tanda `()` di akhir `handleClick()` akan menjalankan fungsi tersebut *langsung* saat [pe-*render*-an](/learn/render-and-commit), tanpa adanya klik. Ini karena JavaScript di dalam *tag* [JSX `{` dan `}`](/learn/javascript-in-jsx-with-curly-braces) dieksekusi secara langsung.
 
-When you write code inline, the same pitfall presents itself in a different way:
+Ketika Anda menuliskan kode secara *inline*, masalah yang sama muncul dengan cara yang berbeda:
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| mengirimkan fungsi (benar)              | memanggil fungsi (salah)          |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+Mengoper kode *inline* seperti ini tidak akan menjalankan kodenya saat diklik—kode tersebut akan dijalankan setiap kali komponen di-*render*:
 
 ```jsx
-// This alert fires when the component renders, not when clicked!
+// *Alert* ini muncul saat komponen me-*render*, bukan saat diklik!
 <button onClick={alert('You clicked me!')}>
 ```
 
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+Jika Anda ingin mendefinisikan *event handler* secara *inline*, bungkus ke dalam sebuah fungsi anonim, seperti berikut:
 
 ```jsx
 <button onClick={() => alert('You clicked me!')}>
 ```
 
-Rather than executing the code inside with every render, this creates a function to be called later.
+Alih-alih menjalankan kode setiap *render*, ini membuat fungsi untuk dipanggil nanti.
 
-In both cases, what you want to pass is a function:
+Dalan kedua kasus, yang Anda inginkan adalah mengoper fungsi:
 
-* `<button onClick={handleClick}>` passes the `handleClick` function.
-* `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
+* `<button onClick={handleClick}>` mengoper fungsi `handleClick`.
+* `<button onClick={() => alert('...')}>` mengoper fungsi `() => alert('...')`.
 
-[Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
+[Baca lebih lanjut tentang *arrow functions*.](https://javascript.info/arrow-functions-basics)
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### Membaca *props* pada *event handler* {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Karena *event handler* dideklarasikan di dalam komponen, mereka memiliki akses ke *prop* komponen tersebut. Ini adalah tombol yang, ketika diklik, menampilkan *alert* dengan *prop* `message`-nya.
 
 <Sandpack>
 
@@ -165,13 +165,13 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-This lets these two buttons show different messages. Try changing the messages passed to them.
+Ini membuat kedua tombol tersebut menampilkan dua pesan yang berbeda. Coba untuk mengganti pesan yang dioper kepada mereka.
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### Mengoper *event handler* sebagai *prop* {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+Seringnya, Anda akan ingin komponen induk untuk menentukan *event handler* anaknya. Misalnya pada tombol: bergantung kepada tempat Anda menggunakan komponen `Button`, Anda mungkin ingin untuk menjalankan fungsi berbeda—mungkin satu memutar film dan satu lagi menggungah gambar.
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+Untuk melakukan ini, oper *prop* yang diterima komponen dari induknya sebagai *event handler* seperti ini:
 
 <Sandpack>
 
@@ -220,22 +220,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+Di sini, komponen `Toolbar` me-*render* `PlayButton` dan `UploadButton`:
 
-- `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
-- `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
+- `PlayButton` mengoper `handlePlayClick` sebagai *prop* `onClick` ke `Button` di dalamnya.
+- `UploadButton` mengoper `() => alert('Uploading!')` sebagai *prop* `onClick` ke `Button` di dalamnya.
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+Terakhir, komponen `Button` Anda menerima *prop* bernama `onClick`. Itu mengoper *prop* tersebut secara langsung ke `<button>` *built-in* peramban dengan `onClick={onClick}`. Ini memberitahukan React untuk memanggil fungsi yang dioper pada saat klik.
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+Jika anda menggunakan sebuah [*design system*](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), adalah hal yang umum untuk komponen seperti tombol untuk mengandung *styling* tetapi tidak menentukan perilaku. Alih-alih seperti itu, komponen seperti `PlayButton` dan `UploadButton` akan mengoper *event handler* ke bawah.
 
 ### Naming event handler props {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Komponen *built-in* seperti `<button>` dan `<div>` hanya mendukung [nama *event* peramban (*browser event names*)](/reference/react-dom/components/common#common-props) seperti `onClick`. Namun, ketika Anda membuat komponen Anda sendiri, Anda dapat menamakan *prop event handler*-nya sesuka Anda.
 
-By convention, event handler props should start with `on`, followed by a capital letter.
+Berdasarkan konvensi, *prop event handler* harus diawali dengan `on`, diikuti dengan huruf kapital.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+Misalnya, *prop* `onClick` milk komponen `Button` bisa saja dinamakan `onSmash`:
 
 <Sandpack>
 
@@ -268,9 +268,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+Pada contoh ini, `<button onClick={onSmash}>` menunjukkan bahwa `<button>` (huruf kecil) milik peramban masih membutuhkan *prop* bernama `onClick`, tetapi *prop* yang diterima oleh komponen kustom `Button` dapat diberi nama sesuka Anda!
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+Saat komponen Anda mendukung beberapa interaksi, Anda mungkin memberi nama *prop event handler* untuk konsep spesifik terhadap aplikasi. Misalnya, komponen `Toolbar` ini menerima *event handler* `onPlayMovie` dan `onUploadImage`.
 
 <Sandpack>
 
@@ -312,19 +312,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+Perhatikan bagaimana komponen `App` tidak perlu tahu *apa* yang `Toolbar` akan lakukan dengan `onPlayMovie` atau `onUploadImage`. Itu adalah detail implementasi dari `Toolbar`. Di sini, `Toolbar` mengoper mereka sebagai *handler* `onClick` kepada `Button`-nya, tetapi itu bisa saja memicu mereka dengan *keyboard shortcut*. Memberi nama *prop* berdasarkan interaksi spesifik aplikasi seperti `onPlayMovie` memberikan Anda fleksibilitas untuk mengganti bagaimana mereka digunakan nanti.
   
 <Note>
 
-Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
-  
+Pastikan bahwa Anda menggunakan *tag* HTML yang sesuai untuk *event handler* Anda. Misalnya, untuk meng-*handle* klik, gunakan [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) alih-alih `<div onClick={handleClick}>`. Menggunakan `<button>` asli milik peramban memungkinkan perilaku peramban *built-in* seperti navigasi *keyboard*. Jika Anda tidak suka *styling* bawaan peramban dari sebuah tombol dan ingin membuatnya tampil lebih seperti tautan atau elemen UI lainnya, Anda dapat mengubahnya dengan CSS. [Pelajari lebih lanjut tentang menulis *markup* yang aksesibel.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## Propagasi *event* {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+*Event handler* akan menangkap *event* dari anak mana pun yang mungkin dimiliki oleh komponen Anda. Kita sebut bahwa sebuah event "menggelembung" (*bubbles*) atau "berpropagasi" ke atas pohon: mulai dari tempat *event* terjadi, dan bergerak ke atas pada pohon.
 
-This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
+`<div>` ini mengandung dua tombol. Keduanya, baik `<div>` *maupun* setiap tombol masing-masing memiliki *handler* `onClick` mereka sendiri. *Handler* mana yang Anda pikir akan dijalankan saat Anda mengeklik sebuah tombol?
 
 <Sandpack>
 
@@ -355,19 +355,19 @@ button { margin: 5px; }
 
 </Sandpack>
 
-If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
+Jika Anda mengeklik salah satu tombol, `onClick` milik tombol tersebut akan berjalan terlebih dahulu, diikuti dengan `onClick` milik `<div>` induknya. Jadi, dua pesan akan muncul. Jika Anda mengeklik *toolbar*-nya, hanya `onClick` milik `<div>` induknya yang akan berjalan.
 
 <Pitfall>
 
-All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+Semua *event* berpropagasi di React kecuali `onScroll`, yang hanya bekerja pada *tag* JSX yang tersemat.
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### Menghentikan propagasi {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
+*Event handler* menerima sebuah **objek *event*** sebagai satu-satunya argumen. Berdasarkan konvensi, objek tersebut biasanya disebut `e`, yang merupakan kepanjangan dari "*event*". Anda dapat menggunakan objek ini untuk membaca informasi tentang *event* teresbut.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+Objek *event* tersebut juga dapat memungkinkan Anda untuk menghentikan propagasi. Jika anda ingin mencegah sebuah *event* untuk mencapai komponen induknya, Anda harus memanggil `e.stopPropagation()` seperti apa yang komponen `Button` ini lakukan:
 
 <Sandpack>
 
@@ -409,43 +409,43 @@ button { margin: 5px; }
 
 </Sandpack>
 
-When you click on a button:
+Saat Anda mengeklik pada sebuah tombol:
 
-1. React calls the `onClick` handler passed to `<button>`. 
-2. That handler, defined in `Button`, does the following:
-   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
-4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+1. React memanggil *handler* `onClick` yang dioper ke `<button>`. 
+2. *Handler* tersebut, didefinisikan di dalam `Button`, melakukan hal berikut:
+   * Memanggil `e.stopPropagation()`, mencegah *event*-nya untuk menggelembung lebih lanjut.
+   * Memanggil fungsi `onClick`, yang merupakan *prop* yang dioper dari komponen `Toolbar`.
+3. Fungsi tersebut, didefinisikan di dalam komponen `Toolbar`, menampilkan *alert* dari tombol tersebut.
+4. Karena propagasinya dihentikan, *handler* `onClick` milik `<div>` induknya *tidak* berjalan.
 
-As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
+Sebagai hasil dari `e.stopPropagation()`, mengeklik pada tombolnya sekarang hanya akan menampilkan satu *alert* (dari `<button>`) alih-alih keduanya (dari `<button>` dan `<div>` *toolbar* induk). Mengeklik tombol tidak sama dengan mengeklik *toolbar* di sekitarnya, maka menghentikan propagasi masuk akal untuk UI ini.
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### *Event* fase *capture* {/*capture-phase-events*/}
 
-In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+Dalam kasus yang jarang terjadi, Anda mungkin butuh untuk menangkap semua *event* pada elemen anak, *walaupun mereka menghentikan propagasi*. Misalnya, mungkin Anda ingin mengelog setiap klik untuk analitik, bagaimanapun logika propagasinya. Anda dapat melakukan ini dengan menambahkan `Capture` pada akhir nama *event* tersebut:
 
 ```js
-<div onClickCapture={() => { /* this runs first */ }}>
+<div onClickCapture={() => { /* ini berjalan terlebih dahulu */ }}>
   <button onClick={e => e.stopPropagation()} />
   <button onClick={e => e.stopPropagation()} />
 </div>
 ```
 
-Each event propagates in three phases: 
+Setiap *event* berpropagasi dalam tiga fase: 
 
-1. It travels down, calling all `onClickCapture` handlers.
-2. It runs the clicked element's `onClick` handler. 
-3. It travels upwards, calling all `onClick` handlers.
+1. Bergerak ke atas, meamnggil semua *handler* `onClickCapture`.
+2. Menjalankan *handler* `onClick` milik elemen yang diklik. 
+3. Bergerak ke atas, memanggil semua *handler* `onClick`.
 
-Capture events are useful for code like routers or analytics, but you probably won't use them in app code.
+*Event capture* berguna untuk kode seperti perute atau analitik, tetapi Anda mungkin tidak akan menggunakannya dalam kode aplikasi.
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### Mengoper *handler* sebagai alternatif terhadap propagasi {/*passing-handlers-as-alternative-to-propagation*/}
 
-Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
+Perhatikan bagaimana *handler* klik ini menjalankan sebuah baris kode *lalu* memanggil *prop* `onClick` yang dioper dari induknya:
 
 ```js {4,5}
 function Button({ onClick, children }) {
@@ -460,13 +460,13 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+Anda juga dapat menambahkan kode kepada *handler* ini sebelum memanggil *event handler* `onClick` induknya. Pola ini menyediakan sebuah *alternatif* terhadap propagasi. Ini membiarkan komponen anaknya meng-*handle* *event* tersebut, sambil juga membiarkan komponen induknya menentukan beberapa perilaku tambahan. Tidak seperti propagasi, ini tidak otomatis. Namun, manfaat dari pola ini adalah Anda dapat dengan jelas mengikuti rantai kode yang dijalankan sebagai hasil dari suatu *event*.
 
-If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
+Jika Anda bergantung kepada propagasi dan sulit bagi Anda untuk menelusuri *handler* mana yang dijalankan dan kenapa, coba pendekatan ini sebagai gantinya.
 
 ### Preventing default behavior {/*preventing-default-behavior*/}
 
-Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
+Beberapa *event* peramban memiliki perilaku bawaan yang terasosiasi dengan mereka. Misalnya, *event submit* `<form>`, yang terjadi ketika sebuah tombol di dalamnya diklik, akan memuat ulang seluruh halaman secara bawaan:
 
 <Sandpack>
 
@@ -487,7 +487,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-You can call `e.preventDefault()` on the event object to stop this from happening:
+Anda dapat memanggil `e.preventDefault()` pada objek *event* untuk menghentikan ini terjadi:
 
 <Sandpack>
 
@@ -511,28 +511,28 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
+Jangan tertukar antara `e.stopPropagation()` dan `e.preventDefault()`. Keduanya berguna, tetapi tidak berkaitan:
 
-* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) menghentikan *event handler* tersemat pada *tag* di atasnya untuk terpanggil.
+* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) mencegah perilaku bawaan peramban untuk beberapa *event* yang memilikinya.
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## Bisakan *event handler* memiliki efek samping? {/*can-event-handlers-have-side-effects*/}
 
-Absolutely! Event handlers are the best place for side effects.
+Tentu saja! *Event handler* adalah tempat terbaik untuk efek samping.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Tidak seperti me-*render* fungsi, *event handler* tidak perlu menjadi [murni (*pure*)](/learn/keeping-components-pure), maka ini adalah tempat yang bagus untuk *mengubah* sesuatu—misalnya, mengubah sebuah nilai dari masukan sebagai tanggapan dari ketikan, atau mengubah sebuah daftar sebagai tanggapan dari penekanan tombol. Namun, untuk mengubah beberapa informasi, Anda terlebih dulu memerlukan suatu cara untuk menyimpannya. Dalam React, ini dilakukan dengan menggunakan [*state*, memori dari komponen.](/learn/state-a-components-memory) Anda akan mempelajari segala hal tentang itu pada halaman berikutnya.
 
 <Recap>
 
-* You can handle events by passing a function as a prop to an element like `<button>`.
-* Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
-* You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
-* You can declare an event handler in a parent and pass it as a prop to a child.
-* You can define your own event handler props with application-specific names.
-* Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
-* Events may have unwanted default browser behavior. Call `e.preventDefault()` to prevent that.
-* Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+* Anda dapat meng-*handle* *event* dengan mengoper fungsi sebagai prop ke elemen seperti `<button>`.
+* *Event handler* harus dioper, **tidak dipanggil!** `onClick={handleClick}`, bukan `onClick={handleClick()}`.
+* Anda dapat mendefinisikan sebuah fungsi *event handler* secara terpisah atau *inline*.
+* *Event handler* didefinisikan di dalam sebuah komponen, maka mereka dapat mengakses *prop*.
+* Anda dapat mendeklarasikan sebuah *event handler* dalam sebuah induk dan mengopernya sebagai *prop* ke suatu anak.
+* Anda dapat mendefinisikan *prop event handler* Anda sendiri dengan nama yang spesifik terhadap aplikasi.
+* *Event* berpropagasi ke atas. Panggil `e.stopPropagation()` pada argumen pertama untuk mencegah hal tersebut.
+* *Event* dapat memiliki perilaku bawaan peramban yang tidak diinginkan. Panggil `e.preventDefault()` untuk mencegah hal tersebut.
+* Secara eksplisit memanggil sebuah *prop event handler* dari *handler* anak adalah alternatif yang bagus terhadap propagasi.
 
 </Recap>
 
@@ -540,9 +540,9 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### Memperbaiki *event handler* {/*fix-an-event-handler*/}
 
-Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
+Mengeklik tombol ini seharusnya mengganti latar belakang halaman dari putih ke hitam dan sebaliknya. Namun, tidak ada yang terjadi saat Anda mengekliknya. Perbaiki masalahnya. (Jangan khawatirkan logika di dalah `handleClick`—bagian itu sudah benar.)
 
 <Sandpack>
 
@@ -569,7 +569,7 @@ export default function LightSwitch() {
 
 <Solution>
 
-The problem is that `<button onClick={handleClick()}>` _calls_ the `handleClick` function while rendering instead of _passing_ it. Removing the `()` call so that it's `<button onClick={handleClick}>` fixes the issue:
+Masalahnya adalah `<button onClick={handleClick()}>` _memanggil_ fungsi `handleClick` saat me-*render* alih-alih _mengopernya_. Menghapus pemanggilan `()` menjadi `<button onClick={handleClick}>` memperbaiki masalahnya:
 
 <Sandpack>
 
@@ -594,7 +594,7 @@ export default function LightSwitch() {
 
 </Sandpack>
 
-Alternatively, you could wrap the call into another function, like `<button onClick={() => handleClick()}>`:
+Selain itu, Anda juga bisa membungkus panggilan tersebut ke dalam suatu fungsi lain, seperti `<button onClick={() => handleClick()}>`:
 
 <Sandpack>
 
@@ -621,11 +621,11 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### Menghubungkan *events* {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+Komponen `ColorSwitch` ini me-*render* sebuah tombol. Tombol tersebut seharusnya mengganti warna halaman. Hubungkan tombol tersebut dengan *prop event handler* `onChangeColor` yang diterima dari induknya sehingga mengeklik tombolnya mengubah warnanya.
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+Setelah Anda melakukan ini, perhatikan bahwa mengeklik tombolnya juga menaikkan penghitung klik pada halaman. Kolega Anda yang menulis komponen induknya bersikeras bahwa `onChangeColor` tidak menaikkan penghitung apa pun. Hal lain apa yang mungkin sedang terjadi? Perbaiki supaya mengeklik tombolnya *hanya* mengubah warnanya, dan *tidak* menaikkan penghitungnya.
 
 <Sandpack>
 
@@ -679,9 +679,9 @@ export default function App() {
 
 <Solution>
 
-First, you need to add the event handler, like `<button onClick={onChangeColor}>`.
+Pertama, Anda perlu menambahkan *event handler*, seperti `<button onClick={onChangeColor}>`.
 
-However, this introduces the problem of the incrementing counter. If `onChangeColor` does not do this, as your colleague insists, then the problem is that this event propagates up, and some handler above does it. To solve this problem, you need to stop the propagation. But don't forget that you should still call `onChangeColor`.
+Namun, ini menambahkan masalah kenaikan penghitung. Jika `onChangeColor` tidak melakukan ini, seperti yang kolega Anda tegaskan, masalahnya adalah *event* ini berpropagasi ke atas, dan suatu *handler* di atas melakukan hal ini. Untuk memperbaikinya, Anda harus menghentikan propagasi. Namun, jangan lupa bahwa Anda masih harus memanggil `onChangeColor`.
 
 <Sandpack>
 

@@ -263,7 +263,7 @@ React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *call
 
 #### Pengembalian (Returns) {/*returns*/}
 
-Jangan menggembalikan apapun pada *callback* `ref`.
+Jangan menggembalikan apa pun pada *callback* `ref`.
 
 ---
 

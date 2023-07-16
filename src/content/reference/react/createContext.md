@@ -20,7 +20,7 @@ const SomeContext = createContext(defaultValue)
 
 ### `createContext(defaultValue)` {/*createcontext*/}
 
-Panggil fungsi `createContext` di luar komponen apapun untuk membuat konteks.
+Panggil fungsi `createContext` di luar komponen apa pun untuk membuat konteks.
 
 ```js
 import { createContext } from 'react';
@@ -38,7 +38,7 @@ const ThemeContext = createContext('light');
 
 `createContext` mengembalikan sebuah konteks objek.
 
-**Objek konteks itu sendiri tidak menyimpan informasi apapun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext.Provider`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
+**Objek konteks itu sendiri tidak menyimpan informasi apa pun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext.Provider`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
 
 * `SomeContext.Provider` memungkinkan Anda memberikan nilai konteks pada komponen.
 * `SomeContext.Consumer` adalah cara alternatif dan jarang digunakan untuk membaca nilai dari konteks.
@@ -106,7 +106,7 @@ function Button() {
 
 Konteks memungkinkan komponen [pass information deep down](/learn/passing-data-deeply-with-context) tanpa secara eksplisit memberikan _props_.
 
-Panggil fungsi `createContext` diluar komponen apapun untuk membuat satu atau beberapa konteks.
+Panggil fungsi `createContext` diluar komponen apa pun untuk membuat satu atau beberapa konteks.
 
 ```js [[1, 3, "ThemeContext"], [1, 4, "AuthContext"], [3, 3, "'light'"], [3, 4, "null"]]
 import { createContext } from 'react';

@@ -1,5 +1,5 @@
 {
-  "title": "API Reference",
+  "title": "Referensi API",
   "path": "/reference/react",
   "routes": [
     {
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Komponen",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
         {
@@ -121,15 +121,29 @@
       ]
     },
     {
+      "title": "Directives",
+      "path": "/reference/react/directives",
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/react/use-client"
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/react/use-server"
+        }
+      ]
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "react-dom@18.2.0"
     },
     {
-      "title": "Components",
+      "title": "Komponen",
       "path": "/reference/react-dom/components",
       "routes": [
         {
-          "title": "Common (e.g. <div>)",
+          "title": "Umum (e.g. <div>)",
           "path": "/reference/react-dom/components/common"
         },
         {
@@ -155,7 +169,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -185,7 +199,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "API Klien",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -199,7 +213,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "API Server",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -230,10 +244,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "API Lama"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "API React Lama",
       "path": "/reference/react/legacy",
       "routes": [
         {

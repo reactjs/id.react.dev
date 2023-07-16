@@ -9,7 +9,7 @@ Semua referensi mengenai penerjemahan terletak di [bagian Wiki](https://github.c
 - [Glosarium](https://github.com/reactjs/id.react.dev/wiki/Glosarium)
 - [Panduan Penulisan Umum](https://github.com/reactjs/id.react.dev/wiki/Panduan-Penulisan-Umum)
 
-Apabila Anda ingin mendikusikan apapun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
+Apabila Anda ingin mendikusikan apa pun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
 
 ## Menyunting konten secara lokal
 

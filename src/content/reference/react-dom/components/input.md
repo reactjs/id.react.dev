@@ -295,7 +295,7 @@ Berikan `name` untuk setiap `<input>`, contohnya `<input name="firstName" defaul
 
 <Pitfall>
 
-Secara default, *apapun* `<button>` di dalam sebuah `<form>` akan melakukan submit. Ini bisa mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) bukannya `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan form.
+Secara default, *apa pun* `<button>` di dalam sebuah `<form>` akan melakukan submit. Ini bisa mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) bukannya `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan form.
 
 </Pitfall>
 
