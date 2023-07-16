@@ -4,7 +4,7 @@ title: <Profiler>
 
 <Intro>
 
-`<Profiler>` lets you measure rendering performance of a React tree programmatically.
+`<Profiler>` memungkinkan Anda mengukur performa *rendering* dari sebuah pohon React secara terprogram.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -18,11 +18,11 @@ title: <Profiler>
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<Profiler>` {/*profiler*/}
 
-Wrap a component tree in a `<Profiler>` to measure its rendering performance.
+Bungkus pohon komponen dalam `<Profiler>` untuk mengukur performa *rendering*.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -32,18 +32,20 @@ Wrap a component tree in a `<Profiler>` to measure its rendering performance.
 
 #### Props {/*props*/}
 
-* `id`: A string identifying the part of the UI you are measuring.
-* `onRender`: An [`onRender` callback](#onrender-callback) that React calls it every time components within the profiled tree update. It receives information about what was rendered and how much time it took.
 
-#### Caveats {/*caveats*/}
+* `id`: String yang mengidentifikasi bagian UI yang sedang Anda ukur.
+* `onRender`: Sebuah [`onRender` *callback*](#onrender-callback) yang dipanggil oleh React setiap kali komponen dalam pohon yang diprofilkan diperbarui. Menerima informasi tentang apa yang di-*render* dan berapa lama waktu yang dibutuhkan.
 
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
+
+#### *Caveats* {/*caveats*/}
+
+* Pembuatan *profiler* akan menambah waktu komputasi, sehingga **dinonaktifkan dalam *build* produksi secara bawaan.** Untuk menggunakan *profiler* dalam produksi, Anda harus mengaktifkan sebuah [*build* produksi spesial dengan opsi pembuatan *profiler*.](https://fb.me/react-profiling)
 
 ---
 
-### `onRender` callback {/*onrender-callback*/}
+### `onRender` *callback* {/*onrender-callback*/}
 
-React will call your `onRender` callback with information about what was rendered.
+React akan memanggil `onRender` *callback* Anda dengan informasi tentang apa yang sudah di-*render*.
 
 ```js
 function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
@@ -53,20 +55,20 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 
 #### Parameters {/*onrender-parameters*/}
 
-* `id`: The string `id` prop of the `<Profiler>` tree that has just committed. This lets you identify which part of the tree was committed if you are using multiple profilers.
-* `phase`: `"mount"`, `"update"` or `"nested-update"`. This lets you know whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
-* `actualDuration`: The number of milliseconds spent rendering the `<Profiler>` and its descendants for the current update. This indicates how well the subtree makes use of memoization (e.g. [`memo`](/reference/react/memo) and [`useMemo`](/reference/react/useMemo)). Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
-* `baseDuration`: The number of milliseconds estimating how much time it would take to re-render the entire `<Profiler>` subtree without any optimizations. It is calculated by summing up the most recent render durations of each component in the tree. This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization). Compare `actualDuration` against it to see if memoization is working.
-* `startTime`: A numeric timestamp for when React began rendering the current update.
-* `endTime`: A numeric timestamp for when React committed the current update. This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
+* `id`: String `id` prop dari pohon `<Profiler>` yang baru saja di-*commit*. Ini memungkinkan Anda mengidentifikasi bagian mana dari pohon yang di-*commit* jika Anda menggunakan beberapa *profiler*.
+* `phase`: `"mount"`, `"update"` atau `"nested-update"`. Hal ini memungkinkan Anda mengetahui, apakah pohon baru saja dipasang untuk pertama kali, atau di-*render* ulang karena ada perubahan pada *props*, status, atau *hooks*.
+* `actualDuration`: Jumlah milidetik yang dihabiskan untuk me-*render* `<Profiler>` dan turunannya untuk pembaruan terkini. Ini mengindikasikan seberapa baik *sub*-pohon menggunakan memoisasi (contohnya [`memo`](/reference/react/memo) dan [`useMemo`](/reference/react/useMemo)). Idealnya, nilai ini akan berkurang secara signifikan setelah pemasangan awal, karena banyak keturunan yang hanya perlu me-*render* ulang jika *props* tertentu mereka berubah.
+* `baseDuration`: Jumlah milidetik yang memperkirakan berapa lama waktu yang dibutuhkan untuk me-*render* ulang seluruh *sub*-pohon `<Profiler>` tanpa pengoptimalan apa pun. Dihitung dengan menjumlahkan durasi *render* terbaru dari setiap komponen dalam pohon. Nilai ini memperkirakan biaya kasus terburuk dari *rendering* (misalnya, pemasangan awal atau pohon tanpa memoisasi). Bandingkan `actualDuration` dengan nilai ini untuk melihat apakah memoisasi berfungsi.
+* `startTime`: Stempel waktu numerik untuk mengetahui kapan React mulai me-*render* pembaruan terkini.
+* `endTime`: Stempel waktu numerik untuk mengetahui kapan React melakukan pembaruan terkini. Nilai ini dibagi di antara semua *profiler* dalam sebuah *commit*, sehingga memungkinkan untuk dikelompokkan jika diinginkan.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Measuring rendering performance programmatically {/*measuring-rendering-performance-programmatically*/}
+### Mengukur performa *rendering* secara terprogram {/*measuring-rendering-performance-programmatically*/}
 
-Wrap the `<Profiler>` component around a React tree to measure its rendering performance.
+Bungkus komponen `<Profiler>` di sekitar pohon React untuk mengukur performa *rendering*nya.
 
 ```js {2,4}
 <App>
@@ -77,25 +79,25 @@ Wrap the `<Profiler>` component around a React tree to measure its rendering per
 </App>
 ```
 
-It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
+Dua *props* dibutuhkan untuk ini: sebuah `id` (string) dan *callback* `onRender` (fungsi) yang dipanggil oleh React kapan pun sebuah komponen di dalam pohon melakukan pembaruan.
 
 <Pitfall>
 
-Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
+Pembuatan *profiler* akan menambah waktu komputasi, sehingga **dinonaktifkan dalam *build* produksi secara *default*.** Untuk menggunakan *profiler* dalam produksi, Anda harus mengaktifkan sebuah [*build* produksi spesial dengan opsi pembuatan *profiler*.](https://fb.me/react-profiling)
 
 </Pitfall>
 
 <Note>
 
-`<Profiler>` lets you gather measurements programmatically. If you're looking for an interactive profiler, try the Profiler tab in [React Developer Tools](/learn/react-developer-tools). It exposes similar functionality as a browser extension.
+`<Profiler>` memungkinkan Anda mengumpulkan pengukuran secara terprogram. Jika Anda mencari *profiler* interaktif, cobalah tab *Profiler* di [React Developer Tools](/learn/react-developer-tools). Alat ini memiliki fungsionalitas yang serupa sebagai ekstensi peramban.
 
 </Note>
 
 ---
 
-### Measuring different parts of the application {/*measuring-different-parts-of-the-application*/}
+### Mengukur berbagai bagian aplikasi yang berbeda {/*measuring-different-parts-of-the-application*/}
 
-You can use multiple `<Profiler>` components to measure different parts of your application:
+Anda dapat menggunakan beberapa komponen `<Profiler>` untuk mengukur bagian yang berbeda dari aplikasi Anda:
 
 ```js {5,7}
 <App>
@@ -108,7 +110,7 @@ You can use multiple `<Profiler>` components to measure different parts of your 
 </App>
 ```
 
-You can also nest `<Profiler>` components:
+Anda juga dapat menyarangkan komponen `<Profiler>`:
 
 ```js {5,7,9,12}
 <App>
@@ -126,7 +128,7 @@ You can also nest `<Profiler>` components:
 </App>
 ```
 
-Although `<Profiler>` is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
+Meskipun `<Profiler>` adalah komponen yang ringan, komponen ini sebaiknya digunakan hanya jika diperlukan. Setiap penggunaan akan menambah beban CPU dan memori pada aplikasi.
 
 ---
 

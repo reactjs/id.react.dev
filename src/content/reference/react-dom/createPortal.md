@@ -4,7 +4,7 @@ title: createPortal
 
 <Intro>
 
-`createPortal` lets you render some children into a different part of the DOM.
+`createPortal` memungkinkan Anda me-*render* beberapa anak (*children*) ke bagian yang berbeda dari DOM.
 
 
 ```js
@@ -20,11 +20,11 @@ title: createPortal
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `createPortal(children, domNode, key?)` {/*createportal*/}
 
-To create a portal, call `createPortal`, passing some JSX, and the DOM node where it should be rendered:
+Untuk membuat sebuah portal, panggil `createPortal`, dengan mengoper beberapa JSX, dan simpul DOM dimana tempat portal tersebut harus di-*render*:
 
 ```js
 import { createPortal } from 'react-dom';
@@ -40,35 +40,35 @@ import { createPortal } from 'react-dom';
 </div>
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh selengkapnya di bawah ini.](#usage)
 
-A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events bubble up from children to parents according to the React tree.
+Sebuah portal hanya mengubah penempatan kerangka dari simpul DOM. Dalam hal lain, JSX yang Anda *render* ke dalam portal bertindak sebagai simpul anaknya (*node child*) dari komponen React yang me-*render*-nya. Sebagai contoh, anaknya (*children*) dapat mengakses konteks yang disediakan oleh pohon induknya (*parent tree*), dan kejadian yang bertambah dari anak (*children*) ke induk (*parent*) sesuai dengan susunan React.
 
 #### Parameters {/*parameters*/}
 
-* `children`: Anything that can be rendered with React, such as a piece of JSX (e.g. `<div />` or `<SomeComponent />`), a [Fragment](/reference/react/Fragment) (`<>...</>`), a string or a number, or an array of these.
+* `children`: Apa pun yang dapat di-*render* dengan React, seperti bagian dari JSX (misalnya `<div />` atau `<SomeComponent />`), sebuah [Fragment](/reference/react/Fragment) (`<>...</>`), sebuah *string* atau angka, ataupun sebuah larik.
 
-* `domNode`: Some DOM node, such as those returned by `document.getElementById()`. The node must already exist. Passing a different DOM node during an update will cause the portal content to be recreated.
+* `domNode`: Beberapa simpul DOM, seperti yang dikembalikan oleh `document.getElementById()`. Simpul tersebut harus sudah ada. Melewatkan simpul DOM yang berbeda selama pembaruan akan menyebabkan konten portal dibuat ulang.
 
-* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
+* **opsional** `key`: Sebuah *string* atau angka unik yang akan digunakan sebagai [kunci](/learn/rendering-lists/#keeping-list-items-in-order-with-key) portal.
 
 #### Returns {/*returns*/}
 
-`createPortal` returns a React node that can be included into JSX or returned from a React component. If React encounters it in the render output, it will place the provided `children` inside the provided `domNode`.
+`createPortal` mengembalikan sebuah simpul React yang dapat disertakan ke dalam JSX atau dikembalikan dari komponen React. Jika React mendapatinya dalam keluaran *render*, React akan menempatkan `children` yang disediakan di dalam `domNode`.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* Events from portals propagate according to the React tree rather than the DOM tree. For example, if you click inside a portal, and the portal is wrapped in `<div onClick>`, that `onClick` handler will fire. If this causes issues, either stop the event propagation from inside the portal, or move the portal itself up in the React tree.
+* Kejadian dari portal menyebar sesuai dengan susunan React, bukan susunan DOM. Sebagai contoh, jika Anda mengklik di dalam sebuah portal, dan portal tersebut dibungkus dengan `<div onClick>`, maka *handler* `onClick` akan dijalankan. Jika hal ini menyebabkan masalah, hentikan perambatan kejadian dari dalam portal, atau pindahkan portal itu sendiri ke atas dalam susunan React.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Rendering to a different part of the DOM {/*rendering-to-a-different-part-of-the-dom*/}
+### Me-*render* ke bagian yang berbeda dari DOM {/*rendering-to-a-different-part-of-the-dom*/}
 
-*Portals* let your components render some of their children into a different place in the DOM. This lets a part of your component "escape" from whatever containers it may be in. For example, a component can display a modal dialog or a tooltip that appears above and outside of the rest of the page.
+*Portal* memungkinkan komponen Anda me-*render* beberapa komponen anaknya (*children*) ke tempat yang berbeda dalam DOM. Hal ini memungkinkan bagian dari komponen Anda "keluar" dari wadah apa pun yang ada. Sebagai contoh, sebuah komponen dapat menampilkan modal dialog atau *tooltip* yang muncul di atas dan di luar halaman lainnya.
 
-To create a portal, render the result of `createPortal` with <CodeStep step={1}>some JSX</CodeStep> and the <CodeStep step={2}>DOM node where it should go</CodeStep>:
+Untuk membuat portal, *render* hasil dari `createPortal` dengan <CodeStep step={1}>beberapa JSX</CodeStep> dan <CodeStep step={2}>simpul DOM ke tempat yang seharusnya</CodeStep>:
 
 ```js [[1, 8, "<p>This child is placed in the document body.</p>"], [2, 9, "document.body"]]
 import { createPortal } from 'react-dom';
@@ -86,9 +86,9 @@ function MyComponent() {
 }
 ```
 
-React will put the DOM nodes for <CodeStep step={1}>the JSX you passed</CodeStep> inside of the <CodeStep step={2}>DOM node you provided</CodeStep>.
+React akan meletakkan simpul DOM untuk <CodeStep step={1}>JSX yang Anda berikan</CodeStep> di dalam <CodeStep step={2}>simpul DOM yang Anda sediakan</CodeStep>.
 
-Without a portal, the second `<p>` would be placed inside the parent `<div>`, but the portal "teleported" it into the [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
+Tanpa portal, elemen `<p>` yang kedua akan ditempatkan di dalam induk (*parent*) `<div>`, tetapi portal memindahkannya ke dalam [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
 
 <Sandpack>
 
@@ -110,7 +110,7 @@ export default function MyComponent() {
 
 </Sandpack>
 
-Notice how the second paragraph visually appears outside the parent `<div>` with the border. If you inspect the DOM structure with developer tools, you'll see that the second `<p>` got placed directly into the `<body>`:
+Perhatikan bagaimana paragraf kedua secara visual muncul di luar induk `<div>` dengan *border*. Jika Anda memeriksa struktur DOM dengan *developer tools*, Anda akan melihat bahwa elemen `<p>` kedua ditempatkan langsung ke dalam `<body>`:
 
 ```html {4-6,9}
 <body>
@@ -125,15 +125,15 @@ Notice how the second paragraph visually appears outside the parent `<div>` with
 </body>
 ```
 
-A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events still bubble up from children to parents according to the React tree.
+Portal hanya mengubah penempatan kerangka dari simpul DOM. Dalam hal lain, JSX yang Anda *render* ke dalam portal bertindak sebagai simpul anaknya (*node child*) dari komponen React yang me-*render*-nya. Sebagai contoh, anaknya (*children*) dapat mengakses konteks yang disediakan oleh pohon induknya (*parent tree*), dan kejadian yang bertambah dari anak (*children*) ke induk (*parent*) sesuai dengan susunan React.
 
 ---
 
-### Rendering a modal dialog with a portal {/*rendering-a-modal-dialog-with-a-portal*/}
+### Me-*render* modal dialog dengan portal {/*rendering-a-modal-dialog-with-a-portal*/}
 
-You can use a portal to create a modal dialog that floats above the rest of the page, even if the component that summons the dialog is inside a container with `overflow: hidden` or other styles that interfere with the dialog.
+Anda dapat menggunakan portal untuk membuat modal dialog yang mengapung di atas bagian halaman lainnya, bahkan jika komponen yang memanggil dialog berada di dalam wadah dengan `overflow: hidden` atau *style* lain yang bercampur dialog.
 
-In this example, the two containers have styles that disrupt the modal dialog, but the one rendered into a portal is unaffected because, in the DOM, the modal is not contained within the parent JSX elements.
+Pada contoh ini, dua kontainer memiliki *style* yang bercampur modal dialog, tetapi yang di-*render* ke dalam portal tidak terpengaruh karena, di dalam DOM, modal tidak terkandung di dalam elemen induk (*parent*) JSX.
 
 <Sandpack>
 
@@ -238,17 +238,17 @@ export default function ModalContent({ onClose }) {
 
 <Pitfall>
 
-It's important to make sure that your app is accessible when using portals. For instance, you may need to manage keyboard focus so that the user can move the focus in and out of the portal in a natural way.
+Penting untuk memastikan bahwa aplikasi Anda dapat diakses saat menggunakan portal. Misalnya, Anda mungkin perlu mengatur fokus *keyboard* agar pengguna dapat memindahkan fokus ke dalam dan ke luar portal secara alami.
 
-Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+Ikuti [Praktik Penulisan Modal WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) saat membuat modal. Jika Anda menggunakan paket komunitas, pastikan paket tersebut dapat diakses dan mengikuti panduan ini.
 
 </Pitfall>
 
 ---
 
-### Rendering React components into non-React server markup {/*rendering-react-components-into-non-react-server-markup*/}
+### Me-*render* komponen React ke dalam non-React *server markup* {/*rendering-react-components-into-non-react-server-markup*/}
 
-Portals can be useful if your React root is only part of a static or server-rendered page that isn't built with React. For example, if your page is built with a server framework like Rails, you can create areas of interactivity within static areas such as sidebars. Compared with having [multiple separate React roots,](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) portals let you treat the app as a single React tree with shared state even though its parts render to different parts of the DOM.
+Portal dapat berguna jika *root* React Anda hanya merupakan bagian dari halaman statis atau halaman yang di-*render* oleh *server* yang tidak dibangun dengan React. Sebagai contoh, jika halaman Anda dibangun dengan kerangka kerja *server* seperti Rails, Anda dapat membuat area interaktivitas di dalam area statis seperti *sidebar*. Dibandingkan dengan memiliki [beberapa *root* React yang terpisah,](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) portal memungkinkan Anda memperlakukan aplikasi sebagai satu susunan React dengan *state* yang sama meskipun bagian-bagiannya di-render ke bagian yang berbeda di dalam DOM.
 
 <Sandpack>
 
@@ -342,15 +342,15 @@ p {
 
 ---
 
-### Rendering React components into non-React DOM nodes {/*rendering-react-components-into-non-react-dom-nodes*/}
+### Me-*render* komponen React ke dalam non-React simpul DOM {/*rendering-react-components-into-non-react-dom-nodes*/}
 
-You can also use a portal to manage the content of a DOM node that's managed outside of React. For example, suppose you're integrating with a non-React map widget and you want to render React content inside a popup. To do this, declare a `popupContainer` state variable to store the DOM node you're going to render into:
+Anda juga dapat menggunakan portal untuk mengelola konten simpul DOM yang dikelola di luar React. Sebagai contoh, misalkan Anda mengintegrasikan dengan *widget* peta non-React dan Anda ingin me-*render* konten React di dalam *popup*. Untuk melakukan ini, deklarasikan variabel *state* `popupContainer` untuk menyimpan simpul DOM yang akan Anda *render*:
 
 ```js
 const [popupContainer, setPopupContainer] = useState(null);
 ```
 
-When you create the third-party widget, store the DOM node returned by the widget so you can render into it:
+Saat Anda membuat *widget* pihak ketiga, simpan simpul DOM yang dikembalikan oleh *widget* agar Anda dapat me-*render*-nya:
 
 ```js {5-6}
 useEffect(() => {
@@ -363,7 +363,7 @@ useEffect(() => {
 }, []);
 ```
 
-This lets you use `createPortal` to render React content into `popupContainer` once it becomes available:
+Hal ini memungkinkan Anda menggunakan `createPortal` untuk me-*render* konten React ke dalam `popupContainer` setelah konten tersebut tersedia:
 
 ```js {3-6}
 return (
@@ -376,7 +376,7 @@ return (
 );
 ```
 
-Here is a complete example you can play with:
+Berikut ini contoh lengkap yang bisa Anda mainkan:
 
 <Sandpack>
 

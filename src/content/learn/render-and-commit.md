@@ -38,7 +38,7 @@ Terdapat dua alasan bagi komponen untuk melakukan *render*:
 
 ### *Render* awal {/*initial-render*/}
 
-Ketika Anda memulai aplikasi, Anda perlu untuk memicu *render* awal. Kerangka kerja dan *sandboxes* terkadang menyembunyikan kode ini, tetapi itu telah dilakukan dengan memanggil [`createRoot`](/reference/react-dom/client/createRoot) yang mengarahkan pada *node* dari target DOM, dan itu tekah menjalankan fungsi *`render`* pada komponen Anda:
+Ketika Anda memulai aplikasi, Anda perlu untuk memicu *render* awal. Kerangka kerja dan *sandboxes* terkadang menyembunyikan kode ini, tetapi itu telah dilakukan dengan memanggil [`createRoot`](/reference/react-dom/client/createRoot) yang mengarahkan pada simpul dari target DOM, dan itu tekah menjalankan fungsi *`render`* pada komponen Anda:
 
 <Sandpack>
 
@@ -124,8 +124,8 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **Selama proses _render_ awal,** React akan [membuat DOM *node*](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
-* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apapun sampai tahapan selanjutnya, yaitu fase *commit*. 
+* **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*. 
 
 <Pitfall>
 
@@ -150,10 +150,10 @@ Perilaku bawaan dari proses *render* semua komponen bersarang di dalam komponen 
 
 Setelah proses _render_ (memanggil) komponen Anda, React akan memodifikasi DOM.
 
-* **Untuk _render_ awal,** React akan menggunakan [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API untuk meletakkan semua DOM *node* yang telah dibuat ke dalam layar.
+* **Untuk _render_ awal,** React akan menggunakan [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API untuk meletakkan semua simpul DOM yang telah dibuat ke dalam layar.
 * **Untuk _render_ ulang,** React akan menerapkan operasi minimal yang diperlukan (dihitung saat proses *render*!) untuk membuat DOM sama dengan keluaran *render* terakhir.
 
-**React hanya mengubah DOM *node* jika ada perbedaan diantara proses _render_.** Sebagai contoh, berikut terdapat komponen yang me-*render* ulang dengan properti berbeda yang dikirimkan setiap detik. Perhatikan bagaimana Anda dapat menambahkan beberapa teks ke dalam `<input>`, memperbarui nilai `<input>`, tetapi teks tersebut tidak menghilang saat komponen me-*render* ulang:
+**React hanya mengubah simpul DOM jika ada perbedaan diantara proses _render_.** Sebagai contoh, berikut terdapat komponen yang me-*render* ulang dengan properti berbeda yang dikirimkan setiap detik. Perhatikan bagaimana Anda dapat menambahkan beberapa teks ke dalam `<input>`, memperbarui nilai `<input>`, tetapi teks tersebut tidak menghilang saat komponen me-*render* ulang:
 
 <Sandpack>
 
