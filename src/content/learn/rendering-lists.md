@@ -1,24 +1,24 @@
 ---
-title: Rendering Lists
+title: Me-render List
 ---
 
 <Intro>
 
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
+Anda mungkin ingin menampilkan beberapa komponen yang mirip dari sebuah kumpulan data. Anda dapat menggunakan [*method* senarai (array) JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) untuk memanipulasi sebuah senarai data. Pada halaman ini, Anda akan menggunakan *method* [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) dan [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) dengan React untuk menyaring dan mengubah senarai data tersebut menjadi sebuah senarai komponen.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
-* When and why to use React keys
+* Bagaimana me-*render* komponen-komponen dari sebuah senarai menggunakan *method* `map()`
+* Bagaimana me-*render* beberapa komponen spesifik menggunakan *method* `filter()`
+* Kapan dan mengapa menggunakan React *keys*
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
+## Me-*render* data dari senarai {/*rendering-data-from-arrays*/}
 
-Say that you have a list of content.
+Misalkan Anda memiliki daftar konten seperti berikut.
 
 ```js
 <ul>
@@ -30,11 +30,11 @@ Say that you have a list of content.
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+Semua anggota dari daftar tersebut memiliki format yang sama. Perbedaan hanya terletak pada isi konten, lebih tepatnya data mereka. Pada beberapa situasi, Anda mungkin harus menampilkan beberapa komponen yang sama dengan data yang berbeda saat membangun antarmuka, seperti daftar komentar atau galeri foto profil. Dalam situasi-situasi tersebut, Anda bisa menyimpan data tersebut ke dalam objek atau senarai JavaScript dengan menggunakan *method* [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) dan [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) yang kemudian akan digunakan untuk me-*render* beberapa komponen.
 
-Here’s a short example of how to generate a list of items from an array:
+Contoh untuk membuat sebuah daftar dari sebuah senarai:
 
-1. **Move** the data into an array:
+1. **Pindahkan** data ke sebuah senarai:
 
 ```js
 const people = [
@@ -46,19 +46,19 @@ const people = [
 ];
 ```
 
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **Petakan** dengan menggunakan *method* `map()` setiap anggota `people` ke sebuah senarai *node* JSX, `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **Kembalikan** `listItems` dari komponen Anda dengan membungkusnya terlebih dahulu dengan elemen `<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+Hasilnya seperti berikut:
 
 <Sandpack>
 
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+Perhatikan bahwa *sandbox* di atas menampilkan pesan kesalahan:
 
 <ConsoleBlock level="error">
 
@@ -93,11 +93,11 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+Anda akan mempelajari cara memperbaiki kesalahan ini nanti. Untuk saat ini, kita akan menambahkan struktur ke data Anda.
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+## Menyaring senarai {/*filtering-arrays-of-items*/}
 
-This data can be structured even more.
+Kita bisa menambahkan struktur ke data ini.
 
 ```js
 const people = [{
@@ -121,11 +121,11 @@ const people = [{
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+Misalkan Anda hanya ingin menampilkan orang yang memiliki profesi `'chemist'`. Anda dapat menggunakan *method* `filter()` dari JavaScript untuk mendapatkan daftar tersebut. *Method* ini menerima masukan berupa sebuah senarai, kemudian menguji setiap anggota dari senarai tersebut dengan sebuah fungsi uji (fungsi yang hanya mengembalikan nilai `true` (benar) atau `false` (salah)), lalu mengembalikan sebuah senarai baru yang terdiri atas anggota-anggota yang lolos uji (memperoleh nilai `true`).
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+Anda hanya menginginkan orang yang memiliki `profession` berupa `'chemist'`. Oleh karena itu, fungsi ujinya adalah `(person) => person.profession === 'chemist'`. Langkahnya seperti berikut:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **Buatkan** sebuah senarai baru yang terdiri atas orang-orang berprofesi `chemists`, dengan memanggil *method* `filter()` terhadap senarai `people` dengan syarat `person.profession === 'chemist'`:
 
 ```js
 const chemists = people.filter(person =>
@@ -133,7 +133,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. Now **map** over `chemists`:
+2. **Petakan** setiap anggota dari senarai `chemists` menggunakan *method* `map()`, yang sudah kita pelajari, menjadi sebuah senarai *node* JSX, `listItems`:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -151,11 +151,13 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. **Kembalikan** `listItems` dari komponen Anda dengan membungkusnya terlebih dahulu dengan elemen `ul`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
+
+Hasil akhirnya seperti berikut:
 
 <Sandpack>
 
@@ -244,29 +246,29 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+*Arrow function* mengembalikan, secara implisit, pernyataan tepat setelah `=>`, sehingga Anda tidak perlu menulis `return`:
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // Implicit return!
+  <li>...</li> // Return secara implisit
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+Namun, **Anda harus menulis `return` secara eksplisit jika setelah `=>` terdapat `{`!**
 
 ```js
-const listItems = chemists.map(person => { // Curly brace
+const listItems = chemists.map(person => { // Kurung kurawal
   return <li>...</li>;
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apa pun!
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## Menjaga urutan dengan `key` {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+Perhatikan bahwa setiap *sandbox* di atas menampilkan pesan kesalahan di konsol:
 
 <ConsoleBlock level="error">
 
@@ -274,7 +276,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+Anda harus memberikan setiap anggota dari senarai sebuah `key`--sebuah *string* atau angka yang dapat mengidentifikasi setiap anggota secara unik:
 
 ```js
 <li key={person.id}>...</li>
@@ -282,13 +284,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+Setiap elemen JSX yang ada di dalam `map()` harus selalu memiliki `key`!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+`Key` memberi tahu React mengenai hubungan antara sebuah komponen dengan sebuah anggota senarai. Hal ini krusial jika anggota senarai bisa berubah posisi (contohnya karena proses pengurutan (*sorting*)), ditambah, atau dihapus. Sebuah `key` yang baik dapat membantu React untuk mengetahui apa yang telah terjadi dan menentukan langkah optimal saat memperbarui pohon DOM.
 
-Rather than generating keys on the fly, you should include them in your data:
+Sebaiknya, `key` terkandung di dalam data Anda:
 
 <Sandpack>
 
@@ -316,31 +318,31 @@ export default function List() {
 
 ```js data.js active
 export const people = [{
-  id: 0, // Used in JSX as a key
+  id: 0, // Digunakan sebagai key pada JSX
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
-  id: 1, // Used in JSX as a key
+  id: 1, // Digunakan sebagai key pada JSX
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
-  id: 2, // Used in JSX as a key
+  id: 2, // Digunakan sebagai key pada JSX
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
-  id: 3, // Used in JSX as a key
+  id: 3, // Digunakan sebagai key pada JSX
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
-  id: 4, // Used in JSX as a key
+  id: 4, // Digunakan sebagai key pada JSX
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
@@ -374,11 +376,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### Menampilkan beberapa *node* DOM untuk setiap anggota senarai {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+Bagaimana kalau setiap anggota senarai membutuhkan bukan hanya satu, tetapi beberapa *node* DOM?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+Sintaksis singkat [`<>...</>` Fragment](/reference/react/Fragment) tidak memberikan tempat untuk `key`, sehingga Anda harus membungkus ke dalam sebuah `<div>` atau menggunakan [sintaksis `<Fragment>` yang lebih panjang](/reference/react/Fragment#rendering-a-list-of-fragments):
 
 ```js
 import { Fragment } from 'react';
@@ -393,46 +395,46 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Pada akhirnya, `Fragment` akan hilang dari DOM dan hanya menyisakan `<h1>`, `<p>`, `<h1>`, `<p>`, dan seterusnya, pada contoh di atas.
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### Bagaimana Anda memperoleh `key` {/*where-to-get-your-key*/}
 
-Different sources of data provide different sources of keys:
+Sumber data yang berbeda akan memberikan `key` yang berbeda juga, contoh:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **Data dari basis data:** Jika data yang digunakan berasal dari basis data, ID dapat digunakan sebagai `key` karena sifatnya yang sudah unik.
+* **Data lokal:** Jika data dihasilkan dan disimpan secara lokal (seperti catatan pada aplikasi penulisan catatan), Anda dapat menggunakan *counter* yang bertambah, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID), atau *library* seperti [`uuid`](https://www.npmjs.com/package/uuid).
 
-### Rules of keys {/*rules-of-keys*/}
+### Aturan `key` {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **`Key` harus bersifat unik antar-*sibling*.** Namun, `key` yang sama bisa digunakan lagi di senarai yang berbeda.
+* **`Key` tidak boleh berubah** atau fungsinya akan hilang! Jangan membuat `key` di saat me-*render*.
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### Mengapa React membutuhkan `key`? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+Bayangkan jika *file* yang ada di komputer Anda tidak memiliki nama. Sebagai pengganti, Anda merujuk ke *file* tersebut dengan urutannya--file pertama, file kedua, dan seterusnya. Saat *file* pertama dihapus, *file* kedua akan menjadi *file* pertama, kemudian *file* ketiga akan menjadi *file* kedua, dan seterusnya. Perujukan *file* menjadi tidak konsisten.
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+Nama file pada folder dan `key` pada JSX memiliki tujuan yang serupa. Mereka membantu kita mengidentifikasi anggota senarai dan membedakan mereka antar-*sibling*. `Key` yang baik tidak hanya memberikan informasi mengenai posisi *item* di dalam senarai, tetapi juga membantu React mengidentifikasi *item* tersebut sepanjang hidupnya.
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+Anda mungkin tertarik untuk menggunakan indeks pada senarai sebagai `key`. Sebenarnya, itulah yang digunakan React jika Anda tidak memberikan `key`. Namun, urutan anggota senarai dapat berubah saat ada yang ditambah, dihapus, atau diubah urutannya. Jika ini terjadi, ini bisa menimbulkan *bug* yang membingungkan dan sulit ditemukan.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+Bukan hanya itu, sebaiknya juga tidak membuat `key` sembarangan, misal `key={Math.random()}`. Hal ini menyebabkan `key` baru dibuat setiap *render*. Akibatnya, komponen dan DOM juga ikut dibuat baru setiap *render*. Pada akhirnya, proses *render* akan menjadi lambat dan masukan dari pengguna juga akan hilang. Oleh karena itu, sebaiknya Anda menggunakan ID yang konsisten yang berasal dari data.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+Perlu diperhatikan bahwa komponen tidak bisa membaca `key`, layaknya sebuah *prop*. `Key` hanya digunakan oleh React. Jika komponen Anda membutuhkan ID, Anda harus menggunakan *prop* yang berbeda, contoh `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
 <Recap>
 
-On this page you learned:
+Pada halaman ini, Anda telah mempelajari:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
-* How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* Bagaimana memindahkan data dari komponen ke senarai atau objek.
+* Bagaimana membuat himpunan komponen yang serupa dengan menggunakan *method* `map()`.
+* Bagaimana membuat senarai dari *item* yang memenuhi suatu kondisi menggunakan *method* `filter()`.
+* Mengapa dan bagaimana menentukan `key` untuk setiap komponen pada sebuah *collection* sehingga React bisa melakukan *render* yang optimal meskipun terdapat perubahan pada posisi atau data.
 
 </Recap>
 
@@ -440,11 +442,11 @@ On this page you learned:
 
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### Membagi sebuah daftar menjadi dua {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+Pada contoh ini, terdapat sebuah daftar orang.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+Anda diminta untuk menampilkan dua daftar berbeda, satu setelah yang lain: ***Chemists*** dan ***Bukan Chemist***. Seperti sebelumnya, Anda bisa melihat apakah seseorang berprofesi sebagai *chemist* dengan menggunakan `person.profession === 'chemist'`.
 
 <Sandpack>
 
@@ -535,7 +537,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+Anda bisa menggunakan `filter()` dua kali, menghasilkan dua senarai, kemudian aplikasikan `map()` ke dua senarai tersebut:
 
 <Sandpack>
 
@@ -648,9 +650,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+Pada solusi ini, `map()` dipanggil secara *inline* ke dalam elemen `<ul>`, tetapi jika Anda merasa ini masih agak sulit dibaca, Anda bisa menambahkan variabel baru yang menyimpan senarai tersebut.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+Sebenarnya, masih ada duplikasi pada dua daftar yang dibuat. Anda bisa mengekstrak bagian yang duplikat ke dalam sebuah komponen `<ListSection>`:
 
 <Sandpack>
 
@@ -762,9 +764,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+Bagi pembaca yang sangat teliti, Anda mungkin menyadari pemanggilan `filter()` dua kali mengakibatkan setiap orang dari senarai `people` akan dicek dua kali. Untungnya, pengecekan sebuah *property* objek itu cukup cepat sehingga itu bukan menjadi masalah pada kasus ini. Namun, jika komputasi yang dilakukan lebih mahal, Anda bisa mengganti `filter()` dengan pengulangan manual yang membuat dua senarai sekaligus. Dengan begitu, setiap orang hanya perlu dicek sekali.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+Bahkan, jika `people` tidak pernah berubah, Anda bisa menempatkan kode ini di luar komponen Anda. React hanya menginginkan sebuah senarai berisi *node* JSX. React tidak peduli bagaimana Anda dapat memperoleh senarai tersebut:
 
 <Sandpack>
 
@@ -882,13 +884,13 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### Daftar bersarang dalam satu komponen {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+Anda diminta untuk membuat sebuah daftar resep dari sebuah senarai yang telah disediakan. Untuk setiap resep yang ada di dalam senarai, Anda diminta untuk menampilkan nama sebagai `<h2>` dan daftar bahannya di dalam `<ul>`.
 
 <Hint>
 
-This will require nesting two different `map` calls.
+Tantangan ini membutuhkan Anda untuk membuat dua pemanggilan `map()` yang bersarang.
 
 </Hint>
 
@@ -926,7 +928,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+Salah satu solusinya seperti berikut:
 
 <Sandpack>
 
@@ -972,13 +974,13 @@ export const recipes = [{
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+Setiap anggota dari `recipes` memiliki *property* `id` yang dapat digunakan di pengulangan sebelah luar sebagai `key`. Namun, hal yang sama tidak berlaku untuk daftar bahan. Walaupun begitu, cukup wajar untuk berasumsi sebuah bahan tidak akan dipakai dua kali di dalam satu resep, sehingga *property* `name` bisa digunakan sebagai `key`. Jika Anda tidak puas dengan hal tersebut, Anda juga bisa mengubah struktur data dan menambahkan ID ke setiap bahan dari setiap resep. Anda juga bisa menggunakan indeks pada senarai sebagai `key`, tetapi Anda tidak bisa mengubah urutan bahan-bahan tersebut.
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### Mengekstrak sebuah komponen daftar *item* {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+Komponen `RecipeList` mengandung dua pemanggilan `map()` yang bersarang. Untuk menyederhanakannya, Anda diminta untuk mengekstrak sebuah komponen `Recipe` yang menerima *prop*, yaitu `id`, `name`, dan `ingredients`. Di mana Anda harus meletakkan `key` dan mengapa?
 
 <Sandpack>
 
@@ -1026,7 +1028,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+Anda bisa menyalin JSX dari `map()` sebelah luar ke dalam sebuah komponen baru, yaitu `Recipe` dan mengembalikan JSX tersebut. Setelah itu, Anda dapat mengubah `recipe.name` menjadi `name`, `recipe.id` menjadi `id`, dan seterusnya. Nantinya, nilai-nilai tersebut dapat diperoleh melalui *prop* dari `Recipe`:
 
 <Sandpack>
 
@@ -1078,15 +1080,15 @@ export const recipes = [{
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+`<Recipe {...recipe} key={recipe.id} />` adalah sintaksis singkat yang berarti menyerahkan semua *property* dari objek `recipe` sebagai *prop* ke komponen `Recipe`. Anda juga bisa menuliskannya secara eksplisit seperti `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**Perhatikan bahwa `key` diletakkan di `<Recipe>`, bukan pada `<div>` akar yang dikembalikan dari komponen `Recipe`.** Ini disebabkan `key` dibutuhkan di konteks yang sama dengan senarai. Sebelumnya, Anda membuat senarai `<div>` sehingga setiap `div` membutuhkan `key`. Namun, sekarang Anda membuat senarai `<Recipe>`. Oleh karena itu, jika Anda mengekstrak komponen, jangan lupa untuk menaruh `key` di luar JSX yang Anda salin.
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### Daftar dengan pemisah {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Katsushika Hokusai, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+Pada contoh ini, terdapat sebuah *haiku* terkenal dari Katsushika Hokusai yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
 
 ```js
 <article>
@@ -1098,7 +1100,7 @@ This example renders a famous haiku by Katsushika Hokusai, with each line wrappe
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+Sebuah *haiku* hanya terdiri atas tiga baris, tetapi solusi Anda harus berlaku untuk sembarang jumlah baris. Perhatikan bahwa `<hr />` hanya muncul *di antara* `<p>`, tidak di awal maupun di akhir!
 
 <Sandpack>
 
@@ -1141,17 +1143,17 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(Ini merupakan kasus langka karena Anda bisa menggunakan indeks pada senarai sebagai `key` sebab urutan baris tidak akan berubah.)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a fragment.
+Anda bisa mengubah `map()` ke pengulangan manual atau menggunakan `Fragment`.
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+Anda bisa membuat pengulangan manual dengan memasukkan `<hr />` dan `<p>...</p>` ke senarai luaran seiring pengulangan berlangsung:
 
 <Sandpack>
 
@@ -1167,7 +1169,7 @@ const poem = {
 export default function Poem() {
   let output = [];
 
-  // Fill the output array
+  // Isi senarai luaran
   poem.lines.forEach((line, i) => {
     output.push(
       <hr key={i + '-separator'} />
@@ -1178,7 +1180,7 @@ export default function Poem() {
       </p>
     );
   });
-  // Remove the first <hr />
+  // Hapus <hr /> pertama
   output.shift();
 
   return (
@@ -1206,9 +1208,9 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+Penggunakan indeks baris sebagai `key` tidak bisa dilakukan karena setiap pemisah dan baris berada di senarai yang sama. Namun, hal ini bisa dihindari dengan menambahkan akhiran seperti `key={i + '-text'}`.
 
-Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Anda juga bisa me-*render* sebuah kumpulan fragmen yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
 
 <Sandpack>
 
@@ -1254,7 +1256,7 @@ hr {
 
 </Sandpack>
 
-Remember, fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+Ingat, fragmen (biasa ditulis `<> </>`) memberi cara bagi Anda untuk menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
 
 </Solution>
 

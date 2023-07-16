@@ -1,29 +1,29 @@
 ---
-title: Describing the UI
+title: Menggambarkan Antarmuka Pengguna (UI)
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*User Interface* - UI). UI dibangun dari unit-unit kecil seperti tombol, teks, dan gambar. React memungkinkan Anda menggabungkan unit-unit tersebut menjadi suatu komponen yang *reusable* (dapat digunakan kembali), dan *nestable* (dapat diletakkan secara bersarang dan/atau di bawah komponen lainnya). Dari situs web hingga aplikasi, semua yang ada pada layar dapat dipecah menjadi komponen. Dalam bab ini, Anda akan belajar membuat, menyesuaikan, dan menampilkan komponen React secara kondisional.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [Cara menulis komponen React pertama Anda](/learn/your-first-component)
+* [Kapan dan bagaimana membuat file multi-komponen](/learn/importing-and-exporting-components)
+* [Cara menambahkan markup ke JavaScript dengan JSX](/learn/writing-markup-with-jsx)
+* [Cara menggunakan kurung kurawal dengan JSX untuk mengakses fungsionalitas JavaScript dari komponen Anda](/learn/javascript-in-jsx-with-curly-braces)
+* [Cara mengonfigurasi komponen dengan props](/learn/passing-props-to-a-component)
+* [Cara melakukan render komponen secara kondisional](/learn/conditional-rendering)
+* [Cara melakukan render beberapa komponen sekaligus](/learn/rendering-lists)
+* [Cara menghindari bug yang membingungkan dengan menjaga komponen tetap murni](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Komponen Pertama Anda {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+Aplikasi React dibangun dari potongan-potongan antarmuka pengguna (UI) yang terisolasi yang disebut *komponen*. Komponen React adalah sebuah fungsi JavaScript yang dapat Anda tambahkan dengan *markup*. Komponen dapat sekecil tombol atau sebesar halaman utuh. Berikut adalah contoh komponen `Gallery` yang me-*render* tiga komponen `Profile`:
 
 <Sandpack>
 
@@ -40,7 +40,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Ilmuwan yang luar biasa</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -57,13 +57,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Baca **[Komponen Pertama Anda](/learn/your-first-component)** untuk mempelajari cara mendeklarasikan dan menggunakan komponen React.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Mengimpor dan Mengekspor Komponen {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+Anda dapat mendeklarasikan banyak komponen dalam satu file, tetapi file yang besar dapat menjadi sulit untuk dinavigasi/dibaca. Untuk memecahkan masalah ini, Anda dapat *mengekspor* sebuah komponen ke dalam file sendiri, dan kemudian *mengimpor* komponen tersebut dari file lain:
 
 
 <Sandpack>
@@ -84,7 +84,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Ilmuwan yang luar biasa</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -112,22 +112,22 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Baca **[Mengimpor dan Mengekspor Komponen](/learn/importing-and-exporting-components)**  untuk belajar bagaimana memecah komponen ke dalam file-file terpisah.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Menulis markup dengan JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+Setiap komponen React adalah sebuah fungsi JavaScript yang dapat berisi beberapa *markup* yang di-*render* oleh React ke peramban. Komponen React menggunakan ekstensi sintaksis bernama JSX untuk merepresentasikan *markup* tersebut. JSX terlihat mirip dengan HTML, tetapi sedikit lebih ketat dan dapat menampilkan informasi yang dinamis.
 
-If we paste existing HTML markup into a React component, it won't always work:
+Menempel *markup* HTML ke dalam komponen React tidak selalu akan berfungsi:
 
 <Sandpack>
 
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
+    // Ini tidak cukup berhasil
     <h1>Hedy Lamarr's Todos</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
@@ -135,9 +135,9 @@ export default function TodoList() {
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve spectrum technology
+      <li>Ciptakan lampu lalu lintas baru
+      <li>Latih adegan film
+      <li>Meningkatkan teknologi spektrum
     </ul>
   );
 }
@@ -149,7 +149,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+Jika Anda memiliki HTML seperti ini, Anda dapat memperbaikinya menggunakan [konverter](https://transform.tools/html-to-jsx):
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ export default function TodoList() {
         className="photo"
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve spectrum technology</li>
+        <li>Ciptakan lampu lalu lintas baru</li>
+        <li>Latih adegan film</li>
+        <li>Meningkatkan teknologi spektrum</li>
       </ul>
     </>
   );
@@ -181,13 +181,13 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+Baca **[Menulis Markup dengan JSX](/learn/writing-markup-with-jsx)** untuk mempelajarai cara menulis JSX yang valid.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript di dalam JSX dengan kurung kurawal {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX memungkinkan Anda menulis *markup* mirip HTML di dalam file JavaScript, menjaga logika *rendering* dan konten di tempat yang sama. Terkadang Anda ingin menambahkan sedikit logika JavaScript atau merujuk pada properti dinamis di dalam markup tersebut. Dalam situasi ini, Anda dapat menggunakan kurung kurawal di JSX Anda untuk "membuka jendela" ke JavaScript:
 
 <Sandpack>
 
@@ -210,9 +210,9 @@ export default function TodoList() {
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Meningkatkan videophone</li>
+        <li>Menyiapkan kuliah aeronautika</li>
+        <li>Mengerjakan mesin berbahan bakar alkohol</li>
       </ul>
     </div>
   );
@@ -229,13 +229,13 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+Baca **[JavaScript di dalam JSX dengan Kurung Kurawal](/learn/javascript-in-jsx-with-curly-braces)** untuk mempelajari cara mengakses data JavaScript dari JSX.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Mengoper Props ke sebuah Komponen {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+Komponen React menggunakan *props* untuk berkomunikasi satu sama lain. Setiap komponen induk dapat memberikan informasi ke komponen anaknya dengan memberikan *props*. *Props* mungkin mengingatkan Anda pada atribut HTML, tetapi Anda dapat mengoper nilai JavaScript apa pun melalui *props*, termasuk objek, senarai, fungsi, dan bahkan JSX!
 
 <Sandpack>
 
@@ -310,15 +310,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+Baca **[Mengoper Props ke sebuah Komponen](/learn/passing-props-to-a-component)** untuk mempelajari cara mengoper dan membaca *props*.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## Me-render Secara Kondisional {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Komponen Anda seringkali perlu menampilkan hal-hal yang berbeda tergantung pada kondisi yang berbeda. Di React, Anda dapat me-*render* JSX secara kondisional menggunakan sintaks JavaScript seperti `if` *statements*, `&&`, dan `?:` operator.
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+Dalam contoh ini, operator `&&` JavaScript digunakan untuk me-*render* centang secara kondisional:
 
 <Sandpack>
 
@@ -334,19 +334,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Daftar Perlengkapan Sally Ride</h1>
       <ul>
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Pakaian luar angkasa"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Helm dengan daun emas"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -358,15 +358,15 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+Baca **[Me-*render* Secara Kondisional](/learn/conditional-rendering)** untuk mempelajari cara me-*render* konten secara kondisional.
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## Me-render List {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+Anda akan sering ingin menampilkan beberapa komponen serupa dari koleksi data. Anda dapat menggunakan `filter()` dan `map()` dari JavaScript dengan React untuk menyaring dan mentransformasikan senarai data Anda menjadi senarai komponen.
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+Untuk setiap *item* pada senarai, Anda perlu menentukan sebuah kunci `key`. Biasanya, Anda ingin menggunakan ID dari basisdata sebagai `key`. `key` memungkinkan React untuk melacak posisi setiap *item* di dalam daftar bahkan jika daftar berubah.
 
 <Sandpack>
 
@@ -384,13 +384,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        yang terkenal dengan {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Ilmuwan</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -401,32 +401,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'ahli matematika',
+  accomplishment: 'perhitungan penerbangan luar angkasa',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'ahli kimia',
+  accomplishment: 'penemuan lubang ozon Arktik',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'ahli fisika',
+  accomplishment: 'teori elektromagnetik',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'ahli kimia',
+  accomplishment: 'perintis obat kortison, steroid dan pil KB',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'ahli astrofisika',
+  accomplishment: 'perhitungan massa bintang kerdil putih',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -458,18 +458,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Baca **[Me-*render* List](/learn/rendering-lists)** untuk mempelajari cara me-*render* daftar komponen dan cara memilih `key`.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Menjaga Komponen Tetap Murni {/*keeping-components-pure*/}
 
-Some JavaScript functions are *pure.* A pure function:
+Sebagian fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apa pun yang ada sebelum fungsi dipanggil.
+* **_Input_ sama, _output_ sama.**  Dengan *input* yang sama, sebuah fungsi murni harus selalu memiliki *output* yang sama.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+Dengan hanya benar-benar menulis komponen Anda sebagai fungsi murni, Anda dapat menghindari seluruh *bug* yang membingungkan dan perilaku yang tidak dapat diprediksi saat kode Anda berkembang. Berikut ini adalah contoh komponen tidak murni:
 
 <Sandpack>
 
@@ -477,9 +477,9 @@ By strictly only writing your components as pure functions, you can avoid an ent
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Buruk: memodifikasi variabel yang sudah ada sebelum Cup dipanggil!
   guest = guest + 1;
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Cangkir teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -495,13 +495,13 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+Anda dapat membuat komponen ini menjadi murni dengan mengoper sebuah *prop* daripada memodifikasi variabel yang sudah ada:
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Cangkir teh untuk tamu #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -519,12 +519,12 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk mempelajari cara menulis komponen sebagai fungsi yang murni dan dapat diprediksi.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+Lanjut ke [Komponen Pertama Anda](/learn/your-first-component) untuk mulai membaca halaman bab ini dari awal!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+Atau, jika Anda sudah familiar dengan topik ini, mengapa tidak membaca tentang [Menambahkan Interaktivitas](/learn/adding-interactivity)?
