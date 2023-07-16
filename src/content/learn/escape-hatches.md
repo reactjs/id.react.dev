@@ -235,11 +235,11 @@ Baca **[Anda mungkin tidak membutuhkan *Effect*](/learn/you-might-not-need-an-ef
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## Siklus hidup *effects* yang reaktif {/*lifecycle-of-reactive-effects*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+*Effects* mempunyai siklus hidup yang berbeda dari komponen. Komponen dapat *mount*, memperbarui (*update), or *unmount*. Sebuah *Effect* hanya dapat melakukan dua hal: memulai menyinkronkan sesuatu, dan kemudian berhenti menyinkronkannya. Siklus ini dapat terjadi berkali-kali jika *Effect* anda bergantung pada *props* dan *state* yang berubah setiap saat.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+*Effect* ini bergantung pada nilai prop `roomId`. *Props* adalah *nilai yang reaktif,* yang artinya mereka dapat berubah saat pe-*render*-an ulang. Perhatikan bahwa *Effect* *menyinkronkan ulang* (dan menghubungkan kembali ke *server*) jika `roomId` berubah:
 
 <Sandpack>
 
@@ -283,7 +283,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server.
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -302,11 +302,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+*React* menyediakan aturan *linter* untuk memeriksa apakah Anda telah menetapkan dependensi *Effect* dengan benar. Jika anda lupa untuk menyantumkan `roomId` dalam daftar dependensi dalam contoh di atas, *linter* akan menemukan *bug* secara otomatis.
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+Baca **[Siklus hidup *effects* yang reaktif](/learn/lifecycle-of-reactive-effects)** untuk mempelajari bagaimana siklus hidup *Effect* berbeda dari komponen.
 
 </LearnMore>
 
