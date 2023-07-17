@@ -1,5 +1,5 @@
 ---
-title: Mengekstraksi Logika State ke Sebuah Reducer
+title: Mengekstraksi Logika State ke Reducer
 ---
 
 <Intro>
@@ -290,7 +290,7 @@ Fungsi *reducer* merupakan tempat dimana Anda meletakkan logika *state*. Fungsi 
 
 ```js
 function yourReducer(state, action) {
-  // mengembalikan state berikutnya untuk di tetapkan oleh React
+  // mengembalikan state berikutnya untuk ditetapkan oleh React
 }
 ```
 
@@ -330,7 +330,7 @@ function tasksReducer(tasks, action) {
   }
 }
 ```
-Karena fungsi *reducer* menerima *state* (`tasks`) sebagai sebuah argument, **Anda dapat mendeklarasikan fungsi *reducer* di luar komponen Anda.** Dengan ini kode yang Anda tulis tingkat indentasinya akan berkurang dan akan lebih mudah di baca.
+Karena fungsi *reducer* menerima *state* (`tasks`) sebagai sebuah argument, **Anda dapat mendeklarasikan fungsi *reducer* di luar komponen Anda.** Dengan ini kode yang Anda tulis tingkat indentasinya akan berkurang dan akan lebih mudah dibaca.
 
 <Note>
 
