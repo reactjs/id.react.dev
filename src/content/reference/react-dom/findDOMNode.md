@@ -75,7 +75,7 @@ class AutoselectingInput extends Component {
 }
 ```
 
-Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungkinkan Anda melakukan sesuatu dengannya. Sebagai contoh, ketika mengklik "Tampilkan contoh" di bawah ini untuk memasang input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) akan memilih semua teks di dalam input:
+Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungkinkan Anda melakukan sesuatu dengannya. Sebagai contoh, ketika mengklik "Tampilkan contoh" di bawah ini untuk memasang input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) akan memilih semua teks di dalam *input*:
 
 <Sandpack>
 
