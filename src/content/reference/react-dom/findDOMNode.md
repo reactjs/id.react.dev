@@ -123,7 +123,7 @@ export default AutoselectingInput;
 
 ### Membaca simpul DOM komponen itu sendiri dari sebuah ref {/*reading-components-own-dom-node-from-a-ref*/}
 
-Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara simpul JSX dan kode yang memanipulasi simpul DOM yang sesuai tidak eksplisit. Sebagai contoh, cobalah membungkus `<input />` dengan `<div>`:
+Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara simpul JSX dengan kode yang memanipulasi simpul DOM tersebut tidak eksplisit. Sebagai contoh, cobalah bungkus `<input />` dengan `<div>`:
 
 <Sandpack>
 
@@ -304,11 +304,11 @@ export default function MyInput() {
 
 </Sandpack>
 
-Perhatikan bahwa memanggil `findDOMNode(this)` di dalam `AutoselectingInput` masih memberikan Anda DOM `<input>`, meskipun JSX untuk `<input>` ini disembunyikan di dalam komponen `MyInput`. Hal ini tampak mudah untuk contoh di atas, tetapi akan menyebabkan kode yang rapuh. Bayangkan Anda ingin mengubah `MyInput` nanti dan membungkus dengan `<div>` di sekelilingnya. Hal ini akan merusak kode `AutoselectingInput` (yang mengharapkan untuk menemukan `<input>`).
+Perhatikan bahwa memanggil `findDOMNode(this)` di dalam `AutoselectingInput` masih memberikan Anda DOM `<input>`, meskipun JSX untuk `<input>` ini disembunyikan di dalam komponen `MyInput`. Hal ini tampak mudah untuk contoh di atas, tetapi hal ini akan membuat kode tersebut mudah rusak. Bayangkan Anda ingin mengubah `MyInput` nanti dan membungkusnya dengan `<div>`. Hal ini akan merusak kode `AutoselectingInput` (yang memiliki ekspektasi untuk mendapatkan simpul `<input>`).
 
 Untuk mengganti `findDOMNode` dalam contoh ini, kedua komponen harus berkoordinasi:
 
-1. `AutoSelectingInput` harus mendeklarasikan sebuah ref, seperti [pada contoh sebelumnya](#membaca-komponen-memiliki-simpul-dom-dari-ref), dan mengopernya ke `<MyInput>`.
+1. `AutoSelectingInput` harus mendeklarasikan sebuah ref, seperti [pada contoh sebelumnya](#membaca-komponen-memiliki-simpul-dom-dari-ref), lalu mengopernya ke `<MyInput>`.
 2. `MyInput` harus dideklarasikan dengan [`forwardRef`](/reference/react/forwardRef) untuk mengambil ref tersebut dan meneruskannya ke simpul `<input>`.
 
 Contoh di bawah ini melakukan hal tersebut, sehingga tidak lagi membutuhkan `findDOMNode`:
@@ -421,7 +421,7 @@ export default MyInput;
 
 ### Menambahkan elemen pembungkus `<div>` {/*adding-a-wrapper-div-element*/}
 
-Terkadang sebuah komponen perlu mengetahui posisi dan ukuran anak-anaknya. Hal ini membuat Anda tertarik untuk mencari anaknya dengan `findDOMNode(this)`, dan kemudian menggunakan metode DOM seperti [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) untuk mendapatkan informasi ukuran.
+Terkadang sebuah komponen perlu mengetahui posisi dan ukuran anak-anaknya. Hal ini membuat Anda tertarik untuk mencari anaknya dengan `findDOMNode(this)`, kemudian menggunakan metode DOM seperti [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) untuk mendapatkan informasi ukuran.
 
 Saat ini tidak ada solusi langsung untuk kasus penggunaan ini, itulah mengapa `findDOMNode` sudah di-*deprecate* tetapi belum dihapus sepenuhnya dari React. Untuk sementara ini, Anda dapat mencoba me-*render* simpul pembungkus `<div>` di sekitar konten sebagai solusi, dan mendapatkan ref ke simpul tersebut. Namun perlu diketahui bahwa pembungkus tambahan dapat merusak *styling*.
 
