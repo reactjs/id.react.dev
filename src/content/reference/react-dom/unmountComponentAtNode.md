@@ -28,7 +28,7 @@ unmountComponentAtNode(domNode)
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
 
-Panggil `unmountComponentAtNode` untuk menghapus komponen React yang telah terpasang dari DOM dan membersihkan *event handler* dan *state*-nya.
+Panggil `unmountComponentAtNode` untuk menghapus komponen React yang telah terpasang dari DOM dan membersihkan *event handler* beserta *state*-nya.
 
 ```js
 import { unmountComponentAtNode } from 'react-dom';
@@ -45,15 +45,15 @@ unmountComponentAtNode(domNode);
 
 * `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan menghapus komponen React yang terpasang dari elemen ini.
 
-#### Pengembalian {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`unmountComponentAtNode` mengembalikan `true` jika sebuah komponen telah dicopot dan `false` jika tidak.
+`unmountComponentAtNode` mengembalikan `true` jika komponen tersebut telah berhasil dilepas dan `false` jika tidak.
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-Panggil `unmountComponentAtNode` untuk menghapus <CodeStep step={1}>komponen React yang sudah terpasang</CodeStep> dari <CodeStep step={2}>simpul DOM peramban</CodeStep> dan bersihkan *event handler* dan *state*-nya.
+Panggil `unmountComponentAtNode` untuk menghapus <CodeStep step={1}>komponen React yang sudah terpasang</CodeStep> dari <CodeStep step={2}>simpul DOM peramban</CodeStep> dan bersihkan *event handler* beserta *state*-nya.
 
 ```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
 import { render, unmountComponentAtNode } from 'react-dom';
