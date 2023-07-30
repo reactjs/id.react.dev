@@ -10,7 +10,7 @@ API ini akan dihapus pada versi mayor React yang akan datang. [Lihat alternatif 
 
 <Intro>
 
-`findDOMNode` mencari simpul DOM peramban untuk *instance* dari [*class component*](/reference/react/Component) React
+`findDOMNode` mencari simpul DOM peramban untuk *instance* dari [komponen kelas](/reference/react/Component) React
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -26,7 +26,7 @@ const domNode = findDOMNode(componentInstance)
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Panggil `findDOMNode` untuk mencari simpul DOM peramban pada *instance* dari [*class component*](/reference/react/Component) React yang diberikan.
+Panggil `findDOMNode` untuk mencari simpul DOM peramban pada *instance* dari [komponen kelas](/reference/react/Component) React yang diberikan.
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -52,7 +52,7 @@ const domNode = findDOMNode(componentInstance);
 
 * `findDOMNode` hanya mengembalikan hasil pada saat pemanggilan. Jika komponen *child* merender simpul yang nantinya berbeda, tidak ada cara untuk memberitahu Anda tentang perubahan ini.
 
-* `findDOMNode` menerima instance komponen kelas, sehingga tidak dapat digunakan dengan *function component*.
+* `findDOMNode` menerima instance komponen kelas, sehingga tidak dapat digunakan dengan komponen fungsi.
 
 ---
 
@@ -60,7 +60,7 @@ const domNode = findDOMNode(componentInstance);
 
 ### Menemukan simpul DOM akar dari komponen kelas {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Panggil `findDOMNode` dengan sebuah *instance* dari [class component](/reference/react/Component) (biasanya, `this`) untuk menemukan simpul DOM yang telah di-render.
+Panggil `findDOMNode` dengan sebuah *instance* dari [komponen kelas](/reference/react/Component) (biasanya, `this`) untuk menemukan simpul DOM yang telah di-render.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -75,7 +75,7 @@ class AutoselectingInput extends Component {
 }
 ```
 
-Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungkinkan Anda melakukan sesuatu dengannya. Sebagai contoh, ketika mengklik "Tampilkan contoh" di bawah ini untuk memasang input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) akan memilih semua teks di dalam *input*:
+Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungkinkan Anda melakukan sesuatu dengannya. Sebagai contoh, ketika mengklik "Tampilkan contoh" di bawah ini untuk memasang *input*, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) akan memilih semua teks di dalam *input*:
 
 <Sandpack>
 
@@ -88,7 +88,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -136,7 +136,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -179,7 +179,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -211,7 +211,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-Pada React modern tanpa *class components*, kode yang setara akan memanggil [`useRef`](/reference/react/useRef) sebagai gantinya:
+Pada React modern tanpa komponen kelas, kode yang setara akan memanggil [`useRef`](/reference/react/useRef) sebagai gantinya:
 
 <Sandpack>
 
@@ -224,7 +224,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -269,7 +269,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -324,7 +324,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -367,7 +367,7 @@ export default MyInput;
 
 </Sandpack>
 
-Berikut ini adalah contoh kode jika kode tersebut menggunakan *function components*, bukan *class components*:
+Berikut ini adalah contoh kode jika kode tersebut menggunakan komponen fungsi, bukan komponen kelas:
 
 <Sandpack>
 
@@ -380,7 +380,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
