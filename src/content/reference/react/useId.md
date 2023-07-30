@@ -19,7 +19,7 @@ const id = useId()
 
 ### `useId()` {/*useid*/}
 
-Panggil `useId` di tingkat atas komponen Anda untuk menghasilkan ID unik:
+Panggil `useId` di tingkat teratas komponen Anda untuk menghasilkan ID unik:
 
 ```js
 import { useId } from 'react';
