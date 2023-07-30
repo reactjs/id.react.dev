@@ -40,7 +40,7 @@ const domNode = findDOMNode(componentInstance);
 
 `componentInstance`: *Instance* dari subkelas [`Component`](/reference/react/Component). Misalnya, `this` di dalam komponen kelas.
 
-#### Pengembalian {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `findDOMNode` mengembalikan simpul DOM peramban pertama yang terdekat dalam `componentInstance` yang diberikan. Ketika komponen di-*render* menjadi `null`, atau di-*render* menjadi `false`, `findDOMNode` mengembalikan `null`. Ketika komponen di-*render* menjadi string, `findDOMNode` mengembalikan simpul DOM teks yang berisi nilai tersebut.
 
