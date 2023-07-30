@@ -46,11 +46,11 @@ const domNode = findDOMNode(componentInstance);
 
 #### Catatan Penting {/*caveats*/}
 
-* Sebuah komponen dapat mengembalikan senarai atau [Fragment](/reference/react/Fragment) dengan beberapa *child*. Dalam hal ini `findDOMNode`, akan mengembalikan simpul DOM yang berhubungan dengan *child* pertama yang tidak kosong.
+* Sebuah komponen dapat mengembalikan senarai atau [Fragment](/reference/react/Fragment) dengan beberapa anak. Dalam hal ini `findDOMNode`, akan mengembalikan simpul DOM yang berhubungan dengan anak pertama yang tidak kosong.
 
 * `findDOMNode` hanya bekerja pada komponen yang sudah terpasang (yaitu komponen yang sudah ditempatkan di DOM). Jika Anda mencoba memanggil ini pada komponen yang belum terpasang (seperti memanggil `findDOMNode()` dalam `render()` pada komponen yang belum dibuat), sebuah *exception* akan dilemparkan.
 
-* `findDOMNode` hanya mengembalikan hasil pada saat pemanggilan. Jika komponen *child* merender simpul yang nantinya berbeda, tidak ada cara untuk memberitahu Anda tentang perubahan ini.
+* `findDOMNode` hanya mengembalikan hasil pada saat pemanggilan. Jika komponen anak me-*render* simpul yang nantinya berbeda, tidak ada cara untuk memberitahu Anda tentang perubahan ini.
 
 * `findDOMNode` menerima instance komponen kelas, sehingga tidak dapat digunakan dengan komponen fungsi.
 
@@ -60,7 +60,7 @@ const domNode = findDOMNode(componentInstance);
 
 ### Menemukan simpul DOM akar dari komponen kelas {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Panggil `findDOMNode` dengan sebuah *instance* dari [komponen kelas](/reference/react/Component) (biasanya, `this`) untuk menemukan simpul DOM yang telah di-render.
+Panggil `findDOMNode` dengan sebuah *instance* dari [komponen kelas](/reference/react/Component) (biasanya, `this`) untuk menemukan simpul DOM yang telah di-*render*.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -123,7 +123,7 @@ export default AutoselectingInput;
 
 ### Membaca simpul DOM komponen itu sendiri dari sebuah ref {/*reading-components-own-dom-node-from-a-ref*/}
 
-Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara node JSX dan kode yang memanipulasi node DOM yang sesuai tidak eksplisit. Sebagai contoh, cobalah membungkus `<input />` menjadi `<div>`:
+Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara simpul JSX dan kode yang memanipulasi simpul DOM yang sesuai tidak eksplisit. Sebagai contoh, cobalah membungkus `<input />` dengan `<div>`:
 
 <Sandpack>
 
@@ -254,7 +254,7 @@ export default function AutoselectingInput() {
 
 ---
 
-### Membaca simpul *child* DOM komponen dari ref yang diteruskan {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### Membaca simpul DOM komponen anak dari ref yang diteruskan {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
 Pada contoh ini, `findDOMNode(this)` menemukan simpul DOM yang dimiliki oleh komponen lain. `AutoselectingInput` me-*render* `MyInput`, yang merupakan komponen Anda sendiri yang me-*render* `<input>` pada browser.
 
@@ -421,7 +421,7 @@ export default MyInput;
 
 ### Menambahkan elemen pembungkus `<div>` {/*adding-a-wrapper-div-element*/}
 
-Terkadang sebuah komponen perlu mengetahui posisi dan ukuran anak-anaknya. Hal ini membuat Anda tertarik untuk mencari *child*-nya dengan `findDOMNode(this)`, dan kemudian menggunakan metode DOM seperti [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) untuk mendapatkan informasi ukuran.
+Terkadang sebuah komponen perlu mengetahui posisi dan ukuran anak-anaknya. Hal ini membuat Anda tertarik untuk mencari anaknya dengan `findDOMNode(this)`, dan kemudian menggunakan metode DOM seperti [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) untuk mendapatkan informasi ukuran.
 
 Saat ini tidak ada solusi langsung untuk kasus penggunaan ini, itulah mengapa `findDOMNode` sudah di-*deprecate* tetapi belum dihapus sepenuhnya dari React. Untuk sementara ini, Anda dapat mencoba me-*render* simpul pembungkus `<div>` di sekitar konten sebagai solusi, dan mendapatkan ref ke simpul tersebut. Namun perlu diketahui bahwa pembungkus tambahan dapat merusak *styling*.
 
@@ -431,4 +431,4 @@ Saat ini tidak ada solusi langsung untuk kasus penggunaan ini, itulah mengapa `f
 </div>
 ```
 
-Hal ini juga berlaku untuk pemfokusan dan *scrolling* ke sembarang *children*.
+Hal ini juga berlaku untuk pemfokusan dan *scrolling* ke sembarang anak.
