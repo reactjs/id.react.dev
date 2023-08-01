@@ -10,7 +10,7 @@ title: useInsertionEffect
 
 <Intro>
 
-`useInsertionEffect` adalah sebuah versi dari [`useEffect`](/reference/react/useEffect) yang akan berjalan sebelum adanya mutasi DOM.
+`useInsertionEffect` memungkinkan Anda memasukan element ke dalam DOM sebelum efek *layout* aktif.
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -26,7 +26,7 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum terjadinya mutasi DOM:
+Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum ada efek aktif yang mungkin akan membaca *layout*:
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -44,7 +44,7 @@ function useCSS(rule) {
 
 #### Parameter {/*parameters*/}
 
-* `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Sebelum komponen ditambahkan ke DOM, React akan menjalankan fungsi *setup*. Setelah setiap *render* ulang dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi *pembersihan* (*cleanup*) (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi *pembersihan* (*cleanup*).
+* `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Sebelum komponen ditambahkan ke DOM, dan sebelum efek *layout* apa pun aktif, React akan menjalankan fungsi *setup*. Setelah setiap *render* ulang dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (*cleanup*) (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan (*cleanup*).
  
 * **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika linter Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan algoritma perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika Anda tidak menentukan sebuah dependensi sama sekali, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
 
@@ -57,7 +57,8 @@ function useCSS(rule) {
 * Efek hanya berjalan di sisi klien. Efek tidak berjalan ketika *server rendering*.
 * Anda tidak dapat mengupdate *state* dari dalam `useInsertionEffect`.
 * Pada saat `useInsertionEffect` berjalan, *refs* belum  terpasang, dan DOM belum diperbarui.
-
+* `useInsertionEffect` mungkin akan berjalan sebelum atau sesudah DOM diperbarui. Seharusnya Anda tidak mengandalkan DOM diperbarui dalam titik waktu tertentu.
+* Alih-alih tipe Efek yang lain, yang mengaktifkan fungsi pembersihan untuk setiap Efek dan kemudian menjalankan *setup* untuk setiap Efek, `useInsertionEffect` akan mengaktifkan fungi pembersihan dan *setup* secara sekaligus, komponen per komponen. Ini akan menghasilkan "penyisipan" dari fungsi pembersihan dan *setup*.
 ---
 
 ## Penggunaan {/*usage*/}
@@ -87,7 +88,7 @@ Jika kamu menggunakan CC-in-JS, kami merekomendasikan sebuah kombinasi dari dua 
 
 Masalah pertama tidak dapat diselesaikan, tapi `useInsertionEffect` membantu Anda menyelesaikan masalah kedua.
 
-Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum terjadinya mutasi DOM:
+Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum efek *layout* aktif:
 
 ```js {4-11}
 // Inside your CSS-in-JS library
