@@ -906,7 +906,7 @@ Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-co
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+Jika Anda ingin membaca [`this.context`](#context-instance-field) dari *class component* Anda, Anda harus menentukan *context* mana yang perlu dibaca. *Context* yang Anda tentukan sebagai `static contextType` harus berupa nilai yang dibuat sebelumnya oleh [`createContext`.](/reference/react/createContext)
 
 ```js {2}
 class Button extends Component {
@@ -926,9 +926,9 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+Membaca `this.context` pada *class components* setara dengan [`useContext`](/reference/react/useContext) pada *function components*.
 
-[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+[Lihat bagaimana cara migrasi.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
 </Note>
 
@@ -936,9 +936,9 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `static defaultProps` {/*static-defaultprops*/}
 
-You can define `static defaultProps` to set the default props for the class. They will be used for `undefined` and missing props, but not for `null` props.
+Anda dapat mendefinisikan `static defaultProps` untuk mengatur *props* bawaan untuk *class*. Mereka akan digunakan untuk `undefined` dan *props* yang hilang, tetapi tidak untuk *props* `null`.
 
-For example, here is how you define that the `color` prop should default to `'blue'`:
+Sebagai contoh, di sini adalah bagaimana Anda mendefinisikan bahwa *prop* `color` harus default ke `'blue'`:
 
 ```js {2-4}
 class Button extends Component {
@@ -952,7 +952,7 @@ class Button extends Component {
 }
 ```
 
-If the `color` prop is not provided or is `undefined`, it will be set by default to `'blue'`:
+Jika *prop* `color` tidak disediakan atau `undefined`, maka akan disetel secara default ke `'blue'`:
 
 ```js
 <>
@@ -972,7 +972,7 @@ If the `color` prop is not provided or is `undefined`, it will be set by default
 
 <Note>
 
-Defining `defaultProps` in class components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in function components.
+Mendefinisikan `defaultProps` pada *class components* serupa dengan menggunakan [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) pada *function components*.
 
 </Note>
 
@@ -980,7 +980,7 @@ Defining `defaultProps` in class components is similar to using [default values]
 
 ### `static propTypes` {/*static-proptypes*/}
 
-You can define `static propTypes` together with the [`prop-types`](https://www.npmjs.com/package/prop-types) library to declare the types of the props accepted by your component. These types will be checked during rendering and in development only.
+Anda dapat mendefinisikan `static propTypes` bersama dengan [`prop-types`](https://www.npmjs.com/package/prop-types) *library* untuk mendeklarasikan jenis *props* yang diterima oleh komponen Anda. Jenis ini akan diperiksa selama *render*-ing dan hanya dalam pengembangan.
 
 ```js
 import PropTypes from 'prop-types';
@@ -1000,7 +1000,7 @@ class Greeting extends React.Component {
 
 <Note>
 
-We recommend using [TypeScript](https://www.typescriptlang.org/) instead of checking prop types at runtime.
+Kami merekomendasikan menggunakan [TypeScript](https://www.typescriptlang.org/) daripada memeriksa *prop types* pada *runtime*.
 
 </Note>
 
@@ -1008,27 +1008,27 @@ We recommend using [TypeScript](https://www.typescriptlang.org/) instead of chec
 
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
-If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.
+Jika Anda mendefinisikan `static getDerivedStateFromError`, React akan memanggilnya ketika komponen anak (termasuk anak jauh) melemparkan kesalahan selama *render*-ing. Ini memungkinkan Anda menampilkan pesan kesalahan alih-alih menghapus UI.
 
-Typically, it is used together with [`componentDidCatch`](#componentDidCatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
+Biasanya, ini digunakan bersama dengan [`componentDidCatch`](#componentDidCatch) yang memungkinkan Anda mengirim laporan kesalahan ke beberapa layanan analitik. Komponen dengan metode ini disebut *error boundary.*
 
-[See an example.](#catching-rendering-errors-with-an-error-boundary)
+[Lihat contoh.](#catching-rendering-errors-with-an-error-boundary)
 
 #### Parameters {/*static-getderivedstatefromerror-parameters*/}
 
-* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+* `error`: Kesalahan yang dilemparkan. Dalam prakteknya, biasanya akan menjadi *instance* dari [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) tetapi ini tidak dijamin karena JavaScript memungkinkan untuk [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) nilai apa saja, termasuk *strings* atau bahkan `null`.
 
 #### Returns {/*static-getderivedstatefromerror-returns*/}
 
-`static getDerivedStateFromError` should return the state telling the component to display the error message.
+`static getDerivedStateFromError` harus mengembalikan *state* yang memberi tahu komponen untuk menampilkan pesan kesalahan.
 
 #### Caveats {/*static-getderivedstatefromerror-caveats*/}
 
-* `static getDerivedStateFromError` should be a pure function. If you want to perform a side effect (for example, to call an analytics service), you need to also implement [`componentDidCatch`.](#componentdidcatch)
+* `static getDerivedStateFromError` harus berupa *pure function*. Jika Anda ingin melakukan efek samping (misalnya, untuk memanggil layanan analitik), Anda juga perlu mengimplementasikan [`componentDidCatch`.](#componentdidcatch)
 
 <Note>
 
-There is no direct equivalent for `static getDerivedStateFromError` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that.
+Belum ada padanan langsung untuk `static getDerivedStateFromError` dalam *function components*. Jika Anda ingin menghindari pembuatan *class components*, tulis satu komponen `ErrorBoundary` seperti di atas dan gunakan di seluruh aplikasi Anda. Sebagai alternatif, gunakan *package*[`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) yang melakukan itu.
 
 </Note>
 
@@ -1036,9 +1036,9 @@ There is no direct equivalent for `static getDerivedStateFromError` in function 
 
 ### `static getDerivedStateFromProps(props, state)` {/*static-getderivedstatefromprops*/}
 
-If you define `static getDerivedStateFromProps`, React will call it right before calling [`render`,](#render) both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+Jika Anda mendefinisikan `static getDerivedStateFromProps`, React akan memanggilnya tepat sebelum memanggil [`render`,](#render) baik pada pemasangan awal maupun pembaruan berikutnya. Itu harus mengembalikan objek untuk memperbarui *state*, atau `null` untuk tidak memperbarui apa pun.
 
-This method exists for [rare use cases](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, this `Form` component resets the `email` state when the `userID` prop changes:
+Metode ini ada untuk [kasus penggunaan yang jarang](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) di mana *states* tergantung pada perubahan *props* dari waktu ke waktu. Misalnya, komponen `Form` ini menyetel ulang *state* `email` saat *prop* `userID` berubah:
 
 ```js {7-18}
 class Form extends Component {
@@ -1064,36 +1064,36 @@ class Form extends Component {
 }
 ```
 
-Note that this pattern requires you to keep a previous value of the prop (like `userID`) in state (like `prevUserID`).
+Perhatikan bahwa pola ini mengharuskan Anda mempertahankan nilai *prop* sebelumnya (seperti `userID`) dalam *state* (seperti `prevUserID`).
 
 <Pitfall>
 
-Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+*Deriving state* mengarah ke kode *verbose* dan membuat komponen Anda sulit untuk dipikirkan. [Pastikan Anda terbiasa dengan alternatif yang lebih sederhana:](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-- If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) method instead.
-- If you want to **re-compute some data only when a prop changes,** [use a memoization helper instead.](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
-- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- Jika Anda perlu **melakukan efek samping** (misalnya, pengambilan data atau animasi) sebagai respons terhadap perubahan *props*, gunakan metode [`componentDidUpdate`](#componentdidupdate) sebagai gantinya.
+- Jika Anda ingin **menghitung ulang beberapa data hanya saat prop berubah,** [gunakan pembantu memoisasi sebagai gantinya.](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
+- Jika Anda ingin **"mereset" beberapa *state* saat *prop* berubah,** pertimbangkan untuk membuat komponen [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) atau [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
 </Pitfall>
 
 #### Parameters {/*static-getderivedstatefromprops-parameters*/}
 
-- `props`: The next props that the component is about to render with.
-- `state`: The next state that the component is about to render with.
+- `props`: *Props* berikutnya yang akan di-*render* oleh komponen.
+- `state`: *State* berikutnya yang akan di-*render* oleh komponen.
 
 #### Returns {/*static-getderivedstatefromprops-returns*/}
 
-`static getDerivedStateFromProps` return an object to update the state, or `null` to update nothing.
+`static getDerivedStateFromProps` mengembalikan objek untuk memperbarui *state*, atau `null` untuk tidak memperbarui apa pun.
 
 #### Caveats {/*static-getderivedstatefromprops-caveats*/}
 
-- This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
+- Metode ini diaktifkan pada *setiap* *render*, apa pun penyebabnya. hal ini berbeda dengan [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), yang hanya aktif bila induk menyebabkan *render* ulang dan bukan sebagai akibat dari `setState` lokal.
 
-- This method doesn't have access to the component instance. If you'd like, you can reuse some code between `static getDerivedStateFromProps` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+- Metode ini tidak memiliki akses ke instance komponen. Jika mau, Anda bisa menggunakan kembali beberapa kode antara `static getDerivedStateFromProps` dan metode kelas lainnya dengan mengekstraksi fungsi murni dari *props* komponen dan *state* di luar definisi kelas.
 
 <Note>
 
-Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Menerapkan `static getDerivedStateFromProps` pada *class component* setara dengan [memanggil fungsi `set` dari `useState` selama rendering](/reference/react/useState#storing-information-from-previous-renders) pada *function component*.
 
 </Note>
 
@@ -1101,9 +1101,9 @@ Implementing `static getDerivedStateFromProps` in a class component is equivalen
 
 ## Usage {/*usage*/}
 
-### Defining a class component {/*defining-a-class-component*/}
+### Mendefinisikan class component {/*defining-a-class-component*/}
 
-To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
+Untuk mendefinisikan komponen React sebagai sebuah *class*, *extend* `Component` *class* bawaan dan definisikan [`render` method:](#render)
 
 ```js
 import { Component } from 'react';
@@ -1115,9 +1115,9 @@ class Greeting extends Component {
 }
 ```
 
-React will call your [`render`](#render) method whenever it needs to figure out what to display on the screen. Usually, you will return some [JSX](/learn/writing-markup-with-jsx) from it. Your `render` method should be a [pure function:](https://en.wikipedia.org/wiki/Pure_function) it should only calculate the JSX.
+React akan memanggil metode [`render`](#render) Anda kapan pun diperlukan untuk mencari tahu apa yang akan ditampilkan di layar. Biasanya, Anda akan mengembalikan beberapa [JSX](/learn/writing-markup-with-jsx) darinya. Metode `render` Anda harus berupa [pure function:](https://en.wikipedia.org/wiki/Pure_function) yang seharusnya hanya menghitung JSX.
 
-Similarly to [function components,](/learn/your-first-component#defining-a-component) a class component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
+Mirip dengan [*function components*,](/learn/your-first-component#defining-a-component) sebuah *class component* dapat [menerima informasi dengan *props*](/learn/your-first-component#defining-a-component) dari komponen induknya. Namun, sintaks untuk membaca *props* berbeda. Misalnya, jika komponen induk me-*render* `<Greeting name="Taylor" />`, maka Anda dapat membaca *prop* `name` dari [`this.props`](#props), seperti `this.props.name`:
 
 <Sandpack>
 
