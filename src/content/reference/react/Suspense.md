@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` memungkinkan Anda menampilkan fallback sampai komponen children selesai dimuat.
+`<Suspense>` memungkinkan Anda menampilkan *fallback* sampai komponen anak-anaknya selesai dimuat.
 
 
 ```js
@@ -24,15 +24,15 @@ title: <Suspense>
 ### `<Suspense>` {/*suspense*/}
 
 #### *Props* {/*props*/}
-* `children`: UI aktual yang ingin Anda *render*. Jika `children` ditangguhkan sewaktu me-*render*, batas Suspense akan beralih me-*render* `fallback`.
-* `fallback`: UI alternatif untuk di-*render* menggantikan UI yang sebenarnya jika belum selesai dimuat. Setiap node React yang valid akan diterima, meskipun dalam praktiknya, fallback adalah tampilan placeholder yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan *rendering*, itu akan mengaktifkan induk terdekat dari batas Suspense.
+* `children`: UI sebenarnya yang ingin Anda *render*. Jika `children` ditangguhkan saat di-*render*, maka Suspense akan beralih me-*render* `fallback`.
+* `fallback`: UI alternatif untuk di-*render* menggantikan UI yang sebenarnya jika belum selesai dimuat. Simpul React apapun yang valid akan diterima, meskipun dalam praktiknya, *fallback* adalah tampilan pengganti yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan *rendering*, induk terdekat dari batasan Suspense akan diaktifkan.
 
 #### Catatan Penting {/*caveats*/}
 
-- React tidak menyimpan state apa pun untuk me-*render* yang ditangguhkan sebelum dapat dimuat untuk pertama kalinya. Ketika komponen sudah dimuat, React akan mencoba me-*render* ulang komponen yang ditangguhkan dari awal.
-- Jika Suspense menampilkan konten untuk komponen, namun kemudian ditangguhkan lagi, `fallback` akan ditampilkan lagi kecuali jika pembaruan yang menyebabkannya, disebabkan oleh [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
-- Jika React perlu menyembunyikan konten yang sudah terlihat karena ditangguhkan lagi, ini akan membersihkan [layout Effects](/reference/react/useLayoutEffect) yang ada di dalam konten komponen. Ketika konten siap untuk ditampilkan lagi, React akan menjalankan Efek tata letak lagi. Hal ini memastikan bahwa Efek yang mengukur tata letak DOM tidak mencoba melakukan hal ini saat konten disembunyikan.
-- React menyertakan pengoptimalan di *under the hood* *Streaming Server Rendering* dan *Selective Hydration* yang terintegrasi dengan Suspense. Baca [tinjauan arsitektural](https://github.com/reactwg/react-18/discussions/37) dan tonton [sebuah pembicaraan teknis](https://www.youtube.com/watch?v=pj5N-Khihgc) untuk belajar lebih lanjut.
+- React tidak menyimpan *state* apa pun untuk *render*-an yang ditangguhkan sebelum dapat dimuat untuk pertama kalinya. Ketika komponen sudah dimuat, React akan mencoba me-*render* ulang komponen yang ditangguhkan dari awal.
+- Jika *Suspense* menampilkan konten untuk komponen, namun kemudian ditangguhkan lagi, `fallback` akan ditampilkan kembali kecuali jika pembaruan yang menyebabkannya, disebabkan oleh [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
+- Jika React perlu menyembunyikan konten yang sudah terlihat karena ditangguhkan kembali, React akan membersihkan [*layout Effects*](/reference/react/useLayoutEffect) yang ada di dalam konten komponen. Ketika konten siap untuk ditampilkan lagi, React akan menjalankan *layout Effects* lagi. Hal ini memastikan bahwa Efek yang mengukur tata letak DOM tidak mencoba melakukan hal ini saat konten disembunyikan.
+- React menyertakan pengoptimalan di balik layar seperti *Streaming Server Rendering* dan *Selective Hydration* yang terintegrasi dengan *Suspense*. Baca [tinjauan arsitektur]((https://github.com/reactwg/react-18/discussions/37)) dan tonton [diskusi teknis]((https://www.youtube.com/watch?v=pj5N-Khihgc)) untuk mempelajari lebih lanjut.
 
 ---
 
@@ -40,7 +40,7 @@ title: <Suspense>
 
 ### Menampilkan fallback saat konten sedang dimuat {/*displaying-a-fallback-while-content-is-loading*/}
 
-Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan Batas Suspense:
+Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan batasan Suspense:
 
 ```js [[1, 1, "<Loading />"], [2, 2, "<Albums />"]]
 <Suspense fallback={<Loading />}>
@@ -48,9 +48,9 @@ Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan Batas Suspense:
 </Suspense>
 ```
 
-React akan menampilkan kode <CodeStep step={1}>loading fallback</CodeStep> sampai semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>the children</CodeStep> telah dimuat.
+React akan menampilkan <CodeStep step={1}>*fallback* pemuatan</CodeStep> sampai semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>anak-anaknya</CodeStep> telah selesai dimuat.
 
-Pada contoh di bawah ini, Komponen `Albums` *menangguhkan* saat mengambil daftar album. Hingga siap untuk di-*render*, React mengganti batas Suspense terdekat di atas untuk menunjukkan fallback--Anda  `Loading` Komponen. Kemudian, saat data dimuat, React menyembunyikan fallback `Loading` dan me-*render* komponen `Albums` dengan data.
+Pada contoh di bawah ini, Komponen `Albums` *ditangguhkan* saat mengambil daftar album. Hingga siap untuk di-*render*, React mengganti batasan Suspense terdekat di atas untuk menunjukkan *fallback*, komponen `Loading` Anda. Kemudian, saat data termuat, React menyembunyikan *fallback* `Loading` dan me-*render* komponen `Albums` dengan data tersebut.
 
 <Sandpack>
 
@@ -87,7 +87,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Buka laman artis The Beatles
       </button>
     );
   }
@@ -110,7 +110,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 ```
 
@@ -120,7 +120,7 @@ import { fetchData } from './data.js';
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di versi stabil React.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -136,8 +136,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
+// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -163,9 +163,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// Catatan: cara Anda melakukan pengambilan data bergantung pada
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika _caching_ akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -180,12 +180,12 @@ async function getData(url) {
   if (url === '/the-beatles/albums') {
     return await getAlbums();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getAlbums() {
-  // Tambahkan penundaan palsu untuk membuat penantian menjadi nyata.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -250,27 +250,25 @@ async function getAlbums() {
 
 <Note>
 
-**Hanya sumber data yang diaktifkan Suspense yang akan mengaktifkan komponen Suspense.** Mereka termasuk:
+**Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Sumber data tersebut antara lain:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Pengambilan data dengan kerangka kerja yang mendukung Suspense seperti [Relay] (https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js] (https://nextjs.org/docs/getting-started/react-essentials)
+- Pe-*lazy-load*-an kode komponen dengan [`lazy`](/reference/react/lazy)
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau event handler.
 
+Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
 
-Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada kerangka kerja Anda. Jika Anda menggunakan kerangka kerja yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
-
-Pengambilan data yang mendukung Suspense tanpa menggunakan kerangka kerja yang mendukung belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
+Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* yang mendukung belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
  
-
 </Note>
 
 ---
 
-### Mengungkap konten secara bersamaan sekaligus {/*revealing-content-together-at-once*/}
+### Menampilkan konten secara bersamaan sekaligus {/*revealing-content-together-at-once*/}
 
 
-Secara default, seluruh pohon di dalam Suspense diperlakukan sebagai satu kesatuan. Sebagai contoh, meskipun *hanya satu* dari komponen-komponen ini yang tertahan menunggu beberapa data, *semua* komponen tersebut akan digantikan oleh indikator pemuatan:
+Secara *default*, seluruh pohon di dalam Suspense diperlakukan sebagai satu kesatuan. Sebagai contoh, meskipun *hanya satu* dari komponen-komponen ini yang tertahan menunggu beberapa data, *semua* komponen tersebut akan digantikan oleh indikator pemuatan:
 
 
 ```js {2-5}
@@ -284,7 +282,7 @@ Secara default, seluruh pohon di dalam Suspense diperlakukan sebagai satu kesatu
 
 Kemudian, setelah semuanya siap untuk ditampilkan, semuanya akan muncul sekaligus.
 
-Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena dikelompokkan di bawah satu batas Suspense, komponen-komponen ini selalu "muncul" bersamaan.
+Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena mereka dikelompokkan di bawah satu batasan Suspense, komponen-komponen ini akan selalu "muncul" bersamaan.
 
 <Sandpack>
 
@@ -321,7 +319,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Buka laman artis The Beatles
       </button>
     );
   }
@@ -349,7 +347,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 ```
 
@@ -369,7 +367,7 @@ import { fetchData } from './data.js';
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di versi stabil React.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah *framework*
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -381,8 +379,8 @@ export default function Biography({ artistId }) {
   );
 }
 
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
+// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -413,7 +411,7 @@ import { fetchData } from './data.js';
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di versi stabil React.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
+// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -429,8 +427,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi nyata ketika bug sudah diperbaiki.
+// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -457,8 +455,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -475,24 +473,24 @@ async function getData(url) {
   } else if (url === '/the-beatles/bio') {
     return await getBio();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
+  return `The Beatles adalah sebuah band rock asal Inggris, 
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+    dan Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -566,7 +564,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Komponen yang memuat data tidak harus menjadi anak langsung dari batas Suspense. Sebagai contoh, Anda dapat memindahkan `Biografi` dan `Album` ke dalam komponen `Rincian` yang baru. Hal ini tidak akan mengubah perilakunya. `Biografi` dan `Albums` memiliki batas Suspense induk terdekat yang sama, sehingga pengungkapannya dikoordinasikan bersama.
+Komponen yang memuat data tidak harus menjadi anak langsung dari batasan Suspense. Sebagai contoh, Anda dapat memindahkan `Biografi` dan `Album` ke dalam komponen `Rincian` yang baru. Hal ini tidak akan mengubah perilakunya. `Biografi` dan `Albums` memiliki batasan Suspense induk terdekat yang sama, sehingga pemunculannya dikoordinasikan bersama-sama.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -646,7 +644,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Buka laman artis The Beatles
       </button>
     );
   }
@@ -676,7 +674,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 
 function AlbumsGlimmer() {
@@ -795,8 +793,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -813,24 +811,24 @@ async function getData(url) {
   } else if (url === '/the-beatles/bio') {
     return await getBio();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
+  return `The Beatles adalah sebuah band rock asal Inggris, 
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+    dan Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1024,8 +1022,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -1040,12 +1038,12 @@ async function getData(url) {
   if (url.startsWith('/search?q=')) {
     return await getSearchResults(url.slice('/search?q='.length));
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -1253,8 +1251,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -1269,12 +1267,12 @@ async function getData(url) {
   if (url.startsWith('/search?q=')) {
     return await getSearchResults(url.slice('/search?q='.length));
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -1352,7 +1350,7 @@ input { margin: 10px; }
 
 <Note>
 
-Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan Suspense fallback demi indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya digunakan oleh kerangka kerja dan pustaka router untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
+Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan Suspense fallback demi indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya digunakan oleh *framework* dan pustaka router untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
 
 </Note>
 
@@ -1423,7 +1421,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 ```
 
@@ -1446,7 +1444,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Buka laman artis The Beatles
     </button>
   );
 }
@@ -1587,8 +1585,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -1605,24 +1603,24 @@ async function getData(url) {
   } else if (url === '/the-beatles/bio') {
     return await getBio();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
+  return `The Beatles adalah sebuah band rock asal Inggris, 
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+    dan Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1810,7 +1808,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 ```
 
@@ -1833,7 +1831,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Buka laman artis The Beatles
     </button>
   );
 }
@@ -1974,8 +1972,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -1992,24 +1990,24 @@ async function getData(url) {
   } else if (url === '/the-beatles/bio') {
     return await getBio();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
+  return `The Beatles adalah sebuah band rock asal Inggris, 
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+    dan Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Tambahkan penundaan palsu agar penantian data lebih terasa.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -2195,7 +2193,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Memuat...</h2>;
 }
 ```
 
@@ -2220,7 +2218,7 @@ export default function Layout({ children, isPending }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Buka laman artis The Beatles
     </button>
   );
 }
@@ -2361,8 +2359,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// kerangka kerja yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam kerangka kerja.
+// *framework* yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam *framework*.
 
 let cache = new Map();
 
@@ -2379,7 +2377,7 @@ async function getData(url) {
   } else if (url === '/the-beatles/bio') {
     return await getBio();
   } else {
-    throw Error('Not implemented');
+    throw Error('Tidak diimplementasikan');
   }
 }
 
@@ -2389,10 +2387,10 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
+  return `The Beatles adalah sebuah band rock asal Inggris, 
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+    dan Ringo Starr.`;
 }
 
 async function getAlbums() {
@@ -2520,7 +2518,7 @@ Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang ber
 ---
 ### Menyediakan fallback untuk kesalahan server dan konten khusus klien {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
-Jika Anda menggunakan salah satu dari [API perenderan server streaming](/reference/react-dom/server) (atau kerangka kerja yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan menemukan komponen `<Suspense>` terdekat di atasnya dan menyertakan fallback-nya (seperti *spiner*) ke dalam HTML server yang dihasilkan. Pengguna akan melihat pemintal pada awalnya.
+Jika Anda menggunakan salah satu dari [API perenderan server streaming](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan menemukan komponen `<Suspense>` terdekat di atasnya dan menyertakan fallback-nya (seperti *spiner*) ke dalam HTML server yang dihasilkan. Pengguna akan melihat pemintal pada awalnya.
 
 
 Pada klien, React akan mencoba me-*render* komponen yang sama lagi. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [ErrorBoundary terdekat.] (/reference/react/Component/Component#static-getderivedstatefromerror) Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
