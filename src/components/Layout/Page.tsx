@@ -153,7 +153,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                     <>
                       <div className="flex flex-col items-center m-4 p-4">
                         <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
-                          Bagaimana Anda menyukai dokumentasi ini?
+                          Seberapa suka Anda dengan dokumentasi ini?
                         </p>
                         <div>
                           <ButtonLink
