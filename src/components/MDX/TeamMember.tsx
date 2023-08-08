@@ -63,7 +63,7 @@ export function TeamMember({
             {twitter && (
               <div className="mr-4">
                 <ExternalLink
-                  aria-label="React on Twitter"
+                  aria-label="Profil Twitter"
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pr-2" />
@@ -74,7 +74,7 @@ export function TeamMember({
             {github && (
               <div className="mr-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label="Profil GitHub"
                   href={`https://github.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pr-2" /> {github}
@@ -83,7 +83,7 @@ export function TeamMember({
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label="Situs Pribari"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pr-2" /> {personal}

@@ -113,16 +113,16 @@ function LearnMore({
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
           <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
-            Ready to learn this topic?
+            Siap mempelajari topik ini?
           </h2>
           {children}
           {path ? (
             <ButtonLink
               className="mt-1"
-              label="Read More"
+              label="Baca Lebih Lanjut"
               href={path}
               type="primary">
-              Read More
+              Baca Lebih Lanjut
               <IconNavArrow displayDirection="right" className="inline ml-1" />
             </ButtonLink>
           ) : null}
@@ -135,8 +135,12 @@ function LearnMore({
 
 function ReadBlogPost({path}: {path: string}) {
   return (
-    <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
-      Read Post
+    <ButtonLink
+      className="mt-1"
+      label="Baca Postingan"
+      href={path}
+      type="primary">
+      Baca Postingan
       <IconNavArrow displayDirection="right" className="inline ml-1" />
     </ButtonLink>
   );
@@ -173,7 +177,7 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'In this chapter' : 'You will learn';
+  let title = isChapter ? 'Dalam bab ini' : 'Anda akan mempelajari';
   return <SimpleCallout title={title}>{children}</SimpleCallout>;
 }
 
@@ -193,7 +197,7 @@ function AuthorCredit({
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
       <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
-          Illustrated by{' '}
+          Ilustrasi oleh{' '}
           {authorLink ? (
             <a
               target="_blank"
@@ -361,7 +365,7 @@ function YouTubeIframe(props: any) {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        title="YouTube video player"
+        title="Pemutar video YouTube"
         {...props}
       />
     </div>
