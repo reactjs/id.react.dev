@@ -136,7 +136,7 @@ Komponen `MyInput` meneruskan *ref* tersebut ke tag peramban `<input>`. Hasilnya
 Perlu diingat bahwa mengekspos *ref* ke simpul DOM di dalam komponen Anda akan mempersulit untuk mengubah internal komponen Anda di kemudian hari. Anda biasanya akan mengekspos simpul DOM dari komponen tingkat rendah yang dapat digunakan kembali seperti tombol atau input teks, tetapi Anda tidak akan melakukannya untuk komponen tingkat aplikasi seperti avatar atau komentar.
 
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes titleText="Examples of forwarding a ref">
 
 #### Memfokuskan input teks {/*focusing-a-text-input*/}
 

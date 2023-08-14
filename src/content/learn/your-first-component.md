@@ -211,7 +211,11 @@ Ketika suatu komponen anak membutuhkan data dari suatu induk, [operkan data mela
 
 #### Komponen sampai ke bawah {/*components-all-the-way-down*/}
 
+<<<<<<< HEAD
 Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat secara otomatis saat Anda memulai proyek baru. Misalnya, jika Anda menggunakan [CodeSandbox](https://codesandbox.io/) atau [Create React App](https://create-react-app.dev/), komponen *root* didefinisikan di `src/App.js`. Jika Anda menggunakan *framework* [Next.js](https://nextjs.org/), komponen *root* didefinisikan di `pages/index.js`. Dalam contoh-contoh berikut, Anda telah mengeksport komponen-komponen *root*.
+=======
+Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
 
 Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti Anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
 
