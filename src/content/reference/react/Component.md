@@ -1143,19 +1143,19 @@ export default function App() {
 
 </Sandpack>
 
-Note that Hooks (functions starting with `use`, like [`useState`](/reference/react/useState)) are not supported inside class components.
+Perhatikan bahwa Hooks (fungsi yang dimulai dengan `use`, seperti [`useState`](/reference/react/useState)) tidak didukung di dalam *class components*.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+Kami merekomendasikan mendefinisikan komponen sebagai fungsi, bukan kelas. [Lihat cara bermigrasi.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Pitfall>
 
 ---
 
-### Adding state to a class component {/*adding-state-to-a-class-component*/}
+### Menambahkan state pada class component {/*adding-state-to-a-class-component*/}
 
-To add [state](/learn/state-a-components-memory) to a class, assign an object to a property called [`state`](#state). To update state, call [`this.setState`](#setstate).
+Untuk menambahkan [state](/learn/state-a-components-memory) ke dalam sebuah kelas, menetapkan objek ke properti yang disebut [`state`](#state). Untuk mengupdate *state*, panggil [`this.setState`](#setstate).
 
 <Sandpack>
 
@@ -1205,7 +1205,7 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+Kami merekomendasikan mendefinisikan komponen sebagai fungsi, bukan kelas. [Lihat cara bermigrasi.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1213,13 +1213,13 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 ### Adding lifecycle methods to a class component {/*adding-lifecycle-methods-to-a-class-component*/}
 
-There are a few special methods you can define on your class.
+Ada beberapa metode khusus yang dapat Anda tentukan di kelas Anda.
 
-If you define the [`componentDidMount`](#componentdidmount) method, React will call it when your component is added *(mounted)* to the screen. React will call [`componentDidUpdate`](#componentdidupdate) after your component re-renders due to changed props or state. React will call [`componentWillUnmount`](#componentwillunmount) after your component has been removed *(unmounted)* from the screen.
+Jika Anda mendefinisikan metode [`componentDidMount`](#componentdidmount), React akan memanggilnya ketika komponen Anda ditambahkan *(mounted)* ke layar. React akan memanggil [`componentDidUpdate`](#componentdidupdate) setelah komponen Anda di-*render* ulang karena perubahan *props* atau *state*. React akan memanggil [`componentWillUnmount`](#componentwillunmount) setelah komponen Anda dihapus *(unmount)* dari layar.
 
-If you implement `componentDidMount`, you usually need to implement all three lifecycles to avoid bugs. For example, if `componentDidMount` reads some state or props, you also have to implement `componentDidUpdate` to handle their changes, and `componentWillUnmount` to clean up whatever `componentDidMount` was doing.
+Jika Anda mengimplementasikan `componentDidMount`, biasanya Anda perlu mengimplementasikan ketiga *lifecycles* untuk menghindari bug. Misalnya, jika `componentDidMount` membaca beberapa *state* atau *props*, Anda juga harus mengimplementasikan `componentDidUpdate` untuk menangani perubahannya, dan `componentWillUnmount` untuk membersihkan apa pun yang dilakukan `componentDidMount`.
 
-For example, this `ChatRoom` component keeps a chat connection synchronized with props and state:
+Misalnya, komponen `ChatRoom` ini menjaga koneksi obrolan tetap tersinkronisasi dengan *props* dan *state*:
 
 <Sandpack>
 
@@ -1335,11 +1335,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Note that in development when [Strict Mode](/reference/react/StrictMode) is on, React will call `componentDidMount`, immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+Perhatikan bahwa dalam pengembangan saat [Strict Mode](/reference/react/StrictMode) aktif, React akan memanggil `componentDidMount`, segera memanggil `componentWillUnmount`, lalu memanggil `componentDidMount` lagi. Ini membantu Anda menyadari jika Anda lupa mengimplementasikan `componentWillUnmount` atau jika logikanya tidak sepenuhnya "mencerminkan" apa yang dilakukan `componentDidMount`.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+Kami merekomendasikan mendefinisikan komponen sebagai fungsi, bukan kelas. [Lihat cara bermigrasi.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1347,9 +1347,9 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 ### Catching rendering errors with an error boundary {/*catching-rendering-errors-with-an-error-boundary*/}
 
-By default, if your application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an *error boundary*. An error boundary is a special component that lets you display some fallback UI instead of the part that crashed--for example, an error message.
+Secara default, jika aplikasi Anda menampilkan kesalahan selama *render*-ing, React akan menghapus UI-nya dari layar. Untuk mencegah hal ini, Anda dapat menggabungkan sebagian UI ke dalam *error boundary*. *Error Boundary* adalah komponen khusus yang memungkinkan Anda menampilkan beberapa UI cadangan, bukan bagian yang mengalami kesalahan misalnya, pesan kesalahan.
 
-To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+Untuk mengimplementasikan komponen batas kesalahan (error boundary), Anda perlu menyediakan [`static getDerivedStateFromError`](#static-getderivedstatefromerror) yang memungkinkan Anda memperbarui *state* sebagai respons terhadap kesalahan dan menampilkan pesan kesalahan kepada pengguna. Anda juga dapat secara opsional mengimplementasikan [`componentDidCatch`](#componentdidcatch) untuk menambahkan beberapa logika tambahan, misalnya, untuk mencatat kesalahan ke layanan analitik.
 
 ```js {7-10,12-19}
 class ErrorBoundary extends React.Component {
@@ -1383,7 +1383,7 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can wrap a part of your component tree with it:
+Kemudian Anda dapat membungkus bagian dari pohon komponen Anda dengannya:
 
 ```js {1,3}
 <ErrorBoundary fallback={<p>Something went wrong</p>}>
@@ -1391,13 +1391,13 @@ Then you can wrap a part of your component tree with it:
 </ErrorBoundary>
 ```
 
-If `Profile` or its child component throws an error, `ErrorBoundary` will "catch" that error, display a fallback UI with the error message you've provided, and send a production error report to your error reporting service.
+Jika `Profile` atau komponen anaknya mengalami kesalahan, `ErrorBoundary` akan "menangkap" kesalahan tersebut, menampilkan UI cadangan dengan pesan kesalahan yang telah Anda sediakan, dan mengirim laporan kesalahan produksi ke layanan pelaporan kesalahan Anda.
 
-You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://aweary.dev/fault-tolerance-react/) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
+Anda tidak perlu melibatkan setiap komponen ke dalam batas kesalahan (error boundary) yang terpisah. Saat Anda mempertimbangkan [granularitas dari batas kesalahan,](https://aweary.dev/fault-tolerance-react/) pertimbangkan di mana tepatnya menampilkan pesan kesalahan. Sebagai contoh, dalam aplikasi pesan, masuk akal untuk menempatkan batas kesalahan di sekitar daftar percakapan. Juga masuk akal untuk menempatkannya di sekitar setiap pesan individu. Namun, tidak masuk akal untuk menempatkan batasan di sekitar setiap avatar.
 
 <Note>
 
-There is currently no way to write an error boundary as a function component. However, you don't have to write the error boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
+Saat ini, belum ada cara untuk menulis batas kesalahan sebagai *function component*. Namun, Anda tidak perlu menulis kelas batas kesalahan sendiri. Sebagai contoh, Anda dapat menggunakan [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) sebagai gantinya.
 
 </Note>
 
