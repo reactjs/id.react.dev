@@ -162,7 +162,7 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
           className="flex items-center p-1"
           onClick={() => setIsExpanded(!isExpanded)}>
           <IconChevron displayDirection={isExpanded ? 'down' : 'right'} />
-          <span className="ps-1 text-sm">Console ({logs.length})</span>
+          <span className="ps-1 text-sm">Konsol ({logs.length})</span>
         </button>
         <button
           className="p-1"

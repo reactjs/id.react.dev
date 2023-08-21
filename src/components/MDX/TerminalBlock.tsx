@@ -65,7 +65,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
                 setCopied(true);
               }}>
               <IconCopy className="inline-flex me-2 self-center" />{' '}
-              {copied ? 'Copied' : 'Copy'}
+              {copied ? 'Tersalin' : 'Salin'}
             </button>
           </div>
         </div>

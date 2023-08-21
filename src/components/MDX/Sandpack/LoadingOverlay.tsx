@@ -63,7 +63,7 @@ export const LoadingOverlay = ({
         opacity: stillLoading ? 1 : 0,
         transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
       }}>
-      <div className="sp-cube-wrapper" title="Open in CodeSandbox">
+      <div className="sp-cube-wrapper" title="Buka di CodeSandbox">
         <OpenInCodeSandboxButton />
         <div className="sp-cube">
           <div className="sp-sides">
