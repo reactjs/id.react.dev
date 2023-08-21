@@ -83,7 +83,7 @@ export function TeamMember({
             )}
             {personal && (
               <ExternalLink
-                aria-label="Situs Pribari"
+                aria-label="Situs Pribadi"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pr-2" /> {personal}
