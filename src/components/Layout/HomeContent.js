@@ -389,7 +389,6 @@ export function HomeContent() {
                           </Link>{' '}
                           dan{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-<<<<<<< HEAD
                           memungkinkan Anda membuat aplikasi dengan React untuk
                           Android, iOS, dan lainnya. Aplikasi-aplikasi tersebut
                           terlihat dan terasa native karena UI mereka{' '}
@@ -397,13 +396,6 @@ export function HomeContent() {
                           —komponen React Anda me-<i>render</i> <i>view</i>{' '}
                           Android dan iOS asli yang disediakan oleh{' '}
                           <i>platform</i> masing-masing.
-=======
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
->>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
                         </p>
                       </div>
                     </div>
@@ -432,15 +424,10 @@ export function HomeContent() {
         <Section background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
-<<<<<<< HEAD
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
+              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
                 <Header>
                   <i>Upgrade</i> ketika fitur baru telah siap
                 </Header>
-=======
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
-                <Header>Upgrade when the future is ready</Header>
->>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
                 <Para>
                   React melakukan pendekatan perubahan dengan hati-hati. Setiap{' '}
                   <i>commit</i> yang dilakukan React diuji pada lapisan aplikasi
@@ -527,13 +514,8 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-<<<<<<< HEAD
-              Selamat datang di <br className="" />
+              Selamat datang di <br className="hidden lg:inline" />
               komunitas React
-=======
-              Welcome to the <br className="hidden lg:inline" />
-              React community
->>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
             </Header>
             <ButtonLink
               href={'/learn'}
@@ -1511,13 +1493,8 @@ function SearchInput({value, onChange}) {
         <input
           type="text"
           id={id}
-<<<<<<< HEAD
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
-          placeholder="Cari"
-=======
           className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
-          placeholder="Search"
->>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
+          placeholder="Cari"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

@@ -427,11 +427,7 @@ body {
 
 #### Melacak visibilitas elemen {/*tracking-element-visibility*/}
 
-<<<<<<< HEAD
 Pada contoh ini, sistem eksternalnya kembali adalah DOM browser. Komponen `App` menampilkan daftar panjang, diikuti oleh komponen `Box`, dan kemudian daftar panjang lagi. Gulir daftar ke bawah. Perhatikan bahwa ketika komponen `Box` muncul di *viewport*, warna latar belakangnya berubah menjadi hitam. Untuk mengimplementasikan hal ini, komponen `Box` menggunakan *Effect* untuk mengelola [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). API browser ini memberi tahu Anda ketika elemen DOM terlihat di *viewport*.
-=======
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when all of the `Box` component is fully visible in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
->>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
 
 <Sandpack>
 
