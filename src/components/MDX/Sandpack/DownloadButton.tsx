@@ -103,7 +103,7 @@ ${css}
       onClick={downloadHTML}
       title="Unduh Sandbox"
       type="button">
-      <IconDownload className="inline mr-1" /> Unduh
+      <IconDownload className="inline me-1" /> Unduh
     </button>
   );
 }

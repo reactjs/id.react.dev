@@ -52,7 +52,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App.js` pada contoh ini. Pada [Create React App](https://create-react-app.dev/), aplikasi Anda berada di `src/App.js`. Tergantung pada persiapan Anda, komponen root Anda bisa saja berada di *file* lain. Jika Anda menggunakan framework dengan *file-based routing*, seperti Next.js, komponen root Anda akan berbeda di setiap halaman.
+Komponen tersebut saat ini berada pada **file komponen root,** yang bernama `App.js` pada contoh ini. Tergantung pada persiapan Anda, komponen root Anda bisa saja berada di *file* lain. Jika Anda menggunakan framework dengan *file-based routing*, seperti Next.js, komponen root Anda akan berbeda di setiap halaman.
 
 ## Mengekspor dan mengimpor sebuah komponen {/*exporting-and-importing-a-component*/}
 
