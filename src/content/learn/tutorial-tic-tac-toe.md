@@ -1173,7 +1173,11 @@ Mengapa masalah ini tidak terjadi sebelumnya?
 
 Ketika Anda mengoper `onSquareClick={handleClick}`, Anda mengoper fungsi `handleClick` sebagai sebuah prop. Anda tidak memanggilnya! Tetapi sekarang Anda langsung memanggil fungsi tersebut - perhatikan tanda kurung pada `handleClick(0)` - dan itulah mengapa fungsi tersebut berjalan terlalu cepat. Anda tidak *ingin* memanggil `handleClick` sampai pengguna mengklik!
 
+<<<<<<< HEAD
 Anda dapat memperbaikinya dengan membuat fungsi seperti `handleFirstSquareClick` yang memanggil `handleClick(0)`, fungsi seperti `handleSecondSquareClick` yang memanggil `handleClick(1)`, dan seterusnya. Anda akan meneruskan (daripada memanggil) fungsi-fungsi ini sebagai props seperti `onSquareClick={handleFirstSquareClick}`. Hal ini akan menyelesaikan perulangan tak terbatas.
+=======
+You could fix this by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+>>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
 
 Namun demikian, mendefinisikan sembilan fungsi yang berbeda dan memberikan nama untuk masing-masing fungsi itu terlalu bertele-tele. Sebagai gantinya, mari kita lakukan ini:
 

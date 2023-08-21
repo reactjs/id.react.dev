@@ -34,8 +34,13 @@ Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan peramb
 
 Selain itu, `<progress>` juga mendukung *props*:
 
+<<<<<<< HEAD
 * [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): Sebuah angka. Menentukan nilai maksimum `value`. *Default* ke `1`.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): Angka antara `0` dan `max`, atau `null` untuk progres tak tertentu. Menentukan berapa banyak yang telah dilakukan.
+=======
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max): A number. Specifies the maximum `value`. Defaults to `1`.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value): A number between `0` and `max`, or `null` for indeterminate progress. Specifies how much was done.
+>>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
 
 ---
 

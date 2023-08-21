@@ -336,7 +336,7 @@ Sebuah tipe *event handler* untuk *events* [animasi CSS](https://developer.mozil
 * `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent):
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
-  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent)
+  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 
