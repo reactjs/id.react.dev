@@ -118,9 +118,9 @@ function Loading() {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah _framework_
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -365,9 +365,9 @@ export default function Panel({ children }) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah *framework*
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -409,9 +409,9 @@ function use(promise) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah _framework_
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -702,9 +702,9 @@ export default function Panel({ children }) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -747,9 +747,9 @@ function use(promise) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -970,9 +970,9 @@ export default function App() {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
@@ -1022,8 +1022,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// *framework* yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam *framework*.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -1199,9 +1199,9 @@ export default function App() {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
@@ -1251,8 +1251,8 @@ function use(promise) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// *framework* yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam *framework*.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -1485,9 +1485,9 @@ function AlbumsGlimmer() {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -1533,9 +1533,9 @@ function use(promise) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -1585,8 +1585,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// *framework* yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam *framework*.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -1871,11 +1871,11 @@ function AlbumsGlimmer() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Catatan: komponen ini ditulis menggunakan API eksperimental
+// yang belum tersedia di React versi stabil.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
+// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1890,8 +1890,8 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ini adalah solusi untuk bug agar demo dapat berjalan.
+// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1920,9 +1920,9 @@ function use(promise) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -1972,8 +1972,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// *framework* yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam *framework*.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -2259,9 +2259,9 @@ function AlbumsGlimmer() {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
@@ -2307,9 +2307,9 @@ function use(promise) {
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di versi stabil React.
+// yang belum tersedia di React versi stabil.
 
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah sebuah framework
+// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
@@ -2359,8 +2359,8 @@ export default function Panel({ children }) {
 
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
-// *framework* yang Anda gunakan bersama dengan Suspense.
-// Biasanya, logika caching akan berada di dalam *framework*.
+// _framework_ yang Anda gunakan bersama dengan Suspense.
+// Biasanya, logika caching akan berada di dalam _framework_.
 
 let cache = new Map();
 
@@ -2552,7 +2552,7 @@ Untuk mencegah hal ini terjadi, [tandai pembaruan sebagai tidak mendesak menggun
 
 ```js {2-3,5}
 function handleNextPageClick() {
-  // If this update suspends, don't hide the already displayed content
+  // Jika pembaruan ini ditangguhkan, jangan sembunyikan konten yang sudah ditampilkan
   startTransition(() => {
     setCurrentPage(currentPage + 1);
   });
