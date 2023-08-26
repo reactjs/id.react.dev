@@ -58,7 +58,7 @@ Jumlah simpul dalam `children` ini.
 
 #### Catatan Penting {/*children-count-caveats*/}
 
-- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individu. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individu. Senarai tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
 
 ---
 
@@ -83,7 +83,7 @@ function SeparatorList({ children }) {
 #### Parameter {/*children-foreach-parameters*/}
 
 * `children`: Nilai dari [*prop* `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
-* `fn`: Fungsi yang ingin Anda jalankan untuk setiap anak, serupa dengan *method callback* dari [larik `forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan.
+* `fn`: Fungsi yang ingin Anda jalankan untuk setiap anak, serupa dengan *method callback* dari [senarai `forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan.
 * **opsional** `thisArg`: Nilai [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) yang digunakan untuk memanggil fungsi `fn`. Jika diabaikan, maka nilainya akan menjadi `undefined`.
 
 #### Kembalian {/*children-foreach-returns*/}
@@ -92,7 +92,7 @@ function SeparatorList({ children }) {
 
 #### Catatan Penting {/*children-foreach-caveats*/}
 
-- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Senarai tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
 
 ---
 
@@ -121,20 +121,20 @@ function RowList({ children }) {
 #### Parameter {/*children-map-parameters*/}
 
 * `children`: Nilai dari [*prop* `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
-* `fn`: Fungsi pemetaan, mirip dengan *method callback* dari [larik `map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan. Anda harus mengembalikan sebuah simpul React dari fungsi ini. Simpul ini dapat berupa simpul kosong (`null`, `undefined`, atau *Boolean*), *string*, angka, elemen React, atau larik simpul React lainnya.
+* `fn`: Fungsi pemetaan, mirip dengan *method callback* dari [senarai `map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan. Anda harus mengembalikan sebuah simpul React dari fungsi ini. Simpul ini dapat berupa simpul kosong (`null`, `undefined`, atau *Boolean*), *string*, angka, elemen React, atau senarai simpul React lainnya.
 * **opsional** `thisArg`: Nilai [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) yang digunakan untuk memanggil fungsi `fn`. Jika diabaikan, maka nilainya akan menjadi `undefined`.
 
 #### Kembalian {/*children-map-returns*/}
 
 Jika `children` adalah `null` atau `undefined`, maka *method* ini akan mengembalikan nilai yang sama.
 
-Jika tidak, *method* ini akan mengembalikan larik *flat* yang terdiri dari simpul yang Anda kembalikan dari fungsi `fn`. Larik yang dikembalikan akan berisi semua simpul yang Anda kembalikan kecuali `null` dan `undefined`.
+Jika tidak, *method* ini akan mengembalikan senarai *flat* yang terdiri dari simpul yang Anda kembalikan dari fungsi `fn`. Senarai yang dikembalikan akan berisi semua simpul yang Anda kembalikan kecuali `null` dan `undefined`.
 
 #### Catatan Penting {/*children-map-caveats*/}
 
-- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Senarai tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. ***Traversal* tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak di-*traverse*. [Fragmen](/reference/react/Fragment) tidak di-*traverse*.
 
-- Jika Anda mengembalikan sebuah elemen atau larik elemen dengan kunci dari `fn`, **kunci elemen yang dikembalikan akan secara otomatis digabungkan dengan kunci item asli yang sesuai dari `children`.** Jika Anda mengembalikan beberapa elemen dari `fn` dalam sebuah larik, kuncinya hanya perlu unik secara lokal satu sama lain.
+- Jika Anda mengembalikan sebuah elemen atau senarai elemen dengan kunci dari `fn`, **kunci elemen yang dikembalikan akan secara otomatis digabungkan dengan kunci item asli yang sesuai dari `children`.** Jika Anda mengembalikan beberapa elemen dari `fn` dalam sebuah senarai, kuncinya hanya perlu unik secara lokal satu sama lain.
 
 ---
 
@@ -161,13 +161,13 @@ Jika tidak, maka lemparkan sebuah *error*.
 
 #### Catatan Penting {/*children-only-caveats*/}
 
-- *Method* ini akan selalu **melempar jika Anda mengoper sebuah larik (seperti nilai kembalian dari `Children.map`) sebagai `children`.** Dengan kata lain, *method* ini memaksakan bahwa `children` adalah sebuah elemen React, bukan sebuah larik dengan satu elemen.
+- *Method* ini akan selalu **melempar jika Anda mengoper sebuah senarai (seperti nilai kembalian dari `Children.map`) sebagai `children`.** Dengan kata lain, *method* ini memaksakan bahwa `children` adalah sebuah elemen React, bukan sebuah senarai dengan satu elemen.
 
 ---
 
 ### `Children.toArray(children)` {/*children-toarray*/}
 
-Panggil `Children.toArray(children)` untuk membuat larik dari struktur data `children`.
+Panggil `Children.toArray(children)` untuk membuat senarai dari struktur data `children`.
 
 ```js ReversedList.js active
 import { Children } from 'react';
@@ -184,11 +184,11 @@ export default function ReversedList({ children }) {
 
 #### Kembalian {/*children-toarray-returns*/}
 
-Mengembalikan larik yang *flat* dari elemen dalam `children`.
+Mengembalikan senarai yang *flat* dari elemen dalam `children`.
 
 #### Catatan Penting {/*children-toarray-caveats*/}
 
-- Simpul kosong (`null`, `undefined`, dan *Boolean*) akan dihilangkan dalam larik yang dikembalikan. **Kunci elemen yang dikembalikan akan dihitung dari kunci elemen asli dan tingkat persarangan serta posisinya.** Hal ini memastikan bahwa pe-*flatten*-an larik tidak mengakibatkan perubahan perilaku.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*) akan dihilangkan dalam senarai yang dikembalikan. **Kunci elemen yang dikembalikan akan dihitung dari kunci elemen asli dan tingkat persarangan serta posisinya.** Hal ini memastikan bahwa pe-*flatten*-an senarai tidak mengakibatkan perubahan perilaku.
 
 ---
 
@@ -240,7 +240,7 @@ Kemudian, dengan implementasi `RowList` di atas, hasil akhir yang di-*render* ak
 </div>
 ```
 
-`Children.map` mirip dengan [mentransformasi larik dengan `map()`.](/learn/rendering-lists) Perbedaannya adalah bahwa struktur data `children` dianggap sebagai *buram*. Artinya, meskipun terkadang `children` berupa larik, Anda tidak boleh mengasumsikannya sebagai larik atau tipe data tertentu lainnya. Inilah sebabnya mengapa Anda harus menggunakan `Children.map` jika Anda perlu melakukan transformasi.
+`Children.map` mirip dengan [mentransformasi senarai dengan `map()`.](/learn/rendering-lists) Perbedaannya adalah bahwa struktur data `children` dianggap sebagai *buram*. Artinya, meskipun terkadang `children` berupa senarai, Anda tidak boleh mengasumsikannya sebagai senarai atau tipe data tertentu lainnya. Inilah sebabnya mengapa Anda harus menggunakan `Children.map` jika Anda perlu melakukan transformasi.
 
 <Sandpack>
 
@@ -293,13 +293,13 @@ export default function RowList({ children }) {
 
 <DeepDive>
 
-#### Mengapa *prop* *children* tidak selalu berupa larik? {/*why-is-the-children-prop-not-always-an-array*/}
+#### Mengapa *prop* *children* tidak selalu berupa senarai? {/*why-is-the-children-prop-not-always-an-array*/}
 
 Dalam React, *prop* `children` dianggap sebagai struktur data *buram*. Artinya, Anda tidak boleh bergantung pada cara penytrukturannya. Untuk mengubah, memfilter, atau menghitung anak, Anda harus menggunakan *method-method* `Children`.
 
-Pada praktiknya, struktur data `children` sering kali direpresentasikan sebagai sebuah larik secara internal. Namun, jika hanya ada satu *child*, maka React tidak akan membuat larik tambahan karena hal ini akan menyebabkan *overhead* memori yang tidak diperlukan. Selama Anda menggunakan *method* pada `Children` dan tidak secara langsung mengintrospeksi *prop* `children`, kode Anda tidak akan rusak meskipun React mengganti bagaimana struktur datanya diimplementasikan.
+Pada praktiknya, struktur data `children` sering kali direpresentasikan sebagai sebuah senarai secara internal. Namun, jika hanya ada satu *child*, maka React tidak akan membuat senarai tambahan karena hal ini akan menyebabkan *overhead* memori yang tidak diperlukan. Selama Anda menggunakan *method* pada `Children` dan tidak secara langsung mengintrospeksi *prop* `children`, kode Anda tidak akan rusak meskipun React mengganti bagaimana struktur datanya diimplementasikan.
 
-Bahkan saat `children` berupa sebuah larik, `Children.map` memiliki perilaku khusus yang membantu. Sebagai contoh, `Children.map` menggabungkan [beberapa *key*](/learn/rendering-lists#keeping-list-items-in-order-with-key) pada elemen yang dikembalikan dengan kunci pada `children` yang telah Anda berikan padanya. Hal ini memastikan anak JSX yang asli tidak "kehilangan" kunci meskipun dibungkus seperti pada contoh di atas.
+Bahkan saat `children` berupa sebuah senarai, `Children.map` memiliki perilaku khusus yang membantu. Sebagai contoh, `Children.map` menggabungkan [beberapa *key*](/learn/rendering-lists#keeping-list-items-in-order-with-key) pada elemen yang dikembalikan dengan kunci pada `children` yang telah Anda berikan padanya. Hal ini memastikan anak JSX yang asli tidak "kehilangan" kunci meskipun dibungkus seperti pada contoh di atas.
 
 </DeepDive>
 
@@ -377,7 +377,7 @@ export default function RowList({ children }) {
 
 ### Menjalankan beberapa kode untuk setiap anak {/*running-some-code-for-each-child*/}
 
-Panggil `Children.forEach` untuk melakukan iterasi pada setiap anak dalam struktur data `children`. *Method* ini tidak mengembalikan nilai apa pun dan mirip dengan *method* [larik `forEach`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) Anda dapat menggunakannya untuk menjalankan logika khusus seperti membuat larik Anda sendiri.
+Panggil `Children.forEach` untuk melakukan iterasi pada setiap anak dalam struktur data `children`. *Method* ini tidak mengembalikan nilai apa pun dan mirip dengan *method* [senarai `forEach`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) Anda dapat menggunakannya untuk menjalankan logika khusus seperti membuat senarai Anda sendiri.
 
 <Sandpack>
 
@@ -490,9 +490,9 @@ Seperti yang telah disebutkan sebelumnya, tidak ada cara untuk mendapatkan hasil
 
 ---
 
-### Mengonversi anak menjadi larik {/*converting-children-to-an-array*/}
+### Mengonversi anak menjadi senarai {/*converting-children-to-an-array*/}
 
-Panggil `Children.toArray(children)` untuk mengubah struktur data `children` menjadi larik JavaScript biasa. Hal ini memungkinkan Anda memanipulasi larik dengan *method* larik bawaan seperti [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), atau [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+Panggil `Children.toArray(children)` untuk mengubah struktur data `children` menjadi senarai JavaScript biasa. Hal ini memungkinkan Anda memanipulasi senarai dengan *method* senarai bawaan seperti [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), atau [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
 <Sandpack>
 
@@ -678,9 +678,9 @@ Hal ini tidak akan bekerja dengan `Children.map` karena fungsi tersebut akan "me
 
 ---
 
-### Menerima larik objek sebagai *prop* {/*accepting-an-array-of-objects-as-a-prop*/}
+### Menerima senarai objek sebagai *prop* {/*accepting-an-array-of-objects-as-a-prop*/}
 
-Anda juga bisa secara eksplisit mengoper larik sebagai *prop*. Sebagai contoh, `RowList` ini menerima larik `baris` sebagai *prop*:
+Anda juga bisa secara eksplisit mengoper senarai sebagai *prop*. Sebagai contoh, `RowList` ini menerima senarai `baris` sebagai *prop*:
 
 <Sandpack>
 
@@ -729,9 +729,9 @@ export function RowList({ rows }) {
 
 </Sandpack>
 
-Karena `rows` adalah larik JavaScript biasa, komponen `RowList` dapat menggunakan *method* larik bawaan seperti [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) di dalamnya.
+Karena `rows` adalah senarai JavaScript biasa, komponen `RowList` dapat menggunakan *method* senarai bawaan seperti [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) di dalamnya.
 
-Pola ini sangat berguna ketika Anda ingin memberikan lebih banyak informasi sebagai data terstruktur bersama dengan anak. Pada contoh di bawah ini, komponen `TabSwitcher` menerima larik objek sebagai *prop* `tabs`:
+Pola ini sangat berguna ketika Anda ingin memberikan lebih banyak informasi sebagai data terstruktur bersama dengan anak. Pada contoh di bawah ini, komponen `TabSwitcher` menerima senarai objek sebagai *prop* `tabs`:
 
 <Sandpack>
 
@@ -789,7 +789,7 @@ export default function TabSwitcher({ tabs }) {
 
 </Sandpack>
 
-Tidak seperti mengoper anak-anak sebagai JSX, pendekatan ini memungkinkan Anda untuk mengasosiasikan beberapa data tambahan seperti `header` dengan setiap item. Karena Anda bekerja dengan `tabs` secara langsung, dan `tabs` adalah sebuah larik sehingga Anda tidak memerlukan *method* `Children`.
+Tidak seperti mengoper anak-anak sebagai JSX, pendekatan ini memungkinkan Anda untuk mengasosiasikan beberapa data tambahan seperti `header` dengan setiap item. Karena Anda bekerja dengan `tabs` secara langsung, dan `tabs` adalah sebuah senarai sehingga Anda tidak memerlukan *method* `Children`.
 
 ---
 
