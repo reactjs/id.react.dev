@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` memungkinkan Anda menampilkan *fallback* sampai komponen anak-anaknya selesai dimuat.
+`<Suspense>` memungkinkan Anda menampilkan *fallback* hingga komponen anak-anaknya selesai dimuat.
 
 
 ```js
@@ -36,9 +36,9 @@ title: <Suspense>
 
 ---
 
-## Pengunaan {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Menampilkan fallback saat konten sedang dimuat {/*displaying-a-fallback-while-content-is-loading*/}
+### Menampilkan *fallback* saat konten sedang dimuat {/*displaying-a-fallback-while-content-is-loading*/}
 
 Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan batasan Suspense:
 
@@ -48,9 +48,9 @@ Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan batasan Suspense
 </Suspense>
 ```
 
-React akan menampilkan <CodeStep step={1}>*fallback* pemuatan</CodeStep> sampai semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>anak-anaknya</CodeStep> telah selesai dimuat.
+React akan menampilkan <CodeStep step={1}>*fallback* pemuatan</CodeStep> hingga semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>anak-anaknya</CodeStep> telah selesai dimuat.
 
-Pada contoh di bawah ini, Komponen `Albums` *ditangguhkan* saat mengambil daftar album. Hingga siap untuk di-*render*, React mengganti batasan Suspense terdekat di atas untuk menunjukkan *fallback*, komponen `Loading` Anda. Kemudian, saat data termuat, React menyembunyikan *fallback* `Loading` dan me-*render* komponen `Albums` dengan data tersebut.
+Pada contoh di bawah ini, Komponen `Albums` *ditangguhkan* saat mengambil daftar album. Hingga komponen tersebut siap untuk di-*render*, React mengganti batasan Suspense terdekat di atas untuk menunjukkan *fallback*, komponen `Loading` Anda. Kemudian, saat data termuat, React menyembunyikan *fallback* `Loading` dan me-*render* komponen `Albums` dengan data tersebut.
 
 <Sandpack>
 
@@ -252,14 +252,14 @@ async function getAlbums() {
 
 **Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Sumber data tersebut antara lain:
 
-- Pengambilan data dengan kerangka kerja yang mendukung Suspense seperti [Relay] (https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js] (https://nextjs.org/docs/getting-started/react-essentials)
+- Pengambilan data dengan *framework* yang mendukung Suspense seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Pe-*lazy-load*-an kode komponen dengan [`lazy`](/reference/react/lazy)
 
-Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau event handler.
+Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
 Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
 
-Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* yang mendukung belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
+Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* yang mendukung fitur tersebut, belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
  
 </Note>
 
@@ -564,7 +564,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Komponen yang memuat data tidak harus menjadi anak langsung dari batasan Suspense. Sebagai contoh, Anda dapat memindahkan `Biografi` dan `Album` ke dalam komponen `Rincian` yang baru. Hal ini tidak akan mengubah perilakunya. `Biografi` dan `Albums` memiliki batasan Suspense induk terdekat yang sama, sehingga pemunculannya dikoordinasikan bersama-sama.
+Komponen yang memuat data tidak harus menjadi anak langsung dari batasan Suspense. Sebagai contoh, Anda dapat memindahkan `Biography` dan `Album` ke dalam komponen `Details` yang baru. Hal ini tidak akan mengubah perilakunya. `Biography` dan `Albums` memiliki batasan Suspense induk terdekat yang sama, sehingga pemunculannya dikoordinasikan bersama-sama.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -585,7 +585,7 @@ function Details({ artistId }) {
 
 ---
 
-### Mengungkap konten yang tersusun saat dimuat {/*revealing-nested-content-as-it-loads*/}
+### Menunjukkan konten yang tersusun saat dimuat {/*revealing-nested-content-as-it-loads*/}
 
 Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menampilkan *fallback*. Hal ini memungkinkan Anda menyatukan beberapa komponen Suspense untuk membuat pemuatan terurut. *Fallback* setiap batasan Suspense akan terisi saat level konten berikutnya tersedia. Sebagai contoh, Anda dapat memberikan daftar album sebuah *fallback*-nya sendiri:
 
@@ -600,7 +600,7 @@ Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menam
 </Suspense>
 ```
 
-Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" sampai `Album` termuat.
+Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" hingga `Album` termuat.
 
 Urutan pemuatannya adalah sebagai berikut:
 
@@ -921,11 +921,11 @@ async function getAlbums() {
 
 Batasan Suspense memungkinkan Anda mengkoordinasikan bagian dari UI Anda yang harus selalu "muncul" bersamaan, dan bagian yang harus menampilkan lebih banyak konten secara bertahap dalam urutan status pemuatan. Anda dapat menambah, memindahkan, atau menghapus batasan-batasan Suspense di mana saja di dalam pohon tanpa mempengaruhi perilaku bagian lainnya dari aplikasi Anda.
 
-Jangan memberikan batasan Suspense pada setiap komponen. Batas suspense tidak boleh lebih detil daripada urutan pemuatan yang Anda inginkan untuk pengalman pengguna. Jika Anda bekerja dengan desainer, tanyakan kepada mereka di mana status pemuatan harus ditempatkan, kemungkinan mereka sudah memasukkannya dalam *wireframe* desain mereka.
+Jangan memberikan batasan Suspense pada setiap komponen. Batas suspense tidak boleh lebih spesifik daripada urutan pemuatan yang Anda inginkan untuk pengalman pengguna. Jika Anda bekerja dengan desainer, tanyakan kepada mereka di mana status pemuatan harus ditempatkan, mungkin mereka sudah memasukkannya dalam *wireframe* desain mereka.
 
 ---
 
-### Menampilkan konten yang sudah basi saat konten baru sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
+### Menampilkan konten yang sudah usang saat konten baru sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
 Dalam contoh ini, komponen `SearchResults` ditangguhkan saat sedang mengambil hasil pencarian. Ketik `"a"`, tunggu hasilnya, dan kemudian ubah menjadi `"ab"`. Hasil untuk `"a"` akan tergantikan oleh *fallback* pemuatan.
 
@@ -1141,7 +1141,7 @@ export default function App() {
 
 `query` akan segera diperbarui, sehingga input akan menampilkan nilai baru. Namun, `deferredQuery` akan menyimpan nilai sebelumnya sampai data dimuat, sehingga `SearchResults` akan menunjukkan hasil yang sebelumnya untuk sementara waktu.
 
-Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visual apabila daftar hasil lampau ditampilkan:
+Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visual apabila daftar hasil yang sudah usang ditampilkan:
 
 ```js {2}
 <div style={{
@@ -1151,7 +1151,7 @@ Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visua
 </div>
 ```
 
-Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu ubah masukan ke `"ab"`. Perhatikan, bahwa alih-alih *fallback* Suspense, Anda sekarang melihat daftar hasil sebelumnya yang diredupkan sampai hasil yang baru dimuat:
+Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu ubah masukan ke `"ab"`. Perhatikan, bahwa alih-alih menampilkan *fallback* Suspense, Anda sekarang melihat daftar hasil sebelumnya yang diredupkan sampai hasil yang baru dimuat:
 
 
 <Sandpack>
@@ -1350,13 +1350,13 @@ input { margin: 10px; }
 
 <Note>
 
-Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan *fallback* Suspense hanya untuk indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya hal ini digunakan oleh *framework* dan *library router* untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
+Baik nilai yang ditangguhkan maupun [transisi](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan *fallback* Suspense hanya untuk indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya hal ini digunakan oleh *framework* dan *library router* untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
 
 </Note>
 
 ---
 
-### Mencegah konten yang sudah terungkap agar tidak disembunyikan {/*preventing-already-revealed-content-from-hiding*/}
+### Mencegah konten yang sudah ditunjukkan agar tidak disembunyikan {/*preventing-already-revealed-content-from-hiding*/}
 
 Ketika sebuah komponen ditangguhkan, batasan Suspense induk terdekat akan beralih untuk menampilkan *fallback*. Hal ini dapat menyebabkan pengalaman pengguna yang mengejutkan jika komponen tersebut sudah menampilkan beberapa konten. Coba tekan tombol ini:
 
@@ -1727,7 +1727,7 @@ main {
 
 </Sandpack>
 
-Saat Anda menekan tombol, komponen `Router` akan me-*render* `ArtistPage`, bukan `IndexPage`. Komponen di dalam `ArtistPage` ditangguhkan, sehingga batasan Suspense terdekat mulai menampilkan *fallback*. Batasan Suspense terdekat berada pada dekat root, sehingga seluruh tata letak situs digantikan oleh `BigSpinner`.
+Saat Anda menekan tombol, komponen `Router` akan me-*render* `ArtistPage`, bukan `IndexPage`. Komponen di dalam `ArtistPage` ditangguhkan, sehingga batasan Suspense terdekat mulai menampilkan *fallback*. Batasan Suspense terdekat berada pada dekat akar, sehingga seluruh tata letak situs digantikan oleh `BigSpinner`.
 
 Untuk mencegah hal ini, Anda dapat menandai pembaruan status navigasi sebagai *transition* dengan [`startTransition`:](/reference/react/startTransition)
 
@@ -1743,7 +1743,7 @@ function Router() {
   // ...
 ```
 
-Dengan begitu, React diberi tahu bahwa transisi state tidak mendesak, dan lebih baik tetap menampilkan halaman sebelumnya daripada menyembunyikan konten yang sudah ditampilkan. Sekarang klik tombol "menunggu" sampai `Biography` dimuat:
+Dengan begitu, React diberi tahu bahwa transisi *state* tidak mendesak, dan lebih baik tetap menampilkan halaman sebelumnya daripada menyembunyikan konten yang sudah ditampilkan. Sekarang pengklikan tombol akan "menunggu" sampai `Biography` dimuat:
 
 <Sandpack>
 
@@ -2503,7 +2503,7 @@ main {
 
 ---
 
-### Menyetel ulang batas Suspense pada navigasi {/*resetting-suspense-boundaries-on-navigation*/}
+### Menyetel ulang batasan Suspense pada navigasi {/*resetting-suspense-boundaries-on-navigation*/}
 
 Selama transisi, React akan menghindari menyembunyikan konten yang sudah ditunjukkan. Namun, jika Anda menavigasi ke rute dengan parameter yang berbeda, Anda mungkin ingin memberi tahu React bahwa itu adalah konten yang *berbeda*. Anda dapat mengekspresikan ini dengan sebuah `key`:
 
@@ -2513,12 +2513,12 @@ Selama transisi, React akan menghindari menyembunyikan konten yang sudah ditunju
 
 Bayangkan Anda sedang menavigasi dalam halaman profil pengguna, dan ada sesuatu yang ditangguhkan. Jika pembaruan itu dibungkus dengan transisi, pembaruan itu tidak akan menampilkan *fallback* untuk konten yang sudah terlihat. Itulah perilaku yang diharapkan.
 
-Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang berbeda. Dalam hal ini, masuk akal untuk menampilkan *fallback*. Sebagai contoh, *timeline* salah satu pengguna adalah *konten yang berbeda* dengan *timeline* pengguna lain. Dengan menentukan sebuah `kunci`, Anda memastikan bahwa React memperlakukan profil pengguna yang berbeda sebagai komponen yang berbeda, dan menyetel ulang batasan-batasan Suspense selama navigasi. Router yang terintegrasi dengan Suspense seharusnya melakukan ini secara otomatis.
+Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang berbeda. Dalam kasus ini, masuk akal untuk menampilkan *fallback*. Sebagai contoh, *timeline* salah satu pengguna adalah *konten yang berbeda* dengan *timeline* pengguna lain. Dengan menentukan sebuah `kunci`, Anda memastikan bahwa React memperlakukan profil pengguna yang berbeda sebagai komponen yang berbeda, dan menyetel ulang batasan-batasan Suspense selama navigasi. Router yang terintegrasi dengan Suspense seharusnya melakukan ini secara otomatis.
 
 ---
-### Menyediakan fallback untuk kesalahan server dan konten khusus klien {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### Menyediakan *fallback* untuk kesalahan server dan konten khusus klien {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
-Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan melihat *spinner* pada awalnya.
+Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan pe-*render*an pada server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan tetap melihat *spinner* pada awalnya.
 
 
 Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
@@ -2544,7 +2544,7 @@ HTML server akan menyertakan indikator pemuatan. Indikator ini akan digantikan o
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
-### Bagaimana cara mencegah agar UI tidak diganti dengan fallback selama pembaruan? {/*preventing-unwanted-fallbacks*/}
+### Bagaimana cara mencegah agar UI tidak diganti dengan *fallback* selama pembaruan? {/*preventing-unwanted-fallbacks*/}
 
 Mengganti UI yang terlihat dengan *fallback* menciptakan pengalaman pengguna yang mengejutkan. Hal ini dapat terjadi ketika pembaruan menyebabkan sebuah komponen menjadi ditangguhkan, dan batasan Suspense terdekat sudah menampilkan konten kepada pengguna.
 
