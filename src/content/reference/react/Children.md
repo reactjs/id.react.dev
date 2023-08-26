@@ -218,9 +218,9 @@ Pada contoh di atas, `RowList` membungkus setiap anak yang diterimanya ke dalam 
 
 ```js
 <RowList>
-  <p>Ini adalah item pertama.</p>
-  <p>Ini adalah item kedua</p>
-  <p>Ini adalah item ketiga.</p>
+  <p>Ini adalah butir pertama.</p>
+  <p>Ini adalah butir kedua</p>
+  <p>Ini adalah butir ketiga.</p>
 </RowList>
 ```
 
@@ -229,13 +229,13 @@ Kemudian, dengan implementasi `RowList` di atas, hasil akhir yang di-*render* ak
 ```js
 <div className="RowList">
   <div className="Row">
-    <p>Ini adalah item pertama.</p>
+    <p>Ini adalah butir pertama.</p>
   </div>
   <div className="Row">
-    <p>Ini adalah item kedua</p>
+    <p>Ini adalah butir kedua</p>
   </div>
   <div className="Row">
-    <p>Ini adalah item ketiga.</p>
+    <p>Ini adalah butir ketiga.</p>
   </div>
 </div>
 ```
@@ -250,9 +250,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>Ini adalah item pertama.</p>
-      <p>Ini adalah item kedua</p>
-      <p>Ini adalah item ketiga.</p>
+      <p>Ini adalah butir pertama.</p>
+      <p>Ini adalah butir kedua</p>
+      <p>Ini adalah butir ketiga.</p>
     </RowList>
   );
 }
@@ -307,7 +307,7 @@ Bahkan saat `children` berupa sebuah larik, `Children.map` memiliki perilaku khu
 
 Struktur data `children` **tidak termasuk output yang di-*render*** dari komponen yang Anda berikan sebagai JSX. Pada contoh di bawah ini, `children` yang diterima oleh `RowList` hanya berisi dua item, bukan tiga:
 
-1. `<p>Ini adalah item pertama.</p>`
+1. `<p>Ini adalah butir pertama.</p>`
 2. `<MoreRows />`
 
 Inilah alasan mengapa hanya dua pembungkus baris yang dihasilkan dalam contoh ini:
@@ -320,7 +320,7 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>Ini adalah item pertama.</p>
+      <p>Ini adalah butir pertama.</p>
       <MoreRows />
     </RowList>
   );
@@ -329,8 +329,8 @@ export default function App() {
 function MoreRows() {
   return (
     <>
-      <p>Ini adalah item kedua</p>
-      <p>Ini adalah item ketiga.</p>
+      <p>Ini adalah butir kedua</p>
+      <p>Ini adalah butir ketiga.</p>
     </>
   );
 }
@@ -387,9 +387,9 @@ import SeparatorList from './SeparatorList.js';
 export default function App() {
   return (
     <SeparatorList>
-      <p>Ini adalah item pertama.</p>
-      <p>Ini adalah item kedua</p>
-      <p>Ini adalah item ketiga.</p>
+      <p>Ini adalah butir pertama.</p>
+      <p>Ini adalah butir kedua</p>
+      <p>Ini adalah butir ketiga.</p>
     </SeparatorList>
   );
 }
@@ -431,9 +431,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>Ini adalah item pertama.</p>
-      <p>Ini adalah item kedua</p>
-      <p>Ini adalah item ketiga.</p>
+      <p>Ini adalah butir pertama.</p>
+      <p>Ini adalah butir kedua</p>
+      <p>Ini adalah butir ketiga.</p>
     </RowList>
   );
 }
@@ -502,9 +502,9 @@ import ReversedList from './ReversedList.js';
 export default function App() {
   return (
     <ReversedList>
-      <p>Ini adalah item pertama.</p>
-      <p>Ini adalah item kedua</p>
-      <p>Ini adalah item ketiga.</p>
+      <p>Ini adalah butir pertama.</p>
+      <p>Ini adalah butir kedua</p>
+      <p>Ini adalah butir ketiga.</p>
     </ReversedList>
   );
 }
@@ -559,13 +559,13 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>Ini adalah item pertama.</p>
+        <p>Ini adalah butir pertama.</p>
       </Row>
       <Row>
-        <p>Ini adalah item kedua</p>
+        <p>Ini adalah butir kedua</p>
       </Row>
       <Row>
-        <p>Ini adalah item ketiga.</p>
+        <p>Ini adalah butir ketiga.</p>
       </Row>
     </RowList>
   );
@@ -618,7 +618,7 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>Ini adalah item pertama.</p>
+        <p>Ini adalah butir pertama.</p>
       </Row>
       <MoreRows />
     </RowList>
@@ -629,10 +629,10 @@ function MoreRows() {
   return (
     <>
       <Row>
-        <p>Ini adalah item kedua</p>
+        <p>Ini adalah butir kedua</p>
       </Row>
       <Row>
-        <p>Ini adalah item ketiga.</p>
+        <p>Ini adalah butir ketiga.</p>
       </Row>
     </>
   );
@@ -689,9 +689,9 @@ import { RowList, Row } from './RowList.js';
 export default function App() {
   return (
     <RowList rows={[
-      { id: 'first', content: <p>Ini adalah item pertama.</p> },
-      { id: 'second', content: <p>Ini adalah item kedua</p> },
-      { id: 'third', content: <p>Ini adalah item ketiga.</p> }
+      { id: 'first', content: <p>Ini adalah butir pertama.</p> },
+      { id: 'second', content: <p>Ini adalah butir kedua</p> },
+      { id: 'third', content: <p>Ini adalah butir ketiga.</p> }
     ]} />
   );
 }
@@ -743,17 +743,17 @@ export default function App() {
       {
         id: 'first',
         header: 'First',
-        content: <p>Ini adalah item pertama.</p>
+        content: <p>Ini adalah butir pertama.</p>
       },
       {
         id: 'second',
         header: 'Second',
-        content: <p>Ini adalah item kedua</p>
+        content: <p>Ini adalah butir kedua</p>
       },
       {
         id: 'third',
         header: 'Third',
-        content: <p>Ini adalah item ketiga.</p>
+        content: <p>Ini adalah butir ketiga.</p>
       }
     ]} />
   );
