@@ -587,7 +587,7 @@ function Details({ artistId }) {
 
 ### Mengungkap konten yang tersusun saat dimuat {/*revealing-nested-content-as-it-loads*/}
 
-Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menampilkan fallback. Hal ini memungkinkan Anda menyatukan beberapa komponen Suspense untuk membuat urutan pemuatan. Fallback setiap batas Suspense akan terisi saat tingkat konten berikutnya tersedia. Sebagai contoh, Anda dapat memberikan daftar album dengan fallback tersendiri:
+Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menampilkan *fallback*. Hal ini memungkinkan Anda menyatukan beberapa komponen Suspense untuk membuat pemuatan terurut. *Fallback* setiap batasan Suspense akan terisi saat level konten berikutnya tersedia. Sebagai contoh, Anda dapat memberikan daftar album sebuah *fallback*-nya sendiri:
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -600,9 +600,9 @@ Ketika sebuah komponen ditangguhkan, komponen Suspense induk terdekat akan menam
 </Suspense>
 ```
 
-Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" sampai `Album` dimuat.
+Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" sampai `Album` termuat.
 
-Urutan nya adalah sebagai berikut:
+Urutan pemuatannya adalah sebagai berikut:
 
 1. Jika `Biography` belum dimuat, `BigSpinner` ditampilkan sebagai pengganti seluruh area konten.
 2. Setelah `Biography` selesai dimuat, `BigSpinner` digantikan oleh konten.
@@ -919,15 +919,15 @@ async function getAlbums() {
 
 </Sandpack>
 
-Batas suspense memungkinkan Anda mengoordinasikan bagian mana dari UI Anda yang harus selalu "muncul" bersamaan, dan bagian mana yang harus menampilkan lebih banyak konten secara bertahap dalam urutan status pemuatan. Anda dapat menambah, memindahkan, atau menghapus batas-batas Suspense di mana saja di dalam pohon tanpa memengaruhi perilaku aplikasi Anda yang lain.
+Batasan Suspense memungkinkan Anda mengkoordinasikan bagian dari UI Anda yang harus selalu "muncul" bersamaan, dan bagian yang harus menampilkan lebih banyak konten secara bertahap dalam urutan status pemuatan. Anda dapat menambah, memindahkan, atau menghapus batasan-batasan Suspense di mana saja di dalam pohon tanpa mempengaruhi perilaku bagian lainnya dari aplikasi Anda.
 
-Jangan memberikan batas Suspense pada setiap komponen. Batas suspense tidak boleh lebih terperinci daripada urutan pemuatan yang Anda inginkan untuk dialami pengguna. Jika Anda bekerja dengan desainer, tanyakan kepada mereka di mana status pemuatan harus ditempatkan - kemungkinan mereka sudah memasukkannya dalam wireframe desain mereka.
+Jangan memberikan batasan Suspense pada setiap komponen. Batas suspense tidak boleh lebih detil daripada urutan pemuatan yang Anda inginkan untuk pengalman pengguna. Jika Anda bekerja dengan desainer, tanyakan kepada mereka di mana status pemuatan harus ditempatkan, kemungkinan mereka sudah memasukkannya dalam *wireframe* desain mereka.
 
 ---
 
 ### Menampilkan konten yang sudah basi saat konten baru sedang dimuat {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-Dalam contoh ini, komponen `SearchResults` ditangguhkan saat mengambil hasil pencarian. Ketik `"a"`, tunggu untuk hasil, dan kemudian edit menjadi `"ab"`. Hasil untuk `"a"` akan tergantikan oleh *loading fallback*.
+Dalam contoh ini, komponen `SearchResults` ditangguhkan saat sedang mengambil hasil pencarian. Ketik `"a"`, tunggu hasilnya, dan kemudian ubah menjadi `"ab"`. Hasil untuk `"a"` akan tergantikan oleh *fallback* pemuatan.
 
 <Sandpack>
 
@@ -955,10 +955,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <SearchResults query={query} />
       </Suspense>
     </>
@@ -981,7 +981,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Tidak ada yang cocok dengan <i>"{query}"</i></p>;
   }
   return (
     <ul>
@@ -1119,7 +1119,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-Pola UI alternatif yang umum adalah untuk *menunda* memperbarui daftar dan terus menampilkan hasil sebelumnya hingga hasil yang baru siap. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook memungkinkan Anda meneruskan versi kueri yang ditangguhkan: 
+Pola UI alternatif yang umum adalah dengan *menangguhkan* pembaruan daftar dan tetap menampilkan hasil sebelumnya hingga hasil yang baru siap. Hook [`useDeferredValue`](/reference/react/useDeferredValue) memungkinkan Anda untuk memberikan versi yang ditangguhkan dari kueri:
 
 ```js {3,11}
 export default function App() {
@@ -1128,10 +1128,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <SearchResults query={deferredQuery} />
       </Suspense>
     </>
@@ -1139,9 +1139,9 @@ export default function App() {
 }
 ```
 
-`query` akan segera diperbarui, sehingga input akan menampilkan nilai baru. Namun, `deferredQuery` akan menyimpan nilai sebelumnya sampai data dimuat, jadi `SearchResults` akan menunjukkan hasil yang sebelumnya untuk sementara waktu.
+`query` akan segera diperbarui, sehingga input akan menampilkan nilai baru. Namun, `deferredQuery` akan menyimpan nilai sebelumnya sampai data dimuat, sehingga `SearchResults` akan menunjukkan hasil yang sebelumnya untuk sementara waktu.
 
-Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visual apabila daftar hasil basi ditampilkan:
+Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visual apabila daftar hasil lampau ditampilkan:
 
 ```js {2}
 <div style={{
@@ -1151,7 +1151,7 @@ Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visua
 </div>
 ```
 
-Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu edit input ke `"ab"`. Perhatikan, bahwa alih-alih fallback Suspense, Anda sekarang melihat daftar hasil sebelumnya yang diredupkan sampai hasil yang baru dimuat:
+Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu ubah masukan ke `"ab"`. Perhatikan, bahwa alih-alih *fallback* Suspense, Anda sekarang melihat daftar hasil sebelumnya yang diredupkan sampai hasil yang baru dimuat:
 
 
 <Sandpack>
@@ -1182,10 +1182,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Cari album:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Memuat...</h2>}>
         <div style={{ opacity: isStale ? 0.5 : 1 }}>
           <SearchResults query={deferredQuery} />
         </div>
@@ -1210,7 +1210,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Tidak ada yang cocok dengan <i>"{query}"</i></p>;
   }
   return (
     <ul>
@@ -1350,7 +1350,7 @@ input { margin: 10px; }
 
 <Note>
 
-Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan Suspense fallback demi indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya digunakan oleh *framework* dan pustaka router untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
+Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-content-from-hiding) memungkinkan Anda menghindari menampilkan *fallback* Suspense hanya untuk indikator sebaris. Transisi menandai seluruh pembaruan sebagai tidak mendesak sehingga biasanya hal ini digunakan oleh *framework* dan *library router* untuk navigasi. Nilai yang ditangguhkan, di sisi lain, sebagian besar berguna dalam kode aplikasi di mana Anda ingin menandai bagian dari UI sebagai tidak mendesak dan membiarkannya "tertinggal" dari UI lainnya.
 
 </Note>
 
@@ -1358,7 +1358,7 @@ Baik nilai yang ditangguhkan maupun [transitions](#preventing-already-revealed-c
 
 ### Mencegah konten yang sudah terungkap agar tidak disembunyikan {/*preventing-already-revealed-content-from-hiding*/}
 
-Ketika sebuah komponen ditangguhkan, batas Suspense induk terdekat akan beralih untuk menampilkan fallback. Hal ini dapat menyebabkan pengalaman pengguna yang mengejutkan jika komponen tersebut sudah menampilkan beberapa konten. Coba tekan tombol ini:
+Ketika sebuah komponen ditangguhkan, batasan Suspense induk terdekat akan beralih untuk menampilkan *fallback*. Hal ini dapat menyebabkan pengalaman pengguna yang mengejutkan jika komponen tersebut sudah menampilkan beberapa konten. Coba tekan tombol ini:
 
 <Sandpack>
 
@@ -1430,7 +1430,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Peramban Musik
       </section>
       <main>
         {children}
@@ -1727,7 +1727,7 @@ main {
 
 </Sandpack>
 
-Saat Anda menekan tombol, `Router` komponen me-*render* `ArtistPage` sebagai gantinya `IndexPage`.Komponen di dalam `ArtistPage` tertangguhkan, sehingga batas Suspense terdekat mulai menunjukkan *fallback*. Batas Suspense terdekat berada di dekat root, sehingga seluruh tata letak situs diganti dengan `BigSpinner`.
+Saat Anda menekan tombol, komponen `Router` akan me-*render* `ArtistPage`, bukan `IndexPage`. Komponen di dalam `ArtistPage` ditangguhkan, sehingga batasan Suspense terdekat mulai menampilkan *fallback*. Batasan Suspense terdekat berada pada dekat root, sehingga seluruh tata letak situs digantikan oleh `BigSpinner`.
 
 Untuk mencegah hal ini, Anda dapat menandai pembaruan status navigasi sebagai *transition* dengan [`startTransition`:](/reference/react/startTransition)
 
@@ -1743,7 +1743,7 @@ function Router() {
   // ...
 ```
 
-Hal ini memberi tahu React bahwa transisi state tidak mendesak, dan lebih baik tetap menampilkan halaman sebelumnya daripada menyembunyikan konten yang sudah ditampilkan. Sekarang klik tombol "menunggu" sampai `Biography` dimuat:
+Dengan begitu, React diberi tahu bahwa transisi state tidak mendesak, dan lebih baik tetap menampilkan halaman sebelumnya daripada menyembunyikan konten yang sudah ditampilkan. Sekarang klik tombol "menunggu" sampai `Biography` dimuat:
 
 <Sandpack>
 
@@ -1817,7 +1817,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Peramban Musik
       </section>
       <main>
         {children}
@@ -2114,7 +2114,7 @@ main {
 
 </Sandpack>
 
-Transisi tidak menunggu *semua* konten dimuat. Ini hanya menunggu cukup lama untuk menghindari menyembunyikan konten yang sudah terungkap. Misalnya, situs web `Layout` sudah terungkap, jadi tidak baik menyembunyikannya di balik *loading spinner*. Namun, batas `Suspense` yang bersusun di sekitar `Albums` adalah hal yang baru, jadi transisinya tidak perlu ditunggu.
+Transisi tidak menunggu *semua* konten dimuat. Transisi hanya menunggu cukup lama untuk menghindari menyembunyikan konten yang sudah ditunjukkan. Misalnya, situs web `Layout` sudah ditunjukkan, jadi tidak baik menyembunyikannya di balik *loading spinner*. Namun, batasan `Suspense` yang ada di sekitar `Albums` adalah Suspense yang baru, jadi transisinya tidak perlu ditunggu.
 
 
 <Note>
@@ -2127,7 +2127,7 @@ Router yang mendukung suspense diharapkan untuk membungkus pembaruan navigasi ke
 
 ### Mengindikasikan bahwa transisi sedang terjadi {/*indicating-that-a-transition-is-happening*/}
 
-Pada contoh di atas, setelah Anda mengeklik tombol, tidak ada indikasi visual bahwa navigasi sedang berlangsung. Untuk menambahkan indikator, Anda dapat mengganti [`startTransition`](/reference/react/startTransition) dengan [`useTransition`](/reference/react/useTransition) yang akan memberimu boolean dengan nilai `isPending`. Pada contoh di bawah ini, ini digunakan untuk mengubah gaya tajuk situs web saat transisi terjadi:
+Pada contoh di atas, setelah Anda mengeklik tombol, tidak ada indikasi visual bahwa navigasi sedang berlangsung. Untuk menambahkan indikator, Anda dapat mengganti [`startTransition`](/reference/react/startTransition) dengan [`useTransition`](/reference/react/useTransition) yang akan memberi Anda nilai *boolean* `isPending`. Pada contoh di bawah ini, nilai tersebut digunakan untuk mengubah gaya *header* situs web saat transisi terjadi:
 
 <Sandpack>
 
@@ -2204,7 +2204,7 @@ export default function Layout({ children, isPending }) {
       <section className="header" style={{
         opacity: isPending ? 0.7 : 1
       }}>
-        Music Browser
+        Peramban Musik
       </section>
       <main>
         {children}
@@ -2505,25 +2505,25 @@ main {
 
 ### Menyetel ulang batas Suspense pada navigasi {/*resetting-suspense-boundaries-on-navigation*/}
 
-Selama transisi, React akan menghindari menyembunyikan konten yang sudah ditampilkan. Namun, jika Anda menavigasi ke rute dengan parameter yang berbeda, Anda mungkin ingin memberi tahu React bahwa itu adalah konten yang *berbeda*. Anda dapat mengekspresikan ini dengan sebuah `key`:
+Selama transisi, React akan menghindari menyembunyikan konten yang sudah ditunjukkan. Namun, jika Anda menavigasi ke rute dengan parameter yang berbeda, Anda mungkin ingin memberi tahu React bahwa itu adalah konten yang *berbeda*. Anda dapat mengekspresikan ini dengan sebuah `key`:
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-Bayangkan Anda sedang menavigasi dalam halaman profil pengguna, dan ada sesuatu yang ditangguhkan. Jika pembaruan itu dibungkus dengan transisi, pembaruan itu tidak akan memicu kemunduran untuk konten yang sudah terlihat. Itulah perilaku yang diharapkan.
+Bayangkan Anda sedang menavigasi dalam halaman profil pengguna, dan ada sesuatu yang ditangguhkan. Jika pembaruan itu dibungkus dengan transisi, pembaruan itu tidak akan menampilkan *fallback* untuk konten yang sudah terlihat. Itulah perilaku yang diharapkan.
 
-Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang berbeda. Dalam hal ini, masuk akal untuk menampilkan fallback. Sebagai contoh, timeline salah satu pengguna adalah *konten yang berbeda* dengan timeline pengguna lain. Dengan menentukan sebuah `kunci`, Anda memastikan bahwa React memperlakukan profil pengguna yang berbeda sebagai komponen yang berbeda, dan menyetel ulang batas-batas Suspense selama navigasi. Router yang terintegrasi dengan Suspense seharusnya melakukan ini secara otomatis.
+Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang berbeda. Dalam hal ini, masuk akal untuk menampilkan *fallback*. Sebagai contoh, *timeline* salah satu pengguna adalah *konten yang berbeda* dengan *timeline* pengguna lain. Dengan menentukan sebuah `kunci`, Anda memastikan bahwa React memperlakukan profil pengguna yang berbeda sebagai komponen yang berbeda, dan menyetel ulang batasan-batasan Suspense selama navigasi. Router yang terintegrasi dengan Suspense seharusnya melakukan ini secara otomatis.
 
 ---
 ### Menyediakan fallback untuk kesalahan server dan konten khusus klien {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
-Jika Anda menggunakan salah satu dari [API perenderan server streaming](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan menemukan komponen `<Suspense>` terdekat di atasnya dan menyertakan fallback-nya (seperti *spiner*) ke dalam HTML server yang dihasilkan. Pengguna akan melihat pemintal pada awalnya.
+Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan *render* server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan melihat *spinner* pada awalnya.
 
 
-Pada klien, React akan mencoba me-*render* komponen yang sama lagi. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [ErrorBoundary terdekat.] (/reference/react/Component/Component#static-getderivedstatefromerror) Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
+Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
 
-Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan fallback:
+Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan *fallback*:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -2532,7 +2532,7 @@ Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan
 
 function Chat() {
   if (typeof window === 'undefined') {
-    throw Error('Chat should only render on the client.');
+    throw Error('Chat seharusnya hanya dirender pada klien.');
   }
   // ...
 }
@@ -2546,9 +2546,9 @@ HTML server akan menyertakan indikator pemuatan. Indikator ini akan digantikan o
 
 ### Bagaimana cara mencegah agar UI tidak diganti dengan fallback selama pembaruan? {/*preventing-unwanted-fallbacks*/}
 
-Mengganti UI yang terlihat dengan fallback menciptakan pengalaman pengguna yang mengejutkan. Hal ini dapat terjadi ketika pembaruan menyebabkan sebuah komponen ditangguhkan, dan batas Suspense terdekat sudah menampilkan konten kepada pengguna.
+Mengganti UI yang terlihat dengan *fallback* menciptakan pengalaman pengguna yang mengejutkan. Hal ini dapat terjadi ketika pembaruan menyebabkan sebuah komponen menjadi ditangguhkan, dan batasan Suspense terdekat sudah menampilkan konten kepada pengguna.
 
-Untuk mencegah hal ini terjadi, [tandai pembaruan sebagai tidak mendesak menggunakan  `startTransition`](#preventing-already-revealed-content-from-hiding). Selama transisi, React akan menunggu hingga cukup banyak data yang dimuat untuk mencegah terjadinya fallback yang tidak diinginkan:
+Untuk mencegah hal ini terjadi, [tandai pembaruan sebagai tidak mendesak dengan menggunakan  `startTransition`](#preventing-already-revealed-content-from-hiding). Selama transisi, React akan menunggu hingga cukup banyak data yang dimuat untuk mencegah terjadinya kemumculan *fallback* yang tidak diinginkan:
 
 ```js {2-3,5}
 function handleNextPageClick() {
@@ -2559,8 +2559,8 @@ function handleNextPageClick() {
 }
 ```
 
-Ini akan menghindari menyembunyikan konten yang ada. Namun, setiap batas `Suspense` yang baru di-*render* masih akan segera menampilkan fallback untuk menghindari pemblokiran UI dan membiarkan pengguna melihat konten saat tersedia.
+Hal ini akan menghindari penyembunyan konten yang ada. Namun, setiap batasan `Suspense` yang baru di-*render* masih akan segera menampilkan *fallback* untuk menghindari pemblokiran UI dan memperbolehkan pengguna melihat konten saat konten tersebut tersedia.
 
-**React hanya akan mencegah fallback yang tidak diinginkan selama pembaruan yang tidak mendesak**. Ini tidak akan menunda *render* jika itu adalah hasil dari pembaruan yang mendesak. Anda harus ikut serta dengan API seperti [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
+**React hanya akan mencegah *fallback* yang tidak diinginkan selama pembaruan yang tidak mendesak**. Ini tidak akan menunda pe-*render*-an jika hasl tersebut adalah hasil dari pembaruan yang mendesak. Anda harus memilih menggunakan API seperti [`startTransition`](/reference/react/startTransition) atau [`useDeferredValue`](/reference/react/useDeferredValue).
 
-Jika router Anda terintegrasi dengan Suspense, router akan membungkus pembaruannya menjadi [`startTransition`](/reference/react/startTransition) secara otomatis.
+Jika router Anda terintegrasi dengan Suspense, router seharusnya membungkus pembaruannya menjadi [`startTransition`](/reference/react/startTransition) secara otomatis.
