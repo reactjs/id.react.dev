@@ -4,13 +4,13 @@ title: Children
 
 <Pitfall>
 
-Menggunakan `Children` jarang terjadi dan dapat menyebabkan kode rapuh. [Lihat alternatif yang umum.](#alternatives)
+Menggunakan `Children` tidaklah umum dan dapat menyebabkan kode yang mudah rusak. [Lihat alternatif umum.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`Children` lets you manipulate and transform the JSX you received as the [`children` prop.](/learn/passing-props-to-a-component#passing-jsx-as-children)
+`Children` memungkinkan Anda memanipulasi dan mengubah JSX yang Anda terima sebagai [prop `children`.](/learn/passing-props-to-a-component#passing-jsx-as-children)
 
 ```js
 const mappedChildren = Children.map(children, child =>
@@ -27,11 +27,11 @@ const mappedChildren = Children.map(children, child =>
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `Children.count(children)` {/*children-count*/}
 
-Call `Children.count(children)` to count the number of children in the `children` data structure.
+Panggil `Children.count(children)` untuk menghitung jumlah anak dalam struktur data `children`.
 
 ```js RowList.js active
 import { Children } from 'react';
@@ -39,32 +39,32 @@ import { Children } from 'react';
 function RowList({ children }) {
   return (
     <>
-      <h1>Total rows: {Children.count(children)}</h1>
+      <h1>Jumlah baris: {Children.count(children)}</h1>
       ...
     </>
   );
 }
 ```
 
-[See more examples below.](#counting-children)
+[Lihat contoh lainnya di bawah ini.](#counting-children)
 
-#### Parameters {/*children-count-parameters*/}
+#### Parameter {/*children-count-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Nilai dari [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
 
-#### Returns {/*children-count-returns*/}
+#### Kembalian {/*children-count-returns*/}
 
-The number of nodes inside these `children`.
+Jumlah simpul dalam `children` ini.
 
-#### Caveats {/*children-count-caveats*/}
+#### Catatan Penting {/*children-count-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individu. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. **Penjelajahan tidak masuk lebih dalam dari elemen React:** mereka tidak di-render, dan anak-anaknya tidak dijelajahi. [Fragmen](/reference/react/Fragment) tidak dijelajahi.
 
 ---
 
 ### `Children.forEach(children, fn, thisArg?)` {/*children-foreach*/}
 
-Call `Children.forEach(children, fn, thisArg?)` to run some code for each child in the `children` data structure.
+Panggil `Children.forEach(children, fn, thisArg?)` untuk menjalankan beberapa kode untuk setiap anak dalam struktur data `children`.
 
 ```js RowList.js active
 import { Children } from 'react';
@@ -78,27 +78,27 @@ function SeparatorList({ children }) {
   // ...
 ```
 
-[See more examples below.](#running-some-code-for-each-child)
+[Lihat contoh lainnya di bawah ini.](#running-some-code-for-each-child)
 
-#### Parameters {/*children-foreach-parameters*/}
+#### Parameter {/*children-foreach-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
-* `fn`: The function you want to run for each child, similar to the [array `forEach` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call.
-* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+* `children`: Nilai dari [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
+* `fn`: Fungsi yang ingin Anda jalankan untuk setiap anak, serupa dengan metode *callback* dari [larik `forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan.
+* **opsional** `thisArg`: Nilai [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) yang digunakan untuk memanggil fungsi `fn`. Jika diabaikan, maka akan menjadi `undefined`.
 
-#### Returns {/*children-foreach-returns*/}
+#### Kembalian {/*children-foreach-returns*/}
 
-`Children.forEach` returns `undefined`.
+`Children.forEach` mengembalikan `undefined`.
 
-#### Caveats {/*children-foreach-caveats*/}
+#### Catatan Penting {/*children-foreach-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. **Penjelajahan tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak dijelajahi. [Fragmen](/reference/react/Fragment) tidak dijelajahi.
 
 ---
 
 ### `Children.map(children, fn, thisArg?)` {/*children-map*/}
 
-Call `Children.map(children, fn, thisArg?)` to map or transform each child in the `children` data structure.
+Panggil `Children.map(children, fn, thisArg?)` untuk memetakan atau mentransformasi setiap anak dalam struktur data `children`.
 
 ```js RowList.js active
 import { Children } from 'react';
@@ -116,32 +116,32 @@ function RowList({ children }) {
 }
 ```
 
-[See more examples below.](#transforming-children)
+[Lihat contoh lainnya di bawah ini.](#transforming-children)
 
-#### Parameters {/*children-map-parameters*/}
+#### Parameter {/*children-map-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
-* `fn`: The mapping function, similar to the [array `map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call. You need to return a React node from this function. This may be an empty node (`null`, `undefined`, or a Boolean), a string, a number, a React element, or an array of other React nodes.
-* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+* `children`: Nilai dari [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
+* `fn`: Fungsi pemetaan, mirip dengan metode *callback* dari [larik `map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Fungsi ini akan dipanggil dengan anak sebagai argumen pertama dan indeksnya sebagai argumen kedua. Indeks dimulai dari `0` dan bertambah pada setiap pemanggilan. Anda harus mengembalikan sebuah simpul React dari fungsi ini. Node ini dapat berupa node kosong (`null`, `undefined`, atau *Boolean*), *string*, angka, elemen React, atau larik simpul React lainnya.
+* **opsional** `thisArg`: Nilai [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) yang digunakan untuk memanggil fungsi `fn`. Jika diabaikan, maka akan menjadi `undefined`.
 
-#### Returns {/*children-map-returns*/}
+#### Kembalian {/*children-map-returns*/}
 
-If `children` is `null` or `undefined`, returns the same value.
+Jika `children` adalah `null` atau `undefined`, akan mengembalikan nilai yang sama.
 
-Otherwise, returns a flat array consisting of the nodes you've returned from the `fn` function. The returned array will contain all nodes you returned except for `null` and `undefined`.
+Jika tidak, kembalikan larik *flat* yang terdiri dari simpul yang Anda kembalikan dari fungsi `fn`. Larik yang dikembalikan akan berisi semua simpul yang Anda kembalikan kecuali `null` dan `undefined`.
 
-#### Caveats {/*children-map-caveats*/}
+#### Catatan Penting {/*children-map-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*), *string*, angka, dan [elemen React](/reference/react/createElement) dihitung sebagai simpul individual. Larik tidak dihitung sebagai simpul individu, tetapi anak-anaknya dihitung sebagai simpul individu. **Penjelajahan tidak masuk lebih dalam dari elemen React:** mereka tidak di-*render*, dan anak-anaknya tidak dijelajahi. [Fragmen](/reference/react/Fragment) tidak dijelajahi.
 
-- If you return an element or an array of elements with keys from `fn`, **the returned elements' keys will be automatically combined with the key of the corresponding original item from `children`.** When you return multiple elements from `fn` in an array, their keys only need to be unique locally amongst each other.
+- Jika Anda mengembalikan sebuah elemen atau larik elemen dengan kunci dari `fn`, **kunci elemen yang dikembalikan akan secara otomatis digabungkan dengan kunci item asli yang sesuai dari `children`.** Jika Anda mengembalikan beberapa elemen dari `fn` dalam sebuah larik, kuncinya hanya perlu unik secara lokal satu sama lain.
 
 ---
 
 ### `Children.only(children)` {/*children-only*/}
 
 
-Call `Children.only(children)` to assert that `children` represent a single React element.
+Panggil `Children.only(children)` untuk menyatakan bahwa `children` merepresentasikan satu elemen React.
 
 ```js
 function Box({ children }) {
@@ -149,25 +149,25 @@ function Box({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-only-parameters*/}
+#### Parameter {/*children-only-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Nilai dari [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
 
-#### Returns {/*children-only-returns*/}
+#### Kembalian {/*children-only-returns*/}
 
-If `children` [is a valid element,](/reference/react/isValidElement) returns that element.
+Jika `children` [adalah elemen yang valid,](/reference/react/isValidElement) kembalikan elemen tersebut.
 
-Otherwise, throws an error.
+Jika tidak, akan lemparkan sebuah *error*.
 
-#### Caveats {/*children-only-caveats*/}
+#### Catatan Penting {/*children-only-caveats*/}
 
-- This method always **throws if you pass an array (such as the return value of `Children.map`) as `children`.** In other words, it enforces that `children` is a single React element, not that it's an array with a single element.
+- Metode ini selalu **melempar jika Anda mengoper sebuah array (seperti nilai kembalian dari `Children.map`) sebagai `children`.** Dengan kata lain, metode ini memaksakan bahwa `children` adalah sebuah elemen React, bukan sebuah array dengan satu elemen.
 
 ---
 
 ### `Children.toArray(children)` {/*children-toarray*/}
 
-Call `Children.toArray(children)` to create an array out of the `children` data structure.
+Panggil `Children.toArray(children)` untuk membuat larik dari struktur data `children`.
 
 ```js ReversedList.js active
 import { Children } from 'react';
@@ -178,25 +178,25 @@ export default function ReversedList({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-toarray-parameters*/}
+#### Parameter {/*children-toarray-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Nilai dari [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) yang diterima oleh komponen Anda.
 
-#### Returns {/*children-toarray-returns*/}
+#### Kembalian {/*children-toarray-returns*/}
 
-Returns a flat array of elements in `children`.
+Mengembalikan larik yang *flat* dari elemen dalam `children`.
 
-#### Caveats {/*children-toarray-caveats*/}
+#### Catatan Penting {/*children-toarray-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans) will be omitted in the returned array. **The returned elements' keys will be calculated from the original elements' keys and their level of nesting and position.** This ensures that flattening the array does not introduce changes in behavior.
+- Simpul kosong (`null`, `undefined`, dan *Boolean*) akan dihilangkan dalam larik yang dikembalikan. **Kunci elemen yang dikembalikan akan dihitung dari kunci elemen asli dan tingkat persarangan serta posisinya.** Hal ini memastikan bahwa pe-*flatten*-an larik tidak mengakibatkan perubahan perilaku.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Transforming children {/*transforming-children*/}
+### Mentransformasikan anak-anak {/*transforming-children*/}
 
-To transform the children JSX that your component [receives as the `children` prop,](/learn/passing-props-to-a-component#passing-jsx-as-children) call `Children.map`:
+Untuk mentransformasi anak-anak JSX yang diterima komponen Anda [sebagai prop `children`,](/learn/passing-props-to-a-component#passing-jsx-as-children) panggil `Children.map`:
 
 ```js {6,10}
 import { Children } from 'react';
@@ -214,33 +214,33 @@ function RowList({ children }) {
 }
 ```
 
-In the example above, the `RowList` wraps every child it receives into a `<div className="Row">` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
+Pada contoh di atas, `RowList` membungkus setiap anak yang diterimanya ke dalam wadah `<div className="Row">`. Sebagai contoh, anggaplah komponen induk meneruskan tiga tag `<p>` sebagai props `children` ke `RowList`:
 
 ```js
 <RowList>
-  <p>This is the first item.</p>
-  <p>This is the second item.</p>
-  <p>This is the third item.</p>
+  <p>Ini adalah item pertama.</p>
+  <p>Ini adalah item kedua</p>
+  <p>Ini adalah item ketiga.</p>
 </RowList>
 ```
 
-Then, with the `RowList` implementation above, the final rendered result will look like this:
+Kemudian, dengan implementasi `RowList` di atas, hasil akhir yang di-*render* akan terlihat seperti ini:
 
 ```js
 <div className="RowList">
   <div className="Row">
-    <p>This is the first item.</p>
+    <p>Ini adalah item pertama.</p>
   </div>
   <div className="Row">
-    <p>This is the second item.</p>
+    <p>Ini adalah item kedua</p>
   </div>
   <div className="Row">
-    <p>This is the third item.</p>
+    <p>Ini adalah item ketiga.</p>
   </div>
 </div>
 ```
 
-`Children.map` is similar to [to transforming arrays with `map()`.](/learn/rendering-lists) The difference is that the `children` data structure is considered *opaque.* This means that even if it's sometimes an array, you should not assume it's an array or any other particular data type. This is why you should use `Children.map` if you need to transform it.
+`Children.map` mirip dengan [mentransformasi array dengan `map()`.](/learn/rendering-lists) Perbedaannya adalah bahwa struktur data `children` dianggap sebagai *buram*. Artinya, meskipun terkadang `children` berupa array, Anda tidak boleh mengasumsikannya sebagai array atau tipe data tertentu lainnya. Inilah sebabnya mengapa Anda harus menggunakan `Children.map` jika Anda perlu melakukan transformasi.
 
 <Sandpack>
 
@@ -250,9 +250,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Ini adalah item pertama.</p>
+      <p>Ini adalah item kedua</p>
+      <p>Ini adalah item ketiga.</p>
     </RowList>
   );
 }
@@ -293,24 +293,24 @@ export default function RowList({ children }) {
 
 <DeepDive>
 
-#### Why is the children prop not always an array? {/*why-is-the-children-prop-not-always-an-array*/}
+#### Mengapa prop *children* tidak selalu berupa larik? {/*why-is-the-children-prop-not-always-an-array*/}
 
-In React, the `children` prop is considered an *opaque* data structure. This means that you shouldn't rely on how it is structured. To transform, filter, or count children, you should use the `Children` methods.
+Dalam React, prop `children` dianggap sebagai struktur data *buram*. Artinya, Anda tidak boleh bergantung pada cara penytrukturannya. Untuk mengubah, memfilter, atau menghitung anak, Anda harus menggunakan metode-metode `Children`.
 
-In practice, the `children` data structure is often represented as an array internally. However, if there is only a single child, then React won't create an extra array since this would lead to unnecessary memory overhead. As long as you use the `Children` methods instead of directly introspecting the `children` prop, your code will not break even if React changes how the data structure is actually implemented.
+Pada praktiknya, struktur data `children` sering kali direpresentasikan sebagai sebuah larik secara internal. Namun, jika hanya ada satu child, maka React tidak akan membuat larik tambahan karena hal ini akan menyebabkan overhead memori yang tidak diperlukan. Selama Anda menggunakan metode `Children` dan tidak secara langsung mengintrospeksi prop `children`, kode Anda tidak akan rusak meskipun React mengganti bagaimana struktur datanya diimplementasikan.
 
-Even when `children` is an array, `Children.map` has useful special behavior. For example, `Children.map` combines the [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key) on the returned elements with the keys on the `children` you've passed to it. This ensures the original JSX children don't "lose" keys even if they get wrapped like in the example above.
+Bahkan saat `children` berupa sebuah larik, `Children.map` memiliki perilaku khusus yang membantu. Sebagai contoh, `Children.map` menggabungkan [beberapa *key*](/learn/rendering-lists#keeping-list-items-in-order-with-key) pada elemen yang dikembalikan dengan kunci pada `children` yang telah Anda berikan padanya. Hal ini memastikan anak JSX asli tidak "kehilangan" kunci meskipun dibungkus seperti pada contoh di atas.
 
 </DeepDive>
 
 <Pitfall>
 
-The `children` data structure **does not include rendered output** of the components you pass as JSX. In the example below, the `children` received by the `RowList` only contains two items rather than three:
+Struktur data `children` **tidak termasuk output yang di-*render*** dari komponen yang Anda berikan sebagai JSX. Pada contoh di bawah ini, `children` yang diterima oleh `RowList` hanya berisi dua item, bukan tiga:
 
-1. `<p>This is the first item.</p>`
+1. `<p>Ini adalah item pertama.</p>`
 2. `<MoreRows />`
 
-This is why only two row wrappers are generated in this example:
+Inilah alasan mengapa hanya dua pembungkus baris yang dihasilkan dalam contoh ini:
 
 <Sandpack>
 
@@ -320,7 +320,7 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
+      <p>Ini adalah item pertama.</p>
       <MoreRows />
     </RowList>
   );
@@ -329,8 +329,8 @@ export default function App() {
 function MoreRows() {
   return (
     <>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Ini adalah item kedua</p>
+      <p>Ini adalah item ketiga.</p>
     </>
   );
 }
@@ -369,15 +369,15 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-**There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+**Tidak ada cara untuk mendapatkan keluaran yang di-*render* dari komponen dalam,** seperti `<MoreRows />` saat memanipulasi `children`. Inilah mengapa [biasanya lebih baik menggunakan salah satu solusi alternatif.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Running some code for each child {/*running-some-code-for-each-child*/}
+### Menjalankan beberapa kode untuk setiap anak {/*running-some-code-for-each-child*/}
 
-Call `Children.forEach` to iterate over each child in the `children` data structure. It does not return any value and is similar to the [array `forEach` method.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) You can use it to run custom logic like constructing your own array.
+Panggil `Children.forEach` untuk mengulang setiap anak dalam struktur data `children`. Metode ini tidak mengembalikan nilai apa pun dan mirip dengan metode [larik `forEach`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) Anda dapat menggunakannya untuk menjalankan logika khusus seperti membuat larik Anda sendiri.
 
 <Sandpack>
 
@@ -387,9 +387,9 @@ import SeparatorList from './SeparatorList.js';
 export default function App() {
   return (
     <SeparatorList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Ini adalah item pertama.</p>
+      <p>Ini adalah item kedua</p>
+      <p>Ini adalah item ketiga.</p>
     </SeparatorList>
   );
 }
@@ -404,7 +404,7 @@ export default function SeparatorList({ children }) {
     result.push(child);
     result.push(<hr key={index} />);
   });
-  result.pop(); // Remove the last separator
+  result.pop(); // Hapus *separator* terakhir
   return result;
 }
 ```
@@ -413,15 +413,15 @@ export default function SeparatorList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Seperti yang telah disebutkan sebelumnya, tidak ada cara untuk mendapatkan hasil render dari komponen dalam ketika memanipulasi `children`. Inilah sebabnya mengapa [biasanya lebih baik menggunakan salah satu solusi alternatif.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Counting children {/*counting-children*/}
+### Menghitung anak-anak {/*counting-children*/}
 
-Call `Children.count(children)` to calculate the number of children.
+Panggil `Children.count(children)` untuk menghitung jumlah anak.
 
 <Sandpack>
 
@@ -431,9 +431,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Ini adalah item pertama.</p>
+      <p>Ini adalah item kedua</p>
+      <p>Ini adalah item ketiga.</p>
     </RowList>
   );
 }
@@ -446,7 +446,7 @@ export default function RowList({ children }) {
   return (
     <div className="RowList">
       <h1 className="RowListHeader">
-        Total rows: {Children.count(children)}
+        Jumlah baris: {Children.count(children)}
       </h1>
       {Children.map(children, child =>
         <div className="Row">
@@ -484,15 +484,15 @@ export default function RowList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Seperti yang telah disebutkan sebelumnya, tidak ada cara untuk mendapatkan hasil render dari komponen dalam ketika memanipulasi `children`. Inilah sebabnya mengapa [biasanya lebih baik menggunakan salah satu solusi alternatif.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Converting children to an array {/*converting-children-to-an-array*/}
+### Mengonversi anak menjadi larik {/*converting-children-to-an-array*/}
 
-Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) 
+Panggil `Children.toArray(children)` untuk mengubah struktur data `children` menjadi larik JavaScript biasa. Hal ini memungkinkan Anda memanipulasi larik dengan metode larik bawaan seperti [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), atau [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
 <Sandpack>
 
@@ -502,9 +502,9 @@ import ReversedList from './ReversedList.js';
 export default function App() {
   return (
     <ReversedList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Ini adalah item pertama.</p>
+      <p>Ini adalah item kedua</p>
+      <p>Ini adalah item ketiga.</p>
     </ReversedList>
   );
 }
@@ -524,31 +524,31 @@ export default function ReversedList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Seperti yang telah disebutkan sebelumnya, tidak ada cara untuk mendapatkan hasil render dari komponen dalam ketika memanipulasi `children`. Inilah sebabnya mengapa [biasanya lebih baik menggunakan salah satu solusi alternatif.](#alternatives)
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
 <Note>
 
-This section describes alternatives to the `Children` API (with capital `C`) that's imported like this:
+Bagian ini menjelaskan alternatif untuk API `Children` (dengan huruf kapital `C`) yang diimpor seperti berikut ini:
 
 ```js
 import { Children } from 'react';
 ```
 
-Don't confuse it with [using the `children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) (lowercase `c`), which is good and encouraged.
+Jangan tertukar dengan [penggunaan prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) (huruf kecil `c`), yang merupakan hal yang baik dan dianjurkan.
 
 </Note>
 
-### Exposing multiple components {/*exposing-multiple-components*/}
+### Mengekspos beberapa komponen {/*exposing-multiple-components*/}
 
-Manipulating children with the `Children` methods often leads to fragile code. When you pass children to a component in JSX, you don't usually expect the component to manipulate or transform the individual children.
+Memanipulasi anak dengan metode `Children` sering kali menghasilkan kode yang mudah rusak. Ketika Anda mengoper *children* ke sebuah komponen di JSX, biasanya Anda tidak mengharapkan komponen tersebut untuk memanipulasi atau mengubah masing-masing *children*.
 
-When you can, try to avoid using the `Children` methods. For example, if you want every child of `RowList` to be wrapped in `<div className="Row">`, export a `Row` component, and manually wrap every row into it like this:
+Jika memungkinkan, hindari penggunaan metode `Children`. Misalnya, jika Anda ingin setiap anak dari `RowList` dibungkus dengan `<div className="Row">`, ekspor komponen `Row`, dan secara manual membungkus setiap baris ke dalamnya seperti ini:
 
 <Sandpack>
 
@@ -559,13 +559,13 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>This is the first item.</p>
+        <p>Ini adalah item pertama.</p>
       </Row>
       <Row>
-        <p>This is the second item.</p>
+        <p>Ini adalah item kedua</p>
       </Row>
       <Row>
-        <p>This is the third item.</p>
+        <p>Ini adalah item ketiga.</p>
       </Row>
     </RowList>
   );
@@ -607,7 +607,7 @@ export function Row({ children }) {
 
 </Sandpack>
 
-Unlike using `Children.map`, this approach does not wrap every child automatically. **However, this approach has a significant benefit compared to the [earlier example with `Children.map`](#transforming-children) because it works even if you keep extracting more components.** For example, it still works if you extract your own `MoreRows` component:
+Tidak seperti menggunakan `Children.map`, pendekatan ini tidak membungkus setiap anak secara otomatis. **Namun, pendekatan ini memiliki manfaat yang signifikan dibandingkan dengan [contoh sebelumnya dengan `Children.map`](#transforming-children) karena pendekatan ini tetap bekerja meskipun Anda terus mengekstrak lebih banyak komponen, sebagai contoh, pendekatan ini tetap bekerja jika Anda mengekstrak komponen `MoreRows` Anda sendiri:
 
 <Sandpack>
 
@@ -618,7 +618,7 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>This is the first item.</p>
+        <p>Ini adalah item pertama.</p>
       </Row>
       <MoreRows />
     </RowList>
@@ -629,10 +629,10 @@ function MoreRows() {
   return (
     <>
       <Row>
-        <p>This is the second item.</p>
+        <p>Ini adalah item kedua</p>
       </Row>
       <Row>
-        <p>This is the third item.</p>
+        <p>Ini adalah item ketiga.</p>
       </Row>
     </>
   );
@@ -674,13 +674,12 @@ export function Row({ children }) {
 
 </Sandpack>
 
-This wouldn't work with `Children.map` because it would "see" `<MoreRows />` as a single child (and a single row).
-
+Hal ini tidak akan bekerja dengan `Children.map` karena fungsi tersebut akan "melihat" `<MoreRows />` sebagai satu anak (dan satu baris).
 ---
 
-### Accepting an array of objects as a prop {/*accepting-an-array-of-objects-as-a-prop*/}
+### Menerima larik objek sebagai *prop* {/*accepting-an-array-of-objects-as-a-prop*/}
 
-You can also explicitly pass an array as a prop. For example, this `RowList` accepts a `rows` array as a prop:
+Anda juga bisa secara eksplisit mengoper larik sebagai prop. Sebagai contoh, `RowList` ini menerima larik `baris` sebagai prop:
 
 <Sandpack>
 
@@ -690,9 +689,9 @@ import { RowList, Row } from './RowList.js';
 export default function App() {
   return (
     <RowList rows={[
-      { id: 'first', content: <p>This is the first item.</p> },
-      { id: 'second', content: <p>This is the second item.</p> },
-      { id: 'third', content: <p>This is the third item.</p> }
+      { id: 'first', content: <p>Ini adalah item pertama.</p> },
+      { id: 'second', content: <p>Ini adalah item kedua</p> },
+      { id: 'third', content: <p>Ini adalah item ketiga.</p> }
     ]} />
   );
 }
@@ -744,17 +743,17 @@ export default function App() {
       {
         id: 'first',
         header: 'First',
-        content: <p>This is the first item.</p>
+        content: <p>Ini adalah item pertama.</p>
       },
       {
         id: 'second',
         header: 'Second',
-        content: <p>This is the second item.</p>
+        content: <p>Ini adalah item kedua</p>
       },
       {
         id: 'third',
         header: 'Third',
-        content: <p>This is the third item.</p>
+        content: <p>Ini adalah item ketiga.</p>
       }
     ]} />
   );
@@ -876,7 +875,7 @@ export function RowList({ rowIds, renderRow }) {
   return (
     <div className="RowList">
       <h1 className="RowListHeader">
-        Total rows: {rowIds.length}
+        Jumlah baris: {rowIds.length}
       </h1>
       {rowIds.map((rowId, index) =>
         <Fragment key={rowId}>
