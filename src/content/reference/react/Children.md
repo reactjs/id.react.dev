@@ -293,7 +293,7 @@ export default function RowList({ children }) {
 
 <DeepDive>
 
-#### Mengapa *prop* *children* tidak selalu berupa senarai? {/*why-is-the-children-prop-not-always-an-array*/}
+#### Mengapa *prop children* tidak selalu berupa senarai? {/*why-is-the-children-prop-not-always-an-array*/}
 
 Dalam React, *prop* `children` dianggap sebagai struktur data *buram*. Artinya, Anda tidak boleh bergantung pada cara penytrukturannya. Untuk mengubah, memfilter, atau menghitung anak, Anda harus menggunakan *method-method* `Children`.
 
@@ -793,7 +793,7 @@ Tidak seperti mengoper anak-anak sebagai JSX, pendekatan ini memungkinkan Anda u
 
 ---
 
-### Memanggil *render* *prop* untuk menyesuaikan *rendering* {/*calling-a-render-prop-to-customize-rendering*/}
+### Memanggil *render prop* untuk menyesuaikan *rendering* {/*calling-a-render-prop-to-customize-rendering*/}
 
 Daripada menghasilkan JSX untuk setiap item, Anda juga bisa mengoper fungsi yang mengembalikan JSX, dan memanggil fungsi tersebut bila diperlukan. Pada contoh ini, komponen `Aplikasi` mengoper fungsi `renderContent` ke komponen `TabSwitcher`. Komponen `TabSwitcher` memanggil `renderContent` hanya untuk tab yang dipilih:
 
@@ -846,7 +846,7 @@ export default function TabSwitcher({ tabIds, getHeader, renderContent }) {
 
 Sebuah *prop* seperti `renderContent` disebut sebagai *render prop* karena merupakan *prop* yang menentukan bagaimana cara me-*render* sebuah bagian dari antarmuka pengguna. Namun, tidak ada yang aneh dengan *prop* ini: *prop* ini adalah *prop* biasa yang kebetulan merupakan sebuah fungsi.
 
-*Render props* adalah fungsi, sehingga Anda dapat meneruskan informasi kepada mereka. Misalnya, komponen `RowList` ini meneruskan `id` dan `index` dari setiap baris ke *props* *render* `renderRow`, yang menggunakan `index` untuk menonjolkan baris genap:
+*Render props* adalah fungsi, sehingga Anda dapat meneruskan informasi kepada mereka. Misalnya, komponen `RowList` ini meneruskan `id` dan `index` dari setiap baris ke *props render* `renderRow`, yang menggunakan `index` untuk menonjolkan baris genap:
 
 <Sandpack>
 
