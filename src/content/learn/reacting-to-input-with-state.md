@@ -1,38 +1,38 @@
 ---
-title: Reacting to Input with State
+title: Merespon Masukan dengan State
 ---
 
 <Intro>
 
-React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai keadaan komponen, dan mengubahnya sebagai respons terhadap masukan pengguna. Ini mirip dengan bagaimana desainer memikirkan tentang UI.
+React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai *state* komponen, dan mengubahnya sebagai respons terhadap masukan pengguna. Cara ini mirip dengan bagaimana desainer memikirkan tentang UI.
 
 </Intro>
 
 <YouWillLearn>
 
-* Bagaimana declative UI programming berbeda dengan imperative UI programming
-* Bagaimana menjabarkan berbagai keadaan visual pada suatu komponen
-* Bagaimana cara memicu perubahan dari berbagai keadaan
+* Bagaimana pemrograman UI deklaratif berbeda dari pemrograman UI imperatif
+* Bagaimana cara menjabarkan berbagai *state* visual yang berbeda pada komponen Anda
+* Bagaimana cara memicu perubahan dari berbagai *state*
 
 </YouWillLearn>
 
-## Bagaimana perbedaan declative UI dengan Imperative UI {/*how-declarative-ui-compares-to-imperative*/}
+## Membandingkan UI deklaratif dengan imperatif {/*how-declarative-ui-compares-to-imperative*/}
 
-Ketika Anda mendesain interaksi antarmuka, Anda mungkin berfikir tentang bagaimana antarmuka berubah karena respon dari aksi pengguna. Sebagai contoh, suatu form yang memungkan pengguna untuk melakukan submit jawaban ketika:
+Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *berubah* dalam menanggapi tindakan pengguna. Pertimbangkan formulir yang memungkinkan pengguna mengirimkan jawaban:
 
-* Anda mengetikan sesuatu kedalam form, maka tombol submit menjadi **aktif**
-* Anda mengklik tombol "Submit", baik form maupun tombol "Submit" tersebut menjadi **nonaktif** dan _spinner_ muncul.
-* Apabila network request berhasil, form disembunyikan dan pesan "Terima Kasih" muncul
-* Apabila network request gagal, pesan galat muncul dan form menjadi aktif kembali.
+* Anda mengetikan sesuatu kedalam formulir, maka tombol kirim menjadi **aktif**
+* Anda mengklik tombol "Kirim", baik formulir maupun tombol "Kirim" tersebut menjadi **nonaktif** dan *spinner* muncul.
+* Apabila permintaan jaringan berhasil, formulir disembunyikan dan pesan "Terima Kasih" muncul
+* Apabila permintaan jaringan gagal, pesan kesalahan muncul dan formulir menjadi aktif kembali.
 
 
-Pada **pemrograman imperatif**, yang disebutkan diatas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi. Anda harus menulis intruksi yang tepat untuk memanipulasi UI tergantung apa yang sedang terjadi. Berikit ini adalah cara lain untuk memahami hal ini: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
+Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Di dalam mobil yang dikemudikan oleh orang yang tampak khawatir, merepresentasikan JavaScript, seorang penumpang memerintahkan pengemudi untuk melakukan serangkaian navigasi belokan demi belokan yang rumit." />
 
-Dia tidak tahu kemana Anda ingin pergi, dia hanya mengikuti perintah yang anda berikan (dan apabila Anda memberikan arah yang salah, Anda akan sampai ditempat yang salah juga). Hal tersebut dinamakan *imperatif*, karena Anda harus *memberikan perintah* setiap element, mulai dari _spinner_ hingga tombol dengan memberitahu komputer untuk mengupdate antarmuka. 
+Dia tidak tahu kemana Anda ingin pergi, dia hanya mengikuti perintah yang Anda berikan (dan apabila Anda memberikan arah yang salah, Anda akan sampai ditempat yang salah juga). Hal ini disebut *imperatif* karena Anda harus " memberi perintah" pada setiap elemen, dari pemintal hingga tombol, memberi tahu komputer *bagaimana cara* untuk memperbarui UI tersebut.
 
-Pada contoh pemrograman antarmuka imperatif, form dibangun tanpa menggunakan React, hanya mengguna browse [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+Pada contoh pemrograman antarmuka imperatif, formulir dibangun tanpa menggunakan React, hanya mengguna browse [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
 <Sandpack>
 
@@ -82,13 +82,13 @@ function disable(el) {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Anggap saja sedang menghubungi jaringan.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (answer.toLowerCase() == 'istanbul') {
         resolve();
       } else {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Tebakan yang bagus, tapi salah. Coba lagi!'));
       }
     }, 1500);
   });
@@ -112,17 +112,17 @@ textarea.oninput = handleTextareaChange;
 
 ```html public/index.html
 <form id="form">
-  <h2>City quiz</h2>
+  <h2>Kuis kota</h2>
   <p>
-    What city is located on two continents?
+    Kota apa yang terletak di dua benua?
   </p>
   <textarea id="textarea"></textarea>
   <br />
-  <button id="button" disabled>Submit</button>
-  <p id="loading" style="display: none">Loading...</p>
+  <button id="button" disabled>Kirim</button>
+  <p id="loading" style="display: none">Memuat...</p>
   <p id="error" style="display: none; color: red;"></p>
 </form>
-<h1 id="success" style="display: none">That's right!</h1>
+<h1 id="success" style="display: none">Benar sekali!</h1>
 
 <style>
 * { box-sizing: border-box; }
@@ -132,37 +132,37 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-Memanipulasi antarmuka secara imperatif bekerja dengan baik pada contoh yang terisolasi, tetapi akan semakin sulit untuk diatur pada sistem yang kompleks. Bayangkan meng-update banyak form yang berbeda pada satu halaman seperti contoh diatas. Menambahkan elemen antarmuka atau menambah interaksi harus mengecek semua code yang ada secara hati-hati untuk memastikan bahwa Anda tidak menambahkan bug (misalnya lupa untuk menampilkan atau menyembunyikannya).
+Memanipulasi UI secara imperatif bekerja dengan cukup baik untuk contoh-contoh yang terpencil, tetapi menjadi jauh lebih sulit untuk dikelola dalam sistem yang lebih kompleks. Bayangkan jika Anda memperbarui halaman yang penuh dengan berbagai macam formulir seperti formulir di atas. Menambahkan elemen UI baru atau interaksi baru akan memerlukan pemeriksaan yang hati-hati terhadap semua kode yang ada untuk memastikan bahwa Anda tidak membuat bug (misalnya, lupa menampilkan atau menyembunyikan sesuatu).
 
 React dibangun untuk mengatasi masalah ini.
 
-Pada React, Anda tidak perlu memanipulasi antarmuka secara langsung, maksudnya anda tidak perlu mengaktifkan, menonaktifkan, menampilkan, atau menyembunyikan suatu component secara langsung. Melainkan, Anda dapat **menyatakan apa yang ingin anda tampilkan**, dan React akan mengupdate antarmuka tersebut. Pikirkan Anda menyewa taksi dan memberitahu pengemudinya kemana Anda akan pergi, daripada memberitahukan dimana harus berbelok. Itu adalah tugas pengemudi untuk mencari tahu bagaimana mengantar Anda ke tujuannya, bahkan dia bisa menemukan jalan pintas yang tidak anda tahu.
+Pada React, Anda tidak perlu memanipulasi antarmuka secara langsung, maksudnya Anda tidak perlu mengaktifkan, menonaktifkan, menampilkan, atau menyembunyikan suatu component secara langsung. Melainkan, Anda dapat **mendeklarasikan apa yang ingin Anda tampilkan**, dan React akan mengupdate antarmuka tersebut. Pikirkan Anda menyewa taksi dan memberitahu pengemudinya kemana Anda akan pergi, daripada memberitahukan di mana ia harus berbelok. Itu adalah tugas pengemudi untuk mencari tahu bagaimana mengantar Anda ke tujuan, bahkan dia bisa menemukan jalan pintas yang tidak Anda tahu!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="Di dalam mobil yang dikemudikan oleh React, seorang penumpang meminta untuk diantarkan ke tempat tertentu pada peta. React akan mencari cara menuju ke tempat tersebut." />
 
-## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
+## Berpikir tentang UI secara deklaratif {/*thinking-about-ui-declaratively*/}
 
-You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
+Anda telah melihat bagaimana cara mengimplementasikan sebuah formulir secara imperatif di atas. Untuk lebih memahami cara berpikir dalam React, Anda akan mempelajari cara mengimplementasikan ulang UI berikut ini dalam React:
 
-1. **Identify** your component's different visual states
-2. **Determine** what triggers those state changes
-3. **Represent** the state in memory using `useState`
-4. **Remove** any non-essential state variables
-5. **Connect** the event handlers to set the state
+1. **Identifikasi** berbagai *state* komponen visual Anda
+2. **Tentukan** apa yang menyebabkan perubahan *state* tersebut
+3. **Representasikan** *state* tersebut dalam memori dengan menggunakan `useState`
+4. **Hapus** variabel *state* yang tidak esensial
+5. **Hubungkan** *event handler* untuk mengatur *state* tersebut
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### Langkah 1: Identifikasi berbagai *state* komponen visual Anda {/*step-1-identify-your-components-different-visual-states*/}
 
-In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
+Dalam ilmu komputer, Anda mungkin pernah mendengar tentang ["*state machine*"](https://en.wikipedia.org/wiki/Finite-state_machine) yang merupakan salah satu dari beberapa "*state*". Jika Anda bekerja dengan seorang desainer, Anda mungkin pernah melihat model visual untuk "*visual state*" yang berbeda. React terletak pada persimpangan antara desain dan ilmu komputer, sehingga kedua ide ini menjadi sumber inspirasi.
 
-First, you need to visualize all the different "states" of the UI the user might see:
+Pertama, Anda perlu memvisualisasikan seluruh "*state*" UI yang mungkin akan dilihat oleh pengguna:
 
-* **Empty**: Form has a disabled "Submit" button.
-* **Typing**: Form has an enabled "Submit" button.
-* **Submitting**: Form is completely disabled. Spinner is shown.
-* **Success**: "Thank you" message is shown instead of a form.
-* **Error**: Same as Typing state, but with an extra error message.
+* **Kosong**: Formulir memiliki tombol "Kirim" yang dinonaktifkan.
+* **Mengetik**: Formulir memiliki tombol "Kirim" yang diaktifkan.
+* **Mengirimkan**: Formulir sepenuhnya dinonaktifkan. *Spinner* ditampilkan.
+* **Sukses**: Pesan "Terima kasih" ditampilkan, menggantikan formulir.
+* **Kesalahan**: Sama seperti *state* Mengetik, namun dengan tambahan pesan kesalahan.
 
-Just like a designer, you'll want to "mock up" or create "mocks" for the different states before you add logic. For example, here is a mock for just the visual part of the form. This mock is controlled by a prop called `status` with a default value of `'empty'`:
+Sama seperti seorang desainer, Anda pasti ingin "model visual" atau membuat "tiruan" untuk berbagai state sebelum menerapkan logika. Sebagai contoh, berikut ini adalah *mock* hanya untuk bagian visual dari formulir. *Mock* ini dikontrol oleh sebuah *prop* yang disebut `status` dengan nilai *default* `'empty'`:
 
 <Sandpack>
 
@@ -171,19 +171,19 @@ export default function Form({
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>Benar sekali!</h1>
   }
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kuis kota</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Di kota manakah terdapat papan reklame yang mengubah udara menjadi air yang dapat diminum?
       </p>
       <form>
         <textarea />
         <br />
         <button>
-          Submit
+          Kirim
         </button>
       </form>
     </>
@@ -193,7 +193,7 @@ export default function Form({
 
 </Sandpack>
 
-You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same component, still "controlled" by the `status` prop:
+Anda dapat menamai *prop* tersebut dengan nama apa pun yang Anda inginkan, penamaannya tidaklah penting. Cobalah mengubah `status = 'kosong'` menjadi `status = 'sukses'` untuk melihat pesan sukses muncul. *Mock* memungkinkan Anda melakukan iterasi dengan cepat pada UI sebelum Anda menyambungkan logika apa pun. Berikut ini adalah prototipe yang lebih matang dari komponen yang sama, yang masih " dikontrol" oleh *prop* `status`:
 
 <Sandpack>
 
@@ -203,13 +203,13 @@ export default function Form({
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>Benar sekali!</h1>
   }
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kuis kota</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Di kota manakah terdapat papan reklame yang mengubah udara menjadi air yang dapat diminum?
       </p>
       <form>
         <textarea disabled={
@@ -224,7 +224,7 @@ export default function Form({
         </button>
         {status === 'error' &&
           <p className="Error">
-            Good guess but a wrong answer. Try again!
+            Tebakan yang bagus, tapi salah. Coba lagi!
           </p>
         }
       </form>
@@ -241,9 +241,9 @@ export default function Form({
 
 <DeepDive>
 
-#### Displaying many visual states at once {/*displaying-many-visual-states-at-once*/}
+#### Menampilkan banyak *state* visual sekaligus {/*displaying-many-visual-states-at-once*/}
 
-If a component has a lot of visual states, it can be convenient to show them all on one page:
+Jika suatu komponen memiliki banyak state visual, mungkin akan lebih mudah untuk menampilkan semuanya pada satu halaman:
 
 <Sandpack>
 
@@ -263,7 +263,7 @@ export default function App() {
     <>
       {statuses.map(status => (
         <section key={status}>
-          <h4>Form ({status}):</h4>
+          <h4>Formulir ({status}):</h4>
           <Form status={status} />
         </section>
       ))}
@@ -275,7 +275,7 @@ export default function App() {
 ```js Form.js
 export default function Form({ status }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>Benar sekali!</h1>
   }
   return (
     <form>
@@ -291,7 +291,7 @@ export default function Form({ status }) {
       </button>
       {status === 'error' &&
         <p className="Error">
-          Good guess but a wrong answer. Try again!
+          Tebakan yang bagus, tapi salah. Coba lagi!
         </p>
       }
     </form>
@@ -308,61 +308,61 @@ body { margin: 0; }
 
 </Sandpack>
 
-Pages like this are often called "living styleguides" or "storybooks".
+Halaman seperti ini sering disebut "*living styleguides*" atau "*storybooks*".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### Langkah 2: Tentukan apa yang menyebabkan perubahan *state* tersebut {/*step-2-determine-what-triggers-those-state-changes*/}
 
-You can trigger state updates in response to two kinds of inputs:
+Anda dapat memicu pembaruan state sebagai respons terhadap dua jenis masukan:
 
-* **Human inputs,** like clicking a button, typing in a field, navigating a link.
-* **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+* **Masukan manusia,** seperti mengklik tombol, mengetik di kolom, navigasi tautan.
+* **Masukan komputer,** seperti respon jaringan yang diterima, batas waktu selesai, pemuatan gambar.
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Human inputs" alt="Sebuah jari." src="/images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="Computer inputs" alt="Satu dan nol." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
+Pada kedua kasus tersebut, **Anda harus mengatur [variabel *state*](/learn/state-a-components-memory#anatomy-of-usestate) untuk memperbarui UI.** Untuk form yang Anda kembangkan, Anda perlu mengubah *state* sebagai respons terhadap berbagai masukan yang berbeda:
 
-* **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
-* **Clicking the Submit button** (human) should switch it to the *Submitting* state.
-* **Successful network response** (computer) should switch it to the *Success* state.
-* **Failed network response** (computer) should switch it to the *Error* state with the matching error message.
+* **Mengubah input teks** (manusia) akan mengubahnya dari *state* *Kosong* ke *state* *Mengetik* atau sebaliknya, tergantung apakah kotak teks kosong atau tidak.
+* **Mengklik tombol Kirim** (manusia) akan mengalihkannya ke *state* *Mengirimkan*.
+* **Respons jaringan yang berhasil** (komputer) akan mengalihkannya ke *state* *Sukses*.
+* **Respon jaringan gagal** (komputer) akan mengalihkannya ke *state* *Kesalahan* dengan pesan kesalahan yang sesuai.
 
 <Note>
 
-Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+Perhatikan bahwa masukan dari manusia sering kali membutuhkan [*event handler*](/learn/respon-to-events)!
 
 </Note>
 
-To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
+Untuk membantu memvisualisasikan alur ini, cobalah gambar setiap *state* di atas kertas sebagai lingkaran berlabel, dan setiap perubahan di antara dua *state* sebagai tanda panah. Anda dapat membuat kerangka alur dengan cara ini dan mencegah *bug* jauh sebelum implementasi.
 
 <DiagramGroup>
 
-<Diagram name="responding_to_input_flow" height={350} width={688} alt="Flow chart moving left to right with 5 nodes. The first node labeled 'empty' has one edge labeled 'start typing' connected to a node labeled 'typing'. That node has one edge labeled 'press submit' connected to a node labeled 'submitting', which has two edges. The left edge is labeled 'network error' connecting to a node labeled 'error'. The right edge is labeled 'network success' connecting to a node labeled 'success'.">
+<Diagram name="responding_to_input_flow" height={350} width={688} alt="Diagram alur bergerak dari kiri ke kanan dengan 5 simpul. Simpul pertama yang berlabel 'kosong' memiliki satu edge berlabel 'mulai mengetik' yang terhubung ke simpul berlabel 'mengetik'. Simpul tersebut memiliki satu edge berlabel 'tekan kirim' yang terhubung ke simpul berlabel 'kirim', yang memiliki dua edge. Edge di kiri diberi label 'kesalahan jaringan' yang terhubung ke simpul berlabel 'kesalahan'. Edge di kanan berlabel 'keberhasilan jaringan' yang terhubung ke simpul berlabel 'sukses'.">
 
-Form states
+Berbagai *state* formulir
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Langkah 3: Representasikan *state* tersebut dalam memori dengan menggunakan `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
-Next you'll need to represent the visual states of your component in memory with [`useState`.](/reference/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
+Selanjutnya Anda harus merepresentasikan *state* visual dari komponen Anda di dalam memori dengan [`useState`.](/reference/react/useState) Kesederhanaan adalah kuncinya: setiap bagian dari *state* adalah sebuah "bagian yang bergerak", dan **Anda ingin sesedikit mungkin "bagian yang bergerak"** Semakin kompleks maka akan semakin banyak bug!
 
-Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
+Mulailah dengan state yang *mutlak harus* ada di sana. Sebagai contoh, Anda harus menyimpan `answer` untuk masukan, dan `error` (jika ada) untuk menyimpan kesalahan sebelumnya:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
 ```
 
-Then, you'll need a state variable representing which one of the visual states that you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
+Kemudian, Anda akan membutuhkan variabel *state* yang mewakili salah satu status visual yang ingin Anda tampilkan. Biasanya ada lebih dari satu cara untuk merepresentasikannya dalam memori, jadi Anda perlu bereksperimen dengannya.
 
-If you struggle to think of the best way immediately, start by adding enough state that you're *definitely* sure that all the possible visual states are covered:
+Jika Anda kesulitan untuk menemukan cara terbaik dengan segera, mulailah dengan menambahkan cukup banyak *state* sehingga Anda *yakin* bahwa semua keadaan visual yang ada sudah tercakup:
 
 ```js
 const [isEmpty, setIsEmpty] = useState(true);
@@ -372,9 +372,9 @@ const [isSuccess, setIsSuccess] = useState(false);
 const [isError, setIsError] = useState(false);
 ```
 
-Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
+Ide pertama Anda mungkin bukan yang terbaik, tapi itu bukan masalah, menulis ulang *state* adalah bagian dari proses!
 
-### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+### Langkah 4: Hapus variabel *state* yang tidak esensial {/*step-4-remove-any-non-essential-state-variables*/}
 
 You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
 
@@ -402,7 +402,7 @@ These three variables are a good enough representation of this form's state. How
 
 </DeepDive>
 
-### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Langkah 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
 
 Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
 
@@ -417,7 +417,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>Benar sekali!</h1>
   }
 
   async function handleSubmit(e) {
@@ -438,9 +438,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kuis kota</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Di kota manakah terdapat papan reklame yang mengubah udara menjadi air yang dapat diminum?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -471,7 +471,7 @@ function submitForm(answer) {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Tebakan yang bagus, tapi salah. Coba lagi!'));
       } else {
         resolve();
       }
