@@ -199,7 +199,7 @@ Anda dapat menamai *prop* tersebut dengan nama apa pun yang Anda inginkan, penam
 
 ```js
 export default function Form({
-  // Try 'submitting', 'error', 'success':
+  // Cobalah 'submitting', 'error', 'success':
   status = 'empty'
 }) {
   if (status === 'success') {
@@ -376,35 +376,35 @@ Ide pertama Anda mungkin bukan yang terbaik, tapi itu bukan masalah, menulis ula
 
 ### Langkah 4: Hapus variabel *state* yang tidak esensial {/*step-4-remove-any-non-essential-state-variables*/}
 
-You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
+Anda ingin menghindari duplikasi pada konten *state* sehingga Anda hanya perlu mencatat *state* yang penting saja. Luangkan sedikit waktu untuk melakukan penulisan ulang pada struktur *state* Anda akan membuat komponen Anda lebih mudah dipahami, mengurangi duplikasi, dan menghindari ambiguitas yang tidak diinginkan. Target Anda adalah untuk **mencegah kasus di mana *state* dalam memori tidak merepresentasikan UI valid yang Anda harapkan untuk dilihat oleh pengguna** (Sebagai contoh, Anda tidak akan pernah ingin menampilkan pesan kesalahan dan menonaktifkan input pada waktu yang sama, atau pengguna tidak akan bisa memperbaiki kesalahan tersebut!)
 
-Here are some questions you can ask about your state variables:
+Berikut adalah beberapa hal yang dapat Anda pertimbangkan tentang variabel *state* Anda:
 
-* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`.
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
-* **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
+* **Apakah keadaan ini menimbulkan kondisi paradoks?** Sebagai contoh, `isTyping` dan `isSubmit` tidak mungkin bernilai `true` bersamaan. Kondisi paradoks biasanya menandakan bahwa *state* tidak dibatasi dengan baik. Ada empat kemungkinan kombinasi dari dua boolean, tetapi hanya tiga yang sesuai dengan *state* yang sesuai. Untuk menghilangkan *state* yang "tidak mungkin", Anda dapat menyatukannya menjadi sebuah `status` yang harus merupakan salah satu dari tiga nilai: `'typing'` (mengetik), `'submitting'` (mengirim), atau `'success'` (sukses).
+* **Apakah informasi yang sama sudah tersedia di variabel status yang lain?** Kondisi paradoks lain: `isEmpty` dan `isTyping` tidak dapat bernilai `true` pada saat yang bersamaan. Dengan menjadikannya variabel *state* yang terpisah, Anda berisiko membuat keduanya tidak sinkron dan mengakibatkan bug. Untungnya, Anda dapat menghapus `isEmpty` dan sebagai gantinya memeriksa `answer.length === 0`.
+* **Bisakah Anda mendapatkan informasi yang sama dari kebalikan dari variabel state yang lain?** `isError` tidak diperlukan karena Anda bisa memeriksa `error !== null` sebagai gantinya.
 
-After this clean-up, you're left with 3 (down from 7!) *essential* state variables:
+Setelah pembersihan ini, Anda akan memiliki 3 ( berkurang dari 7!) variabel *state* yang *esensial*:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
-const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
+const [status, setStatus] = useState('typing'); // 'typing', 'submitting', atau 'success'
 ```
 
-You know they are essential, because you can't remove any of them without breaking the functionality.
+Anda tahu mereka sangat penting, karena Anda tidak dapat menghapus salah satu dari variabel-variabel tersebut tanpa merusak fungsionalitasnya.
 
 <DeepDive>
 
-#### Eliminating “impossible” states with a reducer {/*eliminating-impossible-states-with-a-reducer*/}
+#### Menghilangkan *state-state* "tidak mungkin" dengan *reducer* {/*eliminating-impossible-states-with-a-reducer*/}
 
-These three variables are a good enough representation of this form's state. However, there are still some intermediate states that don't fully make sense. For example, a non-null `error` doesn't make sense when `status` is `'success'`. To model the state more precisely, you can [extract it into a reducer.](/learn/extracting-state-logic-into-a-reducer) Reducers let you unify multiple state variables into a single object and consolidate all the related logic!
+Ketiga variabel ini merupakan representasi yang cukup baik dari *state* formulir ini. Namun, masih ada beberapa *state* lanjutan yang tidak sepenuhnya masuk akal. Sebagai contoh, `error` yang non-null tidak masuk akal ketika `status` adalah `'success'`. Untuk memodelkan *state* dengan lebih akurat, Anda dapat [mengekstraknya ke sebuah reducer.](/learn/extracting-state-logic-into-a-reducer) Reducer memungkinkan Anda menyatukan beberapa variabel *state* ke dalam satu objek dan menggabungkan semua logika yang berhubungan!
 
 </DeepDive>
 
-### Langkah 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Langkah 5: Hubungkan *event handler* untuk mengatur *state* tersebut {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
+Terakhir, buatlah *event handler* yang memperbarui *state*. Berikut ini adalah bentuk akhir, dengan semua *event handler* yang terhubung:
 
 <Sandpack>
 
@@ -466,7 +466,7 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Anggap saja sedang menghubungi jaringan.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
@@ -486,17 +486,17 @@ function submitForm(answer) {
 
 </Sandpack>
 
-Although this code is longer than the original imperative example, it is much less fragile. Expressing all interactions as state changes lets you later introduce new visual states without breaking existing ones. It also lets you change what should be displayed in each state without changing the logic of the interaction itself.
+Meskipun kode ini lebih panjang daripada contoh imperatif semula, kode ini lebih tidak mudah rusak. Mengekspresikan semua interaksi sebagai perubahan *state* memungkinkan Anda untuk memperkenalkan *state* visual baru tanpa merusak *state* yang sudah ada. Hal ini juga memungkinkan Anda untuk mengubah apa yang harus ditampilkan di setiap *state* tanpa mengubah logika interaksi itu sendiri.
 
 <Recap>
 
-* Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
-  1. Identify all its visual states.
-  2. Determine the human and computer triggers for state changes.
-  3. Model the state with `useState`.
-  4. Remove non-essential state to avoid bugs and paradoxes.
-  5. Connect the event handlers to set state.
+* Pemrograman deklaratif berarti mendeskripsikan UI untuk setiap *visual state* daripada mengelola UI secara terperinci (imperatif).
+* Saat mengembangkan sebuah komponen:
+  1. Identifikasi semua *visual state*-nya.
+  2. Tentukan pemicu dari pengguna dan komputer untuk perubahan *state*.
+  3. Memodelkan *state* dengan `useState`.
+  4. Hapus *state* yang tidak esensial untuk menghindari bug dan kondisi paradoks.
+  5. Hubungkan event handler untuk menyetel *state*.
 
 </Recap>
 
@@ -504,11 +504,11 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Menambah dan menghapus kelas CSS {/*add-and-remove-a-css-class*/}
 
-Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
+Buatlah agar mengklik gambar *menghapus* kelas CSS `background--active` dari `<div>` bagian luar, tetapi *menambahkan* kelas `picture--active` ke `<img>`. Mengklik latar belakang lagi akan mengembalikan kelas CSS semula.
 
-Visually, you should expect that clicking on the picture removes the purple background and highlights the picture border. Clicking outside the picture highlights the background, but removes the picture border highlight.
+Secara visual, Anda seharusnya dapat memperkirakan bahwa dengan mengeklik gambar, Anda akan menghilangkan latar belakang ungu dan menyorot tepian gambar. Mengklik di luar gambar akan menyorot latar belakang, tetapi menghilangkan sorotan tepian gambar tersebut.
 
 <Sandpack>
 
@@ -518,7 +518,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Rumah Pelangi di Kampung Pelangi, Indonesia"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -557,14 +557,14 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-This component has two visual states: when the image is active, and when the image is inactive:
+Komponen ini memiliki dua status visual: apabila gambar aktif, dan apabila gambar tidak aktif:
 
-* When the image is active, the CSS classes are `background` and `picture picture--active`.
-* When the image is inactive, the CSS classes are `background background--active` and `picture`.
+* Saat gambar aktif, kelas CSS adalah `background` dan `picture picture--active`.
+* Ketika gambar tidak aktif, kelas CSS adalah `background background--active` dan `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+Sebuah variabel *state* boolean sudah cukup untuk menyimpan informasi, apakah gambar tersebut aktif atau tidak. Tugas awalnya adalah menghapus atau menambahkan kelas CSS. Namun, di React Anda perlu *mendeskripsikan* apa yang ingin Anda lihat daripada *memanipulasi* elemen UI. Jadi, Anda perlu menghitung kedua kelas CSS berdasarkan *state* saat ini. Anda juga perlu [menghentikan propagasi](/learn/responing-to-events#stopping-propagation) agar mengklik gambar tidak terdeteksi sebagai klik pada latar belakang.
 
-Verify that this version works by clicking the image and then outside of it:
+Pastikan bahwa versi ini berfungsi dengan baik, dengan mengeklik gambar dan kemudian klik kembali di luar gambar tersebut:
 
 <Sandpack>
 
@@ -593,7 +593,7 @@ export default function Picture() {
           setIsActive(true);
         }}
         className={pictureClassName}
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Rumah Pelangi di Kampung Pelangi, Indonesia"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -631,7 +631,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Alternatively, you could return two separate chunks of JSX:
+Atau, Anda dapat mengembalikan dua potongan JSX yang terpisah:
 
 <Sandpack>
 
@@ -648,7 +648,7 @@ export default function Picture() {
       >
         <img
           className="picture picture--active"
-          alt="Rainbow houses in Kampung Pelangi, Indonesia"
+          alt="Rumah Pelangi di Kampung Pelangi, Indonesia"
           src="https://i.imgur.com/5qwVYb1.jpeg"
           onClick={e => e.stopPropagation()}
         />
@@ -659,7 +659,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Rumah Pelangi di Kampung Pelangi, Indonesia"
         src="https://i.imgur.com/5qwVYb1.jpeg"
         onClick={() => setIsActive(true)}
       />
@@ -698,27 +698,27 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](/learn/preserving-and-resetting-state) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
+Perlu diingat bahwa jika dua potongan JSX yang berbeda mendeskripsikan pohon yang sama, susunannya (`<div>` pertama → `<img>` pertama) harus sama. Jika tidak, penggantian `isActive` akan menyebabkan pembuatan ulang seluruh pohon di dalamnya dan [mereset *state*-nya.](/learn/preserving-and-reset-state) Inilah sebabnya, jika pohon JSX dari kedua kasus tersebut menghasilkan pohon serupa, lebih baik penulisannya digabungkan menjadi sepotong JSX.
 
 </Solution>
 
-#### Profile editor {/*profile-editor*/}
+#### Editor profil {/*profile-editor*/}
 
-Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
+Berikut ini adalah formulir kecil yang diimplementasikan dengan JavaScript biasa dan DOM. Silakan dicoba untuk memahami perilakunya:
 
 <Sandpack>
 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Ubah Profil') {
+    editButton.textContent = 'Simpan Profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Ubah Profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -729,7 +729,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Halo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -738,7 +738,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Halo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -773,7 +773,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Nama depan:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -781,15 +781,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nama belakang:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Ubah Profil</button>
+  <p><i id="helloText">Halo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -801,11 +801,11 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between "Edit" and "Save" depending on the mode you're in. When you change the inputs, the welcome message at the bottom updates in real time.
+Formulir ini dapat berganti-ganti di antara dua mode: dalam mode ubah, Anda dapat melihat masukannya, dan dalam mode tampilan, Anda hanya dapat melihat hasilnya. Label tombol berubah antara "Ubah" dan "Simpan", tergantung pada mode yang aktif. Apabila Anda mengubah masukan, pesan selamat datang di bagian bawah akan diperbarui secara langsung.
 
-Your task is to reimplement it in React in the sandbox below. For your convenience, the markup was already converted to JSX, but you'll need to make it show and hide the inputs like the original does.
+Tugas Anda adalah mengimplementasikannya kembali di React pada *sandbox* berikut ini. Untuk kenyamanan Anda, *markup* sudah dikonversi ke JSX, tetapi Anda harus membuatnya menampilkan dan menyembunyikan masukan seperti versi awal.
 
-Make sure that it updates the text at the bottom, too!
+Pastikan juga memperbarui teks di bagian bawah!
 
 <Sandpack>
 
@@ -814,19 +814,19 @@ export default function EditProfile() {
   return (
     <form>
       <label>
-        First name:{' '}
+        Nama depan:{' '}
         <b>Jane</b>
         <input />
       </label>
       <label>
-        Last name:{' '}
+        Nama belakang:{' '}
         <b>Jacobs</b>
         <input />
       </label>
       <button type="submit">
-        Edit Profile
+        Ubah Profil
       </button>
-      <p><i>Hello, Jane Jacobs!</i></p>
+      <p><i>Halo, Jane Jacobs!</i></p>
     </form>
   );
 }
@@ -840,9 +840,9 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
+Anda akan membutuhkan dua variabel state untuk menyimpan nilai input: `firstName` dan `lastName`. Anda juga akan membutuhkan variabel state `isEditing` yang menyimpan informasi apakah akan menampilkan masukan atau tidak. Anda seharusnya tidak memerlukan variabel `fullName` karena nama lengkap selalu dapat ditentukan dari `firstName` dan `lastName`.
 
-Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
+Terakhir, Anda harus menggunakan [pe-*render*-an bersyarat](/learn/conditional-rendering) untuk menampilkan atau menyembunyikan masukan, tergantung dari *state* `isEditing`.
 
 <Sandpack>
 
@@ -860,7 +860,7 @@ export default function EditProfile() {
       setIsEditing(!isEditing);
     }}>
       <label>
-        First name:{' '}
+        Nama depan:{' '}
         {isEditing ? (
           <input
             value={firstName}
@@ -873,7 +873,7 @@ export default function EditProfile() {
         )}
       </label>
       <label>
-        Last name:{' '}
+        Nama belakang:{' '}
         {isEditing ? (
           <input
             value={lastName}
@@ -886,9 +886,9 @@ export default function EditProfile() {
         )}
       </label>
       <button type="submit">
-        {isEditing ? 'Save' : 'Edit'} Profile
+        {isEditing ? 'Simpan' : 'Ubah'} Profile
       </button>
-      <p><i>Hello, {firstName} {lastName}!</i></p>
+      <p><i>Halo, {firstName} {lastName}!</i></p>
     </form>
   );
 }
@@ -900,27 +900,27 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Compare this solution to the original imperative code. How are they different?
+Bandingkan solusi ini dengan kode imperatif yang awal. Apa perbedaannya?
 
 </Solution>
 
-#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Menulis ulang solusi imperatif tanpa React {/*refactor-the-imperative-solution-without-react*/}
 
-Here is the original sandbox from the previous challenge, written imperatively without React:
+Berikut ini adalah *sandbox* awal dari tantangan sebelumnya, yang ditulis secara imperatif tanpa React:
 
 <Sandpack>
 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Ubah Profil') {
+    editButton.textContent = 'Simpan Profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Ubah Profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -931,7 +931,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Halo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -940,7 +940,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Halo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -975,7 +975,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Nama depan:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -983,15 +983,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nama belakang:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Ubah Profil</button>
+  <p><i id="helloText">Halo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1003,9 +1003,9 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the state was explicit, like in React?
+Bayangkan jika React tidak ada. Dapatkah Anda menuliskan ulang kode ini dengan cara yang membuat logikanya tidak mudah rusak dan lebih mirip dengan versi React? Bagaimana jadinya jika state dibuat eksplisit seperti di React?
 
-If you're struggling to think where to start, the stub below already has most of the structure in place. If you start here, fill in the missing logic in the `updateDOM` function. (Refer to the original code where needed.)
+Jika Anda kesulitan untuk memulai dari mana, contoh di bawah ini sudah menyediakan sebagian besar strukturnya. Jika Anda memulai dari sini, isi logika yang kosong dalam fungsi `updateDOM`. (Lihat kode awal jika diperlukan).
 
 <Sandpack>
 
@@ -1044,13 +1044,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
-    // TODO: show inputs, hide content
+    editButton.textContent = 'Simpan Profil';
+    // TODO: tampilkan seluruh masukan, sembunyikan konten
   } else {
-    editButton.textContent = 'Edit Profile';
-    // TODO: hide inputs, show content
+    editButton.textContent = 'Ubah Profil';
+    // TODO: sembunyikan seluruh masukan, tampilkan konten
   }
-  // TODO: update text labels
+  // TODO: perbarui label teks
 }
 
 function hide(el) {
@@ -1082,7 +1082,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Nama depan:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1090,15 +1090,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nama belakang:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Ubah Profil</button>
+  <p><i id="helloText">Halo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1112,7 +1112,7 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-The missing logic included toggling the display of inputs and content, and updating the labels:
+Logika yang kosong mencakup peralihan tampilan masukan dan konten, serta memperbarui label:
 
 <Sandpack>
 
@@ -1151,13 +1151,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
+    editButton.textContent = 'Simpan Profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Ubah Profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -1166,7 +1166,7 @@ function updateDOM() {
   firstNameText.textContent = firstName;
   lastNameText.textContent = lastName;
   helloText.textContent = (
-    'Hello ' +
+    'Halo ' +
     firstName + ' ' +
     lastName + '!'
   );
@@ -1201,7 +1201,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Nama depan:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1209,15 +1209,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nama belakang:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Ubah Profil</button>
+  <p><i id="helloText">Halo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1229,7 +1229,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-The `updateDOM` function you wrote shows what React does under the hood when you set the state. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
+Fungsi `updateDOM` yang Anda tulis menunjukkan apa yang dilakukan React di balik layar ketika Anda menyetel *state*. (Namun, React juga menghindari pengubahan DOM untuk properti yang tidak berubah sejak terakhir kali *state* disetel).
 
 </Solution>
 
