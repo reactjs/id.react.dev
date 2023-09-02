@@ -4,7 +4,7 @@ title: Merespon Masukan dengan State
 
 <Intro>
 
-React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai *state* komponen, dan mengubahnya sebagai respons terhadap masukan pengguna. Cara ini mirip dengan bagaimana desainer memikirkan tentang UI.
+React menyediakan cara deklaratif untuk memanipulasi UI. Dibandingan dengan memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai *state* komponen, dan menggunakan *state* tersebut sebagai respons terhadap masukan pengguna. Cara ini mirip dengan bagaimana desainer memikirkan tentang UI.
 
 </Intro>
 
@@ -12,13 +12,13 @@ React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi 
 
 * Bagaimana pemrograman UI deklaratif berbeda dari pemrograman UI imperatif
 * Bagaimana cara menjabarkan berbagai *state* visual yang berbeda pada komponen Anda
-* Bagaimana cara memicu perubahan dari berbagai *state*
+* Bagaimana cara memicu perubahan ke berbagai *state*
 
 </YouWillLearn>
 
 ## Membandingkan UI deklaratif dengan imperatif {/*how-declarative-ui-compares-to-imperative*/}
 
-Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *berubah* dalam menanggapi tindakan pengguna. Pertimbangkan formulir yang memungkinkan pengguna mengirimkan jawaban:
+Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *berubah* dalam menanggapi tindakan pengguna. Pertimbangkan sebuah formulir yang memungkinkan pengguna mengirimkan jawaban:
 
 * Anda mengetikan sesuatu kedalam formulir, maka tombol kirim menjadi **aktif**
 * Anda mengklik tombol "Kirim", baik formulir maupun tombol "Kirim" tersebut menjadi **nonaktif** dan *spinner* muncul.
@@ -32,7 +32,7 @@ Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung denga
 
 Dia tidak tahu kemana Anda ingin pergi, dia hanya mengikuti perintah yang Anda berikan (dan apabila Anda memberikan arah yang salah, Anda akan sampai ditempat yang salah juga). Hal ini disebut *imperatif* karena Anda harus " memberi perintah" pada setiap elemen, dari pemintal hingga tombol, memberi tahu komputer *bagaimana cara* untuk memperbarui UI tersebut.
 
-Pada contoh pemrograman antarmuka imperatif, formulir dibangun tanpa menggunakan React, hanya mengguna browse [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+Pada contoh pemrograman antarmuka imperatif, formulir dibangun tanpa menggunakan React, hanya menggunakan [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) peramban:
 
 <Sandpack>
 
@@ -132,11 +132,11 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-Memanipulasi UI secara imperatif bekerja dengan cukup baik untuk contoh-contoh yang terpencil, tetapi menjadi jauh lebih sulit untuk dikelola dalam sistem yang lebih kompleks. Bayangkan jika Anda memperbarui halaman yang penuh dengan berbagai macam formulir seperti formulir di atas. Menambahkan elemen UI baru atau interaksi baru akan memerlukan pemeriksaan yang hati-hati terhadap semua kode yang ada untuk memastikan bahwa Anda tidak membuat bug (misalnya, lupa menampilkan atau menyembunyikan sesuatu).
+Memanipulasi UI secara imperatif bekerja dengan cukup baik untuk contoh-contoh tertentu, tetapi menjadi jauh lebih sulit untuk dikelola dalam sistem yang lebih kompleks. Bayangkan jika Anda memperbarui halaman yang penuh dengan berbagai macam formulir seperti formulir di atas. Menambahkan elemen UI baru atau interaksi baru akan memerlukan pemeriksaan yang hati-hati terhadap semua kode yang ada untuk memastikan bahwa Anda tidak membuat bug (misalnya, lupa menampilkan atau menyembunyikan sesuatu).
 
 React dibangun untuk mengatasi masalah ini.
 
-Pada React, Anda tidak perlu memanipulasi antarmuka secara langsung, maksudnya Anda tidak perlu mengaktifkan, menonaktifkan, menampilkan, atau menyembunyikan suatu component secara langsung. Melainkan, Anda dapat **mendeklarasikan apa yang ingin Anda tampilkan**, dan React akan mengupdate antarmuka tersebut. Pikirkan Anda menyewa taksi dan memberitahu pengemudinya kemana Anda akan pergi, daripada memberitahukan di mana ia harus berbelok. Itu adalah tugas pengemudi untuk mencari tahu bagaimana mengantar Anda ke tujuan, bahkan dia bisa menemukan jalan pintas yang tidak Anda tahu!
+Pada React, Anda tidak perlu memanipulasi antarmuka secara langsung, maksudnya Anda tidak perlu mengaktifkan, menonaktifkan, menampilkan, atau menyembunyikan suatu component secara langsung. Melainkan, Anda dapat **mendeklarasikan apa yang ingin Anda tampilkan**, dan React akan memperbarui antarmuka tersebut. Bayangkan Anda menyewa taksi dan memberitahu pengemudinya kemana Anda akan pergi, daripada memberitahukan di mana ia harus berbelok. Itu adalah tugas pengemudi untuk mencari tahu bagaimana mengantar Anda ke tujuan, bahkan dia bisa menemukan jalan pintas yang tidak Anda tahu!
 
 <Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="Di dalam mobil yang dikemudikan oleh React, seorang penumpang meminta untuk diantarkan ke tempat tertentu pada peta. React akan mencari cara menuju ke tempat tersebut." />
 
@@ -324,7 +324,7 @@ Anda dapat memicu pembaruan state sebagai respons terhadap dua jenis masukan:
   <Illustration caption="Computer inputs" alt="Satu dan nol." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-Pada kedua kasus tersebut, **Anda harus mengatur [variabel *state*](/learn/state-a-components-memory#anatomy-of-usestate) untuk memperbarui UI.** Untuk form yang Anda kembangkan, Anda perlu mengubah *state* sebagai respons terhadap berbagai masukan yang berbeda:
+Pada kedua kasus tersebut, **Anda harus mengatur [variabel *state*](/learn/state-a-components-memory#anatomy-of-usestate) untuk mengganti UI.** Untuk form yang Anda kembangkan, Anda perlu mengubah *state* sebagai respons terhadap berbagai masukan yang berbeda:
 
 * **Mengubah input teks** (manusia) akan mengubahnya dari *state* *Kosong* ke *state* *Mengetik* atau sebaliknya, tergantung apakah kotak teks kosong atau tidak.
 * **Mengklik tombol Kirim** (manusia) akan mengalihkannya ke *state* *Mengirimkan*.
@@ -376,11 +376,11 @@ Ide pertama Anda mungkin bukan yang terbaik, tapi itu bukan masalah, menulis ula
 
 ### Langkah 4: Hapus variabel *state* yang tidak esensial {/*step-4-remove-any-non-essential-state-variables*/}
 
-Anda ingin menghindari duplikasi pada konten *state* sehingga Anda hanya perlu mencatat *state* yang penting saja. Luangkan sedikit waktu untuk melakukan penulisan ulang pada struktur *state* Anda akan membuat komponen Anda lebih mudah dipahami, mengurangi duplikasi, dan menghindari ambiguitas yang tidak diinginkan. Target Anda adalah untuk **mencegah kasus di mana *state* dalam memori tidak merepresentasikan UI valid yang Anda harapkan untuk dilihat oleh pengguna** (Sebagai contoh, Anda tidak akan pernah ingin menampilkan pesan kesalahan dan menonaktifkan input pada waktu yang sama, atau pengguna tidak akan bisa memperbaiki kesalahan tersebut!)
+Anda ingin menghindari duplikasi pada konten *state* sehingga Anda hanya perlu mencatat *state* yang penting saja. Luangkan sedikit waktu untuk melakukan penulisan ulang pada struktur *state* Anda akan membuat komponen Anda lebih mudah dipahami, mengurangi duplikasi, dan menghindari ambiguitas yang tidak diinginkan. Target Anda adalah untuk **mencegah kasus di saat *state* dalam memori tidak merepresentasikan UI valid yang Anda harapkan untuk dilihat oleh pengguna** (Sebagai contoh, Anda tidak akan pernah ingin menampilkan pesan kesalahan dan menonaktifkan masukan pada waktu yang sama, atau pengguna tidak akan bisa memperbaiki kesalahan tersebut!)
 
 Berikut adalah beberapa hal yang dapat Anda pertimbangkan tentang variabel *state* Anda:
 
-* **Apakah keadaan ini menimbulkan kondisi paradoks?** Sebagai contoh, `isTyping` dan `isSubmit` tidak mungkin bernilai `true` bersamaan. Kondisi paradoks biasanya menandakan bahwa *state* tidak dibatasi dengan baik. Ada empat kemungkinan kombinasi dari dua boolean, tetapi hanya tiga yang sesuai dengan *state* yang sesuai. Untuk menghilangkan *state* yang "tidak mungkin", Anda dapat menyatukannya menjadi sebuah `status` yang harus merupakan salah satu dari tiga nilai: `'typing'` (mengetik), `'submitting'` (mengirim), atau `'success'` (sukses).
+* **Apakah keadaan ini menimbulkan kondisi paradoks?** Sebagai contoh, `isTyping` dan `isSubmit` tidak mungkin bernilai `true` bersamaan. Kondisi paradoks biasanya menandakan bahwa *state* tidak dibatasi dengan baik. Ada empat kemungkinan kombinasi dari dua *boolean*, tetapi hanya tiga yang sesuai dengan *state* yang sesuai. Untuk menghilangkan *state* yang "tidak mungkin", Anda dapat menyatukannya menjadi sebuah `status` yang harus merupakan salah satu dari tiga nilai: `'typing'` (mengetik), `'submitting'` (mengirim), atau `'success'` (sukses).
 * **Apakah informasi yang sama sudah tersedia di variabel status yang lain?** Kondisi paradoks lain: `isEmpty` dan `isTyping` tidak dapat bernilai `true` pada saat yang bersamaan. Dengan menjadikannya variabel *state* yang terpisah, Anda berisiko membuat keduanya tidak sinkron dan mengakibatkan bug. Untungnya, Anda dapat menghapus `isEmpty` dan sebagai gantinya memeriksa `answer.length === 0`.
 * **Bisakah Anda mendapatkan informasi yang sama dari kebalikan dari variabel state yang lain?** `isError` tidak diperlukan karena Anda bisa memeriksa `error !== null` sebagai gantinya.
 
@@ -404,7 +404,7 @@ Ketiga variabel ini merupakan representasi yang cukup baik dari *state* formulir
 
 ### Langkah 5: Hubungkan *event handler* untuk mengatur *state* tersebut {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Terakhir, buatlah *event handler* yang memperbarui *state*. Berikut ini adalah bentuk akhir, dengan semua *event handler* yang terhubung:
+Terakhir, buatlah *event handler* yang mengganti *state*. Berikut ini adalah bentuk akhir, dengan semua *event handler* terhubung:
 
 <Sandpack>
 
@@ -562,9 +562,9 @@ Komponen ini memiliki dua status visual: apabila gambar aktif, dan apabila gamba
 * Saat gambar aktif, kelas CSS adalah `background` dan `picture picture--active`.
 * Ketika gambar tidak aktif, kelas CSS adalah `background background--active` dan `picture`.
 
-Sebuah variabel *state* boolean sudah cukup untuk menyimpan informasi, apakah gambar tersebut aktif atau tidak. Tugas awalnya adalah menghapus atau menambahkan kelas CSS. Namun, di React Anda perlu *mendeskripsikan* apa yang ingin Anda lihat daripada *memanipulasi* elemen UI. Jadi, Anda perlu menghitung kedua kelas CSS berdasarkan *state* saat ini. Anda juga perlu [menghentikan propagasi](/learn/responing-to-events#stopping-propagation) agar mengklik gambar tidak terdeteksi sebagai klik pada latar belakang.
+Sebuah variabel *state boolean* sudah cukup untuk menyimpan informasi, apakah gambar tersebut aktif atau tidak. Tugas awalnya adalah menghapus atau menambahkan kelas CSS. Namun, di React Anda perlu *mendeskripsikan* apa yang ingin Anda lihat dibandingkan dengan *memanipulasi* elemen UI. Jadi, Anda perlu menentukan kedua kelas CSS berdasarkan *state* saat ini. Anda juga perlu [menghentikan propagasi](/learn/responing-to-events#stopping-propagation) agar mengklik gambar tidak terdeteksi sebagai klik pada latar belakang.
 
-Pastikan bahwa versi ini berfungsi dengan baik, dengan mengeklik gambar dan kemudian klik kembali di luar gambar tersebut:
+Pastikan bahwa versi ini berfungsi dengan baik, dengan mengeklik gambar dan kemudian klik kembali bagian di luar gambar tersebut:
 
 <Sandpack>
 
@@ -698,7 +698,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Perlu diingat bahwa jika dua potongan JSX yang berbeda mendeskripsikan pohon yang sama, susunannya (`<div>` pertama → `<img>` pertama) harus sama. Jika tidak, penggantian `isActive` akan menyebabkan pembuatan ulang seluruh pohon di dalamnya dan [mereset *state*-nya.](/learn/preserving-and-reset-state) Inilah sebabnya, jika pohon JSX dari kedua kasus tersebut menghasilkan pohon serupa, lebih baik penulisannya digabungkan menjadi sepotong JSX.
+Perlu diingat bahwa jika dua potongan JSX yang berbeda mendeskripsikan pohon yang serupa, susunannya (`<div>` pertama → `<img>` pertama) harus sama. Jika tidak, penggantian `isActive` akan menyebabkan pembuatan ulang seluruh pohon di dalamnya dan [mereset *state*-nya.](/learn/preserving-and-reset-state) Inilah sebabnya, jika pohon JSX dari kedua kasus tersebut menghasilkan pohon serupa, lebih baik penulisannya digabungkan menjadi sepotong JSX.
 
 </Solution>
 
@@ -842,7 +842,7 @@ label { display: block; margin-bottom: 20px; }
 
 Anda akan membutuhkan dua variabel state untuk menyimpan nilai input: `firstName` dan `lastName`. Anda juga akan membutuhkan variabel state `isEditing` yang menyimpan informasi apakah akan menampilkan masukan atau tidak. Anda seharusnya tidak memerlukan variabel `fullName` karena nama lengkap selalu dapat ditentukan dari `firstName` dan `lastName`.
 
-Terakhir, Anda harus menggunakan [pe-*render*-an bersyarat](/learn/conditional-rendering) untuk menampilkan atau menyembunyikan masukan, tergantung dari *state* `isEditing`.
+Terakhir, Anda harus menggunakan [pe-*render*-an kondisional](/learn/conditional-rendering) untuk menampilkan atau menyembunyikan masukan, tergantung dari *state* `isEditing`.
 
 <Sandpack>
 
