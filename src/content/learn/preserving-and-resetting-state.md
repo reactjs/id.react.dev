@@ -935,7 +935,11 @@ Mengklik "next" lagi
 
 </DiagramGroup>
 
+<<<<<<< HEAD
 Setiap *state* `Counter` akan dihancurkan setiap kali dihapus dari DOM. Inilah sebabnya mengapa mereka mengatur ulang setiap kali Anda mengklik tombol.
+=======
+Each `Counter`'s state gets destroyed each time it's removed from the DOM. This is why they reset every time you click the button.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 Solusi ini nyaman ketika Anda hanya memiliki beberapa komponen independen yang di-*render* di tempat yang sama. Dalam contoh ini, Anda hanya memiliki dua komponen, sehingga tidak merepotkan untuk me-*render* keduanya secara terpisah di JSX.
 

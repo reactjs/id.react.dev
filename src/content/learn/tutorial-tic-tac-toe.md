@@ -2266,7 +2266,11 @@ menjadi
 <li>Alexa: 5 tasks left</li>
 ```
 
+<<<<<<< HEAD
 Selain jumlah yang diperbarui, manusia yang membaca ini mungkin akan mengatakan bahwa Anda menukar urutan Alexa dan Ben dan menyisipkan Claudia di antara Alexa dan Ben. Namun, React adalah program komputer dan tidak dapat mengetahui apa yang Anda maksudkan, sehingga Anda perlu menentukan props _key_ untuk setiap item list untuk membedakan setiap item list dari saudaranya. Jika data Anda berasal dari database, ID database Alexa, Ben, dan Claudia dapat digunakan sebagai key.
+=======
+In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 ```js {1}
 <li key={user.id}>

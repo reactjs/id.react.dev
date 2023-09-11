@@ -32,7 +32,11 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk me-*render* komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian me-*render* nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
+=======
+* `load`: A function that returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or another *thenable* (a Promise-like object with a `then` method). React will not call `load` until the first time you attempt to render the returned component. After React first calls `load`, it will wait for it to resolve, and then render the resolved value's `.default` as a React component. Both the returned Promise and the Promise's resolved value will be cached, so React will not call `load` more than once. If the Promise rejects, React will `throw` the rejection reason for the nearest Error Boundary to handle.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 #### Kembalian {/*returns*/}
 
@@ -48,7 +52,11 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Kembalian {/*load-returns*/}
 
+<<<<<<< HEAD
 Anda perlu mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). Pada akhirnya, komponen ini harus diselesaikan ke tipe komponen React yang valid, seperti sebuah fungsi, [`memo`](/reference/react/memo), atau [`forwardRef`](/reference/react/forwardRef) komponen.
+=======
+You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 ---
 
@@ -70,7 +78,11 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
+<<<<<<< HEAD
 Kode ini bergantung pada [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) yang mungkin memerlukan dukungan dari *bundler* atau *framework* yang Anda gunakan.
+=======
+This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy component you're importing was exported as the `default` export.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu induknya ke dalam [`<Suspense>`](/reference/react/Suspense):
 
