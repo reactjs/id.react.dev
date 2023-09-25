@@ -461,8 +461,13 @@ export default function Gallery() {
             (Penghargaan Nobel Fisika, Penghargaan Nobel Kimia, Medali Davy, Medali Matteucci)
           </li>
           <li>
+<<<<<<< HEAD
             <b>Telah Menemukan: </b>
             polonium (unsur kimia)
+=======
+            <b>Discovered: </b>
+            polonium (chemical element)
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
           </li>
         </ul>
       </section>
