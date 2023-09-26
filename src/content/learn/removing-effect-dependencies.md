@@ -1613,11 +1613,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 Efek Anda dijalankan ulang karena bergantung pada objek `options`. Objek dapat dibuat ulang tanpa disengaja, Anda harus mencoba menghindarinya sebagai dependensi Efek Anda bila memungkinkan.
 
-<<<<<<< HEAD
 Perbaikan yang paling tidak invasif adalah dengan membaca `roomId` dan `serverUrl` tepat di luar Efek, dan kemudian membuat Efek bergantung pada nilai primitif tersebut (yang tidak dapat berubah secara tidak sengaja). Di dalam Efek, buat sebuah objek dan berikan ke `createConnection`:
-=======
-The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and pass it to `createConnection`:
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 <Sandpack>
 

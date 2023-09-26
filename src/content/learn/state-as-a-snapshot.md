@@ -77,15 +77,9 @@ Tidak seperti sebuah foto atau sebuah bingkai film, "*snapshot*" antarmuka yang 
 
 Ketika React melakukan *render* ulang pada sebuah komponen:
 
-<<<<<<< HEAD
 1. React memanggil fungsi Anda kembali.
 2. Fungsi Anda mengembalikan *snapshot* JSX yang baru.
 3. React lalu memperbarui antarmuka agar sesuai dengan *snapshot* yang Anda kembalikan.
-=======
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot your function returned.
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 <IllustrationBlock sequential>
     <Illustration caption="React menjalankan fungsi" src="/images/docs/illustrations/i_render1.png" />

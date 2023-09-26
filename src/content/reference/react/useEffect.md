@@ -62,11 +62,7 @@ function ChatRoom({ roomId }) {
 
 * Jika beberapa dependensi Anda adalah objek atau fungsi yang didefinisikan di dalam komponen, ada risiko bahwa mereka akan **membuat *Effect* berjalan ulang lebih sering dari yang diperlukan.** Untuk mengatasinya, hapus dependensi [objek](#removing-unnecessary-object-dependencies) dan [fungsi](#removing-unnecessary-function-dependencies) yang tidak diperlukan. Anda juga dapat [mengekstrak pembaruan *state*](#updating-state-based-on-previous-state-from-an-effect) dan [logika non-reaktif](#reading-the-latest-props-and-state-from-an-effect) di luar *Effect* Anda.
 
-<<<<<<< HEAD
 * Jika *Effect* Anda tidak disebabkan oleh interaksi (seperti klik), React akan membiarkan browser **menampilkan layar yang diperbarui terlebih dahulu sebelum menjalankan *Effect* Anda.** Jika *Effect* Anda melakukan sesuatu yang visual (misalnya, menempatkan tooltip), dan penundaannya terasa (misalnya, berkedip), gantilah `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
-=======
-* If your Effect wasn't caused by an interaction (like a click), React will generally let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 * Meskipun *Effect* Anda disebabkan oleh interaksi (seperti klik), **browser mungkin akan memperbarui tampilan layar sebelum memproses pembaruan *state* di dalam Efek Anda.** Biasanya, itu adalah yang Anda inginkan. Namun, jika Anda harus mencegah browser memperbarui tampilan layar, Anda perlu mengganti `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
 

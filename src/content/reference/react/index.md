@@ -104,16 +104,13 @@ Untuk memprioritaskan pe-*render*-an, gunakan salah satu dari *Hook-hook* ini:
 
 ---
 
-<<<<<<< HEAD
-## Hook lainnya {/*other-hooks*/}
-=======
-## Resource Hooks {/*resource-hooks*/}
+## Hook Resource {/*resource-hooks*/}
 
-*Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
+*Resource* dapat diakses sebuah komponen tanpa membuatnya menjadi bagian dari *state*. Misalnya, sebuah komponen dapat membaca pesan dari sebuah *Promise* atau membaca informasi *style* dari sebuah *context*.
 
 To read a value from a resource, use this Hook:
 
-- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+- [`use`](/reference/react/use) memungkinkan Anda membaca nilai dari sebuah *resource seperti* [*Promise*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau [*context*](/learn/passing-data-deeply-with-context).
 
 ```js
 function MessageComponent({ messagePromise }) {
@@ -125,8 +122,7 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-## Other Hooks {/*other-hooks*/}
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
+## Hook lainnya {/*other-hooks*/}
 
 Ini adalah Hook yang sebagian besar berguna untuk penulis pustaka dan tidak umum digunakan di dalam kode aplikasi.
 
