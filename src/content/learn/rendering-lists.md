@@ -1088,7 +1088,11 @@ export const recipes = [{
 
 #### Daftar dengan pemisah {/*list-with-a-separator*/}
 
+<<<<<<< HEAD
 Pada contoh ini, terdapat sebuah *haiku* terkenal dari Katsushika Hokusai yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
+=======
+This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 ```js
 <article>

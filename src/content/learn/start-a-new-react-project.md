@@ -21,10 +21,16 @@ Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan Rea
 **[Next.js](https://nextjs.org/) adalah *full-stack framework* React.** *framework* ini serbaguna dan memudahkan Anda untuk membuat aplikasi React dalam berbagai ukuran--mulai dari halaman blog statis hingga aplikasi dinamis yang kompleks. Untuk membuat proyek Next.js, jalankan di terminal Anda:
 
 <TerminalBlock>
-npx create-next-app
+npx create-next-app@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 Jika Anda baru menggunakan Next.js, baca [panduan Next.js.](https://nextjs.org/learn/foundations/about-nextjs)
+=======
+If you're new to Next.js, check out the [Next.js tutorial.](https://nextjs.org/learn/foundations/about-nextjs)
+
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports a [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplikasi Next.js](https://nextjs.org/docs/deployment) ke semua ekosistem berbasis Node.js atau *serverless hosting* atau pada *server* Anda sendiri. [Aplikasi statis Next.js](https://nextjs.org/docs/advanced-features/static-html-export) dapat dipasang pada layanan *hosting* statis apa pun.
 ### Remix {/*remix*/}
@@ -88,6 +94,7 @@ Setiap hari, fitur-fitur ini semakin dekat untuk menjadi teknologi yang siap dig
 
 ### *App Router* Next.js {/*nextjs-app-router*/}
 
+<<<<<<< HEAD
 **[*App Router* Next.js](https://beta.nextjs.org/docs/getting-started) adalah sebuah desain baru dari Next.js API yang bertujuan untuk memenuhi visi tim React mengenai arsitektur aplikasi *full-stack*.** Hal ini dapat membantu Anda untuk mengambil data pada komponen asinkron yang berjalan pada *server* atau saat waktu *build*.
 
 Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplikasi Next.js](https://nextjs.org/docs/deployment) ke semua ekosistem berbasis Node.js atau *serverless hosting* atau pada *server* Anda sendiri. Next.js juga mendukung [ekspor halaman statis](https://beta.nextjs.org/docs/configuring/static-export) yang tidak membutuhkan *server*.
@@ -96,6 +103,11 @@ Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplika
 *App Router* Next.js **saat ini dalam fase *beta* dan tidak direkomendasikan untuk implementasi di tingkat *production*** (per Bulan Maret 2023). Untuk mencoba bereksperimen dengan *App Router* dalam proyek Next.js yang ada, [ikuti panduan migrasi bertahap ini](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
 
 </Pitfall>
+=======
+**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
+
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 <DeepDive>
 
