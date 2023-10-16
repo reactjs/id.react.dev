@@ -645,7 +645,13 @@ Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya,
 
 Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
+<<<<<<< HEAD
 Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar. 
+=======
+Switching the tabs feels slow because it forces the slowed down `List` to re-render. That's expected because the `tab` has changed, and so you need to reflect the user's new choice on the screen.
+
+Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleTodos` array has not changed since the last render. The `visibleTodos` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** Pe-*render*-an ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
 <Sandpack>

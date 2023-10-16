@@ -286,8 +286,14 @@ Pada contoh di atas, React dapat memulai *streaming* halaman lebih awal. Hanya `
 
 **Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Di antaranya:
 
+<<<<<<< HEAD
 - *Data fetching* dengan *framework* yang mendukung *Suspense* seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/advanced-features/react-18)
 - Pemuatan kode komponen secara *lazy-loading* dengan [`lazy`](/reference/react/lazy)
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 *Suspense* **tidak** dapat medeteksi *data fetching* jika dilakukan dalam *Effect* atau *event handler.*
 
