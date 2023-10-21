@@ -750,11 +750,11 @@ Baca **[Menghapus *Effect Dependencies*](/learn/removing-effect-dependencies)** 
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## Menggunakan kembali logika dengan *Hooks* kustom {/*reusing-logic-with-custom-hooks*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+Aplikasi React dibangun dengan *Hooks* bawaan seperti `useState`, `useContext`, dan `useEffect`. Kadang, Anda akan berharap ada *Hook* untuk tujuan yang lebih spesifik: Misalkan, mengambil data, melacak apakah pengguna sedang online, atau menghubungkan ke ruang *chat*. Untuk melakukannya, anda dapat membuat *Hooks* sendiri untuk kebutuhan aplikasi Anda.
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+Pada contoh ini, *hook* kustom `usePointerPosition` melacak posisi kursor, sementara *hook* kustom `useDelayedValue` mengembalikan nilai yang "tertinggal" dari nilai yang Anda lewatkan selama beberapa milidetik. Geser kursor di atas area pratinjau *sandbox* untuk melihat jejak titik yang bergerak mengikuti kursor:
 
 <Sandpack>
 
@@ -835,14 +835,14 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+Anda dapat membuat *Hooks* kustom, menggabungkannya bersama, mengirim data di antara keduanya, dan menggunakan kembali di antara komponen. Seiring dengan perkembangan aplikasi Anda, Anda akan menulis lebih sedikit *Effects* dengan tangan karena Anda akan mampu menggunakan kembali *Hooks* kustom yang Anda sudah tulis. There are also many excellent custom Hooks maintained by the React community.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+Baca **[Menggunakan kembali logika dengan *Hooks* kustom](/learn/reusing-logic-with-custom-hooks)** untuk mempelajari bagaimana membagi logika antara komponen.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+Pergi ke [Mereferensikan nilai menggunakan refs](/learn/referencing-values-with-refs) untuk memulai membaca bab ini halaman demi halaman!
