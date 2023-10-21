@@ -310,17 +310,17 @@ Baca **[Siklus hidup *effects* yang reaktif](/learn/lifecycle-of-reactive-effect
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## Memisahkan *events* dari *Effects* {/*separating-events-from-effects*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi stabil React.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+*Event handlers* hanya berjalan ulang ketika Anda melakukan interaksi yang sama lagi. Tidak seperti *event handlers*, *Effects* menyinkronkan ulang jika nilai apapun yang mereka baca, seperti *props* atau *state*, berbeda dari saat *render* terakhir. Kadang, Anda ingin campuran kedua perilaku tersebut: sebuah *Effect* yang berjalan ulang sebagai respon terhadap beberapa nilai tetapi tidak pada nilai lainnya.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+Semua kode di dalam *Effects* adalah *reactive.* *Effects* tersebut akan berjalan lagi jika beberapa nilai *reactive* yang dibacanya telah berubah karena *render* ulang. Misalkan, *Effect* ini akan menghubungkan kembali ke *chat* jika `roomId` atau `theme` telah berubah:
 
 <Sandpack>
 
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` yang berubah. Mengganti `theme` seharusnya tidak menghubungkan kembali ke *chat*! Pindahkan pembacaan kode `theme` dari *Effect* anda ke dalam *Effect Event*:
 
 <Sandpack>
 
@@ -581,11 +581,11 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+Kode di dalam *Effect Events* tidak bersifat *reactive*, sehingga mengubah `theme` tidak lagi membuat *Effect* Anda terhubung kembali.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+Baca **[Memisahkan *Events* dari *Effects*](/learn/separating-events-from-effects)** untuk mempelajari bagaimana mencegah beberapa nilai dari memicu ulang *Effects*.
 
 </LearnMore>
 
