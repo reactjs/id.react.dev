@@ -13,10 +13,10 @@ Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi den
 * [Bagaimana cara "mengingat" informasi tanpa harus melakukan rendering kembali](/learn/referencing-values-with-refs)
 * [Bagaimana cara mengakses elemen DOM yang dikelola oleh React](/learn/manipulating-the-dom-with-refs)
 * [Bagaimana cara menyinkronkan komponen dengan sistem eksternal](/learn/synchronizing-with-effects)
-* [Bagaimana cara menghapus efek yang tidak perlu dari komponen Anda](/learn/you-might-not-need-an-effect)
-* [Bagaimana sebuah siklus hidup efek berbeda dari komponen](/learn/lifecycle-of-reactive-effects)
+* [Bagaimana cara menghapus *Effect* yang tidak perlu dari komponen Anda](/learn/you-might-not-need-an-effect)
+* [Bagaimana sebuah siklus hidup *Effect* berbeda dari komponen](/learn/lifecycle-of-reactive-effects)
 * [Bagaimana mencegah beberapa nilai dari pemanggilan *Effects* kembali](/learn/separating-events-from-effects)
-* [Bagaiaman membuat efek Anda berjalan kembali lebih sering](/learn/removing-effect-dependencies)
+* [Bagaimana membuat *Effect* Anda berjalan kembali lebih sering](/learn/removing-effect-dependencies)
 * [Bagaimana membagi logika antara komponen](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
