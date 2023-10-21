@@ -589,11 +589,11 @@ Baca **[Memisahkan *Events* dari *Effects*](/learn/separating-events-from-effect
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## Menghapus *Effect dependencies* {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+Ketika Anda menulis sebuah *Effect*, linter akan memverifikasi bahwa Anda telah menyertakan setiap nilai *reactive* (seperti *props* dan *state*) yang *Effect* baca di daftar *Effect dependencies* Anda. Ini memastikan bahwa *Effect* Anda tetap selaras dengan *props* dan *state* terbaru dari komponen Anda. *Dependencies* yang tidak perlu dapat menyebabkan *Effect* Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terhingga. Cara Anda menghapusnya tergantung pada kasusnya.
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+Sebagai contoh, *Effect* ini bergantung pada objek `options` yang dibuat ulang setiap kali Anda mengedit input:
 
 <Sandpack>
 
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+Anda tidak ingin *chat* terhubung kembali setiap kali Anda memulai mengetik sebuah pesan di dalam *chat*. Untuk memperbaiki masalah ini, pindahkan pembuatan objek `options` ke dalam *Effect* sehingga *Effect* hanya bergantung pada string `roomId`:
 
 <Sandpack>
 
@@ -742,11 +742,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+Perhatikan bahwa Anda tidak memulai dengan mengedit daftar *dependency* untuk menghapus `options` *dependency*. Itu akan salah. Sebaliknya, Anda mengubah kode sekitarnya sehingga *dependency*-nya menjadi *tidak perlu.* Anggaplah daftar *dependency* sebagai daftar semua nilai *reactive* yang digunakan oleh kode *Effect* Anda. Anda tidak memilih dengan sengaja apa yang harus dimasukan dalam daftar. Daftar tersebut menjelaskan kode Anda. Untuk mengubah daftar *dependency*, ubahlah kode.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+Baca **[Menghapus *Effect Dependencies*](/learn/removing-effect-dependencies)** untuk mempelajari bagaimana membuat *Effect* Anda berjalan ulang lebih jarang.
 
 </LearnMore>
 
