@@ -835,7 +835,7 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-Anda dapat membuat *Hooks* kustom, menggabungkannya bersama, mengirim data di antara keduanya, dan menggunakan kembali di antara komponen. Seiring dengan perkembangan aplikasi Anda, Anda akan menulis lebih sedikit *Effects* dengan tangan karena Anda akan mampu menggunakan kembali *Hooks* kustom yang Anda sudah tulis. There are also many excellent custom Hooks maintained by the React community.
+Anda dapat membuat *Hooks* kustom, menggabungkannya bersama, mengirim data di antara keduanya, dan menggunakan kembali di antara komponen. Seiring dengan perkembangan aplikasi Anda, Anda akan menulis lebih sedikit *Effects* dengan tangan karena Anda akan mampu menggunakan kembali *Hooks* kustom yang Anda sudah tulis. Terdapat banyak *Hook* kustom yang luar biasa yang dikelola oleh komunitas React.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
