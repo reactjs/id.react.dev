@@ -101,7 +101,7 @@ Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** unt
 
 Beberapa komponen perlu menyinkronkan dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen *non-React* berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk menyinkronkan komponen Anda dengan sistem di luar React.
 
-Menekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
+Tekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
 
 <Sandpack>
 
