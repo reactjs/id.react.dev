@@ -1047,8 +1047,13 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara yang populer untuk men
 
 Daftar kekurangan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat *mount* dengan *library* manapun. Seperti dengan *routing*, pengambilan data tidak mudah dilakukan dengan baik, jadi kami sarankan pendekatan berikut:
 
+<<<<<<< HEAD
 - **Jika Anda menggunakan [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun cache sisi klien. Solusi *open source* populer termasuk [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membangun solusi Anda sendiri, dalam hal ini Anda akan menggunakan *Effects* di bawah kap, tetapi juga menambahkan logika untuk mendeduplikasi permintaan, *caching respons*, dan menghindari air terjun(*waterfalls*) jaringan (dengan memuat data atau mengangkat persyaratan data ke *route*).
+=======
+- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 
 Anda dapat terus mengambil data secara langsung dalam *Effects* jika kedua pendekatan ini tidak cocok untuk Anda.
 
