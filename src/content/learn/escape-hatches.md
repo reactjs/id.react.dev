@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Banyak *Effects* juga melakukan "pemberishan" setelah mereka selesai. Misalkan, sebuah *Effect* yang mengatur koneksi ke *chat server* harus mengembalikan fungsi pembersih (*cleanup function*) yang memberi tahu React bagaimana cara memutuskan koneksi komponen Anda dari *server* tersebut:
+Banyak *Effects* juga melakukan "pembersihan" setelah mereka selesai. Misalkan, sebuah *Effect* yang mengatur koneksi ke *chat server* harus mengembalikan fungsi pembersih (*cleanup function*) yang memberi tahu React bagaimana cara memutuskan koneksi komponen Anda dari *server* tersebut:
 
 <Sandpack>
 
