@@ -29,7 +29,7 @@ Ketika Anda ingin sebuah komponen "mengingat" beberapa informasi, tapi Anda tida
 const ref = useRef(0);
 ```
 
-Sama seperti *state*, *refs* disimpan oleh React diantara pe-*render*-an ulang. Namun, mengatur *state* menyebabkan komponen di-*render* ulang. Mengganti sebuah *ref* tidak! Anda dapat mengakses nilai saat ini dari *ref* tersebut melalui properti `ref.current`.
+Sama seperti *state*, *refs* disimpan oleh React diantara pe-*render*-an ulang. Namun, mengatur *state* menyebabkan komponen di-*render* ulang. Mengganti sebuah *ref* tidak menyebabkan itu! Anda dapat mengakses nilai saat ini dari *ref* tersebut melalui properti `ref.current`.
 
 <Sandpack>
 
