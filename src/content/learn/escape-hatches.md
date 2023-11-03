@@ -10,7 +10,7 @@ Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi den
 
 <YouWillLearn isChapter={true}>
 
-* [Bagaimana cara "mengingat" informasi tanpa harus melakukan rendering kembali](/learn/referencing-values-with-refs)
+* [Bagaimana cara "mengingat" informasi tanpa harus melakukan *rendering* kembali](/learn/referencing-values-with-refs)
 * [Bagaimana cara mengakses elemen DOM yang dikelola oleh React](/learn/manipulating-the-dom-with-refs)
 * [Bagaimana cara menyinkronkan komponen dengan sistem eksternal](/learn/synchronizing-with-effects)
 * [Bagaimana cara menghapus *Effect* yang tidak perlu dari komponen Anda](/learn/you-might-not-need-an-effect)
