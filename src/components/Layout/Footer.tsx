@@ -299,7 +299,7 @@ export function Footer() {
             Menambahkan Interaktivitas
           </FooterLink>
           <FooterLink href="/learn/managing-state">Mengelola State</FooterLink>
-          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
+          <FooterLink href="/learn/escape-hatches">Jalan Keluar</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
