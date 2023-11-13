@@ -984,8 +984,13 @@ export const places = [{
   imageId: 'kxsph5C'
 }, {
   id: 5, 
+<<<<<<< HEAD
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
+=======
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -1123,8 +1128,13 @@ export const places = [{
   imageId: 'kxsph5C'
 }, {
   id: 5, 
+<<<<<<< HEAD
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
+=======
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
   imageId: 'rTqKo46'
 }, {
   id: 6,
