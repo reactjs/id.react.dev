@@ -1088,7 +1088,11 @@ export const recipes = [{
 
 #### Daftar dengan pemisah {/*list-with-a-separator*/}
 
+<<<<<<< HEAD
 Pada contoh ini, terdapat sebuah *haiku* terkenal dari Katsushika Hokusai yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
+=======
+This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ```js
 <article>
@@ -1147,7 +1151,11 @@ hr {
 
 <Hint>
 
+<<<<<<< HEAD
 Anda bisa mengubah `map()` ke pengulangan manual atau menggunakan `Fragment`.
+=======
+You'll either need to convert `map` to a manual loop, or use a Fragment.
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Hint>
 
@@ -1210,7 +1218,11 @@ hr {
 
 Penggunakan indeks baris sebagai `key` tidak bisa dilakukan karena setiap pemisah dan baris berada di senarai yang sama. Namun, hal ini bisa dihindari dengan menambahkan akhiran seperti `key={i + '-text'}`.
 
+<<<<<<< HEAD
 Anda juga bisa me-*render* sebuah kumpulan fragmen yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
+=======
+Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 <Sandpack>
 
@@ -1256,7 +1268,11 @@ hr {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Ingat, fragmen (biasa ditulis `<> </>`) memberi cara bagi Anda untuk menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
+=======
+Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Solution>
 
