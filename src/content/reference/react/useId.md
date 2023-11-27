@@ -178,7 +178,11 @@ Anda mungkin bertanya-tanya mengapa `useId` lebih baik daripada menambahkan vari
 
 Manfaat utama `useId` adalah React memastikan bahwa ia bekerja dengan [*server rendering*.](/reference/react-dom/server) Selama *server rendering*, komponen Anda menghasilkan keluaran HTML. Kemudian, pada klien, [hidrasi](/reference/react-dom/client/hydrateRoot) melampirkan *event handler* Anda ke HTML yang dihasilkan. Agar hidrasi berfungsi, output klien harus cocok dengan HTML dari *server*.
 
+<<<<<<< HEAD
 Hal ini sangat sulit untuk dijamin dengan penghitung kenaikan karena urutan di mana komponen klien terhidrasi mungkin tidak sesuai dengan urutan di mana HTML dari *server* dipancarkan. Dengan memanggil `useId`, Anda memastikan bahwa hidrasi akan berfungsi, dan hasilnya akan cocok antara *server* dan klien.
+=======
+This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+>>>>>>> 6570e6cd79a16ac3b1a2902632eddab7e6abb9ad
 
 
 Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggil. Inilah sebabnya, jika pohon di klien dan *server* sama, "jalur induk" akan cocok terlepas dari urutan *rendering*.
@@ -302,4 +306,3 @@ input { margin: 5px; }
 ```
 
 </Sandpack>
-
