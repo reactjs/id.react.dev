@@ -10,6 +10,7 @@ title: Mempertahankan dan Mengatur Ulang State
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * Bagaimana React "melihat" struktur komponen
 * Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
 * Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
@@ -36,7 +37,19 @@ Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* 
 ## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
 Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
+=======
+* When React chooses to preserve or reset the state
+* How to force React to reset component's state
+* How keys and types affect whether the state is preserved
 
+</YouWillLearn>
+
+## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+
+React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
+
+When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 
 Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 
@@ -190,7 +203,11 @@ Memperbarui *state*
 </DiagramGroup>
 
 
+<<<<<<< HEAD
 React akan mempertahankan *state* selama Anda me-*render* komponen yang sama pada posisi yang sama. Untuk melihat hal ini, naikkan kedua penghitung, lalu hapus komponen kedua dengan menghapus centang pada *checkbox* "Render the second counter", lalu tambahkan kembali dengan mencentangnya lagi:
+=======
+React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
 
 <Sandpack>
 

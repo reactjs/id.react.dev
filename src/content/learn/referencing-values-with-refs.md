@@ -284,7 +284,11 @@ Anda juga tidak perlu khawatir tentang [menghindari mutasi](/learn/updating-obje
 
 ## *Refs* dan *DOM* {/*refs-and-the-dom*/}
 
+<<<<<<< HEAD
 Anda dapat memberikan nilai apa pun kepada *ref*. Namun, penggunaan *ref* yang paling umum adalah untuk mengakses sebuah elemen *DOM*. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah *ref* ke dalam atribut `ref` di *JSX*, seperti `<div ref={myRef}>`, React akan menempatkan elemen *DOM* yang sesuai ke dalam `myRef.current`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
+=======
+You can point a ref to any value. However, the most common use case for a ref is to access a DOM element. For example, this is handy if you want to focus an input programmatically. When you pass a ref to a `ref` attribute in JSX, like `<div ref={myRef}>`, React will put the corresponding DOM element into `myRef.current`. Once the element is removed from the DOM, React will update `myRef.current` to be `null`. You can read more about this in [Manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
 
 <Recap>
 

@@ -697,7 +697,7 @@ Sebuah tipe *event handler* untuk *event* `onWheel`.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
