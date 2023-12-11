@@ -626,7 +626,11 @@ export default function PackingList() {
 
 Perhatikan bahwa Anda harus menulis `importance > 0 && ...` dan bukan `importance && ...` sehingga jika `importance` adalah `0`, `0` tidak di-*render* sebagai hasilnya!
 
+<<<<<<< HEAD
 Dalam solusi ini, dua kondisi terpisah digunakan untuk menyisipkan spasi di antara nama dan label kepentingan. Atau, Anda bisa menggunakan *fragment* dengan spasi di depan: `importance > 0 && <> <i>...</i></>` atau tambahkan spasi langsung di dalam `<i>`:  `importance > 0 && <i> ...</i>`.
+=======
+In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+>>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 </Solution>
 
