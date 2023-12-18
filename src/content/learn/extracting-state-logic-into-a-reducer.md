@@ -23,7 +23,7 @@ Saat komponen-komponen Anda semakin kompleks, hal ini mengakibatkan berbagai car
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -79,7 +79,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -103,7 +103,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -398,7 +398,7 @@ Anda bahkan dapat menggunakan metode `reduce()` dengan `initialState` dan sebuah
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 import tasksReducer from './tasksReducer.js';
 
 let initialState = [];
@@ -415,7 +415,7 @@ const output = document.getElementById('output');
 output.textContent = JSON.stringify(finalState, null, 2);
 ```
 
-```js tasksReducer.js
+```js src/tasksReducer.js
 export default function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
@@ -493,7 +493,7 @@ Sekarang fungsi *reducer* sudah sepenuhnya terhubung! Di sini, fungsi *reducer* 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -574,7 +574,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -598,7 +598,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -678,7 +678,7 @@ Hal ini opsional, namun jika Anda ingin melakukannya, Anda bahkan dapat memindah
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -730,7 +730,7 @@ const initialTasks = [
 ];
 ```
 
-```js tasksReducer.js
+```js src/tasksReducer.js
 export default function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
@@ -762,7 +762,7 @@ export default function tasksReducer(tasks, action) {
 }
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -786,7 +786,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -889,7 +889,7 @@ Sama seperti [memperbarui objek](/learn/updating-objects-in-state#write-concise-
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useImmerReducer } from 'use-immer';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -964,7 +964,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -988,7 +988,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -1127,7 +1127,7 @@ Ini berarti bahwa objek aksi Anda harus memiliki `type: 'changed_selection'`. An
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1161,7 +1161,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1189,7 +1189,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1210,7 +1210,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1277,7 +1277,7 @@ Berikut adalah contoh yang diperbarui untuk mengirimkan pesan yang sesuai:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1311,7 +1311,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1339,7 +1339,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1363,7 +1363,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1421,7 +1421,7 @@ Saat ini, menekan tombol "Kirim" tidak melakukan apa-apa. Tambahkan *event handl
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1455,7 +1455,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1483,7 +1483,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1507,7 +1507,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js active
+```js src/Chat.js active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1560,7 +1560,7 @@ Ada beberapa cara yang dapat Anda lakukan pada *event handler* tombol "Kirim". S
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1594,7 +1594,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1622,7 +1622,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1646,7 +1646,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js active
+```js src/Chat.js active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1708,7 +1708,7 @@ Namun, *dari perspektif pengguna*, mengirim pesan adalah tindakan yang berbeda d
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1742,7 +1742,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js active
+```js src/messengerReducer.js active
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1776,7 +1776,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1800,7 +1800,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js active
+```js src/Chat.js active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1905,7 +1905,7 @@ Syntax `[key]: value` [properti terhitung](https://developer.mozilla.org/en-US/d
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1939,7 +1939,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   message: 'Hello',
@@ -1973,7 +1973,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1997,7 +1997,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2082,7 +2082,7 @@ Inilah solusi lengkapnya:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -2116,7 +2116,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   messages: {
@@ -2159,7 +2159,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2183,7 +2183,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2270,7 +2270,7 @@ Ingat bahwa sebuah fungsi *reducer* memiliki dua argumen--state saat ini dan obj
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from './MyReact.js';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -2304,7 +2304,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   messages: {
@@ -2347,7 +2347,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js MyReact.js active
+```js src/MyReact.js active
 import { useState } from 'react';
 
 export function useReducer(reducer, initialState) {
@@ -2359,7 +2359,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2383,7 +2383,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js hidden
+```js src/Chat.js hidden
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2444,7 +2444,7 @@ Mengirimkan aksi akan memanggil *reducer* dengan state saat ini dan aksi tersebu
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from './MyReact.js';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -2478,7 +2478,7 @@ const contacts = [
 ];
 ```
 
-```js messengerReducer.js
+```js src/messengerReducer.js
 export const initialState = {
   selectedId: 0,
   messages: {
@@ -2521,7 +2521,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js MyReact.js active
+```js src/MyReact.js active
 import { useState } from 'react';
 
 export function useReducer(reducer, initialState) {
@@ -2536,7 +2536,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2560,7 +2560,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js Chat.js hidden
+```js src/Chat.js hidden
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {

@@ -697,7 +697,7 @@ Sebuah tipe *event handler* untuk *event* `onWheel`.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
@@ -775,7 +775,7 @@ Pada contoh di atas, `style={{}}` bukan merupakan sintaks khusus, tapi terdapat 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
 const pengguna = {
@@ -789,8 +789,13 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js Avatar.js active
 export default function Avatar({ pengguna }) {
+=======
+```js src/Avatar.js active
+export default function Avatar({ user }) {
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
   return (
     <img
       src={pengguna.urlGambar}
@@ -805,7 +810,7 @@ export default function Avatar({ pengguna }) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -944,7 +949,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();

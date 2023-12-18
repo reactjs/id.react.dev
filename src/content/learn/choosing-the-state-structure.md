@@ -612,7 +612,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js places.js active
+```js src/places.js active
 export const initialTravelPlan = {
   id: 0,
   title: '(Root)',
@@ -868,7 +868,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js places.js active
+```js src/places.js active
 export const initialTravelPlan = {
   0: {
     id: 0,
@@ -1204,7 +1204,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
 }
 ```
 
-```js places.js
+```js src/places.js
 export const initialTravelPlan = {
   0: {
     id: 0,
@@ -1543,7 +1543,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
 }
 ```
 
-```js places.js
+```js src/places.js
 export const initialTravelPlan = {
   0: {
     id: 0,
@@ -1841,7 +1841,7 @@ Komponen `Clock` ini menerima dua *prop*: `color` dan `time`. Ketika Anda memili
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 import { useState } from 'react';
 
 export default function Clock(props) {
@@ -1854,7 +1854,7 @@ export default function Clock(props) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -1896,7 +1896,7 @@ Masalahnya adalah komponen ini memiliki *state* `color` yang diinisialisasi deng
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 import { useState } from 'react';
 
 export default function Clock(props) {
@@ -1908,7 +1908,7 @@ export default function Clock(props) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -1948,7 +1948,7 @@ Or, using the destructuring syntax:
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 import { useState } from 'react';
 
 export default function Clock({ color, time }) {
@@ -1960,7 +1960,7 @@ export default function Clock({ color, time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -2010,7 +2010,7 @@ Apakah ada *state* yang redundan dalam contoh ini?
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddItem from './AddItem.js';
 import PackingList from './PackingList.js';
@@ -2078,7 +2078,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js AddItem.js hidden
+```js src/AddItem.js hidden
 import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
@@ -2099,7 +2099,7 @@ export default function AddItem({ onAddItem }) {
 }
 ```
 
-```js PackingList.js hidden
+```js src/PackingList.js hidden
 import { useState } from 'react';
 
 export default function PackingList({
@@ -2149,7 +2149,7 @@ Meskipun Anda dapat mengubah setiap *event handler* dengan hati-hati untuk mempe
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddItem from './AddItem.js';
 import PackingList from './PackingList.js';
@@ -2213,7 +2213,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js AddItem.js hidden
+```js src/AddItem.js hidden
 import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
@@ -2234,7 +2234,7 @@ export default function AddItem({ onAddItem }) {
 }
 ```
 
-```js PackingList.js hidden
+```js src/PackingList.js hidden
 import { useState } from 'react';
 
 export default function PackingList({
@@ -2290,7 +2290,7 @@ Kode ini berfungsi, tetapi terdapat sedikit *glitch UI*. Saat kamu menekan "*Sta
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { initialLetters } from './data.js';
 import Letter from './Letter.js';
@@ -2337,7 +2337,7 @@ export default function MailClient() {
 }
 ```
 
-```js Letter.js
+```js src/Letter.js
 export default function Letter({
   letter,
   isHighlighted,
@@ -2367,7 +2367,7 @@ export default function Letter({
 }
 ```
 
-```js data.js
+```js src/data.js
 export const initialLetters = [{
   id: 0,
   subject: 'Ready for adventure?',
@@ -2399,7 +2399,7 @@ Untuk memperbaiki masalahnya, hilangkan duplikasi dari *state*. Alih-alih menyim
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { initialLetters } from './data.js';
 import Letter from './Letter.js';
@@ -2446,7 +2446,7 @@ export default function MailClient() {
 }
 ```
 
-```js Letter.js
+```js src/Letter.js
 export default function Letter({
   letter,
   isHighlighted,
@@ -2476,7 +2476,7 @@ export default function Letter({
 }
 ```
 
-```js data.js
+```js src/data.js
 export const initialLetters = [{
   id: 0,
   subject: 'Ready for adventure?',
@@ -2516,7 +2516,7 @@ Daripada menggunakan satu *ID* terpilih, Anda mungkin ingin menyimpan senarai at
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { letters } from './data.js';
 import Letter from './Letter.js';
@@ -2559,7 +2559,7 @@ export default function MailClient() {
 }
 ```
 
-```js Letter.js
+```js src/Letter.js
 export default function Letter({
   letter,
   onToggle,
@@ -2584,7 +2584,7 @@ export default function Letter({
 }
 ```
 
-```js data.js
+```js src/data.js
 export const letters = [{
   id: 0,
   subject: 'Ready for adventure?',
@@ -2615,7 +2615,7 @@ Daripada menggunakan `selectedId` tunggal, gunakan senarai `selectedIds` dalam *
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { letters } from './data.js';
 import Letter from './Letter.js';
@@ -2667,7 +2667,7 @@ export default function MailClient() {
 }
 ```
 
-```js Letter.js
+```js src/Letter.js
 export default function Letter({
   letter,
   onToggle,
@@ -2692,7 +2692,7 @@ export default function Letter({
 }
 ```
 
-```js data.js
+```js src/data.js
 export const letters = [{
   id: 0,
   subject: 'Ready for adventure?',
@@ -2723,7 +2723,7 @@ Untuk memperbaikinya, Anda dapat menyimpan [Set](https://developer.mozilla.org/e
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { letters } from './data.js';
 import Letter from './Letter.js';
@@ -2772,7 +2772,7 @@ export default function MailClient() {
 }
 ```
 
-```js Letter.js
+```js src/Letter.js
 export default function Letter({
   letter,
   onToggle,
@@ -2797,7 +2797,7 @@ export default function Letter({
 }
 ```
 
-```js data.js
+```js src/data.js
 export const letters = [{
   id: 0,
   subject: 'Ready for adventure?',
