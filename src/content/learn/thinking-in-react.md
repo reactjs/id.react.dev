@@ -81,7 +81,7 @@ Anda bisa membangun "dari atas ke bawah" dengan memulai membangun komponen yang 
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -299,7 +299,7 @@ Anda dapat mulai melihat bagaimana aplikasi Anda akan berperilaku. Edit nilai aw
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {
@@ -496,7 +496,7 @@ Sekarang aplikasi sepenuhnya berfungsi!
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {
