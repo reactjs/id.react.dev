@@ -1,10 +1,10 @@
 ---
-title: 'Synchronizing with Effects'
+title: 'Sinkronisasi dengan Efek'
 ---
 
 <Intro>
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your component with some system outside of React.
+Beberapa komponen diperlukan untuk disinkronkan dengan sistem eksternal. Misalnya, kamu mungkin ingin mengontrol sebuah komponen non-React berdasarkan status React, menyiapkan sebuah koneksi server, atau mengirimkan sebuah log analitik ketika komponen muncul di layar komputer. *Effects* memungkinkanmu untuk bisa menjalankan beberapa kode setelah me-render sehingga kamu bisa menyinkronkan komponen yang telah kamu buat dengan beberapa sistem di luar React.
 
 </Intro>
 
