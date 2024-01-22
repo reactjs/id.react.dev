@@ -183,7 +183,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useState, useEffect } from 'react';
 
 export function useOnlineStatus() {
@@ -401,7 +401,7 @@ export default function Form() {
 }
 ```
 
-```js useFormInput.js active
+```js src/useFormInput.js active
 import { useState } from 'react';
 
 export function useFormInput(initialValue) {
@@ -452,7 +452,7 @@ Karena Custom Hooks di-*render* ulang bersama komponen Anda, mereka selalu mener
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -480,7 +480,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
@@ -513,7 +513,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   //! A real implementation would actually connect to the server
   if (typeof serverUrl !== 'string') {
@@ -556,7 +556,7 @@ export function createConnection({ serverUrl, roomId }) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -648,7 +648,7 @@ Perhatikan bahwa logika *tetap merespon* perubahan prop dan state. Coba edit URL
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -676,7 +676,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState } from 'react';
 import { useChatRoom } from './useChatRoom.js';
 
@@ -700,7 +700,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js useChatRoom.js
+```js src/useChatRoom.js
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
@@ -721,7 +721,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   //! A real implementation would actually connect to the server
   if (typeof serverUrl !== 'string') {
@@ -764,7 +764,7 @@ export function createConnection({ serverUrl, roomId }) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -926,7 +926,7 @@ Sekarang obrolan tidak akan terhubung kembali setiap kali komponen `ChatRoom` di
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -954,7 +954,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState } from 'react';
 import { useChatRoom } from './useChatRoom.js';
 import { showNotification } from './notifications.js';
@@ -982,7 +982,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js useChatRoom.js
+```js src/useChatRoom.js
 import { useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 import { createConnection } from './chat.js';
@@ -1005,7 +1005,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -1048,7 +1048,7 @@ export function createConnection({ serverUrl, roomId }) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1305,7 +1305,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js active
+```js src/useOnlineStatus.js active
 import { useState, useEffect } from 'react';
 
 export function useOnlineStatus() {
@@ -1368,7 +1368,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js active
+```js src/useOnlineStatus.js active
 import { useSyncExternalStore } from 'react';
 
 function subscribe(callback) {
@@ -1553,7 +1553,7 @@ export default function App() {
 }
 ```
 
-```js useFadeIn.js
+```js src/useFadeIn.js
 import { useEffect } from 'react';
 
 export function useFadeIn(ref, duration) {
@@ -1644,7 +1644,7 @@ export default function App() {
 }
 ```
 
-```js useFadeIn.js active
+```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
@@ -1748,7 +1748,7 @@ export default function App() {
 }
 ```
 
-```js useFadeIn.js active
+```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
 import { FadeInAnimation } from './animation.js';
 
@@ -1763,7 +1763,7 @@ export function useFadeIn(ref, duration) {
 }
 ```
 
-```js animation.js
+```js src/animation.js
 export class FadeInAnimation {
   constructor(node) {
     this.node = node;
@@ -1844,12 +1844,12 @@ export default function App() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 label, button { display: block; margin-bottom: 20px; }
 html, body { min-height: 300px; }
 ```
 
-```css welcome.css active
+```css src/welcome.css active
 .welcome {
   color: white;
   padding: 50px;
@@ -1917,8 +1917,13 @@ export default function Counter() {
 }
 ```
 
+<<<<<<< HEAD
 ```js useCounter.js
 // Tulis custom Hook Anda di file ini!
+=======
+```js src/useCounter.js
+// Write your custom Hook in this file!
+>>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
 ```
 
 </Sandpack>
@@ -1938,7 +1943,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState, useEffect } from 'react';
 
 export function useCounter() {
@@ -1992,7 +1997,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState, useEffect } from 'react';
 
 export function useCounter() {
@@ -2042,7 +2047,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState, useEffect } from 'react';
 
 export function useCounter(delay) {
@@ -2089,7 +2094,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState, useEffect } from 'react';
 
 export function useCounter(delay) {
@@ -2104,8 +2109,13 @@ export function useCounter(delay) {
 }
 ```
 
+<<<<<<< HEAD
 ```js useInterval.js
 // Tulislah Hook Anda di sini!
+=======
+```js src/useInterval.js
+// Write your Hook here!
+>>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
 ```
 
 </Sandpack>
@@ -2125,7 +2135,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState } from 'react';
 import { useInterval } from './useInterval.js';
 
@@ -2138,7 +2148,7 @@ export function useCounter(delay) {
 }
 ```
 
-```js useInterval.js active
+```js src/useInterval.js active
 import { useEffect } from 'react';
 
 export function useInterval(onTick, delay) {
@@ -2218,7 +2228,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState } from 'react';
 import { useInterval } from './useInterval.js';
 
@@ -2231,7 +2241,7 @@ export function useCounter(delay) {
 }
 ```
 
-```js useInterval.js
+```js src/useInterval.js
 import { useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
@@ -2290,7 +2300,7 @@ export default function Counter() {
 }
 ```
 
-```js useCounter.js
+```js src/useCounter.js
 import { useState } from 'react';
 import { useInterval } from './useInterval.js';
 
@@ -2303,7 +2313,7 @@ export function useCounter(delay) {
 }
 ```
 
-```js useInterval.js active
+```js src/useInterval.js active
 import { useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
@@ -2383,7 +2393,7 @@ function Dot({ position, opacity }) {
 }
 ```
 
-```js usePointerPosition.js
+```js src/usePointerPosition.js
 import { useState, useEffect } from 'react';
 
 export function usePointerPosition() {
@@ -2462,7 +2472,7 @@ function Dot({ position, opacity }) {
 }
 ```
 
-```js usePointerPosition.js
+```js src/usePointerPosition.js
 import { useState, useEffect } from 'react';
 
 export function usePointerPosition() {
