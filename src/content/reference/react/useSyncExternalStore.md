@@ -57,6 +57,26 @@ function TodosApp() {
 
 * Jika fungsi `subscribe` yang berbeda diberikan saat *render* ulang, React akan berlangganan ulang ke tempat penyimpanan menggunakan fungsi `subscribe` yang baru. Anda bisa menghindari ini dengan mendeklarasi `subscribe` di luar komponen.
 
+* If the store is mutated during a [non-blocking transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+
+  For example, the following are discouraged:
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Calling `use` with a Promise dependent on `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Conditionally rendering a lazy component based on `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
+
 ---
 
 ## Penggunaan {/*usage*/}
@@ -111,10 +131,16 @@ export default function TodosApp() {
 }
 ```
 
+<<<<<<< HEAD
 ```js todoStore.js
 // Ini adalah contoh dari sebuah tempat penyimpanan
 // dari pihak ketiga yang Anda perlu integrasikan
 // dengan React.
+=======
+```js src/todoStore.js
+// This is an example of a third-party store
+// that you might need to integrate with React.
+>>>>>>> 5d2f7105bd6374e465b8bdce8efceaeb8f01c937
 
 // Jika aplikasi Anda dibangun sepenuhnya oleh React,
 // kami merekomendasikan untuk menggunakan React state.
@@ -281,7 +307,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useSyncExternalStore } from 'react';
 
 export function useOnlineStatus() {
@@ -342,7 +368,11 @@ Fungsi `getServerSnapshot` cukup mirip dengan `getSnapshot`, tetapi hanya berjal
 - Fungsi tersebut berjalan di server saat membuat HTML.
 - Fungsi tersebut berjalan di klien saat [hidrasi](/reference/react-dom/client/hydrateRoot), misalnya saat React mengambil HTML dari server dan membuatnya interaktif.
 
+<<<<<<< HEAD
 Hal ini membiarkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
+=======
+This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
+>>>>>>> 5d2f7105bd6374e465b8bdce8efceaeb8f01c937
 
 <Note>
 
