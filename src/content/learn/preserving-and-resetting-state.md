@@ -10,6 +10,7 @@ title: Mempertahankan dan Mengatur Ulang State
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * Bagaimana React "melihat" struktur komponen
 * Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
 * Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
@@ -36,7 +37,19 @@ Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* 
 ## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
 Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
+=======
+* When React chooses to preserve or reset the state
+* How to force React to reset component's state
+* How keys and types affect whether the state is preserved
 
+</YouWillLearn>
+
+## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+
+React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
+
+When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 
 Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 
@@ -190,7 +203,11 @@ Memperbarui *state*
 </DiagramGroup>
 
 
+<<<<<<< HEAD
 React akan mempertahankan *state* selama Anda me-*render* komponen yang sama pada posisi yang sama. Untuk melihat hal ini, naikkan kedua penghitung, lalu hapus komponen kedua dengan menghapus centang pada *checkbox* "Render the second counter", lalu tambahkan kembali dengan mencentangnya lagi:
+=======
+React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 <Sandpack>
 
@@ -1041,7 +1058,7 @@ Dalam aplikasi obrolan ini, komponen `<Chat>` berisi *state* masukan teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1067,7 +1084,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1091,7 +1108,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1146,7 +1163,7 @@ Sekarang, mengganti penerima selalu mengosongkan bidang teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1172,7 +1189,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1196,7 +1213,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1270,7 +1287,7 @@ Contoh ini menunjukkan pesan apabila Anda menekan tombol. Namun, menekan tombol 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1321,7 +1338,7 @@ Solusi termudah adalah dengan menyatukan cabang-cabang sehingga `Form` selalu di
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1367,7 +1384,7 @@ Secara teknis, Anda juga dapat menambahkan `null` sebelum `<Form />` pada cabang
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1429,7 +1446,7 @@ Sepertinya untuk bidang-bidang ini, posisinya di dalam induk tidak cukup. Apakah
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1491,7 +1508,7 @@ Berikan `key` pada kedua komponen `<Field>` di cabang `if` dan `else`. Hal ini m
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1557,7 +1574,7 @@ Ketika Anda memilih kontak yang berbeda (misalnya, Alice), *state* akan diperbar
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1609,7 +1626,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1636,7 +1653,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1709,7 +1726,7 @@ Berikan `key={selectedId}` pada komponen `EditContact`. Dengan cara ini, beralih
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1762,7 +1779,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1789,7 +1806,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -2010,7 +2027,7 @@ Perbaiki agar *state* yang diperluas dikaitkan dengan setiap kontak, terlepas da
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2052,7 +2069,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
@@ -2109,7 +2126,7 @@ Menggunakan ID kontak sebagai `key` dapat mengatasi masalah ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2151,7 +2168,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
