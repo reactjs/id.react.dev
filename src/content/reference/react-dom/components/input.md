@@ -32,7 +32,19 @@ Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](
 
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
+<<<<<<< HEAD
 Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
+=======
+<Canary>
+
+React's extensions to the `formAction` prop are currently only available in React's Canary and experimental channels. In stable releases of React, `formAction` works only as a [built-in browser HTML component](/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</Canary>
+
+[`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+
+You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
+>>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
 
 * [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk masukan checkbox atau tombol radio, mengontrol apakah itu dipilih.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): Sebuah string. Untuk sebuah masukan teks, mengontrol teks. (Untuk tombol radio, menentukan data form.)
