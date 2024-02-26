@@ -83,7 +83,7 @@ Sebagai contoh, API peramban `onbeforeprint` memungkinkan Anda untuk mengubah ha
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from 'react';
 import { flushSync } from 'react-dom';
 

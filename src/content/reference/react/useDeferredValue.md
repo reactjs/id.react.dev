@@ -82,10 +82,18 @@ Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "te
 
 <Note>
 
+<<<<<<< HEAD
 Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan Suspense:
 
 - Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
+=======
+This example assumes you use a Suspense-enabled data source:
+
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 [Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
 
@@ -111,7 +119,7 @@ Dalam contoh ini, komponen `SearchResults` [ditangguhkan](/reference/react/Suspe
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -131,7 +139,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -185,10 +193,17 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 let cache = new Map();
 
@@ -325,7 +340,7 @@ Masukkan `"a"` pada contoh di bawah, tunggu hasil dimuat, lalu edit input menjad
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -346,7 +361,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -400,10 +415,17 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 let cache = new Map();
 
@@ -548,7 +570,7 @@ Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menj
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -575,7 +597,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -629,10 +651,17 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 let cache = new Map();
 
@@ -799,7 +828,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -876,7 +905,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

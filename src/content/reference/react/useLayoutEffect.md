@@ -149,7 +149,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -185,7 +185,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -220,7 +220,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -299,7 +299,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -335,7 +335,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -369,7 +369,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -446,7 +446,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -482,7 +482,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -516,7 +516,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -589,7 +589,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -625,7 +625,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -665,7 +665,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -732,7 +732,11 @@ Namun, jika mengalami masalah tersebut, terdapat beberapa opsi yang tersedia:
 
 - Ubah `useLayoutEffect` menjadi [`useEffect`.](/reference/react/useEffect) Hal tersebut menginformasikan React bahwa hasil *render* awal dapat ditampilkan tanpa memblokir proses melukis (karena HTML asli akan terlihat sebelum Efek dijalankan).
 
+<<<<<<< HEAD
 - Sebagai alternatif, [tandai komponen Anda sebagai khusus klien (*client-only*).](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) Hal tersebut menginformasikan React untuk mengganti kontennya hingga [`<Suspense>`](/reference/react/Suspense) terdekat dengan *fallback loading* (Sebagai contoh, *spinner* atau *glimmer*) selama *server rendering*.
+=======
+- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 - Sebagai alternatif, Anda dapat me-*render* komponen dengan `useLayoutEffect` hanya setelah proses hidrasi (*hydration*). Tambahkan *state boolean* `isMounted` yang diinisialisasi dengan nilai `false`, dan atur nilainya menjadi `true` di dalam panggilan `useEffect`. Logika me-*render* Anda dapat dituliskan seperti ini: `return isMounted ? <RealContent /> : <FallbackContent />`. Selama di sisi *server* atau proses hidrasi, pengguna akan melihat `FallbackContent` yang tidak memanggil `useLayoutEffect`. Kemudian React akan menggantinya dengan `RealContent` yang hanya dijalankan di sisi klien dan juga dapat mencakup pemanggilan `useLayoutEffect`.
 

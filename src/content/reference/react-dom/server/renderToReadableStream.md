@@ -285,8 +285,14 @@ Dalam contoh ini, React dapat memulai *streaming* halaman lebih awal. Hanya `Pro
 
 **Hanya sumber data yang mengaktifkan *Suspense* yang akan mengaktifkan komponen Suspense.** Sumber tersebut meliputi:
 
+<<<<<<< HEAD
 - Pengambilan data dengan *framework* yang mendukung *Suspense* seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 *Suspense* **tidak** mendeteksi saat data diambil di dalam *Effect* atau *event handler*.
 
@@ -434,7 +440,11 @@ function ProfilePage() {
 }
 ```
 
+<<<<<<< HEAD
 Jika kesalahan terjadi pada komponen `Posts` atau di suatu tempat di dalamnya, React akan [mencoba memulihkannya:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+=======
+If an error happens in the `Posts` component or somewhere inside it, React will [try to recover from it:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 1. Ini akan menampilkan *fallback* pemuatan untuk batas `<Suspense>` terdekat (`PostsGlimmer`) ke dalam HTML.
 2. Ini akan "menyerah" untuk mencoba me-*render* konten `Posts` di server lagi.

@@ -697,7 +697,7 @@ Sebuah tipe *event handler* untuk *event* `onWheel`.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
@@ -775,7 +775,7 @@ Pada contoh di atas, `style={{}}` bukan merupakan sintaks khusus, tapi terdapat 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
 const pengguna = {
@@ -789,8 +789,13 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js Avatar.js active
 export default function Avatar({ pengguna }) {
+=======
+```js src/Avatar.js active
+export default function Avatar({ user }) {
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
   return (
     <img
       src={pengguna.urlGambar}
@@ -805,7 +810,7 @@ export default function Avatar({ pengguna }) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -944,7 +949,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
@@ -986,7 +991,13 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
+=======
+The `{__html}` object should be created as close to where the HTML is generated as possible, like the above example does in the `renderMarkdownToHTML` function. This ensures that all raw HTML being used in your code is explicitly marked as such, and that only variables that you expect to contain HTML are passed to `dangerouslySetInnerHTML`. It is not recommended to create the object inline like `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+
+To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 ```js {1-4,7,8}
 const post = {

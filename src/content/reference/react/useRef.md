@@ -47,10 +47,17 @@ Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
 #### Perhatian {/*caveats*/}
 
+<<<<<<< HEAD
 * Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini tidak dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
 * Ketika Anda mengubah properti `ref.current`, React tidak me-render ulang komponen Anda. React tidak mengetahui kapan Anda mengubahnya karena ref adalah objek JavaScript biasa.
 * Jangan menulis _atau membaca_ `ref.current` selama proses rendering, kecuali untuk [inisialisasi.](#avoiding-recreating-the-ref-contents) Hal ini membuat perilaku komponen Anda tidak dapat diprediksi.
 * Dalam Strict Mode, React akan **memanggil fungsi komponen Anda dua kali** untuk [membantu Anda menemukan bug yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus development dan tidak mempengaruhi produksi. Setiap objek ref akan dibuat dua kali, tetapi salah satu versi akan dibuang. Jika fungsi komponen Anda murni (sebagaimana mestinya), hal ini seharusnya tidak mempengaruhi perilaku.
+=======
+* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
+* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+>>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
 
 ---
 
