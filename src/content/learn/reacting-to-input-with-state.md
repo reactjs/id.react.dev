@@ -4,26 +4,26 @@ title: Merespon Masukan dengan State
 
 <Intro>
 
-React menyediakan cara deklaratif untuk memanipulasi UI. Dibandingan dengan memanipulasi bagian-bagian UI secara langsung, Anda dapat membuat berbagai *state* komponen, dan menggunakan *state* tersebut sebagai respons terhadap masukan pengguna. Cara ini mirip dengan bagaimana desainer memikirkan tentang UI.
+React menyediakan cara deklaratif untuk memanipulasi UI. Alih-alih memanipulasi bagian-bagian UI secara langsung, Anda deskripsikan berbagai *state* yang berbeda yang dapat terjadi di dalam komponen Anda, dan mengalihkan antara berbagai kemungkinan *state* tersebut sebagai respons terhadap masukan pengguna. Cara ini mirip dengan bagaimana desainer berpikir tentang UI.
 
 </Intro>
 
 <YouWillLearn>
 
 * Bagaimana pemrograman UI deklaratif berbeda dari pemrograman UI imperatif
-* Bagaimana cara menjabarkan berbagai *state* visual yang berbeda pada komponen Anda
-* Bagaimana cara memicu perubahan ke berbagai *state*
+* Bagaimana cara melakukan enumerasi atas berbagai *state* visual yang berbeda dapat terjadi pada komponen Anda
+* Bagaimana cara memicu perubahan antara berbagai *state* visual yang berbeda melalui kode
 
 </YouWillLearn>
 
 ## Membandingkan UI deklaratif dengan imperatif {/*how-declarative-ui-compares-to-imperative*/}
 
-Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *berubah* dalam menanggapi tindakan pengguna. Pertimbangkan sebuah formulir yang memungkinkan pengguna mengirimkan jawaban:
+Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *berubah* dalam menanggapi tindakan pengguna. Pertimbangkan sebuah formulir yang memungkinkan pengguna mengirimkan sebuah jawaban:
 
-* Anda mengetikan sesuatu kedalam formulir, maka tombol kirim menjadi **aktif**
-* Anda mengklik tombol "Kirim", baik formulir maupun tombol "Kirim" tersebut menjadi **nonaktif** dan *spinner* muncul.
-* Apabila permintaan jaringan berhasil, formulir disembunyikan dan pesan "Terima Kasih" muncul
-* Apabila permintaan jaringan gagal, pesan kesalahan muncul dan formulir menjadi aktif kembali.
+* Ketika Anda mengetikkan sesuatu kedalam formulir, maka tombol "Kirim" **menjadi aktif**
+* Ketika Anda menekan tombol "Kirim", baik formulir maupun tombol "Kirim" tersebut **menjadi nonaktif** dan sebuah *spinner* **muncul.**
+* Apabila permintaan jaringan berhasil, formulir **disembunyikan** dan pesan "Terima Kasih" **muncul.**
+* Apabila permintaan jaringan gagal, sebuah pesan kesalahan **muncul,** dan formulir **menjadi aktif** kembali.
 
 
 Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
