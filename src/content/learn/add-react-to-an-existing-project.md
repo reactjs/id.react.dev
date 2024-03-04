@@ -67,7 +67,7 @@ Kemudian tambahkan baris kode ini di bagian atas file JavaScript utama Anda (mun
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 // Hapus konten HTML yang ada
@@ -131,7 +131,7 @@ Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](h
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
