@@ -143,7 +143,7 @@ Untuk meng-*hydrate* aplikasi Anda, React akan "menambahkan" logika komponen And
 <div id="root"><h1>Halo, dunia!</h1><button>Anda mengklik Saya sebanyak <!-- -->0<!-- --> kali</button></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -154,7 +154,7 @@ hydrateRoot(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -248,7 +248,7 @@ Untuk membungkam peringatan hydration pada sebuah elemen, tambahkan `suppressHyd
 <div id="root"><h1>Tanggal sekarang: <!-- -->01/01/2020</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -256,7 +256,7 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js App.js active
+```js src/App.js active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -286,7 +286,7 @@ Jika Anda secara sengaja ingin me-render sesuatu yang berbeda di *server* dan kl
 <div id="root"><h1>Is Server</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -294,7 +294,7 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -340,7 +340,7 @@ Jika Anda memanggil `root.render` pada suatu saat setelah *hydration*, dan struk
 <div id="root"><h1>Halo, dunia! <!-- -->0</h1><input placeholder="Ketik sesuatu di sini"/></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import { hydrateRoot } from 'react-dom/client';
 import './styles.css';
 import App from './App.js';
@@ -357,7 +357,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-```js App.js
+```js src/App.js
 export default function App({counter}) {
   return (
     <>

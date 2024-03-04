@@ -55,12 +55,21 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 
 #### Parameters {/*onrender-parameters*/}
 
+<<<<<<< HEAD
 * `id`: String `id` prop dari pohon `<Profiler>` yang baru saja di-*commit*. Ini memungkinkan Anda mengidentifikasi bagian mana dari pohon yang di-*commit* jika Anda menggunakan beberapa *profiler*.
 * `phase`: `"mount"`, `"update"` atau `"nested-update"`. Hal ini memungkinkan Anda mengetahui, apakah pohon baru saja dipasang untuk pertama kali, atau di-*render* ulang karena ada perubahan pada *props*, status, atau *hooks*.
 * `actualDuration`: Jumlah milidetik yang dihabiskan untuk me-*render* `<Profiler>` dan turunannya untuk pembaruan terkini. Ini mengindikasikan seberapa baik *sub*-pohon menggunakan memoisasi (contohnya [`memo`](/reference/react/memo) dan [`useMemo`](/reference/react/useMemo)). Idealnya, nilai ini akan berkurang secara signifikan setelah pemasangan awal, karena banyak keturunan yang hanya perlu me-*render* ulang jika *props* tertentu mereka berubah.
 * `baseDuration`: Jumlah milidetik yang memperkirakan berapa lama waktu yang dibutuhkan untuk me-*render* ulang seluruh *sub*-pohon `<Profiler>` tanpa pengoptimalan apa pun. Dihitung dengan menjumlahkan durasi *render* terbaru dari setiap komponen dalam pohon. Nilai ini memperkirakan biaya kasus terburuk dari *rendering* (misalnya, pemasangan awal atau pohon tanpa memoisasi). Bandingkan `actualDuration` dengan nilai ini untuk melihat apakah memoisasi berfungsi.
 * `startTime`: Stempel waktu numerik untuk mengetahui kapan React mulai me-*render* pembaruan terkini.
 * `endTime`: Stempel waktu numerik untuk mengetahui kapan React melakukan pembaruan terkini. Nilai ini dibagi di antara semua *profiler* dalam sebuah *commit*, sehingga memungkinkan untuk dikelompokkan jika diinginkan.
+=======
+* `id`: The string `id` prop of the `<Profiler>` tree that has just committed. This lets you identify which part of the tree was committed if you are using multiple profilers.
+* `phase`: `"mount"`, `"update"` or `"nested-update"`. This lets you know whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
+* `actualDuration`: The number of milliseconds spent rendering the `<Profiler>` and its descendants for the current update. This indicates how well the subtree makes use of memoization (e.g. [`memo`](/reference/react/memo) and [`useMemo`](/reference/react/useMemo)). Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
+* `baseDuration`: The number of milliseconds estimating how much time it would take to re-render the entire `<Profiler>` subtree without any optimizations. It is calculated by summing up the most recent render durations of each component in the tree. This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization). Compare `actualDuration` against it to see if memoization is working.
+* `startTime`: A numeric timestamp for when React began rendering the current update.
+* `commitTime`: A numeric timestamp for when React committed the current update. This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 ---
 
