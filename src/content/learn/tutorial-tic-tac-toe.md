@@ -29,7 +29,7 @@ Anda dapat melihat seperti apa tampilannya setelah Anda selesai di sini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -147,7 +147,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -206,13 +206,13 @@ Pada editor kode langsung di bawah ini, klik **Fork** di pojok kanan atas untuk 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Square() {
   return <button className="square">X</button>;
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -263,11 +263,19 @@ body {
 
 Anda juga dapat mengikuti tutorial ini dengan menggunakan *development environment* lokal Anda. Untuk melakukan ini, Anda perlu:
 
+<<<<<<< HEAD
 1. Menginstal [Node.js](https://nodejs.org/en/)
 1. Pada tab CodeSandbox yang telah Anda buka sebelumnya, tekan tombol pojok kiri atas untuk membuka menu, lalu pilih **File > Export to ZIP** pada menu tersebut untuk mengunduh arsip berkas-berkas secara lokal
 1. *Unzip* arsip tersebut, lalu buka terminal dan `cd` ke direktori yang telah Anda *unzip*
 1. Instal dependensi dengan `npm install`
 1. Jalankan `npm start` memulai server lokal dan ikuti petunjuknya untuk melihat kode yang berjalan di peramban
+=======
+1. Install [Node.js](https://nodejs.org/en/)
+1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
+1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
+1. Install the dependencies with `npm install`
+1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 Jika Anda mengalami kebuntuan, jangan biarkan hal ini menghentikan Anda! Ikuti saja secara online dan coba lagi penyiapan lokal nanti.
 
@@ -337,7 +345,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Baris 1-5 menyatukan semua bagian yang diperlukan:
+=======
+Lines 1-5 bring all the necessary pieces together: 
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 * React
 * *Library* React untuk berkomunikasi dengan peramban web (React DOM)
@@ -362,11 +374,15 @@ Anda akan mendapatkan *error* berikut:
 
 <ConsoleBlock level="error">
 
-/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment `<>...</>`?
+/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX Fragment `<>...</>`?
 
 </ConsoleBlock>
 
+<<<<<<< HEAD
 Komponen React harus mengembalikan satu elemen JSX dan bukan beberapa elemen JSX yang berdekatan seperti dua buah tombol. Untuk memperbaikinya, Anda dapat menggunakan *fragment* (`<>` dan `</>`) untuk membungkus beberapa elemen JSX yang berdekatan seperti ini:
+=======
+React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *Fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 ```js {3-6}
 export default function Square() {
@@ -455,7 +471,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -627,7 +643,7 @@ Kode Anda yang telah diperbarui akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 function Square({ value }) {
   return <button className="square">{value}</button>;
 }
@@ -655,7 +671,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -807,7 +823,7 @@ Setelah Anda melakukan perubahan di atas, kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square() {
@@ -850,7 +866,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -988,7 +1004,7 @@ Dan kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value }) {
@@ -1019,7 +1035,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1228,7 +1244,7 @@ Seperti inilah tampilan kode Anda:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1270,7 +1286,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1422,7 +1438,7 @@ Sekarang Anda hanya dapat menambahkan tanda `X` atau `O` pada kotak kosong! Beri
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1473,7 +1489,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1524,7 +1540,7 @@ body {
 
 Sekarang setelah para pemain dapat bergiliran, Anda ingin menunjukkan kapan permainan dimenangkan dan tidak ada lagi giliran yang harus dilakukan. Untuk melakukan ini, Anda akan menambahkan fungsi pembantu yang disebut `calculateWinner` yang mengambil sebuah senarai berisi 9 kotak, memeriksa pemenang dan mengembalikan `'X'`, `'O'`, atau `null` yang sesuai. Jangan terlalu khawatir dengan fungsi `calculateWinner`; fungsi ini tidak spesifik terhadap React:
 
-```js App.js
+```js src/App.js
 export default function Board() {
   //...
 }
@@ -1594,7 +1610,7 @@ Selamat! Anda sekarang memiliki permainan *tic-tac-toe* yang berfungsi. Dan Anda
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1674,7 +1690,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1872,7 +1888,7 @@ Pada titik ini, Anda telah memindahkan state untuk berada di komponen `Game`, da
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1970,7 +1986,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2073,11 +2089,21 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` Anda akan memperbaiki error ini di bagian selanjutnya.
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says: 
+
+<ConsoleBlock level="warning">
+Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
+</ConsoleBlock>
+  
+You'll fix this error in the next section.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2193,7 +2219,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2305,7 +2331,7 @@ const moves = history.map((squares, move) => {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2422,7 +2448,7 @@ function calculateWinner(squares) {
 
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2526,7 +2552,7 @@ Jika Anda mengeklik langkah mana pun dalam riwayat permainan, papan *tic-tac-toe
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -2646,7 +2672,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2736,7 +2762,7 @@ Lihat hasil akhirnya di sini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2854,7 +2880,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }

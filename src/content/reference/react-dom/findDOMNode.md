@@ -79,7 +79,7 @@ Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungki
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -97,7 +97,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 
@@ -127,7 +127,7 @@ Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara simpul JS
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -145,7 +145,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 
@@ -170,7 +170,7 @@ Pada contoh ini, `findDOMNode` tidak lagi digunakan. Sebagai gantinya, `inputRef
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -188,7 +188,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { createRef, Component } from 'react';
 
 class AutoselectingInput extends Component {
@@ -215,7 +215,7 @@ Pada React modern tanpa komponen kelas, kode yang setara akan memanggil [`useRef
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -233,7 +233,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { useRef, useEffect } from 'react';
 
 export default function AutoselectingInput() {
@@ -260,7 +260,7 @@ Pada contoh ini, `findDOMNode(this)` menemukan simpul DOM yang dimiliki oleh kom
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -278,7 +278,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import MyInput from './MyInput.js';
@@ -296,7 +296,7 @@ class AutoselectingInput extends Component {
 export default AutoselectingInput;
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 export default function MyInput() {
   return <input defaultValue="Hello" />;
 }
@@ -315,7 +315,7 @@ Contoh di bawah ini melakukan hal tersebut, sehingga tidak lagi membutuhkan `fin
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -333,7 +333,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { createRef, Component } from 'react';
 import MyInput from './MyInput.js';
 
@@ -355,7 +355,7 @@ class AutoselectingInput extends Component {
 export default AutoselectingInput;
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -371,7 +371,7 @@ Berikut ini adalah contoh kode jika kode tersebut menggunakan komponen fungsi, b
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AutoselectingInput from './AutoselectingInput.js';
 
@@ -389,7 +389,7 @@ export default function App() {
 }
 ```
 
-```js AutoselectingInput.js active
+```js src/AutoselectingInput.js active
 import { useRef, useEffect } from 'react';
 import MyInput from './MyInput.js';
 
@@ -405,7 +405,7 @@ export default function AutoselectingInput() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {

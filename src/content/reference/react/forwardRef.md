@@ -42,7 +42,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### Peringatan {/*caveats*/}
 
+<<<<<<< HEAD
 * Dalam Mode Ketat, React akan **memanggil fungsi *render* Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus pengembangan dan tidak mempengaruhi produksi. Jika fungsi *render* Anda murni (sebagaimana mestinya), hal ini tidak akan mempengaruhi logika komponen Anda. Hasil dari salah satu pemanggilan akan diabaikan.
+=======
+* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 
 ---
@@ -166,7 +170,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -224,7 +228,7 @@ export default function App() {
 }
 ```
 
-```js MyVideoPlayer.js
+```js src/MyVideoPlayer.js
 import { forwardRef } from 'react';
 
 const VideoPlayer = forwardRef(function VideoPlayer({ src, type, width }, ref) {
@@ -316,7 +320,7 @@ export default function Form() {
 }
 ```
 
-```js FormField.js
+```js src/FormField.js
 import { forwardRef, useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -341,7 +345,7 @@ export default FormField;
 ```
 
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef((props, ref) => {
@@ -433,7 +437,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {

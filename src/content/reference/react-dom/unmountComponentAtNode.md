@@ -88,7 +88,7 @@ Pada contoh ini, mengklik "*Render* Aplikasi React" akan me-*render* aplikasi Re
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './App.js';
@@ -104,7 +104,7 @@ document.getElementById('unmount').addEventListener('click', () => {
 });
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Hello, world!</h1>;
 }

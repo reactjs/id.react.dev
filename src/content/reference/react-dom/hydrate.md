@@ -88,7 +88,7 @@ Pada aplikasi yang sepenuhnya dibangun dengan React, **biasanya Anda hanya akan 
 <div id="root"><h1>Halo, dunia!</h1></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -96,7 +96,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Halo, dunia!</h1>;
 }
@@ -126,7 +126,7 @@ Untuk menghilangkan peringatan hidrasi pada elemen, tambahkan `suppressHydration
 <div id="root"><h1>Tanggal Saat ini: 01/01/2020</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -134,7 +134,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -164,7 +164,7 @@ Jika Anda sengaja perlu me-*render* sesuatu yang berbeda di server dan klien, An
 <div id="root"><h1>Is Server</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -172,7 +172,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {

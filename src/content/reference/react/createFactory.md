@@ -76,7 +76,7 @@ Memanggil fungsi pabrik tersebut akan menghasilkan elemen-elemen React dengan pr
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from 'react';
 
 const button = createFactory('button');
@@ -104,7 +104,7 @@ Jika proyek Anda memiliki banyak panggilan `createFactory`, salin implementasi `
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from './createFactory.js';
 
 const button = createFactory('button');
@@ -118,7 +118,7 @@ export default function App() {
 }
 ```
 
-```js createFactory.js
+```js src/createFactory.js
 import { createElement } from 'react';
 
 export function createFactory(type) {
@@ -169,7 +169,7 @@ Berikut ini adalah contoh lengkap penggunaan React tanpa JSX:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createElement } from 'react';
 
 export default function App() {
@@ -191,7 +191,7 @@ Akhirnya, Anda dapat menggunakan JSX sebagai pengganti `createFactory`. Ini adal
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function App() {
   return (
     <button onClick={() => {
