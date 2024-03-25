@@ -629,7 +629,7 @@ Setelah Anda melakukan ini, perhatikan bahwa mengeklik tombolnya juga menaikkan 
 
 <Sandpack>
 
-```js ColorSwitch.js active
+```js src/ColorSwitch.js active
 export default function ColorSwitch({
   onChangeColor
 }) {
@@ -641,7 +641,7 @@ export default function ColorSwitch({
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ColorSwitch from './ColorSwitch.js';
 
@@ -685,7 +685,7 @@ Namun, ini menambahkan masalah kenaikan penghitung. Jika `onChangeColor` tidak m
 
 <Sandpack>
 
-```js ColorSwitch.js active
+```js src/ColorSwitch.js active
 export default function ColorSwitch({
   onChangeColor
 }) {
@@ -700,7 +700,7 @@ export default function ColorSwitch({
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ColorSwitch from './ColorSwitch.js';
 

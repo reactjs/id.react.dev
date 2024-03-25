@@ -7,7 +7,7 @@ title: useState
 `useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [variabel *state*](/learn/state-a-components-memory) pada komponen Anda.
 
 ```js
-const [state, setState] = useState(initialState);
+const [state, setState] = useState(initialState)
 ```
 
 </Intro>
@@ -630,7 +630,7 @@ Dalam contoh ini, variabel *state* `todos` menyimpan sebuah senarai. setiap peng
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -687,7 +687,7 @@ export default function TaskApp() {
 }
 ```
 
-```js AddTodo.js
+```js src/AddTodo.js
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -708,7 +708,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -1028,7 +1028,7 @@ Baca [menjaga dan menyetel ulang *state*](/learn/preserving-and-resetting-state)
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1083,7 +1083,7 @@ Dalam kasus yang jarang terjadi bahwa tidak satu pun dari yang disebutkan di ata
 
 Berikut contohnya. Komponen `CountLabel` ini menampilkan *prop* `count` yang dioper kepadanya::
 
-```js CountLabel.js
+```js src/CountLabel.js
 export default function CountLabel({ count }) {
   return <h1>{count}</h1>
 }
@@ -1093,7 +1093,7 @@ Misalkan Anda ingin menunjukan apakah penghitung telah meningkat atau menurun se
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 
@@ -1113,7 +1113,7 @@ export default function App() {
 }
 ```
 
-```js CountLabel.js active
+```js src/CountLabel.js active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {
