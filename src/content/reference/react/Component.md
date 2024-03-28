@@ -1099,7 +1099,7 @@ Menerapkan `static getDerivedStateFromProps` pada *class component* setara denga
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
 ### Mendefinisikan class component {/*defining-a-class-component*/}
 
@@ -1403,13 +1403,13 @@ Saat ini, belum ada cara untuk menulis batas kesalahan sebagai *function compone
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
-### Migrating a simple component from a class to a function {/*migrating-a-simple-component-from-a-class-to-a-function*/}
+### Migrasi komponen sederhana dari *class* ke sebuah *function* {/*migrating-a-simple-component-from-a-class-to-a-function*/}
 
-Typically, you will [define components as functions](/learn/your-first-component#defining-a-component) instead.
+Biasanya, Anda akan [mendefinisikan komponen sebagai `functions`](/learn/your-first-component#defining-a-component).
 
-For example, suppose you're converting this `Greeting` class component to a function:
+Sebagai contoh, asumsikan Anda sedang mengonversi komponen kelas `Greeting` ini menjadi sebuah fungsi:
 
 <Sandpack>
 
@@ -1435,15 +1435,15 @@ export default function App() {
 
 </Sandpack>
 
-Define a function called `Greeting`. This is where you will move the body of your `render` function.
+Tentukan sebuah fungsi yang disebut `Greeting`. Di sinilah Anda akan memindahkan tubuh fungsi `render` Anda.
 
 ```js
 function Greeting() {
-  // ... move the code from the render method here ...
+  // ... pindahkan kode dari `render method` di sini ...
 }
 ```
 
-Instead of `this.props.name`, define the `name` prop [using the destructuring syntax](/learn/passing-props-to-a-component) and read it directly:
+Sebagai pengganti `this.props.name`, definisikan prop `name` [menggunakan sintaks *destructuring*](/learn/passing-props-to-a-component) dan gunakan secara langsung:
 
 ```js
 function Greeting({ name }) {
@@ -1451,7 +1451,7 @@ function Greeting({ name }) {
 }
 ```
 
-Here is a complete example:
+Berikut contoh lengkapnya:
 
 <Sandpack>
 
@@ -1475,9 +1475,9 @@ export default function App() {
 
 ---
 
-### Migrating a component with state from a class to a function {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
+### Migrasi komponen dengan `state` dari kelas ke fungsi {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
 
-Suppose you're converting this `Counter` class component to a function:
+Asumsikan Anda sedang mengonversi komponen kelas `Counter` ini menjadi sebuah fungsi.
 
 <Sandpack>
 
@@ -1525,7 +1525,7 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Start by declaring a function with the necessary [state variables:](/reference/react/useState#adding-state-to-a-component)
+Mulai dengan mendeklarasikan sebuah fungsi dengan variabel [state](/reference/react/useState#adding-state-to-a-component) yang diperlukan:
 
 ```js {4-5}
 import { useState } from 'react';
@@ -1536,7 +1536,7 @@ function Counter() {
   // ...
 ```
 
-Next, convert the event handlers:
+Selanjutnya, konversi  `event handlers`:
 
 ```js {5-7,9-11}
 function Counter() {
@@ -1553,9 +1553,9 @@ function Counter() {
   // ...
 ```
 
-Finally, replace all references starting with `this` with the variables and functions you defined in your component. For example, replace `this.state.age` with `age`, and replace `this.handleNameChange` with `handleNameChange`.
+Terakhir, gantikan semua referensi yang dimulai dengan `this` dengan variabel dan fungsi yang Anda definisikan di komponen Anda. Misalnya, gantikan `this.state.age` dengan `age`, dan gantikan `this.handleNameChange` dengan `handleNameChange`.
 
-Here is a fully converted component:
+Berikut adalah komponen yang telah sepenuhnya dikonversi:
 
 <Sandpack>
 
@@ -1597,9 +1597,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Migrating a component with lifecycle methods from a class to a function {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
+### Migrasi sebuah komponen dengan `lifecycle methods` dari kelas ke fungsi {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
 
-Suppose you're converting this `ChatRoom` class component with lifecycle methods to a function:
+Asumsikan Anda sedang mengonversi komponen kelas `ChatRoom` ini dengan *lifecycle methods* ke sebuah fungsi:
 
 <Sandpack>
 
@@ -1696,7 +1696,7 @@ export default class ChatRoom extends Component {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Sebuah implementasi nyata sebenarnya akan terhubung ke server.
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -1715,11 +1715,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-First, verify that your [`componentWillUnmount`](#componentwillunmount) does the opposite of [`componentDidMount`.](#componentdidmount) In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
+Pertama, verifikasi bahwa metode [`componentWillUnmount`](#componentwillunmount) Anda melakukan kebalikan dari [`componentDidMount`](#componentdidmount). Pada contoh di atas, hal ini terjadi: metode tersebut memutuskan koneksi yang dibuat oleh `componentDidMount`. Jika logika semacam itu tidak ada, tambahkan terlebih dahulu.
 
-Next, verify that your [`componentDidUpdate`](#componentdidupdate) method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
+Selanjutnya, pastikan metode [`componentDidUpdate`](#componentdidupdate) Anda menangani perubahan pada semua prop dan state yang Anda gunakan di `componentDidMount`. Pada contoh di atas, `componentDidMount` memanggil `setupConnection` yang membaca `this.state.serverUrl` dan `this.props.roomId`. Oleh karena itu, `componentDidUpdate` memeriksa apakah `this.state.serverUrl` dan `this.props.roomId` telah berubah, dan mereset koneksi jika iya. Jika logika `componentDidUpdate` Anda tidak ada atau tidak menangani perubahan pada semua prop dan state yang relevan, perbaiki terlebih dahulu.
 
-In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/reference/react/useEffect#connecting-to-an-external-system)
+Pada contoh di atas, logika di dalam metode siklus hidup menghubungkan komponen ke sistem di luar React (sebuah server obrolan). Untuk menghubungkan sebuah komponen ke sistem eksternal, [jelaskan logika ini sebagai sebuah Efek tunggal:](/reference/react/useEffect#connecting-to-an-external-system)
 
 ```js {6-12}
 import { useState, useEffect } from 'react';
@@ -1739,7 +1739,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-This [`useEffect`](/reference/react/useEffect) call is equivalent to the logic in the lifecycle methods above. If your lifecycle methods do multiple unrelated things, [split them into multiple independent Effects.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Here is a complete example you can play with:
+Panggilan [`useEffect`](/reference/react/useEffect) ini setara dengan logika dalam `lifecycle methods` di atas. Jika `lifecycle methods` Anda melakukan beberapa hal yang tidak terkait, [pisahkan mereka menjadi beberapa Efek independen.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Berikut adalah contoh lengkap yang dapat Anda coba:
 
 <Sandpack>
 
@@ -1826,15 +1826,15 @@ button { margin-left: 10px; }
 
 <Note>
 
-If your component does not synchronize with any external systems, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+Jika komponent Anda tidak disinkronkan dengan sistem eksternal apapun, [Anda mungkin tidak membutuhkan sebuah *Effect*.](/learn/you-might-not-need-an-effect)
 
 </Note>
 
 ---
 
-### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
+### Migrasi komponen dengan `context` dari kelas ke fungsi {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
 
-In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+Pada contoh ini, kelas komponen `Panel` dan `Button` membaca [context](/learn/passing-data-deeply-with-context) dari [`this.context`:](#context)
 
 <Sandpack>
 
@@ -1928,7 +1928,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-When you convert them to function components, replace `this.context` with [`useContext`](/reference/react/useContext) calls:
+Ketika Anda mengonversi ke komponen fungsi, ubah `this.context` dengan memanggil [`useContext`](/reference/react/useContext):
 
 <Sandpack>
 
