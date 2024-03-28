@@ -44,8 +44,7 @@ Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan:
 * [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): Atribut ARIA memungkinkan anda untuk menentukan informasi pohon aksesibilitas untuk elemen ini. Liat [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) untuk referensi yang lengkap. Dalam React, setiap atribut ARIA memiliki nama yang sama persis seperti di HTML.
 * [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): Sebuah string. menentukan apakah dan bagaimana masukkan dari pengguna harus dikapitalisasi.
 * [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): Sebuah string. Menentukan nama kelas CSS dari elemen tersebut. [Baca lebih lanjut mengenai menerapkan *styles* CSS.](#applying-css-styles)
-* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): Sebuah boolean. Jika `true`, peramban web (*browser*) akan membiarkan pengguna untuk menyunting elemen yang di-*render* secara langsung. Ini digunakan untuk mengimplementasi *libraries* masukkan teks kaya seperti [Lexical.](https://lexical.dev/) 
-React akan memperingatkan jika anda mencoba untuk mengoper *children* React ke dalam elemen tersebut dengan `contentEditable={true}` karena React tidak akan bisa memperbarui konten tersebut setelah disunting oleh pengguna.
+* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): Sebuah boolean. Jika `true`, peramban web (*browser*) akan membiarkan pengguna untuk menyunting elemen yang di-*render* secara langsung. Ini digunakan untuk mengimplementasi *libraries* masukkan teks kaya seperti [Lexical.](https://lexical.dev/)  React akan memperingatkan jika anda mencoba untuk mengoper *children* React ke dalam elemen tersebut dengan `contentEditable={true}` karena React tidak akan bisa memperbarui konten tersebut setelah disunting oleh pengguna.
 * [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Atribut data membiarkan Anda melampirkan beberapa data string ke element, sebagai contoh `data-buah="pisang"`. Dalam React, hal ini jarang digunakan karena biasanya anda membaca data dari *props* ataupun *state*.
 * [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Antara `'ltr'` atau `'rtl'`. Menentukan arah teks dari elemen tersebut.
 * [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): Sebuah boolean. Menentukan apakah elemen tersebut dapat diseret. Bagian dari [API HTML *Drag and Drop*.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
@@ -337,7 +336,7 @@ Sebuah tipe *event handler* untuk *events* [animasi CSS](https://developer.mozil
 * `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent):
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
-  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent)
+  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 

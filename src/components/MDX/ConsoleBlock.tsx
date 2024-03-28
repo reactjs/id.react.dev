@@ -38,18 +38,18 @@ function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   }
 
   return (
-    <div className="mb-4 text-secondary" translate="no">
+    <div className="mb-4 text-secondary" translate="no" dir="ltr">
       <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
         <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
           <Box className="bg-gray-300 dark:bg-gray-70" width="15px" />
         </div>
         <div className="flex text-sm px-4">
           <div className="border-b-2 border-gray-300 dark:border-gray-90 text-tertiary dark:text-tertiary-dark">
-            Console
+            Konsol
           </div>
           <div className="px-4 py-2 flex">
-            <Box className="mr-2 bg-gray-300 dark:bg-gray-70" />
-            <Box className="mr-2 hidden md:block bg-gray-300 dark:bg-gray-70" />
+            <Box className="me-2 bg-gray-300 dark:bg-gray-70" />
+            <Box className="me-2 hidden md:block bg-gray-300 dark:bg-gray-70" />
             <Box className="hidden md:block bg-gray-300 dark:bg-gray-70" />
           </div>
         </div>

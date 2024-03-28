@@ -107,7 +107,7 @@ Memanggil `root.unmount` akan melepas semua komponen di root dan "melepaskan" Re
 
 #### Kembalian {/*root-unmount-returns*/}
 
-`render` mengembalikan `null`.
+`root.unmount` mengembalikan `undefined`.
 
 #### Catatan penting {/*root-unmount-caveats*/}
 

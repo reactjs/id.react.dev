@@ -1079,7 +1079,7 @@ Anda dapat mengganti konteks untuk suatu bagian pohon dengan membungkus bagian t
 
 Anda bisa membuat sarang dan menimpa penyedia sebanyak yang Anda butuhkan.
 
-<Recipes title="Examples of overriding context">
+<Recipes titleText="Examples of overriding context">
 
 #### Menggantikan sebuah tema {/*overriding-a-theme*/}
 

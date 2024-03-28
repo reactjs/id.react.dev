@@ -37,6 +37,10 @@
           "path": "/learn/editor-setup"
         },
         {
+          "title": "Using TypeScript",
+          "path": "/learn/typescript"
+        },
+        {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
         }
@@ -156,7 +160,7 @@
       ]
     },
     {
-      "title": "Escape Hatches",
+      "title": "Jalan Keluar",
       "path": "/learn/escape-hatches",
       "tags": ["advanced"],
       "routes": [

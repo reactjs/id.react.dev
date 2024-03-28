@@ -62,7 +62,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg mr-4">
+      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
         {isSubmitted
           ? 'Terima kasih atas masukannya!'
           : 'Apakah halaman ini berguna bagi Anda?'}
@@ -70,7 +70,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
       {!isSubmitted && (
         <button
           aria-label="Ya"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 mr-2"
+          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 me-2"
           onClick={() => {
             setIsSubmitted(true);
             onSubmit();

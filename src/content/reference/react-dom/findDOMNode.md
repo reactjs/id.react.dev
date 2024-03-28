@@ -4,13 +4,13 @@ title: findDOMNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+API ini akan dihapus pada versi mayor React yang akan datang. [Lihat alternatif lainnya.](#alternatives)
 
 </Deprecated>
 
 <Intro>
 
-`findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
+`findDOMNode` mencari simpul DOM peramban untuk *instance* dari [komponen kelas](/reference/react/Component) React
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -22,11 +22,11 @@ const domNode = findDOMNode(componentInstance)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
+Panggil `findDOMNode` untuk mencari simpul DOM peramban pada *instance* dari [komponen kelas](/reference/react/Component) React yang diberikan.
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -34,34 +34,33 @@ import { findDOMNode } from 'react-dom';
 const domNode = findDOMNode(componentInstance);
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class component.
+`componentInstance`: *Instance* dari subkelas [`Component`](/reference/react/Component). Misalnya, `this` di dalam komponen kelas.
 
+#### Kembalian {/*returns*/}
 
-#### Returns {/*returns*/}
+`findDOMNode` mengembalikan simpul DOM peramban pertama yang terdekat dalam `componentInstance` yang diberikan. Ketika komponen di-*render* menjadi `null`, atau di-*render* menjadi `false`, `findDOMNode` mengembalikan `null`. Ketika komponen di-*render* menjadi string, `findDOMNode` mengembalikan simpul DOM teks yang berisi nilai tersebut.
 
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+#### Catatan Penting {/*caveats*/}
 
-#### Caveats {/*caveats*/}
+* Sebuah komponen dapat mengembalikan senarai atau [Fragment](/reference/react/Fragment) dengan beberapa anak. Dalam hal ini `findDOMNode`, akan mengembalikan simpul DOM yang berhubungan dengan anak pertama yang tidak kosong.
 
-* A component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+* `findDOMNode` hanya bekerja pada komponen yang sudah terpasang (yaitu komponen yang sudah ditempatkan di DOM). Jika Anda mencoba memanggil ini pada komponen yang belum terpasang (seperti memanggil `findDOMNode()` dalam `render()` pada komponen yang belum dibuat), sebuah *exception* akan dilemparkan.
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+* `findDOMNode` hanya mengembalikan hasil pada saat pemanggilan. Jika komponen anak me-*render* simpul yang nantinya berbeda, tidak ada cara untuk memberitahu Anda tentang perubahan ini.
 
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
-
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+* `findDOMNode` menerima instance komponen kelas, sehingga tidak dapat digunakan dengan komponen fungsi.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
+### Menemukan simpul DOM akar dari komponen kelas {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+Panggil `findDOMNode` dengan sebuah *instance* dari [komponen kelas](/reference/react/Component) (biasanya, `this`) untuk menemukan simpul DOM yang telah di-*render*.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -76,7 +75,7 @@ class AutoselectingInput extends Component {
 }
 ```
 
-Here, the `input` variable will be set to the `<input>` DOM element. This lets you do something with it. For example, when clicking "Show example" below mounts the input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) selects all text in the input:
+Di sini, variabel `input` akan disetel ke elemen DOM `<input>`. Hal ini memungkinkan Anda melakukan sesuatu dengannya. Sebagai contoh, ketika mengklik "Tampilkan contoh" di bawah ini untuk memasang *input*, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) akan memilih semua teks di dalam *input*:
 
 <Sandpack>
 
@@ -89,7 +88,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -120,11 +119,11 @@ export default AutoselectingInput;
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
-### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+### Membaca simpul DOM komponen itu sendiri dari sebuah ref {/*reading-components-own-dom-node-from-a-ref*/}
 
-Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this `<input />` into a `<div>`:
+Kode yang menggunakan `findDOMNode` mudah rusak karena hubungan antara simpul JSX dengan kode yang memanipulasi simpul DOM tersebut tidak eksplisit. Sebagai contoh, cobalah bungkus `<input />` dengan `<div>`:
 
 <Sandpack>
 
@@ -137,7 +136,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -165,9 +164,9 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-This will break the code because now, `findDOMNode(this)` finds the `<div>` DOM node, but the code expects an `<input>` DOM node. To avoid these kinds of problems, use [`createRef`](/reference/react/createRef) to manage a specific DOM node.
+Hal ini akan merusak kode karena sekarang, `findDOMNode(this)` menemukan simpul DOM `<div>`, tetapi kode mengharapkan simpul DOM `<input>`. Untuk menghindari masalah seperti ini, gunakan [`createRef`](/reference/react/createRef) untuk mengelola simpul DOM tertentu.
 
-In this example, `findDOMNode` is no longer used. Instead, `inputRef = createRef(null)` is defined as an instance field on the class. To read the DOM node from it, you can use `this.inputRef.current`. To attach it to the JSX, you render `<input ref={this.inputRef} />`. This connects the code using the DOM node to its JSX:
+Pada contoh ini, `findDOMNode` tidak lagi digunakan. Sebagai gantinya, `inputRef = createRef(null)` didefinisikan sebagai sebuah field instance pada kelas. Untuk membaca simpul DOM darinya, Anda bisa menggunakan `this.inputRef.current`. Untuk melampirkannya ke JSX, Anda me-*render* `<input ref = {this.inputRef} />`. Ini menghubungkan kode yang menggunakan simpul DOM ke JSX:
 
 <Sandpack>
 
@@ -180,7 +179,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -212,7 +211,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-In modern React without class components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
+Pada React modern tanpa komponen kelas, kode yang setara akan memanggil [`useRef`](/reference/react/useRef) sebagai gantinya:
 
 <Sandpack>
 
@@ -225,7 +224,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -251,13 +250,13 @@ export default function AutoselectingInput() {
 
 </Sandpack>
 
-[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+[Baca lebih lanjut tentang memanipulasi DOM dengan *refs*.](/learn/manipulating-the-dom-with-refs)
 
 ---
 
-### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### Membaca simpul DOM komponen anak dari ref yang diteruskan {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+Pada contoh ini, `findDOMNode(this)` menemukan simpul DOM yang dimiliki oleh komponen lain. `AutoselectingInput` me-*render* `MyInput`, yang merupakan komponen Anda sendiri yang me-*render* `<input>` pada browser.
 
 <Sandpack>
 
@@ -270,7 +269,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -305,14 +304,14 @@ export default function MyInput() {
 
 </Sandpack>
 
-Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
+Perhatikan bahwa memanggil `findDOMNode(this)` di dalam `AutoselectingInput` masih memberikan Anda DOM `<input>`, meskipun JSX untuk `<input>` ini disembunyikan di dalam komponen `MyInput`. Hal ini tampak mudah untuk contoh di atas, tetapi hal ini akan membuat kode tersebut mudah rusak. Bayangkan Anda ingin mengubah `MyInput` nanti dan membungkusnya dengan `<div>`. Hal ini akan merusak kode `AutoselectingInput` (yang memiliki ekspektasi untuk mendapatkan simpul `<input>`).
 
-To replace `findDOMNode` in this example, the two components need to coordinate:
+Untuk mengganti `findDOMNode` dalam contoh ini, kedua komponen harus berkoordinasi:
 
-1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
-2. `MyInput` should be declared with [`forwardRef`](/reference/react/forwardRef) to take that ref and forward it down to the `<input>` node.
+1. `AutoSelectingInput` harus mendeklarasikan sebuah ref, seperti [pada contoh sebelumnya](#membaca-komponen-memiliki-simpul-dom-dari-ref), lalu mengopernya ke `<MyInput>`.
+2. `MyInput` harus dideklarasikan dengan [`forwardRef`](/reference/react/forwardRef) untuk mengambil ref tersebut dan meneruskannya ke simpul `<input>`.
 
-This version does that, so it no longer needs `findDOMNode`:
+Contoh di bawah ini melakukan hal tersebut, sehingga tidak lagi membutuhkan `findDOMNode`:
 
 <Sandpack>
 
@@ -325,7 +324,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -368,7 +367,7 @@ export default MyInput;
 
 </Sandpack>
 
-Here is how this code would look like with function components instead of classes:
+Berikut ini adalah contoh kode jika kode tersebut menggunakan komponen fungsi, bukan komponen kelas:
 
 <Sandpack>
 
@@ -381,7 +380,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Tampilkan contoh
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -420,11 +419,11 @@ export default MyInput;
 
 ---
 
-### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
+### Menambahkan elemen pembungkus `<div>` {/*adding-a-wrapper-div-element*/}
 
-Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+Terkadang sebuah komponen perlu mengetahui posisi dan ukuran anak-anaknya. Hal ini membuat Anda tertarik untuk mencari anaknya dengan `findDOMNode(this)`, kemudian menggunakan metode DOM seperti [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) untuk mendapatkan informasi ukuran.
 
-There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.
+Saat ini tidak ada solusi langsung untuk kasus penggunaan ini, itulah mengapa `findDOMNode` sudah di-*deprecate* tetapi belum dihapus sepenuhnya dari React. Untuk sementara ini, Anda dapat mencoba me-*render* simpul pembungkus `<div>` di sekitar konten sebagai solusi, dan mendapatkan ref ke simpul tersebut. Namun perlu diketahui bahwa pembungkus tambahan dapat merusak *styling*.
 
 ```js
 <div ref={someRef}>
@@ -432,4 +431,4 @@ There is currently no direct equivalent for this use case, which is why `findDOM
 </div>
 ```
 
-This also applies to focusing and scrolling to arbitrary children.
+Hal ini juga berlaku untuk pemfokusan dan *scrolling* ke sembarang anak.
