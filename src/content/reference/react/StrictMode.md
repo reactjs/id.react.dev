@@ -95,7 +95,11 @@ Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
 ---
 
+<<<<<<< HEAD
 ### Mengaktifkan Strict Mode untuk bagian dari aplikasi {/*enabling-strict-mode-for-a-part-of-the-app*/}
+=======
+### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 Anda juga dapat mengaktifkan Strict Mode untuk setiap bagian dari aplikasi Anda:
 
@@ -140,7 +144,7 @@ Komponen `StoryTray` mengambil larik `stories` dan menambahkan satu item terakhi
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -150,7 +154,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -175,7 +179,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -196,6 +200,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -203,7 +210,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -218,7 +224,7 @@ Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang 
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -228,7 +234,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -253,7 +259,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -283,6 +289,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -290,7 +299,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -316,7 +324,7 @@ Ini akan [membuat fungsi `StoryTray` murni.](/learn/keeping-components-pure) Set
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -331,7 +339,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -356,7 +364,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -377,6 +385,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -384,7 +395,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -397,7 +407,7 @@ li {
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -412,7 +422,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -437,7 +447,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -467,6 +477,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -474,7 +487,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -509,7 +521,7 @@ Pertimbangkan contoh ini yang menghubungkan komponen ke obrolan:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -535,7 +547,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -568,7 +580,7 @@ Untuk memperjelas masalah, mari terapkan sebuah fitur. Pada contoh di bawah, `ro
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -619,7 +631,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -662,7 +674,7 @@ Sekarang Efek Anda "membersihkan" setelahnya sendiri dan menghancurkan koneksi y
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -693,7 +705,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -726,7 +738,7 @@ Strict Mode memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -783,7 +795,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {

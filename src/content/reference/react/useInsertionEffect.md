@@ -10,7 +10,11 @@ title: useInsertionEffect
 
 <Intro>
 
+<<<<<<< HEAD
 `useInsertionEffect` memungkinkan Anda memasukan element ke dalam DOM sebelum efek *layout* aktif.
+=======
+`useInsertionEffect` allows inserting elements into the DOM before any layout Effects fire.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -26,7 +30,11 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
+<<<<<<< HEAD
 Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum ada efek aktif yang mungkin akan membaca *layout*:
+=======
+Call `useInsertionEffect` to insert styles before any Effects fire that may need to read layout:
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -44,7 +52,11 @@ function useCSS(rule) {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Sebelum komponen ditambahkan ke DOM, dan sebelum efek *layout* apa pun aktif, React akan menjalankan fungsi *setup*. Setelah setiap *render* ulang dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (*cleanup*) (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan (*cleanup*).
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout Effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
  
 * **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika linter Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan algoritma perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika Anda tidak menentukan sebuah dependensi sama sekali, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
 
@@ -88,7 +100,11 @@ Jika kamu menggunakan CC-in-JS, kami merekomendasikan sebuah kombinasi dari dua 
 
 Masalah pertama tidak dapat diselesaikan, tapi `useInsertionEffect` membantu Anda menyelesaikan masalah kedua.
 
+<<<<<<< HEAD
 Panggil `useInsertionEffect` untuk menyertakan sebuah *style* sebelum efek *layout* aktif:
+=======
+Call `useInsertionEffect` to insert the styles before any layout Effects fire:
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ```js {4-11}
 // Inside your CSS-in-JS library
