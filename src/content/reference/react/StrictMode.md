@@ -95,11 +95,7 @@ Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
 ---
 
-<<<<<<< HEAD
 ### Mengaktifkan Strict Mode untuk bagian dari aplikasi {/*enabling-strict-mode-for-a-part-of-the-app*/}
-=======
-### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 Anda juga dapat mengaktifkan Strict Mode untuk setiap bagian dari aplikasi Anda:
 

@@ -75,13 +75,8 @@ function FooterLink({
         }
       )}>
       <IconNavArrow
-<<<<<<< HEAD
-        className="text-tertiary dark:text-tertiary-dark inline group-focus:text-link dark:group-focus:text-link-dark"
-        displayDirection={type === 'Sebelumnya' ? 'start' : 'end'}
-=======
         className="inline text-tertiary dark:text-tertiary-dark group-focus:text-link dark:group-focus:text-link-dark"
-        displayDirection={type === 'Previous' ? 'start' : 'end'}
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+        displayDirection={type === 'Sebelumnya' ? 'start' : 'end'}
       />
       <div className="flex flex-col overflow-hidden">
         <span className="text-sm font-bold tracking-wide no-underline uppercase text-secondary dark:text-secondary-dark group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">

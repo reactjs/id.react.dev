@@ -40,11 +40,7 @@ Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang la
 
 ### Pemformatan {/*formatting*/}
 
-<<<<<<< HEAD
 Hal terakhir yang ingin Anda lakukan saat berbagi kode Anda dengan kontributor lain adalah terlibat dalam diskusi tentang [tab vs spasi](https://www.google.com/search?q=tabs+vs+spaces)! Untungnya, [Prettier](https://prettier.io/) akan membersihkan kode Anda dengan memformat ulang sesuai dengan aturan yang telah ditentukan. Jalankan Prettier, dan semua tab Anda akan dikonversi menjadi spasi—dan indentasi, tanda kutip, dll juga akan diubah sesuai dengan konfigurasi. Dalam pengaturan yang ideal, Prettier akan berjalan saat Anda menyimpan file Anda, dengan cepat membuat perubahan ini untuk Anda.
-=======
-The last thing you want to do when sharing your code with another contributor is get into a discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 Anda dapat menginstal [ekstensi Prettier di VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) dengan mengikuti langkah-langkah berikut:
 

@@ -51,17 +51,10 @@ Seringnya, `flushSync` dapat dihindari. Gunakan `flushSync` sebagai pilihan tera
 
 #### Catatan penting {/*caveats*/}
 
-<<<<<<< HEAD
 * `flushSync` dapat menurunkan performa secara signifikan. Jangan gunakan terlalu sering.
 * `flushSync` dapat memaksa batas *Suspense* tertunda untuk menampilkan *state* `fallback`-nya.
 * `flushSync` dapat menjakankan *effects* tertunda dan secara sinkron menerapkan pembaruan di dalamnya sebelum mengembalikan.
 * `flushSync` dapat menge-*flush* pembaruan di luar *callback* ketika perlu untuk menge-*flush* pembaruan di dalam *callback*. Misalnya, jika ada pembaruan tertunda dari sebuah klik, React dapat menge-*flush* pembaruan tersebut sebelum menge-*flush* pembaruan di dalam *callback*.
-=======
-* `flushSync` can significantly hurt performance. Use sparingly.
-* `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-* `flushSync` may run pending Effects and synchronously apply any updates they contain before returning.
-* `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ---
 

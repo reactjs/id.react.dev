@@ -10,46 +10,17 @@ title: Mempertahankan dan Mengatur Ulang State
 
 <YouWillLearn>
 
-<<<<<<< HEAD
-* Bagaimana React "melihat" struktur komponen
 * Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
 * Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
 * Bagaimana *keys* dan *types* mempengaruhi apakah *state* dipertahankan
 
 </YouWillLearn>
 
-## Pohon antarmuka pengguna (UI) {/*the-ui-tree*/}
-
-Peramban menggunakan banyak struktur pohon untuk memodelkan antarmuka pengguna (UI). [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) mewakili elemen HTML, [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) melakukan hal yang sama untuk CSS. Bahkan ada [Pohon aksesibilitas](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
-
-React juga menggunakan struktur pohon untuk mengelola dan memodelkan UI yang Anda buat. React membuat **pohon UI** dari JSX Anda. Kemudian React DOM memperbarui elemen-elemen DOM peramban agar sesuai dengan pohon UI tersebut (React Native menerjemahkan pohon-pohon tersebut menjadi elemen-elemen yang spesifik untuk platform *mobile*).
-
-<DiagramGroup>
-
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram dengan tiga bagian yang disusun secara horizontal. Pada bagian pertama, terdapat tiga persegi panjang yang ditumpuk secara vertikal, dengan label 'Komponen A', 'Komponen B', dan 'Komponen C'. Transisi ke panel berikutnya adalah sebuah panah dengan logo React di bagian atas yang berlabel 'React'. Bagian tengah berisi sebuah pohon komponen, dengan akar berlabel 'A' dan dua anak berlabel 'B' dan 'C'. Bagian selanjutnya ditransisikan lagi menggunakan panah dengan logo React di bagian atas berlabel 'React'. Bagian ketiga dan terakhir adalah model rangka dari sebuah browser, yang berisi sebuah pohon dengan 8 node, yang hanya memiliki sebuah subset yang disorot (menunjukkan subpohon dari bagian tengah).">
-
-Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* DOM
-
-</Diagram>
-
-</DiagramGroup>
-
 ## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
+React membangun [pohon render](learn/understanding-your-ui-as-a-tree#the-render-tree) untuk struktur komponen di dalam UI Anda.
+
 Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
-=======
-* When React chooses to preserve or reset the state
-* How to force React to reset component's state
-* How keys and types affect whether the state is preserved
-
-</YouWillLearn>
-
-## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
-
-React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
-
-When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 
 Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 

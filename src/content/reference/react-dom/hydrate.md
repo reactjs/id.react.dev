@@ -152,11 +152,7 @@ Cara ini hanya berfungsi untuk satu tingkat kedalaman dan dimaksudkan untuk menj
 
 ### Mengatasi konten berbeda antara client dan server {/*handling-different-client-and-server-content*/}
 
-<<<<<<< HEAD
-Jika Anda sengaja perlu me-*render* sesuatu yang berbeda di server dan klien, Anda dapat melakukan dua kali pe-*render*-an. Komponen yang me-*render* sesuatu yang berbeda pada sisi klien dapat di baca di [*variabel state*](/reference/react/useState) seperti `isClient`, yang dapat ditetapkan ke `true` dalam sebuah [efek](/reference/react/useEffect):
-=======
-If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Jika Anda sengaja perlu me-*render* sesuatu yang berbeda di server dan klien, Anda dapat melakukan dua kali pe-*render*-an. Komponen yang me-*render* sesuatu yang berbeda pada sisi klien dapat membaca [*variabel state*](/reference/react/useState) seperti `isClient`, yang dapat ditetapkan ke `true` dalam sebuah [efek](/reference/react/useEffect):
 
 <Sandpack>
 

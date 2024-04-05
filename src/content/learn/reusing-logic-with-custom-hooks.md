@@ -1917,13 +1917,8 @@ export default function Counter() {
 }
 ```
 
-<<<<<<< HEAD
-```js useCounter.js
-// Tulis custom Hook Anda di file ini!
-=======
 ```js src/useCounter.js
-// Write your custom Hook in this file!
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+// Tulis Hook kustom Anda di file ini!
 ```
 
 </Sandpack>
@@ -2109,13 +2104,8 @@ export function useCounter(delay) {
 }
 ```
 
-<<<<<<< HEAD
-```js useInterval.js
-// Tulislah Hook Anda di sini!
-=======
 ```js src/useInterval.js
-// Write your Hook here!
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+// Tulislah Hook Anda di sini!
 ```
 
 </Sandpack>

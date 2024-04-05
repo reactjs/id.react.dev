@@ -61,9 +61,12 @@ function sendGAEvent(isPositive: boolean) {
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
-<<<<<<< HEAD
-    <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
+    <div
+      className={cn(
+        'max-w-custom-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex',
+        {exit: isSubmitted}
+      )}>
+      <p className="w-full text-lg font-bold text-primary dark:text-primary-dark me-4">
         {isSubmitted
           ? 'Terima kasih atas masukannya!'
           : 'Apakah halaman ini berguna bagi Anda?'}
@@ -71,21 +74,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
       {!isSubmitted && (
         <button
           aria-label="Ya"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 me-2"
-=======
-    <div
-      className={cn(
-        'max-w-custom-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex',
-        {exit: isSubmitted}
-      )}>
-      <p className="w-full text-lg font-bold text-primary dark:text-primary-dark me-4">
-        {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
-      </p>
-      {!isSubmitted && (
-        <button
-          aria-label="Yes"
           className="px-3 rounded-lg bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark me-2"
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
           onClick={() => {
             setIsSubmitted(true);
             onSubmit();
@@ -96,13 +85,8 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
       )}
       {!isSubmitted && (
         <button
-<<<<<<< HEAD
           aria-label="Tidak"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
-=======
-          aria-label="No"
           className="px-3 rounded-lg bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark"
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
           onClick={() => {
             setIsSubmitted(true);
             onSubmit();

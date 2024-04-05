@@ -1090,11 +1090,7 @@ export const recipes = [{
 
 #### Daftar dengan pemisah {/*list-with-a-separator*/}
 
-<<<<<<< HEAD
-Pada contoh ini, terdapat sebuah *haiku* terkenal dari Katsushika Hokusai yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
-=======
-This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Pada contoh ini, terdapat sebuah *haiku* terkenal dari Tachibana Hokushi yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
 
 ```js
 <article>
@@ -1153,11 +1149,7 @@ hr {
 
 <Hint>
 
-<<<<<<< HEAD
-Anda bisa mengubah `map()` ke pengulangan manual atau menggunakan `Fragment`.
-=======
-You'll either need to convert `map` to a manual loop, or use a Fragment.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Anda bisa mengubah `map` ke pengulangan manual atau menggunakan *Fragment*.
 
 </Hint>
 
@@ -1220,11 +1212,7 @@ hr {
 
 Penggunakan indeks baris sebagai `key` tidak bisa dilakukan karena setiap pemisah dan baris berada di senarai yang sama. Namun, hal ini bisa dihindari dengan menambahkan akhiran seperti `key={i + '-text'}`.
 
-<<<<<<< HEAD
-Anda juga bisa me-*render* sebuah kumpulan fragmen yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
-=======
-Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Anda juga bisa me-*render* sebuah kumpulan *Fragment* yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
 
 <Sandpack>
 

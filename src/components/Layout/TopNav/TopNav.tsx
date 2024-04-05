@@ -333,13 +333,8 @@ export default function TopNav({
                     href="https://github.com/facebook/react/releases"
                     target="_blank"
                     rel="noreferrer noopener"
-<<<<<<< HEAD
                     aria-label="Buka di GitHub"
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-=======
-                    aria-label="Open on GitHub"
                     className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
                     {githubIcon}
                   </Link>
                 </div>

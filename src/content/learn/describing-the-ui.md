@@ -10,7 +10,6 @@ React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*Us
 
 <YouWillLearn isChapter={true}>
 
-<<<<<<< HEAD
 * [Cara menulis komponen React pertama Anda](/learn/your-first-component)
 * [Kapan dan bagaimana membuat file multi-komponen](/learn/importing-and-exporting-components)
 * [Cara menambahkan markup ke JavaScript dengan JSX](/learn/writing-markup-with-jsx)
@@ -19,17 +18,7 @@ React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*Us
 * [Cara melakukan render komponen secara kondisional](/learn/conditional-rendering)
 * [Cara melakukan render beberapa komponen sekaligus](/learn/rendering-lists)
 * [Cara menghindari bug yang membingungkan dengan menjaga komponen tetap murni](/learn/keeping-components-pure)
-=======
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
-* [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+* [Kegunaan memahami UI Anda seperti pohon](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
@@ -535,9 +524,6 @@ Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk me
 
 </LearnMore>
 
-<<<<<<< HEAD
-## Apa selanjutnya? {/*whats-next*/}
-=======
 ## Your UI as a tree {/*your-ui-as-a-tree*/}
 
 React uses trees to model the relationships between components and modules. 
@@ -569,8 +555,7 @@ Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn ho
 </LearnMore>
 
 
-## What's next? {/*whats-next*/}
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+## Apa selanjutnya? {/*whats-next*/}
 
 Lanjut ke [Komponen Pertama Anda](/learn/your-first-component) untuk mulai membaca halaman bab ini dari awal!
 

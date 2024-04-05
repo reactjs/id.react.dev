@@ -30,12 +30,9 @@ Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `va
 
 ---
 
-<<<<<<< HEAD
-## Semua komponen HTML {/*all-html-components*/}
-=======
-## Resource and Metadata Components {/*resource-and-metadata-components*/}
+## Komponen Sumber Daya dan Metadata {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+Komponen bawaan peramban ini memungkinkan Anda memuat sumber daya external atau menyematkan metadata ke dokumen:
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -43,12 +40,11 @@ These bulit-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+Komponen ini memiliki perilaku khusus di React karena React dapat merender mereka ke *head* sebuah dokumen, menangguhkan ketika sumber daya sedang dimuat, dan melakukan hal lainnya yang dideskripsikan oleh halaman yang direferensikan komponen tersebut.
 
 ---
 
-## All HTML components {/*all-html-components*/}
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+## Semua komponen HTML {/*all-html-components*/}
 
 React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
 

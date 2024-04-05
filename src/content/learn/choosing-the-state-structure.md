@@ -554,13 +554,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-(Sebagai alternatif, Anda dapat menyimpan indeks yang dipilih di dalam *state*.)
-
 *State* sebelumnya diduplikasi seperti ini:
-=======
-The state used to be duplicated like this:
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`

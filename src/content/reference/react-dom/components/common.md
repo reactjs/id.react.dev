@@ -789,13 +789,8 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-```js Avatar.js active
-export default function Avatar({ pengguna }) {
-=======
 ```js src/Avatar.js active
-export default function Avatar({ user }) {
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+export default function Avatar({ pengguna }) {
   return (
     <img
       src={pengguna.urlGambar}
@@ -991,22 +986,18 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
-=======
-The `{__html}` object should be created as close to where the HTML is generated as possible, like the above example does in the `renderMarkdownToHTML` function. This ensures that all raw HTML being used in your code is explicitly marked as such, and that only variables that you expect to contain HTML are passed to `dangerouslySetInnerHTML`. It is not recommended to create the object inline like `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+Anda disarankan untuk membuat obyek `{__html}` sedekat mungkin ke tempat di mana HTML dibuat, seperti contoh di atas di fungsi `renderMarkdownToHTML`. Ini memastikan bahwa semua teks HTML mentah yang disematkan di koda Anda ditandai semestinya secara eksplisit, dan hanya variabel yang Anda perkirakan akan terisi HTML akan dioper ke `dangerouslySetInnerHTML`. Tidak direkomendasikan untuk membuat obyek ini di dalam baris kode seperti `<div dangerouslySetInnerHTML={{__html: markup}} />`.
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
 
 ```js {1-4,7,8}
 const post = {
-  // Imagine this content is stored in the database.
+  // Bayangkan konten ini disimpan di database.
   content: `<img src="" onerror='alert("anda di hack!")'>`
 };
 
 export default function MarkdownPreview() {
-  // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
+  // 🔴 ISU KEAMANAN: mengoper input tidak dipercaya ke dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }

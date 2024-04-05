@@ -58,12 +58,7 @@ export default function Gallery() {
 }
 ```
 
-<<<<<<< HEAD
-
-```js data.js
-=======
 ```js src/data.js
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -244,12 +239,7 @@ export default function Gallery() {
 }
 ```
 
-<<<<<<< HEAD
-
-```js data.js
-=======
 ```js src/data.js
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -437,12 +427,7 @@ export default function Gallery() {
 }
 ```
 
-<<<<<<< HEAD
-
-```js data.js
-=======
 ```js src/data.js
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
