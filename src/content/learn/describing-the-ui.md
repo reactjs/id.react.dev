@@ -524,33 +524,33 @@ Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk me
 
 </LearnMore>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## UI Anda sebagai pohon {/*your-ui-as-a-tree*/}
 
-React uses trees to model the relationships between components and modules. 
+React menggunakan pohon (*tree*) untuk menggambarkan hubungan antara komponen dengan modul.
 
-A React render tree is a representation of the parent and child relationship between components. 
+Sebuah pohon *render* React adalah representasi dari hubungan induk dan anak di antara komponen.
 
-<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+<Diagram name="generic_render_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul, dengan setiap simpul merepresentasikan komponen. Simpul root terletak di atas grafik pohon dan dilabeli 'Root Component'. Ia memiliki dua panah memanjang ke bawah menuju dua simpul yang dilabeli 'Component A' dan 'Component C'. Setiap panah dilabeli dengan 'renders'. 'Component A' memiliki satu panah 'renders' menuju simpul berlabel 'Component B'. 'Component C' memiliki satu panah 'renders' menuju simpul berlabel 'Component D'.">
 
-An example React render tree.
-
-</Diagram>
-
-Components near the top of the tree, near the root component, are considered top-level components. Components with no child components are leaf components. This categorization of components is useful for understanding data flow and rendering performance.
-
-Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree. 
-
-<Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
-
-An example module dependency tree.
+Sebuah contoh pohon *render* React.
 
 </Diagram>
 
-A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues. 
+Komponen-komponen yang berada dekat dari atas pohon, dekat dengan komponen *root*, disebut sebagai komponen tingkat atas (*top-level*). Komponen tanpa komponen anak disebut komponen daun (*leaf*). Pengkategorian komponen ini berguna untuk memahami aliran data dan kinerja *rendering*.
+
+Memodel hubungan antara modul JavaScript juga cara lain yang berguna untuk memahami aplikasi Anda. Kami menyebutnya sebagai pohon dependensi (*dependency tree*).
+
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul. Setiap simpul merepresentasikan sebuah modul JavaScript. Simpul paling atas memiliki label 'RootModule.js'. Ia memiliki tiga panah yang memanjang ke simpul: 'ModuleA.js', 'ModuleB.js', dan 'ModuleC.js'. Setiap panah memiliki label 'imports'. Simpul 'ModuleC.js' memiliki satu panah 'imports' menuju simpul berlabel 'ModuleD.js'.">
+
+Sebuah contoh pohon dependensi modul.
+
+</Diagram>
+
+Pohon dependensi seringkali digunakan *build tools* untuk membundel semua kode JavaScript yang relevan untuk diunduh dan di-*render* sebuah klien. Bundel berukuran besar akan memperburuk pengalaman pengguna dalam sebuah aplikasi React. Memahami pohon dependensi modul berguna untuk men-*debug* masalah tersebut.
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
-Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn how to create a render and module dependency trees for a React app and how they're useful mental models for improving user experience and performance.
+Baca **[UI Anda sebagai pohon](/learn/understanding-your-ui-as-a-tree)** untuk mempelajari bagaimana cara membuat dan me-*render* pohon dependensi modul sebuah aplikasi React dan bagaimana ia merupakan model mental yang berguna untuk meningkatkan pengalaman pengguna dan performa aplikasi.
 
 </LearnMore>
 
