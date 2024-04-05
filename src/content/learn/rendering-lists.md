@@ -1258,11 +1258,7 @@ hr {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Ingat, fragmen (biasa ditulis `<> </>`) memberi cara bagi Anda untuk menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
-=======
-Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Ingat, fragmen (biasa ditulis `<> </>`) memungkinkan Anda menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
 
 </Solution>
 

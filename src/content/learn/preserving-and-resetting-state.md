@@ -174,11 +174,7 @@ Memperbarui *state*
 </DiagramGroup>
 
 
-<<<<<<< HEAD
 React akan mempertahankan *state* selama Anda me-*render* komponen yang sama pada posisi yang sama. Untuk melihat hal ini, naikkan kedua penghitung, lalu hapus komponen kedua dengan menghapus centang pada *checkbox* "Render the second counter", lalu tambahkan kembali dengan mencentangnya lagi:
-=======
-React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 <Sandpack>
 
