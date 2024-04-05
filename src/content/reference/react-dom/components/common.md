@@ -697,7 +697,7 @@ Sebuah tipe *event handler* untuk *event* `onWheel`.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
@@ -775,7 +775,7 @@ Pada contoh di atas, `style={{}}` bukan merupakan sintaks khusus, tapi terdapat 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
 const pengguna = {
@@ -789,7 +789,7 @@ export default function App() {
 }
 ```
 
-```js Avatar.js active
+```js src/Avatar.js active
 export default function Avatar({ pengguna }) {
   return (
     <img
@@ -805,7 +805,7 @@ export default function Avatar({ pengguna }) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -944,7 +944,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
@@ -986,16 +986,18 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
+Anda disarankan untuk membuat obyek `{__html}` sedekat mungkin ke tempat di mana HTML dibuat, seperti contoh di atas di fungsi `renderMarkdownToHTML`. Ini memastikan bahwa semua teks HTML mentah yang disematkan di koda Anda ditandai semestinya secara eksplisit, dan hanya variabel yang Anda perkirakan akan terisi HTML akan dioper ke `dangerouslySetInnerHTML`. Tidak direkomendasikan untuk membuat obyek ini di dalam baris kode seperti `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+
 Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
 
 ```js {1-4,7,8}
 const post = {
-  // Imagine this content is stored in the database.
+  // Bayangkan konten ini disimpan di database.
   content: `<img src="" onerror='alert("anda di hack!")'>`
 };
 
 export default function MarkdownPreview() {
-  // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
+  // 🔴 ISU KEAMANAN: mengoper input tidak dipercaya ke dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }

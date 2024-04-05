@@ -284,7 +284,7 @@ Anda juga tidak perlu khawatir tentang [menghindari mutasi](/learn/updating-obje
 
 ## *Refs* dan *DOM* {/*refs-and-the-dom*/}
 
-Anda dapat memberikan nilai apa pun kepada *ref*. Namun, penggunaan *ref* yang paling umum adalah untuk mengakses sebuah elemen *DOM*. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah *ref* ke dalam atribut `ref` di *JSX*, seperti `<div ref={myRef}>`, React akan menempatkan elemen *DOM* yang sesuai ke dalam `myRef.current`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
+Anda dapat memberikan nilai apa pun kepada *ref*. Namun, penggunaan *ref* yang paling umum adalah untuk mengakses sebuah elemen *DOM*. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah *ref* ke dalam atribut `ref` di *JSX*, seperti `<div ref={myRef}>`, React akan menempatkan elemen *DOM* yang sesuai ke dalam `myRef.current`. Ketika elemen tersebut dihapus dari *DOM*, React akan mengubah `myRef.current` menjadi `null`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
 
 <Recap>
 

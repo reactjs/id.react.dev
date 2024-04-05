@@ -36,7 +36,7 @@ Pada contoh pemrograman antarmuka imperatif, formulir dibangun tanpa menggunakan
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 async function handleFormSubmit(e) {
   e.preventDefault();
   disable(textarea);
@@ -85,7 +85,7 @@ function submitForm(answer) {
   // Anggap saja sedang menghubungi jaringan.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (answer.toLowerCase() == 'istanbul') {
+      if (answer.toLowerCase() === 'istanbul') {
         resolve();
       } else {
         reject(new Error('Tebakan yang bagus, tapi salah. Coba lagi!'));
@@ -247,7 +247,7 @@ Jika suatu komponen memiliki banyak state visual, mungkin akan lebih mudah untuk
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import Form from './Form.js';
 
 let statuses = [
@@ -272,7 +272,7 @@ export default function App() {
 }
 ```
 
-```js Form.js
+```js src/Form.js
 export default function Form({ status }) {
   if (status === 'success') {
     return <h1>Benar sekali!</h1>
@@ -546,6 +546,7 @@ body { margin: 0; padding: 0; height: 250px; }
   width: 200px;
   height: 200px;
   border-radius: 10px;
+  border: 5px solid transparent;
 }
 
 .picture--active {
@@ -708,7 +709,7 @@ Berikut ini adalah formulir kecil yang diimplementasikan dengan JavaScript biasa
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Ubah Profil') {
@@ -910,7 +911,7 @@ Berikut ini adalah *sandbox* awal dari tantangan sebelumnya, yang ditulis secara
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Ubah Profil') {
@@ -1009,7 +1010,7 @@ Jika Anda kesulitan untuk memulai dari mana, contoh di bawah ini sudah menyediak
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 let firstName = 'Jane';
 let lastName = 'Jacobs';
 let isEditing = false;
@@ -1116,7 +1117,7 @@ Logika yang kosong mencakup peralihan tampilan masukan dan konten, serta memperb
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 let firstName = 'Jane';
 let lastName = 'Jacobs';
 let isEditing = false;
