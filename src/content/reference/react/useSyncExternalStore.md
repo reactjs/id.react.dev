@@ -131,16 +131,10 @@ export default function TodosApp() {
 }
 ```
 
-<<<<<<< HEAD
-```js todoStore.js
+```js src/todoStore.js
 // Ini adalah contoh dari sebuah tempat penyimpanan
 // dari pihak ketiga yang Anda perlu integrasikan
 // dengan React.
-=======
-```js src/todoStore.js
-// This is an example of a third-party store
-// that you might need to integrate with React.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 // Jika aplikasi Anda dibangun sepenuhnya oleh React,
 // kami merekomendasikan untuk menggunakan React state.
@@ -368,11 +362,7 @@ Fungsi `getServerSnapshot` cukup mirip dengan `getSnapshot`, tetapi hanya berjal
 - Fungsi tersebut berjalan di server saat membuat HTML.
 - Fungsi tersebut berjalan di klien saat [hidrasi](/reference/react-dom/client/hydrateRoot), misalnya saat React mengambil HTML dari server dan membuatnya interaktif.
 
-<<<<<<< HEAD
-Hal ini membiarkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
-=======
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
+Hal ini memungkinkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
