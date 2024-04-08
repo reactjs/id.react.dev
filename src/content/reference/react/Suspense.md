@@ -25,7 +25,7 @@ title: <Suspense>
 
 #### *Props* {/*props*/}
 * `children`: UI sebenarnya yang ingin Anda *render*. Jika `children` ditangguhkan saat di-*render*, maka Suspense akan beralih me-*render* `fallback`.
-* `fallback`: UI alternatif untuk di-*render* menggantikan UI yang sebenarnya jika belum selesai dimuat. Simpul React apapun yang valid akan diterima, meskipun dalam praktiknya, *fallback* adalah tampilan pengganti yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan *rendering*, induk terdekat dari batasan Suspense akan diaktifkan.
+* `fallback`: UI alternatif untuk di-*render* menggantikan UI yang sebenarnya jika belum selesai dimuat. Simpul React apapun yang valid akan diterima, meskipun dalam praktiknya, *fallback* adalah tampilan pengganti yang ringan, Suspense akan secara otomatis beralih ke `fallback` ketika `children` ditangguhkan, dan kembali ke `children` ketika datanya sudah siap. Jika `fallback` ditangguhkan sewaktu melakukan *rendering*, itu akan mengaktifkan batasan Suspense dari induk terdekat.
 
 #### Catatan Penting {/*caveats*/}
 
@@ -50,7 +50,7 @@ Anda dapat membungkus bagian mana pun dari aplikasi Anda dengan batasan Suspense
 
 React akan menampilkan <CodeStep step={1}>*fallback* pemuatan</CodeStep> hingga semua kode dan data yang dibutuhkan oleh <CodeStep step={2}>anak-anaknya</CodeStep> telah selesai dimuat.
 
-Pada contoh di bawah ini, Komponen `Albums` *ditangguhkan* saat mengambil daftar album. Hingga komponen tersebut siap untuk di-*render*, React mengganti batasan Suspense terdekat di atas untuk menunjukkan *fallback*, komponen `Loading` Anda. Kemudian, saat data termuat, React menyembunyikan *fallback* `Loading` dan me-*render* komponen `Albums` dengan data tersebut.
+Pada contoh di bawah ini, komponen `Albums` *ditangguhkan* saat mengambil daftar album. Hingga komponen tersebut siap untuk di-*render*, React mengganti batasan Suspense terdekat di atas untuk menunjukkan *fallback*--komponen `Loading` Anda. Kemudian, saat data termuat, React menyembunyikan *fallback* `Loading` dan me-*render* komponen `Albums` dengan data.
 
 <Sandpack>
 
@@ -185,7 +185,7 @@ async function getData(url) {
 }
 
 async function getAlbums() {
-  // Tambahkan penundaan palsu agar penantian data lebih terasa.
+  // Tambahkan penundaan palsu agar penantian data lebih jelas.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -250,16 +250,16 @@ async function getAlbums() {
 
 <Note>
 
-**Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Sumber data tersebut antara lain:
+**Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Yaitu:
 
 - Pengambilan data dengan *framework* yang mendukung Suspense seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Pe-*lazy-load*-an kode komponen dengan [`lazy`](/reference/react/lazy)
+- Kode komponen *lazy-loading* dengan [`lazy`](/reference/react/lazy)
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
 Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
 
-Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* yang mendukung fitur tersebut, belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang. 
+Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* dogmatis belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang.
  
 </Note>
 
@@ -282,7 +282,7 @@ Secara *default*, seluruh pohon di dalam Suspense diperlakukan sebagai satu kesa
 
 Kemudian, setelah semuanya siap untuk ditampilkan, semuanya akan muncul sekaligus.
 
-Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena mereka dikelompokkan di bawah satu batasan Suspense, komponen-komponen ini akan selalu "muncul" bersamaan.
+Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena mereka dikelompokkan di bawah satu batasan Suspense, komponen-komponen ini akan selalu "muncul" bersama-sama pada waktu yang sama.
 
 <Sandpack>
 
