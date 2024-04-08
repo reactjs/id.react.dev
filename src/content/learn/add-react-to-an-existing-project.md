@@ -1,59 +1,59 @@
 ---
-title: Add React to an Existing Project
+title: Tambahkan React ke Proyek yang sudah Ada
 ---
 
 <Intro>
 
-If you want to add some interactivity to your existing project, you don't have to rewrite it in React. Add React to your existing stack, and render interactive React components anywhere.
+Jika Anda ingin menambahkan beberapa interaktivitas ke proyek Anda yang sudah ada, Anda tidak perlu menulis ulang menggunakan React. Tambahkan React ke proyek Anda, dan Anda dapat me-*render* komponen interaktif React di mana saja.
 
 </Intro>
 
 <Note>
 
-**You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
+**Anda perlu mengunduh [Node.js](https://nodejs.org/en/) untuk menjalankan lokal (*development*).** Meskipun Anda dapat mencoba [React](/learn/installation#try-react) secara online atau dengan halaman HTML sederhana, secara realistis sebagian besar tooling JavaScript yang ingin Anda gunakan untuk pengembangan memerlukan Node.js
 
 </Note>
 
-## Using React for an entire subroute of your existing website {/*using-react-for-an-entire-subroute-of-your-existing-website*/}
+## Menggunakan React untuk seluruh subroute dari situs web Anda yang sudah ada {/*using-react-for-an-entire-subroute-of-your-existing-website*/}
 
-Let's say you have an existing web app at `example.com` built with another server technology (like Rails), and you want to implement all routes starting with `example.com/some-app/` fully with React.
+Katakanlah Anda memiliki aplikasi web yang sudah ada di `example.com` yang dibuat dengan teknologi server lain (seperti Rails), dan Anda ingin mengimplementasikan semua rute yang dimulai dengan `example.com/some-app/` sepenuhnya dengan React.
 
-Here's how we recommend to set it up:
+Inilah cara kami menyarankan untuk menyiapkannya:
 
-1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
-2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
-3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+1. **Buat bagian React dari aplikasi Anda** menggunakan salah satu [*framework* berbasis React](/learn/start-a-new-react-project).
+2. **Tentukan `/some-app` sebagai *base path*** dalam konfigurasi *framework* Anda (begini caranya: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Konfigurasi server Anda atau Proxy** sehingga semua permintaan di rute `/some-app/` ditangani oleh aplikasi React Anda.
 
-This ensures the React part of your app can [benefit from the best practices](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) baked into those frameworks.
+Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) yang dimasukkan ke dalam *framework* tersebut.
 
-Many React-based frameworks are full-stack and let your React app take advantage of the server. However, you can use the same approach even if you can't or don't want to run JavaScript on the server. In that case, serve the HTML/CSS/JS export ([`next export` output](https://nextjs.org/docs/advanced-features/static-html-export) for Next.js, default for Gatsby) at `/some-app/` instead.
+Banyak *framework* berbasis React bersifat *full-stack* dan membiarkan aplikasi React Anda memanfaatkan server. Namun, Anda dapat menggunakan pendekatan yang sama meskipun Anda tidak dapat atau tidak ingin menjalankan JavaScript di server. Dalam hal ini, sajikan HTML/CSS/JS ([`next export` output](https://nextjs.org/docs/advanced-features/static-html-export) untuk Next.js, *default* untuk Gatsby) di `/some-app/` sebagai gantinya.
 
-## Using React for a part of your existing page {/*using-react-for-a-part-of-your-existing-page*/}
+## Menggunakan React sebagai bagian dari halaman Anda yang sudah ada {/*using-react-for-a-part-of-your-existing-page*/}
 
-Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
+Katakanlah Anda memiliki halaman yang dibangun dengan teknologi lain (baik *server-based* seperti Rails, atau *client-based* seperti Backbone), dan Anda ingin me-*render* komponen interaktif React di suatu tempat di halaman itu. Itu adalah cara umum untuk mengintegrasikan React sebenarnya, begitulah cara sebagian besar penggunaan React di Meta selama bertahun-tahun!
 
-You can do this in two steps:
+Anda dapat melakukannya dengan dua cara:
 
-1. **Set up a JavaScript environment** that lets you use the [JSX syntax](/learn/writing-markup-with-jsx), split your code into modules with the [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) syntax, and use packages (for example, React) from the [npm](https://www.npmjs.com/) package registry.
-2. **Render your React components** where you want to see them on the page.
+1. **Siapkan JavaScript *environment* Anda** yang memungkinkan Anda menggunakan [sintaks JSX](/learn/writing-markup-with-jsx), bagi kode Anda menjadi modul dengan sintaks [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export), dan gunakan paket (misalnya React) dari registri paket [npm](https://www.npmjs.com/).
+2. **Tampilkan komponen React Anda** di tempat yang ingin Anda lihat di halaman.
 
-The exact approach depends on your existing page setup, so let's walk through some details.
+Pendekatan yang tepat tergantung pada setup halaman Anda, jadi mari kita telusuri beberapa detail.
 
-### Step 1: Set up a modular JavaScript environment {/*step-1-set-up-a-modular-javascript-environment*/}
+### Langkah 1: Siapkan lingkungan JavaScript modular {/*step-1-set-up-a-modular-javascript-environment*/}
 
-A modular JavaScript environment lets you write your React components in individual files, as opposed to writing all of your code in a single file. It also lets you use all the wonderful packages published by other developers on the [npm](https://www.npmjs.com/) registry--including React itself! How you do this depends on your existing setup:
+Lingkungan JavaScript modular memungkinkan Anda menulis komponen React Anda dalam file individual, bukan menulis semua kode Anda dalam satu file. Ini juga memungkinkan Anda menggunakan semua paket luar biasa yang diterbitkan oleh pengembang lain di registri [npm](https://www.npmjs.com/)--termasuk React itu sendiri! Cara Anda melakukannya tergantung pada pengaturan yang sudah ada:
 
-* **If your app is already split into files that use `import` statements,** try to use the setup you already have. Check whether writing `<div />` in your JS code causes a syntax error. If it causes a syntax error, you might need to [transform your JavaScript code with Babel](https://babeljs.io/setup), and enable the [Babel React preset](https://babeljs.io/docs/babel-preset-react) to use JSX.
+* **Jika aplikasi Anda sudah dipecah menjadi beberapa file yang menggunakan pernyataan `import`,** coba gunakan pengaturan yang sudah Anda miliki. Periksa apakah menulis `<div />` dalam kode JS Anda menyebabkan kesalahan sintaksis. Jika menyebabkan kesalahan sintaksis, Anda mungkin perlu [mengubah kode JavaScript Anda dengan Babel](https://babeljs.io/setup), dan mengaktifkan [Babel React preset](https://babeljs.io/docs/babel-preset-react) untuk menggunakan JSX.
 
-* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vitejs.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vitejs.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+* **Jika aplikasi Anda belum memiliki penyiapan untuk mengompilasi modul JavaScript,** siapkan dengan [Vite](https://vitejs.dev/). Komunitas Vite mempunyai [banyak integrasi *framework backend*](https://github.com/vitejs/awesome-vite#integrations-with-backends), termasuk Rails, Django, dan Laravel. Jika *framework backend* Anda tidak tercantum, [ikuti panduan ini](https://vitejs.dev/guide/backend-integration.html) untuk mengintegrasikan Vite build dengan backend Anda secara manual.
 
-To check whether your setup works, run this command in your project folder:
+Untuk memeriksa apakah penyiapan Anda berfungsi, jalankan perintah ini di folder proyek Anda:
 
 <TerminalBlock>
 npm install react react-dom
 </TerminalBlock>
 
-Then add these lines of code at the top of your main JavaScript file (it might be called `index.js` or `main.js`):
+Kemudian tambahkan baris kode ini di bagian atas file JavaScript utama Anda (mungkin disebut `index.js` atau `main.js`):
 
 <Sandpack>
 
@@ -62,52 +62,52 @@ Then add these lines of code at the top of your main JavaScript file (it might b
 <html>
   <head><title>My app</title></head>
   <body>
-    <!-- Your existing page content (in this example, it gets replaced) -->
+    <!-- Konten halaman Anda yang ada (dalam contoh ini konten akan diganti) -->
   </body>
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
-// Clear the existing HTML content
+// Hapus konten HTML yang ada
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Render komponen React Anda sebagai gantinya
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
 
 </Sandpack>
 
-If the entire content of your page was replaced by a "Hello, world!", everything worked! Keep reading.
+Jika seluruh konten halaman Anda berganti dengan "Hello, world", semuanya berhasil! Teruslah membaca.
 
 <Note>
 
-Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vitejs.dev/).
+Mengintegrasikan lingkungan JavaScript modular ke dalam proyek yang sudah ada untuk pertama kalinya bisa terasa menakutkan, tetapi itu sepadan! Jika Anda mengalami kebuntuan, coba periksa [komunitas kami](/community) atau [Vite Chat](https://chat.vitejs.dev/).
 
 </Note>
 
-### Step 2: Render React components anywhere on the page {/*step-2-render-react-components-anywhere-on-the-page*/}
+### Langkah 2: Render komponen React di mana saja di halaman Anda {/*step-2-render-react-components-anywhere-on-the-page*/}
 
-In the previous step, you put this code at the top of your main file:
+Pada langkah sebelumnya, Anda meletakkan kode ini di bagian atas file utama Anda:
 
 ```js
 import { createRoot } from 'react-dom/client';
 
-// Clear the existing HTML content
+// Hapus konten HTML yang ada
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Render komponen React Anda sebagai gantinya
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
 
-Of course, you don't actually want to clear the existing HTML content!
+Tentu saja, Anda sebenarnya tidak ingin menghapus konten HTML yang ada!
 
-Delete this code.
+Hapus kode ini.
 
-Instead, you probably want to render your React components in specific places in your HTML. Open your HTML page (or the server templates that generate it) and add a unique [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) attribute to any tag, for example:
+Sebagai gantinya, Anda mungkin ingin me-*render* komponen React Anda di tempat tertentu di HTML Anda. Buka halaman HTML Anda (atau *template server* yang membuatnya) dan tambahkan atribut [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) yang unik ke tag mana saja, sebagi contohnya:
 
 ```html
 <!-- ... somewhere in your html ... -->
@@ -115,7 +115,7 @@ Instead, you probably want to render your React components in specific places in
 <!-- ... more html ... -->
 ```
 
-This lets you find that HTML element with [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and pass it to [`createRoot`](/reference/react-dom/client/createRoot) so that you can render your own React component inside:
+Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) dan meneruskannya ke [`createRoot`](/reference/react-dom/client/createRoot) sehingga Anda dapat me-*render* komponen React Anda sendiri di dalam:
 
 <Sandpack>
 
@@ -131,7 +131,7 @@ This lets you find that HTML element with [`document.getElementById`](https://de
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
@@ -146,10 +146,10 @@ root.render(<NavigationBar />);
 
 </Sandpack>
 
-Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React components inside an existing HTML page.
+Perhatikan bagaimana konten HTML asli dari `index.html` dipertahankan, tetapi komponen React `NavigationBar` Anda sekarang muncul di dalam `<nav id="navigation">` HTML Anda. Baca [dokumentasi penggunaan `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) untuk mempelajari lebih lanjut tentang me-*render* komponen React di dalam halaman HTML yang ada.
 
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
+Saat Anda mengadopsi React dalam proyek yang sudah ada, umumnya dimulai dengan komponen interaktif kecil (seperti tombol), dan kemudian secara bertahap terus "bergerak ke atas" hingga akhirnya seluruh halaman Anda dibuat dengan React. Jika Anda sudah mencapai titik itu, kami sarankan untuk segera bermigrasi ke [React *framework*](/learn/start-a-new-react-project) untuk mendapatkan hasil maksimal dari React.
 
-## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
+## Menggunakan React Native di aplikasi seluler native yang sudah ada {/*using-react-native-in-an-existing-native-mobile-app*/}
 
-[React Native](https://reactnative.dev/) can also be integrated into existing native apps incrementally. If you have an existing native app for Android (Java or Kotlin) or iOS (Objective-C or Swift), [follow this guide](https://reactnative.dev/docs/integration-with-existing-apps) to add a React Native screen to it.
+[React Native](https://reactnative.dev/) juga dapat diintegrasikan ke dalam aplikasi asli yang ada secara bertahap. Jika Anda memiliki aplikasi asli untuk Android (Java or Kotlin) atau iOS (Objective-C or Swift), [ikuti petunjuk ini](https://reactnative.dev/docs/integration-with-existing-apps) untuk menambahkan React Native ke dalamnya.

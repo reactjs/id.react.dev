@@ -31,7 +31,7 @@ Kemudian, deklarasikan *ref* di dalam komponen Anda:
 const myRef = useRef(null);
 ```
 
-Terakhir, oper ke simpul DOM sebagai atribut `ref`:
+Terakhir, oper ref Anda sebagai atribut `ref` ke tag JSX yang Anda ingin dapatkan simpul DOM-nya:
 
 ```js
 <div ref={myRef}>
@@ -318,7 +318,7 @@ li {
 
 </Sandpack>
 
-Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apapun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
+Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
 
 ```js
 <li
@@ -493,7 +493,7 @@ Secara umum, Anda [tidak ingin](/learn/referencing-values-with-refs#best-practic
 
 React mengatur nilai `ref.current` selama commit. Sebelum memperbarui DOM, React mengatur nilai `ref.current` yang terpengaruh menjadi `null`. Setelah memperbarui DOM, React segera mengatur nilai `ref.current` tersebut menjadi simpul DOM yang sesuai.
 
-Biasanya, Anda akan mengakses ref dari *event handler*. Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada cara tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
+**Biasanya, Anda akan mengakses ref dari *event handler*.** Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada *event* tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
 
 <DeepDive>
 
@@ -683,7 +683,7 @@ Setelah Anda menghapus elemen DOM secara manual, mencoba menggunakan `setState` 
 
 **Hindari mengubah simpul DOM yang dikelola oleh React.** Memodifikasi, menambahkan *children*, atau menghapus *children* dari elemen yang dikelola oleh React dapat menyebabkan hasil visual yang tidak konsisten atau masalah seperti di atas.
 
-Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apapun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
+Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apa pun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
 
 <Recap>
 
@@ -1098,7 +1098,7 @@ Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah simpul DOM
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
 
@@ -1114,7 +1114,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton() {
   return (
     <button>
@@ -1124,7 +1124,7 @@ export default function SearchButton() {
 }
 ```
 
-```js SearchInput.js
+```js src/SearchInput.js
 export default function SearchInput() {
   return (
     <input
@@ -1146,7 +1146,7 @@ Anda perlu menambahkan prop `onClick` ke `SearchButton`, dan membuat `SearchButt
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useRef } from 'react';
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
@@ -1166,7 +1166,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton({ onClick }) {
   return (
     <button onClick={onClick}>
@@ -1176,7 +1176,7 @@ export default function SearchButton({ onClick }) {
 }
 ```
 
-```js SearchInput.js
+```js src/SearchInput.js
 import { forwardRef } from 'react';
 
 export default forwardRef(

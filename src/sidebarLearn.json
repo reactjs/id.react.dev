@@ -1,13 +1,13 @@
 {
-  "title": "Learn React",
+  "title": "Belajar React",
   "path": "/learn",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "MEMULAI"
     },
     {
-      "title": "Quick Start",
+      "title": "Mulai Cepat",
       "path": "/learn",
       "routes": [
         {
@@ -15,26 +15,30 @@
           "path": "/learn/tutorial-tic-tac-toe"
         },
         {
-          "title": "Thinking in React",
+          "title": "Cara Berpikir dengan React",
           "path": "/learn/thinking-in-react"
         }
       ]
     },
     {
-      "title": "Installation",
+      "title": "Pemasangan",
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
+          "title": "Memulai Proyek Baru dengan React",
           "path": "/learn/start-a-new-react-project"
         },
         {
-          "title": "Add React to an Existing Project",
+          "title": "Tambahkan React ke Proyek yang sudah Ada",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Editor Setup",
+          "title": "Persiapan Editor",
           "path": "/learn/editor-setup"
+        },
+        {
+          "title": "Using TypeScript",
+          "path": "/learn/typescript"
         },
         {
           "title": "React Developer Tools",
@@ -44,78 +48,82 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "BELAJAR REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Menggambarkan Antarmuka Pengguna (UI)",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Your First Component",
+          "title": "Komponen Pertama Anda",
           "path": "/learn/your-first-component"
         },
         {
-          "title": "Importing and Exporting Components",
+          "title": "Mengimpor dan Mengekspor Komponen",
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Writing Markup with JSX",
+          "title": "Menulis Markup dengan JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript in JSX with Curly Braces",
+          "title": "JavaScript di JSX Menggunakan Kurung Kurawal",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Passing Props to a Component",
+          "title": "Mengoper Props ke Komponen",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "Perenderan Kondisional",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "Me-render List",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Keeping Components Pure",
+          "title": "Menjaga Kemurnian Komponen",
           "path": "/learn/keeping-components-pure"
+        },
+        {
+          "title": "Your UI as a Tree",
+          "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
     },
     {
-      "title": "Adding Interactivity",
+      "title": "Menambahkan Interaktivitas",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
         {
-          "title": "Responding to Events",
+          "title": "Menanggapi Event",
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "State: Memori dari Sebuah Komponen",
           "path": "/learn/state-a-components-memory"
         },
         {
-          "title": "Render and Commit",
+          "title": "Render dan Commit",
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "State as a Snapshot",
+          "title": "State Sebagai Sebuah Snapshot",
           "path": "/learn/state-as-a-snapshot"
         },
         {
-          "title": "Queueing a Series of State Updates",
+          "title": "Mengantre Serangkaian Pembaruan State",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Updating Objects in State",
+          "title": "Memperbarui Objek dalam State",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Updating Arrays in State",
+          "title": "Memperbarui Senarai pada State",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
@@ -130,15 +138,15 @@
           "path": "/learn/reacting-to-input-with-state"
         },
         {
-          "title": "Choosing the State Structure",
+          "title": "Memilih Struktur State",
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "Berbagi State Antar Komponen",
           "path": "/learn/sharing-state-between-components"
         },
         {
-          "title": "Preserving and Resetting State",
+          "title": "Mempertahankan dan Mengatur Ulang State",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
@@ -150,22 +158,22 @@
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Scaling Up with Reducer and Context",
+          "title": "Peningkatan Skala dengan Reducer dan Context",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]
     },
     {
-      "title": "Escape Hatches",
+      "title": "Jalan Keluar",
       "path": "/learn/escape-hatches",
       "tags": ["advanced"],
       "routes": [
         {
-          "title": "Referencing Values with Refs",
+          "title": "Mereferensikan Nilai menggunakan Refs",
           "path": "/learn/referencing-values-with-refs"
         },
         {
-          "title": "Manipulating the DOM with Refs",
+          "title": "Memanipulasi DOM dengan Refs",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
@@ -185,11 +193,11 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Removing Effect Dependencies",
+          "title": "Menghilangkan Efek dependensi",
           "path": "/learn/removing-effect-dependencies"
         },
         {
-          "title": "Reusing Logic with Custom Hooks",
+          "title": "Menggunakan ulang logika dengan Custom Hooks",
           "path": "/learn/reusing-logic-with-custom-hooks"
         }
       ]

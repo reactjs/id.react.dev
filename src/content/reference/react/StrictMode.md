@@ -5,7 +5,7 @@ title: <StrictMode>
 
 <Intro>
 
-`<StrictMode>` lets you find common bugs in your components early during development.
+`<StrictMode>` memungkinkan Anda menemukan *bug* umum di komponen Anda lebih awal selama pengembangan.
 
 
 ```js
@@ -20,11 +20,11 @@ title: <StrictMode>
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<StrictMode>` {/*strictmode*/}
 
-Use `StrictMode` to enable additional development behaviors and warnings for the component tree inside:
+Gunakan `StrictMode` untuk mengaktifkan perilaku pengembangan dan peringatan tambahan untuk pohon komponen di dalamnya:
 
 ```js
 import { StrictMode } from 'react';
@@ -38,32 +38,32 @@ root.render(
 );
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
-Strict Mode enables the following development-only behaviors:
+Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari *bug* yang disebabkan oleh *rendering* yang tidak murni.
+- Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Efek.
+- Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 #### Props {/*props*/}
 
-`StrictMode` accepts no props.
+`StrictMode` tidak menerima props.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
+* Tidak ada cara untuk keluar dari Strict Mode di dalam pohon yang terbungkus dalam `<StrictMode>`. Ini memberi Anda keyakinan bahwa semua komponen di dalam `<StrictMode>` telah diperiksa. Jika dua tim yang bekerja pada suatu produk tidak setuju apakah mereka menganggap pemeriksaan itu berharga, mereka harus mencapai konsensus atau memindahkan `<StrictMode>` ke bawah dalam hierarki.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
+### Mengaktifkan Strict Mode untuk seluruh aplikasi {/*enabling-strict-mode-for-entire-app*/}
 
-Strict Mode enables extra development-only checks for the entire component tree inside the `<StrictMode>` component. These checks help you find common bugs in your components early in the development process.
+Strict Mode memungkinkan pemeriksaan tambahan khusus pengembangan untuk seluruh pohon komponen di dalam komponen `<StrictMode>`. Pemeriksaan ini membantu Anda menemukan *bug* umum di komponen Anda di awal proses pengembangan.
 
 
-To enable Strict Mode for your entire app, wrap your root component with `<StrictMode>` when you render it:
+Untuk mengaktifkan Strict Mode pada seluruh aplikasi Anda, bungkus komponen akar Anda dengan `<StrictMode>` ketika Anda me-*render*:
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -77,27 +77,27 @@ root.render(
 );
 ```
 
-We recommend wrapping your entire app in Strict Mode, especially for newly created apps. If you use a framework that calls [`createRoot`](/reference/react-dom/client/createRoot) for you, check its documentation for how to enable Strict Mode.
+Kami merekomendasikan untuk membungkus seluruh aplikasi Anda dalam Strict Mode, terutama untuk aplikasi yang baru dibuat. Jika Anda menggunakan framework yang memanggil [`createRoot`](/reference/react-dom/client/createRoot) untuk Anda, periksa dokumentasinya untuk cara mengaktifkan Strict Mode.
 
-Although the Strict Mode checks **only run in development,** they help you find bugs that already exist in your code but can be tricky to reliably reproduce in production. Strict Mode lets you fix bugs before your users report them.
+Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemeriksaan ini membantu Anda menemukan *bug* yang sudah ada dalam kode Anda, tetapi sulit untuk direproduksi secara andal dalam produksi. Strict Mode memungkinkan Anda memperbaiki *bug* sebelum pengguna melaporkannya.
 
 <Note>
 
-Strict Mode enables the following checks in development:
+Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari *bug* yang disebabkan oleh *rendering* yang tidak murni.
+- Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Efek.
+- Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
-**All of these checks are development-only and do not impact the production build.**
+**Semua pemeriksaan ini hanya untuk pengembangan dan tidak memengaruhi build produksi.**
 
 </Note>
 
 ---
 
-### Enabling strict mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### Mengaktifkan Strict Mode untuk bagian dari aplikasi {/*enabling-strict-mode-for-a-part-of-the-app*/}
 
-You can also enable Strict Mode for any part of your application:
+Anda juga dapat mengaktifkan Strict Mode untuk setiap bagian dari aplikasi Anda:
 
 ```js {7,12}
 import { StrictMode } from 'react';
@@ -118,29 +118,29 @@ function App() {
 }
 ```
 
-In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the components inside them, no matter how deep.
+Dalam contoh ini, pemeriksaan Strict Mode tidak akan dijalankan terhadap komponen `Header` dan `Footer`. Namun, mereka akan berjalan di `Sidebar` dan `Content`, serta semua komponen di dalamnya, tidak peduli seberapa dalam.
 
 ---
 
-### Fixing bugs found by double rendering in development {/*fixing-bugs-found-by-double-rendering-in-development*/}
+### Memperbaiki *bug* yang ditemukan oleh *rendering* ganda dalam pengembangan {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
-[React assumes that every component you write is a pure function.](/learn/keeping-components-pure) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
+[React mengasumsikan bahwa setiap komponen yang Anda tulis adalah fungsi murni.](/learn/keeping-components-pure) Ini berarti bahwa komponen React yang Anda tulis harus selalu mengembalikan JSX yang sama dengan masukan yang sama (props, state, and context).
 
-Components breaking this rule behave unpredictably and cause bugs. To help you find accidentally impure code, Strict Mode calls some of your functions (only the ones that should be pure) **twice in development.** This includes:
+Komponen yang melanggar aturan ini berperilaku tidak terduga dan menyebabkan *bug*. Untuk membantu Anda menemukan kode tidak murni secara tidak sengaja, Strict Mode memanggil beberapa fungsi Anda (hanya yang seharusnya murni) **dua kali dalam pengembangan.** Ini termasuk:
 
-- Your component function body (only top-level logic, so this doesn't include code inside event handlers)
-- Functions that you pass to [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
-- Some class component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
+- Badan fungsi komponen Anda (hanya logika tingkat atas, jadi ini tidak termasuk kode di dalam event handler)
+- Fungsi yang anda teruskan [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
+- Beberapa metode komponen kelas seperti [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([lihat seluruh daftar](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
 
-If a function is pure, running it twice does not change its behavior because a pure function produces the same result every time. However, if a function is impure (for example, it mutates the data it receives), running it twice tends to be noticeable (that's what makes it impure!) This helps you spot and fix the bug early.
+Jika fungsi murni, menjalankannya dua kali tidak mengubah perilakunya karena fungsi murni menghasilkan hasil yang sama setiap waktu. Namun, jika suatu fungsi tidak murni (misalnya, memutasikan data yang diterimanya), menjalankannya dua kali cenderung terlihat (itulah yang membuatnya tidak murni!) Ini membantu Anda menemukan dan memperbaiki *bug* lebih awal.
 
-**Here is an example to illustrate how double rendering in Strict Mode helps you find bugs early.**
+**Berikut adalah contoh untuk mengilustrasikan bagaimana *rendering* ganda dalam Strict Mode membantu Anda menemukan *bug* lebih awal.**
 
-This `StoryTray` component takes an array of `stories` and adds one last "Create Story" item at the end:
+Komponen `StoryTray` mengambil larik `stories` dan menambahkan satu item terakhir "Create Story" di bagian akhir:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -150,7 +150,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -175,7 +175,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -196,6 +196,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -203,7 +206,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -212,13 +214,13 @@ li {
 
 </Sandpack>
 
-There is a mistake in the code above. However, it is easy to miss because the initial output appears correct.
+Ada kesalahan pada kode di atas. Namun, mudah untuk terlewatkan karena hasil awal terlih benar.
 
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it: 
+Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` di-*render* ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -228,7 +230,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -253,7 +255,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -283,6 +285,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -290,7 +295,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -299,9 +303,9 @@ li {
 
 </Sandpack>
 
-Notice how every time you hover over the `StoryTray` component, "Create Story" gets added to the list again. The intention of the code was to add it once at the end. But `StoryTray` directly modifies the `stories` array from the props. Every time `StoryTray` renders, it adds "Create Story" again at the end of the same array. In other words, `StoryTray` is not a pure function--running it multiple times produces different results.
+Perhatikan bagaimana setiap kali Anda mengarahkan kursor ke komponen `StoryTray`, "Buat Cerita" akan ditambahkan ke daftar lagi. Maksud dari kode tersebut adalah untuk menambahkannya sekali di bagian akhir. Tapi `StoryTray` secara langsung memodifikasi larik `stories` dari props. Setiap kali `StoryTray` me-*render*, ia menambahkan "Buat Cerita" lagi di akhir larik yang sama. Dengan kata lain, `StoryTray` bukan fungsi murni--menjalankannya berkali-kali menghasilkan hasil yang berbeda.
 
-To fix this problem, you can make a copy of the array, and modify that copy instead of the original one:
+Untuk memperbaiki masalah ini, Anda dapat membuat salinan larik, dan memodifikasi salinan tersebut, bukan yang asli:
 
 ```js {2}
 export default function StoryTray({ stories }) {
@@ -310,13 +314,13 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
+Ini akan [membuat fungsi `StoryTray` murni.](/learn/keeping-components-pure) Setiap kali dipanggil, ini hanya akan memodifikasi salinan baru dari larik, dan tidak akan memengaruhi objek atau variabel eksternal apa pun. Ini menyelesaikan *bug*, tetapi Anda harus membuat komponen di-*render* ulang lebih sering sebelum menjadi jelas bahwa ada yang salah dengan perilakunya.
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**Dalam contoh aslinya, *bug* itu tidak terlihat jelas. Sekarang mari kita bungkus kode asli (penuh dengan *bug*) `<StrictMode>`:**
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -331,7 +335,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -356,7 +360,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -377,6 +381,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -384,7 +391,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -393,11 +399,11 @@ li {
 
 </Sandpack>
 
-**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
+**Strict Mode *selalu* memanggil fungsi *rendering* Anda dua kali, sehingga Anda dapat langsung melihat kesalahannya** ("Create Story" muncul dua kali). Ini memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki komponen untuk di-*render* dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan  memproduksi *bug* di masa mendatang seperti fungsi hover sebelumnya:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -412,7 +418,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -437,7 +443,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -467,6 +473,9 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 li {
@@ -474,7 +483,6 @@ li {
   border-radius: 6px;
   float: left;
   margin: 5px;
-  margin-bottom: 20px;
   padding: 5px;
   width: 70px;
   height: 100px;
@@ -483,33 +491,33 @@ li {
 
 </Sandpack>
 
-Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
+Tanpa Strict Mode, mudah untuk melewatkan *bug* sampai Anda menambahkan lebih banyak *render* ulang. Strict Mode membuat *bug* yang sama segera muncul. Strict Mode membantu Anda menemukan *bug* sebelum mendorongnya ke tim dan pengguna Anda.
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[Baca lebih lanjut tentang menjaga kemurnian komponen.](/learn/keeping-components-pure)
 
 <Note>
 
-If you have [React DevTools](/learn/react-developer-tools) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+Jika Anda telah menginstal [React DevTools](/learn/react-developer-tools), setiap panggilan `console.log` selama panggilan *render* kedua akan tampak sedikit redup. React DevTools juga menawarkan pengaturan (dinonaktifkan secara default) untuk menekannya sepenuhnya.
 
 </Note>
 
 ---
 
-### Fixing bugs found by re-running Effects in development {/*fixing-bugs-found-by-re-running-effects-in-development*/}
+### Memperbaiki *bug* yang ditemukan dengan menjalankan kembali Efek dalam pengembangan {/*fixing-bugs-found-by-re-running-effects-in-development*/}
 
-Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
+Strict Mode juga dapat membantu menemukan *bug* di [Effects.](/learn/synchronizing-with-effects)
 
-Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
+Setiap Efek memiliki beberapa setup code dan mungkin memiliki beberapa kode pembersihan. Biasanya, React memanggil setup ketika komponen *mounts* (ditambahkan ke layar) dan memanggil pembersihan ketika komponen *unmounts* (dihapus dari layar). React kemudian memanggil pembersihan dan setup lagi jika dependensinya berubah setelah *render* terakhir.
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+Saat Strict Mode aktif, React juga akan menjalankan **satu siklus setup+pembersihan tambahan dalam pengembangan untuk setiap Efek.** Ini mungkin terasa mengejutkan, tetapi membantu mengungkapkan *bug* tak kentara yang sulit ditangkap secara manual.
 
-**Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
+**Berikut adalah contoh untuk mengilustrasikan bagaimana menjalankan kembali Efek dalam Strict Mode membantu Anda menemukan *bug* lebih awal.**
 
-Consider this example that connects a component to a chat:
+Pertimbangkan contoh ini yang menghubungkan komponen ke obrolan:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -535,7 +543,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -562,13 +570,13 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-There is an issue with this code, but it might not be immediately clear.
+Ada masalah dengan kode ini, tetapi mungkin tidak segera jelas.
 
-To make the issue more obvious, let's implement a feature. In the example below, `roomId` is not hardcoded. Instead, the user can select the `roomId` that they want to connect to from a dropdown. Click "Open chat" and then select different chat rooms one by one. Keep track of the number of active connections in the console:
+Untuk memperjelas masalah, mari terapkan sebuah fitur. Pada contoh di bawah, `roomId` tidak di-hardcode. Sebagai gantinya, pengguna dapat memilih `roomId` yang ingin mereka sambungkan dari dropdown. Klik "Buka obrolan" lalu pilih ruang obrolan yang berbeda satu per satu. Lacak jumlah koneksi aktif di konsol:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -619,7 +627,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -646,7 +654,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
+Anda akan melihat bahwa jumlah koneksi aktif selalu terus bertambah. Dalam aplikasi nyata, ini akan menyebabkan masalah kinerja dan jaringan. Masalahnya adalah [Efek Anda tidak memiliki fungsi pembersihan:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
 
 ```js {4}
   useEffect(() => {
@@ -656,13 +664,13 @@ You'll notice that the number of open connections always keeps growing. In a rea
   }, [roomId]);
 ```
 
-Now that your Effect "cleans up" after itself and destroys the outdated connections, the leak is solved. However, notice that the problem did not become visible until you've added more features (the select box).
+Sekarang Efek Anda "membersihkan" setelahnya sendiri dan menghancurkan koneksi yang sudah tidak digunakan, kebocorannya teratasi. Namun, perhatikan bahwa masalahnya tidak terlihat hingga Anda menambahkan lebih banyak fitur (select box).
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**Dalam contoh aslinya, *bug*-nya tidak terlihat jelas. Sekarang mari bungkus kode asli (memiliki *bug*) dalam `<StrictMode>`:**
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -693,7 +701,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -720,13 +728,13 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem** (the number of active connections jumps to 2). Strict Mode runs an extra setup+cleanup cycle for every Effect. This Effect has no cleanup logic, so it creates an extra connection but doesn't destroy it. This is a hint that you're missing a cleanup function.
+**Dengan Strict Mode, Anda segera melihat bahwa ada masalah** (jumlah koneksi aktif melonjak menjadi 2). Strict Mode menjalankan siklus setup+pembersihan ekstra untuk setiap Efek. Efek ini tidak memiliki logika pembersihan, sehingga membuat koneksi ekstra tetapi tidak menghancurkan. Ini adalah petunjuk bahwa Anda melewatkan fungsi pembersihan.
 
-Strict Mode lets you notice such mistakes early in the process. When you fix your Effect by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the select box from before:
+Strict Mode memungkinkan Anda melihat kesalahan seperti itu di awal proses. Saat Anda memperbaiki Efek dengan menambahkan fungsi pembersihan dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan memproduksi *bug* di masa mendatang seperti select box sebelumnya:
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -783,7 +791,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -810,21 +818,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how the active connection count in the console doesn't keep growing anymore.
+Perhatikan bagaimana jumlah koneksi aktif di konsol tidak bertambah lagi.
 
-Without Strict Mode, it was easy to miss that your Effect needed cleanup. By running *setup → cleanup → setup* instead of *setup* for your Effect in development, Strict Mode made the missing cleanup logic more noticeable.
+Tanpa Strict Mode, mudah untuk luput bahwa Efek Anda perlu dibersihkan. Dengan menjalankan *setup → cleanup → setup* alih-alih *setup* untuk Efek Anda dalam pengembangan, Strict Mode membuat logika pembersihan yang hilang menjadi lebih terlihat.
 
-[Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[Baca lebih lanjut tentang menerapkan pembersihan Efek.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### Memperbaiki peringatan penghentian yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
-React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
+React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), and [`getChildContext`](/reference/react/Component#getchildcontext)). [See alternatives.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* [`findDOMNode`](/reference/react-dom/findDOMNode). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
+* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), dan [`getChildContext`](/reference/react/Component#getchildcontext)). [Lihat alternatif.](/reference/react/createContext)
+* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+API ini terutama digunakan di masa lalu [class components](/reference/react/Component) jadi jarang muncul di aplikasi modern.

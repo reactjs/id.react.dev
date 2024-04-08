@@ -4,15 +4,15 @@ title: unmountComponentAtNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+API ini akan dihapus pada versi mayor React yang akan datang.
 
-In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
+Pada React 18, `unmountComponentAtNode` sudah digantikan oleh [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
 
 </Deprecated>
 
 <Intro>
 
-`unmountComponentAtNode` removes a mounted React component from the DOM.
+`unmountComponentAtNode` menghapus komponen React yang telah terpasang dari DOM.
 
 ```js
 unmountComponentAtNode(domNode)
@@ -24,11 +24,11 @@ unmountComponentAtNode(domNode)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
 
-Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
+Panggil `unmountComponentAtNode` untuk menghapus komponen React yang telah terpasang dari DOM dan membersihkan *event handler* beserta *state*-nya.
 
 ```js
 import { unmountComponentAtNode } from 'react-dom';
@@ -39,21 +39,21 @@ render(<App />, domNode);
 unmountComponentAtNode(domNode);
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
+* `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan menghapus komponen React yang terpasang dari elemen ini.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.
+`unmountComponentAtNode` mengembalikan `true` jika komponen tersebut telah berhasil dilepas dan `false` jika tidak.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
+Panggil `unmountComponentAtNode` untuk menghapus <CodeStep step={1}>komponen React yang sudah terpasang</CodeStep> dari <CodeStep step={2}>simpul DOM peramban</CodeStep> dan bersihkan *event handler* beserta *state*-nya.
 
 ```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -64,14 +64,14 @@ render(<App />, rootNode);
 
 // ...
 unmountComponentAtNode(rootNode);
-````
+```
 
 
-### Removing a React app from a DOM element {/*removing-a-react-app-from-a-dom-element*/}
+### Menghapus aplikasi React dari elemen DOM {/*removing-a-react-app-from-a-dom-element*/}
 
-Occasionally, you may want to "sprinkle" React on an existing page, or a page that is not fully written in React. In those cases, you may need to "stop" the React app, by removing all of the UI, state, and listeners from the DOM node it was rendered to.
+Terkadang, Anda mungkin ingin "menghiasi" dengan React halaman yang sudah ada, atau halaman yang tidak sepenuhnya ditulis dalam React. Dalam kasus tersebut, Anda mungkin perlu "menghentikan" aplikasi React, dengan menghapus semua UI, *state*, dan *listener* dari simpul DOM yang di-*render*.
 
-In this example, clicking "Render React App" will render a React app. Click "Unmount React App" to destroy it:
+Pada contoh ini, mengklik "*Render* Aplikasi React" akan me-*render* aplikasi React. Klik "Lepas Aplikasi React" untuk menghancurkannya:
 
 <Sandpack>
 
@@ -80,15 +80,15 @@ In this example, clicking "Render React App" will render a React app. Click "Unm
 <html>
   <head><title>My app</title></head>
   <body>
-    <button id='render'>Render React App</button>
-    <button id='unmount'>Unmount React App</button>
+    <button id='render'><i>Render</i> Aplikasi React</button>
+    <button id='unmount'>Lepas Aplikasi React</button>
     <!-- This is the React App node -->
     <div id='root'></div>
   </body>
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './App.js';
@@ -104,7 +104,7 @@ document.getElementById('unmount').addEventListener('click', () => {
 });
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Hello, world!</h1>;
 }

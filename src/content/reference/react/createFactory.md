@@ -4,13 +4,13 @@ title: createFactory
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+API ini akan dihapus pada versi mayor React berikutnya. [Lihat beberapa alternatifnya.](#alternatives)
 
 </Deprecated>
 
 <Intro>
 
-`createFactory` lets you create a function that produces React elements of a given type.
+`createFactory` memungkinkan Anda membuat fungsi yang menghasilkan elemen-elemen React dengan tipe yang ditentukan
 
 ```js
 const factory = createFactory(type)
@@ -22,11 +22,11 @@ const factory = createFactory(type)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
+Panggil `createFactory(type)` untuk membuat sebuah fungsi pabrik (*factory function*) yang menghasilkan elemen-elemen React dengan `type` yang ditentukan.
 
 ```js
 import { createFactory } from 'react';
@@ -34,37 +34,37 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Then you can use it to create React elements without JSX:
+Lalu Anda dapat menggunakannya untuk membuat elemen-elemen React tanpa JSX :
 
 ```js
 export default function App() {
   return button({
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: Argumen `type` harus merupakan tipe komponen React yang valid. Misalnya, bisa berupa string nama tag (seperti `'div'` atau `'span'`), atau komponen React (fungsi, kelas, atau komponen khusus seperti [`Fragment`](/reference/react/Fragment)).
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.
+Mengembalikan sebuah fungsi pabrik. Fungsi pabrik tersebut menerima objek `props` sebagai argumen pertama, diikuti oleh daftar argumen `...children`, dan mengembalikan elemen React dengan `type`, `props`, dan `children` yang diberikan.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Creating React elements with a factory {/*creating-react-elements-with-a-factory*/}
+### Membuat elemen-elemen React dengan menggunakan fungsi pabrik {/*creating-react-elements-with-a-factory*/}
 
-Although most React projects use [JSX](/learn/writing-markup-with-jsx) to describe the user interface, JSX is not required. In the past, `createFactory` used to be one of the ways you could describe the user interface without JSX.
+Meskipun sebagian besar proyek React menggunakan [JSX](/learn/writing-markup-with-jsx) untuk mendeskripsikan antarmuka pengguna, JSX tidak diperlukan. Di masa lalu, `createFactory` digunakan sebagai salah satu cara untuk mendeskripsikan antarmuka pengguna tanpa menggunakan JSX
 
-Call `createFactory` to create a *factory function* for a specific element type like `'button'`:
+Panggil `createFactory` untuk membuat sebuah fungsi pabrik untuk tipe elemen tertentu seperti `'button'`:
 
 ```js
 import { createFactory } from 'react';
@@ -72,11 +72,11 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Calling that factory function will produce React elements with the props and children you have provided:
+Memanggil fungsi pabrik tersebut akan menghasilkan elemen-elemen React dengan props dan children yang telah Anda berikan:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from 'react';
 
 const button = createFactory('button');
@@ -84,27 +84,27 @@ const button = createFactory('button');
 export default function App() {
   return button({
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
 </Sandpack>
 
-This is how `createFactory` was used as an alternative to JSX. However, `createFactory` is deprecated, and you should not call `createFactory` in any new code. See how to migrate away from `createFactory` below.
+Berikut adalah bagaimana `createFactory` digunakan sebagai alternatif untuk JSX. Namun, `createFactory` sudah tidak digunakan lagi (deprecated), dan Anda sebaiknya tidak menggunakan `createFactory` dalam kode baru. Berikut adalah cara melakukan migrasi dari `createFactory`:
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Alternatif {/*alternatives*/}
 
-### Copying `createFactory` into your project {/*copying-createfactory-into-your-project*/}
+### Menyalin `createFactory` ke dalam proyek Anda {/*copying-createfactory-into-your-project*/}
 
-If your project has many `createFactory` calls, copy this `createFactory.js` implementation into your project:
+Jika proyek Anda memiliki banyak panggilan `createFactory`, salin implementasi `createFactory.js` ini ke dalam proyek Anda:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from './createFactory.js';
 
 const button = createFactory('button');
@@ -112,13 +112,13 @@ const button = createFactory('button');
 export default function App() {
   return button({
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
-```js createFactory.js
+```js src/createFactory.js
 import { createElement } from 'react';
 
 export function createFactory(type) {
@@ -128,13 +128,13 @@ export function createFactory(type) {
 
 </Sandpack>
 
-This lets you keep all of your code unchanged except the imports.
+Ini memungkinkan Anda menjaga semua kode Anda tetap tidak berubah kecuali impor-impornya.
 
 ---
 
-### Replacing `createFactory` with `createElement` {/*replacing-createfactory-with-createelement*/}
+### Mengganti `createFactory` dengan `createElement` {/*replacing-createfactory-with-createelement*/}
 
-If you have a few `createFactory` calls that you don't mind porting manually, and you don't want to use JSX, you can replace every call a factory function with a [`createElement`](/reference/react/createElement) call. For example, you can replace this code:
+Jika Anda memiliki beberapa panggilan `createFactory` yang tidak masalah untuk dipindahkan secara manual, dan Anda tidak ingin menggunakan JSX, Anda dapat menggantikan setiap panggilan fungsi pabrik dengan panggilan [`createElement`](/reference/react/createElement). Sebagai contoh, Anda dapat menggantikan kode ini:
 
 ```js {1,3,6}
 import { createFactory } from 'react';
@@ -144,13 +144,13 @@ const button = createFactory('button');
 export default function App() {
   return button({
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
-with this code:
+dengan kode ini:
 
 
 ```js {1,4}
@@ -159,25 +159,25 @@ import { createElement } from 'react';
 export default function App() {
   return createElement('button', {
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
-Here is a complete example of using React without JSX:
+Berikut ini adalah contoh lengkap penggunaan React tanpa JSX:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createElement } from 'react';
 
 export default function App() {
   return createElement('button', {
     onClick: () => {
-      alert('Clicked!')
+      alert('Sudah diklik!')
     }
-  }, 'Click me');
+  }, 'Klik saya');
 }
 ```
 
@@ -185,19 +185,19 @@ export default function App() {
 
 ---
 
-### Replacing `createFactory` with JSX {/*replacing-createfactory-with-jsx*/}
+### Mengganti `createFactory` dengan JSX {/*replacing-createfactory-with-jsx*/}
 
-Finally, you can use JSX instead of `createFactory`. This is the most common way to use React:
+Akhirnya, Anda dapat menggunakan JSX sebagai pengganti `createFactory`. Ini adalah cara yang paling umum digunakan dalam penggunaan React:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function App() {
   return (
     <button onClick={() => {
-      alert('Clicked!');
+      alert('Sudah diklik!');
     }}>
-      Click me
+      Klik saya
     </button>
   );
 };
@@ -207,7 +207,8 @@ export default function App() {
 
 <Pitfall>
 
-Sometimes, your existing code might pass some variable as a `type` instead of a constant like `'button'`:
+
+Terkadang, kode yang ada mungkin mengirimkan beberapa variabel sebagai `type` daripada konstan seperti `'button'`:
 
 ```js {3}
 function Heading({ isSubheading, ...props }) {
@@ -217,7 +218,7 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-To do the same in JSX, you need to rename your variable to start with an uppercase letter like `Type`:
+Untuk melakukan hal yang sama dalam JSX, Anda perlu mengganti nama variabel Anda agar diawali dengan huruf kapital seperti `Type`:
 
 ```js {2,3}
 function Heading({ isSubheading, ...props }) {
@@ -226,6 +227,6 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-Otherwise React will interpret `<type>` as a built-in HTML tag because it is lowercase.
+Sebaliknya, React akan menafsirkan `<type>` sebagai tag HTML bawaan karena ditulis dengan huruf kecil.
 
 </Pitfall>

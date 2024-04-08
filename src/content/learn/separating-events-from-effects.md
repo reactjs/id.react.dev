@@ -130,7 +130,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function sendMessage(message) {
   console.log('🔵 Anda mengirim: ' + message);
 }
@@ -239,7 +239,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     // ...
-````
+```
 
 Namun, `theme` adalah nilai reaktif (dapat berubah sebagai hasil dari *render* ulang), dan [setiap nilai reaktif yang dibaca oleh Effect harus dideklarasikan sebagai dependensi Effect tersebut.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Sekarang kita harus menentukan `theme` sebagai dependensi Effect:
 
@@ -256,7 +256,7 @@ function ChatRoom({ roomId, theme }) {
     };
   }, [roomId, theme]); // ✅ Semua dependensi telah didelarasikan
   // ...
-````
+```
 
 Cobalah contoh di bawah ini dan cari tahu apakah kamu bisa menemukan masalah pada program berikut:
 
@@ -333,7 +333,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi sebenarnya akan terhubung ke server
   let connectedCallback;
@@ -362,7 +362,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -416,7 +416,7 @@ function ChatRoom({ roomId, theme }) {
     showNotification('Terhubung!', theme);
   });
   // ...
-````
+```
 
 Disini, `onConnected` disebut dengan Effect Event. Meskipun merupakan bagian dari logika Effect, namun mempunyai sifat seperti *event handler*. Logika di dalamnya tidak reaktif, dan selalu memperhatikan nilai terbaru dari *props* dan *state*.
 
@@ -521,7 +521,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
@@ -550,7 +550,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1499,7 +1499,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
@@ -1528,7 +1528,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1640,7 +1640,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi sebenarnya akan menggunakan koneksi server
   let connectedCallback;
@@ -1669,7 +1669,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1783,7 +1783,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi sesungguhnya akan menggunakan koneksi server
   let connectedCallback;
@@ -1812,7 +1812,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 

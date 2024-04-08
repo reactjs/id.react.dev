@@ -1,44 +1,28 @@
 ---
-title: Preserving and Resetting State
+title: Mempertahankan dan Mengatur Ulang State
 ---
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
+*State* diisolasi antar komponen. React melacak *state* mana yang dimiliki oleh komponen mana berdasarkan tempatnya di pohon antarmuka pengguna (UI). Anda dapat mengontrol kapan harus mempertahankan *state* dan kapan harus mengatur ulang di antara *render* ulang (re-*render*).
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* When React chooses to preserve or reset the state
-* How to force React to reset component's state
-* How keys and types affect whether the state is preserved
+* Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
+* Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
+* Bagaimana *keys* dan *types* mempengaruhi apakah *state* dipertahankan
 
 </YouWillLearn>
 
-## The UI tree {/*the-ui-tree*/}
+## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
-Browsers use many tree structures to model UI. The [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) represents HTML elements, the [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) does the same for CSS. There's even an [Accessibility tree](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
+React membangun [pohon render](learn/understanding-your-ui-as-a-tree#the-render-tree) untuk struktur komponen di dalam UI Anda.
 
-React also uses tree structures to manage and model the UI you make. React makes **UI trees** from your JSX. Then React DOM updates the browser DOM elements to match that UI tree. (React Native translates these trees into elements specific to mobile platforms.)
+Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
 
-<DiagramGroup>
-
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
-
-From components, React creates a UI tree which React DOM uses to render the DOM
-
-</Diagram>
-
-</DiagramGroup>
-
-## State is tied to a position in the tree {/*state-is-tied-to-a-position-in-the-tree*/}
-
-When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the UI tree.
-
-
-Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
+Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 
 <Sandpack>
 
@@ -102,23 +86,23 @@ label {
 
 </Sandpack>
 
-Here's how these look as a tree:    
+Beginilah tampilannya sebagai pohon:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Masing-masing anak diberi label 'Counter' dan keduanya berisi gelembung state berlabel 'count' dengan nilai 0.">
 
-React tree
+Pohon React
 
 </Diagram>
 
 </DiagramGroup>
 
-**These are two separate counters because each is rendered at its own position in the tree.** You don't usually have to think about these positions to use React, but it can be useful to understand how it works.
+**Ini adalah dua penghitung yang terpisah karena masing-masing di-*render* pada posisinya sendiri di dalam pohon.** Anda biasanya tidak perlu memikirkan posisi-posisi ini untuk menggunakan React, tetapi akan sangat berguna untuk memahami cara kerjanya.
 
-In React, each component on the screen has fully isolated state. For example, if you render two `Counter` components side by side, each of them will get its own, independent, `score` and `hover` states.
+Dalam React, setiap komponen pada layar memiliki *state* yang terisolasi sepenuhnya. Sebagai contoh, jika Anda me-*render* dua komponen `Counter` secara berdampingan, masing-masing komponen akan mendapatkan *state*-nya sendiri-sendiri, independen, yaitu state `score` dan `hover`.
 
-Try clicking both counters and notice they don't affect each other:
+Coba klik kedua penghitung dan perhatikan bahwa keduanya tidak saling mempengaruhi:
 
 <Sandpack>
 
@@ -176,21 +160,21 @@ function Counter() {
 
 </Sandpack>
 
-As you can see, when one counter is updated, only the state for that component is updated:
+Seperti yang dapat Anda lihat, ketika satu penghitung diperbarui, hanya *state* untuk komponen tersebut yang diperbarui:
 
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
+<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 1. Gelembung state dari anak kanan disorot dengan warna kuning untuk mengindikasikan bahwa nilainya telah diperbarui.">
 
-Updating state
+Memperbarui *state*
 
 </Diagram>
 
 </DiagramGroup>
 
 
-React will keep the state around for as long as you render the same component at the same position. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+React akan mempertahankan *state* selama Anda me-*render* komponen yang sama pada posisi yang sama. Untuk melihat hal ini, naikkan kedua penghitung, lalu hapus komponen kedua dengan menghapus centang pada *checkbox* "Render the second counter", lalu tambahkan kembali dengan mencentangnya lagi:
 
 <Sandpack>
 
@@ -264,35 +248,35 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
+Perhatikan bagaimana saat Anda berhenti me-*render* penghitung kedua, *state*-nya akan hilang sepenuhnya. Hal ini dikarenakan ketika React menghapus sebuah komponen, ia akan menghancurkan *state*-nya.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the component being deleted from the tree.">
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan tidak ada, dan sebagai gantinya adalah gambar 'poof' berwarna kuning, menyoroti komponen yang dihapus dari pohon.">
 
-Deleting a component
+Menghapus komponen
 
 </Diagram>
 
 </DiagramGroup>
 
-When you tick "Render the second counter", a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
+Ketika Anda mencentang "Render the second counter", `Counter` kedua dan *state*-nya diinisialisasi dari awal (`score = 0`) dan ditambahkan ke DOM.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram pohon dari komponen-komponen React. Simpul akar diberi label 'div' dan memiliki dua anak. Anak sebelah kiri diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak kanan diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Seluruh simpul anak kanan disorot dengan warna kuning, yang menandakan bahwa simpul tersebut baru saja ditambahkan ke dalam pohon.">
 
-Adding a component
+Menambahkan komponen
 
 </Diagram>
 
 </DiagramGroup>
 
-**React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
+**React mempertahankan *state* sebuah komponen selama komponen tersebut di-*render* pada posisinya di pohon UI.** Jika komponen tersebut dihapus, atau komponen lain di-*render* pada posisi yang sama, React akan membuang *state*-nya.
 
-## Same component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
+## Komponen yang sama pada posisi yang sama mempertahankan *state* {/*same-component-at-the-same-position-preserves-state*/}
 
-In this example, there are two different `<Counter />` tags:
+Pada contoh ini, terdapat dua tag `<Counter />` yang berbeda:
 
 <Sandpack>
 
@@ -377,24 +361,24 @@ label {
 
 </Sandpack>
 
-When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` component:
+Ketika Anda mencentang atau menghapus *checkbox*, *state* penghitung tidak diatur ulang. Entah `isFancy` bernilai `true` atau `false`, Anda selalu memiliki `<Counter />` sebagai anak pertama dari `div` yang dikembalikan dari komponen akar `App`:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.">
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram dengan dua bagian yang dipisahkan oleh panah yang bertransisi di antara keduanya. Setiap bagian berisi tata letak komponen dengan induk berlabel 'App' yang berisi gelembung state berlabel isFancy. Komponen ini memiliki satu anak berlabel 'div', yang mengarah ke gelembung prop yang berisi isFancy (disorot dengan warna ungu) yang diturunkan ke satu-satunya anak. Anak terakhir diberi label 'Counter' dan berisi gelembung state dengan label 'count' dan nilai 3 di kedua diagram. Di bagian kiri diagram, tidak ada yang disorot dan nilai state induk isFancy adalah false. Di bagian kanan diagram, nilai state induk isFancy telah berubah menjadi true dan disorot dengan warna kuning, begitu juga dengan gelembung prop di bawahnya, yang juga telah mengubah nilai isFancy menjadi true.">
 
-Updating the `App` state does not reset the `Counter` because `Counter` stays in the same position
+Memperbarui *state* `App` tidak mengatur ulang `Counter` karena `Counter` tetap berada di posisi yang sama
 
 </Diagram>
 
 </DiagramGroup>
 
 
-It's the same component at the same position, so from React's perspective, it's the same counter.
+Ini adalah komponen yang sama pada posisi yang sama, jadi dari sudut pandang React, ini adalah penghitung yang sama.
 
 <Pitfall>
 
-Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!** This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
+Ingatlah bahwa **posisi pada pohon UI--bukan pada *markup* JSX--yang penting pada React!** Komponen ini memiliki dua klausa `return` dengan tag JSX `<Counter />` yang berbeda di dalam dan di luar `if`:
 
 <Sandpack>
 
@@ -492,15 +476,15 @@ label {
 
 </Sandpack>
 
-You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
+Anda mungkin berharap *state* akan diatur ulang ketika Anda mencentang *checkbox*, tetapi ternyata tidak! Hal ini dikarenakan **kedua tag `<Counter />` di-*render* pada posisi yang sama.** React tidak mengetahui di mana Anda meletakkan kondisi di dalam fungsi Anda. Yang ia "lihat" hanyalah pohon yang Anda kembalikan.
 
-In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
+Pada kedua kasus tersebut, komponen `App` mengembalikan `<div>` dengan `<Counter />` sebagai anak pertama. Bagi React, kedua penghitung ini memiliki "alamat" yang sama: anak pertama dari anak pertama dari akar. Ini adalah cara React mencocokkan keduanya antara *render* sebelumnya dan berikutnya, terlepas dari bagaimana Anda menyusun logika Anda.
 
 </Pitfall>
 
-## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
+## Komponen yang berbeda pada posisi *state* reset yang sama {/*different-components-at-the-same-position-reset-state*/}
 
-In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
+Pada contoh ini, mencentang *checkbox* akan menggantikan `<Counter>` dengan `<p>`:
 
 <Sandpack>
 
@@ -577,13 +561,13 @@ label {
 
 </Sandpack>
 
-Here, you switch between _different_ component types at the same position. Initially, the first child of the `<div>` contained a `Counter`. But when you swapped in a `p`, React removed the `Counter` from the UI tree and destroyed its state.
+Di sini, Anda beralih di antara jenis komponen yang *berbeda* pada posisi yang sama. Awalnya, anak pertama dari `<div>` berisi sebuah `Counter`. Namun ketika Anda menukar `p`, React menghapus `Counter` dari pohon UI dan menghancurkan *state*-nya.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'p', highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 3. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen turunannya telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'p', disorot dengan warna kuning.">
 
-When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
+Ketika `Counter` berubah menjadi `p`, `Counter` dihapus dan `p` ditambahkan
 
 </Diagram>
 
@@ -591,15 +575,15 @@ When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'p'. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React yang diberi label 'p'. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen anak sekarang telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'Counter' yang berisi state bubble berlabel 'count' dengan nilai 0, disorot dengan warna kuning.">
 
-When switching back, the `p` is deleted and the `Counter` is added
+Saat beralih kembali, `p` dihapus dan `Counter` ditambahkan
 
 </Diagram>
 
 </DiagramGroup>
 
-Also, **when you render a different component in the same position, it resets the state of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
+Selain itu, **ketika Anda merender komponen yang berbeda pada posisi yang sama, komponen tersebut akan mengatur ulang *state* seluruh subpohonnya.** Untuk melihat cara kerjanya, tingkatkan penghitungnya, lalu centang *checkbox*:
 
 <Sandpack>
 
@@ -688,13 +672,13 @@ label {
 
 </Sandpack>
 
-The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When the child `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+*State* penghitung akan diatur ulang saat Anda mengklik *checkbox*. Meskipun Anda me-*render* `Counter`, anak pertama dari `div` berubah dari `div` menjadi `section`. Ketika anak `div` dihapus dari DOM, seluruh pohon di bawahnya (termasuk `Counter` dan *state*-nya) juga dihancurkan.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'section', yang memiliki satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 3. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen turunannya telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'div', disorot dengan warna kuning, juga dengan anak baru berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0, semuanya disorot dengan warna kuning.">
 
-When `section` changes to `div`, the `section` is deleted and the new `div` is added
+Ketika `section` berubah menjadi `div`, `section` akan dihapus dan `div` yang baru ditambahkan
 
 </Diagram>
 
@@ -702,21 +686,21 @@ When `section` changes to `div`, the `section` is deleted and the new `div` is a
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'div', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 0. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'section', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram dengan tiga bagian, dengan panah yang mentransisikan setiap bagian di antaranya. Bagian pertama berisi komponen React berlabel 'div' dengan satu anak berlabel 'div', yang memiliki satu anak berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0. Bagian tengah memiliki induk 'div' yang sama, tetapi komponen anak sekarang telah dihapus, ditunjukkan dengan gambar 'proof' berwarna kuning. Bagian ketiga memiliki induk 'div' yang sama lagi, sekarang dengan anak baru berlabel 'section', disorot dengan warna kuning, juga dengan anak baru berlabel 'Counter' yang berisi gelembung state berlabel 'count' dengan nilai 0, semuanya disorot dengan warna kuning.">
 
-When switching back, the `div` is deleted and the new `section` is added
+Saat beralih kembali, `div` akan dihapus dan `section` yang baru ditambahkan
 
 </Diagram>
 
 </DiagramGroup>
 
-As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
+Sebagai aturan praktis, **jika Anda ingin mempertahankan *state* di antara *render* ulang, struktur pohon Anda harus "cocok"** dari satu *render* ke *render* lainnya. Jika strukturnya berbeda, *state* akan dihancurkan karena React menghancurkan *state* ketika menghapus sebuah komponen dari pohon.
 
 <Pitfall>
 
-This is why you should not nest component function definitions.
+Inilah alasan mengapa Anda tidak boleh menyarangkan definisi fungsi komponen.
 
-Here, the `MyTextField` component function is defined *inside* `MyComponent`:
+Di sini, fungsi komponen `MyTextField` didefinisikan *di dalam* `MyComponent`:
 
 <Sandpack>
 
@@ -751,13 +735,13 @@ export default function MyComponent() {
 </Sandpack>
 
 
-Every time you click the button, the input state disappears! This is because a *different* `MyTextField` function is created for every render of `MyComponent`. You're rendering a *different* component in the same position, so React resets all state below. This leads to bugs and performance problems. To avoid this problem, **always declare component functions at the top level, and don't nest their definitions.**
+Setiap kali Anda mengklik tombol, *state* masukan akan menghilang! Hal ini disebabkan karena fungsi `MyTextField` yang *berbeda* dibuat untuk setiap *render* `MyComponent`. Anda me-*render* komponen yang *berbeda* pada posisi yang sama, sehingga React akan mengatur ulang semua *state* di bawah ini. Hal ini menyebabkan *bug* dan masalah performa. Untuk menghindari masalah ini, **selalu deklarasikan fungsi komponen pada level teratas, dan jangan menumpuk definisinya.**.
 
 </Pitfall>
 
-## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
+## Mengatur ulang *state* pada posisi yang sama {/*resetting-state-at-the-same-position*/}
 
-By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
+Secara *default*, React mempertahankan *state* dari sebuah komponen ketika komponen tersebut berada pada posisi yang sama. Biasanya, ini adalah hal yang Anda inginkan, sehingga masuk akal jika ini menjadi perilaku *default*. Namun terkadang, Anda mungkin ingin mengatur ulang *state* sebuah komponen. Pertimbangkan aplikasi ini yang memungkinkan dua pemain melacak skor mereka selama setiap giliran:
 
 <Sandpack>
 
@@ -827,19 +811,19 @@ h1 {
 
 </Sandpack>
 
-Currently, when you change the player, the score is preserved. The two `Counter`s appear in the same position, so React sees them as *the same* `Counter` whose `person` prop has changed.
+Saat ini, ketika Anda mengganti pemain, skor tetap dipertahankan. Kedua `Counter` muncul di posisi yang sama, sehingga React melihat mereka sebagai `Counter` yang *sama* yang mana props `person` telah berubah.
 
-But conceptually, in this app they should be two separate counters. They might appear in the same place in the UI, but one is a counter for Taylor, and another is a counter for Sarah.
+Namun secara konseptual, dalam aplikasi ini mereka seharusnya menjadi dua penghitung yang terpisah. Mereka mungkin muncul di tempat yang sama di UI, tetapi yang satu adalah penghitung untuk Taylor, dan yang lainnya adalah penghitung untuk Sarah.
 
-There are two ways to reset state when switching between them:
+Ada dua opsi untuk mengatur ulang *state* ketika beralih di antara keduanya:
 
-1. Render components in different positions
-2. Give each component an explicit identity with `key`
+1. Merender komponen dalam posisi yang berbeda
+2. Berikan setiap komponen identitas eksplisit dengan `key`
 
 
-### Option 1: Rendering a component in different positions {/*option-1-rendering-a-component-in-different-positions*/}
+### Opsi 1: Me-*render* komponen pada posisi yang berbeda {/*option-1-rendering-a-component-in-different-positions*/}
 
-If you want these two `Counter`s to be independent, you can render them in two different positions:
+Jika Anda ingin kedua `Counter` ini independen, Anda dapat membuat mereka dalam dua posisi yang berbeda:
 
 <Sandpack>
 
@@ -910,42 +894,42 @@ h1 {
 
 </Sandpack>
 
-* Initially, `isPlayerA` is `true`. So the first position contains `Counter` state, and the second one is empty.
-* When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
+* Awalnya, `isPlayerA` adalah `true`. Jadi posisi pertama berisi *state* `Counter`, dan posisi kedua kosong.
+* Ketika Anda mengklik tombol "Next player", posisi pertama akan hilang, namun posisi kedua sekarang berisi `Counter`.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
+<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'true'. Satu-satunya anak, yang diatur ke kiri, diberi label Counter dengan gelembung state berlabel 'count' dan bernilai 0. Semua anak di sebelah kiri disorot dengan warna kuning, yang menandakan bahwa anak tersebut telah ditambahkan.">
 
-Initial state
-
-</Diagram>
-
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
-
-Clicking "next"
+*State* awal
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'false'. State bubble disorot dengan warna kuning, menandakan bahwa gelembung state tersebut telah berubah. Anak sebelah kiri diganti dengan gambar 'poof' berwarna kuning yang menandakan bahwa anak tersebut telah dihapus dan terdapat anak baru di sebelah kanan, yang disorot dengan warna kuning yang menandakan bahwa anak tersebut telah ditambahkan. Anak baru ini diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0.">
 
-Clicking "next" again
+Mengklik "next"
+
+</Diagram>
+
+<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram dengan pohon komponen-komponen React. Induk diberi label 'Scoreboard' dengan gelembung state berlabel isPlayerA dengan nilai 'true'. State bubble disorot dengan warna kuning, menandakan bahwa gelembung state tersebut telah berubah. Ada anak baru di sebelah kiri, disorot dengan warna kuning yang menandakan bahwa anak tersebut telah ditambahkan. Anak baru ini diberi label 'Counter' dan berisi gelembung state berlabel 'count' dengan nilai 0. Anak di sebelah kanan diganti dengan gambar 'poof' berwarna kuning yang menandakan bahwa anak tersebut telah dihapus.">
+
+Mengklik "next" lagi
 
 </Diagram>
 
 </DiagramGroup>
 
-Each `Counter`'s state gets destroyed each time its removed from the DOM. This is why they reset every time you click the button.
+Setiap *state* `Counter` akan dihancurkan setiap kali dihapus dari DOM. Inilah sebabnya mengapa mereka mengatur ulang setiap kali Anda mengklik tombol.
 
-This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
+Solusi ini nyaman ketika Anda hanya memiliki beberapa komponen independen yang di-*render* di tempat yang sama. Dalam contoh ini, Anda hanya memiliki dua komponen, sehingga tidak merepotkan untuk me-*render* keduanya secara terpisah di JSX.
 
-### Option 2: Resetting state with a key {/*option-2-resetting-state-with-a-key*/}
+### Opsi 2: Mengatur ulang *state* dengan *key* {/*option-2-resetting-state-with-a-key*/}
 
-There is also another, more generic, way to reset a component's state.
+Ada juga cara lain yang lebih umum untuk mengatur ulang *state* komponen.
 
-You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+Anda mungkin pernah melihat `key` ketika [merender *list*.](/learn/rendering-lists#keeping-list-items-in-order-with-key) *Key* tidak hanya untuk *list*! Anda dapat menggunakan *key* untuk membuat React membedakan antar komponen. Secara *default*, React menggunakan urutan di dalam induk ("penghitung pertama", "penghitung kedua") untuk membedakan antar komponen. Tetapi dengan *key*, Anda dapat memberi tahu React bahwa ini bukan hanya penghitung *pertama*, atau penghitung *kedua*, tetapi penghitung yang spesifik--sebagai contoh, penghitung *Taylor*. Dengan cara ini, React akan mengetahui penghitung *Taylor* di mana pun dia muncul di dalam pohon!
 
-In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
+Pada contoh ini, kedua `<Counter />` tidak berbagi *state* meskipun keduanya muncul di tempat yang sama di JSX:
 
 <Sandpack>
 
@@ -1015,7 +999,7 @@ h1 {
 
 </Sandpack>
 
-Switching between Taylor and Sarah does not preserve the state. This is because **you gave them different `key`s:**
+Beralih antara Taylor dan Sarah tidak akan mempertahankan *state*. Ini karena **Anda memberi mereka `key` yang berbeda:**
 
 ```js
 {isPlayerA ? (
@@ -1025,23 +1009,23 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 )}
 ```
 
-Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, React sees them as two different counters, and so they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
+Menentukan sebuah `key` memberitahu React untuk menggunakan `key` itu sendiri sebagai bagian dari posisi, bukan urutan mereka di dalam induk. Inilah sebabnya, meskipun Anda me-*render* mereka di tempat yang sama di JSX, React melihat mereka sebagai dua penghitung yang berbeda, sehingga mereka tidak akan pernah berbagi *state*. Setiap kali penghitung muncul di layar, *state*-nya dibuat. Setiap kali dihapus, *state*-nya akan dihancurkan. Mengalihkan di antara keduanya akan mengatur ulang *state* mereka berulang kali.
 
 <Note>
 
-Remember that keys are not globally unique. They only specify the position *within the parent*.
+Ingatlah bahwa *key* tidak unik secara global. Mereka hanya menentukan posisi *dalam induk*.
 
 </Note>
 
-### Resetting a form with a key {/*resetting-a-form-with-a-key*/}
+### Mengatur ulang formulir dengan tombol {/*resetting-a-form-with-a-key*/}
 
-Resetting state with a key is particularly useful when dealing with forms.
+Mengatur ulang *state* dengan tombol sangat berguna terutama ketika berurusan dengan formulir.
 
-In this chat app, the `<Chat>` component contains the text input state:
+Dalam aplikasi obrolan ini, komponen `<Chat>` berisi *state* masukan teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1067,7 +1051,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1091,7 +1075,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1132,21 +1116,21 @@ textarea {
 
 </Sandpack>
 
-Try entering something into the input, and then press "Alice" or "Bob" to choose a different recipient. You will notice that the input state is preserved because the `<Chat>` is rendered at the same position in the tree.
+Coba masukkan sesuatu ke dalam input, lalu tekan "Alice" atau "Bob" untuk memilih penerima yang berbeda. Anda akan melihat bahwa *state* masukan dipertahankan karena `<Chat>` di-*render* pada posisi yang sama di pohon.
 
-**In many apps, this may be the desired behavior, but not in a chat app!** You don't want to let the user send a message they already typed to a wrong person due to an accidental click. To fix it, add a `key`:
+**Di banyak aplikasi, ini mungkin merupakan perilaku yang diinginkan, tetapi tidak di aplikasi obrolan!** Anda tidak ingin membiarkan pengguna mengirim pesan yang telah mereka ketik ke orang yang salah karena klik yang tidak disengaja. Untuk memperbaikinya, tambahkan `key`:
 
 ```js
 <Chat key={to.id} contact={to} />
 ```
 
-This ensures that when you select a different recipient, the `Chat` component will be recreated from scratch, including any state in the tree below it. React will also re-create the DOM elements instead of reusing them.
+Hal ini memastikan bahwa ketika Anda memilih penerima yang berbeda, komponen `Chat` akan dibuat ulang dari awal, termasuk *state* apa pun di dalam pohon di bawahnya. React juga akan membuat ulang elemen DOM daripada menggunakannya kembali.
 
-Now switching the recipient always clears the text field:
+Sekarang, mengganti penerima selalu mengosongkan bidang teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1172,7 +1156,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1196,7 +1180,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1239,24 +1223,24 @@ textarea {
 
 <DeepDive>
 
-#### Preserving state for removed components {/*preserving-state-for-removed-components*/}
+#### Mempertahankan *state* untuk komponen yang dilepas {/*preserving-state-for-removed-components*/}
 
-In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
+Dalam aplikasi obrolan yang sebenarnya, Anda mungkin ingin memulihkan *state* masukan ketika pengguna memilih penerima sebelumnya lagi. Ada beberapa cara untuk menjaga *state* "hidup" untuk komponen yang tidak lagi terlihat:
 
-- You could render _all_ chats instead of just the current one, but hide all the others with CSS. The chats would not get removed from the tree, so their local state would be preserved. This solution works great for simple UIs. But it can get very slow if the hidden trees are large and contain a lot of DOM nodes.
-- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
-- You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
+- Anda dapat merender *semua* obrolan, bukan hanya obrolan yang sedang berlangsung, tetapi menyembunyikan semua obrolan lainnya dengan CSS. Obrolan tidak akan dihapus dari pohon, sehingga *state* lokalnya akan dipertahankan. Solusi ini bekerja dengan baik untuk UI yang sederhana. Tetapi ini bisa menjadi sangat lambat jika pohon yang disembunyikan berukuran besar dan berisi banyak simpul DOM.
+- Anda dapat [mengangkat *state*](/learn/sharing-state-between-components) dan menyimpan pesan yang tertunda untuk setiap penerima di komponen induk. Dengan cara ini, ketika komponen anak dihapus, tidak menjadi masalah, karena induklah yang menyimpan informasi penting. Ini adalah solusi yang paling umum.
+- Anda juga dapat menggunakan sumber yang berbeda selain *state* React. Sebagai contoh, Anda mungkin ingin draf pesan tetap ada meskipun pengguna tidak sengaja menutup halaman. Untuk mengimplementasikan hal ini, Anda dapat membuat komponen `Chat` menginisialisasi *state*-nya dengan membaca dari [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), dan menyimpan draft di sana juga.
 
-No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
+Apapun strategi yang Anda pilih, obrolan *dengan Alice* secara konseptual berbeda dengan obrolan *dengan Bob*, sehingga masuk akal untuk memberikan `key` pada pohon `<Chat>` berdasarkan penerima saat ini.
 
 </DeepDive>
 
 <Recap>
 
-- React keeps state for as long as the same component is rendered at the same position.
-- State is not kept in JSX tags. It's associated with the tree position in which you put that JSX.
-- You can force a subtree to reset its state by giving it a different key.
-- Don't nest component definitions, or you'll reset state by accident.
+- React menyimpan *state* selama komponen yang sama di-*render* pada posisi yang sama.
+- State tidak disimpan dalam tag JSX. Hal ini terkait dengan posisi pohon tempat Anda meletakkan JSX tersebut.
+- Anda dapat memaksa subpohon untuk mengatur ulang *state*-nya dengan memberikan *key* yang berbeda.
+- Jangan membuat sarang definisi komponen, atau Anda akan mengatur ulang *state* secara tidak sengaja.
 
 </Recap>
 
@@ -1264,13 +1248,13 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-#### Fix disappearing input text {/*fix-disappearing-input-text*/}
+#### Memperbaiki teks masukan yang menghilang {/*fix-disappearing-input-text*/}
 
-This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
+Contoh ini menunjukkan pesan apabila Anda menekan tombol. Namun, menekan tombol juga secara tidak sengaja mengatur ulang masukan. Mengapa hal ini bisa terjadi? Perbaiki agar penekanan tombol tidak mengatur ulang teks masukan.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1315,13 +1299,13 @@ textarea { display: block; margin: 10px 0; }
 
 <Solution>
 
-The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the state every time the component type changes.
+Masalahnya adalah `Form` di-*render* dalam posisi yang berbeda. Pada cabang `if`, ini adalah anak kedua dari `<div>`, tetapi pada cabang `else`, ini adalah anak pertama. Oleh karena itu, jenis komponen di tiap posisi berubah. Posisi pertama berubah antara menahan `p` dan `Form`, sedangkan posisi kedua berubah antara menahan `Form` dan `tombol`. React mengatur ulang *state* setiap kali tipe komponen berubah.
 
-The easiest solution is to unify the branches so that `Form` always renders in the same position:
+Solusi termudah adalah dengan menyatukan cabang-cabang sehingga `Form` selalu dirender pada posisi yang sama:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1363,11 +1347,11 @@ textarea { display: block; margin: 10px 0; }
 </Sandpack>
 
 
-Technically, you could also add `null` before `<Form />` in the `else` branch to match the `if` branch structure:
+Secara teknis, Anda juga dapat menambahkan `null` sebelum `<Form />` pada cabang `else` untuk mencocokkan struktur cabang `if`:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1411,25 +1395,25 @@ textarea { display: block; margin: 10px 0; }
 
 </Sandpack>
 
-This way, `Form` is always the second child, so it stays in the same position and keeps its state. But this approach is much less obvious and introduces a risk that someone else will remove that `null`.
+Dengan cara ini, `Form` selalu menjadi anak kedua, sehingga tetap berada di posisi yang sama dan mempertahankan *state*-nya. Tetapi pendekatan ini kurang jelas dan menimbulkan risiko bahwa orang lain akan menghapus `null` tersebut.
 
 </Solution>
 
-#### Swap two form fields {/*swap-two-form-fields*/}
+#### Menukar dua bidang formulir {/*swap-two-form-fields*/}
 
-This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
+Formulir ini memungkinkan Anda memasukkan nama depan dan belakang. Formulir ini juga memiliki *checkbox* yang mengontrol bidang mana yang harus diisi terlebih dahulu. Ketika Anda mencentang *checkbox*, kolom "Last name" akan muncul sebelum kolom "First name".
 
-It almost works, but there is a bug. If you fill in the "First name" input and tick the checkbox, the text will stay in the first input (which is now "Last name"). Fix it so that the input text *also* moves when you reverse the order.
+Ini hampir berhasil, tetapi ada *bug*. Jika Anda mengisi input "First name" dan mencentang *checkbox*, teks akan tetap berada di masukan pertama (yang sekarang menjadi "Last name"). Perbaiki agar teks masukan *juga* berpindah ketika Anda membalikkan urutannya.
 
 <Hint>
 
-It seems like for these fields, their position within the parent is not enough. Is there some way to tell React how to match up the state between re-renders?
+Sepertinya untuk bidang-bidang ini, posisinya di dalam induk tidak cukup. Apakah ada cara untuk memberi tahu React bagaimana cara mencocokkan *state* di antara *render* ulang?
 
 </Hint>
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1487,11 +1471,11 @@ label { display: block; margin: 10px 0; }
 
 <Solution>
 
-Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct state for either `<Field>` even if their order within the parent changes:
+Berikan `key` pada kedua komponen `<Field>` di cabang `if` dan `else`. Hal ini memberi tahu React bagaimana cara "mencocokkan" *state* yang benar untuk salah satu `<Field>` meskipun urutannya di dalam induk berubah:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1549,15 +1533,15 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-#### Reset a detail form {/*reset-a-detail-form*/}
+#### Mengatur ulang formulir detail {/*reset-a-detail-form*/}
 
-This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
+Ini adalah daftar kontak yang dapat diedit. Anda dapat mengedit detail kontak yang dipilih, lalu tekan "Save" untuk memperbaruinya, atau "Reset" untuk membatalkan perubahan.
 
-When you select a different contact (for example, Alice), the state updates but the form keeps showing the previous contact's details. Fix it so that the form gets reset when the selected contact changes.
+Ketika Anda memilih kontak yang berbeda (misalnya, Alice), *state* akan diperbarui namun formulir tetap menampilkan detail kontak sebelumnya. Perbaiki agar formulir diatur ulang ketika kontak yang dipilih berubah.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1609,7 +1593,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1636,7 +1620,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1705,11 +1689,11 @@ button {
 
 <Solution>
 
-Give `key={selectedId}` to the `EditContact` component. This way, switching between different contacts will reset the form:
+Berikan `key={selectedId}` pada komponen `EditContact`. Dengan cara ini, beralih di antara kontak yang berbeda akan mengatur ulang formulir:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1762,7 +1746,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1789,7 +1773,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1858,13 +1842,13 @@ button {
 
 </Solution>
 
-#### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
+#### Menghapus gambar saat sedang dimuat {/*clear-an-image-while-its-loading*/}
 
-When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
+Ketika Anda menekan "Next", peramban akan mulai memuat gambar berikutnya. Namun, karena ditampilkan dalam tag `<img>` yang sama, secara *default* Anda masih akan melihat gambar sebelumnya sampai gambar berikutnya dimuat. Hal ini mungkin tidak diinginkan jika teks harus selalu sesuai dengan gambar. Ubahlah supaya saat Anda menekan "Next", gambar sebelumnya segera dihapus.
 
 <Hint>
 
-Is there a way to tell React to re-create the DOM instead of reusing it?
+Apakah ada cara untuk memberitahu React untuk membuat ulang DOM daripada menggunakannya kembali?
 
 </Hint>
 
@@ -1934,7 +1918,7 @@ img { width: 150px; height: 150px; }
 
 <Solution>
 
-You can provide a `key` to the `<img>` tag. When that `key` changes, React will re-create the `<img>` DOM node from scratch. This causes a brief flash when each image loads, so it's not something you'd want to do for every image in your app. But it makes sense if you want to ensure the image always matches the text.
+Anda dapat memberikan `key` pada tag `<img>`. Ketika `key` tersebut berubah, React akan membuat ulang simpul DOM `<img>` dari awal. Hal ini menyebabkan kilatan singkat ketika setiap gambar dimuat, jadi ini bukanlah sesuatu yang ingin Anda lakukan untuk setiap gambar dalam aplikasi Anda. Namun, hal ini masuk akal jika Anda ingin memastikan gambar selalu sesuai dengan teks.
 
 <Sandpack>
 
@@ -2002,15 +1986,15 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Memperbaiki *state* yang salah tempat dalam *list* {/*fix-misplaced-state-in-the-list*/}
 
-In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
+Dalam *list* ini, setiap `Kontak` memiliki *state* yang menentukan apakah "Show email" telah ditekan untuknya. Tekan "Show email" untuk Alice, lalu centang *checkbox* "Show in reverse order". Anda akan melihat bahwa email *Taylor* yang sekarang diperluas, tetapi email Alice--yang telah dipindahkan ke bagian bawah--tampak menciut.
 
-Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
+Perbaiki agar *state* yang diperluas dikaitkan dengan setiap kontak, terlepas dari urutan yang dipilih.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2052,7 +2036,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
@@ -2096,20 +2080,20 @@ button {
 
 <Solution>
 
-The problem is that this example was using index as a `key`:
+Masalahnya adalah contoh ini menggunakan indeks sebagai `key`:
 
 ```js
 {displayedContacts.map((contact, i) =>
   <li key={i}>
 ```
 
-However, you want the state to be associated with _each particular contact_.
+Namun, Anda ingin *state* dikaitkan dengan *setiap kontak tertentu*.
 
-Using the contact ID as a `key` instead fixes the issue:
+Menggunakan ID kontak sebagai `key` dapat mengatasi masalah ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2151,7 +2135,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
@@ -2193,7 +2177,7 @@ button {
 
 </Sandpack>
 
-State is associated with the tree position. A `key` lets you specify a named position instead of relying on order.
+*State* dikaitkan dengan posisi pohon. Sebuah `key` memungkinkan Anda menentukan posisi yang diberi nama daripada mengandalkan urutan.
 
 </Solution>
 

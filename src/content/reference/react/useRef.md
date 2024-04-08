@@ -47,11 +47,10 @@ Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
 #### Perhatian {/*caveats*/}
 
-* Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini tidak dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
+* Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
 * Ketika Anda mengubah properti `ref.current`, React tidak me-render ulang komponen Anda. React tidak mengetahui kapan Anda mengubahnya karena ref adalah objek JavaScript biasa.
 * Jangan menulis _atau membaca_ `ref.current` selama proses rendering, kecuali untuk [inisialisasi.](#avoiding-recreating-the-ref-contents) Hal ini membuat perilaku komponen Anda tidak dapat diprediksi.
 * Dalam Strict Mode, React akan **memanggil fungsi komponen Anda dua kali** untuk [membantu Anda menemukan bug yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus development dan tidak mempengaruhi produksi. Setiap objek ref akan dibuat dua kali, tetapi salah satu versi akan dibuang. Jika fungsi komponen Anda murni (sebagaimana mestinya), hal ini seharusnya tidak mempengaruhi perilaku.
-
 ---
 
 ## Penggunaan {/*usage*/}
@@ -228,7 +227,7 @@ function MyComponent() {
 
 Jika Anda *harus* membaca [atau menulis](/reference/react/useState#storing-information-from-previous-renders) sesuatu selama rendering, [gunakan state](/reference/react/useState) sebagai gantinya.
 
-Ketika Anda melanggar beberapa aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
+Ketika Anda melanggar aturan-aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
 </Pitfall>
 

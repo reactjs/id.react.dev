@@ -13,7 +13,7 @@ API ini akan dihapus pada React versi mayor berikutnya. Gunakan [`renderToPipeab
 `renderToNodeStream` me-*render* pohon (*tree*) React ke dalam [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToNodeStream(reactNode)
+const stream = renderToNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const stream = renderToNodeStream(reactNode)
 
 ## Referensi {/*reference*/}
 
-### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
+### `renderToNodeStream(reactNode, options?)` {/*rendertonodestream*/}
 
 Di server, panggil `renderToNodeStream` untuk mendapatkan [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang dapat Anda salurkan ke respons.
 
@@ -45,7 +45,9 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 
 #### Kembalian {/*returns*/}
 
-Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams) yang menghasilkan *string* HTML.
+* **opsional** `options`: Obyek untuk pe-*render*-an server.
+  * **opsional** `identifierPrefix`: String prefiks yang digunakan reak untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Ini berguna untuk menghindari konflik ketika menggunakan *root* yang berbeda di halaman yang sama. Harus merupakan prefiks yang sama yang dioper ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
+
 
 #### Catatan Penting {/*caveats*/}
 

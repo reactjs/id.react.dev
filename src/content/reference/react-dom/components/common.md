@@ -1,10 +1,10 @@
 ---
-title: "Common components (e.g. <div>)"
+title: "Komponen umum (cth. <div>)"
 ---
 
 <Intro>
 
-All built-in browser components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
+Semua komponen bawaan dari sebuah peramban web (*browser*), seperti [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), mendukung beberapa *props* dan *event* umum. 
 
 </Intro>
 
@@ -12,265 +12,263 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
-### Common components (e.g. `<div>`) {/*common*/}
+### Komponen umum (e.g. `<div>`) {/*common*/}
 
 ```js
-<div className="wrapper">Some content</div>
+<div className="wrapper">Konten sembarang</div>
 ```
 
 [See more examples below.](#usage)
 
 #### Props {/*common-props*/}
 
-These special React props are supported for all built-in components:
+Beberapa *props* spesial React berikut didukung oleh setiap komponen bawaan:
 
-* `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
+* `children`: Sebuah *node* React (sebuah elemen, string, angka, [portal,](/reference/react-dom/createPortal) *node* kosong seperti `null`, `undefined` and booleans, atau senarai dari *nodes* React). Menggambarkan kontent yang berada di dalam komponen. Saat menggunakan JSX, biasanya kau akan mendefinisikan *prop* dari `children` secara implisit dengan menggunakan tag bersarang seperti `<div><span /></div>`.
 
-* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+* `dangerouslySetInnerHTML`: Sebuah objek dengan bentuk `{ __html: '<p>some html</p>' }` yang mengandung string HTML mentah. Objek ini menimpa [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) yang merupakan properti dari DOM *node* dan menampilkan HTML yang di-*passing* ke dalamnya. Hal ini harus digunakan dengan sangat hati-hati! Jika HTML yang berada didalamnya tidak terpercaya (sebagai contoh, jika datanya berbasis pada data pengguna), akan beresiko pada munculnya kerentanan terhadap [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). [Baca lebih lanjut mengenai penggunaan `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
 
-* `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with refs.](#manipulating-a-dom-node-with-a-ref)
+* `ref`: Ref adalah sebuah objek dari [`useRef`](/reference/react/useRef) atau [`createRef`](/reference/react/createRef), atau sebuah [fungsi *callback* `ref`,](#ref-callback) atau sebuah string untuk [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Ref anda akan diisi dengan elemen DOM untuk *node* tersebut. [Baca lebih lanjut mengenai memanipulasi DOM dengan refs.](#manipulating-a-dom-node-with-a-ref)
 
-* `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
+* `suppressContentEditableWarning`: Sebuah boolean. Jika `true`, menekan peringatan yang ditampilkan oleh React untuk element yang memngandung `children` dan `contentEditable={true}` (yang biasanya tidak bekerja secara bersamaan). Gunakan *prop* ini jika anda sedang membangun sebuah *library* input teks yang mengelola konten `contentEditable` secara manual.
 
-* `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
+* `suppressHydrationWarning`: Sebuah boolean. Jika anda menggunakan [*server rendering*,](/reference/react-dom/server) biasanya terdapat peringatan saat server dan client me-*render* konten yang berbeda. Untuk beberapa kasus langka (seperti tag waktu), sangat sulit atau tidak mungkin untuk menjamin kecocokan yang tepat. Jika anda mengatur `suppressHydrationWarning` menjadi `true`, React tidak akan memperingati anda mengenai ketidakcocokan dalam atribut ataupun konten dari elemen tersebut. Ini hanya bekerja sedalam satu tingkat, dan dimaksudkan untuk digunakan sebagai pintu keluar darurat. Jangan terlalu sering menggunakannya. [Baca mengenai menekan kesalahan hidrasi.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
-* `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+* `style`: Sebuah objek *styles* CSS, sebagai contoh `{ fontWeight: 'bold', margin: 20 }`. Seperti properti dari DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style), penamaan dari properti CSS harus ditulis dalam `camelCase`, sebagai contoh `fontWeight` bukan `font-weight`. Anda dapat mengoper string atau angka sebagai nilai. Jika anda memasukkan angka, seperti `width: 100`, React akan secara otomatis menambahkan `px` ("piksel") ke dalam nilai tersebut kecuali jika properti tersebut merupakan [properti tanpa unit.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) Kami merekomendasikan penggunaan `style` hanya untuk *styles* yang bersifat dinamis yang mana nilai dari *style* tersebut masih dapat berubah-ubah. Untuk kasus lainnya, penggunaan kelas *CSS* biasa dengan `className` lebih efisien. [Baca lebih lanjut mengenai `className` dan `style`.](#applying-css-styles)
 
-These standard DOM props are also supported for all built-in components:
+Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan: 
 
-* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): A string. Specifies a keyboard shortcut for the element. [Not generally recommended.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
-* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
-* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): A string. Specifies whether and how the user input should be capitalized.
-* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): A string. Specifies the element's CSS class name. [Read more about applying CSS styles.](#applying-css-styles)
-* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
-* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
-* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Either `'ltr'` or `'rtl'`. Specifies the text direction of the element.
-* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): A string. Specifies which action to present for the enter key on virtual keyboards.
-* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/reference/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
-* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
-* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
-* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
-* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
-* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
-* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
-* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation completes.
-* `onAnimationEndCapture`: A version of `onAnimationEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when an iteration of a CSS animation ends, and another one begins.
-* `onAnimationIterationCapture`: A version of `onAnimationIteration` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation starts.
-* `onAnimationStartCapture`: `onAnimationStart`, but fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when a non-primary pointer button was clicked.
-* `onAuxClickCapture`: A version of `onAuxClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBeforeInput`: An [`InputEvent` handler](#inputevent-handler) function. Fires before the value of an editable element is modified. React does *not* yet use the native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) event, and instead attempts to polyfill it using other events.
-* `onBeforeInputCapture`: A version of `onBeforeInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBlur`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) event, in React the `onBlur` event bubbles.
-* `onBlurCapture`: A version of `onBlur` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
-* `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
-* `onCompositionStartCapture`: A version of `onCompositionStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) completes or cancels a composition session.
-* `onCompositionEndCapture`: A version of `onCompositionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) receives a new character.
-* `onCompositionUpdateCapture`: A version of `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user tries to open a context menu.
-* `onContextMenuCapture`: A version of `onContextMenu` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to copy something into the clipboard.
-* `onCopyCapture`: A version of `onCopy` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to cut something into the clipboard.
-* `onCutCapture`: A version of `onCut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onDoubleClick`: A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user clicks twice. Corresponds to the browser [`dblclick` event.](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)
-* `onDoubleClickCapture`: A version of `onDoubleClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): A [`DragEvent` handler](#dragevent-handler) function. Fires while the user is dragging something. 
-* `onDragCapture`: A version of `onDrag` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user stops dragging something. 
-* `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content enters a valid drop target. 
-* `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
-* `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user starts dragging an element.
-* `onDragStartCapture`: A version of `onDragStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when something is dropped on a valid drop target.
-* `onDropCapture`: A version of `onDrop` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
-* `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element programmatically captures a pointer.
-* `onGotPointerCaptureCapture`: A version of `onGotPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is pressed.
-* `onKeyDownCapture`: A version of `onKeyDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Deprecated. Use `onKeyDown` or `onBeforeInput` instead.
-* `onKeyPressCapture`: A version of `onKeyPress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is released.
-* `onKeyUpCapture`: A version of `onKeyUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element stops capturing a pointer.
-* `onLostPointerCaptureCapture`: A version of `onLostPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is pressed down.
-* `onMouseDownCapture`: A version of `onMouseDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves inside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
-* [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
-* [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer changes coordinates.
-* `onMouseMoveCapture`: A version of `onMouseMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element, or if it moves into a child element.
-* `onMouseOutCapture`: A version of `onMouseOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is released.
-* `onMouseUpCapture`: A version of `onMouseUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when the browser cancels a pointer interaction.
-* `onPointerCancelCapture`: A version of `onPointerCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer becomes active.
-* `onPointerDownCapture`: A version of `onPointerDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves inside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
-* [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
-* [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer changes coordinates.
-* `onPointerMoveCapture`: A version of `onPointerMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
-* `onPointerOutCapture`: A version of `onPointerOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer is no longer active.
-* `onPointerUpCapture`: A version of `onPointerUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to paste something from the clipboard.
-* `onPasteCapture`: A version of `onPaste` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): An [`Event` handler](#event-handler) function. Fires when an element has been scrolled. This event does not bubble.
-* `onScrollCapture`: A version of `onScroll` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when the browser cancels a touch interaction.
-* `onTouchCancelCapture`: A version of `onTouchCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are removed.
-* `onTouchEndCapture`: A version of `onTouchEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires one or more touch points are moved.
-* `onTouchMoveCapture`: A version of `onTouchMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are placed.
-* `onTouchStartCapture`: A version of `onTouchStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): A [`TransitionEvent` handler](#transitionevent-handler) function. Fires when a CSS transition completes.
-* `onTransitionEndCapture`: A version of `onTransitionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): A [`WheelEvent` handler](#wheelevent-handler) function. Fires when the user rotates a wheel button.
-* `onWheelCapture`: A version of `onWheel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
-nt.
-* [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
-* [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): A boolean or null. If explicitly set to `true` or `false`, enables or disables spellchecking.
-* [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): A number. Overrides the default Tab button behavior. [Avoid using values other than `-1` and `0`.](https://www.tpgi.com/using-the-tabindex-attribute/)
-* [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): A string. Specifies the tooltip text for the element.
-* [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Either `'yes'` or `'no'`. Passing `'no'` excludes the element content from being translated.
+* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): Sebuah string. Menentukan pintasan (*shortcut*) keyboard untuk elemen. [Tidak direkomendasikan secara umum.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
+* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): Atribut ARIA memungkinkan anda untuk menentukan informasi pohon aksesibilitas untuk elemen ini. Liat [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) untuk referensi yang lengkap. Dalam React, setiap atribut ARIA memiliki nama yang sama persis seperti di HTML.
+* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): Sebuah string. menentukan apakah dan bagaimana masukkan dari pengguna harus dikapitalisasi.
+* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): Sebuah string. Menentukan nama kelas CSS dari elemen tersebut. [Baca lebih lanjut mengenai menerapkan *styles* CSS.](#applying-css-styles)
+* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): Sebuah boolean. Jika `true`, peramban web (*browser*) akan membiarkan pengguna untuk menyunting elemen yang di-*render* secara langsung. Ini digunakan untuk mengimplementasi *libraries* masukkan teks kaya seperti [Lexical.](https://lexical.dev/)  React akan memperingatkan jika anda mencoba untuk mengoper *children* React ke dalam elemen tersebut dengan `contentEditable={true}` karena React tidak akan bisa memperbarui konten tersebut setelah disunting oleh pengguna.
+* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Atribut data membiarkan Anda melampirkan beberapa data string ke element, sebagai contoh `data-buah="pisang"`. Dalam React, hal ini jarang digunakan karena biasanya anda membaca data dari *props* ataupun *state*.
+* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Antara `'ltr'` atau `'rtl'`. Menentukan arah teks dari elemen tersebut.
+* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): Sebuah boolean. Menentukan apakah elemen tersebut dapat diseret. Bagian dari [API HTML *Drag and Drop*.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): Sebuah string. Menentukan aksi apa yang direpresentasikan oleh tombol enter pada keyboard *virtual*.
+* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): Sebuah string. Untuk [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) dan [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), Memungkinan anda untuk [mengasosiasikan label the beberapa kontrol.](/reference/react-dom/components/input#providing-a-label-for-an-input) Sama seperti [atribut HTML `for`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React tidak menggunakan nama dari atribut HTML melainkan menggunakan nama properti standar DOM (`htmlFor`) 
+* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): Sebuah boolean atau string. Menentukan apakah sebuah elemen disembunyikan atau tidak.
+* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): Sebuah string. Menentukan pengidentifikasi untuk untuk elemen ini, yang mana dapat digunakan untuk menemukannya kembali atau menghubungkannya dengan elemen lain. Dapatkan dengan menggunakan [`useId`](/reference/react/useId) untuk menghidari bentrokan antara beberapa *instances* pada komponen yang sama.
+* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): Sebuah string. Jika ditentukan, maka komponen tersebut akan berperilaku seperti [elemen kustom.](/reference/react-dom/components#custom-html-elements)
+* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): Sebuah string. Menentukan jenis keyboard apa yang akan ditampilkan (sebagai contoh, teks, angka or telepon).
+* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): Sebuah string. Menentukan properti apa yang merepresentasikan elemen untuk  *crawler* data terstruktur.
+* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): Sebuah string. Menentukan bahasa dari elemen tersebut.
+* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat sebuah animasi CSS selesai.
+* `onAnimationEndCapture`: Sebuah versi dari `onAnimationEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat iterasi dari animasi CSS selesai, dan dimulainya animasi selanjutnya.
+* `onAnimationIterationCapture`: Sebuah versi dari `onAnimationIteration` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): Sebuah fungsi [*handler* `AnimationEvent`](#animationevent-handler). Aktif saat animasi CSS dimulai.
+* `onAnimationStartCapture`: `onAnimationStart`, tetapi aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat tombol penunjuk (*pointer*) non-primer diklik.
+* `onAuxClickCapture`: Sebuah versi dari `onAuxClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onBeforeInput`: Sebuah fungsi [*handler* `InputEvent`](#inputevent-handler). Aktif sebelum dilakukan modifikasi pada nilai dari elemen yang dapat disunting. React belum mengunakan *event* [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) *native*, dan alih-alih mencoba mengisinya menggunakan *event* lain.
+* `onBeforeInputCapture`: Sebuah versi dari `onBeforeInput` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onBlur`: Sebuah fungsi [*handler* `FocusEvent`](#focusevent-handler). Aktif saat sebuah elemen kehilangan fokus. Tidak seperti *event* [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) bawaan dari peramban web (*browser*), di React *event* `onBlur` menggelembung (*bubbles*).
+* `onBlurCapture`: Sebuah versi dari `onBlur` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif ketika tombol primer pada perangkat penunjuk (*pointer*) diklik.
+* `onClickCapture`: Sebuah versi dari `onClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) memulai sebuah sesi komposisi baru.
+* `onCompositionStartCapture`: Sebuah versi dari `onCompositionStart` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) menyelesaikan atau membatalkan sebuah sesi komposisi.
+* `onCompositionEndCapture`: Sebuah versi dari `onCompositionEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): Sebuah fungsi [*handler* `CompositionEvent`](#compositionevent-handler). Aktif saat [*input method editor*](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) menerima karakter baru.
+* `onCompositionUpdateCapture`: Sebuah versi dari `onCompositionUpdate` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat pengguna mencoba untuk membuka menu konteks.
+* `onContextMenuCapture`: Sebuah versi dari `onContextMenu` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): Sebuah fungsi [*handler* `ClipboardEvent`](#clipboardevent-handler). Aktif saat pengguna mencoba menyalin (*copy*) sesuatu ke *clipboard*.
+* `onCopyCapture`: Sebuah versi dari `onCopy` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): Sebuah fungsi [*handler* `ClipboardEvent`](#clipboardevent-handler). Aktif saat pengguna mencoba untuk memotong (*cut*) sesuatu ke *clipboard*.
+* `onCutCapture`: Sebuah versi dari `onCut` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onDoubleClick`: Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat pengguna melakukan klik sebanyak dua kali. Sesuai dengan [*event* `dblclick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event) pada peramban web (*browser*).
+* `onDoubleClickCapture`: Sebuah versi dari `onDoubleClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif ketika user mencoba untuk menyeret sesuatu. 
+* `onDragCapture`: Sebuah versi dari `onDrag` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat user berhenti menyeret sesuatu. 
+* `onDragEndCapture`: Sebuah versi dari `onDragEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat konten yang terseret memasuki suatu target penurunan yang valid. 
+* `onDragEnterCapture`: Sebuah versi dari `onDragEnter` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif pada target penurunan yang valid saat konten yang terseret sedang berada pada target tersebut. Anda perlu memanggil `e.preventDefault()` untuk memengizinkan proses penurunan.
+* `onDragOverCapture`: Sebuah versi dari `onDragOver` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat pengguna mulai menyeret sebuah element.
+* `onDragStartCapture`: Sebuah versi dari `onDragStart` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat terdapat sesuatu yang diturunkan pada target penurunan yang valid.
+* `onDropCapture`: Sebuah versi dari `onDrop` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onFocus`: Sebuah fungsi [*handler* `FocusEvent`](#focusevent-handler). Aktif saat sebuah elemen kehilangan fokus. Berbeda dengan *event* [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) bawaan dari peramban web (*browser*), di React *event* `onFocus` menggelembung (*bubbles*).
+* `onFocusCapture`: Sebuah versi dari `onFocus` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat sebuah elemen secara terprogram menangkap penunjuk (*pointer*).
+* `onGotPointerCaptureCapture`: Sebuah versi dari `onGotPointerCapture` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): Sebuah fungsi [*handler* `KeyboardEvent`](#pointerevent-handler). Aktif saat sebuah tombol ditekan.
+* `onKeyDownCapture`: Sebuah versi dari `onKeyDown` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): Sebuah fungsi [*handler* `KeyboardEvent`](#pointerevent-handler). *Deprecated*. Gunakan `onKeyDown` atau `onBeforeInput`.
+* `onKeyPressCapture`: Sebuah versi dari `onKeyPress` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): Sebuah fungsi [*handler* `KeyboardEvent`](#pointerevent-handler). Aktif saat sebuah tombol dilepaskan.
+* `onKeyUpCapture`: Sebuah versi dari `onKeyUp` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat sebuah elemen berhenti menangkap sebuah penunjuk (*pointer*).
+* `onLostPointerCaptureCapture`: Sebuah versi dari `onLostPointerCapture` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat penunjuk (*pointer*) ditekan.
+* `onMouseDownCapture`: Sebuah versi dari `onMouseDown` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat sebuah penunjuk masuk kedalam sebuah element. Tidak mempunyai fase penangkapan. Alih-alih, `onMouseLeave` dan `onMouseEnter` merambat dari satu elemen yang ditinggalkan menuju ke elemen yang dituju/dimasukkan.
+* [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat penunjuk (*pointer*) berada diluar elemen. Tidak mempunyai fase penangkan. Alih-alih, `onMouseLeave` dan `onMouseEnter` merambat dari satu elemen yang ditinggalkan menuju ke elemen yang dituju/dimasukkan.
+* [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat penunjuk (*pointer*) merubah koordinat.
+* `onMouseMoveCapture`: Sebuah versi dari `onMouseMove` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat penunjuk (*pointer*) bergerak keluar dari sebuah elemen, atau ketika bergerak ke suatu anak elemen.
+* `onMouseOutCapture`: Sebuah versi dari `onMouseOut` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat penunjuk dilepaskan.
+* `onMouseUpCapture`: Sebuah versi dari `onMouseUp` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat peramban web (*browser*) membatalkan sebuah interaksi penunjuk (*pointer*).
+* `onPointerCancelCapture`: Sebuah versi dari `onPointerCancel` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat sebuah penunjuk (*pointer*) menjadi aktif.
+* `onPointerDownCapture`: Sebuah versi dari `onPointerDown` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat sebuah penunjuk (*pointer*) bergerak memasukki sebuah elemen. Tidak mempunyai fase penangkapan. Alih-alih, `onPointerLeave` dan `onPointerEnter` merambat dari satu elemen yang ditinggalkan menuju ke elemen yang dituju/dimasukkan.
+* [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat sebuah penunjuk (*pointer*) bergerak keluar dari sebuah elemen. Tidak mempunyai fase penangkapan. Alih-alih, `onPointerLeave` and `onPointerEnter` merambat dari satu elemen yang ditinggalkan menuju ke elemen yang dituju/dimasukkan.
+* [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat penunjuk (*pointer*) mengubah koordinat.
+* `onPointerMoveCapture`: Sebuah versi dari `onPointerMove` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat penunjuk (*pointer*) bergerak keluar dari sebuah elemen, Saat interaksi dari penunjuk (*pointer*) dibatalkan, dan [karena alasan lainnya.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
+* `onPointerOutCapture`: Sebuah versi dari `onPointerOut` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): Sebuah fungsi [*handler* `PointerEvent`](#pointerevent-handler). Aktif saat penunjuk (*pointer*) tidak lagi aktif.
+* `onPointerUpCapture`: Sebuah versi dari `onPointerUp` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): Sebuah fungsi [*handler* `ClipboardEvent`](#clipboardevent-handler). Aktif saat pengguna mencoba untuk menemplekan sesuatu dari *clipboard*.
+* `onPasteCapture`: Sebuah versi dari `onPaste` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sebuah elemen telah di-*scroll*. *Event* ini tidak menggelembung (bubble).
+* `onScrollCapture`: Sebuah versi dari `onScroll` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif setelah seleksi dari sebuah elemen yang dapat disunting seperti input, mengalami perubahan. React memperluas *event* `onSelect` agar dapat bekerja juga di elemen `contentEditable={true}`. Sebagai tambahan, React memperluasnya agar aktif pada seleksi kosong dan juga pada saat proses menyunting (memungkian pengaruh terhadap seleksi).
+* `onSelectCapture`: Sebuah versi dari `onSelect` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): Sebuah fungsi [*handler* `TouchEvent`](#touchevent-handler). Aktif saat peramban web (*browser*) membatalkan sebuah interaksi sentuhan.
+* `onTouchCancelCapture`: Sebuah versi dari `onTouchCancel` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): Sebuah fungsi [*handler* `TouchEvent`](#touchevent-handler). Aktif saat satu atau lebih titik sentuhan dihapus/dilepaskan.
+* `onTouchEndCapture`: Sebuah versi dari `onTouchEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): Sebuah fungsi [*handler* `TouchEvent`](#touchevent-handler). Aktif saat satu atau lebih titik sentuhan bergerak.
+* `onTouchMoveCapture`: Sebuah versi dari `onTouchMove` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): Sebuah fungsi [*handler* `TouchEvent`](#touchevent-handler). Aktif saat satu atau lebih titik diletakkan.
+* `onTouchStartCapture`: Sebuah versi dari `onTouchStart` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): Sebuah fungsi [*handler* `TransitionEvent`](#transitionevent-handler). Aktif saat transisi CSS selesai.
+* `onTransitionEndCapture`: Sebuah versi dari `onTransitionEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): Sebuah fungsi [*handler* `WheelEvent`](#wheelevent-handler). Aktif saat pengguna memutar tombol *wheel*.
+* `onWheelCapture`: Sebuah versi dari `onWheel` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): Sebuah string. Menentukan peran elemen secara eksplisit untuk teknologi bantuan.
+* [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): Sebuah string. Menentukan nama dari slot saat menggunakan DOM bayangan. Di React, pola yang ekuivalen biasanya didapatkan dengan mengoper JSX sebagai sebuah *props*, sebagai contoh `<Layout kiri={<Sidebar />} kanan={<Content />} />`.
+* [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): Sebuah boolean atau null. Jika secara eksplisit diatur sebagai `true` atau `false`, mengaktifkan atau menonaktifkan pemeriksaan ejaan.
+* [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): Sebuah angka. Menimpa perilaku bawaan dari tombol Tab. [Hindari penggunaan nilai selain `-1` dan `0`.](https://www.tpgi.com/using-the-tabindex-attribute/)
+* [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): Sebuah string. Menentukan teks *tooltip* untuk elemen tersebut.
+* [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Antara `'yes'` atau `'no'`. Mengoper nilai `'no'` mengecualikan konten elemen agar tidak diterjemahkan.
 
-You can also pass custom attributes as props, for example `mycustomprop="someValue".` This can be useful when integrating with third-party libraries. The custom attribute name must be lowercase and must not start with `on`. The value will be converted to a string. If you pass `null` or `undefined`, the custom attribute will be removed.
+Anda juga dapat mengoper atribut kustom sebagai *props*, sebagai contoh `custompropsaya="sebuahNilai".` Hal ini akan sangat berguna pada proses pengintegrasian dengan *libraries* pihak ketiga. Nama dari atribut kustom ini harus *lowercase* (dalam huruf non-kapital) dan tidak diawali dengan `on`. Nilai tersebut akan dikonversikan kedalam String. Jika anda mengoper nilai `null` atau `undefined`, atribut kustom tersebut akan dihapus. 
 
-These events fire only for the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements:
+Berikut *events* yang hanya aktif untuk elemen [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form):
 
-* [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): An [`Event` handler](#event-handler) function. Fires when a form gets reset.
-* `onResetCapture`: A version of `onReset` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): An [`Event` handler](#event-handler) function. Fires when a form gets submitted.
-* `onSubmitCapture`: A version of `onSubmit` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sebuah *form*  mengalami pengaturan ulang(*reset*).
+* `onResetCapture`: Sebuah versi dari `onReset` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sebuah *form* dikirim.
+* `onSubmitCapture`: Sebuah versi dari `onSubmit` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 
-These events fire only for the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements. Unlike browser events, they bubble in React:
+Berikut *events* yang hanya aktif untuk elemen [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog). Tidak seperti *events* bawaan peramban web (*browser*), di React *event-event* ini menggelembung (*bubble*):
 
-* [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): An [`Event` handler](#event-handler) function. Fires when the user tries to dismiss the dialog.
-* `onCancelCapture`: A version of `onCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-capture-phase-events)
-* [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): An [`Event` handler](#event-handler) function. Fires when a dialog has been closed.
-* `onCloseCapture`: A version of `onClose` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event):  Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat pengguna mencoba untuk mengabaikan/menutup dialog.
+* `onCancelCapture`: Sebuah versi dari `onCancel` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sebuah dialog telah ditutup.
+* `onCloseCapture`: Sebuah versi dari `onClose` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 
-These events fire only for the [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements. Unlike browser events, they bubble in React:
+Berikut *events* yang hanya aktif untuk elemen [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details). Tidak seperti *events* bawaan peramban web (*browser*), di React *event-event* ini menggelembung (*bubble*):
 
-* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details.
-* `onToggleCapture`: A version of `onToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat pengguna mengaktifkan detailnya.
+* `onToggleCapture`: Sebuah versi dari `onToggle` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 capture-phase-events)
 
-These events fire for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), and [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) elements. Unlike browser events, they bubble in React:
+Berikut *events* yang aktif untuk elemen [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), dan [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag). Tidak seperti *events* bawaan peramban web (*browser*), di React *event-event* ini menggelembung (*bubble*):
 
-* `onLoad`: An [`Event` handler](#event-handler) function. Fires when the resource has loaded.
-* `onLoadCapture`: A version of `onLoad` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
-* `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onLoad`: Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sumber daya telah dimuat.
+* `onLoadCapture`: Sebuah versi dari `onLoad` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sumber daya tidak dapat dimuat.
+* `onErrorCapture`: Sebuah versi dari `onError` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 
-These events fire for resources like [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Unlike browser events, they bubble in React:
+Berikut *events* yang aktif pada beberapa sumber daya seperti [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) dan [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Tidak seperti *events* bawaan peramban web (*browser*), di React *event-event* ini menggelembung (*bubble*):
 
-* [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): An [`Event` handler](#event-handler) function. Fires when the resource has not fully loaded, but not due to an error.
-* `onAbortCapture`: A version of `onAbort` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): An [`Event` handler](#event-handler) function. Fires when there's enough data to start playing, but not enough to play to the end without buffering.
-* `onCanPlayCapture`: A version of `onCanPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): An [`Event` handler](#event-handler) function. Fires when there's enough data that it's likely possible to start playing without buffering until the end.
-* `onCanPlayThroughCapture`: A version of `onCanPlayThrough` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): An [`Event` handler](#event-handler) function. Fires when the media duration has updated.
-* `onDurationChangeCapture`: A version of `onDurationChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): An [`Event` handler](#event-handler) function. Fires when the media has become empty.
-* `onEmptiedCapture`: A version of `onEmptied` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): An [`Event` handler](#event-handler) function. Fires when the browser encounters encrypted media.
-* `onEncryptedCapture`: A version of `onEncrypted` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): An [`Event` handler](#event-handler) function. Fires when the playback stops because there's nothing left to play.
-* `onEndedCapture`: A version of `onEnded` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
-* `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): An [`Event` handler](#event-handler) function. Fires when the current playback frame has loaded.
-* `onLoadedDataCapture`: A version of `onLoadedData` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): An [`Event` handler](#event-handler) function. Fires when metadata has loaded.
-* `onLoadedMetadataCapture`: A version of `onLoadedMetadata` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): An [`Event` handler](#event-handler) function. Fires when the browser started loading the resource.
-* `onLoadStartCapture`: A version of `onLoadStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): An [`Event` handler](#event-handler) function. Fires when the media was paused.
-* `onPauseCapture`: A version of `onPause` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): An [`Event` handler](#event-handler) function. Fires when the media is no longer paused.
-* `onPlayCapture`: A version of `onPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): An [`Event` handler](#event-handler) function. Fires when the media starts or restarts playing.
-* `onPlayingCapture`: A version of `onPlaying` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): An [`Event` handler](#event-handler) function. Fires periodically while the resource is loading.
-* `onProgressCapture`: A version of `onProgress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): An [`Event` handler](#event-handler) function. Fires when playback rate changes.
-* `onRateChangeCapture`: A version of `onRateChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onResize`: An [`Event` handler](#event-handler) function. Fires when video changes size.
-* `onResizeCapture`: A version of `onResize` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): An [`Event` handler](#event-handler) function. Fires when a seek operation completes.
-* `onSeekedCapture`: A version of `onSeeked` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): An [`Event` handler](#event-handler) function. Fires when a seek operation starts.
-* `onSeekingCapture`: A version of `onSeeking` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): An [`Event` handler](#event-handler) function. Fires when the browser is waiting for data but it keeps not loading.
-* `onStalledCapture`: A version of `onStalled` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): An [`Event` handler](#event-handler) function. Fires when loading the resource was suspended.
-* `onSuspendCapture`: A version of `onSuspend` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): An [`Event` handler](#event-handler) function. Fires when the current playback time updates.
-* `onTimeUpdateCapture`: A version of `onTimeUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): An [`Event` handler](#event-handler) function. Fires when the volume has changed.
-* `onVolumeChangeCapture`: A version of `onVolumeChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): An [`Event` handler](#event-handler) function. Fires when the playback stopped due to temporary lack of data.
-* `onWaitingCapture`: A version of `onWaiting` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat sumber daya belum sepenuhnya dimuat, tetapi bukan karena adanya kesalahan.
+* `onAbortCapture`: Sebuah versi dari `onAbort` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat terdapat cukup data sehingga dapat dimulai, tetapi belum cukup untuk diputar hingga akhir tanpa adanya *buffering*.
+* `onCanPlayCapture`: Sebuah versi dari `onCanPlay` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat terdapat cukup data yang memungkinkan untuk diputar dari awal hingga akhir tanpa adanya *buffering*.
+* `onCanPlayThroughCapture`: Sebuah versi dari `onCanPlayThrough` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat durasi dari media berubah/diperbarui.
+* `onDurationChangeCapture`: Sebuah versi dari `onDurationChange` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat media telah menjadi kosong. 
+* `onEmptiedCapture`: Sebuah versi dari `onEmptied` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat peramban web (*browser*) menemukan media yang terenkripsi.
+* `onEncryptedCapture`: Sebuah versi dari `onEncrypted` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat pemutaran berhenti karena tidak ada yang tersisa untuk diputar.
+* `onEndedCapture`: Sebuah versi dari `onEnded` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat terdapat sumber daya yang tidak dapat dimuat.
+* `onErrorCapture`: Sebuah versi dari `onError` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat *frame* pemutaran sekarang berhasil dimuat.
+* `onLoadedDataCapture`: Sebuah versi dari `onLoadedData` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat metadata berhasil dimuat.
+* `onLoadedMetadataCapture`: Sebuah versi dari `onLoadedMetadata` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat peramban web (*browser*) mulai untuk memuat sumber daya.
+* `onLoadStartCapture`: Sebuah versi dari `onLoadStart` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat media dijeda.
+* `onPauseCapture`: Sebuah versi dari `onPause` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat media sudah tidak lagi dijeda.
+* `onPlayCapture`: Sebuah versi dari `onPlay` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat media mulai atau media terulang kembali.
+* `onPlayingCapture`: Sebuah versi dari `onPlaying` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif secara periodik ketika sumber daya sedang memuat.
+* `onProgressCapture`: Sebuah versi dari `onProgress` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat adanya perubahan pada tingkat pemutaran (*playback rate*).
+* `onRateChangeCapture`: Sebuah versi dari `onRateChange` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* `onResize`: Sebuah fungsi [`Event` handler](#event-handler). Aktif saat ukuran dari video berubah.
+* `onResizeCapture`: Sebuah versi dari `onResize` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat operasi pencarian selesai.
+* `onSeekedCapture`: Sebuah versi dari `onSeeked` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat operasi pencari dimulai.
+* `onSeekingCapture`: Sebuah versi dari `onSeeking` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat peramban web (*browser*) sedang menunggu data tetapi tetap tidak memuat.
+* `onStalledCapture`: Sebuah versi dari `onStalled` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat proses memuat sumber daya dihentikan.
+* `onSuspendCapture`: Sebuah versi dari `onSuspend` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat adanya perubahan pada waktu dari pemutaran sekarang.
+* `onTimeUpdateCapture`: Sebuah versi dari `onTimeUpdate` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat adanya perubahan pada volume.
+* `onVolumeChangeCapture`: Sebuah versi dari `onVolumeChange` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
+* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): Sebuah fungsi [`Event` handler](#event-handler). Aktif saat pemutaran dihentikan karena ada kekurangan data sementara.
+* `onWaitingCapture`: Sebuah versi dari `onWaiting` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 
-#### Caveats {/*common-caveats*/}
+#### Peringatan {/*common-caveats*/}
 
-- You cannot pass both `children` and `dangerouslySetInnerHTML` at the same time.
-- Some events (like `onAbort` and `onLoad`) don't bubble in the browser, but bubble in React.
+- Anda tidak bisa mengoper `children` dan `dangerouslySetInnerHTML` secara bersamaan.
+- Beberapa *event* (seperti `onAbort` dan `onLoad`) tidak menggelembung (*bubble*) di peramban web, tetapi menggelembung (*bubble*) di React.
 
 ---
 
-### `ref` callback function {/*ref-callback*/}
+### Fungsi Callback `ref` {/*ref-callback*/}
 
-Instead of a ref object (like the one returned by [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), you may pass a function to the `ref` attribute.
+Alih-alih menggunakan sebuah objek ref (seperti yang dikembalikan oleh [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), anda dapat mengoper sebuah fungsi ke atribut `ref`.
 
 ```js
 <div ref={(node) => console.log(node)} />
 ```
 
-[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+[Lihat contoh dari penggunaan dari *callback* `ref`.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your `ref` callback with `null`.
+Saat *node* DOM `<div>` ditambahkan pada layar, React akan memanggil *callbak* dari `ref` beserta dengan `node` DOM sebagai sebuah argumen. Saat *node* DOM `<div>` tersebut dihapus, React akan memanggil *callback* `ref` dengan `null`
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
+React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *callback* `ref` yang berbeda. Pada contoh di atas, `(node) => { ... }` adalah fungsi yang berbeda pada setiap *render*. Saat komponen anda mengalami *render* ulang, fungsi sebelumnya akan dipanggil dengan `null` sebagai argumennya, dan fungsi selanjutnya akan dipanggi dengan *node* DOM.
 
-#### Parameters {/*ref-callback-parameters*/}
+#### Parameter {/*ref-callback-parameters*/}
 
-* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during ever re-render of the component.
+* `node`: Sebuah *node* DOM atau `null`. React akan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
 
-#### Returns {/*returns*/}
+#### Pengembalian (Returns) {/*returns*/}
 
-Do not return anything from the `ref` callback.
+Jangan menggembalikan apa pun pada *callback* `ref`.
 
 ---
 
-### React event object {/*react-event-object*/}
+### Objek event React {/*react-event-object*/}
 
-Your event handlers will receive a *React event object.* It is also sometimes known as a "synthetic event".
+*Event handlers* anda akan menerima sebuah *Objek Event React.* Biasanya juga dikenal sebagai "*synthetic event*".
 
 ```js
 <button onClick={e => {
@@ -278,50 +276,52 @@ Your event handlers will receive a *React event object.* It is also sometimes kn
 }} />
 ```
 
-It conforms to the same standard as the underlying DOM events, but fixes some browser inconsistencies.
+Itu sesuai dengan stadar yang sama dengan *events* DOM yang mendasdarinya, tetapi memperbaiki beberapa ketidakkonsistenan dari peramban web (*browser*).
 
-Some React events do not map directly to the browser's native events. For example in `onMouseLeave`, `e.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change in the future. If you need the underlying browser event for some reason, read it from `e.nativeEvent`.
+Beberapa *events* React tidak dipetakan secara langsung ke *events* asli dari peramban web (*browser*). Sebaagi contoh `onMouseLeave`, `e.nativeEvent` akan menunjuk ke sebuah *event* `mouseout`. Pemetaan spesifik bukan bagian dari API publik dan masih dapat berubah di masa mendatang. Jika anda memerlukan *event* peramban web (*browser*) mendasari karena alasan tertentu, bacalah dari `e.nativeEvent`. 
 
-#### Properties {/*react-event-object-properties*/}
+#### Properti {/*react-event-object-properties*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) properties:
+Objek *event* React mengimplementasikan beberapa properti standar [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event):
 
-* [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): A boolean. Returns whether the event bubbles through the DOM. 
-* [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): A boolean. Returns whether the event can be canceled.
-* [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): A DOM node. Returns the node to which the current handler is attached in the React tree.
-* [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): A boolean. Returns whether `preventDefault` was called.
-* [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): A number. Returns which phase the event is currently in.
-* [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): A boolean. Returns whether the event was initiated by user.
-* [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): A DOM node. Returns the node on which the event has occurred (which could be a distant child).
-* [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): A number. Returns the time when the event occurred.
+* [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): Sebuah boolean. Mengembalikan apakah gelembung (*bubbles*) dari *event* melewati DOM.
+* [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): Sebuah boolean. Mengembalikan apakah *event* dapat dibatalkan.
+* [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): Sebuah *node* DOM. Mengembalikan *node*  tempat handler saat ini terpasang di pohon React.
+* [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): Sebuah boolean. Mengembalikan apakah `preventDefault` dipanggil.
+* [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): Sebuah angka. Mengembalikan fase *event* saat ini.
+* [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): Sebuah boolean. Mengembalikan apakah *event* diinisiasi oleh pengguna.
+* [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): Sebuah *node* DOM. Mengembalikan *node* dimana *event* terjadi (yang bisa jadi *child* jauh).
+* [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): Sebuah angkah. Mengembalikan waktu terjadinya *event*.
 
-Additionally, React event objects provide these properties:
+Selain itu, Objek *event* React juga menyediakan properti berikut:
 
-* `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
+* `nativeEvent`: Sebuah DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). Objek *event* original dari peramban web (*browser*).
 
-#### Methods {/*react-event-object-methods*/}
+#### Metode {/*react-event-object-methods*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) methods:
+Objek *event* React mengimplementasikan beberapa metode standar [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event):
 
-* [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Prevents the default browser action for the event.
-* [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Stops the event propagation through the React tree.
+* [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Mencegah aksi bawaan peramban web (*browser*) untuk *event* tersebut.
+* [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Menghentikan propagasi *event* melalui pohon React.
 
-Additionally, React event objects provide these methods:
+Selain itu, objek *event* React juga menyediakan metode berikut:
 
-* `isDefaultPrevented()`: Returns a boolean value indicating whether `preventDefault` was called.
-* `isPropagationStopped()`: Returns a boolean value indicating whether `stopPropagation` was called.
-* `persist()`: Not used with React DOM. With React Native, call this to read event's properties after the event.
-* `isPersistent()`: Not used with React DOM. With React Native, returns whether `persist` has been called.
+* `isDefaultPrevented()`: Mengembalikan sebuah nilai boolean yang mengindikasikan apakah `preventDefault` dipanggil.
+* `isPropagationStopped()`: Mengembalikan sebuah nilai boolean yang mengindikasikan apakah `stopPropagation` dipanggil.
+* `persist()`: Tidak digunakan dengan DOM React. Dengan React Native, panggil ini untuk membaca properti dari *event* setelah *event*.
+* `isPersistent()`: Tidak digunakan dengan DOM React. Dengan React Native, Mengembalikan apakah `persist` telah dipanggil.
 
-#### Caveats {/*react-event-object-caveats*/}
+#### Peringatan {/*react-event-object-caveats*/}
 
-* The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
+* Nilai dari `currentTarget`, `eventPhase`, `target`, dan `type` menunjukkan nilai yang diharapkan oleh kode React anda. Di dalamnya, React memasang *event handlers* pada akarnya, tetapi ini tidak merefleksi di objek *event* React. Sebagai contoh, `e.currentTarget` mungkin tidak sama dengan `e.nativeEvent.currentTarget`. Untuk *polyfilled events*, `e.type` (Tipe *event* React) mungkin berbeda dengan `e.nativeEvent.type` () 
+
+ but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (tipe yang mendasari).
 
 ---
 
-### `AnimationEvent` handler function {/*animationevent-handler*/}
+### Fungsi `AnimationEvent` handler {/*animationevent-handler*/}
 
-An event handler type for the [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) events.
+Sebuah tipe *event handler* untuk *events* [animasi CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 
 ```js
 <div
@@ -331,18 +331,18 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*animationevent-handler-parameters*/}
+#### Parameter {/*animationevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent):
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
-  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent)
+  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 
-### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+### Fungsi `ClipboardEvent` handler {/*clipboadevent-handler*/}
 
-An event handler type for the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) events.
+Sebuah tipe *event handler* untuk *events* [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).
 
 ```js
 <input
@@ -352,17 +352,17 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*clipboadevent-handler-parameters*/}
+#### Parameter {/*clipboadevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent):
 
   * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
 ---
 
-### `CompositionEvent` handler function {/*compositionevent-handler*/}
+### Fungsi `CompositionEvent` handler {/*compositionevent-handler*/}
 
-An event handler type for the [input method editor (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) events.
+Sebuah tipe *event handler* untuk *events* [*input method editor* (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor).
 
 ```js
 <input
@@ -372,16 +372,16 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 />
 ```
 
-#### Parameters {/*compositionevent-handler-parameters*/}
+#### Parameter {/*compositionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent):
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
 ---
 
-### `DragEvent` handler function {/*dragevent-handler*/}
+### Fungsi `DragEvent` handler {/*dragevent-handler*/}
 
-An event handler type for the [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) events.
+Sebuah tipe *event handler* untuk *events* [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
 
 ```js
 <>
@@ -390,7 +390,7 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
     onDragStart={e => console.log('onDragStart')}
     onDragEnd={e => console.log('onDragEnd')}
   >
-    Drag source
+    Sumber tarik
   </div>
 
   <div
@@ -399,17 +399,17 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
     onDragOver={e => { e.preventDefault(); console.log('onDragOver'); }}
     onDrop={e => console.log('onDrop')}
   >
-    Drop target
+    Target Penurunan
   </div>
 </>
 ```
 
-#### Parameters {/*dragevent-handler-parameters*/}
+#### Parameter {/*dragevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent):
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent):
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -428,16 +428,16 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `FocusEvent` handler function {/*focusevent-handler*/}
+### Fungsi `FocusEvent` handler {/*focusevent-handler*/}
 
-An event handler type for the focus events.
+Sebuah tipe *event handler* untuk *events* fokus.
 
 ```js
 <input
@@ -446,48 +446,48 @@ An event handler type for the focus events.
 />
 ```
 
-[See an example.](#handling-focus-events)
+[Lihat Contoh.](#handling-focus-events)
 
-#### Parameters {/*focusevent-handler-parameters*/}
+#### Parameter {/*focusevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent):
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `Event` handler function {/*event-handler*/}
+### Fungsi `Event` handler {/*event-handler*/}
 
-An event handler type for generic events.
+Sebuah tipe *event handler* untuk *events* umum.
 
 #### Parameters {/*event-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with no additional properties.
+* `e`: Sebuah [objek *event* React](#react-event-object) tanpa properti tambahan.
 
 ---
 
-### `InputEvent` handler function {/*inputevent-handler*/}
+### Fungsi `InputEvent` handler {/*inputevent-handler*/}
 
-An event handler type for the `onBeforeInput` event.
+Sebuah tipe *event handler* untuk *event* `onBeforeInput`.
 
 ```js
 <input onBeforeInput={e => console.log('onBeforeInput')} />
 ```
 
-#### Parameters {/*inputevent-handler-parameters*/}
+#### Parameter {/*inputevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent):
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
 ---
 
-### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+### Fungsi `KeyboardEvent` handler {/*keyboardevent-handler*/}
 
-An event handler type for keyboard events.
+Sebuah tipe *event handler* untuk *event* papan ketik (*keyboard*).
 
 ```js
 <input
@@ -496,11 +496,11 @@ An event handler type for keyboard events.
 />
 ```
 
-[See an example.](#handling-keyboard-events)
+[Lihat Contoh.](#handling-keyboard-events)
 
 #### Parameters {/*keyboardevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent):
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
   * [`code`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
@@ -515,16 +515,16 @@ An event handler type for keyboard events.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey)
   * [`which`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `MouseEvent` handler function {/*mouseevent-handler*/}
+### Fungsi `MouseEvent` handler {/*mouseevent-handler*/}
 
-An event handler type for mouse events.
+Sebuah tipe *event handler* untuk *event* tetikus (*mouse*).
 
 ```js
 <div
@@ -537,11 +537,11 @@ An event handler type for mouse events.
 />
 ```
 
-[See an example.](#handling-mouse-events)
+[Lihat Contoh.](#handling-mouse-events)
 
-#### Parameters {/*mouseevent-handler-parameters*/}
+#### Parameter {/*mouseevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent):
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
   * [`buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
@@ -559,16 +559,16 @@ An event handler type for mouse events.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `PointerEvent` handler function {/*pointerevent-handler*/}
+### Fungsi `PointerEvent` handler {/*pointerevent-handler*/}
 
-An event handler type for [pointer events.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+Sebuah tipe *event handler* untuk [*pointer events*.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
 
 ```js
 <div
@@ -580,11 +580,11 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 />
 ```
 
-[See an example.](#handling-pointer-events)
+[Lihat Contoh.](#handling-pointer-events)
 
 #### Parameters {/*pointerevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent):
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
   * [`pointerId`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pointerId)
@@ -596,7 +596,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`twist`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/twist)
   * [`width`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/width)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent):
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -615,16 +615,16 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TouchEvent` handler function {/*touchevent-handler*/}
+### Fungsi `TouchEvent` handler {/*touchevent-handler*/}
 
-An event handler type for [touch events.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
+Sebuah tipe *event handler* untuk [*touch events*.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
 
 ```js
 <div
@@ -635,9 +635,9 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 />
 ```
 
-#### Parameters {/*touchevent-handler-parameters*/}
+#### Parameter {/*touchevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent):
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
   * [`changedTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/changedTouches)
@@ -647,16 +647,16 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
   * [`touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches)
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
   
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TransitionEvent` handler function {/*transitionevent-handler*/}
+### Fungsi `TransitionEvent` handler {/*transitionevent-handler*/}
 
-An event handler type for the CSS transition events.
+Sebuah tipe *event handler* untuk *events* transisi CSS.
 
 ```js
 <div
@@ -664,18 +664,18 @@ An event handler type for the CSS transition events.
 />
 ```
 
-#### Parameters {/*transitionevent-handler-parameters*/}
+#### Parameter {/*transitionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent):
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/pseudoElement)
 
 ---
 
-### `UIEvent` handler function {/*uievent-handler*/}
+### Fungsi `UIEvent` handler {/*uievent-handler*/}
 
-An event handler type for generic UI events.
+Sebuah tipe *event handler* untuk *events* UI umum.
 
 ```js
 <div
@@ -685,32 +685,32 @@ An event handler type for generic UI events.
 
 #### Parameters {/*uievent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `WheelEvent` handler function {/*wheelevent-handler*/}
+### Fungsi `WheelEvent` handler {/*wheelevent-handler*/}
 
-An event handler type for the `onWheel` event.
+Sebuah tipe *event handler* untuk *event* `onWheel`.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
-#### Parameters {/*wheelevent-handler-parameters*/}
+#### Parameter {/*wheelevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
+* `e`: Sebuah [objek *event* React](#react-event-object) dengan tambahan properti [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent):
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)
   * [`deltaY`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaY)
   * [`deltaZ`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaZ)
 
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent):
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -729,82 +729,83 @@ An event handler type for the `onWheel` event.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Applying CSS styles {/*applying-css-styles*/}
+### Mengaplikasikan *styles* CSS {/*applying-css-styles*/}
 
-In React, you specify a CSS class with [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) It works like the `class` attribute in HTML:
+Dalam React, anda me
+In React, you menentukan kelas CSS dengan [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) yang bekerja sama seperti atribut `class` di HTML:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Lalu, anda menulis aturan CSS untuknya pada *file* CSS terpisah:
 
 ```css
-/* In your CSS */
+/* Di file CSS anda */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React tidak menentukan bagaimana cara anda menambahkan *file* CSS. Dalam kasus yang sederhana, anda akan menambahkan tag [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) pada HTML anda. Jika anda menggunakan sebuah alat membangun (*build tool*) atau *framework*, lihat dokumentasinya untuk mempelajari cara menambahkan file CSS ke proyek Anda.
 
-Sometimes, the style values depend on data. Use the `style` attribute to pass some styles dynamically:
+Terkadang, nilai dari *style* tergantung pada data. Gunakan atribut `style` untuk mengoper beberapa *styles* secara dinamis:
 
 ```js {3-6}
 <img
   className="avatar"
   style={{
-    width: user.imageSize,
-    height: user.imageSize
+    width: pengguna.ukuranGambar,
+    height: pengguna.ukuranGambar
   }}
 />
 ```
 
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` [JSX curly braces.](/learn/javascript-in-jsx-with-curly-braces) We recommend only using the `style` attribute when your styles depend on JavaScript variables.
+Pada contoh di atas, `style={{}}` bukan merupakan sintaks khusus, tapi terdapat objek reguler `{}` di dalam `style={ }` [Kurung Kurawal JSX.](/learn/javascript-in-jsx-with-curly-braces) Kami merekomendasikan penggunaan atribut `style` hanya jika *styles* anda tergantung pada variabel Javascript.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
-const user = {
-  name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-  imageSize: 90,
+const pengguna = {
+  nama: 'Budi',
+  urlGambar: 'https://i.imgur.com/yXOvdOSs.jpg',
+  ukuranGambar: 90,
 };
 
 export default function App() {
-  return <Avatar user={user} />;
+  return <Avatar pengguna={pengguna} />;
 }
 ```
 
-```js Avatar.js active
-export default function Avatar({ user }) {
+```js src/Avatar.js active
+export default function Avatar({ pengguna }) {
   return (
     <img
-      src={user.imageUrl}
-      alt={'Photo of ' + user.name}
+      src={pengguna.urlGambar}
+      alt={'Foto dari ' + pengguna.nama}
       className="avatar"
       style={{
-        width: user.imageSize,
-        height: user.imageSize
+        width: pengguna.ukuranGambar,
+        height: pengguna.ukuranGambar
       }}
     />
   );
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -814,37 +815,37 @@ export default function Avatar({ user }) {
 
 <DeepDive>
 
-#### How to apply multiple CSS classes conditionally? {/*how-to-apply-multiple-css-classes-conditionally*/}
+#### Bagaimana cara menerapkan beberapa kelas CSS secara kondisional? {/*how-to-apply-multiple-css-classes-conditionally*/}
 
-To apply CSS classes conditionally, you need to produce the `className` string yourself using JavaScript.
+Untuk menerapkan kelas CSS secara kondisional, Anda perlu menghasilkan string `className` dengan JavaScript.
 
-For example, `className={'row ' + (isSelected ? 'selected': '')}` will produce either `className="row"` or `className="row selected"` depending on whether `isSelected` is `true`.
+Sebagai contoh, `className={'baris ' + (sedangDipilih ? 'dipilih': '')}` akan menghasilkan antara `className="baris"` atau `className="baris dipilih"` tergantung apakah nilai dari `sedangDipilih` adalah `true`. 
 
-To make this more readable, you can use a tiny helper library like [`classnames`:](https://github.com/JedWatson/classnames)
+Untuk membuatnya lebih mudah dipaca, anda dapat menggunakan *library* bantuan seperti [`classnames`:](https://github.com/JedWatson/classnames)
 
 ```js
 import cn from 'classnames';
 
-function Row({ isSelected }) {
+function Baris({ sedangDipilih }) {
   return (
-    <div className={cn('row', isSelected && 'selected')}>
+    <div className={cn('baris', sedangDipilih && 'dipilih')}>
       ...
     </div>
   );
 }
 ```
 
-It is especially convenient if you have multiple conditional classes:
+Ini sangat mudah jika Anda memiliki beberapa kelas kondisional:
 
 ```js
 import cn from 'classnames';
 
-function Row({ isSelected, size }) {
+function Baris({ sedangDipilih, ukuran }) {
   return (
-    <div className={cn('row', {
-      selected: isSelected,
-      large: size === 'large',
-      small: size === 'small',
+    <div className={cn('baris', {
+      dipilih: sedangDipilih,
+      besar: ukuran === 'besar',
+      kecil: ukuran === 'kecil',
     })}>
       ...
     </div>
@@ -856,24 +857,24 @@ function Row({ isSelected, size }) {
 
 ---
 
-### Manipulating a DOM node with a ref {/*manipulating-a-dom-node-with-a-ref*/}
+### Memanipulasi node DOM dengan sebuah ref {/*manipulating-a-dom-node-with-a-ref*/}
 
-Sometimes, you'll need to get the browser DOM node associated with a tag in JSX. For example, if you want to focus an `<input>` when a button is clicked, you need to call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on the browser `<input>` DOM node.
+Terkadang, anda perlu untuk mengambil node DOM peramban web (*browser*) yang berasosiasi dengan tag di JSX. Sebagai contoh, jika anda ingin fokus pada sebuah `<input>` saat sebuah tombol diklik, anda harus memanggil [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) pada *node* DOM `<input>` peramban web (*browser*). 
 
-To obtain the browser DOM node for a tag, [declare a ref](/reference/react/useRef) and pass it as the `ref` attribute to that tag:
+Untuk mendapatkan *node* DOM peramban web (*browser*) untuk sebuah tag, [deklarasikan sebuah ref](/reference/react/useRef) dan oper sebagai atribut `ref` pada tag tersebut:
 
 ```js {7}
 import { useRef } from 'react';
 
 export default function Form() {
-  const inputRef = useRef(null);
+  const refMasukkan = useRef(null);
   // ...
   return (
-    <input ref={inputRef} />
+    <input ref={refMasukkan} />
     // ...
 ```
 
-React will put the DOM node into `inputRef.current` after it's been rendered to the screen.
+React akan meletakkan *node* DOM ke `inputRef.current` setelah ter-*render* pada layar.
 
 <Sandpack>
 
@@ -881,17 +882,17 @@ React will put the DOM node into `inputRef.current` after it's been rendered to 
 import { useRef } from 'react';
 
 export default function Form() {
-  const inputRef = useRef(null);
+  const refMasukkan = useRef(null);
 
-  function handleClick() {
-    inputRef.current.focus();
+  function handleKlik() {
+    refMasukkan.current.focus();
   }
 
   return (
     <>
-      <input ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
+      <input ref={refMasukkan} />
+      <button onClick={handleKlik}>
+        Fokus pada input
       </button>
     </>
   );
@@ -900,24 +901,24 @@ export default function Form() {
 
 </Sandpack>
 
-Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#examples-dom)
+Baca lebih lanjut mengenai [memanipulasi DOM dengan refs](/learn/manipulating-the-dom-with-refs) and [lihat lebih banyak contoh.](/reference/react/useRef#examples-dom)
 
-For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
+Untuk kasus yang lebih canggih, attribut `ref` juga menerima sebuah [fungsi *callback*.](#ref-callback)
 
 ---
 
-### Dangerously setting the inner HTML {/*dangerously-setting-the-inner-html*/}
+### Mengatur inner HTML secara bahaya {/*dangerously-setting-the-inner-html*/}
 
-You can pass a raw HTML string to an element like so:
+Anda dapat mengoper string HTML mentah ke sebuah elemen seperti berikut:
 
 ```js
-const markup = { __html: '<p>some raw html</p>' };
+const markup = { __html: '<p>beberapa HTML mentah</p>' };
 return <div dangerouslySetInnerHTML={markup} />;
 ```
 
-**This is dangerous. As with the underlying DOM [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property, you must exercise extreme caution! Unless the markup is coming from a completely trusted source, it is trivial to introduce an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability this way.**
+**Hal ini berbahaya. Karena dengan properti DOM mendasar [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), anda harus sangat berhati-hati! Kecuali, markup tersebut berasal dari sumber yang sepenuhnya dipercayai, Itu sepele untuk memperkenalkan kerentanan [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting).**
 
-For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+Sebagai contoh, jika anda menggunakan *library* Markdown untuk mengkonversi Markdown ke HTML, Anda percaya bahwa *parser* tidak mengandung bug, dan pengguna hanya melihat masukan mereka sendiri, Anda dapat menampilkan HTML yang dihasilkan seperti ini:
 
 <Sandpack>
 
@@ -930,7 +931,7 @@ export default function MarkdownEditor() {
   return (
     <>
       <label>
-        Enter some markdown:
+        Masukkan beberapa markdown
         <textarea
           value={postContent}
           onChange={e => setPostContent(e.target.value)}
@@ -943,21 +944,21 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
 
-function renderMarkdownToHTML(markdown) {
-  // This is ONLY safe because the output HTML
-  // is shown to the same user, and because you
-  // trust this Markdown parser to not have bugs.
+function renderMarkdownKeHTML(markdown) {
+  // Ini HANYA aman karena keluaran HTML
+  // ditampilkan kepada pengguna yang sama, dan karena Anda
+  // percayakan parser Markdown ini untuk tidak memiliki bug.
   const renderedHTML = md.render(markdown);
   return {__html: renderedHTML};
 }
 
 export default function MarkdownPreview({ markdown }) {
-  const markup = renderMarkdownToHTML(markdown);
+  const markup = renderMarkdownKeHTML(markdown);
   return <div dangerouslySetInnerHTML={markup} />;
 }
 ```
@@ -985,57 +986,59 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+Anda disarankan untuk membuat obyek `{__html}` sedekat mungkin ke tempat di mana HTML dibuat, seperti contoh di atas di fungsi `renderMarkdownToHTML`. Ini memastikan bahwa semua teks HTML mentah yang disematkan di koda Anda ditandai semestinya secara eksplisit, dan hanya variabel yang Anda perkirakan akan terisi HTML akan dioper ke `dangerouslySetInnerHTML`. Tidak direkomendasikan untuk membuat obyek ini di dalam baris kode seperti `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+
+Untuk mengetahui mengapa me-*render* HTML sewenang-wenang itu berbahaya, ganti kode di atas dengan ini:
 
 ```js {1-4,7,8}
 const post = {
-  // Imagine this content is stored in the database.
-  content: `<img src="" onerror='alert("you were hacked")'>`
+  // Bayangkan konten ini disimpan di database.
+  content: `<img src="" onerror='alert("anda di hack!")'>`
 };
 
 export default function MarkdownPreview() {
-  // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
+  // 🔴 ISU KEAMANAN: mengoper input tidak dipercaya ke dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
 ```
 
-The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
+Kode yang disematkan dalam HTML akan berjalan. Seorang peretas dapat menggunakan lubang keamanan ini untuk mencuri informasi pengguna atau melakukan tindakan atas nama mereka. **Hanya gunakan `dangerouslySetInnerHTML` dengan data tepercaya dan tersanitasi.**
 
 ---
 
-### Handling mouse events {/*handling-mouse-events*/}
+### Penanganan *events* mouse {/*handling-mouse-events*/}
 
-This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+Contoh dibawah ini menunjukkan beberapa [*events* mouse (tetikus)](#mouseevent-handler) umum dan saat mereka aktif.
 
 <Sandpack>
 
 ```js
-export default function MouseExample() {
+export default function ContohMouse() {
   return (
     <div
       onMouseEnter={e => console.log('onMouseEnter (parent)')}
       onMouseLeave={e => console.log('onMouseLeave (parent)')}
     >
       <button
-        onClick={e => console.log('onClick (first button)')}
-        onMouseDown={e => console.log('onMouseDown (first button)')}
-        onMouseEnter={e => console.log('onMouseEnter (first button)')}
-        onMouseLeave={e => console.log('onMouseLeave (first button)')}
-        onMouseOver={e => console.log('onMouseOver (first button)')}
-        onMouseUp={e => console.log('onMouseUp (first button)')}
+        onClick={e => console.log('onClick (Tombol Pertama)')}
+        onMouseDown={e => console.log('onMouseDown (Tombol Pertama)')}
+        onMouseEnter={e => console.log('onMouseEnter (Tombol Pertama)')}
+        onMouseLeave={e => console.log('onMouseLeave (Tombol Pertama)')}
+        onMouseOver={e => console.log('onMouseOver (Tombol Pertama)')}
+        onMouseUp={e => console.log('onMouseUp (Tombol Pertama)')}
       >
-        First button
+        Tombol Pertama
       </button>
       <button
-        onClick={e => console.log('onClick (second button)')}
-        onMouseDown={e => console.log('onMouseDown (second button)')}
-        onMouseEnter={e => console.log('onMouseEnter (second button)')}
-        onMouseLeave={e => console.log('onMouseLeave (second button)')}
-        onMouseOver={e => console.log('onMouseOver (second button)')}
-        onMouseUp={e => console.log('onMouseUp (second button)')}
+        onClick={e => console.log('onClick (Tombol Kedua)')}
+        onMouseDown={e => console.log('onMouseDown (Tombol Kedua)')}
+        onMouseEnter={e => console.log('onMouseEnter (Tombol Kedua)')}
+        onMouseLeave={e => console.log('onMouseLeave (Tombol Kedua)')}
+        onMouseOver={e => console.log('onMouseOver (Tombol Kedua)')}
+        onMouseUp={e => console.log('onMouseUp (Tombol Kedua)')}
       >
-        Second button
+        Tombol Kedua
       </button>
     </div>
   );
@@ -1051,14 +1054,14 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling pointer events {/*handling-pointer-events*/}
+### Penanganan *events* penunjuk {/*handling-pointer-events*/}
 
-This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+Contoh dibawah ini menunjukkan beberapa [*events* penunjuk](#pointerevent-handler) umum dan saat mereka aktif.
 
 <Sandpack>
 
 ```js
-export default function PointerExample() {
+export default function ContohPenunjuk() {
   return (
     <div
       onPointerEnter={e => console.log('onPointerEnter (parent)')}
@@ -1066,24 +1069,24 @@ export default function PointerExample() {
       style={{ padding: 20, backgroundColor: '#ddd' }}
     >
       <div
-        onPointerDown={e => console.log('onPointerDown (first child)')}
-        onPointerEnter={e => console.log('onPointerEnter (first child)')}
-        onPointerLeave={e => console.log('onPointerLeave (first child)')}
-        onPointerMove={e => console.log('onPointerMove (first child)')}
-        onPointerUp={e => console.log('onPointerUp (first child)')}
+        onPointerDown={e => console.log('onPointerDown (Child Pertama)')}
+        onPointerEnter={e => console.log('onPointerEnter (Child Pertama)')}
+        onPointerLeave={e => console.log('onPointerLeave (Child Pertama)')}
+        onPointerMove={e => console.log('onPointerMove (Child Pertama)')}
+        onPointerUp={e => console.log('onPointerUp (Child Pertama)')}
         style={{ padding: 20, backgroundColor: 'lightyellow' }}
       >
-        First child
+        Child Pertama
       </div>
       <div
-        onPointerDown={e => console.log('onPointerDown (second child)')}
-        onPointerEnter={e => console.log('onPointerEnter (second child)')}
-        onPointerLeave={e => console.log('onPointerLeave (second child)')}
-        onPointerMove={e => console.log('onPointerMove (second child)')}
-        onPointerUp={e => console.log('onPointerUp (second child)')}
+        onPointerDown={e => console.log('onPointerDown (Child Kedua)')}
+        onPointerEnter={e => console.log('onPointerEnter (Child Kedua)')}
+        onPointerLeave={e => console.log('onPointerLeave (Child Kedua)')}
+        onPointerMove={e => console.log('onPointerMove (Child Kedua)')}
+        onPointerUp={e => console.log('onPointerUp (Child Kedua)')}
         style={{ padding: 20, backgroundColor: 'lightblue' }}
       >
-        Second child
+        Child Kedua
       </div>
     </div>
   );
@@ -1099,47 +1102,48 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling focus events {/*handling-focus-events*/}
+### Penanganan *events* fokus {/*handling-focus-events*/}
 
-In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+Dalam React, [*events* fokus](#focusevent-handler) menggelembung (*bubble*). Anda dapat menggunakan `currentTarget` dan `relatedTarget`  
+In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` untuk membedakan apakah *events* pemfokusan atau pemburaman berasal dari luar elemen *parent*. Contoh tersebut menunjukkan cara mendeteksi fokus *child*, memfokuskan elemen *parent*, dan cara mendeteksi fokus masuk atau keluar dari seluruh subpohon.
 
 <Sandpack>
 
 ```js
-export default function FocusExample() {
+export default function ContohFokus() {
   return (
     <div
       tabIndex={1}
       onFocus={(e) => {
         if (e.currentTarget === e.target) {
-          console.log('focused parent');
+          console.log('parent yang difokus');
         } else {
-          console.log('focused child', e.target.name);
+          console.log('child yang difokus', e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
-          console.log('focus entered parent');
+          // Tidak terpicu saat bertukar fokus di antara children
+          console.log('fokus memasukki parent');
         }
       }}
       onBlur={(e) => {
         if (e.currentTarget === e.target) {
-          console.log('unfocused parent');
+          console.log('parent yang tidak difokus');
         } else {
-          console.log('unfocused child', e.target.name);
+          console.log('child yang tidak difokus', e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
-          console.log('focus left parent');
+          // Tidak terpicu saat bertukar fokus di antara children
+          console.log('fokus meninggalkan parent');
         }
       }}
     >
       <label>
-        First name:
-        <input name="firstName" />
+        Nama Pertama:
+        <input name="namaPertama" />
       </label>
       <label>
-        Last name:
-        <input name="lastName" />
+        Nama Akhir:
+        <input name="namaAkhir" />
       </label>
     </div>
   );
@@ -1155,19 +1159,19 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling keyboard events {/*handling-keyboard-events*/}
+### Penanganan *events* papan ketik (*keyboard*). {/*handling-keyboard-events*/}
 
-This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+Contoh dibawah ini menunjukkan beberapa [*events* papan ketik (*keyboard*)](#keyboardevent-handler) umum dan saat mereka aktif.
 
 <Sandpack>
 
 ```js
-export default function KeyboardExample() {
+export default function ContohKeyboard() {
   return (
     <label>
-      First name:
+      Nama Pertama:
       <input
-        name="firstName"
+        name="namaPertama"
         onKeyDown={e => console.log('onKeyDown:', e.key, e.code)}
         onKeyUp={e => console.log('onKeyUp:', e.key, e.code)}
       />

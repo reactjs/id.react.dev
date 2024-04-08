@@ -42,7 +42,7 @@ Ketika Anda memulai aplikasi, Anda perlu untuk memicu *render* awal. Kerangka ke
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 import Image from './Image.js';
 import { createRoot } from 'react-dom/client';
 
@@ -50,7 +50,7 @@ const root = createRoot(document.getElementById('root'))
 root.render(<Image />);
 ```
 
-```js Image.js
+```js src/Image.js
 export default function Image() {
   return (
     <img
@@ -88,7 +88,7 @@ Dalam contoh berikut, React akan memanggil `Gallery()` dan  `Image()` beberapa k
 
 <Sandpack>
 
-```js Gallery.js active
+```js src/Gallery.js active
 export default function Gallery() {
   return (
     <section>
@@ -110,7 +110,7 @@ function Image() {
 }
 ```
 
-```js index.js
+```js src/index.js
 import Gallery from './Gallery.js';
 import { createRoot } from 'react-dom/client';
 
@@ -125,7 +125,7 @@ img { margin: 0 10px 10px 0; }
 </Sandpack>
 
 * **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
-* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apapun sampai tahapan selanjutnya, yaitu fase *commit*. 
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*. 
 
 <Pitfall>
 
@@ -157,7 +157,7 @@ Setelah proses _render_ (memanggil) komponen Anda, React akan memodifikasi DOM.
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   return (
     <>
@@ -168,7 +168,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 

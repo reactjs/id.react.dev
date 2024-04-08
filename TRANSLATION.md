@@ -7,10 +7,9 @@ Berikut adalah panduan-panduan dasar dalam penerjemahan situs react.dev ke Bahas
 Semua referensi mengenai penerjemahan terletak di [bagian Wiki](https://github.com/reactjs/id.react.dev/wiki) di repositori ini.
 
 - [Glosarium](https://github.com/reactjs/id.react.dev/wiki/Glosarium)
-- [Panduan Penulisan Universal](https://github.com/reactjs/id.react.dev/wiki/Panduan-Penulisan-Universal)
-- [Universal Style Guide (English)](https://github.com/reactjs/id.react.dev/wiki/Universal-Style-Guide)
+- [Panduan Penulisan Umum](https://github.com/reactjs/id.react.dev/wiki/Panduan-Penulisan-Umum)
 
-Apabila Anda ingin mendikusikan apapun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
+Apabila Anda ingin mendikusikan apa pun mengenai proyek penerjemahan situs dokumentasi ini, termasuk umpan balik (*feedback*) mengenai Glosarium dan alur kerja (*workflow*), silakan ke [bagian Discussions](https://github.com/reactjs/id.react.dev/discussions).
 
 ## Menyunting konten secara lokal
 

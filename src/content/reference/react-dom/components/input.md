@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+Komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) memungkinkan Anda me-*render* berbagai jenis masukan form.
 
 ```js
 <input />
@@ -16,92 +16,100 @@ The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<input>` {/*input*/}
 
-To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
+Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
-`<input>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
-You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
+<Canary>
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, controls whether it is selected.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, controls its text. (For a radio button, specifies its form data.)
+Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *canary* can *experimental* React. Dalam versi stabil React, `formAction` bekerja hanya sebagai [komponen peramban HTML bawaan](/reference/react-dom/components#all-html-components). Pelajari tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
-When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
+</Canary>
 
-These `<input>` props are only relevant for uncontrolled inputs:
+[`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah *string* atau fungsi. Menimpa `<form action>` induk untuk `type="submit"` dan `type="image"`. Ketika URL dioper ke `action` form akan memiliki perilaku sebagai form standar HTML. Ketika fungsi dioper ke `formAction` fungsi akan menangani kiriman form. Lihat [`<form action>`](/reference/react-dom/components/form#props).
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A string. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
+Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 
-These `<input>` props are relevant both for uncontrolled and controlled inputs:
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk masukan checkbox atau tombol radio, mengontrol apakah itu dipilih.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): Sebuah string. Untuk sebuah masukan teks, mengontrol teks. (Untuk tombol radio, menentukan data form.)
 
-* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
-* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.
-* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): A string. Specifies the media (microphone, video, or camera) captured by a `type="file"` input.
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): A boolean. If `true`, React will focus the element on mount.
-* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): A string. Specifies the form field name for the element's directionality.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): A boolean. If `true`, the input will not be interactive and will appear dimmed.
-* `children`: `<input>` does not accept children.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.
-* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string. Overrides the parent `<form action>` for `type="submit"` and `type="image"`.
-* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): A string. Overrides the parent `<form enctype>` for `type="submit"` and `type="image"`.
-* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): A string. Overrides the parent `<form method>` for `type="submit"` and `type="image"`.
-* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): A string. Overrides the parent `<form noValidate>` for `type="submit"` and `type="image"`.
-* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): A string. Overrides the parent `<form target>` for `type="submit"` and `type="image"`.
-* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): A string. Specifies the image height for `type="image"`.
-* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): A string. Specifies the `id` of the `<datalist>` with the autocomplete options.
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): A number. Specifies the maximum value of numerical and datetime inputs.
-* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): A number. Specifies the maximum length of text and other inputs.
-* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): A number. Specifies the minimum value of numerical and datetime inputs.
-* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): A number. Specifies the minimum length of text and other inputs.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): A boolean. Specifies whether multiple values are allowed for `<type="file"` and `type="email"`.
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's [submitted with the form.](#reading-the-input-values-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled inputs.](#controlling-an-input-with-a-state-variable) Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
+Ketika Anda mengoper salah satu dari mereka, Anda juga harus mengoper sebuah `onChange` handler yang memperbarui nilai yang dioper.
+
+Props `<input>` ini hanya relevan untuk masukan yang tidak dikontrol:
+
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): Sebuah boolean. Menentukan [nilai awal](#providing-an-initial-value-for-an-input) dari masukan `type="checkbox"` dan `type="radio"`.
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): Sebuah string. Menentukan [nilai awal](#providing-an-initial-value-for-an-input) dari masukan sebuah teks.
+
+Props `<input>` ini relevan untuk masukan tidak terkontrol dan masukan terkontrol:
+
+* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): Sebuah string. Menentukan tipe file mana yang diterima oleh masukan `type="file"`.
+* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): Sebuah string. Menentukan teks gambar alternatif untuk masuk `type="image"`.
+* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): Sebuah string. Menentukan media (mikrofon, video, atau kamera) yang ditangkap oleh masukan `type="file"`.
+* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): Sebuah string. Menentukan salah satu kemungkinan [perilaku autocomplete.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): Sebuah boolean. Jika `true`, React akan memfokuskan elemen saat pasang.
+* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): Sebuah string. Menentukan nama bidang form untuk arah elemen.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): Sebuah boolean. Jika `true`, masukan tidak akan interaktif dan akan tampak redup.
+* `children`: `<input>` tidak menerima children.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): Sebuah string. Menentukan `id` dari `<form>` milik masukan ini. Jika dihilangkan, menggunakan parent form terdekat.
+* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah string. Menimpa parent `<form action>` dari `type="submit"` dan `type="image"`.
+* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): Sebuah string. Menimpa parent `<form enctype>` dari `type="submit"` dan `type="image"`.
+* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): Sebuah string. Menimpa parent `<form method>` dari `type="submit"` dan `type="image"`.
+* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): Sebuah string. Menimpa parent `<form noValidate>` dari `type="submit"` dan `type="image"`.
+* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): Sebuah string. Menimpa parent `<form target>` dari `type="submit"` dan `type="image"`.
+* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): Sebuah string. Menentukan tinggi dari gambar untuk `type="image"`.
+* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): Sebuah string. Menentukan `id` dari `<datalist>` dengan opsi autocomplete.
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): Sebuah angka. Menentukan nilai maksimum masukan numerik dan waktu.
+* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): Sebuah angka. Menentukan panjang maksimum teks dan masukan lainnya.
+* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): Sebuah angka. Menentukan nilai minimum masukan numerik dan waktu.
+* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): Sebuah angka. Menentukan panjang minimum teks dan masukan lainnya.
+* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): Sebuah boolean. Menentukan apakah beberapa nilai diperbolehkan untuk `<type="file"` dan `type="email"`.
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): Sebuah string. Menentukan nama dari masukan [yang disubmit dengan form.](#reading-the-input-values-when-submitting-a-form)
+* `onChange`: Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Dibutuhkan untuk [masukan yang terkontrol.](#controlling-an-input-with-a-state-variable) Langsung aktif ketika nilai masukan diubah oleh pengguna (sebagai contoh, menyala di setip penekanan tombol). Berperilaku seperti [event`input`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
+* `onChangeCapture`: Sebuha versi dari `onChange` yang aktif dalam [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Langsung aktif ketika nilainya diubah oleh pengguna. Untuk alasan historis, dalam React menggunakan `onChange` sebagai gantinya yang berfungsi serupa adalah idiomatis.
 * `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires after the selection inside the `<input>` changes. React extends the `onSelect` event to also fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): A string. Specifies the pattern that the `value` must match.
-* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): A string. Displayed in a dimmed color when the input value is empty.
-* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): A boolean. If `true`, the input is not editable by the user.
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): A number. Similar to setting width, but the unit depends on the control.
-* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): A string. Specifies the image source for a `type="image"` input.
-* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): A positive number or an `'any'` string. Specifies the distance between valid values.
-* [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): A string. One of the [input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
-* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  A string. Specifies the image width for a `type="image"` input.
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Aktif jika sebuah masukan gagal divalidasi ketika pengiriman form. Tidak seperti event `invalid` bawaan, React `onInvalid` berbentuk event bubbles.
+* `onInvalidCapture`: Sebuah versi dari `onInvalid` yang aktif didalam [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): Sebuah fungsi [`Event` handler](/reference/react-dom/components/common#event-handler). Aktif setelah pemilihan di dalam `<input>` berubah. React memperluas event `onSelect` untuk juga mengaktifkan pemilihan kosong dan pada pengeditan (yang dapat memengaruhi pemilihan).
+* `onSelectCapture`: Sebuah versi dari `onSelect` yang aktif ketika [fase menangkap.](/learn/responding-to-events#capture-phase-events)
+* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): Sebuah string. Menentukan pola yang harus cocok dengan `value`.
+* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): Sebuah string. Ditampilkan dalam warna redup saat nilai input kosong.
+* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): Sebuah boolean. Jika `true`, masukan tidak dapat diedit oleh pengguna.
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): Sebuah boolean. Jika `true`, nilai harus diberikan untuk form yang akan dikirim.
+* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): Sebuah angka. Mirip dengan pengaturan lebar, tetapi unit tergantung pada kontrol.
+* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): Sebuah string. Menentukan sumber gambar untuk masukan `type="image"`.
+* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): Angka positif atau string `'any'`. Menentukan jarak antara nilai yang valid.
+* [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): Sebuah string. Satu dari [tipe masukan.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  Sebuah string. Menentukan lebar gambar untuk masukan `type="image"`.
 
 #### Caveats {/*caveats*/}
 
-- Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
-- If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- An input can't be both controlled and uncontrolled at the same time.
-- An input cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
+- Checkbox harus `checked` (atau `defaultChecked`), bukan `value` (atau `defaultValue`).
+- Jika sebuah masukan teks menerima sebuah prop string `value`, itu akan [diperlakukan sebagai terkontrol.](#controlling-an-input-with-a-state-variable)
+- Jika sebuah checkbox atau sebuah tombol radio menerima prop boolean `checked`, itu akan [diperlakukan sebagai terkontrol.](#controlling-an-input-with-a-state-variable)
+- Masukan tidak dapat dikontrol dan tidak dikontrol secara bersamaan.
+- Masukan tidak dapat beralih antara dikontrol atau tidak dikontrol selama masa pakainya.
+- Setiap masukan yang dikontrol membutuhkan event handler `onChange` yang secara sinkron memperbarui nilai pendukungnya.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
+### Menampilkan masukan dari berbagai jenis {/*displaying-inputs-of-different-types*/}
 
-To display an input, render an `<input>` component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+Untuk menampilkan masukan, *render* sebuah komponen `<input>`. Secara default, itu akan menjadi masukan teks. Anda dapat mengopen `type="checkbox"` untuk sebuah checkbox, `type="radio"` untuk sebuah tombol radio, [atau salah satu dari jenis masukan lainnya.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 
 <Sandpack>
 
@@ -110,7 +118,7 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Text input: <input name="myInput" />
+        Masukan teks: <input name="myInput" />
       </label>
       <hr />
       <label>
@@ -118,18 +126,18 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Tombol radio:
         <label>
           <input type="radio" name="myRadio" value="option1" />
-          Option 1
+          Pilihan 1
         </label>
         <label>
           <input type="radio" name="myRadio" value="option2" />
-          Option 2
+          Pilihan 2
         </label>
         <label>
           <input type="radio" name="myRadio" value="option3" />
-          Option 3
+          Pilihan 3
         </label>
       </p>
     </>
@@ -146,11 +154,11 @@ input { margin: 5px; }
 
 ---
 
-### Providing a label for an input {/*providing-a-label-for-an-input*/}
+### Memberikan label untuk sebuah masukan {/*providing-a-label-for-an-input*/}
 
-Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
+Biasanya, Anda akan menaruh setiap `<input>` di dalam sebuah tag [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Ini memberi tahu peramban bahwa label ini dikaitkan dengan masukan itu. Saat pengguna melakukan klik pada label, peramban akan secara otomatis memfokuskan input. Ini juga penting untuk aksesibilitas: pembaca layar akan memberitahukan keterangan label saat pengguna memfokuskan masukan terkait.
 
-If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Jika Anda tidak dapat menumpuk `<input>` pada sebuah `<label>`, katikan keduanya dengan mengoper ID yang sama ke `<input id>` dan [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Untuk menghindari konflik antara beberapa instance dari satu komponen, buat ID tersebut dengan [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -162,11 +170,11 @@ export default function Form() {
   return (
     <>
       <label>
-        Your first name:
+        Nama depan Anda:
         <input name="firstName" />
       </label>
       <hr />
-      <label htmlFor={ageInputId}>Your age:</label>
+      <label htmlFor={ageInputId}>Umur Anda:</label>
       <input id={ageInputId} name="age" type="number" />
     </>
   );
@@ -181,9 +189,9 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for an input {/*providing-an-initial-value-for-an-input*/}
+### Memberikan nilai awal untuk sebuah masukan {/*providing-an-initial-value-for-an-input*/}
 
-You can optionally specify the initial value for any input. Pass it as the `defaultValue` string for text inputs. Checkboxes and radio buttons should specify the initial value with the `defaultChecked` boolean instead.
+Secara opsional Anda dapat menentukan nilai awal untuk masukan apa pun. Berikan sebagai string `defaultValue` untuk masukan teks. Sedangkan checkboxes dan tombol radio harus menentukan nilai awal dengan boolean `defaultChecked`.
 
 <Sandpack>
 
@@ -192,7 +200,7 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Text input: <input name="myInput" defaultValue="Some initial value" />
+        Masukan teks: <input name="myInput" defaultValue="Beberapa nilai awal" />
       </label>
       <hr />
       <label>
@@ -200,10 +208,10 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Tombol radio:
         <label>
           <input type="radio" name="myRadio" value="option1" />
-          Option 1
+          Pilihan 1
         </label>
         <label>
           <input
@@ -212,11 +220,11 @@ export default function MyForm() {
             value="option2"
             defaultChecked={true} 
           />
-          Option 2
+          Pilihan 2
         </label>
         <label>
           <input type="radio" name="myRadio" value="option3" />
-          Option 3
+          Pilihan 3
         </label>
       </p>
     </>
@@ -233,25 +241,25 @@ input { margin: 5px; }
 
 ---
 
-### Reading the input values when submitting a form {/*reading-the-input-values-when-submitting-a-form*/}
+### Membaca nilai input saat mengirimkan form {/*reading-the-input-values-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your inputs with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Tambahkan sebuah [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) disekitar masukan Anda dengan [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) di dalamnya. Ini akan memanggil event handler `<form onSubmit>`. Secara default, peramban akan mengirimkan data form ke URL saat ini dan menyegarkan halaman. Anda dapat menimpa perilaku tersebut dengan memanggil `e.preventDefault()`. Baca data form dengan [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
 export default function MyForm() {
   function handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    // Cegah peramban memuat ulang halaman
     e.preventDefault();
 
-    // Read the form data
+    // Membaca data form
     const form = e.target;
     const formData = new FormData(form);
 
-    // You can pass formData as a fetch body directly:
+    // Anda dapat mengoper formData sebagai fetch body secara langsung:
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Or you can work with it as a plain object:
+    // Atau Anda dapat mengerjakannya sebagai objek biasa:
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -259,7 +267,7 @@ export default function MyForm() {
   return (
     <form method="post" onSubmit={handleSubmit}>
       <label>
-        Text input: <input name="myInput" defaultValue="Some initial value" />
+        Masukan teks: <input name="myInput" defaultValue="Beberapa masukan awal" />
       </label>
       <hr />
       <label>
@@ -267,14 +275,14 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Radio buttons:
-        <label><input type="radio" name="myRadio" value="option1" /> Option 1</label>
-        <label><input type="radio" name="myRadio" value="option2" defaultChecked={true} /> Option 2</label>
-        <label><input type="radio" name="myRadio" value="option3" /> Option 3</label>
+        Tombol radio:
+        <label><input type="radio" name="myRadio" value="option1" /> Pilihan 1</label>
+        <label><input type="radio" name="myRadio" value="option2" defaultChecked={true} /> Pilihan 2</label>
+        <label><input type="radio" name="myRadio" value="option3" /> Pilihan 3</label>
       </p>
       <hr />
       <button type="reset">Reset form</button>
-      <button type="submit">Submit form</button>
+      <button type="submit">Kirim form</button>
     </form>
   );
 }
@@ -289,38 +297,38 @@ input { margin: 5px; }
 
 <Note>
 
-Give a `name` to every `<input>`, for example `<input name="firstName" defaultValue="Taylor" />`. The `name` you specified will be used as a key in the form data, for example `{ firstName: "Taylor" }`.
+Berikan `name` untuk setiap `<input>`, contohnya `<input name="firstName" defaultValue="Taylor" />`. `name` yang Anda tentukan akan digunakan sebagai kunci dalam data form, contohnya `{ firstName: "Taylor" }`.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Secara default, *apa pun* `<button>` di dalam sebuah `<form>` akan melakukan submit. Ini bisa mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) bukannya `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan form.
 
 </Pitfall>
 
 ---
 
-### Controlling an input with a state variable {/*controlling-an-input-with-a-state-variable*/}
+### Mengontrol input dengan variabel status {/*controlling-an-input-with-a-state-variable*/}
 
-An input like `<input />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-an-input) like `<input defaultValue="Initial text" />`, your JSX only specifies the initial value. It does not control what the value should be right now.
+Sebuah masukan seperti `<input />` *tidaklah terkontrol.* Bahkan jika Anda [memberikan sebuah nilai awal](#providing-an-initial-value-for-an-input) seperti `<input defaultValue="Teks awal" />`, JSX Anda hanya menentukan nilai awal. Tidak mengontrol apa seharusnya nilai sekarang.
 
-**To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
+**Untuk *render* sebuah masukan _terkontrol_, oper prop `value` ke dalamnya (atau `checked` untuk checkbox and radio).** React akan memaksa masukan untuk selalu memiliki `value` yang Anda berikan. Biasanya, Anda akan melakukan ini dengan mendeklarasikan sebuah [variable *state*:](/reference/react/useState)
 
 ```js {2,6,7}
 function Form() {
-  const [firstName, setFirstName] = useState(''); // Declare a state variable...
+  const [firstName, setFirstName] = useState(''); // Deklarasikan variabel state...
   // ...
   return (
     <input
-      value={firstName} // ...force the input's value to match the state variable...
-      onChange={e => setFirstName(e.target.value)} // ... and update the state variable on any edits!
+      value={firstName} // ...memaksa nilai masukan untuk cocok dengan variabel state...
+      onChange={e => setFirstName(e.target.value)} // ... dan perbarui variabel state pada setiap pengeditan!
     />
   );
 }
 ```
 
-A controlled input makes sense if you needed state anyway--for example, to re-render your UI on every edit:
+Bagaimanapun sebuah masukan terkontrol masuk akal jika Anda membutuhkan *state*--contohnya, untuk *render*-ing ulang UI Anda pada setiap pengeditan:
 
 ```js {2,9}
 function Form() {
@@ -328,14 +336,14 @@ function Form() {
   return (
     <>
       <label>
-        First name:
+        Nama Anda:
         <input value={firstName} onChange={e => setFirstName(e.target.value)} />
       </label>
-      {firstName !== '' && <p>Your name is {firstName}.</p>}
+      {firstName !== '' && <p>Nama Anda adalah {firstName}.</p>}
       ...
 ```
 
-It's also useful if you want to offer multiple ways to adjust the input state (for example, by clicking a button):
+Ini juga berguna jika Anda ingin menawarkan berbagai cara untuk menyesuaikan *state* masukan (contohnya, dengan mengeklik tombol):
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -345,18 +353,18 @@ function Form() {
   return (
     <>
       <label>
-        Age:
+        Umur:
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
           type="number"
         />
         <button onClick={() => setAge(ageAsNumber + 10)}>
-          Add 10 years
+          Tambah 10 tahun
         </button>
 ```
 
-The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
+`value` yang Anda berikan ke komponen terkontrol tidak boleh `undefined` or `null`. Jika Anda memerlukan nilai awal kosong (seperti dengan kolom `firstName` di bawah), inisialisasi variabel *state* Anda ke string kosong (`''`).
 
 <Sandpack>
 
@@ -370,28 +378,28 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Nama Anda:
         <input
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
       </label>
       <label>
-        Age:
+        Umur:
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
           type="number"
         />
         <button onClick={() => setAge(ageAsNumber + 10)}>
-          Add 10 years
+          Tambah 10 tahun
         </button>
       </label>
       {firstName !== '' &&
-        <p>Your name is {firstName}.</p>
+        <p>Nama Anda adalah {firstName}.</p>
       }
       {ageAsNumber > 0 &&
-        <p>Your age is {ageAsNumber}.</p>
+        <p>Umur Anda adalah {ageAsNumber}.</p>
       }
     </>
   );
@@ -408,17 +416,17 @@ p { font-weight: bold; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to type into the input.** When you control an input by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the input after every keystroke back to the `value` that you specified.
+**Jika Anda mengoper `value` tanpa `onChange`, tidak mungkin bisa untuk mengetik di dalam masukan.** Ketika Anda mengontrol sebuah masukan dengan memberikan beberapa `value` ke dalamnya, Andan *memaksanya* untuk selalu memiliki nilai yang Anda berikan. Jika Anda mengoper sebuah variabel *state* sebagai `value` tetapi lupa untuk memperbarui variabel *state* tersebut secara sinkron selama `onChange` event handler, React akan mengembalikan masukan setelah setiap keystroke kembali ke `value` yang Anda tentukan.
 
 </Pitfall>
 
 ---
 
-### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
+### Mengoptimalkan *render*-ing ulang pada setiap penekanan tombol {/*optimizing-re-rendering-on-every-keystroke*/}
 
-When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+Ketika Anda menggunakan masukan terkontrol, Anda mengatur *state* pada setiap penekanan tombol. Jika komponen yang berisi *state* Anda me-*render* ulang pohon besar, ini bisa menjadi lambat. Ada beberapa cara untuk mengoptimalkan kinerja *render*-ing ulang.
 
-For example, suppose you start with a form that re-renders all page content on every keystroke:
+Contohnya, misalkan Anda mulai dengan form yang me-*render* ulang semua konten halaman pada setiap penekanan tombol:
 
 ```js {5-8}
 function App() {
@@ -434,7 +442,7 @@ function App() {
 }
 ```
 
-Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+Karena `<PageContent />` tidak bergantung pada masukan *state*, Anda dapat memindahkan masukan *state* ke dalam komponennya sendiri:
 
 ```js {4,10-17}
 function App() {
@@ -456,140 +464,140 @@ function SignupForm() {
 }
 ```
 
-This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
+Ini secara signifikan meningkatkan kinerja karena sekarang hanya `SignupForm` yang di-*render* ulang pada setiap penekanan tombol.
 
-If there is no way to avoid re-rendering (for example, if `PageContent` depends on the search input's value), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+Jika tidak ada cara untuk menghindari pe-*render*-an ulang (contohnya, jika `PageContent` bergantung pada nilai masukan pencarian), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) memungkinkan Anda menjaga masukan yang dikontrol tetap responsif bahkan di tengah *render* ulang yang besar.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Penyelesaian masalah {/*troubleshooting*/}
 
-### My text input doesn't update when I type into it {/*my-text-input-doesnt-update-when-i-type-into-it*/}
+### Masukan teks saya tidak diperbarui saat saya mengetiknya {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-If you render an input with `value` but no `onChange`, you will see an error in the console:
+Jika Anda me-*render* masukan dengan `value` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
 
 ```js
-// 🔴 Bug: controlled text input with no onChange handler
+// 🔴 Bug: masukan teks terkontrol tanpa handler onChange
 <input value={something} />
 ```
 
 <ConsoleBlock level="error">
 
-You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
+Anda memberikan prop `value` ke kolom form tanpa handler `onChange`. Ini akan membuat bidang read-only. Jika bidang harus dapat diubah, gunakan `defaultValue`. Jika tidak, tetapkan `onChange` atau `readOnly`.
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultValue` instead:
+Seperti yang disarankan oleh pesan kesalahan, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-an-input) berikan `defaultValue` sebagai gantinya:
 
 ```js
-// ✅ Good: uncontrolled input with an initial value
+// ✅ Bagus: masukan tidal terkontrol dengan sebuah nilai awal
 <input defaultValue={something} />
 ```
 
-If you want [to control this input with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Jika Anda ingin [mengontrol masukan ini menggunakan sebuah variabel *state*,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
 
 ```js
-// ✅ Good: controlled input with onChange
+// ✅ Bagus: masukan terkontrol dengan onChange
 <input value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
+Jika nilainya sengaja read-only, tambahkan prop `readOnly` untuk mendiamkan kesalahan:
 
 ```js
-// ✅ Good: readonly controlled input without on change
+// ✅ Bagus: masukan yang dikontrol secara readonly tanpa perubahan
 <input value={something} readOnly={true} />
 ```
 
 ---
 
-### My checkbox doesn't update when I click on it {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
+### Checkbox saya tidak diperbarui ketika saya mengkliknya {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-If you render a checkbox with `checked` but no `onChange`, you will see an error in the console:
+Jika Anda me-*render* kotak checkbox dengan `checked` tetapi tanpa `onChange`, Anda akan melihat kesalahan di konsol:
 
 ```js
-// 🔴 Bug: controlled checkbox with no onChange handler
+// 🔴 Bug: checkbox terkontrol tanpa handler onChange
 <input type="checkbox" checked={something} />
 ```
 
 <ConsoleBlock level="error">
 
-You provided a `checked` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise, set either `onChange` or `readOnly`.
+Anda memberikan prop `checked` ke kolom form tanpa handler `onChange`. Ini akan membuat bidang read-only. Jika bidang harus dapat diubah, gunakan `defaultChecked`. Jika tidak, tetapkan `onChange` atau `readOnly`.
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultChecked` instead:
+Seperti yang disarankan oleh pesan kesalahan, jika Anda hanya ingin [menentukan nilai *awal*,](#providing-an-initial-value-for-an-input) berikan `defaultValue` sebagai gantinya:
 
 ```js
-// ✅ Good: uncontrolled checkbox with an initial value
+// ✅ Bagus: checkbox tidak terkontrol dengan nilai awal
 <input type="checkbox" defaultChecked={something} />
 ```
 
-If you want [to control this checkbox with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Jika Anda ingin [mengontrol masukan checkbox ini menggunakan sebuah variabel *state*,](#controlling-an-input-with-a-state-variable) tentukan sebuah handler `onChange`:
 
 ```js
-// ✅ Good: controlled checkbox with onChange
+// ✅ Bagus: checkbox terkontrol dengan onChange
 <input type="checkbox" checked={something} onChange={e => setSomething(e.target.checked)} />
 ```
 
 <Pitfall>
 
-You need to read `e.target.checked` rather than `e.target.value` for checkboxes.
+Anda perlu membaca `e.target.checked` daripada `e.target.value` untuk checkbox.
 
 </Pitfall>
 
-If the checkbox is intentionally read-only, add a `readOnly` prop to suppress the error:
+Jika checkbox sengaja read-only, tambahkan prop `readOnly` untuk mendiamkan kesalahan:
 
 ```js
-// ✅ Good: readonly controlled input without on change
+// ✅ Bagus: readonly controlled input without on change
 <input type="checkbox" checked={something} readOnly={true} />
 ```
 
 ---
 
-### My input caret jumps to the beginning on every keystroke {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### Tanda sisipan saya melompat ke awal pada setiap penekanan tombol {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-If you [control an input,](#controlling-an-input-with-a-state-variable) you must update its state variable to the input's value from the DOM during `onChange`.
+Jika Anda [mengontrol sebuah masukan,](#controlling-an-input-with-a-state-variable) Anda harus memperbarui variabel *state*-nya ke nilai masukan dari DOM selama `onChange`.
 
-You can't update it to something other than `e.target.value` (or `e.target.checked` for checkboxes):
+Anda tidak dapat memperbaruinya menjadi sesuatu selain `e.target.value` (atau `e.target.checked` untuk checkbox):
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input to something other than e.target.value
+  // 🔴 Bug: memperbarui masukan ke sesuatu selain e.target.value
   setFirstName(e.target.value.toUpperCase());
 }
 ```
 
-You also can't update it asynchronously:
+Anda juga tidak dapat memperbaruinya secara asinkron:
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input asynchronously
+  // 🔴 Bug: memperbarui masukan secara asinkron
   setTimeout(() => {
     setFirstName(e.target.value);
   }, 100);
 }
 ```
 
-To fix your code, update it synchronously to `e.target.value`:
+Untuk memperbaiki kode Anda, perbarui secara sinkron ke `e.target.value`:
 
 ```js
 function handleChange(e) {
-  // ✅ Updating a controlled input to e.target.value synchronously
+  // ✅ Memperbarui input terkontrol ke e.target.value secara sinkron
   setFirstName(e.target.value);
 }
 ```
 
-If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest component function definitions (which is not supported and causes the "inner" component to always be considered a different tree).
+Jika ini tidak menyelesaikan masalah, mungkin saja masukan dihapus dan ditambahkan kembali dari DOM pada setiap penekanan tombol. Ini dapat terjadi jika Anda secara tidak sengaja [menyetel ulang *state*](/learn/preserving-and-resetting-state) pada setiap *render* ulang, contohnya jika masukan atau salah satu parentnya selalu menerima atribut `key` yang berbeda, atau jika Anda menyusun definisi fungsi komponen (yang tidak didukung dan menyebabkan komponen "dalam" selalu dianggap pohon yang berbeda).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Saya menerima pesan kesalahan: "Komponen sedang mengubah masukan yang tidak terkontrol menjadi dikontrol" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+Jika Anda memberikan `value` ke komponen, `value` tersebut harus tetap berupa string selama masa pakainya.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+Anda tidak dapat mengoper `value={undefined}` terlebih dahulu dan kemudian meneruskan `value="some string"` karena React tidak akan tahu apakah Anda ingin komponen tidak dikontrol atau dikontrol. Komponen yang dikontrol harus selalu menerima string `value`, bukan `null` atau `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+Jika `value` Anda berasal dari API atau variabel status, nilai tersebut mungkin diinisialisasi ke `null` atau `undefined`. Dalam hal ini, setel ke string kosong (`''`) pada awalnya, atau berikan `value={someValue ?? ''}` untuk memastikan `value` adalah sebuah string.
 
-Similarly, if you pass `checked` to a checkbox, ensure it's always a boolean.
+Demikian pula, jika Anda mengoper `checked` ke checkbox, pastikan itu selalu sebuah boolean.
