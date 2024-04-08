@@ -1,38 +1,38 @@
 ---
-title: 'Sinkronisasi dengan Efek'
+title: 'Sinkronisasi dengan Effects'
 ---
 
 <Intro>
 
-Beberapa komponen diperlukan untuk disinkronkan dengan sistem eksternal. Misalnya, kamu mungkin ingin mengontrol sebuah komponen non-React berdasarkan status React, menyiapkan sebuah koneksi server, atau mengirimkan sebuah log analitik ketika komponen muncul di layar komputer. *Effects* memungkinkanmu untuk bisa menjalankan beberapa kode setelah me-render sehingga kamu bisa menyinkronkan komponen yang telah kamu buat dengan beberapa sistem di luar React.
+Beberapa komponen perlu melakukan sinkronisasi dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen di luar React berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. *Effects* memungkinkan Anda menjalankan kode setelah *render* sehingga Anda bisa melakukan sinkronisasi dengan sistem di luar React.
 
 </Intro>
 
 <YouWillLearn>
 
-- What Effects are
-- How Effects are different from events
-- How to declare an Effect in your component
+- Apa itu *Effect*
+- Perbedaan *Effect* dengan *event*
+- Cara mendeklarasikan *Effect* di dalam komponen
 - How to skip re-running an Effect unnecessarily
-- Why Effects run twice in development and how to fix them
+- Mengapa *Effect* berjalan dua kali di pengembangan (*development*) dan cara memperbaikinya
 
 </YouWillLearn>
 
-## What are Effects and how are they different from events? {/*what-are-effects-and-how-are-they-different-from-events*/}
+## Apa itu *Effect* dan apa perbedaanya dengan *event*? {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Before getting to Effects, you need to be familiar with two types of logic inside React components:
+Sebelum kita membahas *Effect*, Anda perlu mengenal dua tipe logika di dalam komponen React:
 
-- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
+- **Kode pe-*render*-an** (diperkenalkan di [Menggambarkan Antarmuka Pengguna](/learn/describing-the-ui)) berada di tingkat atas komponen Anda. Inilah di mana Anda mengambil *props* dan *state*, mentransformasinya, dan mengembalikan JSX yang diinginkan di layar. [Kode pe-*render*-an haruslah murni.](/learn/keeping-components-pure) Seperti rumus matematika, ia harus _menghitung_ hasilnya saja, tapi tidak melakukan hal lainnya.
 
-- **Event handlers** (introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
+- ***Event handlers*** (diperkenalkan di [Menambahkan Interaktivitas](/learn/adding-interactivity)) adalah fungsi bersarang di dalam komponen yang *melakukan* berbagai hal dan bukan hanya menghitungnya. Sebuah *event handler* dapat memperbarui bidang input, mengirimkan permintaan HTTP POST untuk membeli produk, atau menavigasi pengguna ke layar lain. *Event handlers* memiliki ["efek samping"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (yaitu mengubah *state* program) yang dihasilkan dari aksi pengguna tertentu (misalnya, tekanan tombol atau ketikan).
 
-Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
+Terkadang hal-hal ini tidak cukup. Bayangkan sebuah komponen `ChatRoom` yang harus melakukan koneksi ke server obrolan (*chat*) ketika ditampilkan di layar. Melakukan koneksi ke server bukanlah penghitungan murni (melainkan efek samping) jadi tidak dapat dilakukan saat proses *render*. Meskipun itu, tidak ada *event* tertentu seperti klik yang akan menampilkan `ChatRoom`.
 
-***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
+***Effects* memungkinkan Anda menentukan efek samping yang disebabkan oleh pe-*render*-an itu sendiri, dan bukan oleh *event* tertentu.** Mengirim pesan di ruang obrolan merupakan *event* karena disebabkan secara langsung oleh pengguna yang mengeklik tombol tertentu. Namun, melakukan koneksi server merupakan *Effect* karena harus terjadi tanpa peduli interaksi apapun yang menyebabkan komponen ditampilkan. *Effects* berjalan di akhir [*commit*](/learn/render-and-commit) setelah layar diperbarui. Ini merupakan waktu yang tepat untuk menyinkronkan komponen React dengan sistem eksternal (seperti jaringan atau pustaka pihak ketiga).
 
 <Note>
 
-Here and later in this text, capitalized "Effect" refers to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
+Di sini dan selanjutnya dalam teks ini, kata "Effect" yang dikapitalisasi mengacu kepada definisi khusus React yang dijelaskan di atas, seperti efek samping yang disebabkan oleh proses *render*. Untuk mengacu kepada konsep pemrograman secara keseluruhan, kami akan menggunakan kata "efek samping".
 
 </Note>
 
