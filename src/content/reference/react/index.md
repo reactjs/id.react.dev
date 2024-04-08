@@ -1,42 +1,42 @@
 ---
-title: React Reference Overview
+title: "Ikhtisar Referensi React"
 ---
 
 <Intro>
 
-This section provides detailed reference documentation for working with React. For an introduction to React, please visit the [Learn](/learn) section.
+Bagian ini menyediakan dokumentasi referensi yang mendetail untuk bekerja dengan React. Untuk pengenalan tentang React, Silahkan kunjungi bagian [Learn](/learn).
 
 </Intro>
 
-The React reference documentation is broken down into functional subsections:
+Dokumentasi referensi React dibagi menjadi beberapa sub-bagian fungsional:
 
 ## React {/*react*/}
 
-Programmatic React features:
+Fitur-fitur React yang diprogram:
 
-* [Hooks](/reference/react/hooks) - Use different React features from your components.
-* [Components](/reference/react/components) - Documents built-in components that you can use in your JSX.
-* [APIs](/reference/react/apis) - APIs that are useful for defining components.
-* [Directives](/reference/react/directives) - Provide instructions to bundlers compatible with React Server Components.
+* [Hooks](/reference/react/hooks) - Gunakan fitur React yang berbeda dari komponen Anda.
+* [Components](/reference/react/components) - Mendokumentasikan komponen bawaan yang dapat digunakan di JSX Anda.
+* [APIs](/reference/react/apis) - APIs yang berguna untuk mendefinisikan komponen.
+* [Directives](/reference/react/directives) - Menyediakan instruksi ke *bundler* yang kompatibel dengan React Server Component.
 
 ## React DOM {/*react-dom*/}
 
-React-dom contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:
+React-dom berisi fitur-fitur yang hanya didukung untuk aplikasi web (yang berjalan di lingkungan peramban DOM). Bagian ini dibagi menjadi beberapa bagian berikut ini:
 
-* [Hooks](/reference/react-dom/hooks) - Hooks for web applications which run in the browser DOM environment.
-* [Components](/reference/react-dom/components) - React supports all of the browser built-in HTML and SVG components.
-* [APIs](/reference/react-dom) - The `react-dom` package contains methods supported only in web applications.
-* [Client APIs](/reference/react-dom/client) - The `react-dom/client` APIs let you render React components on the client (in the browser).
-* [Server APIs](/reference/react-dom/server) - The `react-dom/server` APIs let you render React components to HTML on the server.
+* [Hooks](/reference/react-dom/hooks) - Hooks untuk aplikasi web yang berjalan di lingkungan peramban DOM.
+* [Components](/reference/react-dom/components) - React mendukung semua komponen HTML dan SVG bawaan peramban.
+* [APIs](/reference/react-dom) - Paket `react-dom` berisi metode-metode yang hanya didukung dalam aplikasi web.
+* [Client APIs](/reference/react-dom/client) - API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
+* [Server APIs](/reference/react-dom/server) - API `react-dom/server` memungkinkan Anda untuk me-*render* komponen React ke HTML di server.
 
-## Rules of React {/*rules-of-react*/}
+## Aturan React {/*rules-of-react*/}
 
-React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications:
+React memiliki idiom - atau aturan - tentang cara mengekspresikan pola dengan cara yang mudah dimengerti dan menghasilkan aplikasi berkualitas tinggi:
 
-* [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure) – Purity makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
-* [React calls Components and Hooks](/reference/rules/react-calls-components-and-hooks) – React is responsible for rendering components and hooks when necessary to optimize the user experience.
-* [Rules of Hooks](/reference/rules/rules-of-hooks) – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
+* [Komponen dan Hooks harus murni](/reference/rules/components-and-hooks-must-be-pure) - Kemurnian membuat kode Anda lebih mudah dipahami, di-*debug*, dan memungkinkan React untuk secara otomatis mengoptimalkan komponen dan hook Anda dengan benar.
+* [React memanggil Komponen dan Hooks](/reference/rules/react-calls-components-and-hooks) - React bertanggung jawab untuk me-*render* komponen dan hooks ketika diperlukan untuk mengoptimalkan pengalaman pengguna.
+* [Rules of Hooks](/reference/rules/rules-of-hooks) - Hooks didefinisikan menggunakan fungsi JavaScript, tetapi hooks merepresentasikan tipe khusus dari logika UI yang dapat digunakan kembali dengan batasan di mana hooks tersebut dapat dipanggil.
 
-## Legacy APIs {/*legacy-apis*/}
+## APIs Lama {/*legacy-apis*/}
 
-* [Legacy APIs](/reference/react/legacy) - Exported from the `react` package, but not recommended for use in newly written code.
+* [Legacy APIs](/reference/react/legacy) - Diekspor dari paket `react`, tetapi tidak direkomendasikan untuk digunakan pada kode yang baru ditulis.
