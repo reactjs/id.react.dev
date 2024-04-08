@@ -465,9 +465,9 @@ Menghilangkan dependensi yang selalu stabil hanya berfungsi ketika linter dapat 
 
 ### Langkah 3: Tambahkan pembersihan jika diperlukan {/*step-3-add-cleanup-if-needed*/}
 
-Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
+Bayangkan contoh yang berbeda. Anda sedang menulis komponen `ChatRoom` yang perlu terhubung ke server obrolan ketika ditampilkan. Anda diberi API `createConnection()` yang mengembalikan sebuah objek dengan metode `connect()` dan `disconnect()`. Bagaimana Anda menjaga komponen tetap terhubung saat ditampilkan kepada pengguna?
 
-Start by writing the Effect logic:
+Mulai dengan menulis logika *Effect*:
 
 ```js
 useEffect(() => {
@@ -476,7 +476,7 @@ useEffect(() => {
 });
 ```
 
-It would be slow to connect to the chat after every re-render, so you add the dependency array:
+Akan sangat lambat untuk melakukan koneksi ke obrolan setelah setiap *render* ulang, jadi Anda menambahkan larik dependensi:
 
 ```js {4}
 useEffect(() => {
@@ -485,9 +485,9 @@ useEffect(() => {
 }, []);
 ```
 
-**The code inside the Effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts", i.e. appears on the screen for the first time.**
+**Kode di dalam *Effect* tidak menggunakan *props* atau *state* apapun, sehingga larik dependensi Anda adalah `[]` (kosong). Ini memberitahu React untuk hanya menjalankan kode ini ketika komponen "dipasang", yaitu muncul di layar untuk pertama kalinya.**
 
-Let's try running this code:
+Mari kita coba menjalankan kode ini:
 
 <Sandpack>
 
@@ -500,19 +500,19 @@ export default function ChatRoom() {
     const connection = createConnection();
     connection.connect();
   }, []);
-  return <h1>Welcome to the chat!</h1>;
+  return <h1>Selamat datang di ruang obrolan!</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createConnection() {
-  // A real implementation would actually connect to the server
+  // Implementasi nyata akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Connecting...');
+      console.log('✅ Menghubungkan...');
     },
     disconnect() {
-      console.log('❌ Disconnected.');
+      console.log('❌ Terputus.');
     }
   };
 }
@@ -524,15 +524,15 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This Effect only runs on mount, so you might expect `"✅ Connecting..."` to be printed once in the console. **However, if you check the console, `"✅ Connecting..."` gets printed twice. Why does it happen?**
+*Effect* ini hanya berjalan pada pemasangan, jadi Anda mungkin mengharapkan `"✅ Menghubungkan..."` dicetak sekali di konsol. **Namun, jika Anda memeriksa konsol, `"✅ Menghubungkan..."` akan dicetak dua kali. Mengapa hal ini bisa terjadi?**
 
-Imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen--for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection--but the first connection was never destroyed! As the user navigates across the app, the connections would keep piling up.
+Bayangkan komponen `ChatRoom` merupakan bagian dari aplikasi yang lebih besar dengan banyak layar yang berbeda. Pengguna memulai perjalanan mereka di halaman `ChatRoom`. Komponen dipasang dan memanggil `connection.connect()`. Kemudian bayangkan pengguna menavigasi ke layar lain--misalnya, ke halaman Pengaturan. Akhirnya, pengguna mengklik Kembali dan `ChatRoom` terpasang kembali. Hal ini akan membuat sambungan kedua--tetapi sambungan pertama tidak pernah diputuskan! Ketika pengguna menavigasi aplikasi, koneksi akan terus menumpuk.
 
-Bugs like this are easy to miss without extensive manual testing. To help you spot them quickly, in development React remounts every component once immediately after its initial mount.
+Bug seperti ini mudah terlewatkan tanpa pengujian manual yang ekstensif. Untuk membantu Anda menemukannya dengan cepat, dalam pengembangan, React melakukan pemasangan ulang setiap komponen satu kali setelah pemasangan awal.
 
-Seeing the `"✅ Connecting..."` log twice helps you notice the real issue: your code doesn't close the connection when the component unmounts.
+Melihat log `"✅ Menghubungkan..."` dua kali akan membantu Anda mengetahui masalah yang sebenarnya: kode Anda tidak menutup koneksi ketika komponen dilepas.
 
-To fix the issue, return a *cleanup function* from your Effect:
+Untuk memperbaiki masalah ini, kembalikan *fungsi cleanup* dari Effect Anda:
 
 ```js {4-6}
   useEffect(() => {
@@ -544,7 +544,7 @@ To fix the issue, return a *cleanup function* from your Effect:
   }, []);
 ```
 
-React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts (gets removed). Let's see what happens when the cleanup function is implemented:
+React akan memanggil fungsi pembersihan Anda setiap kali sebelum *Effect* dijalankan kembali, dan satu kali lagi ketika komponen dilepas (dihapus). Mari kita lihat apa yang terjadi ketika fungsi pembersihan diimplementasikan:
 
 <Sandpack>
 
@@ -558,19 +558,19 @@ export default function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the chat!</h1>;
+  return <h1>Selamat datang di ruang obrolan!</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createConnection() {
-  // A real implementation would actually connect to the server
+  // Implementasi nyata akan benar-benar terhubung ke server
   return {
     connect() {
-      console.log('✅ Connecting...');
+      console.log('✅ Menghubungkan...');
     },
     disconnect() {
-      console.log('❌ Disconnected.');
+      console.log('❌ Terputus.');
     }
   };
 }
@@ -582,27 +582,27 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Now you get three console logs in development:
+Sekarang Anda mendapatkan tiga log konsol dalam pengembangan:
 
-1. `"✅ Connecting..."`
-2. `"❌ Disconnected."`
-3. `"✅ Connecting..."`
+1. `"✅ Menghubungkan..."`
+2. `"❌ Terputus."`
+3. `"✅ Menghubungkan..."`
 
-**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
+**Ini adalah perilaku yang benar dalam pengembangan.** Dengan memasang kembali komponen Anda, React memverifikasi bahwa navigasi menjauh dan kembali tidak akan merusak kode Anda. Memutuskan sambungan dan kemudian menyambungkannya kembali adalah hal yang seharusnya terjadi! Ketika Anda mengimplementasikan pembersihan dengan baik, seharusnya tidak ada perbedaan yang terlihat oleh pengguna antara menjalankan *Effect* sekali vs menjalankannya, membersihkannya, dan menjalankannya lagi. Ada pasangan panggilan tambahan untuk menghubungkan/memutuskan koneksi karena React sedang menyelidiki kode Anda untuk mencari bug dalam pengembangan. Ini adalah hal yang normal--jangan mencoba untuk menghilangkannya!
 
-**In production, you would only see `"✅ Connecting..."` printed once.** Remounting components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
+**Dalam produksi, Anda hanya akan melihat `"✅ Menghubungkan..."` dicetak satu kali.** Memasang kembali komponen hanya terjadi dalam pengembangan untuk membantu Anda menemukan Efek yang perlu dibersihkan. Anda dapat mematikan [Strict Mode](/reference/react/StrictMode) untuk keluar dari perilaku pengembangan, tetapi kami sarankan untuk tetap mengaktifkannya. Hal ini memungkinkan Anda menemukan banyak bug seperti di atas.
 
-## How to handle the Effect firing twice in development? {/*how-to-handle-the-effect-firing-twice-in-development*/}
+## Bagaimana cara menangani *Effect* yang ditembakkan dua kali dalam pengembangan? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
-React intentionally remounts your components in development to find bugs like in the last example. **The right question isn't "how to run an Effect once", but "how to fix my Effect so that it works after remounting".**
+React secara sengaja memasang ulang komponen Anda dalam pengembangan untuk menemukan bug seperti pada contoh terakhir. **Pertanyaan yang tepat bukanlah "bagaimana cara menjalankan sebuah *Effect* sekali saja", tetapi "bagaimana cara memperbaiki *Effect* saya agar dapat berfungsi setelah dipasang ulang".**
 
-Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and a _setup → cleanup → setup_ sequence (as you'd see in development).
+Biasanya, jawabannya adalah menerapkan fungsi pembersihan. Fungsi pembersihan harus menghentikan atau membatalkan apa pun yang sedang dilakukan oleh Effect. Aturan praktisnya adalah bahwa pengguna seharusnya tidak dapat membedakan antara Effect yang berjalan sekali (seperti dalam produksi) dan urutan _setup → cleanup → setup_ (seperti yang Anda lihat dalam pengembangan).
 
-Most of the Effects you'll write will fit into one of the common patterns below.
+Sebagian besar *Effect* yang akan Anda tulis, akan sesuai dengan salah satu pola umum di bawah ini.
 
-### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+### Mengontrol *widget* di luar React {/*controlling-non-react-widgets*/}
 
-Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
+Terkadang Anda perlu menambahkan *widget* UI yang tidak ditulis untuk React. Sebagai contoh, katakanlah Anda menambahkan komponen peta ke halaman Anda. Komponen ini memiliki metode `setZoomLevel()`, dan Anda ingin menjaga tingkat *zoom* tetap sinkron dengan variabel *state* `zoomLevel` dalam kode React Anda. *Effect* Anda akan terlihat seperti ini:
 
 ```js
 useEffect(() => {
@@ -611,9 +611,9 @@ useEffect(() => {
 }, [zoomLevel]);
 ```
 
-Note that there is no cleanup needed in this case. In development, React will call the Effect twice, but this is not a problem because calling `setZoomLevel` twice with the same value does not do anything. It may be slightly slower, but this doesn't matter because it won't remount needlessly in production.
+Perhatikan bahwa tidak ada pembersihan yang diperlukan dalam kasus ini. Dalam pengembangan, React akan memanggil Effect dua kali, tetapi ini tidak menjadi masalah karena memanggil `setZoomLevel` dua kali dengan nilai yang sama tidak akan melakukan apa-apa. Ini mungkin sedikit lebih lambat, tetapi ini tidak menjadi masalah karena tidak akan melakukan pemanggilan ulang yang tidak perlu dalam produksi.
 
-Some APIs may not allow you to call them twice in a row. For example, the [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) method of the built-in [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) element throws if you call it twice. Implement the cleanup function and make it close the dialog:
+Beberapa API mungkin tidak mengizinkan Anda memanggilnya dua kali berturut-turut. Misalnya, metode [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) dari elemen [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) bawaan akan melempar *error* jika Anda memanggilnya dua kali. Implementasi fungsi pembersihan untuk membuatnya menutup dialog:
 
 ```js {4}
 useEffect(() => {
@@ -623,11 +623,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `showModal()`, then immediately `close()`, and then `showModal()` again. This has the same user-visible behavior as calling `showModal()` once, as you would see in production.
+Dalam pengembangan, *Effect* Anda akan memanggil `showModal()`, lalu segera `close()`, dan kemudian `showModal()` lagi. Ini memiliki perilaku yang terlihat oleh pengguna yang sama dengan memanggil `showModal()` satu kali, seperti yang akan Anda lihat dalam produksi.
 
-### Subscribing to events {/*subscribing-to-events*/}
+### Berlangganan *events* {/*subscribing-to-events*/}
 
-If your Effect subscribes to something, the cleanup function should unsubscribe:
+Jika Efek Anda berlangganan sesuatu, fungsi pembersihan harus menghentikan langganan:
 
 ```js {6}
 useEffect(() => {
@@ -639,27 +639,27 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `addEventListener()`, then immediately `removeEventListener()`, and then `addEventListener()` again with the same handler. So there would be only one active subscription at a time. This has the same user-visible behavior as calling `addEventListener()` once, as in production.
+Dalam mode pengembangan, *Effect* Anda akan memanggil `addEventListener()`, lalu segera `hapusEventListener()`, dan kemudian `addEventListener()` lagi dengan *event handler* yang sama. Jadi hanya akan ada satu langganan yang aktif pada satu waktu. Ini memiliki perilaku yang terlihat oleh pengguna yang sama dengan memanggil `addEventListener()` sekali, seperti dalam produksi.
 
-### Triggering animations {/*triggering-animations*/}
+### Memicu animasi {/*triggering-animations*/}
 
-If your Effect animates something in, the cleanup function should reset the animation to the initial values:
+Jika *Effect* Anda menganimasikan sesuatu, fungsi pembersihan harus mengatur ulang animasi ke nilai awal:
 
 ```js {4-6}
 useEffect(() => {
   const node = ref.current;
-  node.style.opacity = 1; // Trigger the animation
+  node.style.opacity = 1; // Picu animasi
   return () => {
-    node.style.opacity = 0; // Reset to the initial value
+    node.style.opacity = 0; // Set ulang ke nilai awal
   };
 }, []);
 ```
 
-In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the timeline to its initial state.
+Dalam mode pengembangan, *opacity* akan diatur ke `1`, kemudian ke `0`, dan kemudian ke `1` lagi. Ini seharusnya memiliki perilaku yang terlihat oleh pengguna yang sama dengan pengaturan ke `1` secara langsung, yang akan terjadi dalam produksi. Jika Anda menggunakan pustaka animasi pihak ketiga yang mendukung *tweening*, fungsi pembersihan Anda akan mengatur ulang *timeline* ke kondisi awal.
 
-### Fetching data {/*fetching-data*/}
+### Mengambil data {/*fetching-data*/}
 
-If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
+Jika Efek Anda mengambil sesuatu, fungsi pembersihan harus [membatalkan pengambilan](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) atau mengabaikan hasilnya:
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -680,11 +680,11 @@ useEffect(() => {
 }, [userId]);
 ```
 
-You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. If the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
+Anda tidak dapat "membatalkan" *network request* yang telah terjadi, tetapi fungsi pembersihan Anda harus memastikan bahwa pengambilan data yang _tidak relevan lagi_ tidak terus mempengaruhi aplikasi Anda. Jika `userId` berubah dari `'Alice'` menjadi `'Bob'`, pembersihan memastikan bahwa respons `'Alice'` diabaikan meskipun ia datang setelah `'Bob'`.
 
-**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
+**Dalam mode pengembangan, Anda akan melihat dua *fetch* di tab *Network*.** Tidak ada yang salah dengan hal itu. Dengan pendekatan di atas, *Effect* pertama akan segera dibersihkan sehingga salinan variabel `ignore` akan disetel ke `true`. Jadi, meskipun ada *request* tambahan, hal itu tidak akan mempengaruhi *state* berkat pemeriksaan `if (!ignore)`.
 
-**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
+**Dalam mode produksi, hanya akan ada satu *request*.** Jika *request* kedua dalam pengembangan mengganggu Anda, pendekatan terbaik adalah menggunakan solusi yang menduplikasi *request* dan menyimpan responsnya di antara komponen:
 
 ```js
 function TodoList() {
@@ -692,31 +692,31 @@ function TodoList() {
   // ...
 ```
 
-This will not only improve the development experience, but also make your application feel faster. For example, the user pressing the Back button won't have to wait for some data to load again because it will be cached. You can either build such a cache yourself or use one of the many alternatives to manual fetching in Effects.
+Hal ini tidak hanya akan meningkatkan pengalaman pengembangan, tetapi juga membuat aplikasi Anda terasa lebih cepat. Sebagai contoh, pengguna yang menekan tombol Kembali tidak perlu menunggu data dimuat lagi, karena data tersebut akan di-*cache*. Anda bisa membuat *cache* sendiri atau menggunakan salah satu dari banyak alternatif untuk *fetching* secara manual di *Effects*.
 
 <DeepDive>
 
-#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
+#### Apa saja alternatif yang bagus untuk pengambilan data di *Effects*? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+Menulis panggilan `fetch` di dalam *Effects* adalah [cara populer untuk mengambil data](https://www.robinwieruch.de/react-hooks-fetch-data/), terutama di aplikasi yang sepenuhnya berbasis klien. Namun, ini adalah pendekatan yang sangat manual dan memiliki kelemahan yang signifikan:
 
-- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
-- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
+- ***Effects* tidak berjalan di server.** Ini berarti bahwa HTML awal yang di-*render* di server hanya akan menyertakan status pemuatan tanpa data. Komputer klien harus mengunduh semua JavaScript dan me-*render* aplikasi Anda hanya untuk mengetahui bahwa sekarang ia perlu memuat data. Hal ini sangat tidak efisien.
+- **Mengambil data secara langsung dalam *Effects* memudahkan untuk menciptakan "air terjun (*waterfall*) jaringan".** Anda me-*render* komponen induk, mengambil beberapa data, me-*render* komponen anak, dan kemudian komponen anak mulai mengambil datanya. Jika jaringan tidak terlalu cepat, hal ini jauh lebih lambat daripada mengambil semua data secara paralel.
+- **Mengambil data secara langsung dalam *Effects* biasanya berarti Anda tidak melakukan pramuat atau *cache* data.** Sebagai contoh, jika komponen dilepas dan kemudian dipasang lagi, komponen tersebut harus mengambil data lagi.
+- **Sangat tidak ergonomis.** Ada cukup banyak kode *boilerplate* yang terlibat ketika menulis panggilan `fetch` dengan cara yang tidak mengalami bug seperti [*race condition*.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+Daftar kelemahan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat pemasangan komponen dengan pustaka apa pun. Seperti halnya dengan *routing*, pengambilan data bukanlah hal yang sepele untuk dilakukan dengan baik, jadi kami merekomendasikan pendekatan berikut ini:
 
-- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **Jika Anda menggunakan [kerangka kerja (*framework*)](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data yang sudah ada di dalamnya.** Kerangka kerja React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak mengalami kendala di atas.
+- **Jika tidak, pertimbangkan untuk menggunakan atau membangun *cache* sisi klien.** Solusi sumber terbuka (*open source*) yang populer termasuk [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membuat solusi sendiri, dalam hal ini Anda dapat menggunakan *Effects* di dalamnya, tetapi menambahkan logika untuk menduplikasi *request*, menyimpan respons dalam *cache*, dan menghindari *waterfall* jaringan (dengan melakukan pramuat data atau mengangkat kebutuhan data ke *route*).
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+Anda dapat terus mengambil data secara langsung di *Effects* jika tidak ada satu pun dari pendekatan ini yang cocok untuk Anda.
 
 </DeepDive>
 
-### Sending analytics {/*sending-analytics*/}
+### Mengirim analitik {/*sending-analytics*/}
 
-Consider this code that sends an analytics event on the page visit:
+Perhatikan kode berikut ini yang mengirimkan *event* analitik pada kunjungan halaman:
 
 ```js
 useEffect(() => {
@@ -724,11 +724,11 @@ useEffect(() => {
 }, [url]);
 ```
 
-In development, `logVisit` will be called twice for every URL, so you might be tempted to try to fix that. **We recommend keeping this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. From a practical point of view, `logVisit` should not do anything in development because you don't want the logs from the development machines to skew the production metrics. Your component remounts every time you save its file, so it logs extra visits in development anyway.
+Dalam mode pengembangan, `logVisit` akan dipanggil dua kali untuk setiap URL, sehingga Anda mungkin tergoda untuk mencoba memperbaikinya. **Kami sarankan untuk membiarkan kode ini apa adanya.** Seperti contoh-contoh sebelumnya, tidak ada perbedaan perilaku yang *dilihat oleh pengguna* antara menjalankannya sekali dan menjalankannya dua kali. Dari sudut pandang praktis, `logVisit` tidak boleh melakukan apa pun dalam pengembangan karena Anda tidak ingin log dari mesin pengembangan mempengaruhi metrik produksi. Komponen Anda akan dimuat ulang setiap kali Anda menyimpan berkasnyanya, sehingga komponen tersebut tetap mencatat kunjungan ekstra dalam pengembangan.
 
-**In production, there will be no duplicate visit logs.**
+**Dalam mode produksi, tidak akan ada log kunjungan yang terduplikasi.**
 
-To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/reference/react/StrictMode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of Effects. For more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
+Untuk men-debug *event* analitik yang Anda kirimkan, Anda bisa men-*deploy* aplikasi Anda ke lingkungan *staging* (yang berjalan dalam mode produksi) atau untuk sementara tidak menggunakan [Strict Mode](/reference/react/StrictMode) dan pengecekan ulang khusus pengembangannya. Anda juga dapat mengirimkan analitik dari *event handler* perubahan *route*, bukan dari *Effects*. Untuk analitik yang lebih tepat, [*intersection observers*](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) dapat membantu melacak komponen mana yang ada di tampilan layar dan berapa lama komponen tersebut tetap terlihat.
 
 ### Not an Effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
 
