@@ -2532,7 +2532,7 @@ Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan
 
 function Chat() {
   if (typeof window === 'undefined') {
-    throw Error('Chat seharusnya hanya dirender pada klien.');
+    throw Error('Chat seharusnya hanya di-render di klien.');
   }
   // ...
 }
