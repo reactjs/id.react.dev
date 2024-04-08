@@ -49,7 +49,7 @@ React dibuat berdasarkan konsep ini. **React berasumsi kalau setiap komponen yan
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 function Recipe({ drinkers }) {
   return (
     <ol>    
@@ -81,13 +81,13 @@ Jika Anda memberikan `drinkers={4}`, komponen tersebut akan mengembalikan JSX ya
 
 Seperti rumus matematika. 
 
-Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apapun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
+Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apa pun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Sebuah resep teh untuk x orang: membutuhkan x gelas air, tambahkan teh sebanyak x sendok, tambahkan rempah sebanyak 0,5 sendok, dan 0,5 gelas susu" />
 
 ## Efek Samping: Konsekuensi yang (tidak) diinginkan {/*side-effects-unintended-consequences*/}
 
-Proses *render* React harus selalu murni. Komponen hanya *mengembalikan* JSX mereka dan tidak mengubah objek atau variabel apapun yang telah ada sebelumnya--ini membuat komponen tersebut menjadi tidak murni!
+Proses *render* React harus selalu murni. Komponen hanya *mengembalikan* JSX mereka dan tidak mengubah objek atau variabel apa pun yang telah ada sebelumnya--ini membuat komponen tersebut menjadi tidak murni!
 
 Ini contoh komponen yang tidak mengikuti aturan tersebut:
 
@@ -155,9 +155,9 @@ Saat Anda ingin mengubah sesuatu sebagai respons dari masukan pengguna, Anda har
 
 React menawarkan "*Strict Mode*" yang memanggil setiap komponen dua kali pada proses pengembangan. **Dengan memanggil setiap komponen dua kali, *Strict Mode* membantu Anda menemukan komponen-komponen yang melanggar aturan ini**.
 
-Di contoh pertama, Anda dapat melihat apa yang ditampilkan adalah "*Guest #2*", "*Guest #4*", dan "*Guest #6*", bukan "*Guest #1*", "*Guest #2*", dan "*Guest #3*". Fungsi tersebut tidak murni sehingga saat dipanggil dua kali, dia rusak. Namun, fungsi yang sudah diperbaiki dan menjadi murni dapat bekerja dengan baik meskipun dijalankan dua kali pada setiap pemanggilan. **Fungsi murni hanya mengalkulasi sehingga memanggil dia dua kali tidak akan mengubah apapun**--seperti memanggil `double(2)` dua kali tidak akan mengubah hasilnya dan menyelesaikan <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dua kali tidak akan mengubah nilai <MathI>y</MathI>. Masukan yang sama, luaran yang sama. Selalu.
+Di contoh pertama, Anda dapat melihat apa yang ditampilkan adalah "*Guest #2*", "*Guest #4*", dan "*Guest #6*", bukan "*Guest #1*", "*Guest #2*", dan "*Guest #3*". Fungsi tersebut tidak murni sehingga saat dipanggil dua kali, dia rusak. Namun, fungsi yang sudah diperbaiki dan menjadi murni dapat bekerja dengan baik meskipun dijalankan dua kali pada setiap pemanggilan. **Fungsi murni hanya mengalkulasi sehingga memanggil dia dua kali tidak akan mengubah apa pun**--seperti memanggil `double(2)` dua kali tidak akan mengubah hasilnya dan menyelesaikan <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dua kali tidak akan mengubah nilai <MathI>y</MathI>. Masukan yang sama, luaran yang sama. Selalu.
 
-*Strict Mode* tidak memberikan pengaruh apapun di tahap produksi sehingga tidak akan memperlambat aplikasi bagi pengguna Anda. Untuk mencoba *Strict Mode*, Anda bisa membungkus komponen akar Anda ke dalam `<React.StrictMode>`. Beberapa *framework* sudah melakukan ini untuk Anda tanpa perlu intervensi dari Anda.
+*Strict Mode* tidak memberikan pengaruh apa pun di tahap produksi sehingga tidak akan memperlambat aplikasi bagi pengguna Anda. Untuk mencoba *Strict Mode*, Anda bisa membungkus komponen akar Anda ke dalam `<React.StrictMode>`. Beberapa *framework* sudah melakukan ini untuk Anda tanpa perlu intervensi dari Anda.
 
 </DeepDive>
 
@@ -243,7 +243,7 @@ Pe-*render*-an adalah *kalkulasi*. Oleh karena itu, seharusnya *render* tidak be
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   let hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
@@ -259,7 +259,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -305,7 +305,7 @@ Anda bisa memperbaiki komponen ini dengan mengalkulasi `className` dan menyertak
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   let hours = time.getHours();
   let className;
@@ -322,7 +322,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -380,7 +380,7 @@ Kode yang bermasalah ada di `Profile.js`. Pastikan Anda membaca seluruh kode ter
 
 <Sandpack>
 
-```js Profile.js
+```js src/Profile.js
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -413,7 +413,7 @@ function Avatar() {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -429,7 +429,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import Profile from './Profile.js';
 
 export default function App() {
@@ -448,7 +448,7 @@ export default function App() {
 }
 ```
 
-```js utils.js hidden
+```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -481,7 +481,7 @@ Untuk memperbaikinya, hapus variabel `currentPerson`. Justru, serahkan semua inf
 
 <Sandpack>
 
-```js Profile.js active
+```js src/Profile.js active
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -511,7 +511,7 @@ function Avatar({ person }) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -527,7 +527,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import Profile from './Profile.js';
 
 export default function App() {
@@ -546,7 +546,7 @@ export default function App() {
 }
 ```
 
-```js utils.js hidden
+```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -583,7 +583,7 @@ Anda telah mengimplementasi *placeholder* "*Create Story*" dengan menambahkan sa
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   stories.push({
     id: 'create',
@@ -602,7 +602,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -683,7 +683,7 @@ Solusi paling sederhana adalah untuk tidak menyentuh senarai dan me-*render* "*C
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   return (
     <ul>
@@ -698,7 +698,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -767,7 +767,7 @@ Solusi alternatif adalah Anda bisa membuat sebuah senarai *baru* (dengan menyali
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   // Salin senarai!
   let storiesToDisplay = stories.slice();
@@ -790,7 +790,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 

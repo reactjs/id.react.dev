@@ -184,7 +184,7 @@ const nextPosition = {};
 nextPosition.x = e.clientX;
 nextPosition.y = e.clientY;
 setPosition(nextPosition);
-````
+```
 
 Sebenarnya, penulisan kode di atas sama dengan kode berikut:
 
@@ -666,7 +666,7 @@ Tetapi tidak seperti mutasi biasa, hal ini tidak menimpa *state* sebelumnya!
 
 #### Bagaimana cara kerja Immer? {/*how-does-immer-work*/}
 
-`draft` yang disediakan oleh Immer merupakan jenis objek yang spesial, disebut sebagai [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), yang "mencatat" apapun yang Anda lakukan terhadap objek tersebut. Inilah alasan mengapa Anda bisa melakukan mutasi terhadap objek tersebut sebebas Anda! Di balik layar, Immer mencari tahu bagian mana dari `draft` yang berubah, dan membuat objek baru yang berisi perubahan-perubahan yang terjadi.
+`draft` yang disediakan oleh Immer merupakan jenis objek yang spesial, disebut sebagai [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), yang "mencatat" apa pun yang Anda lakukan terhadap objek tersebut. Inilah alasan mengapa Anda bisa melakukan mutasi terhadap objek tersebut sebebas Anda! Di balik layar, Immer mencari tahu bagian mana dari `draft` yang berubah, dan membuat objek baru yang berisi perubahan-perubahan yang terjadi.
 
 </DeepDive>
 
@@ -799,7 +799,7 @@ Ada beberapa saran:
 * **Optimisasi:** [Strategi optimisasi](/reference/react/memo) React umumnya mengandalkan melewati pekerjaan jika *props* atau *state* sebelumnya itu sama dengan yang selanjutnya. Jika Anda tidak pernah melakukan mutasi *state*, pengecekan perubahan menjadi sangat cepat. Jika `prevObj === obj`, Anda bisa yakin bahwa tidak ada konten yang berubah.
 * **Fitur-fitur Baru:** Fitur React baru yang sedang kami bangun mengandalkan *state* [diperlakukan seperti *snapshot*.](/learn/state-as-a-snapshot) Jika Anda melakukan mutasi terhadap *state* sebelumnya, hal itu bisa mencegah Anda dari menggunakan fitur-fitur baru.
 * **Perubahan Kebutuhan:** Beberapa fitur aplikasi, seperti implementasi *Undo*/*Redo*, menunjukkan sejarah perubahan, atau membiarkan pengguna mengatur ulang sebuah formulir ke nilai yang lebih awal, lebih mudah dilakukan jika tidak ada yang dimutasi. Alasannya adalah Anda bisa menyimpan salinan-salinan dari *state* sebelumnya di dalam memori, dan menggunakannya kembali jika diinginkan. Jika Anda memulai dengan pendekatan mutasi, fitur-fitur seperti ini bisa menjadi rumit untuk ditambahkan di kemudian hari.
-* **Implementasi yang Lebih Simpel:** Karena React tidak bergantung pada mutasi, React tidak perlu melakukan hal spesial terhadap objek-objek Anda. React tidak perlu membajak properti-properti objek, membungkus objek-objek menjadi *Proxies*, atau melakukan pekerjaan lainnya ketika inisialisasi seperti kebanyakan solusi "reaktif" lainnya. Ini juga menjadi alasan mengapa React membiarkan Anda menaruh objek di dalam *state*--tidak peduli sebesar apapun--tanpa isu-isu tambahan dalam hal performa atau ketepatan.
+* **Implementasi yang Lebih Simpel:** Karena React tidak bergantung pada mutasi, React tidak perlu melakukan hal spesial terhadap objek-objek Anda. React tidak perlu membajak properti-properti objek, membungkus objek-objek menjadi *Proxies*, atau melakukan pekerjaan lainnya ketika inisialisasi seperti kebanyakan solusi "reaktif" lainnya. Ini juga menjadi alasan mengapa React membiarkan Anda menaruh objek di dalam *state*--tidak peduli sebesar apa pun--tanpa isu-isu tambahan dalam hal performa atau ketepatan.
 
 Dalam praktik, Anda bisa sering kali "lolos" dengan melakukan mutasi *state* dalam React, tetapi kami sangat menyarankan untuk tidak melakukan hal tersebut agar Anda bisa menggunakan fitur-fitur baru React yang dikembangkan dengan pendekatan ini. Para kontributor di masa depan dan bahkan mungkin diri Anda di masa depan akan berterima kasih!
 
@@ -986,7 +986,7 @@ Jika sesuatu berubah secara tidak terduga, maka ada mutasi. Cari mutasi di `App.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1039,7 +1039,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1102,7 +1102,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1136,7 +1136,7 @@ Solusinya adalah menghapus mutasi dari `handleMove`, dan menggunakan sintaksis *
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1194,7 +1194,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1257,7 +1257,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1291,7 +1291,7 @@ Berikut adalah contoh bermasalah yang sama dengan tantangan sebelumnya. Kali ini
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
@@ -1345,7 +1345,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1408,7 +1408,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1458,7 +1458,7 @@ Berikut adalah solusi yang ditulis kembali dengan Immer. Perhatikan bagaimana se
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1512,7 +1512,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1575,7 +1575,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {

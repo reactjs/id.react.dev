@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Intro>
 
-`useSyncExternalStore` is a React Hook that lets you subscribe to an external store.
+`useSyncExternalStore` adalah sebuah *Hook* React yang membiarkan Anda berlangganan ke tempat penyimpanan eksternal.
 
 ```js
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -16,11 +16,11 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Panggil `useSyncExternalStore` di tingkat paling atas dari komponen Anda untuk membaca sebuah nilai dari tempat penyimpanan data eksternal.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -32,43 +32,63 @@ function TodosApp() {
 }
 ```
 
-It returns the snapshot of the data in the store. You need to pass two functions as arguments:
+*Hook* ini mengembalikan sebuah *snapshot* dari data yang ada di tempat penyimpanan. Anda harus memberikan dua fungsi sebagai argumen:
 
-1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
-2. The `getSnapshot` function should read a snapshot of the data from the store.
+1. Fungsi `subscribe` harus berlangganan ke tempat penyimpanan dan mengembalikan fungsi untuk berhenti berlangganan.
+2. Fungsi `getSnapshot` harus membaca sebuah *snapshot* dari data yang ada di tempat penyimpanan.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+* `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan berlangganan ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
 
-* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React re-renders the component.
+* `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data, di tempat penyimpanan, yang dibutuhkan komponen. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
 
-* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If you omit this argument, rendering the component on the server will throw an error.
+* **opsional** `getServerSnapshot`: Sebuah fungsi yang mengembalikan *snapshot* awal dari data yang ada di tempat penyimpanan. *Snapshot* hanya akan digunakan saat proses *render* dilakukan oleh server dan saat hidrasi konten yang telah di-*render* oleh server ke klien. *Snapshot* server harus sama antara klien dan server, dan biasanya diserialisasi dan diserahkan dari server ke klien. Jika Anda mengabaikan argumen ini, proses *render* komponen di server akan memunculkan kesalahan.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-The current snapshot of the store which you can use in your rendering logic.
+*Snapshot* saat ini dari tempat penyimpanan yang dapat Anda gunakan di logika *render* Anda.
 
-#### Caveats {/*caveats*/}
+#### Caveat {/*caveats*/}
 
-* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+* *Snapshot* tempat penyimpanan yang dikembalikan `getSnapshot` tidak boleh bisa dimutasi. Jika tempat penyimpanan mengandung data yang dapat dimutasi, Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi saat data berubah. Jika data tidak berubah, Anda dapat mengembalikan *snapshot* terakhir yang sudah di-*cache*.
 
-* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
+* Jika fungsi `subscribe` yang berbeda diberikan saat *render* ulang, React akan berlangganan ulang ke tempat penyimpanan menggunakan fungsi `subscribe` yang baru. Anda bisa menghindari ini dengan mendeklarasi `subscribe` di luar komponen.
+
+* If the store is mutated during a [non-blocking Transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every Transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking Transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+
+  For example, the following are discouraged:
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Calling `use` with a Promise dependent on `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Conditionally rendering a lazy component based on `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### Berlangganan ke tempat penyimpanan eksternal {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+Sebagian besar komponen React Anda akan membaca data dari [*props*](/learn/passing-props-to-a-component), [*state*](/reference/react/useState), dan [*context*](/reference/react/useContext) mereka. Walaupun begitu, kadang-kadang ada komponen yang harus membaca dari tempat penyimpanan yang ada di luar React dan berubah seiring waktu berjalan. Ini termasuk:
 
-* Third-party state management libraries that hold state outside of React.
-* Browser APIs that expose a mutable value and events to subscribe to its changes.
+* Pustaka manajemen *state* dari pihak ketiga yang menyimpan *state* di luar React.
+* API peramban yang mengekspos nilai yang dapat dimutasi dan *event* untuk berlangganan ke perubahannya.
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Panggil `useSyncExternalStore` di tingkat paling atas dari komponen Anda untuk membaca sebuah nilai dari tempat penyimpanan data eksternal.
 
 ```js [[1, 5, "todosStore.subscribe"], [2, 5, "todosStore.getSnapshot"], [3, 5, "todos", 0]]
 import { useSyncExternalStore } from 'react';
@@ -80,14 +100,14 @@ function TodosApp() {
 }
 ```
 
-It returns the <CodeStep step={3}>snapshot</CodeStep> of the data in the store. You need to pass two functions as arguments:
+Fungsi ini mengembalikan <CodeStep step={3}>*snapshot*</CodeStep> dari data yang ada di tempat penyimpanan. Anda harus memberikan dua fungsi sebagai argumen:
 
-1. The <CodeStep step={1}>`subscribe` function</CodeStep> should subscribe to the store and return a function that unsubscribes.
-2. The <CodeStep step={2}>`getSnapshot` function</CodeStep> should read a snapshot of the data from the store.
+1. <CodeStep step={1}>Fungsi `subscribe`</CodeStep> harus berlangganan ke tempat penyimpanan dan mengembalikan sebuah fungsi untuk berhenti berlangganan.
+2. <CodeStep step={2}>Fungsi `getSnapshot`</CodeStep> harus membaca sebuah *snapshot* dari data yang ada di tempat penyimpanan.
 
-React will use these functions to keep your component subscribed to the store and re-render it on changes.
+React akan menggunakan dua fungsi ini untuk menjaga status langganan komponen Anda ke tempat penyimpanan tersebut dan me-*render* ulang saat ada perubahan.
 
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook. 
+Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *Hook* `useSyncExternalStore`. 
 
 <Sandpack>
 
@@ -111,12 +131,13 @@ export default function TodosApp() {
 }
 ```
 
-```js todoStore.js
-// This is an example of a third-party store
-// that you might need to integrate with React.
+```js src/todoStore.js
+// Ini adalah contoh dari sebuah tempat penyimpanan
+// dari pihak ketiga yang Anda perlu integrasikan
+// dengan React.
 
-// If your app is fully built with React,
-// we recommend using React state instead.
+// Jika aplikasi Anda dibangun sepenuhnya oleh React,
+// kami merekomendasikan untuk menggunakan React state.
 
 let nextId = 0;
 let todos = [{ id: nextId++, text: 'Todo #1' }];
@@ -149,17 +170,17 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+Ketika memungkinkan, kami merekomendasikan untuk menggunakan *state* yang sudah ada di dalam React dengan menggunakan [`useState`](/reference/react/useState) dan [`useReducer`](/reference/react/useReducer). API `useSyncExternalStore` biasanya berguna jika Anda ingin mengintegrasi komponen Anda dengan kode non-React.
 
 </Note>
 
 ---
 
-### Subscribing to a browser API {/*subscribing-to-a-browser-api*/}
+### Berlangganan ke sebuah API peramban {/*subscribing-to-a-browser-api*/}
 
-Another reason to add `useSyncExternalStore` is when you want to subscribe to some value exposed by the browser that changes over time. For example, suppose that you want your component to display whether the network connection is active. The browser exposes this information via a property called [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+Alasan lain untuk menggunakan `useSyncExternalStore` adalah ketika Anda ingin berlangganan ke sebuah nilai yang diekspos peramban yang berubah seiring berjalannya waktu. Contohnya, saat Anda ingin komponen Anda menampilkan apakah koneksi jaringan masih aktif. Peramban mengekspos informasi ini melalui sebuah *property* yang disebut [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
 
-This value can change without React's knowledge, so you should read it with `useSyncExternalStore`.
+Nilai ini dapat berubah tanpa pengetahuan React sehingga Anda harus membacanya dengan `useSyncExternalStore`.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -170,7 +191,7 @@ function ChatIndicator() {
 }
 ```
 
-To implement the `getSnapshot` function, read the current value from the browser API:
+Untuk mengimplementasi fungsi `getSnapshot`, Anda cukup membaca nilai saat ini dari API peramban:
 
 ```js
 function getSnapshot() {
@@ -178,7 +199,7 @@ function getSnapshot() {
 }
 ```
 
-Next, you need to implement the `subscribe` function. For example, when `navigator.onLine` changes, the browser fires the [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events on the `window` object. You need to subscribe the `callback` argument to the corresponding events, and then return a function that cleans up the subscriptions:
+Selanjutnya, Anda perlu mengimplementasi fungsi `subscribe`. Contohnya, saat `navigator.onLine` berubah, peramban menembakkan *event* [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) dan [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) ke objek `window`. Anda perlu melanggankan argument `callback` ke *event* yang bersangkutan, kemudian mengembalikan sebuah fungsi yang membersihkan langganan tersebut:
 
 ```js
 function subscribe(callback) {
@@ -191,7 +212,7 @@ function subscribe(callback) {
 }
 ```
 
-Now React knows how to read the value from the external `navigator.onLine` API and how to subscribe to its changes. Disconnect your device from the network and notice that the component re-renders in response:
+Sekarang React tahu bagaimana membaca nilai yang ada di API eksternal `navigator.onLine` dan bagaimana berlangganan ke perubahannya. Putuskan koneksi perangkat Anda dari jaringan dan Anda akan melihat komponen di-*render* ulang sebagai respons:
 
 <Sandpack>
 
@@ -221,11 +242,11 @@ function subscribe(callback) {
 
 ---
 
-### Extracting the logic to a custom Hook {/*extracting-the-logic-to-a-custom-hook*/}
+### Mengekstrak logika ke Hook buatan sendiri {/*extracting-the-logic-to-a-custom-hook*/}
 
-Usually you won't write `useSyncExternalStore` directly in your components. Instead, you'll typically call it from your own custom Hook. This lets you use the same external store from different components.
+Biasanya Anda tidak akan menulis `useSyncExternalStore` langsung di dalam komponen Anda. Alih-alih, Anda akan memanggil `Hook` tersebut dari `Hook` buatan Anda sendiri. Ini membiarkan Anda menggunakan tempat penyimpanan eksternal yang sama untuk berbagai komponen.
 
-For example, this custom `useOnlineStatus` Hook tracks whether the network is online:
+Sebagai contoh, `Hook` `useOnlineStatus` ini mengikuti apakah jaringan menyala:
 
 ```js {3,6}
 import { useSyncExternalStore } from 'react';
@@ -244,7 +265,7 @@ function subscribe(callback) {
 }
 ```
 
-Now different components can call `useOnlineStatus` without repeating the underlying implementation:
+Sekarang, berbagai komponen bisa memanggil `useOnlineStatus` tanpa harus mengulang implementasinya:
 
 <Sandpack>
 
@@ -280,7 +301,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useSyncExternalStore } from 'react';
 
 export function useOnlineStatus() {
@@ -306,14 +327,14 @@ function subscribe(callback) {
 
 ---
 
-### Adding support for server rendering {/*adding-support-for-server-rendering*/}
+### Menambahkan dukungan untuk render di server {/*adding-support-for-server-rendering*/}
 
-If your React app uses [server rendering,](/reference/react-dom/server) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
+Jika aplikasi React Anda melakukan [*render* di server](/reference/react-dom/server), komponen React Anda akan berjalan di luar lingkungan peramban untuk membuat HTML awal. Ini menimbulkan beberapa tantangan saat ingin berhubungan dengan tempat penyimpanan eksternal:
 
-- If you're connecting to a browser-only API, it won't work because it does not exist on the server.
-- If you're connecting to a third-party data store, you'll need its data to match between the server and client.
+- Jika Anda berusaha untuk terhubung dengan API peramban, ini tidak akan bekerja karena API tersebut tidak ada di server.
+- Jika Anda berusaha untuk terhubung dengan tempat penyimpanan pihak ketiga, Anda harus mencocokkan data yang ada di server dan klien.
 
-To solve these issues, pass a `getServerSnapshot` function as the third argument to `useSyncExternalStore`:
+Untuk menyelesaikan masalah ini, Anda dapat memberikan fungsi `getServerSnapshot` sebagai argumen ketiga ke `useSyncExternalStore`:
 
 ```js {4,12-14}
 import { useSyncExternalStore } from 'react';
@@ -328,7 +349,7 @@ function getSnapshot() {
 }
 
 function getServerSnapshot() {
-  return true; // Always show "Online" for server-generated HTML
+  return true; // Selalu menunjukkan "Online" untuk HTML yang dibuat server
 }
 
 function subscribe(callback) {
@@ -336,60 +357,60 @@ function subscribe(callback) {
 }
 ```
 
-The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only in two situations:
+Fungsi `getServerSnapshot` cukup mirip dengan `getSnapshot`, tetapi hanya berjalan di dua situasi:
 
-- It runs on the server when generating the HTML.
-- It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
+- Fungsi tersebut berjalan di server saat membuat HTML.
+- Fungsi tersebut berjalan di klien saat [hidrasi](/reference/react-dom/client/hydrateRoot), misalnya saat React mengambil HTML dari server dan membuatnya interaktif.
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+Hal ini memungkinkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
-Make sure that `getServerSnapshot` returns the same exact data on the initial client render as it returned on the server. For example, if `getServerSnapshot` returned some prepopulated store content on the server, you need to transfer this content to the client. One way to do this is to emit a `<script>` tag during server rendering that sets a global like `window.MY_STORE_DATA`, and read from that global on the client in `getServerSnapshot`. Your external store should provide instructions on how to do that.
+Pastikan `getServerSnapshot` mengembalikan data yang sama persis di proses *render* awal di klien dan juga di server. Sebagai contoh, jika `getServerSnapshot` mengembalikan sebuah data yang sudah disiapkan di server, Anda juga harus memberikan data ini ke klien. Salah satu cara adalah dengan mengirim sebuah *tag* `<script>`, saat proses *render* di server, yang menetapkan sebuah global seperti `window.MY_STORE_DATA` dan klien membaca nilai dari global tersebut di `getServerSnapshot`. Tempat penyimpanan eksternal Anda seharusnya memberikan instruksi mengenai hal ini.
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### I'm getting an error: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### Saya mendapat pesan kesalahan: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
 
-This error means your `getSnapshot` function returns a new object every time it's called, for example:
+Pesan kesalahan ini berarti fungsi `getSnapshot` mengembalikan sebuah objek baru pada setiap pemanggilannya, seperti:
 
 ```js {2-5}
 function getSnapshot() {
-  // 🔴 Do not return always different objects from getSnapshot
+  // 🔴 Jangan selalu mengembalikan objek yang berbeda pada setiap pemanggilan
   return {
     todos: myStore.todos
   };
 }
 ```
 
-React will re-render the component if `getSnapshot` return value is different from the last time. This is why, if you always return a different value, you will enter an infinite loop and get this error.
+React akan me-*render* ulang sebuah komponen jika `getSnapshot` mengembalikan nilai yang berbeda dari sebelumnya. Ini mengapa, jika Anda selalu mengembalikan nilai yang berbeda, Anda akan melihat pengulangan tak berhingga dan mendapatkan pesan kesalahan ini.
 
-Your `getSnapshot` object should only return a different object if something has actually changed. If your store contains immutable data, you can return that data directly:
+Objek `getSnapshot` Anda hanya mengembalikan objek yang berbeda jika memang ada yang berubah. Jika tempat penyimpanan Anda mengandung data yang tidak dapat dimutasi, Anda dapat langsung mengembalikan data tersebut:
 
 ```js {2-3}
 function getSnapshot() {
-  // ✅ You can return immutable data
+  // ✅ Anda dapat mengembalikan data yang tidak dapat dimutasi
   return myStore.todos;
 }
 ```
 
-If your store data is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but it shouldn't do this for every single call. Instead, it should store the last calculated snapshot, and return the same snapshot as the last time if the data in the store has not changed. How you determine whether mutable data has changed depends on your mutable store.
+Jika tempat penyimpanan Anda dapat dimutasi, fungsi `getSnapshot` Anda harus mengembalikan *snapshot* yang tidak dapat dimutasi dari data tersebut. Ini berarti fungsi tersebut *harus* membuat objek baru, tetapi tidak pada setiap pemanggilan. Justru, fungsi tersebut sebaiknya menyimpan *snapshot* terakhir dan mengembalikan *snapshot* tersebut jika data belum berubah. Bagaimana Anda menentukan apakah data tersebut sudah berubah atau tidak bergantung kepada tempat penyimpanan Anda.
 
 ---
 
-### My `subscribe` function gets called after every re-render {/*my-subscribe-function-gets-called-after-every-re-render*/}
+### Fungsi `subscribe` saya tidak dipanggil setelah tiap tahap *render* {/*my-subscribe-function-gets-called-after-every-re-render*/}
 
-This `subscribe` function is defined *inside* a component so it is different on every re-render:
+Fungsi `subscribe` ini ditulis *di dalam* komponen sehingga fungsi tersebut selalu berbeda di setiap *render*:
 
 ```js {4-7}
 function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   
-  // 🚩 Always a different function, so React will resubscribe on every re-render
+  // 🚩 Selalu fungsi berbeda sehingga React akan berlangganan ulang setiap render
   function subscribe() {
     // ...
   }
@@ -398,7 +419,7 @@ function ChatIndicator() {
 }
 ```
   
-React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
+React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
 ```js {6-9}
 function ChatIndicator() {
@@ -406,19 +427,19 @@ function ChatIndicator() {
   // ...
 }
 
-// ✅ Always the same function, so React won't need to resubscribe
+// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
 function subscribe() {
   // ...
 }
 ```
 
-Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
+Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk berlangganan ulang hanya jika beberapa argumen berubah:
 
 ```js {4-8}
 function ChatIndicator({ userId }) {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   
-  // ✅ Same function as long as userId doesn't change
+  // ✅ Fungsi yang sama selama userId tidak berubah
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);

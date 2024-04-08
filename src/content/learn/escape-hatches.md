@@ -4,32 +4,32 @@ title: Escape Hatches
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+Beberapa komponen-komponen Anda mungkin membutuhkan kendali dan sinkronisasi dengan sistem di luar React. Misalkan, Anda mungkin ingin memfokuskan sebuah input dengan menggunakan API peramban, memutar dan menjeda sebuah pemutar video yang diimplementasi tanpa React, atau menghubungkan dan mendengarkan pesan-pesan dari sebuah *remote server*. Pada bab ini, Anda akan mempelajari jalan keluar (*escape hatches*) yang membiarkan Anda "melangkah keluar" dari aturan React dan menghubungkannya ke sistem luar. Sebagian besar logika aplikasi dan aliran data Anda sebaiknya tidak bergantung pada fitur-fitur ini.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [Bagaimana cara "mengingat" informasi tanpa harus melakukan *rendering* kembali](/learn/referencing-values-with-refs)
+* [Bagaimana cara mengakses elemen DOM yang dikelola oleh React](/learn/manipulating-the-dom-with-refs)
+* [Bagaimana cara menyinkronkan komponen dengan sistem eksternal](/learn/synchronizing-with-effects)
+* [Bagaimana cara menghapus *Effect* yang tidak perlu dari komponen Anda](/learn/you-might-not-need-an-effect)
+* [Bagaimana sebuah siklus hidup *Effect* berbeda dari komponen](/learn/lifecycle-of-reactive-effects)
+* [Bagaimana mencegah beberapa nilai dari pemanggilan *Effects* kembali](/learn/separating-events-from-effects)
+* [Bagaimana membuat *Effect* Anda berjalan kembali lebih sering](/learn/removing-effect-dependencies)
+* [Bagaimana membagi logika antara komponen](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## Mereferensikan nilai menggunakan refs {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+Ketika Anda ingin sebuah komponen "mengingat" beberapa informasi, tapi Anda tidak ingin informasi tersebut [memicu *render* baru](/learn/render-and-commit), Anda dapat menggunakan *ref*:
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+Sama seperti *state*, *refs* disimpan oleh React diantara pe-*render*-an ulang. Namun, mengatur *state* menyebabkan komponen di-*render* ulang. Mengganti sebuah *ref* tidak menyebabkan itu! Anda dapat mengakses nilai saat ini dari *ref* tersebut melalui properti `ref.current`.
 
 <Sandpack>
 
@@ -41,12 +41,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Anda mengeklik ' + ref.current + ' kali!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Klik saya!
     </button>
   );
 }
@@ -54,17 +54,17 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+*Ref* seperti sebuah kantong rahasia dari komponen Anda yang tidak dilacak oleh React. Misalkan, Anda dapat menggunakan *refs* untuk menyimpan [*timeout IDs*](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [elemen-elemen DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element), dan objek lainnya yang tidak memengaruhi hasil *render* sebuah komponen.
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+Baca **[Mereferensikan Nilai menggunakan Refs](/learn/referencing-values-with-refs)** untuk mempelajari bagaimana menggunakan *refs* untuk mengingat informasi.
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## Manipulasi DOM dengan Refs {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+React secara otomatis memperbarui DOM agar sesuai dengan keluaran *render*, sehingga komponen Anda tidak perlu sering memanipulasinya. Namun, terkadang Anda mungkin perlu mengakses elemen DOM yang dikelola oleh React—misalnya, memberikan fokus pada sebuah simpul (*node*), menggulir ke sana, atau mengukur ukuran dan posisinya. Tidak ada cara bawaan untuk melakukan hal-hal tersebut di React, sehingga Anda memerlukan *ref* ke simpul DOM. Sebagai contoh, mengklik tombol akan memfokuskan input menggunakan sebuah *ref*:
 
 <Sandpack>
 
@@ -82,7 +82,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Focus the input
+        Memfokuskan Input
       </button>
     </>
   );
@@ -93,15 +93,15 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** untuk mempelajari bagaimana cara mengakses elemen DOM yang dikelola oleh React.
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## Menyinkronkan dengan *Effects* {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Beberapa komponen perlu menyinkronkan dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen *non-React* berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk menyinkronkan komponen Anda dengan sistem di luar React.
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+Tekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
 
 <Sandpack>
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+Banyak *Effects* juga melakukan "pembersihan" setelah mereka selesai. Misalkan, sebuah *Effect* yang mengatur koneksi ke *chat server* harus mengembalikan fungsi pembersih (*cleanup function*) yang memberi tahu React bagaimana cara memutuskan koneksi komponen Anda dari *server* tersebut:
 
 <Sandpack>
 
@@ -163,7 +163,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection() {
   // A real implementation would actually connect to the server
   return {
@@ -183,23 +183,23 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+Di mode pengembangan (*development*), React akan segera menjalankan dan membersihkan *Effect* Anda dengan satu kali tambahan. Inilah mengapa Anda melihat `"✅ Connecting..."` tercetak dua kali. Ini memastikan Anda tidak lupa untuk mengimplementasikan fungsi pembersih.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Baca **[Menyinkronkan dengan *Effects*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## Anda mungkin tidak membutuhkan *Effect* {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+*Effects* adalah sebuah jalan keluar dari paradigma React. Mereka membiarkan Anda untuk "keluar" dari React dan menyinkronkan komponen Anda dengan beberapa sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan sebuah *Effect*. Hilangkan *Effects* yang tidak pelu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
+- **Anda tidak perlu menggunakan *Effects* untuk mengubah data saat pe-*render*-an.**
+- **Anda tidak perlu menggunakan *Effects* untuk menangani *events* pengguna.**
 
-For example, you don't need an Effect to adjust some state based on other state:
+Sebagai contoh, Anda tidak perlu menggunakan *Effect* untuk menyesuaikan beberapa *state* berdasarkan *state* lainnya:
 
 ```js {5-9}
 function Form() {
@@ -215,31 +215,31 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+Sebaliknya, lakukan perhitungan sebanyak mungkin saat *render*:
 
 ```js {4-5}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  // ✅ Good: Melakukan perhitungan selama render
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+Namun, anda perlu menggunakan *Effects* untuk menyinkronkannya dengan sistem eksternal.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Baca **[Anda mungkin tidak membutuhkan *Effect*](/learn/you-might-not-need-an-effect)** untuk memplejari bagaimana menghilangkan *Effects* yang tidak perlu.
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## Siklus hidup *effects* yang reaktif {/*lifecycle-of-reactive-effects*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+*Effects* mempunyai siklus hidup yang berbeda dari komponen. Komponen dapat *mount*, memperbarui (*update), or *unmount*. Sebuah *Effect* hanya dapat melakukan dua hal: memulai menyinkronkan sesuatu, dan kemudian berhenti menyinkronkannya. Siklus ini dapat terjadi berkali-kali jika *Effect* anda bergantung pada *props* dan *state* yang berubah setiap saat.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+*Effect* ini bergantung pada nilai prop `roomId`. *Props* adalah *nilai yang reaktif,* yang artinya mereka dapat berubah saat pe-*render*-an ulang. Perhatikan bahwa *Effect* *menyinkronkan ulang* (dan menghubungkan kembali ke *server*) jika `roomId` berubah:
 
 <Sandpack>
 
@@ -281,9 +281,9 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Implementasi yang sebenarnya akan benar-benar terhubung ke server.
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -302,25 +302,25 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+*React* menyediakan aturan *linter* untuk memeriksa apakah Anda telah menetapkan dependensi *Effect* dengan benar. Jika anda lupa untuk menyantumkan `roomId` dalam daftar dependensi dalam contoh di atas, *linter* akan menemukan *bug* secara otomatis.
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+Baca **[Siklus hidup *effects* yang reaktif](/learn/lifecycle-of-reactive-effects)** untuk mempelajari bagaimana siklus hidup *Effect* berbeda dari komponen.
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## Memisahkan *events* dari *Effects* {/*separating-events-from-effects*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi stabil React.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+*Event handlers* hanya berjalan ulang ketika Anda melakukan interaksi yang sama lagi. Tidak seperti *event handlers*, *Effects* menyinkronkan ulang jika nilai apapun yang mereka baca, seperti *props* atau *state*, berbeda dari saat *render* terakhir. Kadang, Anda ingin campuran kedua perilaku tersebut: sebuah *Effect* yang berjalan ulang sebagai respon terhadap beberapa nilai tetapi tidak pada nilai lainnya.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+Semua kode di dalam *Effects* adalah *reactive.* *Effects* tersebut akan berjalan lagi jika beberapa nilai *reactive* yang dibacanya telah berubah karena *render* ulang. Misalkan, *Effect* ini akan menghubungkan kembali ke *chat* jika `roomId` atau `theme` telah berubah:
 
 <Sandpack>
 
@@ -388,14 +388,14 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -424,7 +424,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` yang berubah. Mengganti `theme` seharusnya tidak menghubungkan kembali ke *chat*! Pindahkan pembacaan kode `theme` dari *Effect* anda ke dalam *Effect Event*:
 
 <Sandpack>
 
@@ -521,14 +521,14 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -557,7 +557,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -581,19 +581,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+Kode di dalam *Effect Events* tidak bersifat *reactive*, sehingga mengubah `theme` tidak lagi membuat *Effect* Anda terhubung kembali.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+Baca **[Memisahkan *Events* dari *Effects*](/learn/separating-events-from-effects)** untuk mempelajari bagaimana mencegah beberapa nilai dari memicu ulang *Effects*.
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## Menghapus *Effect dependencies* {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+Ketika Anda menulis sebuah *Effect*, linter akan memverifikasi bahwa Anda telah menyertakan setiap nilai *reactive* (seperti *props* dan *state*) yang *Effect* baca di daftar *Effect dependencies* Anda. Ini memastikan bahwa *Effect* Anda tetap selaras dengan *props* dan *state* terbaru dari komponen Anda. *Dependencies* yang tidak perlu dapat menyebabkan *Effect* Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terhingga. Cara Anda menghapusnya tergantung pada kasusnya.
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+Sebagai contoh, *Effect* ini bergantung pada objek `options` yang dibuat ulang setiap kali Anda mengedit input:
 
 <Sandpack>
 
@@ -647,7 +647,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
   return {
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+Anda tidak ingin *chat* terhubung kembali setiap kali Anda memulai mengetik sebuah pesan di dalam *chat*. Untuk memperbaiki masalah ini, pindahkan pembuatan objek `options` ke dalam *Effect* sehingga *Effect* hanya bergantung pada string `roomId`:
 
 <Sandpack>
 
@@ -721,7 +721,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
   return {
@@ -742,19 +742,19 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+Perhatikan bahwa Anda tidak memulai dengan mengedit daftar *dependency* untuk menghapus `options` *dependency*. Itu akan salah. Sebaliknya, Anda mengubah kode sekitarnya sehingga *dependency*-nya menjadi *tidak perlu.* Anggaplah daftar *dependency* sebagai daftar semua nilai *reactive* yang digunakan oleh kode *Effect* Anda. Anda tidak memilih dengan sengaja apa yang harus dimasukan dalam daftar. Daftar tersebut menjelaskan kode Anda. Untuk mengubah daftar *dependency*, ubahlah kode.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+Baca **[Menghapus *Effect Dependencies*](/learn/removing-effect-dependencies)** untuk mempelajari bagaimana membuat *Effect* Anda berjalan ulang lebih jarang.
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## Menggunakan kembali logika dengan *Hooks* kustom {/*reusing-logic-with-custom-hooks*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+Aplikasi React dibangun dengan *Hooks* bawaan seperti `useState`, `useContext`, dan `useEffect`. Kadang, Anda akan berharap ada *Hook* untuk tujuan yang lebih spesifik: Misalkan, mengambil data, melacak apakah pengguna sedang online, atau menghubungkan ke ruang *chat*. Untuk melakukannya, anda dapat membuat *Hooks* sendiri untuk kebutuhan aplikasi Anda.
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+Pada contoh ini, *hook* kustom `usePointerPosition` melacak posisi kursor, sementara *hook* kustom `useDelayedValue` mengembalikan nilai yang "tertinggal" dari nilai yang Anda lewatkan selama beberapa milidetik. Geser kursor di atas area pratinjau *sandbox* untuk melihat jejak titik yang bergerak mengikuti kursor:
 
 <Sandpack>
 
@@ -797,7 +797,7 @@ function Dot({ position, opacity }) {
 }
 ```
 
-```js usePointerPosition.js
+```js src/usePointerPosition.js
 import { useState, useEffect } from 'react';
 
 export function usePointerPosition() {
@@ -813,7 +813,7 @@ export function usePointerPosition() {
 }
 ```
 
-```js useDelayedValue.js
+```js src/useDelayedValue.js
 import { useState, useEffect } from 'react';
 
 export function useDelayedValue(value, delay) {
@@ -835,14 +835,14 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+Anda dapat membuat *Hooks* kustom, menggabungkannya bersama, mengirim data di antara keduanya, dan menggunakan kembali di antara komponen. Seiring dengan perkembangan aplikasi Anda, Anda akan menulis lebih sedikit *Effects* dengan tangan karena Anda akan mampu menggunakan kembali *Hooks* kustom yang Anda sudah tulis. Terdapat banyak *Hook* kustom yang luar biasa yang dikelola oleh komunitas React.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+Baca **[Menggunakan kembali logika dengan *Hooks* kustom](/learn/reusing-logic-with-custom-hooks)** untuk mempelajari bagaimana membagi logika antara komponen.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Apa selanjutnya? {/*whats-next*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+Pergi ke [Mereferensikan nilai menggunakan refs](/learn/referencing-values-with-refs) untuk memulai membaca bab ini halaman demi halaman!

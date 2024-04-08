@@ -7,7 +7,7 @@ title: renderToStaticNodeStream
 `renderToStaticNodeStream` me-*render* sebuah pohon (*tree*) React yang tidak interaktif ke dalam sebuah [*Node.js Readable Stream*.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToStaticNodeStream(reactNode)
+const stream = renderToStaticNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ## Referensi {/*reference*/}
 
-### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
+### `renderToStaticNodeStream(reactNode, options?)` {/*rendertostaticnodestream*/}
 
 Pada *server*, panggil `renderToStaticNodeStream` untuk mendapatkan sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams).
 
@@ -36,6 +36,8 @@ stream.pipe(response);
 #### Parameter {/*parameters*/}
 
 * `reactNode`: Sebuah *node* React yang ingin anda *render* ke dalam HTML. Misalnya, sebuah elemen JSX seperti `<Page />`.
+* **opsional** `options`: Obyek untuk pe-*render*-an server.
+  * **opsional** `identifierPrefix`: String prefiks yang digunakan reak untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Ini berguna untuk menghindari konflik ketika menggunakan *root* yang berbeda di halaman yang sama.
 
 #### Returns {/*returns*/}
 
@@ -45,9 +47,9 @@ Sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-s
 
 * Keluaran `renderToStaticNodeStream` tidak dapat dihidrasi (*hydrated*).
 
-* *Method* ini akan menunggu semua [*Suspense boundaries*](/reference/react/Suspense) untuk diselesaikan sebelum mengembalikan keluaran apapun.
+* *Method* ini akan menunggu semua [*Suspense boundaries*](/reference/react/Suspense) untuk diselesaikan sebelum mengembalikan keluaran apa pun.
 
-* Sejak React 18, metode ini menyangga semua keluarannya, sehingga tidak memberikan keuntungan *stream* apapun .
+* Sejak React 18, metode ini menyangga semua keluarannya, sehingga tidak memberikan keuntungan *stream* apa pun .
 
 * *Stream* yang dikembalikan merupakan sebuah *byte stream* yang *encoded* dalam *utf-8*. Jika anda membutuhkan sebuah *stream* lain yang di-*encode*, lihatlah ke sebuah proyek seperti [iconv-lite](https://www.npmjs.com/package/iconv-lite), yang memberikan transformasi *stream* untuk *transcoding* teks.
 

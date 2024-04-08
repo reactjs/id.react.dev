@@ -4,7 +4,7 @@ title: Menambahkan Interaktivitas
 
 <Intro>
 
-Beberapa hal di layar berubah mengikuti masukan dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apapun, dan mengubahnya sesuai kebutuhan. Di bab ini, Anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan keluaran yang berbeda seiring berjalannya waktu.
+Beberapa hal di layar berubah mengikuti masukan dari pengguna. Contohnya, mengeklik sebuah galeri gambar bisa mengganti gambar yang sedang aktif. Di React, data yang berubah seiring waktu disebut *state.* Anda dapat menambahkan state ke komponen apa pun, dan mengubahnya sesuai kebutuhan. Di bab ini, Anda akan belajar cara menulis komponen yang dapat menangani interaksi, mengubah state yang dimilikinya, dan menampilkan keluaran yang berbeda seiring berjalannya waktu.
 
 </Intro>
 
@@ -24,7 +24,7 @@ Beberapa hal di layar berubah mengikuti masukan dari pengguna. Contohnya, mengek
 
 React memungkinkan Anda untuk menambakan *event handlers* ke JSX Anda. *Event handlers* adalah fungsi milik Anda yang akan dipanggil sebagai respon terhadap interaksi dari pengguna seperti klik, *hover*, fokus pada masukan form, dan lain-lain.
 
-Komponen bawaan seperti `<button>` hanya mendukung *event* bawaan dari peramban seperti `onClick`. Namun, Anda juga dapat membuat komponen Anda sendiri, dan memberikannya *prop event handler* dengan nama apapun, spesifik terhadap aplikasi Anda.
+Komponen bawaan seperti `<button>` hanya mendukung *event* bawaan dari peramban seperti `onClick`. Namun, Anda juga dapat membuat komponen Anda sendiri, dan memberikannya *prop event handler* dengan nama apa pun, spesifik terhadap aplikasi Anda.
 
 <Sandpack>
 
@@ -134,7 +134,7 @@ export default function Gallery() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -647,7 +647,6 @@ Array adalah tipe object lain yang bersifat *mutable* di Javascript yang bisa An
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -715,7 +714,6 @@ Jika menyalin *array* di kode terasa terlalu ribet, Anda bisa menggunakan *libra
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },

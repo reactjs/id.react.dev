@@ -51,7 +51,7 @@ Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingka
 </PageLayout>
 ```
 
-Seiring berkembangnya proyek Anda, Anda akan memperhatikan bahwa banyak desain Anda bisa dikomposisi dengan menggunakan ulang komponen-komponen yang sudah Anda buat, mempercepatkan perkembangan proyek Anda. Daftar isi kita di atas bisa disertakan pada layar apapun dengan `<TableOfContents />`! Anda bisa memulai proyek Anda dengan cepat menggunakan ribuan komponen-komponen yang dibagi oleh komunitas *open source* React seperti [Chakra UI](https://chakra-ui.com/) dan [Material UI.](https://material-ui.com/)
+Seiring berkembangnya proyek Anda, Anda akan memperhatikan bahwa banyak desain Anda bisa dikomposisi dengan menggunakan ulang komponen-komponen yang sudah Anda buat, mempercepatkan perkembangan proyek Anda. Daftar isi kita di atas bisa disertakan pada layar apa pun dengan `<TableOfContents />`! Anda bisa memulai proyek Anda dengan cepat menggunakan ribuan komponen-komponen yang dibagi oleh komunitas *open source* React seperti [Chakra UI](https://chakra-ui.com/) dan [Material UI.](https://material-ui.com/)
 
 ## Mendefinisikan suatu komponen {/*defining-a-component*/}
 
@@ -114,7 +114,7 @@ return (
 
 <Pitfall>
 
-Tanpa tanda kurung, kode apapun di baris-baris setelah `return` [akan diabaikan](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+Tanpa tanda kurung, kode apa pun di baris-baris setelah `return` [akan diabaikan](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
 </Pitfall>
 
@@ -211,7 +211,7 @@ Ketika suatu komponen anak membutuhkan data dari suatu induk, [operkan data mela
 
 #### Komponen sampai ke bawah {/*components-all-the-way-down*/}
 
-Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat secara otomatis saat Anda memulai proyek baru. Misalnya, jika Anda menggunakan [CodeSandbox](https://codesandbox.io/) atau [Create React App](https://create-react-app.dev/), komponen *root* didefinisikan di `src/App.js`. Jika Anda menggunakan *framework* [Next.js](https://nextjs.org/), komponen *root* didefinisikan di `pages/index.js`. Dalam contoh-contoh berikut, Anda telah mengeksport komponen-komponen *root*.
+Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat secara otomatis saat Anda memulai proyek baru. Misalnya, jika Anda menggunakan [CodeSandbox](https://codesandbox.io/) atau jika Anda menggunakan *framework* [Next.js](https://nextjs.org/), komponen *root* didefinisikan di `pages/index.js`. Dalam contoh-contoh berikut, Anda telah mengeksport komponen-komponen *root*.
 
 Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti Anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
 
@@ -431,7 +431,7 @@ img { margin: 0 10px 10px 0; }
 
 #### Komponen Anda sendiri {/*your-own-component*/}
 
-Tulislah sebuah komponen dari awal. Anda bisa memberikannya nama apapun yang benar dan mengembalikan *markup* apapun. Jika Anda kehabisan ide, Anda bisa tulis sebuah komponen `Congratuliations` yang menampilkan `<h1>Kerja bagus!</h1>`. Jangan lupa untuk dieksport!
+Tulislah sebuah komponen dari awal. Anda bisa memberikannya nama apa pun yang benar dan mengembalikan *markup* apa pun. Jika Anda kehabisan ide, Anda bisa tulis sebuah komponen `Congratuliations` yang menampilkan `<h1>Kerja bagus!</h1>`. Jangan lupa untuk dieksport!
 
 <Sandpack>
 
