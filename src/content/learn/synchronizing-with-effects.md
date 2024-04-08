@@ -32,66 +32,66 @@ Terkadang hal-hal ini tidak cukup. Bayangkan sebuah komponen `ChatRoom` yang har
 
 <Note>
 
-Di sini dan selanjutnya dalam teks ini, kata "Effect" yang dikapitalisasi mengacu kepada definisi khusus React yang dijelaskan di atas, seperti efek samping yang disebabkan oleh proses *render*. Untuk mengacu kepada konsep pemrograman secara keseluruhan, kami akan menggunakan kata "efek samping".
+Di sini dan selanjutnya dalam teks ini, kata "*Effect*" yang dikapitalisasi mengacu kepada definisi khusus React yang dijelaskan di atas, seperti efek samping yang disebabkan oleh proses *render*. Untuk mengacu kepada konsep pemrograman secara keseluruhan, kita akan menggunakan kata "efek samping".
 
 </Note>
 
 
-## You might not need an Effect {/*you-might-not-need-an-effect*/}
+## Anda mungkin tidak membutuhkan *Effect* {/*you-might-not-need-an-effect*/}
 
-**Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+**Jangan terburu-buru menambahkan *Effects* ke dalam komponen Anda.** Perlu diingat bahwa *Effects* umumnya digunakan untuk "melangkah ke luar" dari kode React Anda dan menyinkronkan dengan sistem *eksternal*. Hal ini termasuk API peramban (*browser*), *widget* pihak ketiga, jaringan, dan lainnya. Apabila *Effect* Anda hanya mengatur *state* berdasarkan *state* lain, [Anda mungkin tidak membutuhkan *Effect*.](/learn/you-might-not-need-an-effect)
 
-## How to write an Effect {/*how-to-write-an-effect*/}
+## Cara menulis *Effect* {/*how-to-write-an-effect*/}
 
-To write an Effect, follow these three steps:
+Untuk menulis *Effect*, ikuti tiga langkah berikut:
 
-1. **Declare an Effect.** By default, your Effect will run after every render.
-2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+1. **Deklarasikan Effect.** Secara bawaan, *Effect* Anda akan berjalan setiap *render*.
+2. **Tentukan dependensi dari Effect.** Kebanyakan *Effect* hanya perlu dijalankan ulang *ketika diperlukan*, bukan setiap render. Misalnya, animasi *fade-in* seharusnya hanya dijalankan ketika sebuah komponen muncul. Menghubungkan dan memutuskan koneksi ke ruang obrolan seharusnya hanya terjadi ketika komponen muncul dan menghilang, atau ketika ruang obrolan berubah. Anda akan belajar cara mengontrolnya dengan menentukan *dependensi.*
+3. **Tambahkan pembersihan (*cleanup*) jika diperlukan.** Beberapa *Effect* perlu menentukan cara menghentikan, membatalkan, atau membersihkan apa pun yang sedang dilakukan. Misalnya, "sambungkan koneksi" membutuhkan "lepaskan koneksi", "berlangganan" memerlukan "hentikan langganan", dan "*fetch*" membutuhkan "batal" atau "abaikan". Anda akan belajar cara melakukan hal tersebut dengan mengembalikan *fungsi pembersihan*.
 
-Let's look at each of these steps in detail.
+Mari kita lihat langkah-langkah berikut secara detil.
 
-### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
+### Langkah 1: Deklarasikan Effect {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
+Untuk mendeklarasikan *Effect* di dalam komponen, impor [Hook `useEffect`](/reference/react/useEffect) dari React:
 
 ```js
 import { useEffect } from 'react';
 ```
 
-Then, call it at the top level of your component and put some code inside your Effect:
+Kemudian, panggil Hook tersebut di atas komponen Anda dan isikan *Effect* tersebut dengan kode:
 
 ```js {2-4}
 function MyComponent() {
   useEffect(() => {
-    // Code here will run after *every* render
+    // Kode di dalam blok ini akan dijalankan setelah *setiap* render
   });
   return <div />;
 }
 ```
 
-Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
+Setiap kali setelah komponen Anda di-*render*, React akan memperbarui layar *kemudian* menjalankan kode di dalam `useEffect`. Dengan kata lain, **`useEffect` "menunda" sepotong kode agar tidak berjalan sampai *render* tersebut ditampilkan di layar.**
 
-Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
+Mari kita lihat bagaimana Anda dapat menggunakan *Effect* untuk melakukan sinkronisasi dengan sistem eksternal. Bayangkan sebuah komponen React `<VideoPlayer>`. Akan lebih baik jika kita dapat mengontrol apakah video sedang diputar atau dijeda dengan mengoper *prop* `isPlaying` ke dalamnya:
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
 ```
 
-Your custom `VideoPlayer` component renders the built-in browser [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) tag:
+Komponen `VideoPlayer` kustom Anda me-*render* tag bawaan peramban [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video):
 
 ```js
 function VideoPlayer({ src, isPlaying }) {
-  // TODO: do something with isPlaying
+  // TODO: lakukan sesuatu dengan isPlaying
   return <video src={src} />;
 }
 ```
 
-However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with calls like `play()` and `pause()`.**
+Namun, tag `<video>` pada peramban tidak memiliki *prop* `isPlaying`. Satu-satunya cara untuk mengontrolnya adalah untuk memanggil metode [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) dan [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) dalam elemen DOM secara manual. **Anda perlu menyinkronkan nilai *prop* `isPlaying`, yang memberitahu apakah video _seharusnya_ sedang diputar, dengan panggilan metode seperti `play()` dan `pause()`.**
 
-We'll need to first [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node.
+Pertama-tama, kita perlu [mendapatkan *ref*](/learn/manipulating-the-dom-with-refs) ke simpul DOM `<video>`.
 
-You might be tempted to try to call `play()` or `pause()` during rendering, but that isn't correct:
+Anda mungkin tergoda untuk mencoba memanggil `play()` atau `pause()` saat pe-*render*-an, tapi ini tidak benar:
 
 <Sandpack>
 
@@ -102,9 +102,9 @@ function VideoPlayer({ src, isPlaying }) {
   const ref = useRef(null);
 
   if (isPlaying) {
-    ref.current.play();  // Calling these while rendering isn't allowed.
+    ref.current.play();  // Memanggil ini saat rendering tidak diperbolehlkan.
   } else {
-    ref.current.pause(); // Also, this crashes.
+    ref.current.pause(); // Ini juga akan menyebabkan *crash*.
   }
 
   return <video ref={ref} src={src} loop playsInline />;
@@ -133,11 +133,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The reason this code isn't correct is that it tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM.
+Alasan kode ini tidak benar adalah ia mencoba melakukan sesuati dengan simpul DOM saat proses *render*. Dalam React, [proses render harus merupakan penghitungan murni](/learn/keeping-components-pure) dari JSX dan tidak boleh mengandung efek samping seperti memodifikasi DOM.
 
-Moreover, when `VideoPlayer` is called for the first time, its DOM does not exist yet! There isn't a DOM node yet to call `play()` or `pause()` on, because React doesn't know what DOM to create until you return the JSX.
+Lebih dari itu, ketika `VideoPlayer` dipanggil pertama kalinya, DOM belum tersedia! Belum ada simpul DOM untuk memanggil `play()` atau `pause()`, karena React tidak mengetahui DOM apa yang perlu dibuat sampai Anda mengembalikan JSX.
 
-The solution here is to **wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+Solusinya adalah **membungkus efek samping dengan `useEffect` memindahkannya keluar dari penghitungan proses *render*:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -157,11 +157,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-By wrapping the DOM update in an Effect, you let React update the screen first. Then your Effect runs.
+Dengan membungkus pembaruan DOM di dalam *Effect*, Anda memungkinkan React memperbarui layar terlebih dahulu. Kemudian *Effect* Anda dijalankan.
 
-When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your Effect. Finally, your Effect will call `play()` or `pause()` depending on the value of `isPlaying`.
+Ketika komponen `VideoPlayer` Anda di-*render* (baik pertama kalinya atau ketika di-*render* ulang), beberapa hal akan terjadi. Pertama, React akan memperbarui layar, memastikan tag `<video>` berada di dalam DOM dengan *props* yang benar. Kemudian React akan menjalankan *Effect* Anda. Pada akhirnya, *Effect* Anda akan memanggil `play()` atau `pause()` berdasarkan nilai dari `isPlaying`.
 
-Press Play/Pause multiple times and see how the video player stays synchronized to the `isPlaying` value:
+Coba tekan Putar/Jeda beberapa kali dan lihat bagaimana pemutar video tetap tersinkron dengan nilai `isPlaying`:
 
 <Sandpack>
 
@@ -187,7 +187,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Jeda' : 'Putar'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -205,13 +205,13 @@ video { width: 250px; }
 
 </Sandpack>
 
-In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+Dalam contoh ini, "sistem eksternal" yang Anda sinkronisasi ke *state* React adalah API media peramban. Anda dapat menggunakan pendekatan sama untuk membungkus kode lama di luar React (seperti *plugin* jQuery) ke komponen deklaratif React.
 
-Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
+Perlu dicatat bahwa mengontrol pemutar video jauh lebih kompleks dalam praktiknya. Memanggil `play()` bisa gagal, pengguna dapat memutar atau menjeda menggunakan kontrol peramban bawaan, dan sebagainya. Contoh ini sangat disederhanakan dan tidak lengkap.
 
 <Pitfall>
 
-By default, Effects run after *every* render. This is why code like this will **produce an infinite loop:**
+Secara bawaan, *Effects* dijalankan setelah *setiap* render. Inilah sebabnya mengapa kode seperti ini akan **menghasilkan perulangan tak terbatas (*infinite loop*):**
 
 ```js
 const [count, setCount] = useState(0);
@@ -220,13 +220,15 @@ useEffect(() => {
 });
 ```
 
-Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an Effect is like plugging a power outlet into itself. The Effect runs, it sets the state, which causes a re-render, which causes the Effect to run, it sets the state again, this causes another re-render, and so on.
+*Effects* dijalankan sebagai *hasil* rendering. Mengatur *state* *memicu* rendering. Mengatur *state* secara langsung dalam suatu *Effect*, seperti mencolokkan stopkontak ke stopkontak itu sendiri. *Effect* berjalan, mengatur *state*, yang menyebabkan *render* ulang, yang menyebabkan *Effect* berjalan, mengatur *state* lagi, yang menyebabkan *render* ulang, dan seterusnya.
 
-Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+Perlu diingat bahwa *Effects* umumnya digunakan untuk "melangkah ke luar" dari kode React Anda dan menyinkronkan dengan sistem *eksternal*. Hal ini termasuk API peramban (*browser*), *widget* pihak ketiga, jaringan, dan lainnya. Apabila *Effect* Anda hanya mengatur *state* berdasarkan *state* lain, [Anda mungkin tidak membutuhkan *Effect*.](/learn/you-might-not-need-an-effect)
+
+*Effects* biasanya *hanya* digunakan untuk menyinkronkan komponen Anda dengan sistem *eksternal*. Jika tidak ada sistem eksternal dan Anda hanya ingin mengatur *state* berdasarkan *state* lain, [Anda mungkin tidak membutuhkan *Effect*.](/learn/you-might-not-need-an-effect)
 
 </Pitfall>
 
-### Step 2: Specify the Effect dependencies {/*step-2-specify-the-effect-dependencies*/}
+### Langkah 2: Tentukan dependensi dari *Effect* {/*step-2-specify-the-effect-dependencies*/}
 
 By default, Effects run after *every* render. Often, this is **not what you want:**
 
@@ -461,7 +463,7 @@ Omitting always-stable dependencies only works when the linter can "see" that th
 
 </DeepDive>
 
-### Step 3: Add cleanup if needed {/*step-3-add-cleanup-if-needed*/}
+### Langkah 3: Tambahkan pembersihan jika diperlukan {/*step-3-add-cleanup-if-needed*/}
 
 Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
 
