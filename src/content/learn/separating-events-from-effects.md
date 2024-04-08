@@ -4,30 +4,30 @@ title: 'Membedakan Event dengan Effect'
 
 <Intro>
 
-*Event handler* hanya akan tereksekusi ketika kita melakukan interaksi tertentu. Berbeda dengan *event handler*, Effect akan tereksekusi ulang jika nilai yang ada di *dependency array Effect* berbeda/berubah dari nilai sebelumnya. Kadang kita juga ingin memanfaatkan keduanya: Effect yang tereksekusi ketika beberapa nilai berubah, tetapi tidak pada yang lain. Halaman ini akan mengajari Anda cara melakukannya.
+*Event handler* hanya akan dijalankan ulang ketika kita melakukan interaksi yang sama kembali. Berbeda dengan *event handler*, *Effect* akan disinkronisasi ulang jika beberapa nilai yang dibaca,seperti *prop* atau variabel *state*, berbeda dari apa yang ada pada *render* sebelumnya. Terkadang Anda juga ingin mencampur perilaku keduanya: Sebuah *Effect* yang dijalankan ulang menanggapi beberapa nilai tertentu tapi tidak pada yang lainnya. Halaman ini akan mengajari Anda cara melakukannya.
 
 </Intro>
 
 <YouWillLearn>
 
-- Cara menentukan kapan menggunakan *event handler* atau Effect
+- Cara memilih antara *event handler* dan *Effect*
 - Mengapa Effect bersifat reaktif, dan event handler tidak
 - Bagaimana cara kita membuat beberapa bagian dari kode Effect agar tidak reaktif
-- Apa yang dimaksud Effect Event, dan bagaimana cara kita menggunakannya di Effect
-- Cara membaca nilai *props* dan *state* dari Effect menggunakan Effect Event
+- Apa yang dimaksud *Effect Event*, dan bagaimana untuk mengeluarkan dari *Effect* Anda
+- Bagaimana cara membaca nilai *props* dan *state terbaru dari *Effects* menggunakan *Effect Event*
 
 </YouWillLearn>
 
 ## Memilih antara *event handler* atau Effect {/*choosing-between-event-handlers-and-effects*/}
 
-Mari kita mulai dengan merangkum perbedaan antara *event handler* dan Effect.
+Pertama, mari kita rangkum perbedaan antara *event handler* dan *Effects*.
 
-Sekarang, bayangkan bahwa kita ingin menerapkan suatu komponen untuk ruang obrolan (*chatroom*). Persyaratan utamanya meliputi:
+Bayangkan Anda sedang menerapkan suatu komponen ruang obrolan (*chatroom*). Persyaratan Anda terlihat seperti ini:
 
-1. Komponen harus terhubung secara otomatis ke ruang obrolan yang sudah dipilih.
-1. Ketika tombol 'Kirim' ditekan, kita harus dapat mengirimkan pesan ke dalam ruang obrolan.
+1. Komponen Anda harus terhubung secara otomatis ke ruang obrolan yang terpilih.
+1. Ketika Anda menekan tombol 'Kirim, itu harus mengirimkan pesan ke dalam obrolan.
 
-Setelah kita mengimplementasikan kode untuk kebutuhan tersebut, mungkin akan timbul kebingungan dalam memilih tempat untuk meletakkannya. Apakah kita perlu menggunakan *event handler* atau malah menggunakan Effect? Setiap kali kita menghadapi pertanyaan seperti ini, penting untuk mempertimbangkan [*mengapa* kode tersebut perlu dijalankan](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events).
+Katakanlah Anda telah mengimplementasikan kode tersebut, tapi Anda tidak yakin dimana meletakannya. Apakah Anda perlu menggunakan *event handler* atau *Effects*? Setiap kali Anda butuh jawaban dari pertanyaan ini, pertimbangkan [*mengapa* kode tersebut perlu dijalankan](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events).
 
 ### *Event handler* tereksekusi karena interaksi tertentu {/*event-handlers-run-in-response-to-specific-interactions*/}
 
