@@ -493,7 +493,7 @@ Secara umum, Anda [tidak ingin](/learn/referencing-values-with-refs#best-practic
 
 React mengatur nilai `ref.current` selama commit. Sebelum memperbarui DOM, React mengatur nilai `ref.current` yang terpengaruh menjadi `null`. Setelah memperbarui DOM, React segera mengatur nilai `ref.current` tersebut menjadi simpul DOM yang sesuai.
 
-Biasanya, Anda akan mengakses ref dari *event handler*. Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada cara tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
+**Biasanya, Anda akan mengakses ref dari *event handler*.** Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada *event* tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
 
 <DeepDive>
 
@@ -1098,7 +1098,7 @@ Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah simpul DOM
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
 
@@ -1114,7 +1114,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton() {
   return (
     <button>
@@ -1124,7 +1124,7 @@ export default function SearchButton() {
 }
 ```
 
-```js SearchInput.js
+```js src/SearchInput.js
 export default function SearchInput() {
   return (
     <input
@@ -1146,7 +1146,7 @@ Anda perlu menambahkan prop `onClick` ke `SearchButton`, dan membuat `SearchButt
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useRef } from 'react';
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
@@ -1166,7 +1166,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton({ onClick }) {
   return (
     <button onClick={onClick}>
@@ -1176,7 +1176,7 @@ export default function SearchButton({ onClick }) {
 }
 ```
 
-```js SearchInput.js
+```js src/SearchInput.js
 import { forwardRef } from 'react';
 
 export default forwardRef(

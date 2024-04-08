@@ -69,7 +69,7 @@ Pada contoh di bawah ini, komponen `Albums` *ditangguhkan* saat mengambil daftar
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -94,7 +94,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 
@@ -114,7 +114,7 @@ function Loading() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -162,7 +162,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika _caching_ akan berada di dalam _framework_.
@@ -254,6 +254,7 @@ async function getAlbums() {
 
 - Pengambilan data dengan *framework* yang mendukung Suspense seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen *lazy-loading* dengan [`lazy`](/reference/react/lazy)
+- Membaca nilai dari Promise dengan [`use`](/reference/react/use)
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
@@ -301,7 +302,7 @@ Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. 
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -326,7 +327,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -351,7 +352,7 @@ function Loading() {
 }
 ```
 
-```js Panel.js
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -361,7 +362,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -405,7 +406,7 @@ function use(promise) {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -453,7 +454,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.
@@ -626,7 +627,7 @@ Urutan pemuatannya adalah sebagai berikut:
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -651,7 +652,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -688,7 +689,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Panel.js
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -698,7 +699,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -743,7 +744,7 @@ function use(promise) {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -791,7 +792,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // *framework* yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam *framework*.
@@ -946,7 +947,7 @@ Dalam contoh ini, komponen `SearchResults` ditangguhkan saat sedang mengambil ha
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -966,7 +967,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1020,7 +1021,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.
@@ -1171,7 +1172,7 @@ Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu u
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -1195,7 +1196,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1249,7 +1250,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.
@@ -1377,7 +1378,7 @@ Ketika sebuah komponen ditangguhkan, batasan Suspense induk terdekat akan berali
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -1425,7 +1426,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1440,7 +1441,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1450,7 +1451,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -1481,7 +1482,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1529,7 +1530,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1573,7 +1574,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1583,7 +1584,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.
@@ -1762,7 +1763,7 @@ Dengan begitu, React diberi tahu bahwa transisi *state* tidak mendesak, dan lebi
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, startTransition, useState } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -1812,7 +1813,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1827,7 +1828,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1837,7 +1838,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -1868,7 +1869,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1916,7 +1917,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -1960,7 +1961,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1970,7 +1971,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.
@@ -2119,7 +2120,7 @@ Transisi tidak menunggu *semua* konten dimuat. Transisi hanya menunggu cukup lam
 
 <Note>
 
-Router yang mendukung suspense diharapkan untuk membungkus pembaruan navigasi ke dalam transisi secara bawaan.
+Router yang mendukung Suspense diharapkan untuk membungkus pembaruan navigasi ke dalam transisi secara bawaan.
 
 </Note>
 
@@ -2146,7 +2147,7 @@ Pada contoh di atas, setelah Anda mengeklik tombol, tidak ada indikasi visual ba
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -2197,7 +2198,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children, isPending }) {
   return (
     <div className="layout">
@@ -2214,7 +2215,7 @@ export default function Layout({ children, isPending }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -2224,7 +2225,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -2255,7 +2256,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -2303,7 +2304,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -2347,7 +2348,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2357,7 +2358,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data tergantung pada
 // _framework_ yang Anda gunakan bersama dengan Suspense.
 // Biasanya, logika caching akan berada di dalam _framework_.

@@ -177,7 +177,7 @@ Ubah temanya. **Berkat `useMemo`, tetap cepat meskipun ada pelambatan buatan!** 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -219,7 +219,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -246,7 +246,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -307,7 +307,7 @@ Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat! Hal ini karen
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -349,7 +349,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -372,7 +372,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -427,7 +427,7 @@ Namun, ini adalah kode yang sama **dengan pelambat buatan dihapus.** Apakah tida
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -469,7 +469,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -491,7 +491,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -645,12 +645,13 @@ Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya,
 
 Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
-Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar. 
+Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar.
 
 Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** Pe-*render*-an ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
+
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -691,7 +692,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import List from './List.js';
 import { filterTodos } from './utils.js'
@@ -710,7 +711,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -737,7 +738,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -792,7 +793,7 @@ Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat sekarang! Hal 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -833,7 +834,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -848,7 +849,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -875,7 +876,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -924,7 +925,7 @@ Namun, ini adalah kode yang sama **tanpa pelambatan buatan.** Apakah tidak adany
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -965,7 +966,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -979,7 +980,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 function List({ items }) {
@@ -1000,7 +1001,7 @@ function List({ items }) {
 export default memo(List);
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {

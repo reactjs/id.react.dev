@@ -32,6 +32,14 @@ Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](
 
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
+<Canary>
+
+Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *canary* can *experimental* React. Dalam versi stabil React, `formAction` bekerja hanya sebagai [komponen peramban HTML bawaan](/reference/react-dom/components#all-html-components). Pelajari tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
+
+</Canary>
+
+[`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah *string* atau fungsi. Menimpa `<form action>` induk untuk `type="submit"` dan `type="image"`. Ketika URL dioper ke `action` form akan memiliki perilaku sebagai form standar HTML. Ketika fungsi dioper ke `formAction` fungsi akan menangani kiriman form. Lihat [`<form action>`](/reference/react-dom/components/form#props).
+
 Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 
 * [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): Sebuah boolean. Untuk masukan checkbox atau tombol radio, mengontrol apakah itu dipilih.

@@ -13,7 +13,7 @@ title: renderToString
 `renderToString` me-*render* pohon (*tree*) React menjadi *string* HTML.
 
 ```js
-const html = renderToString(reactNode)
+const html = renderToString(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const html = renderToString(reactNode)
 
 ## Referensi {/*reference*/}
 
-### `renderToString(reactNode)` {/*rendertostring*/}
+### `renderToString(reactNode, options?)` {/*rendertostring*/}
 
 Di server, panggil `renderToString` untuk me-*render* aplikasi Anda ke HTML.
 
@@ -43,6 +43,9 @@ Di klien, panggil [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) untuk
 * `reactNode`: Node React yang ingin Anda render ke HTML. Contohnya, sebuah elemen JSX seperti `<App />`
 
 #### Kembalian {/*returns*/}
+
+* **opsional** `options`: Obyek untuk pe-*render*-an server.
+  * **opsional** `identifierPrefix`: String prefiks yang digunakan reak untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Ini berguna untuk menghindari konflik ketika menggunakan *root* yang berbeda di halaman yang sama. Harus merupakan prefiks yang sama yang dioper ke [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot#parameters)
 
 Sebuah *string* HTML.
 

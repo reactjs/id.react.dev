@@ -299,7 +299,7 @@ export function Footer() {
             Menambahkan Interaktivitas
           </FooterLink>
           <FooterLink href="/learn/managing-state">Mengelola State</FooterLink>
-          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
+          <FooterLink href="/learn/escape-hatches">Jalan Keluar</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
@@ -333,7 +333,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Persyaratan
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
               aria-label="React di Facebook"
               href="https://www.facebook.com/react"

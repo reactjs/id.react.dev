@@ -30,6 +30,20 @@ Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `va
 
 ---
 
+## Komponen Sumber Daya dan Metadata {/*resource-and-metadata-components*/}
+
+Komponen bawaan peramban ini memungkinkan Anda memuat sumber daya external atau menyematkan metadata ke dokumen:
+
+* [`<link>`](/reference/react-dom/components/link)
+* [`<meta>`](/reference/react-dom/components/meta)
+* [`<script>`](/reference/react-dom/components/script)
+* [`<style>`](/reference/react-dom/components/style)
+* [`<title>`](/reference/react-dom/components/title)
+
+Komponen ini memiliki perilaku khusus di React karena React dapat merender mereka ke *head* sebuah dokumen, menangguhkan ketika sumber daya sedang dimuat, dan melakukan hal lainnya yang dideskripsikan oleh halaman yang direferensikan komponen tersebut.
+
+---
+
 ## Semua komponen HTML {/*all-html-components*/}
 
 React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 

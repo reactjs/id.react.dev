@@ -75,7 +75,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
@@ -150,7 +150,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
@@ -242,7 +242,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
@@ -846,7 +846,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
@@ -926,7 +926,7 @@ function ChatRoom() {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, []); // ✅ Semua dependensi dideklrasikan
@@ -1023,7 +1023,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   return {
@@ -1335,7 +1335,7 @@ export default function App() {
 }
 ```
 
-```js animation.js
+```js src/animation.js
 export class FadeInAnimation {
   constructor(node) {
     this.node = node;
@@ -1466,7 +1466,7 @@ export default function App() {
 }
 ```
 
-```js animation.js
+```js src/animation.js
 export class FadeInAnimation {
   constructor(node) {
     this.node = node;
@@ -1523,7 +1523,7 @@ Ada lebih dari satu cara untuk memperbaikinya, tetapi pada akhirnya Anda ingin m
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1567,7 +1567,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1582,7 +1582,7 @@ export default function ChatRoom({ options }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -1617,7 +1617,7 @@ Perbaikan yang paling tidak invasif adalah dengan membaca `roomId` dan `serverUr
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1661,7 +1661,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1680,7 +1680,7 @@ export default function ChatRoom({ options }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -1711,7 +1711,7 @@ Akan lebih baik lagi jika mengganti *prop* objek `options` dengan *prop* `roomId
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1753,7 +1753,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1771,7 +1771,7 @@ export default function ChatRoom({ roomId, serverUrl }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -1840,7 +1840,7 @@ Fungsi lain dari fungsi ini hanya ada untuk mengoper beberapa *state* ke metode 
 }
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 import {
@@ -1906,7 +1906,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
@@ -1922,7 +1922,7 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createEncryptedConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -2006,7 +2006,7 @@ export function createUnencryptedConnection({ serverUrl, roomId }) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -2135,7 +2135,7 @@ Hasilnya, obrolan akan tersambung kembali hanya jika ada sesuatu yang berarti (`
 }
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -2188,7 +2188,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
 import {
@@ -2222,7 +2222,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createEncryptedConnection({ serverUrl, roomId }) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server
   if (typeof serverUrl !== 'string') {
@@ -2306,7 +2306,7 @@ export function createUnencryptedConnection({ serverUrl, roomId }) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 

@@ -32,7 +32,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Parameter {/*parameters*/}
 
-* `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk me-*render* komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian me-*render* nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
+* `load`: Sebuah fungsi yang mengembalikan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). React tidak akan memanggil `load` sampai pertama kali Anda mencoba untuk me-*render* komponen yang dikembalikan. Setelah React pertama kali memanggil `load`, React akan menunggu sampai komponen itu selesai, dan kemudian me-*render* `.default` dari nilai yang telah diselesaikan sebagai komponen React. Baik *Promise* yang dikembalikan maupun nilai yang diselesaikan dari *Promise* akan dicache, sehingga React tidak akan memanggil `load` lebih dari satu kali. Jika *Promise* menolak (`reject`), React akan melempar (`throw`) alasan penolakan ke *Error Boundary* terdekat untuk ditangani.
 
 #### Kembalian {/*returns*/}
 
@@ -48,7 +48,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Kembalian {/*load-returns*/}
 
-Anda perlu mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). Pada akhirnya, komponen ini harus diselesaikan ke tipe komponen React yang valid, seperti sebuah fungsi, [`memo`](/reference/react/memo), atau [`forwardRef`](/reference/react/forwardRef) komponen.
+Anda perlu mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau *thenable* lain (sebuah objek yang mirip dengan *Promise* dan memiliki metode `then`). Pada akhirnya, komponen ini harus diselesaikan ke obyek yang properti `default`-nya adalah sebuah tipe komponen React yang valid, seperti sebuah fungsi, [`memo`](/reference/react/memo), atau [`forwardRef`](/reference/react/forwardRef) komponen.
 
 ---
 
@@ -70,7 +70,7 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-Kode ini bergantung pada [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) yang mungkin memerlukan dukungan dari *bundler* atau *framework* yang Anda gunakan.
+Kode ini bergantung pada [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) yang mungkin memerlukan dukungan dari *bundler* atau *framework* yang Anda gunakan. Menggunakan pola ini memiliki syarat komponen *lazy* yang Anda impor harus diekspor sebagai ekspor *default*.
 
 Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu menentukan apa yang harus ditampilkan ketika dimuat. Anda dapat melakukan ini dengan membungkus komponen *lazy* atau salah satu induknya ke dalam [`<Suspense>`](/reference/react/Suspense):
 
@@ -85,7 +85,7 @@ Pada contoh ini, kode untuk `MarkdownPreview` tidak akan dimuat hingga Anda menc
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, Suspense, lazy } from 'react';
 import Loading from './Loading.js';
 
@@ -120,13 +120,13 @@ function delayForDemo(promise) {
 }
 ```
 
-```js Loading.js
+```js src/Loading.js
 export default function Loading() {
   return <p><i>Sedang memuat...</i></p>;
 }
 ```
 
-```js MarkdownPreview.js
+```js src/MarkdownPreview.js
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
