@@ -230,12 +230,12 @@ Perlu diingat bahwa *Effects* umumnya digunakan untuk "melangkah ke luar" dari k
 
 ### Langkah 2: Tentukan dependensi dari *Effect* {/*step-2-specify-the-effect-dependencies*/}
 
-By default, Effects run after *every* render. Often, this is **not what you want:**
+Secara bawaan, *Effects* berjalan setelah *setiap* *render*. Seringkali, ini **bukan yang Anda inginkan:**
 
-- Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
-- Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
+- Terkadang, lambat. Sinkronisasi dengan sistem eksternal tidak selalu instan, jadi Anda mungkin ingin melewatkannya kecuali jika diperlukan. Misalnya, Anda tidak ingin menyambung kembali ke server obrolan pada setiap penekanan papan ketik.
+- Terkadang, tidak benar. Misalnya, Anda tidak ingin memicu animasi *fade-in* komponen pada setiap penekanan papan ketik. Animasi seharusnya hanya diputar satu kali ketika komponen muncul untuk pertama kalinya.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing causes the Effect to re-run:
+Untuk mendemonstrasikan masalah ini, berikut adalah contoh sebelumnya dengan beberapa panggilan `console.log` dan input teks yang memperbarui *state* komponen induk. Perhatikan bagaimana pengetikan menyebabkan *Effect* dijalankan kembali:
 
 <Sandpack>
 
@@ -247,10 +247,10 @@ function VideoPlayer({ src, isPlaying }) {
 
   useEffect(() => {
     if (isPlaying) {
-      console.log('Calling video.play()');
+      console.log('Memanggil video.play()');
       ref.current.play();
     } else {
-      console.log('Calling video.pause()');
+      console.log('Memanggil video.pause()');
       ref.current.pause();
     }
   });
@@ -265,7 +265,7 @@ export default function App() {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Jeda' : 'Putar'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -283,7 +283,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-You can tell React to **skip unnecessarily re-running the Effect** by specifying an array of *dependencies* as the second argument to the `useEffect` call. Start by adding an empty `[]` array to the above example on line 14:
+Anda dapat memberi tahu React untuk **melewatkan menjalankan ulang *Effect* yang tidak perlu** dengan menspesifikasikan senarai *dependencies* sebagai argumen kedua pada pemanggilan `useEffect`. Mulai dengan menambahkan senarai kosong `[]` ke dalam contoh di atas pada baris 14:
 
 ```js {3}
   useEffect(() => {
@@ -291,7 +291,7 @@ You can tell React to **skip unnecessarily re-running the Effect** by specifying
   }, []);
 ```
 
-You should see an error saying `React Hook useEffect has a missing dependency: 'isPlaying'`:
+Anda akan melihat *error* yang mengatakan `React Hook useEffect has a missing dependency: 'isPlaying'`:
 
 <Sandpack>
 
@@ -303,10 +303,10 @@ function VideoPlayer({ src, isPlaying }) {
 
   useEffect(() => {
     if (isPlaying) {
-      console.log('Calling video.play()');
+      console.log('Memanggil video.play()');
       ref.current.play();
     } else {
-      console.log('Calling video.pause()');
+      console.log('Memanggil video.pause()');
       ref.current.pause();
     }
   }, []); // This causes an error
@@ -321,7 +321,7 @@ export default function App() {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Jeda' : 'Putar'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -339,19 +339,19 @@ video { width: 250px; }
 
 </Sandpack>
 
-The problem is that the code inside of your Effect *depends on* the `isPlaying` prop to decide what to do, but this dependency was not explicitly declared. To fix this issue, add `isPlaying` to the dependency array:
+Masalahnya adalah kode di dalam Effect Anda *tergantung pada* *prop* `isPlaying` untuk memutuskan apa yang harus dilakukan, tetapi ketergantungan ini tidak dideklarasikan secara eksplisit. Untuk memperbaiki masalah ini, tambahkan `isPlaying` ke dalam senarai dependensi:
 
 ```js {2,7}
   useEffect(() => {
-    if (isPlaying) { // It's used here...
+    if (isPlaying) { // Digunakan di sini...
       // ...
     } else {
       // ...
     }
-  }, [isPlaying]); // ...so it must be declared here!
+  }, [isPlaying]); // ...jadi harus dideklarasikan di sini!
 ```
 
-Now all dependencies are declared, so there is no error. Specifying `[isPlaying]` as the dependency array tells React that it should skip re-running your Effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the Effect to re-run, but pressing Play/Pause does:
+Sekarang semua dependensi dideklarasikan, jadi tidak ada *error*. Menentukan `[isPlaying]` sebagai senarai dependensi memberi tahu React ia harus melewati menjalankan ulang *Effect* Anda apabila `isPlaying` sama seperti saat *render* sebelumnya. Dengan perubahan ini, mengetik pada input tidak menyebabkan *Effect* dijalankan ulang, tapi menekan Putar/Jeda akan menyebabkannya:
 
 <Sandpack>
 
@@ -363,10 +363,10 @@ function VideoPlayer({ src, isPlaying }) {
 
   useEffect(() => {
     if (isPlaying) {
-      console.log('Calling video.play()');
+      console.log('Memanggil video.play()');
       ref.current.play();
     } else {
-      console.log('Calling video.pause()');
+      console.log('Memanggil video.pause()');
       ref.current.pause();
     }
   }, [isPlaying]);
@@ -381,7 +381,7 @@ export default function App() {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Jeda' : 'Putar'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -399,37 +399,37 @@ video { width: 250px; }
 
 </Sandpack>
 
-The dependency array can contain multiple dependencies. React will only skip re-running the Effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` reference](/reference/react/useEffect#reference) for details.
+Senarai dependensi dapat berisi lebih dari satu dependensi. React hanya akan melewatkan menjalankan ulang *Effect* jika *semua* dependensi yang Anda tentukan memiliki nilai yang sama persis dengan nilai yang mereka miliki saat render sebelumnya. React membandingkan nilai dependensi menggunakan fungsi pembanding [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Lihat [referensi `useEffect`](/reference/react/useEffect#reference) untuk detailnya.
 
-**Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If you don't want some code to re-run, [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
+**Perhatikan bahwa Anda tidak dapat "memilih" dependensi Anda.** Anda akan mendapatkan *lint error* jika dependensi yang Anda tentukan tidak sesuai dengan apa yang diharapkan oleh React berdasarkan kode di dalam *Effect* Anda. Hal ini membantu menangkap banyak *bug* dalam kode Anda. Jika Anda tidak ingin beberapa kode dijalankan ulang, [*edit kode Effect itu sendiri* untuk tidak "membutuhkan" dependensi tersebut.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
 
 <Pitfall>
 
-The behaviors without the dependency array and with an *empty* `[]` dependency array are different:
+Perilaku tanpa senarai dependensi dan dengan senarai dependensi *kosong* `[]` berbeda:
 
 ```js {3,7,11}
 useEffect(() => {
-  // This runs after every render
+  // Ini dijalankan setiap render
 });
 
 useEffect(() => {
-  // This runs only on mount (when the component appears)
+  // Ini hanya dijalankan setiap pemasangan (ketika komponen ditampilkan)
 }, []);
 
 useEffect(() => {
-  // This runs on mount *and also* if either a or b have changed since the last render
+  // Ini dijalankan setiap pemasangan *dan juga* ketika a atau b telah berubah sejak render sebelumnya
 }, [a, b]);
 ```
 
-We'll take a close look at what "mount" means in the next step.
+Kita akan mencermati secara dekat, apa arti "pemasangan" dalam langkah berikutnya.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why was the ref omitted from the dependency array? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
+#### Mengapa ref dihilangkan dari senarai dependensi? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
 
-This Effect uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
+*Effect* ini menggunakan `ref` *dan* `isPlaying`, tapi hanya `isPlaying` yang dideklarasikan sebagai dependensi:
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -443,7 +443,7 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying]);
 ```
 
-This is because the `ref` object has a *stable identity:* React guarantees [you'll always get the same object](/reference/react/useRef#returns) from the same `useRef` call on every render. It never changes, so it will never by itself cause the Effect to re-run. Therefore, it does not matter whether you include it or not. Including it is fine too:
+Hal ini dikarenakan objek `ref` memiliki *identitas yang stabil:* React menjamin [Anda akan selalu mendapatkan objek yang sama](/reference/react/useRef#returns) dari pemanggilan `useRef` yang sama pada setiap render. Objek tersebut tidak pernah berubah, sehingga tidak akan pernah dengan sendirinya menyebabkan *Effect* dijalankan ulang. Oleh karena itu, tidak masalah apakah Anda menyertakannya atau tidak. Memasukkannya juga tidak masalah:
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -457,9 +457,9 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying, ref]);
 ```
 
-The [`set` functions](/reference/react/useState#setstate) returned by `useState` also have stable identity, so you will often see them omitted from the dependencies too. If the linter lets you omit a dependency without errors, it is safe to do.
+[Fungsi `set`](/reference/react/useState#setstate) yang dikembalikan oleh `useState` juga memiliki identitas yang stabil, sehingga Anda akan sering melihat fungsi ini dihilangkan dari dependensi. Jika *linter* mengizinkan Anda menghilangkan sebuah dependensi tanpa kesalahan, maka hal ini aman untuk dilakukan.
 
-Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
+Menghilangkan dependensi yang selalu stabil hanya berfungsi ketika linter dapat "melihat" bahwa objek tersebut stabil. Sebagai contoh, jika `ref` dioper dari komponen induk, Anda harus menspesifikasikannya dalam senarai dependensi. However, this is good because you can't know whether the parent component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
 
 </DeepDive>
 
