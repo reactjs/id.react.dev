@@ -730,12 +730,12 @@ Dalam mode pengembangan, `logVisit` akan dipanggil dua kali untuk setiap URL, se
 
 Untuk men-debug *event* analitik yang Anda kirimkan, Anda bisa men-*deploy* aplikasi Anda ke lingkungan *staging* (yang berjalan dalam mode produksi) atau untuk sementara tidak menggunakan [Strict Mode](/reference/react/StrictMode) dan pengecekan ulang khusus pengembangannya. Anda juga dapat mengirimkan analitik dari *event handler* perubahan *route*, bukan dari *Effects*. Untuk analitik yang lebih tepat, [*intersection observers*](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) dapat membantu melacak komponen mana yang ada di tampilan layar dan berapa lama komponen tersebut tetap terlihat.
 
-### Not an Effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
+### Bukan *Effect*: Menginisialisasi aplikasi {/*not-an-effect-initializing-the-application*/}
 
-Some logic should only run once when the application starts. You can put it outside your components:
+Beberapa logika seharusnya hanya berjalan sekali ketika aplikasi dijalankan. Anda dapat meletakkannya di luar komponen Anda:
 
 ```js {2-3}
-if (typeof window !== 'undefined') { // Check if we're running in the browser.
+if (typeof window !== 'undefined') { // Periksa apakah kita berjalan di browser.
   checkAuthToken();
   loadDataFromLocalStorage();
 }
@@ -745,37 +745,37 @@ function App() {
 }
 ```
 
-This guarantees that such logic only runs once after the browser loads the page.
+Hal ini menjamin bahwa logika tersebut hanya berjalan satu kali setelah browser memuat halaman.
 
-### Not an Effect: Buying a product {/*not-an-effect-buying-a-product*/}
+### Bukan *Effect*: Membeli produk {/*not-an-effect-buying-a-product*/}
 
-Sometimes, even if you write a cleanup function, there's no way to prevent user-visible consequences of running the Effect twice. For example, maybe your Effect sends a POST request like buying a product:
+Terkadang, meskipun Anda menulis fungsi pembersihan, tidak ada cara untuk mencegah konsekuensi yang terlihat oleh pengguna dari menjalankan *Effect* dua kali. Misalnya, mungkin *Effect* Anda mengirimkan *request* POST seperti membeli produk:
 
 ```js {2-3}
 useEffect(() => {
-  // 🔴 Wrong: This Effect fires twice in development, exposing a problem in the code.
+  // 🔴 Salah: Effect ini ditembakkan dua kali di pengembangan, mengungkapkan masalah dalam kode.
   fetch('/api/buy', { method: 'POST' });
 }, []);
 ```
 
-You wouldn't want to buy the product twice. However, this is also why you shouldn't put this logic in an Effect. What if the user goes to another page and then presses Back? Your Effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button.
+Anda tidak ingin membeli produk dua kali. Namun, ini juga alasan mengapa Anda tidak boleh meletakkan logika ini di dalam sebuah *Effect*. Bagaimana jika pengguna pergi ke halaman lain dan kemudian menekan Kembali? *Effect* Anda akan berjalan lagi. Anda tidak ingin membeli produk ketika pengguna *mengunjungi* halaman; Anda ingin membelinya ketika pengguna *mengklik* tombol Beli.
 
-Buying is not caused by rendering; it's caused by a specific interaction. It should run only when the user presses the button. **Delete the Effect and move your `/api/buy` request into the Buy button event handler:**
+Pembelian tidak disebabkan oleh rendering; ini disebabkan oleh interaksi tertentu. Interaksi ini harus berjalan hanya ketika pengguna menekan tombol. **Hapus *Effect* dan pindahkan *request* `/api/buy` Anda ke dalam *event handler* tombol Beli:**
 
 ```js {2-3}
   function handleClick() {
-    // ✅ Buying is an event because it is caused by a particular interaction.
+    // ✅ Pembelian adalah sebuah event karena disebabkan oleh interaksi tertentu.
     fetch('/api/buy', { method: 'POST' });
   }
 ```
 
-**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From a user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, then pressing Back to view the page again. React verifies that your components abide by this principle by remounting them once in development.
+**Hal ini mengilustrasikan bahwa jika pemasangan ulang merusak logika aplikasi Anda, hal ini biasanya akan menemukan bug yang ada.** Dari sudut pandang pengguna, mengunjungi sebuah halaman seharusnya tidak berbeda dengan mengunjunginya, mengklik sebuah tautan, lalu menekan Kembali untuk melihat halaman tersebut kembali. React memverifikasi bahwa komponen Anda mematuhi prinsip ini dengan memasang ulang komponen tersebut sekali dalam pengembangan.
 
-## Putting it all together {/*putting-it-all-together*/}
+## Menyatukan semuanya {/*putting-it-all-together*/}
 
-This playground can help you "get a feel" for how Effects work in practice.
+*Playground* ini dapat membantu Anda "merasakan" bagaimana *Effect* bekerja dalam praktiknya.
 
-This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
+Contoh ini menggunakan [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) untuk menjadwalkan log konsol dengan teks input untuk muncul tiga detik setelah *Effect* berjalan. Fungsi pembersihan akan membatalkan batas waktu yang tertunda. Mulailah dengan menekan "Pasang komponen":
 
 <Sandpack>
 
@@ -790,11 +790,11 @@ function Playground() {
       console.log('⏰ ' + text);
     }
 
-    console.log('🔵 Schedule "' + text + '" log');
+    console.log('🔵 Menjadwalkan log "' + text + '"');
     const timeoutId = setTimeout(onTimeout, 3000);
 
     return () => {
-      console.log('🟡 Cancel "' + text + '" log');
+      console.log('🟡 Membatalkan log "' + text + '"');
       clearTimeout(timeoutId);
     };
   }, [text]);
@@ -802,7 +802,7 @@ function Playground() {
   return (
     <>
       <label>
-        What to log:{' '}
+        Yang ingin di-log:{' '}
         <input
           value={text}
           onChange={e => setText(e.target.value)}
@@ -818,7 +818,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Unmount' : 'Mount'} the component
+        {show ? 'Lepas' : 'Pasang'} komponen
       </button>
       {show && <hr />}
       {show && <Playground />}
@@ -829,21 +829,21 @@ export default function App() {
 
 </Sandpack>
 
-You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Schedule "a" log` again. Three second later there will also be a log saying `a`. As you learned earlier, the extra schedule/cancel pair is because React remounts the component once in development to verify that you've implemented cleanup well.
+Anda akan melihat tiga log pada awalnya: `Menjadwalkan log "a"`, `Membatalkan log "a"`, dan `Menjadwalkan log "a"` lagi. Three second later there will also be a log saying `a`. Tiga detik kemudian juga akan ada log yang bertuliskan `a`. Seperti yang Anda pelajari sebelumnya, pasangan penjadwalan/pembatalan tambahan adalah karena React me-remount komponen sekali dalam pengembangan untuk memverifikasi bahwa Anda telah mengimplementasikan pembersihan dengan baik.
 
-Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
+Sekarang edit input menjadi `abc`. Jika Anda melakukannya dengan cukup cepat, you'll see `Menjadwalkan log "ab"` segera diikuti dengan `Membatalkan log "ab"` dan `Menjadwalkan log "abc"`. **React selalu membersihkan *Effect* dari render sebelumnya sebelum *Effect* dari render berikutnya.** Inilah sebabnya mengapa meskipun Anda mengetikkan input dengan cepat, hanya ada satu *timeout* yang dijadwalkan dalam satu waktu. Edit input beberapa kali dan lihat konsol untuk mengetahui bagaimana *Effect* dibersihkan.
 
-Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
+Ketik sesuatu ke dalam input, lalu segera tekan "Lepas komponen". Perhatikan bagaimana melepas komponen membersihkan *Effect* render terakhir. Di sini, *Effect* membersihkan *timeout* terakhir sebelum sempat menembak.
 
-Finally, edit the component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
+Terakhir, edit komponen di atas dan beri komentar pada fungsi pembersihan agar *timeout* tidak dibatalkan. Coba ketik `abcde` dengan cepat. Apa yang Anda kira akan terjadi dalam tiga detik? Akankah `console.log(text)` di dalam *timeout* mencetak `text` *terbaru* dan menghasilkan lima log `abcde`? Cobalah untuk menguji intuisi Anda!
 
-Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render.**  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+Tiga detik kemudian, Anda akan melihat urutan log (`a`, `ab`, `abc`, `abcd`, and `abcde`) bukan lima log `abcde`. **Setiap Efek "menangkap" nilai `teks` dari render yang sesuai.** Tidak masalah jika *state* `text` berubah: Efek dari render dengan `text = 'ab'` akan selalu menjadi `'ab'`. Jika Anda penasaran bagaimana cara kerjanya, Anda dapat membaca tentang [*closures*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 <DeepDive>
 
-#### Each render has its own Effects {/*each-render-has-its-own-effects*/}
+#### Setiap render memiliki *Effect* tersendiri {/*each-render-has-its-own-effects*/}
 
-You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
+Anda dapat menganggap `useEffect` sebagai "melampirkan" sebuah perilaku ke keluaran *render*. Perhatikan *Effect* berikut:
 
 ```js
 export default function ChatRoom({ roomId }) {
@@ -853,113 +853,113 @@ export default function ChatRoom({ roomId }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to {roomId}!</h1>;
+  return <h1>Selamat datang di {roomId}!</h1>;
 }
 ```
 
-Let's see what exactly happens as the user navigates around the app.
+Mari kita lihat apa yang sebenarnya terjadi saat pengguna menavigasi aplikasi ini.
 
-#### Initial render {/*initial-render*/}
+#### *Render* awal {/*initial-render*/}
 
-The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
+Pengguna mengunjungi `<ChatRoom roomId="general" />`. Mari kita [menukar secara mental](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` dengan `'general'`:
 
 ```js
-  // JSX for the first render (roomId = "general")
-  return <h1>Welcome to general!</h1>;
+  // JSX untuk render pertama (roomId = "general")
+  return <h1>Selamat datang di general!</h1>;
 ```
 
-**The Effect is *also* a part of the rendering output.** The first render's Effect becomes:
+***Effect* *juga* bagian dari keluaran *render*.** *Effect* render pertama adalah sebagai berikut:
 
 ```js
-  // Effect for the first render (roomId = "general")
+  // Effect untuk render pertama (roomId = "general")
   () => {
     const connection = createConnection('general');
     connection.connect();
     return () => connection.disconnect();
   },
-  // Dependencies for the first render (roomId = "general")
+  // Dependensi untuk render pertama (roomId = "general")
   ['general']
 ```
 
-React runs this Effect, which connects to the `'general'` chat room.
+React menjalankan *Effect* ini, yang menghubungkan ke ruang obrolan `'general'`.
 
-#### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
+#### *Render ulang* dengan dependensi yang sama {/*re-render-with-same-dependencies*/}
 
-Let's say `<ChatRoom roomId="general" />` re-renders. The JSX output is the same:
+Bayangkan `<ChatRoom roomId="general" />` di-*render* ulang. Keluaran JSX tetap sama:
 
 ```js
-  // JSX for the second render (roomId = "general")
-  return <h1>Welcome to general!</h1>;
+  // JSX untuk render kedua (roomId = "general")
+  return <h1>Selamat datang di general!</h1>;
 ```
 
-React sees that the rendering output has not changed, so it doesn't update the DOM.
+React melihat bahwa keluaran *render* tidak berubah, jadi ia tidak memperbarui DOM.
 
-The Effect from the second render looks like this:
+Effect dari *render* kedua menjadi seperti ini:
 
 ```js
-  // Effect for the second render (roomId = "general")
+  // Effect untuk render kedua (roomId = "general")
   () => {
     const connection = createConnection('general');
     connection.connect();
     return () => connection.disconnect();
   },
-  // Dependencies for the second render (roomId = "general")
+  // Dependensi untuk render kedua (roomId = "general")
   ['general']
 ```
 
-React compares `['general']` from the second render with `['general']` from the first render. **Because all dependencies are the same, React *ignores* the Effect from the second render.** It never gets called.
+React membandingkan `['general']` dari *render* kedua dengan `['general']` dari *render* pertama. **Karena semua dependensi sama, React *mengabaikan* *Effect* dari render kedua.** Ia tidak pernah dipanggil.
 
-#### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
+#### *Render ulang* dengan dependensi berbeda {/*re-render-with-different-dependencies*/}
 
-Then, the user visits `<ChatRoom roomId="travel" />`. This time, the component returns different JSX:
+Kemudian, pengguna mengunjungi `<ChatRoom roomId="travel" />`. Kali ini, komponen mengembalikan JSX yang berbeda:
 
 ```js
-  // JSX for the third render (roomId = "travel")
-  return <h1>Welcome to travel!</h1>;
+  // JSX untuk render ketiga (roomId = "travel")
+  return <h1>Selamat datang di travel!</h1>;
 ```
 
-React updates the DOM to change `"Welcome to general"` into `"Welcome to travel"`.
+React memperbarui DOM dengan mengubah `"Selamat datang di general"` menjadi `"Selamat datang di travel"`.
 
-The Effect from the third render looks like this:
+*Effect* dari *render* ketiga menjadi seperti ini:
 
 ```js
-  // Effect for the third render (roomId = "travel")
+  // Effect untuk render ketiga (roomId = "travel")
   () => {
     const connection = createConnection('travel');
     connection.connect();
     return () => connection.disconnect();
   },
-  // Dependencies for the third render (roomId = "travel")
+  // Dependensi untuk render ketiga (roomId = "travel")
   ['travel']
 ```
 
-React compares `['travel']` from the third render with `['general']` from the second render. One dependency is different: `Object.is('travel', 'general')` is `false`. The Effect can't be skipped.
+React membandingkan `['travel']` dari *render* ketiga dengan `['general']` dari *render* kedua. Satu dependensi berbeda: `Object.is('travel', 'general')` adalah `false`. *Effect* tidak dapat dilewati.
 
-**Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** The second render's Effect was skipped, so React needs to clean up the first render's Effect. If you scroll up to the first render, you'll see that its cleanup calls `disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
+**Sebelum React dapat menerapkan *Effect* dari *render* ketiga, React perlu membersihkan *Effect* terakhir yang _dilewati_.** *Effect* pada *render* kedua dilewati, sehingga React perlu membersihkan *Effect* pada *render* pertama. Jika Anda menggulir ke atas ke *render* pertama, Anda akan melihat bahwa pembersihannya memanggil `disconnect()` pada koneksi yang dibuat dengan `createConnection('general')`. Ini akan memutuskan aplikasi dari ruang obrolan `'general'`.
 
-After that, React runs the third render's Effect. It connects to the `'travel'` chat room.
+Setelah itu, React menjalankan *Effect* render ketiga. Ia menghubungkan ke ruang obrolan `'travel'`.
 
-#### Unmount {/*unmount*/}
+#### Pelepasan {/*unmount*/}
 
-Finally, let's say the user navigates away, and the `ChatRoom` component unmounts. React runs the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
+Terakhir, katakanlah pengguna melakukan navigasi, dan komponen `ChatRoom` dilepas. React menjalankan fungsi pembersihan *Effect* terakhir. Effect terakhir berasal dari *render* ketiga. Pembersihan *render* ketiga menghancurkan koneksi `createConnection('travel')`. Sehingga aplikasi terputus dari ruang `'travel'`.
 
-#### Development-only behaviors {/*development-only-behaviors*/}
+#### Perilaku mode pengembangan {/*development-only-behaviors*/}
 
-When [Strict Mode](/reference/react/StrictMode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
+Ketika [*Strict Mode*](/reference/react/StrictMode) diaktifkan, React akan memasang ulang setiap komponen satu kali setelah pemasangan (*state* dan DOM akan dipertahankan). Hal ini [membantu Anda menemukan *Effect* yang membutuhkan pembersihan](#step-3-add-cleanup-if-needed) dan mengekspos bug seperti *race condition* lebih awal. Selain itu, React akan memasang ulang *Effect* setiap kali Anda menyimpan berkas dalam pengembangan. Kedua perilaku ini hanya untuk mode pengembangan.
 
 </DeepDive>
 
 <Recap>
 
-- Unlike events, Effects are caused by rendering itself rather than a particular interaction.
-- Effects let you synchronize a component with some external system (third-party API, network, etc).
-- By default, Effects run after every render (including the initial one).
-- React will skip the Effect if all of its dependencies have the same values as during the last render.
-- You can't "choose" your dependencies. They are determined by the code inside the Effect.
-- Empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
-- In Strict Mode, React mounts components twice (in development only!) to stress-test your Effects.
-- If your Effect breaks because of remounting, you need to implement a cleanup function.
-- React will call your cleanup function before the Effect runs next time, and during the unmount.
+- Tidak seperti *events*, *Effects* disebabkan oleh pe-*render*-an itu sendiri, bukan oleh interaksi tertentu.
+- *Effects* memungkinkan Anda menyinkronkan komponen dengan suatu sistem eksternal (API pihak ketiga, jaringan, dll.).
+- Secara default, *Effects* dijalankan setelah setiap *render* (termasuk *render* awal).
+- React akan melewatkan *Effect* jika semua dependensinya memiliki nilai yang sama dengan nilai pada saat render terakhir.
+- Anda tidak dapat "memilih" dependensi Anda. Mereka ditentukan oleh kode di dalam *Effect*.
+- Larik dependensi kosong (`[]`) berhubungan dengan "pemasangan" komponen, yaitu ketika komponen ditambahkan ke layar.
+- Dalam *Strict Mode*, React memasang komponen dua kali (hanya dalam pengembangan!) untuk menguji coba *Effect* Anda.
+- Jika *Effect* Anda rusak karena pemasangan ulang, Anda perlu menerapkan fungsi pembersihan.
+- React akan memanggil fungsi pembersihan Anda sebelum *Effect* dijalankan di lain waktu, dan selama proses pelepasan (*unmount*).
 
 </Recap>
 
