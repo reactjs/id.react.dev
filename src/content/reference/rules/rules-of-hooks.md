@@ -3,7 +3,7 @@ title: Peraturan Hooks
 ---
 
 <Intro>
-*Hooks* didefinisikan menggunakan fungsi JavaScript, tapi mereka merepresentasikan sebuat logika UI khusus yang yang dapat digunakan kembali dengan batasan di mana *Hook* dapat dipanggil.
+Hooks didefinisikan menggunakan fungsi JavaScript, tetapi Hooks merepresentasikan tipe khusus dari logika UI yang dapat digunakan kembali dengan batasan di mana hooks tersebut dapat dipanggil.
 </Intro>
 
 <InlineToc />
