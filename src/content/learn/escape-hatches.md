@@ -97,7 +97,7 @@ Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** unt
 
 </LearnMore>
 
-## Sinkronisasi dengan *Effects* {/*synchronizing-with-effects*/}
+## Sinkronisasi dengan *Effect* {/*synchronizing-with-effects*/}
 
 Beberapa komponen perlu melakukan sinkronisasi sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen di luar React berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk melakukan sinkronisasi dengan sistem di luar React.
 
@@ -187,7 +187,7 @@ Di mode pengembangan (*development*), React akan segera menjalankan dan membersi
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Baca **[Sinkronisasi dengan *Effects*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
+Baca **[Sinkronisasi dengan *Effect*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
 
 </LearnMore>
 
