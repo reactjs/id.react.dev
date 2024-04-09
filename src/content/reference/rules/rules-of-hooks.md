@@ -1,16 +1,16 @@
 ---
-title: Rules of Hooks
+title: Peraturan Hooks
 ---
 
 <Intro>
-Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
+& didefinisikan menggunakan fungsi JavaScript, tapi mereka merepresentasikan sebuat logika UI khusus yang yang dapat digunakan kembali dengan batasan di mana *Hook* dapat dipanggil.
 </Intro>
 
 <InlineToc />
 
 ---
 
-##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
+## Panggil *Hooks* hanya di tingkat atas {/*only-call-hooks-at-the-top-level*/}
 
 Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
 
