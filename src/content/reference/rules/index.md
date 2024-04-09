@@ -18,7 +18,7 @@ Bagian ini menjelaskan aturan yang perlu Anda ikuti untuk menulis kode React yan
 
 Aturan-aturan ini dikenal sebagai **Aturan React**. Ini adalah aturan, bukan sekadar pedoman, yang dalam artian jika aturan tersebut dilanggar, kemungkinan besar aplikasi Anda memiliki _bug_. Kode Anda juga menjadi tidak idiomatis dan lebih sulit untuk dipahami dan dipikirkan.
 
-Kami sangat merekomendasikan penggunaan [Strict Mode](/reference/react/StrictMode) bersama dengan [_plugin_ ESLint](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk React, untuk membantu basis kode Anda mematuhi Aturan React. Dengan mengikuti Aturan React, Anda akan dapat menemukan dan mengatasi bug ini dan menjaga aplikasi Anda tetap dapat dipelihara.
+Kami sangat merekomendasikan penggunaan [Strict Mode](/reference/react/StrictMode) bersama dengan [_plugin_ ESLint](https://www.npmjs.com/package/eslint-plugin-react-hooks) untuk React, untuk membantu basis kode (codebase) Anda mematuhi Aturan React. Dengan mengikuti Aturan React, Anda akan dapat menemukan dan mengatasi bug ini dan menjaga aplikasi Anda tetap dapat dipelihara.
 
 ---
 
