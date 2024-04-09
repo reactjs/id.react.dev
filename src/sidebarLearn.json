@@ -129,12 +129,12 @@
       ]
     },
     {
-      "title": "Managing State",
+      "title": "Mengelola State",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "Merespon Masukan dengan State",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
@@ -150,11 +150,11 @@
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "Mengekstraksi Logika State ke Reducer",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "Mengoper Data Secara Mendalam dengan Context",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
