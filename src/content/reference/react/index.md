@@ -14,29 +14,29 @@ Dokumentasi referensi React dibagi menjadi beberapa sub-bagian fungsional:
 
 Fitur-fitur React yang diprogram:
 
-* [Hooks](/reference/react/hooks) - Gunakan fitur React yang berbeda dari komponen Anda.
-* [Components](/reference/react/components) - Mendokumentasikan komponen bawaan yang dapat digunakan di JSX Anda.
-* [APIs](/reference/react/apis) - APIs yang berguna untuk mendefinisikan komponen.
-* [Directives](/reference/react/directives) - Menyediakan instruksi ke *bundler* yang kompatibel dengan React Server Component.
+* [Hooks](/reference/react/hooks) — Gunakan fitur React yang berbeda dari komponen Anda.
+* [Components](/reference/react/components) — Mendokumentasikan komponen bawaan yang dapat digunakan di JSX Anda.
+* [API](/reference/react/apis) — APIs yang berguna untuk mendefinisikan komponen.
+* [Directives](/reference/react/directives) — Menyediakan instruksi ke *bundler* yang kompatibel dengan React Server Component.
 
 ## React DOM {/*react-dom*/}
 
 React-dom berisi fitur-fitur yang hanya didukung untuk aplikasi web (yang berjalan di lingkungan peramban DOM). Bagian ini dibagi menjadi beberapa bagian berikut ini:
 
-* [Hooks](/reference/react-dom/hooks) - Hooks untuk aplikasi web yang berjalan di lingkungan peramban DOM.
-* [Components](/reference/react-dom/components) - React mendukung semua komponen HTML dan SVG bawaan peramban.
-* [APIs](/reference/react-dom) - Paket `react-dom` berisi metode-metode yang hanya didukung dalam aplikasi web.
-* [Client APIs](/reference/react-dom/client) - API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
-* [Server APIs](/reference/react-dom/server) - API `react-dom/server` memungkinkan Anda untuk me-*render* komponen React ke HTML di server.
+* [Hooks](/reference/react-dom/hooks) — Hooks untuk aplikasi web yang berjalan di lingkungan peramban DOM.
+* [Komponen](/reference/react-dom/components) — React mendukung semua komponen HTML dan SVG bawaan peramban.
+* [API](/reference/react-dom) — Paket `react-dom` berisi metode-metode yang hanya didukung dalam aplikasi web.
+* [API Klien](/reference/react-dom/client) — API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
+* [API Server](/reference/react-dom/server) — API `react-dom/server` memungkinkan Anda untuk me-*render* komponen React ke HTML di server.
 
 ## Aturan React {/*rules-of-react*/}
 
-React memiliki idiom - atau aturan - tentang cara mengekspresikan pola dengan cara yang mudah dimengerti dan menghasilkan aplikasi berkualitas tinggi:
+React memiliki idiom — atau aturan — tentang cara mengekspresikan pola dengan cara yang mudah dimengerti dan menghasilkan aplikasi berkualitas tinggi:
 
-* [Komponen dan Hooks harus murni](/reference/rules/components-and-hooks-must-be-pure) - Kemurnian membuat kode Anda lebih mudah dipahami, di-*debug*, dan memungkinkan React untuk secara otomatis mengoptimalkan komponen dan hook Anda dengan benar.
-* [React memanggil Komponen dan Hooks](/reference/rules/react-calls-components-and-hooks) - React bertanggung jawab untuk me-*render* komponen dan hooks ketika diperlukan untuk mengoptimalkan pengalaman pengguna.
-* [Rules of Hooks](/reference/rules/rules-of-hooks) - Hooks didefinisikan menggunakan fungsi JavaScript, tetapi hooks merepresentasikan tipe khusus dari logika UI yang dapat digunakan kembali dengan batasan di mana hooks tersebut dapat dipanggil.
+* [Komponen dan Hooks harus murni](/reference/rules/components-and-hooks-must-be-pure) — Kemurnian membuat kode Anda lebih mudah dipahami, di-*debug*, dan memungkinkan React untuk secara otomatis mengoptimalkan komponen dan Hook Anda dengan benar.
+* [React memanggil Komponen dan Hooks](/reference/rules/react-calls-components-and-hooks) — React bertanggung jawab untuk me-*render* komponen dan Hooks ketika diperlukan untuk mengoptimalkan pengalaman pengguna.
+* [Peraturan Hooks](/reference/rules/rules-of-hooks) — Hooks didefinisikan menggunakan fungsi JavaScript, tetapi Hooks merepresentasikan tipe khusus dari logika UI yang dapat digunakan kembali dengan batasan di mana Hooks tersebut dapat dipanggil.
 
-## APIs Lama {/*legacy-apis*/}
+## API Lama {/*legacy-apis*/}
 
-* [Legacy APIs](/reference/react/legacy) - Diekspor dari paket `react`, tetapi tidak direkomendasikan untuk digunakan pada kode yang baru ditulis.
+* [API Lama](/reference/react/legacy) — Diekspor dari paket `react`, tetapi tidak direkomendasikan untuk digunakan pada kode yang baru ditulis.
