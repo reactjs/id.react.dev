@@ -965,11 +965,11 @@ Ketika [*Strict Mode*](/reference/react/StrictMode) diaktifkan, React akan memas
 
 <Challenges>
 
-#### Focus a field on mount {/*focus-a-field-on-mount*/}
+#### Memfokuskan bidang teks saat pemasangan {/*focus-a-field-on-mount*/}
 
-In this example, the form renders a `<MyInput />` component.
+Dalam contoh ini, formulir merender komponen `<MyInput />`.
 
-Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method to make `MyInput` automatically focus when it appears on the screen. There is already a commented out implementation, but it doesn't quite work. Figure out why it doesn't work, and fix it. (If you're familiar with the `autoFocus` attribute, pretend that it does not exist: we are reimplementing the same functionality from scratch.)
+Gunakan metode [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) pada input untuk membuat `MyInput` secara otomatis fokus ketika muncul di layar. Sudah ada implementasi yang dikomentari, tetapi tidak cukup berhasil. Cari tahu mengapa hal ini tidak berhasil, dan perbaiki. (Jika Anda terbiasa dengan atribut `autoFocus`, anggap saja atribut tersebut tidak ada: kita mengimplementasikan ulang fungsi yang sama dari awal).
 
 <Sandpack>
 
@@ -979,7 +979,7 @@ import { useEffect, useRef } from 'react';
 export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
-  // TODO: This doesn't quite work. Fix it.
+  // TODO: Ini tidak bekerja. Perbaiki.
   // ref.current.focus()    
 
   return (
@@ -1002,13 +1002,13 @@ export default function Form() {
   const [upper, setUpper] = useState(false);
   return (
     <>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Sembunyikan' : 'Tampilkan'} formulir</button>
       <br />
       <hr />
       {show && (
         <>
           <label>
-            Enter your name:
+            Masukkan nama:
             <MyInput
               value={name}
               onChange={e => setName(e.target.value)}
@@ -1020,9 +1020,9 @@ export default function Form() {
               checked={upper}
               onChange={e => setUpper(e.target.checked)}
             />
-            Make it uppercase
+            Jadikan huruf besar
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Halo, <b>{upper ? name.toUpperCase() : name}</b></p>
         </>
       )}
     </>
@@ -1045,15 +1045,15 @@ body {
 </Sandpack>
 
 
-To verify that your solution works, press "Show form" and verify that the input receives focus (becomes highlighted and the cursor is placed inside). Press "Hide form" and "Show form" again. Verify the input is highlighted again.
+Untuk memastikan bahwa solusi Anda berfungsi, tekan "Tampilkan formulir" dan pastikan bahwa input menerima fokus (menjadi tersorot dan kursor ditempatkan di dalam). Tekan "Sembunyikan formulir" dan "Tampilkan formulir" lagi. Pastikan bahwa input telah disorot kembali.
 
-`MyInput` should only focus _on mount_ rather than after every render. To verify that the behavior is right, press "Show form" and then repeatedly press the "Make it uppercase" checkbox. Clicking the checkbox should _not_ focus the input above it.
+`MyInput` seharusnya hanya fokus _pada saat pemasangan_, bukan setelah setiap _render_. Untuk memastikan bahwa perilaku sudah benar, tekan "Tampilkan formulir" dan kemudian berulang kali tekan kotak centang "Jadikan huruf besar". Mengklik kotak centang tersebut seharusnya _tidak_ akan memfokuskan input di atasnya.
 
 <Solution>
 
-Calling `ref.current.focus()` during render is wrong because it is a *side effect*. Side effects should either be placed inside an event handler or be declared with `useEffect`. In this case, the side effect is _caused_ by the component appearing rather than by any specific interaction, so it makes sense to put it in an Effect.
+Memanggil `ref.current.focus()` saat _render_ salah karena ia merupakan _efek samping_. Efek samping seharusnya ditempatkan di dalam _event handler_ atau dideklarasikan dengan `useEffect`. Dalam contoh ini, efek samping _dihasilkan_ oleh komponen yang muncul, bukan oleh interaksi tertentu, oleh karena itu akan masuk akal menempatkannya di dalam _Effect_.
 
-To fix the mistake, wrap the `ref.current.focus()` call into an Effect declaration. Then, to ensure that this Effect runs only on mount rather than after every render, add the empty `[]` dependencies to it.
+Untuk memperbaiki kesalahannya, bungkus panggilan `ref.current.focus()` di dalam _Effect_. Kemudian, untuk memastikan bahwa _Effect_ ini hanya berjalan pada saat pemasangan dan bukan setelah setiap render, tambahkan dependensi kosong `[]` ke dalamnya.
 
 <Sandpack>
 
@@ -1087,13 +1087,13 @@ export default function Form() {
   const [upper, setUpper] = useState(false);
   return (
     <>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Sembunyikan' : 'Tampilkan'} formulir</button>
       <br />
       <hr />
       {show && (
         <>
           <label>
-            Enter your name:
+            Masukkan nama:
             <MyInput
               value={name}
               onChange={e => setName(e.target.value)}
@@ -1105,9 +1105,9 @@ export default function Form() {
               checked={upper}
               onChange={e => setUpper(e.target.checked)}
             />
-            Make it uppercase
+            Jadikan huruf besar
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Halo, <b>{upper ? name.toUpperCase() : name}</b></p>
         </>
       )}
     </>
@@ -1131,13 +1131,13 @@ body {
 
 </Solution>
 
-#### Focus a field conditionally {/*focus-a-field-conditionally*/}
+#### Memfokuskan bidang teks secara kondisional {/*focus-a-field-conditionally*/}
 
-This form renders two `<MyInput />` components.
+Formulir ini me-*render* dua komponen `<MyInput />`.
 
-Press "Show form" and notice that the second field automatically gets focused. This is because both of the `<MyInput />` components try to focus the field inside. When you call `focus()` for two input fields in a row, the last one always "wins".
+Tekan "Tampilkan formulir" dan perhatikan bahwa bidang kedua secara otomatis akan terfokus. Hal ini karena kedua komponen `<MyInput />` mencoba untuk memfokuskan bidang di dalamnya. Ketika Anda memanggil `focus()` untuk dua bidang input secara berurutan, bidang input yang terakhir akan selalu "menang".
 
-Let's say you want to focus the first field. The first `MyInput` component now receives a boolean `shouldFocus` prop set to `true`. Change the logic so that `focus()` is only called if the `shouldFocus` prop received by `MyInput` is `true`.
+Katakanlah Anda ingin memfokuskan bidang pertama. Komponen `MyInput` pertama sekarang menerima *prop* boolean `shouldFocus` yang disetel ke `true`. Ubah logikanya sehingga `focus()` hanya dipanggil jika *prop* `shouldFocus` yang diterima oleh `MyInput` adalah `true`.
 
 <Sandpack>
 
@@ -1147,7 +1147,7 @@ import { useEffect, useRef } from 'react';
 export default function MyInput({ shouldFocus, value, onChange }) {
   const ref = useRef(null);
 
-  // TODO: call focus() only if shouldFocus is true.
+  // TODO: panggil focus() hanya ketika nilai shouldFocus adalah true.
   useEffect(() => {
     ref.current.focus();
   }, []);
@@ -1174,13 +1174,13 @@ export default function Form() {
   const name = firstName + ' ' + lastName;
   return (
     <>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Sembunyikan' : 'Tampilkan'} formulir</button>
       <br />
       <hr />
       {show && (
         <>
           <label>
-            Enter your first name:
+            Masukkan nama depan:
             <MyInput
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
@@ -1188,7 +1188,7 @@ export default function Form() {
             />
           </label>
           <label>
-            Enter your last name:
+            Masukkan nama belakang:
             <MyInput
               value={lastName}
               onChange={e => setLastName(e.target.value)}
@@ -1217,17 +1217,17 @@ body {
 
 </Sandpack>
 
-To verify your solution, press "Show form" and "Hide form" repeatedly. When the form appears, only the *first* input should get focused. This is because the parent component renders the first input with `shouldFocus={true}` and the second input with `shouldFocus={false}`. Also check that both inputs still work and you can type into both of them.
+Untuk memastikan solusi Anda, tekan "Tampilkan formulir" dan "Sembunyikan formulir" berulang kali. Ketika formulir muncul, hanya input *pertama* yang akan difokuskan. Hal ini karena komponen induk merender input pertama dengan `shouldFocus={true}` dan input kedua dengan `shouldFocus={false}`. Periksa juga apakah kedua input masih berfungsi dan Anda dapat mengetikkan kedua input tersebut.
 
 <Hint>
 
-You can't declare an Effect conditionally, but your Effect can include conditional logic.
+Anda tidak dapat mendeklarasikan *Effect* secara kondisional, tetapi *Effect* Anda dapat mengandung logika kondisional.
 
 </Hint>
 
 <Solution>
 
-Put the conditional logic inside the Effect. You will need to specify `shouldFocus` as a dependency because you are using it inside the Effect. (This means that if some input's `shouldFocus` changes from `false` to `true`, it will focus after mount.)
+Letakkan logika kondisional di dalam Effect. Anda harus menentukan `shouldFocus` sebagai dependensi karena Anda menggunakannya di dalam *Effect*. (Ini berarti bahwa jika `shouldFocus` dari beberapa input berubah dari `false` menjadi `true`, input tersebut akan fokus setelah dipasang.)
 
 <Sandpack>
 
@@ -1265,13 +1265,13 @@ export default function Form() {
   const name = firstName + ' ' + lastName;
   return (
     <>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Sembunyikan' : 'Tampilkan'} formulir</button>
       <br />
       <hr />
       {show && (
         <>
           <label>
-            Enter your first name:
+            Masukkan nama depan:
             <MyInput
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
@@ -1279,14 +1279,14 @@ export default function Form() {
             />
           </label>
           <label>
-            Enter your last name:
+            Masukkan nama belakang:
             <MyInput
               value={lastName}
               onChange={e => setLastName(e.target.value)}
               shouldFocus={false}
             />
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Halo, <b>{upper ? name.toUpperCase() : name}</b></p>
         </>
       )}
     </>
@@ -1310,15 +1310,15 @@ body {
 
 </Solution>
 
-#### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
+#### Memperbaiki interval yang menembak dua kali {/*fix-an-interval-that-fires-twice*/}
 
-This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`.](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) This causes `onTick` to run every second. The `onTick` function increments the counter.
+Komponen `Counter` ini menampilkan penghitung yang harus bertambah setiap detik. Saat dipasang, komponen ini memanggil [`setInterval`.](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) Hal ini menyebabkan `onTick` berjalan setiap detik. Fungsi `onTick` menambah penghitung.
 
-However, instead of incrementing once per second, it increments twice. Why is that? Find the cause of the bug and fix it.
+Namun, alih-alih bertambah sekali per detik, fungsi ini bertambah dua kali. Mengapa demikian? Temukan penyebab bug dan perbaiki.
 
 <Hint>
 
-Keep in mind that `setInterval` returns an interval ID, which you can pass to [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) to stop the interval.
+Perlu diingat bahwa `setInterval` mengembalikan ID interval, yang dapat Anda berikan kepada [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) untuk menghentikan interval.
 
 </Hint>
 
@@ -1350,7 +1350,7 @@ export default function Form() {
   const [show, setShow] = useState(false);
   return (
     <>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} counter</button>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Sembunyikan' : 'Tampilkan'} penghitung</button>
       <br />
       <hr />
       {show && <Counter />}
@@ -1375,11 +1375,11 @@ body {
 
 <Solution>
 
-When [Strict Mode](/reference/react/StrictMode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
+Ketika [*Strict Mode*](/reference/react/StrictMode) diaktifkan (seperti pada sandbox di situs ini), React akan memasang ulang setiap komponen satu kali dalam pengembangan. Hal ini menyebabkan interval disetel dua kali, dan inilah mengapa setiap detik penghitung bertambah dua kali.
 
-However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this Effect starts a process but doesn't provide a way to clean it up.
+Namun, perilaku React bukanlah *penyebab* dari bug: bug sudah ada di dalam kode. Perilaku React membuat bug menjadi lebih terlihat. Penyebab sebenarnya adalah karena *Effect* ini memulai sebuah proses tetapi tidak menyediakan cara untuk membersihkannya.
 
-To fix this code, save the interval ID returned by `setInterval`, and implement a cleanup function with [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+Untuk memperbaiki kode ini, simpan ID interval yang dikembalikan oleh `setInterval`, dan terapkan fungsi pembersihan dengan [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 
 <Sandpack>
 
@@ -1433,13 +1433,13 @@ body {
 
 </Sandpack>
 
-In development, React will still remount your component once to verify that you've implemented cleanup well. So there will be a `setInterval` call, immediately followed by `clearInterval`, and `setInterval` again. In production, there will be only one `setInterval` call. The user-visible behavior in both cases is the same: the counter increments once per second.
+Dalam mode pengembangan, React masih akan memasang ulang komponen Anda satu kali untuk memastikan bahwa Anda telah mengimplementasikan pembersihan dengan baik. Jadi akan ada pemanggilan `setInterval`, segera diikuti dengan `clearInterval`, dan `setInterval` lagi. Dalam produksi, hanya akan ada satu panggilan `setInterval`. Perilaku yang terlihat oleh pengguna pada kedua kasus tersebut adalah sama: penghitung bertambah satu kali per detik.
 
 </Solution>
 
-#### Fix fetching inside an Effect {/*fix-fetching-inside-an-effect*/}
+#### Memperbaiki pengambilan data di dalam *Effect* {/*fix-fetching-inside-an-effect*/}
 
-This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
+Komponen ini menampilkan biografi orang yang dipilih. Komponen ini memuat biografi dengan memanggil fungsi asinkron `fetchBio(person)` pada saat pemasangan dan setiap kali `person` berubah. Fungsi asinkron tersebut mengembalikan sebuah [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) yang pada akhirnya akan menjadi sebuah string. Ketika pengambilan selesai, fungsi ini memanggil `setBio` untuk menampilkan string tersebut di bawah kotak pilihan.
 
 <Sandpack>
 
@@ -1468,7 +1468,7 @@ export default function Page() {
         <option value="Taylor">Taylor</option>
       </select>
       <hr />
-      <p><i>{bio ?? 'Loading...'}</i></p>
+      <p><i>{bio ?? 'Memuat...'}</i></p>
     </>
   );
 }
@@ -1479,7 +1479,7 @@ export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('This is ' + person + '’s bio.');
+      resolve('Ini adalah biodata ' + person + '.');
     }, delay);
   })
 }
@@ -1489,30 +1489,30 @@ export async function fetchBio(person) {
 </Sandpack>
 
 
-There is a bug in this code. Start by selecting "Alice". Then select "Bob" and then immediately after that select "Taylor". If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says "This is Bob's bio."
+Ada bug dalam kode ini. Mulailah dengan memilih "Alice". Kemudian pilih "Bob" dan segera setelah itu pilih "Taylor". Jika Anda melakukan ini dengan cukup cepat, Anda akan melihat bug itu: Taylor sudah dipilih, tetapi paragraf di bawahnya mengatakan "Ini adalah biodata Bob."
 
-Why does this happen? Fix the bug inside this Effect.
+Mengapa hal ini terjadi? Perbaiki bug di dalam *Effect* ini.
 
 <Hint>
 
-If an Effect fetches something asynchronously, it usually needs cleanup.
+Jika *Effect* melakukan *fetching* terhadap sesuatu secara asinkron, biasanya perlu dibersihkan.
 
 </Hint>
 
 <Solution>
 
-To trigger the bug, things need to happen in this order:
+Untuk memicu bug, beberapa hal harus terjadi secara berurutan:
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')`
-- **Fetching `'Taylor'` completes *before* fetching `'Bob'`**
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render calls `setBio('This is Bob’s bio')`
+- Memilih `'Bob'` akan memicu `fetchBio('Bob')`
+- Memilih `'Taylor'` akan memicu `fetchBio('Taylor')`
+- **Mengambil data `'Taylor'` selesai *sebelum* mengambil data `'Bob'`**
+- *Effect* dari *render* `'Taylor'` memanggil `setBio('Ini adalah biodata Taylor')`
+- Pengambilan data `'Bob'` selesai
+- *Effect* dari *render* `'Bob'` memanggil `setBio('Ini adalah biodata Bob')`
 
-This is why you see Bob's bio even though Taylor is selected. Bugs like this are called [race conditions](https://en.wikipedia.org/wiki/Race_condition) because two asynchronous operations are "racing" with each other, and they might arrive in an unexpected order.
+Inilah sebabnya mengapa Anda melihat biodata Bob meskipun Taylor yang terpilih. Bug seperti ini disebut [*race condition*](https://en.wikipedia.org/wiki/Race_condition) karena dua operasi asinkron "berlomba" satu sama lain, dan mungkin tiba dalam urutan yang tidak terduga.
 
-To fix this race condition, add a cleanup function:
+Untuk memperbaiki *race condition* ini, tambahkan fungsi pembersihan:
 
 <Sandpack>
 
@@ -1546,7 +1546,7 @@ export default function Page() {
         <option value="Taylor">Taylor</option>
       </select>
       <hr />
-      <p><i>{bio ?? 'Loading...'}</i></p>
+      <p><i>{bio ?? 'Memuat...'}</i></p>
     </>
   );
 }
@@ -1557,7 +1557,7 @@ export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('This is ' + person + '’s bio.');
+      resolve('Ini adalah biodata ' + person + '.');
     }, delay);
   })
 }
@@ -1566,16 +1566,16 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Each render's Effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an Effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
+Setiap *Effect* *render* memiliki variabel `ignore` sendiri. Awalnya, variabel `ignore` disetel ke `false`. Namun, jika sebuah Effect dibersihkan (seperti ketika Anda memilih orang yang berbeda), variabel `ignore` menjadi `true`. Jadi sekarang tidak masalah dalam urutan mana permintaan diselesaikan. Hanya *Effect* orang terakhir yang memiliki `ignore` yang disetel ke `false`, sehingga akan memanggil `setBio(result)`. Efek-efek sebelumnya telah dibersihkan, sehingga pemeriksaan `if (!ignore)` akan mencegah mereka memanggil `setBio`:
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) Effect**
-- Fetching `'Taylor'` completes *before* fetching `'Bob'`
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render **does not do anything because its `ignore` flag was set to `true`**
+- Memilih `'Bob'` akan memicu `fetchBio('Bob')`
+- Memilih `'Taylor'` akan memicu `fetchBio('Taylor')` **dan membersihkan Efek sebelumnya (milik Bob)**
+- Mengambil data `'Taylor'` selesai *sebelum* mengambil data `'Bob'`
+- *Effect* dari render `'Taylor'` memanggil `setBio('Ini adalah biodata Taylor')`
+- Mengambil data `'Bob'` selesai
+- *Effect* dari *render* `'Bob'` **tidak melakukan apa pun karena flag `ignore` diset ke `true`**
 
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problems.
+Selain mengabaikan hasil panggilan API yang sudah usang, Anda juga dapat menggunakan [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) untuk membatalkan *request* yang sudah tidak diperlukan. Namun, hal ini saja tidak cukup untuk melindungi dari *race condition*. Langkah-langkah asinkron lainnya dapat dirangkai (*chain*) setelah *fetch*, jadi menggunakan tanda spesifik seperti `ignore` adalah cara paling reliabel untuk memperbaiki masalah seperti ini.
 
 </Solution>
 
