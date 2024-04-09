@@ -1,5 +1,5 @@
 ---
-title: 'Sinkronisasi dengan Effects'
+title: 'Sinkronisasi dengan Effect'
 ---
 
 <Intro>
