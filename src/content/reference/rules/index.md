@@ -45,7 +45,7 @@ Kami sangat merekomendasikan penggunaan [Strict Mode](/reference/react/StrictMod
 
 ## Peraturan *Hooks* {/*rules-of-hooks*/}
 
-Meskipun *Hooks* ditulis menggunakan fungsi JavaScript, mereka memiliki fungsi khusus sebagai logika antarmuka yang dapat digunakan kembali. Namun, ada batasan terkait saat Anda bisa menggunakan Hook. Anda perlu mematuhi [Peraturan *Hooks*](/reference/rules/rules-of-hooks) saat menggunakannya.
+Meskipun *Hooks* ditulis menggunakan fungsi JavaScript, mereka memiliki fungsi khusus sebagai logika antarmuka yang dapat digunakan kembali. Namun, ada batasan terkait saat Anda bisa menggunakan *Hook*. Anda perlu mematuhi [Peraturan *Hooks*](/reference/rules/rules-of-hooks) saat menggunakannya.
 
 * [Panggil *Hooks* hanya di tingkat atas](/reference/rules/rules-of-hooks#only-call-hooks-at-the-top-level) – Jangan panggil *Hooks* di dalam perulangan (*loop*), kondisi (*if/else*), atau fungsi bersarang. Sebagai gantinya, selalu gunakan *Hooks* di level paling atas fungsi React Anda, sebelum kembalian awal (jika ada).
 * [Panggil *Hooks* hanya dari fungsi React](/reference/rules/rules-of-hooks#only-call-hooks-from-react-functions) – Jangan panggil *Hooks* dari fungsi JavaScript biasa.
