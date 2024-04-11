@@ -45,7 +45,7 @@ Membiarkan React melakukan orkestrasi *rendering* juga memungkinkan sejumlah man
 
 Hooks seharusnya hanya dipanggil didalam sebuah komponen atau Hooks. Jangan pernah mengopernya sebagai sebuah nilai.
 
-Hooks memungkinkan anda untuk menambahkan sebuah komponen dalam fitur React. Hooks seharusnya harus selalu dipanggil sebagai sebuah fungsi, dan tidak dioper sebagai sebuah nilai. Hal ini memungkinkan _local reasoning_, atau kemampuan para developer untuk memahami semua yang dapat dilakukan oleh sebuah komponen hanya dengan melihat komponen tersebut secara terisolasi.
+*Hooks* memungkinkan anda untuk menambahkan sebuah komponen dalam fitur React. *Hooks* seharusnya harus selalu dipanggil sebagai sebuah fungsi, dan tidak dioper sebagai sebuah nilai. Hal ini memungkinkan *local reasoning*, atau kemampuan para developer untuk memahami semua yang dapat dilakukan oleh sebuah komponen hanya dengan melihat komponen tersebut secara terisolasi.
 
 Melanggar aturan ini akan menyebabkan React untuk tidak secara langsung mengoptimisasi komponen anda.
 
