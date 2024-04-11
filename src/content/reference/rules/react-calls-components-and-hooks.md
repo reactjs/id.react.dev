@@ -28,7 +28,7 @@ function BlogPost() {
   return <Layout>{Article()}</Layout>; // 🔴 Buruk: Jangan pernah memanggil komponen secara langsung
 }
 ```
-Jika sebuah komponen mengandung Hooks, sangat mudah untuk melanggar [Aturan dari Hooks](/reference/rules/rules-of-hooks) saat komponen secara langsung dipanggil dalam sebuah loop ataupun secara kondisional.
+Jika sebuah komponen mengandung *Hooks*, sangat mudah untuk melanggar [Aturan dari Hooks](/reference/rules/rules-of-hooks) saat komponen secara langsung dipanggil dalam sebuah perulangan ataupun secara kondisional.
 
 
 Membiarkan React melakukan orkestrasi rendering juga memungkinkan sejumlah manfaat:
