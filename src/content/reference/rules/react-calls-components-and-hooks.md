@@ -31,7 +31,7 @@ function BlogPost() {
 Jika sebuah komponen mengandung *Hooks*, sangat mudah untuk melanggar [Aturan dari Hooks](/reference/rules/rules-of-hooks) saat komponen secara langsung dipanggil dalam sebuah perulangan ataupun secara kondisional.
 
 
-Membiarkan React melakukan orkestrasi rendering juga memungkinkan sejumlah manfaat:
+Membiarkan React melakukan orkestrasi *rendering* juga memungkinkan sejumlah manfaat:
 
 * **Komponen menjadi lebih dari sebuah fungsi.** React dapat menambahkannya dengan fitur seperti _localstate_ melalui Hooks yang diikat ke identitas komponen di dalam pohon React.
 * **Tipe komponen ikut sertadalam rekonsiliasi.** Dengan membiarkan React memanggil komponen Anda, Anda juga memberi tahu React lebih banyak tentang struktur konseptual dari pohon Anda. Sebagai contoh, ketika Anda berpindah dari merender `<Feed>` ke halaman `<Profile>`, React tidak akan mencoba untuk menggunakannya kembali.
