@@ -60,7 +60,7 @@ function ChatInput() {
 }
 ```
 
-Hooks seharusnya tidak dapat dimutasi dan tidak dilakukan mutasi. Melainkan memutasi Hook secara dinamis, buatlah sebuah bentuk statis dari Hook tersebut dengan fungsionalitas yang diinginkan.
+*Hooks* seharusnya tidak dapat dimutasi dan tidak dilakukan mutasi. Melainkan memutasi *Hook* secara dinamis, buatlah sebuah bentuk statis dari *Hook* tersebut dengan fungsionalitas yang diinginkan.
 
 ```js {2,6}
 function ChatInput() {
