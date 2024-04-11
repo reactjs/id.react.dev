@@ -82,7 +82,7 @@ function ChatInput() {
 }
 ```
 
-Anda harus selalu mensejajarkan pemanggilan Hook ke dalam komponen tersebut dan menangani logika apa pun di dalamnya.
+Anda harus selalu mensejajarkan pemanggilan *Hook* ke dalam komponen tersebut dan menangani logika apa pun di dalamnya.
 
 ```js {6}
 function ChatInput() {
