@@ -3,7 +3,7 @@ title: React memanggil Komponen dan Hooks
 ---
 
 <Intro>
-React bertanggung jawab untuk me-*render* komponen dan Hooks saat diperlukan untuk mengoptimisasi pengalaman pengguna. Ini bersifat deklaratif: Anda memberi tahu React apa yang harus di-*render* dalam logika komponen Anda, dan React akan mencari cara terbaik untuk menampilkannya kepada pengguna Anda.
+React bertanggung jawab untuk me-*render* komponen dan *Hooks* saat diperlukan untuk mengoptimisasi pengalaman pengguna. Ini bersifat deklaratif: Anda memberi tahu React apa yang harus di-*render* dalam logika komponen Anda, dan React akan mencari cara terbaik untuk menampilkannya kepada pengguna Anda.
 
 </Intro>
 
