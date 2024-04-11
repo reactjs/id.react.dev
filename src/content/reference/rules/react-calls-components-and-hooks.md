@@ -51,7 +51,7 @@ Melanggar aturan ini akan menyebabkan React untuk tidak secara langsung mengopti
 
 ### Jangan melakukan mutasi Hook secara dinamis {/*dont-dynamically-mutate-a-hook*/}
 
-Sebuah Hooks sebagainya selalu se-"statis" mungkin. Berarti anda seharusnya tidak melakukan mutasi secara dinamis pada Hooks. Sebagai contoh, artinya anda tidak seharusnya menulis sebuah Hooks dengan orde yang lebih tinggi:
+Sebuah *Hooks* sebagainya selalu se-"statis" mungkin. Berarti anda seharusnya tidak melakukan mutasi secara dinamis pada Hooks. Sebagai contoh, artinya anda tidak seharusnya menulis sebuah *Hooks* dengan urutan yang lebih tinggi:
 
 ```js {2}
 function ChatInput() {
