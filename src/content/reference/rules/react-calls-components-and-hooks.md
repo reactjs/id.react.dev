@@ -74,7 +74,7 @@ function useDataWithLogging() {
 
 ### Jangan menggunakan Hooks secara dinamis {/*dont-dynamically-use-hooks*/}
 
-Hooks juga seharusnya tidak digunakan secara dinamis: sebagai contoh, gunakanlah *dependency injection* pada sebuah komponen dengan cara mengopernya kedalam Hook sebaga sebuah nilai:
+Hooks juga seharusnya tidak digunakan secara dinamis: sebagai contoh, gunakanlah *dependency injection* pada sebuah komponen dengan cara mengopernya kedalam *Hook* sebagai sebuah nilai:
 
 ```js {2}
 function ChatInput() {
