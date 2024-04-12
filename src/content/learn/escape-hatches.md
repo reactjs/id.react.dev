@@ -97,9 +97,9 @@ Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** unt
 
 </LearnMore>
 
-## Menyinkronkan dengan *Effects* {/*synchronizing-with-effects*/}
+## Sinkronisasi dengan *Effect* {/*synchronizing-with-effects*/}
 
-Beberapa komponen perlu menyinkronkan dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen *non-React* berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk menyinkronkan komponen Anda dengan sistem di luar React.
+Beberapa komponen perlu melakukan sinkronisasi sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen di luar React berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk melakukan sinkronisasi dengan sistem di luar React.
 
 Tekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
 
@@ -187,7 +187,7 @@ Di mode pengembangan (*development*), React akan segera menjalankan dan membersi
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Baca **[Menyinkronkan dengan *Effects*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
+Baca **[Sinkronisasi dengan *Effect*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
 
 </LearnMore>
 
