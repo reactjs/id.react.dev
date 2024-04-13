@@ -1,18 +1,18 @@
 ---
-title: 'Menghilangkan Efek dependensi'
+title: 'Menghilangkan dependensi Effect'
 ---
 
 <Intro>
 
-Saat Anda menulis sebuah Efek, *linter* akan memverifikasi bahwa Anda telah memasukkan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca Efek dalam daftar dependensi Efek. Ini memastikan bahwa Efek Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan Efek Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari Efek Anda.
+Saat Anda menulis sebuah *Effect*, *linter* akan memverifikasi bahwa Anda telah memasukkan setiap nilai reaktif (seperti *props* dan *state*) yang dibaca *Effect* dalam daftar dependensi *Effect*. Ini memastikan bahwa *Effect* Anda tetap tersinkronisasi dengan *props* dan *state* terbaru dari komponen Anda. Dependensi yang tidak perlu dapat menyebabkan *Effect* Anda berjalan terlalu sering, atau bahkan membuat perulangan tak terbatas. Ikuti panduan ini untuk meninjau dan menghapus dependensi yang tidak perlu dari *Effect* Anda.
 
 </Intro>
 
 <YouWillLearn>
 
-- Bagaimana untuk memperbaiki perulangan dependensi Efek tak terbatas (*Inifinite Effect*)?
+- Bagaimana untuk memperbaiki perulangan dependensi *Effect* tak terbatas (*Inifinite Effect*)?
 - Apa yang harus dilakukan ketika Anda ingin menghapus dependensi?
-- Bagaimana untuk membaca nilai dari Efek Anda tanpa "bereaksi" kepadanya?
+- Bagaimana untuk membaca nilai dari *Effect* Anda tanpa "bereaksi" kepadanya?
 - Bagaimana dan mengapa menghindari objek dan fungsi dependensi?
 - Mengapa menekan dependensi *linter* itu berbahaya, dan apa yang seharusnya dilakukan?
 
@@ -20,7 +20,7 @@ Saat Anda menulis sebuah Efek, *linter* akan memverifikasi bahwa Anda telah mema
 
 ## Dependensi harus sesuai dengan kode {/*dependencies-should-match-the-code*/}
 
-Saat Anda menulis sebuah Efek, pertama Anda menentukan cara [memulai dan menghentikan](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) apa pun yang Anda ingin dari Efek Anda lakukan:
+Saat Anda menulis sebuah *Effect*, pertama Anda menentukan cara [memulai dan menghentikan](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) apa pun yang Anda ingin dari *Effect* Anda lakukan:
 
 ```js {5-7}
 const serverUrl = 'https://localhost:1234';
@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Kemudian, jika Anda membiarkan dependensi Efek kosong (`[]`), *linter* akan menyarankan dependensi yang tepat:
+Kemudian, jika Anda membiarkan dependensi *Effect* kosong (`[]`), *linter* akan menyarankan dependensi yang tepat:
 
 <Sandpack>
 
@@ -109,7 +109,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[Efek "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena *render* ulang), *linter* memverifikasi bahwa Anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang Efek Anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan *dropdown*:
+[*Effect* "bereaksi" terhadap nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Karena `roomId` adalah nilai reaktif (dapat berubah karena *render* ulang), *linter* memverifikasi bahwa Anda telah menetapkannya sebagai sebuah dependensi. JIka `roomId` menerima nilai yang berbeda, React akan menyinkronkan ulang *Effect* Anda. Ini memastikan obrolan tetap terhubung ke ruang yang dipilih dan "bereaksi" dengan *dropdown*:
 
 <Sandpack>
 
@@ -173,17 +173,17 @@ button { margin-left: 10px; }
 
 ### Untuk menghapus dependensi, pastikan bahwa itu bukan dependensi {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Perhatikan bahwa Anda tidak dapat "memilih" dependensi dari Efek Anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan oleh kode Efek Anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
+Perhatikan bahwa Anda tidak dapat "memilih" dependensi dari *Effect* Anda. Setiap <CodeStep step={2}>nilai reaktif</CodeStep> yang digunakan oleh kode *Effect* Anda harus dideklarasikan dalam daftar dependensi. Daftar dependensi ditentukan oleh kode disekitarnya:
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId }) { // Ini adalah nilai reaktif
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Efek ini membaca nilai reaktif tersebut
+    const connection = createConnection(serverUrl, roomId); // Effect ini membaca nilai reaktif tersebut
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ Jadi Anda harus menentukan nilai reaktif tersebut sebagai dependesi dari Efek Anda
+  }, [roomId]); // ✅ Jadi Anda harus menentukan nilai reaktif tersebut sebagai dependesi dari Effect Anda
   // ...
 }
 ```
@@ -263,23 +263,23 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Inilah mengapa Anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Efek Anda *benar-benar tidak* bergantung pada nilai reaktif lagi, jadi itu *benar-benar tidak* dijalankan ulang ketika salah satu *props* atau *state* komponen berubah.
+Inilah mengapa Anda sekarang dapat menentukan [(`[]`) daftar dependensi kosong.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) *Effect* Anda *benar-benar tidak* bergantung pada nilai reaktif lagi, jadi itu *benar-benar tidak* dijalankan ulang ketika salah satu *props* atau *state* komponen berubah.
 
 ### Untuk mengubah dependensi, ubah kodenya {/*to-change-the-dependencies-change-the-code*/}
 
 Anda mungkin memperhatikan pola dalam alur kerja Anda:
 
-1. Pertama, Anda **mengubah kode** kode Efek Anda atau bagaimana nilai reaktif Anda dideklarasikan.
+1. Pertama, Anda **mengubah kode** kode *Effect* Anda atau bagaimana nilai reaktif Anda dideklarasikan.
 2. Kemudian, Anda mengikuti *linter* dan menyesuaikan dependensi agar **sesuai dengan kode yang Anda ubah.**
 3. Jika kamu tidak puas dengan daftar dependensi, Anda **kembali ke langkah pertama** (dan mengubah kodenya kembali).
 
-Bagian terakhir ini penting. **Jika Anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode Efek Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode Anda. Untuk mengubah daftar dependensi, ubah kodenya.
+Bagian terakhir ini penting. **Jika Anda ingin mengubah dependensi, ubah kode sekitarnya lebih dulu.** Anda bisa menganggap daftar dependensi sebagai [sebuah daftar dari semua niali reaktif yang digunakan oleh kode *Effect* Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Anda tidak *memilih* apa yang dimasukan ke dalam daftar tersebut. Daftar *mendeskripsikan* kode Anda. Untuk mengubah daftar dependensi, ubah kodenya.
 
-Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan tujuan (misalnya, untuk menghapus dependensi), dan Anda perlu "menemukan" kode yang sesuai dengan tujuan tersebut. Tidak semua orang menganggap memecahkan persamaan itu menyenangkan, dan hal yang sama bisa dikatakan tentang menulis Efek! Untungnya, ada daftar dari cara umum yang bisa Anda coba di bawah ini.
+Ini mungkin terasa seperti menyelesaikan persamaan. Anda mungkin memulai dengan tujuan (misalnya, untuk menghapus dependensi), dan Anda perlu "menemukan" kode yang sesuai dengan tujuan tersebut. Tidak semua orang menganggap memecahkan persamaan itu menyenangkan, dan hal yang sama bisa dikatakan tentang menulis *Effect*! Untungnya, ada daftar dari cara umum yang bisa Anda coba di bawah ini.
 
 <Pitfall>
 
-Jika Anda memiliki basis kode yang sudah ada, Anda mungkin memiliki beberapa Efek yang menekan *linter* seperti ini:
+Jika Anda memiliki basis kode yang sudah ada, Anda mungkin memiliki beberapa *Effect* yang menekan *linter* seperti ini:
 
 ```js {3-4}
 useEffect(() => {
@@ -289,7 +289,7 @@ useEffect(() => {
 }, []);
 ```
 
-**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan *linter*, Anda "bohong" kepada React tentang nilai yang bergantung pada Efek Anda.
+**Ketika dependensi tidak sesuai dengan kode, ada risiko yang sangat tinggi memunculkan bug** Dengan menekan *linter*, Anda "bohong" kepada React tentang nilai yang bergantung pada *Effect* Anda.
 
 Sebagai gantinya, gunakan teknik di bawah ini.
 
@@ -349,11 +349,11 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Katakanlah Anda ingin menjalankan Efek "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi Anda memutuskan untuk mengabaikan *linter*, dan dengan paksa menentukan `[]` sebagai dependensi.
+Katakanlah Anda ingin menjalankan *Effect* "hanya saat mount". Anda telah membaca [ (`[]`) dependensi kosong](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) melakukannya, jadi Anda memutuskan untuk mengabaikan *linter*, dan dengan paksa menentukan `[]` sebagai dependensi.
 
-Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena Anda "berbohong" kepada React bahwa Efek ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan Anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
+Pencacah ini seharusnya bertambah setiap detik dengan jumlah yang dapat dikonfigurasi dengan 2 tombol. Namun, karena Anda "berbohong" kepada React bahwa *Effect* ini tidak bergantung pada apa pun, React selamanya akan tetap menggunakan fungsi `onTick` dari render awal. [Selama render tersebut,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` adalah `0` and `increment` adalah `1`. Inilah mengapa `onTick` dari render tersebut selalu memanggil `setCount(0 + 1)` setiap, dan Anda selalu melihat `1`. Bug seperti ini sulit untuk diperbaiki ketika tersebar dibeberapa komponen.
 
-Selalu ada solusi yang lebih baik daripada mengabaikan *linter*! Untuk memperbaiki kode ini, Anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
+Selalu ada solusi yang lebih baik daripada mengabaikan *linter*! Untuk memperbaiki kode ini, Anda perlu menambahkan `onTick` ke dalam daftar dependensi. (Untuk memastikan interval hanya disetel sekali, [buat `onTick` sebagai Event *Effect*.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
 **Sebaiknya perlakukan eror lint dependensi sebagai eror kompilasi. Jika Anda tidak menekannya, Anda tidak akan pernah melihat eror seperti ini.** Sisa dari halaman ini mendokumentasikan untuk kasus ini dan kasus lainnya.
 
@@ -361,19 +361,19 @@ Selalu ada solusi yang lebih baik daripada mengabaikan *linter*! Untuk memperbai
 
 ## Menghapus dependensi yang tidak perlu {/*removing-unnecessary-dependencies*/}
 
-Setiap kali Anda mengatur dependensi Efek untuk merefleksikan kode, lihat pada daftar dependensi. Apakah masuk akal jika Efek dijalankan ulang ketika salah satu dependensi ini berubah? Terkadang, jawabannya adalah "tidak":
+Setiap kali Anda mengatur dependensi *Effect* untuk merefleksikan kode, lihat pada daftar dependensi. Apakah masuk akal jika *Effect* dijalankan ulang ketika salah satu dependensi ini berubah? Terkadang, jawabannya adalah "tidak":
 
 * Anda mungkin ingin menjalankan kembali *bagian yang berbeda* dalam kondisi yang berbeda.
 * Anda mungkin ingin hanya membaca *nilai terbaru* dari beberapa dependensi alih-alih "bereaksi" terhadap perubahannya.
 * Sebuah dependensi dapat berubah terlalu sering *secara tidak sengaja* karena merupakan objek atau fungsi.
 
-Untuk menemukan solusi yang tepat, Anda harus menjawab beberapa pertanyaan tentang Efek Anda. Mari kita telusuri pertanyaan-pertanyaan tersebut.
+Untuk menemukan solusi yang tepat, Anda harus menjawab beberapa pertanyaan tentang *Effect* Anda. Mari kita telusuri pertanyaan-pertanyaan tersebut.
 
 ### Haruskah kode ini dipindahkan ke event handler? {/*should-this-code-move-to-an-event-handler*/}
 
-Hal pertama yang harus Anda pikirkan adalah apakah kode ini harus menjadi Efek atau tidak.
+Hal pertama yang harus Anda pikirkan adalah apakah kode ini harus menjadi *Effect* atau tidak.
 
-Bayangkan sebuah formlir. Ketika dikirim, Anda mengatur variabel *state* `submitted` menjadi `true`. Anda perlu mengirim permintaan POST dan menampilkan notifikasi. Anda telah memasukkan logika ini ke dalam Efek yang "bereaksi" terhadap `submitted` yang bernilai `true`:
+Bayangkan sebuah formlir. Ketika dikirim, Anda mengatur variabel *state* `submitted` menjadi `true`. Anda perlu mengirim permintaan POST dan menampilkan notifikasi. Anda telah memasukkan logika ini ke dalam *Effect* yang "bereaksi" terhadap `submitted` yang bernilai `true`:
 
 ```js {6-8}
 function Form() {
@@ -381,7 +381,7 @@ function Form() {
 
   useEffect(() => {
     if (submitted) {
-      // 🔴 Hindari: Logika Event-specific di dalam Efek
+      // 🔴 Hindari: Logika Event-specific di dalam Effect
       post('/api/register');
       showNotification('Berhasil mendaftar!');
     }
@@ -404,7 +404,7 @@ function Form() {
 
   useEffect(() => {
     if (submitted) {
-      // 🔴 Hindari: Logika Event-specific di dalam Efek
+      // 🔴 Hindari: Logika Event-specific di dalam Effect
       post('/api/register');
       showNotification('Successfully registered!', theme);
     }
@@ -418,9 +418,9 @@ function Form() {
 }
 ```
 
-Dengan melakukan hal ini, Anda telah memunculkan *bug*. Bayangkan Anda mengirimkan formulir terlebih dahulu kemudian beralih antara tema Gelap dan Terang. `theme` akan berubah, Efek akan berjalan kembali, sehingga akan menampilkan notifikasi yang sama lagi!
+Dengan melakukan hal ini, Anda telah memunculkan *bug*. Bayangkan Anda mengirimkan formulir terlebih dahulu kemudian beralih antara tema Gelap dan Terang. `theme` akan berubah, *Effect* akan berjalan kembali, sehingga akan menampilkan notifikasi yang sama lagi!
 
-**Masalahnya di sini adalah ini seharusnya tidak menjadi Efek sejak awal.** Anda ingin mengririm permintaan POST tersebut dan menampilkan notifikasi sebagai respon atas *pengiriman formulir,* yang merupakan interaksi tertentu. Untuk menjalankan beberapa kode sebagai respon terhadap interaksi tertentu, letakkan logika tersebut langsung ke dalam *event handler* yang sesuai:
+**Masalahnya di sini adalah ini seharusnya tidak menjadi *Effect* sejak awal.** Anda ingin mengririm permintaan POST tersebut dan menampilkan notifikasi sebagai respon atas *pengiriman formulir,* yang merupakan interaksi tertentu. Untuk menjalankan beberapa kode sebagai respon terhadap interaksi tertentu, letakkan logika tersebut langsung ke dalam *event handler* yang sesuai:
 
 ```js {6-7}
 function Form() {
@@ -436,11 +436,11 @@ function Form() {
 }
 ```
 
-Sekarang kode tersebut berada di dalam *event handler*, kode tersebut tidak reaktif--jadi itu hanya akan berjalan saat pengguna mengirimkan formulir. Baca slebih lanjut tentang [memilih antara event handlers dan Efek](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) dan [cara menghapus Efrk yang tidak perlu.](/learn/you-might-not-need-an-effect)
+Sekarang kode tersebut berada di dalam *event handler*, kode tersebut tidak reaktif--jadi itu hanya akan berjalan saat pengguna mengirimkan formulir. Baca slebih lanjut tentang [memilih antara event handlers dan *Effect*](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) dan [cara menghapus Efrk yang tidak perlu.](/learn/you-might-not-need-an-effect)
 
-### Apakah Efek Anda melakukan beberapa hal yang tidak terkait? {/*is-your-effect-doing-several-unrelated-things*/}
+### Apakah *Effect* Anda melakukan beberapa hal yang tidak terkait? {/*is-your-effect-doing-several-unrelated-things*/}
 
-Pertanyaan berikutnya yang harus Anda tanyakan pada diri sendiri adalah apakah Efek Anda melakukan beberapa hal yang tidak berhubungan.
+Pertanyaan berikutnya yang harus Anda tanyakan pada diri sendiri adalah apakah *Effect* Anda melakukan beberapa hal yang tidak berhubungan.
 
 Bayangkan Anda membuat formulir pengiriman di mana pengguna perlu memilih kota dan wilayah mereka. Anda mengambil daftar `cities` dari server sesuai dengan `country` yang dipilih untuk menampilkannya dalam menu *dropdown*:
 
@@ -466,9 +466,9 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Ini adalah contoh yang baik untuk [mengambil data dari Efek.](/learn/you-might-not-need-an-effect#fetching-data) Anda menyinkronkan *state* `cities` dengan jaringan sesuai dengan *props* `country`. Anda tidak dapat melakukan hal ini di dalam *event handler* karena Anda harus mengambil data segera setelah `ShippingForm` ditampilkan dan setiap kali `country` berubah (tidak peduli interaksi mana yang menyebabkannya).
+Ini adalah contoh yang baik untuk [mengambil data dari *Effect*.](/learn/you-might-not-need-an-effect#fetching-data) Anda menyinkronkan *state* `cities` dengan jaringan sesuai dengan *props* `country`. Anda tidak dapat melakukan hal ini di dalam *event handler* karena Anda harus mengambil data segera setelah `ShippingForm` ditampilkan dan setiap kali `country` berubah (tidak peduli interaksi mana yang menyebabkannya).
 
-Sekarang katakanlah Anda menambahkan kotak pilihan kedua untuk area kota, yang akan mengambil `areas` untuk `city` yang sedang dipilih. Anda dapat memulai dengan menambahkan panggilan `fetch` kedua untuk daftar area di dalam Efek yang sama:
+Sekarang katakanlah Anda menambahkan kotak pilihan kedua untuk area kota, yang akan mengambil `areas` untuk `city` yang sedang dipilih. Anda dapat memulai dengan menambahkan panggilan `fetch` kedua untuk daftar area di dalam *Effect* yang sama:
 
 ```js {15-24,28}
 function ShippingForm({ country }) {
@@ -485,7 +485,7 @@ function ShippingForm({ country }) {
           setCities(json);
         }
       });
-    // 🔴 Hindari: Satu Efek menyinkronkan dua proses independen
+    // 🔴 Hindari: Satu Effect menyinkronkan dua proses independen
     if (city) {
       fetch(`/api/areas?city=${city}`)
         .then(response => response.json())
@@ -503,14 +503,14 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Namun, karena Efek sekarang menggunakan variabel *state* `city`, nda harus menambahkan `city` ke dalam daftar dependensi. Hal ini, pada akhirnya, menimbulkan masalah: ketika pengguna memilih kota yang berbeda, Efek akan menjalankan ulang dan memanggil  `fetchCities(country)`. Akibatnya, Anda akan mengambil ulang daftar kota berkali-kali.
+Namun, karena *Effect* sekarang menggunakan variabel *state* `city`, nda harus menambahkan `city` ke dalam daftar dependensi. Hal ini, pada akhirnya, menimbulkan masalah: ketika pengguna memilih kota yang berbeda, *Effect* akan menjalankan ulang dan memanggil  `fetchCities(country)`. Akibatnya, Anda akan mengambil ulang daftar kota berkali-kali.
 
 **Masalah dengan kode ini adalah Anda menyinkronkan dua hal berbeda yang tidak berhubungan:**
 
 1. Anda ingin menyinkronkan *state* `cities` ke jaringan berdasarkan *prop* `country`.
 1. Anda ingin menyinkronkan *state* `areas` ke jaringan berdasarkan *prop* `city`.
 
-Membagi logika menjadi dua Efek, yang masing-masing bereaksi terhadap *prop* yang perlu disinkronkan:
+Membagi logika menjadi dua *Effect*, yang masing-masing bereaksi terhadap *prop* yang perlu disinkronkan:
 
 ```js {19-33}
 function ShippingForm({ country }) {
@@ -549,13 +549,13 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Sekarang, Efek pertama hanya akan berjalan kembali jika `country` berubah, sedangkan Efek kedua akan berjalan kembali jika `city` berubah. Anda telah memisahkannya dengan tujuan: dua hal yang berbeda disinkronkan oleh dua Efek yang terpisah. Dua Efek yang terpisah memiliki dua daftar dependensi yang terpisah, jadi keduanya tidak akan memicu satu sama lain secara tidak sengaja.
+Sekarang, *Effect* pertama hanya akan berjalan kembali jika `country` berubah, sedangkan *Effect* kedua akan berjalan kembali jika `city` berubah. Anda telah memisahkannya dengan tujuan: dua hal yang berbeda disinkronkan oleh dua *Effect* yang terpisah. Dua *Effect* yang terpisah memiliki dua daftar dependensi yang terpisah, jadi keduanya tidak akan memicu satu sama lain secara tidak sengaja.
 
-Kode akhir lebih panjang dari aslinya, tetapi pemisahan Efek ini masih benar. [Setiap Efek harus mewakili proses sinkronisasi independen.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) Dalam contoh ini, menghapus satu Efek tidak merusak logika Efek lainnya. Ini berarti mereka *menyinkronkan hal-hal yang berbeda,* dan akan lebih baik jika dipisahkan. Jika Anda khawatir tentang duplikasi, Anda dapat mengembangkan kode ini dengan [mengekstrak logika berulang ke dalam Hook khusus.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+Kode akhir lebih panjang dari aslinya, tetapi pemisahan *Effect* ini masih benar. [Setiap *Effect* harus mewakili proses sinkronisasi independen.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) Dalam contoh ini, menghapus satu *Effect* tidak merusak logika *Effect* lainnya. Ini berarti mereka *menyinkronkan hal-hal yang berbeda,* dan akan lebih baik jika dipisahkan. Jika Anda khawatir tentang duplikasi, Anda dapat mengembangkan kode ini dengan [mengekstrak logika berulang ke dalam Hook khusus.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 ### Apakah Anda membaca beberapa state untuk menghitung state berikutnya? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
-Efek ini memperbarui variabel *state* `messages` dengan senarai yang baru dibuat setiap kali ada pesan baru yang masuk:
+*Effect* ini memperbarui variabel *state* `messages` dengan senarai yang baru dibuat setiap kali ada pesan baru yang masuk:
 
 ```js {2,6-8}
 function ChatRoom({ roomId }) {
@@ -569,7 +569,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-Ini menggunakan variabel `messages` untuk [membuat senarai baru](/learn/updating-arrays-in-state) yang dimulai dengan semua pesan yang ada dan menambahkan pesan baru di bagian akhir. Namun, karena `messages` adalah nilai reaktif yang dibaca oleh Efek, maka itu harus menjadi sebuah dependensi:
+Ini menggunakan variabel `messages` untuk [membuat senarai baru](/learn/updating-arrays-in-state) yang dimulai dengan semua pesan yang ada dan menambahkan pesan baru di bagian akhir. Namun, karena `messages` adalah nilai reaktif yang dibaca oleh *Effect*, maka itu harus menjadi sebuah dependensi:
 
 ```js {7,10}
 function ChatRoom({ roomId }) {
@@ -587,9 +587,9 @@ function ChatRoom({ roomId }) {
 
 Dan menjadikan `messages` sebagai dependensi akan menimbulkan masalah.
 
-Setiap kali Anda menerima pesan, `setMessages()` menyebabkan komponen di-*render* ulang dengan senarai `messages` baru yang memuat pesan yang diterima. Namun, karena Efek ini bergantung pada `messages`, ini *juga* akan menyinkronkan ulang Efek. Jadi setiap pesan baru akan membuat obrolan terhubung kembali. Pengguna tidak akan menyukai hal itu!
+Setiap kali Anda menerima pesan, `setMessages()` menyebabkan komponen di-*render* ulang dengan senarai `messages` baru yang memuat pesan yang diterima. Namun, karena *Effect* ini bergantung pada `messages`, ini *juga* akan menyinkronkan ulang *Effect*. Jadi setiap pesan baru akan membuat obrolan terhubung kembali. Pengguna tidak akan menyukai hal itu!
 
-Untuk memperbaiki masalah ini, jangan membaca `messages` di dalam Efek. Sebagai gantinya, berikan [fungsi updater](/reference/react/useState#updating-state-based-on-the-previous-state) untuk `setMessages`:
+Untuk memperbaiki masalah ini, jangan membaca `messages` di dalam *Effect*. Sebagai gantinya, berikan [fungsi updater](/reference/react/useState#updating-state-based-on-the-previous-state) untuk `setMessages`:
 
 ```js {7,10}
 function ChatRoom({ roomId }) {
@@ -605,7 +605,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-**Perhatikan bagaimana Efek Anda tidak membaca variabel `messages` sama sekali sekarang.** Anda hanya perlu mengoper fungsi updater seperti `msgs => [...msgs, receivedMessage]`. React [menaruh fungsi updater Anda dalam antrian](/learn/queueing-a-series-of-state-updates) dan akan memberikan argumen `msgs` kepada fungsi tersebut pada saat *render* berikutnya. Inilah sebabnya mengapa Efek sendiri tidak perlu bergantung pada `messages` lagi. Dengan adanya perbaikan ini, menerima pesan obrolan tidak lagi membuat obrolan tersambung kembali.
+**Perhatikan bagaimana *Effect* Anda tidak membaca variabel `messages` sama sekali sekarang.** Anda hanya perlu mengoper fungsi updater seperti `msgs => [...msgs, receivedMessage]`. React [menaruh fungsi updater Anda dalam antrian](/learn/queueing-a-series-of-state-updates) dan akan memberikan argumen `msgs` kepada fungsi tersebut pada saat *render* berikutnya. Inilah sebabnya mengapa *Effect* sendiri tidak perlu bergantung pada `messages` lagi. Dengan adanya perbaikan ini, menerima pesan obrolan tidak lagi membuat obrolan tersambung kembali.
 
 ### Apakah Anda ingin membaca nilai tanpa "bereaksi" terhadap perubahannya? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
@@ -634,7 +634,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-Karena Efek Anda sekarang menggunakan `isMuted` dalam kodenya, Anda harus menambahkannya dalam dependensi:
+Karena *Effect* Anda sekarang menggunakan `isMuted` dalam kodenya, Anda harus menambahkannya dalam dependensi:
 
 ```js {10,15}
 function ChatRoom({ roomId }) {
@@ -655,9 +655,9 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Masalahnya adalah setiap kali `isMuted` berubah (misalnya, saat pengguna menekan tombol "Muted"), Efek dakan menyinkronkan ulang, dan menghubungkan kembali ke obrloan. Ini bukan *user experience* yang diinginkan! (Dalam contoh ini, bahkan menonaktifkan *linter* pun tidak akan berhasil--jika Anda melakukannya, `isMuted` akan "terjebak" dengan nilai sebelumnya.)
+Masalahnya adalah setiap kali `isMuted` berubah (misalnya, saat pengguna menekan tombol "Muted"), *Effect* dakan menyinkronkan ulang, dan menghubungkan kembali ke obrloan. Ini bukan *user experience* yang diinginkan! (Dalam contoh ini, bahkan menonaktifkan *linter* pun tidak akan berhasil--jika Anda melakukannya, `isMuted` akan "terjebak" dengan nilai sebelumnya.)
 
-Untuk mengatasi masalah ini, Anda perlu mengekstrak logika yang seharusnya tidak reaktif dari Efek. Anda tidak ingin Efek ini "bereaksi" terhadap perubahan dari `isMuted`. [Pindahkan logika non-reaktif ini ke dalam Event Efek:](/learn/separating-events-from-effects#declaring-an-effect-event)
+Untuk mengatasi masalah ini, Anda perlu mengekstrak logika yang seharusnya tidak reaktif dari *Effect*. Anda tidak ingin *Effect* ini "bereaksi" terhadap perubahan dari `isMuted`. [Pindahkan logika non-reaktif ini ke dalam Event *Effect*:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
 ```js {1,7-12,18,21}
 import { useState, useEffect, useEffectEvent } from 'react';
@@ -684,7 +684,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Event Efek memungkinkan Anda membagi Efek menjadi bagian reaktif (yang seharusnya "bereaksi" terhadap nilai reaktif seperti `roomId` dan perubahannya) dan bagian non-reaktif (yang hanya membaca nilai terbarunya, seperti `onMessage` membaca `isMuted`). **Sekarang setelah Anda membaca `isMuted` di dalam Event Efek, ia tidak perlu menjadi dependensi Efek Anda.** Hasilnya, obrolan tidak akan tehubung kembali saat Anda men-*toggle* pengaturan "Dibisukan", dan menyelesaikan masalah aslinya!
+Event *Effect* memungkinkan Anda membagi *Effect* menjadi bagian reaktif (yang seharusnya "bereaksi" terhadap nilai reaktif seperti `roomId` dan perubahannya) dan bagian non-reaktif (yang hanya membaca nilai terbarunya, seperti `onMessage` membaca `isMuted`). **Sekarang setelah Anda membaca `isMuted` di dalam Event *Effect*, ia tidak perlu menjadi dependensi *Effect* Anda.** Hasilnya, obrolan tidak akan tehubung kembali saat Anda men-*toggle* pengaturan "Dibisukan", dan menyelesaikan masalah aslinya!
 
 #### Membungkus event handler dari props {/*wrapping-an-event-handler-from-the-props*/}
 
@@ -716,7 +716,7 @@ Misalkan komponen induk meneruskan fungsi `onReceiveMessage` *yang berbeda* pada
 />
 ```
 
-Karena `onReceiveMessage` adalah sebuah dependensi, ini akan menyebabkan Efek untuk menyinkronkan ulang setelah setiap induk dirender ulang. Hal ini akan membuat terhubung kembali ke obrolan. Untuk mengatasi ini, bungkus panggilan tersebut dalam sebuah Event Efek:
+Karena `onReceiveMessage` adalah sebuah dependensi, ini akan menyebabkan *Effect* untuk menyinkronkan ulang setelah setiap induk dirender ulang. Hal ini akan membuat terhubung kembali ke obrolan. Untuk mengatasi ini, bungkus panggilan tersebut dalam sebuah Event *Effect*:
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -737,13 +737,13 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Event Efek tidak reaktif, jadi Anda tidak perlu menetapkannya sebagai dependensi. Hasilnya, obrolan tidak akan terhubung kembali meskipun komponen induk meneruskan fungsi yang berbeda pada setiap render ulang.
+Event *Effect* tidak reaktif, jadi Anda tidak perlu menetapkannya sebagai dependensi. Hasilnya, obrolan tidak akan terhubung kembali meskipun komponen induk meneruskan fungsi yang berbeda pada setiap render ulang.
 
 #### Memisahkan kode reaktif dan non-reaktif {/*separating-reactive-and-non-reactive-code*/}
 
 Dalam contoh ini, Anda ingin mencatat kunjungan setiap kali `roomId` berubah. Anda ingin memasukkan `notificationCount` saat ini dengan setiap *log*, namun Anda *tidak* ingin perubahan `notificationCount` memicu *log event*.
 
-Solusinya adalah sekali lagi membagi kode non-reaktif menjadi Event Efek:
+Solusinya adalah sekali lagi membagi kode non-reaktif menjadi Event *Effect*:
 
 ```js {2-4,7}
 function Chat({ roomId, notificationCount }) {
@@ -758,11 +758,11 @@ function Chat({ roomId, notificationCount }) {
 }
 ```
 
-Anda ingin logika Anda menjadi reaktif terhadap `roomId`, sehingga Anda membaca `roomId` di dalam Efek Anda. Nmaun, Anda tidak ingin perubahan pada `notificationCount` untuk mencatat kunjungan tambahan, jadi Anda membaca `notificationCount` di dalam Event Efek. [Pelajari lebih lanjut tentang membaca *props* dan *state* dari Efek menggunakan Event Efek.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+Anda ingin logika Anda menjadi reaktif terhadap `roomId`, sehingga Anda membaca `roomId` di dalam *Effect* Anda. Nmaun, Anda tidak ingin perubahan pada `notificationCount` untuk mencatat kunjungan tambahan, jadi Anda membaca `notificationCount` di dalam Event *Effect*. [Pelajari lebih lanjut tentang membaca *props* dan *state* dari *Effect* menggunakan Event *Effect*.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 ### Apakah beberapa nilai reaktif berubah secara tidak sengaja {/*does-some-reactive-value-change-unintentionally*/}
 
-Terkadang, Anda *ingin* Efek Anda "beraksi" terhadap nilai tertentu, tetapi nilai tersebut berubah lebih sering daripada yang Anda inginkan--dan mungkin tidak mencerminkan perubahan yang sebenarnya dari sudut pandang pengguna. For example, Sebagai contoh, katakanlah Anda membuat objek `options` dalam badan komponen Anda, dan kemudian membaca objek tersebut dari dalam Efek Anda:
+Terkadang, Anda *ingin* *Effect* Anda "beraksi" terhadap nilai tertentu, tetapi nilai tersebut berubah lebih sering daripada yang Anda inginkan--dan mungkin tidak mencerminkan perubahan yang sebenarnya dari sudut pandang pengguna. For example, Sebagai contoh, katakanlah Anda membuat objek `options` dalam badan komponen Anda, dan kemudian membaca objek tersebut dari dalam *Effect* Anda:
 
 ```js {3-6,9}
 function ChatRoom({ roomId }) {
@@ -778,7 +778,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-Objek ini dideklarasikan di dalam badan komponen, jadi ini adalah [nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)  Ketika Anda membaca nilai reaktif seperti ini di dalam Efek, Anda mendeklarasikannya sebagai dependensi. Hal ini memastikan Efek Anda "bereaksi" terhadap perubahannya:
+Objek ini dideklarasikan di dalam badan komponen, jadi ini adalah [nilai reaktif.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)  Ketika Anda membaca nilai reaktif seperti ini di dalam *Effect*, Anda mendeklarasikannya sebagai dependensi. Hal ini memastikan *Effect* Anda "bereaksi" terhadap perubahannya:
 
 ```js {3,6}
   // ...
@@ -790,7 +790,7 @@ Objek ini dideklarasikan di dalam badan komponen, jadi ini adalah [nilai reaktif
   // ...
 ```
 
-Penting untuk mendeklarasikannya sebagai dependensi, Hal ini memastikan, misalnya, jika `roomId` berubah, Efek Anda akan terhubung kembali dengan `options` baru. Namun, ada juga masalah dengan kode di atas. Untuk melihatnya, coba ketik masukan di *sandbox* di bawah ini, dan lihat apa yang terjadi di konsol:
+Penting untuk mendeklarasikannya sebagai dependensi, Hal ini memastikan, misalnya, jika `roomId` berubah, *Effect* Anda akan terhubung kembali dengan `options` baru. Namun, ada juga masalah dengan kode di atas. Untuk melihatnya, coba ketik masukan di *sandbox* di bawah ini, dan lihat apa yang terjadi di konsol:
 
 <Sandpack>
 
@@ -869,7 +869,7 @@ button { margin-left: 10px; }
 
 Pada sandbox di atas, masukan hanya akan memperbarui variabel *state* `message`. Dari sudut pandang pengguna, hal ini seharusnya tidak mempengaruhi koneksi obrolan. Namun, setiap kali Anda memperbarui `message`, komponen Anda akan di-*render* ulang. Saat kompenen Anda di-*render* ulang, kode di dalamnya akan berjalan lagi dari awal.
 
-Objek `options` baru dibuat dari awal pada setiap *render* ulang komponen `ChatRoom`. React melihat bahwa objek `options` adalah *objek yang berbeda* dari objek `options` yang dibuat pada *render* terakhir. Inilah mengapa React melakukan sinkronisasi ulang pada Efek Anda (yang bergantung pada `options`), dan obrolan akan tersambung kembali setelah Anda mengetik.
+Objek `options` baru dibuat dari awal pada setiap *render* ulang komponen `ChatRoom`. React melihat bahwa objek `options` adalah *objek yang berbeda* dari objek `options` yang dibuat pada *render* terakhir. Inilah mengapa React melakukan sinkronisasi ulang pada *Effect* Anda (yang bergantung pada `options`), dan obrolan akan tersambung kembali setelah Anda mengetik.
 
 **Masalah ini hanya mempengaruhi objek dan fungsi. Dalam JavaScript, setiap objek dan fungsi yang baru dibuat dianggap berbeda dari yang lainnya. Tidak masalah jika isi di dalamnya mungkin sama!**
 
@@ -884,9 +884,9 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ```
 
-**Dependensi objek dan fungsi dapat membuat Efek Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
+**Dependensi objek dan fungsi dapat membuat *Effect* Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
 
-Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi Efek Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam Efek, atau mengekstrak nilai primitif dari komponen tersebut.
+Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi *Effect* Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam *Effect*, atau mengekstrak nilai primitif dari komponen tersebut.
 
 #### Memindahkan objek dan fungsi statis di luar komponen Anda {/*move-static-objects-and-functions-outside-your-component*/}
 
@@ -909,7 +909,7 @@ function ChatRoom() {
   // ...
 ```
 
-Dengan cara ini, Anda *membuktikan* kepada *linter* bahwa itu tidak reaktif. Ini tidak dapat berubah sebagai hasil dari *render* ulang, jadi tidak perlu menjadi dependensi. Sekarang me-*render* ulang `ChatRoom` tidak akan menyebabkan Efek Anda melakukan sinkronisasi ulang.
+Dengan cara ini, Anda *membuktikan* kepada *linter* bahwa itu tidak reaktif. Ini tidak dapat berubah sebagai hasil dari *render* ulang, jadi tidak perlu menjadi dependensi. Sekarang me-*render* ulang `ChatRoom` tidak akan menyebabkan *Effect* Anda melakukan sinkronisasi ulang.
 
 Ini juga berlaku untuk fungsi:
 
@@ -933,11 +933,11 @@ function ChatRoom() {
   // ...
 ```
 
-Karena `createOptions` dideklarasikan di luar komponen Anda, ini bukan nilai reaktif. Inilah sebabnya mengapa ia tidak perlu ditentukan dalam dependensi Efek Anda, dan mengapa ia tidak akan menyebabkan Efek Anda melakukan sinkronisasi ulang.
+Karena `createOptions` dideklarasikan di luar komponen Anda, ini bukan nilai reaktif. Inilah sebabnya mengapa ia tidak perlu ditentukan dalam dependensi *Effect* Anda, dan mengapa ia tidak akan menyebabkan *Effect* Anda melakukan sinkronisasi ulang.
 
-#### Memindahkan objek dan fungsi dinamis di dalam Efek Anda {/*move-dynamic-objects-and-functions-inside-your-effect*/}
+#### Memindahkan objek dan fungsi dinamis di dalam *Effect* Anda {/*move-dynamic-objects-and-functions-inside-your-effect*/}
 
-Jika objek Anda bergantung pada beberapa nilai reaktif yang dapat berubah sebagai hasil dari *render* ulang, seperti *prop* `roomId`, Anda tidak dapat menariknya *ke luar* komponen Anda. Namun, Anda dapat memindahkan pembuatannya *di dalam* kode Efek Anda:
+Jika objek Anda bergantung pada beberapa nilai reaktif yang dapat berubah sebagai hasil dari *render* ulang, seperti *prop* `roomId`, Anda tidak dapat menariknya *ke luar* komponen Anda. Namun, Anda dapat memindahkan pembuatannya *di dalam* kode *Effect* Anda:
 
 ```js {7-10,11,14}
 const serverUrl = 'https://localhost:1234';
@@ -957,7 +957,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Sekarang `options` dideklarasikan di dalam Efek Anda, tidak lagi menjadi dependensi dari Efek Anda. Sebaliknya, satu-satunya nilai reaktif yang digunakan oleh Efek Anda adalah `roomId`. Karena `roomId` bukan objek atau fungsi, Anda dapat yakin bahwa itu tidak akan *berbeda secara tidak sengaja*. Dalam JavaScript, *numbers* dan *string* dibandingkan berdasarkan isinya:
+Sekarang `options` dideklarasikan di dalam *Effect* Anda, tidak lagi menjadi dependensi dari *Effect* Anda. Sebaliknya, satu-satunya nilai reaktif yang digunakan oleh *Effect* Anda adalah `roomId`. Karena `roomId` bukan objek atau fungsi, Anda dapat yakin bahwa itu tidak akan *berbeda secara tidak sengaja*. Dalam JavaScript, *numbers* dan *string* dibandingkan berdasarkan isinya:
 
 ```js {7-8}
 // Selama render pertama
@@ -1070,7 +1070,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Anda dapat menulis fungsi Anda sendiri untuk mengelompokkan bagian logika di dalam Efek Anda. Selama Anda juga mendeklarasikannya *di dalam* Efek Anda, mereka bukan nilai reaktif, sehingga tidak perlu menjadi dependensi dari Efek Anda.
+Anda dapat menulis fungsi Anda sendiri untuk mengelompokkan bagian logika di dalam *Effect* Anda. Selama Anda juga mendeklarasikannya *di dalam* *Effect* Anda, mereka bukan nilai reaktif, sehingga tidak perlu menjadi dependensi dari *Effect* Anda.
 
 #### Membaca nilai primitif dari objek {/*read-primitive-values-from-objects*/}
 
@@ -1100,7 +1100,7 @@ Risikonya di sini adalah komponen induk akan membuat objek selama *rendering*:
 />
 ```
 
-Hal ini akan menyebabkan Efek Anda terhubung kembali setiap kali komponen induk di-*render* ulang. Untuk mengatasinya, baca informasi dari objek *di luar* Efek, dan hindari dependensi objek dan fungsi:
+Hal ini akan menyebabkan *Effect* Anda terhubung kembali setiap kali komponen induk di-*render* ulang. Untuk mengatasinya, baca informasi dari objek *di luar* *Effect*, dan hindari dependensi objek dan fungsi:
 
 ```js {4,7-8,12}
 function ChatRoom({ options }) {
@@ -1118,7 +1118,7 @@ function ChatRoom({ options }) {
   // ...
 ```
 
-Logikanya menjadi sedikit berulang (Anda membaca beberapa nilai dari objek di luar Efek, dan kemudian membuat objek dengan nilai yang sama di dalam Efek). Tetapi hal ini membuatnya sangat eksplisit tentang informasi apa yang *sebenarnya* bergantung pada Efek Anda. Jika sebuah objek dibuat ulang secara tidak sengaja oleh komponen induk, obrolan tidak akan tersambung kembali. Namun, jika `options.roomId` atau `options.serverUrl` benar-benar berbeda, obrolan akan tersambung kembali.
+Logikanya menjadi sedikit berulang (Anda membaca beberapa nilai dari objek di luar *Effect*, dan kemudian membuat objek dengan nilai yang sama di dalam *Effect*). Tetapi hal ini membuatnya sangat eksplisit tentang informasi apa yang *sebenarnya* bergantung pada *Effect* Anda. Jika sebuah objek dibuat ulang secara tidak sengaja oleh komponen induk, obrolan tidak akan tersambung kembali. Namun, jika `options.roomId` atau `options.serverUrl` benar-benar berbeda, obrolan akan tersambung kembali.
 
 #### Menghitung nilai primitif dari fungsi {/*calculate-primitive-values-from-functions*/}
 
@@ -1136,7 +1136,7 @@ Pendekatan yang sama dapat digunakan untuk fungsi. Sebagai contoh, misalkan komp
 />
 ```
 
-Untuk menghindari menjadikannya dependensi (dan menyebabkannya terhubung kembali pada *render* ulang), panggil di luar Efek. Ini akan memberi Anda nilai `roomId` dan `serverUrl` yang bukan objek, dan Anda dapat membacanya dari dalam Efek:
+Untuk menghindari menjadikannya dependensi (dan menyebabkannya terhubung kembali pada *render* ulang), panggil di luar *Effect*. Ini akan memberi Anda nilai `roomId` dan `serverUrl` yang bukan objek, dan Anda dapat membacanya dari dalam *Effect*:
 
 ```js {1,4}
 function ChatRoom({ getOptions }) {
@@ -1154,7 +1154,7 @@ function ChatRoom({ getOptions }) {
   // ...
 ```
 
-Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena aman untuk dipanggil selama *rendering*. Jika fungsi Anda adalah sebuah *event handler*, tetapi Anda tidak ingin perubahannya menyinkronkan ulang Efek Anda, [bungkuslah menjadi sebuah Event Efek](#do-you-want-to-read-a-value-without-reacting-to-its-changes).
+Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena aman untuk dipanggil selama *rendering*. Jika fungsi Anda adalah sebuah *event handler*, tetapi Anda tidak ingin perubahannya menyinkronkan ulang *Effect* Anda, [bungkuslah menjadi sebuah Event *Effect*](#do-you-want-to-read-a-value-without-reacting-to-its-changes).
 
 <Recap>
 
@@ -1163,11 +1163,11 @@ Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena 
 - Menekan *linter* akan menyebabkan *bug* yang sangat membingungkan, dan Anda harus selalu menghindarinya.
 - Untuk menghapus sebuah dependensi, Anda perlu "membuktikan" kepada *linter* bahwa dependensi tersebut tidak diperlukan.
 - Jika beberapa kode harus berjalan sebagai respons terhadap interaksi tertentu, pindahkan kode tersebut ke *event handler*.
-- Jika beberapa bagian dari Efek Anda harus dijalankan ulang karena alasan yang berbeda, pisahkan menjadi beberapa Efek.
+- Jika beberapa bagian dari *Effect* Anda harus dijalankan ulang karena alasan yang berbeda, pisahkan menjadi beberapa *Effect*.
 - Jika Anda ingin memperbarui beberapa *state* berdasarkan *state* sebelumnya, berikan fungsi *updater*.
-- Jika Anda ingin membaca nilai terbaru tanpa "bereaksi", ekstrak Event Efek dari Efek Anda.
+- Jika Anda ingin membaca nilai terbaru tanpa "bereaksi", ekstrak Event *Effect* dari *Effect* Anda.
 - Dalam JavaScript, objek dan fungsi dianggap berbeda jika dibuat pada waktu yang berbeda.
-- Cobalah untuk menghindari ketergantungan objek dan fungsi. Pindahkan mereka di luar komponen atau di dalam Efek.
+- Cobalah untuk menghindari ketergantungan objek dan fungsi. Pindahkan mereka di luar komponen atau di dalam *Effect*.
 
 </Recap>
 
@@ -1175,11 +1175,11 @@ Ini hanya berfungsi untuk fungsi [murni](/learn/keeping-components-pure) karena 
 
 #### Memperbaiki interval pengaturan ulang {/*fix-a-resetting-interval*/}
 
-Efek ini menetapkan interval yang berdetak setiap detik. Anda telah memperhatikan sesuatu yang aneh terjadi: sepertinya interval tersebut dihancurkan dan dibuat ulang setiap kali berdetak. Perbaiki kode sehingga interval tidak terus-menerus dibuat ulang.
+*Effect* ini menetapkan interval yang berdetak setiap detik. Anda telah memperhatikan sesuatu yang aneh terjadi: sepertinya interval tersebut dihancurkan dan dibuat ulang setiap kali berdetak. Perbaiki kode sehingga interval tidak terus-menerus dibuat ulang.
 
 <Hint>
 
-Sepertinya kode Efek ini bergantung pada `count`. Apakah ada cara untuk tidak memerlukan dependensi ini? Seharusnya ada cara untuk memperbarui *state* `count` berdasarkan nilai sebelumnya tanpa menambahkan dependensi pada nilai tersebut.
+Sepertinya kode *Effect* ini bergantung pada `count`. Apakah ada cara untuk tidak memerlukan dependensi ini? Seharusnya ada cara untuk memperbarui *state* `count` berdasarkan nilai sebelumnya tanpa menambahkan dependensi pada nilai tersebut.
 
 </Hint>
 
@@ -1211,7 +1211,7 @@ export default function Timer() {
 
 <Solution>
 
-Anda ingin memperbarui *state* `count` menjadi `count + 1` dari dalam Efek. Namun, hal ini membuat Efek Anda bergantung pada `count`, yang berubah setiap kali ada ketukan, dan itulah mengapa interval Anda dibuat ulang setiap kali ada ketukan.
+Anda ingin memperbarui *state* `count` menjadi `count + 1` dari dalam *Effect*. Namun, hal ini membuat *Effect* Anda bergantung pada `count`, yang berubah setiap kali ada ketukan, dan itulah mengapa interval Anda dibuat ulang setiap kali ada ketukan.
 
 Untuk mengatasi hal ini, gunakan [fungsi updater](/reference/react/useState#updating-state-based-on-the-previous-state) dan tuliskan `setCount(c => c + 1)` bukan `setCount(count + 1)`:
 
@@ -1241,19 +1241,19 @@ export default function Timer() {
 
 </Sandpack>
 
-Alih-alih membaca `count` di dalam Efek, Anda mengoper instruksi `c => c + 1` ("increment this number!") ke React. React akan menerapkannya pada *render* berikutnya. Dan karena Anda tidak perlu membaca nilai `count` di dalam Efek Anda lagi, maka Anda bisa membiarkan dependensi Efek Anda kosong (`[]`). Hal ini mencegah Efek Anda untuk membuat ulang interval pada setiap ketukan.
+Alih-alih membaca `count` di dalam *Effect*, Anda mengoper instruksi `c => c + 1` ("increment this number!") ke React. React akan menerapkannya pada *render* berikutnya. Dan karena Anda tidak perlu membaca nilai `count` di dalam *Effect* Anda lagi, maka Anda bisa membiarkan dependensi *Effect* Anda kosong (`[]`). Hal ini mencegah *Effect* Anda untuk membuat ulang interval pada setiap ketukan.
 
 </Solution>
 
 #### Memperbaiki animasi pemicu ulang {/*fix-a-retriggering-animation*/}
 
-Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di berkas `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. Efek Anda membuat sebuah *instance* `FadeInAnimation` untuk simpul DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
+Dalam contoh ini, ketika Anda menekan "Tampilkan", pesan selamat datang akan menghilang. Animasi membutuhkan waktu beberapa detik. Ketika Anda menekan "Hapus", pesan selamat datang akan segera menghilang. Logika untuk animasi *fade-in* diimplementasikan di berkas `animation.js` sebagai [animasi perulangan.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) JavaScript biasa. Anda tidak perlu mengubah logika tersebut. Anda dapat memperlakukannya sebagai pustaka pihak ketiga. *Effect* Anda membuat sebuah *instance* `FadeInAnimation` untuk simpul DOM, lalu memanggil `start(duration)` atau `stop()` untuk mengontrol animasi. Durasi dikontrol oleh *silder*. Sesuaikan *silder* dan lihat bagaimana animasi berubah.
 
-Kode ini sudah berfungsi, tetapi ada sesuatu yang ingin Anda ubah. Saat ini, saat Anda menggerakkan *slider* yang mengontrol variabel *state* `duration`, *slider* tersebut akan memicu ulang animasi. Ubah perilakunya sehingga Efek tidak "bereaksi" terhadap variabel `duration`. Saat Anda menekan "Tampilkan", Efek seharusnya menggunakan `duration` saat ini pada *silder*. Namun demikian, menggerakkan *slider* itu sendiri seharusnya tidak dengan sendirinya memicu ulang animasi.
+Kode ini sudah berfungsi, tetapi ada sesuatu yang ingin Anda ubah. Saat ini, saat Anda menggerakkan *slider* yang mengontrol variabel *state* `duration`, *slider* tersebut akan memicu ulang animasi. Ubah perilakunya sehingga *Effect* tidak "bereaksi" terhadap variabel `duration`. Saat Anda menekan "Tampilkan", *Effect* seharusnya menggunakan `duration` saat ini pada *silder*. Namun demikian, menggerakkan *slider* itu sendiri seharusnya tidak dengan sendirinya memicu ulang animasi.
 
 <Hint>
 
-Apakah ada baris kode di dalam Efek yang tidak boleh reaktif? Bagaimana cara memindahkan kode non-reaktif keluar dari Efek?
+Apakah ada baris kode di dalam *Effect* yang tidak boleh reaktif? Bagaimana cara memindahkan kode non-reaktif keluar dari *Effect*?
 
 </Hint>
 
@@ -1382,7 +1382,7 @@ html, body { min-height: 300px; }
 
 <Solution>
 
-Efek Anda perlu membaca nilai terbaru dari `duration`, tetapi Anda tidak ingin efek tersebut "bereaksi" terhadap perubahan dalam `suration`. Anda menggunakan `duration` untuk memulai animasi, tetapi memulai animasi tidak reaktif. Ekstrak baris kode non-reaktif ke dalam Event Efek, dan panggil fungsi itu dari Efek Anda.
+*Effect* Anda perlu membaca nilai terbaru dari `duration`, tetapi Anda tidak ingin efek tersebut "bereaksi" terhadap perubahan dalam `suration`. Anda menggunakan `duration` untuk memulai animasi, tetapi memulai animasi tidak reaktif. Ekstrak baris kode non-reaktif ke dalam Event *Effect*, dan panggil fungsi itu dari *Effect* Anda.
 
 <Sandpack>
 
@@ -1505,7 +1505,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Event Efek seperti `onAppear` tidak reaktif, sehingga Anda dapat membaca `duration` di dalamnya tanpa memicu ulang animasi.
+Event *Effect* seperti `onAppear` tidak reaktif, sehingga Anda dapat membaca `duration` di dalamnya tanpa memicu ulang animasi.
 
 </Solution>
 
@@ -1611,9 +1611,9 @@ label, button { display: block; margin-bottom: 5px; }
 
 <Solution>
 
-Efek Anda dijalankan ulang karena bergantung pada objek `options`. Objek dapat dibuat ulang tanpa disengaja, Anda harus mencoba menghindarinya sebagai dependensi Efek Anda bila memungkinkan.
+*Effect* Anda dijalankan ulang karena bergantung pada objek `options`. Objek dapat dibuat ulang tanpa disengaja, Anda harus mencoba menghindarinya sebagai dependensi *Effect* Anda bila memungkinkan.
 
-Perbaikan yang paling tidak invasif adalah dengan membaca `roomId` dan `serverUrl` tepat di luar Efek, dan kemudian membuat Efek bergantung pada nilai primitif tersebut (yang tidak dapat berubah secara tidak sengaja). Di dalam Efek, buat sebuah objek dan berikan ke `createConnection`:
+Perbaikan yang paling tidak invasif adalah dengan membaca `roomId` dan `serverUrl` tepat di luar *Effect*, dan kemudian membuat *Effect* bergantung pada nilai primitif tersebut (yang tidak dapat berubah secara tidak sengaja). Di dalam *Effect*, buat sebuah objek dan berikan ke `createConnection`:
 
 <Sandpack>
 
@@ -1813,9 +1813,9 @@ Jangan ubah kode apa pun di `chat.js`. Selain itu, Anda dapat mengubah kode apa 
 
 <Hint>
 
-Anda mengoper dua fungsi: `onMessage` dan `createConnection`. Keduanya dibuat dari awal setiap kali `Aplikasi` di-*render* ulang. Keduanya dianggap sebagai nilai baru setiap saat, dan itulah sebabnya mereka memicu ulang Efek Anda.
+Anda mengoper dua fungsi: `onMessage` dan `createConnection`. Keduanya dibuat dari awal setiap kali `Aplikasi` di-*render* ulang. Keduanya dianggap sebagai nilai baru setiap saat, dan itulah sebabnya mereka memicu ulang *Effect* Anda.
 
-Salah satu dari fungsi ini adalah *event handler*. Apakah Anda tahu beberapa cara untuk memanggil *event handler* sebagai Efek tanpa "bereaksi" terhadap nilai baru dari fungsi *event handler*? Itu akan sangat berguna!
+Salah satu dari fungsi ini adalah *event handler*. Apakah Anda tahu beberapa cara untuk memanggil *event handler* sebagai *Effect* tanpa "bereaksi" terhadap nilai baru dari fungsi *event handler*? Itu akan sangat berguna!
 
 Fungsi lain dari fungsi ini hanya ada untuk mengoper beberapa *state* ke metode API yang diimpor. Apakah fungsi ini benar-benar diperlukan? Apa informasi penting yang diturunkan? Anda mungkin perlu memindahkan beberapa impor dari `App.js` ke `ChatRoom.js`.
 
@@ -2034,9 +2034,9 @@ label, button { display: block; margin-bottom: 5px; }
 
 Ada lebih dari satu cara yang benar untuk mengatasi hal ini, tetapi berikut ini adalah salah satu solusi yang mungkin.
 
-Pada contoh asli, mengganti tema menyebabkan fungsi `onMessage` dan `createConnection` yang berbeda dibuat dan diturunkan. Karena Efek bergantung pada fungsi-fungsi ini, obrolan akan tersambung kembali setiap kali Anda mengganti tema.
+Pada contoh asli, mengganti tema menyebabkan fungsi `onMessage` dan `createConnection` yang berbeda dibuat dan diturunkan. Karena *Effect* bergantung pada fungsi-fungsi ini, obrolan akan tersambung kembali setiap kali Anda mengganti tema.
 
-Untuk memperbaiki masalah pada `onMessage`, Anda perlu membungkusnya menjadi sebuah Event Efek:
+Untuk memperbaiki masalah pada `onMessage`, Anda perlu membungkusnya menjadi sebuah Event *Effect*:
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
@@ -2048,9 +2048,9 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
     // ...
 ```
 
-Tidak seperti *prop* `onMessage`, Event Efek `onReceiveMessage` tidak bersifat reaktif. Inilah sebabnya mengapa ia tidak perlu menjadi dependensi Efek Anda. Akibatnya, perubahan pada `onMessage` tidak akan menyebabkan obrolan tersambung kembali.
+Tidak seperti *prop* `onMessage`, Event *Effect* `onReceiveMessage` tidak bersifat reaktif. Inilah sebabnya mengapa ia tidak perlu menjadi dependensi *Effect* Anda. Akibatnya, perubahan pada `onMessage` tidak akan menyebabkan obrolan tersambung kembali.
 
-Anda tidak dapat melakukan hal yang sama dengan `createConnection` karena ia *harus* reaktif. Anda *ingin* Efeknya terpicu kembali jika pengguna beralih antara koneksi terenkripsi dan tidak terenkripsi, atau jika pengguna berpindah ruangan. Namun, karena `createConnection` adalah sebuah fungsi, Anda tidak dapat memeriksa apakah informasi yang dibacanya telah *benar-benar* berubah atau tidak. Untuk mengatasi hal ini, alih-alih meneruskan `createConnection` dari komponen `App`, berikan nilai mentah `roomId` dan `isEncrypted`:
+Anda tidak dapat melakukan hal yang sama dengan `createConnection` karena ia *harus* reaktif. Anda *ingin* *Effect*nya terpicu kembali jika pengguna beralih antara koneksi terenkripsi dan tidak terenkripsi, atau jika pengguna berpindah ruangan. Namun, karena `createConnection` adalah sebuah fungsi, Anda tidak dapat memeriksa apakah informasi yang dibacanya telah *benar-benar* berubah atau tidak. Untuk mengatasi hal ini, alih-alih meneruskan `createConnection` dari komponen `App`, berikan nilai mentah `roomId` dan `isEncrypted`:
 
 ```js {2-3}
       <ChatRoom
@@ -2062,7 +2062,7 @@ Anda tidak dapat melakukan hal yang sama dengan `createConnection` karena ia *ha
       />
 ```
 
-Sekarang Anda dapat memindahkan fungsi `createConnection` ke dalam Efek alih-alih meneruskannya dari `App`:
+Sekarang Anda dapat memindahkan fungsi `createConnection` ke dalam *Effect* alih-alih meneruskannya dari `App`:
 
 ```js {1-4,6,10-20}
 import {
@@ -2088,7 +2088,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
     // ...
 ```
 
-Setelah kedua perubahan ini, Efek Anda tidak lagi bergantung pada nilai fungsi apa pun:
+Setelah kedua perubahan ini, *Effect* Anda tidak lagi bergantung pada nilai fungsi apa pun:
 
 ```js {1,8,10,21}
 export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Nilai reaktif

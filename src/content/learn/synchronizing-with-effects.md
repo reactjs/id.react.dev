@@ -590,7 +590,7 @@ Sekarang Anda mendapatkan tiga log konsol dalam pengembangan:
 
 **Ini adalah perilaku yang benar dalam pengembangan.** Dengan memasang kembali komponen Anda, React memverifikasi bahwa navigasi menjauh dan kembali tidak akan merusak kode Anda. Memutuskan sambungan dan kemudian menyambungkannya kembali adalah hal yang seharusnya terjadi! Ketika Anda mengimplementasikan pembersihan dengan baik, seharusnya tidak ada perbedaan yang terlihat oleh pengguna antara menjalankan *Effect* sekali vs menjalankannya, membersihkannya, dan menjalankannya lagi. Ada pasangan panggilan tambahan untuk menghubungkan/memutuskan koneksi karena React sedang menyelidiki kode Anda untuk mencari bug dalam pengembangan. Ini adalah hal yang normal--jangan mencoba untuk menghilangkannya!
 
-**Dalam produksi, Anda hanya akan melihat `"✅ Menghubungkan..."` dicetak satu kali.** Memasang kembali komponen hanya terjadi dalam pengembangan untuk membantu Anda menemukan Efek yang perlu dibersihkan. Anda dapat mematikan [Strict Mode](/reference/react/StrictMode) untuk keluar dari perilaku pengembangan, tetapi kami sarankan untuk tetap mengaktifkannya. Hal ini memungkinkan Anda menemukan banyak bug seperti di atas.
+**Dalam produksi, Anda hanya akan melihat `"✅ Menghubungkan..."` dicetak satu kali.** Memasang kembali komponen hanya terjadi dalam pengembangan untuk membantu Anda menemukan *Effect* yang perlu dibersihkan. Anda dapat mematikan [Strict Mode](/reference/react/StrictMode) untuk keluar dari perilaku pengembangan, tetapi kami sarankan untuk tetap mengaktifkannya. Hal ini memungkinkan Anda menemukan banyak bug seperti di atas.
 
 ## Bagaimana cara menangani *Effect* yang ditembakkan dua kali dalam pengembangan? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
@@ -627,7 +627,7 @@ Dalam pengembangan, *Effect* Anda akan memanggil `showModal()`, lalu segera `clo
 
 ### Berlangganan *events* {/*subscribing-to-events*/}
 
-Jika Efek Anda berlangganan sesuatu, fungsi pembersihan harus menghentikan langganan:
+Jika *Effect* Anda berlangganan sesuatu, fungsi pembersihan harus menghentikan langganan:
 
 ```js {6}
 useEffect(() => {
@@ -659,7 +659,7 @@ Dalam mode pengembangan, *opacity* akan diatur ke `1`, kemudian ke `0`, dan kemu
 
 ### Mengambil data {/*fetching-data*/}
 
-Jika Efek Anda mengambil sesuatu, fungsi pembersihan harus [membatalkan pengambilan](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) atau mengabaikan hasilnya:
+Jika *Effect* Anda mengambil sesuatu, fungsi pembersihan harus [membatalkan pengambilan](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) atau mengabaikan hasilnya:
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -837,7 +837,7 @@ Ketik sesuatu ke dalam input, lalu segera tekan "Lepas komponen". Perhatikan bag
 
 Terakhir, edit komponen di atas dan beri komentar pada fungsi pembersihan agar *timeout* tidak dibatalkan. Coba ketik `abcde` dengan cepat. Apa yang Anda kira akan terjadi dalam tiga detik? Akankah `console.log(text)` di dalam *timeout* mencetak `text` *terbaru* dan menghasilkan lima log `abcde`? Cobalah untuk menguji intuisi Anda!
 
-Tiga detik kemudian, Anda akan melihat urutan log (`a`, `ab`, `abc`, `abcd`, and `abcde`) bukan lima log `abcde`. **Setiap Efek "menangkap" nilai `teks` dari render yang sesuai.** Tidak masalah jika *state* `text` berubah: Efek dari render dengan `text = 'ab'` akan selalu menjadi `'ab'`. Jika Anda penasaran bagaimana cara kerjanya, Anda dapat membaca tentang [*closures*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+Tiga detik kemudian, Anda akan melihat urutan log (`a`, `ab`, `abc`, `abcd`, and `abcde`) bukan lima log `abcde`. **Setiap *Effect* "menangkap" nilai `teks` dari render yang sesuai.** Tidak masalah jika *state* `text` berubah: *Effect* dari render dengan `text = 'ab'` akan selalu menjadi `'ab'`. Jika Anda penasaran bagaimana cara kerjanya, Anda dapat membaca tentang [*closures*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 <DeepDive>
 
@@ -1051,7 +1051,7 @@ Untuk memastikan bahwa solusi Anda berfungsi, tekan "Tampilkan formulir" dan pas
 
 <Solution>
 
-Memanggil `ref.current.focus()` saat _render_ salah karena ia merupakan _efek samping_. Efek samping seharusnya ditempatkan di dalam _event handler_ atau dideklarasikan dengan `useEffect`. Dalam contoh ini, efek samping _dihasilkan_ oleh komponen yang muncul, bukan oleh interaksi tertentu, oleh karena itu akan masuk akal menempatkannya di dalam _Effect_.
+Memanggil `ref.current.focus()` saat _render_ salah karena ia merupakan _efek samping_. *Effect* samping seharusnya ditempatkan di dalam _event handler_ atau dideklarasikan dengan `useEffect`. Dalam contoh ini, efek samping _dihasilkan_ oleh komponen yang muncul, bukan oleh interaksi tertentu, oleh karena itu akan masuk akal menempatkannya di dalam _Effect_.
 
 Untuk memperbaiki kesalahannya, bungkus panggilan `ref.current.focus()` di dalam _Effect_. Kemudian, untuk memastikan bahwa _Effect_ ini hanya berjalan pada saat pemasangan dan bukan setelah setiap render, tambahkan dependensi kosong `[]` ke dalamnya.
 
@@ -1566,10 +1566,10 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Setiap *Effect* *render* memiliki variabel `ignore` sendiri. Awalnya, variabel `ignore` disetel ke `false`. Namun, jika sebuah Effect dibersihkan (seperti ketika Anda memilih orang yang berbeda), variabel `ignore` menjadi `true`. Jadi sekarang tidak masalah dalam urutan mana permintaan diselesaikan. Hanya *Effect* orang terakhir yang memiliki `ignore` yang disetel ke `false`, sehingga akan memanggil `setBio(result)`. Efek-efek sebelumnya telah dibersihkan, sehingga pemeriksaan `if (!ignore)` akan mencegah mereka memanggil `setBio`:
+Setiap *Effect* *render* memiliki variabel `ignore` sendiri. Awalnya, variabel `ignore` disetel ke `false`. Namun, jika sebuah Effect dibersihkan (seperti ketika Anda memilih orang yang berbeda), variabel `ignore` menjadi `true`. Jadi sekarang tidak masalah dalam urutan mana permintaan diselesaikan. Hanya *Effect* orang terakhir yang memiliki `ignore` yang disetel ke `false`, sehingga akan memanggil `setBio(result)`. *Effect*-efek sebelumnya telah dibersihkan, sehingga pemeriksaan `if (!ignore)` akan mencegah mereka memanggil `setBio`:
 
 - Memilih `'Bob'` akan memicu `fetchBio('Bob')`
-- Memilih `'Taylor'` akan memicu `fetchBio('Taylor')` **dan membersihkan Efek sebelumnya (milik Bob)**
+- Memilih `'Taylor'` akan memicu `fetchBio('Taylor')` **dan membersihkan *Effect* sebelumnya (milik Bob)**
 - Mengambil data `'Taylor'` selesai *sebelum* mengambil data `'Bob'`
 - *Effect* dari render `'Taylor'` memanggil `setBio('Ini adalah biodata Taylor')`
 - Mengambil data `'Bob'` selesai

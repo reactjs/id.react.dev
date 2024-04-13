@@ -193,7 +193,7 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Menghilangkan Efek dependensi",
+          "title": "Menghilangkan dependensi Effect",
           "path": "/learn/removing-effect-dependencies"
         },
         {
