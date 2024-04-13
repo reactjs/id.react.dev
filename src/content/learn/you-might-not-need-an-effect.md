@@ -1,21 +1,21 @@
 ---
-title: 'You Might Not Need an Effect'
+title: 'Anda Mungkin Tidak Membutuhkan Effect'
 ---
 
 <Intro>
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+*Effects* adalah jalan keluar dari paradigma React. Mereka memungkinkan Anda untuk "keluar" dari React dan menyinkronkan komponen Anda dengan sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan *Effect*. Menghilangkan *Effects* yang tidak perlu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why and how to remove unnecessary Effects from your components
-* How to cache expensive computations without Effects
-* How to reset and adjust component state without Effects
-* How to share logic between event handlers
-* Which logic should be moved to event handlers
-* How to notify parent components about changes
+* Mengapa dan cara menghapus *Effects* yang tidak perlu dari komponen Anda
+* Cara meng-*cache* komputasi yang mahal tanpa *Effects*
+* Cara menyetel ulang dan mengatur *state* komponen tanpa *Effects*
+* Cara berbagi logika di antara *event handler* share logic between event handlers
+* Logika apa yang seharusnya dipindahkan ke *event handler*
+* Cara memberi tahu perubahan komponen ke komponen induk
 
 </YouWillLearn>
 

@@ -193,7 +193,7 @@ Baca **[Sinkronisasi dengan *Effect*](/learn/synchronizing-with-effects)** untuk
 
 ## Anda mungkin tidak membutuhkan *Effect* {/*you-might-not-need-an-effect*/}
 
-*Effects* adalah sebuah jalan keluar dari paradigma React. Mereka membiarkan Anda untuk "keluar" dari React dan menyinkronkan komponen Anda dengan beberapa sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan sebuah *Effect*. Hilangkan *Effects* yang tidak pelu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
+*Effects* adalah jalan keluar dari paradigma React. Mereka memungkinkan Anda "keluar" dari React dan menyinkronkan komponen Anda dengan sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan *Effect*. Hilangkan *Effects* yang tidak perlu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
 
 Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 - **Anda tidak perlu menggunakan *Effects* untuk mengubah data saat pe-*render*-an.**
