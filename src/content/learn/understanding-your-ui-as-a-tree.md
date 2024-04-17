@@ -31,9 +31,7 @@ Seperti halnya peramban (*browser*) dan perangkat seluler (*mobile*) bergerak, R
 
 ## Pohon *Render* {/*the-render-tree*/}
 
-Fitur utama dari komponen adalah kemampuan untuk menyusun komponen dari komponen lain. Saat kita [menyusun komponen](/learn/
-your-first-component#nesting-and-organizing-components)
-, kita memiliki konsep komponen induk dan anak, di mana setiap komponen induk dapat menjadi anak dari komponen lain.
+Fitur utama dari komponen adalah kemampuan untuk menyusun komponen dari komponen lain. Saat kita [menyusun komponen](/learn/your-first-component#nesting-and-organizing-components), kita memiliki konsep komponen induk dan anak, di mana setiap komponen induk dapat menjadi anak dari komponen lain.
 
 Ketika kita me-*render* aplikasi React, kita dapat memodelkan hubungan ini dalam sebuah pohon, yang dikenal sebagai pohon *render*.
 
