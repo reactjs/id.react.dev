@@ -247,8 +247,7 @@ export default [
 ```
 </Sandpack>
 
-<Diagram name="conditional_render_tree" height={250} width={561} alt="Graf pohon dengan enam simpul. Simpul teratas dari pohon diberi label 'App' dengan dua anak panah yang mengarah ke simpul-simpul yang diberi label 'InspirationGenerator' dan 'FancyText'.
-Panah-panah tersebut merupakan garis solid dan diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki tiga anak panah. Panah ke node 'FancyText' dan 'Color' putus-putus dan diberi label 'renders? Panah terakhir mengarah ke node berlabel 'Copyright' dan berbentuk padat dan diberi label 'renders'.">
+<Diagram name="conditional_render_tree" height={250} width={561} alt="Graf pohon dengan enam simpul. Simpul teratas dari pohon diberi label 'App' dengan dua anak panah yang mengarah ke simpul-simpul yang diberi label 'InspirationGenerator' dan 'FancyText'. Panah-panah tersebut merupakan garis solid dan diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki tiga anak panah. Panah ke node 'FancyText' dan 'Color' putus-putus dan diberi label 'renders? Panah terakhir mengarah ke node berlabel 'Copyright' dan berbentuk padat dan diberi label 'renders'.">
 
 Dengan perenderan kondisional, pada *render* yang berbeda, pohon *render* dapat merender komponen yang berbeda.
 
