@@ -133,8 +133,7 @@ Simpul akar (*root node*) dalam pohon *render* React adalah [komponen akar](/lea
 
 <DeepDive>
 
-#### Di mana letak dari tag HTML dalam pohon *render*? {/*di-mana-letak-dari-tag-html-dalam-pohon-render*/}
-{/*where-are-the-html-elements-in-the-render-tree*/}
+#### Di mana letak dari tag HTML dalam pohon *render*? {/*where-are-the-html-elements-in-the-render-tree*/}
 
 Anda akan melihat pada pohon *render* di atas, tidak disebutkan tag HTML yang di-*render* oleh setiap komponen. Hal ini dikarenakan pohon *render* hanya terdiri dari React [components](learn/your-first-component#components-ui-building-blocks).
 
