@@ -118,8 +118,7 @@ export default [
 
 </Sandpack>
 
-<Diagram name="render_tree" height={250} width={500} alt="Graf pohon dengan lima simpul. Tiap simpul merepresentasikan sebuah komponen. Akar dari pohon ini adalah App, dengan dua anak panah yang memanjang dari akar tersebut ke 'InspirationGenerator' dan 'FancyText'. Panah-panah tersebut diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki dua anak panah yang mengarah ke node 'FancyText' dan 'Copyright'.
-">
+<Diagram name="render_tree" height={250} width={500} alt="Graf pohon dengan lima simpul. Tiap simpul merepresentasikan sebuah komponen. Akar dari pohon ini adalah App, dengan dua anak panah yang memanjang dari akar tersebut ke 'InspirationGenerator' dan 'FancyText'. Panah-panah tersebut diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki dua anak panah yang mengarah ke node 'FancyText' dan 'Copyright'.">
 
 React membuat sebuah *render tree*, sebuah pohon UI, yang terdiri dari komponen-komponen yang di-*render*.
 
