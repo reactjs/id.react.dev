@@ -15,7 +15,7 @@ Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terk
 
 </YouWillLearn>
 
-## Mengelompokkan pembaruan state dalam React  {/*react-batches-state-updates*/}
+## Mengelompokkan pembaruan state dalam React {/*react-batches-state-updates*/}
 
 Anda mungkin berharap bahwa menekan tombol "+3" akan menambahkan penghitung tiga kali karena memanggil `setNumber(number + 1)` tiga kali:
 

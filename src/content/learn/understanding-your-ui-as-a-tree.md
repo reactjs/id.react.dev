@@ -1,41 +1,41 @@
 ---
-title: Understanding Your UI as a Tree
+title: Memahami Antarmuka Pengguna (UI) Anda sebagai Pohon
 ---
 
 <Intro>
 
-Your React app is taking shape with many components being nested within each other. How does React keep track of your app's component structure?
+Aplikasi React Anda mulai terbentuk dengan banyak komponen yang dirangkai satu sama lain. Bagaimana cara React melacak struktur komponen aplikasi Anda?
 
-React, and many other UI libraries, model UI as a tree. Thinking of your app as a tree is useful for understanding the relationship between components. This understanding will help you debug future concepts like performance and state management.
+React, dan banyak library antarmuka pengguna (UI) lainnya, memodelkan antarmuka pengguna (UI) sebagai sebuah pohon. Memikirkan aplikasi Anda sebagai sebuah pohon sangat berguna untuk memahami hubungan antar komponen. Pemahaman ini akan membantu Anda men-*debug* konsep-konsep di masa depan seperti kinerja dan manajemen *state*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* What a render tree is and what it is useful for
-* What a module dependency tree is and what it is useful for
+* Bagaimana React "melihat" struktur komponen
+* Apa itu pohon *render* dan kegunaannya
+* Apa itu pohon modul dependensi dan kegunaannya
 
 </YouWillLearn>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## UI Anda sebagai pohon {/*your-ui-as-a-tree*/}
 
-Trees are a relationship model between items and UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+Pohon adalah model hubungan antara setiap bagian (*item*) dan UI yang sering direpresentasikan dengan menggunakan struktur pohon. Sebagai contoh, Peramban (*browser*) menggunakan struktur pohon untuk memodelkan HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) dan CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Platform seluler (*mobile*) juga menggunakan pohon untuk merepresentasikan hierarki tampilan mereka.
 
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React DOM'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram dengan tiga bagian yang disusun secara horizontal. Pada bagian pertama, terdapat tiga persegi panjang yang ditumpuk secara vertikal, dengan label 'Komponen A', 'Komponen B', dan 'Komponen C'. Transisi ke panel berikutnya adalah sebuah panah dengan logo React di bagian atas yang berlabel 'React'. Bagian tengah berisi sebuah pohon komponen, dengan akar berlabel 'A' dan dua komponen anak berlabel 'B' dan 'C'. Bagian selanjutnya ditransisikan lagi menggunakan panah dengan logo React di bagian atas berlabel 'React DOM'. Bagian ketiga dan terakhir adalah *wireframe* dari sebuah peramban, yang berisi sebuah pohon dengan 8 *node*, yang hanya memiliki sebuah bagian yang disorot (mengindikasikan subpohon dari bagian tengah).">
 
-React creates a UI tree from your components. In this example, the UI tree is then used to render to the DOM.
+React membuat sebuah pohon UI dari komponen-komponen Anda. Pada contoh ini, pohon UI kemudian digunakan untuk me-*render* ke DOM.
 </Diagram>
 
-Like browsers and mobile platforms, React also uses tree structures to manage and model the relationship between components in a React app. These trees are useful tools to understand how data flows through a React app and how to optimize rendering and app size.
+Seperti halnya peramban (*browser*) dan perangkat seluler (*mobile*) bergerak, React juga menggunakan struktur pohon untuk mengelola dan memodelkan hubungan antar komponen dalam aplikasi React. Pohon-pohon ini adalah alat yang berguna untuk memahami bagaimana data mengalir melalui aplikasi React dan bagaimana mengoptimalkan *rendering* dan ukuran aplikasi.
 
-## The Render Tree {/*the-render-tree*/}
+## Pohon *Render* {/*the-render-tree*/}
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+Fitur utama dari komponen adalah kemampuan untuk menyusun komponen dari komponen lain. Saat kita [menyusun komponen](/learn/your-first-component#nesting-and-organizing-components), kita memiliki konsep komponen induk dan anak, di mana setiap komponen induk dapat menjadi anak dari komponen lain.
 
-When we render a React app, we can model this relationship in a tree, known as the render tree.
+Ketika kita me-*render* aplikasi React, kita dapat memodelkan hubungan ini dalam sebuah pohon, yang dikenal sebagai pohon *render*.
 
-Here is a React app that renders inspirational quotes.
+Berikut ini adalah aplikasi React yang membuat kutipan-kutipan inspiratif.
 
 <Sandpack>
 
@@ -47,7 +47,7 @@ import Copyright from './Copyright';
 export default function App() {
   return (
     <>
-      <FancyText title text="Get Inspired App" />
+      <FancyText title text="Aplikasi Dapatkan Inspirasi" />
       <InspirationGenerator>
         <Copyright year={2004} />
       </InspirationGenerator>
@@ -77,9 +77,9 @@ export default function InspirationGenerator({children}) {
 
   return (
     <>
-      <p>Your inspirational quote is:</p>
+      <p>Kutipan inspiratif Anda adalah:</p>
       <FancyText text={quote} />
-      <button onClick={next}>Inspire me again</button>
+      <button onClick={next}>Berikan Aku inspirasi lagi.</button>
       {children}
     </>
   );
@@ -94,9 +94,9 @@ export default function Copyright({year}) {
 
 ```js src/quotes.js
 export default [
-  "Don’t let yesterday take up too much of today.” — Will Rogers",
-  "Ambition is putting a ladder against the sky.",
-  "A joy that's shared is a joy made double.",
+  "Jangan biarkan hari kemarin menyita terlalu banyak waktu di hari ini.” — Will Rogers",
+  "Ambisi adalah menyusun tangga menuju langit.",
+  "Kegembiraan yang dibagi adalah kegembiraan yang berlipat ganda.",
   ];
 ```
 
@@ -118,34 +118,34 @@ export default [
 
 </Sandpack>
 
-<Diagram name="render_tree" height={250} width={500} alt="Tree graph with five nodes. Each node represents a component. The root of the tree is App, with two arrows extending from it to 'InspirationGenerator' and 'FancyText'. The arrows are labelled with the word 'renders'. 'InspirationGenerator' node also has two arrows pointing to nodes 'FancyText' and 'Copyright'.">
+<Diagram name="render_tree" height={250} width={500} alt="Graf pohon dengan lima simpul. Tiap simpul merepresentasikan sebuah komponen. Akar dari pohon ini adalah App, dengan dua anak panah yang memanjang dari akar tersebut ke 'InspirationGenerator' dan 'FancyText'. Panah-panah tersebut diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki dua anak panah yang mengarah ke node 'FancyText' dan 'Copyright'.">
 
-React creates a *render tree*, a UI tree, composed of the rendered components.
+React membuat sebuah *render tree*, sebuah pohon UI, yang terdiri dari komponen-komponen yang di-*render*.
 
 
 </Diagram>
 
-From the example app, we can construct the above render tree.
+Dari contoh aplikasi, kita dapat membuat pohon *render* di atas.
 
-The tree is composed of nodes, each of which represents a component. `App`, `FancyText`, `Copyright`, to name a few, are all nodes in our tree.
+Pohon ini terdiri dari beberapa simpul, yang masing-masing mewakili sebuah komponen. `App`, `FancyText`, `Copyright`, dan beberapa lainnya, merupakan beberapa simpul di dalam pohon kita.
 
-The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
+Simpul akar (*root node*) dalam pohon *render* React adalah [komponen akar](/learn/importing-and-exporting-components#the-root-component-file) dari aplikasi. Dalam kasus ini, Akar komponen adalah `Aplikasi` dan merupakan komponen pertama yang di-*render* oleh React. Setiap panah pada pohon menunjuk dari komponen induk ke komponen anak.
 
 <DeepDive>
 
-#### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
+#### Di mana letak dari tag HTML dalam pohon *render*? {/*where-are-the-html-elements-in-the-render-tree*/}
 
-You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](learn/your-first-component#components-ui-building-blocks).
+Anda akan melihat pada pohon *render* di atas, tidak disebutkan tag HTML yang di-*render* oleh setiap komponen. Hal ini dikarenakan pohon *render* hanya terdiri dari React [components](learn/your-first-component#components-ui-building-blocks).
 
-React, as a UI framework, is platform agnostic. On react.dev, we showcase examples that render to the web, which uses HTML markup as its UI primitives. But a React app could just as likely render to a mobile or desktop platform, which may use different UI primitives like [UIView](https://developer.apple.com/documentation/uikit/uiview) or [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
+React, sebagai sebuah framework UI, bersifat agnostik terhadap platform. Di react.dev, kami menampilkan contoh-contoh yang di-*render* ke web, yang menggunakan markup HTML sebagai primitif UI-nya. Tetapi aplikasi React bisa saja merender ke platform mobile atau desktop, yang mungkin menggunakan primitif UI yang berbeda seperti [UIView](https://developer.apple.com/documentation/uikit/uiview) atau [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
-These platform UI primitives are not a part of React. React render trees can provide insight to our React app regardless of what platform your app renders to.
+Primitif UI platform ini bukan merupakan bagian dari React. Pohon *render* React dapat memberikan wawasan kepada aplikasi React kita terlepas dari platform apa aplikasi Anda di-*render*.
 
 </DeepDive>
 
-A render tree represents a single render pass of a React application. With [conditional rendering](/learn/conditional-rendering), a parent component may render different children depending on the data passed.
+Sebuah pohon *render* merepresentasikan sekali *render* pada aplikasi React. Dengan [perenderan kondisional](/learn/conditional-rendering), komponen induk dapat me-*render* anak yang berbeda tergantung pada data yang di-*render*.
 
-We can update the app to conditionally render either an inspirational quote or color.
+Kita dapat memperbarui aplikasi untuk me-*render* secara bersyarat sebuah kutipan inspiratif atau warna.
 
 <Sandpack>
 
@@ -157,7 +157,7 @@ import Copyright from './Copyright';
 export default function App() {
   return (
     <>
-      <FancyText title text="Get Inspired App" />
+      <FancyText title text="Aplikasi Dapatkan Inspirasi" />
       <InspirationGenerator>
         <Copyright year={2004} />
       </InspirationGenerator>
@@ -194,12 +194,12 @@ export default function InspirationGenerator({children}) {
 
   return (
     <>
-      <p>Your inspirational {inspiration.type} is:</p>
+      <p>{inspiration.type} inspiratif Anda adalah:</p>
       {inspiration.type === 'quote'
       ? <FancyText text={inspiration.value} />
       : <Color value={inspiration.value} />}
 
-      <button onClick={next}>Inspire me again</button>
+      <button onClick={next}>Berikan Aku inspirasi lagi</button>
       {children}
     </>
   );
@@ -214,11 +214,11 @@ export default function Copyright({year}) {
 
 ```js src/inspirations.js
 export default [
-  {type: 'quote', value: "Don’t let yesterday take up too much of today.” — Will Rogers"},
+  {type: 'quote', value: "Jangan biarkan hari kemarin menyita terlalu banyak waktu di hari ini.” — Will Rogers"},
   {type: 'color', value: "#B73636"},
-  {type: 'quote', value: "Ambition is putting a ladder against the sky."},
+  {type: 'quote', value: "Ambisi adalah menyusun tangga menuju langit."},
   {type: 'color', value: "#256266"},
-  {type: 'quote', value: "A joy that's shared is a joy made double."},
+  {type: 'quote', value: "Kegembiraan yang dibagi adalah kegembiraan yang berlipat ganda."},
   {type: 'color', value: "#F9F2B4"},
 ];
 ```
@@ -245,56 +245,56 @@ export default [
 ```
 </Sandpack>
 
-<Diagram name="conditional_render_tree" height={250} width={561} alt="Tree graph with six nodes. The top node of the tree is labelled 'App' with two arrows extending to nodes labelled 'InspirationGenerator' and 'FancyText'. The arrows are solid lines and are labelled with the word 'renders'. 'InspirationGenerator' node also has three arrows. The arrows to nodes 'FancyText' and 'Color' are dashed and labelled with 'renders?'. The last arrow points to the node labelled 'Copyright' and is solid and labelled with 'renders'.">
+<Diagram name="conditional_render_tree" height={250} width={561} alt="Graf pohon dengan enam simpul. Simpul teratas dari pohon diberi label 'App' dengan dua anak panah yang mengarah ke simpul-simpul yang diberi label 'InspirationGenerator' dan 'FancyText'. Panah-panah tersebut merupakan garis solid dan diberi label dengan kata 'render'. Node 'InspirationGenerator' juga memiliki tiga anak panah. Panah ke node 'FancyText' dan 'Color' putus-putus dan diberi label 'renders? Panah terakhir mengarah ke node berlabel 'Copyright' dan berbentuk padat dan diberi label 'renders'.">
 
-With conditional rendering, across different renders, the render tree may render different components.
-
-</Diagram>
-
-In this example, depending on what `inspiration.type` is, we may render `<FancyText>` or `<Color>`. The render tree may be different for each render pass.
-
-Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
-
-Identifying these categories of components are useful for understanding data flow and performance of your app.
-
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
-
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
-
-Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
-
-If we take the previous Inspirations app, we can build a module dependency tree, or dependency tree for short.
-
-<Diagram name="module_dependency_tree" height={250} width={658} alt="A tree graph with seven nodes. Each node is labelled with a module name. The top level node of the tree is labelled 'App.js'. There are three arrows pointing to the modules 'InspirationGenerator.js', 'FancyText.js' and 'Copyright.js' and the arrows are labelled with 'imports'. From the 'InspirationGenerator.js' node, there are three arrows that extend to three modules: 'FancyText.js', 'Color.js', and 'inspirations.js'. The arrows are labelled with 'imports'.">
-
-The module dependency tree for the Inspirations app.
+Dengan perenderan kondisional, pada *render* yang berbeda, pohon *render* dapat merender komponen yang berbeda.
 
 </Diagram>
 
-The root node of the tree is the root module, also known as the entrypoint file. It often is the module that contains the root component.
+Pada contoh ini, tergantung pada apa yang dimaksud dengan `inspiration.type`, Kita bisa me-*render* `<FancyText>` atau `<Color>`. Pohon *render* mungkin berbeda untuk setiap lintasan.
 
-Comparing to the render tree of the same app, there are similar structures but some notable differences:
+Meskipun pohon *render* (*render tree*) dapat berbeda di seluruh umpan (*pass*) *render*, namun secara umum pohon *render* (*render tree*) ini sangat membantu untuk mengidentifikasi apa itu *top-level* dan *leaf component* di dalam aplikasi React. Komponen tingkat atas (*top-level*) adalah komponen yang paling dekat dengan komponen akar (*root component*) dan mempengaruhi performa *rendering* dari semua komponen di bawahnya dan sering kali memiliki kompleksitas yang paling tinggi. Daun Komponen (*leaf component*) berada di dekat bagian bawah pohon dan tidak memiliki komponen turunan dan sering di-*render* ulang.
 
-* The nodes that make-up the tree represent modules, not components.
-* Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+Mengidentifikasi kategori komponen ini berguna untuk memahami aliran data dan kinerja aplikasi Anda.
 
-Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
+## Pohon dependensi modul (*Module dependency tree*) {/*the-module-dependency-tree*/}
 
-As your app grows, often the bundle size does too. Large bundle sizes are expensive for a client to download and run. Large bundle sizes can delay the time for your UI to get drawn. Getting a sense of your app's dependency tree may help with debugging these issues.
+Hubungan lain dalam aplikasi React yang dapat dimodelkan dengan pohon adalah dependensi modul aplikasi. Ketika kita [memecah komponen kita](/learn/importing-and-exporting-components#exporting-and-importing-a-component) dan logika ke dalam berkas-berkas yang terpisah, kita membuat [modul JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) di mana kita bisa mengekspor komponen, fungsi, atau konstanta.
 
-[comment]: <> (perhaps we should also deep dive on conditional imports)
+Setiap simpul (*node*) dalam pohon dependensi modul adalah sebuah modul dan setiap cabang merepresentasikan pernyataan `import` dalam modul tersebut.
+
+Jika kita mengambil aplikasi Inspirasi sebelumnya, kita dapat membangun pohon dependensi modul, atau singkatnya pohon dependensi.
+
+<Diagram name="module_dependency_tree" height={250} width={658} alt="Sebuah graf pohon dengan tujuh simpul. Setiap simpul diberi label dengan nama modul. Simpul tingkat teratas dari pohon diberi label 'App.js'. Ada tiga anak panah yang mengarah ke modul 'InspirationGenerator.js', 'FancyText.js' dan 'Copyright.js' dan anak panah tersebut diberi label 'import'. Dari simpul 'InspirationGenerator.js', terdapat tiga anak panah yang mengarah ke tiga modul: 'FancyText.js', 'Color.js', dan 'inspirations.js'. Panah-panah tersebut diberi label 'import'.">
+
+Pohon dependensi modul untuk aplikasi Inspirasi.
+
+</Diagram>
+
+Simpul akar (*root node*) dari pohon adalah modul akar, juga dikenal sebagai file titik masuk (*entrypoint*). Sering kali modul ini adalah modul yang berisi komponen akar (*root component*).
+
+Dibandingkan dengan pohon *render* dari aplikasi yang sama, terdapat struktur yang serupa namun ada beberapa perbedaan penting:
+
+* Simpul (*node*) yang membentuk pohon mewakili modul, bukan komponen.
+* Modul non-komponen, seperti `inspirations.js`, juga direpresentasikan dalam pohon ini. Pohon *render* hanya merangkum komponen.
+* `Copyright.js` muncul di bawah `App.js` tetapi dalam pohon *render*, `Copyright`, Komponennya, Muncul sebagai anak dari `InspirasiGenerator`. Hal ini karena `InspirationGenerator` menerima JSX sebagai [*children props*](/learn/passing-props-to-a-component#passing-jsx-as-children), Sehingga membuat `Copyright` sebagai komponen anak tetapi tidak mengimpor modul.
+
+Pohon dependensi berguna untuk menentukan modul apa saja yang diperlukan untuk menjalankan aplikasi React Anda. Ketika membangun aplikasi React untuk produksi, Biasanya ada langkah build yang akan memaketkan semua JavaScript yang diperlukan untuk dikirimkan ke klien. Alat yang bertanggung jawab untuk hal ini disebut [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), Dan *bundler* akan menggunakan pohon dependensi untuk menentukan modul apa saja yang harus disertakan.
+
+Seiring dengan pertumbuhan aplikasi Anda, seringkali ukuran *bundel* juga bertambah. Ukuran *bundel* yang besar akan mahal untuk diunduh dan dijalankan oleh klien. Ukuran *bundel* yang besar dapat menunda waktu untuk menggambar antramuka pengguna (UI) Anda. Memahami pohon dependensi aplikasi Anda dapat membantu dalam melakukan *debug* terhadap masalah ini.
+
+[comment]: <> (mungkin kita juga harus mendalami impor bersyarat)
 
 <Recap>
 
-* Trees are a common way to represent the relationship between entities. They are often used to model UI.
-* Render trees represent the nested relationship between React components across a single render.
-* With conditional rendering, the render tree may change across different renders. With different prop values, components may render different children components.
-* Render trees help identify what the top-level and leaf components are. Top-level components affect the rendering performance of all components beneath them and leaf components are often re-rendered frequently. Identifying them is useful for understanding and debugging rendering performance.
-* Dependency trees represent the module dependencies in a React app.
-* Dependency trees are used by build tools to bundle the necessary code to ship an app.
-* Dependency trees are useful for debugging large bundle sizes that slow time to paint and expose opportunities for optimizing what code is bundled.
+* Pohon (*tree*) adalah cara yang umum untuk merepresentasikan hubungan antar entitas. Mereka sering digunakan untuk memodelkan antramuka pengguna (UI).
+* Pohon *Render* (*render tree*) merepresentasikan hubungan bersarang antara komponen-komponen React dalam satu *render*.
+* Dengan *render* bersyarat, pohon *render* dapat berubah pada *render* yang berbeda. Dengan nilai *prop* yang berbeda, komponen dapat me-*render* komponen anak (*children component*) yang berbeda.
+* Pohon *render* (*render tree*) membantu mengidentifikasi apa yang dimaksud dengan komponen tingka atas (*top-level* dan daun (*leaf*). Komponen tingkat atas memengaruhi performa *rendering* semua komponen di bawahnya dan komponen daun sering di-*render* ulang. Mengidentifikasi komponen ini berguna untuk memahami dan men-*debug* performa *rendering*.
+* Pohon dependensi (*dependency tree*) merepresentasikan dependensi modul dalam aplikasi React.
+* Pohon dependensi (*dependency tree*) digunakan oleh (*build tool*) untuk menggabungkan kode yang diperlukan untuk mengirimkan aplikasi.
+* Pohon dependensi (*dependency tree*) berguna untuk men-*debug* ukuran *bundle* yang besar yang memperlambat waktu untuk melukis (*repaint*) dan membuka peluang untuk mengoptimalkan kode yang di-*bundel*.
 
 </Recap>
 
-[TODO]: <> (Add challenges)
+[TODO]: <> (Tambahkan tantangan)
