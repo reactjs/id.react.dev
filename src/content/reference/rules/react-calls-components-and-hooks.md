@@ -15,7 +15,6 @@ Komponen seharusnya hanya digunakan di JSX. Jangan memanggil komponen seperti fu
 
 React harus menentukan kapan sebuah fungsi komponen dipanggil [saat sedang di-*render*](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). Di React, hal ini dilakukan dengan JSX.
 
-
 ```js {2}
 function BlogPost() {
   return <Layout><Article /></Layout>; // ✅ Baik: Hanya menggunakan komponen dalam bentuk JSX
