@@ -1,44 +1,43 @@
 ---
-title: Components and Hooks must be pure
+title: Komponen dan Hooks harus murni
 ---
 
 <Intro>
-Pure functions only perform a calculation and nothing more. It makes your code easier to understand, debug, and allows React to automatically optimize your components and Hooks correctly.
+Fungsi murni hanya melakukan kalkulasi saja. Hal ini membuat kode anda lebih mudah untuk dipahami, di-*debug*, dan memungkinkan React untuk melakukan optimisasi pada komponen-komponen dan *Hooks* anda secara otomatis dan benar.
 </Intro>
 
 <Note>
-This reference page covers advanced topics and requires familiarity with the concepts covered in the [Keeping Components Pure](/learn/keeping-components-pure) page.
+Halaman referensi ini mencakup topik-topik tingkat lanjut dan memerlukan pemahaman terkait dengan konsep-konsep yang telah tercakup pada halaman [Menjaga Kemurnian Komponen
+](/learn/keeping-components-pure).
 </Note>
 
 <InlineToc />
 
-### Why does purity matter? {/*why-does-purity-matter*/}
+### Mengapa kemurnian itu penting? {/*why-does-purity-matter*/}
 
-One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
+Salah satu konsep utama dari React adalah kemurnian. Sebuah komponen atau *hook* disebut murni jika: 
+* **Idempotent** - Anda [selalu mendapatkan hasil yang sama setiap saat](/learn/keeping-components-pure#purity-components-as-formulas) anda menjalankannya dengan masukkan, *props*, *state*, *context* sebagai masukkan komponen;
+* **Tidak mempunyai efek samping saat *render*** - Kode yang memiliki efek samping seharusnya menjalankannya [**secara terpisah dari proses me-*render***](#how-does-react-run-your-code). Contohnya adalah sebagai [*event handler*](/learn/responding-to-events) - dimana pengguna berinteraksi dengan UI dan mengakibatkan adanya perubahan; atau sebagai sebuah [Efek](/reference/react/useEffect) - yang dijalankan setelah *render*.
 
-* **Idempotent** – You [always get the same result every time](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
-* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code). For example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update; or as an [Effect](/reference/react/useEffect) – which runs after render.
-* **Does not mutate non-local values**: Components and Hooks should [never modify values that aren't created locally](#mutation) in render.
+Saat *render* disimpan murni, React akan memamahi bagaimana caranya untuk memprioritasi proses perubahan mana yang paling penting untuk dilihat oleh pengguna. Hal ini mungkin terjadi karena kemurnian dari *render*: karena komponen-komponen tidak perlu mempunyai efek samping [saat *render*](#how-does-react-run-your-code), React akan menghentikan proses *render* komponen-komponen yang tidak terlalu penting untuk dilakukan perubahan, dan hanya akan kembali ke komponen tersebut saat diperlukan.
 
-When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
+Secara konkrit, hal ini berarti logika me-*render* akan dijalankan berkali-kali dengan cara yang memungkinan React untuk memberikan pengalaman pengguna (UX) yang menyenangkan kepada pengguannya. Akan tetapi, jika komponen anda memiliki efek samping yang tidak terlacak - seperti mengubah sebuah nilai dari variabel global saat [proses *render*](#how-does-react-run-your-code) - saat React menjalankan kode proses *render* anda lagi, efek sampingnya akan dipicu dengan cara yang tidak sesuai dengan yang anda inginkan. Hal ini seringkali menyebabkan bug yang tidak terduga yang dapat menurunkan pengalaman pengguna dalam menggunakan aplikasi anda. Anda dapat melihat [contoh dari ini di halaman Menjaga Kemurnian Komponen](/learn/keeping-components-pure#side-effects-unintended-consequences)
 
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
+#### Bagaimana React menjalankan kode anda? {/*how-does-react-run-your-code*/}
 
-#### How does React run your code? {/*how-does-react-run-your-code*/}
+React bersifat deklaratif: anda memberi tahu *apa* kepata React untuk di-*render*, dan React akan mencari tahu *bagaimana* cara terbaik untuk menampilkannya kepada pengguna anda. Untuk melakukan ini, React memiliki beberapa fase untuk menjalankan kode anda. Anda tidak perlu untuk mengetahu tentang semua fase yang digunakan React dengan baik. Akan tetapi pada level yang lebih tinggi, anda harus paham tentang kode apa yang dijalankan saat *render*, dan apa yang berjalan diluar itu.  
 
-React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
-
-_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, [Effects](/reference/react/useEffect) are _flushed_ (meaning they are run until there are no more left) and may update the calculation if the Effects have impacts on layout. React takes this new calculation and compares it to the calculation used to create the previous version of your UI, then _commits_ just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to catch it up to the latest version.
+pe-*renderan* mengacu pada perhitungan seperti apa tampilan UI anda nantinya. Setelah me-*render*, [Efek](/reference/react/useEffect) di *flush* (artinya mereka akan dijalankan hingga tidak ada lagi yang tersisa) dan dapat memperbarui kalkulasi jika Efek berdampak pada *layout*. React akan mengambil kalkulasi ini dan membandingkannya dengan kalkulasi yang digunakannya pada versi sebelumnya dari UI anda, lalu *commits* hanya perubahan minim yang diperlukan ke [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (apa yang sebenarnya pengguna lihat) untuk menyesuaikan dengan versi terbaru.
 
 <DeepDive>
 
-#### How to tell if code runs in render {/*how-to-tell-if-code-runs-in-render*/}
+#### Bagaimana cara mengetahui jika kode anda berjalan di *render* {/*how-to-tell-if-code-runs-in-render*/}
 
-One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example below, there's a good chance it runs during render.
+Salah satu heuristik cepat untuk mengetahui apakah kode berjalan selama *render* adalah dengan memeriksa di mana kode tersebut berada: jika ditulis di tingkat atas seperti pada contoh di bawah ini, kemungkinan besar kode tersebut berjalan selama *render*.
 
 ```js {2}
 function Dropdown() {
-  const selectedItems = new Set(); // created during render
+  const selectedItems = new Set(); // dibentuk saat render
   // ...
 }
 ```
@@ -49,7 +48,7 @@ Event handlers and Effects don't run in render:
 function Dropdown() {
   const selectedItems = new Set();
   const onSelect = (item) => {
-    // this code is in an event handler, so it's only run when the user triggers this
+    // kode ini ada di dalam event handler, jadi hanya dijalankan ketika pengguna memicu ini
     selectedItems.add(item);
   }
 }
@@ -59,7 +58,7 @@ function Dropdown() {
 function Dropdown() {
   const selectedItems = new Set();
   useEffect(() => {
-    // this code is inside of an Effect, so it only runs after rendering
+    // code ini berada didalam sebuah Efek, sehingga hanya akan jalan saat setelah proses render
     logForAnalytics(selectedItems);
   }, [selectedItems]);
 }
@@ -68,22 +67,22 @@ function Dropdown() {
 
 ---
 
-## Components and Hooks must be idempotent {/*components-and-hooks-must-be-idempotent*/}
+## Komponen-komponen dan *Hooks* harus idempoten {/*components-and-hooks-must-be-idempotent*/}
 
-Components must always return the same output with respect to their inputs – props, state, and context. This is known as _idempotency_. [Idempotency](https://en.wikipedia.org/wiki/Idempotence) is a term popularized in functional programming. It refers to the idea that you [always get the same result every time](learn/keeping-components-pure) you run that piece of code with the same inputs.
+Komponen-komponen harus selalu mengembalikan keluaran yang sama berdasarkan masukan - *props*, *state*, dan *context*. Hal ini dikenal sebagai *idempoten*. [Idempoten](https://id.wikipedia.org/wiki/Idempoten) adalah istilah yang dipopulerkan pada pemrograman fungsional. Istilah ini mengacu pada gagasan bahwa anda [selalu mendapatkan hasil yang sama setiap kali](learn/keeping-components-pure) anda menjalankan kode dengan masukan yang sama. 
 
-This means that _all_ code that runs [during render](#how-does-react-run-your-code) must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
+Hal ini berarti *semua* kode yang dijalankan [saat *render*](#how-does-react-run-your-code) juga akan bersifat idempoten agar aturan ini dapat diterapkan. Sebagai contoh, barisa kode ini tidak idempoten (dan oleh karena itu, komponennya juga tidak): 
 
 ```js {2}
 function Clock() {
-  const time = new Date(); // 🔴 Bad: always returns a different result!
+  const time = new Date(); // 🔴 Buruk: selalu mengembalikan nilai yang berbeda!
   return <span>{time.toLocaleString()}</span>
 }
 ```
 
-`new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
+`new Date()` tidak idemponten karena selalu mengeluarkan tanggal saat ini dan hasilnya selalu berubah setiap kali dipanggil. Saat anda *render* komponen di atas, waktu yang ditampilkan pada layar akan tetap pada waktu dimana komponen tersebut di-*render*. Sama halnya dengan `Math.random()` yang juga tidak idempoten, karena selalu mengeluarkan nilai yang berbeda setiap kali dipanggil, walaupun masukan yang diberikan sama.
 
-This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). In this case, we can _synchronize_ the latest date to this component using an [Effect](/reference/react/useEffect):
+Hal ini bukan berarti anda tidak seharusnya menggunakan fungsi idemponen seperti `new Date()` *sama sekali* - anda hanya perlu untuk menghindarinya [saat *render*](#how-does-react-run-your-code), Dalam kasus ini, kita bisa *menyinkronkan* tanggal terbaru ke komponen ini dengan [Efek](/reference/react/useEffect):
 
 <Sandpack>
 
@@ -91,17 +90,17 @@ This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _
 import { useState, useEffect } from 'react';
 
 function useTime() {
-  // 1. Keep track of the current date's state. `useState` receives an initializer function as its
-  //    initial state. It only runs once when the hook is called, so only the current date at the
-  //    time the hook is called is set first.
+  // 1. Melacak status tanggal saat ini. `useState` menerima fungsi inisialisasi sebagai
+  //    state awal. Fungsi ini hanya berjalan sekali ketika hook dipanggil, jadi hanya tanggal saat ini pada
+  //    saat hook dipanggil yang di-set terlebih dahulu.
   const [time, setTime] = useState(() => new Date());
 
   useEffect(() => {
-    // 2. Update the current date every second using `setInterval`.
+    // 2. Perbarui tanggal saat ini setiap detik menggunakan `setInterval`.
     const id = setInterval(() => {
-      setTime(new Date()); // ✅ Good: non-idempotent code no longer runs in render
+      setTime(new Date()); // ✅ Baik: kode non-idempoten tidak lagi berjalan dalam render
     }, 1000);
-    // 3. Return a cleanup function so we don't leak the `setInterval` timer.
+    // 3. Kembalikan fungsi pembersihan agar kita tidak membocorkan timer `setInterval`.
     return () => clearInterval(id);
   }, []);
 
@@ -116,133 +115,133 @@ export default function Clock() {
 
 </Sandpack>
 
-By wrapping the non-idempotent `new Date()` call in an Effect, it moves that calculation [outside of rendering](#how-does-react-run-your-code).
+Dengan membungkus pemanggilan `new Date()` yang tidak idempoten di dalam sebuah Efek, ini akan memindahkan kalkulasi tersebut [di luar pe-*render*-an](#how-does-react-run-your-code).
 
-If you don't need to synchronize some external state with React, you can also consider using an [event handler](/learn/responding-to-events) if it only needs to be updated in response to a user interaction.
+Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, Anda juga bisa mempertimbangkan untuk menggunakan [event handler](/learn/responing-to-events) jika *state* tersebut hanya perlu diperbarui sebagai respons terhadap interaksi pengguna.
 
 ---
 
-## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
+## Efek samping seharusnya berjalan diluar *render* {/*side-effects-must-run-outside-of-render*/}
 
-[Side effects](/learn/keeping-components-pure#side-effects-unintended-consequences) should not run [in render](#how-does-react-run-your-code), as React can render components multiple times to create the best possible user experience.
+[Efek samping](/learn/keeping-components-pure#side-effects-unintended-consequences) tidak seharusnya jalan [pada *render*](#how-does-react-run-your-code), karena React dapat *render* komponen-komponen beberapa kali untuk menghasilkan pengalaman pengguna sebaik mungkin.
 
 <Note>
-Side effects are a broader term than Effects. Effects specifically refer to code that's wrapped in `useEffect`, while a side effect is a general term for code that has any observable effect other than its primary result of returning a value to the caller.
+Efek samping adalah istilah yang lebih luas dari Efek. Efek secara khusus merujuk pada kode yang dibungkus dengan `useEffect`, sedangkan efek samping adalah istilah umum untuk kode yang memiliki efek yang dapat diamati selain dari hasil utamanya yaitu mengembalikan sebuah nilai kepada pemanggil.
 
-Side effects are typically written inside of [event handlers](/learn/responding-to-events) or Effects. But never during render.
+Efek samping biasanya ditulis di dalam [*event handler*](/learn/responing-to-events) atau Efek. Tetapi tidak pernah selama *render*.
 </Note>
 
-While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run [in render](#how-does-react-run-your-code), as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects. Using an event handler explicitly tells React that this code doesn't need to run during render, keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
+Meskipun render harus dijaga agar tetap murni, efek samping diperlukan di beberapa titik agar aplikasi Anda dapat melakukan sesuatu yang menarik, seperti menampilkan sesuatu di layar! Poin penting dari aturan ini adalah efek samping tidak boleh dijalankan [pada saat *render*](#how-does-react-run-your-code), karena React dapat me-*render* komponen beberapa kali. Pada kebanyakan kasus, Anda akan menggunakan [*event handler*](learn/responing-to-events) untuk menangani efek samping. Menggunakan *event handler* secara eksplisit memberi tahu React bahwa kode ini tidak perlu dijalankan saat *render*, sehingga *render* tetap murni. Jika Anda sudah kehabisan semua opsi - dan hanya sebagai pilihan terakhir - Anda juga bisa menangani efek samping menggunakan `useEffect`.
 
-### When is it okay to have mutation? {/*mutation*/}
+### Kapan waktu yang tepat untuk melakukan mutasi? {/*mutation*/}
 
-#### Local mutation {/*local-mutation*/}
-One common example of a side effect is mutation, which in JavaScript refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
+#### Mutasi local {/*local-mutation*/}
+Satu contoh umu dari efek samping adalah mutasi, yang mana di JavaScript mengacu pada perubahan nilai dari nilai non-[primitif](https://developer.mozilla.org/en-US/docs/Glossary/Primitive). Secara umum, meskipun mutasi tidak bersifat idiomatis di React, mutasi *lokal* tidak apa-apa:
 
 ```js {2,7}
 function FriendList({ friends }) {
-  const items = []; // ✅ Good: locally created
+  const items = []; // ✅ Baik: dibentuk secara lokal
   for (let i = 0; i < friends.length; i++) {
     const friend = friends[i];
     items.push(
       <Friend key={friend.id} friend={friend} />
-    ); // ✅ Good: local mutation is okay
+    ); // ✅ Baik: mutasi lokal tidak apa-apa
   }
   return <section>{items}</section>;
 }
 ```
 
-There is no need to contort your code to avoid local mutation. [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it [during render](#how-does-react-run-your-code).
+Tidak perlu mengubah kode Anda untuk menghindari mutasi lokal. [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) uga dapat digunakan di sini untuk mempersingkat waktu, tetapi tidak ada salahnya membuat mutasi lokal dan kemudian memasukkan item ke dalamnya [saat *render*](#how-does-react-run-your-code).
 
-Even though it looks like we are mutating `items`, the key point to note is that this code only does so _locally_ – the mutation isn't "remembered" when the component is rendered again. In other words, `items` only stays around as long as the component does. Because `items` is always _recreated_ every time `<FriendList />` is rendered, the component will always return the same result.
+Meskipun terlihat seperti kita melakukan mutasi pada `items`, poin penting yang perlu diperhatikan adalah kode ini hanya melakukannya secara *lokal* - mutasi tidak "diingat" ketika komponen di-*render* lagi. Dengan kata lain, `items` hanya akan tetap ada selama komponen tersebut masih ada. Karena `items` selalu dibuat ulang setiap kali `<FriendList />` di-*render*, komponen akan selalu mengembalikan hasil yang sama.
 
-On the other hand, if `items` was created outside of the component, it holds on to its previous values and remembers changes:
+Di sisi lain, jika `items` dibuat diluar komponen, maka komponen tersebut akan menyimpan nilai sebelumnya dan mengingat perubahan;
 
 ```js {1,7}
-const items = []; // 🔴 Bad: created outside of the component
+const items = []; // 🔴 Buruk: dibuat di luar komponen
 function FriendList({ friends }) {
   for (let i = 0; i < friends.length; i++) {
     const friend = friends[i];
     items.push(
       <Friend key={friend.id} friend={friend} />
-    ); // 🔴 Bad: mutates a value created outside of render
+    ); // 🔴 Buruk: mengubah nilai yang dibuat di luar render
   }
   return <section>{items}</section>;
 }
 ```
 
-When `<FriendList />` runs again, we will continue appending `friends` to `items` every time that component is run, leading to multiple duplicated results. This version of `<FriendList />` has observable side effects [during render](#how-does-react-run-your-code) and **breaks the rule**.
+Ketika `<FriendList />` dijalankan lagi, kita akan terus menambahkan `friends` ke `items` setiap kali komponen tersebut dijalankan, yang mengarah ke beberapa hasil yang terduplikasi. Versi `<FriendList />` ini memiliki efek samping yang dapat diamati [selama *render*](#how-does-react-run-your-code) dan **melanggar aturan**.
 
-#### Lazy initialization {/*lazy-initialization*/}
+#### *Lazy initialization* {/*lazy-initialization*/}
 
-Lazy initialization is also fine despite not being fully "pure":
+*Lazy initialization* juga tidak masalah walaupun tidak sepenuhnya "murni":
 
 ```js {2}
 function ExpenseForm() {
-  SuperCalculator.initializeIfNotReady(); // ✅ Good: if it doesn't affect other components
-  // Continue rendering...
+  SuperCalculator.initializeIfNotReady(); // ✅ Baik: jika tidak memengaruhi komponen lain
+  // Melanjutkan me-render...
 }
 ```
 
-#### Changing the DOM {/*changing-the-dom*/}
+#### Mengubah DOM {/*changing-the-dom*/}
 
-Side effects that are directly visible to the user are not allowed in the render logic of React components. In other words, merely calling a component function shouldn’t by itself produce a change on the screen.
+Efek samping yang secara langsung terlihat oleh pengguna tidak diperbolehkan dalam logika render komponen React. Dengan kata lain, hanya dengan memanggil fungsi komponen seharusnya tidak dengan sendirinya menghasilkan perubahan pada layar.
 
 ```js {2}
 function ProductDetailPage({ product }) {
-  document.window.title = product.title; // 🔴 Bad: Changes the DOM
+  document.window.title = product.title; // 🔴 Buruk: Mengubah DOM
 }
 ```
 
-One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the component with `window`](/learn/synchronizing-with-effects).
+Salah satu cara untuk mencapai hasil yang diinginkan dengan memperbarui `window.title` di luar *render* adalah dengan [menyinkronkan komponen dengan `window`](/learn/synchronizing-with-effects).
 
-As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
+Selama pemanggilan sebuah komponen beberapa kali aman dan tidak mempengaruhi proses *render* komponen lainnya, React tidak peduli apakah komponen tersebut 100% murni dalam arti pemrograman fungsional yang ketat. Yang lebih penting adalah [komponen harus idempoten](/reference/rules/components-and-hooks-must-be-pure).
 
 ---
 
-## Props and state are immutable {/*props-and-state-are-immutable*/}
+## *Props* dan *state* adalah tidak dapat dimutasi {/*props-and-state-are-immutable*/}
 
-A component's props and state are immutable [snapshots](learn/state-as-a-snapshot). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
+Sebuah *props* dan *state* dari komponen adalah [*snapshots*](learn/state-as-a-snapshot) yang tidak dapat dimutasi. Jangan pernah memutasinya secara langsung. Sebagai gantinya, oper *props* baru kebawah, dan gunakan fungsi *setter* dari `useState`. 
 
-You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
+Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbarui setelah di-*render*. Karena alasan ini, Anda tidak memodifikasi *props* atau variabel state secara langsung: sebagai gantinya, Anda mengoper *props* baru, atau menggunakan fungsi *setter* yang disediakan untuk memberi tahu React bahwa *state* perlu diperbarui pada saat komponen di-*render*.
 
-### Don't mutate Props {/*props*/}
-Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug since it may or may not work depending on the circumstance.
+### Jangan memutasi *Props* {/*props*/}
+*Props* dapat dimutasi karena karena jika anda memutasinya, maka Props tidak dapat diubah karena jika Anda mengubahnya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena mungkin bekerja atau tidak bekerja tergantung pada situasinya.
 
 ```js {2}
 function Post({ item }) {
-  item.url = new Url(item.url, base); // 🔴 Bad: never mutate props directly
+  item.url = new Url(item.url, base); // 🔴 Buruk: jangan pernah mengubah props secara langsung
   return <Link url={item.url}>{item.title}</Link>;
 }
 ```
 
 ```js {2}
 function Post({ item }) {
-  const url = new Url(item.url, base); // ✅ Good: make a copy instead
+  const url = new Url(item.url, base); // ✅ Baik: buatlah salinan sebagai gantinya
   return <Link url={url}>{item.title}</Link>;
 }
 ```
 
-### Don't mutate State {/*state*/}
-`useState` returns the state variable and a setter to update that state.
+### Jangan memutasi *State* {/*state*/}
+`useState` mengembalikan variabel *state* dan sebuah *setter* untuk mengubah *state* tersebut.
 
 ```js
 const [stateVariable, setter] = useState(0);
 ```
 
-Rather than updating the state variable in-place, we need to update it using the setter function that is returned by `useState`. Changing values on the state variable doesn't cause the component to update, leaving your users with an outdated UI. Using the setter function informs React that the state has changed, and that we need to queue a re-render to update the UI.
+Daripada memperbarui variabel *state* di tempat, kita perlu memperbaruinya menggunakan fungsi *setter* yang dikembalikan oleh `useState`. Mengubah nilai pada variabel *state* tidak menyebabkan komponen diperbarui, sehingga pengguna akan mendapatkan UI yang usang. Menggunakan fungsi *setter* memberi tahu React bahwa *state* telah berubah, dan kita perlu mengantri untuk melakukan *render* ulang untuk memperbarui UI.
 
 ```js {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    count = count + 1; // 🔴 Bad: never mutate state directly
+    count = count + 1; // 🔴 Buruk: jangan pernah memutasi state secara langsung
   }
 
   return (
     <button onClick={handleClick}>
-      You pressed me {count} times
+      Anda telah menekan {count} kali
     </button>
   );
 }
@@ -253,12 +252,12 @@ function Counter() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1); // ✅ Good: use the setter function returned by useState
+    setCount(count + 1); // ✅ Baik: gunakan fungsi setter yang dikeluarkan oleh useState
   }
 
   return (
     <button onClick={handleClick}>
-      You pressed me {count} times
+      Anda telah menekan {count} kali
     </button>
   );
 }
@@ -266,15 +265,15 @@ function Counter() {
 
 ---
 
-## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
+## Kembaliakan nilai dan argumen ke *Hooks* yang tidak dapat dimutasi {/*return-values-and-arguments-to-hooks-are-immutable*/}
 
-Once values are passed to a hook, you should not modify them. Like props in JSX, values become immutable when passed to a hook.
+Sesaat sebuah nilai dioper ke sebuah *hook*, anda tidak boleh memodifikasinya. Seperti *props* di JSX, nilai akan berubah menjadi tidak dapat dimutasi saat dioper ke sebuah *hook* 
 
 ```js {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
-    icon.className = computeStyle(icon, theme); // 🔴 Bad: never mutate hook arguments directly
+    icon.className = computeStyle(icon, theme); // 🔴 Buruk: jangan memutasi argumen hook secara langsung
   }
   return icon;
 }
@@ -283,7 +282,7 @@ function useIconStyle(icon) {
 ```js {3}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
-  const newIcon = { ...icon }; // ✅ Good: make a copy instead
+  const newIcon = { ...icon }; // ✅ Baik: buatlah salinan sebagai gantinya
   if (icon.enabled) {
     newIcon.className = computeStyle(icon, theme);
   }
@@ -291,7 +290,7 @@ function useIconStyle(icon) {
 }
 ```
 
-One important principle in React is _local reasoning_: the ability to understand what a component or hook does by looking at its code in isolation. Hooks should be treated like "black boxes" when they are called. For example, a custom hook might have used its arguments as dependencies to memoize values inside it:
+Salah satu prinsip penting dalam React adalah *local reasoning*: kemampuan untuk memahami apa yang dilakukan oleh sebuah komponen atau *hook* dengan melihat kodenya secara terpisah. *Hooks* harus diperlakukan seperti "kotak hitam" ketika dipanggil. Sebagai contoh, sebuah hook kustom mungkin menggunakan argumennya sebagai dependensi untuk memoisasi nilai di dalamnya:
 
 ```js {4}
 function useIconStyle(icon) {
@@ -307,35 +306,35 @@ function useIconStyle(icon) {
 }
 ```
 
-If you were to mutate the Hooks arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+Jika Anda mengubah argumen *Hooks*, memoisasi *hook* kustom akan menjadi salah, jadi penting untuk menghindari hal tersebut.
 
 ```js {4}
-style = useIconStyle(icon);         // `style` is memoized based on `icon`
-icon.enabled = false;               // Bad: 🔴 never mutate hook arguments directly
-style = useIconStyle(icon);         // previously memoized result is returned
+style = useIconStyle(icon);         // `style` dimemoisasi berdasarkan `icon`
+icon.enabled = false;               // Buruk: 🔴 jangan pernah memutasi argumen hook secara langsung
+style = useIconStyle(icon);         // sebelumnya mememoisasi hasil yang dikeluarkan
 ```
 
 ```js {4}
-style = useIconStyle(icon);         // `style` is memoized based on `icon`
-icon = { ...icon, enabled: false }; // Good: ✅ make a copy instead
-style = useIconStyle(icon);         // new value of `style` is calculated
+style = useIconStyle(icon);         // `style` dimemoisasi berdasarkan `icon`
+icon = { ...icon, enabled: false }; // Good: ✅ buatlah salinan sebagai gantinya
+style = useIconStyle(icon);         // nilai baru dari `style` yang dikalkulasi
 ```
 
-Similarly, it's important to not modify the return values of Hooks, as they may have been memoized.
+Demikian pula, penting untuk tidak memodifikasi nilai yang dikembalikan dari *Hooks*, karena nilai tersebut mungkin sudah dimemoisasi.
 
 ---
 
-## Values are immutable after being passed to JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
+## Nilai tidak dapat diubah setelah diteruskan ke JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
 
-Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
+Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindahkan mutasi sebelum JSX dibuat.
 
-When you use JSX in an expression, React may eagerly evaluate the JSX before the component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
+Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang ketinggalan zaman, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 
 ```js {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;
-  styles.size = "small"; // 🔴 Bad: styles was already used in the JSX above
+  styles.size = "small"; // 🔴 Buruk: styles telah digunakan sebelumnya di JSX di atas
   const footer = <Footer styles={styles} />;
   return (
     <>
@@ -351,7 +350,7 @@ function Page({ colour }) {
 function Page({ colour }) {
   const headerStyles = { colour, size: "large" };
   const header = <Header styles={headerStyles} />;
-  const footerStyles = { colour, size: "small" }; // ✅ Good: we created a new value
+  const footerStyles = { colour, size: "small" }; // ✅ Baik: kita menggunakan nilai yang baru
   const footer = <Footer styles={footerStyles} />;
   return (
     <>
