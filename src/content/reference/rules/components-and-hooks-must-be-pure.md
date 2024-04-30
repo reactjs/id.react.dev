@@ -82,7 +82,7 @@ function Clock() {
 
 `new Date()` tidak idemponten karena selalu mengeluarkan tanggal saat ini dan hasilnya selalu berubah setiap kali dipanggil. Saat anda *render* komponen di atas, waktu yang ditampilkan pada layar akan tetap pada waktu dimana komponen tersebut di-*render*. Sama halnya dengan `Math.random()` yang juga tidak idempoten, karena selalu mengeluarkan nilai yang berbeda setiap kali dipanggil, walaupun masukan yang diberikan sama.
 
-Hal ini bukan berarti anda tidak seharusnya menggunakan fungsi idemponen seperti `new Date()` *sama sekali* - anda hanya perlu untuk menghindarinya [saat *render*](#how-does-react-run-your-code), Dalam kasus ini, kita bisa *menyinkronkan* tanggal terbaru ke komponen ini dengan [Efek](/reference/react/useEffect):
+Hal ini bukan berarti anda tidak seharusnya menggunakan fungsi idemponen seperti `new Date()` *sama sekali* - anda hanya perlu untuk menghindarinya [saat *render*](#how-does-react-run-your-code), Dalam kasus ini, kita bisa *menyinkronkan* tanggal terbaru ke komponen ini dengan [*Effect*](/reference/react/useEffect):
 
 <Sandpack>
 
