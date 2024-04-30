@@ -126,7 +126,7 @@ Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, And
 [Efek samping](/learn/keeping-components-pure#side-effects-unintended-consequences) tidak seharusnya jalan [pada *render*](#how-does-react-run-your-code), karena React dapat *render* komponen-komponen beberapa kali untuk menghasilkan pengalaman pengguna sebaik mungkin.
 
 <Note>
-Efek samping adalah istilah yang lebih luas dari Efek. Efek secara khusus merujuk pada kode yang dibungkus dengan `useEffect`, sedangkan efek samping adalah istilah umum untuk kode yang memiliki efek yang dapat diamati selain dari hasil utamanya yaitu mengembalikan sebuah nilai kepada pemanggil.
+Efek samping adalah istilah yang lebih luas dari *Effect*. *Effect* secara khusus merujuk pada kode yang dibungkus dengan `useEffect`, sedangkan efek samping adalah istilah umum untuk kode yang memiliki efek yang dapat diamati selain dari hasil utamanya yaitu mengembalikan sebuah nilai kepada pemanggil.
 
 Efek samping biasanya ditulis di dalam [*event handler*](/learn/responing-to-events) atau *Effect*. Tetapi tidak pernah selama *render*.
 </Note>
