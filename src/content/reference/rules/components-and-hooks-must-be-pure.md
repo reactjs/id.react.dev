@@ -58,7 +58,7 @@ function Dropdown() {
 function Dropdown() {
   const selectedItems = new Set();
   useEffect(() => {
-    // code ini berada didalam sebuah Efek, sehingga hanya akan jalan saat setelah proses render
+    // kode ini berada didalam sebuah Effect, sehingga hanya akan jalan saat setelah proses render
     logForAnalytics(selectedItems);
   }, [selectedItems]);
 }
