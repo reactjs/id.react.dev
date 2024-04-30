@@ -115,7 +115,7 @@ export default function Clock() {
 
 </Sandpack>
 
-Dengan membungkus pemanggilan `new Date()` yang tidak idempoten di dalam sebuah Efek, ini akan memindahkan kalkulasi tersebut [di luar pe-*render*-an](#how-does-react-run-your-code).
+Dengan membungkus pemanggilan `new Date()` yang tidak idempoten di dalam sebuah *Effect*, ini akan memindahkan kalkulasi tersebut [di luar pe-*render*-an](#how-does-react-run-your-code).
 
 Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, Anda juga bisa mempertimbangkan untuk menggunakan [event handler](/learn/responing-to-events) jika *state* tersebut hanya perlu diperbarui sebagai respons terhadap interaksi pengguna.
 
