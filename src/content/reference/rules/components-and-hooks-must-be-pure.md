@@ -328,7 +328,7 @@ Demikian pula, penting untuk tidak memodifikasi nilai yang dikembalikan dari *Ho
 
 Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindahkan mutasi sebelum JSX dibuat.
 
-Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, Karena React tidak akan tahu untuk memperbarui keluaran komponen.
+Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 
 ```js {4}
 function Page({ colour }) {
