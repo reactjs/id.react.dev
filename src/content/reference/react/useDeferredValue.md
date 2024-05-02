@@ -34,39 +34,26 @@ function SearchPage() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
 * `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
+* <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
-#### Returns {/*returns*/}
-
-Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
-
-#### Caveats {/*caveats*/}
-
-- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
-=======
-* `value`: The value you want to defer. It can have any type.
-* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
-
-
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 - `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
 <Canary>
 
-In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+Di versi Canary React terbaru, `useDeferredValue` mengembalikan `initialValue` pada *render* awal, dan menjadwalkan *render* ulang di balik layar dengan `value` dikembalikan.
 
 </Canary>
 
-#### Caveats {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
-- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
+- Ketika pembaruan berada di dalam *Transition*, `useDeferredValue` selalu mengembalikan `value` yang baru dan tidak memunculkan *render* yang ditunda, karena pembaruan telah ditunda.
 
-- The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+- Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
 - Ketika `useDeferredValue` menerima nilai yang berbeda (dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), di selain render saat ini (ketika masih menggunakan nilai sebelumnya), ia menjadwalkan render ulang di latar belakang dengan nilai baru. Render ulang latar belakang dapat diinterupsi: jika ada pembaruan lain pada `value`, React akan memulai lagi render ulang latar belakang dari awal. Misalnya, jika pengguna mengetik input lebih cepat daripada bagan yang menerima nilai yang ditangguhkan dapat render ulang, bagan hanya akan render ulang setelah pengguna berhenti mengetik.
 

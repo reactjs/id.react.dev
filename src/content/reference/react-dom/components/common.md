@@ -258,20 +258,13 @@ React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *call
 
 #### Parameter {/*ref-callback-parameters*/}
 
-<<<<<<< HEAD
 * `node`: Sebuah *node* DOM atau `null`. React akan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
-=======
-* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the `ref` gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during every re-render of the component.
 
 <Canary>
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
-#### Pengembalian (Returns) {/*returns*/}
+#### Kembalian {/*returns*/}
 
-<<<<<<< HEAD
-Jangan menggembalikan apa pun pada *callback* `ref`.
-=======
-*  **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached.
+* **opsional** fungsi `cleanup`: Ketika `ref` dilepas, React akan memanggil fungsi `cleanup`. Jika fungsi tidak dikembalikan oleh *callback* `ref`, React akan memanggil ulang *callback* dengan `null` sebagai argumen ketika `ref` dilepas.
 
 ```js
 
@@ -285,13 +278,12 @@ Jangan menggembalikan apa pun pada *callback* `ref`.
 
 ```
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If not cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
+* Ketika mode Strict diaktifkan, React akan **menjalankan satu siklus *setup+cleanup* khusus pengembangan tambahan** sebelum penyiapan sebenarnya yang pertama. Ini adalah *stress-test* yang memastikan bahwa logika pembersihan Anda "mencerminkan" logika pengaturan Anda dan menghentikan atau membatalkan apa pun yang sedang dilakukan pengaturan. Jika ini menyebabkan masalah, implementasikan fungsi pembersihan.
+* Ketika Anda mengoper *callback* `ref` *yang berbeda*, React akan memanggil fungsi pembersihan *callback* *sebelumnya* jika disediakan. Jika fungsi pembersihan tidak ditentukan, callback `ref` akan dipanggil dengan `null` sebagai argumennya. Fungsi *next* akan dipanggil dengan simpul DOM.
 
 </Canary>
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ---
 
