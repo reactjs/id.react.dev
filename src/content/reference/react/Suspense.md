@@ -1744,7 +1744,11 @@ function Router() {
   // ...
 ```
 
+<<<<<<< HEAD
 Dengan begitu, React diberi tahu bahwa transisi *state* tidak mendesak, dan lebih baik tetap menampilkan halaman sebelumnya daripada menyembunyikan konten yang sudah ditampilkan. Sekarang pengklikan tombol akan "menunggu" sampai `Biography` dimuat:
+=======
+This tells React that the state transition is not urgent, and it's better to keep showing the previous page instead of hiding any already revealed content. Now clicking the button "waits" for the `Biography` to load:
+>>>>>>> 556063bdce0ed00f29824bc628f79dac0a4be9f4
 
 <Sandpack>
 
