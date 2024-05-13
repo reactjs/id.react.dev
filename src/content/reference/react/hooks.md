@@ -106,6 +106,7 @@ Untuk memprioritaskan pe-*render*-an, gunakan salah satu dari *Hook-hook* ini:
 
 ---
 
+<<<<<<< HEAD
 ## Hook Resource {/*resource-hooks*/}
 
 *Resource* dapat diakses sebuah komponen tanpa membuatnya menjadi bagian dari *state*. Misalnya, sebuah komponen dapat membaca pesan dari sebuah *Promise* atau membaca informasi *style* dari sebuah *context*.
@@ -125,12 +126,22 @@ function MessageComponent({ messagePromise }) {
 ---
 
 ## Hook lainnya {/*other-hooks*/}
+=======
+## Other Hooks {/*other-hooks*/}
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 Ini adalah Hook yang sebagian besar berguna untuk penulis pustaka dan tidak umum digunakan di dalam kode aplikasi.
 
+<<<<<<< HEAD
 - [`useDebugValue`](/reference/react/useDebugValue) memungkinkan Anda memodifikasi tampilan label React DevTools untuk Hook kustom Anda.
 - [`useId`](/reference/react/useId) memungkinkan komponen mengasosiasikan ID unik dengan dirinya sendiri. Biasanya digunakan dengan API aksesibilitas.
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) memungkinkan komponen berlangganan ke *store* eksternal.
+=======
+- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
+- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
+- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+* [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 ---
 
