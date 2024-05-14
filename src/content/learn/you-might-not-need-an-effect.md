@@ -30,16 +30,16 @@ Anda *memang* membutuhkan Effect untuk [melakukan sinkronisasi](/learn/synchroni
 
 Untuk membantu Anda mendapatkan intuisi yang tepat, mari kita lihat beberapa contoh konkret yang umum!
 
-### Updating state based on props or state {/*updating-state-based-on-props-or-state*/}
+### Memperbarui *state* berdasarkan *props* atau *state* {/*updating-state-based-on-props-or-state*/}
 
-Suppose you have a component with two state variables: `firstName` and `lastName`. You want to calculate a `fullName` from them by concatenating them. Moreover, you'd like `fullName` to update whenever `firstName` or `lastName` change. Your first instinct might be to add a `fullName` state variable and update it in an Effect:
+Katakanlah Anda memiliki komponen dengan dua variabel *state*: `firstName` dan `lastName`. Anda ingin mendapatkan `fullName` dengan menggabungkan keduanya. Selain itu, Anda ingin `fullName` diperbarui setiap kali `firstName` atau `lastName` berubah. Naluri pertama Anda mungkin menambahkan variabel *state* `fullName` dan memperbaruinya di *Effect*:
 
 ```js {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
+  // 🔴 Hindari: state berlebihan dan Effect yang tidak perlu
   const [fullName, setFullName] = useState('');
   useEffect(() => {
     setFullName(firstName + ' ' + lastName);
@@ -48,29 +48,29 @@ function Form() {
 }
 ```
 
-This is more complicated than necessary. It is inefficient too: it does an entire render pass with a stale value for `fullName`, then immediately re-renders with the updated value. Remove the state variable and the Effect:
+Ini lebih rumit dari yang diperlukan. Ini juga tidak efisien: ia melakukan *render pass* secara keseluruhan dengan nilai usang untuk `fullName`, lalu segera me-*render* ulang dengan nilai yang diperbarui. Hapus variabel *state* dan *Effect*:
 
 ```js {4-5}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  // ✅ Baik: dikalkulasi saat render
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-**When something can be calculated from the existing props or state, [don't put it in state.](/learn/choosing-the-state-structure#avoid-redundant-state) Instead, calculate it during rendering.** This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other). If this approach feels new to you, [Thinking in React](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state) explains what should go into state.
+**Ketika sebuah nilai dapat dihitung dari *props* atau *state* yang ada, [jangan memasukkannya ke dalam *state*.](/learn/choosing-the-state-structure#avoid-redundant-state) Sebaiknya, hitunglah saat *rendering*.** Hal ini membuat kode Anda lebih cepat (Anda menghindari pembaruan "bertingkat" tambahan), lebih sederhana (Anda menghapus beberapa kode), dan lebih tidak rawan terhadap *error* (Anda menghindari bug yang disebabkan oleh variabel *state* berbeda yang tidak sinkron satu sama lain). Jika pendekatan ini terasa baru bagi Anda, [Cara Berpikir dengan React](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state) menjelaskan apa yang seharusnya masuk sebagai *state*.
 
-### Caching expensive calculations {/*caching-expensive-calculations*/}
+### Menyimpan penghitungan mahal di *cache* {/*caching-expensive-calculations*/}
 
-This component computes `visibleTodos` by taking the `todos` it receives by props and filtering them according to the `filter` prop. You might feel tempted to store the result in state and update it from an Effect:
+Komponen ini menghitung `visibleTodos` dengan mengambil `todos` yang diterimanya berdasarkan *props* dan memfilternya berdasarkan prop `filter`. Anda mungkin tergoda untuk menyimpan hasilnya dalam keadaan dan memperbaruinya dari *Effect*:
 
 ```js {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
+  // 🔴 Hindari: state berlebihan dan Effect yang tidak perlu
   const [visibleTodos, setVisibleTodos] = useState([]);
   useEffect(() => {
     setVisibleTodos(getFilteredTodos(todos, filter));
@@ -80,20 +80,20 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-Like in the earlier example, this is both unnecessary and inefficient. First, remove the state and the Effect:
+Seperti pada contoh sebelumnya, hal ini tidak diperlukan dan tidak efisien. Pertama, hapus *state* dan *Effect*-nya:
 
 ```js {3-4}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
-  // ✅ This is fine if getFilteredTodos() is not slow.
+  // ✅ Ini baik jika getFilteredTodos() tidak lambat.
   const visibleTodos = getFilteredTodos(todos, filter);
   // ...
 }
 ```
 
-Usually, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
+Biasanya, kode ini baik-baik saja! Namun mungkin `getFilteredTodos()` lambat atau Anda memiliki banyak `todos`. Dalam hal ini Anda tidak ingin mengkalkulasi ulang `getFilteredTodos()` jika beberapa variabel *state* yang tidak terkait seperti `newTodo` telah berubah.
 
-You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/reference/react/useMemo) Hook:
+Anda dapat melakukan *cache* (atau ["memoisasi"](https://en.wikipedia.org/wiki/Memoization)) perhitungan yang mahal dengan membungkusnya dalam Hook [`useMemo`](/reference/react/useMemo):
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -101,14 +101,14 @@ import { useMemo, useState } from 'react';
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
   const visibleTodos = useMemo(() => {
-    // ✅ Does not re-run unless todos or filter change
+    // ✅ Tidak dijalankan ulang kecuali todos atau filter berubah
     return getFilteredTodos(todos, filter);
   }, [todos, filter]);
   // ...
 }
 ```
 
-Or, written as a single line:
+Atau, ditulis dalam satu baris:
 
 ```js {5-6}
 import { useMemo, useState } from 'react';
@@ -121,15 +121,15 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-**This tells React that you don't want the inner function to re-run unless either `todos` or `filter` have changed.** React will remember the return value of `getFilteredTodos()` during the initial render. During the next renders, it will check if `todos` or `filter` are different. If they're the same as last time, `useMemo` will return the last result it has stored. But if they are different, React will call the inner function again (and store its result).
+**Hal ini memberitahu React bahwa Anda tidak ingin fungsi di dalamnya dijalankan ulang kecuali `todos` atau `filter` telah berubah.** React akan mengingat nilai kembalian `getFilteredTodos()` selama *render* awal. Selama *rendering* berikutnya, ia akan memeriksa apakah `todos` atau `filter` berbeda. Jika sama dengan yang terakhir kali, `useMemo` akan mengembalikan hasil terakhir yang disimpannya. Namun jika berbeda, React akan memanggil fungsi di dalamnya lagi (dan menyimpan hasilnya).
 
-The function you wrap in [`useMemo`](/reference/react/useMemo) runs during rendering, so this only works for [pure calculations.](/learn/keeping-components-pure)
+Fungsi yang Anda bungkus dalam [`useMemo`](/reference/react/useMemo) berjalan selama rendering, jadi ini hanya berfungsi untuk [perhitungan murni.](/learn/keeping-components-pure)
 
 <DeepDive>
 
-#### How to tell if a calculation is expensive? {/*how-to-tell-if-a-calculation-is-expensive*/}
+#### Bagaimana cara mengetahui apakah suatu perhitungan itu mahal? {/*how-to-tell-if-a-calculation-is-expensive*/}
 
-In general, unless you're creating or looping over thousands of objects, it's probably not expensive. If you want to get more confidence, you can add a console log to measure the time spent in a piece of code:
+Secara umum, kecuali Anda membuat atau melakukan pengulangan terhadap ribuan objek, biayanya mungkin tidak mahal. Jika Anda ingin lebih percaya diri, Anda dapat menambahkan log konsol untuk mengukur waktu yang dihabiskan dalam sebuah kode:
 
 ```js {1,3}
 console.time('filter array');
@@ -137,7 +137,7 @@ const visibleTodos = getFilteredTodos(todos, filter);
 console.timeEnd('filter array');
 ```
 
-Perform the interaction you're measuring (for example, typing into the input). You will then see logs like `filter array: 0.15ms` in your console. If the overall logged time adds up to a significant amount (say, `1ms` or more), it might make sense to memoize that calculation. As an experiment, you can then wrap the calculation in `useMemo` to verify whether the total logged time has decreased for that interaction or not:
+Lakukan interaksi yang Anda ukur (misalnya, mengetik pada input). Anda kemudian akan melihat log seperti `filter array: 0,15ms` di konsol Anda. Jika keseluruhan waktu yang dicatat bertambah hingga jumlah yang signifikan (katakanlah, `1 ms` atau lebih), mungkin masuk akal untuk melakukan memoisasi terhadap penghitungan tersebut. Sebagai percobaan, Anda kemudian dapat menggabungkan penghitungan dalam `useMemo` untuk memverifikasi apakah total waktu yang dicatat untuk interaksi tersebut telah berkurang atau tidak:
 
 ```js
 console.time('filter array');
@@ -147,11 +147,11 @@ const visibleTodos = useMemo(() => {
 console.timeEnd('filter array');
 ```
 
-`useMemo` won't make the *first* render faster. It only helps you skip unnecessary work on updates.
+`useMemo` tidak akan membuat rendering *pertama* lebih cepat. Ini hanya membantu Anda melewatkan pekerjaan pembaruan yang tidak perlu.
 
-Keep in mind that your machine is probably faster than your users' so it's a good idea to test the performance with an artificial slowdown. For example, Chrome offers a [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) option for this.
+Ingatlah bahwa perangkat Anda mungkin lebih cepat daripada perangkat pengguna Anda, jadi sebaiknya uji kinerjanya dengan pelambatan buatan. Misalnya, Chrome menawarkan opsi [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) untuk ini.
 
-Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/reference/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
+Perhatikan juga bahwa mengukur kinerja dalam mode pengembangan tidak akan memberi Anda hasil yang paling akurat. (Misalnya, ketika [Strict Mode](/reference/react/StrictMode) aktif, Anda akan melihat setiap komponen dirender dua kali, bukan sekali.) Untuk mendapatkan pengaturan waktu yang paling akurat, kompilasi aplikasi Anda dalam mode produksi dan uji pada perangkat seperti yang dimiliki pengguna Anda.
 
 </DeepDive>
 
