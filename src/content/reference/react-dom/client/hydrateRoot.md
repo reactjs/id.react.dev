@@ -654,12 +654,12 @@ const root = hydrateRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> that was caught by the boundary.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. <CodeStep step={2}>error</CodeStep> yang ditangkap oleh *boundary.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onCaughtError` root option to display error dialogs or filter known errors from logging:
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error* atau memfilter *error* yang diketahui dari *logging*:
 
 <Sandpack>
 
@@ -935,12 +935,12 @@ const root = hydrateRoot(
 );
 ```
 
-The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>.
-2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
+1. <CodeStep step={2}>error</CodeStep> yang dilempar oleh React. Beberapa *error* mungkin menyediakan penyebab awal sebagai <CodeStep step={3}>error.cause</CodeStep>.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onRecoverableError` root option to display error dialogs for hydration mismatches:
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error* untuk ketidakcocokan *hydration*:
 
 <Sandpack>
 
@@ -1177,9 +1177,9 @@ function Throw({error}) {
 ## Troubleshooting {/*troubleshooting*/}
 
 
-### I'm getting an error: "You passed a second argument to root.render" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
+### Saya mendapatkan *error*: "You passed a second argument to root.render" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
 
-A common mistake is to pass the options for `hydrateRoot` to `root.render(...)`:
+Kesalahan umum adalah mengoper opsi untuk `hydrateRoot` ke `root.render(...)`:
 
 <ConsoleBlock level="error">
 
@@ -1187,7 +1187,7 @@ Warning: You passed a second argument to root.render(...) but it only accepts on
 
 </ConsoleBlock>
 
-To fix, pass the root options to `hydrateRoot(...)`, not `root.render(...)`:
+Untuk memperbaikinya, oper opsi akar untuk ke `hydrateRoot(...)`, bukan `root.render(...)`:
 ```js {2,5}
 // 🚩 Wrong: root.render only takes one argument.
 root.render(App, {onUncaughtError});
