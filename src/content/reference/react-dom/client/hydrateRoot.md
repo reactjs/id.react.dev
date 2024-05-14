@@ -656,7 +656,7 @@ root.render(<App />);
 
 Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. <CodeStep step={2}>error</CodeStep> yang ditangkap oleh *boundary.
+1. <CodeStep step={2}>error</CodeStep> yang ditangkap oleh *boundary*.
 2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
 Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error* atau memfilter *error* yang diketahui dari *logging*:
@@ -1187,7 +1187,7 @@ Warning: You passed a second argument to root.render(...) but it only accepts on
 
 </ConsoleBlock>
 
-Untuk memperbaikinya, oper opsi akar untuk ke `hydrateRoot(...)`, bukan `root.render(...)`:
+Untuk memperbaikinya, oper opsi akar ke `hydrateRoot(...)`, bukan `root.render(...)`:
 ```js {2,5}
 // 🚩 Wrong: root.render only takes one argument.
 root.render(App, {onUncaughtError});

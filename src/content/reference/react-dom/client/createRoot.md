@@ -114,7 +114,7 @@ Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan
 
 `root.unmount` mengembalikan `undefined`.
 
-#### Catatan Penting {/*root-unmount-caveats*/}
+#### Catatan penting {/*root-unmount-caveats*/}
 
 * Pemanggilan `root.unmount` akan meng-*unmount* seluruh komponen pada pohon dan "melepaskan" React dari node DOM akar.
 
@@ -124,7 +124,7 @@ Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan
 
 ## Penggunaan {/*usage*/}
 
-### Me-*render* Aplikasi yang Dibuat Sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
+### Me-*render* aplikasi yang dibuat sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
 
 Jika aplikasi Anda dibuat sepenuhnya dengan React, buatlah sebuah akar untuk seluruh bagian aplikasi Anda.
 
@@ -307,7 +307,7 @@ Hal ini biasanya berguna saat komponen React Anda berada dalam aplikasi yang men
 
 ---
 
-### Memperbarui Komponen Akar {/*updating-a-root-component*/}
+### Memperbarui komponen akar {/*updating-a-root-component*/}
 
 Anda dapat memanggil `render` lebih dari sekali untuk akar yang sama. Selama pohon komponen tersebut sama dengan yang sebelumnya telah di-*render*, React akan [menjaga statenya.](/learn/preserving-and-resetting-state) Perhatikan bagaimana Anda dapat mengetik pada *input*, yang berarti pembaruan dari pemanggilan `render` yang berulang setiap detik pada contoh ini tidak desktruktif.
 
@@ -590,15 +590,15 @@ export default function App() {
 </Sandpack>
 
 
-### Displaying Error Boundary errors {/*displaying-error-boundary-errors*/}
+### Menampilkan kesalahan dari *Error Boundary* {/*displaying-error-boundary-errors*/}
 
 <Canary>
 
-`onCaughtError` is only available in the latest React Canary release.
+`onCaughtError` hanya tersedia di rilis Canary React terbaru.
 
 </Canary>
 
-By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option to handle errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
+Secara bawaan, React akan me-log semua *error* yang ditangkap di *Error Boundary* ke `console.error`. Untuk mengesampingkan perilaku ini, Anda dapat memberikan opsi root `onCaughtError` opsional untuk kesalahan yang ditangkap oleh [*Error Boundary*](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
 
 ```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -618,12 +618,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> that was caught by the boundary.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. <CodeStep step={2}>error</CodeStep> yang ditangkap oleh *boundary*.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onCaughtError` root option to display error dialogs or filter known errors from logging:
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error* atau memfilter *error* yang diketahui dari *logging*:
 
 <Sandpack>
 
@@ -1134,9 +1134,9 @@ function Throw({error}) {
 
 
 ---
-## Pemecahan Masalah {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### Saya Telah Membuat Sebuah Akar, Namun Tidak Ada yang Tampil {/*ive-created-a-root-but-nothing-is-displayed*/}
+### Saya telah membuat sebuah akar, namun tidak ada yang tampil {/*ive-created-a-root-but-nothing-is-displayed*/}
 
 Pastikan Anda tidak lupa untuk me-*render* aplikasi Anda dalam akarnya:
 
@@ -1151,14 +1151,9 @@ root.render(<App />);
 Tidak akan ada yang tampil sampai hal tersebut Anda lakukan.
 
 ---
-### Saya Mendapatkan Pesan Kesalahan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### Saya mendapatkan pesan kesalahan: "*You passed a second argument to root.render*" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
 
-<<<<<<< HEAD
-Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah node DOM.
-=======
-### I'm getting an error: "You passed a second argument to root.render" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
-
-A common mistake is to pass the options for `createRoot` to `root.render(...)`:
+Kesalahan umum adalah mengoper opsi untuk `createRoot` ke `root.render(...)`:
 
 <ConsoleBlock level="error">
 
@@ -1166,7 +1161,7 @@ Warning: You passed a second argument to root.render(...) but it only accepts on
 
 </ConsoleBlock>
 
-To fix, pass the root options to `createRoot(...)`, not `root.render(...)`:
+Untuk memperbaikinya, oper opsi akar ke `createRoot(...)`, bukan `root.render(...)`:
 ```js {2,5}
 // 🚩 Wrong: root.render only takes one argument.
 root.render(App, {onUncaughtError});
@@ -1178,10 +1173,12 @@ root.render(<App />);
 
 ---
 
-### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
-Jika Anda tidak yakin apa yang terjadi, cobalah meng-*log* variabel tersebut:
+### Saya mendapatkan pesan kesalahan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+
+Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah simpul DOM.
+
+Jika Anda tidak yakin apa yang terjadi, cobalah me-*log* variabel tersebut:
 
 ```js {2}
 const domNode = document.getElementById('root');
@@ -1199,7 +1196,7 @@ Kesalahan umum lainnya untuk pesan kesalahan ini adalah penulisan `createRoot(<A
 
 ---
 
-### Saya Mendapatkan Pesan Kesalahan: "*Functions are not valid as a React child.*" {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
+### Saya mendapatkan pesan kesalahan: "*Functions are not valid as a React child.*" {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
 Pesan kesalahan ini menyatakan bahwa apapun yang Anda berikan pada `root.render` bukan sebuah komponen React.
 
@@ -1225,7 +1222,7 @@ root.render(createApp());
 
 ---
 
-### HTML yang Di-*render* oleh Server Selalu Dibuat Ulang dari Awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
+### HTML yang di-*render* oleh server selalu dibuat ulang dari awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 
 Jika aplikasi Anda adalah aplikasi yang di-*render* oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat akar dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulang node-node DOM dari awal. Hal ini dapat memperlambat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
 
