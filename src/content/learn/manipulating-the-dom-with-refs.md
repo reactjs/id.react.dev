@@ -343,7 +343,7 @@ Hal ini memungkinkan Anda membaca simpul DOM individu dari *Map* nanti.
 
 <Canary>
 
-This example shows another approach for managing the Map with a `ref` callback cleanup function.
+Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callback* `ref`.
 
 ```js
 <li
