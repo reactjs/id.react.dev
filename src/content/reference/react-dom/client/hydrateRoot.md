@@ -373,15 +373,15 @@ export default function App({counter}) {
 
 Tidak lazim untuk memanggil [`root.render`](#root-render) pada *hydrated root*. Biasanya, Anda akan [memperbarui *state*](/reference/react/useState) di dalam salah satu komponen sebagai gantinya.
 
-### Show a dialog for uncaught errors {/*show-a-dialog-for-uncaught-errors*/}
+### Menunjukkan dialog untuk *error* yang tidak ditangkap {/*show-a-dialog-for-uncaught-errors*/}
 
 <Canary>
 
-`onUncaughtError` is only available in the latest React Canary release.
+`onUncaughtError` hanya tersedia di rilis Canary React terbaru.
 
 </Canary>
 
-By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
+Secara bawaan, React akan me-log semua *error* yang tidak ditangkap di konsol. Untuk mengimplementasi pelaporan *error* Anda sendiri, Anda dapat menyediakan pengaturan opsional `onUncaughtError`:
 
 ```js [[1, 7, "onUncaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack"]]
 import { hydrateRoot } from 'react-dom/client';
@@ -402,12 +402,12 @@ const root = hydrateRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> that was thrown.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. <CodeStep step={2}>error</CodeStep> yang dilempar oleh kode.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onUncaughtError` root option to display error dialogs:
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error*:
 
 <Sandpack>
 
@@ -625,15 +625,15 @@ export default function App() {
 </Sandpack>
 
 
-### Displaying Error Boundary errors {/*displaying-error-boundary-errors*/}
+### Menampilkan *error* dari *Error Boundary* {/*displaying-error-boundary-errors*/}
 
 <Canary>
 
-`onCaughtError` is only available in the latest React Canary release.
+`onCaughtError` hanya tersedia di rilis Canary React terbaru.
 
 </Canary>
 
-By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option for errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
+Secara bawaan, React akan me-log semua *error* yang ditangkap di *Error Boundary* ke `console.error`. Untuk mengesampingkan perilaku ini, Anda dapat memberikan opsi root `onCaughtError` opsional untuk kesalahan yang ditangkap oleh [*Error Boundary*](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
 
 ```js [[1, 7, "onCaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack"]]
 import { hydrateRoot } from 'react-dom/client';
@@ -912,9 +912,9 @@ function Throw({error}) {
 
 </Sandpack>
 
-### Show a dialog for recoverable hydration mismatch errors {/*show-a-dialog-for-recoverable-hydration-mismatch-errors*/}
+### Menunjukkan dialog untuk *error* ketidakcocokan *hydration* yang dapat dipulihkan {/*show-a-dialog-for-recoverable-hydration-mismatch-errors*/}
 
-When React encounters a hydration mismatch, it will automatically attempt to recover by rendering on the client. By default, React will log hydration mismatch errors to `console.error`. To override this behavior, you can provide the optional `onRecoverableError` root option:
+Ketika React mengalami ketidakcocokan *hydration*, React akan secara otomatis mencoba memulihkannya dengan melakukan rendering pada klien. Secara default, React akan mencatat kesalahan ketidakcocokan *hydration* ke `console.error`. Untuk mengesampingkan perilaku ini, Anda dapat memberikan pengaturan root `onRecoverableError` opsional:
 
 ```js [[1, 7, "onRecoverableError"], [2, 7, "error", 1], [3, 11, "error.cause", 1], [4, 7, "errorInfo"], [5, 12, "componentStack"]]
 import { hydrateRoot } from 'react-dom/client';
