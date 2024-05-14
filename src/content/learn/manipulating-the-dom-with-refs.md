@@ -218,18 +218,19 @@ Contoh di bawah menunjukan bagaimana Anda dapat menggunakan pendekatan ini untuk
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import { useRef, useState } from "react";
 
 export default function CatFriends() {
   const itemsRef = useRef(null);
+  const [catList, setCatList] = useState(setupCatList);
 
-  function scrollToId(itemId) {
+  function scrollToCat(cat) {
     const map = getMap();
-    const node = map.get(itemId);
+    const node = map.get(cat);
     node.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   }
 
@@ -244,34 +245,25 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToId(0)}>
-          Tom
-        </button>
-        <button onClick={() => scrollToId(5)}>
-          Maru
-        </button>
-        <button onClick={() => scrollToId(9)}>
-          Jellylorum
-        </button>
+        <button onClick={() => scrollToCat(catList[0])}>Tom</button>
+        <button onClick={() => scrollToCat(catList[5])}>Maru</button>
+        <button onClick={() => scrollToCat(catList[9])}>Jellylorum</button>
       </nav>
       <div>
         <ul>
-          {catList.map(cat => (
+          {catList.map((cat) => (
             <li
-              key={cat.id}
+              key={cat}
               ref={(node) => {
                 const map = getMap();
                 if (node) {
-                  map.set(cat.id, node);
+                  map.set(cat, node);
                 } else {
-                  map.delete(cat.id);
+                  map.delete(cat);
                 }
               }}
             >
-              <img
-                src={cat.imageUrl}
-                alt={'Cat #' + cat.id}
-              />
+              <img src={cat} />
             </li>
           ))}
         </ul>
@@ -280,12 +272,13 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
-    id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
-  });
+function setupCatList() {
+  const catList = [];
+  for (let i = 0; i < 10; i++) {
+    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+  }
+
+  return catList;
 }
 
 ```
@@ -316,6 +309,16 @@ li {
 }
 ```
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  }
+}
+```
+
 </Sandpack>
 
 Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
@@ -327,16 +330,38 @@ Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [
     const map = getMap();
     if (node) {
       // Add to the Map
-      map.set(cat.id, node);
+      map.set(cat, node);
     } else {
       // Remove from the Map
-      map.delete(cat.id);
+      map.delete(cat);
     }
   }}
 >
 ```
 
 Hal ini memungkinkan Anda membaca simpul DOM individu dari *Map* nanti.
+
+<Canary>
+
+Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callback* `ref`.
+
+```js
+<li
+  key={cat.id}
+  ref={node => {
+    const map = getMap();
+    // Add to the Map
+    map.set(cat, node);
+
+    return () => {
+      // Remove from the Map
+      map.delete(cat);
+    };
+  }}
+>
+```
+
+</Canary>
 
 </DeepDive>
 

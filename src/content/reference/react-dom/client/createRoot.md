@@ -44,8 +44,10 @@ Aplikasi yang sepenuhnya dibuat dengan React biasanya cukup memanggil `createRoo
 * `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan membuat akar untuk elemen DOM ini dan memungkinkan Anda untuk memanggil fungsi lain pada akar, seperti `render` untuk menampilkan konten React yang sudah di-*render*.
 
 * **opsional** `options`: Sebuah objek dengan opsi-opsi berikut untuk akar React ini.
-  * **opsional** `onRecoverableError`: *Callback* yang dipanggil saat React berhasil pulih secara otomatis dari kesalahan.
-  * **opsional** `identifierPrefix`: sebuah *string* yang React gunakan untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Berguna untuk mencegah konflik saat menggunakan banyak akar pada halaman yang sama.
+  * <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `onCaughtError`: Callback called when React catches an error in an Error Boundary. Called with the `error` caught by the Error Boundary, and an `errorInfo` object containing the `componentStack`.
+  * <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `onUncaughtError`: Callback called when an error is thrown and not caught by an Error Boundary. Called with the `error` that was thrown, and an `errorInfo` object containing the `componentStack`.
+  * **opsional** `onRecoverableError`: *Callback* yang dipanggil saat React berhasil pulih secara otomatis dari kesalahan. Dipanggil dengan `error` yang dikembalikan React, dan obyek `errorInfo` berisi `componentStack`. Beberapa kesalahan yang dapat dipulihkan mungkin akan berisi kesalahan aslinya sebagai `error.cause`.
+  * **opsional** `identifierPrefix`: Awalan string yang digunakan React untuk ID yang dihasilkan oleh [`useId`.](/reference/react/useId) Berguna untuk mencegah konflik saat menggunakan banyak akar pada halaman yang sama.
 
 #### Kembalian {/*returns*/}
 
@@ -112,7 +114,7 @@ Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan
 
 `root.unmount` mengembalikan `undefined`.
 
-#### Catatan Penting {/*root-unmount-caveats*/}
+#### Catatan penting {/*root-unmount-caveats*/}
 
 * Pemanggilan `root.unmount` akan meng-*unmount* seluruh komponen pada pohon dan "melepaskan" React dari node DOM akar.
 
@@ -122,7 +124,7 @@ Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan
 
 ## Penggunaan {/*usage*/}
 
-### Me-*render* Aplikasi yang Dibuat Sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
+### Me-*render* aplikasi yang dibuat sepenuhnya dengan React {/*rendering-an-app-fully-built-with-react*/}
 
 Jika aplikasi Anda dibuat sepenuhnya dengan React, buatlah sebuah akar untuk seluruh bagian aplikasi Anda.
 
@@ -305,7 +307,7 @@ Hal ini biasanya berguna saat komponen React Anda berada dalam aplikasi yang men
 
 ---
 
-### Memperbarui Komponen Akar {/*updating-a-root-component*/}
+### Memperbarui komponen akar {/*updating-a-root-component*/}
 
 Anda dapat memanggil `render` lebih dari sekali untuk akar yang sama. Selama pohon komponen tersebut sama dengan yang sebelumnya telah di-*render*, React akan [menjaga statenya.](/learn/preserving-and-resetting-state) Perhatikan bagaimana Anda dapat mengetik pada *input*, yang berarti pembaruan dari pemanggilan `render` yang berulang setiap detik pada contoh ini tidak desktruktif.
 
@@ -340,10 +342,801 @@ export default function App({counter}) {
 
 Pemanggilan `render` berulang kali biasanya tidak wajar. Pada umumnya komponen Anda akan [memperbarui *state*](/reference/react/useState).
 
----
-## Pemecahan Masalah {/*troubleshooting*/}
+### Show a dialog for uncaught errors {/*show-a-dialog-for-uncaught-errors*/}
 
-### Saya Telah Membuat Sebuah Akar, Namun Tidak Ada yang Tampil {/*ive-created-a-root-but-nothing-is-displayed*/}
+<Canary>
+
+`onUncaughtError` is only available in the latest React Canary release.
+
+</Canary>
+
+By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
+
+```js [[1, 6, "onUncaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(
+  document.getElementById('root'),
+  {
+    onUncaughtError: (error, errorInfo) => {
+      console.error(
+        'Uncaught error',
+        error,
+        errorInfo.componentStack
+      );
+    }
+  }
+);
+root.render(<App />);
+```
+
+The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called with two arguments:
+
+1. The <CodeStep step={2}>error</CodeStep> that was thrown.
+2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+
+You can use the `onUncaughtError` root option to display error dialogs:
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!-- This is the DOM node -->
+<div id="root"></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+  
+  // Set the title
+  errorTitle.innerText = title;
+  
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+  
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+  
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { createRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportUncaughtError} from "./reportError";
+import "./styles.css";
+
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onUncaughtError: (error, errorInfo) => {
+    if (error.message !== 'Known error') {
+      reportUncaughtError({
+        error,
+        componentStack: errorInfo.componentStack
+      });
+    }
+  }
+});
+root.render(<App />);
+```
+
+```js src/App.js
+import { useState } from 'react';
+
+export default function App() {
+  const [throwError, setThrowError] = useState(false);
+  
+  if (throwError) {
+    foo.bar = 'baz';
+  }
+  
+  return (
+    <div>
+      <span>This error shows the error dialog:</span>
+      <button onClick={() => setThrowError(true)}>
+        Throw error
+      </button>
+    </div>
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+
+### Menampilkan kesalahan dari *Error Boundary* {/*displaying-error-boundary-errors*/}
+
+<Canary>
+
+`onCaughtError` hanya tersedia di rilis Canary React terbaru.
+
+</Canary>
+
+Secara bawaan, React akan me-log semua *error* yang ditangkap di *Error Boundary* ke `console.error`. Untuk mengesampingkan perilaku ini, Anda dapat memberikan opsi root `onCaughtError` opsional untuk kesalahan yang ditangkap oleh [*Error Boundary*](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
+
+```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(
+  document.getElementById('root'),
+  {
+    onCaughtError: (error, errorInfo) => {
+      console.error(
+        'Caught error',
+        error,
+        errorInfo.componentStack
+      );
+    }
+  }
+);
+root.render(<App />);
+```
+
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
+
+1. <CodeStep step={2}>error</CodeStep> yang ditangkap oleh *boundary*.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
+
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menunjukkan dialog *error* atau memfilter *error* yang diketahui dari *logging*:
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!-- This is the DOM node -->
+<div id="root"></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+
+  // Set the title
+  errorTitle.innerText = title;
+
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { createRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportCaughtError} from "./reportError";
+import "./styles.css";
+
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onCaughtError: (error, errorInfo) => {
+    if (error.message !== 'Known error') {
+      reportCaughtError({
+        error, 
+        componentStack: errorInfo.componentStack,
+      });
+    }
+  }
+});
+root.render(<App />);
+```
+
+```js src/App.js
+import { useState } from 'react';
+import { ErrorBoundary } from "react-error-boundary";
+
+export default function App() {
+  const [error, setError] = useState(null);
+  
+  function handleUnknown() {
+    setError("unknown");
+  }
+
+  function handleKnown() {
+    setError("known");
+  }
+  
+  return (
+    <>
+      <ErrorBoundary
+        fallbackRender={fallbackRender}
+        onReset={(details) => {
+          setError(null);
+        }}
+      >
+        {error != null && <Throw error={error} />}
+        <span>This error will not show the error dialog:</span>
+        <button onClick={handleKnown}>
+          Throw known error
+        </button>
+        <span>This error will show the error dialog:</span>
+        <button onClick={handleUnknown}>
+          Throw unknown error
+        </button>
+      </ErrorBoundary>
+      
+    </>
+  );
+}
+
+function fallbackRender({ resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <h3>Error Boundary</h3>
+      <p>Something went wrong.</p>
+      <button onClick={resetErrorBoundary}>Reset</button>
+    </div>
+  );
+}
+
+function Throw({error}) {
+  if (error === "known") {
+    throw new Error('Known error')
+  } else {
+    foo.bar = 'baz';
+  }
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+### Displaying a dialog for recoverable errors {/*displaying-a-dialog-for-recoverable-errors*/}
+
+React may automatically render a component a second time to attempt to recover from an error thrown in render. If successful, React will log a recoverable error to the console to notify the developer. To override this behavior, you can provide the optional `onRecoverableError` root option:
+
+```js [[1, 6, "onRecoverableError"], [2, 6, "error", 1], [3, 10, "error.cause"], [4, 6, "errorInfo"], [5, 11, "componentStack"]]
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(
+  document.getElementById('root'),
+  {
+    onRecoverableError: (error, errorInfo) => {
+      console.error(
+        'Recoverable error',
+        error,
+        error.cause,
+        errorInfo.componentStack,
+      );
+    }
+  }
+);
+root.render(<App />);
+```
+
+The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called with two arguments:
+
+1. The <CodeStep step={2}>error</CodeStep> that React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>. 
+2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
+
+You can use the `onRecoverableError` root option to display error dialogs:
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!-- This is the DOM node -->
+<div id="root"></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+
+  // Set the title
+  errorTitle.innerText = title;
+
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { createRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportRecoverableError} from "./reportError";
+import "./styles.css";
+
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onRecoverableError: (error, errorInfo) => {
+    reportRecoverableError({
+      error,
+      cause: error.cause,
+      componentStack: errorInfo.componentStack,
+    });
+  }
+});
+root.render(<App />);
+```
+
+```js src/App.js
+import { useState } from 'react';
+import { ErrorBoundary } from "react-error-boundary";
+
+// 🚩 Bug: Never do this. This will force an error.
+let errorThrown = false;
+export default function App() {
+  return (
+    <>
+      <ErrorBoundary
+        fallbackRender={fallbackRender}
+      >
+        {!errorThrown && <Throw />}
+        <p>This component threw an error, but recovered during a second render.</p>
+        <p>Since it recovered, no Error Boundary was shown, but <code>onRecoverableError</code> was used to show an error dialog.</p>
+      </ErrorBoundary>
+      
+    </>
+  );
+}
+
+function fallbackRender() {
+  return (
+    <div role="alert">
+      <h3>Error Boundary</h3>
+      <p>Something went wrong.</p>
+    </div>
+  );
+}
+
+function Throw({error}) {
+  // Simulate an external value changing during concurrent render.
+  errorThrown = true;
+  foo.bar = 'baz';
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+
+---
+## Pemecahan masalah {/*troubleshooting*/}
+
+### Saya telah membuat sebuah akar, namun tidak ada yang tampil {/*ive-created-a-root-but-nothing-is-displayed*/}
 
 Pastikan Anda tidak lupa untuk me-*render* aplikasi Anda dalam akarnya:
 
@@ -358,11 +1151,34 @@ root.render(<App />);
 Tidak akan ada yang tampil sampai hal tersebut Anda lakukan.
 
 ---
-### Saya Mendapatkan Pesan Kesalahan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### Saya mendapatkan pesan kesalahan: "*You passed a second argument to root.render*" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
 
-Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah node DOM.
+Kesalahan umum adalah mengoper opsi untuk `createRoot` ke `root.render(...)`:
 
-Jika Anda tidak yakin apa yang terjadi, cobalah meng-*log* variabel tersebut:
+<ConsoleBlock level="error">
+
+Warning: You passed a second argument to root.render(...) but it only accepts one argument.
+
+</ConsoleBlock>
+
+Untuk memperbaikinya, oper opsi akar ke `createRoot(...)`, bukan `root.render(...)`:
+```js {2,5}
+// 🚩 Wrong: root.render only takes one argument.
+root.render(App, {onUncaughtError});
+
+// ✅ Correct: pass options to createRoot.
+const root = createRoot(container, {onUncaughtError}); 
+root.render(<App />);
+```
+
+---
+
+
+### Saya mendapatkan pesan kesalahan: "*Target container is not a DOM element*" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+
+Pesan kesalahan ini menyatakan apapun yang Anda berikan ke `createRoot` bukan sebuah simpul DOM.
+
+Jika Anda tidak yakin apa yang terjadi, cobalah me-*log* variabel tersebut:
 
 ```js {2}
 const domNode = document.getElementById('root');
@@ -380,7 +1196,7 @@ Kesalahan umum lainnya untuk pesan kesalahan ini adalah penulisan `createRoot(<A
 
 ---
 
-### Saya Mendapatkan Pesan Kesalahan: "*Functions are not valid as a React child.*" {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
+### Saya mendapatkan pesan kesalahan: "*Functions are not valid as a React child.*" {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
 Pesan kesalahan ini menyatakan bahwa apapun yang Anda berikan pada `root.render` bukan sebuah komponen React.
 
@@ -406,7 +1222,7 @@ root.render(createApp());
 
 ---
 
-### HTML yang Di-*render* oleh Server Selalu Dibuat Ulang dari Awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
+### HTML yang di-*render* oleh server selalu dibuat ulang dari awal {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 
 Jika aplikasi Anda adalah aplikasi yang di-*render* oleh server dan menggunakan HTML awal yang dibuat oleh React, Anda mungkin akan menyadari bahwa dengan membuat akar dan memanggil `root.render` menghapus seluruh HTML tersebut dan membuat ulang node-node DOM dari awal. Hal ini dapat memperlambat, mereset fokus dan posisi *scroll*, dan mungkin menghilangkan *input* dari pengguna.
 

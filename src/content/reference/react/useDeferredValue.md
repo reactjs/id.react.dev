@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Referensi {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk mendapatkan versi yang ditangguhkan dari nilai tersebut.
 
@@ -34,15 +34,24 @@ function SearchPage() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
+* <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
+- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
-#### Caveats {/*caveats*/}
+<Canary>
+
+Di versi Canary React terbaru, `useDeferredValue` mengembalikan `initialValue` pada *render* awal, dan menjadwalkan *render* ulang di balik layar dengan `value` dikembalikan.
+
+</Canary>
+
+#### Catatan penting {/*caveats*/}
+
+- Ketika pembaruan berada di dalam *Transition*, `useDeferredValue` selalu mengembalikan `value` yang baru dan tidak memunculkan *render* yang ditunda, karena pembaruan telah ditunda.
 
 - Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 

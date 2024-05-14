@@ -260,9 +260,30 @@ React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *call
 
 * `node`: Sebuah *node* DOM atau `null`. React akan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
 
-#### Pengembalian (Returns) {/*returns*/}
+<Canary>
 
-Jangan menggembalikan apa pun pada *callback* `ref`.
+#### Kembalian {/*returns*/}
+
+* **opsional** fungsi `cleanup`: Ketika `ref` dilepas, React akan memanggil fungsi `cleanup`. Jika fungsi tidak dikembalikan oleh *callback* `ref`, React akan memanggil ulang *callback* dengan `null` sebagai argumen ketika `ref` dilepas.
+
+```js
+
+<div ref={(node) => {
+  console.log(node);
+
+  return () => {
+    console.log('Clean up', node)
+  }
+}}>
+
+```
+
+#### Catatan Penting {/*caveats*/}
+
+* Ketika mode Strict diaktifkan, React akan **menjalankan satu siklus *setup+cleanup* khusus pengembangan tambahan** sebelum penyiapan sebenarnya yang pertama. Ini adalah *stress-test* yang memastikan bahwa logika pembersihan Anda "mencerminkan" logika pengaturan Anda dan menghentikan atau membatalkan apa pun yang sedang dilakukan pengaturan. Jika ini menyebabkan masalah, implementasikan fungsi pembersihan.
+* Ketika Anda mengoper *callback* `ref` *yang berbeda*, React akan memanggil fungsi pembersihan *callback* *sebelumnya* jika disediakan. Jika fungsi pembersihan tidak ditentukan, callback `ref` akan dipanggil dengan `null` sebagai argumennya. Fungsi *next* akan dipanggil dengan simpul DOM.
+
+</Canary>
 
 ---
 
