@@ -252,13 +252,13 @@ function List({ items }) {
 
 Sekarang tidak perlu lagi "menyesuaikan" *state*. Jika item dengan ID yang dipilih ada dalam daftar, maka item tersebut tetap dipilih. Jika tidak, `selection` yang dihitung selama *rendering* akan menjadi `null` karena tidak ditemukan item yang cocok. Perilaku ini berbeda, namun bisa dibilang lebih baik karena sebagian besar perubahan pada `item` mempertahankan pilihan.
 
-### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
+### Berbagi logika antar *event handler* {/*sharing-logic-between-event-handlers*/}
 
-Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification whenever the user puts the product in the cart. Calling `showNotification()` in both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
+Katakanlah Anda memiliki halaman produk dengan dua tombol (Beli dan Checkout) yang memungkinkan Anda membeli produk tersebut. Anda ingin menampilkan notifikasi setiap kali pengguna memasukkan produk ke keranjang. Memanggil `showNotification()` pada *handler* klik kedua tombol terasa berulang sehingga Anda mungkin tergoda untuk menempatkan logika ini dalam sebuah *Effect*:
 
 ```js {2-7}
 function ProductPage({ product, addToCart }) {
-  // 🔴 Avoid: Event-specific logic inside an Effect
+  // 🔴 Hindari: Logika khusus Event di dalam Effect
   useEffect(() => {
     if (product.isInCart) {
       showNotification(`Added ${product.name} to the shopping cart!`);
@@ -277,13 +277,13 @@ function ProductPage({ product, addToCart }) {
 }
 ```
 
-This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
+*Effect* ini tidak diperlukan. Kemungkinan besar juga akan menyebabkan bug. Misalnya, aplikasi Anda "mengingat" keranjang belanja di antara halaman yang dimuat ulang. Jika Anda menambahkan produk ke keranjang satu kali dan me-*refresh* halaman, notifikasi akan muncul kembali. Ini akan terus muncul setiap kali Anda me-*refresh* halaman produk tersebut. Hal ini karena `product.isInCart` sudah menjadi `true` saat halaman dimuat, sehingga *Effect* di atas akan memanggil `showNotification()`.
 
-**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function called from both event handlers:
+**Jika Anda tidak yakin apakah beberapa kode harus berada dalam *Effect* atau dalam *event handler*, tanyakan pada diri Anda *mengapa* kode ini perlu dijalankan. Gunakan *Effect* hanya untuk kode yang harus dijalankan *karena* komponen ditampilkan kepada pengguna.** Dalam contoh ini, notifikasi akan muncul karena pengguna *menekan tombol*, bukan karena halaman ditampilkan! Hapus *Effect*-nya dan masukkan logika bersama ke dalam fungsi yang dipanggil dari kedua *event handler*:
 
 ```js {2-6,9,13}
 function ProductPage({ product, addToCart }) {
-  // ✅ Good: Event-specific logic is called from event handlers
+  // ✅ Baik: Logika khusus event dipanggil dari event handler
   function buyProduct() {
     addToCart(product);
     showNotification(`Added ${product.name} to the shopping cart!`);
@@ -301,23 +301,23 @@ function ProductPage({ product, addToCart }) {
 }
 ```
 
-This both removes the unnecessary Effect and fixes the bug.
+Hal ini menghilangkan *Effect* yang tidak perlu dan memperbaiki bug.
 
-### Sending a POST request {/*sending-a-post-request*/}
+### Mengirim *request* POST {/*sending-a-post-request*/}
 
-This `Form` component sends two kinds of POST requests. It sends an analytics event when it mounts. When you fill in the form and click the Submit button, it will send a POST request to the `/api/register` endpoint:
+Komponen `Form` ini mengirimkan dua jenis *request* POST. Ini mengirimkan *event* analitik saat dipasang. Saat Anda mengisi formulir dan mengklik tombol Kirim, *request* POST akan dikirim ke *endpoint* `/api/register`:
 
 ```js {5-8,10-16}
 function Form() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  // ✅ Good: This logic should run because the component was displayed
+  // ✅ Baik: Logika ini seharusnya dijalankan karena komponen ditampilkan
   useEffect(() => {
     post('/analytics/event', { eventName: 'visit_form' });
   }, []);
 
-  // 🔴 Avoid: Event-specific logic inside an Effect
+  // 🔴 Hindari: Logika khusus event di dalam Effect
   const [jsonToSubmit, setJsonToSubmit] = useState(null);
   useEffect(() => {
     if (jsonToSubmit !== null) {
@@ -333,36 +333,36 @@ function Form() {
 }
 ```
 
-Let's apply the same criteria as in the example before.
+Mari kita terapkan kriteria yang sama seperti pada contoh sebelumnya.
 
-The analytics POST request should remain in an Effect. This is because the _reason_ to send the analytics event is that the form was displayed. (It would fire twice in development, but [see here](/learn/synchronizing-with-effects#sending-analytics) for how to deal with that.)
+*Request* POST analitik harus tetap dalam *Effect*. Ini karena _alasan_ mengirim *event* analitik adalah karena formulir telah ditampilkan. (Ini akan diaktifkan dua kali dalam pengembangan, tetapi [lihat di sini](/learn/synchronizing-with-effects#sending-analytics) untuk mengetahui cara mengatasinya.)
 
-However, the `/api/register` POST request is not caused by the form being _displayed_. You only want to send the request at one specific moment in time: when the user presses the button. It should only ever happen _on that particular interaction_. Delete the second Effect and move that POST request into the event handler:
+Namun, *request* POST `/api/register` tidak disebabkan oleh formulir yang _ditampilkan_. Anda hanya ingin mengirim permintaan pada satu waktu tertentu: saat pengguna menekan tombol. Ini seharusnya hanya terjadi _pada interaksi tertentu_. Hapus *Effect* kedua dan pindahkan *request* POST tersebut ke dalam *event handler*:
 
 ```js {12-13}
 function Form() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  // ✅ Good: This logic runs because the component was displayed
+  // ✅ Baik: Logika ini dijalankan karena komponen ditampilkan
   useEffect(() => {
     post('/analytics/event', { eventName: 'visit_form' });
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
-    // ✅ Good: Event-specific logic is in the event handler
+    // ✅ Baik: Logika khusus event di dalam event handler
     post('/api/register', { firstName, lastName });
   }
   // ...
 }
 ```
 
-When you choose whether to put some logic into an event handler or an Effect, the main question you need to answer is _what kind of logic_ it is from the user's perspective. If this logic is caused by a particular interaction, keep it in the event handler. If it's caused by the user _seeing_ the component on the screen, keep it in the Effect.
+Saat Anda memilih apakah akan memasukkan logika ke dalam *event handler* atau *Effect*, pertanyaan utama yang perlu Anda jawab adalah _logika macam apa_ dari sudut pandang pengguna. Jika logika ini disebabkan oleh interaksi tertentu, simpan logika tersebut di *event handler*. Jika hal ini disebabkan oleh pengguna _melihat_ komponen di layar, simpan di *Effect*.
 
-### Chains of computations {/*chains-of-computations*/}
+### Rantai komputasi {/*chains-of-computations*/}
 
-Sometimes you might feel tempted to chain Effects that each adjust a piece of state based on other state:
+Terkadang Anda mungkin tergoda untuk membuat *Effect* berantai yang masing-masing menyesuaikan suatu bagian *state* berdasarkan *state* lainnya:
 
 ```js {7-29}
 function Game() {
@@ -371,7 +371,7 @@ function Game() {
   const [round, setRound] = useState(1);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
+  // 🔴 Hindari: Rantai Effect yang menyesuaikan state hanya untuk memicu Effect satu sama lain
   useEffect(() => {
     if (card !== null && card.gold) {
       setGoldCardCount(c => c + 1);
@@ -406,13 +406,13 @@ function Game() {
   // ...
 ```
 
-There are two problems with this code.
+Ada dua masalah dengan kode ini.
 
-One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+Salah satu masalahnya adalah hal ini sangat tidak efisien: komponen (dan turunannya) harus di-*render* ulang di antara setiap panggilan `set` dalam rantai. Dalam contoh di atas, dalam kasus terburuk (`setCard` → *render* → `setGoldCardCount` → *render* → `setRound` → *render* → `setIsGameOver` → *render*) ada tiga *rendering* ulang yang tidak diperlukan pada pohon di bawah ini.
 
-Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+Meskipun tidak lambat, seiring berkembangnya kode Anda, Anda akan menghadapi kasus di mana "rantai" yang Anda tulis tidak sesuai dengan persyaratan baru. Bayangkan Anda menambahkan cara untuk menelusuri sejarah gerakan permainan. Anda akan melakukannya dengan memperbarui setiap variabel *state* ke nilai dari masa lalu. Namun, menyetel *state* `card` ke nilai dari masa lalu akan memicu rantai *Effect* lagi dan mengubah data yang Anda tampilkan. Kode seperti ini seringkali kaku dan rapuh.
 
-In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
+Dalam hal ini, lebih baik menghitung apa yang Anda bisa selama *rendering*, dan sesuaikan *state* di *event handler*:
 
 ```js {6-7,14-26}
 function Game() {
@@ -420,7 +420,7 @@ function Game() {
   const [goldCardCount, setGoldCardCount] = useState(0);
   const [round, setRound] = useState(1);
 
-  // ✅ Calculate what you can during rendering
+  // ✅ Hitung apa yang Anda bisa saat render
   const isGameOver = round > 5;
 
   function handlePlaceCard(nextCard) {
@@ -428,7 +428,7 @@ function Game() {
       throw Error('Game already ended.');
     }
 
-    // ✅ Calculate all the next state in the event handler
+    // ✅ Hitung keseluruhan state selanjutnya dalam event handler
     setCard(nextCard);
     if (nextCard.gold) {
       if (goldCardCount <= 3) {
@@ -446,11 +446,11 @@ function Game() {
   // ...
 ```
 
-This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each state variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
+Ini jauh lebih efisien. Selain itu, jika Anda menerapkan cara untuk melihat riwayat *game*, sekarang Anda akan dapat menyetel setiap variabel *state* ke pergerakan dari masa lalu tanpa memicu rantai *Effect* yang menyesuaikan setiap nilai lainnya. Jika Anda perlu menggunakan kembali logika antara beberapa *event handler*, Anda dapat [mengekstrak fungsi](#sharing-logic-between-event-handlers) dan memanggilnya dari *handler* tersebut.
 
-Remember that inside event handlers, [state behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
+Ingat bahwa di dalam event handler, [*state* berperilaku seperti *snapshot*.](/learn/state-as-a-snapshot) Misalnya, bahkan setelah Anda memanggil `setRound(round + 1)`, variabel `round` akan mencerminkan nilai pada saat pengguna mengklik tombol. Jika Anda perlu menggunakan nilai berikutnya untuk penghitungan, tentukan secara manual seperti `const nextRound = round + 1`.
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects is appropriate because you are synchronizing with network.
+Dalam beberapa kasus, Anda *tidak dapat* menghitung *state* berikutnya secara langsung di *event handler*. Misalnya, bayangkan sebuah formulir dengan beberapa *dropdown* di mana pilihan *dropdown* berikutnya bergantung pada nilai yang dipilih dari *dropdown* sebelumnya. Kemudian, rangkaian *Effect* sesuai karena Anda melakukan sinkronisasi dengan jaringan.
 
 ### Initializing the application {/*initializing-the-application*/}
 
