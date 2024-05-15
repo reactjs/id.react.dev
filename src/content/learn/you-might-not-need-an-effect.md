@@ -155,15 +155,15 @@ Perhatikan juga bahwa mengukur kinerja dalam mode pengembangan tidak akan member
 
 </DeepDive>
 
-### Resetting all state when a prop changes {/*resetting-all-state-when-a-prop-changes*/}
+### Menyetel ulang keseluruhan *state* ketika *props* berubah {/*resetting-all-state-when-a-prop-changes*/}
 
-This `ProfilePage` component receives a `userId` prop. The page contains a comment input, and you use a `comment` state variable to hold its value. One day, you notice a problem: when you navigate from one profile to another, the `comment` state does not get reset. As a result, it's easy to accidentally post a comment on a wrong user's profile. To fix the issue, you want to clear out the `comment` state variable whenever the `userId` changes:
+Komponen `ProfilePage` ini menerima *prop* `userId`. Halaman tersebut berisi *input* komentar, dan Anda menggunakan variabel *state* `comment` untuk menyimpan nilainya. Suatu hari, Anda melihat masalah: saat Anda bernavigasi dari satu profil ke profil lainnya, *state* `comment` tidak disetel ulang. Akibatnya, Anda dapat dengan mudah mengirim komentar ke profil pengguna yang salah secara tidak sengaja. Untuk memperbaiki masalah ini, Anda ingin menghapus variabel *state* `comment` setiap kali `userId` berubah:
 
 ```js {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
-  // 🔴 Avoid: Resetting state on prop change in an Effect
+  // 🔴 Hindari: menyetel ulanh state setiap prop berubah di dalam Effect
   useEffect(() => {
     setComment('');
   }, [userId]);
@@ -171,9 +171,9 @@ export default function ProfilePage({ userId }) {
 }
 ```
 
-This is inefficient because `ProfilePage` and its children will first render with the stale value, and then render again. It is also complicated because you'd need to do this in *every* component that has some state inside `ProfilePage`. For example, if the comment UI is nested, you'd want to clear out nested comment state too.
+Hal ini tidak efisien karena `ProfilePage` dan turunannya akan di-*render* terlebih dahulu dengan nilai yang sudah usang, lalu di-*render* lagi. Ini juga rumit karena Anda harus melakukan ini di *setiap* komponen yang memiliki *state* di dalam `ProfilePage`. Misalnya, jika UI komentar disarangkan, Anda juga ingin menghapus *state* komentar yang disarangkan.
 
-Instead, you can tell React that each user's profile is conceptually a _different_ profile by giving it an explicit key. Split your component in two and pass a `key` attribute from the outer component to the inner one:
+Sebagai gantinya, Anda dapat memberi tahu React bahwa setiap profil pengguna secara konseptual adalah profil _berbeda_ dengan memberinya *key* secara eksplisit. Pisahkan komponen Anda menjadi dua dan oper atribut `key` dari komponen luar ke komponen dalam:
 
 ```js {5,11-12}
 export default function ProfilePage({ userId }) {
@@ -186,28 +186,28 @@ export default function ProfilePage({ userId }) {
 }
 
 function Profile({ userId }) {
-  // ✅ This and any other state below will reset on key change automatically
+  // ✅ State ini dan state lain di bawahnya akan disetel ulang secara otomatis setiap kali key berubah
   const [comment, setComment] = useState('');
   // ...
 }
 ```
 
-Normally, React preserves the state when the same component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` component, you're asking React to treat two `Profile` components with different `userId` as two different components that should not share any state.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the state](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
+Biasanya, React mempertahankan *state* ketika komponen yang sama dirender di tempat yang sama. **Dengan mengoper `userId` sebagai `key` ke komponen `Profile`, Anda meminta React untuk memperlakukan dua komponen `Profile` dengan `userId` yang berbeda sebagai dua komponen berbeda yang tidak boleh berbagi *state* apa pun.** Kapan pun *key* (yang telah Anda setel ke `userId`) berubah, React akan membuat ulang DOM dan [mengatur ulang *state*](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) dari komponen `Profile` dan semua turunannya. Sekarang bidang `comment` akan dihapus secara otomatis saat bernavigasi antar profil.
 
-Note that in this example, only the outer `ProfilePage` component is exported and visible to other files in the project. Components rendering `ProfilePage` don't need to pass the key to it: they pass `userId` as a regular prop. The fact `ProfilePage` passes it as a `key` to the inner `Profile` component is an implementation detail.
+Perhatikan bahwa dalam contoh ini, hanya komponen `ProfilePage` bagian luar yang diekspor dan terlihat oleh file lain dalam proyek. Komponen yang merender `ProfilePage` tidak perlu meneruskan kuncinya: komponen meneruskan `userId` sebagai prop biasa. Fakta bahwa `ProfilePage` meneruskannya sebagai `key` ke komponen `Profile` bagian dalam adalah detail implementasi.
 
-### Adjusting some state when a prop changes {/*adjusting-some-state-when-a-prop-changes*/}
+### Menyesuaikan sebagian *state* ketika *prop* berubah {/*adjusting-some-state-when-a-prop-changes*/}
 
-Sometimes, you might want to reset or adjust a part of the state on a prop change, but not all of it.
+Terkadang, Anda mungkin ingin menyetel ulang atau menyesuaikan sebagian *state* pada perubahan prop, namun tidak semuanya.
 
-This `List` component receives a list of `items` as a prop, and maintains the selected item in the `selection` state variable. You want to reset the `selection` to `null` whenever the `items` prop receives a different array:
+Komponen `List` ini menerima *list* `item` sebagai *prop*, dan mempertahankan item yang dipilih dalam variabel *state* `selection`. Anda ingin menyetel ulang `selection` ke `null` setiap kali prop `items` menerima senarai yang berbeda:
 
 ```js {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
 
-  // 🔴 Avoid: Adjusting state on prop change in an Effect
+  // 🔴 Hindari: Mengatur state saat prop berubah di dalam Effect
   useEffect(() => {
     setSelection(null);
   }, [items]);
@@ -215,16 +215,16 @@ function List({ items }) {
 }
 ```
 
-This, too, is not ideal. Every time the `items` change, the `List` and its child components will render with a stale `selection` value at first. Then React will update the DOM and run the Effects. Finally, the `setSelection(null)` call will cause another re-render of the `List` and its child components, restarting this whole process again.
+Hal ini juga tidak ideal. Setiap kali `items` berubah, `List` dan komponen turunannya akan di-*render* dengan nilai `selection` yang usang pada awalnya. Kemudian React akan memperbarui DOM dan menjalankan *Effect*-nya. Terakhir, panggilan `setSelection(null)` akan menyebabkan *rendering* ulang `List` dan komponen turunannya lagi, sehingga memulai kembali seluruh proses ini.
 
-Start by deleting the Effect. Instead, adjust the state directly during rendering:
+Mulailah dengan menghapus *Effect*. Sebagai gantinya, sesuaikan *state* secara langsung selama rendering:
 
 ```js {5-11}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
 
-  // Better: Adjust the state while rendering
+  // Lebih baik: Menyesuaikan state saat rendering
   const [prevItems, setPrevItems] = useState(items);
   if (items !== prevItems) {
     setPrevItems(items);
@@ -234,23 +234,23 @@ function List({ items }) {
 }
 ```
 
-[Storing information from previous renders](/reference/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. React has not rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
+[Menyimpan informasi dari *render* sebelumnya](/reference/react/useState#storing-information-from-previous-renders) seperti ini mungkin sulit untuk dipahami, tetapi ini lebih baik daripada memperbarui *state* yang sama dalam suatu *Effect*. Dalam contoh di atas, `setSelection` dipanggil secara langsung saat *render*. React akan me-*render* ulang `List` *segera* setelah keluar dengan pernyataan `return`. React belum merender turunan `List` atau memperbarui DOM, jadi hal ini memungkinkan turunan `List` melewatkan rendering nilai `selection` yang sudah usang.
 
-When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep components pure.](/learn/keeping-components-pure)
+Saat Anda memperbarui komponen selama rendering, React membuang JSX yang dikembalikan dan segera mencoba lagi *rendering*. Untuk menghindari percobaan ulang berjenjang yang sangat lambat, React hanya mengizinkan Anda memperbarui *state* komponen *sama* selama render. Jika Anda memperbarui *state* komponen lain selama render, Anda akan melihat *error*. Kondisi seperti `items !== prevItems` diperlukan untuk menghindari perulangan. Anda dapat menyesuaikan *state* seperti ini, namun efek samping lainnya (seperti mengubah DOM atau menyetel batas waktu) harus tetap berada di *event handlers* atau *Effect* untuk [menjaga komponen tetap murni.](/learn/keeping-components-pure)
 
-**Although this pattern is more efficient than an Effect, most components shouldn't need it either.** No matter how you do it, adjusting state based on props or other state makes your data flow more difficult to understand and debug. Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
+**Meskipun pola ini lebih efisien daripada *Effect*, sebagian besar komponen juga tidak memerlukannya.** Bagaimana pun Anda melakukannya, menyesuaikan *state* berdasarkan *props* atau *state* lainnya akan membuat aliran data Anda lebih sulit untuk dipahami dan di-*debug*. Selalu periksa apakah Anda dapat [mengatur ulang semua *state* dengan *key*](#resetting-all-state-when-a-prop-changes) atau [menghitung semuanya selama rendering](#update-state-based-on-props-or-state) sebagai gantinya. Misalnya, alih-alih menyimpan (dan mengatur ulang) *item* yang dipilih, Anda dapat menyimpan *ID item* yang dipilih:
 
 ```js {3-5}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-  // ✅ Best: Calculate everything during rendering
+  // ✅ Cara terbaik: Menghitung semuanya saat rendering
   const selection = items.find(item => item.id === selectedId) ?? null;
   // ...
 }
 ```
 
-Now there is no need to "adjust" the state at all. If the item with the selected ID is in the list, it remains selected. If it's not, the `selection` calculated during rendering will be `null` because no matching item was found. This behavior is different, but arguably better because most changes to `items` preserve the selection.
+Sekarang tidak perlu lagi "menyesuaikan" *state*. Jika item dengan ID yang dipilih ada dalam daftar, maka item tersebut tetap dipilih. Jika tidak, `selection` yang dihitung selama *rendering* akan menjadi `null` karena tidak ditemukan item yang cocok. Perilaku ini berbeda, namun bisa dibilang lebih baik karena sebagian besar perubahan pada `item` mempertahankan pilihan.
 
 ### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
 
