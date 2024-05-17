@@ -796,7 +796,7 @@ Secara umum, kapan pun Anda harus menulis *Effect*, perhatikan kapan Anda dapat 
 
 - Apabila Anda dapat menghitung nilai sesuatu saat *render*, Anda tidak memerlukan Effect.
 - Untuk meng-*cache* penghitungan yang mahal, tambahkan `useMemo` sebagai ganti `useEffect`.
-- Untuk menyetel ulang status sebuah pohon komponen secara keseluruhan, berikan `key` yang berbeda ke dalamnya.
+- Untuk menyetel ulang *state* sebuah pohon komponen secara keseluruhan, berikan `key` yang berbeda ke dalamnya.
 - Untuk mengatur ulang *state* tertentu sebagai respons terhadap perubahan *props*, aturlah selama *rendering*.
 - Kode yang berjalan karena komponen *ditampilkan* harus di *Effect*, sisanya harus di *event*.
 - Jika Anda perlu memperbarui *state* beberapa komponen, lebih baik melakukannya dalam satu *event*.
