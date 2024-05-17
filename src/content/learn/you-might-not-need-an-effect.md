@@ -452,15 +452,15 @@ Ingat bahwa di dalam event handler, [*state* berperilaku seperti *snapshot*.](/l
 
 Dalam beberapa kasus, Anda *tidak dapat* menghitung *state* berikutnya secara langsung di *event handler*. Misalnya, bayangkan sebuah formulir dengan beberapa *dropdown* di mana pilihan *dropdown* berikutnya bergantung pada nilai yang dipilih dari *dropdown* sebelumnya. Kemudian, rangkaian *Effect* sesuai karena Anda melakukan sinkronisasi dengan jaringan.
 
-### Initializing the application {/*initializing-the-application*/}
+### Inisialisasi aplikasi {/*initializing-the-application*/}
 
-Some logic should only run once when the app loads.
+Beberapa logika hanya boleh dijalankan satu kali saat aplikasi dimuat.
 
-You might be tempted to place it in an Effect in the top-level component:
+Anda mungkin tergoda untuk menempatkannya di *Effect* di komponen tingkat atas:
 
 ```js {2-6}
 function App() {
-  // 🔴 Avoid: Effects with logic that should only ever run once
+  // 🔴 Hindari: Effects dengan logika yang harus dijalankan sekali saja
   useEffect(() => {
     loadDataFromLocalStorage();
     checkAuthToken();
@@ -469,9 +469,9 @@ function App() {
 }
 ```
 
-However, you'll quickly discover that it [runs twice in development.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) This can cause issues--for example, maybe it invalidates the authentication token because the function wasn't designed to be called twice. In general, your components should be resilient to being remounted. This includes your top-level `App` component.
+Namun, Anda akan segera menyadari bahwa ini [berjalan dua kali dalam pengembangan.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) Hal ini dapat menyebabkan masalah-- misalnya, mungkin token autentikasinya menjadi tidak valid karena fungsinya tidak dirancang untuk dipanggil dua kali. Secara umum, komponen Anda harus tahan untuk dipasang ulang. Ini termasuk komponen `App` tingkat atas Anda.
 
-Although it may not ever get remounted in practice in production, following the same constraints in all components makes it easier to move and reuse code. If some logic must run *once per app load* rather than *once per component mount*, add a top-level variable to track whether it has already executed:
+Meskipun dalam praktiknya mungkin tidak akan pernah dipasang ulang dalam produksi, mengikuti batasan yang sama di semua komponen akan mempermudah pemindahan dan penggunaan kembali kode. Jika beberapa logika harus dijalankan *sekali per pemuatan aplikasi* dan bukan *sekali per pemasangan komponen*, tambahkan variabel tingkat atas untuk melacak apakah logika tersebut sudah dijalankan:
 
 ```js {1,5-6,10}
 let didInit = false;
@@ -480,7 +480,7 @@ function App() {
   useEffect(() => {
     if (!didInit) {
       didInit = true;
-      // ✅ Only runs once per app load
+      // ✅ Hanya dijalankan sekali saat aplikasi dimuat
       loadDataFromLocalStorage();
       checkAuthToken();
     }
@@ -492,8 +492,8 @@ function App() {
 You can also run it during module initialization and before the app renders:
 
 ```js {1,5}
-if (typeof window !== 'undefined') { // Check if we're running in the browser.
-   // ✅ Only runs once per app load
+if (typeof window !== 'undefined') { // Cek apakah kode berjalan di peramban.
+   // ✅ Hanya dijalankan sekali saat aplikasi dimuat
   checkAuthToken();
   loadDataFromLocalStorage();
 }
@@ -503,17 +503,17 @@ function App() {
 }
 ```
 
-Code at the top level runs once when your component is imported--even if it doesn't end up being rendered. To avoid slowdown or surprising behavior when importing arbitrary components, don't overuse this pattern. Keep app-wide initialization logic to root component modules like `App.js` or in your application's entry point.
+Kode di tingkat atas dijalankan satu kali saat komponen Anda diimpor--walaupun komponen tersebut tidak di-*render*. Untuk menghindari perlambatan atau perilaku tidak terduga saat mengimpor komponen sembarangan, jangan terlalu sering menggunakan pola ini. Pertahankan logika inisialisasi seluruh aplikasi ke root modul komponen seperti `App.js` atau di titik masuk aplikasi Anda.
 
-### Notifying parent components about state changes {/*notifying-parent-components-about-state-changes*/}
+### Memberi tahu komponen induk tentang perubahan *state* {/*notifying-parent-components-about-state-changes*/}
 
-Let's say you're writing a `Toggle` component with an internal `isOn` state which can be either `true` or `false`. There are a few different ways to toggle it (by clicking or dragging). You want to notify the parent component whenever the `Toggle` internal state changes, so you expose an `onChange` event and call it from an Effect:
+Katakanlah Anda sedang menulis komponen `Toggle` dengan *state* `isOn` internal yang dapat berupa `true` atau `false`. Ada beberapa cara berbeda untuk mengaktifkannya (dengan mengeklik atau menggeser). Anda ingin memberi tahu komponen induk setiap kali *state* internal `Toggle` berubah, sehingga Anda mengekspos *event* `onChange` dan memanggilnya dari *Effect*:
 
 ```js {4-7}
 function Toggle({ onChange }) {
   const [isOn, setIsOn] = useState(false);
 
-  // 🔴 Avoid: The onChange handler runs too late
+  // 🔴 Hindari: Event handler onChange terlambat dijalankan
   useEffect(() => {
     onChange(isOn);
   }, [isOn, onChange])
@@ -534,16 +534,16 @@ function Toggle({ onChange }) {
 }
 ```
 
-Like earlier, this is not ideal. The `Toggle` updates its state first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent component. Now the parent component will update its own state, starting another render pass. It would be better to do everything in a single pass.
+Seperti sebelumnya, ini tidak ideal. `Toggle` memperbarui *state*-nya terlebih dahulu, dan React memperbarui layar. Kemudian React menjalankan *Effect*, yang memanggil fungsi `onChange` yang diteruskan dari komponen induk. Sekarang komponen induk akan memperbarui *state*-nya sendiri, memulai proses *render* lainnya. Akan lebih baik jika melakukan semuanya dalam sekali jalan.
 
-Delete the Effect and instead update the state of *both* components within the same event handler:
+Hapus *Effect*-nya dan perbarui status *kedua* komponen dalam *event handler* yang sama:
 
 ```js {5-7,11,16,18}
 function Toggle({ onChange }) {
   const [isOn, setIsOn] = useState(false);
 
   function updateToggle(nextIsOn) {
-    // ✅ Good: Perform all updates during the event that caused them
+    // ✅ Baik: Lakukan semua pembaruan selama event yang menyebabkannya
     setIsOn(nextIsOn);
     onChange(nextIsOn);
   }
@@ -564,12 +564,12 @@ function Toggle({ onChange }) {
 }
 ```
 
-With this approach, both the `Toggle` component and its parent component update their state during the event. React [batches updates](/learn/queueing-a-series-of-state-updates) from different components together, so there will only be one render pass.
+Dengan pendekatan ini, komponen `Toggle` dan komponen induknya memperbarui *state*-nya selama *event*. React [mem-*batch* pembaruan](/learn/queueing-a-series-of-state-updates) dari berbagai komponen secara bersamaan, sehingga hanya akan ada satu *render pass*.
 
-You might also be able to remove the state altogether, and instead receive `isOn` from the parent component:
+Anda mungkin juga dapat menghapus *state* tersebut, dan sebagai gantinya menerima `isOn` dari komponen induk:
 
 ```js {1,2}
-// ✅ Also good: the component is fully controlled by its parent
+// ✅ Juga baik: komponen terkontrol secara penuh oleh induknya
 function Toggle({ isOn, onChange }) {
   function handleClick() {
     onChange(!isOn);
@@ -587,11 +587,11 @@ function Toggle({ isOn, onChange }) {
 }
 ```
 
-["Lifting state up"](/learn/sharing-state-between-components) lets the parent component fully control the `Toggle` by toggling the parent's own state. This means the parent component will have to contain more logic, but there will be less state overall to worry about. Whenever you try to keep two different state variables synchronized, try lifting state up instead!
+["Menaikkan *state* ke atas"](/learn/sharing-state-between-components) memungkinkan komponen induk mengontrol sepenuhnya `Toggle` dengan mengubah *state* induknya sendiri. Ini berarti komponen induk harus mengandung lebih banyak logika, namun secara keseluruhan akan ada lebih sedikit *state* yang perlu dikhawatirkan. Setiap kali Anda mencoba untuk menyinkronkan dua variabel *state* yang berbeda, coba naikkan *state*!
 
-### Passing data to the parent {/*passing-data-to-the-parent*/}
+### Mengoper data ke komponen induk {/*passing-data-to-the-parent*/}
 
-This `Child` component fetches some data and then passes it to the `Parent` component in an Effect:
+Komponen `Child` ini mengambil data dan kemudian meneruskannya ke komponen `Parent` dalam sebuah *Effect*:
 
 ```js {9-14}
 function Parent() {
@@ -602,7 +602,7 @@ function Parent() {
 
 function Child({ onFetched }) {
   const data = useSomeAPI();
-  // 🔴 Avoid: Passing data to the parent in an Effect
+  // 🔴 Hindari: Mengoper data ke komponen induk di dalam Effect
   useEffect(() => {
     if (data) {
       onFetched(data);
@@ -612,13 +612,13 @@ function Child({ onFetched }) {
 }
 ```
 
-In React, data flows from the parent components to their children. When you see something wrong on the screen, you can trace where the information comes from by going up the component chain until you find which component passes the wrong prop or has the wrong state. When child components update the state of their parent components in Effects, the data flow becomes very difficult to trace. Since both the child and the parent need the same data, let the parent component fetch that data, and *pass it down* to the child instead:
+Di React, data mengalir dari komponen induk ke komponen turunannya. Saat Anda melihat sesuatu yang salah di layar, Anda dapat melacak dari mana informasi tersebut berasal dengan menelusuri rantai komponen ke atas hingga Anda menemukan komponen mana yang mengoper *props* yang salah atau memiliki *state* yang salah. Saat komponen anak memperbarui *state* komponen induknya di *Effect*, aliran data menjadi sangat sulit dilacak. Karena komponen turunan dan induk membutuhkan data yang sama, biarkan komponen induk mengambil data tersebut, dan *meneruskannya* ke turunan:
 
 ```js {4-5}
 function Parent() {
   const data = useSomeAPI();
   // ...
-  // ✅ Good: Passing data down to the child
+  // ✅ Baik: Meneruskan data ke komponen anak
   return <Child data={data} />;
 }
 
@@ -627,15 +627,15 @@ function Child({ data }) {
 }
 ```
 
-This is simpler and keeps the data flow predictable: the data flows down from the parent to the child.
+Hal ini lebih simpel dan menjaga aliran data tetap dapat diprediksi: data mengalir dari induk ke turunan.
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### Berlangganan ke penyimpanan data eksternal {/*subscribing-to-an-external-store*/}
 
-Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
+Terkadang, komponen Anda mungkin perlu berlangganan beberapa data di luar *state* React. Data ini bisa berasal dari pustaka pihak ketiga atau API browser bawaan. Karena data ini dapat berubah tanpa sepengetahuan React, Anda perlu berlangganan komponen Anda secara manual. Hal ini sering dilakukan dengan *Effect*, misalnya:
 
 ```js {2-17}
 function useOnlineStatus() {
-  // Not ideal: Manual store subscription in an Effect
+  // Tidak ideal: Berlangganan store secara manual dalam Effect
   const [isOnline, setIsOnline] = useState(true);
   useEffect(() => {
     function updateState() {
@@ -660,9 +660,9 @@ function ChatIndicator() {
 }
 ```
 
-Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used for the initial HTML), initially the state is set to `true`. Whenever the value of that data store changes in the browser, the component updates its state.
+Di sini, komponen berlangganan penyimpanan data eksternal (dalam hal ini, API `navigator.onLine` browser). Karena API ini tidak ada di server (sehingga tidak dapat digunakan untuk HTML awal), awalnya *state* disetel ke `true`. Setiap kali nilai penyimpanan data tersebut berubah di browser, komponen akan memperbarui *state*-nya.
 
-Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/reference/react/useSyncExternalStore):
+Meskipun *Effect* umumnya digunakan untuk hal ini, React memiliki Hook yang dibuat khusus untuk berlangganan penyimpanan data eksternal yang lebih disarankan digunakan. Hapus *state* dan ganti dengan panggilan ke [`useSyncExternalStore`](/reference/react/useSyncExternalStore):
 
 ```js {11-16}
 function subscribe(callback) {
@@ -675,11 +675,11 @@ function subscribe(callback) {
 }
 
 function useOnlineStatus() {
-  // ✅ Good: Subscribing to an external store with a built-in Hook
+  // ✅ Baik: Berlangganan store eksternal dengan Hook bawaan
   return useSyncExternalStore(
-    subscribe, // React won't resubscribe for as long as you pass the same function
-    () => navigator.onLine, // How to get the value on the client
-    () => true // How to get the value on the server
+    subscribe, // React tidak akan berlangganan ulang selama Anda mengoper fungsi yang sama
+    () => navigator.onLine, // Bagaimana cara mendapatkan nilai client
+    () => true // Bagaimana cara mendapatkan nilai server
   );
 }
 
@@ -689,11 +689,11 @@ function ChatIndicator() {
 }
 ```
 
-This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
+Pendekatan ini lebih tidak rentan terhadap kesalahan dibandingkan menyinkronkan secara manual data yang dapat diubah ke *state* React dengan *Effec*. Biasanya, Anda akan menulis Hook khusus seperti `useOnlineStatus()` di atas sehingga Anda tidak perlu mengulangi kode ini di masing-masing komponen. [Baca selengkapnya tentang berlangganan penyimpanan data eksternal dari komponen React.](/reference/react/useSyncExternalStore)
 
-### Fetching data {/*fetching-data*/}
+### Mengambil data {/*fetching-data*/}
 
-Many apps use Effects to kick off data fetching. It is quite common to write a data fetching Effect like this:
+Banyak aplikasi menggunakan *Effect* untuk memulai pengambilan data. Sangat umum untuk menulis *Effect* pengambilan data seperti ini:
 
 ```js {5-10}
 function SearchResults({ query }) {
@@ -701,7 +701,7 @@ function SearchResults({ query }) {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    // 🔴 Avoid: Fetching without cleanup logic
+    // 🔴 Hindari: Pengambilan data tanpa logika pembersihan
     fetchResults(query, page).then(json => {
       setResults(json);
     });
@@ -714,15 +714,15 @@ function SearchResults({ query }) {
 }
 ```
 
-You *don't* need to move this fetch to an event handler.
+Anda *tidak* perlu memindahkan pengambilan ini ke *event handler*.
 
-This might seem like a contradiction with the earlier examples where you needed to put the logic into the event handlers! However, consider that it's not *the typing event* that's the main reason to fetch. Search inputs are often prepopulated from the URL, and the user might navigate Back and Forward without touching the input.
+Ini mungkin tampak seperti kontradiksi dengan contoh sebelumnya di mana Anda perlu memasukkan logika ke dalam *event handler*! Namun, pertimbangkan bahwa bukan *event pengetikan* yang menjadi alasan utama pengambilan. *Input* penelusuran sering kali diisi sebelumnya dari URL, dan pengguna dapat menavigasi Mundur dan Maju tanpa menyentuh *input* tersebut.
 
-It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect.
+Tidak masalah dari mana `page` dan `query` berasal. Saat komponen ini terlihat, Anda ingin tetap `results` [disinkronkan](/learn/synchronizing-with-effects) dengan data dari jaringan untuk `page` dan `query` saat ini. Inilah mengapa ini merupakan *Effect*.
 
-However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
+Namun kode diatas mempunyai bug. Bayangkan Anda mengetik `"hello"` dengan cepat. Kemudian `query` akan berubah dari `"h"`, menjadi `"he"`, `"hel"`, `"hell"`, dan `"hello"`. Ini akan memulai pengambilan terpisah, namun tidak ada jaminan urutan respons yang akan diterima. Misalnya, respons `"hell"` mungkin muncul *setelah* respons `"hello"`. Karena ini akan memanggil `setResults()` terakhir, Anda akan menampilkan hasil pencarian yang salah. Ini disebut ["*race condition*"](https://en.wikipedia.org/wiki/Race_condition): dua permintaan berbeda "berlomba" satu sama lain dan datang dalam urutan berbeda dari yang Anda harapkan.
 
-**To fix the race condition, you need to [add a cleanup function](/learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
+**Untuk memperbaiki *race condition*, anda perlu [menambahkan fungsi pembersihan](/learn/synchronizing-with-effects#fetching-data) untuk mengabaikan respons yang sudah usang:**
 
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {
@@ -747,13 +747,14 @@ function SearchResults({ query }) {
 }
 ```
 
-This ensures that when your Effect fetches data, all responses except the last requested one will be ignored.
 
-Handling race conditions is not the only difficulty with implementing data fetching. You might also want to think about caching responses (so that the user can click Back and see the previous screen instantly), how to fetch data on the server (so that the initial server-rendered HTML contains the fetched content instead of a spinner), and how to avoid network waterfalls (so that a child can fetch data without waiting for every parent).
+Hal ini memastikan bahwa saat *Effect* Anda mengambil data, semua respons kecuali yang terakhir diminta akan diabaikan.
 
-**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
+Menangani *race condition* bukan satu-satunya kesulitan dalam mengimplementasikan pengambilan data. Anda mungkin juga ingin memikirkan tentang *cache* terhadap respons (sehingga pengguna dapat mengeklik Kembali dan langsung melihat layar sebelumnya), cara mengambil data di server (sehingga HTML awal yang di-*render* oleh server berisi konten yang diambil, bukan *spinner*), dan cara menghindari air terjun jaringan (*network waterfalls*) (sehingga komponen anak dapat mengambil data tanpa menunggu induknya).
 
-If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
+**Masalah ini berlaku untuk semua perpustakaan UI, bukan hanya React. Menyelesaikannya bukanlah hal yang sepele, itulah sebabnya [kerangka kerja](/learn/start-a-new-react-project#production-grade-react-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada mengambil data di *Effect*.**
+
+Jika Anda tidak menggunakan kerangka kerja (dan tidak ingin membuat kerangka kerja sendiri) namun ingin membuat pengambilan data dari *Effect* lebih ergonomis, pertimbangkan untuk mengekstrak logika pengambilan Anda ke dalam Hook khusus seperti dalam contoh ini:
 
 ```js {4}
 function SearchResults({ query }) {
@@ -786,20 +787,21 @@ function useData(url) {
 }
 ```
 
-You'll likely also want to add some logic for error handling and to track whether the content is loading. You can build a Hook like this yourself or use one of the many solutions already available in the React ecosystem. **Although this alone won't be as efficient as using a framework's built-in data fetching mechanism, moving the data fetching logic into a custom Hook will make it easier to adopt an efficient data fetching strategy later.**
 
-In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
+Anda mungkin juga ingin menambahkan beberapa logika untuk penanganan *error* dan melacak apakah konten sedang dimuat. Anda dapat membuat Hook seperti ini sendiri atau menggunakan salah satu dari banyak solusi yang sudah tersedia di ekosistem React. **Meskipun hal ini saja tidak akan seefisien menggunakan mekanisme pengambilan data bawaan kerangka kerja, memindahkan logika pengambilan data ke dalam Hook kustom akan mempermudah penerapan strategi pengambilan data yang efisien nantinya.**
+
+Secara umum, kapan pun Anda harus menulis *Effect*, perhatikan kapan Anda dapat mengekstrak sebagian fungsionalitas ke dalam Hook khusus dengan API yang lebih deklaratif dan dibuat khusus seperti `useData` di atas. Semakin sedikit panggilan `useEffect` mentah yang Anda miliki di komponen Anda, semakin mudah Anda memelihara aplikasi Anda.
 
 <Recap>
 
-- If you can calculate something during render, you don't need an Effect.
-- To cache expensive calculations, add `useMemo` instead of `useEffect`.
-- To reset the state of an entire component tree, pass a different `key` to it.
-- To reset a particular bit of state in response to a prop change, set it during rendering.
-- Code that runs because a component was *displayed* should be in Effects, the rest should be in events.
-- If you need to update the state of several components, it's better to do it during a single event.
-- Whenever you try to synchronize state variables in different components, consider lifting state up.
-- You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
+- Apabila Anda dapat menghitung nilai sesuatu saat *render*, Anda tidak memerlukan Effect.
+- Untuk meng-*cache* penghitungan yang mahal, tambahkan `useMemo` sebagai ganti `useEffect`.
+- Untuk menyetel ulang status sebuah pohon komponen secara keseluruhan, berikan `key` yang berbeda ke dalamnya.
+- Untuk mengatur ulang *state* tertentu sebagai respons terhadap perubahan *props*, aturlah selama *rendering*.
+- Kode yang berjalan karena komponen *ditampilkan* harus di *Effect*, sisanya harus di *event*.
+- Jika Anda perlu memperbarui *state* beberapa komponen, lebih baik melakukannya dalam satu *event*.
+- Setiap kali Anda mencoba menyinkronkan variabel *state* di komponen yang berbeda, pertimbangkan untuk menaikkan *state*.
+- Anda dapat mengambil data dengan *Effect*, tetapi Anda perlu menerapkan pembersihan untuk menghindari *race condition*.
 
 </Recap>
 
