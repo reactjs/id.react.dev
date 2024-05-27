@@ -45,9 +45,15 @@ Di sini dan selanjutnya dalam teks ini, kata "*Effect*" yang dikapitalisasi meng
 
 Untuk menulis *Effect*, ikuti tiga langkah berikut:
 
+<<<<<<< HEAD
 1. **Deklarasikan Effect.** Secara bawaan, *Effect* Anda akan berjalan setiap *render*.
 2. **Tentukan dependensi dari Effect.** Kebanyakan *Effect* hanya perlu dijalankan ulang *ketika diperlukan*, bukan setiap render. Misalnya, animasi *fade-in* seharusnya hanya dijalankan ketika sebuah komponen muncul. Menghubungkan dan memutuskan koneksi ke ruang obrolan seharusnya hanya terjadi ketika komponen muncul dan menghilang, atau ketika ruang obrolan berubah. Anda akan belajar cara mengontrolnya dengan menentukan *dependensi.*
 3. **Tambahkan pembersihan (*cleanup*) jika diperlukan.** Beberapa *Effect* perlu menentukan cara menghentikan, membatalkan, atau membersihkan apa pun yang sedang dilakukan. Misalnya, "sambungkan koneksi" membutuhkan "lepaskan koneksi", "berlangganan" memerlukan "hentikan langganan", dan "*fetch*" membutuhkan "batal" atau "abaikan". Anda akan belajar cara melakukan hal tersebut dengan mengembalikan *fungsi pembersihan*.
+=======
+1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
+2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 Mari kita lihat langkah-langkah berikut secara detil.
 
@@ -600,7 +606,38 @@ Biasanya, jawabannya adalah menerapkan fungsi pembersihan. Fungsi pembersihan ha
 
 Sebagian besar *Effect* yang akan Anda tulis, akan sesuai dengan salah satu pola umum di bawah ini.
 
+<<<<<<< HEAD
 ### Mengontrol *widget* di luar React {/*controlling-non-react-widgets*/}
+=======
+<Pitfall>
+
+#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 This wont fix the bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+
+To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+
+See the examples below for how to handle common patterns.
+
+</Pitfall>
+
+### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 Terkadang Anda perlu menambahkan *widget* UI yang tidak ditulis untuk React. Sebagai contoh, katakanlah Anda menambahkan komponen peta ke halaman Anda. Komponen ini memiliki metode `setZoomLevel()`, dan Anda ingin menjaga tingkat *zoom* tetap sinkron dengan variabel *state* `zoomLevel` dalam kode React Anda. *Effect* Anda akan terlihat seperti ini:
 
@@ -1575,7 +1612,11 @@ Setiap *Effect* *render* memiliki variabel `ignore` sendiri. Awalnya, variabel `
 - Mengambil data `'Bob'` selesai
 - *Effect* dari *render* `'Bob'` **tidak melakukan apa pun karena flag `ignore` diset ke `true`**
 
+<<<<<<< HEAD
 Selain mengabaikan hasil panggilan API yang sudah usang, Anda juga dapat menggunakan [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) untuk membatalkan *request* yang sudah tidak diperlukan. Namun, hal ini saja tidak cukup untuk melindungi dari *race condition*. Langkah-langkah asinkron lainnya dapat dirangkai (*chain*) setelah *fetch*, jadi menggunakan tanda spesifik seperti `ignore` adalah cara paling reliabel untuk memperbaiki masalah seperti ini.
+=======
+In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problem.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </Solution>
 
