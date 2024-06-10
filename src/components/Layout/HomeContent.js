@@ -129,7 +129,7 @@ export function HomeContent() {
           </div>
           <Logo
             className={cn(
-              'uwu-hidden mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out'
+              'uwu-hidden mt-4 mb-3 text-brand dark:text-brand-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out'
             )}
           />
           <h1 className="uwu-hidden text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
@@ -532,7 +532,7 @@ export function HomeContent() {
                 src="/images/uwu.png"
               />
             </div>
-            <Logo className="uwu-hidden text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
+            <Logo className="uwu-hidden text-brand dark:text-brand-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
               Selamat datang di <br className="hidden lg:inline" />
               komunitas React
@@ -1663,7 +1663,7 @@ function Thumbnail({video}) {
           </div>
           <div className="mt-1">
             <span className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
-              <Logo className="text-xs me-1 w-4 h-4 text-link-dark" />
+              <Logo className="text-xs me-1 w-4 h-4 text-brand text-brand-dark" />
               React Conf
             </span>
           </div>

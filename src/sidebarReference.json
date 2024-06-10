@@ -113,6 +113,10 @@
       "path": "/reference/react/apis",
       "routes": [
         {
+          "title": "act",
+          "path": "/reference/react/act"
+        },
+        {
           "title": "cache",
           "path": "/reference/react/cache",
           "canary": true
@@ -342,8 +346,13 @@
       "path": "/reference/rules",
       "routes": [
         {
+<<<<<<< HEAD
         "title": "Komponen dan Hooks harus murni",
         "path": "/reference/rules/components-and-hooks-must-be-pure"
+=======
+          "title": "Components and Hooks must be pure",
+          "path": "/reference/rules/components-and-hooks-must-be-pure"
+>>>>>>> b12743c31af7f5cda2c25534f64281ff030b7205
         },
         {
           "title": "React memanggil Komponen dan Hooks",
