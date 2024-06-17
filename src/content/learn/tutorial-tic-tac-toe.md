@@ -2915,4 +2915,8 @@ Jika Anda memiliki waktu tambahan atau ingin melatih keterampilan React yang bar
 1. Ketika seseorang menang, sorot tiga kotak yang menyebabkan kemenangan tersebut (dan ketika tidak ada yang menang, tampilkan pesan bahwa hasilnya seri).
 1. Menampilkan lokasi untuk setiap langkah dalam format (baris, kolom) dalam daftar riwayat langkah.
 
+<<<<<<< HEAD
 Di sepanjang tutorial ini, Anda telah mempelajari konsep-konsep React termasuk elemen, komponen, props, dan state. Sekarang Anda telah melihat bagaimana konsep-konsep ini bekerja ketika membuat sebuah game, lihat [Cara Berpikir dengan React](/learn/thinking-in-react) untuk melihat bagaimana konsep-konsep React yang sama bekerja ketika membuat UI aplikasi.
+=======
+Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when building an app's UI.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
