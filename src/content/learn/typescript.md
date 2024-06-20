@@ -375,7 +375,7 @@ export default function Form() {
 
 Ada sekumpulan *type* yang cukup luas yang berasal dari *package* `@types/react`, ini layak dibaca jika Anda merasa nyaman dengan cara React dan TypeScript berinteraksi. Anda dapat menemukannya [di folder React di DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). Kami akan membahas beberapa *type* yang lebih umum di sini.
 
-### *Event* DP< {/*typing-dom-events*/}
+### *Event* DOM {/*typing-dom-events*/}
 
 Saat bekerja dengan *event* DOM di React, *type* dari *event* sering kali dapat disimpulkan dari *event handler*. Namun, saat Anda ingin mengekstrak fungsi untuk diteruskan ke *event handler*, Anda perlu menetapkan *type* dari *event* secara eksplisit.
 
