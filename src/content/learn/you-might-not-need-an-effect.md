@@ -807,11 +807,11 @@ Secara umum, kapan pun Anda harus menulis *Effect*, perhatikan kapan Anda dapat 
 
 <Challenges>
 
-#### Transform data without Effects {/*transform-data-without-effects*/}
+#### Mentransformasi data tanpa *Effect* {/*transform-data-without-effects*/}
 
-The `TodoList` below displays a list of todos. When the "Show only active todos" checkbox is ticked, completed todos are not displayed in the list. Regardless of which todos are visible, the footer displays the count of todos that are not yet completed.
+Komponen `TodoList` di bawah menampilkan daftar tugas. Jika kotak centang "Tampilkan hanya tugas yang aktif" dicentang, tugas yang sudah selesai tidak akan ditampilkan dalam daftar. Terlepas dari tugas mana yang terlihat, *footer* menampilkan jumlah tugas yang belum selesai.
 
-Simplify this component by removing all the unnecessary state and Effects.
+Sederhanakan komponen ini dengan menghapus semua *state* dan *Effect* yang tidak perlu.
 
 <Sandpack>
 
@@ -837,7 +837,7 @@ export default function TodoList() {
   useEffect(() => {
     setFooter(
       <footer>
-        {activeTodos.length} todos left
+        Sisa {activeTodos.length} tugas
       </footer>
     );
   }, [activeTodos]);
@@ -850,7 +850,7 @@ export default function TodoList() {
           checked={showActive}
           onChange={e => setShowActive(e.target.checked)}
         />
-        Show only active todos
+        Tampilkan hanya tugas yang aktif
       </label>
       <NewTodo onAdd={newTodo => setTodos([...todos, newTodo])} />
       <ul>
@@ -877,7 +877,7 @@ function NewTodo({ onAdd }) {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={handleAddClick}>
-        Add
+        Tambahkan
       </button>
     </>
   );
@@ -896,9 +896,9 @@ export function createTodo(text, completed = false) {
 }
 
 export const initialTodos = [
-  createTodo('Get apples', true),
-  createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Beli apel', true),
+  createTodo('Beli jeruk', true),
+  createTodo('Beli wortel'),
 ];
 ```
 
@@ -911,15 +911,15 @@ input { margin-top: 10px; }
 
 <Hint>
 
-If you can calculate something during rendering, you don't need state or an Effect that updates it.
+Jika Anda dapat menghitung nilai dari sesuatu saat *rendering*, Anda tidak memerlukan *state* atau *Effect* yang memperbaruinya.
 
 </Hint>
 
 <Solution>
 
-There are only two essential pieces of state in this example: the list of `todos` and the `showActive` state variable which represents whether the checkbox is ticked. All of the other state variables are [redundant](/learn/choosing-the-state-structure#avoid-redundant-state) and can be calculated during rendering instead. This includes the `footer` which you can move directly into the surrounding JSX.
+Hanya ada dua bagian penting dari *state* dalam contoh ini: daftar `todos` dan variabel *state* `showActive` yang menunjukkan apakah kotak centang dicentang. Semua variabel *state* lainnya adalah [redundan](/learn/choosing-the-state-structure#avoid-redundant-state) dan dapat dihitung selama *rendering*. Ini termasuk `footer` yang dapat Anda pindahkan langsung ke JSX di sekitarnya.
 
-Your result should end up looking like this:
+Hasil Anda akan terlihat seperti ini:
 
 <Sandpack>
 
@@ -941,7 +941,7 @@ export default function TodoList() {
           checked={showActive}
           onChange={e => setShowActive(e.target.checked)}
         />
-        Show only active todos
+        Tampilkan hanya tugas yang aktif
       </label>
       <NewTodo onAdd={newTodo => setTodos([...todos, newTodo])} />
       <ul>
@@ -952,7 +952,7 @@ export default function TodoList() {
         ))}
       </ul>
       <footer>
-        {activeTodos.length} todos left
+        Sisa {activeTodos.length} tugas
       </footer>
     </>
   );
@@ -970,7 +970,7 @@ function NewTodo({ onAdd }) {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={handleAddClick}>
-        Add
+        Tambahkan
       </button>
     </>
   );
@@ -989,9 +989,9 @@ export function createTodo(text, completed = false) {
 }
 
 export const initialTodos = [
-  createTodo('Get apples', true),
-  createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Beli apel', true),
+  createTodo('Beli jeruk', true),
+  createTodo('Beli wortel'),
 ];
 ```
 
@@ -1004,15 +1004,15 @@ input { margin-top: 10px; }
 
 </Solution>
 
-#### Cache a calculation without Effects {/*cache-a-calculation-without-effects*/}
+#### Meng-*cache* perhitungan tanpa *Effect* {/*cache-a-calculation-without-effects*/}
 
-In this example, filtering the todos was extracted into a separate function called `getVisibleTodos()`. This function contains a `console.log()` call inside of it which helps you notice when it's being called. Toggle "Show only active todos" and notice that it causes `getVisibleTodos()` to re-run. This is expected because visible todos change when you toggle which ones to display.
+Dalam contoh ini, pemfilteran daftar tugas diekstrak ke dalam fungsi terpisah yang disebut `getVisibleTodos()`. Fungsi ini berisi panggilan `console.log()` di dalamnya yang membantu Anda mengetahui saat fungsi tersebut dipanggil. Alihkan "Tampilkan hanya tugas yang aktif" dan perhatikan bahwa fungsi tersebut menyebabkan `getVisibleTodos()` dijalankan ulang. Hal ini diharapkan karena tugas yang terlihat berubah saat Anda mengubah tugas mana yang akan ditampilkan.
 
-Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
+Tugas Anda adalah menghapus *Effect* yang menghitung ulang daftar `visibleTodos` dalam komponen `TodoList`. Namun, Anda perlu memastikan bahwa `getVisibleTodos()` *tidak* dijalankan ulang (dan karenanya tidak mencetak log apa pun) saat Anda mengetik ke dalam input.
 
 <Hint>
 
-One solution is to add a `useMemo` call to cache the visible todos. There is also another, less obvious solution.
+Salah satu solusinya adalah menambahkan panggilan `useMemo` untuk menyimpan *cache* dari tugas yang terlihat. Ada juga solusi lain yang tidak terlalu jelas.
 
 </Hint>
 
@@ -1045,11 +1045,11 @@ export default function TodoList() {
           checked={showActive}
           onChange={e => setShowActive(e.target.checked)}
         />
-        Show only active todos
+        Tampilkan hanya tugas yang aktif
       </label>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={handleAddClick}>
-        Add
+        Tambahkan
       </button>
       <ul>
         {visibleTodos.map(todo => (
@@ -1083,9 +1083,9 @@ export function createTodo(text, completed = false) {
 }
 
 export const initialTodos = [
-  createTodo('Get apples', true),
-  createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Beli apel', true),
+  createTodo('Beli jeruk', true),
+  createTodo('Beli wortel'),
 ];
 ```
 
@@ -1098,7 +1098,7 @@ input { margin-top: 10px; }
 
 <Solution>
 
-Remove the state variable and the Effect, and instead add a `useMemo` call to cache the result of calling `getVisibleTodos()`:
+Hapus variabel *state* dan *Effect*, dan sebagai gantinya tambahkan panggilan `useMemo` untuk menyimpan hasil pemanggilan `getVisibleTodos()`:
 
 <Sandpack>
 
@@ -1128,11 +1128,11 @@ export default function TodoList() {
           checked={showActive}
           onChange={e => setShowActive(e.target.checked)}
         />
-        Show only active todos
+        Tampilkan hanya tugas yang aktif
       </label>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={handleAddClick}>
-        Add
+        Tambahkan
       </button>
       <ul>
         {visibleTodos.map(todo => (
@@ -1166,9 +1166,9 @@ export function createTodo(text, completed = false) {
 }
 
 export const initialTodos = [
-  createTodo('Get apples', true),
-  createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Beli apel', true),
+  createTodo('Beli jeruk', true),
+  createTodo('Beli wortel'),
 ];
 ```
 
@@ -1179,9 +1179,9 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
+Dengan perubahan ini, `getVisibleTodos()` hanya akan dipanggil jika `todos` atau `showActive` berubah. Mengetik ke input hanya mengubah variabel *state* `text`, jadi tidak memicu panggilan ke `getVisibleTodos()`.
 
-There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
+Ada juga solusi lain yang tidak memerlukan `useMemo`. Karena variabel *state* `text` tidak mungkin memengaruhi daftar todo, Anda dapat mengekstrak formulir `NewTodo` ke dalam komponen terpisah, dan memindahkan variabel *state* `text` ke dalamnya:
 
 <Sandpack>
 
@@ -1202,7 +1202,7 @@ export default function TodoList() {
           checked={showActive}
           onChange={e => setShowActive(e.target.checked)}
         />
-        Show only active todos
+        Tampilkan hanya tugas yang aktif
       </label>
       <NewTodo onAdd={newTodo => setTodos([...todos, newTodo])} />
       <ul>
@@ -1228,7 +1228,7 @@ function NewTodo({ onAdd }) {
     <>
       <input value={text} onChange={e => setText(e.target.value)} />
       <button onClick={handleAddClick}>
-        Add
+        Tambahkan
       </button>
     </>
   );
@@ -1255,9 +1255,9 @@ export function createTodo(text, completed = false) {
 }
 
 export const initialTodos = [
-  createTodo('Get apples', true),
-  createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Beli apel', true),
+  createTodo('Beli jeruk', true),
+  createTodo('Beli wortel'),
 ];
 ```
 
@@ -1268,7 +1268,7 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+Pendekatan ini juga memenuhi persyaratan. Saat Anda mengetik ke dalam input, hanya variabel *state* `text` yang diperbarui. Karena variabel *state* `text` ada di komponen anak `NewTodo`, komponen induk `TodoList` tidak akan di-*render* ulang. Inilah sebabnya `getVisibleTodos()` tidak dipanggil saat Anda mengetik. (Itu akan tetap dipanggil jika `TodoList` di-*render* ulang karena alasan lain.)
 
 </Solution>
 
