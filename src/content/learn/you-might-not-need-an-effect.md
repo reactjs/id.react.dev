@@ -1272,11 +1272,11 @@ Pendekatan ini juga memenuhi persyaratan. Saat Anda mengetik ke dalam input, han
 
 </Solution>
 
-#### Reset state without Effects {/*reset-state-without-effects*/}
+#### Menyetel ulang *state* tanpa *Effect* {/*reset-state-without-effects*/}
 
-This `EditContact` component receives a contact object shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
+Komponen `EditContact` ini menerima objek kontak berbentuk seperti `{ id, name, email }` sebagai *props* `savedContact`. Coba mengubah kolom input nama dan email. Saat Anda menekan Simpan, tombol kontak di atas formulir akan diperbarui ke nama yang diedit. Saat Anda menekan Atur Ulang, semua perubahan yang tertunda dalam formulir akan dibuang. Cobalah UI ini untuk merasakannya.
 
-When you select a contact with the buttons at the top, the form resets to reflect that contact's details. This is done with an Effect inside `EditContact.js`. Remove this Effect. Find another way to reset the form when `savedContact.id` changes.
+Saat Anda memilih kontak dengan tombol di bagian atas, formulir akan disetel ulang untuk mencerminkan detail kontak tersebut. Ini dilakukan dengan *Effect* di dalam `EditContact.js`. Hapus *Effect* ini. Temukan cara lain untuk menyetel ulang formulir saat `savedContact.id` berubah.
 
 <Sandpack>
 
@@ -1374,7 +1374,7 @@ export default function EditContact({ savedContact, onSave }) {
   return (
     <section>
       <label>
-        Name:{' '}
+        Nama:{' '}
         <input
           type="text"
           value={name}
@@ -1397,13 +1397,13 @@ export default function EditContact({ savedContact, onSave }) {
         };
         onSave(updatedData);
       }}>
-        Save
+        Simpan
       </button>
       <button onClick={() => {
         setName(savedContact.name);
         setEmail(savedContact.email);
       }}>
-        Reset
+        Atur Ulang
       </button>
     </section>
   );
@@ -1434,13 +1434,13 @@ button {
 
 <Hint>
 
-It would be nice if there was a way to tell React that when `savedContact.id` is different, the `EditContact` form is conceptually a _different contact's form_ and should not preserve state. Do you recall any such way?
+Akan lebih baik jika ada cara untuk memberi tahu React bahwa ketika `savedContact.id` berbeda, formulir `EditContact` secara konseptual adalah _formulir kontak yang berbeda_ dan tidak boleh mempertahankan *state*. Apakah Anda ingat cara seperti itu?
 
 </Hint>
 
 <Solution>
 
-Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
+Pisahkan komponen `EditContact` menjadi dua. Pindahkan semua *state* formulir ke komponen `EditForm` bagian dalam. Ekspor komponen `EditContact` bagian luar, dan buat komponen tersebut meneruskan `savedContact.id` sebagai `key` ke komponen `EditForm` bagian dalam. Hasilnya, komponen `EditForm` bagian dalam akan menyetel ulang semua *state* formulir dan membuat ulang DOM setiap kali Anda memilih kontak yang berbeda.
 
 <Sandpack>
 
@@ -1542,7 +1542,7 @@ function EditForm({ savedContact, onSave }) {
   return (
     <section>
       <label>
-        Name:{' '}
+        Nama:{' '}
         <input
           type="text"
           value={name}
@@ -1565,13 +1565,13 @@ function EditForm({ savedContact, onSave }) {
         };
         onSave(updatedData);
       }}>
-        Save
+        Simpan
       </button>
       <button onClick={() => {
         setName(savedContact.name);
         setEmail(savedContact.email);
       }}>
-        Reset
+        Atur Ulang
       </button>
     </section>
   );
@@ -1602,17 +1602,17 @@ button {
 
 </Solution>
 
-#### Submit a form without Effects {/*submit-a-form-without-effects*/}
+#### Mengirim formulir tanpa *Effect* {/*submit-a-form-without-effects*/}
 
-This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
+Komponen `Form` ini memungkinkan Anda mengirim pesan ke teman. Saat Anda mengirimkan formulir, variabel *state* `showForm` disetel ke `false`. Ini memicu *Effect* yang memanggil `sendMessage(message)`, yang mengirim pesan (Anda dapat melihatnya di konsol). Setelah pesan terkirim, Anda akan melihat dialog "Terima kasih" dengan tombol "Buka obrolan" yang memungkinkan Anda kembali ke formulir.
 
-Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
+Pengguna aplikasi Anda mengirim terlalu banyak pesan. Untuk membuat obrolan sedikit lebih sulit, Anda telah memutuskan untuk menampilkan dialog "Terima kasih" *terlebih dahulu* daripada formulir. Ubah variabel *state* `showForm` untuk diinisialisasi ke `false` alih-alih `true`. Segera setelah Anda membuat perubahan itu, konsol akan menunjukkan bahwa pesan kosong telah dikirim. Ada yang salah dalam logika ini!
 
-What's the root cause of this problem? And how can you fix it?
+Apa akar penyebab masalah ini? Dan bagaimana cara memperbaikinya?
 
 <Hint>
 
-Should the message be sent _because_ the user saw the "Thank you" dialog? Or is it the other way around?
+Haruskah pesan dikirim _karena_ pengguna melihat dialog "Terima kasih"? Atau sebaliknya?
 
 </Hint>
 
@@ -1639,12 +1639,12 @@ export default function Form() {
   if (!showForm) {
     return (
       <>
-        <h1>Thanks for using our services!</h1>
+        <h1>Terima kasih telah menggunakan layanan kami!</h1>
         <button onClick={() => {
           setMessage('');
           setShowForm(true);
         }}>
-          Open chat
+          Buka obrolan
         </button>
       </>
     );
@@ -1658,14 +1658,14 @@ export default function Form() {
         onChange={e => setMessage(e.target.value)}
       />
       <button type="submit" disabled={message === ''}>
-        Send
+        Kirim
       </button>
     </form>
   );
 }
 
 function sendMessage(message) {
-  console.log('Sending message: ' + message);
+  console.log('Mengirim pesan: ' + message);
 }
 ```
 
@@ -1677,7 +1677,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <Solution>
 
-The `showForm` state variable determines whether to show the form or the "Thank you" dialog. However, you aren't sending the message because the "Thank you" dialog was _displayed_. You want to send the message because the user has _submitted the form._ Delete the misleading Effect and move the `sendMessage` call inside the `handleSubmit` event handler:
+Variabel *state* `showForm` menentukan apakah akan menampilkan formulir atau dialog "Terima kasih". Namun, Anda tidak mengirim pesan karena dialog "Terima kasih" _ditampilkan_. Anda ingin mengirim pesan karena pengguna telah _mengirimkan formulir._ Hapus *Effect* yang menyesatkan dan pindahkan panggilan `sendMessage` ke dalam *event handler* `handleSubmit`:
 
 <Sandpack>
 
@@ -1697,12 +1697,12 @@ export default function Form() {
   if (!showForm) {
     return (
       <>
-        <h1>Thanks for using our services!</h1>
+        <h1>Terima kasih telah menggunakan layanan kami!</h1>
         <button onClick={() => {
           setMessage('');
           setShowForm(true);
         }}>
-          Open chat
+          Buka obrolan
         </button>
       </>
     );
@@ -1716,14 +1716,14 @@ export default function Form() {
         onChange={e => setMessage(e.target.value)}
       />
       <button type="submit" disabled={message === ''}>
-        Send
+        Kirim
       </button>
     </form>
   );
 }
 
 function sendMessage(message) {
-  console.log('Sending message: ' + message);
+  console.log('Mengirim pesan: ' + message);
 }
 ```
 
@@ -1733,7 +1733,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Notice how in this version, only _submitting the form_ (which is an event) causes the message to be sent. It works equally well regardless of whether `showForm` is initially set to `true` or `false`. (Set it to `false` and notice no extra console messages.)
+Perhatikan bagaimana dalam versi ini, hanya _mengirimkan formulir_ (yang merupakan suatu *event*) yang menyebabkan pesan terkirim. Ini berfungsi sama baiknya terlepas dari apakah `showForm` awalnya disetel ke `true` atau `false`. (Setel ke `false` dan perhatikan tidak ada pesan konsol tambahan.)
 
 </Solution>
 
