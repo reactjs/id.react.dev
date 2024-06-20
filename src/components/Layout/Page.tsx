@@ -174,37 +174,7 @@ export function Page({
               )}>
               {!isHomePage && (
                 <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-<<<<<<< HEAD
-                  {
-                    <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                  }
-                  {showSurvey && (
-                    <>
-                      <div className="flex flex-col items-center p-4 m-4">
-                        <p className="mb-4 text-lg font-bold text-primary dark:text-primary-dark">
-                          Seberapa suka Anda dengan dokumentasi ini?
-                        </p>
-                        <div>
-                          <ButtonLink
-                            href="https://www.surveymonkey.co.uk/r/PYRPF3X"
-                            className="mt-1"
-                            type="primary"
-                            size="md"
-                            target="_blank">
-                            Ikuti survei kami!
-                            <IconNavArrow
-                              displayDirection="end"
-                              className="inline ms-1"
-                            />
-                          </ButtonLink>
-                        </div>
-                      </div>
-                      <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                    </>
-                  )}
-=======
                   <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
->>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
                 </div>
               )}
               <div

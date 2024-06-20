@@ -202,11 +202,7 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-<<<<<<< HEAD
           "title": "Menghilangkan dependensi Effect",
-=======
-          "title": "Removing Effect Dependencies",
->>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
           "path": "/learn/removing-effect-dependencies"
         },
         {

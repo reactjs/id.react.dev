@@ -62,17 +62,11 @@ function ChatRoom({ roomId }) {
 
 * Jika beberapa dependensi Anda adalah objek atau fungsi yang didefinisikan di dalam komponen, ada risiko bahwa mereka akan **membuat *Effect* berjalan ulang lebih sering dari yang diperlukan.** Untuk mengatasinya, hapus dependensi [objek](#removing-unnecessary-object-dependencies) dan [fungsi](#removing-unnecessary-function-dependencies) yang tidak diperlukan. Anda juga dapat [mengekstrak pembaruan *state*](#updating-state-based-on-previous-state-from-an-effect) dan [logika non-reaktif](#reading-the-latest-props-and-state-from-an-effect) di luar *Effect* Anda.
 
-* Jika *Effect* Anda tidak disebabkan oleh interaksi (seperti klik), React akan membiarkan browser **menampilkan layar yang diperbarui terlebih dahulu sebelum menjalankan *Effect* Anda.** Jika *Effect* Anda melakukan sesuatu yang visual (misalnya, menempatkan tooltip), dan penundaannya terasa (misalnya, berkedip), gantilah `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* Jika *Effect* Anda tidak disebabkan oleh interaksi (seperti klik), **React dapat menjalankan *Effect* Anda sebelum browser menampilkan layar yang diperbarui**. Ini memastikan bahwa hasil *Effect* dapat diamati oleh sistem *event*. Biasanya, ini berfungsi seperti yang diharapkan. Namun, jika Anda harus menunda pekerjaan hingga setelah penggambaran, seperti `alert()`, Anda dapat menggunakan `setTimeout`. Lihat [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) untuk informasi lebih lanjut.
 
-<<<<<<< HEAD
-* Meskipun *Effect* Anda disebabkan oleh interaksi (seperti klik), **browser mungkin akan memperbarui tampilan layar sebelum memproses pembaruan *state* di dalam Efek Anda.** Biasanya, itu adalah yang Anda inginkan. Namun, jika Anda harus mencegah browser memperbarui tampilan layar, Anda perlu mengganti `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
-=======
-* If your Effect is caused by an interaction (like a click), **React may run your Effect before the browser paints the updated screen**. This ensures that the result of the Effect can be observed by the event system. Usually, this works as expected. However, if you must defer the work until after paint, such as an `alert()`, you can use `setTimeout`. See [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) for more information.
+* Meskipun *Effect* Anda disebabkan oleh interaksi (seperti klik), **React dapat mengizinkan browser untuk menggambar ulang layar sebelum memproses pembaruan *state* di dalam Efek Anda.** Biasanya, ini berfungsi seperti yang diharapkan. Namun, jika Anda harus memblokir browser agar tidak menggambar ulang layar, Anda perlu mengganti `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
 
-* Even if your Effect was caused by an interaction (like a click), **React may allow the browser to repaint the screen before processing the state updates inside your Effect.** Usually, this works as expected. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
->>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
-
-* *Effects* **hanya berjalan di sisi klien.** Mereka tidak berjalan selama server *rendering*.
+* *Effect* **hanya berjalan di sisi klien.** Ia tidak akan berjalan selama *rendering* di *server*.
 
 ---
 

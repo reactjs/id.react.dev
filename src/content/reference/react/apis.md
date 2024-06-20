@@ -10,20 +10,12 @@ Selain [Hooks](/reference/react) dan [Components](/reference/react/components), 
 
 ---
 
-<<<<<<< HEAD
 * [`createContext`](/reference/react/createContext) memungkinkan Anda untuk mendefinisikan dan memberikan konteks komponen turunan. Digunakan dengan [`useContext`.](/reference/react/useContext)
 * [`forwardRef`](/reference/react/forwardRef) memungkinkan Anda mengekspos sebuah simpul DOM sebagai sebuah *ref* kepada *parent*. Digunakan dengan [`useRef`.](/reference/react/useRef)
 * [`lazy`](/reference/react/lazy) memungkinkan Anda menunda pemuatan kode komponen sampai kode tersebut di-*render* untuk pertama kalinya.
 * [`memo`](/reference/react/memo) memungkinkan komponen Anda melewatkan render ulang dengan *props* yang sama. Digunakan dengan [`useMemo`](/reference/react/useMemo) dan [`useCallback`.](/reference/react/useCallback)
 * [`startTransition`](/reference/react/startTransition) memungkinkan Anda menandai pembaruan *state* sebagai tidak urgen. Mirip dengan [`useTransition`.](/reference/react/useTransition)
-=======
-* [`createContext`](/reference/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/reference/react/useContext)
-* [`forwardRef`](/reference/react/forwardRef) lets your component expose a DOM node as a ref to the parent. Used with [`useRef`.](/reference/react/useRef)
-* [`lazy`](/reference/react/lazy) lets you defer loading a component's code until it's rendered for the first time.
-* [`memo`](/reference/react/memo) lets your component skip re-renders with same props. Used with [`useMemo`](/reference/react/useMemo) and [`useCallback`.](/reference/react/useCallback)
-* [`startTransition`](/reference/react/startTransition) lets you mark a state update as non-urgent. Similar to [`useTransition`.](/reference/react/useTransition)
-* [`act`](/reference/react/act) lets you wrap renders and interactions in tests to ensure updates have processed before making assertions.
->>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
+* [`act`](/reference/react/act) memungkinkan Anda membungkus *render* dan interaksi dalam pengujian untuk memastikan pembaruan telah diproses sebelum membuat pernyataan.
 
 ---
 

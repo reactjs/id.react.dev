@@ -346,13 +346,8 @@
       "path": "/reference/rules",
       "routes": [
         {
-<<<<<<< HEAD
-        "title": "Komponen dan Hooks harus murni",
-        "path": "/reference/rules/components-and-hooks-must-be-pure"
-=======
-          "title": "Components and Hooks must be pure",
+          "title": "Komponen dan Hooks harus murni",
           "path": "/reference/rules/components-and-hooks-must-be-pure"
->>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
         },
         {
           "title": "React memanggil Komponen dan Hooks",
