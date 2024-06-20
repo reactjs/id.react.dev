@@ -62,11 +62,11 @@ function ChatRoom({ roomId }) {
 
 * Jika beberapa dependensi Anda adalah objek atau fungsi yang didefinisikan di dalam komponen, ada risiko bahwa mereka akan **membuat *Effect* berjalan ulang lebih sering dari yang diperlukan.** Untuk mengatasinya, hapus dependensi [objek](#removing-unnecessary-object-dependencies) dan [fungsi](#removing-unnecessary-function-dependencies) yang tidak diperlukan. Anda juga dapat [mengekstrak pembaruan *state*](#updating-state-based-on-previous-state-from-an-effect) dan [logika non-reaktif](#reading-the-latest-props-and-state-from-an-effect) di luar *Effect* Anda.
 
-* Jika *Effect* Anda tidak disebabkan oleh interaksi (seperti klik), React akan membiarkan browser **menampilkan layar yang diperbarui terlebih dahulu sebelum menjalankan *Effect* Anda.** Jika *Effect* Anda melakukan sesuatu yang visual (misalnya, menempatkan tooltip), dan penundaannya terasa (misalnya, berkedip), gantilah `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* Jika *Effect* Anda tidak disebabkan oleh interaksi (seperti klik), **React dapat menjalankan *Effect* Anda sebelum browser menampilkan layar yang diperbarui**. Ini memastikan bahwa hasil *Effect* dapat diamati oleh sistem *event*. Biasanya, ini berfungsi seperti yang diharapkan. Namun, jika Anda harus menunda pekerjaan hingga setelah penggambaran, seperti `alert()`, Anda dapat menggunakan `setTimeout`. Lihat [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) untuk informasi lebih lanjut.
 
-* Meskipun *Effect* Anda disebabkan oleh interaksi (seperti klik), **browser mungkin akan memperbarui tampilan layar sebelum memproses pembaruan *state* di dalam Efek Anda.** Biasanya, itu adalah yang Anda inginkan. Namun, jika Anda harus mencegah browser memperbarui tampilan layar, Anda perlu mengganti `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* Meskipun *Effect* Anda disebabkan oleh interaksi (seperti klik), **React dapat mengizinkan browser untuk menggambar ulang layar sebelum memproses pembaruan *state* di dalam Efek Anda.** Biasanya, ini berfungsi seperti yang diharapkan. Namun, jika Anda harus memblokir browser agar tidak menggambar ulang layar, Anda perlu mengganti `useEffect` dengan [`useLayoutEffect`.](/reference/react/useLayoutEffect)
 
-* *Effects* **hanya berjalan di sisi klien.** Mereka tidak berjalan selama server *rendering*.
+* *Effect* **hanya berjalan di sisi klien.** Ia tidak akan berjalan selama *rendering* di *server*.
 
 ---
 

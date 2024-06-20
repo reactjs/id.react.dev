@@ -15,6 +15,7 @@ Selain [Hooks](/reference/react) dan [Components](/reference/react/components), 
 * [`lazy`](/reference/react/lazy) memungkinkan Anda menunda pemuatan kode komponen sampai kode tersebut di-*render* untuk pertama kalinya.
 * [`memo`](/reference/react/memo) memungkinkan komponen Anda melewatkan render ulang dengan *props* yang sama. Digunakan dengan [`useMemo`](/reference/react/useMemo) dan [`useCallback`.](/reference/react/useCallback)
 * [`startTransition`](/reference/react/startTransition) memungkinkan Anda menandai pembaruan *state* sebagai tidak urgen. Mirip dengan [`useTransition`.](/reference/react/useTransition)
+* [`act`](/reference/react/act) memungkinkan Anda membungkus *render* dan interaksi dalam pengujian untuk memastikan pembaruan telah diproses sebelum membuat pernyataan.
 
 ---
 

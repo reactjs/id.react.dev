@@ -45,7 +45,7 @@ Di sini dan selanjutnya dalam teks ini, kata "*Effect*" yang dikapitalisasi meng
 
 Untuk menulis *Effect*, ikuti tiga langkah berikut:
 
-1. **Deklarasikan Effect.** Secara bawaan, *Effect* Anda akan berjalan setiap *render*.
+1. **Deklarasikan Effect.** Secara bawaan, *Effect* Anda akan berjalan setiap [*commit*](/learn/render-and-commit).
 2. **Tentukan dependensi dari Effect.** Kebanyakan *Effect* hanya perlu dijalankan ulang *ketika diperlukan*, bukan setiap render. Misalnya, animasi *fade-in* seharusnya hanya dijalankan ketika sebuah komponen muncul. Menghubungkan dan memutuskan koneksi ke ruang obrolan seharusnya hanya terjadi ketika komponen muncul dan menghilang, atau ketika ruang obrolan berubah. Anda akan belajar cara mengontrolnya dengan menentukan *dependensi.*
 3. **Tambahkan pembersihan (*cleanup*) jika diperlukan.** Beberapa *Effect* perlu menentukan cara menghentikan, membatalkan, atau membersihkan apa pun yang sedang dilakukan. Misalnya, "sambungkan koneksi" membutuhkan "lepaskan koneksi", "berlangganan" memerlukan "hentikan langganan", dan "*fetch*" membutuhkan "batal" atau "abaikan". Anda akan belajar cara melakukan hal tersebut dengan mengembalikan *fungsi pembersihan*.
 
@@ -599,6 +599,33 @@ React secara sengaja memasang ulang komponen Anda dalam pengembangan untuk menem
 Biasanya, jawabannya adalah menerapkan fungsi pembersihan. Fungsi pembersihan harus menghentikan atau membatalkan apa pun yang sedang dilakukan oleh Effect. Aturan praktisnya adalah bahwa pengguna seharusnya tidak dapat membedakan antara Effect yang berjalan sekali (seperti dalam produksi) dan urutan _setup → cleanup → setup_ (seperti yang Anda lihat dalam pengembangan).
 
 Sebagian besar *Effect* yang akan Anda tulis, akan sesuai dengan salah satu pola umum di bawah ini.
+
+<Pitfall>
+
+#### Jangan gunakan ref untuk mencegah *Effect* diaktifkan {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+Kesalahan umum untuk mencegah *Effect* berjalan dua kali dalam pengembangan adalah menggunakan `ref` untuk mencegah *Effect* berjalan lebih dari satu kali. Misalnya, Anda dapat "memperbaiki" bug di atas dengan `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 Ini tidak akan memperbaiki bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+Hal ini membuat Anda hanya melihat `"✅ Menghubungkan..."` sekali dalam pengembangan, tetapi hal itu tidak memperbaiki bug.
+
+Saat pengguna keluar, koneksi masih belum ditutup dan saat mereka kembali, koneksi baru dibuat. Saat pengguna keluar dari aplikasi, koneksi akan terus menumpuk, sama seperti sebelum "perbaikan".
+
+Untuk memperbaiki bug, tidak cukup hanya menjalankan Efek sekali. Efek harus berfungsi setelah dipasang ulang, yang berarti koneksi perlu dibersihkan seperti dalam solusi di atas.
+
+Lihat contoh di bawah ini untuk cara menangani pola umum.
+
+</Pitfall>
 
 ### Mengontrol *widget* di luar React {/*controlling-non-react-widgets*/}
 
