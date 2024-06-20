@@ -342,15 +342,15 @@ export default function App({counter}) {
 
 Pemanggilan `render` berulang kali biasanya tidak wajar. Pada umumnya komponen Anda akan [memperbarui *state*](/reference/react/useState).
 
-### Show a dialog for uncaught errors {/*show-a-dialog-for-uncaught-errors*/}
+### Menampilkan dialog untuk *error* yang tidak ditangkap {/*show-a-dialog-for-uncaught-errors*/}
 
 <Canary>
 
-`onUncaughtError` is only available in the latest React Canary release.
+`onCaughtError` hanya tersedia di rilis Canary React terbaru.
 
 </Canary>
 
-By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
+Secara bawaan, React akan me-log semua *error* yang tidak ditangkap ke konsol. Untuk mengimplementasikan pelaporan *error* Anda sendiri, Anda dapat menyediakan opsi *root* `onUncaughtError` opsional:
 
 ```js [[1, 6, "onUncaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -370,12 +370,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onUncaughtError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> that was thrown.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. The <CodeStep step={2}>error</CodeStep> yang dilempar.
+2. Obyek <CodeStep step={3}>errorInfo</CodeStep> yang berisi <CodeStep step={4}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onUncaughtError` root option to display error dialogs:
+Anda dapat menggunakan opsi *root* `onUncaughtError` untuk menampilkan dialog *error*:
 
 <Sandpack>
 
@@ -874,9 +874,9 @@ function Throw({error}) {
 
 </Sandpack>
 
-### Displaying a dialog for recoverable errors {/*displaying-a-dialog-for-recoverable-errors*/}
+### Menampilkan dialog untuk *error* yang dapat dipulihkan {/*displaying-a-dialog-for-recoverable-errors*/}
 
-React may automatically render a component a second time to attempt to recover from an error thrown in render. If successful, React will log a recoverable error to the console to notify the developer. To override this behavior, you can provide the optional `onRecoverableError` root option:
+React dapat secara otomatis me-*render* komponen untuk kedua kalinya guna mencoba memulihkan dari *error* yang terjadi saat me-*render*. Jika berhasil, React akan me-log *error* yang dapat dipulihkan ke konsol untuk memberi tahu pengembang aplikasi. Untuk mengatasi perilaku ini, Anda dapat memberikan opsi *root* `onRecoverableError` opsional:
 
 ```js [[1, 6, "onRecoverableError"], [2, 6, "error", 1], [3, 10, "error.cause"], [4, 6, "errorInfo"], [5, 11, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -897,12 +897,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called with two arguments:
+Pengaturan <CodeStep step={1}>onRecoverableError</CodeStep> adalah fungsi yang dipanggil dengan dua argumen:
 
-1. The <CodeStep step={2}>error</CodeStep> that React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>. 
-2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
+1. <CodeStep step={2}>error</CodeStep> yang dilempar React. Beberapa *error* mungkin mengandung penyebab awal sebagai <CodeStep step={3}>error.cause</CodeStep>. 
+2. Obyek <CodeStep step={4}>errorInfo</CodeStep> yang mengandung <CodeStep step={5}>componentStack</CodeStep> dari *error* tersebut.
 
-You can use the `onRecoverableError` root option to display error dialogs:
+Anda dapat menggunakan opsi *root* `onRecoverableError` untuk menampilkan dialog *error*:
 
 <Sandpack>
 
