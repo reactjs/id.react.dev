@@ -609,7 +609,7 @@ Anda harus menulis metode `render` sebagai *pure function*, artinya ia harus men
 
 - Ketika [Strict Mode](/reference/react/StrictMode) aktif, React akan memanggil `render` dua kali dalam *development* dan kemudian membuang salah satu hasilnya. Ini membantu Anda melihat efek samping yang tidak disengaja yang perlu dipindahkan dari metode `render`.
 
-- Tidak ada korespondensi one-to-one antara panggilan `render` dan panggilan `componentDidMount` atau panggilan `componentDidUpdate`. Beberapa hasil panggilan `render` mungkin dibuang oleh React jika bermanfaat.
+- Tidak ada korespondensi satu-satu antara panggilan `render` dan panggilan `componentDidMount` atau panggilan `componentDidUpdate`. Beberapa hasil panggilan `render` mungkin dibuang oleh React jika bermanfaat.
 
 ---
 
