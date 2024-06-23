@@ -520,8 +520,8 @@ class ScrollingList extends React.Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust scroll later.
+    // Apakah kita menambahkan item baru ke dalam list?
+    // Tangkap posisi scroll supaya kita dapat mengatur scroll nanti.
     if (prevProps.list.length < this.props.list.length) {
       const list = this.listRef.current;
       return list.scrollHeight - list.scrollTop;
@@ -530,9 +530,9 @@ class ScrollingList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // If we have a snapshot value, we've just added new items.
-    // Adjust scroll so these new items don't push the old ones out of view.
-    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    // Apabila kita memiliki nilai snapshot, kita baru saja menambahkan item baru.
+    // Atur scroll supaya item-item baru ini tidak mendorong item-item lama ke luar tampilan.
+    // (snapshot adalah nilai yang dikembalikan dari getSnapshotBeforeUpdate)
     if (snapshot !== null) {
       const list = this.listRef.current;
       list.scrollTop = list.scrollHeight - snapshot;
@@ -723,7 +723,7 @@ class Rectangle extends Component {
       nextProps.size.height === this.props.size.height &&
       nextState.isHovered === this.state.isHovered
     ) {
-      // Nothing has changed, so a re-render is unnecessary
+      // Tidak ada yang berubah, jadi tidak perlu render ulang
       return false;
     }
     return true;
@@ -1048,9 +1048,9 @@ class Form extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
+    // Setiap kali user saat ini berubah,
+    // Setel ulang bagian state mana pun yang terkait ke user itu.
+    // Dalam contoh simpel ini, hanya ada email.
     if (props.userID !== state.prevUserID) {
       return {
         prevUserID: props.userID,
@@ -1359,12 +1359,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Perbarui state sehingga render selanjutnya menunjukkan UI fallback.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // Contoh "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -1374,7 +1374,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Anda dapat me-render UI fallback apa pun.
       return this.props.fallback;
     }
 
@@ -1805,7 +1805,7 @@ export default function ChatRoom({ roomId }) {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Sebuah implementasi nyata sebenarnya akan terhubung ke server.
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
