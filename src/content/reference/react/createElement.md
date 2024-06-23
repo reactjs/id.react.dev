@@ -16,7 +16,7 @@ const element = createElement(type, props, ...children)
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `createElement(type, props, ...children)` {/*createelement*/}
 
@@ -71,7 +71,7 @@ Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya a
 
 Jika Anda tidak menyukai [JSX](/learn/writing-markup-with-jsx) atau tidak dapat menggunakannya dalam proyek Anda, Anda dapat menggunakan `createElement` sebagai alternatif.
 
-Untuk membuat elemen tanpa JSX, panggil `createElement` dengan beberapa <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>*props*</CodeStep>, dan <CodeStep step={3}>children</CodeStep>:
+Untuk membuat elemen tanpa JSX, panggil `createElement` dengan beberapa <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>*props*</CodeStep>, dan <CodeStep step={3}>*children*</CodeStep>:
 
 ```js [[1, 5, "'h1'"], [2, 6, "{ className: 'greeting' }"], [3, 7, "'Hello ',"], [3, 8, "createElement('i', null, name),"], [3, 9, "'. Welcome!'"]]
 import { createElement } from 'react';
@@ -87,7 +87,7 @@ function Greeting({ name }) {
 }
 ```
 
-<CodeStep step={3}>Anak</CodeStep> bersifat *optional*, dan Anda dapat mengoper sebanyak yang Anda butuhkan (contoh di atas memiliki tiga anak). Kode ini akan menampilkan header `<h1>` dengan salam. Sebagai perbandingan, berikut adalah contoh yang sama yang ditulis ulang dengan JSX:
+<CodeStep step={3}>Anak (*children*)</CodeStep> bersifat opsional, dan Anda dapat mengoper sebanyak yang Anda butuhkan (contoh di atas memiliki tiga anak). Kode ini akan menampilkan header `<h1>` dengan salam. Sebagai perbandingan, berikut adalah contoh yang sama yang ditulis ulang dengan JSX:
 
 ```js [[1, 3, "h1"], [2, 3, "className=\\"greeting\\""], [3, 4, "Hello <i>{name}</i>. Welcome!"], [1, 5, "h1"]]
 function Greeting({ name }) {
