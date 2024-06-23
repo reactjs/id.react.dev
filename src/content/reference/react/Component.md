@@ -4,13 +4,13 @@ title: Component
 
 <Pitfall>
 
-Kami merekomendasikan mendefinisikan komponen sebagai fungsi dari pada kelas. [Lihat bagaimana cara migrasi.](#alternatives)
+Kami merekomendasikan mendefinisikan komponen sebagai fungsi daripada kelas. [Lihat bagaimana cara migrasi.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`Component` adalah kelas dasar untuk komponen React yang didefinisikan segabai [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Kelas komponen masih disuport oleh React, tetapi kami tidak merekomendasikan untuk menggunakannya di kode baru.
+`Component` adalah kelas dasar untuk komponen React yang didefinisikan sebagai [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Kelas komponen masih didukung oleh React, tetapi kami tidak merekomendasikan untuk menggunakannya di kode baru.
 
 ```js
 class Greeting extends Component {
@@ -109,7 +109,7 @@ Membaca `this.props` pada *class components* setara dengan [mendeklarasikan prop
 
 <Deprecated>
 
-API ini akan dihapus pada versi utama React di masa depan. [Gunakan `createRef` sebagai gantinya.](/reference/react/createRef)
+API ini akan dihapus pada versi mayor React di masa depan. [Gunakan `createRef` sebagai gantinya.](/reference/react/createRef)
 
 </Deprecated>
 
@@ -186,7 +186,7 @@ class Counter extends Component {
 
 Sebuah *constructor* sebaiknya tidak mengandung *side effects* atau *subscriptions*.
 
-#### Parameters {/*constructor-parameters*/}
+#### Parameter {/*constructor-parameters*/}
 
 * `props`: Props awal komponen.
 
@@ -222,7 +222,7 @@ Biasanya, digunakan bersama dengan [`static getDerivedStateFromError`](#static-g
 
 [Lihat contoh.](#catching-rendering-errors-with-an-error-boundary)
 
-#### Parameters {/*componentdidcatch-parameters*/}
+#### Parameter {/*componentdidcatch-parameters*/}
 
 * `error`: *Error* yang dilempar. Pada praktiknya, biasanya akan berupa sebuah *instance* dari [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) tetapi ini tidak dijamin karena JavaScript memungkinkan untuk [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) nilai apa pun, termasuk string atau bahkan null.
 
@@ -282,7 +282,7 @@ class ChatRoom extends Component {
 
 [Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
-#### Parameters {/*componentdidmount-parameters*/}
+#### Parameter {/*componentdidmount-parameters*/}
 
 `componentDidMount` tidak mengambil parameter apa pun.
 
@@ -343,7 +343,7 @@ class ChatRoom extends Component {
 [Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
 
-#### Parameters {/*componentdidupdate-parameters*/}
+#### Parameter {/*componentdidupdate-parameters*/}
 
 * `prevProps`: Props sebelum update. Membandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
@@ -376,7 +376,7 @@ Untuk banyak kasus penggunaan, mendefinisikan `componentDidMount`, `componentDid
 
 <Deprecated>
 
-API ini telah diganti namanya dari `componentWillMount` ke [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
+API ini telah diganti namanya dari `componentWillMount` ke [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) Nama lama sudah tidak digunakan lagi. Di versi mayor React yang akan datang, hanya nama baru yang akan berfungsi.
 
 Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
@@ -388,7 +388,7 @@ Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-c
 
 <Deprecated>
 
-API ini telah diganti namanya dari `componentWillReceiveProps` ke [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
+API ini telah diganti namanya dari `componentWillReceiveProps` ke [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) Nama lama sudah tidak digunakan lagi. Di versi mayor React yang akan datang, hanya nama baru yang akan berfungsi.
 
 Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
@@ -400,7 +400,7 @@ Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-c
 
 <Deprecated>
 
-API ini telah diganti namanya dari `componentWillUpdate` ke [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) Nama lama sudah tidak digunakan lagi. Di versi utama React yang akan datang, hanya nama baru yang akan berfungsi.
+API ini telah diganti namanya dari `componentWillUpdate` ke [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) Nama lama sudah tidak digunakan lagi. Di versi mayor React yang akan datang, hanya nama baru yang akan berfungsi.
 
 Jalankan [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) untuk memperbaruhi komponen Anda secara otomatis.
 
@@ -444,7 +444,7 @@ class ChatRoom extends Component {
 
 [Lihat contoh lebih banyak.](#adding-lifecycle-methods-to-a-class-component)
 
-#### Parameters {/*componentwillunmount-parameters*/}
+#### Parameter {/*componentwillunmount-parameters*/}
 
 `componentWillUnmount` tidak mengambil parameter apapun.
 
@@ -474,7 +474,7 @@ Biasanya, ini tidak perlu. Jika metode [`render`](#render) komponen Anda hanya b
 
 Cobalah untuk menghindari semua penggunaan `forceUpdate` dan hanya membaca dari `this.props` dan `this.state` pada `render`.
 
-#### Parameters {/*forceupdate-parameters*/}
+#### Parameter {/*forceupdate-parameters*/}
 
 * **optional** `callback` Jika ditentukan, React akan memanggil `callback` yang Anda berikan setelah pembaruan dilakukan.
 
@@ -498,7 +498,7 @@ Membaca sumber data eksternal dan memaksa komponen kelas untuk me-*render* ulang
 
 <Deprecated>
 
-API ini akan dihapus di versi utama React yang akan datang. [Gunakan `Context.Provider` sebagai gantinya.](/reference/react/createContext#provider)
+API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `Context.Provider` sebagai gantinya.](/reference/react/createContext#provider)
 
 </Deprecated>
 
@@ -549,7 +549,7 @@ class ScrollingList extends React.Component {
 
 Pada contoh di atas, penting untuk membaca properti `scrollHeight` secara langsung di `getSnapshotBeforeUpdate`. Tidak aman untuk membacanya di [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), atau [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) karena ada potensi jeda waktu antara pemanggilan metode ini dan React memperbarui DOM.
 
-#### Parameters {/*getsnapshotbeforeupdate-parameters*/}
+#### Parameter {/*getsnapshotbeforeupdate-parameters*/}
 
 * `prevProps`: *Props* sebelum pembaharuan. Membandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
@@ -591,7 +591,7 @@ React dapat memanggil `render` kapan saja, jadi Anda tidak boleh berasumsi bahwa
 
 Anda harus menulis metode `render` sebagai *pure function*, artinya ia harus mengembalikan hasil yang sama jika *props*, *state*, dan *context*-nya sama. Itu juga tidak boleh mengandung *side effects* (seperti menyiapkan *subscriptions*) atau interaksi dengan API peramban. Side effects harus terjadi baik dalam *event handlers* atau metode seperti [`componentDidMount`.](#componentdidmount)
 
-#### Parameters {/*render-parameters*/}
+#### Parameter {/*render-parameters*/}
 
 * `prevProps`: *Props* sebelum pembaruan. Bandingkan `prevProps` ke [`this.props`](#props) untuk menentukan apa yang berubah.
 
@@ -675,7 +675,7 @@ Anda juga dapat meneruskan fungsi ke `setState`. Ini memungkinkan Anda memperbar
 
 Anda tidak harus melakukan ini, tetapi akan berguna jika Anda ingin memperbarui *state* beberapa kali selama *event* yang sama.
 
-#### Parameters {/*setstate-parameters*/}
+#### Parameter {/*setstate-parameters*/}
 
 * `nextState`: Baik objek atau fungsi.
   * Jika Anda meneruskan objek sebagai `nextState`, objek tersebut akan digabungkan secara dangkal ke dalam `this.state`.
@@ -736,7 +736,7 @@ class Rectangle extends Component {
 
 React memanggil `shouldComponentUpdate` sebelum *render*-ing ketika *props* baru atau *state* sedang diterima. Default `true`. Metode ini tidak dipanggil untuk *render* awal atau saat [`forceUpdate`](#forceupdate) digunakan.
 
-#### Parameters {/*shouldcomponentupdate-parameters*/}
+#### Parameter {/*shouldcomponentupdate-parameters*/}
 
 - `nextProps`: Props berikutnya yang akan dirender oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextState`: *State* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#props) untuk menentukan apa yang berubah.
@@ -777,7 +777,7 @@ Jika Anda mendefinisikan `UNSAFE_componentWillMount`, React akan memanggilnya se
 
 [Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
-#### Parameters {/*unsafe_componentwillmount-parameters*/}
+#### Parameter {/*unsafe_componentwillmount-parameters*/}
 
 `UNSAFE_componentWillMount` tidak menggunakan parameter apa pun.
 
@@ -812,7 +812,7 @@ Jika Anda mendefinisikan `UNSAFE_componentWillReceiveProps`, React akan memanggi
 
 [Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
 
-#### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
+#### Parameter {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: *Props* berikutnya yang akan diterima komponen dari komponen induknya. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
@@ -849,7 +849,7 @@ Jika Anda mendefinisikan `UNSAFE_componentWillUpdate`, React akan memanggilnya s
 
 [Lihat contoh migrasi dari *unsafe lifecycles*.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
-#### Parameters {/*unsafe_componentwillupdate-parameters*/}
+#### Parameter {/*unsafe_componentwillupdate-parameters*/}
 
 - `nextProps`: *Props* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextState`: *State* selanjutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#state) untuk menentukan apa yang berubah.
@@ -884,7 +884,7 @@ Tidak ada persamaan langsung dengan `UNSAFE_componentWillUpdate` dalam *function
 
 <Deprecated>
 
-API ini akan dihapus di versi utama React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
+API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
 
 </Deprecated>
 
@@ -896,7 +896,7 @@ Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-co
 
 <Deprecated>
 
-API ini akan dihapus di versi utama React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
+API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
 
 </Deprecated>
 
@@ -1014,7 +1014,7 @@ Biasanya, ini digunakan bersama dengan [`componentDidCatch`](#componentDidCatch)
 
 [Lihat contoh.](#catching-rendering-errors-with-an-error-boundary)
 
-#### Parameters {/*static-getderivedstatefromerror-parameters*/}
+#### Parameter {/*static-getderivedstatefromerror-parameters*/}
 
 * `error`: Kesalahan yang dilemparkan. Dalam prakteknya, biasanya akan menjadi *instance* dari [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) tetapi ini tidak dijamin karena JavaScript memungkinkan untuk [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) nilai apa saja, termasuk *strings* atau bahkan `null`.
 
@@ -1076,7 +1076,7 @@ Perhatikan bahwa pola ini mengharuskan Anda mempertahankan nilai *prop* sebelumn
 
 </Pitfall>
 
-#### Parameters {/*static-getderivedstatefromprops-parameters*/}
+#### Parameter {/*static-getderivedstatefromprops-parameters*/}
 
 - `props`: *Props* berikutnya yang akan di-*render* oleh komponen.
 - `state`: *State* berikutnya yang akan di-*render* oleh komponen.
@@ -1826,7 +1826,7 @@ button { margin-left: 10px; }
 
 <Note>
 
-Jika komponent Anda tidak disinkronkan dengan sistem eksternal apapun, [Anda mungkin tidak membutuhkan sebuah *Effect*.](/learn/you-might-not-need-an-effect)
+Jika komponen Anda tidak disinkronkan dengan sistem eksternal apapun, [Anda mungkin tidak membutuhkan sebuah *Effect*.](/learn/you-might-not-need-an-effect)
 
 </Note>
 
