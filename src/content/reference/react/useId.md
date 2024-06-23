@@ -180,7 +180,6 @@ Manfaat utama `useId` adalah React memastikan bahwa ia bekerja dengan [*server r
 
 Hal ini sangat sulit untuk dijamin dengan penghitung kenaikan karena urutan di mana komponen klien terhidrasi mungkin tidak sesuai dengan urutan di mana HTML dari *server* dipancarkan. Dengan memanggil `useId`, Anda memastikan bahwa hidrasi akan berfungsi, dan hasilnya akan cocok antara *server* dan klien.
 
-
 Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggil. Inilah sebabnya, jika pohon di klien dan *server* sama, "jalur induk" akan cocok terlepas dari urutan *rendering*.
 
 </DeepDive>
@@ -269,7 +268,7 @@ export default function App() {
 }
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import './styles.css';
@@ -303,3 +302,32 @@ input { margin: 5px; }
 
 </Sandpack>
 
+---
+
+### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+
+If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+
+```js
+// Server
+import { renderToPipeableStream } from 'react-dom/server';
+
+const { pipe } = renderToPipeableStream(
+  <App />,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+```js
+// Client
+import { hydrateRoot } from 'react-dom/client';
+
+const domNode = document.getElementById('root');
+const root = hydrateRoot(
+  domNode,
+  reactNode,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+You do not need to pass `identifierPrefix` if you only have one React app on the page.

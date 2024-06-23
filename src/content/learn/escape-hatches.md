@@ -97,9 +97,9 @@ Baca **[Manipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs)** unt
 
 </LearnMore>
 
-## Menyinkronkan dengan *Effects* {/*synchronizing-with-effects*/}
+## Sinkronisasi dengan *Effect* {/*synchronizing-with-effects*/}
 
-Beberapa komponen perlu menyinkronkan dengan sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen *non-React* berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk menyinkronkan komponen Anda dengan sistem di luar React.
+Beberapa komponen perlu melakukan sinkronisasi sistem eksternal. Misalkan, Anda mungkin ingin mengontrol komponen di luar React berdasarkan *state* React, mengatur koneksi server, atau mengirim log analitik ketika sebuah komponen muncul di layar. Tidak seperti *event handlers*, yang memungkinkan Anda menangani *events* tertentu, *Effects* memungkinkan Anda menjalankan beberapa kode setelah *render*. Gunakan *Effects* ini untuk melakukan sinkronisasi dengan sistem di luar React.
 
 Tekan tombol *Play*/*Pause* beberapa kali dan lihat bagaimana pemutar video tetep disinkronkan dengan nilai prop `isPlaying`:
 
@@ -163,7 +163,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection() {
   // A real implementation would actually connect to the server
   return {
@@ -187,13 +187,13 @@ Di mode pengembangan (*development*), React akan segera menjalankan dan membersi
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Baca **[Menyinkronkan dengan *Effects*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
+Baca **[Sinkronisasi dengan *Effect*](/learn/synchronizing-with-effects)** untuk mempelajari bagaimana menyinkronkan komponen dengan sistem eksternal.
 
 </LearnMore>
 
 ## Anda mungkin tidak membutuhkan *Effect* {/*you-might-not-need-an-effect*/}
 
-*Effects* adalah sebuah jalan keluar dari paradigma React. Mereka membiarkan Anda untuk "keluar" dari React dan menyinkronkan komponen Anda dengan beberapa sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan sebuah *Effect*. Hilangkan *Effects* yang tidak pelu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
+*Effects* adalah jalan keluar dari paradigma React. Mereka memungkinkan Anda "keluar" dari React dan menyinkronkan komponen Anda dengan sistem eksternal. Jika tidak ada sistem eksternal yang terlibat (misalkan, jika Anda ingin memperbarui *state* komponen dengan beberapa *props* atau perubahan *state*), Anda seharusnya tidak perlu menggunakan *Effect*. Hilangkan *Effects* yang tidak perlu akan membuat kode Anda lebih mudah untuk diikuti, lebih cepat untuk dijalankan, dan lebih sedikit berpotensi galat.
 
 Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 - **Anda tidak perlu menggunakan *Effects* untuk mengubah data saat pe-*render*-an.**
@@ -281,7 +281,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Implementasi yang sebenarnya akan benar-benar terhubung ke server.
   return {
@@ -395,7 +395,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -424,7 +424,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -528,7 +528,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -557,7 +557,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -647,7 +647,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
   return {
@@ -721,7 +721,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
   return {
@@ -797,7 +797,7 @@ function Dot({ position, opacity }) {
 }
 ```
 
-```js usePointerPosition.js
+```js src/usePointerPosition.js
 import { useState, useEffect } from 'react';
 
 export function usePointerPosition() {
@@ -813,7 +813,7 @@ export function usePointerPosition() {
 }
 ```
 
-```js useDelayedValue.js
+```js src/useDelayedValue.js
 import { useState, useEffect } from 'react';
 
 export function useDelayedValue(value, delay) {

@@ -60,7 +60,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 * `actualDuration`: Jumlah milidetik yang dihabiskan untuk me-*render* `<Profiler>` dan turunannya untuk pembaruan terkini. Ini mengindikasikan seberapa baik *sub*-pohon menggunakan memoisasi (contohnya [`memo`](/reference/react/memo) dan [`useMemo`](/reference/react/useMemo)). Idealnya, nilai ini akan berkurang secara signifikan setelah pemasangan awal, karena banyak keturunan yang hanya perlu me-*render* ulang jika *props* tertentu mereka berubah.
 * `baseDuration`: Jumlah milidetik yang memperkirakan berapa lama waktu yang dibutuhkan untuk me-*render* ulang seluruh *sub*-pohon `<Profiler>` tanpa pengoptimalan apa pun. Dihitung dengan menjumlahkan durasi *render* terbaru dari setiap komponen dalam pohon. Nilai ini memperkirakan biaya kasus terburuk dari *rendering* (misalnya, pemasangan awal atau pohon tanpa memoisasi). Bandingkan `actualDuration` dengan nilai ini untuk melihat apakah memoisasi berfungsi.
 * `startTime`: Stempel waktu numerik untuk mengetahui kapan React mulai me-*render* pembaruan terkini.
-* `endTime`: Stempel waktu numerik untuk mengetahui kapan React melakukan pembaruan terkini. Nilai ini dibagi di antara semua *profiler* dalam sebuah *commit*, sehingga memungkinkan untuk dikelompokkan jika diinginkan.
+* `commitTime`: Stempel waktu numerik untuk mengetahui kapan React melakukan pembaruan terkini. Nilai ini dibagi di antara semua *profiler* dalam sebuah *commit*, sehingga memungkinkan untuk dikelompokkan jika diinginkan.
 
 ---
 

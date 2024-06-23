@@ -10,33 +10,17 @@ title: Mempertahankan dan Mengatur Ulang State
 
 <YouWillLearn>
 
-* Bagaimana React "melihat" struktur komponen
 * Kapan React memilih untuk mempertahankan atau mengatur ulang *state*
 * Bagaimana cara memaksa React untuk mengatur ulang *state* komponen
 * Bagaimana *keys* dan *types* mempengaruhi apakah *state* dipertahankan
 
 </YouWillLearn>
 
-## Pohon antarmuka pengguna (UI) {/*the-ui-tree*/}
-
-Peramban menggunakan banyak struktur pohon untuk memodelkan antarmuka pengguna (UI). [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) mewakili elemen HTML, [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) melakukan hal yang sama untuk CSS. Bahkan ada [Pohon aksesibilitas](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
-
-React juga menggunakan struktur pohon untuk mengelola dan memodelkan UI yang Anda buat. React membuat **pohon UI** dari JSX Anda. Kemudian React DOM memperbarui elemen-elemen DOM peramban agar sesuai dengan pohon UI tersebut (React Native menerjemahkan pohon-pohon tersebut menjadi elemen-elemen yang spesifik untuk platform *mobile*).
-
-<DiagramGroup>
-
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram dengan tiga bagian yang disusun secara horizontal. Pada bagian pertama, terdapat tiga persegi panjang yang ditumpuk secara vertikal, dengan label 'Komponen A', 'Komponen B', dan 'Komponen C'. Transisi ke panel berikutnya adalah sebuah panah dengan logo React di bagian atas yang berlabel 'React'. Bagian tengah berisi sebuah pohon komponen, dengan akar berlabel 'A' dan dua anak berlabel 'B' dan 'C'. Bagian selanjutnya ditransisikan lagi menggunakan panah dengan logo React di bagian atas berlabel 'React'. Bagian ketiga dan terakhir adalah model rangka dari sebuah browser, yang berisi sebuah pohon dengan 8 node, yang hanya memiliki sebuah subset yang disorot (menunjukkan subpohon dari bagian tengah).">
-
-Dari komponen, React membuat pohon UI yang digunakan React DOM untuk me*render* DOM
-
-</Diagram>
-
-</DiagramGroup>
-
 ## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
-Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
+React membangun [pohon render](learn/understanding-your-ui-as-a-tree#the-render-tree) untuk struktur komponen di dalam UI Anda.
 
+Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
 
 Di sini, hanya ada satu tag JSX `<Counter />`, tetapi tag tersebut dirender pada dua posisi yang berbeda:
 
@@ -1041,7 +1025,7 @@ Dalam aplikasi obrolan ini, komponen `<Chat>` berisi *state* masukan teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1067,7 +1051,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1091,7 +1075,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1146,7 +1130,7 @@ Sekarang, mengganti penerima selalu mengosongkan bidang teks:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
@@ -1172,7 +1156,7 @@ const contacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1196,7 +1180,7 @@ export default function ContactList({
 }
 ```
 
-```js Chat.js
+```js src/Chat.js
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1270,7 +1254,7 @@ Contoh ini menunjukkan pesan apabila Anda menekan tombol. Namun, menekan tombol 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1321,7 +1305,7 @@ Solusi termudah adalah dengan menyatukan cabang-cabang sehingga `Form` selalu di
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1367,7 +1351,7 @@ Secara teknis, Anda juga dapat menambahkan `null` sebelum `<Form />` pada cabang
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1429,7 +1413,7 @@ Sepertinya untuk bidang-bidang ini, posisinya di dalam induk tidak cukup. Apakah
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1491,7 +1475,7 @@ Berikan `key` pada kedua komponen `<Field>` di cabang `if` dan `else`. Hal ini m
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1557,7 +1541,7 @@ Ketika Anda memilih kontak yang berbeda (misalnya, Alice), *state* akan diperbar
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1609,7 +1593,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1636,7 +1620,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1709,7 +1693,7 @@ Berikan `key={selectedId}` pada komponen `EditContact`. Dengan cara ini, beralih
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1762,7 +1746,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js
+```js src/ContactList.js
 export default function ContactList({
   contacts,
   selectedId,
@@ -1789,7 +1773,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js
+```js src/EditContact.js
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -2010,7 +1994,7 @@ Perbaiki agar *state* yang diperluas dikaitkan dengan setiap kontak, terlepas da
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2052,7 +2036,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
@@ -2109,7 +2093,7 @@ Menggunakan ID kontak sebagai `key` dapat mengatasi masalah ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
 
@@ -2151,7 +2135,7 @@ const contacts = [
 ];
 ```
 
-```js Contact.js
+```js src/Contact.js
 import { useState } from 'react';
 
 export default function Contact({ contact }) {

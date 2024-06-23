@@ -634,7 +634,7 @@ class Form extends Component {
     return (
       <>
         <input value={this.state.name} onChange={this.handleNameChange} />
-        <p>Hello, {this.state.name}.
+        <p>Hello, {this.state.name}.</p>
       </>
     );
   }
@@ -1223,7 +1223,7 @@ Misalnya, komponen `ChatRoom` ini menjaga koneksi obrolan tetap tersinkronisasi 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1253,7 +1253,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1314,7 +1314,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1603,7 +1603,7 @@ Asumsikan Anda sedang mengonversi komponen kelas `ChatRoom` ini dengan *lifecycl
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1633,7 +1633,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1694,7 +1694,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Sebuah implementasi nyata sebenarnya akan terhubung ke server.
   return {
@@ -1743,7 +1743,7 @@ Panggilan [`useEffect`](/reference/react/useEffect) ini setara dengan logika dal
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1773,7 +1773,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1803,7 +1803,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {

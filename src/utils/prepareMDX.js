@@ -7,7 +7,7 @@ import {Children} from 'react';
 // TODO: This logic could be in MDX plugins instead.
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export const PREPARE_MDX_CACHE_BREAKER = 2;
+export const PREPARE_MDX_CACHE_BREAKER = 3;
 // !!! IMPORTANT !!! Bump this if you change any logic.
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -88,13 +88,13 @@ function extractHeaders(children, depth, out) {
         header = {
           url: '#challenges',
           depth: 2,
-          text: 'Challenges',
+          text: 'Tantangan',
         };
       } else if (child.type === 'Recap') {
         header = {
           url: '#recap',
           depth: 2,
-          text: 'Recap',
+          text: 'Rekap',
         };
       } else if (child.type === 'TeamMember') {
         header = {

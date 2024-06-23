@@ -7,7 +7,7 @@ title: renderToStaticNodeStream
 `renderToStaticNodeStream` me-*render* sebuah pohon (*tree*) React yang tidak interaktif ke dalam sebuah [*Node.js Readable Stream*.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToStaticNodeStream(reactNode)
+const stream = renderToStaticNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ## Referensi {/*reference*/}
 
-### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
+### `renderToStaticNodeStream(reactNode, options?)` {/*rendertostaticnodestream*/}
 
 Pada *server*, panggil `renderToStaticNodeStream` untuk mendapatkan sebuah [*Node.js Readable Stream*](https://nodejs.org/api/stream.html#readable-streams).
 
@@ -36,6 +36,8 @@ stream.pipe(response);
 #### Parameter {/*parameters*/}
 
 * `reactNode`: Sebuah *node* React yang ingin anda *render* ke dalam HTML. Misalnya, sebuah elemen JSX seperti `<Page />`.
+* **opsional** `options`: Obyek untuk pe-*render*-an server.
+  * **opsional** `identifierPrefix`: String prefiks yang digunakan reak untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Ini berguna untuk menghindari konflik ketika menggunakan *root* yang berbeda di halaman yang sama.
 
 #### Returns {/*returns*/}
 

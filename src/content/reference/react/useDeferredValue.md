@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Referensi {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk mendapatkan versi yang ditangguhkan dari nilai tersebut.
 
@@ -34,15 +34,24 @@ function SearchPage() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
+* <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
+- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
-#### Caveats {/*caveats*/}
+<Canary>
+
+Di versi Canary React terbaru, `useDeferredValue` mengembalikan `initialValue` pada *render* awal, dan menjadwalkan *render* ulang di balik layar dengan `value` dikembalikan.
+
+</Canary>
+
+#### Catatan penting {/*caveats*/}
+
+- Ketika pembaruan berada di dalam *Transition*, `useDeferredValue` selalu mengembalikan `value` yang baru dan tidak memunculkan *render* yang ditunda, karena pembaruan telah ditunda.
 
 - Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
@@ -86,6 +95,7 @@ Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan S
 
 - Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
+- Membaca nilai sebuah Promise dengan [`use`](/reference/react/use)
 
 [Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
 
@@ -111,7 +121,7 @@ Dalam contoh ini, komponen `SearchResults` [ditangguhkan](/reference/react/Suspe
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -131,7 +141,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -185,7 +195,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -325,7 +335,7 @@ Masukkan `"a"` pada contoh di bawah, tunggu hasil dimuat, lalu edit input menjad
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -346,7 +356,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -400,7 +410,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -507,7 +517,7 @@ Anda dapat menganggapnya terjadi dalam dua langkah:
 
 1. **Pertama, React me-*render* ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
 
-2. **Di latar belakang, React mencoba me-*render* ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
+2. **Di latar belakang, React mencoba me-*render* ulang dengan baik `query` *dan* `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
 Render "latar belakang" yang ditangguhkan dapat diinterupsi. Misalnya, jika Anda mengetik input lagi, React akan mengabaikannya dan memulai kembali dengan nilai baru. React akan selalu menggunakan nilai terbaru yang diberikan.
 
@@ -548,7 +558,7 @@ Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menj
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -575,7 +585,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Catatan: komponen ini ditulis menggunakan API eksperimental
@@ -629,7 +639,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -799,7 +809,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -876,7 +886,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

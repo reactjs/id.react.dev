@@ -15,7 +15,7 @@ Mengatur variabel *state* akan menambahkan antrean (*queue*) *render* baru. Terk
 
 </YouWillLearn>
 
-## Mengelompokkan pembaruan state dalam React  {/*react-batches-state-updates*/}
+## Mengelompokkan pembaruan state dalam React {/*react-batches-state-updates*/}
 
 Anda mungkin berharap bahwa menekan tombol "+3" akan menambahkan penghitung tiga kali karena memanggil `setNumber(number + 1)` tiga kali:
 
@@ -404,7 +404,7 @@ Isi baris yang hilang!
 
 <Sandpack>
 
-```js processQueue.js active
+```js src/processQueue.js active
 export function getFinalState(baseState, queue) {
   let finalState = baseState;
 
@@ -414,7 +414,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import { getFinalState } from './processQueue.js';
 
 function increment(n) {
@@ -499,7 +499,7 @@ Ini merupakan algoritma paling tepat yang digunakan React untuk menghitung state
 
 <Sandpack>
 
-```js processQueue.js active
+```js src/processQueue.js active
 export function getFinalState(baseState, queue) {
   let finalState = baseState;
 
@@ -517,7 +517,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import { getFinalState } from './processQueue.js';
 
 function increment(n) {

@@ -37,12 +37,17 @@
           "path": "/learn/editor-setup"
         },
         {
-          "title": "Using TypeScript",
+          "title": "Menggunakan TypeScript",
           "path": "/learn/typescript"
         },
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
+        },
+        {
+          "title": "React Compiler",
+          "path": "/learn/react-compiler",
+          "canary": true
         }
       ]
     },
@@ -86,6 +91,10 @@
         {
           "title": "Menjaga Kemurnian Komponen",
           "path": "/learn/keeping-components-pure"
+        },
+        {
+          "title": "Antarmuka Pengguna Anda sebagai Pohon",
+          "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
     },
@@ -125,12 +134,14 @@
       ]
     },
     {
-      "title": "Managing State",
+      "title": "Mengelola State",
       "path": "/learn/managing-state",
-      "tags": ["intermediate"],
+      "tags": [
+        "intermediate"
+      ],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "Merespon Masukan dengan State",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
@@ -146,11 +157,11 @@
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "Mengekstraksi Logika State ke Reducer",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "Mengoper Data Secara Mendalam dengan Context",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
@@ -162,7 +173,9 @@
     {
       "title": "Jalan Keluar",
       "path": "/learn/escape-hatches",
-      "tags": ["advanced"],
+      "tags": [
+        "advanced"
+      ],
       "routes": [
         {
           "title": "Mereferensikan Nilai menggunakan Refs",
@@ -173,11 +186,11 @@
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
-          "title": "Synchronizing with Effects",
+          "title": "Sinkronisasi dengan Effect",
           "path": "/learn/synchronizing-with-effects"
         },
         {
-          "title": "You Might Not Need an Effect",
+          "title": "And mungkin tidak membutuhkan Effect",
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
@@ -189,7 +202,7 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Menghilangkan Efek dependensi",
+          "title": "Menghilangkan dependensi Effect",
           "path": "/learn/removing-effect-dependencies"
         },
         {

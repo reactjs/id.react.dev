@@ -44,7 +44,6 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * Dalam Mode Ketat, React akan **memanggil fungsi *render* Anda dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus pengembangan dan tidak mempengaruhi produksi. Jika fungsi *render* Anda murni (sebagaimana mestinya), hal ini tidak akan mempengaruhi logika komponen Anda. Hasil dari salah satu pemanggilan akan diabaikan.
 
-
 ---
 
 ### `render` function {/*render-function*/}
@@ -166,7 +165,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -224,7 +223,7 @@ export default function App() {
 }
 ```
 
-```js MyVideoPlayer.js
+```js src/MyVideoPlayer.js
 import { forwardRef } from 'react';
 
 const VideoPlayer = forwardRef(function VideoPlayer({ src, type, width }, ref) {
@@ -316,7 +315,7 @@ export default function Form() {
 }
 ```
 
-```js FormField.js
+```js src/FormField.js
 import { forwardRef, useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -341,7 +340,7 @@ export default FormField;
 ```
 
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef((props, ref) => {
@@ -433,7 +432,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
