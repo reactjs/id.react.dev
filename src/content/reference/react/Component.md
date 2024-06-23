@@ -190,11 +190,11 @@ Sebuah *constructor* sebaiknya tidak mengandung *side effects* atau *subscriptio
 
 * `props`: Props awal komponen.
 
-#### Returns {/*constructor-returns*/}
+#### Kembalian {/*constructor-returns*/}
 
 `constructor` seharusnya tidak mengembalikan apapun.
 
-#### Caveats {/*constructor-caveats*/}
+#### Catatan penting {/*constructor-caveats*/}
 
 * Jangan menjalankan *side effects* atau *subscriptions* dalam *constructor*. Sebagai gantinya, gunakan [`componentDidMount`](#componentdidmount) untuk itu.
 
@@ -228,11 +228,11 @@ Biasanya, digunakan bersama dengan [`static getDerivedStateFromError`](#static-g
 
 * `info`: Objek yang berisi informasi tambahan tentang *error*. *Field* `componentStack` berisi jejak tumpukan(*stack trace*) dengan komponen yang melempar kesalahan, serta nama-nama dan lokasi sumber dari semua komponen induknya. Di produksi, nama komponennya akan di-*minified*. Jika Anda mengatur *error reporting* di produksi, Anda dapat mendekode jejak tumpukan(*stack trace*) komponen menggunakan *sourcemaps* dengan cara yang sama seperti yang Anda lakukan untuk jejak tumpukan(*stack trace*) kesalahan JavaScript biasa.
 
-#### Returns {/*componentdidcatch-returns*/}
+#### Kembalian {/*componentdidcatch-returns*/}
 
 `componentDidCatch` seharusnya tidak mengembalikan apapun.
 
-#### Caveats {/*componentdidcatch-caveats*/}
+#### Catatan penting {/*componentdidcatch-caveats*/}
 
 * Di masa lalu, umumnya memanggil `setState` di dalam `componentDidCatch` untuk memperbarui antarmuka pengguna(UI) dan menampilkan pesan kesalahan pengganti. Ini sudah ditinggalkan karena mendefinisikan [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
 
@@ -286,11 +286,11 @@ class ChatRoom extends Component {
 
 `componentDidMount` tidak mengambil parameter apa pun.
 
-#### Returns {/*componentdidmount-returns*/}
+#### Kembalian {/*componentdidmount-returns*/}
 
 `componentDidMount` seharusnya tidak mengembalikan apapun.
 
-#### Caveats {/*componentdidmount-caveats*/}
+#### Catatan penting {/*componentdidmount-caveats*/}
 
 - Ketika [Strict Mode](/reference/react/StrictMode) aktif, di pengembangan React kan memanggil `componentDidMount`, kemudian segera memanggil [`componentWillUnmount`,](#componentwillunmount) dan kemudian memanggil `componentDidMount` lagi. Ini membantu Anda melihai jika Anda lupa untuk mengimplementasikan `componentWillUnmount` atau jika logikanya tidak sepenuhnya "mencerminkan" apa yang dilakukan oleh `componentDidMount`.
 
@@ -351,11 +351,11 @@ class ChatRoom extends Component {
 
 * `snapshot`: Jika Anda mengimplementasikan [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` akan berisi nilai yang Anda kembalikan dari metode tersebut. Jika tidak, nilainya akan `undefined`.
 
-#### Returns {/*componentdidupdate-returns*/}
+#### Kembalian {/*componentdidupdate-returns*/}
 
 `componentDidUpdate` seharusnya tidak mengembalikan apapun.
 
-#### Caveats {/*componentdidupdate-caveats*/}
+#### Catatan penting {/*componentdidupdate-caveats*/}
 
 - `componentDidUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) didefinisikan dan mengembalikan `false`.
 
@@ -448,11 +448,11 @@ class ChatRoom extends Component {
 
 `componentWillUnmount` tidak mengambil parameter apapun.
 
-#### Returns {/*componentwillunmount-returns*/}
+#### Kembalian {/*componentwillunmount-returns*/}
 
 `componentWillUnmount` seharusnya tidak mengembalikan apapun.
 
-#### Caveats {/*componentwillunmount-caveats*/}
+#### Catatan penting {/*componentwillunmount-caveats*/}
 
 - Ketika [Strict Mode](/reference/react/StrictMode) aktif, pada *development* React akan memanggil [`componentDidMount`,](#componentdidmount) kemudian segera memanggil `componentWillUnmount`, dan kemudian memanggil `componentDidMount` lagi. Ini membantu Anda memperhatikan jika Anda lupa menerapkan `componentWillUnmount` atau jika logikanya tidak sepenuhnya "mencerminkan" apa yang `componentDidMount` lakukan.
 
@@ -478,11 +478,11 @@ Cobalah untuk menghindari semua penggunaan `forceUpdate` dan hanya membaca dari 
 
 * **optional** `callback` Jika ditentukan, React akan memanggil `callback` yang Anda berikan setelah pembaruan dilakukan.
 
-#### Returns {/*forceupdate-returns*/}
+#### Kembalian {/*forceupdate-returns*/}
 
 `forceUpdate` tidak mengembalikan apapun.
 
-#### Caveats {/*forceupdate-caveats*/}
+#### Catatan penting {/*forceupdate-caveats*/}
 
 - Jika Anda memanggil `forceUpdate`, React akan me-*render* ulang tanpa memanggil [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
@@ -555,11 +555,11 @@ Pada contoh di atas, penting untuk membaca properti `scrollHeight` secara langsu
 
 * `prevState`: State sebelum pembaharuan. Membandingkan `prevState` ke [`this.state`](#state) untuk menentukan apa yang berubah.
 
-#### Returns {/*getsnapshotbeforeupdate-returns*/}
+#### Kembalian {/*getsnapshotbeforeupdate-returns*/}
 
 Anda harus mengembalikan nilai snapshot dari jenis apa pun yang Anda inginkan, atau `null`. Nilai yang Anda kembalikan akan diteruskan sebagai argumen ketiga pada [`componentDidUpdate`.](#componentdidupdate)
 
-#### Caveats {/*getsnapshotbeforeupdate-caveats*/}
+#### Catatan penting {/*getsnapshotbeforeupdate-caveats*/}
 
 - `getSnapshotBeforeUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) didefinisikan dan mengembalikan `false`.
 
@@ -597,11 +597,11 @@ Anda harus menulis metode `render` sebagai *pure function*, artinya ia harus men
 
 * `prevState`: State sebelum pembaruan. Bandingkan `prevState` ke [`this.state`](#state) untuk menentukan apa yang berubah.
 
-#### Returns {/*render-returns*/}
+#### Kembalian {/*render-returns*/}
 
 `render` dapat mengembalikan *node* React apa pun yang valid. Ini termasuk elemen-elemen React seperti `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), *nodes* kosong (`null`, `undefined`, `true`, dan `false`), dan arrays dari React *nodes*.
 
-#### Caveats {/*render-caveats*/}
+#### Catatan penting {/*render-caveats*/}
 
 - `render` harus ditulis sebagai pure function dari *props*, *state*, dan *context*. Seharusnya tidak memiliki *side effects*.
 
@@ -683,11 +683,11 @@ Anda tidak harus melakukan ini, tetapi akan berguna jika Anda ingin memperbarui 
 
 * **opsional** `callback`: Jika ditentukan, React akan memanggil `callback` yang Anda berikan setelah pembaruan dilakukan.
 
-#### Returns {/*setstate-returns*/}
+#### Kembalian {/*setstate-returns*/}
 
 `setState` tidak mengembalikan apapun.
 
-#### Caveats {/*setstate-caveats*/}
+#### Catatan penting {/*setstate-caveats*/}
 
 - Pikirkan `setState` sebagai *permintaan* daripada perintah langsung untuk memperbarui komponen. Ketika beberapa komponen memperbarui *state*-nya sebagai respons terhadap suatu *event*, React akan mengelompokkan pembaruannya dan merendernya kembali bersama-sama dalam satu lintasan di akhir *event*. Dalam kasus yang jarang terjadi saat Anda perlu memaksa pembaruan *state* tertentu untuk diterapkan secara sinkron, Anda dapat menggabungkannya dalam [`flushSync`,](/reference/react-dom/flushSync) tetapi ini dapat mengganggu kinerja.
 
@@ -742,13 +742,13 @@ React memanggil `shouldComponentUpdate` sebelum *render*-ing ketika *props* baru
 - `nextState`: *State* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#props) untuk menentukan apa yang berubah.
 - `nextContext`: Konteks berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttypes) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
 
-#### Returns {/*shouldcomponentupdate-returns*/}
+#### Kembalian {/*shouldcomponentupdate-returns*/}
 
 Mengembalikan `true` jika Anda ingin komponen di-*render* ulang. Itu merupakan perilaku default.
 
 Mengembalikan `false` untuk memberitahu React bahwa *render* ulang dapat dilewati.
 
-#### Caveats {/*shouldcomponentupdate-caveats*/}
+#### Catatan penting {/*shouldcomponentupdate-caveats*/}
 
 - Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu. 
 
@@ -781,11 +781,11 @@ Jika Anda mendefinisikan `UNSAFE_componentWillMount`, React akan memanggilnya se
 
 `UNSAFE_componentWillMount` tidak menggunakan parameter apa pun.
 
-#### Returns {/*unsafe_componentwillmount-returns*/}
+#### Kembalian {/*unsafe_componentwillmount-returns*/}
 
 `UNSAFE_componentWillMount` seharusnya tidak mengembalikan apa pun.
 
-#### Caveats {/*unsafe_componentwillmount-caveats*/}
+#### Catatan penting {/*unsafe_componentwillmount-caveats*/}
 
 - `UNSAFE_componentWillMount` tidak akan dipanggil jika komponen mengimplementasikan [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) atau [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
@@ -817,11 +817,11 @@ Jika Anda mendefinisikan `UNSAFE_componentWillReceiveProps`, React akan memanggi
 - `nextProps`: *Props* berikutnya yang akan diterima komponen dari komponen induknya. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
 
-#### Returns {/*unsafe_componentwillreceiveprops-returns*/}
+#### Kembalian {/*unsafe_componentwillreceiveprops-returns*/}
 
 `UNSAFE_componentWillReceiveProps` seharusnya tidak mengembalikan apa pun.
 
-#### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
+#### Catatan penting {/*unsafe_componentwillreceiveprops-caveats*/}
 
 - `UNSAFE_componentWillReceiveProps` tidak akan dipanggil jika komponen mengimplementasikan [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) atau [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
@@ -854,11 +854,11 @@ Jika Anda mendefinisikan `UNSAFE_componentWillUpdate`, React akan memanggilnya s
 - `nextProps`: *Props* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextState`: *State* selanjutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#state) untuk menentukan apa yang berubah.
 
-#### Returns {/*unsafe_componentwillupdate-returns*/}
+#### Kembalian {/*unsafe_componentwillupdate-returns*/}
 
 `UNSAFE_componentWillUpdate` seharusnya tidak mengembalikan apa pun.
 
-#### Caveats {/*unsafe_componentwillupdate-caveats*/}
+#### Catatan penting {/*unsafe_componentwillupdate-caveats*/}
 
 - `UNSAFE_componentWillUpdate` tidak akan dipanggil jika [`shouldComponentUpdate`](#shouldcomponentupdate) ditentukan dan mengembalikan `false`.
 
@@ -1018,11 +1018,11 @@ Biasanya, ini digunakan bersama dengan [`componentDidCatch`](#componentDidCatch)
 
 * `error`: Kesalahan yang dilemparkan. Dalam prakteknya, biasanya akan menjadi *instance* dari [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) tetapi ini tidak dijamin karena JavaScript memungkinkan untuk [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) nilai apa saja, termasuk *strings* atau bahkan `null`.
 
-#### Returns {/*static-getderivedstatefromerror-returns*/}
+#### Kembalian {/*static-getderivedstatefromerror-returns*/}
 
 `static getDerivedStateFromError` harus mengembalikan *state* yang memberi tahu komponen untuk menampilkan pesan kesalahan.
 
-#### Caveats {/*static-getderivedstatefromerror-caveats*/}
+#### Catatan penting {/*static-getderivedstatefromerror-caveats*/}
 
 * `static getDerivedStateFromError` harus berupa *pure function*. Jika Anda ingin melakukan efek samping (misalnya, untuk memanggil layanan analitik), Anda juga perlu mengimplementasikan [`componentDidCatch`.](#componentdidcatch)
 
@@ -1081,11 +1081,11 @@ Perhatikan bahwa pola ini mengharuskan Anda mempertahankan nilai *prop* sebelumn
 - `props`: *Props* berikutnya yang akan di-*render* oleh komponen.
 - `state`: *State* berikutnya yang akan di-*render* oleh komponen.
 
-#### Returns {/*static-getderivedstatefromprops-returns*/}
+#### Kembalian {/*static-getderivedstatefromprops-returns*/}
 
 `static getDerivedStateFromProps` mengembalikan objek untuk memperbarui *state*, atau `null` untuk tidak memperbarui apa pun.
 
-#### Caveats {/*static-getderivedstatefromprops-caveats*/}
+#### Catatan penting {/*static-getderivedstatefromprops-caveats*/}
 
 - Metode ini diaktifkan pada *setiap* *render*, apa pun penyebabnya. hal ini berbeda dengan [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), yang hanya aktif bila induk menyebabkan *render* ulang dan bukan sebagai akibat dari `setState` lokal.
 
