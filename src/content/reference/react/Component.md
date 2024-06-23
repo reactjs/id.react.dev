@@ -30,7 +30,7 @@ class Greeting extends Component {
 
 ### `Component` {/*component*/}
 
-Untuk mendefinisikan sebuah komponen React sebagai sebuah kelas, *extend* kelas `Component` bawaan dan definisikan [`render` method:](#render)
+Untuk mendefinisikan sebuah komponen React sebagai sebuah kelas, *extend* kelas `Component` bawaan dan definisikan [*method* `render`:](#render)
 
 ```js
 import { Component } from 'react';
@@ -42,7 +42,7 @@ class Greeting extends Component {
 }
 ```
 
-Hanya `render` *method* yang diperlukan, *methods* yang lain adalah opsional.
+Hanya *method* `render` yang diperlukan, *method* yang lain adalah opsional.
 
 [Lihat lebih banyak contoh di bawah](#usage)
 
@@ -1103,7 +1103,7 @@ Menerapkan `static getDerivedStateFromProps` pada *class component* setara denga
 
 ### Mendefinisikan class component {/*defining-a-class-component*/}
 
-Untuk mendefinisikan komponen React sebagai sebuah *class*, *extend* `Component` *class* bawaan dan definisikan [`render` method:](#render)
+Untuk mendefinisikan komponen React sebagai sebuah *class*, *extend* `Component` *class* bawaan dan definisikan [*method* `render`:](#render)
 
 ```js
 import { Component } from 'react';
@@ -1211,7 +1211,7 @@ Kami merekomendasikan mendefinisikan komponen sebagai fungsi, bukan kelas. [Liha
 
 ---
 
-### Adding lifecycle methods to a class component {/*adding-lifecycle-methods-to-a-class-component*/}
+### Menambahkan *lifecycle methods* ke *class component* {/*adding-lifecycle-methods-to-a-class-component*/}
 
 Ada beberapa metode khusus yang dapat Anda tentukan di kelas Anda.
 
@@ -1597,7 +1597,7 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Migrasi sebuah komponen dengan `lifecycle methods` dari kelas ke fungsi {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
+### Migrasi sebuah komponen dengan *lifecycle methods* dari kelas ke fungsi {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
 
 Asumsikan Anda sedang mengonversi komponen kelas `ChatRoom` ini dengan *lifecycle methods* ke sebuah fungsi:
 
@@ -1739,7 +1739,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Panggilan [`useEffect`](/reference/react/useEffect) ini setara dengan logika dalam `lifecycle methods` di atas. Jika `lifecycle methods` Anda melakukan beberapa hal yang tidak terkait, [pisahkan mereka menjadi beberapa Efek independen.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Berikut adalah contoh lengkap yang dapat Anda coba:
+Panggilan [`useEffect`](/reference/react/useEffect) ini setara dengan logika dalam *lifecycle methods* di atas. Jika *lifecycle methods* Anda melakukan beberapa hal yang tidak terkait, [pisahkan mereka menjadi beberapa Efek independen.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Berikut adalah contoh lengkap yang dapat Anda coba:
 
 <Sandpack>
 
