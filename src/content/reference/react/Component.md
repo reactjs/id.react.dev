@@ -980,7 +980,7 @@ Mendefinisikan `defaultProps` pada *class components* serupa dengan menggunakan 
 
 ### `static propTypes` {/*static-proptypes*/}
 
-Anda dapat mendefinisikan `static propTypes` bersama dengan [`prop-types`](https://www.npmjs.com/package/prop-types) *library* untuk mendeklarasikan jenis *props* yang diterima oleh komponen Anda. Jenis ini akan diperiksa selama *render*-ing dan hanya dalam pengembangan.
+Anda dapat mendefinisikan `static propTypes` bersama dengan pustaka [`prop-types`](https://www.npmjs.com/package/prop-types) untuk mendeklarasikan jenis *props* yang diterima oleh komponen Anda. Jenis ini akan diperiksa selama *render*-ing dan hanya dalam pengembangan.
 
 ```js
 import PropTypes from 'prop-types';
