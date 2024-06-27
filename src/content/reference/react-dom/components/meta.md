@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-React's extensions to `<meta>` are currently only available in React's canary and experimental channels. In stable releases of React `<meta>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Ekstensi React pada `<meta>` saat ini hanya tersedia di saluran eksperimental dan canary. Dalam rilis stabil React `<meta>` hanya bekerja sebagai [komponen HTML bawaan](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) lets you add metadata to the document.
+[Komponen HTML bawaan `<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) memungkinkan Anda menambahkan metadata ke dokumen.
 
 ```js
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
@@ -28,19 +28,19 @@ The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/do
 
 ### `<meta>` {/*meta*/}
 
-To add document metadata, render the [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any component and React will always place the corresponding DOM element in the document head.
+Untuk menambahkan metadata dokumen, *render* komponen HTML bawaan `<meta>`. Anda dapat me-*render* `<meta>` dari komponen apa pun dan React akan selalu menempatkan elemen DOM yang sesuai di `<head>` dokumen.
 
 ```js
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lebih lanjut di bawah.](#usage)
 
 #### Props {/*props*/}
 
-`<meta>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<meta>` mendukung semua [properti elemen pada umumnya.](/reference/react-dom/components/common#props)
 
-It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` component does something different depending on which of these props is specified.
+Elemen ini harus memiliki *setidaknya satu* dari *props* berikut: `name`, `httpEquiv`, `charset`, `itemProp`. Komponen `<meta>` akan menghasilkan hal yang berbeda tergantung dari *props* yang diberikan.
 
 * `name`: a string. Specifies the [kind of metadata](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name) to be attached to the document. 
 * `charset`: a string. Specifies the character set used by the document. The only valid value is `"utf-8"`.
