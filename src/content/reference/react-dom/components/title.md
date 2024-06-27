@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-Ekstensi React untuk `<title>` saat ini hanya tersedia di saluran canary dan eksperimental React. Pada rilis stabil React, `<title>` hanya berfungsi sebagai [komponen HTML bawaan browser](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini.](/community/versioning-policy#all-release-channels).
+Ekstensi React untuk `<title>` saat ini hanya tersedia di saluran canary dan eksperimental React. Pada rilis stabil React, `<title>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini.](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-[Komponen bawaan `<title>` pada browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) memungkinkan Anda untuk menentukan judul dari dokumen.
+[Komponen bawaan peramban `<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) memungkinkan Anda untuk menentukan judul dari dokumen.
 
 ```js
 <title>Blog Saya</title>
@@ -28,7 +28,7 @@ Ekstensi React untuk `<title>` saat ini hanya tersedia di saluran canary dan eks
 
 ### `<title>` {/*title*/}
 
-To specify the title of the document, render the [komponen bawaan `<title>` pada browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
+Untuk menentukan judul dokmen, render [komponen bawaan peramban `<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). Anda dapat me-_render_ `<title>` dari komponen apapun dan React akan selalu menempatkan elemen DOM yang sesuai di _document head_.
 
 ```js
 <title>Blog Saya</title>
@@ -38,31 +38,31 @@ To specify the title of the document, render the [komponen bawaan `<title>` pada
 
 #### Props {/*props*/}
 
-`<title>` mendukung semua [common element props.](/reference/react-dom/components/common#props)
+`<title>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
-* `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
+* `children`: `<title>` hanya menerima teks sebagai anak. Teks ini akan menjadi judul dokumen. Anda juga dapat meng-oper komponen Anda sendiri selama komponen tersebut hanya me-_render_ teks.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Perilaku _render_-ing khusus {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself. 
+React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<title>` di dalam `<head>` dokumen, di mana pun elemen tersebut di-_render_ di pohon React. `<head>` adalah satu-satunya tempat yang valid untuk `<title>` berada dalam DOM, namun tetap mudah dan membuat segala sesuatunya tetap dapat disusun jika komponen yang mewakili laman tertentu dapat me-_render_ `<title>`-nya sendiri. 
 
-There are two exception to this:
-* If `<title>` is within an `<svg>` component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
-* If the `<title>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent the document’s title but rather metadata about a specific part of the page. 
+Ada dua pengecualian untuk hal ini:
+* Jika `<title>` berada dalam komponen `<svg>`, maka tidak ada perilaku khusus, karena dalam konteks ini tidak mewakili judul dokumen melainkan merupakan [anotasi aksesibilitas untuk grafik SVG tersebut](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
+* Jika `<title>` memiliki prop [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop), maka tidak ada perilaku khusus, karena dalam hal ini dalam hal ini tidak mewakili judul dokumen melainkan metadata tentang bagian halaman tertentu.
 
 <Pitfall>
 
-Only render a single `<title>` at a time. If more than one component renders a `<title>` tag at the same time, React will place all of those titles in the document head. When this happens, the behavior of browsers and search engines is undefined.
+Hanya _render_ satu `<title>` dalam satu waktu. Jika lebih dari satu komponen me-_render_ tag `<title>` secara bersamaan, React akan menempatkan semua judul tersebut di dokumen `head`. Jika hal ini terjadi, perilaku peramban dan mesin telusur tidak terdefinisi.
 
 </Pitfall>
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Set the document title {/*set-the-document-title*/}
+### Menyetel judul dokumen {/*set-the-document-title*/}
 
-Render the `<title>` component from any component with text as its children. React will put a `<title>` DOM node in the document `<head>`.
+_Render_ komponen `<title>` dari komponen apapun dengan teks sebagai anak. React akan menempatkan node DOM `<title>` di dokumen `<head>`.
 
 <SandpackWithHTMLOutput>
 
@@ -82,15 +82,15 @@ export default function ContactUsPage() {
 
 </SandpackWithHTMLOutput>
 
-### Use variables in the title {/*use-variables-in-the-title*/}
+### Penggunaan variabel dalam title {/*use-variables-in-the-title*/}
 
-The children of the `<title>` component must be a single string of text. (Or a single number or a single object with a `toString` method.) It might not be obvious, but using JSX curly braces like this:
+_Children_ dari komponen `<title>` harus berupa string teks tunggal. (Atau satu nomor atau satu objek dengan metode `toString`.) Ini mungkin tidak terlihat jelas, tetapi menggunakan kurung kurawal JSX seperti ini:
 
 ```js
-<title>Results page {pageNumber}</title> // 🔴 Problem: This is not a single string
+<title>Results page {pageNumber}</title> // 🔴 Masalah: Ini bukan string tunggal
 ```
 
-... actually causes the `<title>` component to get a two-element array as its children (the string `"Results page"` and the value of `pageNumber`). This will cause an error. Instead, use string interpolation to pass `<title>` a single string:
+... sebenarnya menyebabkan komponen `<title>` mendapatkan array dua elemen sebagai turunan-nya (string `"Results page"` dan nilai `pageNumber`). Ini akan menyebabkan kesalahan. Sebagai gantinya, gunakan interpolasi string untuk meng-oper `<title>` satu string:
 
 ```js
 <title>{`Results page ${pageNumber}`}</title>
