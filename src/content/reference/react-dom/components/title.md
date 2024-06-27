@@ -5,17 +5,17 @@ canary: true
 
 <Canary>
 
-React's extensions to `<title>` are currently only available in React's canary and experimental channels. In stable releases of React `<title>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Ekstensi React untuk `<title>` saat ini hanya tersedia di saluran canary dan eksperimental React. Pada rilis stabil React, `<title>` hanya berfungsi sebagai [komponen HTML bawaan browser](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini.](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) lets you specify the title of the document.
+[Komponen bawaan `<title>` pada browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) memungkinkan Anda untuk menentukan judul dari dokumen.
 
 ```js
-<title>My Blog</title>
+<title>Blog Saya</title>
 ```
 
 </Intro>
@@ -24,21 +24,21 @@ The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<title>` {/*title*/}
 
-To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
+To specify the title of the document, render the [komponen bawaan `<title>` pada browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
 
 ```js
-<title>My Blog</title>
+<title>Blog Saya</title>
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh-contoh lainnya di bawah ini.](#usage)
 
 #### Props {/*props*/}
 
-`<title>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<title>` mendukung semua [common element props.](/reference/react-dom/components/common#props)
 
 * `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
 
