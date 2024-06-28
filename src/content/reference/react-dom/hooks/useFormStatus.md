@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `useFormStatus` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`useFormStatus` Hook saat ini hanya tersedia di saluran canary dan eksperimental React. Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`useFormStatus` is a Hook that gives you status information of the last form submission.
+`useFormStatus` adalah Hook yang memberi Anda informasi state pengiriman form terakhir.
 
 ```js
 const { pending, data, method, action } = useFormStatus();
@@ -23,11 +23,11 @@ const { pending, data, method, action } = useFormStatus();
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useFormStatus()` {/*use-form-status*/}
 
-The `useFormStatus` Hook provides status information of the last form submission.
+Hook `useFormStatus` memberikan informasi state pengiriman form terakhir.
 
 ```js {5},[[1, 6, "status.pending"]]
 import { useFormStatus } from "react-dom";
@@ -47,42 +47,42 @@ export default function App() {
 }
 ```
 
-To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
+Untuk mendapatkan informasi state, komponen `Submit` harus di-_render_ dalam `<form>`. Hook mengembalikan informasi seperti properti <CodeStep step={1}>`pending`</CodeStep> yang memberi tahu Anda apakah form sedang aktif dikirimkan. 
 
-In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
+Pada contoh di atas, `Submit` menggunakan informasi ini untuk menonaktifkan penekanan `<button>` ketika form dikirimkan.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah.](#usage)
 
 #### Parameters {/*parameters*/}
 
-`useFormStatus` does not take any parameters.
+`useFormStatus` tidak menerima parameter apapun.
 
 #### Returns {/*returns*/}
 
-A `status` object with the following properties:
+Objek `status` dengan properti berikut:
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
+* `pending`: Sebuah boolean. Jika `true`, ini berarti `<form>` induk sedang menunggu pengiriman. Jika tidak, `false`.
 
-* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
+* `data`: Objek yang mengimplementasikan [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) yang berisi data yang dikirimkan oleh `<form>` induk. Jika tidak ada kiriman atau tidak ada induk `<form>`, maka akan menjadi `null`.
 
-* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either a `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use the `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) property.
+* `method`: Nilai string dari `'get'` atau `'post'`. Ini menunjukkan apakah `<form>` induk mengirimkan dengan [metode HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) `GET` atau `POST`. Secara default, `<form>` akan menggunakan metode `GET` dan dapat ditentukan oleh properti [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method).
 
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
+* `action`: Referensi fungsi yang diteruskan ke prop `action` pada `<form>` induk. Jika tidak ada `<form>` induk, propertinya adalah `null`. Jika ada URI yang diberikan ke prop `action`, atau tidak ada prop `action` yang ditentukan, `status.action` akan menjadi `null`.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`. 
-* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+* Hook `useFormStatus` harus dipanggil dari komponen yang di-_render_ di dalam `<form>`. 
+* `useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. Ini tidak akan mengembalikan informasi status untuk `<form>` apapun yang di-_render_ dalam komponen yang sama atau komponen anak.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### Menampilkan state tertunda selama pengiriman form {/*display-a-pending-state-during-form-submission*/}
+Untuk menampilkan state tertunda saat form dikirimkan, Anda dapat memanggil Hook `useFormStatus` dalam komponen yang di-_render_ dalam `<form>` dan membaca properti `pending` yang dikembalikan.
 
-Here, we use the `pending` property to indicate the form is submitting. 
+Di sini, kami menggunakan properti `pending` untuk menunjukkan bahwa form sedang dikirimkan. 
 
 <Sandpack>
 
@@ -133,9 +133,9 @@ export async function submitForm(query) {
 
 <Pitfall>
 
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
+##### `useFormStatus` tidak akan mengembalikan informasi status untuk `<form>` yang di-_render_ dalam komponen yang sama. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
 
-The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
+Hook `useFormStatus` hanya mengembalikan informasi status untuk `<form>` induk dan bukan untuk `<form>` apa pun yang di-_render_ dalam komponen yang sama yang memanggil Hook, atau komponen anak.
 
 ```js
 function Form() {
@@ -146,17 +146,17 @@ function Form() {
 }
 ```
 
-Instead call `useFormStatus` from inside a component that is located inside `<form>`.
+Seharusnya panggil `useFormStatus` dari dalam komponen yang terletak di dalam `<form>`.
 
 ```js
 function Submit() {
-  // ✅ `pending` will be derived from the form that wraps the Submit component
+  // ✅ `pending` akan diturunkan dari form yang membungkus komponen Submit
   const { pending } = useFormStatus(); 
   return <button disabled={pending}>...</button>;
 }
 
 function Form() {
-  // This is the <form> `useFormStatus` tracks
+  // Ini adalah <form> yang dipantau oleh `useFormStatus`
   return (
     <form action={submit}>
       <Submit />
@@ -167,11 +167,11 @@ function Form() {
 
 </Pitfall>
 
-### Read the form data being submitted {/*read-form-data-being-submitted*/}
+### Membaca data form yang dikirimkan {/*read-form-data-being-submitted*/}
 
-You can use the `data` property of the status information returned from `useFormStatus` to display what data is being submitted by the user.
+Anda dapat menggunakan properti `data` dari informasi status yang dikembalikan dari `useFormStatus` untuk menampilkan data apa yang dikirimkan oleh pengguna.
 
-Here, we have a form where users can request a username. We can use `useFormStatus` to display a temporary status message confirming what username they have requested.
+Di sini, kita memiliki form di mana pengguna dapat meminta nama pengguna. Kita dapat menggunakan `useFormStatus` untuk menampilkan pesan status sementara yang menginformasikan nama pengguna yang mereka minta.
 
 <Sandpack>
 
@@ -249,12 +249,12 @@ button {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### `status.pending` is never `true` {/*pending-is-never-true*/}
+### `status.pending` tidak pernah `true` {/*pending-is-never-true*/}
 
-`useFormStatus` will only return status information for a parent `<form>`. 
+`useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. 
 
-If the component that calls `useFormStatus` is not nested in a `<form>`, `status.pending` will always return `false`. Verify `useFormStatus` is called in a component that is a child of a `<form>` element.
+Jika komponen yang memanggil `useFormStatus` tidak disarangkan dalam `<form>`, `status.pending` akan selalu mengembalikan `false`. Pastikan `useFormStatus` dipanggil dalam komponen yang merupakan turunan dari elemen `<form>`.
 
-`useFormStatus` will not track the status of a `<form>` rendered in the same component. See [Pitfall](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) for more details.
+`useFormStatus` tidak akan melacak status `<form>` yang di-_render_ dalam komponen yang sama. Lihat [Sandungan](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) untuk lebih detail.
