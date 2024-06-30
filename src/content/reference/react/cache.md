@@ -57,7 +57,7 @@ Saat memanggil `cachedFn` dengan argumen yang diberikan, Pertama ia akan mengece
 
 <Note>
 
-Optimalisasi dari melakukan *cache* pada nilai kembalian berdasarkan masukkan dikenal sebagai [*memoization*](https://en.wikipedia.org/wiki/Memoization). Kita mengacu mengacu pada fungsi yang dikembalikan dari `cache` sebagai fungsi yang dimemo.
+Optimalisasi dari melakukan *cache* pada nilai kembalian berdasarkan masukkan dikenal sebagai [*memoization*](https://en.wikipedia.org/wiki/Memoization). Kita mengacu mengacu pada fungsi yang dikembalikan dari `cache` sebagai fungsi yang di-*memo*.
 
 </Note>
 
@@ -66,7 +66,7 @@ Optimalisasi dari melakukan *cache* pada nilai kembalian berdasarkan masukkan di
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
 - React akan menginvalidasi *cache* untuk setiap fungsi yang di-*memo* untuk setiap permintaan server.
-- Setiap pemanggil `cache` membentuk sebuah fungsi baru. Hal ini berarti, memanggi `cache` dengan fungsi yang sama berkali-kali akan mengembalikan fungsi ter-*memo* berbeda yang tidak berbagi *cache* yang sama
+- Setiap pemanggil `cache` membentuk sebuah fungsi baru. Hal ini berarti, memanggil `cache` dengan fungsi yang sama berkali-kali akan mengembalikan fungsi ter-*memo* berbeda yang tidak berbagi *cache* yang sama
 - `cachedFn` juga akan men-*cache* eror-eror. Jika `fn` melempar sebuah eror untuk sebuah argumen tertentu, Itu akan ter-*cache*, dan eror yang sama akan dilempar kembali saat `cachedFn` dipanggil dengan argumen yang sama tersebut.
 - `cache` hanya dapat digunakan di [*Server Components*](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
@@ -109,7 +109,6 @@ Saat `TeamReport` me-*render* daftar `users`-nya dan menjangkau objek `user` yan
 ##### Memanggil fungsi ter-*memo* berbeda akan membaca dari *caches* yang berbeda. {/*pitfall-different-memoized-functions*/}
 
 Untuk mengakses *cache* yang sama, komponen-komponen harus memanggil fungsi ter-*memo* yang sama.
-To access the same cache, components must call the same memoized function.
 
 ```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
@@ -142,7 +141,7 @@ Pada contoh diatas, <CodeStep step={2}>`Precipitation`</CodeStep> dan <CodeStep 
 
 Sebagai tambahan, `Temperature` membentuk sebuah <CodeStep step={1}>fungsi ter-*memo* baru</CodeStep> setiap kali komponen ter-*render* yang tidak memperbolehkannya untuk berbagi *cache*.
 
-Untuk memaksimalkan *cache* dan mengurangi pekerjaan, kedua komponen tersebut harus memanggil fungsi ter-*memo* yang sama untuk mengakses *cache* yang sama. kedua komponen harus memanggil fungsi memo yang sama untuk mengakses cache yang sama. Sebagai gantinya, tentukan fungsi memoized dalam modul khusus yang dapat [`impor`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) di seluruh komponen.
+Untuk memaksimalkan *cache* dan mengurangi pekerjaan, kedua komponen tersebut harus memanggil fungsi ter-*memo* yang sama untuk mengakses *cache* yang sama. kedua komponen harus memanggil fungsi memo yang sama untuk mengakses cache yang sama. Sebagai gantinya, tentukan fungsi ter-*memo* dalam modul khusus yang dapat [`impor`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) di seluruh komponen.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -171,7 +170,7 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-Disini, kedua komponen memanggil <CodeStep step={3}>fungsi ter-memo sama</CodeStep> yang diekspor dari `./getWeekReport.js` untuk membaca dan menulis pada *cache* yang sama.
+Disini, kedua komponen memanggil <CodeStep step={3}>fungsi ter-*memo* sama</CodeStep> yang diekspor dari `./getWeekReport.js` untuk membaca dan menulis pada *cache* yang sama.
 </Pitfall>
 
 ### Membagikan cuplikan data {/*take-and-share-snapshot-of-data*/}
@@ -318,7 +317,7 @@ Hal ini karena akses dari *cache* disediakan melalui [*context*](/learn/passing-
 
 #### Kapan saya harus menggunakan `cache`, [`memo`](/reference/react/memo), atau [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
 
-Semua API yang disebutkan di atas menawarkan *memo*, tetapi perbedaannya adalah apa yang dimaksudkan untuk *memo*,, siapa yang dapat mengakses *cache*, dan kapan *cache* mereka tidak valid.
+Semua API yang disebutkan di atas menawarkan *memo*, tetapi perbedaannya adalah apa yang dimaksudkan untuk *memo*, siapa yang dapat mengakses *cache*, dan kapan *cache* mereka tidak valid.
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
@@ -342,7 +341,7 @@ function App() {
   );
 }
 ```
-Pada contoh ini, `App` me-*render* dua `WeatherReport` dengan catatan yang sama. Meskipun kedua komponen melakukan pekerjaan yang sama, mereka tidak dapat berbagi pekerjaan. Cache `useMemo` hanya bersifat lokal pada komponen tersebut. 
+Pada contoh ini, `App` me-*render* dua `WeatherReport` dengan catatan yang sama. Meskipun kedua komponen melakukan pekerjaan yang sama, mereka tidak dapat berbagi pekerjaan. Cache `useMemo` hanya bersifat lokal pada komponen tersebut.
 
 Akan tetapi, `useMemo` memastikan bahwa jika `App` ter-*render* ulang dan objek `record` tidak berubah, setiap *instance* komponen akan melewatkan pekerjaan dan menggunakan nilai ter-*memo* dari `avgTemp`. `useMemo` akan hanya melakukan *cache* komputasi terakhir dari `avgTemp` dengan *dependencies* yang diberikan.
 
