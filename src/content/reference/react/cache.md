@@ -404,7 +404,7 @@ Apabila dibandingkan dengan `useMemo`, `memo` me-*memo* komponen tersebut di-*re
 
 ---
 
-## *Troubleshooting* {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
 ### Fungsi ter-memo saya tidak berjalan walaupun saya sudah memanggilnya dengan argumen-argumen yang sama {/*memoized-function-still-runs*/}
 
