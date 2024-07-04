@@ -45,7 +45,7 @@ Saat `getMetrics` pertama kali dipanggil dengan `data`, `getMetrics` akan memang
 
 [Lihat lebih banyak contoh dibawah.](#usage)
 
-#### Parameter-parameter {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 - `fn`: Fungsi yang ingin anda *cache* hasilnya. `fn` dapat meneriman argumen apapun dan mengembalikan nilai apapun.
 
