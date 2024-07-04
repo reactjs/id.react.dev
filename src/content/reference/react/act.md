@@ -4,7 +4,7 @@ title: act
 
 <Intro>
 
-`act` is a test helper to apply pending React updates before making assertions.
+`act` adalah alat bantu pengujian untuk menerapkan pembaruan React yang tertunda sebelum melakukan perbandingan.
 
 ```js
 await act(async actFn)
@@ -12,10 +12,10 @@ await act(async actFn)
 
 </Intro>
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `await act()` call. This makes your test run closer to how React works in the browser.
+Untuk mempersiapkan komponen sebelum perbandingan, bungkus kode yang me-*render*-nya dan melakukan pembaruan di dalam panggilan await act(). Ini membuat pengujian Anda lebih mendekati cara kerja React di peramban.
 
 <Note>
-You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), whose helpers are wrapped with `act()`.
+Anda mungkin merasa penggunaan `act()` secara langsung agak terlalu bertele-tele. Untuk menghindari beberapa boilerplate, Anda bisa menggunakan pustaka seperti [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), yang alat bantunya sudah dibungkus dengan `act()`.
 </Note>
 
 
@@ -23,16 +23,16 @@ You might find using `act()` directly a bit too verbose. To avoid some of the bo
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `await act(async actFn)` {/*await-act-async-actfn*/}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as “units” of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these “units” have been processed and applied to the DOM before you make any assertions.
+Saat menulis pengujian UI, tugas-tugas seperti me-*render*, *events* pengguna, atau pengambilan data dapat dianggap sebagai "unit" interaksi dengan antarmuka pengguna. React menyediakan alat bantu bernama `act()` yang memastikan semua pembaruan terkait "unit" ini telah diproses dan diterapkan ke DOM sebelum Anda melakukan perbandingan apa pun.
 
-The name `act` comes from the [Arrange-Act-Assert](https://wiki.c2.com/?ArrangeActAssert) pattern.
+Nama `act` berasal dari pola [Arrange-Act-Assert](https://wiki.c2.com/?ArrangeActAssert).
 
 ```js {2,4}
-it ('renders with button disabled', async () => {
+it ('merender dengan tombol dinonaktifkan', async () => {
   await act(async () => {
     root.render(<TestComponent />)
   });
@@ -42,25 +42,25 @@ it ('renders with button disabled', async () => {
 
 <Note>
 
-We recommend using `act` with `await` and an `async` function. Although the sync version works in many cases, it doesn't work in all cases and due to the way React schedules updates internally, it's difficult to predict when you can use the sync version.
+Kami merekomendasikan penggunaan `act` dengan `await` dan fungsi `async`. Meskipun versi sinkron bekerja dalam banyak kasus, ia tidak berfungsi di semua kasus dan karena cara React menjadwalkan pembaruan secara internal, sulit untuk memprediksi kapan Anda dapat menggunakan versi sinkron.
 
-We will deprecate and remove the sync version in the future.
+Kami akan menonaktifkan dan menghapus versi sinkron di masa mendatang.
 
 </Note>
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `async actFn`: An async function wrapping renders or interactions for components being tested. Any updates triggered within the `actFn`, are added to an internal act queue, which are then flushed together to process and apply any changes to the DOM. Since it is async, React will also run any code that crosses an async boundary, and flush any updates scheduled.
+* `async actFn`: Fungsi async yang membungkus *render* atau interaksi untuk komponen yang diuji. Pembaruan yang dipicu dalam `actFn`, ditambahkan ke antrean act internal, yang kemudian dibersihkan bersama untuk memproses dan menerapkan perubahan pada DOM. Karena bersifat async, React juga akan menjalankan kode yang melewati batas async, dan membersihkan pembaruan yang dijadwalkan.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`act` does not return anything.
+`act` tidak mengembalikan apa pun.
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-When testing a component, you can use `act` to make assertions about its output.
+Saat menguji sebuah komponen, Anda dapat menggunakan `act` untuk membuat perbandingan tentang keluarannya.
 
-For example, let’s say we have this `Counter` component, the usage examples below show how to test it:
+Sebagai contoh, misalnya kita memiliki komponen `Counter`, contoh penggunaan di bawah ini menunjukkan cara mengujinya:
 
 ```js
 function Counter() {
@@ -70,30 +70,30 @@ function Counter() {
   }
 
   useEffect(() => {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Anda mengklik ${this.state.count} kali`;
   }, [count]);
 
   return (
     <div>
-      <p>You clicked {this.state.count} times</p>
+      <p>Anda mengklik ${this.state.count} kali</p>
       <button onClick={this.handleClick}>
-        Click me
+        Klik saya
       </button>
     </div>
   )
 }
 ```
 
-### Rendering components in tests {/*rendering-components-in-tests*/}
+### Me-*render* komponen dalam pengujian {/*rendering-components-in-tests*/}
 
-To test the render output of a component, wrap the render inside `act()`:
+Untuk menguji keluaran *render* suatu komponen, bungkus *render* tersebut di dalam `act()`:
 
 ```js  {10,12}
 import {act} from 'react';
 import ReactDOM from 'react-dom/client';
 import Counter from './Counter';
 
-it('can render and update a counter', async () => {
+it('dapat me-render dan memperbarui penghitung', async () => {
   container = document.createElement('div');
   document.body.appendChild(container);
   
@@ -104,25 +104,25 @@ it('can render and update a counter', async () => {
   
   const button = container.querySelector('button');
   const label = container.querySelector('p');
-  expect(label.textContent).toBe('You clicked 0 times');
-  expect(document.title).toBe('You clicked 0 times');
+  expect(label.textContent).toBe('Anda mengklik 0 kali');
+  expect(document.title).toBe('Anda mengklik 0 kali');
 });
 ```
 
-Here, we create a container, append it to the document, and render the `Counter` component inside `act()`. This ensures that the component is rendered and its effects are applied before making assertions.
+Di sini, kita membuat sebuah kontainer, menambahkannya ke dalam dokumen, dan me-*render* komponen `Counter` di dalam `act()`. Hal ini memastikan bahwa komponen tersebut di-*render* dan efek-efeknya diterapkan sebelum melakukan perbandingan.
 
-Using `act` ensures that all updates have been applied before we make assertions.
+Menggunakan `act` memastikan bahwa semua pembaruan telah diterapkan sebelum kita melakukan perbandingan.
 
-### Dispatching events in tests {/*dispatching-events-in-tests*/}
+### Mengirimkan events dalam pengujian {/*dispatching-events-in-tests*/}
 
-To test events, wrap the event dispatch inside `act()`:
+Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`: 
 
 ```js {14,16}
 import {act} from 'react';
 import ReactDOM from 'react-dom/client';
 import Counter from './Counter';
 
-it.only('can render and update a counter', async () => {
+it.only('dapat me-render dan memperbarui penghitung', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
   
@@ -137,26 +137,26 @@ it.only('can render and update a counter', async () => {
 
   const button = container.querySelector('button');
   const label = container.querySelector('p');
-  expect(label.textContent).toBe('You clicked 1 times');
-  expect(document.title).toBe('You clicked 1 times');
+  expect(label.textContent).toBe('Anda mengklik 1 kali');
+  expect(document.title).toBe('Anda mengklik 1 kali');
 });
 ```
 
-Here, we render the component with `act`, and then dispatch the event inside another `act()`. This ensures that all updates from the event are applied before making assertions.
+Di sini, kita me-*render* komponen dengan `act`, dan kemudian mengirimkan *event* ke dalam `act` lainnya. Hal ini memastikan bahwa semua pembaruan dari *event* tersebut diterapkan sebelum melakukan perbandingan.
 
 <Pitfall>
 
-Don’t forget that dispatching DOM events only works when the DOM container is added to the document. You can use a library like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to reduce the boilerplate code.
+Jangan lupa bahwa mengirimkan *events* DOM hanya berfungsi ketika kontainer DOM ditambahkan ke dalam dokumen. Anda dapat menggunakan pustaka seperti [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) untuk mengurangi kode boilerplate.
 
 </Pitfall>
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### I'm getting an error: "The current testing environment is not configured to support act"(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+### Saya mendapatkan error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
 
-Using `act` requires setting `global.IS_REACT_ACT_ENVIRONMENT=true` in your test environment. This is to ensure that `act` is only used in the correct environment.
+Menggunakan `act` memerlukan pengaturan `global.IS_REACT_ACT_ENVIRONMENT=true` di lingkungan pengujian Anda. Hal ini untuk memastikan bahwa `act` hanya digunakan di lingkungan yang tepat.
 
-If you don't set the global, you will see an error like this:
+Jika Anda tidak mengatur global ini, Anda akan melihat error seperti ini:
 
 <ConsoleBlock level="error">
 
@@ -164,7 +164,7 @@ Warning: The current testing environment is not configured to support act(...)
 
 </ConsoleBlock>
 
-To fix, add this to your global setup file for React tests:
+Untuk memperbaikinya, tambahkan ini ke *file* pengaturan global untuk pengujian React Anda:
 
 ```js
 global.IS_REACT_ACT_ENVIRONMENT=true
@@ -172,6 +172,6 @@ global.IS_REACT_ACT_ENVIRONMENT=true
 
 <Note>
 
-In testing frameworks like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), `IS_REACT_ACT_ENVIRONMENT` is already set for you.
+Pada *framework* pengujian seperti [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), `IS_REACT_ACT_ENVIRONMENT` sudah diatur untuk Anda.s
 
 </Note>
