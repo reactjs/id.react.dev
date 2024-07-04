@@ -49,7 +49,7 @@ Saat `getMetrics` pertama kali dipanggil dengan `data`, `getMetrics` akan memang
 
 - `fn`: Fungsi yang ingin anda *cache* hasilnya. `fn` dapat meneriman argumen apapun dan mengembalikan nilai apapun.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `cache` mengembalikan versi ter-*cache* dari `fn` dengan tanda tangan tipe yang sama. Ia tidak memanggil `fn` dalam prosesnya.
 
