@@ -219,7 +219,7 @@ async function AnimatedWeatherCard({city}) {
 
 </Note>
 
-### Data pramuat {/*preload-data*/}
+### Pramuat data {/*preload-data*/}
 
 Dengan melakukan *cache* pada data hasil *fetch* yang panjang, anda dapat memulai proses asinkron sebelum me-*render* komponen.
 
