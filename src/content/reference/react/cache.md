@@ -221,7 +221,7 @@ async function AnimatedWeatherCard({city}) {
 
 ### Pramuat data {/*preload-data*/}
 
-Dengan melakukan *cache* pada data hasil *fetch* yang panjang, anda dapat memulai proses asinkron sebelum me-*render* komponen.
+Dengan melakukan *cache* pada data hasil *fetch* yang panjang, Anda dapat memulai proses asinkron sebelum me-*render* komponen.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
