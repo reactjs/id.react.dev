@@ -347,7 +347,7 @@ Akan tetapi, `useMemo` memastikan bahwa jika `App` ter-*render* ulang dan objek 
 
 #### `cache` {/*deep-dive-cache*/}
 
-Secara umum, anda seharusnya menggunakan `cache` dalam komponen *server* untuk me-*memo* pekerjaan yang dapat dibagikan ke seluruh komponen.
+Secara umum, Anda seharusnya menggunakan `cache` dalam *Server Component* untuk me-*memo* pekerjaan yang dapat dibagikan ke seluruh komponen.
 
 ```js [[1, 12, "<WeatherReport city={city} />"], [3, 13, "<WeatherReport city={city} />"], [2, 1, "cache(fetchReport)"]]
 const cachedFetchReport = cache(fetchReport);
