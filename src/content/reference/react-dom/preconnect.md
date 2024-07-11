@@ -48,7 +48,7 @@ Fungsi `preconnect` memberikan petunjuk kepada browser untuk membuka koneksi ke 
 * `href`: sebuah string. URL server yang ingin Anda sambungkan.
 
 
-#### Pengembalian {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `preconnect` tidak mengembalikan apa pun.
 
