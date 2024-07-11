@@ -11,7 +11,7 @@ canary: true
 
 <Intro>
 
-`cache` memungkinkan anda untuk melakukan *cache* pada data hasil *fetch* atau komputasi.
+`cache` memungkinkan Anda untuk melakukan *cache* pada hasil pengambilan atau komputasi data.
 
 ```js
 const cachedFn = cache(fn);
