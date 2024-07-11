@@ -414,7 +414,7 @@ Lihatlah jebakan yang disebutkan sebelumnya
 
 Jika yang disebutkan di atas tidak berlaku, mungkin ada masalah dengan cara React memeriksa apakah ada sesuatu yang ada di dalam *cache*.
 
-Jika argumen-argumen anda bukan [*primitives*](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (contoh: objek, fungsi, array), pastikan anda memberikan referensi pada objek yang sama.
+Jika argumen-argumen Anda bukan [*primitives*](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (contoh: objek, fungsi, array), pastikan Anda memberikan referensi objek yang sama.
 
 Saat memanggil fungsi yang ter-memo, React akan mencari argumen masukkan untuk melihat apakah sebuah nilai telah di-*cache*. React akan menggunakan *shallow equality* pada argumen-argumen untuk menentukan apakah ada *cache hit*.
 
