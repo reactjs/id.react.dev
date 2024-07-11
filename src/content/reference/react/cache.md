@@ -47,7 +47,7 @@ Saat `getMetrics` pertama kali dipanggil dengan `data`, `getMetrics` akan memang
 
 #### Parameter {/*parameters*/}
 
-- `fn`: Fungsi yang ingin anda *cache* hasilnya. `fn` dapat meneriman argumen apapun dan mengembalikan nilai apapun.
+- `fn`: Fungsi yang ingin Anda *cache* hasilnya. `fn` dapat meneriman argumen apapun dan mengembalikan nilai apapun.
 
 #### Kembalian {/*returns*/}
 
