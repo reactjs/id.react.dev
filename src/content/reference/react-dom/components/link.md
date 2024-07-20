@@ -68,7 +68,7 @@ _Props_ ini berlaku dalam semua kasus:
 * `href`: _string_. URL dari sumber daya yang ditautkan.
 * `crossOrigin`: _string_. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`. Diperlukan ketika `as` diatur ke `"fetch"`.
 * `referrerPolicy`: _string_. [Header Referrer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) yang dikirim saat mengambil. Nilai yang mungkin adalah `no-referrer-when-downgrade` (default), `no-referrer`, `origin`, `origin-when-cross-origin`, dan `unsafe-url`.
-* `fetchPriority`: _string_. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang mungkin adalah `auto` (default), `high`, dan `low`.
+* `fetchPriority`: _string_. Menyarankan prioritisasi terhadap pengambilan sumber daya. Nilai yang mungkin adalah `auto` (default), `high`, dan `low`.
 * `hrefLang`: _string_. Bahasa dari sumber daya yang ditautkan.
 * `integrity`: _string_. Hash kriptografi dari sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
 * `type`: _string_. Tipe MIME dari sumber daya yang ditautkan.
