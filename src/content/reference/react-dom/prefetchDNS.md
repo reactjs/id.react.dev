@@ -54,8 +54,8 @@ Fungsi prefetchDNS memberikan petunjuk kepada browser untuk mencari alamat IP da
 #### Peringatan {/*caveats*/}
 
 * Beberapa panggilan ke `prefetchDNS` dengan server yang sama memiliki efek yang sama dengan panggilan tunggal.
-* Di browser, Anda dapat memanggil `prefetchDNS` dalam situasi apa pun: saat merender komponen, di Effect, di event handler, dan sebagainya.
-* Dalam rendering sisi server atau saat merender Komponen Server, `prefetchDNS` hanya memiliki efek jika Anda memanggilnya saat merender komponen atau dalam konteks asinkronisasi yang berasal dari rendering komponen. Pemanggilan lainnya akan diabaikan.
+* Di browser, Anda dapat memanggil `prefetchDNS` dalam situasi apa pun: saat me-*render* komponen, di Effect, di *event handler*, dan sebagainya.
+* Dalam rendering sisi server atau saat me-*render* Komponen Server, `prefetchDNS` hanya memiliki efek jika Anda memanggilnya saat me-*render* komponen atau dalam konteks asinkronisasi yang berasal dari rendering komponen. Pemanggilan lainnya akan diabaikan.
 * Jika Anda mengetahui sumber daya spesifik yang Anda perlukan, Anda dapat memanggil [fungsi lain](/reference/react-dom/#resource-preloading-apis) sebagai gantinya yang akan langsung memuat sumber daya.
 * Tidak ada manfaatnya untuk mengambil sumber daya dari server yang sama dengan tempat halaman web dihosting karena sumber daya tersebut sudah dicari pada saat petunjuk diberikan.
 * Dibandingkan dengan [`preconnect`](/reference/react-dom/preconnect), `prefetchDNS` mungkin lebih baik jika Anda secara spekulatif menyambungkan ke sejumlah besar domain, yang mana dalam hal ini biaya tambahan untuk melakukan prapenghubungan bisa jadi lebih besar daripada manfaatnya.
@@ -64,9 +64,9 @@ Fungsi prefetchDNS memberikan petunjuk kepada browser untuk mencari alamat IP da
 
 ## Penggunaan {/*usage*/}
 
-### Melakukan prefetching DNS saat merender {/*prefetching-dns-when-rendering*/}
+### Melakukan prefetching DNS saat me-render {/*prefetching-dns-when-rendering*/}
 
-Panggil `prefetchDNS` saat merender komponen jika Anda mengetahui bahwa anak komponen akan memuat sumber daya eksternal dari host tersebut.
+Panggil `prefetchDNS` saat me-*render* komponen jika Anda mengetahui bahwa anak komponen akan memuat sumber daya eksternal dari host tersebut.
 
 ```js
 import { prefetchDNS } from 'react-dom';
@@ -79,7 +79,7 @@ function AppRoot() {
 
 ### Prefetching DNS pada event handler {/*prefetching-dns-in-an-event-handler*/}
 
-Panggil `prefetchDNS` di dalam event handler sebelum bertransisi ke halaman atau state yang membutuhkan sumber daya eksternal. Hal ini akan memulai proses lebih awal dibandingkan jika Anda memanggilnya saat merender halaman atau state baru.
+Panggil `prefetchDNS` di dalam *event handler* sebelum bertransisi ke halaman atau state yang membutuhkan sumber daya eksternal. Hal ini akan memulai proses lebih awal dibandingkan jika Anda memanggilnya saat me-*render* halaman atau state baru.
 
 ```js
 import { prefetchDNS } from 'react-dom';
