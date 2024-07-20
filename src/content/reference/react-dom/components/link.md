@@ -89,7 +89,7 @@ Ada beberapa pengecualian untuk ini:
 
 #### Perilaku khusus untuk _stylesheet_ {/*special-behavior-for-stylesheets*/}
 
-Selain itu, jika `<link>` menuju _stylesheet_ (yaitu, memiliki `rel="stylesheet"` dalam propertinya), React memperlakukannya secara khusus dalam cara berikut:
+Selain itu, jika `<link>` menuju _stylesheet_ (yaitu, memiliki `rel="stylesheet"` dalam _props_), React memperlakukannya secara khusus dalam cara berikut:
 
 * Komponen yang me-_render_ `<link>` akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat.
 * Jika beberapa komponen me-_render_ tautan ke _stylesheet_ yang sama, React akan menghapus duplikatnya dan hanya menempatkan satu tautan ke dalam DOM. Dua tautan dianggap sama jika mereka memiliki _prop_ `href` yang sama.
