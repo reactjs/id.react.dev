@@ -27,7 +27,7 @@ Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal _canary_ dan eksp
 
 ### `<link>` {/*link*/}
 
-Untuk menautkan ke sumber daya eksternal seperti _stylesheet_, _font_, dan ikon, atau untuk memberi anotasi pada dokumen dengan metadata tautan, renderlah [komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). Anda dapat merender `<link>` dari komponen mana pun dan React [dalam kebanyakan kasus](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai di bagian kepala dokumen.
+Untuk menautkan ke sumber daya eksternal seperti _stylesheet_, _font_, dan ikon, atau untuk memberi anotasi pada dokumen dengan metadata tautan, renderlah [komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). Anda dapat me-render `<link>` dari komponen mana pun dan React [dalam kebanyakan kasus](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai di bagian kepala dokumen.
 
 ```js
 <link rel="icon" href="favicon.ico" />
@@ -75,11 +75,11 @@ _Props_ ini berlaku dalam semua kasus:
 
 _Props_ yang **tidak direkomendasikan** untuk digunakan dengan React:
 
-* `blocking`: _string_. Jika diatur ke `"render"`, instruksikan browser untuk tidak merender halaman sampai _stylesheet_ dimuat. React memberikan kendali yang lebih halus menggunakan _Suspense_.
+* `blocking`: _string_. Jika diatur ke `"render"`, instruksikan browser untuk tidak me-render halaman sampai _stylesheet_ dimuat. React memberikan kendali yang lebih halus menggunakan _Suspense_.
 
 #### Perilaku rendering khusus {/*special-rendering-behavior*/}
 
-React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<link>` di dalam `<head>` dokumen, terlepas dari mana dalam pohon React itu dirender. `<head>` adalah satu-satunya tempat valid untuk `<link>` dalam DOM, namun ini sesuai dan menjaga hal-hal tetap dapat dikomposisikan jika sebuah komponen yang mewakili halaman tertentu dapat merender komponen `<link>` itu sendiri.
+React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<link>` di dalam `<head>` dokumen, terlepas dari mana dalam pohon React itu dirender. `<head>` adalah satu-satunya tempat valid untuk `<link>` dalam DOM, namun ini sesuai dan menjaga hal-hal tetap dapat dikomposisikan jika sebuah komponen yang mewakili halaman tertentu dapat me-render komponen `<link>` itu sendiri.
 
 Ada beberapa pengecualian untuk ini:
 
@@ -91,8 +91,8 @@ Ada beberapa pengecualian untuk ini:
 
 Selain itu, jika `<link>` menuju _stylesheet_ (yaitu, memiliki `rel="stylesheet"` dalam propertinya), React memperlakukannya secara khusus dalam cara berikut:
 
-* Komponen yang merender `<link>` akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat.
-* Jika beberapa komponen merender tautan ke _stylesheet_ yang sama, React akan menghapus duplikatnya dan hanya menempatkan satu tautan ke dalam DOM. Dua tautan dianggap sama jika mereka memiliki _prop_ `href` yang sama.
+* Komponen yang me-render `<link>` akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat.
+* Jika beberapa komponen me-render tautan ke _stylesheet_ yang sama, React akan menghapus duplikatnya dan hanya menempatkan satu tautan ke dalam DOM. Dua tautan dianggap sama jika mereka memiliki _prop_ `href` yang sama.
 
 Ada dua pengecualian untuk perilaku khusus ini:
 
@@ -133,10 +133,10 @@ export default function BlogPage() {
 
 ### Menautkan ke _stylesheet_ {/*linking-to-a-stylesheet*/}
 
-Jika sebuah komponen bergantung pada _stylesheet_ tertentu agar dapat ditampilkan dengan benar, Anda dapat merender tautan ke _stylesheet_ tersebut di dalam komponen. Komponen Anda akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat. Anda harus menyertakan _prop_ `precedence`, yang memberi tahu React di mana harus menempatkan _stylesheet_ ini tergantung pada yang lain — _stylesheet_ dengan _precedence_ lebih tinggi dapat menimpa yang dengan _precedence_ lebih rendah.
+Jika sebuah komponen bergantung pada _stylesheet_ tertentu agar dapat ditampilkan dengan benar, Anda dapat me-render tautan ke _stylesheet_ tersebut di dalam komponen. Komponen Anda akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat. Anda harus menyertakan _prop_ `precedence`, yang memberi tahu React di mana harus menempatkan _stylesheet_ ini tergantung pada yang lain — _stylesheet_ dengan _precedence_ lebih tinggi dapat menimpa yang dengan _precedence_ lebih rendah.
 
 <Note>
-Ketika Anda ingin menggunakan _stylesheet_, akan lebih bermanfaat untuk memanggil _function_ [preinit](/reference/react-dom/preinit). Memanggil _function_ ini dapat memungkinkan peramban untuk mulai mengambil _stylesheet_ lebih awal daripada jika Anda hanya merender komponen `<link>`, misalnya dengan mengirimkan [respons HTTP Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+Ketika Anda ingin menggunakan _stylesheet_, akan lebih bermanfaat untuk memanggil _function_ [preinit](/reference/react-dom/preinit). Memanggil _function_ ini dapat memungkinkan peramban untuk mulai mengambil _stylesheet_ lebih awal daripada jika Anda hanya me-render komponen `<link>`, misalnya dengan mengirimkan [respons HTTP Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
 <SandpackWithHTMLOutput>
@@ -158,7 +158,7 @@ export default function SiteMapPage() {
 
 ### Mengendalikan _precedence_ _stylesheet_ {/*controlling-stylesheet-precedence*/}
 
-Stylesheet dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan _stylesheet_ dengan _prop_ `precedence`. Dalam contoh ini, dua komponen merender _stylesheet_, dan yang memiliki _precedence_ lebih tinggi akan muncul kemudian dalam dokumen meskipun komponen yang merendernya datang lebih awal.
+Stylesheet dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan _stylesheet_ dengan _prop_ `precedence`. Dalam contoh ini, dua komponen me-render _stylesheet_, dan yang memiliki _precedence_ lebih tinggi akan muncul kemudian dalam dokumen meskipun komponen yang merendernya datang lebih awal.
 
 {/*FIXME: ini tampaknya tidak benar-benar berfungsi -- sepertinya _precedence_ belum diimplementasikan?*/}
 
@@ -191,7 +191,7 @@ function KomponenKedua() {
 
 ### Merender _stylesheet_ yang dihapus duplikatnya {/*deduplicated-stylesheet-rendering*/}
 
-Jika Anda merender _stylesheet_ yang sama dari beberapa komponen, React hanya akan menempatkan satu `<link>` di bagian kepala dokumen.
+Jika Anda me-render _stylesheet_ yang sama dari beberapa komponen, React hanya akan menempatkan satu `<link>` di bagian kepala dokumen.
 
 <SandpackWithHTMLOutput>
 
