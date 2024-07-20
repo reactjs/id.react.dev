@@ -75,7 +75,7 @@ _Props_ ini berlaku dalam semua kasus:
 
 _Props_ yang **tidak direkomendasikan** untuk digunakan dengan React:
 
-* `blocking`: _string_. Jika diatur ke `"render"`, instruksikan browser untuk tidak merender halaman sampai _stylesheet_ dimuat. React memberikan kontrol yang lebih halus menggunakan _Suspense_.
+* `blocking`: _string_. Jika diatur ke `"render"`, instruksikan browser untuk tidak merender halaman sampai _stylesheet_ dimuat. React memberikan kendali yang lebih halus menggunakan _Suspense_.
 
 #### Perilaku rendering khusus {/*special-rendering-behavior*/}
 
