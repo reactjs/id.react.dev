@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal canary dan eksperimental React. Pada rilis stabil React, `<link>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
+Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal _canary_ dan eksperimental React. Pada rilis stabil React, `<link>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-[komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti stylesheet atau memberi anotasi pada dokumen dengan metadata tautan.
+[komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti _stylesheet_ atau memberi anotasi pada dokumen dengan metadata tautan.
 
 ```js
 <link rel="icon" href="favicon.ico" />
@@ -27,7 +27,7 @@ Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal canary dan eksper
 
 ### `<link>` {/*link*/}
 
-Untuk menautkan ke sumber daya eksternal seperti stylesheet, font, dan ikon, atau untuk memberi anotasi pada dokumen dengan metadata tautan, renderlah [komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). Anda dapat merender `<link>` dari komponen mana pun dan React [dalam kebanyakan kasus](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai di bagian kepala dokumen.
+Untuk menautkan ke sumber daya eksternal seperti _stylesheet_, _font_, dan ikon, atau untuk memberi anotasi pada dokumen dengan metadata tautan, renderlah [komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). Anda dapat merender `<link>` dari komponen mana pun dan React [dalam kebanyakan kasus](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai di bagian kepala dokumen.
 
 ```js
 <link rel="icon" href="favicon.ico" />
@@ -35,73 +35,73 @@ Untuk menautkan ke sumber daya eksternal seperti stylesheet, font, dan ikon, ata
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Properti {/*props*/}
+#### _Props_ {/*props*/}
 
-`<link>` mendukung semua [properti elemen umum.](/reference/react-dom/components/common#props)
+`<link>` mendukung semua [_props_ elemen umum.](/reference/react-dom/components/common#props)
 
-* `rel`: string, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
+* `rel`: _string_, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
 
-Properti-properti ini berlaku ketika `rel="stylesheet"`:
+_Props_ ini berlaku ketika `rel="stylesheet"`:
 
-* `precedence`: string. Memberitahu React di mana peringkat node DOM `<link>` relatif terhadap yang lain di dokumen `<head>`, yang menentukan stylesheet mana yang dapat menimpa yang lain. React akan menyimpulkan bahwa nilai precedence yang ditemukan pertama kali adalah "lebih rendah" dan nilai precedence yang ditemukan kemudian adalah "lebih tinggi". Banyak sistem gaya dapat berfungsi dengan baik menggunakan satu nilai precedence karena aturan gaya bersifat atomik. Stylesheet dengan precedence yang sama akan dikelompokkan bersama baik mereka adalah tag `<link>` atau tag `<style>` inline atau dimuat menggunakan fungsi [`preinit`](/reference/react-dom/preinit).
-* `media`: string. Membatasi stylesheet pada [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) tertentu.
-* `title`: string. Menentukan nama dari [stylesheet alternatif](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+* `precedence`: _string_. Memberitahu React di mana peringkat node DOM `<link>` tergantung pada yang lain di dokumen `<head>`, yang menentukan _stylesheet_ mana yang dapat menimpa yang lain. React akan menyimpulkan bahwa nilai _precedence_ yang ditemukan pertama kali adalah "lebih rendah" dan nilai _precedence_ yang ditemukan kemudian adalah "lebih tinggi". Banyak sistem gaya dapat berfungsi dengan baik menggunakan satu nilai _precedence_ karena aturan gaya bersifat atomik. _Stylesheet_ dengan _precedence_ yang sama akan dikelompokkan bersama baik mereka adalah _tag_ `<link>` atau _tag_ `<style>` inline atau dimuat menggunakan _function_ [`preinit`](/reference/react-dom/preinit).
+* `media`: _string_. Membatasi _stylesheet_ pada [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) tertentu.
+* `title`: _string_. Menentukan nama dari [stylesheet alternatif](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
-Properti-properti ini berlaku ketika `rel="stylesheet"` tetapi menonaktifkan  [`perlakuan khusus stylesheet`](/reference/react-dom/components/link#special-rendering-behavior) oleh React:
+_Props_ ini berlaku ketika `rel="stylesheet"` tetapi menonaktifkan  [perlakuan khusus _stylesheet_](/reference/react-dom/components/link#special-rendering-behavior) oleh React:
 
-`disabled`: boolean. Menonaktifkan stylesheet.
-`onError`: fungsi. Dipanggil ketika stylesheet gagal dimuat.
-`onLoad`: fungsi. Dipanggil ketika stylesheet selesai dimuat.
+`disabled`: _boolean_. Menonaktifkan _stylesheet_.
+`onError`: _function_. Dipanggil ketika _stylesheet_ gagal dimuat.
+`onLoad`: _function_. Dipanggil ketika _stylesheet_ selesai dimuat.
 
-Properti-properti ini berlaku ketika `rel="preload"` atau `rel="modulepreload"`:
+_Props_ ini berlaku ketika `rel="preload"` atau `rel="modulepreload"`:
 
-`as`: string. Jenis sumber daya. Nilai yang mungkin adalah `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
-`imageSrcSet`: string. Berlaku hanya ketika `as="image"`. Menentukan [source set dari gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
-`imageSizes`: string. Berlaku hanya ketika as="image". Menentukan [ukuran gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+`as`: _string_. Jenis sumber daya. Nilai yang mungkin adalah `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
+`imageSrcSet`: _string_. Berlaku hanya ketika `as="image"`. Menentukan [_source set_ dari gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+`imageSizes`: _string_. Berlaku hanya ketika `as="image"`. Menentukan [ukuran gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-Properti-properti ini berlaku ketika `rel="icon"` atau `rel="apple-touch-icon"`:
+_Props_ ini berlaku ketika `rel="icon"` atau `rel="apple-touch-icon"`:
 
-* `sizes`: string. [Ukuran ikon](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+* `sizes`: _string_. [Ukuran ikon](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-Properti-properti ini berlaku dalam semua kasus:
+_Props_ ini berlaku dalam semua kasus:
 
-* `href`: string. URL dari sumber daya yang ditautkan.
-* `crossOrigin`: string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`. Diperlukan ketika `as` diatur ke `"fetch"`.
-* `referrerPolicy`: string. [Header Referrer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) yang dikirim saat mengambil. Nilai yang mungkin adalah `no-referrer-when-downgrade` (default), `no-referrer`, `origin`, `origin-when-cross-origin`, dan `unsafe-url`.
-* `fetchPriority`: string. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang mungkin adalah `auto` (default), `high`, dan `low`.
-* `hrefLang`: string. Bahasa dari sumber daya yang ditautkan.
-* `integrity`: string. Hash kriptografi dari sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-* `type`: string. Tipe MIME dari sumber daya yang ditautkan.
+* `href`: _string_. URL dari sumber daya yang ditautkan.
+* `crossOrigin`: _string_. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`. Diperlukan ketika `as` diatur ke `"fetch"`.
+* `referrerPolicy`: _string_. [Header Referrer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) yang dikirim saat mengambil. Nilai yang mungkin adalah `no-referrer-when-downgrade` (default), `no-referrer`, `origin`, `origin-when-cross-origin`, dan `unsafe-url`.
+* `fetchPriority`: _string_. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang mungkin adalah `auto` (default), `high`, dan `low`.
+* `hrefLang`: _string_. Bahasa dari sumber daya yang ditautkan.
+* `integrity`: _string_. Hash kriptografi dari sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `type`: _string_. Tipe MIME dari sumber daya yang ditautkan.
 
-Properti yang **tidak direkomendasikan** untuk digunakan dengan React:
+_Props_ yang **tidak direkomendasikan** untuk digunakan dengan React:
 
-* `blocking`: string. Jika diatur ke `"render"`, instruksikan browser untuk tidak merender halaman sampai stylesheet dimuat. React memberikan kontrol yang lebih halus menggunakan Suspense.
+* `blocking`: _string_. Jika diatur ke `"render"`, instruksikan browser untuk tidak merender halaman sampai _stylesheet_ dimuat. React memberikan kontrol yang lebih halus menggunakan _Suspense_.
 
 #### Perilaku rendering khusus {/*special-rendering-behavior*/}
 
-React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<link>` di dalam `<head>` dokumen, terlepas dari di mana dalam pohon React itu dirender. `<head>` adalah satu-satunya tempat valid untuk `<link>` dalam DOM, namun ini sesuai dan menjaga hal-hal tetap dapat dikomposisikan jika sebuah komponen yang mewakili halaman tertentu dapat merender komponen `<link>` itu sendiri.
+React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<link>` di dalam `<head>` dokumen, terlepas dari mana dalam pohon React itu dirender. `<head>` adalah satu-satunya tempat valid untuk `<link>` dalam DOM, namun ini sesuai dan menjaga hal-hal tetap dapat dikomposisikan jika sebuah komponen yang mewakili halaman tertentu dapat merender komponen `<link>` itu sendiri.
 
 Ada beberapa pengecualian untuk ini:
 
-* Jika `<link>` memiliki properti `rel="stylesheet"`, maka harus juga memiliki properti `precedence` untuk mendapatkan perilaku khusus ini. Ini karena urutan stylesheet dalam dokumen adalah signifikan, sehingga React perlu tahu bagaimana mengatur stylesheet ini relatif terhadap yang lain, yang Anda tentukan menggunakan properti `precedence`. Jika properti `precedence` dihilangkan, tidak ada perilaku khusus.
-* Jika `<link>` memiliki properti [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop), tidak ada perilaku khusus, karena dalam kasus ini tidak berlaku untuk dokumen tetapi mewakili metadata tentang bagian spesifik dari halaman.
-* Jika `<link>` memiliki properti `onLoad` atau `onError`, karena dalam kasus ini Anda mengelola pemuatan sumber daya yang ditautkan secara manual dalam komponen React Anda.
+* Jika `<link>` memiliki _prop_ `rel="stylesheet"`, maka harus juga memiliki _prop_ `precedence` untuk mendapatkan perilaku khusus ini. Ini karena urutan _stylesheet_ dalam dokumen adalah signifikan, sehingga React perlu tahu bagaimana mengatur _stylesheet_ ini tergantung pada yang lain, yang Anda tentukan menggunakan _prop_ `precedence`. Jika _prop_ `precedence` dihilangkan, tidak ada perilaku khusus.
+* Jika `<link>` memiliki _prop_ [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop), tidak ada perilaku khusus, karena dalam kasus ini tidak berlaku untuk dokumen tetapi mewakili metadata tentang bagian spesifik dari halaman.
+* Jika `<link>` memiliki _prop_ `onLoad` atau `onError`, karena dalam kasus ini Anda mengelola pemuatan sumber daya yang ditautkan secara manual dalam komponen React Anda.
 
-#### Perilaku khusus untuk stylesheet {/*special-behavior-for-stylesheets*/}
+#### Perilaku khusus untuk _stylesheet_ {/*special-behavior-for-stylesheets*/}
 
-Selain itu, jika `<link>` menuju stylesheet (yaitu, memiliki `rel="stylesheet"` dalam propertinya), React memperlakukannya secara khusus dalam cara berikut:
+Selain itu, jika `<link>` menuju _stylesheet_ (yaitu, memiliki `rel="stylesheet"` dalam propertinya), React memperlakukannya secara khusus dalam cara berikut:
 
-* Komponen yang merender `<link>` akan [menangguhkan](/reference/react/Suspense) saat stylesheet sedang dimuat.
-* Jika beberapa komponen merender tautan ke stylesheet yang sama, React akan menghapus duplikatnya dan hanya menempatkan satu tautan ke dalam DOM. Dua tautan dianggap sama jika mereka memiliki properti `href` yang sama.
+* Komponen yang merender `<link>` akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat.
+* Jika beberapa komponen merender tautan ke _stylesheet_ yang sama, React akan menghapus duplikatnya dan hanya menempatkan satu tautan ke dalam DOM. Dua tautan dianggap sama jika mereka memiliki _prop_ `href` yang sama.
 
 Ada dua pengecualian untuk perilaku khusus ini:
 
-* Jika tautan tidak memiliki properti `precedence`, tidak ada perilaku khusus, karena urutan stylesheet dalam dokumen ialah penting, sehingga React perlu tahu bagaimana mengatur stylesheet ini relatif terhadap yang lain, yang Anda tentukan menggunakan properti `precedence`.
-* Jika Anda memberikan salah satu dari properti `onLoad`, `onError`, atau `disabled`, tidak ada perilaku khusus, karena properti ini menunjukkan bahwa Anda mengelola pemuatan stylesheet secara manual dalam komponen Anda.
+* Jika tautan tidak memiliki _prop_ `precedence`, tidak ada perilaku khusus, karena urutan _stylesheet_ dalam dokumen itu penting, sehingga React perlu tahu bagaimana mengatur _stylesheet_ ini tergantung pada yang lain, yang Anda tentukan menggunakan _prop_ `precedence`.
+* Jika Anda memberikan salah satu dari _prop_ `onLoad`, `onError`, atau `disabled`, tidak ada perilaku khusus, karena _prop_ ini menunjukkan bahwa Anda mengelola pemuatan _stylesheet_ secara manual dalam komponen Anda.
 
 Perlakuan khusus ini memiliki dua peringatan:
 
-* React akan mengabaikan perubahan pada semua properti setelah tautan dirender. (React akan mengeluarkan peringatan dalam pengembangan jika ini terjadi.)
+* React akan mengabaikan perubahan pada semua _props_ setelah tautan dirender. (React akan mengeluarkan peringatan dalam pengembangan jika ini terjadi.)
 * React dapat meninggalkan tautan dalam DOM bahkan setelah komponen yang merendernya dihapus.
 
 ---
@@ -131,12 +131,12 @@ export default function BlogPage() {
 
 </SandpackWithHTMLOutput>
 
-### Menautkan ke stylesheet {/*linking-to-a-stylesheet*/}
+### Menautkan ke _stylesheet_ {/*linking-to-a-stylesheet*/}
 
-Jika sebuah komponen bergantung pada stylesheet tertentu agar dapat ditampilkan dengan benar, Anda dapat merender tautan ke stylesheet tersebut di dalam komponen. Komponen Anda akan [menangguhkan](/reference/react/Suspense) saat stylesheet sedang dimuat. Anda harus menyertakan properti `precedence`, yang memberi tahu React di mana harus menempatkan stylesheet ini relatif terhadap yang lain — stylesheet dengan precedence lebih tinggi dapat menimpa yang dengan precedence lebih rendah.
+Jika sebuah komponen bergantung pada _stylesheet_ tertentu agar dapat ditampilkan dengan benar, Anda dapat merender tautan ke _stylesheet_ tersebut di dalam komponen. Komponen Anda akan [menangguhkan](/reference/react/Suspense) saat _stylesheet_ sedang dimuat. Anda harus menyertakan _prop_ `precedence`, yang memberi tahu React di mana harus menempatkan _stylesheet_ ini tergantung pada yang lain — _stylesheet_ dengan _precedence_ lebih tinggi dapat menimpa yang dengan _precedence_ lebih rendah.
 
 <Note>
-Ketika Anda ingin menggunakan stylesheet, akan lebih bermanfaat untuk memanggil fungsi [preinit](/reference/react-dom/preinit). Memanggil fungsi ini dapat memungkinkan peramban untuk mulai mengambil stylesheet lebih awal daripada jika Anda hanya merender komponen `<link>`, misalnya dengan mengirimkan [respons HTTP Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+Ketika Anda ingin menggunakan _stylesheet_, akan lebih bermanfaat untuk memanggil _function_ [preinit](/reference/react-dom/preinit). Memanggil _function_ ini dapat memungkinkan peramban untuk mulai mengambil _stylesheet_ lebih awal daripada jika Anda hanya merender komponen `<link>`, misalnya dengan mengirimkan [respons HTTP Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
 <SandpackWithHTMLOutput>
@@ -156,11 +156,11 @@ export default function SiteMapPage() {
 
 </SandpackWithHTMLOutput>
 
-### Mengontrol precedence stylesheet {/*controlling-stylesheet-precedence*/}
+### Mengendalikan _precedence_ _stylesheet_ {/*controlling-stylesheet-precedence*/}
 
-Stylesheet dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan stylesheet dengan properti `precedence`. Dalam contoh ini, dua komponen merender stylesheet, dan yang memiliki precedence lebih tinggi akan muncul kemudian dalam dokumen meskipun komponen yang merendernya datang lebih awal.
+Stylesheet dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan _stylesheet_ dengan _prop_ `precedence`. Dalam contoh ini, dua komponen merender _stylesheet_, dan yang memiliki _precedence_ lebih tinggi akan muncul kemudian dalam dokumen meskipun komponen yang merendernya datang lebih awal.
 
-{/*FIXME: ini tampaknya tidak benar-benar berfungsi -- sepertinya precedence belum diimplementasikan?*/}
+{/*FIXME: ini tampaknya tidak benar-benar berfungsi -- sepertinya _precedence_ belum diimplementasikan?*/}
 
 <SandpackWithHTMLOutput>
 
@@ -189,9 +189,9 @@ function KomponenKedua() {
 
 </SandpackWithHTMLOutput>
 
-### Merender stylesheet yang dihapus duplikatnya {/*deduplicated-stylesheet-rendering*/}
+### Merender _stylesheet_ yang dihapus duplikatnya {/*deduplicated-stylesheet-rendering*/}
 
-Jika Anda merender stylesheet yang sama dari beberapa komponen, React hanya akan menempatkan satu `<link>` di bagian kepala dokumen.
+Jika Anda merender _stylesheet_ yang sama dari beberapa komponen, React hanya akan menempatkan satu `<link>` di bagian kepala dokumen.
 
 <SandpackWithHTMLOutput>
 
@@ -217,7 +217,7 @@ function Komponen() {
 
 ### Memberi anotasi pada item tertentu dalam dokumen dengan tautan {/*annotating-specific-items-within-the-document-with-links*/}
 
-Anda dapat menggunakan komponen `<link>` dengan properti `itemProp` untuk memberi anotasi pada item tertentu dalam dokumen dengan tautan ke sumber daya terkait. Dalam hal ini, React *tidak* akan menempatkan anotasi ini di dalam `<head>` dokumen tetapi akan menempatkannya seperti komponen React lainnya.
+Anda dapat menggunakan komponen `<link>` dengan _prop_ `itemProp` untuk memberi anotasi pada item tertentu dalam dokumen dengan tautan ke sumber daya terkait. Dalam hal ini, React *tidak* akan menempatkan anotasi ini di dalam `<head>` dokumen tetapi akan menempatkannya seperti komponen React lainnya.
 
 ```js
 <section itemScope>
