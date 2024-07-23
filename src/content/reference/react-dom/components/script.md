@@ -27,7 +27,7 @@ Ekestensi React untuk `<script>` saat ini hanya tersedia di canary dan saluran e
 
 ### `<script>` {/*script*/}
 
-Untuk menambahkan eksternal atau sisipan skrip pada document, render [komponen bawaan `<script>`  ](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). Kamu bisa render `<script>` dari komponen apapun dan React [dalam kasus tertentu](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai isi di kepala dokumen dan menghapus duplikat skrip yang identik.
+Untuk menambahkan eksternal atau sisipan skrip pada document, render [komponen bawaan `<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). Kamu bisa render `<script>` dari komponen apapun dan React [dalam kasus tertentu](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai isi di kepala dokumen dan menghapus duplikat skrip yang identik.
 
 ```js
 <script> alert("hi!") </script>
