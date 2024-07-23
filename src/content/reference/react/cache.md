@@ -4,14 +4,14 @@ canary: true
 ---
 
 <Canary>
-* `cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). See [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) that support React Server Components.
+* `cache` hanya digunakan dengan [*React Server Components*](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Lihat [*frameworks*](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) yang mendukung *React Server Components*.
 
-* `cache` is only available in React’s [Canary](/community/versioning-policy#canary-channel) and [experimental](/community/versioning-policy#experimental-channel) channels. Please ensure you understand the limitations before using `cache` in production. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+* `cache` hanya tersedia di kanal [*Canary*](/community/versioning-policy#canary-channel) dan [eksperimental](/community/versioning-policy#experimental-channel) React. Pastikan Anda memahami beberapa keterbatasannya sebelum menggunakan `cache` di *production*. Pelajari lebih lanjut terkait dengan [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 </Canary>
 
 <Intro>
 
-`cache` lets you cache the result of a data fetch or computation.
+`cache` memungkinkan Anda untuk melakukan *cache* pada hasil pengambilan atau komputasi data.
 
 ```js
 const cachedFn = cache(fn);
@@ -23,11 +23,11 @@ const cachedFn = cache(fn);
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `cache(fn)` {/*cache*/}
 
-Call `cache` outside of any components to create a version of the function with caching.
+Panggil `cache` di luar komponen apapun untuk membuat sebuah versi dari fungsi dengan *caching*.
 
 ```js {4,7}
 import {cache} from 'react';
@@ -41,42 +41,42 @@ function Chart({data}) {
 }
 ```
 
-When `getMetrics` is first called with `data`, `getMetrics` will call `calculateMetrics(data)` and store the result in cache. If `getMetrics` is called again with the same `data`, it will return the cached result instead of calling `calculateMetrics(data)` again.
+Saat `getMetrics` pertama kali dipanggil dengan `data`, `getMetrics` akan memanggil `calculateMetrics(data)` dan menyimpan hasilnya di dalam sebuah *cache*. Jika `getMetrics` dipanggil lagi dengan `data` yang sama, maka akan mengembalikan hasil yang telah ter-*cache* alih-alih memamggil `calculateMetrics(data)` lagi.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh dibawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-- `fn`: The function you want to cache results for. `fn` can take any arguments and return any value.
+- `fn`: Fungsi yang ingin Anda *cache* hasilnya. `fn` dapat meneriman argumen apapun dan mengembalikan nilai apapun.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`cache` returns a cached version of `fn` with the same type signature. It does not call `fn` in the process.
+`cache` mengembalikan versi ter-*cache* dari `fn` dengan tanda tangan tipe yang sama. Ia tidak memanggil `fn` dalam prosesnya.
 
-When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result. The only time `fn` is called is when there is a cache miss.
+Saat memanggil `cachedFn` dengan argumen yang diberikan, Pertama ia akan mengecek apakah terdapat nilai yang telah ter-*cache* sebelumnya. Jika nilai tersebut tersedia, maka kembalikan nilai tersebut. Jika tidak, panggil `fn` dengan argumen tersebut, simpan nilai tersebut di dalam *cache*, dan kembalikan nilai tersebut. Satu-satunya waktu `fn` dipanggil adalah ketika ada cache yang terlewat.
 
 <Note>
 
-The optimization of caching return values based on inputs is known as [_memoization_](https://en.wikipedia.org/wiki/Memoization). We refer to the function returned from `cache` as a memoized function.
+Optimalisasi dari melakukan *cache* pada nilai kembalian berdasarkan masukkan dikenal sebagai [*memoization*](https://en.wikipedia.org/wiki/Memoization). Kita mengacu mengacu pada fungsi yang dikembalikan dari `cache` sebagai fungsi yang di-*memo*.
 
 </Note>
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
-- React will invalidate the cache for all memoized functions for each server request. 
-- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
-- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only.
+- React akan menginvalidasi *cache* untuk setiap fungsi yang di-*memo* untuk setiap permintaan server.
+- Setiap pemanggil `cache` membentuk sebuah fungsi baru. Hal ini berarti, memanggil `cache` dengan fungsi yang sama berkali-kali akan mengembalikan fungsi ter-*memo* berbeda yang tidak berbagi *cache* yang sama
+- `cachedFn` juga akan men-*cache* eror-eror. Jika `fn` melempar sebuah eror untuk sebuah argumen tertentu, Itu akan ter-*cache*, dan eror yang sama akan dilempar kembali saat `cachedFn` dipanggil dengan argumen yang sama tersebut.
+- `cache` hanya dapat digunakan di [*Server Components*](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Cache an expensive computation {/*cache-expensive-computation*/}
+### Melakukan *cache* pada computasi mahal {/*cache-expensive-computation*/}
 
-Use `cache` to skip duplicate work.
+Gunakan `cache` untuk melwati pekerjaan yang berulang
 
 ```js [[1, 7, "getUserMetrics(user)"],[2, 13, "getUserMetrics(user)"]]
 import {cache} from 'react';
@@ -98,17 +98,17 @@ function TeamReport({users}) {
 }
 ```
 
-If the same `user` object is rendered in both `Profile` and `TeamReport`, the two components can share work and only call `calculateUserMetrics` once for that `user`. 
+Jika objek `user` yang sama di-*render* di `Profile` dan `TeamReport`, kedua komponen dapat berbagi pekerjaan dan hanya memanggil `calculateUserMetrics` sekali untuk `user` tersebut.
 
-Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache. 
+Asumsikan `Profile` di-*render* pertama kali. Ia akan memanggil <CodeStep step={1}>`getUserMetrics`</CodeStep>, dan mengecek apakah terdapat nilai yang ter-*cache* sebelumnya. Mengingat ini adalah pertama kalinya `getUserMetrics` dipanggil oleh `user` tersebut, maka akan terdapat sebuah *cache miss*. `getUserMetrics` kemudian akan memanggil `calculateUserMetrics` dengan `user` tersebut dan menyimpan hasil tersebut dalam sebuah *cache*.
 
-When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
+Saat `TeamReport` me-*render* daftar `users`-nya dan menjangkau objek `user` yang sama, Ia akan memanggil <CodeStep step={2}>`getUserMetrics`</CodeStep> dan membaca hasilnya dari *cache*.
 
 <Pitfall>
 
-##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
+##### Memanggil fungsi ter-*memo* berbeda akan membaca dari *caches* yang berbeda. {/*pitfall-different-memoized-functions*/}
 
-To access the same cache, components must call the same memoized function.
+Untuk mengakses *cache* yang sama, komponen-komponen harus memanggil fungsi ter-*memo* yang sama.
 
 ```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
@@ -116,7 +116,7 @@ import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
 export function Temperature({cityData}) {
-  // 🚩 Wrong: Calling `cache` in component creates new `getWeekReport` for each render
+  // 🚩 Salah: Memanggil `cache` dalam komponent membentuk `getWeekReport` yang baru untuk setiap render
   const getWeekReport = cache(calculateWeekReport);
   const report = getWeekReport(cityData);
   // ...
@@ -128,7 +128,7 @@ export function Temperature({cityData}) {
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
-// 🚩 Wrong: `getWeekReport` is only accessible for `Precipitation` component.
+// 🚩 Salah: `getWeekReport` hanya dapat diakses oleh komponen `Precipitation`.
 const getWeekReport = cache(calculateWeekReport);
 
 export function Precipitation({cityData}) {
@@ -137,11 +137,11 @@ export function Precipitation({cityData}) {
 }
 ```
 
-In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeStep step={1}>`Temperature`</CodeStep> each call `cache` to create a new memoized function with their own cache look-up. If both components render for the same `cityData`, they will do duplicate work to call `calculateWeekReport`.
+Pada contoh diatas, <CodeStep step={2}>`Precipitation`</CodeStep> dan <CodeStep step={1}>`Temperature`</CodeStep> masing-masing memanggil `cache` untuk membuat sebuah fungsi ter-*memo* baru dengan *cache look-up*-nya sendiri. Jika kedua komponen di-*render* untuk `cityData` yang sama, maka mereka akan menduplikat pekerjaannya untuk memanggil `calculateWeekReport`.
 
-In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the component is rendered which doesn't allow for any cache sharing.
+Sebagai tambahan, `Temperature` membentuk sebuah <CodeStep step={1}>fungsi ter-*memo* baru</CodeStep> setiap kali komponen ter-*render* yang tidak memperbolehkannya untuk berbagi *cache*.
 
-To maximize cache hits and reduce work, the two components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
+Untuk memaksimalkan *cache* dan mengurangi pekerjaan, kedua komponen tersebut harus memanggil fungsi ter-*memo* yang sama untuk mengakses *cache* yang sama. kedua komponen harus memanggil fungsi memo yang sama untuk mengakses cache yang sama. Sebagai gantinya, tentukan fungsi ter-*memo* dalam modul khusus yang dapat [`impor`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) di seluruh komponen.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -170,12 +170,12 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache. 
+Disini, kedua komponen memanggil <CodeStep step={3}>fungsi ter-*memo* sama</CodeStep> yang diekspor dari `./getWeekReport.js` untuk membaca dan menulis pada *cache* yang sama.
 </Pitfall>
 
-### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
+### Membagikan cuplikan data {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render. 
+Untuk membagikan cuplikan data antar komponen, panggil `cache` dengan fungsi *data-fetching* seperti `fetch`. Saat beberapa komponen melakukan pengambilan data yang sama, hanya satu proses *request* yang akan dilakukan dan data yang dikembalikan adalah data ter-*cache* dan dibagikan ke seluruh komponen. Semua komponen ini Semua komponen mengacu pada cuplikan data yang sama di seluruh *render* server.
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -196,17 +196,17 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>. 
+Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` keduanya merender <CodeStep step={1}>*city*</CodeStep> yang sama, mereka akan menerima cuplikan data yang sama dari <CodeStep step={2}>fungsi yang ter-*memo*</CodeStep>. 
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` supply different <CodeStep step={1}>city</CodeStep> arguments to <CodeStep step={2}>`getTemperature`</CodeStep>, then `fetchTemperature` will be called twice and each call site will receive different data.
+Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` menggunakan argument <CodeStep step={1}>*city*</CodeStep> yang berbeda pada <CodeStep step={2}>`getTemperature`</CodeStep>, maka `fetchTemperature` akan dipanggil dua kali dan setiap pemanggilan akan menerima data yang berbeda.
 
-The <CodeStep step={1}>city</CodeStep> acts as a cache key.
+<CodeStep step={1}>*city*</CodeStep> berperan sebagai sebuah kunci *cache*.
 
 <Note>
 
 [//]: # 'TODO: add links to Server Components when merged.'
 
-<CodeStep step={3}>Asynchronous rendering</CodeStep> is only supported for Server Components.
+<CodeStep step={3}>pe-*render*-an Asinkron</CodeStep> hanya mendukung komponent *server*.
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
 async function AnimatedWeatherCard({city}) {
@@ -219,9 +219,9 @@ async function AnimatedWeatherCard({city}) {
 
 </Note>
 
-### Preload data {/*preload-data*/}
+### Pramuat data {/*preload-data*/}
 
-By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
+Dengan melakukan *cache* pada data hasil *fetch* yang panjang, Anda dapat memulai proses asinkron sebelum me-*render* komponen.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -239,9 +239,9 @@ async function Profile({id}) {
 }
 
 function Page({id}) {
-  // ✅ Good: start fetching the user data
+  // ✅ Baik: mulai mengambil data user
   getUser(id);
-  // ... some computational work
+  // ... beberapa proses komputasi
   return (
     <>
       <Profile id={id} />
@@ -250,17 +250,17 @@ function Page({id}) {
 }
 ```
 
-When rendering `Page`, the component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
+Saat me-*render* `Page`, komponen tersebut memanggil <CodeStep step={1}>`getUser`</CodeStep>tetapi perhatikan bahwa ia tidak menggunakan data yang dikembalikan. Pemanggilan <CodeStep step={1}>`getUser`</CodeStep> awal ini memulai *query* asinkron *database* basis data yang terjadi saat `Page` sedang melakukan komputasi lainnya dan me-*render* *children*.
 
-When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
+Saat me-*render* `Profile`, kita dapat memanggil <CodeStep step={2}>`getUser`</CodeStep> lagi. Jika pemanggilan awal dari <CodeStep step={1}>`getUser`</CodeStep> telah mengembalikan sebuah nilai dan melakukan *cache* pada data user, saat `Profile` <CodeStep step={2}>meminta dan menunggu data tersebut</CodeStep>, ia dapat hanya membaca langsung dari *cache* tanpa memerlukan pemanggilan prosedur *remote* lainnya. Jika <CodeStep step={1}>proses awal pemanggilan data</CodeStep> belum dapat diselesaikan, pemuatan awal data dalam pola ini dapat mengurangi penundaan pemanggilan data.
 
 <DeepDive>
 
-#### Caching asynchronous work {/*caching-asynchronous-work*/}
+#### Melakukan *cache* pada proses asinkron {/*caching-asynchronous-work*/}
 
-When evaluating an [asynchronous function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its eventual settled result.
+Saat mengevaluasi sebuah [fungsi asinkron](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), ada akan menerima sebuah [*Promise*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) untuk proses tersebut. *Promise* memegang status dari proses tersebut (*pending*, *fulfilled*, *failed*) dan hasil akhirnya yang telah diselesaikan.
 
-In this example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`. 
+Dalam contoh ini, fungsi asinkron <CodeStep step={1}>`fetchData`</CodeStep> mengembalikan sebuah *promise* yang menantikan proses `fetch`. 
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -271,24 +271,24 @@ const getData = cache(fetchData);
 
 async function MyComponent() {
   getData();
-  // ... some computational work  
+  // ... beberapa proses komputasi
   await getData();
   // ...
 }
 ```
 
-In calling <CodeStep step={2}>`getData`</CodeStep> the first time, the promise returned from <CodeStep step={1}>`fetchData`</CodeStep> is cached. Subsequent look-ups will then return the same promise.
+Saat memanggil <CodeStep step={2}>`getData`</CodeStep> untuk pertama kalinya, *promise*-nya mengembalikan nilai dari <CodeStep step={1}>`fetchData`</CodeStep> yang telah ter-*cache*. Pencarian selanjutnya akan menghasilkan *promise* yang sama
 
-Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
+Perhatikan bahwa, pemanggilan <CodeStep step={2}>`getData`</CodeStep> pertama kali tidak melalui `await` sedangkan yang <CodeStep step={3}>kedua</CodeStep> melaluinya. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) adalah sebuah operator JavaScript yang akan menunggu dan mengembalikan hasil akhir dari sebuah *promise*. Pemanggilan pertama <CodeStep step={2}>`getData`</CodeStep> hanya menginisiasi `fetch` untuk melakukan *cache* pada *promise* yang digunakan pada pemanggilan <CodeStep step={3}>`getData`</CodeStep> kedua untuk dicari.
 
-If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time for the <CodeStep step={3}>second call</CodeStep>. 
+Jika pada <CodeStep step={3}>pemanggilan kedua</CodeStep> *promise* tersebut masih berstatus *pending*, maka `await` akan dihentikan untuk mendapatkan hasilnya. Optimalisasinya adalah saat menunggu `fetch`, React masih dapat melanjutkan proses komputasi, sehingga mengurangi waktu yang diperlukan untuk melakukan <CodeStep step={3}>pemanggilan kedua</CodeStep>.
 
-If the promise is already settled, either to an error or the _fulfilled_ result, `await` will return that value immediately. In both outcomes, there is a performance benefit.
+Jika *promise* telah diselesaikan, antara mendapatkan eror atau *fulfilled* sebagai hasilnya, `await` akan mengembalikan nilai tersebut secara langsung. Dalam kedua hasil tersebut, ada keuntungan kinerja.
 </DeepDive>
 
 <Pitfall>
 
-##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
+##### Memanggil sebuah fungsi yang ter-*memo* dari luar sebuah komponen tidak akan menggunakn *cache*-nya. {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -297,31 +297,31 @@ const getUser = cache(async (userId) => {
   return await db.user.query(userId);
 });
 
-// 🚩 Wrong: Calling memoized function outside of component will not memoize.
+// 🚩 Salah: Memanggil fungsi ter-memo dari luar komponen tidak akan ter-memo.
 getUser('demo-id');
 
 async function DemoProfile() {
-  // ✅ Good: `getUser` will memoize.
+  // ✅ Baik: `getUser` akan ter-memo.
   const user = await getUser('demo-id');
   return <Profile user={user} />;
 }
 ```
 
-React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
+React hanya menyediakan akses terhadap *cache* pada fungsi ter-memo dalam sebuah komponen. Saat memanggil <CodeStep step={1}>`getUser`</CodeStep> dari luar komponen, ia akan tetap mengevaluasi fungsi tersebut tetapi tidak melakukan proses membaca ataupun memperbarui *cache*.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
+Hal ini karena akses dari *cache* disediakan melalui [*context*](/learn/passing-data-deeply-with-context) yang hanya dapat diakses oleh sebuah komponent.
 
 </Pitfall>
 
 <DeepDive>
 
-#### When should I use `cache`, [`memo`](/reference/react/memo), or [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
+#### Kapan saya harus menggunakan `cache`, [`memo`](/reference/react/memo), atau [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
 
-All mentioned APIs offer memoization but the difference is what they're intended to memoize, who can access the cache, and when their cache is invalidated.
+Semua API yang disebutkan di atas menawarkan *memo*, tetapi perbedaannya adalah apa yang dimaksudkan untuk *memo*, siapa yang dapat mengakses *cache*, dan kapan *cache* mereka tidak valid.
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
-In general, you should use [`useMemo`](/reference/react/useMemo) for caching a expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+Secara umum, anda harus menggunakan [`useMemo`](/reference/react/useMemo) untuk melakukan *cache* untuk sebuah komputasi yang mahal pada sebuah komponen klien di seluruh *render*. Sebagai contoh, untuk me-*memo* sebuah transformasi dari sebuah data di dalam komponen.
 
 ```jsx {4}
 'use client';
@@ -341,13 +341,13 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
+Pada contoh ini, `App` me-*render* dua `WeatherReport` dengan catatan yang sama. Meskipun kedua komponen melakukan pekerjaan yang sama, mereka tidak dapat berbagi pekerjaan. Cache `useMemo` hanya bersifat lokal pada komponen tersebut.
 
-However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
+Akan tetapi, `useMemo` memastikan bahwa jika `App` ter-*render* ulang dan objek `record` tidak berubah, setiap *instance* komponen akan melewatkan pekerjaan dan menggunakan nilai ter-*memo* dari `avgTemp`. `useMemo` akan hanya melakukan *cache* komputasi terakhir dari `avgTemp` dengan *dependencies* yang diberikan.
 
 #### `cache` {/*deep-dive-cache*/}
 
-In general, you should use `cache` in Server Components to memoize work that can be shared across components.
+Secara umum, Anda seharusnya menggunakan `cache` dalam *Server Component* untuk me-*memo* pekerjaan yang dapat dibagikan ke seluruh komponen.
 
 ```js [[1, 12, "<WeatherReport city={city} />"], [3, 13, "<WeatherReport city={city} />"], [2, 1, "cache(fetchReport)"]]
 const cachedFetchReport = cache(fetchReport);
@@ -367,13 +367,13 @@ function App() {
   );
 }
 ```
-Re-writing the previous example to use `cache`, in this case the <CodeStep step={3}>second instance of `WeatherReport`</CodeStep> will be able to skip duplicate work and read from the same cache as the <CodeStep step={1}>first `WeatherReport`</CodeStep>. Another difference from the previous example is that `cache` is also recommended for <CodeStep step={2}>memoizing data fetches</CodeStep>, unlike `useMemo` which should only be used for computations.
+Menulis ulang contoh sebelumnya dengan menggunakan `cache`, dalam kasus ini <CodeStep step={3}>contoh kedua dari `WeatherReport`</CodeStep> akan dapat melewati pekerjaan yang berulan dan membaca dari *cache* yang sama dengan <CodeStep step={1}>`WeatherReport` pertama</CodeStep>. Perbedaan lainnya dari contoh sebelumnya adalah `cache` juga direkomendasikan untuk <CodeStep step={2}>me-*memo* pengambilan data</CodeStep>, tidak seperti `useMemo` yang seharusnya hanya digunakan untuk komputasi.
 
-At this time, `cache` should only be used in Server Components and the cache will be invalidated across server requests.
+Sementara waktu, `cache` hanya digunakan pada komponen *server* dan *cache*-nya akan hanya diinvalidasi di seluruh permintaan server.
 
 #### `memo` {/*deep-dive-memo*/}
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+Anda seharusnya menggunakan [`memo`](reference/react/memo) untuk mencegah proses pe-*render*-an ulang dari sebuah komponen jika *props*-nya tidak berubah.
 
 ```js
 'use client';
@@ -396,27 +396,27 @@ function App() {
 }
 ```
 
-In this example, both `MemoWeatherReport` components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render. 
+Dalam contoh ini, kedua komponen `MemoWeatherReport` akan memanggil `calculateAvg` saat di-*render* pertama kalinya. Akan tetapi, jika `App` di-*render* ulang, tanpa andanya perubaha pada `record`, tidak ada *props* yang berubah dan `MemoWeatherReport` tidak akan di-*render* ulang.
 
-Compared to `useMemo`, `memo` memoizes the component render based on props vs. specific computations. Similar to `useMemo`, the memoized component only caches the last render with the last prop values. Once the props change, the cache invalidates and the component re-renders.
+Apabila dibandingkan dengan `useMemo`, `memo` me-*memo* komponen tersebut di-*render* berdasarkan *props* vs. komputasi spesifik. Mirip dengan `useMemo`, komponen yang di-*memo* hanya akan men-*cache* *render* terakhir dengan menggunakan nilai *props* terakhir. Setelah *props* berubah, *cache* tersebut terinvalidasi dan komponennya di *render* ulang.
 
 </DeepDive>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-still-runs*/}
+### Fungsi ter-memo saya tidak berjalan walaupun saya sudah memanggilnya dengan argumen-argumen yang sama {/*memoized-function-still-runs*/}
 
-See prior mentioned pitfalls
-* [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
-* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+Lihatlah jebakan yang disebutkan sebelumnya
+* [Memanggil fungsi ter-*memo* berbeda akan membaca dari *caches* yang berbeda.](#pitfall-different-memoized-functions)
+* [Memanggil sebuah fungsi yang ter-*memo* dari luar sebuah komponen tidak akan menggunakn *cache*-nya.](#pitfall-memoized-call-outside-component)
 
-If none of the above apply, it may be a problem with how React checks if something exists in cache.
+Jika yang disebutkan di atas tidak berlaku, mungkin ada masalah dengan cara React memeriksa apakah ada sesuatu yang ada di dalam *cache*.
 
-If your arguments are not [primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
+Jika argumen-argumen Anda bukan [*primitives*](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (contoh: objek, fungsi, array), pastikan Anda memberikan referensi objek yang sama.
 
-When calling a memoized function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
+Saat memanggil fungsi yang ter-memo, React akan mencari argumen masukkan untuk melihat apakah sebuah nilai telah di-*cache*. React akan menggunakan *shallow equality* pada argumen-argumen untuk menentukan apakah ada *cache hit*.
 
 ```js
 import {cache} from 'react';
@@ -426,7 +426,7 @@ const calculateNorm = cache((vector) => {
 });
 
 function MapMarker(props) {
-  // 🚩 Wrong: props is an object that changes every render.
+  // 🚩 Salah: props adalah sebuah objek yang berubah disetiap render.
   const length = calculateNorm(props);
   // ...
 }
@@ -441,9 +441,9 @@ function App() {
 }
 ```
 
-In this case the two `MapMarker`s look like they're doing the same work and calling `calculateNorm` with the same value of `{x: 10, y: 10, z:10}`. Even though the objects contain the same values, they are not the same object reference as each component creates its own `props` object.
+Dalam kasus ini dua `MapMarker` terlihat seperti melakuakn pekerjaan yang sama dan memanggil `calculateNorm` dengan nilai `{x: 10, y: 10, z:10}`. Walaupun menggunakan objek dengan nilai yang sama, keduanya bukan objek dengan referensi yang sama karena kedua komponen membentuk objek `props`-nya masing-masing.
 
-React will call [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) on the input to verify if there is a cache hit.
+React akan memanggil [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) di masukkan untuk verifikasi jika terdapat *cache hit*.
 
 ```js {3,9}
 import {cache} from 'react';
@@ -453,7 +453,7 @@ const calculateNorm = cache((x, y, z) => {
 });
 
 function MapMarker(props) {
-  // ✅ Good: Pass primitives to memoized function
+  // ✅ Baik: Mengoper primitives untuk fungsi ter-memo
   const length = calculateNorm(props.x, props.y, props.z);
   // ...
 }
@@ -468,9 +468,9 @@ function App() {
 }
 ```
 
-One way to address this could be to pass the vector dimensions to `calculateNorm`. This works because the dimensions themselves are primitives.
+Salah satu cara untuk mengatasi hal ini adalah dengan mengoper dimensi vektor ke `calculateNorm`. Hal ini bekerja karena dimensi itu sendiri adalah *primitives*.
 
-Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both component instances.
+Solusi lain adalah mengoper objek vektor itu sendiri sebagai penopang komponen. Kita harus mengoper objek yang sama ke kedua *instance* komponen.
 
 ```js {3,9,14}
 import {cache} from 'react';
@@ -480,7 +480,7 @@ const calculateNorm = cache((vector) => {
 });
 
 function MapMarker(props) {
-  // ✅ Good: Pass the same `vector` object
+  // ✅ Baik: Megoper objek `vector` yang sama
   const length = calculateNorm(props.vector);
   // ...
 }

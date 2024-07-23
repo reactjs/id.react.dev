@@ -351,11 +351,19 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
-Expo menggunakan Babel melalui Metro, jadi silakan merujuk ke bagian [Penggunaan dengan Babel](#usage-with-babel) untuk petunjuk instalasi.
+Silahkan merujuk ke [Dokumen Expo](https://docs.expo.dev/preview/react-compiler/) untuk mengaktifkan dan menggunakan Kompilator React di aplikasi Expo.
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
 React Native menggunakan Babel melalui Metro, jadi silakan merujuk ke bagian [Penggunaan dengan Babel](#usage-with-babel) untuk petunjuk instalasi.
+
+### Rspack {/*usage-with-rspack*/}
+
+Silahkan merujuk ke [Dokumen Rspack](https://rspack.dev/guide/tech/react#react-compiler) untuk mengaktifkan dan menggunakan Kompilator React di aplikasi Rspack.
+
+### Rsbuild {/*usage-with-rsbuild*/}
+
+Silahkan merujuk ke [Dokumen Rsbuild](https://rsbuild.dev/guide/framework/react#react-compiler) untuk mengaktifkan dan menggunakan Kompilator React di aplikasi Rsbuild.
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
