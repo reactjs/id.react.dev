@@ -11,7 +11,7 @@ Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal *canary* dan eksp
 
 <Intro>
 
-[komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti *stylesheet* atau memberi anotasi pada dokumen dengan metadata tautan.
+[Komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti *stylesheet* atau memberi anotasi pada dokumen dengan metadata tautan.
 
 ```js
 <link rel="icon" href="favicon.ico" />
@@ -35,35 +35,35 @@ Untuk menautkan ke sumber daya eksternal seperti *stylesheet*, *font*, dan ikon,
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### *props* {/*props*/}
+#### *Props* {/*props*/}
 
 `<link>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
 
 * `rel`: *string*, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
 
-*props* ini berlaku ketika `rel="stylesheet"`:
+*Props* ini berlaku ketika `rel="stylesheet"`:
 
 * `precedence`: *string*. Memberitahu React di mana peringkat node DOM `<link>` tergantung pada yang lain di dokumen `<head>`, yang menentukan *stylesheet* mana yang dapat menimpa yang lain. React akan menyimpulkan bahwa nilai *precedence* yang ditemukan pertama kali adalah "lebih rendah" dan nilai *precedence* yang ditemukan kemudian adalah "lebih tinggi". Banyak sistem gaya dapat berfungsi dengan baik menggunakan satu nilai *precedence* karena aturan gaya bersifat atomik. *stylesheet* dengan *precedence* yang sama akan dikelompokkan bersama baik mereka adalah *tag* `<link>` atau *tag* `<style>` inline atau dimuat menggunakan *function* [`preinit`](/reference/react-dom/preinit).
 * `media`: *string*. Membatasi *stylesheet* pada [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) tertentu.
 * `title`: *string*. Menentukan nama dari [stylesheet alternatif](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
-*props* ini berlaku ketika `rel="stylesheet"` tetapi menonaktifkan  [perlakuan khusus *stylesheet*](/reference/react-dom/components/link#special-rendering-behavior) oleh React:
+*Props* ini berlaku ketika `rel="stylesheet"` tetapi menonaktifkan  [perlakuan khusus *stylesheet*](/reference/react-dom/components/link#special-rendering-behavior) oleh React:
 
 `disabled`: *boolean*. Menonaktifkan *stylesheet*.
 `onError`: *function*. Dipanggil ketika *stylesheet* gagal dimuat.
 `onLoad`: *function*. Dipanggil ketika *stylesheet* selesai dimuat.
 
-*props* ini berlaku ketika `rel="preload"` atau `rel="modulepreload"`:
+*Props* ini berlaku ketika `rel="preload"` atau `rel="modulepreload"`:
 
 `as`: *string*. Jenis sumber daya. Nilai yang mungkin adalah `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
 `imageSrcSet`: *string*. Berlaku hanya ketika `as="image"`. Menentukan [*source set* dari gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 `imageSizes`: *string*. Berlaku hanya ketika `as="image"`. Menentukan [ukuran gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-*props* ini berlaku ketika `rel="icon"` atau `rel="apple-touch-icon"`:
+*Props* ini berlaku ketika `rel="icon"` atau `rel="apple-touch-icon"`:
 
 * `sizes`: *string*. [Ukuran ikon](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-*props* ini berlaku dalam semua kasus:
+*Props* ini berlaku dalam semua kasus:
 
 * `href`: *string*. URL dari sumber daya yang ditautkan.
 * `crossOrigin`: *string*. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`. Diperlukan ketika `as` diatur ke `"fetch"`.
@@ -73,7 +73,7 @@ Untuk menautkan ke sumber daya eksternal seperti *stylesheet*, *font*, dan ikon,
 * `integrity`: *string*. *Hash* kriptografi dari sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
 * `type`: *string*. Tipe MIME dari sumber daya yang ditautkan.
 
-*props* yang **tidak direkomendasikan** untuk digunakan dengan React:
+*Props* yang **tidak direkomendasikan** untuk digunakan dengan React:
 
 * `blocking`: *string*. Jika diatur ke *`"render"`*, instruksikan peramban untuk tidak me-*render* halaman sampai *stylesheet* dimuat. React memberikan kendali yang lebih halus menggunakan *Suspense*.
 
