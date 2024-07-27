@@ -4,7 +4,7 @@ title: "Built-in React DOM Hooks"
 
 <Intro>
 
-_Package_ `react-dom` berisi Hooks yang hanya didukung untuk aplikasi web (yang berjalan di lingkunan DOM peramban). Hooks ini tidak didukung di lingkungan non-_peramban_ seperti aplikasi iOS, Android, atau Windows. Jika Anda mencari Hooks yang didukung di peramban web *dan lingkungan lainnya* lihat [halaman React Hooks](/reference/react). Halaman ini mencantumkan semua Hooks dalam _package_ `react-dom`.
+*Package* `react-dom` berisi Hooks yang hanya didukung untuk aplikasi web (yang berjalan di lingkunan DOM peramban). Hooks ini tidak didukung di lingkungan non-*peramban* seperti aplikasi iOS, Android, atau Windows. Jika Anda mencari Hooks yang didukung di peramban web *dan lingkungan lainnya* lihat [halaman React Hooks](/reference/react). Halaman ini mencantumkan semua Hooks dalam *package* `react-dom`.
 
 </Intro>
 
@@ -14,7 +14,7 @@ _Package_ `react-dom` berisi Hooks yang hanya didukung untuk aplikasi web (yang 
 
 <Canary>
 
-Form Hooks saat ini hanya tersedia di canary dan saluran eksperimental React. Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
+Form Hooks saat ini hanya tersedia di canary dan kanal eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
