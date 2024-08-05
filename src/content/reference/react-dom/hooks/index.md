@@ -4,7 +4,7 @@ title: "Built-in React DOM Hooks"
 
 <Intro>
 
-The `react-dom` package contains Hooks that are only supported for web applications (which run in the browser DOM environment). These Hooks are not supported in non-browser environments like iOS, Android, or Windows applications. If you are looking for Hooks that are supported in web browsers *and other environments* see [the React Hooks page](/reference/react). This page lists all the Hooks in the `react-dom` package.
+*Package* `react-dom` berisi Hooks yang hanya didukung untuk aplikasi web (yang berjalan di lingkunan DOM peramban). Hooks ini tidak didukung di lingkungan non-*peramban* seperti aplikasi iOS, Android, atau Windows. Jika Anda mencari Hooks yang didukung di peramban web *dan lingkungan lainnya* lihat [halaman React Hooks](/reference/react). Halaman ini mencantumkan semua Hooks dalam *package* `react-dom`.
 
 </Intro>
 
@@ -14,13 +14,13 @@ The `react-dom` package contains Hooks that are only supported for web applicati
 
 <Canary>
 
-Form Hooks are currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Form Hooks saat ini hanya tersedia di canary dan kanal eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
-*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
+*Forms* memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola form di komponen Anda, gunakan salah satu Hooks ini:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) memungkinkan Anda melakukan pembaruan pada UI berdasarkan status form.
 
 ```js
 function Form({ action }) {
