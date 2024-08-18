@@ -30,7 +30,7 @@ Kompilator juga mencakup plugin [eslint](#menginstal-plugin-eslint-kompilator-re
 
 ### Apa yang dilakukan oleh kompilator? {/*what-does-the-compiler-do*/}
 
-Untuk mengoptimalkan aplikasi, Kompilator React secara otomatis melakukan memoisasi kode Anda. Anda mungkin sudah familiar dengan memoisasi melalui API seperti `useMemo`, `useCallback`, dan `React.memo`. Dengan API ini, Anda dapat memberi tahu React bahwa bagian-bagian tertentu dari aplikasi Anda tidak perlu dijalankan ulang jika inputnya tidak berubah, mengurangi pekerjaan pada pembaruan. Meskipun sangat berguna, mudah untuk lupa menerapkan memoisasi atau menerapkannya dengan cara yang salah. Hal ini dapat menyebabkan pembaruan yang tidak efisien karena React harus memeriksa bagian-bagian UI Anda yang tidak memiliki perubahan yang _berarti_.
+Untuk mengoptimalkan aplikasi, Kompilator React secara otomatis melakukan memoisasi kode Anda. Anda mungkin sudah familiar dengan memoisasi melalui API seperti `useMemo`, `useCallback`, dan `React.memo`. Dengan API ini, Anda dapat memberi tahu React bahwa bagian-bagian tertentu dari aplikasi Anda tidak perlu dijalankan ulang jika inputnya tidak berubah, mengurangi pekerjaan pada pembaruan. Meskipun sangat berguna, mudah untuk lupa menerapkan memoisasi atau menerapkannya dengan cara yang salah. Hal ini dapat menyebabkan pembaruan yang tidak efisien karena React harus memeriksa bagian-bagian UI Anda yang tidak memiliki perubahan yang *berarti*.
 
 Kompilator menggunakan pengetahuannya tentang JavaScript dan aturan React untuk secara otomatis melakukan memoisasi nilai atau kelompok nilai dalam komponen dan *hook* Anda. Jika ia mendeteksi pelanggaran aturan, ia akan melewati hanya komponen atau *hook* tersebut, dan melanjutkan kompilasi kode lain dengan aman
 
@@ -48,7 +48,7 @@ Rilis awal Kompilator React terutama berfokus pada **meningkatkan kinerja pembar
 
 #### Mengoptimalkan Render Ulang {/*optimizing-re-renders*/}
 
-React memungkinkan Anda mengekspresikan UI Anda sebagai fungsi dari keadaan saat ini (lebih konkretnya: *prop*, *state*, dan konteks mereka). Dalam implementasinya saat ini, ketika keadaan komponen berubah, React akan merender ulang komponen tersebut _dan semua anak-anaknya_ — kecuali jika Anda telah menerapkan memoisasi manual dengan `useMemo()`, `useCallback()`, atau `React.memo()`. Misalnya, pada contoh berikut, `<MessageButton>` akan merender ulang setiap kali keadaan `<FriendList>` berubah:
+React memungkinkan Anda mengekspresikan UI Anda sebagai fungsi dari keadaan saat ini (lebih konkretnya: *prop*, *state*, dan konteks mereka). Dalam implementasinya saat ini, ketika keadaan komponen berubah, React akan merender ulang komponen tersebut *dan semua anak-anaknya* — kecuali jika Anda telah menerapkan memoisasi manual dengan `useMemo()`, `useCallback()`, atau `React.memo()`. Misalnya, pada contoh berikut, `<MessageButton>` akan merender ulang setiap kali keadaan `<FriendList>` berubah:
 
 ```javascript
 function FriendList({ friends }) {
@@ -67,9 +67,9 @@ function FriendList({ friends }) {
   );
 }
 ```
-[_Lihat contoh ini di *React Compiler Playground*_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+[*Lihat contoh ini di *React Compiler Playground**](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-Kompilator React secara otomatis menerapkan memoisasi manual yang setara, memastikan bahwa hanya bagian-bagian yang relevan dari aplikasi yang merender ulang saat keadaan berubah, yang kadang-kadang disebut sebagai "reaktivitas bergranular halus". Pada contoh di atas, Kompilator React menentukan bahwa nilai kembalian dari `<FriendListCard />` dapat digunakan kembali bahkan saat `friends` berubah, dan dapat menghindari membuat ulang JSX ini _dan_ menghindari merender ulang `<MessageButton>` saat jumlah berubah.
+Kompilator React secara otomatis menerapkan memoisasi manual yang setara, memastikan bahwa hanya bagian-bagian yang relevan dari aplikasi yang merender ulang saat keadaan berubah, yang kadang-kadang disebut sebagai "reaktivitas bergranular halus". Pada contoh di atas, Kompilator React menentukan bahwa nilai kembalian dari `<FriendListCard />` dapat digunakan kembali bahkan saat `friends` berubah, dan dapat menghindari membuat ulang JSX ini *dan* menghindari merender ulang `<MessageButton>` saat jumlah berubah.
 
 #### Perhitungan mahal juga mendapatkan memoisasi {/*expensive-calculations-also-get-memoized*/}
 
@@ -86,7 +86,7 @@ function TableContainer({ items }) {
   // ...
 }
 ```
-[_Lihat contoh ini di React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
+[*Lihat contoh ini di *React Compiler Playground**](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
 
 Namun, jika `expensivelyProcessAReallyLargeArrayOfObjects` adalah fungsi yang benar-benar mahal, Anda mungkin perlu mempertimbangkan untuk mengimplementasikan memoisasi sendiri di luar React, karena:
 
