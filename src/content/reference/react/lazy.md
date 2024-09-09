@@ -78,7 +78,7 @@ Setelah kode komponen Anda dimuat saat digunakan (*on demand*), Anda juga perlu 
 <Suspense fallback={<Loading />}>
   <h2>Preview</h2>
   <MarkdownPreview />
- </Suspense>
+</Suspense>
 ```
 
 Pada contoh ini, kode untuk `MarkdownPreview` tidak akan dimuat hingga Anda mencoba me-*render*nya. Jika `MarkdownPreview` belum dimuat, Komponen `Loading` akan ditampilkan sebagai gantinya. Coba centang *checkbox* **Lihat pratinjau**:
