@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `preconnect` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Fungsi `preconnect` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [saluran rilis React di sini].
 
 </Canary>
 
 <Intro>
 
-`preconnect` lets you eagerly connect to a server that you expect to load resources from.
+`preconnect` memungkinkan Anda menyambungkan ke server yang Anda harapkan untuk memuat sumber daya.
 
 ```js
 preconnect("https://example.com");
@@ -23,11 +23,11 @@ preconnect("https://example.com");
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `preconnect(href)` {/*preconnect*/}
 
-To preconnect to a host, call the `preconnect` function from `react-dom`.
+Untuk melakukan prakoneksi ke sebuah host, panggil fungsi `preconnect` dari `react-dom`.
 
 ```js
 import { preconnect } from 'react-dom';
@@ -39,34 +39,34 @@ function AppRoot() {
 
 ```
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-The `preconnect` function provides the browser with a hint that it should open a connection to the given server. If the browser chooses to do so, this can speed up the loading of resources from that server. 
+Fungsi `preconnect` memberikan petunjuk kepada browser untuk membuka koneksi ke server yang diberikan. Jika browser memilih untuk melakukannya, hal ini dapat mempercepat pemuatan sumber daya dari server tersebut.
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `href`: a string. The URL of the server you want to connect to.
+* `href`: sebuah string. URL server yang ingin Anda sambungkan.
 
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`preconnect` returns nothing.
+`preconnect` tidak mengembalikan apa pun.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-* Multiple calls to `preconnect` with the same server have the same effect as a single call.
-* In the browser, you can call `preconnect` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preconnect` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
-* If you know the specific resources you'll need, you can call [other functions](/reference/react-dom/#resource-preloading-apis) instead that will start loading the resources right away.
-* There is no benefit to preconnecting to the same server the webpage itself is hosted from because it's already been connected to by the time the hint would be given.
+* Beberapa panggilan ke `preconnect` dengan server yang sama memiliki efek yang sama dengan panggilan tunggal.
+* Di browser, Anda dapat memanggil `preconnect` dalam situasi apa pun: saat merender komponen, di Effect, di event handler, dan sebagainya.
+* Dalam rendering sisi server atau saat merender Komponen Server, `preconnect` hanya memiliki efek jika Anda memanggilnya saat merender komponen atau dalam konteks asinkronisasi yang berasal dari rendering komponen. Panggilan lain akan diabaikan.
+* Jika Anda mengetahui sumber daya spesifik yang Anda perlukan, Anda dapat memanggil [fungsi lain](/reference/react-dom/#resource-preloading-apis) sebagai gantinya yang akan langsung memuat sumber daya.
+* Tidak ada manfaatnya melakukan prakoneksi ke server yang sama dengan tempat halaman web dihosting karena server tersebut sudah tersambung pada saat petunjuk diberikan.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Preconnecting when rendering {/*preconnecting-when-rendering*/}
+### Preconnecting saat merender {/*preconnecting-when-rendering*/}
 
-Call `preconnect` when rendering a component if you know that its children will load external resources from that host.
+Panggil `preconnect` saat merender komponen jika Anda mengetahui bahwa anak komponen akan memuat sumber daya eksternal dari host tersebut.
 
 ```js
 import { preconnect } from 'react-dom';
@@ -77,9 +77,9 @@ function AppRoot() {
 }
 ```
 
-### Preconnecting in an event handler {/*preconnecting-in-an-event-handler*/}
+### Preconnecting pada event handler {/*preconnecting-in-an-event-handler*/}
 
-Call `preconnect` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+Panggil `preconnect` dalam event handler sebelum bertransisi ke halaman atau state yang membutuhkan sumber daya eksternal. Hal ini akan memulai proses lebih awal dibandingkan jika Anda memanggilnya saat merender halaman atau state baru.
 
 ```js
 import { preconnect } from 'react-dom';
