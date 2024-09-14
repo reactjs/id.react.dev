@@ -53,7 +53,7 @@ Pada contoh di atas, `Submit` menggunakan informasi ini untuk menonaktifkan pene
 
 [Lihat lebih banyak contoh di bawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 `useFormStatus` tidak menerima parameter apapun.
 
