@@ -57,7 +57,7 @@ Pada contoh di atas, `Submit` menggunakan informasi ini untuk menonaktifkan pene
 
 `useFormStatus` tidak menerima parameter apapun.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 Objek `status` dengan properti berikut:
 
