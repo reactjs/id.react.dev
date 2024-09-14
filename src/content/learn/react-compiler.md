@@ -106,7 +106,7 @@ React Compiler assumes that your code:
 
 Kompilator React dapat memverifikasi banyak Aturan React secara statis, dan akan melewati kompilasi dengan aman ketika mendeteksi eror. Untuk melihat eror, kami juga merekomendasikan menginstal [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
 
-### Haruskah Saya mencoba kompilator? {/*should-i-try-out-the-compiler*/}
+### Haruskah saya mencoba kompilator? {/*should-i-try-out-the-compiler*/}
 
 Harap dicatat bahwa kompilator ini masih eksperimental dan memiliki beberapa kekurangan. Meskipun telah digunakan di produksi oleh perusahaan seperti Meta, mengimplementasikan kompilator ke produksi untuk aplikasi Anda akan bergantung pada keadaan kode Anda dan sejauh mana Anda mengikuti [Aturan React](/reference/rules).
 
