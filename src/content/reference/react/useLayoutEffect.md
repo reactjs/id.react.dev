@@ -67,6 +67,8 @@ function Tooltip() {
 
 * Kode di dalam `useLayoutEffect` serta semua pembaruan *state* yang telah dijadwalkan akan **memblokir peramban untuk melukis ulang layar.** Penggunaan berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
 
+* If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
+
 ---
 
 ## Penggunaan {/*usage*/}
