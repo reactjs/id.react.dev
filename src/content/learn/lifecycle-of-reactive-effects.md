@@ -4,34 +4,34 @@ title: 'Lifecycle of Reactive Effects'
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Effects mempunyai _lifecycle_ yang berbeda dari komponen. Komponen dapat melakukan pemasangan, pembaruan, ataupun pelepasan. Sebuah Effect hanya dapat melakukan dua hal: untuk memulai sinkronisasi sesuatu, dan nantinya dapat memberhentikan sinkronisasi. _Cycle_ ini dapat terjadi beberapa kali jika Effect bergantung terhadap _props_ dan _state_ yang berubah sewaktu-waktu. React memberikan sebuah aturan _linter_ untuk memastikan bahwa Anda telah menyebutkan dependensi dari Effects yang Anda buat dengan benar. Ini akan menjaga Effects Anda tersinkronisasi dengan _props_ dan _state_ yang terbaru.
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
-- How to think about each individual Effect in isolation
-- When your Effect needs to re-synchronize, and why
-- How your Effect's dependencies are determined
-- What it means for a value to be reactive
-- What an empty dependency array means
-- How React verifies your dependencies are correct with a linter
-- What to do when you disagree with the linter
+- Bagaimana sebuah _lifecycle_ dari Effect berbeda dengan yang di komponen
+- Bagaimana memikirkan tiap Effect di dalam isolasi
+- Kapan Effect perlu sinkronisasi ulang dan alasannya
+- Bagaimana dependensi sebuah Effect ditentukan
+- Apa maksud untuk sebuah _value_ menjadi reaktif
+- Apa maksud dari _array dependency_ yang kosong
+- Bagaimana React memvalidasi dependensi yang sesuai dengan sebuah _linter_
+- Apa yang harus dilakukan ketika tidak setuju dengan _linter_
 
 </YouWillLearn>
 
-## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
+## Lifecycle dari sebuah Effect {/*the-lifecycle-of-an-effect*/}
 
-Every React component goes through the same lifecycle:
+Tiap komponen React akan melalui _lifecycle_ yang sama, yaitu:
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- Sebuah komponen akan dipasang ketika ditambahkan ke layar.
+- Sebuah komponen akan memperbarui sendirinya ketika menerima _props_ dan _state_ yang baru, biasanya sebagai respon dari sebuah interaksi.
+- Sebuah komponen akan dilepas ketika dihapus dari layar.
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**Memikirkan tentang komponen itu baik, tetapi tidak tentang Effects.** Coba pikirkan tentang tiap Effect secara terpisah dari _lifecycle_ komponen-nya. Sebuah Effect menjelaskan bagaimana cara untuk [sinkronisasi sebuah sistem eksternal](/learn/synchronizing-with-effects) ke _props_ dan _state_ yang ada. Seiring berubahnya kode, sinkronisasi akan seringkali terjadi.
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+Untuk mencontohkan hal ini, misalkan ada Effect yang terhubung dengan komponen di sebuah peladen obrolan: 
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -48,7 +48,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Your Effect's body specifies how to **start synchronizing:**
+Bagian _body_ di Effect menentukan bagaimana untuk **memulai sinkronisasi:**
 
 ```js {2-3}
     // ...
@@ -60,7 +60,7 @@ Your Effect's body specifies how to **start synchronizing:**
     // ...
 ```
 
-The cleanup function returned by your Effect specifies how to **stop synchronizing:**
+Fungsi _cleanup_ yang dikembalikan Effect menentukan bagaimana untuk **memberhentikan sinkronisasi:**
 
 ```js {5}
     // ...
@@ -72,62 +72,62 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+Secara nalar, mungkin Anda berpikir React akan **memulai sinkronisasi** ketika komponen dipasang dan **berhenti sinkronisasi** ketika komponen dilepas. Namun, ini bukan akhir dari sebuah cerita! Terkadang, sangat memungkinkan untuk **memulai dan memberhentikan sinkronisasi berkali-kali** ketika komponen tetap terpasang.
 
-Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
+Mari kita lihat _mengapa_ ini penting, _kapan_ ini terjadi, dan _bagaimana_ cara mengendalikan perilaku seperti ini.
 
 <Note>
 
-Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
+Beberapa Effects tidak mengembalikan fungsi _cleanup_ sama sekali. [Seringkali,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) Anda mungkin ingin mengembalikannya--tapi jika tidak, React akan bertindak seakan Anda mengembalikan fungsi _cleanup_ yang kosong.
 
 </Note>
 
-### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
+### Mengapa sinkronisasi mungkin butuh terjadi lebih dari sekali {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+Bayangkan sebuah komponen `ChatRoom` menerima sebuah _prop_ `roomId` yang pengguna pilih dalam sebuah _dropdown_. Misalkan pada awalnya pengguna memilih ruangan `"general"` sebagai `roomId`. Aplikasi anda menampilkan ruangan obrolan `"general"`:
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId /* "general" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruangan {roomId}!</h1>;
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
+Setelah UI ditampilkan, React akan menjalankan Effect untuk **memulai sinkronisasi** dan dihubungkan dengan ruangan `"general"`: 
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "general" room
+    const connection = createConnection(serverUrl, roomId); // Menghubungkan dengan ruangan "general"
     connection.connect();
     return () => {
-      connection.disconnect(); // Disconnects from the "general" room
+      connection.disconnect(); // Memutuskan dari ruangan "general"
     };
   }, [roomId]);
   // ...
 ```
 
-So far, so good.
+Sejauh ini, aman.
 
-Later, the user picks a different room in the dropdown (for example, `"travel"`). First, React will update the UI:
+Kemudian, pengguna memilih ruangan yang berbeda dari _dropdown_ (contohnya, `"travel"`). Pertama, React akan memperbarui UI:
 
 ```js {1}
 function ChatRoom({ roomId /* "travel" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Selamat datang di ruangan {roomId}!</h1>;
 }
 ```
 
-Think about what should happen next. The user sees that `"travel"` is the selected chat room in the UI. However, the Effect that ran the last time is still connected to the `"general"` room. **The `roomId` prop has changed, so what your Effect did back then (connecting to the `"general"` room) no longer matches the UI.**
+Coba pikirkan apa yang akan terjadi. Pengguna melihat `"travel"` sebagai ruangan obrolan yang terpilih di UI. Namun, Effect yang terakhir berjalan masih terhubung dengan ruangan `"general"`. **_Prop_ `roomId` telah berubah, jadi yang Effect lakukan sebelumnya (menghubungkan dengan ruangan `"general"`) tidak lagi sesuai dengan UI.**
 
-At this point, you want React to do two things:
+Pada titik ini, Anda ingin React untuk melakukan dua hal:
 
-1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
-2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
+1. Berhenti sinkronisasi dengan `roomId` yang lama (memutuskan dari ruangan `"general"`)
+2. Memulai sinkronisasi dengan `roomId` yang baru (menghubungkan ke ruangan `"travel"`)
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**Untungnya, Anda telah mengajarkan React cara melakukan kedua hal tersebut!** _Body_ dari Effect menentukan bagaimana memulai sinkronisasi, dan fungsi _cleanup_ menentukan bagaimana untuk berhenti sinkronisasi. Yang React butuhkan sekarang adalah memanggilnya dengan urutan yang sesuai serta _props_ dan _state_ yang benar. Mari kita lihat bagaimana hal ini dapat terjadi.
 
 ### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
 
