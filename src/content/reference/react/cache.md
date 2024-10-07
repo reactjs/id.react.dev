@@ -226,7 +226,7 @@ Dengan melakukan *cache* pada data hasil *fetch* yang panjang, Anda dapat memula
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
   return await db.user.query(id);
-})
+});
 
 async function Profile({id}) {
   const user = await getUser(id);
@@ -327,7 +327,7 @@ Secara umum, anda harus menggunakan [`useMemo`](/reference/react/useMemo) untuk 
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record), record);
   // ...
 }
 
