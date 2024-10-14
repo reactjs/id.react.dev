@@ -189,7 +189,11 @@ Efek samping yang secara langsung terlihat oleh pengguna tidak diperbolehkan dal
 
 ```js {2}
 function ProductDetailPage({ product }) {
+<<<<<<< HEAD
   document.window.title = product.title; // 🔴 Buruk: Mengubah DOM
+=======
+  document.title = product.title; // 🔴 Bad: Changes the DOM
+>>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 }
 ```
 

@@ -20,8 +20,6 @@ These docs are still a work in progress. More documentation is available in the 
 
 <Note>
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
-
-React Compiler requires React 19 RC. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 </Note>
 
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
@@ -121,7 +119,7 @@ In addition to these docs, we recommend checking the [React Compiler Working Gro
 Prior to installing the compiler, you can first check to see if your codebase is compatible:
 
 <TerminalBlock>
-npx react-compiler-healthcheck@latest
+npx react-compiler-healthcheck@experimental
 </TerminalBlock>
 
 This script will:
@@ -143,7 +141,7 @@ Found no usage of incompatible libraries.
 React Compiler also powers an eslint plugin. The eslint plugin can be used **independently** of the compiler, meaning you can use the eslint plugin even if you don't use the compiler.
 
 <TerminalBlock>
-npm install eslint-plugin-react-compiler
+npm install eslint-plugin-react-compiler@experimental
 </TerminalBlock>
 
 Then, add it to your eslint config:
@@ -203,7 +201,7 @@ If you're starting a new project, you can enable the compiler on your entire cod
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler
+npm install babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
@@ -225,6 +223,29 @@ module.exports = function () {
 ```
 
 `babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
+
+React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
+
+<TerminalBlock>
+npm install react-compiler-runtime@experimental
+</TerminalBlock>
+
+You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
+
+```js {3}
+// babel.config.js
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+};
+
+module.exports = function () {
+  return {
+    plugins: [
+      ['babel-plugin-react-compiler', ReactCompilerConfig],
+    ],
+  };
+};
+```
 
 ### Vite {/*usage-with-vite*/}
 
@@ -258,7 +279,7 @@ Next.js has an experimental configuration to enable the React Compiler. It autom
 - Install `babel-plugin-react-compiler`
 
 <TerminalBlock>
-npm install next@canary babel-plugin-react-compiler
+npm install next@canary babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 Then configure the experimental option in `next.config.js`:
