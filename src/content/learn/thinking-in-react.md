@@ -265,11 +265,19 @@ Pada langkah sebelumnya, Anda menemukan dua bagian status dalam aplikasi ini: te
 
 Sekarang mari kita bahas strateginya:
 
+<<<<<<< HEAD
 1. **Identifikasi komponen yang menggunakan state:**
     * `ProductTable` perlu memfilter daftar produk berdasarkan status tersebut (teks pencarian dan nilai kotak centang). 
     * `SearchBar` perlu menampilkan status tersebut (teks pencarian dan nilai kotak centang).
 1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
+=======
+1. **Identify components that use state:**
+    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
+    * `SearchBar` needs to display that state (search text and checkbox value).
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+>>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
 
 Jadi nilai state akan berada di dalam `FilterableProductTable`. 
 
