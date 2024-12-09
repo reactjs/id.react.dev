@@ -1,14 +1,16 @@
 ---
 link: "<link>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<link>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 [Komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti *stylesheet* atau memberi anotasi pada dokumen dengan metadata tautan.
