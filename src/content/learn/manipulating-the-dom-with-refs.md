@@ -124,35 +124,35 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={handleScrollToFirstCat}>
-          Tom
+          Neo
         </button>
         <button onClick={handleScrollToSecondCat}>
-          Maru
+          Millie
         </button>
         <button onClick={handleScrollToThirdCat}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
               ref={thirdCatRef}
             />
           </li>
@@ -245,9 +245,9 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToCat(catList[0])}>Tom</button>
-        <button onClick={() => scrollToCat(catList[5])}>Maru</button>
-        <button onClick={() => scrollToCat(catList[9])}>Jellylorum</button>
+        <button onClick={() => scrollToCat(catList[0])}>Neo</button>
+        <button onClick={() => scrollToCat(catList[5])}>Millie</button>
+        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
       </nav>
       <div>
         <ul>
@@ -256,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
               <img src={cat} />
@@ -309,16 +309,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
@@ -328,6 +318,7 @@ Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [
   key={cat.id}
   ref={node => {
     const map = getMap();
+<<<<<<< HEAD
     if (node) {
       // Add to the Map
       map.set(cat, node);
@@ -350,6 +341,8 @@ Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callbac
   key={cat.id}
   ref={node => {
     const map = getMap();
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
     // Add to the Map
     map.set(cat, node);
 
@@ -361,7 +354,15 @@ Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callbac
 >
 ```
 
-</Canary>
+This lets you read individual DOM nodes from the Map later.
+
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
 
 </DeepDive>
 
@@ -948,7 +949,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1065,7 +1066,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
