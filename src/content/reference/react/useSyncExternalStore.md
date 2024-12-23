@@ -41,7 +41,11 @@ function TodosApp() {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan berlangganan ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
+=======
+* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`, which will cause React to re-call `getSnapshot` and (if needed) re-render the component. The `subscribe` function should return a function that cleans up the subscription.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 * `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data, di tempat penyimpanan, yang dibutuhkan komponen. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
 

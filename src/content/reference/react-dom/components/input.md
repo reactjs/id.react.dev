@@ -32,6 +32,7 @@ Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](
 
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *canary* can *experimental* React. Dalam versi stabil React, `formAction` bekerja hanya sebagai [komponen peramban HTML bawaan](/reference/react-dom/components#all-html-components). Pelajari tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
@@ -39,6 +40,9 @@ Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *c
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah *string* atau fungsi. Menimpa `<form action>` induk untuk `type="submit"` dan `type="image"`. Ketika URL dioper ke `action` form akan memiliki perilaku sebagai form standar HTML. Ketika fungsi dioper ke `formAction` fungsi akan menangani kiriman form. Lihat [`<form action>`](/reference/react-dom/components/form#props).
+=======
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 

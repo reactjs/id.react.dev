@@ -1,14 +1,16 @@
 ---
 title: prefetchDNS
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Fungsi `prefetchDNS` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 <Intro>
 
 `prefetchDNS` memungkinkan Anda mencari IP server yang Anda harapkan untuk memuat sumber daya.
