@@ -20,9 +20,15 @@ Katakanlah Anda memiliki aplikasi web yang sudah ada di `example.com` yang dibua
 
 Inilah cara kami menyarankan untuk menyiapkannya:
 
+<<<<<<< HEAD
 1. **Buat bagian React dari aplikasi Anda** menggunakan salah satu [*framework* berbasis React](/learn/start-a-new-react-project).
 2. **Tentukan `/some-app` sebagai *base path*** dalam konfigurasi *framework* Anda (begini caranya: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurasi server Anda atau Proxy** sehingga semua permintaan di rute `/some-app/` ditangani oleh aplikasi React Anda.
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
 
 Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) yang dimasukkan ke dalam *framework* tersebut.
 
@@ -57,12 +63,17 @@ Kemudian tambahkan baris kode ini di bagian atas file JavaScript utama Anda (mun
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
+<<<<<<< HEAD
     <!-- Konten halaman Anda yang ada (dalam contoh ini konten akan diganti) -->
+=======
+    <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
   </body>
 </html>
 ```
@@ -119,7 +130,7 @@ Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](h
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
