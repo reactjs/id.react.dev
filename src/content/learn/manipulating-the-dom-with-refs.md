@@ -124,35 +124,35 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={handleScrollToFirstCat}>
-          Tom
+          Neo
         </button>
         <button onClick={handleScrollToSecondCat}>
-          Maru
+          Millie
         </button>
         <button onClick={handleScrollToThirdCat}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
               ref={thirdCatRef}
             />
           </li>
@@ -245,9 +245,9 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToCat(catList[0])}>Tom</button>
-        <button onClick={() => scrollToCat(catList[5])}>Maru</button>
-        <button onClick={() => scrollToCat(catList[9])}>Jellylorum</button>
+        <button onClick={() => scrollToCat(catList[0])}>Neo</button>
+        <button onClick={() => scrollToCat(catList[5])}>Millie</button>
+        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
       </nav>
       <div>
         <ul>
@@ -256,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
               <img src={cat} />
@@ -309,16 +309,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
@@ -328,6 +318,7 @@ Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [
   key={cat.id}
   ref={node => {
     const map = getMap();
+<<<<<<< HEAD
     if (node) {
       // Add to the Map
       map.set(cat, node);
@@ -350,6 +341,8 @@ Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callbac
   key={cat.id}
   ref={node => {
     const map = getMap();
+=======
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
     // Add to the Map
     map.set(cat, node);
 
@@ -361,23 +354,56 @@ Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callbac
 >
 ```
 
-</Canary>
+This lets you read individual DOM nodes from the Map later.
+
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
 
 </DeepDive>
 
 ## Mengakses simpul DOM komponen lain {/*accessing-another-components-dom-nodes*/}
 
+<<<<<<< HEAD
 Saat Anda memasang *ref* pada komponen bawaan yang mana hasilnya adalah elemen peramban seperti `<input />`, React akan mengatur properti `current` *ref* pada simpul DOM tersebut (seperti aktual `<input />` pada peramban).
 
 Namun, jika Anda mencoba mengatur *ref* pada komponen Anda sendiri, seperti `<MyInput />`, secara *default* Anda akan mendapatkan `null`. Ini contohnya. Perhatikan bagaimana meng-klik tombol **tidak** membuat fokus pada input:
+=======
+<Pitfall>
+Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
+</Pitfall>
+
+You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+
+```js {3-4,9}
+import { useRef } from 'react';
+
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
+
+function MyForm() {
+  const inputRef = useRef(null);
+  return <MyInput ref={inputRef} />
+}
+```
+
+In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+
+The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 <Sandpack>
 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function MyForm() {
@@ -400,6 +426,7 @@ export default function MyForm() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Untuk membantu Anda menanggapi *issue* tersebut, React juga mencetak *error* pada *console*:
 
 <ConsoleBlock level="error">
@@ -457,22 +484,24 @@ export default function Form() {
 
 Dalam sistem desain, merupakan pola umum untuk komponen level rendah seperti tombol, input dan sejenisnya untuk meneruskan *ref* ke simpul DOM. Sebaliknya, komponen level atas seperti *form*, *list* atau bagian dari halaman biasanya tidak mengekspos simpul DOM untuk menghindari dependensi yang tidak disengaja pada struktur DOM.
 
+=======
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 <DeepDive>
 
 #### Ekspos bagian dari API dengan imperatif handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
+<<<<<<< HEAD
 Pada contoh di atas, `MyInput` mengekspos elemen input DOM. Ini memungkinkan komponen *parent* memanggil `focus()`. Namun, ini juga memungkinkan *parent* komponen melakukan hal lain--contohnya, mengubah CSS (Cascading Style Sheet) *style*. Dalam kasus umum, Anda mungkin ingin membatasi fungsionalitas yang akan diekspos. Anda dapat melakukannya dengan `useImperativeHandle`:
+=======
+In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](/reference/react/useImperativeHandle):
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 <Sandpack>
 
 ```js
-import {
-  forwardRef, 
-  useRef, 
-  useImperativeHandle
-} from 'react';
+import { useRef, useImperativeHandle } from "react";
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else
@@ -480,8 +509,8 @@ const MyInput = forwardRef((props, ref) => {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
-});
+  return <input ref={realInputRef} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -493,9 +522,7 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -503,7 +530,11 @@ export default function Form() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, `useImperativeHandle` menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan `useImperativeHandle`.
+=======
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](/reference/react/useImperativeHandle) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](/reference/react/useImperativeHandle) call.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </DeepDive>
 
@@ -615,7 +646,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
@@ -948,7 +979,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1065,7 +1096,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 

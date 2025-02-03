@@ -189,11 +189,19 @@ Efek samping yang secara langsung terlihat oleh pengguna tidak diperbolehkan dal
 
 ```js {2}
 function ProductDetailPage({ product }) {
+<<<<<<< HEAD
   document.window.title = product.title; // 🔴 Buruk: Mengubah DOM
 }
 ```
 
 Salah satu cara untuk mencapai hasil yang diinginkan dengan memperbarui `window.title` di luar *render* adalah dengan [menyinkronkan komponen dengan `window`](/learn/synchronizing-with-effects).
+=======
+  document.title = product.title; // 🔴 Bad: Changes the DOM
+}
+```
+
+One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](/learn/synchronizing-with-effects).
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 Selama pemanggilan sebuah komponen beberapa kali aman dan tidak mempengaruhi proses *render* komponen lainnya, React tidak peduli apakah komponen tersebut 100% murni dalam arti pemrograman fungsional yang ketat. Yang lebih penting adalah [komponen harus idempoten](/reference/rules/components-and-hooks-must-be-pure).
 

@@ -17,7 +17,7 @@ export const LoadingOverlay = ({
   clientId: string;
   dependenciesLoading: boolean;
   forceLoading: boolean;
-} & React.HTMLAttributes<HTMLDivElement>): JSX.Element | null => {
+} & React.HTMLAttributes<HTMLDivElement>): React.ReactNode | null => {
   const loadingOverlayState = useLoadingOverlayState(
     clientId,
     dependenciesLoading,
@@ -63,7 +63,12 @@ export const LoadingOverlay = ({
         opacity: stillLoading ? 1 : 0,
         transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
       }}>
+<<<<<<< HEAD
       <div className="sp-cube-wrapper" title="Buka di CodeSandbox">
+=======
+      <div className="sp-cube-wrapper" title="Open in CodeSandbox">
+        {/* @ts-ignore: the OpenInCodeSandboxButton type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
         <OpenInCodeSandboxButton />
         <div className="sp-cube">
           <div className="sp-sides">

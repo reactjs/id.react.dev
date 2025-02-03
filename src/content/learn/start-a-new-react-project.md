@@ -27,7 +27,11 @@ Meskipun Anda tidak membutuhkan fungsi *routing* maupun pengambilan data di awal
 
 **Secara umum, *framework* React pada halaman ini dapat menyelesaikan masalah yang disebutkan sebelumnya, tanpa perlu usaha tambahan dari Anda.** React membantu Anda untuk dapat mulai membuat proyek dengan sangat ringkas dan kemudian mengembangkan aplikasi Anda sesuai kebutuhan Anda. Setiap *framework* React memiliki komunitas yang aktif, sehingga Anda akan dengan mudah untuk menemukan jawaban atas pertanyaan serta informasi terkait peningkatan peralatan Anda. *Framework* juga membantu Anda dalam menstrukturkan kode, membantu Anda dan orang lain untuk memahami konteks dan keterampilan di antara berbagai proyek. Sebaliknya dengan menggunakan pengaturan sendiri, Anda akan mudah terjebak pada versi dependensi yang sudah tidak didukung, dan pada akhirnya Anda akan membuat *framework* Anda sendiri tanpa komunitas dan rencana peningkataan untuk membantu *framework* tersebut terus berkembang (mungkin *framework* tersebut pun mirip seperti yang pernah kita buat di masa lalu, dengan desain yang lebih asal-asalan).
 
+<<<<<<< HEAD
 Jika Anda masih belum yakin, atau aplikasi Anda memiliki kendala tidak umum yang tidak dapat dilayani dengan baik oleh *framework* ini dan Anda ingin membuat pengaturan sendiri, kami tidak dapat menghentikan Anda--coba saja! Gunakan `react` dan `react-dom` dari npm, siapkan *bundler* proses *build* kustom Anda seperti [Vite](https://vitejs.dev/) atau [Parcel](https://parceljs.org/), dan peralatan lainnya sesuai kebutuhan Anda untuk *routing*, pembuatan halaman statis atau *server-side rendering*, dan lainnya.
+=======
+If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vite.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </DeepDive>
 
