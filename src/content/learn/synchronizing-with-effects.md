@@ -629,7 +629,11 @@ Lihat contoh di bawah ini untuk cara menangani pola umum.
 
 ### Mengontrol *widget* di luar React {/*controlling-non-react-widgets*/}
 
+<<<<<<< HEAD
 Terkadang Anda perlu menambahkan *widget* UI yang tidak ditulis untuk React. Sebagai contoh, katakanlah Anda menambahkan komponen peta ke halaman Anda. Komponen ini memiliki metode `setZoomLevel()`, dan Anda ingin menjaga tingkat *zoom* tetap sinkron dengan variabel *state* `zoomLevel` dalam kode React Anda. *Effect* Anda akan terlihat seperti ini:
+=======
+Sometimes you need to add UI widgets that aren't written in React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 ```js
 useEffect(() => {

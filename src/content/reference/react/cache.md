@@ -3,11 +3,19 @@ title: cache
 canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 * `cache` hanya digunakan dengan [*React Server Components*](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Lihat [*frameworks*](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) yang mendukung *React Server Components*.
 
 * `cache` hanya tersedia di kanal [*Canary*](/community/versioning-policy#canary-channel) dan [eksperimental](/community/versioning-policy#experimental-channel) React. Pastikan Anda memahami beberapa keterbatasannya sebelum menggunakan `cache` di *production*. Pelajari lebih lanjut terkait dengan [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 </Canary>
+=======
+<RSC>
+
+`cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+
+</RSC>
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 <Intro>
 
@@ -226,7 +234,7 @@ Dengan melakukan *cache* pada data hasil *fetch* yang panjang, Anda dapat memula
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
   return await db.user.query(id);
-})
+});
 
 async function Profile({id}) {
   const user = await getUser(id);
@@ -327,7 +335,7 @@ Secara umum, anda harus menggunakan [`useMemo`](/reference/react/useMemo) untuk 
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record), record);
   // ...
 }
 

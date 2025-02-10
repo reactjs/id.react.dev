@@ -408,9 +408,15 @@ function Game() {
 
 Ada dua masalah dengan kode ini.
 
+<<<<<<< HEAD
 Salah satu masalahnya adalah hal ini sangat tidak efisien: komponen (dan turunannya) harus di-*render* ulang di antara setiap panggilan `set` dalam rantai. Dalam contoh di atas, dalam kasus terburuk (`setCard` → *render* → `setGoldCardCount` → *render* → `setRound` → *render* → `setIsGameOver` → *render*) ada tiga *rendering* ulang yang tidak diperlukan pada pohon di bawah ini.
 
 Meskipun tidak lambat, seiring berkembangnya kode Anda, Anda akan menghadapi kasus di mana "rantai" yang Anda tulis tidak sesuai dengan persyaratan baru. Bayangkan Anda menambahkan cara untuk menelusuri sejarah gerakan permainan. Anda akan melakukannya dengan memperbarui setiap variabel *state* ke nilai dari masa lalu. Namun, menyetel *state* `card` ke nilai dari masa lalu akan memicu rantai *Effect* lagi dan mengubah data yang Anda tampilkan. Kode seperti ini seringkali kaku dan rapuh.
+=======
+The first problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+
+The second problem is that even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 Dalam hal ini, lebih baik menghitung apa yang Anda bisa selama *rendering*, dan sesuaikan *state* di *event handler*:
 

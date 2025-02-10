@@ -36,11 +36,17 @@ function SearchPage() {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
 * <CanaryBadge title="Fitur ini hanya tersedia di kanal Canary" /> **opsional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+=======
+* `value`: The value you want to defer. It can have any type.
+* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 #### Kembalian {/*returns*/}
 
+<<<<<<< HEAD
 - `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
 <Canary>
@@ -48,6 +54,9 @@ function SearchPage() {
 Di versi Canary React terbaru, `useDeferredValue` mengembalikan `initialValue` pada *render* awal, dan menjadwalkan *render* ulang di balik layar dengan `value` dikembalikan.
 
 </Canary>
+=======
+- `currentValue`: During the initial render, the returned deferred value will be the `initialValue`, or the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 #### Catatan penting {/*caveats*/}
 
@@ -106,21 +115,6 @@ Dalam contoh ini, komponen `SearchResults` [ditangguhkan](/reference/react/Suspe
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
@@ -141,15 +135,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // itu belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -168,6 +166,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo berjalan.
 // TODO: ganti dengan implementasi nyata saat bug diperbaiki.
@@ -193,6 +192,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 ```
 
 ```js src/data.js hidden
@@ -220,7 +221,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -320,21 +321,6 @@ Masukkan `"a"` pada contoh di bawah, tunggu hasil dimuat, lalu edit input menjad
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -356,15 +342,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // itu belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -383,6 +373,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo berjalan.
 // TODO: ganti dengan implementasi nyata saat bug diperbaiki.
@@ -408,6 +399,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 ```
 
 ```js src/data.js hidden
@@ -435,7 +428,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -543,21 +536,6 @@ Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menj
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -585,15 +563,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // itu belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -612,6 +594,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo berjalan.
 // TODO: ganti dengan implementasi nyata saat bug diperbaiki.
@@ -637,6 +620,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 ```
 
 ```js src/data.js hidden
@@ -664,7 +649,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
