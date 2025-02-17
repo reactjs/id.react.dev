@@ -1133,7 +1133,11 @@ Memanggil fungsi `setSquares` akan membuat React mengetahui bahwa state dari kom
 
 <Note>
 
+<<<<<<< HEAD
 JavaScript mendukung [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) yang berarti fungsi dalam (misalnya `handleClick`) memiliki akses ke variabel dan fungsi yang didefinisikan di fungsi luar (misalnya `Board`). Fungsi `handleClick` dapat membaca state `squares` dan memanggil metode `setSquares` karena keduanya didefinisikan di dalam fungsi `Board`.
+=======
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in an outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 </Note>
 

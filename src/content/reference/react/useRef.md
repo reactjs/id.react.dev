@@ -326,33 +326,33 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={() => scrollToIndex(0)}>
-          Tom
+          Neo
         </button>
         <button onClick={() => scrollToIndex(1)}>
-          Maru
+          Millie
         </button>
         <button onClick={() => scrollToIndex(2)}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul ref={listRef}>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
             />
           </li>
         </ul>
@@ -447,16 +447,20 @@ button { display: block; margin-bottom: 20px; }
 
 #### Mengekspos sebuah ref ke komponen Anda sendiri {/*exposing-a-ref-to-your-own-component*/}
 
+<<<<<<< HEAD
 Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Baca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
+=======
+Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -553,7 +557,7 @@ Anda mungkin mendapatkan error di konsol:
 
 <ConsoleBlock level="error">
 
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+TypeError: Cannot read properties of null
 
 </ConsoleBlock>
 
@@ -572,12 +576,14 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
+<<<<<<< HEAD
 Dan kemudian membungkusnya dengan [`forwardRef`](/reference/react/forwardRef) seperti ini:
+=======
+And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevent child [built-in component](/reference/react-dom/components/common) like this:
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
-```js {3,8}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(({ value, onChange }, ref) => {
+```js {1,6}
+function MyInput({ value, onChange, ref }) {
   return (
     <input
       value={value}
@@ -585,7 +591,7 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
       ref={ref}
     />
   );
-});
+};
 
 export default MyInput;
 ```

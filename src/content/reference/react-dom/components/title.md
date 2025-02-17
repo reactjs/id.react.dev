@@ -1,8 +1,8 @@
 ---
 title: "<title>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React untuk `<title>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<title>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Ekstensi React untuk `<title>` saat ini hanya tersedia di kanal *canary* dan eks
 </Canary>
 
 
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 <Intro>
 
 [Komponen bawaan peramban `<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) memungkinkan Anda untuk menentukan judul dari dokumen.
