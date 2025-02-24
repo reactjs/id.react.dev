@@ -1,14 +1,16 @@
 ---
 title: preconnect
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Fungsi `preconnect` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [saluran rilis React di sini].
 
 </Canary>
 
+=======
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 <Intro>
 
 `preconnect` memungkinkan Anda menyambungkan ke server yang Anda harapkan untuk memuat sumber daya.
