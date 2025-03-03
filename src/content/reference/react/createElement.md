@@ -48,10 +48,17 @@ function Greeting({ name }) {
 
 `createElement` mengembalikan objek elemen React dengan beberapa properti:
 
+<<<<<<< HEAD
 * `type`: `type` yang telah Anda oper.
 * `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`. Jika `type` adalah komponen *legacy* `type.defaultProps`, lalu ada yang hilang atau tidak terdefinisi `props` akan mendapatkan nilai dari `type.defaultProps`.
 * `ref`: `ref` yang telah Anda oper. Jika hilang, `null`.
 * `key`: `key` yang telah Anda oper, dipaksa untuk string. Jika hilang, `null`.
+=======
+* `type`: The `type` you have passed.
+* `props`: The `props` you have passed except for `ref` and `key`.
+* `ref`: The `ref` you have passed. If missing, `null`.
+* `key`: The `key` you have passed, coerced to a string. If missing, `null`.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 Biasanya, Anda akan mengembalikan elemen dari komponen Anda atau menjadikannya anak dari elemen lain. Meskipun Anda dapat membaca properti elemen, yang terbaik adalah memperlakukan setiap elemen sebagai buram setelah dibuat, dan hanya me-*render*-nya.
 

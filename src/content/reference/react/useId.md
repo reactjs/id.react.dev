@@ -225,7 +225,7 @@ Jika Anda me-*render* beberapa aplikasi React independen pada satu halaman, beri
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
