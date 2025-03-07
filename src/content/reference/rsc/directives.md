@@ -17,7 +17,7 @@ Direktif memberikan instruksi kepada [bundler yang kompatibel dengan React Serve
 
 ---
 
-## Kode sumber direktif {/*source-code-directives*/}
+## Direktif kode sumber {/*source-code-directives*/}
 
 * [`'use client'`](/reference/rsc/use-client) memungkinkan Anda menandai kode yang berjalan pada klien.
 * [`'use server'`](/reference/rsc/use-server) menandai fungsi sisi server yang dapat dipanggil dari kode sisi klien.
