@@ -17,7 +17,7 @@ Pada versi React Canary sebelumnya, API ini merupakan bagian dari React DOM dan 
 
 <Intro>
 
-`useActionState` adalah sebuah Hook yang memungkinkan Anda memperbarui state berdasarkan hasil dari aksi sebuah form.
+`useActionState` adalah sebuah Hook yang memungkinkan Anda memperbarui *state* berdasarkan hasil dari aksi sebuah form.
 
 ```js
 const [state, formAction] = useActionState(fn, initialState, permalink?);
@@ -35,7 +35,7 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Panggil `useActionState` di tingkat atas komponen Anda untuk membuat state komponen yang diperbarui [saat aksi form dijalankan](/reference/react-dom/components/form). Anda mengoper sebuah fungsi aksi form yang sudah ada serta state awal ke `useActionState`, dan fungsi ini akan mengembalikan aksi baru yang Anda gunakan dalam form, bersama dengan state form terbaru. State form terbaru juga akan dioper ke fungsi yang Anda sediakan.
+Panggil `useActionState` di tingkat atas komponen Anda untuk membuat *state* komponen yang diperbarui [saat aksi form dijalankan](/reference/react-dom/components/form). Anda mengoper sebuah fungsi aksi form yang sudah ada serta *state* awal ke `useActionState`, dan fungsi ini akan mengembalikan aksi baru yang Anda gunakan dalam form, bersama dengan *state* form terbaru. *State* form terbaru juga akan dioper ke fungsi yang Anda sediakan.
 
 ```js
 import { useActionState } from "react";
@@ -55,21 +55,21 @@ function StatefulForm({}) {
 }
 ```
 
-State form adalah nilai yang dikembalikan oleh aksi saat form terakhir kali disubmit. Jika form belum disubmit, itu adalah state awal yang Anda lewatkan.
+*State* form adalah nilai yang dikembalikan oleh aksi saat form terakhir kali disubmit. Jika form belum disubmit, itu adalah *state* awal yang Anda lewatkan.
 
-Jika digunakan dengan Aksi Server, `useActionState` memungkinkan respon dari server setelah mengirimkan form untuk ditampilkan bahkan sebelum proses hydrasi selesai.
+Jika digunakan dengan *Server Action*, `useActionState` memungkinkan respon dari server setelah mengirimkan form untuk ditampilkan bahkan sebelum proses hidrasi selesai.
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Parameter {/*parameters*/}
 
 * `fn`: Fungsi yang akan dipanggil ketika form dikirimkan atau tombol ditekan. Ketika fungsi dipanggil, fungsi akan menerima keadaan sebelumnya dari form (awalnya `initialState` yang Anda berikan, kemudian nilai kembalinya sebelumnya) sebagai argumen awal, diikuti dengan argumen yang biasanya diterima oleh aksi form.
-* `initialState`: Nilai yang Anda inginkan untuk state awalnya. Nilai ini dapat berupa nilai yang dapat diurutkan. Argumen ini diabaikan setelah aksi pertama kali dipanggil.
-* **opsional** `permalink`: String yang berisi URL halaman unik yang dimodifikasi oleh form ini. Untuk digunakan pada halaman dengan konten dinamis (misalnya: feeddalam hubungannya dengan peningkatan progresif: jika `fn` adalah [aksi server](/reference/rsc/use-server) dan form dikirimkan sebelum bundel JavaScript dimuat, browser akan menavigasi ke URL permalink yang ditentukanL, bukan ke URL halaman yang sekarang. Pastikan bahwa komponen form yang sama di-render di halaman tujuan (termasuk action `fn` dan `permalink` yang sama) sehingga React tahu bagaimana cara meneruskan state. Setelah form di-hidrasi, parameter ini tidak berpengaruh.
+* `initialState`: Nilai yang Anda inginkan untuk *state* awalnya. Nilai ini dapat berupa nilai yang dapat diurutkan. Argumen ini diabaikan setelah aksi pertama kali dipanggil.
+* **opsional** `permalink`: String yang berisi URL halaman unik yang dimodifikasi oleh form ini. Untuk digunakan pada halaman dengan konten dinamis (misalnya: feeddalam hubungannya dengan peningkatan progresif: jika `fn` adalah [aksi server](/reference/rsc/use-server) dan form dikirimkan sebelum bundel JavaScript dimuat, browser akan menavigasi ke URL permalink yang ditentukan, bukan ke URL halaman yang sekarang. Pastikan bahwa komponen form yang sama di-render di halaman tujuan (termasuk action `fn` dan `permalink` yang sama) sehingga React tahu bagaimana cara meneruskan *state*. Setelah form di-hidrasi, parameter ini tidak berpengaruh.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
-#### Pengembalian {/*returns*/}
+#### Kembalian {/*returns*/}
 
 `useActionState` mengembalikan sebuah array dengan tepat dua nilai:
 
@@ -78,8 +78,8 @@ Jika digunakan dengan Aksi Server, `useActionState` memungkinkan respon dari ser
 
 #### Perhatian {/*caveats*/}
 
-* Ketika digunakan dengan framework yang mendukung React Server Components, `useActionState` memungkinkan Anda membuat form menjadi interaktif sebelum JavaScript dieksekusi di klien. Ketika digunakan tanpa Komponen Server, ini setara dengan state lokal komponen.
-* Fungsi yang dioper ke `useActionState` menerima argumen tambahan, yaitu state sebelumnya atau awal, sebagai argumen pertamanya. Hal ini membuat tanda tangannya berbeda dibandingkan jika digunakan secara langsung sebagai aksi form tanpa menggunakan `useActionState`.
+* Ketika digunakan dengan *framework* yang mendukung Komponen Server React, `useActionState` memungkinkan Anda membuat form menjadi interaktif sebelum JavaScript dieksekusi di klien. Ketika digunakan tanpa Komponen Server, ini setara dengan state lokal komponen.
+* Fungsi yang dioper ke `useActionState` menerima argumen tambahan, yaitu *state* sebelumnya atau awal, sebagai argumen pertamanya. Hal ini membuat tanda tangannya berbeda dibandingkan jika digunakan secara langsung sebagai aksi form tanpa menggunakan `useActionState`.
 
 ---
 
