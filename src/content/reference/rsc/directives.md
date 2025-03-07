@@ -1,23 +1,23 @@
 ---
-title: "Directives"
+title: "Direktif"
 canary: true
 ---
 
 <Canary>
 
-These directives are needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+Direktif ini diperlukan hanya jika Anda [menggunakan React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) atau membangun pustaka yang kompatibel dengannya.
 
 </Canary>
 
 <Intro>
 
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Direktif memberikan instruksi kepada [bundler yang kompatibel dengan React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </Intro>
 
 ---
 
-## Source code directives {/*source-code-directives*/}
+## Direktif kode sumber {/*source-code-directives*/}
 
-* [`'use client'`](/reference/rsc/use-client) lets you mark what code runs on the client.
-* [`'use server'`](/reference/rsc/use-server) marks server-side functions that can be called from client-side code.
+* [`'use client'`](/reference/rsc/use-client) memungkinkan Anda menandai kode yang berjalan pada klien.
+* [`'use server'`](/reference/rsc/use-server) menandai fungsi sisi server yang dapat dipanggil dari kode sisi klien.
