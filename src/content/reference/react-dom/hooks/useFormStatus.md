@@ -1,14 +1,16 @@
 ---
 title: useFormStatus
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Hook `useFormStatus` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 <Intro>
 
 `useFormStatus` adalah Hook yang memberi Anda informasi state pengiriman form terakhir.
@@ -117,18 +119,6 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 <Pitfall>
@@ -234,17 +224,6 @@ button {
 
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 ---

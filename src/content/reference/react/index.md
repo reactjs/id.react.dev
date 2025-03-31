@@ -14,10 +14,17 @@ Dokumentasi referensi React dibagi menjadi beberapa sub-bagian fungsional:
 
 Fitur-fitur React yang diprogram:
 
+<<<<<<< HEAD
 * [*Hooks*](/reference/react/hooks) — Gunakan bermacam-macam fitur React dari komponen Anda.
 * [Komponen](/reference/react/components) — Mendokumentasikan komponen bawaan yang dapat digunakan di JSX Anda.
 * [API](/reference/react/apis) — API yang berguna untuk mendefinisikan komponen.
 * [Directive](/reference/react/directives) — Menyediakan instruksi ke *bundler* yang kompatibel dengan React Server Component.
+=======
+* [Hooks](/reference/react/hooks) - Use different React features from your components.
+* [Components](/reference/react/components) - Built-in components that you can use in your JSX.
+* [APIs](/reference/react/apis) - APIs that are useful for defining components.
+* [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 ## React DOM {/*react-dom*/}
 

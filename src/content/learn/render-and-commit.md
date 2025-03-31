@@ -70,9 +70,15 @@ Cobalah memberi komentar di luar dari `root.render()` dan lihat komponen tersebu
 Setelah komponen telah pertama kali di*render*, Anda dapat memicu *render* kembali dengan memperbarui *state* menggunakan [fungsi `set`.](/reference/react/useState#setstate) Mengubah *state* komponen Anda otomatis akan membuat antrian proses *render*. (Anda dapat membayangkan ada sebuah restoran dimana pengunjung memesan teh, hidangan penutup, dan semua hal tersebut dipesan setelah melakukan pesanan pertama, tergantung pada keadaan haus atau lapar dari pengunjung)
 
 <IllustrationBlock sequential>
+<<<<<<< HEAD
   <Illustration caption="State diperbarui..." alt="React sebagai a server pada sebuah restoran, menyajikan sebuah Kartu UI untuk pengguna, direpresentasikan sebagai pelindung dengan kursor di kepala mereka. Pelindung mereka menyatakan mereka menginginkan kartu merah mudah, bukan yang hitam!" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="...memicu..." alt="React mengembalikan kepada komponen dapur dan mengatakan pada Chef kartu bahwa mereka membutuhkan kartu merah muda." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="...render!" alt="Chef kartu itu memberi React kartu merah muda." src="/images/docs/illustrations/i_rerender3.png" />
+=======
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 </IllustrationBlock>
 
 ## Langkah 2: React me-render komponen Anda {/*step-2-react-renders-your-components*/}
@@ -84,7 +90,11 @@ Setelah Anda memicu sebuah *render*, React memanggil komponen Anda untuk menemuk
 
 Proses ini bersifat rekursif: jika komponen yang diperbarui mengembalikan beberapa komponen lain, React akan me-*render* komponen _itu_ berikutnya, dan jika komponen itu juga mengembalikan sesuatum React akan me-*render* komponen _itu_ berikutnya, dan seterusnya. Proses tersebut akan berlanjut sampai tidak terdapat komponen bersarang dan React mengetahui persis apa yang harus ditampilkan pada layar.
 
+<<<<<<< HEAD
 Dalam contoh berikut, React akan memanggil `Gallery()` dan  `Image()` beberapa kali:   
+=======
+In the following example, React will call `Gallery()` and `Image()` several times:
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 <Sandpack>
 
@@ -148,10 +158,17 @@ Perilaku bawaan dari proses *render* semua komponen bersarang di dalam komponen 
 
 ## Langkah 3: React mengirimkan perubahan kepada DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
+<<<<<<< HEAD
 Setelah proses _render_ (memanggil) komponen Anda, React akan memodifikasi DOM.
 
 * **Untuk _render_ awal,** React akan menggunakan [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API untuk meletakkan semua simpul DOM yang telah dibuat ke dalam layar.
 * **Untuk _render_ ulang,** React akan menerapkan operasi minimal yang diperlukan (dihitung saat proses *render*!) untuk membuat DOM sama dengan keluaran *render* terakhir.
+=======
+After rendering (calling) your components, React will modify the DOM.
+
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 **React hanya mengubah simpul DOM jika ada perbedaan diantara proses _render_.** Sebagai contoh, berikut terdapat komponen yang me-*render* ulang dengan properti berbeda yang dikirimkan setiap detik. Perhatikan bagaimana Anda dapat menambahkan beberapa teks ke dalam `<input>`, memperbarui nilai `<input>`, tetapi teks tersebut tidak menghilang saat komponen me-*render* ulang:
 

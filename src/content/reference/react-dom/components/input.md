@@ -32,6 +32,7 @@ Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](
 
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *canary* can *experimental* React. Dalam versi stabil React, `formAction` bekerja hanya sebagai [komponen peramban HTML bawaan](/reference/react-dom/components#all-html-components). Pelajari tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
@@ -39,6 +40,9 @@ Ekstensi React terhadap *props* `formAction` saat ini hanya tersedia di kanal *c
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah *string* atau fungsi. Menimpa `<form action>` induk untuk `type="submit"` dan `type="image"`. Ketika URL dioper ke `action` form akan memiliki perilaku sebagai form standar HTML. Ketika fungsi dioper ke `formAction` fungsi akan menangani kiriman form. Lihat [`<form action>`](/reference/react-dom/components/form#props).
+=======
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 Anda dapat [membuat sebuah masukan yang terkontrol](#controlling-an-input-with-a-state-variable) melalui satu dari beberapa props berikut:
 
@@ -303,7 +307,11 @@ Berikan `name` untuk setiap `<input>`, contohnya `<input name="firstName" defaul
 
 <Pitfall>
 
+<<<<<<< HEAD
 Secara default, *apa pun* `<button>` di dalam sebuah `<form>` akan melakukan submit. Ini bisa mengejutkan! Jika Anda memiliki komponen React `Button` kustom Anda sendiri, pertimbangkan untuk mengembalikan [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) bukannya `<button>`. Kemudian, secara eksplisit, gunakan `<button type="submit">` untuk tombol yang *seharusnya* mengirimkan form.
+=======
+By default, a `<button>` inside a `<form>` without a `type` attribute will submit it. This can be surprising! If you have your own custom `Button` React component, consider using [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<button>` (with no type). Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 </Pitfall>
 
