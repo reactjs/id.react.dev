@@ -1,14 +1,16 @@
 ---
 link: "<link>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React untuk `<link>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<link>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 <Intro>
 
 [Komponen `<link>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) memungkinkan Anda menggunakan sumber daya eksternal seperti *stylesheet* atau memberi anotasi pada dokumen dengan metadata tautan.
@@ -158,9 +160,13 @@ export default function SiteMapPage() {
 
 ### Mengendalikan *precedence* *stylesheet* {/*controlling-stylesheet-precedence*/}
 
+<<<<<<< HEAD
 *Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, dua komponen me-*render* *stylesheet*, dan yang memiliki *precedence* lebih tinggi akan muncul kemudian dalam dokumen meskipun komponen yang me-*render*-nya datang lebih awal.
 
 {/*FIXME: ini tampaknya tidak benar-benar berfungsi -- sepertinya *precedence* belum diimplementasikan?*/}
+=======
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`. 
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 <SandpackWithHTMLOutput>
 
@@ -170,26 +176,51 @@ import ShowRenderedHTML from './ShowRenderedHTML.js';
 export default function HalamanRumah() {
   return (
     <ShowRenderedHTML>
+<<<<<<< HEAD
       <KomponenPertama />
       <KomponenKedua />
+=======
+      <FirstComponent />
+      <SecondComponent />
+      <ThirdComponent/>
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
       ...
     </ShowRenderedHTML>
   );
 }
 
+<<<<<<< HEAD
 function KomponenPertama() {
   return <link rel="stylesheet" href="first.css" precedence="high" />;
 }
 
 function KomponenKedua() {
   return <link rel="stylesheet" href="second.css" precedence="low" />;
+=======
+function FirstComponent() {
+  return <link rel="stylesheet" href="first.css" precedence="first" />;
+}
+
+function SecondComponent() {
+  return <link rel="stylesheet" href="second.css" precedence="second" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="third.css" precedence="first" />;
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 }
 
 ```
 
 </SandpackWithHTMLOutput>
 
+<<<<<<< HEAD
 ### Merender *stylesheet* yang dihapus duplikatnya {/*deduplicated-stylesheet-rendering*/}
+=======
+Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
+
+### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 Jika Anda me-*render* *stylesheet* yang sama dari beberapa komponen, React hanya akan menempatkan satu `<link>` di bagian *head* dokumen.
 

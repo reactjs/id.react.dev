@@ -265,7 +265,11 @@ setCount(count + 1); // Meminta render ulang dengan 1
 console.log(count);  // Masih 0!
 ```
 
+<<<<<<< HEAD
 Perilaku ini akan membantu Anda menghindari *bug* yang susah ditemukan. Berikut adalah aplikasi chat sederhana. Coba tebak apa yang terjadi jika Anda menekan "Kirim" terlebih dahulu dan *kemudian* mengubah penerima menjadi Bob. Nama siapa yang akan muncul di `alert` lima detik kemudian?
+=======
+This behavior helps you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 <Sandpack>
 

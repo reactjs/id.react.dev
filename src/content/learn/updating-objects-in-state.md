@@ -58,6 +58,7 @@ Berikut adalah contoh kode yang menampung objek di dalam *state* untuk mereprese
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Perhatikan bahwa sekarang titik merah sudah mengikuti kursor Anda ketika Anda me
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -377,7 +379,11 @@ Perhatikan bahwa `...` sintaksis *spread* sebenarnya adalah "dangkal"--benda-ben
 
 #### Menggunakan satu event handler untuk beberapa bidang {/*using-a-single-event-handler-for-multiple-fields*/}
 
+<<<<<<< HEAD
 Anda juga bisa menggunakan tanda `[` dan `]` di dalam definisi objek untuk menentukan sebuah properti dengan nama yang dinamis. Berikut adalah contoh yang sama, tetapi dengan satu *event handler* daripada tiga yang berbeda:
+=======
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 <Sandpack>
 

@@ -70,14 +70,24 @@ function Counter() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     document.title = `Anda mengklik ${this.state.count} kali`;
+=======
+    document.title = `You clicked ${count} times`;
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
   }, [count]);
 
   return (
     <div>
+<<<<<<< HEAD
       <p>Anda mengklik ${this.state.count} kali</p>
       <button onClick={this.handleClick}>
         Klik saya
+=======
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
       </button>
     </div>
   )
@@ -90,7 +100,7 @@ Untuk menguji keluaran *render* suatu komponen, bungkus *render* tersebut di dal
 
 ```js  {10,12}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it('dapat me-render dan memperbarui penghitung', async () => {
@@ -99,7 +109,7 @@ it('dapat me-render dan memperbarui penghitung', async () => {
   
   // ✅ Render the component inside act().
   await act(() => {
-    ReactDOM.createRoot(container).render(<Counter />);
+    ReactDOMClient.createRoot(container).render(<Counter />);
   });
   
   const button = container.querySelector('button');
@@ -119,7 +129,7 @@ Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`:
 
 ```js {14,16}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it.only('dapat me-render dan memperbarui penghitung', async () => {
