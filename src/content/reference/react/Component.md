@@ -50,7 +50,11 @@ Hanya *method* `render` yang diperlukan, *method* yang lain adalah opsional.
 
 ### `context` {/*context*/}
 
+<<<<<<< HEAD
 [Context](/learn/passing-data-deeply-with-context) dari sebuah *class component* tersedia sebagai `this.context`. Ini hanya tersedia jika Anda menentukan context *yang mana* yang ingin Anda terima menggunakan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (deprecated).
+=======
+The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 *Class component* hanya bisa membaca satu *context* pada satu waktu.
 
@@ -105,6 +109,7 @@ Membaca `this.props` pada *class components* setara dengan [mendeklarasikan prop
 
 ---
 
+<<<<<<< HEAD
 ### `refs` {/*refs*/}
 
 <Deprecated>
@@ -117,6 +122,8 @@ Memungkinkan Anda mengakses [legacy string refs](https://reactjs.org/docs/refs-a
 
 ---
 
+=======
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 ### `state` {/*state*/}
 
 *State* dari *class component* tersedia sebagai `this.state`. *Field state* harus berupa objek. Jangan mengubah *state* secara langsung. Jika Anda ingin mengubah *state*, panggil `setState` dengan *state* baru.
@@ -494,6 +501,7 @@ Membaca sumber data eksternal dan memaksa komponen kelas untuk me-*render* ulang
 
 ---
 
+<<<<<<< HEAD
 ### `getChildContext()` {/*getchildcontext*/}
 
 <Deprecated>
@@ -506,6 +514,8 @@ Memungkinkan Anda menentukan nilai untuk [legacy context](https://reactjs.org/do
 
 ---
 
+=======
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 Jika Anda mengimplementasikan `getSnapshotBeforeUpdate`, React akan segera memanggilnya sebelum React memperbarui DOM. Ini memungkinkan komponen Anda untuk menangkap beberapa informasi dari DOM (e.g. posisi *scroll*) sebelum berpotensi diubah. Nilai apa pun yang dikembalikan oleh *lifecycle method* ini akan diteruskan sebagai parameter ke [`componentDidUpdate`.](#componentdidupdate)
@@ -738,9 +748,15 @@ React memanggil `shouldComponentUpdate` sebelum *render*-ing ketika *props* baru
 
 #### Parameter {/*shouldcomponentupdate-parameters*/}
 
+<<<<<<< HEAD
 - `nextProps`: Props berikutnya yang akan dirender oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextState`: *State* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#props) untuk menentukan apa yang berubah.
 - `nextContext`: Konteks berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttypes) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
+=======
+- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
+- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 #### Kembalian {/*shouldcomponentupdate-returns*/}
 
@@ -814,8 +830,13 @@ Jika Anda mendefinisikan `UNSAFE_componentWillReceiveProps`, React akan memanggi
 
 #### Parameter {/*unsafe_componentwillreceiveprops-parameters*/}
 
+<<<<<<< HEAD
 - `nextProps`: *Props* berikutnya yang akan diterima komponen dari komponen induknya. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
+=======
+- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 #### Kembalian {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -880,6 +901,7 @@ Tidak ada persamaan langsung dengan `UNSAFE_componentWillUpdate` dalam *function
 
 ---
 
+<<<<<<< HEAD
 ### `static childContextTypes` {/*static-childcontexttypes*/}
 
 <Deprecated>
@@ -904,6 +926,8 @@ Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-co
 
 ---
 
+=======
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 ### `static contextType` {/*static-contexttype*/}
 
 Jika Anda ingin membaca [`this.context`](#context-instance-field) dari *class component* Anda, Anda harus menentukan *context* mana yang perlu dibaca. *Context* yang Anda tentukan sebagai `static contextType` harus berupa nilai yang dibuat sebelumnya oleh [`createContext`.](/reference/react/createContext)
@@ -978,6 +1002,7 @@ Mendefinisikan `defaultProps` pada *class components* serupa dengan menggunakan 
 
 ---
 
+<<<<<<< HEAD
 ### `static propTypes` {/*static-proptypes*/}
 
 Anda dapat mendefinisikan `static propTypes` bersama dengan pustaka [`prop-types`](https://www.npmjs.com/package/prop-types) untuk mendeklarasikan jenis *props* yang diterima oleh komponen Anda. Jenis ini akan diperiksa selama *render*-ing dan hanya dalam pengembangan.
@@ -1006,6 +1031,8 @@ Kami merekomendasikan menggunakan [TypeScript](https://www.typescriptlang.org/) 
 
 ---
 
+=======
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
 Jika Anda mendefinisikan `static getDerivedStateFromError`, React akan memanggilnya ketika komponen anak (termasuk anak jauh) melemparkan kesalahan selama *render*-ing. Ini memungkinkan Anda menampilkan pesan kesalahan alih-alih menghapus UI.
@@ -1351,7 +1378,11 @@ Secara default, jika aplikasi Anda menampilkan kesalahan selama *render*-ing, Re
 
 Untuk mengimplementasikan komponen batas kesalahan (error boundary), Anda perlu menyediakan [`static getDerivedStateFromError`](#static-getderivedstatefromerror) yang memungkinkan Anda memperbarui *state* sebagai respons terhadap kesalahan dan menampilkan pesan kesalahan kepada pengguna. Anda juga dapat secara opsional mengimplementasikan [`componentDidCatch`](#componentdidcatch) untuk menambahkan beberapa logika tambahan, misalnya, untuk mencatat kesalahan ke layanan analitik.
 
-```js {7-10,12-19}
+With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+
+```js {9-12,14-27}
+import * as React from 'react';
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1364,12 +1395,26 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
+<<<<<<< HEAD
     // Contoh "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
     //   in App
     logErrorToMyService(error, info.componentStack);
+=======
+    logErrorToMyService(
+      error,
+      // Example "componentStack":
+      //   in ComponentThatThrows (created by App)
+      //   in ErrorBoundary (created by App)
+      //   in div (created by App)
+      //   in App
+      info.componentStack,
+      // Warning: `captureOwnerStack` is not available in production.
+      React.captureOwnerStack(),
+    );
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
   }
 
   render() {

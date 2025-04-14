@@ -20,9 +20,15 @@ Katakanlah Anda memiliki aplikasi web yang sudah ada di `example.com` yang dibua
 
 Inilah cara kami menyarankan untuk menyiapkannya:
 
+<<<<<<< HEAD
 1. **Buat bagian React dari aplikasi Anda** menggunakan salah satu [*framework* berbasis React](/learn/start-a-new-react-project).
 2. **Tentukan `/some-app` sebagai *base path*** dalam konfigurasi *framework* Anda (begini caranya: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurasi server Anda atau Proxy** sehingga semua permintaan di rute `/some-app/` ditangani oleh aplikasi React Anda.
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) yang dimasukkan ke dalam *framework* tersebut.
 
@@ -45,7 +51,11 @@ Lingkungan JavaScript modular memungkinkan Anda menulis komponen React Anda dala
 
 * **Jika aplikasi Anda sudah dipecah menjadi beberapa file yang menggunakan pernyataan `import`,** coba gunakan pengaturan yang sudah Anda miliki. Periksa apakah menulis `<div />` dalam kode JS Anda menyebabkan kesalahan sintaksis. Jika menyebabkan kesalahan sintaksis, Anda mungkin perlu [mengubah kode JavaScript Anda dengan Babel](https://babeljs.io/setup), dan mengaktifkan [Babel React preset](https://babeljs.io/docs/babel-preset-react) untuk menggunakan JSX.
 
+<<<<<<< HEAD
 * **Jika aplikasi Anda belum memiliki penyiapan untuk mengompilasi modul JavaScript,** siapkan dengan [Vite](https://vitejs.dev/). Komunitas Vite mempunyai [banyak integrasi *framework backend*](https://github.com/vitejs/awesome-vite#integrations-with-backends), termasuk Rails, Django, dan Laravel. Jika *framework backend* Anda tidak tercantum, [ikuti panduan ini](https://vitejs.dev/guide/backend-integration.html) untuk mengintegrasikan Vite build dengan backend Anda secara manual.
+=======
+* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vite.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vite.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 Untuk memeriksa apakah penyiapan Anda berfungsi, jalankan perintah ini di folder proyek Anda:
 
@@ -57,12 +67,17 @@ Kemudian tambahkan baris kode ini di bagian atas file JavaScript utama Anda (mun
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
+<<<<<<< HEAD
     <!-- Konten halaman Anda yang ada (dalam contoh ini konten akan diganti) -->
+=======
+    <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
   </body>
 </html>
 ```
@@ -84,7 +99,11 @@ Jika seluruh konten halaman Anda berganti dengan "Hello, world", semuanya berhas
 
 <Note>
 
+<<<<<<< HEAD
 Mengintegrasikan lingkungan JavaScript modular ke dalam proyek yang sudah ada untuk pertama kalinya bisa terasa menakutkan, tetapi itu sepadan! Jika Anda mengalami kebuntuan, coba periksa [komunitas kami](/community) atau [Vite Chat](https://chat.vitejs.dev/).
+=======
+Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vite.dev/).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 </Note>
 
@@ -119,7 +138,7 @@ Ini memungkinkan Anda menemukan elemen HTML dengan [`document.getElementById`](h
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
