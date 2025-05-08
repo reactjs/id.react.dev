@@ -6,7 +6,7 @@ canary: true
 
 <Canary>
 
-`'use server'` hanya diperlukan jika Anda [menggunakan Komponen *React Server*](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) atau sedang membangun library yang kompatibel dengan fitur tersebut.
+`'use server'` hanya diperlukan jika Anda [menggunakan Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) atau sedang membangun library yang kompatibel dengan fitur tersebut.
 
 </Canary>
 
@@ -45,7 +45,7 @@ Daripada menandai fungsi satu per satu dengan `'use server'`, Anda bisa menambah
 * Aksi Server sebaiknya dipanggil dalam sebuah [Transisi](/reference/react/useTransition). Aksi Server yang diteruskan ke [`<form action>`](/reference/react-dom/components/form#props) atau [`formAction`](/reference/react-dom/components/input#props) akan secara otomatis dipanggil dalam sebuah transisi.
 * Aksi Server dirancang untuk melakukan mutasi yang memperbarui data di sisi server; Sehingga Aksi Server tidak disarankan untuk pengambilan data. Oleh karena itu, *framework* yang mengimplementasikan Aksi Server umumnya memproses satu aksi dalam satu waktu dan tidak menyediakan mekanisme untuk melakukan *caching* terhadap nilai yang dikembalikan.
 
-### Pertimbangan Keamanan {/*security*/}
+### Pertimbangan keamanan {/*security*/}
 
 Argumen untuk Aksi Server sepenuhnya dikendalikan oleh klien. Demi keamanan, selalu perlakukan argumen tersebut sebagai masukan yang tidak tepercaya, dan pastikan untuk memvalidasi serta menyaring argumen sesuai kebutuhan.
 
@@ -59,7 +59,7 @@ Lihat [*experimental_taintUniqueValue*](/reference/react/experimental_taintUniqu
 
 </Wip>
 
-### Argumen yang dapat diserialisasi dan Nilai kembalian {/*serializable-parameters-and-return-values*/}
+### Argumen yang dapat diserialisasi dan nilai kembalian {/*serializable-parameters-and-return-values*/}
 
 Karena kode klien memanggil Aksi Server melalui jaringan, setiap argumen yang dikirim harus dapat diserialisasi.
 
@@ -91,7 +91,7 @@ Yang tidak didukung, antara lain:
 * Fungsi komponen atau fungsi lainnya yang bukan Aksi Server
 * [Kelas](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * [Objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) yang merupakan *instance* dari kelas apa pun (selain bawaan seperti yang telah disebutkan) atau objek dengan [*null prototype*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
-* Simbol yang tidak didaftarkan secara global, misalnya *`Symbol('my new symbol')`*
+* Simbol yang tidak didaftarkan secara global, misalnya `Symbol('my new symbol')`
 
 Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
 
@@ -99,7 +99,7 @@ Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [proper
 
 ### Aksi Server dalam formulir {/*server-actions-in-forms*/}
 
-Aksi Server biasanya digunakan untuk memanggil fungsi di server yang mengubah data. Di peramban, pengguna umumnya mengirimkan perubahan data lewat [elemen formulir HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). Dengan komponen *React Server*, React kini mendukung Aksi Server secara langsung di dalam formulir.
+Aksi Server biasanya digunakan untuk memanggil fungsi di server yang mengubah data. Di peramban, pengguna umumnya mengirimkan perubahan data lewat [elemen formulir HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). Dengan komponen server React, React kini mendukung Aksi Server secara langsung di dalam formulir.
 
 Contoh di bawah ini menunjukkan formulir yang meminta nama pengguna.
 
@@ -122,17 +122,17 @@ export default function App() {
 }
 ```
 
-Dalam contoh ini, *`requestUsername`* adalah sebuah Aksi Server yang diteruskan ke sebuah formulir `<form>.`
-Ketika pengguna mengirim formulir ini, akan ada permintaan jaringan ke fungsi server *`requestUsername`*.
+Dalam contoh ini, `requestUsername` adalah sebuah Aksi Server yang diteruskan ke sebuah formulir `<form>.`
+Ketika pengguna mengirim formulir ini, akan ada permintaan jaringan ke fungsi server `requestUsername`.
 Saat memanggil Aksi Server lewat formulir, React akan mengirimkan <CodeStep step={1}>[*FormData*](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> dari formulir sebagai argumen pertama ke Aksi Server tersebut.
 
-Dengan meneruskan Aksi Server ke formulir *`action`*, React bisa meningkatkan fungsionalitas formulir secara [progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement). Artinya, formulir tetap bisa dikirimkan meskipun bundel *JavaScript* belum dimuat sepenuhnya.
+Dengan meneruskan Aksi Server ke `action` formulir, React bisa meningkatkan fungsionalitas formulir secara [progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement). Artinya, formulir tetap bisa dikirimkan meskipun bundel *JavaScript* belum dimuat sepenuhnya.
 
 #### Menangani nilai kembali dari formulir {/*handling-return-values*/}
 
-Dalam formulir diatas, ada kemungkinan nama pengguna yang diminta tidak tersedia. *`requestUsername`* harus memberi tahu apakah permintaan tersebut berhasil atau gagal.
+Dalam formulir diatas, ada kemungkinan nama pengguna yang diminta tidak tersedia. `requestUsername` harus memberi tahu apakah permintaan tersebut berhasil atau gagal.
 
-Untuk memperbarui antarmuka pengguna berdasarkan hasil dari Aksi Server sambil tetap mendukung peningkatan progresif gunakan [*`useActionState`*](/reference/react/useActionState).
+Untuk memperbarui antarmuka pengguna berdasarkan hasil dari Aksi Server sambil tetap mendukung peningkatan progresif gunakan [`useActionState`](/reference/react/useActionState).
 
 ```js
 // requestUsername.js
@@ -164,13 +164,13 @@ function UsernameForm() {
         <input type="text" name="username" />
         <button type="submit">Meminta</button>
       </form>
-      <p>Respon dari pengiriman terakhir:{state}</p>
+      <p>Respon dari pengiriman terakhir: {state}</p>
     </>
   );
 }
 ```
 
-Perlu diingat bahwa seperti Hook lainnya, *`useActionState`* hanya bisa dipanggil di <CodeStep step={1}>[kode klien](/reference/rsc/use-client)</CodeStep>.
+Perlu diingat bahwa seperti Hook lainnya, `useActionState` hanya bisa dipanggil di <CodeStep step={1}>[kode klien](/reference/rsc/use-client)</CodeStep>.
 
 ### Memanggil sebuah Aksi Server dari luar formulir `<form>` {/*calling-a-server-action-outside-of-form*/}
 
