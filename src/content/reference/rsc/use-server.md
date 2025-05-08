@@ -87,7 +87,7 @@ Berikut adalah tipe data yang didukung untuk argumen Aksi Server:
 
 Yang tidak didukung, antara lain:
 
-* Elemen *React*, atau [*JSX*](/learn/writing-markup-with-jsx)
+* Elemen React, atau [*JSX*](/learn/writing-markup-with-jsx)
 * Fungsi komponen atau fungsi lainnya yang bukan Aksi Server
 * [Kelas](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * [Objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) yang merupakan *instance* dari kelas apa pun (selain bawaan seperti yang telah disebutkan) atau objek dengan [*null prototype*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
@@ -99,7 +99,7 @@ Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [proper
 
 ### Aksi Server dalam formulir {/*server-actions-in-forms*/}
 
-Aksi Server biasanya digunakan untuk memanggil fungsi di server yang mengubah data. Di peramban, pengguna umumnya mengirimkan perubahan data lewat [elemen formulir HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). Dengan komponen *React Server*, *React* kini mendukung Aksi Server secara langsung di dalam formulir.
+Aksi Server biasanya digunakan untuk memanggil fungsi di server yang mengubah data. Di peramban, pengguna umumnya mengirimkan perubahan data lewat [elemen formulir HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). Dengan komponen *React Server*, React kini mendukung Aksi Server secara langsung di dalam formulir.
 
 Contoh di bawah ini menunjukkan formulir yang meminta nama pengguna.
 
@@ -116,7 +116,7 @@ export default function App() {
   return (
     <form action={requestUsername}>
       <input type="text" name="username" />
-      <button type="submit">Request</button>
+      <button type="submit">Meminta</button>
     </form>
   );
 }
@@ -162,9 +162,9 @@ function UsernameForm() {
     <>
       <form action={action}>
         <input type="text" name="username" />
-        <button type="submit">Request</button>
+        <button type="submit">Meminta</button>
       </form>
-      <p>Last submission request returned: {state}</p>
+      <p>Respon dari pengiriman terakhir:{state}</p>
     </>
   );
 }
@@ -195,8 +195,8 @@ function LikeButton() {
 
   return (
     <>
-      <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={isPending}>Like</button>;
+      <p>Total Suka: {likeCount}</p>
+      <button onClick={onClick} disabled={isPending}>Suka</button>;
     </>
   );
 }
