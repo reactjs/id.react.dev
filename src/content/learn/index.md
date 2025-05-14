@@ -4,7 +4,11 @@ title: Mulai Cepat
 
 <Intro>
 
+<<<<<<< HEAD
 Selamat datang di dokumentasi React! Halaman ini akan memberikan Anda pengenalan tentang 80% konsep React yang akan Anda gunakan sehari-hari.
+=======
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
+>>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
 
 </Intro>
 
