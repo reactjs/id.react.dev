@@ -5,19 +5,19 @@ canary: true
 
 <Canary>
 
-React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Ekstensi React untuk `<form>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<form>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.
+[Komponen `<form>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi.
 
 ```js
 <form action={search}>
     <input name="query" />
-    <button type="submit">Search</button>
+    <button type="submit">Cari</button>
 </form>
 ```
 
@@ -27,38 +27,38 @@ The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/do
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<form>` {/*form*/}
 
-To create interactive controls for submitting information, render the [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
+Untuk membuat kontrol interaktif untuk mengirimkan informasi, render [komponen `<form>` bawaan peramban](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
 
 ```js
 <form action={search}>
     <input name="query" />
-    <button type="submit">Search</button>
+    <button type="submit">Cari</button>
 </form>
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
 #### Props {/*props*/}
 
-`<form>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<form>` mendukung semua [props elemen umum.](/reference/react-dom/components/common#props)
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): URL atau fungsi. Ketika URL diberikan ke `action`, formulir akan berperilaku seperti komponen formulir HTML. Ketika fungsi diberikan ke `action`, fungsi tersebut akan menangani pengiriman formulir. Fungsi yang diberikan ke `action` dapat berupa *async* dan akan dipanggil dengan satu argumen yang berisi [data formulir](https://developer.mozilla.org/en-US/docs/Web/API/FormData) dari formulir yang dikirimkan. Prop `action` dapat ditimpa oleh atribut `formAction` pada komponen `<button>`, `<input type="submit">`, atau `<input type="image">`.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* When a function is passed to `action` or `formAction` the HTTP method will be POST regardless of value of the `method` prop.
+* Ketika sebuah fungsi diberikan ke `action` atau `formAction`, metode HTTP akan menjadi POST terlepas dari nilai prop `method`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Handle form submission on the client {/*handle-form-submission-on-the-client*/}
+### Menangani pengiriman formulir di klien {/*handle-form-submission-on-the-client*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs.
+Lepaskan sebuah fungsi ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) akan diteruskan ke fungsi sebagai argumen sehingga Anda dapat mengakses data yang dikirimkan oleh formulir. Ini berbeda dari konvensional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), yang hanya menerima URL.
 
 <Sandpack>
 
@@ -66,12 +66,12 @@ Pass a function to the `action` prop of form to run the function when the form i
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
-    alert(`You searched for '${query}'`);
+    alert(`Anda mencari '${query}'`);
   }
   return (
     <form action={search}>
       <input name="query" />
-      <button type="submit">Search</button>
+      <button type="submit">Cari</button>
     </form>
   );
 }
@@ -91,13 +91,13 @@ export default function Search() {
 
 </Sandpack>
 
-### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
+### Menangani pengiriman formulir dengan Server Action {/*handle-form-submission-with-a-server-action*/}
 
-Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
+Render sebuah `<form>` dengan input dan tombol kirim. Lepaskan Server Action (sebuah fungsi yang ditandai dengan [`'use server'`](/reference/rsc/use-server)) ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit.
 
-Passing a Server Action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+Melewatkan Server Action ke `<form action>` memungkinkan pengguna untuk mengirimkan formulir tanpa JavaScript yang diaktifkan atau sebelum kode dimuat. Ini menguntungkan bagi pengguna yang memiliki koneksi lambat, perangkat, atau yang memiliki JavaScript dinonaktifkan dan mirip dengan cara kerja formulir ketika URL diberikan ke prop `action`.
 
-You can use hidden form fields to provide data to the `<form>`'s action. The Server Action will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Anda dapat menggunakan *field* formulir tersembunyi untuk memberikan data ke aksi `<form>`'s. Server Action akan dipanggil dengan data *field* formulir tersembunyi sebagai *instance* dari [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -111,14 +111,13 @@ function AddToCart({productId}) {
   return (
     <form action={addToCart}>
         <input type="hidden" name="productId" value={productId} />
-        <button type="submit">Add to Cart</button>
+        <button type="submit">Tambahkan ke Keranjang</button>
     </form>
-
   );
 }
 ```
 
-In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as an argument to the function.
+Sebagai pengganti menggunakan *field* formulir tersembunyi untuk memberikan data ke aksi `<form>`, Anda dapat memanggil metode <CodeStep step={1}>`bind`</CodeStep> untuk menyuplai argumen tambahan. Ini akan mengikat argumen baru (<CodeStep step={2}>`productId`</CodeStep>) ke fungsi selain dari <CodeStep step={3}>`formData`</CodeStep> yang diteruskan sebagai argumen ke fungsi.
 
 ```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
 import { updateCart } from './lib.js';
@@ -131,18 +130,18 @@ function AddToCart({productId}) {
   const addProductToCart = addToCart.bind(null, productId);
   return (
     <form action={addProductToCart}>
-      <button type="submit">Add to Cart</button>
+      <button type="submit">Tambahkan ke Keranjang</button>
     </form>
   );
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+Ketika `<form>` dirender oleh [Server Component](/reference/rsc/use-client), dan [Server Action](/reference/rsc/use-server) diteruskan ke prop `action` `<form>`, formulir akan [ditingkatkan secara progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### Menampilkan status tertunda selama pengiriman formulir {/*display-a-pending-state-during-form-submission*/}
+Untuk menampilkan status tertunda ketika formulir sedang dikirim, Anda dapat memanggil Hook `useFormStatus` dalam komponen yang dirender dalam `<form>` dan membaca properti `pending` yang dikembalikan.
 
-Here, we use the `pending` property to indicate the form is submitting.
+Di sini, kami menggunakan properti `pending` untuk menunjukkan formulir sedang dikirim.
 
 <Sandpack>
 
@@ -154,7 +153,7 @@ function Submit() {
   const { pending } = useFormStatus();
   return (
     <button type="submit" disabled={pending}>
-      {pending ? "Submitting..." : "Submit"}
+      {pending ? "Mengirim..." : "Kirim"}
     </button>
   );
 }
@@ -191,12 +190,12 @@ export async function submitForm(query) {
 ```
 </Sandpack>
 
-To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
+Untuk mempelajari lebih lanjut tentang Hook `useFormStatus` lihat [dokumentasi referensi](/reference/react-dom/hooks/useFormStatus).
 
-### Optimistically updating form data {/*optimistically-updating-form-data*/}
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+### Memperbarui data formulir secara optimis {/*optimistically-updating-form-data*/}
+Hook `useOptimistic` menyediakan cara untuk memperbarui antarmuka pengguna secara optimis sebelum operasi latar belakang, seperti permintaan jaringan, selesai. Dalam konteks formulir, teknik ini membantu membuat aplikasi terasa lebih responsif. Ketika seorang pengguna mengirimkan formulir, alih-alih menunggu respons server untuk mencerminkan perubahan, antarmuka segera diperbarui dengan hasil yang diharapkan.
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+Sebagai contoh, ketika seorang pengguna mengetik pesan ke dalam formulir dan menekan tombol "Kirim", Hook `useOptimistic` memungkinkan pesan tersebut segera muncul dalam daftar dengan label "Mengirim...", bahkan sebelum pesan tersebut benar-benar dikirim ke server. Pendekatan "optimis" ini memberikan kesan kecepatan dan responsivitas. Formulir kemudian berusaha untuk benar-benar mengirim pesan di latar belakang. Setelah server mengonfirmasi pesan telah diterima, label "Mengirim..." dihapus.
 
 <Sandpack>
 
@@ -228,12 +227,12 @@ function Thread({ messages, sendMessage }) {
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
-          {!!message.sending && <small> (Sending...)</small>}
+          {!!message.sending && <small> (Mengirim...)</small>}
         </div>
       ))}
       <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
-        <button type="submit">Send</button>
+        <input type="text" name="message" placeholder="Halo!" />
+        <button type="submit">Kirim</button>
       </form>
     </>
   );
@@ -241,7 +240,7 @@ function Thread({ messages, sendMessage }) {
 
 export default function App() {
   const [messages, setMessages] = useState([
-    { text: "Hello there!", sending: false, key: 1 }
+    { text: "Halo!", sending: false, key: 1 }
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
@@ -276,9 +275,9 @@ export async function deliverMessage(message) {
 [//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
 [//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
 
-### Handling form submission errors {/*handling-form-submission-errors*/}
+### Menangani kesalahan pengiriman formulir {/*handling-form-submission-errors*/}
 
-In some cases the function called by a `<form>`'s `action` prop throws an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
+Dalam beberapa kasus fungsi yang dipanggil oleh prop `action` dari `<form>` melemparkan sebuah kesalahan. Anda dapat menangani kesalahan ini dengan membungkus `<form>` dalam Error Boundary. Jika fungsi yang dipanggil oleh prop `action` dari `<form>` melemparkan sebuah kesalahan, *fallback* untuk *error boundary* akan ditampilkan.
 
 <Sandpack>
 
@@ -287,20 +286,19 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
   function search() {
-    throw new Error("search error");
+    throw new Error("kesalahan pencarian");
   }
   return (
     <ErrorBoundary
-      fallback={<p>There was an error while submitting the form</p>}
+      fallback={<p>Terjadi kesalahan saat mengirimkan formulir</p>}
     >
       <form action={search}>
         <input name="query" />
-        <button type="submit">Search</button>
+        <button type="submit">Cari</button>
       </form>
     </ErrorBoundary>
   );
 }
-
 ```
 
 ```json package.json hidden
@@ -318,15 +316,15 @@ export default function Search() {
 
 </Sandpack>
 
-### Display a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
+### Menampilkan kesalahan pengiriman formulir tanpa JavaScript {/*display-a-form-submission-error-without-javascript*/}
 
-Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
+Menampilkan pesan kesalahan pengiriman formulir sebelum bundel JavaScript dimuat untuk peningkatan progresif mengharuskan bahwa:
 
-1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
-1. the `useActionState` Hook be used to display the error message
+1. `<form>` dirender oleh [Server Component](/reference/rsc/use-client)
+1. fungsi yang diteruskan ke prop `action` `<form>` adalah [Server Action](/reference/rsc/use-server)
+1. Hook `useActionState` digunakan untuk menampilkan pesan kesalahan
 
-`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
+`useActionState` mengambil dua parameter: sebuah [Server Action](/reference/rsc/use-server) dan sebuah *state* awal. `useActionState` mengembalikan dua nilai, sebuah variabel *state* dan sebuah aksi. Aksi yang dikembalikan oleh `useActionState` harus diteruskan ke prop `action` dari formulir. Variabel *state* yang dikembalikan oleh `useActionState` dapat digunakan untuk menampilkan pesan kesalahan. Nilai yang dikembalikan oleh [Server Action](/reference/rsc/use-server) yang diteruskan ke `useActionState` akan digunakan untuk memperbarui variabel *state*.
 
 <Sandpack>
 
@@ -340,7 +338,7 @@ export default function Page() {
     const email = formData.get("email");
     try {
       await signUpNewUser(email);
-      alert(`Added "${email}"`);
+      alert(`Menambahkan "${email}"`);
     } catch (err) {
       return err.toString();
     }
@@ -348,12 +346,12 @@ export default function Page() {
   const [message, signupAction] = useActionState(signup, null);
   return (
     <>
-      <h1>Signup for my newsletter</h1>
-      <p>Signup with the same email twice to see an error</p>
+      <h1>Daftar untuk newsletter saya</h1>
+      <p>Daftar dengan email yang sama dua kali untuk melihat kesalahan</p>
       <form action={signupAction} id="signup-form">
         <label htmlFor="email">Email: </label>
         <input name="email" id="email" placeholder="react@example.com" />
-        <button>Sign up</button>
+        <button>Daftar</button>
         {!!message && <p>{message}</p>}
       </form>
     </>
@@ -366,7 +364,7 @@ let emails = [];
 
 export async function signUpNewUser(newEmail) {
   if (emails.includes(newEmail)) {
-    throw new Error("This email address has already been added");
+    throw new Error("Alamat email ini sudah ditambahkan");
   }
   emails.push(newEmail);
 }
@@ -386,13 +384,13 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
+Pelajari lebih lanjut tentang memperbarui *state* dari aksi formulir dengan dokumen [`useActionState`](/reference/react/useActionState).
 
-### Handling multiple submission types {/*handling-multiple-submission-types*/}
+### Menangani beberapa jenis pengiriman {/*handling-multiple-submission-types*/}
 
-Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button inside a form can be associated with a distinct action or behavior by setting the `formAction` prop.
+Formulir dapat dirancang untuk menangani beberapa aksi pengiriman berdasarkan tombol yang ditekan oleh pengguna. Setiap tombol di dalam formulir dapat dikaitkan dengan aksi atau perilaku yang berbeda dengan mengatur prop `formAction`.
 
-When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might submit an article for review by default but have a separate button with `formAction` set to save the article as a draft.
+Ketika seorang pengguna mengetuk tombol tertentu, formulir disubmit, dan aksi yang sesuai, yang ditentukan oleh atribut dan aksi tombol tersebut, dieksekusi. Misalnya, sebuah formulir mungkin mengirimkan artikel untuk ditinjau secara default tetapi memiliki tombol terpisah dengan `formAction` diatur untuk menyimpan artikel sebagai draf.
 
 <Sandpack>
 
@@ -401,20 +399,20 @@ export default function Search() {
   function publish(formData) {
     const content = formData.get("content");
     const button = formData.get("button");
-    alert(`'${content}' was published with the '${button}' button`);
+    alert(`'${content}' telah dipublikasikan dengan tombol '${button}'`);
   }
 
   function save(formData) {
     const content = formData.get("content");
-    alert(`Your draft of '${content}' has been saved!`);
+    alert(`Draf '${content}' Anda telah disimpan!`);
   }
 
   return (
     <form action={publish}>
       <textarea name="content" rows={4} cols={40} />
       <br />
-      <button type="submit" name="button" value="submit">Publish</button>
-      <button formAction={save}>Save draft</button>
+      <button type="submit" name="button" value="submit">Publikasikan</button>
+      <button formAction={save}>Simpan draf</button>
     </form>
   );
 }
