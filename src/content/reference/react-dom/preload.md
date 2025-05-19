@@ -1,14 +1,16 @@
 ---
 title: preload
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Fungsi `preload` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 <Note>
 
 [Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.

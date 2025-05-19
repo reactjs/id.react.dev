@@ -252,7 +252,7 @@ Portal dapat berguna jika *root* React Anda hanya merupakan bagian dari halaman 
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
