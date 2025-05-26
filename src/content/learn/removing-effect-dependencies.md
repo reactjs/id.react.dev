@@ -1241,7 +1241,11 @@ export default function Timer() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Alih-alih membaca `count` di dalam *Effect*, Anda mengoper instruksi `c => c + 1` ("increment this number!") ke React. React akan menerapkannya pada *render* berikutnya. Dan karena Anda tidak perlu membaca nilai `count` di dalam *Effect* Anda lagi, maka Anda bisa membiarkan dependensi *Effect* Anda kosong (`[]`). Hal ini mencegah *Effect* Anda untuk membuat ulang interval pada setiap ketukan.
+=======
+Instead of reading `count` inside the Effect, you pass a `c => c + 1` instruction ("increment this number!") to React. React will apply it on the next render. And since you don't need to read the value of `count` inside your Effect anymore, you can keep your Effect's dependencies empty (`[]`). This prevents your Effect from re-creating the interval on every tick.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 </Solution>
 

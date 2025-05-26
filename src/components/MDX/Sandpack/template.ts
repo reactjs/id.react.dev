@@ -1,7 +1,7 @@
 export const template = {
   '/src/index.js': {
     hidden: true,
-    code: `import React, { StrictMode } from "react";
+    code: `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -28,8 +28,8 @@ root.render(
           eject: 'react-scripts eject',
         },
         dependencies: {
-          react: '^18.0.0',
-          'react-dom': '^18.0.0',
+          react: '^19.1.0',
+          'react-dom': '^19.1.0',
           'react-scripts': '^5.0.0',
         },
       },

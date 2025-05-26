@@ -3,6 +3,7 @@ title: Kompilator React
 ---
 
 <Intro>
+<<<<<<< HEAD
 Halaman ini akan memberikan pengantar tentang Kompilator React eksperimental baru dan cara menjalankannya dengan sukses.
 </Intro>
 
@@ -15,10 +16,21 @@ Dokumentasi ini masih dalam tahap pengembangan. Dokumentasi lebih lanjut tersedi
 * Memulai dengan kompilator
 * Menginstal kompilator dan plugin eslint
 * Memecahkan masalah
+=======
+This page will give you an introduction to React Compiler and how to try it out successfully.
+</Intro>
+
+<YouWillLearn>
+
+* Getting started with the compiler
+* Installing the compiler and ESLint plugin
+* Troubleshooting
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 </YouWillLearn>
 
 <Note>
+<<<<<<< HEAD
 Kompilator React adalah kompilator eksperimental baru yang kami jadikan sumber terbuka untuk mendapatkan umpan balik awal dari komunitas. Masih ada beberapa kekurangan dan belum sepenuhnya siap untuk produksi.
 
 Kompilator React membutuhkan React 19 RC. Jika Anda tidak dapat mengupgrade ke React 19, Anda dapat mencoba implementasi *userspace* dari fungsi *cache* seperti yang dijelaskan di [Kelompok Kerja](https://github.com/reactwg/react-compiler/discussions/6).
@@ -27,6 +39,30 @@ Kompilator React membutuhkan React 19 RC. Jika Anda tidak dapat mengupgrade ke R
 Kompilator React adalah kompilator eksperimental baru yang kami jadikan sumber terbuka untuk mendapatkan umpan balik awal dari komunitas. Ini adalah alat yang digunakan pada waktu kompilasi yang secara otomatis mengoptimalkan aplikasi React Anda. Alat ini bekerja dengan JavaScript biasa, dan memahami [Aturan React](/reference/rules), sehingga Anda tidak perlu menulis ulang kode apa pun untuk menggunakannya.
 
 Kompilator juga mencakup plugin [eslint](#menginstal-plugin-eslint-kompilator-react) yang menampilkan analisis dari kompilator langsung di editor Anda. Plugin ini berjalan secara independen dari kompilator dan dapat digunakan bahkan jika Anda tidak menggunakan kompilator dalam aplikasi Anda. Kami merekomendasikan semua pengembang React untuk menggunakan plugin eslint ini untuk membantu meningkatkan kualitas kode Anda.
+=======
+React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to try the compiler and provide feedback.
+
+The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
+</Note>
+
+React Compiler is a new compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+
+eslint-plugin-react-hooks also includes an [ESLint rule](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
+
+The compiler is currently released as `rc`, and is available to try out on React 17+ apps and libraries. To install the RC:
+
+<TerminalBlock>
+{`npm install -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
+</TerminalBlock>
+
+Or, if you're using Yarn:
+
+<TerminalBlock>
+{`yarn add -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
+</TerminalBlock>
+
+If you are not using React 19 yet, please see [the section below](#using-react-compiler-with-react-17-or-18) for further instructions.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Apa yang dilakukan oleh kompilator? {/*what-does-the-compiler-do*/}
 
@@ -34,7 +70,15 @@ Untuk mengoptimalkan aplikasi, Kompilator React secara otomatis melakukan memois
 
 Kompilator menggunakan pengetahuannya tentang JavaScript dan aturan React untuk secara otomatis melakukan memoisasi nilai atau kelompok nilai dalam komponen dan *hook* Anda. Jika ia mendeteksi pelanggaran aturan, ia akan melewati hanya komponen atau *hook* tersebut, dan melanjutkan kompilasi kode lain dengan aman
 
+<<<<<<< HEAD
 Jika basis kode Anda sudah sangat ter-memoisasi dengan baik, Anda mungkin tidak mengharapkan peningkatan kinerja yang signifikan dengan kompilator ini. Namun, dalam praktiknya, memoisasi dependensi yang benar yang menyebabkan masalah kinerja adalah hal yang sulit dilakukan dengan tepat secara manual.
+=======
+<Note>
+React Compiler can statically detect when Rules of React are broken, and safely opt-out of optimizing just the affected components or hooks. It is not necessary for the compiler to optimize 100% of your codebase.
+</Note>
+
+If your codebase is already very well-memoized, you might not expect to see major performance improvements with the compiler. However, in practice memoizing the correct dependencies that cause performance issues is tricky to get right by hand.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 <DeepDive>
 #### Jenis memoisasi apa yang ditambahkan oleh Kompilator React? {/*what-kind-of-memoization-does-react-compiler-add*/}
@@ -96,6 +140,7 @@ Namun, jika `expensivelyProcessAReallyLargeArrayOfObjects` adalah fungsi yang be
 Jadi, jika `expensivelyProcessAReallyLargeArrayOfObjects` digunakan dalam banyak komponen yang berbeda, bahkan jika item yang sama persis dilewatkan, perhitungan mahal tersebut akan dijalankan secara berulang. Kami merekomendasikan untuk [melakukan profil](https://react.dev/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) terlebih dahulu untuk melihat apakah benar-benar mahal sebelum membuat kode menjadi lebih rumit.
 </DeepDive>
 
+<<<<<<< HEAD
 ### Apa yang diasumsikan oleh kompilator? {/*what-does-the-compiler-assume*/}
 
 React Compiler assumes that your code:
@@ -109,6 +154,11 @@ Kompilator React dapat memverifikasi banyak Aturan React secara statis, dan akan
 ### Haruskah saya mencoba kompilator? {/*should-i-try-out-the-compiler*/}
 
 Harap dicatat bahwa kompilator ini masih eksperimental dan memiliki beberapa kekurangan. Meskipun telah digunakan di produksi oleh perusahaan seperti Meta, mengimplementasikan kompilator ke produksi untuk aplikasi Anda akan bergantung pada keadaan kode Anda dan sejauh mana Anda mengikuti [Aturan React](/reference/rules).
+=======
+### Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
+
+The compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 **Anda tidak perlu terburu-buru menggunakan kompilator sekarang. Tidak apa-apa untuk menunggu sampai mencapai rilis stabil sebelum mengadopsinya.** Namun, kami menghargai jika Anda mencobanya dalam eksperimen kecil di aplikasi Anda sehingga Anda dapat [memberikan umpan balik](#reporting-issues) kepada kami untuk membantu membuat kompilator menjadi lebih baik.
 
@@ -116,14 +166,21 @@ Harap dicatat bahwa kompilator ini masih eksperimental dan memiliki beberapa kek
 
 Selain dokumen ini, kami sarankan untuk memeriksa [Kelompok Kerja Kompilator React](https://github.com/reactwg/react-compiler) untuk informasi tambahan dan diskusi tentang kompilator.
 
+<<<<<<< HEAD
 ### Memeriksa kompatibilitas {/*checking-compatibility*/}
 
 Sebelum menginstal kompilator, Anda dapat memeriksa apakah kode Anda kompatibel:
+=======
+### Installing eslint-plugin-react-hooks {/*installing-eslint-plugin-react-compiler*/}
+
+React Compiler also powers an ESLint plugin. You can try it out by installing eslint-plugin-react-hooks@^6.0.0-rc.1.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 <TerminalBlock>
-npx react-compiler-healthcheck@latest
+{`npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
+<<<<<<< HEAD
 Skrip ini akan:
 
 - Memeriksa berapa banyak komponen yang dapat dioptimalkan dengan sukses: semakin tinggi semakin baik
@@ -162,6 +219,15 @@ module.exports = {
 Plugin eslint akan menampilkan pelanggaran aturan React di editor Anda. Ketika ini terjadi, artinya kompilator telah melewati optimasi komponen atau hook tersebut. Ini adalah hal yang wajar, dan kompilator dapat melanjutkan dan mengoptimasi kode lain dalam aplikasi Anda.
 
 **Anda tidak perlu memperbaiki semua pelanggaran eslint segera.** Anda dapat menanganinya sesuai keinginan Anda untuk meningkatkan jumlah komponen dan hook yang dioptimalkan, tetapi tidak diperlukan untuk memperbaiki semuanya sebelum Anda dapat menggunakan kompilator.
+=======
+See our [editor setup](/learn/editor-setup#linting) guide for more details.
+
+The ESLint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
+
+<Note>
+**You don't have to fix all ESLint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized, but it is not required to fix everything before you can use the compiler.
+</Note>
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Mengimplementasikan kompilator ke kode Anda {/*using-the-compiler-effectively*/}
 
@@ -178,6 +244,7 @@ const ReactCompilerConfig = {
 };
 ```
 
+<<<<<<< HEAD
 Dalam kasus yang jarang terjadi, Anda juga dapat mengonfigurasi kompilator untuk berjalan dalam mode "opt-in" menggunakan opsi `compilationMode: "annotation"`. Ini membuat kompilator hanya mengkompilasi komponen dan hook yang dianotasi dengan direktif `"use memo"`. Harap dicatat bahwa mode `annotation` adalah mode sementara untuk membantu pengguna awal, dan bahwa kami tidak bermaksud agar direktif `"use memo"` digunakan dalam jangka panjang.
 
 ```js {2,7}
@@ -193,17 +260,59 @@ export default function App() {
 ```
 
 Ketika Anda lebih percaya diri dengan mengimplementasikan kompilator, Anda dapat meningkatkan cakupan ke direktori lain dan secara perlahan mengimplementasikannya ke seluruh aplikasi Anda.
+=======
+When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 #### Proyek baru {/*new-projects*/}
 
 Jika Anda memulai proyek baru, Anda dapat mengaktifkan kompilator pada seluruh kode Anda, yang merupakan perilaku bawaan.
 
+<<<<<<< HEAD
 ## Penggunaan {/*installation*/}
+=======
+### Using React Compiler with React 17 or 18 {/*using-react-compiler-with-react-17-or-18*/}
+
+React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
+
+<TerminalBlock>
+{`npm install react-compiler-runtime@rc`}
+</TerminalBlock>
+
+You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
+
+```js {3}
+// babel.config.js
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+};
+
+module.exports = function () {
+  return {
+    plugins: [
+      ['babel-plugin-react-compiler', ReactCompilerConfig],
+    ],
+  };
+};
+```
+
+### Using the compiler on libraries {/*using-the-compiler-on-libraries*/}
+
+React Compiler can also be used to compile libraries. Because React Compiler needs to run on the original source code prior to any code transformations, it is not possible for an application's build pipeline to compile the libraries they use. Hence, our recommendation is for library maintainers to independently compile and test their libraries with the compiler, and ship compiled code to npm.
+
+Because your code is pre-compiled, users of your library will not need to have the compiler enabled in order to benefit from the automatic memoization applied to your library. If your library targets apps not yet on React 19, specify a minimum [`target` and add `react-compiler-runtime` as a direct dependency](#using-react-compiler-with-react-17-or-18). The runtime package will use the correct implementation of APIs depending on the application's version, and polyfill the missing APIs if necessary.
+
+Library code can often require more complex patterns and usage of escape hatches. For this reason, we recommend ensuring that you have sufficient testing in order to identify any issues that might arise from using the compiler on your library. If you identify any issues, you can always opt-out the specific components or hooks with the [`'use no memo'` directive](#something-is-not-working-after-compilation).
+
+Similarly to apps, it is not necessary to fully compile 100% of your components or hooks to see benefits in your library. A good starting point might be to identify the most performance sensitive parts of your library and ensuring that they don't break the [Rules of React](/reference/rules), which you can use `eslint-plugin-react-compiler` to identify.
+
+## Usage {/*installation*/}
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler
+{`npm install babel-plugin-react-compiler@rc`}
 </TerminalBlock>
 
 Kompilator mencakup *plugin* Babel yang dapat Anda gunakan dalam jalur pembangunan Anda untuk menjalankan kompilator.
@@ -252,6 +361,7 @@ export default defineConfig(() => {
 
 ### Next.js {/*usage-with-nextjs*/}
 
+<<<<<<< HEAD
 Next.js memiliki konfigurasi eksperimental untuk mengaktifkan React Compiler. Hal ini secara otomatis memastikan Babel disiapkan dengan `babel-plugin-react-compiler`.
 
 - Instal Next.js *canary*, yang menggunakan *React 19 Release Candidate*
@@ -282,12 +392,15 @@ Menggunakan opsi eksperimental memastikan dukungan untuk Kompilator React di:
 - *Webpack* (bawaan)
 - *Turbopack* (opsional melalui `--turbo`)
 
+=======
+Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Remix {/*usage-with-remix*/}
 Instal `vite-plugin-babel`, dan tambahkan *plugin* Babel kompilator ke dalamnya:
 
 <TerminalBlock>
-npm install vite-plugin-babel
+{`npm install vite-plugin-babel`}
 </TerminalBlock>
 
 ```js {2,14}
@@ -314,6 +427,7 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
+<<<<<<< HEAD
 Anda dapat membuat *loader* Anda sendiri untuk React Compiler, seperti berikut:
 
 ```js
@@ -352,6 +466,13 @@ module.exports = reactCompilerLoader;
 ### Expo {/*usage-with-expo*/}
 
 Silahkan merujuk ke [Dokumen Expo](https://docs.expo.dev/preview/react-compiler/) untuk mengaktifkan dan menggunakan Kompilator React di aplikasi Expo.
+=======
+A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+
+### Expo {/*usage-with-expo*/}
+
+Please refer to [Expo's docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
@@ -371,22 +492,45 @@ Untuk melaporkan masalah, harap pertama-tama buat contoh minimal di [*React Comp
 
 Anda juga dapat memberikan umpan balik di Kelompok Kerja React Compiler dengan melamar menjadi anggota. Silakan lihat [README untuk detail lebih lanjut tentang bergabung](https://github.com/reactwg/react-compiler).
 
+<<<<<<< HEAD
 ### Eror `(0 , _c) is not a function` {/*0--_c-is-not-a-function-error*/}
 
 Ini terjadi jika Anda tidak menggunakan React 19 RC atau versi yang lebih baru. Untuk memperbaikinya, [tingkatkan aplikasi Anda ke React 19 RC terlebih dahulu](https://react.dev/blog/2024/04/25/react-19-upgrade-guide).
 
 Jika Anda tidak dapat meningkatkan ke React 19, Anda dapat mencoba implementasi fungsi cache dari ruang pengguna seperti yang dijelaskan dalam [Kelompok Kerja](https://github.com/reactwg/react-compiler/discussions/6). Namun, harap dicatat bahwa ini tidak dianjurkan dan Anda harus memperbarui ke React 19 jika memungkinkan.
+=======
+### What does the compiler assume? {/*what-does-the-compiler-assume*/}
+
+React Compiler assumes that your code:
+
+1. Is valid, semantic JavaScript.
+2. Tests that nullable/optional values and properties are defined before accessing them (for example, by enabling [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) if using TypeScript), i.e., `if (object.nullableProperty) { object.nullableProperty.foo }` or with optional-chaining `object.nullableProperty?.foo`.
+3. Follows the [Rules of React](https://react.dev/reference/rules).
+
+React Compiler can verify many of the Rules of React statically, and will safely skip compilation when it detects an error. To see the errors we recommend also installing [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ### Bagaimana cara saya mengetahui komponen saya telah dioptimalkan? {/*how-do-i-know-my-components-have-been-optimized*/}
 
+<<<<<<< HEAD
 [React Devtools](/learn/react-developer-tools) (v5.0+) memiliki dukungan bawaan untuk React Compiler dan akan menampilkan lencana "Memo ✨" di samping komponen yang telah dioptimalkan oleh kompilator.
 
 ### Sesuatu tidak berfungsi setelah kompilasi {/*something-is-not-working-after-compilation*/}
 Jika Anda memiliki eslint-plugin-react-compiler terinstal, kompilator akan menampilkan pelanggaran aturan React di editor Anda. Ketika ini terjadi, itu berarti kompilator telah melewati optimasi komponen atau *hook* tersebut. Ini sepenuhnya normal, dan kompilator dapat melanjutkan untuk mengoptimalkan komponen lain di basis kode Anda. **Anda tidak perlu memperbaiki semua pelanggaran eslint segera**. Anda dapat menanganinya sesuai kecepatan Anda sendiri untuk meningkatkan jumlah komponen dan *hook* yang dioptimalkan.
+=======
+[React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+
+### Something is not working after compilation {/*something-is-not-working-after-compilation*/}
+If you have eslint-plugin-react-compiler installed, the compiler will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase. **You don't have to fix all ESLint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 Namun, karena sifat fleksibel dan dinamis dari JavaScript, tidak mungkin untuk mendeteksi semua kasus secara komprehensif. *Bug* dan perilaku tidak terdefinisi seperti *loop* tak hingga mungkin terjadi dalam kasus-kasus tersebut.
 
+<<<<<<< HEAD
 Jika aplikasi Anda tidak berfungsi dengan baik setelah kompilasi dan Anda tidak melihat eror eslint, kompilator mungkin salah mengompilasi kode Anda. Untuk memastikan hal ini, coba untuk menghilangkan masalah dengan secara agresif memilih keluar komponen atau hook yang Anda pikir mungkin terkait melalui [direktif `"use no memo"`](#opt-out-of-the-compiler-for-a-component).
+=======
+If your app doesn't work properly after compilation and you aren't seeing any ESLint errors, the compiler may be incorrectly compiling your code. To confirm this, try to make the issue go away by aggressively opting out any component or hook you think might be related via the [`"use no memo"` directive](#opt-out-of-the-compiler-for-a-component).
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ```js {2}
 function SuspiciousComponent() {

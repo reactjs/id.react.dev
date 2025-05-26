@@ -295,7 +295,11 @@ export default function Square() {
 }
 ```
 
+<<<<<<< HEAD
 Bagian _browser_ seharusnya menampilkan sebuah kotak dengan tanda X di dalamnya seperti ini:
+=======
+The _browser_ section should be displaying a square with an X in it like this:
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ![kotak berisikan x](../images/tutorial/x-filled-square.png)
 
@@ -1133,7 +1137,11 @@ Memanggil fungsi `setSquares` akan membuat React mengetahui bahwa state dari kom
 
 <Note>
 
+<<<<<<< HEAD
 JavaScript mendukung [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) yang berarti fungsi dalam (misalnya `handleClick`) memiliki akses ke variabel dan fungsi yang didefinisikan di fungsi luar (misalnya `Board`). Fungsi `handleClick` dapat membaca state `squares` dan memanggil metode `setSquares` karena keduanya didefinisikan di dalam fungsi `Board`.
+=======
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in an outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 </Note>
 
@@ -1325,7 +1333,11 @@ Mari kita rekap apa yang terjadi ketika pengguna mengeklik kotak kiri atas pada 
 1. `handleClick` menggunakan argumen (`0`) untuk meng-update elemen pertama dari array `squares` dari `null` menjadi `X`.
 1. State `squares` dari komponen `Board` telah diperbarui, sehingga `Board` dan semua anak komponennya di-render ulang. Hal ini menyebabkan prop `value` dari komponen `Square` dengan indeks `0` berubah dari `null` menjadi `X`.
 
+<<<<<<< HEAD
 Pada akhirnya pengguna akan melihat bahwa kotak kiri atas telah berubah dari kosong menjadi bertanda `X` setelah mengekliknya.
+=======
+In the end the user sees that the upper left square has changed from empty to having an `X` after clicking it.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 <Note>
 
@@ -1406,7 +1418,11 @@ Tapi tunggu, ada masalah. Coba klik kotak yang sama beberapa kali:
 
 Tanda `X` ditimpa oleh tanda `O`! Meskipun hal ini akan menambah sentuhan yang sangat menarik pada gim ini, kami akan tetap berpegang pada aturan asli untuk saat ini.
 
+<<<<<<< HEAD
 Ketika Anda menandai kotak dengan `X` atau `O`, Anda tidak memeriksa terlebih dahulu apakah kotak tersebut telah memiliki nilai `X` atau `O`. Anda dapat memperbaikinya dengan *return lebih awal*. Anda akan memeriksa apakah kotak tersebut sudah memiliki nilai `X` atau `O`. Jika kotak sudah terisi, Anda akan `return` dalam fungsi `handleClick` lebih awal--sebelum fungsi ini mencoba untuk meng-update state papan.
+=======
+When you mark a square with an `X` or an `O` you aren't first checking to see if the square already has an `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has an `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1556,7 +1572,11 @@ Tidak masalah apakah Anda mendefinisikan `calculateWinner` sebelum atau sesudah 
 
 </Note>
 
+<<<<<<< HEAD
 Anda akan memanggil `calculateWinner(squares)` dalam fungsi `handleClick` komponen `Board` untuk memeriksa apakah pemain telah menang. Anda dapat melakukan pengecekan ini bersamaan dengan pengecekan apakah pengguna telah mengklik kotak yang telah memiliki tanda `X` atau `O`. Kita ingin kembali lebih awal dalam kedua kasus tersebut:
+=======
+You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has an `X` or an `O`. We'd like to return early in both cases:
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ```js {2}
 function handleClick(i) {
@@ -2247,7 +2267,11 @@ body {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Saat Anda mengulang senarai `history` di dalam fungsi yang Anda berikan ke `map`, argumen `squares` melewati setiap elemen dari `history`, dan argumen `move` melewati setiap indeks senarai: `0`, `1`, `2`, …. (Pada kebanyakan kasus, Anda akan membutuhkan elemen senarai yang sebenarnya, namun untuk membuat daftar gerakan, Anda hanya membutuhkan indeks.)
+=======
+As you iterate through the `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 Untuk setiap langkah dalam riwayat permainan tic-tac-toe, Anda membuat item daftar `<li>` yang berisi tombol `<button>`. Tombol ini memiliki sebuah handler `onClick` yang memanggil sebuah fungsi yang disebut `jumpTo` (yang belum Anda implementasikan).
 
