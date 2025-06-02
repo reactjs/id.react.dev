@@ -32,7 +32,11 @@ Komponen-komponen tersebut spesial dalam React karena dengan mengoper *prop* `va
 
 ## Komponen Sumber Daya dan Metadata {/*resource-and-metadata-components*/}
 
+<<<<<<< HEAD
 Komponen bawaan peramban ini memungkinkan Anda memuat sumber daya external atau menyematkan metadata ke dokumen:
+=======
+These built-in browser components let you load external resources or annotate the document with metadata:
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
