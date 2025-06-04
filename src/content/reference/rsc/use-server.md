@@ -6,14 +6,14 @@ canary: true
 
 <Canary>
 
-`'use server'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+`'use server'` hanya diperlukan jika Anda [menggunakan Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) atau sedang membangun library yang kompatibel dengan fitur tersebut.
 
 </Canary>
 
 
 <Intro>
 
-`'use server'` marks server-side functions that can be called from client-side code.
+`'use server'` menandai fungsi-fungsi sisi server yang dapat dipanggil dari kode sisi klien.
 
 </Intro>
 
@@ -21,11 +21,11 @@ canary: true
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `'use server'` {/*use-server*/}
 
-Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions _Server Actions_.
+Tambahkan `'use server'` di bagian atas fungsi async untuk menandai bahwa fungsi tersebut dapat dipanggil oleh klien. Kami menyebut fungsi-fungsi ini sebagai [Aksi Server](/reference/rsc/server-actions).
 
 ```js {2}
 async function addToCart(data) {
@@ -34,77 +34,74 @@ async function addToCart(data) {
 }
 ```
 
-When calling a Server Action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the Server Action returns a value, that value will be serialized and returned to the client.
+Saat memanggil Aksi Server dari klien, `'use server'` akan melakukan permintaan jaringan *(network request)* ke server dan menyertakan salinan ter-serialisasi dari setiap argumen yang dikirim. Jika Aksi Server mengembalikan sebuah nilai, nilai tersebut akan di-serialisasi dan dikembalikan ke klien.
 
-Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as Server Actions that can be used anywhere, including imported in client code.
+Daripada menandai fungsi satu per satu dengan `'use server'`, Anda bisa menambahkan [Direktif](/reference/rsc/directives) ini di bagian paling atas *file* untuk menandai semua fungsi yang di ekspor dalam *file* tersebut sebagai Aksi Server nantinya semua fungsi yang di ekspor pada *file* tersebut bisa digunakan di mana saja, termasuk diimpor dalam kode klien.
 
-#### Caveats {/*caveats*/}
-* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-* `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a Server Action from [client code](/reference/rsc/use-client), the directive must be used on a module level.
-* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
-* Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
+#### Peringatan {/*caveats*/}
+* Untuk mengimpor Aksi Server dari [kode klien](/reference/rsc/use-client), direktif harus digunakan pada level modul.
+* Karena pemanggilan jaringan yang mendasarinya bersifat asinkron, `'use server'` hanya boleh digunakan pada fungsi asinkron.
+* Selalu perlakukan argumen yang diterima Aksi Server sebagai input yang tidak terpercaya, dan pastikan semua perubahan (mutasi) telah diautorisasi. Lihat [pertimbangan keamanan](#security).
+* Aksi Server sebaiknya dipanggil dalam sebuah [Transisi](/reference/react/useTransition). Aksi Server yang diteruskan ke [`<form action>`](/reference/react-dom/components/form#props) atau [`formAction`](/reference/react-dom/components/input#props) akan secara otomatis dipanggil dalam sebuah transisi.
+* Aksi Server dirancang untuk melakukan mutasi yang memperbarui data di sisi server; Sehingga Aksi Server tidak disarankan untuk pengambilan data. Oleh karena itu, *framework* yang mengimplementasikan Aksi Server umumnya memproses satu aksi dalam satu waktu dan tidak menyediakan mekanisme untuk melakukan *caching* terhadap nilai yang dikembalikan.
 
-### Security considerations {/*security*/}
+### Pertimbangan keamanan {/*security*/}
 
-Arguments to Server Actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
+Argumen untuk Aksi Server sepenuhnya dikendalikan oleh klien. Demi keamanan, selalu perlakukan argumen tersebut sebagai masukan yang tidak tepercaya, dan pastikan untuk memvalidasi serta menyaring argumen sesuai kebutuhan.
 
-In any Server Action, make sure to validate that the logged-in user is allowed to perform that action.
+Dalam setiap Aksi Server, pastikan untuk memvalidasi bahwa pengguna yang sedang masuk diizinkan untuk melakukan aksi tersebut.
 
 <Wip>
 
-To prevent sending sensitive data from a Server Action, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
+Untuk mencegah pengiriman data sensitif dari Aksi Server, terdapat *API taint* eksperimental untuk mencegah nilai dan objek unik diteruskan ke kode klien.
 
-See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) and [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
+Lihat [*experimental_taintUniqueValue*](/reference/react/experimental_taintUniqueValue) dan [*experimental_taintObjectReference*](/reference/react/experimental_taintObjectReference).
 
 </Wip>
 
-### Serializable arguments and return values {/*serializable-parameters-and-return-values*/}
+### Argumen yang dapat diserialisasi dan nilai kembalian {/*serializable-parameters-and-return-values*/}
 
-As client code calls the Server Action over the network, any arguments passed will need to be serializable.
+Karena kode klien memanggil Aksi Server melalui jaringan, setiap argumen yang dikirim harus dapat diserialisasi.
 
-Here are supported types for Server Action arguments:
+Berikut adalah tipe data yang didukung untuk argumen Aksi Server:
 
-* Primitives
-	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
-	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
-	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
-	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
-	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
-* Iterables containing serializable values
-	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-* [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) instances
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are Server Actions
-* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* Primitif
+	* [*string*](https://developer.mozilla.org/en-US/docs/Glossary/String)
+	* [*number*](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+	* [*bigint*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [*boolean*](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
+	* [*undefined*](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+	* [*null*](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+	* [Simbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), hanya simbol yang didaftarkan dalam Registri Simbol Global melalui [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* *Iterable* yang berisi nilai yang dapat diserialkan
+	* [*String*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Senarai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [*Map*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [*Set*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [*TypedArray*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) dan [*ArrayBuffer*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+* [*Date*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* *Instance* [*FormData*](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+* [Objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) biasa: objek yang dibuat dengan [*object initializers*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), dengan properti yang dapat diserialisasi
+* Fungsi yang merupakan Aksi Server
+* [*Promises*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-Notably, these are not supported:
-* React elements, or [JSX](/learn/writing-markup-with-jsx)
-* Functions, including component functions or any other function that is not a Server Action
-* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
-* Symbols not registered globally, ex. `Symbol('my new symbol')`
+Yang tidak didukung, antara lain:
 
+* Elemen React, atau [*JSX*](/learn/writing-markup-with-jsx)
+* Fungsi komponen atau fungsi lainnya yang bukan Aksi Server
+* [Kelas](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* [Objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) yang merupakan *instance* dari kelas apa pun (selain bawaan seperti yang telah disebutkan) atau objek dengan [*null prototype*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Simbol yang tidak didaftarkan secara global, misalnya `Symbol('my new symbol')`
 
-Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
+Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
 
+## Penggunaan {/*usage*/}
 
-## Usage {/*usage*/}
+### Aksi Server dalam formulir {/*server-actions-in-forms*/}
 
-### Server Actions in forms {/*server-actions-in-forms*/}
+Aksi Server biasanya digunakan untuk memanggil fungsi di server yang mengubah data. Di peramban, pengguna umumnya mengirimkan perubahan data lewat [elemen formulir HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). Dengan komponen server React, React kini mendukung Aksi Server secara langsung di dalam formulir.
 
-The most common use case of Server Actions will be calling server functions that mutate data. On the browser, the [HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is the traditional approach for a user to submit a mutation. With React Server Components, React introduces first-class support for Server Actions in [forms](/reference/react-dom/components/form).
-
-Here is a form that allows a user to request a username.
+Contoh di bawah ini menunjukkan formulir yang meminta nama pengguna.
 
 ```js [[1, 3, "formData"]]
 // App.js
@@ -119,21 +116,23 @@ export default function App() {
   return (
     <form action={requestUsername}>
       <input type="text" name="username" />
-      <button type="submit">Request</button>
+      <button type="submit">Meminta</button>
     </form>
   );
 }
 ```
 
-In this example `requestUsername` is a Server Action passed to a `<form>`. When a user submits this form, there is a network request to the server function `requestUsername`. When calling a Server Action in a form, React will supply the form's <CodeStep step={1}>[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> as the first argument to the Server Action.
+Dalam contoh ini, `requestUsername` adalah sebuah Aksi Server yang diteruskan ke sebuah formulir `<form>.`
+Ketika pengguna mengirim formulir ini, akan ada permintaan jaringan ke fungsi server `requestUsername`.
+Saat memanggil Aksi Server lewat formulir, React akan mengirimkan <CodeStep step={1}>[*FormData*](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> dari formulir sebagai argumen pertama ke Aksi Server tersebut.
 
-By passing a Server Action to the form `action`, React can [progressively enhance](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) the form. This means that forms can be submitted before the JavaScript bundle is loaded.
+Dengan meneruskan Aksi Server ke `action` formulir, React bisa meningkatkan fungsionalitas formulir secara [progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement). Artinya, formulir tetap bisa dikirimkan meskipun bundel *JavaScript* belum dimuat sepenuhnya.
 
-#### Handling return values in forms {/*handling-return-values*/}
+#### Menangani nilai kembali dari formulir {/*handling-return-values*/}
 
-In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not.
+Dalam formulir diatas, ada kemungkinan nama pengguna yang diminta tidak tersedia. `requestUsername` harus memberi tahu apakah permintaan tersebut berhasil atau gagal.
 
-To update the UI based on the result of a Server Action while supporting progressive enhancement, use [`useActionState`](/reference/react/useActionState).
+Untuk memperbarui antarmuka pengguna berdasarkan hasil dari Aksi Server sambil tetap mendukung peningkatan progresif gunakan [`useActionState`](/reference/react/useActionState).
 
 ```js
 // requestUsername.js
@@ -163,21 +162,21 @@ function UsernameForm() {
     <>
       <form action={action}>
         <input type="text" name="username" />
-        <button type="submit">Request</button>
+        <button type="submit">Meminta</button>
       </form>
-      <p>Last submission request returned: {state}</p>
+      <p>Respon dari pengiriman terakhir: {state}</p>
     </>
   );
 }
 ```
 
-Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/rsc/use-client)</CodeStep>.
+Perlu diingat bahwa seperti Hook lainnya, `useActionState` hanya bisa dipanggil di <CodeStep step={1}>[kode klien](/reference/rsc/use-client)</CodeStep>.
 
-### Calling a Server Action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
+### Memanggil sebuah Aksi Server dari luar formulir `<form>` {/*calling-a-server-action-outside-of-form*/}
 
-Server Actions are exposed server endpoints and can be called anywhere in client code.
+Aksi Server adalah *endpoint* di sisi server dan bisa dipanggil dari mana saja di dalam kode klien.
 
-When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
+Jika Anda menggunakan Aksi server di luar [formulir](/reference/react-dom/components/form), panggillah fungsi tersebut di dalam sebuah [Transisi](/reference/react/useTransition). Dengan begitu, Anda bisa menampilkan indikator pemuatan, melakukan [pembaruan status optimistis](/reference/react/useOptimistic), dan menangani error yang tidak terduga. Formulir akan secara otomatis membungkus Aksi Server di dalam transisi.
 
 ```js {9-12}
 import incrementLike from './actions';
@@ -196,8 +195,8 @@ function LikeButton() {
 
   return (
     <>
-      <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={isPending}>Like</button>;
+      <p>Total Suka: {likeCount}</p>
+      <button onClick={onClick} disabled={isPending}>Suka</button>;
     </>
   );
 }
@@ -214,4 +213,4 @@ export default async function incrementLike() {
 }
 ```
 
-To read a Server Action return value, you'll need to `await` the promise returned.
+Untuk mendapatkan hasil dari Aksi Server, Anda perlu menunggu *promise*-nya dengan menggunakan *await*.
