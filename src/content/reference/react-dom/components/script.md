@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<script>` are currently only available in React's canary and experimental channels. In stable releases of React `<script>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Ekstensi React untuk `<script>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Dalam rilis stabil React, `<script>` berfungsi sebagai [komponen HTML browser bawaan](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini.](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) lets you add a script to your document.
+[Komponen `<script>` bawaan browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) memungkinkan Anda menambahkan *script* di dokumen anda.
 
 ```js
 <script> alert("hi!") </script>
@@ -23,71 +23,71 @@ The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<script>` {/*script*/}
 
-To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
+Untuk menambahkan *script* eksternal atau sisipan pada document, render [komponen bawaan `<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). Anda bisa merender `<script>` dari komponen apapun dan React [dalam kasus tertentu](#special-rendering-behavior) akan menempatkan elemen DOM yang sesuai isi di kepala dokumen dan menghapus *script* duplikat yang identik.
 
 ```js
 <script> alert("hi!") </script>
 <script src="script.js" />
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
 #### Props {/*props*/}
 
-`<script>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<script>` mendukung segala [props elemen umum.](/reference/react-dom/components/common#props)
 
-It should have *either* `children` or a `src` prop.
+Seharusnya memiliki *salah satu* props `children` atau `src`.
 
-* `children`: a string. The source code of an inline script.
-* `src`: a string. The URL of an external script.
+* `children`: sebuah string. Sumber kode *script* sisipan.
+* `src`: sebuah string. URL dari eksternal *script*.
 
-Other supported props:
+Props lain yang didukung:
 
-* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
-*  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
-* `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
-* `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-* `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
-* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn. 
-* `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+* `async`: sebuah boolean. Mengizinkan browser menunda eksekusi *script* hingga seluruh dokumen telah diproses — perilaku yang lebih baik untuk performa.
+*  `crossOrigin`: sebuah string. [Aturan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang memungkinkan adalah `anonymous` dan `use-credentials`.
+* `fetchPriority`: sebuah string. Memungkinkan browser memberikan peringkat *script* pada prioritas saat mengambil beberapa *script* secara bersamaan. Dapat berupa `"high"`, `"low"`, atau `"auto"` (nilai bawaan).
+* `integrity`: sebuah string. Hash kriptografi dari *script*, untuk [memverifikasi keaslian](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `noModule`: sebuah boolean. Menonaktifkan *script* di browser yang mendukung modul ES — memungkinkan *script* cadangan untuk browser yang tidak mendukungnya.
+* `nonce`: sebuah string. Kriptografi [nonce untuk mengizinkan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) saat menggunakan sebuah aturan yang ketat mengenai Content Security.
+* `referrer`: sebuah string. Mengatakan [apa kepala Referer yang mau dikirim](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) saat mengambil *script* dan sumber daya apa pun yang diambil oleh *script* secara bergantian.
+* `type`: sebuah string. Apakah script ini merupakan[*script* klasik, modul ES, or *import map*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
 
-Props that disable React's [special treatment of scripts](#special-rendering-behavior):
+Props yang menonaktifkan [perlakuan khusus pada *script*](#special-rendering-behavior) React:
 
-* `onError`: a function. Called when the script fails to load.
-* `onLoad`: a function. Called when the script finishes being loaded.
+* `onError`: sebuah fungsi. Dipanggil saat *script* gagal dimuat.
+* `onLoad`: sebuah fungsi. Dipanggil saat *script* telah berhasil dimuat.
 
-Props that are **not recommended** for use with React:
+Props yang **tidak direkomendasikan** untuk digunakan di React:
 
-* `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the scriptsheet is loaded. React provides more fine-grained control using Suspense.
-* `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered components. Use the `async` prop instead.
+* `blocking`: sebuah string. Jika dipasang ke `"render"`, memerintahkan browser untuk tidak merender halaman sampai lembar *script* dimuat. React memberikan kontrol yang lebih halus menggunakan Suspense.
+* `defer`: sebuah string. Mencegah browser menjalankan *script* hingga dokumen selesai dimuat. Tidak kompatibel dengan komponen yang dirender oleh *server streaming*. Gunakan prop `async` sebagai gantinya.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Perilaku rendering khusus {/*special-rendering-behavior*/}
 
-React can move `<script>` components to the document's `<head>` and de-duplicate identical scripts.
+React dapat memindahkan komponen `<script>` ke `<head>` dokumen dan menghapus *script* duplikat yang identik.
 
-To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
+Untuk mengikuti perilaku ini, berikan props `src` dan `async={true}`. React akan menghapus *script* duplikat jika skrip tersebut memiliki `src` yang sama. Prop `async` harus memiliki nilai *true* agar *script* dapat dipindahkan dengan aman.
 
-This special treatment comes with two caveats:
+Perlakuan khusus ini disertai dengan dua peringatan:
 
-* React will ignore changes to props after the script has been rendered. (React will issue a warning in development if this happens.)
-* React may leave the script in the DOM even after the component that rendered it has been unmounted. (This has no effect as scripts just execute once when they are inserted into the DOM.)
+* React akan mengabaikan perubahan pada props setelah *script* dirender. (React akan mengeluarkan peringatan dalam pengembangan jika ini terjadi.)
+* React mungkin meninggalkan *script* di DOM bahkan setelah komponen yang merendernya telah dilepas. (Ini tidak berpengaruh karena *script* hanya dijalankan satu kali ketika dimasukkan ke dalam DOM.)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Rendering an external script {/*rendering-an-external-script*/}
+### Merender *script* eksternal {/*rendering-an-external-script*/}
 
-If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
-However, the component might be committed before the script has finished loading.
-You can start depending on the script content once the `load` event is fired e.g. by using the `onLoad` prop.
+Jika suatu komponen bergantung pada *script* tertentu agar dapat ditampilkan dengan benar, Anda dapat merender `<script>` di dalam komponen tersebut.
+Namun, komponen mungkin di-*commit* sebelum *script* selesai dimuat.
+Anda dapat mulai bergantung pada konten *script* setelah acara `load` diaktifkan, mis. dengan menggunakan prop `onLoad`.
 
-React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
+React akan menghapus *script* duplikat yang memiliki `src` yang sama, hanya memasukkan salah satu *script* tersebut ke dalam DOM meskipun beberapa komponen merendernya.
 
 <SandpackWithHTMLOutput>
 
@@ -115,12 +115,12 @@ export default function Page() {
 </SandpackWithHTMLOutput>
 
 <Note>
-When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+Saat Anda ingin menggunakan *script*, akan bermanfaat jika memanggil fungsi [preinit](/reference/react-dom/preinit). Memanggil fungsi ini memungkinkan browser untuk mulai mengambil *script* lebih awal dibandingkan jika Anda hanya merender komponen `<script>`, misalnya dengan mengirimkan [respons Early Hints HTTP](https://developer.mozilla.org/en-US/dokumen/Web/HTTP/Status/103).
 </Note>
 
-### Rendering an inline script {/*rendering-an-inline-script*/}
+### Merender *script* sisipan {/*rendering-an-inline-script*/}
 
-To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`.
+Untuk menyertakan *script sisipan*, render komponen `<script>` dengan kode sumber *script* sebagai turunannya. *Script* sebaris tidak dihapus duplikatnya atau dipindahkan ke dokumen `<head>`.
 
 <SandpackWithHTMLOutput>
 
