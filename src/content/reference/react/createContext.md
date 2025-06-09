@@ -38,14 +38,22 @@ const ThemeContext = createContext('light');
 
 `createContext` mengembalikan sebuah konteks objek.
 
+<<<<<<< HEAD
 **Objek konteks itu sendiri tidak menyimpan informasi apa pun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext.Provider`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
 
 * `SomeContext.Provider` memungkinkan Anda memberikan nilai konteks pada komponen.
 * `SomeContext.Consumer` adalah cara alternatif dan jarang digunakan untuk membaca nilai dari konteks.
+=======
+**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in components below to read it. The context object has a few properties:
+
+* `SomeContext` lets you provide the context value to components.
+* `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
+* `SomeContext.Provider` is a legacy way to provide the context value before React 19.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ---
 
-### `SomeContext.Provider` {/*provider*/}
+### `SomeContext` Provider {/*provider*/}
 
 Bungkus komponen Anda ke dalam penyedia konteks untuk menentukan nilai konteks ini untuk semua komponen di dalamnya:
 
@@ -54,12 +62,20 @@ function App() {
   const [theme, setTheme] = useState('light');
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Page />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
+
+<Note>
+
+Starting in React 19, you can render `<SomeContext>` as a provider. 
+
+In older versions of React, use `<SomeContext.Provider>`.
+
+</Note>
 
 #### Props {/*provider-props*/}
 
@@ -84,7 +100,11 @@ function Button() {
 }
 ```
 
+<<<<<<< HEAD
 Meskipun cara lama ini masih berfungsi, tetapi **kode yang baru ditulis harus membaca konteks dengan [`useContext()`](/reference/react/useContext) sebagai gantinya:**
+=======
+Although this older way still works, **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js
 function Button() {
@@ -141,11 +161,11 @@ function App() {
   // ...
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -187,11 +207,11 @@ import { ThemeContext, AuthContext } from './Contexts.js';
 function App() {
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -213,5 +233,9 @@ const ThemeContext = createContext('light');
 
 Nilai ini tidak pernah berubah. React hanya menggunakan nilai ini sebagai *fallback* jika tidak dapat menemukan penyedia yang cocok di atas.
 
+<<<<<<< HEAD
 Untuk membuat konteks berubah seiring waktu, [tambahkan state dan bungkus komponen didalam penyedia konteks](/reference/react/useContext#updating-data-passed-via-context)
 
+=======
+To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91

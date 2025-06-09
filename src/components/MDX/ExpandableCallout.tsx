@@ -8,8 +8,17 @@ import {IconNote} from '../Icon/IconNote';
 import {IconWarning} from '../Icon/IconWarning';
 import {IconPitfall} from '../Icon/IconPitfall';
 import {IconCanary} from '../Icon/IconCanary';
+import {IconRocket} from '../Icon/IconRocket';
 
-type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip' | 'canary';
+type CalloutVariants =
+  | 'deprecated'
+  | 'pitfall'
+  | 'note'
+  | 'wip'
+  | 'canary'
+  | 'experimental'
+  | 'major'
+  | 'rsc';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -43,6 +52,15 @@ const variantMap = {
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
+  experimental: {
+    title: 'Experimental Feature',
+    Icon: IconCanary,
+    containerClasses:
+      'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-green-60 dark:text-green-40',
+    overlayGradient:
+      'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
+  },
   pitfall: {
     title: 'Sandungan',
     Icon: IconPitfall,
@@ -59,6 +77,22 @@ const variantMap = {
     overlayGradient:
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
+  major: {
+    title: 'React 19',
+    Icon: IconRocket,
+    containerClasses: 'bg-blue-10 dark:bg-blue-60 dark:bg-opacity-20',
+    textColor: 'text-blue-50 dark:text-blue-40',
+    overlayGradient:
+      'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
+  },
+  rsc: {
+    title: 'React Server Components',
+    Icon: null,
+    containerClasses: 'bg-blue-10 dark:bg-blue-60 dark:bg-opacity-20',
+    textColor: 'text-blue-50 dark:text-blue-40',
+    overlayGradient:
+      'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
+  },
 };
 
 function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
@@ -72,9 +106,11 @@ function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
         variant.containerClasses
       )}>
       <h3 className={cn('text-2xl font-display font-bold', variant.textColor)}>
-        <variant.Icon
-          className={cn('inline me-3 mb-1 text-lg', variant.textColor)}
-        />
+        {variant.Icon && (
+          <variant.Icon
+            className={cn('inline me-2 mb-1 text-lg', variant.textColor)}
+          />
+        )}
         {variant.title}
       </h3>
       <div className="relative">
