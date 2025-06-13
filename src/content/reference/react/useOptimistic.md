@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
- `useOptimistic` hook saat ini hanya tersedia di saluran React Canary dan React eksperimental. Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
+Hook `useOptimistic` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`useOptimistic` adalah React Hook yang memungkinkan Anda memperbarui antarmuka pengguna (UI) secara optimis.
+`useOptimistic` adalah Hook yang memungkinkan Anda memperbarui antarmuka pengguna (UI) secara optimis.
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -27,7 +27,7 @@ canary: true
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` adalah React Hook yang memungkinkan Anda menampilkan *state* yang berbeda pada saat aksi asinkron sedang berlangsung. Hook ini menerima beberapa *state* sebagai argumen dan mengembalikan salinan dari *state* tersebut yang bisa berbeda selama aksi asinkron seperti contoh *network request*. Anda dapat menyediakan sebuah *function* yang mengambil *state* saat ini dan input untuk aksi tersebut, dan mengembalikan *optimistic state* yang akan digunakan saat aksi tersebut tertunda.
+`useOptimistic` adalah Hook yang memungkinkan Anda menampilkan *state* yang berbeda pada saat aksi asinkron sedang berlangsung. Hook ini menerima beberapa *state* sebagai argumen dan mengembalikan salinan dari *state* tersebut yang bisa berbeda selama aksi asinkron seperti contoh *network request*. Anda dapat menyediakan sebuah *function* yang mengambil *state* saat ini dan input untuk aksi tersebut, dan mengembalikan *optimistic state* yang akan digunakan saat aksi tersebut tertunda.
 
 *State* ini disebut sebagai *"optimistic" state* karena biasanya digunakan untuk segera menampilkan hasil dari aksi yang dilakukan pengguna, meskipun aksi tersebut sebenarnya memerlukan waktu untuk diselesaikan.
 
@@ -48,22 +48,22 @@ function AppContainer() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `state`: nilai yang akan dikembalikan di awal dan setiap kali tidak ada tindakan yang tertunda.
 * `updateFn(currentState, optimisticValue)`: sebuah *function* yang menerima `state` saat ini dan *optimistic value* yang diteruskan ke `addOptimistic` dan mengembalikan *optimistic state* yang dihasilkan. Function ini harus berupa function murni. `updateFn` menerima 2 parameter yaitu `currentState` dan `optimisticValue`. Nilai yang dikembalikan akan menjadi nilai gabungan dari `currentState` dan `optimisticValue`.
 
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
 * `optimisticState`: Hasil optimistic state. Nilai ini sama dengan `state` kecuali jika ada aksi yang tertunda, dalam hal ini nilainya sama dengan nilai yang dikembalikan oleh `updateFn`.
 * `addOptimistic`: `addOptimistic` adalah *dispatch function* yang dipanggil ketika Anda memiliki *optimistic update*. *Function* ini menerima satu argumen, `optimisticValue`, dengan tipe apapun dan akan memanggil `updateFn` dengan `state` dan `optimisticValue`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Optimistically updating forms {/*optimistically-updating-with-forms*/}
+### Memperbarui data secara optimis dengan form {/*optimistically-updating-with-forms*/}
 
 Hook `useOptimistic` menyediakan cara untuk memperbarui antarmuka pengguna secara optimis sebelum operasi latar belakang, seperti *network request*. Dalam konteks *form*, teknik ini membantu membuat aplikasi terasa lebih responsif. Ketika seorang pengguna mengirimkan *form*, alih-alih menunggu respons dari server untuk merefleksikan perubahan, antarmuka akan langsung diperbarui dengan hasil yang diharapkan.
 
