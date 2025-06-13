@@ -1,27 +1,27 @@
 ---
-title: "React Server Components"
+title: "Komponen Server React"
 canary: true
 ---
 
 <Intro>
 
-Server Components adalah jenis Komponen baru yang dirender terlebih dahulu, sebelum proses bundling, di lingkungan yang terpisah dari aplikasi klien atau server SSR Anda.
+Komponen Server adalah jenis Komponen baru yang dirender terlebih dahulu, sebelum proses bundling, di lingkungan yang terpisah dari aplikasi klien atau server SSR Anda.
 
 
 </Intro>
 
-Lingkungan terpisah ini adalah "server" dalam React Server Components. Server Components dapat dijalankan sekali saat build di server CI Anda, atau dapat dijalankan untuk setiap permintaan menggunakan web server.
+Lingkungan terpisah ini adalah "server" dalam Komponen Server React. Komponen Server dapat dijalankan sekali saat build di server CI Anda, atau dapat dijalankan untuk setiap permintaan menggunakan web server.
 
 <InlineToc />
 
 <Note>
 
 
-#### Bagaimana cara membangun dukungan untuk Server Components? {/*how-do-i-build-support-for-server-components*/}
+#### Bagaimana cara membangun dukungan untuk Komponen Server? {/*how-do-i-build-support-for-server-components*/}
 
-Meskipun React Server Components di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan bundler atau framework React Server Components tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
+Meskipun Komponen Server React di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan bundler atau framework Komponen Server React tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
 
-Untuk mendukung React Server Components sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan React Server Components di masa mendatang.
+Untuk mendukung Komponen Server React sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan Komponen Server React di masa mendatang.
 
 </Note>
 
@@ -55,7 +55,7 @@ app.get(`/api/content/:page`, async (req, res) => {
 });
 ```
 
-Pola ini berarti pengguna perlu mengunduh dan mengurai tambahan 75K (gzipped) pustaka, dan menunggu permintaan kedua untuk mengambil data setelah halaman dimuat, hanya untuk merender konten statis yang tidak akan berubah selama masa hidup halaman.
+Pola ini berarti pengguna perlu mengunduh dan mengurai tambahan pustaka sebesar 75K (gzipped), dan menunggu permintaan kedua untuk mengambil data setelah halaman dimuat, hanya untuk merender konten statis yang tidak akan berubah selama masa hidup halaman.
 
 Dengan Komponen Server, Anda dapat merender komponen ini sekali saat proses build:
 
