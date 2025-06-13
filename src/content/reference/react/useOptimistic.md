@@ -23,7 +23,7 @@ Hook `useOptimistic` saat ini hanya tersedia di kanal *canary* dan eksperimental
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
