@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `useOptimistic` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Hook `useOptimistic` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` adalah Hook yang memungkinkan Anda memperbarui antarmuka pengguna (UI) secara optimis.
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -23,13 +23,13 @@ The `useOptimistic` Hook is currently only available in React's Canary and exper
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+`useOptimistic` adalah Hook yang memungkinkan Anda menampilkan *state* yang berbeda pada saat aksi asinkron sedang berlangsung. Hook ini menerima beberapa *state* sebagai argumen dan mengembalikan salinan dari *state* tersebut yang bisa berbeda selama aksi asinkron seperti contoh *network request*. Anda dapat menyediakan sebuah *function* yang mengambil *state* saat ini dan input untuk aksi tersebut, dan mengembalikan *optimistic state* yang akan digunakan saat aksi tersebut tertunda.
 
-This state is called the "optimistic" state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.
+*State* ini disebut sebagai *"optimistic" state* karena biasanya digunakan untuk segera menampilkan hasil dari aksi yang dilakukan pengguna, meskipun aksi tersebut sebenarnya memerlukan waktu untuk diselesaikan.
 
 ```js
 import { useOptimistic } from 'react';
@@ -48,26 +48,26 @@ function AppContainer() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `state`: the value to be returned initially and whenever no action is pending.
-* `updateFn(currentState, optimisticValue)`: a function that takes the current state and the optimistic value passed to `addOptimistic` and returns the resulting optimistic state. It must be a pure function. `updateFn` takes in two parameters. The `currentState` and the `optimisticValue`. The return value will be the merged value of the `currentState` and `optimisticValue`.
+* `state`: nilai yang akan dikembalikan di awal dan setiap kali tidak ada tindakan yang tertunda.
+* `updateFn(currentState, optimisticValue)`: sebuah *function* yang menerima `state` saat ini dan *optimistic value* yang diteruskan ke `addOptimistic` dan mengembalikan *optimistic state* yang dihasilkan. Function ini harus berupa function murni. `updateFn` menerima 2 parameter yaitu `currentState` dan `optimisticValue`. Nilai yang dikembalikan akan menjadi nilai gabungan dari `currentState` dan `optimisticValue`.
 
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-* `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
-* `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
+* `optimisticState`: Hasil optimistic state. Nilai ini sama dengan `state` kecuali jika ada aksi yang tertunda, dalam hal ini nilainya sama dengan nilai yang dikembalikan oleh `updateFn`.
+* `addOptimistic`: `addOptimistic` adalah *dispatch function* yang dipanggil ketika Anda memiliki *optimistic update*. *Function* ini menerima satu argumen, `optimisticValue`, dengan tipe apapun dan akan memanggil `updateFn` dengan `state` dan `optimisticValue`.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Optimistically updating forms {/*optimistically-updating-with-forms*/}
+### Memperbarui data secara optimis dengan form {/*optimistically-updating-with-forms*/}
 
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+Hook `useOptimistic` menyediakan cara untuk memperbarui antarmuka pengguna secara optimis sebelum operasi latar belakang, seperti *network request*. Dalam konteks *form*, teknik ini membantu membuat aplikasi terasa lebih responsif. Ketika seorang pengguna mengirimkan *form*, alih-alih menunggu respons dari server untuk merefleksikan perubahan, antarmuka akan langsung diperbarui dengan hasil yang diharapkan.
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+Misalnya, ketika seorang pengguna mengetik pesan ke dalam *form* dan menekan tombol "Send", Hook `useOptimistic` memungkinkan pesan tersebut segera muncul dalam daftar dengan label "Sending...", bahkan sebelum pesan tersebut benar-benar terkirim ke server. Pendekatan *"optimistic"* ini memberikan kesan kecepatan dan responsivitas. *Form* tersebut kemudian mencoba untuk benar-benar mengirim pesan tersebut di latar belakang. Setelah server mengonfirmasi bahwa pesan telah diterima, label "Sending..." akan dihapus.
 
 <Sandpack>
 
