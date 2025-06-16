@@ -1,5 +1,5 @@
 ---
-title: Setup
+title: Pengaturan
 ---
 <Intro>
 
@@ -7,7 +7,7 @@ React terintegrasi dengan berbagai alat seperti editor, TypeScript, ekstensi bro
 
 </Intro>
 
-## Setup editor {/*editor-setup*/}
+## Persiapan editor {/*editor-setup*/}
 
 Lihat daftar [editor-editor yang kami rekomendasikan](/learn/editor-setup) dan pelajari cara mengaturnya untuk dapat bekerja dengan React.
 
@@ -19,9 +19,9 @@ TypeScript adalah cara populer untuk menambahkan definisi *type* ke basis kode J
 
 React Developer Tools adalah pengaya browser (browser extension) yang dapat memeriksa komponen React, mengubah *props* dan *state*, serta mengidentifikasi masalah performa. Pelajari cara memasangnya [di sini](learn/react-developer-tools).
 
-## Kompilator React {/*react-compiler*/}
+## Kompiler React {/*react-compiler*/}
 
-Kompilator React adalah perangkat yang secara otomatis mengoptimalkan aplikasi React Anda. [Pelajari lebih lanjut](/learn/react-compiler).
+Kompiler React adalah perangkat yang secara otomatis mengoptimalkan aplikasi React Anda. [Pelajari lebih lanjut](/learn/react-compiler).
 
 ## Langkah selanjutnya {/*next-steps*/}
 

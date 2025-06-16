@@ -53,7 +53,7 @@ const variantMap = {
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
   experimental: {
-    title: 'Experimental Feature',
+    title: 'Fitur Eksperimental',
     Icon: IconCanary,
     containerClasses:
       'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
@@ -86,7 +86,7 @@ const variantMap = {
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
   rsc: {
-    title: 'React Server Components',
+    title: 'Komponen Server React',
     Icon: null,
     containerClasses: 'bg-blue-10 dark:bg-blue-60 dark:bg-opacity-20',
     textColor: 'text-blue-50 dark:text-blue-40',

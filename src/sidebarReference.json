@@ -311,7 +311,7 @@
       ]
     },
     {
-      "title": "Static APIs",
+      "title": "API Statis",
       "path": "/reference/react-dom/static",
       "routes": [
         {
@@ -348,18 +348,18 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "React Server Components"
+      "sectionHeader": "Komponen Server React"
     },
     {
-      "title": "Server Components",
+      "title": "Komponen Server",
       "path": "/reference/rsc/server-components"
     },
     {
-      "title": "Server Functions",
+      "title": "Fungsi Server",
       "path": "/reference/rsc/server-functions"
     },
     {
-      "title": "Directives",
+      "title": "Direktif",
       "path": "/reference/rsc/directives",
       "routes": [
         {
