@@ -35,13 +35,13 @@ function PageHeading({
           {title}
           {version === 'canary' && (
             <IconCanary
-              title=" - This feature is available in the latest Canary version of React"
+              title=" - Fitur ini tersedia di rilis Canary terbaru React"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}
           {version === 'experimental' && (
             <IconExperimental
-              title=" - This feature is available in the latest Experimental version of React"
+              title=" - Fitur ini tersedia di rilis Eksperimental terbaru React"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}
