@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "TETAP TERINFORMASI"
     },
     {
       "title": "Blog",
@@ -138,7 +138,7 @@
           "path": "/blog/2020/12/21/data-fetching-with-react-server-components"
         },
         {
-          "title": "Older posts",
+          "title": "Postingan lama",
           "path": "https://reactjs.org/blog/all.html"
         }
       ]

@@ -7,11 +7,11 @@
       "sectionHeader": "react@{{version}}"
     },
     {
-      "title": "Overview",
+      "title": "Pengantar",
       "path": "/reference/react"
     },
     {
-      "title": "Hooks",
+      "title": "Hook",
       "path": "/reference/react/hooks",
       "routes": [
         {
@@ -173,7 +173,7 @@
       "sectionHeader": "react-dom@{{version}}"
     },
     {
-      "title": "Hooks",
+      "title": "Hook",
       "path": "/reference/react-dom/hooks",
       "routes": [
         {

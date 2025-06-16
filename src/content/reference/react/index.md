@@ -1,5 +1,5 @@
 ---
-title: "Ikhtisar Referensi React"
+title: "Pengantar Referensi React"
 ---
 
 <Intro>

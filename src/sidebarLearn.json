@@ -25,15 +25,15 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Membuat aplikasi React",
+          "title": "Membuat Aplikasi React",
           "path": "/learn/creating-a-react-app"
         },
         {
-          "title": "Build a React App from Scratch",
+          "title": "Membangun Aplikasi React dari Awal",
           "path": "/learn/build-a-react-app-from-scratch"
         },
         {
-          "title": "Tambahkan React ke Proyek yang sudah Ada",
+          "title": "Tambahkan React ke Proyek yang Sudah Ada",
           "path": "/learn/add-react-to-an-existing-project"
         }
       ]
