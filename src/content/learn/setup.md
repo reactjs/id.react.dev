@@ -3,7 +3,7 @@ title: Setup
 ---
 <Intro>
 
-React integrates with tools like editors, TypeScript, browser extensions, and compilers. This section will help you get your environment set up.
+React terintegrasi dengan berbagai alat seperti editor, TypeScript, ekstensi browser, dan kompiler. Bagian ini akan membantu Anda menyiapkan lingkungan Anda.
 
 </Intro>
 

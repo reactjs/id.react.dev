@@ -8,19 +8,19 @@ Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan Rea
 
 </Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
+Jika aplikasi Anda memiliki kendala yang tidak dapat diatasi dengan baik oleh *framework* yang ada, Anda lebih suka membangun *framework* Anda sendiri, atau Anda hanya ingin mempelajari dasar-dasar aplikasi React, Anda dapat [membangun aplikasi React dari awal](/learn/build-a-react-app-from-scratch).
 
 ## *Framework full-stack* {/*full-stack-frameworks*/}
 
-These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
+*Framework* yang direkomendasikan ini mendukung semua fitur yang Anda perlukan untuk menyebarkan dan meningkatkan skala aplikasi Anda dalam produksi. *Framework* ini telah mengintegrasikan fitur-fitur React terbaru dan memanfaatkan arsitektur React.
 
 <Note>
 
-#### Full-stack frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
+#### *Framework full-stack* tidak memerlukan server. {/*react-frameworks-do-not-require-a-server*/}
 
-All the frameworks on this page support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and static-site generation ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). These apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service without a server. Additionally, these frameworks allow you to add server-side rendering on a per-route basis, when it makes sense for your use case.
+Semua *framework* pada halaman ini mendukung rendering sisi klien ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), aplikasi *single-page* ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), dan *static-site generation* ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). Aplikasi ini dapat disebarkan ke [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) atau layanan hosting statis tanpa server. Selain itu, *framework* ini memungkinkan Anda untuk menambahkan rendering sisi server pada setiap rute, jika sesuai dengan kasus penggunaan Anda.
 
-This allows you to start with a client-only app, and if your needs change later, you can opt-in to using server features on individual routes without rewriting your app. See your framework's documentation for configuring the rendering strategy.
+Hal ini memungkinkan Anda untuk memulai dengan aplikasi khusus klien, dan jika kebutuhan Anda berubah nanti, Anda dapat memilih untuk menggunakan fitur server pada rute individual tanpa menulis ulang aplikasi Anda. Lihat dokumentasi *framework* Anda untuk mengonfigurasi strategi rendering.
 
 </Note>
 
