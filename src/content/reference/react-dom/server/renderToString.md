@@ -88,7 +88,7 @@ Ini akan menghasilkan output HTML non-interaktif awal dari komponen React Anda. 
 
 ### Migrasi dari `renderToString` ke metode streaming di server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
 
-`renderToString` mengembalikan *string* dengan seketika, sehingga tidak mendukung *streaming* atau menunggu data.
+`renderToString` segera mengembalikan string, ehingga tidak mendukung *streaming* konten saat dimuat.
 
 Saat memungkinkan, kami merekomendasikan untuk menggunakan alternatif yang berfitur lengkap ini:
 
@@ -96,6 +96,19 @@ Saat memungkinkan, kami merekomendasikan untuk menggunakan alternatif yang berfi
 * Jika Anda menggunakan Deno atau *edge runtime* modern dengan [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams*API), gunakan [`renderToReadableStream`.](/reference/react-dom/server/renderToReadableStream)
 
 Anda dapat terus menggunakan `renderToString` jika *environment* server Anda tidak mendukung *streaming*.
+
+---
+
+### Migrasi `renderToString` menjadi prerender statis di server {/*migrating-from-rendertostring-to-a-static-prerender-on-the-server*/}
+
+`renderToString` segera mengembalikan string, jadi tidak mendukung penantian data untuk dimuat guna pembuatan HTML statis.
+
+Kami sarankan untuk menggunakan alternatif berfitur lengkap berikut:
+
+* Jika Anda menggunakan Node.js, gunakan [`prerenderToNodeStream`.](/reference/react-dom/static/prerenderToNodeStream)
+* Jika Anda menggunakan Deno atau *runtime edge* modern dengan [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), gunakan [`prerender`.](/reference/react-dom/static/prerender)
+
+Anda dapat terus menggunakan `renderToString` jika lingkungan pembuatan situs statis Anda tidak mendukung *stream*.
 
 ---
 
@@ -135,6 +148,6 @@ Memanggil [`flushSync`](/reference/react-dom/flushSync) diperlukan agar DOM dipe
 
 `renderToString` tidak sepenuhnya mendukung *Suspense*.
 
-Jika beberapa komponen ditangguhkan (misalnya, karena ditentukan dengan [`lazy`](/reference/react/lazy) atau mengambil data), `renderToString` tidak akan menunggu kontennya diselesaikan. Sebagai gantinya, `renderToString` akan menemukan batas [`<Suspense>`](/reference/react/Suspense) terdekat di atasnya dan merender prop `fallback` di HTML. Konten tidak akan muncul hingga kode klien dimuat.
+Jika beberapa komponen ditangguhkan (misalnya, karena didefinisikan dengan [`lazy`](/reference/react/lazy) atau mengambil data), `renderToString` tidak akan menunggu kontennya diselesaikan. Sebaliknya, `renderToString` akan menemukan batas [`<Suspense>`](/reference/react/Suspense) terdekat di atasnya dan merender prop `fallback`-nya dalam HTML. Konten tidak akan muncul hingga kode klien dimuat.
 
-Untuk mengatasinya, gunakan salah satu [solusi *streaming* yang disarankan.](#migrating-from-rendertostring-to-a-streaming-method-on-the-server) Mereka dapat melakukan *streaming* konten dalam potongan-potongan saat diselesaikan di server sehingga pengguna melihat halaman diisi secara progresif sebelum kode klien dimuat.
+Untuk mengatasi hal ini, gunakan salah satu [solusi *streaming* yang direkomendasikan.](#alternatives) Untuk rendering sisi server, mereka dapat mengalirkan konten dalam potongan saat diselesaikan di server sehingga pengguna melihat halaman diisi secara bertahap sebelum kode klien dimuat. Untuk pembuatan situs statis, mereka dapat menunggu semua konten diselesaikan sebelum membuat HTML statis.

@@ -240,7 +240,7 @@ export default function ModalContent({ onClose }) {
 
 Penting untuk memastikan bahwa aplikasi Anda dapat diakses saat menggunakan portal. Misalnya, Anda mungkin perlu mengatur fokus *keyboard* agar pengguna dapat memindahkan fokus ke dalam dan ke luar portal secara alami.
 
-Ikuti [Praktik Penulisan Modal WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) saat membuat modal. Jika Anda menggunakan paket komunitas, pastikan paket tersebut dapat diakses dan mengikuti panduan ini.
+Ikuti [Praktik Penulisan Modal WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) saat membuat modal. Jika Anda menggunakan pustaka komunitas, pastikan pustaka tersebut aksesibel dan mengikuti panduan ini.
 
 </Pitfall>
 
@@ -252,7 +252,7 @@ Portal dapat berguna jika *root* React Anda hanya merupakan bagian dari halaman 
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

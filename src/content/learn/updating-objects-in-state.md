@@ -58,6 +58,7 @@ Berikut adalah contoh kode yang menampung objek di dalam *state* untuk mereprese
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Perhatikan bahwa sekarang titik merah sudah mengikuti kursor Anda ketika Anda me
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,

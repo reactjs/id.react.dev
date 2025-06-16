@@ -1,13 +1,6 @@
 ---
 title: prefetchDNS
-canary: true
 ---
-
-<Canary>
-
-Fungsi `prefetchDNS` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 

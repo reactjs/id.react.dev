@@ -50,7 +50,7 @@ Hanya *method* `render` yang diperlukan, *method* yang lain adalah opsional.
 
 ### `context` {/*context*/}
 
-[Context](/learn/passing-data-deeply-with-context) dari sebuah *class component* tersedia sebagai `this.context`. Ini hanya tersedia jika Anda menentukan context *yang mana* yang ingin Anda terima menggunakan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (deprecated).
+[Context](/learn/passing-data-deeply-with-context) dari sebuah *class component* tersedia sebagai `this.context`. Ini hanya tersedia jika Anda menentukan context *yang mana* yang ingin Anda terima menggunakan [`static contextType`](#static-contexttype).
 
 *Class component* hanya bisa membaca satu *context* pada satu waktu.
 
@@ -102,18 +102,6 @@ Membaca `this.props` pada *class components* setara dengan [mendeklarasikan prop
 [Lihat bagaimana cara migrasi.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Note>
-
----
-
-### `refs` {/*refs*/}
-
-<Deprecated>
-
-API ini akan dihapus pada versi mayor React di masa depan. [Gunakan `createRef` sebagai gantinya.](/reference/react/createRef)
-
-</Deprecated>
-
-Memungkinkan Anda mengakses [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) pada komponen ini.
 
 ---
 
@@ -494,18 +482,6 @@ Membaca sumber data eksternal dan memaksa komponen kelas untuk me-*render* ulang
 
 ---
 
-### `getChildContext()` {/*getchildcontext*/}
-
-<Deprecated>
-
-API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `Context.Provider` sebagai gantinya.](/reference/react/createContext#provider)
-
-</Deprecated>
-
-Memungkinkan Anda menentukan nilai untuk [legacy context](https://reactjs.org/docs/legacy-context.html) yang disediakan oleh komponen ini.
-
----
-
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 Jika Anda mengimplementasikan `getSnapshotBeforeUpdate`, React akan segera memanggilnya sebelum React memperbarui DOM. Ini memungkinkan komponen Anda untuk menangkap beberapa informasi dari DOM (e.g. posisi *scroll*) sebelum berpotensi diubah. Nilai apa pun yang dikembalikan oleh *lifecycle method* ini akan diteruskan sebagai parameter ke [`componentDidUpdate`.](#componentdidupdate)
@@ -740,7 +716,7 @@ React memanggil `shouldComponentUpdate` sebelum *render*-ing ketika *props* baru
 
 - `nextProps`: Props berikutnya yang akan dirender oleh komponen. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
 - `nextState`: *State* berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextState` dengan [`this.state`](#props) untuk menentukan apa yang berubah.
-- `nextContext`: Konteks berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttypes) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextContext`: Konteks berikutnya yang akan di-*render* oleh komponen. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype).
 
 #### Kembalian {/*shouldcomponentupdate-returns*/}
 
@@ -815,7 +791,7 @@ Jika Anda mendefinisikan `UNSAFE_componentWillReceiveProps`, React akan memanggi
 #### Parameter {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: *Props* berikutnya yang akan diterima komponen dari komponen induknya. Bandingkan `nextProps` dengan [`this.props`](#props) untuk menentukan apa yang berubah.
-- `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype) (modern) atau [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextContext`: *Props* berikutnya yang akan diterima komponen dari penyedia terdekat. Bandingkan `nextContext` dengan [`this.context`](#context) untuk menentukan apa yang berubah. Hanya tersedia jika Anda menetapkan [`static contextType`](#static-contexttype).
 
 #### Kembalian {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -877,30 +853,6 @@ Jika Anda mendefinisikan `UNSAFE_componentWillUpdate`, React akan memanggilnya s
 Tidak ada persamaan langsung dengan `UNSAFE_componentWillUpdate` dalam *function components*.
 
 </Note>
-
----
-
-### `static childContextTypes` {/*static-childcontexttypes*/}
-
-<Deprecated>
-
-API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
-
-</Deprecated>
-
-Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-context.html) mana yang disediakan oleh komponen ini.
-
----
-
-### `static contextTypes` {/*static-contexttypes*/}
-
-<Deprecated>
-
-API ini akan dihapus di versi mayor React yang akan datang. [Gunakan `static contextType` sebagai gantinya.](#static-contexttype)
-
-</Deprecated>
-
-Memungkinkan Anda menentukan [legacy context](https://reactjs.org/docs/legacy-context.html) yang dikonsumsi oleh komponen ini.
 
 ---
 
@@ -973,34 +925,6 @@ Jika *prop* `color` tidak disediakan atau `undefined`, maka akan disetel secara 
 <Note>
 
 Mendefinisikan `defaultProps` pada *class components* serupa dengan menggunakan [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) pada *function components*.
-
-</Note>
-
----
-
-### `static propTypes` {/*static-proptypes*/}
-
-Anda dapat mendefinisikan `static propTypes` bersama dengan pustaka [`prop-types`](https://www.npmjs.com/package/prop-types) untuk mendeklarasikan jenis *props* yang diterima oleh komponen Anda. Jenis ini akan diperiksa selama *render*-ing dan hanya dalam pengembangan.
-
-```js
-import PropTypes from 'prop-types';
-
-class Greeting extends React.Component {
-  static propTypes = {
-    name: PropTypes.string
-  };
-
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
-}
-```
-
-<Note>
-
-Kami merekomendasikan menggunakan [TypeScript](https://www.typescriptlang.org/) daripada memeriksa *prop types* pada *runtime*.
 
 </Note>
 
@@ -1351,7 +1275,11 @@ Secara default, jika aplikasi Anda menampilkan kesalahan selama *render*-ing, Re
 
 Untuk mengimplementasikan komponen batas kesalahan (error boundary), Anda perlu menyediakan [`static getDerivedStateFromError`](#static-getderivedstatefromerror) yang memungkinkan Anda memperbarui *state* sebagai respons terhadap kesalahan dan menampilkan pesan kesalahan kepada pengguna. Anda juga dapat secara opsional mengimplementasikan [`componentDidCatch`](#componentdidcatch) untuk menambahkan beberapa logika tambahan, misalnya, untuk mencatat kesalahan ke layanan analitik.
 
-```js {7-10,12-19}
+With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+
+```js {9-12,14-27}
+import * as React from 'react';
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1364,12 +1292,17 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // Contoh "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    logErrorToMyService(error, info.componentStack);
+    logErrorToMyService(
+      error,
+      // Contoh "componentStack":
+      //   in ComponentThatThrows (created by App)
+      //   in ErrorBoundary (created by App)
+      //   in div (created by App)
+      //   in App
+      info.componentStack,
+      // Warning: `captureOwnerStack` is not available in production.
+      React.captureOwnerStack(),
+    );
   }
 
   render() {
@@ -1883,9 +1816,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```
@@ -1969,9 +1902,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```

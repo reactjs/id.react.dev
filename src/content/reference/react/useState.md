@@ -85,6 +85,8 @@ Fungsi `set` tidak memiliki nilai kembalian.
 
 * React [pembaruan state berkelompok.](/learn/queueing-a-series-of-state-updates) Fungsi `set` akan memperbarui tampilan **setelah semua *event handler* selesai dijalankan** dan memanggil fungsi `set` masing-masing. Hal ini mencegah terjadinya beberapa pembaruan ulang selama satu *event*. Dalam kasus yang jarang terjadi di mana Anda perlu memaksa React untuk memperbarui tampilan lebih awal, misalnya untuk mengakses DOM, Anda dapat menggunakan [`flushSync`.](/reference/react-dom/flushSync)
 
+* Fungsi `set` memiliki identitas yang stabil, jadi Anda akan sering melihatnya dihilangkan dari dependensi Effect, tetapi memasukkannya tidak akan menyebabkan Effect aktif. Jika linter memungkinkan Anda menghilangkan dependensi tanpa kesalahan, itu aman untuk dilakukan. [Pelajari selengkapnya tentang menghapus dependensi Effect.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
 * Memanggil fungsi `set` selama *rendering* hanya diperbolehkan dari dalam komponen yang sedang di-*render* saat ini. React akan membuang hasilnya dan segera mencoba me-*render* kembali dengan *state* yang baru. Pola ini jarang dibutuhkan, tetapi bisa digunakan untuk **menyimpan informasi dari render sebelumnya**. [See an example below.](#storing-information-from-previous-renders)
 
 * Pada mode ketat, React akan **memanggil fungsi pembaruan Anda dua kali** untuk [membantu Anda menemukan kejadian yang tidak diharapkan.](#my-initializer-or-updater-function-runs-twice) Ini hanya terjadi di lingkungan pengembangan dan tidak memengaruhi produksi. Jika fungsi pembaruan Anda murni (seperti seharusnya), ini tidak akan memengaruhi perilakunya. Hasil dari salah satu panggilan akan diabaikan.

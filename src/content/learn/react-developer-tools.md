@@ -56,25 +56,9 @@ Reload website Anda sekarang untuk melihatnya di React Developer Tools.
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
 ## Mobile (React Native) {/*mobile-react-native*/}
-React Developer Tools dapat digunakan untuk memeriksa aplikasi yang dibangun dengan [React Native](https://reactnative.dev/) juga.
 
-Cara termudah untuk menggunakan React Developer Tools adalah dengan menginstalnya secara global:
-```bash
-# Yarn
-yarn global add react-devtools
+Untuk memeriksa aplikasi yang dibuat dengan [React Native](https://reactnative.dev/), Anda dapat menggunakan [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), *debugger* bawaan yang terintegrasi secara mendalam dengan React Developer Tools. Semua fitur bekerja secara identik dengan ekstensi browser, termasuk penyorotan dan pemilihan elemen *native*.
 
-# Npm
-npm install -g react-devtools
-```
+[Pelajari selengkapnya tentang debugging di React Native.](https://reactnative.dev/docs/debugging)
 
-Selanjutnya buka React Developer Tools dari terminal:
-```bash
-react-devtools
-```
-
-React Developer Tools akan terhubung ke aplikasi React Native lokal yang sedang berjalan.
-
-> Lakukan reload aplikasi jika React Developer Tools tidak terhubung setelah beberapa detik.
-
-[Pelajari lebih lanjut tentang debugging React Native.](https://reactnative.dev/docs/debugging)
-
+> Untuk versi React Native yang lebih lama dari 0.76, harap gunakan build *standalone* React DevTools dengan mengikuti panduan [Safari dan browser lain](#safari-and-other-browsers) di atas.

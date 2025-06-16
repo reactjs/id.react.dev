@@ -43,7 +43,8 @@ root.render(
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
 - Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari *bug* yang disebabkan oleh *rendering* yang tidak murni.
-- Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Efek.
+- Komponen Anda akan [menjalankan kembali Effect tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Effect.
+- Komponen Anda akan [menjalankan kembali *callback* ref tambahan satu kali](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) untuk menemukan bug yang disebabkan oleh pembersihan ref yang hilang.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 #### Props {/*props*/}
@@ -86,7 +87,8 @@ Meskipun pemeriksaan Strict Mode **hanya berjalan dalam pengembangan,**, pemerik
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
 - Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari *bug* yang disebabkan oleh *rendering* yang tidak murni.
-- Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Efek.
+- Komponen Anda akan [menjalankan kembali Effect tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Effect.
+- Komponen Anda akan [menjalankan kembali *callback* ref tambahan satu kali](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) untuk menemukan bug yang disebabkan oleh pembersihan ref yang hilang.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 **Semua pemeriksaan ini hanya untuk pengembangan dan tidak memengaruhi build produksi.**
@@ -119,6 +121,12 @@ function App() {
 ```
 
 Dalam contoh ini, pemeriksaan Strict Mode tidak akan dijalankan terhadap komponen `Header` dan `Footer`. Namun, mereka akan berjalan di `Sidebar` dan `Content`, serta semua komponen di dalamnya, tidak peduli seberapa dalam.
+
+<Note>
+
+When `StrictMode` is enabled for a part of the app, React will only enable behaviors that are possible in production. For example, if `<StrictMode>` is not enabled at the root of the app, it will not [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) on initial mount, since this would cause child effects to double fire without the parent effects, which cannot happen in production.
+
+</Note>
 
 ---
 
@@ -825,14 +833,422 @@ Tanpa Strict Mode, mudah untuk luput bahwa Efek Anda perlu dibersihkan. Dengan m
 [Baca lebih lanjut tentang menerapkan pembersihan Efek.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
+### Memperbaiki bug yang ditemukan dengan menjalankan *callback* ref dalam pengembangan {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
 
-### Memperbaiki peringatan penghentian yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+Mode Ketat juga dapat membantu menemukan bug dalam [*callback* refs.](/learn/manipulating-the-dom-with-refs)
+
+Setiap *callback* `ref` memiliki kode pengaturan dan mungkin memiliki kode pembersihan. Biasanya, React memanggil setup saat elemen *dibuat* (ditambahkan ke DOM) dan memanggil cleanup saat elemen *dihapus* (dihapus dari DOM).
+
+Saat Mode Ketat aktif, React juga akan menjalankan **satu siklus setup+cleanup tambahan dalam pengembangan untuk setiap callback `ref`.** Ini mungkin terasa mengejutkan, tetapi membantu mengungkap bug halus yang sulit ditemukan secara manual.
+
+Pertimbangkan contoh ini, yang memungkinkan Anda memilih hewan lalu menggulir ke salah satunya. Perhatikan saat Anda beralih dari "Kucing" ke "Anjing", log konsol menunjukkan bahwa jumlah hewan dalam daftar terus bertambah, dan tombol "Gulir ke" berhenti berfungsi:
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ❌ Tidak menggunakan StrictMode.
+root.render(<App />);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal: animal, node}; 
+                  list.push(item);
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    // 🚩 Tidak ada pembersihan, ini bug!
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+
+**Ini adalah bug produksi!** Karena *callback* ref tidak menghapus hewan dari daftar dalam pembersihan, daftar hewan terus bertambah. Ini adalah kebocoran memori yang dapat menyebabkan masalah kinerja dalam aplikasi nyata, dan merusak perilaku aplikasi.
+
+Masalahnya adalah *callback* ref tidak membersihkan dirinya sendiri:
+
+```js {6-8}
+<li
+  ref={node => {
+    const list = itemsRef.current;
+    const item = {animal, node};
+    list.push(item);
+    return () => {
+      // 🚩 Tidak ada pembersihan, ini bug!
+    }
+  }}
+</li>
+```
+
+Sekarang mari kita bungkus kode asli (yang bermasalah) dalam `<StrictMode>`:
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import {StrictMode} from 'react';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ✅ Using StrictMode.
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal: animal, node} 
+                  list.push(item);
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    // 🚩 Tidak ada pembersihan, ini bug!
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+**Dengan Strict Mode, Anda langsung melihat bahwa ada masalah**. Strict Mode menjalankan siklus penyiapan+pembersihan ekstra untuk setiap ref *callback*. Ref *callback* ini tidak memiliki logika pembersihan, jadi ref tersebut menambahkan ref tetapi tidak menghapusnya. Ini merupakan petunjuk bahwa Anda belum menambahkan fungsi pembersihan.
+
+Strict Mode memungkinkan Anda menemukan kesalahan dalam *callback* ref dengan cepat. Saat Anda memperbaiki panggilan balik dengan menambahkan fungsi pembersihan dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan bug produksi di masa mendatang seperti bug "Gulir ke" sebelumnya:
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import {StrictMode} from 'react';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ✅ Using StrictMode.
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal, node};
+                  list.push({animal: animal, node});
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    list.splice(list.indexOf(item));
+                    console.log(`❌ Removing animal from the map. Total animals: ${itemsRef.current.length}`);
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+Sekarang pada pemasangan awal di StrictMode, semua *callback* ref sudah disiapkan, dibersihkan, dan disiapkan lagi:
+
+```
+...
+✅ Adding animal to the map. Total animals: 10
+...
+❌ Removing animal from the map. Total animals: 0
+...
+✅ Adding animal to the map. Total animals: 10
+```
+
+**Hal ini memang diharapkan.** Strict Mode mengonfirmasi bahwa panggilan balik ref dibersihkan dengan benar, sehingga ukurannya tidak pernah bertambah melebihi jumlah yang diharapkan. Setelah perbaikan, tidak ada kebocoran memori, dan semua fitur berfungsi seperti yang diharapkan.
+
+Tanpa Strict Mode, bug mudah terlewatkan hingga Anda mengeklik aplikasi untuk melihat fitur yang rusak. Strict Mode membuat bug segera muncul, sebelum Anda mengirimkannya ke produksi.
+
+---
+### Fixing peringatan deprecation yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), dan [`getChildContext`](/reference/react/Component#getchildcontext)). [Lihat alternatif.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* Metode *class lifecycle* `UNSAFE_` seperti [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
 
-API ini terutama digunakan di masa lalu [class components](/reference/react/Component) jadi jarang muncul di aplikasi modern.
+API ini terutama digunakan di [*class components*](/reference/react/Component) masa lalu jadi jarang muncul di aplikasi modern.

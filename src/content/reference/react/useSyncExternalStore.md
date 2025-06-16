@@ -406,14 +406,14 @@ Jika tempat penyimpanan Anda dapat dimutasi, fungsi `getSnapshot` Anda harus men
 
 Fungsi `subscribe` ini ditulis *di dalam* komponen sehingga fungsi tersebut selalu berbeda di setiap *render*:
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // 🚩 Selalu fungsi berbeda sehingga React akan berlangganan ulang setiap render
   function subscribe() {
     // ...
   }
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
@@ -421,28 +421,28 @@ function ChatIndicator() {
   
 React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
+function subscribe() {
   // ...
 }
 
-// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
-function subscribe() {
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   // ...
 }
 ```
 
 Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk berlangganan ulang hanya jika beberapa argumen berubah:
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // ✅ Fungsi yang sama selama userId tidak berubah
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
