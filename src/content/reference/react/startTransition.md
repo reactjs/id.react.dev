@@ -4,11 +4,7 @@ title: startTransition
 
 <Intro>
 
-<<<<<<< HEAD
-`startTransition` memungkinkan Anda memperbarui sebuah *state* tanpa memblokir proses *rendering* pada UI.
-=======
-`startTransition` lets you render a part of the UI in the background.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+`startTransition` memungkinkan Anda merender bagian UI di latar belakang.
 
 ```js
 startTransition(action)
@@ -45,39 +41,27 @@ function TabContainer() {
 
 #### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
-* `scope`: Fungsi yang memperbarui sebuah *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` tanpa parameter apa pun dan menandai seluruh pembaruan *state* yang berada di dalam fungsi `scope` sebagai transisi. Mereka akan bersifat [*non-blocking*](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
-=======
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](/reference/react/useTransition#preventing-unwanted-loading-indicators).
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* `action`: Fungsi yang memperbarui beberapa *state* dengan memanggil satu atau beberapa fungsi [`set`](/reference/react/useState#setstate). React memanggil `action` segera tanpa parameter dan menandai semua pembaruan *state* yang dijadwalkan secara sinkron selama panggilan fungsi `action` sebagai Transisi. Semua panggilan asinkron yang ditunggu dalam `action` akan disertakan dalam transisi, tetapi saat ini memerlukan pembungkusan semua fungsi `set` setelah `await` dalam `startTransition` tambahan (lihat [Pemecahan Masalah](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)). Pembaruan *state* yang ditandai sebagai Transisi akan menjadi [*non-blocking*](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan yang tidak diinginkan.](/reference/react/useTransition#preventing-unwanted-loading-indicators).
 
-#### Nilai Balik {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`startTransition` tidak memiliki nilai balik apa pun.
+`startTransition` tidak mengembalikan apa pun.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
 * `startTransition` tidak menyediakan penanda untuk mengetahui apakah sebuah transisi sedang *pending* atau tidak. Untuk menampilkan indikator *pending* ketika sebuah transisi sedang berjalan, Anda dapat menggunakan [`useTransition`.](/reference/react/useTransition)
 
 * Anda hanya dapat menempatkan pembaruan *state* ke dalam transisi bila Anda memiliki akses terhadap fungsi `set` dari *state* tersebut. Jika Anda ingin memulai sebuah transisi sebagai respons terhadap sebuah *prop* atau nilai balik sebuah *custom Hook*, cobalah menggunakan [`useDeferredValue`.](/reference/react/useDeferredValue)
 
-<<<<<<< HEAD
-* Fungsi yang Anda tempatkan di dalam `startTransition` harus merupakan fungsi sinkronus. React langsung mengeksekusi fungsi ini dan menandai seluruh pembaruan *state* yang terjadi sembari eksekusi sedang berjalan sebagai sebuah transisi. Apabila Anda mencoba melakukan pembaruan *state* pada waktu lain (misalnya dalam sebuah *timeout*), mereka tak akan ditandai sebagai transisi.
-=======
-* The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
+* Fungsi yang Anda teruskan ke `startTransition` dipanggil segera, menandai semua pembaruan status yang terjadi saat dijalankan sebagai Transisi. Jika Anda mencoba melakukan pembaruan status dalam `setTimeout`, misalnya, pembaruan tersebut tidak akan ditandai sebagai Transisi.
 
-* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* Anda harus membungkus pembaruan status apa pun setelah permintaan async apa pun dalam `startTransition` lain untuk menandainya sebagai Transisi. Ini adalah batasan yang diketahui yang akan kami perbaiki di masa mendatang (lihat [Pemecahan Masalah](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
 * Sebuah pembaruan *state* yang ditandai sebagai transisi dapat diinterupsi oleh pembaruan *state* yang lain. Contohnya, bila Anda memperbarui sebuah komponen grafik didalam sebuah transisi, namun kemudian mengetik dalam sebuah masukan teks saat grafik tersebut masih di dalam proses *re-render*, React akan mengulangi proses *re-render* pada grafik tersebut setelah selesai melakukan pembaruan *state* dalam masukan teks tersebut.
 
 * Pembaruan transisi tidak dapat digunakan untuk mengontrol masukan teks.
 
-<<<<<<< HEAD
-* Ketika terdapat beberapa transisi yang sedang berjalan, React akan menggabungkannya menjadi satu. Ini adalah sebuah keterbatasan yang kemungkinan besar akan diperbaiki pada rilis React selanjutnya.
-=======
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* Ketika terdapat beberapa transisi yang sedang berjalan, React akan menggabungkannya menjadi satu. Ini adalah sebuah keterbatasan yang kemungkinan besar akan dihapus pada rilis React selanjutnya.
 
 ---
 

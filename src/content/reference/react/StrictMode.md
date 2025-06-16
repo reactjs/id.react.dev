@@ -845,18 +845,15 @@ Tanpa Strict Mode, mudah untuk luput bahwa Efek Anda perlu dibersihkan. Dengan m
 [Baca lebih lanjut tentang menerapkan pembersihan Efek.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
-### Fixing bugs found by re-running ref callbacks in development {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
+### Memperbaiki bug yang ditemukan dengan menjalankan *callback* ref dalam pengembangan {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
 
-<<<<<<< HEAD
-### Memperbaiki peringatan penghentian yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
-=======
-Strict Mode can also help find bugs in [callbacks refs.](/learn/manipulating-the-dom-with-refs)
+Mode Ketat juga dapat membantu menemukan bug dalam [*callback* refs.](/learn/manipulating-the-dom-with-refs)
 
-Every callback `ref` has some setup code and may have some cleanup code. Normally, React calls setup when the element is *created* (is added to the DOM) and calls cleanup when the element is *removed* (is removed from the DOM).
+Setiap *callback* `ref` memiliki kode pengaturan dan mungkin memiliki kode pembersihan. Biasanya, React memanggil setup saat elemen *dibuat* (ditambahkan ke DOM) dan memanggil cleanup saat elemen *dihapus* (dihapus dari DOM).
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every callback `ref`.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+Saat Mode Ketat aktif, React juga akan menjalankan **satu siklus setup+cleanup tambahan dalam pengembangan untuk setiap callback `ref`.** Ini mungkin terasa mengejutkan, tetapi membantu mengungkap bug halus yang sulit ditemukan secara manual.
 
-Consider this example, which allows you to select an animal and then scroll to one of them. Notice when you switch from "Cats" to "Dogs", the console logs show that the number of animals in the list keeps growing, and the "Scroll to" buttons stop working:
+Pertimbangkan contoh ini, yang memungkinkan Anda memilih hewan lalu menggulir ke salah satunya. Perhatikan saat Anda beralih dari "Kucing" ke "Anjing", log konsol menunjukkan bahwa jumlah hewan dalam daftar terus bertambah, dan tombol "Gulir ke" berhenti berfungsi:
 
 <Sandpack>
 
@@ -867,7 +864,7 @@ import './styles.css';
 import App from './App';
 
 const root = createRoot(document.getElementById("root"));
-// ❌ Not using StrictMode.
+// ❌ Tidak menggunakan StrictMode.
 root.render(<App />);
 ```
 
@@ -894,12 +891,12 @@ export default function AnimalFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => setAnimal('cat')}>Cats</button>
-        <button onClick={() => setAnimal('dog')}>Dogs</button>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
       <hr />
       <nav>
-        <span>Scroll to:</span>{animals.map((animal, index) => (
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
             {index}
           </button>
@@ -919,7 +916,7 @@ export default function AnimalFriends() {
                     console.log('❌ Too many animals in the list!');
                   }
                   return () => {
-                    // 🚩 No cleanup, this is a bug!
+                    // 🚩 Tidak ada pembersihan, ini bug!
                   }
                 }}
               >
@@ -976,9 +973,9 @@ li {
 </Sandpack>
 
 
-**This is a production bug!** Since the ref callback doesn't remove animals from the list in the cleanup, the list of animals keeps growing. This is a memory leak that can cause performance problems in a real app, and breaks the behavior of the app.
+**Ini adalah bug produksi!** Karena *callback* ref tidak menghapus hewan dari daftar dalam pembersihan, daftar hewan terus bertambah. Ini adalah kebocoran memori yang dapat menyebabkan masalah kinerja dalam aplikasi nyata, dan merusak perilaku aplikasi.
 
-The issue is the ref callback doesn't cleanup after itself:
+Masalahnya adalah *callback* ref tidak membersihkan dirinya sendiri:
 
 ```js {6-8}
 <li
@@ -987,13 +984,13 @@ The issue is the ref callback doesn't cleanup after itself:
     const item = {animal, node};
     list.push(item);
     return () => {
-      // 🚩 No cleanup, this is a bug!
+      // 🚩 Tidak ada pembersihan, ini bug!
     }
   }}
 </li>
 ```
 
-Now let's wrap the original (buggy) code in `<StrictMode>`:
+Sekarang mari kita bungkus kode asli (yang bermasalah) dalam `<StrictMode>`:
 
 <Sandpack>
 
@@ -1036,12 +1033,12 @@ export default function AnimalFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => setAnimal('cat')}>Cats</button>
-        <button onClick={() => setAnimal('dog')}>Dogs</button>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
       <hr />
       <nav>
-        <span>Scroll to:</span>{animals.map((animal, index) => (
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
             {index}
           </button>
@@ -1061,7 +1058,7 @@ export default function AnimalFriends() {
                     console.log('❌ Too many animals in the list!');
                   }
                   return () => {
-                    // 🚩 No cleanup, this is a bug!
+                    // 🚩 Tidak ada pembersihan, ini bug!
                   }
                 }}
               >
@@ -1117,9 +1114,9 @@ li {
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem**. Strict Mode runs an extra setup+cleanup cycle for every callback ref. This callback ref has no cleanup logic, so it adds refs but doesn't remove them. This is a hint that you're missing a cleanup function.
+**Dengan Strict Mode, Anda langsung melihat bahwa ada masalah**. Strict Mode menjalankan siklus penyiapan+pembersihan ekstra untuk setiap ref *callback*. Ref *callback* ini tidak memiliki logika pembersihan, jadi ref tersebut menambahkan ref tetapi tidak menghapusnya. Ini merupakan petunjuk bahwa Anda belum menambahkan fungsi pembersihan.
 
-Strict Mode lets you eagerly find mistakes in callback refs. When you fix your callback by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the "Scroll to" bug from before:
+Strict Mode memungkinkan Anda menemukan kesalahan dalam *callback* ref dengan cepat. Saat Anda memperbaiki panggilan balik dengan menambahkan fungsi pembersihan dalam Strict Mode, Anda *juga* memperbaiki banyak kemungkinan bug produksi di masa mendatang seperti bug "Gulir ke" sebelumnya:
 
 <Sandpack>
 
@@ -1162,12 +1159,12 @@ export default function AnimalFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => setAnimal('cat')}>Cats</button>
-        <button onClick={() => setAnimal('dog')}>Dogs</button>
+        <button onClick={() => setAnimal('cat')}>Kucing</button>
+        <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
       <hr />
       <nav>
-        <span>Scroll to:</span>{animals.map((animal, index) => (
+        <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
             {index}
           </button>
@@ -1244,7 +1241,7 @@ li {
 
 </Sandpack>
 
-Now on inital mount in StrictMode, the ref callbacks are all setup, cleaned up, and setup again:
+Sekarang pada pemasangan awal di StrictMode, semua *callback* ref sudah disiapkan, dibersihkan, dan disiapkan lagi:
 
 ```
 ...
@@ -1255,23 +1252,15 @@ Now on inital mount in StrictMode, the ref callbacks are all setup, cleaned up, 
 ✅ Adding animal to the map. Total animals: 10
 ```
 
-**This is expected.** Strict Mode confirms that the ref callbacks are cleaned up correctly, so the size never grows above the expected amount. After the fix, there are no memory leaks, and all the features work as expected.
+**Hal ini memang diharapkan.** Strict Mode mengonfirmasi bahwa panggilan balik ref dibersihkan dengan benar, sehingga ukurannya tidak pernah bertambah melebihi jumlah yang diharapkan. Setelah perbaikan, tidak ada kebocoran memori, dan semua fitur berfungsi seperti yang diharapkan.
 
-Without Strict Mode, it was easy to miss the bug until you clicked around to app to notice broken features. Strict Mode made the bugs appear right away, before you push them to production.
+Tanpa Strict Mode, bug mudah terlewatkan hingga Anda mengeklik aplikasi untuk melihat fitur yang rusak. Strict Mode membuat bug segera muncul, sebelum Anda mengirimkannya ke produksi.
 
---- 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+---
+### Fixing peringatan deprecation yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
-<<<<<<< HEAD
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), dan [`getChildContext`](/reference/react/Component#getchildcontext)). [Lihat alternatif.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [Lihat alternatif.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
-=======
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* Metode *class lifecycle* `UNSAFE_` seperti [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Lihat alternatif.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
 
-API ini terutama digunakan di masa lalu [class components](/reference/react/Component) jadi jarang muncul di aplikasi modern.
+API ini terutama digunakan di [*class components*](/reference/react/Component) masa lalu jadi jarang muncul di aplikasi modern.

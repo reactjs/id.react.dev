@@ -41,11 +41,7 @@ function TodosApp() {
 
 #### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
 * `subscribe`: Sebuah fungsi yang menerima sebuah argumen `callback` dan berlangganan ke tempat penyimpanan. Saat tempat penyimpanan berubah, fungsi ini akan memanggil `callback`. Ini akan menyebakan komponen di-*render* ulang. Fungsi `subscribe` harus mengembalikan fungsi yang membersihkan langganan tersebut.
-=======
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`, which will cause React to re-call `getSnapshot` and (if needed) re-render the component. The `subscribe` function should return a function that cleans up the subscription.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 * `getSnapshot`: Sebuah fungsi yang mengembalikan sebuah *snapshot* dari data, di tempat penyimpanan, yang dibutuhkan komponen. Saat tempat penyimpanan masih belum berubah, pemanggilan `getSnapshot` berulang kali tetap harus mengembalikan nilai yang sama. Jika tempat penyimpanan berubah dan nilai kembalian juga berubah (saat dibandingkan dengan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React me-*render* ulang komponen tersebut.
 
@@ -412,13 +408,7 @@ Fungsi `subscribe` ini ditulis *di dalam* komponen sehingga fungsi tersebut sela
 
 ```js {2-5}
 function ChatIndicator() {
-<<<<<<< HEAD
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // 🚩 Selalu fungsi berbeda sehingga React akan berlangganan ulang setiap render
-=======
-  // 🚩 Always a different function, so React will resubscribe on every re-render
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
   function subscribe() {
     // ...
   }
@@ -432,18 +422,13 @@ function ChatIndicator() {
 React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
 ```js {1-4}
-// ✅ Always the same function, so React won't need to resubscribe
+// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
 function subscribe() {
   // ...
 }
 
-<<<<<<< HEAD
-// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
-function subscribe() {
-=======
 function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
   // ...
 }
 ```
@@ -452,13 +437,7 @@ Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/r
 
 ```js {2-5}
 function ChatIndicator({ userId }) {
-<<<<<<< HEAD
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // ✅ Fungsi yang sama selama userId tidak berubah
-=======
-  // ✅ Same function as long as userId doesn't change
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);

@@ -38,27 +38,19 @@ function MyInput({ ref }) {
 
 #### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
-* `ref`: *ref* yang Anda terima sebagai argumen kedua dari [fungsi *render* `forwardRef`.](/reference/react/forwardRef#render-function)
-=======
-* `ref`: The `ref` you received as a prop to the `MyInput` component.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* `ref`: *ref* yang Anda terima sebagai *prop* ke komponen `MyInput`.
 
 * `createHandle`: Sebuah fungsi yang tidak mengambil argumen dan mengembalikan penanganan *ref* yang ingin Anda ekspos. Penanganan *ref* tersebut dapat memiliki tipe apa pun. Biasanya, Anda akan mengembalikan sebuah objek dengan sekumpulan metode yang ingin Anda ekspos.
 
 * `dependencies` **opsional**: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam tubuh komponen. Jika *linter* Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika sebuah *render* ulang menghasilkan sebuah perubahan terhadap beberapa *dependency*, atau jika Anda menghilangkan argumen ini, fungsi `createHandle` Anda akan dijalankan ulang, dan penanganan yang baru dibuat akan ditetapkan kepada `ref` tersebut.
 
-<<<<<<< HEAD
-#### Kembalian {/*returns*/}
-=======
 <Note>
 
-Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
+Mulai dari React 19, [`ref` tersedia sebagai prop.](/blog/2024/12/05/react-19#ref-as-a-prop) Di React 18 dan sebelumnya, perlu untuk mendapatkan `ref` dari [`forwardRef`.](/reference/react/forwardRef)
 
 </Note>
 
-#### Returns {/*returns*/}
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+#### Kembalian {/*returns*/}
 
 `useImperativeHandle` mengembalikan `undefined`.
 
@@ -68,11 +60,7 @@ Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-1
 
 ### Mengekspos sebuah penanganan ref kustom kepada komponen induk {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-<<<<<<< HEAD
-Secara bawaan, komponen tidak mengekspos simpul-simpul DOM (*DOM Nodes*) kepada komponen induk. Sebagai contoh, jika Anda menginginkan komponen induk dari `MyInput` untuk [memiliki akses](/learn/manipulating-the-dom-with-refs) terhadap simpul DOM dari `<input>`, Anda harus menyertakannya dengan [`forwardRef`:](/reference/react/forwardRef)
-=======
-To expose a DOM node to the parent element, pass in the `ref` prop to the node.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Untuk mengekspos simpul DOM ke elemen induk, berikan prop `ref` ke simpul tersebut.
 
 ```js {2}
 function MyInput({ ref }) {
@@ -80,11 +68,7 @@ function MyInput({ ref }) {
 };
 ```
 
-<<<<<<< HEAD
-Dengan kode di atas, [sebuah *ref* yang diteruskan ke komponen `MyInput` akan menerima simpul DOM dari `<input>`.](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component) Namun, Anda dapat mengekspos sebuah nilai kustom. Untuk mengkustom penanganan yang diekspos, panggil fungsi `useImperativeHandle` di tingkat atas komponen Anda:
-=======
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/learn/manipulating-the-dom-with-refs) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Dengan kode di atas, [ref ke `MyInput` akan menerima simpul DOM `<input>`.](/learn/manipulating-the-dom-with-refs) Namun, Anda dapat mengekspos nilai kustom sebagai gantinya. Untuk menyesuaikan *handle* yang diekspos, panggil `useImperativeHandle` di tingkat atas komponen Anda:
 
 ```js {4-8}
 import { useImperativeHandle } from 'react';
@@ -100,11 +84,7 @@ function MyInput({ ref }) {
 };
 ```
 
-<<<<<<< HEAD
 Perlu dicatat bahwa dalam kode di atas, `ref` tidak lagi diteruskan kepada `<input>`.
-=======
-Note that in the code above, the `ref` is no longer passed to the `<input>`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Sebagai contoh, jika Anda tidak ingin mengekspos keseluruhan simpul DOM dari `<input>`, namun Anda ingin mengekspos dua *methods* yang tersedia di dalamnya: `focus` dan `scrollIntoView`. Untuk melakukan hal tersebut, pertahankan DOM peramban yang asli ke dalam *ref* yang terpisah. Kemudian gunakan `useImperativeHandle` untuk mengekspos sebuah penanganan hanya dengan *methods* yang ingin Anda panggil melalui komponen induk:
 

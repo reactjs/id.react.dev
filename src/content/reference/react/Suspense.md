@@ -103,15 +103,6 @@ function Loading() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -124,34 +115,6 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -244,15 +207,9 @@ async function getAlbums() {
 
 **Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Yaitu:
 
-<<<<<<< HEAD
 - Pengambilan data dengan *framework* yang mendukung Suspense seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen *lazy-loading* dengan [`lazy`](/reference/react/lazy)
 - Membaca nilai dari Promise dengan [`use`](/reference/react/use)
-=======
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
@@ -349,15 +306,6 @@ export default function Panel({ children }) {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -366,49 +314,12 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Albums.js
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -421,34 +332,6 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -602,17 +485,10 @@ Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" hingga `Alb
 
 Urutan pemuatannya adalah sebagai berikut:
 
-<<<<<<< HEAD
 1. Jika `Biography` belum dimuat, `BigSpinner` ditampilkan sebagai pengganti seluruh area konten.
 2. Setelah `Biography` selesai dimuat, `BigSpinner` digantikan oleh konten.
 3. Jika `Albums` belum dimuat, `AlbumsGlimmer` ditampilkan sebagai pengganti `Albums` dan induknya `Panel`.
 4. Akhirnya, setelah `Albums` selesai dimuat, dia akan menggantikan `AlbumsGlimmer`.
-=======
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-2. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-3. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-4. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 <Sandpack>
 
@@ -692,15 +568,6 @@ export default function Panel({ children }) {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -709,50 +576,12 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Albums.js
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -765,34 +594,6 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -959,15 +760,6 @@ export default function App() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -986,34 +778,6 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -1180,15 +944,6 @@ export default function App() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -1207,34 +962,6 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -1458,15 +1185,6 @@ function AlbumsGlimmer() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1479,49 +1197,12 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Biography.js
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1530,34 +1211,6 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Panel.js
@@ -1844,15 +1497,6 @@ function AlbumsGlimmer() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1865,49 +1509,12 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Biography.js
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1916,34 +1523,6 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Panel.js
@@ -2230,15 +1809,6 @@ function AlbumsGlimmer() {
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -2251,49 +1821,12 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Biography.js
 import {use} from 'react';
 import { fetchData } from './data.js';
 
-<<<<<<< HEAD
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -2302,34 +1835,6 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-<<<<<<< HEAD
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/Panel.js

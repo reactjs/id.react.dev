@@ -4,11 +4,7 @@ title: useTransition
 
 <Intro>
 
-<<<<<<< HEAD
-`useTransition` adalah sebuah React Hook yang memungkinkan Anda merubah suatu *state* tanpa memblokir *UI*.
-=======
-`useTransition` is a React Hook that lets you render a part of the UI in the background.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+`useTransition` adalah sebuah React Hook yang memungkinkan Anda merender sebagian UI di latat belakang.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -45,25 +41,14 @@ function TabContainer() {
 
 `useTransition` mengembalikan senarai dengan tepat dua item:
 
-<<<<<<< HEAD
 1. Penanda `isPending` yang memberitahukan Anda bahwa terdapat transisi yang tertunda.
-2. [fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
-
----
-
-### fungsi `startTransition` {/*starttransition*/}
-
-Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan *state* sebagai transisi.
-=======
-1. The `isPending` flag that tells you whether there is a pending Transition.
-2. The [`startTransition` function](#starttransition) that lets you mark updates as a Transition.
+2. [Fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 ---
 
 ### `startTransition(action)` {/*starttransition*/}
 
-The `startTransition` function returned by `useTransition` lets you mark an update as a Transition.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan *state* sebagai Transisi.
 
 ```js {6,8}
 function TabContainer() {
@@ -110,11 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-<<<<<<< HEAD
-* `scope`: Fungsi yang mengubah beberapa *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` tanpa parameter dan menandai semua perubahan *state* yang dijadwalkan secara sinkron saat fungsi `scope` dipanggil sebagai transisi. Mereka akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator *loading* yang tidak perlu.](#preventing-unwanted-loading-indicators)
-=======
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* `action`: Fungsi yang memperbarui suatu *state* dengan memanggil satu atau beberapa [fungsi `set`](/reference/react/useState#setstate). React memanggil `action` segera tanpa parameter dan menandai semua pembaruan *state* yang dijadwalkan secara sinkron selama panggilan fungsi `action` sebagai Transisi. Semua panggilan asinkron yang ditunggu dalam `action` akan disertakan dalam Transisi, tetapi saat ini memerlukan pembungkusan semua fungsi `set` setelah `await` dalam `startTransition` tambahan (lihat [Pemecahan Masalah](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). Pembaruan *state* yang ditandai sebagai Transisi akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
@@ -126,39 +107,23 @@ function SubmitButton({ submitAction }) {
 
 * Anda dapat membungkus perubahan menjadi transisi hanya jika Anda memiliki akses pada fungsi `set` pada *state* tersebut. Jika Anda ingin memulai sebuah transisi sebagai balasan dari beberapa *prop* atau nilai Hook *custom*, coba gunakan [`useDeferredValue`](/reference/react/useDeferredValue) sebagai gantinya.
 
-<<<<<<< HEAD
-* Fungsi yang Anda kirimkan kepada `startTransition` haruslah sinkron. React akan langsung mengeksekusi fungsi ini, menandai semua perubahan *state* yang terjadi sambil mengeksekusinya sebagai transisi. Jika Anda mencoba untuk melakukan perubahan *state* lebih nanti (contoh, saat *timeout*), mereka tidak akan ditandai sebagai transisi.
-=======
-* The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
+* Fungsi yang Anda teruskan ke `startTransition` dipanggil segera, menandai semua pembaruan status yang terjadi saat dijalankan sebagai Transisi. Jika Anda mencoba melakukan pembaruan status dalam `setTimeout`, misalnya, pembaruan tersebut tidak akan ditandai sebagai Transisi.
 
-* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
+* Anda harus membungkus pembaruan status apa pun setelah permintaan async apa pun dalam `startTransition` lain untuk menandainya sebagai Transisi. Ini adalah batasan yang diketahui yang akan kami perbaiki di masa mendatang (lihat [Pemecahan Masalah](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
-* The `startTransition` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* Fungsi `startTransition` memiliki identitas yang stabil, jadi Anda akan sering melihatnya dihilangkan dari dependensi Efek, tetapi memasukkannya tidak akan menyebabkan Efek aktif. Jika linter memungkinkan Anda menghilangkan dependensi tanpa kesalahan, hal itu aman untuk dilakukan. [Pelajari selengkapnya tentang menghapus dependensi Efek.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 * Perubahan *state* yang ditandai sebagai transisi akan terganggu oleh perubahan *state* lainnya. Contohnya, jika anda mengubah komponen chart di dalam transisi, namun kemudian memulai mengetik dalam input ketika chart sedang di tengah me*render* ulang, React akan me*render* ulang pekerjaan pada komponen chart setelah mengerjakan perubahan pada input.
 
 * Perubahan transisi tidak dapat digunakan untuk mengontrol input teks.
 
-<<<<<<< HEAD
 * Apabila terdapat beberapa transisi yang berjalan, React saat ini akan mengelompokkan mereka bersama. Ini adalah limitasi yang mungkin akan dihapus pada rilis yang akan datang.
-
----
-=======
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ## Kegunaan {/*usage*/}
 
-<<<<<<< HEAD
-### Menandai perubahan state sebagai transisi non-blocking {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Melakukan pembaruan non-blocking dengan Aksi {/*perform-non-blocking-updates-with-actions*/}
 
-Panggil `useTransition` pada level teratas komponen Anda untuk menandai perubahan *state* sebagai *transisi* non-blocking.
-=======
-### Perform non-blocking updates with Actions {/*perform-non-blocking-updates-with-actions*/}
-
-Call `useTransition` at the top of your component to create Actions, and access the pending state:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Panggil `useTransition` pada level teratas komponen Anda untuk membuat Aksi, dan akses *state* tertunda:
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import {useState, useTransition} from 'react';
@@ -171,17 +136,10 @@ function CheckoutForm() {
 
 `useTransition` mengembalikan sebuah senarai dengan tepat dua item:
 
-<<<<<<< HEAD
 1. Penanda <CodeStep step={1}>`isPending`</CodeStep> yang memberitahukan Anda apakah terdapat transisi tertunda.
-2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
+2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda membuat Aksi.
 
-Kemudian Anda dapat menandai perubahan *state* sebagai transisi seperti berikut:
-=======
-1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending Transition.
-2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you create an Action.
-
-To start a Transition, pass a function to `startTransition` like this:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Untuk memulai Transisi, oper sebuah fungsi ke `startTransition` seperti berikut:
 
 ```js
 import {useState, useTransition} from 'react';
@@ -203,31 +161,17 @@ function CheckoutForm() {
 }
 ```
 
-<<<<<<< HEAD
-Transisi akan memungkinkan Anda untuk mempertahankan perubahan tampilan pengguna secara responsif bahkan untuk perangkat lambat.
+Fungsi yang diteruskan ke `startTransition` disebut "Aksi". Anda dapat memperbarui status dan (opsional) melakukan efek samping dalam sebuah Aksi, dan pekerjaan akan dilakukan di latar belakang tanpa menghalangi interaksi pengguna di halaman. Transisi dapat mencakup beberapa Aksi, dan saat Transisi sedang berlangsung, UI Anda tetap responsif. Misalnya, jika pengguna mengklik tab tetapi kemudian berubah pikiran dan mengklik tab lain, klik kedua akan segera ditangani tanpa menunggu pembaruan pertama selesai.
 
-Dengan transisi, UI Anda akan tetap responsif di tengah-tengah me-*render* ulang. Contohnya, jika pengguna menekan tab namun mereka berubah pikiran dan menekan tab lain, mereka dapat melakukan itu tanpa menunggu muat ulang pertama selesai.
+Untuk memberikan umpan balik kepada pengguna tentang Transisi yang sedang berlangsung, status `isPending` beralih ke `true` pada panggilan pertama ke `startTransition`, dan tetap `true` hingga semua Aksi selesai dan status akhir ditampilkan kepada pengguna. Transisi memastikan efek samping dalam Aksi selesai untuk [mencegah indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators), dan Anda dapat memberikan umpan balik langsung saat Transisi sedang berlangsung dengan `useOptimistic`.
 
-<Recipes titleText="Perbedaan antara useTransition dan perubahan state biasa" titleId="examples">
+<Recipes titleText="Perbedaan antara Aksi dan penanganan event reguler">
 
-#### Merubah tab saat ini dalam transisi {/*updating-the-current-tab-in-a-transition*/}
+#### Memperbarui kuantitas dalam suatu Aksi {/*updating-the-quantity-in-an-action*/}
 
-Pada contoh berikut ini, tab "Posts" ini **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*.
+Dalam contoh ini, fungsi `updateQuantity` mensimulasikan permintaan ke server untuk memperbarui jumlah barang di keranjang. Fungsi ini *diperlambat secara artifisial* sehingga butuh setidaknya satu detik untuk menyelesaikan permintaan.
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa ini akan mengganggu muatan "Posts" yang lambat. Tab "Contact" akan tampil segera. Karena perubahan *state* ini ditandai sebagai transisi, me*render* ulang yang lambat tidak akan membekukan tampilan pengguna.
-=======
-The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish. 
-
-To give the user feedback about in-progress Transitions, the `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
-
-<Recipes titleText="The difference between Actions and regular event handling">
-
-#### Updating the quantity in an Action {/*updating-the-quantity-in-an-action*/}
-
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
-
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests are in progress, and the "Total" updates only after the final request is complete. Because the update is in an Action, the "quantity" can continue to be updated while the request is in progress.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Perbarui jumlah beberapa kali dengan cepat. Perhatikan bahwa status "Total" yang tertunda ditampilkan saat permintaan sedang berlangsung, dan "Total" diperbarui hanya setelah permintaan akhir selesai. Karena pembaruan berada dalam Aksi, "jumlah" dapat terus diperbarui saat permintaan sedang berlangsung.
 
 <Sandpack>
 
@@ -372,19 +316,11 @@ These solutions handle request ordering for you. When using Transitions to build
 
 <Solution />
 
-<<<<<<< HEAD
-#### Merubah tab saat ini tanpa transisi {/*updating-the-current-tab-without-a-transition*/}
+#### Memperbarui kuantitas tanpa Aksi {/*updating-the-users-name-without-an-action*/}
 
-Pada contoh berikut, tab "Posts" juga **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*. Berbeda dengan contoh sebelumnya, perubahan *state* ini **bukanlah sebuah transisi.**
+Dalam contoh ini, fungsi `updateQuantity` juga mensimulasikan permintaan ke server untuk memperbarui kuantitas item dalam keranjang. Fungsi ini *diperlambat secara artifisial* sehingga memerlukan waktu setidaknya satu detik untuk menyelesaikan permintaan.
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan *state* ini bukanlah sebuah transisi, sehingga me-*render* ulang yang lambat membekukan tampilan pengguna.
-=======
-#### Updating the quantity without an Action {/*updating-the-users-name-without-an-action*/}
-
-In this example, the `updateQuantity` function also simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
-
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests is in progress, but the "Total" updates multiple times for each time the "quantity" was clicked:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Perbarui kuantitas beberapa kali dengan cepat. Perhatikan bahwa status "Total" yang tertunda ditampilkan saat permintaan sedang berlangsung, tetapi "Total" diperbarui beberapa kali untuk setiap kali "kuantitas" diklik:
 
 <Sandpack>
 
@@ -511,7 +447,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-A common solution to this problem is to prevent the user from making changes while the quantity is updating:
+Solusi umum untuk masalah ini adalah mencegah pengguna membuat perubahan saat kuantitas diperbarui:
 
 <Sandpack>
 
@@ -637,7 +573,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-This solution makes the app feel slow, because the user must wait each time they update the quantity. It's possible to add more complex handling manually to allow the user to interact with the UI while the quantity is updating, but Actions handle this case with a straight-forward built-in API.
+Solusi ini membuat aplikasi terasa lambat, karena pengguna harus menunggu setiap kali memperbarui kuantitas. Penanganan yang lebih rumit dapat ditambahkan secara manual untuk memungkinkan pengguna berinteraksi dengan UI saat kuantitas diperbarui, tetapi Actions menangani kasus ini dengan API bawaan yang mudah.
 
 <Solution />
 
@@ -645,17 +581,11 @@ This solution makes the app feel slow, because the user must wait each time they
 
 ---
 
-<<<<<<< HEAD
-### Merubah komponen induk dalam transisi {/*updating-the-parent-component-in-a-transition*/}
+### Mengekspos prop `action` dari komponen {/*exposing-action-props-from-components*/}
 
-Anda dapat mengubah *state* komponen induk dari panggilan `useTransition` juga. Contohnya, komponen `TabButton` ini membungkus logika komponen `onClick` dalam sebuah transisi:
-=======
-### Exposing `action` prop from components {/*exposing-action-props-from-components*/}
+Anda dapat mengekspos prop `action` dari sebuah komponen untuk memungkinkan komponen induk untuk memanggil Aksi.
 
-You can expose an `action` prop from a component to allow a parent to call an Action.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
-
-For example, this `TabButton` component wraps its `onClick` logic in an `action` prop:
+Contohnya, komponen `TabButton` ini membungkus logika `onClick` di dalam prop `action`:
 
 ```js {8-12}
 export default function TabButton({ action, children, isActive }) {
@@ -677,11 +607,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-<<<<<<< HEAD
-Karena komponen induk merubah *state*nya di dalam event handler `onClick`, perubahan *state* tersebut akan ditandai sebagai transisi. Inilah mengapa, seperti pada contoh di awal, Anda dapat menekan pada "Posts" dan kemudian segera menekan "Contact". Mengubah tab yang dipilih akan ditandai sebagai transisi, sehingga itu tidak memblokir tampilan pengguna.
-=======
-Because the parent component updates its state inside the `action`, that state update gets marked as a Transition. This means you can click on "Posts" and then immediately click "Contact" and it does not block user interactions:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Karena komponen induk merubah *state*-nya di dalam `action`, perubahan *state* tersebut akan ditandai sebagai Transisi. Ini berarti Anda dapat menekan "Posts" dan kemudian segera menekan "Contact" dan ia tidak memblokir interaksi pengguna:
 
 <Sandpack>
 
@@ -824,11 +750,7 @@ This allows the `action` callback to be either synchronous or asynchronous witho
 
 ---
 
-<<<<<<< HEAD
-### Menampilan state visual tertunda saat transisi {/*displaying-a-pending-visual-state-during-the-transition*/}
-=======
-### Displaying a pending visual state {/*displaying-a-pending-visual-state*/}
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+### Menampilan state visual tertunda {/*displaying-a-pending-visual-state*/}
 
 Anda dapat menggunakan nilai boolean `isPending` yang dikembalikan oleh `useTransition` untuk menandai ke pengguna bahwa transisi sedang berjalan. Contohnya, tombol tab dapat memiliki *state* visual special "pending":
 
@@ -977,11 +899,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Mencegah indikator loading yang tidak diinginkan {/*preventing-unwanted-loading-indicators*/}
 
-<<<<<<< HEAD
-Pada contoh berikut ini, komponen `PostsTab` mengambil beberapa data menggunakan [Suspense-enabled](/reference/react/Suspense) data source. Ketika Anda menekan tab "Posts", komponen `PostsTab` akan di*suspends*, menyebabkan *fallback* loading terdekat untuk muncul:
-=======
-In this example, the `PostsTab` component fetches some data using [use](/reference/react/use). When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Pada contoh berikut ini, komponen `PostsTab` mengambil beberapa data menggunakan [use](/reference/react/use). Ketika Anda menekan tab "Posts", komponen `PostsTab` akan *ditangguhkan*, menyebabkan *fallback* loading terdekat untuk muncul:
 
 <Sandpack>
 
@@ -1135,13 +1053,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-Menyembunyikan seluruh tab container untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan *state* pending di tombol tab sebagai gantinya.
-=======
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead display the pending state in the tab button instead.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Menyembunyikan seluruh kontainer tab untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan *state* pending di tombol tab sebagai gantinya.
 
-Perhatikan bahwa menekan "Posts" tidak menjadikan seluruh tab container dengan spinner:
+Perhatikan bahwa menekan "Posts" tidak menjadikan seluruh kontainer tab dengan spinner:
 
 <Sandpack>
 
@@ -1307,11 +1221,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-<<<<<<< HEAD
-Transisi hanya akan "menunggu" cukup lama untuk menghindari konten *already revealed* (seperti tab container). Jika tab Posts memiliki [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) transisi tidak akan "menunggu" untuk itu.
-=======
-Transitions only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Transisi hanya akan "menunggu" cukup lama untuk menghindari konten *yang telah ditampilkan* (seperti kontainer tab). Jika tab Posts memiliki [batasan `<Suspense>` bersarang,](/reference/react/Suspense#revealing-nested-content-as-it-loads) Transisi tidak akan "menunggu" untuk itu.
 
 </Note>
 
@@ -1319,7 +1229,7 @@ Transitions only "wait" long enough to avoid hiding *already revealed* content (
 
 ### Membangun router Suspense-enabled {/*building-a-suspense-enabled-router*/}
 
-Jika Anda membangun React framework atau router, kami merekomendasikan menandai navigasi halaman sebagai transisi.
+Jika Anda membangun *framework* atau *router* React, kami merekomendasikan menandai navigasi halaman sebagai transisi.
 
 ```js {3,6,8}
 function Router() {
@@ -1334,22 +1244,13 @@ function Router() {
   // ...
 ```
 
-<<<<<<< HEAD
-Ini direkomendasikan karena dua alasan:
+Ini direkomendasikan karena tiga alasan:
 
-- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu me-*render* ulang selesai.
+- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu perenderan ulang selesai.
 - [Transisi mencegah indikator loading yang tidak diinginkan,](#preventing-unwanted-loading-indicators) yang memungkinkan pengguna menghindari lompatan menggelegar pada navigasi.
+- [Transisi menunggu semua tindakan yang tertunda](#perform-non-blocking-updates-with-actions) yang memungkinkan pengguna menunggu efek samping selesai sebelum halaman baru ditampilkan.
 
-Berikut adalah contoh router kecil sederhana menggunakan transisi untuk navigasi.
-=======
-This is recommended for three reasons:
-
-- [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
-- [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
-
-Here is a simplified router example using Transitions for navigations.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Berikut adalah contoh *router* kecil sederhana menggunakan Transisi untuk navigasi.
 
 <Sandpack>
 
@@ -1658,15 +1559,6 @@ Secara default, router [Suspense-enabled](/reference/react/Suspense) diharapkan 
 
 ### Menampilkan *error* ke pengguna dengan *error boundary* {/*displaying-an-error-to-users-with-error-boundary*/}
 
-<<<<<<< HEAD
-<Canary>
-
-*Error Boundary* untuk useTransition saat ini hanya tersedia di kanal *canary* dan *experimental* React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
 
 <Sandpack>
@@ -1784,13 +1676,7 @@ startTransition(() => {
 });
 ```
 
-<<<<<<< HEAD
-Fungsi yang Anda kirimkan ke `startTransition` harus sinkron.
-
-Anda tidak dapat menandakan perubahan sebagai transisi seperti berikut:
-=======
-The function you pass to `startTransition` must be synchronous. You can't mark an update as a Transition like this:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Fungsi yang Anda kirimkan ke `startTransition` harus sinkron. Anda tidak dapat menandakan perubahan sebagai transisi seperti berikut:
 
 ```js
 startTransition(() => {
@@ -1812,24 +1698,16 @@ setTimeout(() => {
 }, 1000);
 ```
 
-<<<<<<< HEAD
-Demikian pula, Anda tidak dapat menandai perubahan sebagai transisi seperti berikut:
-=======
 ---
 
-### React doesn't treat my state update after `await` as a Transition {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
+### React tidak memperlakukan pembaruan status saya setelah `await` sebagai Transisi {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
 
-When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as Transitions. You must wrap state updates after each `await` in a `startTransition` call:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Bila Anda menggunakan `await` di dalam fungsi `startTransition`, pembaruan status yang terjadi setelah `await` tidak ditandai sebagai Transisi. Anda harus membungkus pembaruan status setelah setiap `await` dalam panggilan `startTransition`:
 
 ```js
 startTransition(async () => {
   await someAsyncFunction();
-<<<<<<< HEAD
-  // ❌ Mengatur state *setelah* startTransition dipanggil
-=======
-  // ❌ Not using startTransition after await
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+  // ❌ Tidak menggunakan startTransition setelah await
   setPage('/about');
 });
 ```
@@ -1837,23 +1715,16 @@ startTransition(async () => {
 Namun, ini bekerja sebagai gantinya:
 
 ```js
-<<<<<<< HEAD
-await someAsyncFunction();
-startTransition(() => {
-  // ✅ Mengatur state *saat* startTransition dipanggil
-  setPage('/about');
-=======
 startTransition(async () => {
   await someAsyncFunction();
-  // ✅ Using startTransition *after* await
+  // ✅ Menggunakan startTransition *setelah* await
   startTransition(() => {
     setPage('/about');
   });
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 });
 ```
 
-This is a JavaScript limitation due to React losing the scope of the async context. In the future, when [AsyncContext](https://github.com/tc39/proposal-async-context) is available, this limitation will be removed.
+Ini adalah batasan JavaScript karena React kehilangan cakupan konteks async. Di masa mendatang, saat [AsyncContext](https://github.com/tc39/proposal-async-context) tersedia, batasan ini akan dihapus.
 
 ---
 

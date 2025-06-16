@@ -2,15 +2,6 @@
 title: useOptimistic
 ---
 
-<<<<<<< HEAD
-<Canary>
-
-Hook `useOptimistic` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 <Intro>
 
 `useOptimistic` adalah Hook yang memungkinkan Anda memperbarui antarmuka pengguna (UI) secara optimis.

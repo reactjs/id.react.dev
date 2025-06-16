@@ -447,11 +447,7 @@ button { display: block; margin-bottom: 20px; }
 
 #### Mengekspos sebuah ref ke komponen Anda sendiri {/*exposing-a-ref-to-your-own-component*/}
 
-<<<<<<< HEAD
-Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Baca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
-=======
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat membuat `ref` di komponen induk dan mengoper `ref` sebagai prop ke komponen anak. Baca [panduan selengkapnya](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
 
 <Sandpack>
 
@@ -579,7 +575,7 @@ export default function MyInput({ value, onChange }) {
 <<<<<<< HEAD
 Dan kemudian membungkusnya dengan [`forwardRef`](/reference/react/forwardRef) seperti ini:
 =======
-And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevent child [built-in component](/reference/react-dom/components/common) like this:
+Dan kemudian menambahkan `ref` ke daftar *props* dari komponen Anda dan mengoper `ref` sebagai *prop* ke [komponen bawaan](/reference/react-dom/components/common) anak yang relevan seperti ini:
 >>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {1,6}

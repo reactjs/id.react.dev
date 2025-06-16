@@ -3,19 +3,11 @@ title: cache
 canary: true
 ---
 
-<<<<<<< HEAD
-<Canary>
-* `cache` hanya digunakan dengan [*React Server Components*](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Lihat [*frameworks*](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) yang mendukung *React Server Components*.
-
-* `cache` hanya tersedia di kanal [*Canary*](/community/versioning-policy#canary-channel) dan [eksperimental](/community/versioning-policy#experimental-channel) React. Pastikan Anda memahami beberapa keterbatasannya sebelum menggunakan `cache` di *production*. Pelajari lebih lanjut terkait dengan [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-</Canary>
-=======
 <RSC>
 
-`cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+`cache` hanya digunakan dengan [Komponen Server React](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
 </RSC>
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 <Intro>
 

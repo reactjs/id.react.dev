@@ -32,29 +32,19 @@ function MyComponent() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `SomeContext`: Konteks yang sebelumnya telah Anda buat dengan [`createContext`](/reference/react/createContext). Konteks itu sendiri tidak menyimpan informasi, konteks hanya merepresentasikan jenis informasi yang dapat Anda berikan atau baca dari komponen.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-<<<<<<< HEAD
-`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext.Provider` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis me-*render* ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
+`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis me-*render* ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
 
-#### Caveats {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
-* Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context.Provider>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
+* Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
 * React **secara otomatis me-*render* ulang** semua anak yang menggunakan konteks tertentu mulai dari penyedia yang menerima `nilai` yang berbeda. Nilai sebelumnya dan nilai berikutnya dibandingkan dengan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Melewatkan render ulang dengan [`memo`](/reference/react/memo) tidak mencegah anak-anak menerima nilai konteks yang baru.
 * Jika sistem build Anda menghasilkan modul duplikat pada keluaran (yang dapat terjadi pada *symlink*), ini dapat merusak konteks. Mengoper sesuatu melalui konteks hanya berfungsi jika `SomeContext` yang Anda gunakan untuk memberikan konteks dan `SomeContext` yang Anda gunakan untuk membacanya adalah objek yang sama persis, seperti yang ditentukan oleh perbandingan `===`.
-=======
-`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/reference/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
-
-#### Caveats {/*caveats*/}
-
-* `useContext()` call in a component is not affected by providers returned from the *same* component. The corresponding `<Context>` **needs to be *above*** the component doing the `useContext()` call.
-* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/reference/react/memo) does not prevent the children receiving fresh context values.
-* If your build system produces duplicates modules in the output (which can happen with symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ---
 
@@ -1360,15 +1350,9 @@ Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rend
 
 Ada beberapa cara umum yang dapat menyebabkan hal ini terjadi:
 
-<<<<<<< HEAD
-1. Anda me-*render* `<SomeContext.Provider>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext.Provider>` *di atas dan di luar* komponen yang memanggil `useContext()`.
-2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext.Provider>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
+1. Anda me-*render* `<SomeContext>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext>` *di atas dan di luar* komponen yang memanggil `useContext()`.
+2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
 3. Anda mungkin mengalami masalah build dengan tooling Anda yang menyebabkan `SomeContext` yang terlihat dari komponen penyedia dan `SomeContext` yang terlihat oleh komponen pembacaan menjadi dua objek yang berbeda. Hal ini dapat terjadi jika Anda menggunakan *symlink*, misalnya. Anda dapat memverifikasi hal ini dengan menugaskan mereka ke global seperti `window.SomeContext1` dan `window.SomeContext2` dan kemudian memeriksa apakah `window.SomeContext1 === window.SomeContext2` di konsol. Jika tidak sama, perbaiki masalah tersebut di tingkat build tool.
-=======
-1. You're rendering `<SomeContext>` in the same component (or below) as where you're calling `useContext()`. Move `<SomeContext>` *above and outside* the component calling `useContext()`.
-2. You may have forgotten to wrap your component with `<SomeContext>`, or you might have put it in a different part of the tree than you thought. Check whether the hierarchy is right using [React DevTools.](/learn/react-developer-tools)
-3. You might be running into some build issue with your tooling that causes `SomeContext` as seen from the providing component and `SomeContext` as seen by the reading component to be two different objects. This can happen if you use symlinks, for example. You can verify this by assigning them to globals like `window.SomeContext1` and `window.SomeContext2` and then checking whether `window.SomeContext1 === window.SomeContext2` in the console. If they're not the same, fix that issue on the build tool level.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ### Saya selalu mendapatkan `undefined` dari konteks saya meskipun nilai defaultnya berbeda {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
@@ -1401,8 +1385,4 @@ Pada kedua kasus ini, Anda akan melihat peringatan dari React di konsol. Untuk m
 </ThemeContext>
 ```
 
-<<<<<<< HEAD
-Perhatikan bahwa [nilai *default* dari panggilan `createContext(defaultValue)` Anda] (#specifying-a-fallback-default-value) hanya digunakan **jika tidak ada penyedia yang cocok di atas sama sekali **Jika ada komponen `<SomeContext.Provider value = {undefined}>` di suatu tempat di dalam pohon induk, komponen yang memanggil `useContext(SomeContext)` ` akan menerima `undefined` sebagai nilai konteks.
-=======
-Note that the [default value from your `createContext(defaultValue)` call](#specifying-a-fallback-default-value) is only used **if there is no matching provider above at all.** If there is a `<SomeContext value={undefined}>` component somewhere in the parent tree, the component calling `useContext(SomeContext)` *will* receive `undefined` as the context value.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Perhatikan bahwa [nilai *default* dari panggilan `createContext(defaultValue)` Anda](#specifying-a-fallback-default-value) hanya digunakan **jika tidak ada *provider* yang cocok di atas sama sekali.** Jika ada komponen `<SomeContext value = {undefined}>` di suatu tempat di dalam pohon induk, komponen yang memanggil `useContext(SomeContext)` *akan* menerima `undefined` sebagai nilai konteks.

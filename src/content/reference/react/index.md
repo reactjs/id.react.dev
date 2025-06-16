@@ -14,23 +14,16 @@ Dokumentasi referensi React dibagi menjadi beberapa sub-bagian fungsional:
 
 Fitur-fitur React yang diprogram:
 
-<<<<<<< HEAD
-* [*Hooks*](/reference/react/hooks) — Gunakan bermacam-macam fitur React dari komponen Anda.
-* [Komponen](/reference/react/components) — Mendokumentasikan komponen bawaan yang dapat digunakan di JSX Anda.
+* [Hooks](/reference/react/hooks) — Gunakan bermacam-macam fitur React dari komponen Anda.
+* [Komponen](/reference/react/components) — Komponen bawaan yang dapat digunakan di JSX Anda.
 * [API](/reference/react/apis) — API yang berguna untuk mendefinisikan komponen.
-* [Directive](/reference/react/directives) — Menyediakan instruksi ke *bundler* yang kompatibel dengan React Server Component.
-=======
-* [Hooks](/reference/react/hooks) - Use different React features from your components.
-* [Components](/reference/react/components) - Built-in components that you can use in your JSX.
-* [APIs](/reference/react/apis) - APIs that are useful for defining components.
-* [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* [Direktif](/reference/rsc/directives) — Menyediakan instruksi ke *bundler* yang kompatibel dengan Komponen Server React.
 
 ## React DOM {/*react-dom*/}
 
 React-dom berisi fitur-fitur yang hanya didukung untuk aplikasi web (yang berjalan di lingkungan peramban DOM). Bagian ini dibagi menjadi beberapa bagian berikut ini:
 
-* [*Hooks*](/reference/react-dom/hooks) — *Hooks* untuk aplikasi web yang berjalan di lingkungan peramban DOM.
+* [Hooks](/reference/react-dom/hooks) — Hooks untuk aplikasi web yang berjalan di lingkungan peramban DOM.
 * [Komponen](/reference/react-dom/components) — React mendukung semua komponen HTML dan SVG bawaan peramban.
 * [API](/reference/react-dom) — Paket `react-dom` berisi metode-metode yang hanya didukung dalam aplikasi web.
 * [API Klien](/reference/react-dom/client) — API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
