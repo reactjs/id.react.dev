@@ -1,5 +1,5 @@
 ---
-title: "Built-in React DOM Hooks"
+title: "Hook React DOM Bawaan"
 ---
 
 <Intro>
@@ -10,11 +10,11 @@ title: "Built-in React DOM Hooks"
 
 ---
 
-## Form Hooks {/*form-hooks*/}
+## Hook Formulir {/*form-hooks*/}
 
-*Forms* memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola form di komponen Anda, gunakan salah satu Hooks ini:
+Formulir memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola formulir di komponen Anda, gunakan salah satu Hooks ini:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) memungkinkan anda melakukan pembaruan UI berdasarkan status formulir.
 
 ```js
 function Form({ action }) {
