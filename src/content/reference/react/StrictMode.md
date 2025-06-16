@@ -42,16 +42,10 @@ root.render(
 
 Strict Mode mengaktifkan perilaku-perilaku pengembangan berikut:
 
-<<<<<<< HEAD
 - Komponen Anda akan [me-*render* ulang tambahan satu kali](#fixing-bugs-found-by-double-rendering-in-development) untuk mencari *bug* yang disebabkan oleh *rendering* yang tidak murni.
-- Komponen Anda akan [menjalankan kembali Efek tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Efek.
+- Komponen Anda akan [menjalankan kembali Effect tambahan satu kali](#fixing-bugs-found-by-re-running-effects-in-development) untuk menemukan *bug* yang disebabkan oleh tidak adanya pembersihan Effect.
+- Komponen Anda akan [menjalankan kembali *callback* ref tambahan satu kali](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) untuk menemukan bug yang disebabkan oleh pembersihan ref yang hilang.
 - Komponen Anda akan [memeriksa penggunaan API yang tidak digunakan lagi.](#fixing-deprecation-warnings-enabled-by-strict-mode)
-=======
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [re-run refs callbacks an extra time](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) to find bugs caused by missing ref cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 #### Props {/*props*/}
 
