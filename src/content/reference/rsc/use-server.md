@@ -1,6 +1,6 @@
 ---
 title: "'use server'"
-titleForTitleTag: "'use server' directive"
+titleForTitleTag: "Direktif 'use server'"
 ---
 
 <RSC>

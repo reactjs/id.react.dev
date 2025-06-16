@@ -1,6 +1,6 @@
 ---
 title: "'use client'"
-titleForTitleTag: "'use client' directive"
+titleForTitleTag: "Direktif 'use client'"
 ---
 
 <RSC>
@@ -41,30 +41,26 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-Bila file yang ditandai dengan `'use client'` diimpor dari Komponen Server, [bundler yang kompatibel](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) akan memperlakukan impor modul sebagai batas antara kode yang dijalankan server dan kode yang dijalankan klien.
+Saat file yang ditandai dengan `'use client'` diimpor dari Komponen Server, [bundler yang kompatibel](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) akan memperlakukan impor modul sebagai batas antara kode yang dijalankan server dan kode yang dijalankan klien.
 
-Sebagai dependensi `RichTextEditor`, `formatDate` dan `Button` juga akan dievaluasi pada klien terlepas dari apakah modulnya berisi arahan `'use client'`. Perhatikan bahwa satu modul dapat dievaluasi pada server saat diimpor dari kode server dan pada klien saat diimpor dari kode klien.
+Sebagai dependensi `RichTextEditor`, `formatDate` dan `Button` juga akan dievaluasi pada klien terlepas dari apakah modulnya berisi direktif `'use client'`. Perhatikan bahwa satu modul dapat dievaluasi pada server saat diimpor dari kode server dan pada klien saat diimpor dari kode klien.
 
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
+#### Catatan penting {/*caveats*/}
 
-As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
+* `'use client'` harus berada di awal file, di atas impor atau kode lain (komentar tidak masalah). Direktif harus ditulis dengan tanda kutip tunggal atau ganda, tetapi tidak dengan tanda kutip terbalik.
+* Saat modul `'use client'` diimpor dari modul lain yang dirender klien, direktif tersebut tidak memiliki efek.
+* Saat modul komponen berisi direktif `'use client'`, penggunaan komponen tersebut dijamin sebagai Komponen Klien. Namun, komponen tetap dapat dievaluasi pada klien meskipun tidak memiliki direktif `'use client'`.
+	* Penggunaan komponen dianggap sebagai Komponen Klien jika didefinisikan dalam modul dengan direktif `'use client'` atau saat merupakan dependensi transitif dari modul yang berisi direktif `'use client'`. Jika tidak, maka merupakan Komponen Server.
+* Kode yang ditandai untuk evaluasi klien tidak terbatas pada komponen. Semua kode yang merupakan bagian dari sub-pohon modul Klien dikirim ke dan dijalankan oleh klien.
+* Ketika modul yang dievaluasi server mengimpor nilai dari modul `'use client'`, nilai tersebut harus berupa komponen React atau [nilai prop serialisasi yang didukung](#passing-props-from-server-to-client-components) untuk diteruskan ke Komponen Klien. Kasus penggunaan lainnya akan memunculkan pengecualian.
 
-#### Caveats {/*caveats*/}
+### Bagaimana `'use client'` menandai kode klien {/*how-use-client-marks-client-code*/}
 
-* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
-* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
-	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
-* Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
+Dalam aplikasi React, komponen sering dibagi menjadi file terpisah, atau [modul](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
-### How `'use client'` marks client code {/*how-use-client-marks-client-code*/}
+Untuk aplikasi yang menggunakan Komponen Server React, aplikasi dirender di *server* secara bawaan. `'use client'` memperkenalkan batasan *server-client* di [pohon dependensi modul](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), yang secara efektif menciptakan subpohon modul Klien.
 
-In a React app, components are often split into separate files, or [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
-
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
-
-To better illustrate this, consider the following React Server Components app.
+Untuk mengilustrasikan hal ini dengan lebih baik, perhatikan aplikasi Komponen Server React berikut.
 
 <Sandpack>
 
@@ -76,7 +72,7 @@ import Copyright from './Copyright';
 export default function App() {
   return (
     <>
-      <FancyText title text="Get Inspired App" />
+      <FancyText title text="Aplikasi Menginspirasi Anda" />
       <InspirationGenerator>
         <Copyright year={2004} />
       </InspirationGenerator>
@@ -108,9 +104,9 @@ export default function InspirationGenerator({children}) {
 
   return (
     <>
-      <p>Your inspirational quote is:</p>
+      <p>Kutipan menginspirasi Anda adalah:</p>
       <FancyText text={quote} />
-      <button onClick={next}>Inspire me again</button>
+      <button onClick={next}>Beri aku inspirasi lagi</button>
       {children}
     </>
   );
@@ -125,9 +121,9 @@ export default function Copyright({year}) {
 
 ```js src/inspirations.js
 export default [
-  "Don’t let yesterday take up too much of today.” — Will Rogers",
-  "Ambition is putting a ladder against the sky.",
-  "A joy that's shared is a joy made double.",
+  "Jangan biarkan hari kemarin mengambil alih sebagian besar hari ini.” — Will Rogers",
+  "Ambisi seperti meletakkan tangga ke langit.",
+  "Kebahagiaan yang dibagi adalah kebahagiaan yang berlipat ganda.",
 ];
 ```
 
@@ -149,35 +145,35 @@ export default [
 
 </Sandpack>
 
-In the module dependency tree of this example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as Client modules. The subtree starting at `InspirationGenerator.js` is now marked as Client modules.
+Pada pohon dependensi modul aplikasi contoh ini, direktif `'use client'` dalam `InspirationGenerator.js` menandai modul tersebut dan semua dependensi transitifnya sebagai modul Klien. Subpohon yang dimulai pada `InspirationGenerator.js` sekarang ditandai sebagai modul Klien.
 
-<Diagram name="use_client_module_dependency" height={250} width={545} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
-`'use client'` segments the module dependency tree of the React Server Components app, marking `InspirationGenerator.js` and all of its dependencies as client-rendered.
+<Diagram name="use_client_module_dependency" height={250} width={545} alt="Grafik pohon dengan simpul teratas yang mewakili modul 'App.js'. 'App.js' memiliki tiga anak: 'Copyright.js', 'FancyText.js', dan 'InspirationGenerator.js'. 'InspirationGenerator.js' memiliki dua anak: 'FancyText.js' dan 'inspirations.js'. Simpul di bawah dan termasuk 'InspirationGenerator.js' memiliki warna latar belakang kuning untuk menandakan bahwa sub-grafik ini dirender oleh klien karena direktif 'use client' dalam 'InspirationGenerator.js'.">
+`'use client'` mengelompokkan pohon dependensi modul dari aplikasi Komponen Server React di atas, menandai `InspirationGenerator.js` dan semua dependensinya sebagai yang dirender oleh klien.
 </Diagram>
 
-During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+Selama proses render, *framework* akan melakukan server-render pada komponen root dan melanjutkan melalui [pohon render](/learn/understanding-your-ui-as-a-tree#the-render-tree), dengan memilih untuk tidak mengevaluasi kode apa pun yang diimpor dari kode yang ditandai klien.
 
-The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
+Bagian pohon render yang dirender server kemudian dikirim ke klien. Klien, dengan kode klien yang diunduh, kemudian menyelesaikan rendering sisa pohon.
 
-<Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">
-The render tree for the React Server Components app. `InspirationGenerator` and its child component `FancyText` are components exported from client-marked code and considered Client Components.
+<Diagram name="use_client_render_tree" height={250} width={500} alt="Grafik pohon yang setiap simpulnya mewakili komponen dan anak-anaknya sebagai komponen anak. Simpul tingkat atas diberi label 'App' dan memiliki dua komponen anak 'InspirationGenerator' dan 'FancyText'. 'InspirationGenerator' memiliki dua komponen anak, 'FancyText' dan 'Copyright'. Baik 'InspirationGenerator' maupun komponen anaknya 'FancyText' ditandai sebagai hasil render klien.">
+Pohon render untuk aplikasi Komponen Server React di atas. `InspirationGenerator` dan komponen anaknya `FancyText` adalah komponen yang diekspor dari kode bertanda klien dan dianggap sebagai Komponen Klien.
 </Diagram>
 
-We introduce the following definitions:
+Kami memperkenalkan definisi berikut:
 
-* **Client Components** are components in a render tree that are rendered on the client.
-* **Server Components** are components in a render tree that are rendered on the server.
+* **Komponen Klien** adalah komponen dalam pohon render yang dirender pada klien.
+* **Komponen Server** adalah komponen dalam pohon render yang dirender pada server.
 
-Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
+Saat menelusuri aplikasi contoh, `App`, `FancyText`, dan `Copyright` semuanya dirender oleh server dan dianggap sebagai Komponen Server. Karena `InspirationGenerator.js` dan dependensi transitifnya ditandai sebagai kode klien, komponen `InspirationGenerator` dan komponen turunannya `FancyText` adalah Komponen Klien.
 
 <DeepDive>
-#### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
+#### Bagaimana caranya `FancyText` menjadi Komponen Server dan Klien sekaligus? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
 
-By the above definitions, the component `FancyText` is both a Server and Client Component, how can that be?
+Berdasarkan definisi di atas, komponen `FancyText` merupakan Komponen Server dan Klien, bagaimana mungkin?
 
-First, let's clarify that the term "component" is not very precise. Here are just two ways "component" can be understood:
+Pertama, mari kita perjelas bahwa istilah "komponen" tidak terlalu tepat. Berikut ini hanya dua cara "komponen" dapat dipahami:
 
-1. A "component" can refer to a **component definition**. In most cases this will be a function.
+1. "Komponen" dapat merujuk ke **definisi komponen**. Dalam kebanyakan kasus, ini akan menjadi fungsi.
 
 ```js
 // This is a definition of a component
@@ -186,7 +182,7 @@ function MyComponent() {
 }
 ```
 
-2. A "component" can also refer to a **component usage** of its definition.
+2. "Komponen" juga dapat merujuk pada **penggunaan komponen** dari definisinya.
 ```js
 import MyComponent from './MyComponent';
 
@@ -196,34 +192,34 @@ function App() {
 }
 ```
 
-Often, the imprecision is not important when explaining concepts, but in this case it is.
+Seringkali, ketidaktepatan tidaklah penting saat menjelaskan konsep, tetapi dalam kasus ini penting.
 
-When we talk about Server or Client Components, we are referring to component usages.
+Saat kita berbicara tentang Komponen Server atau Klien, kita mengacu pada penggunaan komponen.
 
-* If the component is defined in a module with a `'use client'` directive, or the component is imported and called in a Client Component, then the component usage is a Client Component.
-* Otherwise, the component usage is a Server Component.
+* Jika komponen didefinisikan dalam modul dengan direktif `'use client'`, atau komponen diimpor dan dipanggil dalam Komponen Klien, maka penggunaan komponen tersebut adalah Komponen Klien.
+* Jika tidak, penggunaan komponen tersebut adalah Komponen Server.
 
 
-<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree illustrates component usages.</Diagram>
+<Diagram name="use_client_render_tree" height={150} width={450} alt="Grafik pohon yang setiap simpulnya mewakili komponen dan anak-anaknya sebagai komponen anak. Simpul tingkat atas diberi label 'App' dan memiliki dua komponen anak 'InspirationGenerator' dan 'FancyText'. 'InspirationGenerator' memiliki dua komponen anak, 'FancyText' dan 'Copyright'. Baik 'InspirationGenerator' maupun komponen anaknya 'FancyText' ditandai sebagai hasil render klien.">Pohon render yang menggambarkan penggunaan komponen.</Diagram>
 
-Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two usages.
+Kembali ke pertanyaan tentang `FancyText`, kita melihat bahwa definisi komponen _tidak_ memiliki direktif `'use client'` dan memiliki dua penggunaan.
 
-The usage of `FancyText` as a child of `App`, marks that usage as a Server Component. When `FancyText` is imported and called under `InspirationGenerator`, that usage of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
+Penggunaan `FancyText` sebagai anak dari `App`, menandai penggunaan tersebut sebagai Komponen Server. Ketika `FancyText` diimpor dan dipanggil di bawah `InspirationGenerator`, penggunaan `FancyText` tersebut adalah Komponen Klien karena `InspirationGenerator` berisi direktif `'use client'`.
 
-This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
+Ini berarti bahwa definisi komponen untuk `FancyText` akan dievaluasi di server dan juga diunduh oleh klien untuk merender penggunaan Komponen Kliennya.
 
 </DeepDive>
 
 <DeepDive>
 
-#### Why is `Copyright` a Server Component? {/*why-is-copyright-a-server-component*/}
+#### Mengapa `Copyright` merupakan Komponen Server? {/*why-is-copyright-a-server-component*/}
 
-Because `Copyright` is rendered as a child of the Client Component `InspirationGenerator`, you might be surprised that it is a Server Component.
+Karena `Copyright` ditampilkan sebagai anak dari Komponen Klien `InspirationGenerator`, Anda mungkin terkejut bahwa itu adalah Komponen Server.
 
-Recall that `'use client'` defines the boundary between server and client code on the _module dependency tree_, not the render tree.
+Ingat bahwa `'use client'` mendefinisikan batas antara kode server dan klien pada _pohon dependensi modul_, bukan pohon render.
 
-<Diagram name="use_client_module_dependency" height={200} width={500} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
-`'use client'` defines the boundary between server and client code on the module dependency tree.
+<Diagram name="use_client_module_dependency" height={200} width={500} alt="Grafik pohon dengan simpul teratas yang mewakili modul 'App.js'. 'App.js' memiliki tiga anak: 'Copyright.js', 'FancyText.js', dan 'InspirationGenerator.js'. 'InspirationGenerator.js' memiliki dua anak: 'FancyText.js' dan 'inspirations.js'. Simpul di bawah dan termasuk 'InspirationGenerator.js' memiliki warna latar belakang kuning untuk menandakan bahwa sub-grafik ini dirender oleh klien karena direktif 'use client' dalam 'InspirationGenerator.js'.">
+`'use client'` mendefinisikan batas antara kode server dan klien pada pohon dependensi modul.
 </Diagram>
 
 In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component usage is rendered on the server. `App` is rendered on the server as it is the root component.
