@@ -769,13 +769,8 @@ Solusi alternatif adalah Anda bisa membuat sebuah senarai *baru* (dengan menyali
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
-<<<<<<< HEAD
   // Salin senarai!
-  let storiesToDisplay = stories.slice();
-=======
-  // Copy the array!
   const storiesToDisplay = stories.slice();
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
   // Tidak mengubah senarai asli:
   storiesToDisplay.push({

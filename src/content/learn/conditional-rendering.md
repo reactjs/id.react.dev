@@ -52,11 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Perhatikan bahwa beberapa komponen `Item` memiliki *prop* `isPacked` yang disetel ke `true`, bukan `false`. Anda ingin menambahkan tanda centang (✔) pada item yang sudah dikemas jika `isPacked={true}`.
-=======
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Perhatikan bahwa beberapa komponen `Item` memiliki *prop* `isPacked` yang disetel ke `true`, bukan `false`. Anda ingin menambahkan tanda centang (✅) pada item yang sudah dikemas jika `isPacked={true}`.
 
 Anda dapat menuliskannya sebagai [pernyataan `if`/`else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) seperti ini:
 
@@ -206,11 +202,7 @@ return (
 );
 ```
 
-<<<<<<< HEAD
-Anda dapat membacanya sebagai *"jika nilai `isPacked` adalah true, maka (`?`) render `name + ' ✔'`, jika tidak (`:`) render `name`"*.
-=======
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Anda dapat membacanya sebagai *"jika nilai `isPacked` adalah true, maka (`?`) render `name + ' ✅'`, jika tidak (`:`) render `name`"*.
 
 <DeepDive>
 

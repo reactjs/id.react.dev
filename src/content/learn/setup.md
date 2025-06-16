@@ -7,22 +7,22 @@ React integrates with tools like editors, TypeScript, browser extensions, and co
 
 </Intro>
 
-## Editor Setup {/*editor-setup*/}
+## Setup editor {/*editor-setup*/}
 
-See our [recommended editors](/learn/editor-setup) and learn how to set them up to work with React.
+Lihat daftar [editor-editor yang kami rekomendasikan](/learn/editor-setup) dan pelajari cara mengaturnya untuk dapat bekerja dengan React.
 
-## Using TypeScript {/*using-typescript*/}
+## Menggunakan TypeScript {/*using-typescript*/}
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
+TypeScript adalah cara populer untuk menambahkan definisi *type* ke basis kode JavaScript Anda. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
 
 ## React Developer Tools {/*react-developer-tools*/}
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+React Developer Tools adalah pengaya browser (browser extension) yang dapat memeriksa komponen React, mengubah *props* dan *state*, serta mengidentifikasi masalah performa. Pelajari cara memasangnya [di sini](learn/react-developer-tools).
 
-## React Compiler {/*react-compiler*/}
+## Kompilator React {/*react-compiler*/}
 
-React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
+Kompilator React adalah perangkat yang secara otomatis mengoptimalkan aplikasi React Anda. [Pelajari lebih lanjut](/learn/react-compiler).
 
-## Next steps {/*next-steps*/}
+## Langkah selanjutnya {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+Silakan menuju panduan [Mulai Cepat](/learn) untuk mempelajari konsep-konsep penting React yang akan Anda temui sehari-hari.

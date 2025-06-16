@@ -318,31 +318,6 @@ Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [
   key={cat.id}
   ref={node => {
     const map = getMap();
-<<<<<<< HEAD
-    if (node) {
-      // Add to the Map
-      map.set(cat, node);
-    } else {
-      // Remove from the Map
-      map.delete(cat);
-    }
-  }}
->
-```
-
-Hal ini memungkinkan Anda membaca simpul DOM individu dari *Map* nanti.
-
-<Canary>
-
-Contoh ini menunjukkan pendekatan lain untuk mengatur Map dengan fungsi *callback* `ref`.
-
-```js
-<li
-  key={cat.id}
-  ref={node => {
-    const map = getMap();
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
     // Add to the Map
     map.set(cat, node);
 
@@ -368,16 +343,11 @@ Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bu
 
 ## Mengakses simpul DOM komponen lain {/*accessing-another-components-dom-nodes*/}
 
-<<<<<<< HEAD
-Saat Anda memasang *ref* pada komponen bawaan yang mana hasilnya adalah elemen peramban seperti `<input />`, React akan mengatur properti `current` *ref* pada simpul DOM tersebut (seperti aktual `<input />` pada peramban).
-
-Namun, jika Anda mencoba mengatur *ref* pada komponen Anda sendiri, seperti `<MyInput />`, secara *default* Anda akan mendapatkan `null`. Ini contohnya. Perhatikan bagaimana meng-klik tombol **tidak** membuat fokus pada input:
-=======
 <Pitfall>
-Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
+Ref merupakan jalan keluar. Memanipulasi simpul DOM _komponen lain_ secara manual dapat membuat kode Anda rapuh.
 </Pitfall>
 
-You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+Anda dapat mengoper ref dari komponen induk ke komponen anak [layaknya prop lainnya](/learn/passing-props-to-a-component).
 
 ```js {3-4,9}
 import { useRef } from 'react';
@@ -392,10 +362,9 @@ function MyForm() {
 }
 ```
 
-In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+Dalam contoh di atas, ref dibuat dalam komponen induk, `MyForm`, dan diteruskan ke komponen anak, `MyInput`. `MyInput` kemudian meneruskan ref ke `<input>`. Karena `<input>` adalah [komponen bawaan](/reference/react-dom/components/common) React menyetel properti `.current` dari ref ke elemen DOM `<input>`.
 
-The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+`inputRef` yang dibuat dalam `MyForm` sekarang menunjuk ke elemen DOM `<input>` yang dikembalikan oleh `MyInput`. Penangan klik yang dibuat dalam `MyForm` dapat mengakses `inputRef` dan memanggil `focus()` untuk menyetel fokus pada `<input>`.
 
 <Sandpack>
 
@@ -426,75 +395,11 @@ export default function MyForm() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Untuk membantu Anda menanggapi *issue* tersebut, React juga mencetak *error* pada *console*:
-
-<ConsoleBlock level="error">
-
-Perhatian: fungsional komponen tidak dapat menerima *ref*. Mencoba mengaksesnya akan gagal. Apakah yang Anda maksud React.forwardRef()?
-
-</ConsoleBlock>
-
-Ini terjadi karena secara *default* React tidak mengizinkan komponen mengakses simpul DOM dari komponen lain. Bahkan *children* dari komponen tersebut! ini ada alasannya. *Ref* merupakan jalan darurat yang seharusnya jarang digunakan. Memanipulasi simpul DOM komponen lain secara manual membuat kode Anda lebih rentan.
-
-Sebaliknya, komponen yang _ingin_ mengekspos simpul DOM harus *memilih* perilaku tersebut. Sebuah komponen dapat menentukan untuk meneruskan *ref* ke salah satu *children*nya. Contoh bagaimana `MyInput` dapat menggunakan API `forwardRef`:
-
-```js
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
-```
-
-Ini cara kerjanya:
-
-1. `<MyInput ref={inputRef} />` memberitahu React untuk meletakkan simpul DOM yang sesuai ke dalam `inputRef.current`. Namun, itu terserah komponen `MyInput` untuk mengikutinya--secara *default*, tidak.
-2. Komponen `MyInput` menggunakan `forwardRef`. **Dengan ini komponen menerima `inputRef` dari atas sebagai argumen `ref` kedua** yang dideklarasikan setelah `props`.
-3. `MyInput` itu sendiri mengoper `ref` yang diterima ke dalam `<input>`.
-
-Sekarang meng-klik tombol untuk fokus ke input berfungsi:
-
-<Sandpack>
-
-```js
-import { forwardRef, useRef } from 'react';
-
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
-
-export default function Form() {
-  const inputRef = useRef(null);
-
-  function handleClick() {
-    inputRef.current.focus();
-  }
-
-  return (
-    <>
-      <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
-    </>
-  );
-}
-```
-
-</Sandpack>
-
-Dalam sistem desain, merupakan pola umum untuk komponen level rendah seperti tombol, input dan sejenisnya untuk meneruskan *ref* ke simpul DOM. Sebaliknya, komponen level atas seperti *form*, *list* atau bagian dari halaman biasanya tidak mengekspos simpul DOM untuk menghindari dependensi yang tidak disengaja pada struktur DOM.
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 <DeepDive>
 
 #### Ekspos bagian dari API dengan imperatif handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
-<<<<<<< HEAD
-Pada contoh di atas, `MyInput` mengekspos elemen input DOM. Ini memungkinkan komponen *parent* memanggil `focus()`. Namun, ini juga memungkinkan *parent* komponen melakukan hal lain--contohnya, mengubah CSS (Cascading Style Sheet) *style*. Dalam kasus umum, Anda mungkin ingin membatasi fungsionalitas yang akan diekspos. Anda dapat melakukannya dengan `useImperativeHandle`:
-=======
-In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](/reference/react/useImperativeHandle):
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Dalam contoh di atas, ref yang diteruskan ke `MyInput` diteruskan ke elemen input DOM asli. Ini memungkinkan komponen induk memanggil `focus()` padanya. Namun, ini juga memungkinkan komponen induk melakukan hal lain--misalnya, mengubah *style* CSS-nya. Dalam kasus yang tidak umum, Anda mungkin ingin membatasi fungsionalitas yang diekspos. Anda dapat melakukannya dengan [`useImperativeHandle`](/reference/react/useImperativeHandle):
 
 <Sandpack>
 
@@ -530,11 +435,7 @@ export default function Form() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, `useImperativeHandle` menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan `useImperativeHandle`.
-=======
-Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](/reference/react/useImperativeHandle) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](/reference/react/useImperativeHandle) call.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, [`useImperativeHandle`](/reference/react/useImperativeHandle) menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan [`useImperativeHandle`](/reference/react/useImperativeHandle).
 
 </DeepDive>
 
@@ -743,21 +644,12 @@ Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini me
 
 <Recap>
 
-<<<<<<< HEAD
 - Ref adalah konsep yang umum, tetapi paling sering digunakan untuk menyimpan elemen-elemen DOM.
 - Anda menginstruksikan React untuk menempatkan simpul DOM ke `myRef.current` dengan mengoper `<div ref={myRef}>`.
 - Biasanya, Anda akan menggunakan *ref* untuk tindakan non-destruktif seperti fokus, *scrolling*, atau mengukur elemen-elemen DOM.
 - Komponen tidak secara *default* mengekspos simpul DOM-nya. Anda dapat memilih untuk mengekspos simpul DOM dengan menggunakan `forwardRef` dan mengoper argumen `ref` kedua ke simpul yang spesifik.
 - Hindari mengubah simpul DOM yang dikelola oleh React.
 - Jika Anda mengubah simpul DOM yang dikelola oleh React, ubah bagian yang tidak perlu diperbarui oleh React.
-=======
-- Refs are a generic concept, but most often you'll use them to hold DOM elements.
-- You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
-- Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using the `ref` prop.
-- Avoid changing DOM nodes managed by React.
-- If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 </Recap>
 
@@ -1157,11 +1049,7 @@ Buat agar saat tombol "Search" diklik, fokus masuk ke dalam input. Perhatikan ba
 
 <Hint>
 
-<<<<<<< HEAD
-Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah simpul DOM dari komponen Anda sendiri seperti `SearchInput`.
-=======
-You'll need to pass `ref` as a prop to opt into exposing a DOM node from your own component like `SearchInput`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Anda perlu mengoper `ref` untuk memungkinkan eksposisi sebuah simpul DOM dari komponen Anda sendiri seperti `SearchInput`.
 
 </Hint>
 

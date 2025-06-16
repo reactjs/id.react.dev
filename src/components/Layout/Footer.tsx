@@ -372,17 +372,13 @@ export function Footer() {
               <IconTwitter />
             </ExternalLink>
             <ExternalLink
-<<<<<<< HEAD
-              aria-label="React di Github"
-=======
-              aria-label="React on Bluesky"
+              aria-label="React di Bluesky"
               href="https://bsky.app/profile/react.dev"
               className={socialLinkClasses}>
               <IconBsky />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Github"
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+              aria-label="React di Github"
               href="https://github.com/facebook/react"
               className={socialLinkClasses}>
               <IconGitHub />

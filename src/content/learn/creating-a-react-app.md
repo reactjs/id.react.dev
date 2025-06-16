@@ -1,16 +1,16 @@
 ---
-title: Creating a React App
+title: Membuat aplikasi React
 ---
 
 <Intro>
 
-If you want to build a new app or website with React, we recommend starting with a framework.
+Jika Anda ingin membuat aplikasi baru atau situs web baru dengan menggunakan React, kami merekomendasikan Anda untuk memulai dari *framework*.
 
 </Intro>
 
 If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
 
-## Full-stack frameworks {/*full-stack-frameworks*/}
+## *Framework full-stack* {/*full-stack-frameworks*/}
 
 These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
 
@@ -26,69 +26,69 @@ This allows you to start with a client-only app, and if your needs change later,
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js's App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React's architecture to enable full-stack React apps.**
+**[*App Router* Next.js](https://nextjs.org/docs) adalah *framework* React yang memanfaatkan sepenuhnya arsitektur React untuk membangun aplikasi React *full-stack*.**
 
 <TerminalBlock>
 npx create-next-app@latest
 </TerminalBlock>
 
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+Next.js dikelola oleh [Vercel](https://vercel.com/). Anda dapat [memasang aplikasi Next.js](https://nextjs.org/docs/app/building-your-application/deploying) ke penyedia *hosting* yang mendukung Node.js atau kontainer Docker, atau pada *server* Anda sendiri. Next.js juga mendukung [ekspor halaman stasis](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) yang tidak membutuhkan *server*.
 
 ### React Router (v7) {/*react-router-v7*/}
 
-**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
+**[React Router](https://reactrouter.com/start/framework/installation) adalah pustaka *routing* paling populer untuk React dan dapat digabungkan dengan Vite untuk membuat *framework* React *full-stack***. Ia menekankan penggunaan API Web standar dan memiliki beberapa [*template* siap pakai](https://github.com/remix-run/react-router-templates) untuk berbagai macam *runtime* dan *platform* JavaScript.
 
-To create a new React Router framework project, run:
+Untuk membuat proyek *framework* React Router baru, jalankan:
 
 <TerminalBlock>
 npx create-react-router@latest
 </TerminalBlock>
 
-React Router is maintained by [Shopify](https://www.shopify.com).
+React Router dikelola oleh [Shopify](https://www.shopify.com).
 
-### Expo (for native apps) {/*expo*/}
+### Expo (untuk aplikasi *native*) {/*expo*/}
 
-**[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
+**[Expo](https://expo.dev/) adalah *framework* React yang memungkinkan Anda membangun aplikasi universal untuk Android, iOS, and web with antarmuka pengguna (UI) yang sesungguhnya *native*.** Ia menyediakan SDK untuk [React Native](https://reactnative.dev/) yang memudahkan penggunaan bagian-bagian *native*. Untuk membuat proyek Expo baru, jalankan:
 
 <TerminalBlock>
 npx create-expo-app@latest
 </TerminalBlock>
 
-If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
+Jika Anda baru menggunakan Expo, bacalah [tutorial Expo](https://docs.expo.dev/tutorial/introduction/).
 
-Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
+Expo dikelola oleh [Expo (perusahaan)](https://expo.dev/about). Membangun aplikasi dengan Expo gratis, dan Anda dapat men-*submit* aplikasi Anda ke bursa aplikasi Google and Apple tanpa hambatan. Sebagai tambahan, Expo menyediakan layanan *cloud* opsional yang bersifat berbayar.
 
 
-## Other frameworks {/*other-frameworks*/}
+## *Framework* lain {/*other-frameworks*/}
 
-There are other up-and-coming frameworks that are working towards our full stack React vision:
+Ada beberapa framework baru yang sedang berkembang yang berupaya mewujudkan visi React *full stack* kami:
 
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
-- [RedwoodJS](https://redwoodjs.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start adalah *framework* React *full-stack* yang ditenagai oleh TanStack Router. Ia menyediakan SSR di keseluruhan dokumen, *streaming*, fungsi *server*, *bundling*, dan lebih banyak lagi menggunakan perangkat seperti Nitro dan Vite.
+- [RedwoodJS](https://redwoodjs.com/): Redwood adalah *framework* React *full stack* dengan berbagai macam *packages* dan konfigurasi yang sudah terpasang secara bawaan yang memudahkan pembangunan aplikasi web *full-stack*.
 
 <DeepDive>
 
-#### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
+#### Fitur-fitur apa saja yang memenuhi visi arsitektur *full-stack* tim React? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
+Bundler *App Router* Next.js mengimplementasikan [spesifikasi resmi Komponen Server React](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) secara penuh. Ini memungkinkan Anda menggabungkan komponen *build-time*, komponen khusus *server*, dan komponen interaktif dalam satu pohon komponen React.
 
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+Sebagai contoh, Anda dapat membuat komponen React khusus server sebagai fungsi `async` yang membaca dari sebuah database atau berkas. Kemudian Anda dapat meneruskan data menuju komponen interaktif Anda:
 
 ```js
-// This component runs *only* on the server (or during the build).
+// Komponen ini *hanya* berjalan di server (atau saat build).
 async function Talks({ confId }) {
-  // 1. You're on the server, so you can talk to your data layer. API endpoint not required.
+  // 1. Anda berada dalam server, jadi Anda dapat berkomunikasi dengan *data layer*. Tidak perlu *endpoint* API.
   const talks = await db.Talks.findAll({ confId });
 
-  // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
+  // 2. Tambahkan logika rendering sebanyak apapun. Tidak akan memperbesar *bundle* JavaScript Anda.
   const videos = talks.map(talk => talk.video);
 
-  // 3. Pass the data down to the components that will run in the browser.
+  // 3. Teruskan data ke komponen yang akan berjalan di browser.
   return <SearchableVideoList videos={videos} />;
 }
 ```
 
-Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
+*App Router* Next.js juga mengintegrasikan [pengambilan data dengan Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Ini memungkinkan Anda menentukan *state* memuat (seperti *skeleton placeholder*) untuk bagian-bagian UI berbeda langsung di dalam pohon komponen React Anda:
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -96,18 +96,18 @@ Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03
 </Suspense>
 ```
 
-Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
+Komponen Server dan Suspense adalah fitur React dan bukan fitur Next.js. Namun, mengadopsinya dalam tingat *framework* membutuhkan kerja keras dalam implementasi yang tidak sepele. Saat ini, the *App Router* Next.js memiliki implementasi yang paling lengkap. Tim React bekerja sama dengan pengembang *bundler* untuk membuat fitur-fitur ini lebih mudah diimplementasikan pada *framework* generasi berikutnya.
 
 </DeepDive>
 
-## Start From Scratch {/*start-from-scratch*/}
+## Memulai dari Awal {/*start-from-scratch*/}
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, there are other options available for starting a React project from scratch.
+Jika aplikasi Anda memiliki kendala yang tidak dapat diatasi dengan baik oleh *framework* yang ada, Anda lebih suka membangun *framework* Anda sendiri, atau Anda hanya ingin mempelajari dasar-dasar aplikasi React, ada pilihan lain yang tersedia untuk memulai proyek React dari awal.
 
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.  
+Memulai dari awal memberi Anda lebih banyak fleksibilitas, tetapi mengharuskan Anda membuat pilihan tentang alat mana yang akan digunakan untuk perutean, pengambilan data, dan pola penggunaan umum lainnya. Ini sangat mirip dengan membangun *framework* Anda sendiri, alih-alih menggunakan *framework* yang sudah ada. [*Framework* yang kami rekomendasikan](#full-stack-frameworks) memiliki solusi bawaan untuk masalah ini.
 
-If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a build tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+Jika Anda ingin membangun solusi Anda sendiri, lihat panduan kami untuk [membangun aplikasi React dari awal](/learn/build-a-react-app-from-scratch) untuk petunjuk tentang cara menyiapkan proyek React baru yang dimulai dengan alat pembangunan seperti [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), atau [RSbuild](https://rsbuild.dev/).
 
 -----
 
-_If you’re a framework author interested in being included on this page, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
+_Jika Anda sedang membangun framework dan Anda tertarik untuk memasukkan framework Anda ke halaman ini, [silakan hubungi kami](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._

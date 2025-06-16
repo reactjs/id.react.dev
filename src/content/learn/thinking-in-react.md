@@ -261,23 +261,15 @@ Untuk setiap bagian state dalam aplikasi Anda:
     2. Anda juga dapat menempatkan *state* ke dalam beberapa komponen di atas induknya.
     3. Jika Anda tidak dapat menemukan komponen yang masuk akal untuk memiliki *state*, buatlah komponen baru hanya untuk menyimpan *state* dan tambahkan di suatu tempat di dalam hirarki di atas komponen induk umum.
 
-Pada langkah sebelumnya, Anda menemukan dua bagian status dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
+Pada langkah sebelumnya, Anda menemukan dua bagian *state* dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
 
 Sekarang mari kita bahas strateginya:
 
-<<<<<<< HEAD
 1. **Identifikasi komponen yang menggunakan state:**
-    * `ProductTable` perlu memfilter daftar produk berdasarkan status tersebut (teks pencarian dan nilai kotak centang). 
-    * `SearchBar` perlu menampilkan status tersebut (teks pencarian dan nilai kotak centang).
+    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang). 
+    * `SearchBar` perlu menampilkan *state* tersebut (teks pencarian dan nilai kotak centang).
 1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
-=======
-1. **Identify components that use state:**
-    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
-    * `SearchBar` needs to display that state (search text and checkbox value).
-2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Jadi nilai state akan berada di dalam `FilterableProductTable`. 
 

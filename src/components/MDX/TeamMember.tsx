@@ -67,11 +67,7 @@ export function TeamMember({
             {twitter && (
               <div className="me-4">
                 <ExternalLink
-<<<<<<< HEAD
-                  aria-label="Profil Twitter"
-=======
-                  aria-label={`${name} on Twitter`}
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+                  aria-label={`${name} di Twitter`}
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
@@ -82,7 +78,7 @@ export function TeamMember({
             {threads && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label={`${name} on Threads`}
+                  aria-label={`${name} di Threads`}
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconThreads className="pe-1" />
@@ -93,7 +89,7 @@ export function TeamMember({
             {bsky && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label={`${name} on Bluesky`}
+                  aria-label={`${name} di Bluesky`}
                   href={`https://bsky.app/profile/${bsky}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconBsky className="pe-1" />

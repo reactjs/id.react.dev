@@ -1,81 +1,81 @@
 ---
-title: Build a React app from Scratch
+title: Membangun aplikasi React dari awal
 ---
 
 <Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can build a React app from scratch.
+Jika aplikasi Anda memiliki kendala yang tidak dapat diatasi dengan baik oleh *framework* yang ada, Anda lebih suka membangun *framework* Anda sendiri, atau Anda hanya ingin mempelajari dasar-dasar aplikasi React, Anda dapat membangun aplikasi React dari awal.
 
 </Intro>
 
 <DeepDive>
 
-#### Consider using a framework {/*consider-using-a-framework*/}
+#### Pertimbangkan untuk menggunakan *framework* {/*consider-using-a-framework*/}
 
-Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for. 
+Memulai dari awal adalah cara mudah untuk mulai menggunakan React, tetapi ada satu hal yang perlu diperhatikan, yaitu bahwa mengikuti cara ini sering kali sama dengan membangun *framework ad hoc* Anda sendiri. Seiring dengan perkembangan kebutuhan Anda, Anda mungkin perlu memecahkan lebih banyak masalah seperti *framework* yang solusinya telah dikembangkan dan didukung dengan baik oleh *framework* yang kami rekomendasikan.
 
-For example, if in the future your app needs support for server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC), you will have to implement those on your own. Similarly, future React features that require integrating at the framework level will have to be implemented on your own if you want to use them.
+Misalnya, jika di masa mendatang aplikasi Anda memerlukan dukungan untuk *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC), Anda harus mengimplementasikannya sendiri. Demikian pula, fitur React mendatang yang memerlukan integrasi pada tingkat *framework* harus diimplementasikan sendiri jika Anda ingin menggunakannya.
 
-Our recommended frameworks also help you build better performing apps. For example, reducing or eliminating waterfalls from network requests makes for a better user experience. This might not be a high priority when you are building a toy project, but if your app gains users you may want to improve its performance.
+*Framework* yang kami rekomendasikan juga membantu Anda membangun aplikasi dengan performa yang lebih baik. Misalnya, mengurangi atau menghilangkan *waterfall* dari permintaan jaringan menghasilkan pengalaman pengguna yang lebih baik. Ini mungkin bukan prioritas tinggi saat Anda membangun proyek mainan, tetapi jika aplikasi Anda melayani banyak pengguna, Anda mungkin ingin meningkatkan performanya.
 
-Going this route also makes it more difficult to get support, since the way you develop routing, data-fetching, and other features will be unique to your situation. You should only choose this option if you are comfortable tackling these problems on your own, or if you’re confident that you will never need these features.
+Menggunakan cara ini juga akan mempersulit Anda untuk mendapatkan dukungan, karena cara Anda mengembangkan *routing*, pengambilan data, dan fitur lainnya akan berbeda-beda tergantung pada situasi Anda. Anda sebaiknya hanya memilih opsi ini jika Anda merasa nyaman mengatasi masalah ini sendiri, atau jika Anda yakin bahwa Anda tidak akan pernah membutuhkan fitur-fitur ini.
 
-For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
+Untuk daftar *framework* yang direkomendasikan, lihat [Membuat Aplikasi React](/learn/creating-a-react-app).
 
 </DeepDive>
 
 
-## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
+## Langkah 1: Menginstal *build tool* {/*step-1-install-a-build-tool*/}
 
-The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+Langkah pertama adalah menginstal alat bantu seperti `vite`, `parcel`, atau `rsbuild`. Alat bantu ini menyediakan fitur untuk mengemas dan menjalankan kode sumber, menyediakan *server* pengembangan untuk pengembangan lokal, dan perintah *build* untuk memasang aplikasi Anda ke server produksi.
 
 ### Vite {/*vite*/}
 
-[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+[Vite](https://vite.dev/) adalah alat pengembangan yang bertujuan untuk menyediakan pengalaman pengembangan yang lebih cepat dan ramping untuk proyek web modern.
 
 <TerminalBlock>
 {`npm create vite@latest my-app -- --template react`}
 </TerminalBlock>
 
-Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
+Vite adalah alat pengembangan *opinionated* dan hadir dengan pengaturan bawaan yang masuk akal. Vite memiliki ekosistem plugin yang kaya untuk mendukung penyegaran cepat, JSX, Babel/SWC, dan fitur umum lainnya. Lihat [plugin React](https://vite.dev/plugins/#vitejs-plugin-react) atau [plugin React SWC](https://vite.dev/plugins/#vitejs-plugin-react-swc) dan [proyek contoh React SSR](https://vite.dev/guide/ssr.html#example-projects) Vite untuk memulai.
 
-Vite is already being used as a build tool in one of our [recommended frameworks](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
+Vite sudah digunakan sebagai alat pembangunan di salah satu [*framework* yang kami rekomendasikan](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
 
 ### Parcel {/*parcel*/}
 
-[Parcel](https://parceljs.org/) combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production applications.
+[Parcel](https://parceljs.org/) menggabungkan pengalaman pengembangan *out-of-the-box* yang hebat dengan arsitektur berskala yang dapat membawa proyek Anda dari baru saja dimulai hingga aplikasi produksi besar-besaran.
 
 <TerminalBlock>
 {`npm install --save-dev parcel`}
 </TerminalBlock>
 
-Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
+Parcel mendukung *fast refresh*, JSX, TypeScript, Flow, dan *styling* secara langsung. Lihat [resep React Parcel](https://parceljs.org/recipes/react/#getting-started) untuk memulai.
 
 ### Rsbuild {/*rsbuild*/}
 
-[Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
+[Rsbuild](https://rsbuild.dev/) adalah alat pengembangan yang didukung Rspack yang menyediakan pengalaman pengembangan yang lancar untuk aplikasi React. Alat ini dilengkapi dengan pengaturan bawaan yang telah disesuaikan dengan cermat dan pengoptimalan kinerja yang siap digunakan.
 
 <TerminalBlock>
 {`npx create-rsbuild --template react`}
 </TerminalBlock>
 
-Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
+Rsbuild menyertakan dukungan bawaan untuk fitur React seperti *fast refresh*, JSX, TypeScript, dan *styling*. Lihat [panduan React Rsbuild](https://rsbuild.dev/guide/framework/react) untuk memulai.
 
 <Note>
 
-#### Metro for React Native {/*react-native*/}
+#### Metro untuk React Native {/*react-native*/}
 
-If you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+Jika Anda memulai dari awal dengan React Native, Anda perlu menggunakan [Metro](https://metrobundler.dev/), *bundler* JavaScript untuk React Native. Metro mendukung *bundling* untuk *platform* seperti iOS dan Android, tetapi kekurangan banyak fitur jika dibandingkan dengan alat-alat di sini. Kami sarankan untuk memulai dengan Vite, Parcel, atau Rsbuild kecuali proyek Anda memerlukan dukungan React Native.
 
 </Note>
 
-## Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
+## Langkah 2: Membangun Pola Aplikasi Umum {/*step-2-build-common-application-patterns*/}
 
 The build tools listed above start off with a client-only, single-page app (SPA), but don't include any further solutions for common functionality like routing, data fetching, or styling.
 
 The React ecosystem includes many tools for these problems. We've listed a few that are widely used as a starting point, but feel free to choose other tools if those work better for you.
 
-### Routing {/*routing*/}
+### *Routing* {/*routing*/}
 
 Routing determines what content or pages to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters.  Routers can be configured within your code, or defined based on your component folder and file structures.
 
@@ -87,7 +87,7 @@ We suggest using:
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
-### Data Fetching {/*data-fetching*/}
+### Pengambilan Data {/*data-fetching*/}
 
 Fetching data from a server or other data source is a key part of most applications. Doing this properly requires handling loading states, error states, and caching the fetched data, which can be complex.
 
@@ -107,37 +107,37 @@ If you're fetching data from a GraphQL API, we suggest using:
 - [Relay](https://relay.dev/)
 
 
-### Code-splitting {/*code-splitting*/}
+### Pemisahan kode (*Code-splitting*) {/*code-splitting*/}
 
-Code-splitting is the process of breaking your app into smaller bundles that can be loaded on demand. An app's code size increases with every new feature and additional dependency. Apps can become slow to load because all of the code for the entire app needs to be sent before it can be used. Caching, reducing features/dependencies, and moving some code to run on the server can help mitigate slow loading but are incomplete solutions that can sacrifice functionality if overused.
+Pemisahan kode (*Code-splitting*) adalah proses memecah aplikasi Anda menjadi *bundle* yang lebih kecil yang dapat dimuat sesuai permintaan. Ukuran kode aplikasi bertambah dengan setiap fitur baru dan dependensi tambahan. Aplikasi dapat menjadi lambat dimuat karena semua kode untuk keseluruhan aplikasi perlu dikirim sebelum dapat digunakan. Menyimpan dalam *cache*, mengurangi fitur/dependensi, dan memindahkan beberapa kode untuk dijalankan di server dapat membantu mengurangi pemuatan yang lambat tetapi merupakan solusi yang tidak lengkap yang dapat mengorbankan fungsionalitas jika digunakan secara berlebihan.
 
-Similarly, if you rely on the apps using your framework to split the code, you might encounter situations where loading becomes slower than if no code splitting were happening at all. For example, [lazily loading](/reference/react/lazy) a chart delays sending the code needed to render the chart, splitting the chart code from the rest of the app. [Parcel supports code splitting with React.lazy](https://parceljs.org/recipes/react/#code-splitting). However, if the chart loads its data *after* it has been initially rendered you are now waiting twice. This is a waterfall: rather than fetching the data for the chart and sending the code to render it simultaneously, you must wait for each step to complete one after the other.
+Demikian pula, jika Anda mengandalkan aplikasi yang menggunakan *framework* Anda untuk memisahkan kode, Anda mungkin mengalami situasi di mana pemuatan menjadi lebih lambat daripada jika tidak ada pemisahan kode sama sekali. Misalnya, [memuat dengan lambat](/reference/react/lazy) sebuah komponen *chart* menunda pengiriman kode yang diperlukan untuk merender *chart*, memisahkan kode *chart* dari bagian aplikasi lainnya. [Parcel mendukung pemisahan kode dengan React.lazy](https://parceljs.org/recipes/react/#code-splitting). Namun, jika *chart* memuat datanya *setelah* awalnya dirender, Anda sekarang menunggu dua kali. Ini adalah *waterfall*: daripada mengambil data untuk *chart* dan mengirim kode untuk merendernya secara bersamaan, Anda harus menunggu setiap langkah selesai satu demi satu.
 
-Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Memisahkan kode berdasarkan *route*, saat diintegrasikan dengan bundling dan pengambilan data, dapat mengurangi waktu muat awal aplikasi Anda dan waktu yang diperlukan untuk konten aplikasi yang paling terlihat ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
-For code-splitting instructions, see your build tool docs:
-- [Vite build optimizations](https://vite.dev/guide/features.html#build-optimizations)
-- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
-- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+Untuk petunjuk pemisahan kode, lihat dokumen alat build Anda:
+- [Optimasi *build* Vite](https://vite.dev/guide/features.html#build-optimizations)
+- [Pemisahan kode Parcel](https://parceljs.org/features/code-splitting/)
+- [Pemisahan kode Rsbuild](https://rsbuild.dev/guide/optimization/code-splitting)
 
-### Improving Application Performance {/*improving-application-performance*/}
+### Meningkatkan Performa Aplikasi {/*improving-application-performance*/}
 
-Since the build tool you select only support single page apps (SPAs) you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+Karena alat *build* yang Anda pilih hanya mendukung aplikasi *single-page* (SPA), Anda perlu menerapkan [pola rendering](https://www.patterns.dev/vanilla/rendering-patterns) lain seperti *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC). Meskipun Anda tidak memerlukan fitur-fitur ini pada awalnya, di masa mendatang mungkin ada beberapa jalur yang akan menguntungkan SSR, SSG, atau RSC.
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are easier to get started with, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+* **Aplikasi *single-page* (SPA)** memuat satu halaman HTML dan memperbarui halaman secara dinamis saat pengguna berinteraksi dengan aplikasi. SPA lebih mudah untuk memulai, tetapi waktu muat awal dapat lebih lambat. SPA adalah arsitektur default untuk sebagian besar alat build.
 
-* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+* ***Streaming server-side rendering* (SSR)** merender halaman di server dan mengirimkan halaman yang telah dirender sepenuhnya ke klien. SSR dapat meningkatkan kinerja, tetapi dapat lebih rumit untuk disiapkan dan dipelihara daripada aplikasi satu halaman. Dengan penambahan *streaming*, SSR bisa sangat rumit untuk disiapkan dan dipelihara. Lihat [panduan SSR Vite]( https://vite.dev/guide/ssr).
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering. See [Vite's SSG guide](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
+* ***Static site generation* (SSG)** menghasilkan file HTML statis untuk aplikasi Anda pada waktu pembuatan. SSG dapat meningkatkan kinerja, tetapi bisa lebih rumit untuk disiapkan dan dipelihara daripada rendering sisi server. Lihat [panduan SSG Vite](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
 
-* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+* **Komponen Server React (RSC)** memungkinkan Anda mencampur komponen waktu pembuatan, khusus server, dan interaktif dalam satu pohon React. RSC dapat meningkatkan kinerja, tetapi saat ini memerlukan keahlian mendalam untuk menyiapkan dan memeliharanya. Lihat [contoh RSC Parcel](https://github.com/parcel-bundler/rsc-examples).
 
-Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. 
+Strategi rendering Anda perlu diintegrasikan dengan *router* Anda sehingga aplikasi yang dibangun dengan *framework* Anda dapat memilih strategi rendering pada tingkat per *route*. Ini akan memungkinkan strategi rendering yang berbeda tanpa harus menulis ulang seluruh aplikasi Anda. Misalnya, halaman landing untuk aplikasi Anda mungkin lebih baik jika dibuat secara statis (SSG), sementara halaman dengan umpan konten mungkin berkinerja terbaik dengan rendering sisi server.
 
-Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Menggunakan strategi rendering yang tepat untuk *route* yang tepat dapat mengurangi waktu yang diperlukan untuk memuat byte konten pertama ([Time to First Byte](https://web.dev/articles/ttfb)), bagian konten pertama yang dirender ([First Contentful Paint](https://web.dev/articles/fcp)), dan konten aplikasi yang paling besar yang terlihat ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
-### And more... {/*and-more*/}
+### Dan masih banyak lagi... {/*and-more*/}
 
-These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. 
+Ini hanyalah beberapa contoh fitur yang perlu dipertimbangkan aplikasi baru saat membangun dari awal. Banyak keterbatasan yang akan Anda hadapi yang mungkin sulit dipecahkan karena setiap masalah saling terkait satu sama lain dan dapat memerlukan keahlian mendalam di area masalah yang mungkin tidak Anda pahami.
 
-If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 
+Jika Anda tidak ingin memecahkan masalah ini sendiri, Anda dapat [memulai dengan *framework*](/learn/creating-a-react-app) yang menyediakan fitur-fitur ini secara langsung.

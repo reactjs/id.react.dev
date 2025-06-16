@@ -464,11 +464,7 @@ export default function Toggle() {
 
 #### Perbaiki *debouncing* {/*fix-debouncing*/}
 
-<<<<<<< HEAD
-Pada contoh ini, semua penangan klik tombol di-*debounce*. Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
-=======
-In this example, all button click handlers are ["debounced".](https://kettanaito.com/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Pada contoh ini, semua penangan klik tombol ["di-*debounce*".](https://kettanaito.com/blog/debounce-vs-throttle) Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
 
 Contoh ini berfungsi, tetapi tidak sepenuhnya seperti yang dimaksudkan. Tombol-tombolnya tidak independen. Untuk melihat masalahnya, klik salah satu tombol, lalu segera klik tombol lain. Anda akan mengharapkan bahwa setelah penundaan, Anda akan melihat pesan dari kedua tombol. Tetapi hanya pesan dari tombol terakhir yang muncul. Pesan dari tombol pertama hilang.
 
