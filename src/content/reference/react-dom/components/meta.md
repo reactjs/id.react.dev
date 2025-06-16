@@ -1,8 +1,8 @@
 ---
 meta: "<meta>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Ekstensi React pada `<meta>` saat ini hanya tersedia di saluran eksperimental dan canary. Dalam rilis stabil React `<meta>` hanya bekerja sebagai [komponen HTML bawaan](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Ekstensi React pada `<meta>` saat ini hanya tersedia di saluran eksperimental da
 </Canary>
 
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 <Intro>
 
 [Komponen HTML bawaan `<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) memungkinkan Anda menambahkan metadata ke dokumen.

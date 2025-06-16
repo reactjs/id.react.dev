@@ -189,11 +189,19 @@ Efek samping yang secara langsung terlihat oleh pengguna tidak diperbolehkan dal
 
 ```js {2}
 function ProductDetailPage({ product }) {
+<<<<<<< HEAD
   document.window.title = product.title; // 🔴 Buruk: Mengubah DOM
 }
 ```
 
 Salah satu cara untuk mencapai hasil yang diinginkan dengan memperbarui `window.title` di luar *render* adalah dengan [menyinkronkan komponen dengan `window`](/learn/synchronizing-with-effects).
+=======
+  document.title = product.title; // 🔴 Bad: Changes the DOM
+}
+```
+
+One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](/learn/synchronizing-with-effects).
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Selama pemanggilan sebuah komponen beberapa kali aman dan tidak mempengaruhi proses *render* komponen lainnya, React tidak peduli apakah komponen tersebut 100% murni dalam arti pemrograman fungsional yang ketat. Yang lebih penting adalah [komponen harus idempoten](/reference/rules/components-and-hooks-must-be-pure).
 
@@ -205,8 +213,13 @@ Sebuah *props* dan *state* dari komponen adalah [*snapshots*](learn/state-as-a-s
 
 Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbarui setelah di-*render*. Karena alasan ini, Anda tidak memodifikasi *props* atau variabel state secara langsung: sebagai gantinya, Anda mengoper *props* baru, atau menggunakan fungsi *setter* yang disediakan untuk memberi tahu React bahwa *state* perlu diperbarui pada saat komponen di-*render*.
 
+<<<<<<< HEAD
 ### Jangan memutasi *Props* {/*props*/}
 *Props* dapat dimutasi karena karena jika anda memutasinya, maka Props tidak dapat diubah karena jika Anda mengubahnya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena mungkin bekerja atau tidak bekerja tergantung pada situasinya.
+=======
+### Don't mutate Props {/*props*/}
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {2}
 function Post({ item }) {
@@ -306,7 +319,11 @@ function useIconStyle(icon) {
 }
 ```
 
+<<<<<<< HEAD
 Jika Anda mengubah argumen *Hooks*, memoisasi *hook* kustom akan menjadi salah, jadi penting untuk menghindari hal tersebut.
+=======
+If you were to mutate the Hook's arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {4}
 style = useIconStyle(icon);         // `style` dimemoisasi berdasarkan `icon`
@@ -326,7 +343,11 @@ Demikian pula, penting untuk tidak memodifikasi nilai yang dikembalikan dari *Ho
 
 ## Nilai tidak dapat diubah setelah diteruskan ke JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
 
+<<<<<<< HEAD
 Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindahkan mutasi sebelum JSX dibuat.
+=======
+Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 

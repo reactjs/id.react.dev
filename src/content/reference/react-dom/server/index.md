@@ -4,7 +4,11 @@ title: API React DOM Server
 
 <Intro>
 
+<<<<<<< HEAD
 API `react-dom/server` memungkinkan Anda me-*render* komponen React menjadi HTML di *server*. API ini hanya digunakan di *server* pada *top level* aplikasi Anda untuk menghasilkan HTML awal. React DOM Server dapat dipanggil dengan menggunakan [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks). Sebagian besar komponen Anda tidak perlu mengimpor atau menggunakannya.
+=======
+The `react-dom/server` APIs let you server-side render React components to HTML. These APIs are only used on the server at the top level of your app to generate the initial HTML. A [framework](/learn/start-a-new-react-project#production-grade-react-frameworks) may call them for you. Most of your components don't need to import or use them.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 </Intro>
 
@@ -14,8 +18,12 @@ API `react-dom/server` memungkinkan Anda me-*render* komponen React menjadi HTML
 
 Beberapa *method* ini hanya tersedia di lingkungan dengan [Node.js *Stream*:](https://nodejs.org/api/stream.html)
 
+<<<<<<< HEAD
 * [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) me-*render* sebuah React *tree* ke dalam [Node.js *Stream*](https://nodejs.org/api/stream.html) yang *pipeable*.
 * [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) me-*render* sebuah React *tree* noninteraktif ke dalam [Node.js *Readable Stream*.](https://nodejs.org/api/stream.html#readable-streams)
+=======
+* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ---
 
@@ -27,13 +35,18 @@ Beberapa *method* ini hanya tersedia di lingkungan dengan [*Web Stream*](https:/
 
 ---
 
+<<<<<<< HEAD
 ## API Server untuk lingkungan non-streaming {/*server-apis-for-non-streaming-environments*/}
+=======
+## Legacy Server APIs for non-streaming environments {/*legacy-server-apis-for-non-streaming-environments*/}
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Beberapa *method* ini dapat digunakan di lingkungan yang tidak mendukung *stream*:
 
 * [`renderToString`](/reference/react-dom/server/renderToString) me-*render* sebuah React *tree* ke dalam *string*.
 * [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) me-*render* sebuah React *tree* yang noninteraktif ke dalam *string*.
 
+<<<<<<< HEAD
 Beberapa *method* tersebut memiliki fungsionalitas terbatas dibandingkan dengan API *streaming*.
 
 ---
@@ -47,3 +60,6 @@ API ini akan dihapus pada versi utama React di masa depan.
 </Deprecated>
 
 * [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) me-*render* sebuah React *tree* ke dalam [Node.js *Readable stream*.](https://nodejs.org/api/stream.html#readable-streams) (*Deprecated*.)
+=======
+They have limited functionality compared to the streaming APIs.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91

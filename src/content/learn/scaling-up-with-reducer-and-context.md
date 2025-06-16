@@ -461,11 +461,11 @@ export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   // ...
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         ...
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -509,8 +509,8 @@ export default function TaskApp() {
   }
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         <h1>Day off in Kyoto</h1>
         <AddTask
           onAddTask={handleAddTask}
@@ -520,8 +520,8 @@ export default function TaskApp() {
           onChangeTask={handleChangeTask}
           onDeleteTask={handleDeleteTask}
         />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -676,13 +676,13 @@ Pada langkah selanjutnya, Anda akan menghapus pengoperan *prop*.
 Sekarang Anda tidak perlu lagi meneruskan daftar tugas atau *event handler* ke bawah pohon:
 
 ```js {4-5}
-<TasksContext.Provider value={tasks}>
-  <TasksDispatchContext.Provider value={dispatch}>
+<TasksContext value={tasks}>
+  <TasksDispatchContext value={dispatch}>
     <h1>Day off in Kyoto</h1>
     <AddTask />
     <TaskList />
-  </TasksDispatchContext.Provider>
-</TasksContext.Provider>
+  </TasksDispatchContext>
+</TasksContext>
 ```
 
 Sebaliknya, komponen mana pun yang memerlukan daftar tugas dapat membacanya dari `TaskContext`:
@@ -730,13 +730,13 @@ export default function TaskApp() {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         <h1>Day off in Kyoto</h1>
         <AddTask />
         <TaskList />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -921,11 +921,11 @@ export function TasksProvider({ children }) {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -963,11 +963,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -1174,11 +1174,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -1363,4 +1363,3 @@ Seiring dengan pertumbuhan aplikasi Anda, mungkin Anda akan memiliki banyak pasa
 - Anda dapat memiliki banyak pasangan *context-reducer* seperti ini di aplikasi Anda.
 
 </Recap>
-

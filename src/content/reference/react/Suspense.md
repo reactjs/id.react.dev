@@ -54,21 +54,6 @@ Pada contoh di bawah ini, komponen `Albums` *ditangguhkan* saat mengambil daftar
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
@@ -114,15 +99,19 @@ function Loading() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -135,6 +124,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
@@ -160,6 +150,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -252,9 +244,15 @@ async function getAlbums() {
 
 **Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Yaitu:
 
+<<<<<<< HEAD
 - Pengambilan data dengan *framework* yang mendukung Suspense seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen *lazy-loading* dengan [`lazy`](/reference/react/lazy)
 - Membaca nilai dari Promise dengan [`use`](/reference/react/use)
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a cached Promise with [`use`](/reference/react/use)
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
@@ -286,21 +284,6 @@ Kemudian, setelah semuanya siap untuk ditampilkan, semuanya akan muncul sekaligu
 Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. Namun, karena mereka dikelompokkan di bawah satu batasan Suspense, komponen-komponen ini akan selalu "muncul" bersama-sama pada waktu yang sama.
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 ```js src/App.js hidden
 import { useState } from 'react';
@@ -362,15 +345,19 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -379,6 +366,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
@@ -404,17 +392,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -427,6 +421,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
@@ -452,6 +447,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -605,27 +602,19 @@ Dengan perubahan ini, menampilkan `Biography` tidak perlu "menunggu" hingga `Alb
 
 Urutan pemuatannya adalah sebagai berikut:
 
+<<<<<<< HEAD
 1. Jika `Biography` belum dimuat, `BigSpinner` ditampilkan sebagai pengganti seluruh area konten.
 2. Setelah `Biography` selesai dimuat, `BigSpinner` digantikan oleh konten.
 3. Jika `Albums` belum dimuat, `AlbumsGlimmer` ditampilkan sebagai pengganti `Albums` dan induknya `Panel`.
 4. Akhirnya, setelah `Albums` selesai dimuat, dia akan menggantikan `AlbumsGlimmer`.
+=======
+1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
+2. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
+3. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
+4. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 ```js src/App.js hidden
 import { useState } from 'react';
@@ -699,15 +688,19 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -716,6 +709,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -742,17 +736,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -765,6 +765,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -790,6 +791,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -932,21 +935,6 @@ Dalam contoh ini, komponen `SearchResults` ditangguhkan saat sedang mengambil ha
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
@@ -967,15 +955,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -994,6 +986,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1019,6 +1012,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -1157,21 +1152,6 @@ Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu u
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -1197,14 +1177,18 @@ export default function App() {
 ```
 
 ```js src/SearchResults.js hidden
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -1223,6 +1207,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1248,6 +1233,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
 ```js src/data.js hidden
@@ -1363,21 +1350,6 @@ Ketika sebuah komponen ditangguhkan, batasan Suspense induk terdekat akan berali
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1482,15 +1454,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1503,6 +1479,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1528,17 +1505,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1547,6 +1530,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1572,9 +1556,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1748,21 +1734,6 @@ Dengan begitu, React diberi tahu bahwa transisi *state* tidak mendesak, dan lebi
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, startTransition, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1869,15 +1840,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1890,6 +1865,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1915,17 +1891,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1934,6 +1916,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -1959,9 +1942,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2132,21 +2117,6 @@ Pada contoh di atas, setelah Anda mengeklik tombol, tidak ada indikasi visual ba
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
@@ -2256,15 +2226,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -2277,6 +2251,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -2302,17 +2277,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Catatan: komponen ini ditulis menggunakan API eksperimental
 // yang belum tersedia di React versi stabil.
 
 // Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
 // yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -2321,6 +2302,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ini adalah solusi untuk bug agar demo dapat berjalan.
 // TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
@@ -2346,9 +2328,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">

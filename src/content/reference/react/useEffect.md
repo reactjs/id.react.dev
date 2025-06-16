@@ -23,7 +23,7 @@ useEffect(setup, dependencies?)
 Panggil `useEffect` di level atas komponen Anda untuk mendeklarasikan sebuah *Effect*:
 
 ```js
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -79,7 +79,7 @@ Beberapa komponen perlu terhubung dengan jaringan, beberapa API browser, atau pe
 Untuk [menghubungkan komponen Anda ke sistem eksternal,](/learn/synchronizing-with-effects) panggil `useEffect` pada level atas komponen Anda:
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
