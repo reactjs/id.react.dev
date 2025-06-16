@@ -572,11 +572,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-<<<<<<< HEAD
-Dan kemudian membungkusnya dengan [`forwardRef`](/reference/react/forwardRef) seperti ini:
-=======
 Dan kemudian menambahkan `ref` ke daftar *props* dari komponen Anda dan mengoper `ref` sebagai *prop* ke [komponen bawaan](/reference/react-dom/components/common) anak yang relevan seperti ini:
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {1,6}
 function MyInput({ value, onChange, ref }) {
