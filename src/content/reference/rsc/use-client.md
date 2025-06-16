@@ -222,11 +222,11 @@ Ingat bahwa `'use client'` mendefinisikan batas antara kode server dan klien pad
 `'use client'` mendefinisikan batas antara kode server dan klien pada pohon dependensi modul.
 </Diagram>
 
-In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component usage is rendered on the server. `App` is rendered on the server as it is the root component.
+Dalam pohon dependensi modul, kita melihat bahwa `App.js` mengimpor dan memanggil `Copyright` dari modul `Copyright.js`. Karena `Copyright.js` tidak berisi direktif `'use client'`, penggunaan komponen dirender di server. `App` dirender di server karena merupakan komponen akar.
 
-Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` receives `Copyright` as [children](/learn/passing-props-to-a-component#passing-jsx-as-children). However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`. In fact, the `Copyright` component is fully executed before `InspirationGenerator` starts rendering.
+Komponen Klien dapat merender Komponen Server karena Anda dapat meneruskan JSX sebagai properti. Dalam kasus ini, `InspirationGenerator` menerima `Copyright` sebagai [anak](/learn/passing-props-to-a-component#passing-jsx-as-children). Namun, modul `InspirationGenerator` tidak pernah secara langsung mengimpor modul `Copyright` atau memanggil komponen, semua itu dilakukan oleh `App`. Faktanya, komponen `Copyright` dieksekusi sepenuhnya sebelum `InspirationGenerator` mulai merender.
 
-The takeaway is that a parent-child render relationship between components does not guarantee the same render environment.
+Kesimpulannya adalah hubungan render induk-anak antara komponen tidak menjamin lingkungan render yang sama.
 
 </DeepDive>
 
