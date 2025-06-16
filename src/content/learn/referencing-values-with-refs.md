@@ -67,7 +67,7 @@ export default function Counter() {
 
 </Sandpack>
 
-*Ref* tersebut mengacu pada sebuah angka, tetapi, seperti [*state*](/learn/state-a-components-memory), Anda juga dapat mengacu pada tipe data apapun: sebuah *string*, objek, atau bahkan sebuah fungsi. Berbeda dengan *state*, *ref* adalah sebuah objek JavaScript biasa dengan properti `current` yang dapat Anda baca dan ubah nilainya.
+*Ref* tersebut mengacu pada sebuah angka, tetapi, seperti [*state*](/learn/state-a-components-memory), Anda juga dapat mengacu pada tipe data apa pun: sebuah *string*, objek, atau bahkan sebuah fungsi. Berbeda dengan *state*, *ref* adalah sebuah objek JavaScript biasa dengan properti `current` yang dapat Anda baca dan ubah nilainya.
 
 Perhatikan bahwa **komponen tidak di-*render* ulang setiap kali nilai pada *ref* ditambahkan.** Seperti *state*, nilai dari *refs* akan tetap disimpan atau dipertahankan oleh React saat *render* ulang terjadi. Namun mengubah *state* akan memicu *render* ulang pada komponen, sementara *ref* tidak akan melakukannya!
 
@@ -284,7 +284,7 @@ Anda juga tidak perlu khawatir tentang [menghindari mutasi](/learn/updating-obje
 
 ## *Refs* dan *DOM* {/*refs-and-the-dom*/}
 
-Anda dapat memberikan nilai apapun kepada *ref*. Namun, penggunaan *ref* yang paling umum adalah untuk mengakses sebuah elemen *DOM*. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah *ref* ke dalam atribut `ref` di *JSX*, seperti `<div ref={myRef}>`, React akan menempatkan elemen *DOM* yang sesuai ke dalam `myRef.current`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
+Anda dapat memberikan nilai apa pun kepada *ref*. Namun, penggunaan *ref* yang paling umum adalah untuk mengakses sebuah elemen *DOM*. Misalnya, hal ini berguna jika Anda ingin memberi fokus pada sebuah input secara programatik. Ketika Anda mengoper sebuah *ref* ke dalam atribut `ref` di *JSX*, seperti `<div ref={myRef}>`, React akan menempatkan elemen *DOM* yang sesuai ke dalam `myRef.current`. Ketika elemen tersebut dihapus dari *DOM*, React akan mengubah `myRef.current` menjadi `null`. Anda dapat membaca lebih lanjut tentang hal ini di [Memanipulasi DOM dengan Refs](/learn/manipulating-the-dom-with-refs).
 
 <Recap>
 
@@ -464,7 +464,7 @@ export default function Toggle() {
 
 #### Perbaiki *debouncing* {/*fix-debouncing*/}
 
-Pada contoh ini, semua penangan klik tombol di-*debounce*. Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
+Pada contoh ini, semua penangan klik tombol ["di-*debounce*".](https://kettanaito.com/blog/debounce-vs-throttle) Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
 
 Contoh ini berfungsi, tetapi tidak sepenuhnya seperti yang dimaksudkan. Tombol-tombolnya tidak independen. Untuk melihat masalahnya, klik salah satu tombol, lalu segera klik tombol lain. Anda akan mengharapkan bahwa setelah penundaan, Anda akan melihat pesan dari kedua tombol. Tetapi hanya pesan dari tombol terakhir yang muncul. Pesan dari tombol pertama hilang.
 

@@ -8,6 +8,8 @@ import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconCanary} from 'components/Icon/IconCanary';
+import {IconExperimental} from 'components/Icon/IconExperimental';
 import Link from 'next/link';
 
 interface SidebarLinkProps {
@@ -15,7 +17,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  wip: boolean | undefined;
+  version?: 'canary' | 'major' | 'experimental';
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -26,7 +28,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
-  wip,
+  version,
   level,
   isExpanded,
   hideArrow,
@@ -54,12 +56,13 @@ export function SidebarLink({
       ref={ref}
       title={title}
       target={target}
+      passHref
       aria-current={selected ? 'page' : undefined}
       className={cn(
-        'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+        'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
-          'text-sm pl-6': level > 0,
-          'pl-5': level < 2,
+          'text-sm ps-6': level > 0,
+          'ps-5': level < 2,
           'text-base font-bold': level === 0,
           'text-primary dark:text-primary-dark': level === 0 && !selected,
           'text-base text-secondary dark:text-secondary-dark':
@@ -71,19 +74,36 @@ export function SidebarLink({
         }
       )}>
       {/* This here needs to be refactored ofc */}
-      <span
-        className={cn({
-          'text-gray-400 dark:text-gray-500': wip,
-        })}>
-        {title}
-      </span>
+      <div>
+        {title}{' '}
+        {version === 'major' && (
+          <span
+            title="- Fitur ini tersedia di versi beta React 19 beta dan kanal canary React"
+            className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
+            React 19
+          </span>
+        )}
+        {version === 'canary' && (
+          <IconCanary
+            title=" - Fitur ini tersedia di rilis Canary terbaru React"
+            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+          />
+        )}
+        {version === 'experimental' && (
+          <IconExperimental
+            title=" - Fitur ini tersedia di rilis Eksperimental terbaru React"
+            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+          />
+        )}
+      </div>
+
       {isExpanded != null && !hideArrow && (
         <span
-          className={cn('pr-1', {
+          className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
           })}>
-          <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
+          <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}
     </Link>

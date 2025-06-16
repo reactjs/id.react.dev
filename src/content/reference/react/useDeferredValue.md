@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Referensi {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Panggil fungsi `useDeferredValue` di tingkat atas komponen Anda untuk mendapatkan versi yang ditangguhkan dari nilai tersebut.
 
@@ -34,15 +34,18 @@ function SearchPage() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki tipe apa saja.
+* `value`: Nilai yang ingin Anda tangguhkan. Nilai ini dapat memiliki *type* apa saja.
+* **opsional** `initialValue`: Nilai yang akan digunakan selama render awal suatu komponen. Jika opsi ini dihilangkan, `useDeferredValue` tidak akan menunda selama render awal, karena tidak ada versi `value` sebelumnya yang dapat dirender sebagai gantinya.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-Selama render awal, nilai tangguhan yang dikembalikan akan sama dengan nilai yang Anda berikan. Selama pembaruan, React pertama-tama akan mencoba render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), dan kemudian mencoba render ulang lainnya di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
+- `currentValue`: Selama render awal, nilai tertunda yang dikembalikan akan menjadi `initialValue`, atau sama dengan nilai yang Anda berikan. Selama pembaruan, React akan terlebih dahulu mencoba melakukan render ulang dengan nilai lama (sehingga akan mengembalikan nilai lama), lalu mencoba melakukan render ulang lain di latar belakang dengan nilai baru (sehingga akan mengembalikan nilai yang diperbarui).
 
-#### Caveats {/*caveats*/}
+#### Catatan penting {/*caveats*/}
+
+- Ketika pembaruan berada di dalam *Transition*, `useDeferredValue` selalu mengembalikan `value` yang baru dan tidak memunculkan *render* yang ditunda, karena pembaruan telah ditunda.
 
 - Nilai yang Anda oper ke `useDeferredValue` harus berupa nilai primitif (seperti string dan angka) atau objek yang dibuat di luar *rendering*. Jika Anda membuat objek baru selama perenderan dan langsung mengopernya ke `useDeferredValue`, objek tersebut akan berbeda di setiap perenderan, menyebabkan render ulang latar belakang yang tidak perlu.
 
@@ -84,8 +87,9 @@ Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "te
 
 Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan Suspense:
 
-- Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Kode komponen pemuatan lambat dengan [`lazy`](/reference/react/lazy)
+- Membaca nilai sebuah Promise dengan [`use`](/reference/react/use)
 
 [Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
 
@@ -96,22 +100,7 @@ Dalam contoh ini, komponen `SearchResults` [ditangguhkan](/reference/react/Suspe
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -131,14 +120,9 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// itu belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -158,34 +142,9 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo berjalan.
-// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -210,7 +169,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -310,22 +269,7 @@ Masukkan `"a"` pada contoh di bawah, tunggu hasil dimuat, lalu edit input menjad
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -346,14 +290,9 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// itu belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -373,34 +312,9 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo berjalan.
-// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -425,7 +339,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -507,7 +421,7 @@ Anda dapat menganggapnya terjadi dalam dua langkah:
 
 1. **Pertama, React me-*render* ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
 
-2. **Di latar belakang, React mencoba me-*render* ulang dengan *baik* `query` dan `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
+2. **Di latar belakang, React mencoba me-*render* ulang dengan baik `query` *dan* `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
 Render "latar belakang" yang ditangguhkan dapat diinterupsi. Misalnya, jika Anda mengetik input lagi, React akan mengabaikannya dan memulai kembali dengan nilai baru. React akan selalu menggunakan nilai terbaru yang diberikan.
 
@@ -533,22 +447,7 @@ Dengan perubahan ini, segera setelah Anda mulai mengetik, daftar hasil basi menj
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -575,14 +474,9 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// itu belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti hari ini, cobalah kerangka kerja
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -602,34 +496,9 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo berjalan.
-// TODO: ganti dengan implementasi nyata saat bug diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Catatan: cara Anda melakukan pengambilan data bergantung pada
 // kerangka kerja yang Anda gunakan bersama Suspense.
 // Biasanya, logika caching akan berada di dalam kerangka kerja.
@@ -654,7 +523,7 @@ async function getData(url) {
 async function getSearchResults(query) {
   // Tambahkan penundaan palsu agar menunggu terlihat.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -799,7 +668,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -876,7 +745,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

@@ -81,7 +81,7 @@ Anda bisa membangun "dari atas ke bawah" dengan memulai membangun komponen yang 
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -209,7 +209,7 @@ Pada titik ini, Anda tidak perlu menggunakan nilai state apa pun. Itu untuk lang
 
 Untuk membuat UI interaktif, Anda harus mengizinkan pengguna mengubah model data yang mendasarinya. Anda akan menggunakan *state* untuk ini.
 
-Bayangkan state sebagai kumpulan data perubahan minimal yang perlu diingat oleh aplikasi Anda. Prinsip paling penting dalam menyusun state adalah menjaganya agar tetap [DRY (*Don't Repeat Yourself*)] (https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Cari tahu representasi minimal absolut dari state yang dibutuhkan aplikasi Anda dan hitung semua yang lain sesuai permintaan. Sebagai contoh, jika Anda membuat daftar belanja, Anda dapat menyimpan item sebagai array dalam state. Jika Anda juga ingin menampilkan jumlah item dalam daftar, jangan simpan jumlah item sebagai nilai state lain--sebagai gantinya, baca panjang senarai Anda.
+Bayangkan state sebagai kumpulan data perubahan minimal yang perlu diingat oleh aplikasi Anda. Prinsip paling penting dalam menyusun state adalah menjaganya agar tetap [DRY (*Don't Repeat Yourself*)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Cari tahu representasi minimal absolut dari state yang dibutuhkan aplikasi Anda dan hitung semua yang lain sesuai permintaan. Sebagai contoh, jika Anda membuat daftar belanja, Anda dapat menyimpan item sebagai array dalam state. Jika Anda juga ingin menampilkan jumlah item dalam daftar, jangan simpan jumlah item sebagai nilai state lain--sebagai gantinya, baca panjang senarai Anda.
 
 Sekarang pikirkan semua bagian data dalam contoh aplikasi ini:
 
@@ -261,13 +261,13 @@ Untuk setiap bagian state dalam aplikasi Anda:
     2. Anda juga dapat menempatkan *state* ke dalam beberapa komponen di atas induknya.
     3. Jika Anda tidak dapat menemukan komponen yang masuk akal untuk memiliki *state*, buatlah komponen baru hanya untuk menyimpan *state* dan tambahkan di suatu tempat di dalam hirarki di atas komponen induk umum.
 
-Pada langkah sebelumnya, Anda menemukan dua bagian status dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
+Pada langkah sebelumnya, Anda menemukan dua bagian *state* dalam aplikasi ini: teks input pencarian, dan nilai kotak centang. Dalam contoh ini, keduanya selalu muncul bersamaan, sehingga masuk akal untuk meletakkannya di tempat yang sama.
 
 Sekarang mari kita bahas strateginya:
 
 1. **Identifikasi komponen yang menggunakan state:**
-    * `ProductTable` perlu memfilter daftar produk berdasarkan status tersebut (teks pencarian dan nilai kotak centang). 
-    * `SearchBar` perlu menampilkan status tersebut (teks pencarian dan nilai kotak centang).
+    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang). 
+    * `SearchBar` perlu menampilkan *state* tersebut (teks pencarian dan nilai kotak centang).
 1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
 
@@ -299,7 +299,7 @@ Anda dapat mulai melihat bagaimana aplikasi Anda akan berperilaku. Edit nilai aw
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {
@@ -484,19 +484,33 @@ function FilterableProductTable({ products }) {
 
 Di dalam `SearchBar`, Anda akan menambahkan *event handler* `onChange` dan mengatur state induk darinya:
 
-```js {5}
-<input 
-  type="text" 
-  value={filterText} 
-  placeholder="Search..." 
-  onChange={(e) => onFilterTextChange(e.target.value)} />
+```js {4,5,13,19}
+function SearchBar({
+  filterText,
+  inStockOnly,
+  onFilterTextChange,
+  onInStockOnlyChange
+}) {
+  return (
+    <form>
+      <input
+        type="text"
+        value={filterText}
+        placeholder="Search..."
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
+      <label>
+        <input
+          type="checkbox"
+          checked={inStockOnly}
+          onChange={(e) => onInStockOnlyChange(e.target.checked)}
 ```
 
 Sekarang aplikasi sepenuhnya berfungsi!
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {

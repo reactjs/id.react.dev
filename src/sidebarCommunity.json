@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "IKUT TERLIBAT"
     },
     {
       "title": "Community",
@@ -12,31 +12,35 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Conferences",
+          "title": "Konferensi React",
           "path": "/community/conferences"
         },
         {
-          "title": "React Meetups",
+          "title": "Meetup React",
           "path": "/community/meetups"
         },
         {
-          "title": "React Videos",
+          "title": "Video React",
           "path": "/community/videos"
         },
         {
-          "title": "Meet the Team",
+          "title": "Berkenalan dengan Tim",
           "path": "/community/team"
         },
         {
-          "title": "Docs Contributors",
+          "title": "Kontributor Dokumentasi",
           "path": "/community/docs-contributors"
         },
         {
-          "title": "Acknowledgements",
+          "title": "Terjemahan",
+          "path": "/community/translations"
+        },
+        {
+          "title": "Ucapan Terima Kasih",
           "path": "/community/acknowledgements"
         },
         {
-          "title": "Versioning Policy",
+          "title": "Kebijakan Versi",
           "path": "/community/versioning-policy"
         }
       ]

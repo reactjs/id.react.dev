@@ -32,17 +32,17 @@ function MyComponent() {
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
 * `SomeContext`: Konteks yang sebelumnya telah Anda buat dengan [`createContext`](/reference/react/createContext). Konteks itu sendiri tidak menyimpan informasi, konteks hanya merepresentasikan jenis informasi yang dapat Anda berikan atau baca dari komponen.
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext.Provider` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis me-*render* ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
+`useContext` mengembalikan nilai konteks untuk komponen yang dipanggil. Nilai ini ditentukan sebagai `value` yang dioper ke `SomeContext` terdekat di atas komponen pemanggil dalam pohon. Jika tidak ada penyedia tersebut, maka nilai yang dikembalikan adalah `defaultValue` yang telah Anda berikan ke [`createContext`](/reference/react/createContext) untuk konteks tersebut. Nilai yang dikembalikan selalu mutakhir. React secara otomatis me-*render* ulang komponen yang membaca suatu konteks jika konteks tersebut berubah.
 
-#### Caveats {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
-* Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context.Provider>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
+* Pemanggilan `useContext()` dalam sebuah komponen tidak terpengaruh oleh provider yang dikembalikan dari komponen yang *sama*. `<Context>` yang sesuai harus berada di atas komponen yang melakukan pemanggilan `useContext()`.
 * React **secara otomatis me-*render* ulang** semua anak yang menggunakan konteks tertentu mulai dari penyedia yang menerima `nilai` yang berbeda. Nilai sebelumnya dan nilai berikutnya dibandingkan dengan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Melewatkan render ulang dengan [`memo`](/reference/react/memo) tidak mencegah anak-anak menerima nilai konteks yang baru.
 * Jika sistem build Anda menghasilkan modul duplikat pada keluaran (yang dapat terjadi pada *symlink*), ini dapat merusak konteks. Mengoper sesuatu melalui konteks hanya berfungsi jika `SomeContext` yang Anda gunakan untuk memberikan konteks dan `SomeContext` yang Anda gunakan untuk membacanya adalah objek yang sama persis, seperti yang ditentukan oleh perbandingan `===`.
 
@@ -70,9 +70,9 @@ Untuk mengoper konteks ke sebuah `Button`, bungkus komponen tersebut atau salah 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
@@ -98,9 +98,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -183,14 +183,14 @@ Sering kali, Anda ingin konteks berubah seiring berjalannya waktu. Untuk memperb
 function MyPage() {
   const [theme, setTheme] = useState('dark');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <Button onClick={() => {
         setTheme('light');
       }}>
         Switch to light theme
       </Button>
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
@@ -214,7 +214,7 @@ const ThemeContext = createContext(null);
 export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <label>
         <input
@@ -226,7 +226,7 @@ export default function MyApp() {
         />
         Use dark mode
       </label>
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -318,14 +318,14 @@ const CurrentUserContext = createContext(null);
 export default function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <CurrentUserContext.Provider
+    <CurrentUserContext
       value={{
         currentUser,
         setCurrentUser
       }}
     >
       <Form />
-    </CurrentUserContext.Provider>
+    </CurrentUserContext>
   );
 }
 
@@ -412,8 +412,8 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
@@ -430,8 +430,8 @@ export default function MyApp() {
           />
           Use dark mode
         </label>
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   )
 }
 
@@ -458,7 +458,7 @@ function LoginForm() {
   const {setCurrentUser} = useContext(CurrentUserContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const canLogin = firstName !== '' && lastName !== '';
+  const canLogin = firstName.trim() !== '' && lastName.trim() !== '';
   return (
     <>
       <label>
@@ -597,16 +597,16 @@ export default function MyApp() {
 function MyProviders({ children, theme, setTheme }) {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
         }}
       >
         {children}
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   );
 }
 
@@ -746,7 +746,7 @@ Baca [panduan lengkap](/learn/scaling-up-with-reducer-and-context) dari contoh i
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
@@ -762,7 +762,7 @@ export default function TaskApp() {
 }
 ```
 
-```js TasksContext.js
+```js src/TasksContext.js
 import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
@@ -776,11 +776,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -826,7 +826,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState, useContext } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
@@ -855,7 +855,7 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState, useContext } from 'react';
 import { useTasks, useTasksDispatch } from './TasksContext.js';
 
@@ -979,9 +979,9 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
     <>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext value={theme}>
         <Form />
-      </ThemeContext.Provider>
+      </ThemeContext>
       <Button onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}>
@@ -1068,18 +1068,18 @@ function Button({ children, onClick }) {
 Anda dapat mengganti konteks untuk suatu bagian pohon dengan membungkus bagian tersebut dengan penyedia bersama nilai yang berbeda.
 
 ```js {3,5}
-<ThemeContext.Provider value="dark">
+<ThemeContext value="dark">
   ...
-  <ThemeContext.Provider value="light">
+  <ThemeContext value="light">
     <Footer />
-  </ThemeContext.Provider>
+  </ThemeContext>
   ...
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 Anda bisa membuat sarang dan menimpa penyedia sebanyak yang Anda butuhkan.
 
-<Recipes title="Examples of overriding context">
+<Recipes titleText="Examples of overriding context">
 
 #### Menggantikan sebuah tema {/*overriding-a-theme*/}
 
@@ -1094,9 +1094,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -1105,9 +1105,9 @@ function Form() {
     <Panel title="Welcome">
       <Button>Sign up</Button>
       <Button>Log in</Button>
-      <ThemeContext.Provider value="light">
+      <ThemeContext value="light">
         <Footer />
-      </ThemeContext.Provider>
+      </ThemeContext>
     </Panel>
   );
 }
@@ -1223,7 +1223,7 @@ export default function Page() {
 }
 ```
 
-```js Section.js
+```js src/Section.js
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -1231,15 +1231,15 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
 ```
 
-```js Heading.js
+```js src/Heading.js
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -1266,7 +1266,7 @@ export default function Heading({ children }) {
 }
 ```
 
-```js LevelContext.js
+```js src/LevelContext.js
 import { createContext } from 'react';
 
 export const LevelContext = createContext(0);
@@ -1303,9 +1303,9 @@ function MyApp() {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext value={{ currentUser, login }}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1331,9 +1331,9 @@ function MyApp() {
   }), [currentUser, login]);
 
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthContext value={contextValue}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1350,8 +1350,8 @@ Baca lebih lanjut tentang [`useMemo`]((/reference/react/useMemo#skipping-re-rend
 
 Ada beberapa cara umum yang dapat menyebabkan hal ini terjadi:
 
-1. Anda me-*render* `<SomeContext.Provider>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext.Provider>` *di atas dan di luar* komponen yang memanggil `useContext()`.
-2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext.Provider>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
+1. Anda me-*render* `<SomeContext>` di komponen yang sama (atau di bawahnya) dengan tempat Anda memanggil `useContext()`. Pindahkan `<SomeContext>` *di atas dan di luar* komponen yang memanggil `useContext()`.
+2. Anda mungkin lupa membungkus komponen Anda dengan `<SomeContext>`, atau Anda mungkin meletakkannya di bagian pohon yang berbeda dari yang Anda kira. Periksa apakah hirarki sudah benar dengan menggunakan [React DevTools.] (/learn/react-developer-tools)
 3. Anda mungkin mengalami masalah build dengan tooling Anda yang menyebabkan `SomeContext` yang terlihat dari komponen penyedia dan `SomeContext` yang terlihat oleh komponen pembacaan menjadi dua objek yang berbeda. Hal ini dapat terjadi jika Anda menggunakan *symlink*, misalnya. Anda dapat memverifikasi hal ini dengan menugaskan mereka ke global seperti `window.SomeContext1` dan `window.SomeContext2` dan kemudian memeriksa apakah `window.SomeContext1 === window.SomeContext2` di konsol. Jika tidak sama, perbaiki masalah tersebut di tingkat build tool.
 
 ### Saya selalu mendapatkan `undefined` dari konteks saya meskipun nilai defaultnya berbeda {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
@@ -1360,9 +1360,9 @@ Anda mungkin memiliki penyedia tanpa `value` di dalam pohon:
 
 ```js {1,2}
 // 🚩 Doesn't work: no value prop
-<ThemeContext.Provider>
+<ThemeContext>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 Jika Anda lupa menentukan `value`, ini sama saja dengan mengoper `value={undefined}`.
@@ -1371,18 +1371,18 @@ Anda mungkin juga tidak sengaja menggunakan nama *prop* yang berbeda:
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"
-<ThemeContext.Provider theme={theme}>
+<ThemeContext theme={theme}>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 Pada kedua kasus ini, Anda akan melihat peringatan dari React di konsol. Untuk memperbaikinya, panggil *prop* `value`:
 
 ```js {1,2}
 // ✅ Passing the value prop
-<ThemeContext.Provider value={theme}>
+<ThemeContext value={theme}>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
-Perhatikan bahwa [nilai *default* dari panggilan `createContext(defaultValue)` Anda] (#specifying-a-fallback-default-value) hanya digunakan **jika tidak ada penyedia yang cocok di atas sama sekali **Jika ada komponen `<SomeContext.Provider value = {undefined}>` di suatu tempat di dalam pohon induk, komponen yang memanggil `useContext(SomeContext)` ` akan menerima `undefined` sebagai nilai konteks.
+Perhatikan bahwa [nilai *default* dari panggilan `createContext(defaultValue)` Anda](#specifying-a-fallback-default-value) hanya digunakan **jika tidak ada *provider* yang cocok di atas sama sekali.** Jika ada komponen `<SomeContext value = {undefined}>` di suatu tempat di dalam pohon induk, komponen yang memanggil `useContext(SomeContext)` *akan* menerima `undefined` sebagai nilai konteks.

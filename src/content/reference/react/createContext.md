@@ -20,7 +20,7 @@ const SomeContext = createContext(defaultValue)
 
 ### `createContext(defaultValue)` {/*createcontext*/}
 
-Panggil fungsi `createContext` di luar komponen apapun untuk membuat konteks.
+Panggil fungsi `createContext` di luar komponen apa pun untuk membuat konteks.
 
 ```js
 import { createContext } from 'react';
@@ -38,14 +38,15 @@ const ThemeContext = createContext('light');
 
 `createContext` mengembalikan sebuah konteks objek.
 
-**Objek konteks itu sendiri tidak menyimpan informasi apapun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext.Provider`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
+**Objek konteks itu sendiri tidak menyimpan informasi apa pun** Objek ini merepresentasikan konteks yang dibaca atau disediakan oleh komponen lain. Biasanya, Anda akan menggunakan [`SomeContext`](#provider) pada komponen di atas untuk menentukan nilai konteks, dan memanggil [`useContext(SomeContext)`](/reference/react/useContext) pada komponen dibawah ini untuk membacanya. Objek konteks memiliki beberapa properti:
 
-* `SomeContext.Provider` memungkinkan Anda memberikan nilai konteks pada komponen.
-* `SomeContext.Consumer` adalah cara alternatif dan jarang digunakan untuk membaca nilai dari konteks.
+* `SomeContext` memungkinkan Anda memberikan nilai konteks pada komponen.
+* `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
+* `SomeContext.Provider` adalah cara terdahulu untuk memberikan nilai konteks sebelum React 19.
 
 ---
 
-### `SomeContext.Provider` {/*provider*/}
+### `SomeContext` Provider {/*provider*/}
 
 Bungkus komponen Anda ke dalam penyedia konteks untuk menentukan nilai konteks ini untuk semua komponen di dalamnya:
 
@@ -54,12 +55,20 @@ function App() {
   const [theme, setTheme] = useState('light');
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Page />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
+
+<Note>
+
+Starting in React 19, you can render `<SomeContext>` as a provider. 
+
+In older versions of React, use `<SomeContext.Provider>`.
+
+</Note>
 
 #### Props {/*provider-props*/}
 
@@ -106,7 +115,7 @@ function Button() {
 
 Konteks memungkinkan komponen [pass information deep down](/learn/passing-data-deeply-with-context) tanpa secara eksplisit memberikan _props_.
 
-Panggil fungsi `createContext` diluar komponen apapun untuk membuat satu atau beberapa konteks.
+Panggil fungsi `createContext` diluar komponen apa pun untuk membuat satu atau beberapa konteks.
 
 ```js [[1, 3, "ThemeContext"], [1, 4, "AuthContext"], [3, 3, "'light'"], [3, 4, "null"]]
 import { createContext } from 'react';
@@ -141,11 +150,11 @@ function App() {
   // ...
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -187,11 +196,11 @@ import { ThemeContext, AuthContext } from './Contexts.js';
 function App() {
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```

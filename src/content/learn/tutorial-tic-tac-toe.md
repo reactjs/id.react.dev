@@ -4,7 +4,7 @@ title: 'Tutorial: Tic-Tac-Toe'
 
 <Intro>
 
-Dalam tutorial ini, Anda akan membuat sebuah gim *tic-tac-toe* sederhana. Tutorial ini berasumsi anda tidak memiliki pengetahuan sebelumnya mengenai React. Teknik-teknik yang akan Anda pelajari di tutorial ini akan menjadi fundamental untuk membuat aplikasi apapun dengan React, dan memahami ini dengan sepenuhnya akan memberikan Anda pemahaman mendalam mengenai React.
+Dalam tutorial ini, Anda akan membuat sebuah gim *tic-tac-toe* sederhana. Tutorial ini berasumsi anda tidak memiliki pengetahuan sebelumnya mengenai React. Teknik-teknik yang akan Anda pelajari di tutorial ini akan menjadi fundamental untuk membuat aplikasi apa pun dengan React, dan memahami ini dengan sepenuhnya akan memberikan Anda pemahaman mendalam mengenai React.
 
 </Intro>
 
@@ -29,7 +29,7 @@ Anda dapat melihat seperti apa tampilannya setelah Anda selesai di sini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -147,7 +147,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -206,13 +206,13 @@ Pada editor kode langsung di bawah ini, klik **Fork** di pojok kanan atas untuk 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Square() {
   return <button className="square">X</button>;
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -263,8 +263,8 @@ body {
 
 Anda juga dapat mengikuti tutorial ini dengan menggunakan *development environment* lokal Anda. Untuk melakukan ini, Anda perlu:
 
-1. Menginstal [Node.js](https://nodejs.org/en/)
-1. Pada tab CodeSandbox yang telah Anda buka sebelumnya, tekan tombol pojok kiri atas untuk membuka menu, lalu pilih **File > Export to ZIP** pada menu tersebut untuk mengunduh arsip berkas-berkas secara lokal
+1. Instal [Node.js](https://nodejs.org/en/)
+1. Pada tab CodeSandbox yang telah Anda buka sebelumnya, tekan tombol pojok kiri atas untuk membuka menu, lalu pilih **Download Sandbox** pada menu tersebut untuk mengunduh arsip berkas-berkas secara lokal
 1. *Unzip* arsip tersebut, lalu buka terminal dan `cd` ke direktori yang telah Anda *unzip*
 1. Instal dependensi dengan `npm install`
 1. Jalankan `npm start` memulai server lokal dan ikuti petunjuknya untuk melihat kode yang berjalan di peramban
@@ -362,7 +362,7 @@ Anda akan mendapatkan *error* berikut:
 
 <ConsoleBlock level="error">
 
-/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment `<>...</>`?
+/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX Fragment `<>...</>`?
 
 </ConsoleBlock>
 
@@ -455,7 +455,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -627,7 +627,7 @@ Kode Anda yang telah diperbarui akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 function Square({ value }) {
   return <button className="square">{value}</button>;
 }
@@ -655,7 +655,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -807,7 +807,7 @@ Setelah Anda melakukan perubahan di atas, kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square() {
@@ -850,7 +850,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -988,7 +988,7 @@ Dan kode Anda akan terlihat seperti ini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value }) {
@@ -1019,7 +1019,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1228,7 +1228,7 @@ Seperti inilah tampilan kode Anda:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1270,7 +1270,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1422,7 +1422,7 @@ Sekarang Anda hanya dapat menambahkan tanda `X` atau `O` pada kotak kosong! Beri
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1473,7 +1473,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1524,7 +1524,7 @@ body {
 
 Sekarang setelah para pemain dapat bergiliran, Anda ingin menunjukkan kapan permainan dimenangkan dan tidak ada lagi giliran yang harus dilakukan. Untuk melakukan ini, Anda akan menambahkan fungsi pembantu yang disebut `calculateWinner` yang mengambil sebuah senarai berisi 9 kotak, memeriksa pemenang dan mengembalikan `'X'`, `'O'`, atau `null` yang sesuai. Jangan terlalu khawatir dengan fungsi `calculateWinner`; fungsi ini tidak spesifik terhadap React:
 
-```js App.js
+```js src/App.js
 export default function Board() {
   //...
 }
@@ -1594,7 +1594,7 @@ Selamat! Anda sekarang memiliki permainan *tic-tac-toe* yang berfungsi. Dan Anda
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1674,7 +1674,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1872,7 +1872,7 @@ Pada titik ini, Anda telah memindahkan state untuk berada di komponen `Game`, da
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1970,7 +1970,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2073,11 +2073,17 @@ export default function Game() {
 }
 ```
 
-Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` Anda akan memperbaiki error ini di bagian selanjutnya.
+Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan:
+
+<ConsoleBlock level="warning">
+Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
+</ConsoleBlock>
+
+Anda akan memperbaiki error ini di bagian selanjutnya.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2193,7 +2199,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2266,7 +2272,7 @@ menjadi
 <li>Alexa: 5 tasks left</li>
 ```
 
-Selain jumlah yang diperbarui, manusia yang membaca ini mungkin akan mengatakan bahwa Anda menukar urutan Alexa dan Ben dan menyisipkan Claudia di antara Alexa dan Ben. Namun, React adalah program komputer dan tidak dapat mengetahui apa yang Anda maksudkan, sehingga Anda perlu menentukan props _key_ untuk setiap item list untuk membedakan setiap item list dari saudaranya. Jika data Anda berasal dari database, ID database Alexa, Ben, dan Claudia dapat digunakan sebagai key.
+Selain jumlah yang diperbarui, manusia yang membaca ini mungkin akan mengatakan bahwa Anda menukar urutan Alexa dan Ben dan menyisipkan Claudia di antara Alexa dan Ben. Namun, React adalah program komputer dan tidak dapat mengetahui apa yang Anda maksudkan, sehingga Anda perlu menentukan properti _key_ untuk setiap item list untuk membedakan setiap item list dari saudaranya. Jika data Anda berasal dari database, ID database Alexa, Ben, dan Claudia dapat digunakan sebagai key.
 
 ```js {1}
 <li key={user.id}>
@@ -2305,7 +2311,7 @@ const moves = history.map((squares, move) => {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2422,7 +2428,7 @@ function calculateWinner(squares) {
 
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2526,7 +2532,7 @@ Jika Anda mengeklik langkah mana pun dalam riwayat permainan, papan *tic-tac-toe
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -2646,7 +2652,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2736,7 +2742,7 @@ Lihat hasil akhirnya di sini:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2854,7 +2860,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }

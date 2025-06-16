@@ -38,7 +38,7 @@ function TodoList({ todos, tab }) {
 
 #### Parameters {/*parameters*/}
 
-* `calculateValue`: Fungsi untuk menghitung nilai yang ingin Anda *cache*. Nilai harus murni, tidak mempunyai argumen, dan harus membalikkan nilai dari tipe data apapun. React akan memanggil fungsi tersebut pada *render* awal. Pada *render* selanjutnya, React akan mengembalikan nilai yang sama jika `dependencies` tidak berubah dari *render* terakhir. Sebaliknya, React akan memanggil `calculateValue`, mengembalikan hasil nilainya, dan disimpan sehingga nilai tersebut dapat digunakan kembali nantinya.
+* `calculateValue`: Fungsi untuk menghitung nilai yang ingin Anda *cache*. Nilai harus murni, tidak mempunyai argumen, dan harus membalikkan nilai dari tipe data apa pun. React akan memanggil fungsi tersebut pada *render* awal. Pada *render* selanjutnya, React akan mengembalikan nilai yang sama jika `dependencies` tidak berubah dari *render* terakhir. Sebaliknya, React akan memanggil `calculateValue`, mengembalikan hasil nilainya, dan disimpan sehingga nilai tersebut dapat digunakan kembali nantinya.
 
 * `dependencies`: Daftar dari semua nilai reaktif yang direferensikan dalam kode `calculatedValue`. Nilai reaktif termasuk *props*, *state*, serta seluruh variabel dan fungsi yang dideklarasi langsung dalam badan komponen. Jika *linter* Anda sudah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* akan memeriksa setiap nilai reaktif sudah dispesifikasikan sebagai sebuah *dependency* dengan benar. Daftar `dependency` harus memiliki jumlah *item* yang tetap dan dituliskan dalam sebaris seperti `[dep1, dep2, dep3]`. React akan membandingkan tiap `dependency` dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
@@ -161,7 +161,7 @@ Tidak ada manfaat untuk membungkus perhitungan dalam `useMemo` pada kasus lainny
 1. Hindari [Effect tidak berguna yang memperbarui state.](/learn/you-might-not-need-an-effect) Sebagian besar masalah kinerja di aplikasi React disebabkan oleh rantai pembaruan yang berasal dari Effect yang menyebabkan komponen Anda me*render* berulang kali.
 1. Cobalah untuk [menghilangkan *dependency* yang tidak perlu dari Effect Anda.](/learn/removing-effect-dependencies) Sebagai contoh, dibandingkan memoisasi, seringkali lebih mudah untuk memindahkan beberapa objek atau fungsi di dalam Effect atau di luar komponen.
 
-Jika interaksi tertentu masih terasa lamban, [gunakan *profiler* React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) untuk melihat komponen mana yang paling diuntungkan dengan memoisasi dan tambahkan memoisasi jika diperlukan. Prinsip ini akan menjadikan komponen Anda lebih gampang di-*debug* dan dipahami, jadi ada baiknya untuk mengikutinya dalam hal apapun. Dalam jangka panjang, kami sedang meneliti [melakukan memoisasi terperinci secara otomatis](https://www.youtube.com/watch?v=lGEMwh32soc) untuk menyelesaikan masalah ini sekali dan untuk selamanya.
+Jika interaksi tertentu masih terasa lamban, [gunakan *profiler* React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) untuk melihat komponen mana yang paling diuntungkan dengan memoisasi dan tambahkan memoisasi jika diperlukan. Prinsip ini akan menjadikan komponen Anda lebih gampang di-*debug* dan dipahami, jadi ada baiknya untuk mengikutinya dalam hal apa pun. Dalam jangka panjang, kami sedang meneliti [melakukan memoisasi terperinci secara otomatis](https://www.youtube.com/watch?v=lGEMwh32soc) untuk menyelesaikan masalah ini sekali dan untuk selamanya.
 
 </DeepDive>
 
@@ -177,7 +177,7 @@ Ubah temanya. **Berkat `useMemo`, tetap cepat meskipun ada pelambatan buatan!** 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -219,7 +219,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -246,7 +246,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -263,7 +263,7 @@ export function filterTodos(todos, tab) {
   console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -307,7 +307,7 @@ Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat! Hal ini karen
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -349,7 +349,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -372,7 +372,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -389,7 +389,7 @@ export function filterTodos(todos, tab) {
   console.log('[DILAMBATKAN] Menyaring ' + todos.length + ' todos untuk tab "' + tab + '".');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return todos.filter(todo => {
@@ -427,7 +427,7 @@ Namun, ini adalah kode yang sama **dengan pelambat buatan dihapus.** Apakah tida
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -469,7 +469,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -491,7 +491,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -645,12 +645,13 @@ Membungkus *node* JSX secara manual ke dalam `useMemo` tidaklah mudah. Misalnya,
 
 Pada contoh ini, komponen `List` **dilambatkan secara artifisial** sehingga Anda dapat melihat apa yang terjadi ketika komponen React yang anda *render* benar-benar lambat. Coba ganti *tab* dan ubah temanya.
 
-Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar. 
+Mengganti *tab* terasa lambat karena `List` yang diperlambat dipaksa untuk *render* ulang. Hal ini wajar karena `tab` berubah, sehingga Anda perlu menampilkan pilihan baru untuk pengguna di layar.
 
 Selanjutnya, coba ubah temanya. **Berkat `useMemo` dan [`memo`](/reference/react/memo), mengubah tema menjadi cepat walaupun dilambatkan secara artifisial!** Pe-*render*-an ulang pada `List` dilewati karena senarai (*array*) `visibleItems` tidak berubah semenjak *render* terakhir. Senarai (*array*) `visibleItems` tidak berubah karena `todos` dan `tabs` (yang Anda berikan sebagai `dependency` ke `useMemo`) tidak berubah semenjak *render* terakhir.
+
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -691,7 +692,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import List from './List.js';
 import { filterTodos } from './utils.js'
@@ -710,14 +711,14 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
   console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -737,7 +738,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -792,7 +793,7 @@ Tidak seperti contoh sebelumnya, mengubah tema juga sangat lambat sekarang! Hal 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -833,7 +834,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -848,14 +849,14 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
   console.log('[DILAMBATKAN] Merender <List /> dengan item sebanyak ' + items.length);
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Tidak melakukan apapun selama 500 ms untuk meniru kode yang sangat lambat
+    // Tidak melakukan apa pun selama 500 ms untuk meniru kode yang sangat lambat
   }
 
   return (
@@ -875,7 +876,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -924,7 +925,7 @@ Namun, ini adalah kode yang sama **tanpa pelambatan buatan.** Apakah tidak adany
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -965,7 +966,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -979,7 +980,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 function List({ items }) {
@@ -1000,7 +1001,7 @@ function List({ items }) {
 export default memo(List);
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -1055,7 +1056,83 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ---
 
-### Memoisasi sebuah dependency dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
+### Mencegah Effect agar tidak terlalu sering aktif {/*preventing-an-effect-from-firing-too-often*/}
+
+Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/pelajari/sinkronisasi-dengan-efek)
+
+```js {4-7,10}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: 'https://localhost:1234',
+    roomId: roomId
+  }
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    // ...
+```
+
+Hal ini menimbulkan masalah. [Setiap nilai reaktif harus dideklarasikan sebagai dependensi *Effect* Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Namun, jika Anda mendeklarasikan `options` sebagai dependensi, hal itu akan menyebabkan *Effect* Anda terus-menerus terhubung kembali ke ruang obrolan:
+
+
+```js {5}
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // 🔴 Masalah: Depensi ini berubah setiap render
+  // ...
+```
+
+Untuk mengatasi hal ini, Anda dapat membungkus objek yang perlu Anda panggil dari *Effect* dalam `useMemo`:
+
+```js {4-9,16}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = useMemo(() => {
+    return {
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    };
+  }, [roomId]); // ✅ Hanya berubah ketika roomId berubah
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // ✅ Hanya berubah ketika options berubah
+  // ...
+```
+
+Ini memastikan bahwa objek `options` sama di antara *render* ulang jika `useMemo` mengembalikan objek yang di-*cache*.
+
+Namun, karena `useMemo` adalah pengoptimalan kinerja, bukan jaminan semantik, React dapat membuang nilai yang di-*cache* jika [ada alasan khusus untuk melakukannya](#caveats). Ini juga akan menyebabkan efek diaktifkan kembali, **jadi lebih baik untuk menghilangkan kebutuhan akan ketergantungan fungsi** dengan memindahkan objek Anda *di dalam* Effect:
+
+```js {5-8,13}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const options = { // ✅ Tidak perlu useMemo atau dependensi objek!
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    }
+    
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ Hanya berubah ketika roomId berubah
+  // ...
+```
+
+Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
+
+### Memoisasi sebuah dependensi dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
 
 
 Misalkan Anda mempunyai perhitungan yang bergantung pada objek yang dibuat langsung pada badan komponen:

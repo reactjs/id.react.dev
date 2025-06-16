@@ -42,7 +42,7 @@ Ketika Anda memulai aplikasi, Anda perlu untuk memicu *render* awal. Kerangka ke
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 import Image from './Image.js';
 import { createRoot } from 'react-dom/client';
 
@@ -50,7 +50,7 @@ const root = createRoot(document.getElementById('root'))
 root.render(<Image />);
 ```
 
-```js Image.js
+```js src/Image.js
 export default function Image() {
   return (
     <img
@@ -70,9 +70,9 @@ Cobalah memberi komentar di luar dari `root.render()` dan lihat komponen tersebu
 Setelah komponen telah pertama kali di*render*, Anda dapat memicu *render* kembali dengan memperbarui *state* menggunakan [fungsi `set`.](/reference/react/useState#setstate) Mengubah *state* komponen Anda otomatis akan membuat antrian proses *render*. (Anda dapat membayangkan ada sebuah restoran dimana pengunjung memesan teh, hidangan penutup, dan semua hal tersebut dipesan setelah melakukan pesanan pertama, tergantung pada keadaan haus atau lapar dari pengunjung)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State diperbarui..." alt="React sebagai a server pada sebuah restoran, menyajikan sebuah Kartu UI untuk pengguna, direpresentasikan sebagai pelindung dengan kursor di kepala mereka. Pelindung mereka menyatakan mereka menginginkan kartu merah mudah, bukan yang hitam!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...memicu..." alt="React mengembalikan kepada komponen dapur dan mengatakan pada Chef kartu bahwa mereka membutuhkan kartu merah muda." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="Chef kartu itu memberi React kartu merah muda." src="/images/docs/illustrations/i_rerender3.png" />
+  <Illustration caption="State update..." alt="React sebagai pelayan di restoran, menyajikan UI Kartu kepada pengguna, yang direpresentasikan sebagai pelanggan dengan kursor di kepala mereka. Pelanggan tersebut menyatakan bahwa ia menginginkan kartu berwarna merah muda, bukan hitam!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React kembali ke Dapur Komponen dan memberi tahu Koki Kartu bahwa ia memerlukan Kartu berwarna merah muda." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="Koki Kartu memberikan Kartu merah muda kepada React." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
 ## Langkah 2: React me-render komponen Anda {/*step-2-react-renders-your-components*/}
@@ -84,11 +84,11 @@ Setelah Anda memicu sebuah *render*, React memanggil komponen Anda untuk menemuk
 
 Proses ini bersifat rekursif: jika komponen yang diperbarui mengembalikan beberapa komponen lain, React akan me-*render* komponen _itu_ berikutnya, dan jika komponen itu juga mengembalikan sesuatum React akan me-*render* komponen _itu_ berikutnya, dan seterusnya. Proses tersebut akan berlanjut sampai tidak terdapat komponen bersarang dan React mengetahui persis apa yang harus ditampilkan pada layar.
 
-Dalam contoh berikut, React akan memanggil `Gallery()` dan  `Image()` beberapa kali:   
+Dalam contoh berikut, React akan memanggil `Gallery()` dan  `Image()` beberapa kali:
 
 <Sandpack>
 
-```js Gallery.js active
+```js src/Gallery.js active
 export default function Gallery() {
   return (
     <section>
@@ -110,7 +110,7 @@ function Image() {
 }
 ```
 
-```js index.js
+```js src/index.js
 import Gallery from './Gallery.js';
 import { createRoot } from 'react-dom/client';
 
@@ -125,7 +125,7 @@ img { margin: 0 10px 10px 0; }
 </Sandpack>
 
 * **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
-* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apapun sampai tahapan selanjutnya, yaitu fase *commit*. 
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*. 
 
 <Pitfall>
 
@@ -157,7 +157,7 @@ Setelah proses _render_ (memanggil) komponen Anda, React akan memodifikasi DOM.
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   return (
     <>
@@ -168,7 +168,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 

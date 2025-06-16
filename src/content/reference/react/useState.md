@@ -4,10 +4,10 @@ title: useState
 
 <Intro>
 
-`useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
+`useState` merupakan React Hook yang memungkinkan Anda untuk menambahkan [variabel *state*](/learn/state-a-components-memory) pada komponen Anda.
 
 ```js
-const [state, setState] = useState(initialState);
+const [state, setState] = useState(initialState)
 ```
 
 </Intro>
@@ -16,11 +16,11 @@ const [state, setState] = useState(initialState);
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `useState(initialState)` {/*usestate*/}
 
-Call `useState` at the top level of your component to declare a [state variable.](/learn/state-a-components-memory)
+Panggil fungsi `useState` di tingkat atas komponen Anda untuk mendeklarasikan sebuah [variabel *state*.](/learn/state-a-components-memory)
 
 ```js
 import { useState } from 'react';
@@ -32,32 +32,32 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai variable *state* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
-  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
+* `initialState`: Nilai awal pada sebuah *state*. Nilainya dapat berupa jenis apa saja, namun terdapat perilaku khusus untuk fungsi. Argumen ini diabaikan setelah *rendering* awal.
+  * Jika Anda mengoper sebuah fungsi sebagai `initialState`, itu akan diperlakukan sebagai fungsi inisialisasi (*initializer function*). Fungsi tersebut harus murni (*pure*), tidak boleh menerima argumen, dan harus mengembalikan nilai dengan tipe apa pun. React akan memanggil fungsi inisialisasi ketika menginisialisasi komponen, dan menyimpan nilai kembaliannya sebagai *state* awal. [Lihat contoh lainnya di bawah ini.](#avoiding-recreating-the-initial-state)
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-`useState` returns an array with exactly two values:
+`useState` mengembalikan sebuah senarai yang memiliki dua nilai:
 
-1. The current state. During the first render, it will match the `initialState` you have passed.
-2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
+1. *State* saat ini. Pada saat pertama kali *render*, itu akan sama dengan `initialState` yang Anda oper sebelumnya.
+2. Fungsi [*`set` function*](#setstate) yang memungkinkan Anda memperbarui *state* menjadi nilai yang berbeda dan memicu pembaruan ulang (*re-render*).
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* `useState` merupakan sebuah Hook, sehingga Anda hanya dapat memanggilnya **di level atas komponen Anda** atau Hooks Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan atau kondisi. Jika Anda membutuhkannya, Anda dapat membuat komponen baru dan pindahkan *state* ke dalamnya.
+* Dalam mode ketat (*Strict Mode*), React akan **memanggil fungsi inisialisasi Anda dua kali** untuk [membantu Anda menemukan kejadian yang tidak diharapkan.](#my-initializer-or-updater-function-runs-twice) Hal ini hanya terjadi pada pengembangan dan tidak mempengaruhi produksi. Jika *initializer function* Anda murni (sebagaimana mestinya), ini seharusnya tidak mempengaruhi perilakunya. Hasil dari salah satu pemanggilan akan diabaikan.
 
 ---
 
-### `set` functions, like `setSomething(nextState)` {/*setstate*/}
+### Fungsi `set`, seperti `setSomething(nextState)` {/*setstate*/}
 
-The `set` function returned by `useState` lets you update the state to a different value and trigger a re-render. You can pass the next state directly, or a function that calculates it from the previous state:
+Fungsi `set` yang dikembalikan oleh `useState` memungkinkan Anda memperbarui *state* ke nilai yang berbeda dan memicu pembaruan ulang (*re-render*). Anda dapat mengoper *state* berikutnya secara langsung, atau sebuah fungsi yang akan mengkalkulasi dari *state* sebelumnya:
 
 ```js
 const [name, setName] = useState('Edward');
@@ -68,34 +68,36 @@ function handleClick() {
   // ...
 ```
 
-#### Parameters {/*setstate-parameters*/}
+#### Parameter {/*setstate-parameters*/}
 
-* `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+* `nextState`: Nilai yang Anda inginkan untuk menjadi *state* berikutnya. Ini dapat berupa nilai dari jenis apa pun, tetapi ada perilaku khusus untuk sebuah fungsi.
+  * Jika Anda mengoper sebuah fungsi sebagai `nextState`, itu akan diperlakukan sebagai fungsi pembaruan (*updater function*). Fungsi ini harus murni (*pure*), hanya menerima *state* yang tertunda sebagai argumen satu-satunya, dan harus mengembalikan *state* berikutnya. React akan menempatkan fungsi pembaruan Anda dalam antrian dan memperbarui ulang komponen Anda. Selama *render* berikutnya, React akan mengkalkulasi *state* berikutnya dengan menerapkan semua pembaruan dalam antrian ke *state* sebelumnya [Lihat contoh lainnya di bawah ini.](#updating-state-based-on-the-previous-state)
 
-#### Returns {/*setstate-returns*/}
+#### Kembalian {/*setstate-returns*/}
 
-`set` functions do not have a return value.
+Fungsi `set` tidak memiliki nilai kembalian.
 
-#### Caveats {/*setstate-caveats*/}
+#### Catatan Penting {/*setstate-caveats*/}
 
-* The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
+* Fungsi `set` **hanya memperbarui variabel *state* ketika *render* berikutnya**. Jika Anda membaca variabel *state* setelah memanggil fungsi `set`, [Anda akan tetap mendapatkan nilai lama](#ive-updated-the-state-but-logging-gives-me-the-old-value) yang ada di layar sebelum pemanggilan Anda.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
+* Jika nilai baru yang Anda berikan identik dengan `state` saat ini, seperti yang ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React akan **melewatkan proses pembaruan ulang komponen dan anak-anaknya** Ini merupakan sebulah optimisasi. Meskipun dalam beberapa kasus React mungkin masih perlu memanggil komponen Anda sebelum melewatkan anak-anaknya, ini seharusnya tidak mempengaruhi kode Anda.
 
-* React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+* React [pembaruan state berkelompok.](/learn/queueing-a-series-of-state-updates) Fungsi `set` akan memperbarui tampilan **setelah semua *event handler* selesai dijalankan** dan memanggil fungsi `set` masing-masing. Hal ini mencegah terjadinya beberapa pembaruan ulang selama satu *event*. Dalam kasus yang jarang terjadi di mana Anda perlu memaksa React untuk memperbarui tampilan lebih awal, misalnya untuk mengakses DOM, Anda dapat menggunakan [`flushSync`.](/reference/react-dom/flushSync)
 
-* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
+* Fungsi `set` memiliki identitas yang stabil, jadi Anda akan sering melihatnya dihilangkan dari dependensi Effect, tetapi memasukkannya tidak akan menyebabkan Effect aktif. Jika linter memungkinkan Anda menghilangkan dependensi tanpa kesalahan, itu aman untuk dilakukan. [Pelajari selengkapnya tentang menghapus dependensi Effect.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
-* In Strict Mode, React will **call your updater function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* Memanggil fungsi `set` selama *rendering* hanya diperbolehkan dari dalam komponen yang sedang di-*render* saat ini. React akan membuang hasilnya dan segera mencoba me-*render* kembali dengan *state* yang baru. Pola ini jarang dibutuhkan, tetapi bisa digunakan untuk **menyimpan informasi dari render sebelumnya**. [See an example below.](#storing-information-from-previous-renders)
+
+* Pada mode ketat, React akan **memanggil fungsi pembaruan Anda dua kali** untuk [membantu Anda menemukan kejadian yang tidak diharapkan.](#my-initializer-or-updater-function-runs-twice) Ini hanya terjadi di lingkungan pengembangan dan tidak memengaruhi produksi. Jika fungsi pembaruan Anda murni (seperti seharusnya), ini tidak akan memengaruhi perilakunya. Hasil dari salah satu panggilan akan diabaikan.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Adding state to a component {/*adding-state-to-a-component*/}
+### Menambahkan state pada sebuah komponen {/*adding-state-to-a-component*/}
 
-Call `useState` at the top level of your component to declare one or more [state variables.](/learn/state-a-components-memory)
+Memanggil `useState` di tingkat atas komponen Anda untuk mendeklarasikan satu atau lebih [variabel *state*.](/learn/state-a-components-memory)
 
 ```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
 import { useState } from 'react';
@@ -106,14 +108,14 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Konvensi dalam menamai variabel *state* adalah menggunakan pola `[something, setSomething]` dengan [*array destructuring*.](https://javascript.info/destructuring-assignment)
 
-`useState` returns an array with exactly two items:
+`useState` mengembalikan sebuah senarai yang memiliki dua nilai:
 
-1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
-2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
+1. <CodeStep step={1}>*state* saat ini</CodeStep> dari variabel *state* ini, awalnya diatur ke <CodeStep step={3}>*state* awal</CodeStep> yang Anda berikan.
+2. <CodeStep step={2}>fungsi `set`</CodeStep> yang memungkinkan Anda mengubahnya ke nilai lain sebagai respons terhadap suatu interaksi.
 
-To update what’s on the screen, call the `set` function with some next state:
+Untuk memperbarui tampilan layar, panggil fungsi `set` dengan *state* berikutnya:
 
 ```js [[2, 2, "setName"]]
 function handleClick() {
@@ -121,11 +123,11 @@ function handleClick() {
 }
 ```
 
-React will store the next state, render your component again with the new values, and update the UI.
+React akan menyimpan *state* berikutnya, me-*render* komponen Anda kembali dengan nilai baru, dan memperbarui antarmuka pengguna.
 
 <Pitfall>
 
-Calling the `set` function [**does not** change the current state in the already executing code](#ive-updated-the-state-but-logging-gives-me-the-old-value):
+Memanggil fungsi `set` [**tidak mengubah** keadaan saat ini dalam kode yang sudah dieksekusi](#ive-updated-the-state-but-logging-gives-me-the-old-value):
 
 ```js {3}
 function handleClick() {
@@ -134,15 +136,15 @@ function handleClick() {
 }
 ```
 
-It only affects what `useState` will return starting from the *next* render.
+Ini hanya mempengaruhi apa yang akan dikembalikan oleh `useState` mulai dari *render* berikutnya.
 
 </Pitfall>
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### Penghitung (angka) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+Dalam contoh ini, variabel *state* `count` menyimpan sebuah angka. Dengan mengklik tombol, angka tersebut akan bertambah.
 
 <Sandpack>
 
@@ -170,7 +172,7 @@ export default function Counter() {
 
 #### Text field (string) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+Dalam contoh ini, variabel *state* `text` menyimpan sebuah *string*. Ketika Anda mengetik, `handleChange` membaca nilai masukan terbaru dari elemen DOM masukan pada peramban, dan memanggil `setText` untuk memperbarui keadaan. Ini memungkinkan Anda untuk menampilkan `text` saat ini di bawahnya.
 
 <Sandpack>
 
@@ -202,7 +204,7 @@ export default function MyInput() {
 
 #### Checkbox (boolean) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+Dalam contoh ini, variabel *state* `liked` menyimpan sebuah *boolean*. Ketika Anda mengklik input, `setLiked` memperbarui variabel *state* `liked` dengan nilai *true* atau *false* tergantung pada apakah masukan *checkbox* pada peramban dicentang atau tidak. Variabel `liked` digunakan untuk me-*render* teks di bawah *checkbox*.
 
 <Sandpack>
 
@@ -236,9 +238,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### Form (dua variabel) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+Anda dapat mendeklarasikan lebih dari satu variabel *state* dalam komponen yang sama. Setiap variabel *state* sepenuhnya bersifat independen.
 
 <Sandpack>
 
@@ -276,9 +278,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
+### Memperbarui state berdasarkan state sebelumnya {/*updating-state-based-on-the-previous-state*/}
 
-Suppose the `age` is `42`. This handler calls `setAge(age + 1)` three times:
+Misalkan `age` adalah `42`. Lalu *handler* ini memanggil `setAge(age + 1)` sebanyak tiga kali:
 
 ```js
 function handleClick() {
@@ -288,9 +290,9 @@ function handleClick() {
 }
 ```
 
-However, after one click, `age` will only be `43` rather than `45`! This is because calling the `set` function [does not update](/learn/state-as-a-snapshot) the `age` state variable in the already running code. So each `setAge(age + 1)` call becomes `setAge(43)`.
+Namun, setelah satu kali klik, `age` hanya akan menjadi `43` daripada `45`! Hal ini terjadi karena memanggil fungsi `set` [tidak memperbarui](/learn/state-as-a-snapshot) variabel *state* `age` pada kode yang sudah dieksekusi. Oleh karena itu, setiap panggilan `setAge(age + 1)` menjadi `setAge(43)`.
 
-To solve this problem, **you may pass an *updater function*** to `setAge` instead of the next state:
+Untuk memecahkan masalah ini, **Anda dapat mengoper sebuah fungsi pembaruan (*updater function*)** pada `setAge` daripada mengoper *state* berikutnya:
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
@@ -300,39 +302,39 @@ function handleClick() {
 }
 ```
 
-Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pending state</CodeStep> and calculates the <CodeStep step={2}>next state</CodeStep> from it.
+Di sini, `a => a + 1` adalah fungsi pembaruan Anda. Fungsi ini mengambil <CodeStep step={1}>*state* tertunda</CodeStep> dan mengkalkulasi <CodeStep step={2}>*state* selanjutnya</CodeStep> darinya.
 
-React puts your updater functions in a [queue.](/learn/queueing-a-series-of-state-updates) Then, during the next render, it will call them in the same order:
+React menempatkan fungsi pembaruan Anda dalam sebuah [antrian.](/learn/queueing-a-series-of-state-updates) Selanjutnya, selama *render* berikutnya, React akan memanggil fungsi-fungsi tersebut dalam urutan yang sama:
 
-1. `a => a + 1` will receive `42` as the pending state and return `43` as the next state.
-1. `a => a + 1` will receive `43` as the pending state and return `44` as the next state.
-1. `a => a + 1` will receive `44` as the pending state and return `45` as the next state.
+1. `a => a + 1` akan menerima `42` sebagai *state* yang tertunda dan mengembalikan `43` sebagai *state* berikutnya.
+1. `a => a + 1` akan menerima `43` sebagai *state* yang tertunda dan mengembalikan `44` sebagai *state* berikutnya.
+1. `a => a + 1` akan menerima `44` sebagai *state* yang tertunda dan mengembalikan `45` sebagai *state* berikutnya.
 
-There are no other queued updates, so React will store `45` as the current state in the end.
+Karena tidak ada pembaruan antrian lainnya, maka React akan menyimpan `45` sebagai *state* saat ini.
 
-By convention, it's common to name the pending state argument for the first letter of the state variable name, like `a` for `age`. However, you may also call it like `prevAge` or something else that you find clearer.
+Secara konvensi, umumnya disepakati untuk memberi nama argumen *state* tertunda dengan huruf pertama dari nama variabel *state*, seperti `a` untuk `age`. Namun, Anda juga dapat memberinya nama seperti `prevAge` atau sesuatu yang menurut Anda lebih jelas.
 
-React may [call your updaters twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React mungkin [akan memanggil pembaruan Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah mereka [murni.](/learn/keeping-components-pure)
 
 <DeepDive>
 
-#### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
+#### Apakah selalu lebih disarankan untuk menggunakan fungsi pembaruan? {/*is-using-an-updater-always-preferred*/}
 
-You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+Anda mungkin mendengar rekomendasi untuk selalu menulis kode seperti `setAge(a => a + 1)` jika *state* yang Anda atur dikalkulasi dari *state* sebelumnya. Tidak ada masalah dengan itu, tetapi juga tidak selalu diperlukan.
 
-In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler.
+Pada kebanyakan kasus, tidak ada perbedaan antara kedua pendekatan tersebut. React selalu memastikan bahwa untuk tindakan pengguna yang disengaja, seperti klik, variabel *state* `age` akan diperbarui sebelum klik berikutnya. Ini berarti tidak ada risiko klik *handler* melihat `age` yang "usang" di awal *event handler*.
 
-However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+Namun, jika Anda melakukan beberapa pembaruan dalam satu *event*, fungsi pembaruan dapat membantu. Mereka juga membantu jika mengakses variabel *state* itu sendiri merepotkan (Anda mungkin mengalaminya saat mengoptimalkan *render* ulang).
 
-If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
+Jika Anda lebih suka konsistensi daripada sintaks yang sedikit lebih panjang, masuk akal untuk selalu menulis fungsi pembaruan jika *state* yang Anda atur dikalkulasi dari *state* sebelumnya. Jika dihitung dari *state* sebelumnya dari beberapa variabel *state* yang lain, Anda mungkin ingin menggabungkannya menjadi satu objek dan [menggunakan *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
 </DeepDive>
 
 <Recipes titleText="The difference between passing an updater and passing the next state directly" titleId="examples-updater">
 
-#### Passing the updater function {/*passing-the-updater-function*/}
+#### Mengoper fungsi pembaruan {/*passing-the-updater-function*/}
 
-This example passes the updater function, so the "+3" button works.
+Contoh ini menggunakan fungsi pembaruan, sehingga tombol "+3" berfungsi.
 
 <Sandpack>
 
@@ -371,9 +373,9 @@ h1 { display: block; margin: 10px; }
 
 <Solution />
 
-#### Passing the next state directly {/*passing-the-next-state-directly*/}
+#### Mengoper *state* selanjutnya secara langsung {/*passing-the-next-state-directly*/}
 
-This example **does not** pass the updater function, so the "+3" button **doesn't work as intended**.
+Contoh ini **tidak** mengoper fungsi pembaruan, sehinggal tombol "+3" **tidak berfungsi seperti yang diharapkan**.
 
 <Sandpack>
 
@@ -416,16 +418,16 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
+### Memperbarui objek dan senarai di dalam state {/*updating-objects-and-arrays-in-state*/}
 
-You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
+Anda dapat menempatkan objek dan senarai ke dalam *state*. Di React, *state* dianggap sebagai sesuatu yang hanya bisa dibaca, sehingga **Anda harus menggantinya (*replace*) daripada mutasi (*mutate*) objek yang sudah ada**. Misalnya, jika Anda memiliki objek `form` di dalam *state*, jangan mutasi secara langsung:
 
 ```js
 // 🚩 Don't mutate an object in state like this:
 form.firstName = 'Taylor';
 ```
 
-Instead, replace the whole object by creating a new one:
+Seharusnya, gantikan seluruh objek dengan membuat objek baru:
 
 ```js
 // ✅ Replace state with a new object
@@ -435,13 +437,13 @@ setForm({
 });
 ```
 
-Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+Baca [memperbarui objek pada *state*](/learn/updating-objects-in-state) dan [memperbarui senarai pada *state](/learn/updating-arrays-in-state) untuk belajar lebih lanjut.
 
 <Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
 
-#### Form (object) {/*form-object*/}
+#### Form (objek) {/*form-object*/}
 
-In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
+Pada contoh ini, variabel *state* `form` menampung sebuah objek. Setiap masukan memiliki pengendali perubahan yang memanggil `setForm` dengan *state* berikutnya dari keseluruhan *form*. *Spead syntax* `{ ...form }` memastikan bahwa objek *state* diganti daripada dimutasi (*mutated*).
 
 <Sandpack>
 
@@ -512,9 +514,9 @@ input { margin-left: 5px; }
 
 <Solution />
 
-#### Form (nested object) {/*form-nested-object*/}
+#### Form (objek bersarang) {/*form-nested-object*/}
 
-In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
+Pada contoh ini, *state*-nya bersarang. Ketika Anda memperbarui *state* yang bersarang, Anda perlu membuat salinan dari objek yang Anda perbarui, serta setiap objek "yang terkandung" di sepanjang jalurnya ke atas. [memperbarui objek bersarang](/learn/updating-objects-in-state#updating-a-nested-object) untuk belajar lebih lanjut.
 
 <Sandpack>
 
@@ -624,13 +626,13 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-#### List (array) {/*list-array*/}
+#### Daftar (senarai) {/*list-array*/}
 
-In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
+Dalam contoh ini, variabel *state* `todos` menyimpan sebuah senarai. setiap pengendali tombol memanggil `setTodos` dengan versi selanjutnya dari senarai tersebut. *Speading syntax* `[...todos]`, `todos.map()`, dan `todos.filter()` memastikan senarai *state* diganti daripada dimutasi.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -687,7 +689,7 @@ export default function TaskApp() {
 }
 ```
 
-```js AddTodo.js
+```js src/AddTodo.js
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -708,7 +710,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -791,9 +793,9 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Menulis logika pembaruan ringkas menggunakan Immer {/*writing-concise-update-logic-with-immer*/}
 
-If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+Jika terasa merepotkan untuk memperbarui senarai dan objek tanpa mutasi, Anda dapat menggunakan pustaka seperti [Immer](https://github.com/immerjs/use-immer) untuk mengurangi kode yang berulang. Immer memungkinkan Anda menulis kode yang ringkas seolah-olah Anda melakukan mutasi pada objek, tetapi sebenarnya ia melakukan pembaruan *immutable* di belakang layar:
 
 <Sandpack>
 
@@ -882,9 +884,9 @@ function ItemList({ artworks, onToggle }) {
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Menghindari membuat ulang state awal {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React menyimpan *state* awal sekali dan mengabaikannya pada *render* berikutnya.
 
 ```js
 function TodoList() {
@@ -892,9 +894,9 @@ function TodoList() {
   // ...
 ```
 
-Although the result of `createInitialTodos()` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating large arrays or performing expensive calculations.
+Meskipun hasil dari `createInitialTodos()` hanya digunakan untuk *render* awal, Anda tetap memanggil fungsi ini pada setiap render. Hal ini dapat menjadi pemborosan jika membuat senarai yang besar atau melakukan kalkulasi yang mahal
 
-To solve this, you may **pass it as an _initializer_ function** to `useState` instead:
+Untuk mengatasi hal tersebut, kamu dapat **mengopernya sebagai fungsi *initializer*** ke `useState` sebagai gantinya:
 
 ```js
 function TodoList() {
@@ -902,15 +904,15 @@ function TodoList() {
   // ...
 ```
 
-Notice that you’re passing `createInitialTodos`, which is the *function itself*, and not `createInitialTodos()`, which is the result of calling it. If you pass a function to `useState`, React will only call it during initialization.
+Perhatikan bahwa Anda mengoper `createInitialTodos`, yang merupakan *fungsi itu sendiri* dan bukan `createInitialTodos()`, yang merupakan hasil dari pemanggilannya. Jika Anda mengoper sebuah fungsi ke `useState`, React hanya akan memanggilnya selama inisialisasi.
 
-React may [call your initializers twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React dapat [memanggil inisialisator Anda dua kali](#my-initializer-or-updater-function-runs-twice) pada saat pengembangan untuk memeriksa apakah mereka [murni.](/learn/keeping-components-pure)
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
-#### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Mengoper fungsi inisialisasi {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+Contoh ini mengoper sebuah fungsi inisialisasi, sehingga fungsi `createInitialTodos` hanya berjalan ketika inisalisasi. Ini tidak berjalan ketika komponen di-*render* ulang, seperti ketika Anda mengetikkan masukan.
 
 <Sandpack>
 
@@ -961,9 +963,9 @@ export default function TodoList() {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Mengoper state awal secara langsung {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+Contoh ini **tidak** mengoper fungsi inisialisasi, sehingga fungsi `createInitialTodos` akan berjalan pada setiap *render*, seperti ketika Anda mengetikkan suatu masukan. Tidak ada perbedaan perilaku yang terlihat, tetapi kode ini kurang efisien.
 
 <Sandpack>
 
@@ -1018,17 +1020,17 @@ export default function TodoList() {
 
 ---
 
-### Resetting state with a key {/*resetting-state-with-a-key*/}
+### Menyetel ulang state menggunakan kunci (key) {/*resetting-state-with-a-key*/}
 
-You'll often encounter the `key` attribute when [rendering lists.](/learn/rendering-lists) However, it also serves another purpose.
+Anda sering melihat atribut `key` saat [me-*render* daftar.](/learn/rendering-lists) Namun, atribut ini juga memiliki tujuan lain.
 
-You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+Anda dapat **menyetel ulang *state* komponen dengan memberikan `key` yang berbeda pada komponen.** Pada contoh ini, tombol Reset mengubah variabel *state* `version`, yang kami oper sebagai `key` pada `Form`. Ketika `key` berubah, React membuat ulang komponen `Form` (dan semua komponen anaknya) dari awal, sehingga *state*-nya disetel ulang.
 
-Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
+Baca [menjaga dan menyetel ulang *state*](/learn/preserving-and-resetting-state) untuk mempelajari lebih lanjut.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1069,31 +1071,31 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Storing information from previous renders {/*storing-information-from-previous-renders*/}
+### Menyimpan informasi dari render sebelumnya {/*storing-information-from-previous-renders*/}
 
-Usually, you will update state in event handlers. However, in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes.
+Biasanya, Anda akan memperbarui *state* pada *event handler*. Namun, dalam kasus yang jarang terjadi, Anda mungkin ingin menyesuaikan *state* sebagai respons terhadap *rendering* -- misalnya, Anda mungkin ingin mengubah variabel *state* ketika *prop* berubah.
 
-In most cases, you don't need this:
+Dalam kebanyakan kasus, Anda tidak memerlukannya:
 
-* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)** If you're worried about recomputing too often, the [`useMemo` Hook](/reference/react/useMemo) can help.
-* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
-* If you can, update all the relevant state in the event handlers.
+* **Jika nilai yang Anda butuhkan dapat dikomputasi sepenuhnya dari *props* saat ini atau *state* lain, [hapus *state* yang redundan tersebut.](/learn/choosing-the-state-structure#avoid-redundant-state)** Jika Anda khawatir tentang komputasi ulang yang terlalu sering, [`useMemo` Hook](/reference/react/useMemo) dapat membantu.
+* Jika Anda ingin menyetel ulang seluruh *state* komponen, [berikan `key` yang berbeda pada komponen Anda.](#resetting-state-with-a-key)
+* Jika Anda bisa, perbarui semua *state* yang relevan pada *event handler*.
 
-In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
+Dalam kasus yang jarang terjadi bahwa tidak satu pun dari yang disebutkan di atas berlaku, ada pola yang dapat Anda gunakan untuk memperbarui *state* berdasarkan nilai-nilai yang telah di-*render*, dengan memanggil fungsi `set` ketika komponen Anda sedang di-*render*..
 
-Here's an example. This `CountLabel` component displays the `count` prop passed to it:
+Berikut contohnya. Komponen `CountLabel` ini menampilkan *prop* `count` yang dioper kepadanya::
 
-```js CountLabel.js
+```js src/CountLabel.js
 export default function CountLabel({ count }) {
   return <h1>{count}</h1>
 }
 ```
 
-Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*.
+Misalkan Anda ingin menunjukan apakah penghitung telah meningkat atau menurun sejak perubahan terakhir. *Prop* `count` tidak memberi tahu hal ini -- Anda perlu menelusuri dari nilai sebelumnya. Tambahkan variabel *state* `prevCount` untuk menelusurinya. Tambahkan variabel *state* lain bernama `trend` untuk menampung apakah hitungan telah meningkat atau menurun. Bandingkan `prevCount` dengan `count`, dan jika tidak sama, perbarui `prevCount` dan `trend`. Sekarang Anda dapat menampilkan *prop* hitungan saat ini dan bagaimana ia telah berubah sejak *render* terakhir.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 
@@ -1113,7 +1115,7 @@ export default function App() {
 }
 ```
 
-```js CountLabel.js active
+```js src/CountLabel.js active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {
@@ -1138,17 +1140,17 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
+Perhatikan bahwa jika Anda memanggil fungsi `set` saat *rendering*, itu harus berada dalam kondisi seperti `prevCount !== count`, dan harus ada pemanggilan seperti `setPrevCount(count)` di dalam kondisi tersebut. Jika tidak, komponen Anda akan di-*render* dalam perulangan hingga terjadi *crash*. Selain itu, Anda hanya dapat memperbarui *state* dari komponen yang sedang di-*render* seperti ini. Memanggil fungsi `set` dari komponen lain selama *rendering* adalah kesalahan. Terakhir, pemanggilan `set` Anda harus [memperbarui *state* tanpa mutasi](#updating-objects-and-arrays-in-state) -- ini bukan berarti Anda dapat melanggar aturan [fungsi murni.](/learn/keeping-components-pure)
 
-This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
+Pola ini bisa sulit dipahami dan biasanya lebih baik untuk dihindari. Namun, ini lebih baik daripada memperbarui *state* dalam efek. Ketika Anda memanggil fungsi `set` selama *render*, React akan me-*render* ulang komponen tersebut sesaat setelah komponen Anda keluar dengan pernyataan `return`, dan sebelum me-*render* anak-anak. Dengan begitu, anak-anak tidak perlu me-*render* dua kali. Sisa fungsi komponen Anda tetap akan dieksekusi (dan hasilnya akan dibuang). Jika kondisi Anda berada di bawah semua panggilan Hook, Anda dapat menambahkan `return` lebih awal untuk memulai ulang *render* sebelumnya.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
-### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+### Saya sudah memperbarui state, tetapi saat saya mencetak log nilainya masih yang lama {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 
-Calling the `set` function **does not change state in the running code**:
+Memanggil fungsi `set` **tidak mengubah *state* pada kode yang sedang berjalan**:
 
 ```js {4,5,8}
 function handleClick() {
@@ -1163,9 +1165,9 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
+Ini terjadi karena [*state* berperilaku seperti *snapshot*.](/learn/state-as-a-snapshot) Memperbarui *state* membutuhkan *render* ulang dengan nilai *state* baru, tetapi tidak memengaruhi variabel JavaScript `count` pada *event handler* yang sedang berjalan.
 
-If you need to use the next state, you can save it in a variable before passing it to the `set` function:
+Jika Anda perlu menggunakan *state* selanjutnya, Anda dapat menyimpannya dalam variabel sebelum mengopernya pada fungsi `set`:
 
 ```js
 const nextCount = count + 1;
@@ -1177,16 +1179,16 @@ console.log(nextCount); // 1
 
 ---
 
-### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+### Saya telah memperbarui state, tetapi tidak ada perbaruan pada layar {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React akan **mengabaikan pembaruan Anda jika *state* berikutnya sama dengan state sebelumnya,** yang ditentukan oleh perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Ini biasanya terjadi ketika Anda mengubah objek atau senarai di dalam *state* secara langsung:
 
 ```js
 obj.x = 10;  // 🚩 Wrong: mutating existing object
 setObj(obj); // 🚩 Doesn't do anything
 ```
 
-You mutated an existing `obj` object and passed it back to `setObj`, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+Anda mengubah objek `obj` yang ada dan mengirimkannya kembali ke `setObj`, sehingga React mengabaikan pembaruan tersebut. Untuk memperbaikinya, pastikan Anda selalu [mengganti objek dan senarai di dalam *state* daripada memutasi mereka](#updating-objects-and-arrays-in-state):
 
 ```js
 // ✅ Correct: creating a new object
@@ -1198,9 +1200,9 @@ setObj({
 
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### Saya mendapatkan galat: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+Anda mungkin mendapatkan galat yang mengatakan: `*Too many re-renders*. React membatasi jumlah render untuk mencegah pengulangan tak terbatas.` Biasanya ini berarti bahwa Anda secara tidak kondisional mengatur *state* selama *render*, sehingga komponen Anda masuk ke dalam perulangan: *render*, *set state* (yang menyebabkan *render*), *render*, *set state* (yang menyebabkan render), dan seterusnya. Sangat sering, ini disebabkan oleh kesalahan dalam menentukan *event handler*:
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1213,13 +1215,13 @@ return <button onClick={handleClick}>Click me</button>
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+Jika Anda tidak dapat menemukan penyebab kesalahan ini, klik pada panah di sebelah galat pada konsol dan lihat melalui tumpukan JavaScript untuk menemukan panggilan fungsi `set` yang bertanggung jawab atas kesalahan tersebut.
 
 ---
 
-### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
+### Fungsi inisialisasi atau pembaruan saya berjalan dua kali {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+Pada [*Strict Mode*](/reference/react/StrictMode), React akan memanggil beberapa fungsi Anda sebanyak dua kali alih-alih hanya satu kali:
 
 ```js {2,5-6,11-12}
 function TodoList() {
@@ -1239,11 +1241,11 @@ function TodoList() {
   // ...
 ```
 
-This is expected and shouldn't break your code.
+Ini sesuatu yang sudah diperkirakan dan seharusnya tidak merusak kode Anda.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+Perikalu ini hanya terjadi pada **saat pengembangan** dan membantu Anda [menjaga komponen bersifat murni.](/learn/keeping-components-pure) React menggunakan hasil dari salah satu pangiglan, dan mengabaikan hasil panggilan yang lain. Selama fungsi komponen, insialisasi, dan pembaruan Anda murni, ini tidak akan mempengaruhi logika Anda. Namun, jika secara tidak sengaja terdapat fungsi tidak murni (*impure*), ini akan membantu Anda untuk mengetahui kesalahan.
 
-For example, this impure updater function mutates an array in state:
+Sebagai contoh, fungsi pembaruan tidak murni ini mengubah sebuah senarai di dalam *state*:
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1252,7 +1254,7 @@ setTodos(prevTodos => {
 });
 ```
 
-Because React calls your updater function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](#updating-objects-and-arrays-in-state):
+Karena React memanggil fungsi pembaruan dua kali, Anda akan melihat *todo* ditambahkan dua kali, sehingga Anda akan tahu bahwa ada kesalahan. Dalam contoh ini, Anda dapat memperbaiki kesalahan dengan [mengganti senarai tersebut daripada memutasi](#updating-objects-and-arrays-in-state):
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1261,15 +1263,15 @@ setTodos(prevTodos => {
 });
 ```
 
-Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+Apabila fungsi pembaruan ini murni, memanggilnya beberapa kali tidak membuat perbedaan perilaku. Inilah mengapa React memanggilnya dua kali untuk membantu Anda menemukan kesalahan. **Hanya fungsi komponen, inisialisasi, dan pembaruan yang perlu bersifat murni.** *Event handler* tidak perlu murni, sehingga React tidak akan pernah memanggil *event handler* Anda dua kali.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Baca [menjaga komponen murni](/learn/keeping-components-pure) untuk belajar lebih lanjut.
 
 ---
 
-### I'm trying to set state to a function, but it gets called instead {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
+### Saya mencoba mengatur state ke sebuah fungsi, namun malah dipanggil {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
 
-You can't put a function into state like this:
+Anda tidak dapat mengoper sebuah fungsi ke dalam *state* seperti ini.:
 
 ```js
 const [fn, setFn] = useState(someFunction);
@@ -1279,7 +1281,8 @@ function handleClick() {
 }
 ```
 
-Because you're passing a function, React assumes that `someFunction` is an [initializer function](#avoiding-recreating-the-initial-state), and that `someOtherFunction` is an [updater function](#updating-state-based-on-the-previous-state), so it tries to call them and store the result. To actually *store* a function, you have to put `() =>` before them in both cases. Then React will store the functions you pass.
+Karena Anda mengoper sebuah fungsi, React menganggap bahwa `someFunction` adalah [fungsi inisialisasi](#avoiding-recreating-the-initial-state), dan bahwa `someOtherFunction` adalah [fungsi pembaruan](#updating-state-based-on-the-previous-state), sehingga mencoba memanggil mereka dan menyimpan hasilnya. Untuk *benar-benar* menyimpan fungsi, Anda harus menambahkan `() =>` sebelum keduanya. Kemudian React akan menyimpan fungsi yang Anda oper.
+
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);

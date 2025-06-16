@@ -113,9 +113,11 @@ const people = [{
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
 }, {
+  id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',  
 }, {
+  id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
 }];
@@ -161,7 +163,7 @@ Hasil akhirnya seperti berikut:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -186,7 +188,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -220,7 +222,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -262,7 +264,7 @@ const listItems = chemists.map(person => { // Kurung kurawal
 });
 ```
 
-*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apapun!
+*Arrow function* yang mengandung `=> {` dianggap memiliki ["badan/isi"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Anda diperbolehkan menulis fungsi yang melebihi satu baris, tetapi Anda **harus menulis `return`**. Jika Anda melupakan ini, fungsi tersebut tidak akan mengembalikan nilai apa pun!
 
 </Pitfall>
 
@@ -294,7 +296,7 @@ Sebaiknya, `key` terkandung di dalam data Anda:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -316,7 +318,7 @@ export default function List() {
 }
 ```
 
-```js data.js active
+```js src/data.js active
 export const people = [{
   id: 0, // Digunakan sebagai key pada JSX
   name: 'Creola Katherine Johnson',
@@ -350,7 +352,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -450,7 +452,7 @@ Anda diminta untuk menampilkan dua daftar berbeda, satu setelah yang lain: ***Ch
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -477,7 +479,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -511,7 +513,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -541,7 +543,7 @@ Anda bisa menggunakan `filter()` dua kali, menghasilkan dua senarai, kemudian ap
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -592,7 +594,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -626,7 +628,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -656,7 +658,7 @@ Sebenarnya, masih ada duplikasi pada dua daftar yang dibuat. Anda bisa mengekstr
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -706,7 +708,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -740,7 +742,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -770,7 +772,7 @@ Bahkan, jika `people` tidak pernah berubah, Anda bisa menempatkan kode ini di lu
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -824,7 +826,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -858,7 +860,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -896,7 +898,7 @@ Tantangan ini membutuhkan Anda untuk membuat dua pemanggilan `map()` yang bersar
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -908,7 +910,7 @@ export default function RecipeList() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
   name: 'Greek Salad',
@@ -932,7 +934,7 @@ Salah satu solusinya seperti berikut:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -956,7 +958,7 @@ export default function RecipeList() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
   name: 'Greek Salad',
@@ -984,7 +986,7 @@ Komponen `RecipeList` mengandung dua pemanggilan `map()` yang bersarang. Untuk m
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -1008,7 +1010,7 @@ export default function RecipeList() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
   name: 'Greek Salad',
@@ -1062,7 +1064,7 @@ export default function RecipeList() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
   name: 'Greek Salad',
@@ -1088,7 +1090,7 @@ export const recipes = [{
 
 #### Daftar dengan pemisah {/*list-with-a-separator*/}
 
-Pada contoh ini, terdapat sebuah *haiku* terkenal dari Katsushika Hokusai yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
+Pada contoh ini, terdapat sebuah *haiku* terkenal dari Tachibana Hokushi yang setiap barisnya dibungkus `<p>`. Anda diminta untuk menambahkan `<hr />` di antara setiap baris sebagai pemisah. Hasil akhirnya akan menyerupai ini:
 
 ```js
 <article>
@@ -1147,7 +1149,7 @@ hr {
 
 <Hint>
 
-Anda bisa mengubah `map()` ke pengulangan manual atau menggunakan `Fragment`.
+Anda bisa mengubah `map` ke pengulangan manual atau menggunakan *Fragment*.
 
 </Hint>
 
@@ -1210,7 +1212,7 @@ hr {
 
 Penggunakan indeks baris sebagai `key` tidak bisa dilakukan karena setiap pemisah dan baris berada di senarai yang sama. Namun, hal ini bisa dihindari dengan menambahkan akhiran seperti `key={i + '-text'}`.
 
-Anda juga bisa me-*render* sebuah kumpulan fragmen yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
+Anda juga bisa me-*render* sebuah kumpulan *Fragment* yang mengandung `<hr />` dan `<p>...</p>`. Meskipun begitu, sintaksis singkat `<>...</>` tidak dapat digunakan karena tidak mendukung penggunaan `key`. Oleh karena itu, Anda harus menuliskan `<Fragment>` secara eksplisit:
 
 <Sandpack>
 
@@ -1256,7 +1258,7 @@ hr {
 
 </Sandpack>
 
-Ingat, fragmen (biasa ditulis `<> </>`) memberi cara bagi Anda untuk menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
+Ingat, fragmen (biasa ditulis `<> </>`) memungkinkan Anda menggabungkan beberapa *node* JSX tanpa perlu menambahkan `<div>` di bagian luar!
 
 </Solution>
 

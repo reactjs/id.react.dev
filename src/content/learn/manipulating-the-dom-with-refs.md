@@ -31,7 +31,7 @@ Kemudian, deklarasikan *ref* di dalam komponen Anda:
 const myRef = useRef(null);
 ```
 
-Terakhir, oper ke simpul DOM sebagai atribut `ref`:
+Terakhir, oper ref Anda sebagai atribut `ref` ke tag JSX yang Anda ingin dapatkan simpul DOM-nya:
 
 ```js
 <div ref={myRef}>
@@ -124,35 +124,35 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={handleScrollToFirstCat}>
-          Tom
+          Neo
         </button>
         <button onClick={handleScrollToSecondCat}>
-          Maru
+          Millie
         </button>
         <button onClick={handleScrollToThirdCat}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
               ref={thirdCatRef}
             />
           </li>
@@ -218,18 +218,19 @@ Contoh di bawah menunjukan bagaimana Anda dapat menggunakan pendekatan ini untuk
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import { useRef, useState } from "react";
 
 export default function CatFriends() {
   const itemsRef = useRef(null);
+  const [catList, setCatList] = useState(setupCatList);
 
-  function scrollToId(itemId) {
+  function scrollToCat(cat) {
     const map = getMap();
-    const node = map.get(itemId);
+    const node = map.get(cat);
     node.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   }
 
@@ -244,34 +245,25 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToId(0)}>
-          Tom
-        </button>
-        <button onClick={() => scrollToId(5)}>
-          Maru
-        </button>
-        <button onClick={() => scrollToId(9)}>
-          Jellylorum
-        </button>
+        <button onClick={() => scrollToCat(catList[0])}>Neo</button>
+        <button onClick={() => scrollToCat(catList[5])}>Millie</button>
+        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
       </nav>
       <div>
         <ul>
-          {catList.map(cat => (
+          {catList.map((cat) => (
             <li
-              key={cat.id}
+              key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat.id, node);
-                } else {
-                  map.delete(cat.id);
-                }
+                map.set(cat, node);
+
+                return () => {
+                  map.delete(cat);
+                };
               }}
             >
-              <img
-                src={cat.imageUrl}
-                alt={'Cat #' + cat.id}
-              />
+              <img src={cat} />
             </li>
           ))}
         </ul>
@@ -280,12 +272,13 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
-    id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
-  });
+function setupCatList() {
+  const catList = [];
+  for (let i = 0; i < 10; i++) {
+    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+  }
+
+  return catList;
 }
 
 ```
@@ -318,41 +311,68 @@ li {
 
 </Sandpack>
 
-Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apapun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
+Pada contoh ini, `itemsRef` tidak menyimpan simpul DOM. Namun,menyimpan sebuah [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) dari ID item ke simpul DOM. ([Refs dapat menyimpan nilai apa pun!](/learn/referencing-values-with-refs)) [`Ref` callback](/reference/react-dom/components/common#ref-callback) pada tiap daftar memperhatikan pembaruan *Map*:
 
 ```js
 <li
   key={cat.id}
   ref={node => {
     const map = getMap();
-    if (node) {
-      // Add to the Map
-      map.set(cat.id, node);
-    } else {
+    // Add to the Map
+    map.set(cat, node);
+
+    return () => {
       // Remove from the Map
-      map.delete(cat.id);
-    }
+      map.delete(cat);
+    };
   }}
 >
 ```
 
-Hal ini memungkinkan Anda membaca simpul DOM individu dari *Map* nanti.
+This lets you read individual DOM nodes from the Map later.
+
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
 
 </DeepDive>
 
 ## Mengakses simpul DOM komponen lain {/*accessing-another-components-dom-nodes*/}
 
-Saat Anda memasang *ref* pada komponen bawaan yang mana hasilnya adalah elemen peramban seperti `<input />`, React akan mengatur properti `current` *ref* pada simpul DOM tersebut (seperti aktual `<input />` pada peramban).
+<Pitfall>
+Ref merupakan jalan keluar. Memanipulasi simpul DOM _komponen lain_ secara manual dapat membuat kode Anda rapuh.
+</Pitfall>
 
-Namun, jika Anda mencoba mengatur *ref* pada komponen Anda sendiri, seperti `<MyInput />`, secara *default* Anda akan mendapatkan `null`. Ini contohnya. Perhatikan bagaimana meng-klik tombol **tidak** membuat fokus pada input:
+Anda dapat mengoper ref dari komponen induk ke komponen anak [layaknya prop lainnya](/learn/passing-props-to-a-component).
+
+```js {3-4,9}
+import { useRef } from 'react';
+
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
+
+function MyForm() {
+  const inputRef = useRef(null);
+  return <MyInput ref={inputRef} />
+}
+```
+
+Dalam contoh di atas, ref dibuat dalam komponen induk, `MyForm`, dan diteruskan ke komponen anak, `MyInput`. `MyInput` kemudian meneruskan ref ke `<input>`. Karena `<input>` adalah [komponen bawaan](/reference/react-dom/components/common) React menyetel properti `.current` dari ref ke elemen DOM `<input>`.
+
+`inputRef` yang dibuat dalam `MyForm` sekarang menunjuk ke elemen DOM `<input>` yang dikembalikan oleh `MyInput`. Penangan klik yang dibuat dalam `MyForm` dapat mengakses `inputRef` dan memanggil `focus()` untuk menyetel fokus pada `<input>`.
 
 <Sandpack>
 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function MyForm() {
@@ -375,79 +395,18 @@ export default function MyForm() {
 
 </Sandpack>
 
-Untuk membantu Anda menanggapi *issue* tersebut, React juga mencetak *error* pada *console*:
-
-<ConsoleBlock level="error">
-
-Perhatian: fungsional komponen tidak dapat menerima *ref*. Mencoba mengaksesnya akan gagal. Apakah yang Anda maksud React.forwardRef()?
-
-</ConsoleBlock>
-
-Ini terjadi karena secara *default* React tidak mengizinkan komponen mengakses simpul DOM dari komponen lain. Bahkan *children* dari komponen tersebut! ini ada alasannya. *Ref* merupakan jalan darurat yang seharusnya jarang digunakan. Memanipulasi simpul DOM komponen lain secara manual membuat kode Anda lebih rentan.
-
-Sebaliknya, komponen yang _ingin_ mengekspos simpul DOM harus *memilih* perilaku tersebut. Sebuah komponen dapat menentukan untuk meneruskan *ref* ke salah satu *children*nya. Contoh bagaimana `MyInput` dapat menggunakan API `forwardRef`:
-
-```js
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
-```
-
-Ini cara kerjanya:
-
-1. `<MyInput ref={inputRef} />` memberitahu React untuk meletakkan simpul DOM yang sesuai ke dalam `inputRef.current`. Namun, itu terserah komponen `MyInput` untuk mengikutinya--secara *default*, tidak.
-2. Komponen `MyInput` menggunakan `forwardRef`. **Dengan ini komponen menerima `inputRef` dari atas sebagai argumen `ref` kedua** yang dideklarasikan setelah `props`.
-3. `MyInput` itu sendiri mengoper `ref` yang diterima ke dalam `<input>`.
-
-Sekarang meng-klik tombol untuk fokus ke input berfungsi:
-
-<Sandpack>
-
-```js
-import { forwardRef, useRef } from 'react';
-
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
-
-export default function Form() {
-  const inputRef = useRef(null);
-
-  function handleClick() {
-    inputRef.current.focus();
-  }
-
-  return (
-    <>
-      <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
-    </>
-  );
-}
-```
-
-</Sandpack>
-
-Dalam sistem desain, merupakan pola umum untuk komponen level rendah seperti tombol, input dan sejenisnya untuk meneruskan *ref* ke simpul DOM. Sebaliknya, komponen level atas seperti *form*, *list* atau bagian dari halaman biasanya tidak mengekspos simpul DOM untuk menghindari dependensi yang tidak disengaja pada struktur DOM.
-
 <DeepDive>
 
 #### Ekspos bagian dari API dengan imperatif handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
-Pada contoh di atas, `MyInput` mengekspos elemen input DOM. Ini memungkinkan komponen *parent* memanggil `focus()`. Namun, ini juga memungkinkan *parent* komponen melakukan hal lain--contohnya, mengubah CSS (Cascading Style Sheet) *style*. Dalam kasus umum, Anda mungkin ingin membatasi fungsionalitas yang akan diekspos. Anda dapat melakukannya dengan `useImperativeHandle`:
+Dalam contoh di atas, ref yang diteruskan ke `MyInput` diteruskan ke elemen input DOM asli. Ini memungkinkan komponen induk memanggil `focus()` padanya. Namun, ini juga memungkinkan komponen induk melakukan hal lain--misalnya, mengubah *style* CSS-nya. Dalam kasus yang tidak umum, Anda mungkin ingin membatasi fungsionalitas yang diekspos. Anda dapat melakukannya dengan [`useImperativeHandle`](/reference/react/useImperativeHandle):
 
 <Sandpack>
 
 ```js
-import {
-  forwardRef, 
-  useRef, 
-  useImperativeHandle
-} from 'react';
+import { useRef, useImperativeHandle } from "react";
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else
@@ -455,8 +414,8 @@ const MyInput = forwardRef((props, ref) => {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
-});
+  return <input ref={realInputRef} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -468,9 +427,7 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -478,7 +435,7 @@ export default function Form() {
 
 </Sandpack>
 
-Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, `useImperativeHandle` menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan `useImperativeHandle`.
+Di sini, `realInputRef` di dalam `MyInput` memegang aktual simpul DOM input. Namun, [`useImperativeHandle`](/reference/react/useImperativeHandle) menginstruksikan React untuk menyediakan spesial obyek tersendiri sebagai nilai dari *ref* ke komponen *parent*. Jadi `inputRef.current` di dalam komponen `Form` hanya akan memiliki metode `focus`. Dalam kasus ini, "handle" *ref* bukan simpul DOM, tetap kustom obyek yang Anda buat di dalam pemanggilan [`useImperativeHandle`](/reference/react/useImperativeHandle).
 
 </DeepDive>
 
@@ -493,7 +450,7 @@ Secara umum, Anda [tidak ingin](/learn/referencing-values-with-refs#best-practic
 
 React mengatur nilai `ref.current` selama commit. Sebelum memperbarui DOM, React mengatur nilai `ref.current` yang terpengaruh menjadi `null`. Setelah memperbarui DOM, React segera mengatur nilai `ref.current` tersebut menjadi simpul DOM yang sesuai.
 
-Biasanya, Anda akan mengakses ref dari *event handler*. Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada cara tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
+**Biasanya, Anda akan mengakses ref dari *event handler*.** Jika Anda ingin melakukan sesuatu dengan sebuah *ref*, tetapi tidak ada *event* tertentu untuk melakukannya, Anda mungkin memerlukan *Effect*. Kami akan membahas *effect* pada halaman berikutnya.
 
 <DeepDive>
 
@@ -590,7 +547,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
@@ -683,7 +640,7 @@ Setelah Anda menghapus elemen DOM secara manual, mencoba menggunakan `setState` 
 
 **Hindari mengubah simpul DOM yang dikelola oleh React.** Memodifikasi, menambahkan *children*, atau menghapus *children* dari elemen yang dikelola oleh React dapat menyebabkan hasil visual yang tidak konsisten atau masalah seperti di atas.
 
-Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apapun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
+Namun, ini tidak berarti bahwa Anda sama sekali tidak dapat melakukannya. Ini membutuhkan kewaspadaan. **Anda dapat dengan aman mengubah bagian dari DOM yang tidak diperbarui oleh React dengan _alasan apa pun_**. Misalnya, jika beberapa `<div>` selalu kosong di JSX, React tidak akan memiliki alasan untuk menyentuh daftar *children*. Oleh karena itu, aman untuk menambahkan atau menghapus elemen secara manual di sana.
 
 <Recap>
 
@@ -923,7 +880,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1040,7 +997,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1092,13 +1049,13 @@ Buat agar saat tombol "Search" diklik, fokus masuk ke dalam input. Perhatikan ba
 
 <Hint>
 
-Anda akan memerlukan `forwardRef` untuk memungkinkan eksposisi sebuah simpul DOM dari komponen Anda sendiri seperti `SearchInput`.
+Anda perlu mengoper `ref` untuk memungkinkan eksposisi sebuah simpul DOM dari komponen Anda sendiri seperti `SearchInput`.
 
 </Hint>
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
 
@@ -1114,7 +1071,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton() {
   return (
     <button>
@@ -1124,7 +1081,7 @@ export default function SearchButton() {
 }
 ```
 
-```js SearchInput.js
+```js src/SearchInput.js
 export default function SearchInput() {
   return (
     <input
@@ -1146,7 +1103,7 @@ Anda perlu menambahkan prop `onClick` ke `SearchButton`, dan membuat `SearchButt
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useRef } from 'react';
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
@@ -1166,7 +1123,7 @@ export default function Page() {
 }
 ```
 
-```js SearchButton.js
+```js src/SearchButton.js
 export default function SearchButton({ onClick }) {
   return (
     <button onClick={onClick}>
@@ -1176,19 +1133,15 @@ export default function SearchButton({ onClick }) {
 }
 ```
 
-```js SearchInput.js
-import { forwardRef } from 'react';
-
-export default forwardRef(
-  function SearchInput(props, ref) {
-    return (
-      <input
-        ref={ref}
-        placeholder="Looking for something?"
-      />
-    );
-  }
-);
+```js src/SearchInput.js
+export default function SearchInput({ ref }) {
+  return (
+    <input
+      ref={ref}
+      placeholder="Looking for something?"
+    />
+  );
+}
 ```
 
 ```css

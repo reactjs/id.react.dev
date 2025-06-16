@@ -7,7 +7,7 @@ title: renderToStaticMarkup
 `renderToStaticMarkup` me-*render* sebuah pohon React yang non-interaktif ke *string* HTML.
 
 ```js
-const html = renderToStaticMarkup(reactNode)
+const html = renderToStaticMarkup(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const html = renderToStaticMarkup(reactNode)
 
 ## Referensi {/*reference*/}
 
-### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
+### `renderToStaticMarkup(reactNode, options?)` {/*rendertostaticmarkup*/}
 
 Pada *server*, panggil fungsi `renderToStaticMarkup` untuk me-*render* aplikasi Anda ke HTML.
 
@@ -35,6 +35,8 @@ Keluaran yang diberikan adalah HTML non-interaktif dari komponen-komponen React 
 #### Parameter {/*parameters*/}
 
 * `reactNode`: Sebuah *node* React yang Anda ingin *render* ke HTML. Contohnya, sebuah *node* JSX seperti `<Page />`.
+* **opsional** `options`: Obyek untuk pe-*render*-an server.
+  * **opsional** `identifierPrefix`: String prefiks yang digunakan reak untuk ID yang dibuat oleh [`useId`.](/reference/react/useId) Ini berguna untuk menghindari konflik ketika menggunakan *root* yang berbeda di halaman yang sama.
 
 #### Nilai Balik {/*returns*/}
 

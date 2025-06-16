@@ -4,7 +4,7 @@ title: useTransition
 
 <Intro>
 
-`useTransition` adalah sebuah React Hook yang memungkinkan Anda merubah suatu *state* tanpa memblokir *UI*.
+`useTransition` adalah sebuah React Hook yang memungkinkan Anda merender sebagian UI di latat belakang.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -35,20 +35,20 @@ function TabContainer() {
 
 #### Parameters {/*parameters*/}
 
-`useTransition` tidak menerima parameter apapun.
+`useTransition` tidak menerima parameter apa pun.
 
 #### Returns {/*returns*/}
 
 `useTransition` mengembalikan senarai dengan tepat dua item:
 
 1. Penanda `isPending` yang memberitahukan Anda bahwa terdapat transisi yang tertunda.
-2. [fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
+2. [Fungsi `startTransition`](#starttransition) yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
 
 ---
 
-### fungsi `startTransition` {/*starttransition*/}
+### `startTransition(action)` {/*starttransition*/}
 
-Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan *state* sebagai transisi.
+Fungsi `startTransition` yang dikembalikan oleh `useTransition` memungkinkan Anda menandai perubahan *state* sebagai Transisi.
 
 ```js {6,8}
 function TabContainer() {
@@ -64,13 +64,42 @@ function TabContainer() {
 }
 ```
 
+<Note>
+#### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
+
+The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) should be named `action` or include the "Action" suffix:
+
+```js {1,9}
+function SubmitButton({ submitAction }) {
+  const [isPending, startTransition] = useTransition();
+
+  return (
+    <button
+      disabled={isPending}
+      onClick={() => {
+        startTransition(async () => {
+          await submitAction();
+        });
+      }}
+    >
+      Submit
+    </button>
+  );
+}
+
+```
+
+</Note>
+
+
+
 #### Parameters {/*starttransition-parameters*/}
 
-* `scope`: Fungsi yang mengubah beberapa *state* dengan memanggil satu atau lebih [fungsi `set`.](/reference/react/useState#setstate) React segera memanggil `scope` dengan tanpa parameter dan menandai semua perubahan *state* yang dijadwalkan secara sinkron saat fungsi `scope` dipanggil sebagai transisi. Mereka akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator *render* yang tidak perlu.](#preventing-unwanted-loading-indicators)
+* `action`: Fungsi yang memperbarui suatu *state* dengan memanggil satu atau beberapa [fungsi `set`](/reference/react/useState#setstate). React memanggil `action` segera tanpa parameter dan menandai semua pembaruan *state* yang dijadwalkan secara sinkron selama panggilan fungsi `action` sebagai Transisi. Semua panggilan asinkron yang ditunggu dalam `action` akan disertakan dalam Transisi, tetapi saat ini memerlukan pembungkusan semua fungsi `set` setelah `await` dalam `startTransition` tambahan (lihat [Pemecahan Masalah](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). Pembaruan *state* yang ditandai sebagai Transisi akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
-`startTransition` tidak mengembalikan apapun.
+`startTransition` tidak mengembalikan apa pun.
 
 #### Perhatian {/*starttransition-caveats*/}
 
@@ -78,7 +107,11 @@ function TabContainer() {
 
 * Anda dapat membungkus perubahan menjadi transisi hanya jika Anda memiliki akses pada fungsi `set` pada *state* tersebut. Jika Anda ingin memulai sebuah transisi sebagai balasan dari beberapa *prop* atau nilai Hook *custom*, coba gunakan [`useDeferredValue`](/reference/react/useDeferredValue) sebagai gantinya.
 
-* Fungsi yang Anda kirimkan kepada `startTransition` haruslah sinkron. React akan langsung mengeksekusi fungsi ini, menandai semua perubahan *state* yang terjadi sambil mengeksekusinya sebagai transisi. Jika Anda mencoba untuk melakukan perubahan *state* lebih nanti (contoh, saat *timeout*), mereka tidak akan ditandai sebagai transisi.
+* Fungsi yang Anda teruskan ke `startTransition` dipanggil segera, menandai semua pembaruan status yang terjadi saat dijalankan sebagai Transisi. Jika Anda mencoba melakukan pembaruan status dalam `setTimeout`, misalnya, pembaruan tersebut tidak akan ditandai sebagai Transisi.
+
+* Anda harus membungkus pembaruan status apa pun setelah permintaan async apa pun dalam `startTransition` lain untuk menandainya sebagai Transisi. Ini adalah batasan yang diketahui yang akan kami perbaiki di masa mendatang (lihat [Pemecahan Masalah](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
+
+* Fungsi `startTransition` memiliki identitas yang stabil, jadi Anda akan sering melihatnya dihilangkan dari dependensi Efek, tetapi memasukkannya tidak akan menyebabkan Efek aktif. Jika linter memungkinkan Anda menghilangkan dependensi tanpa kesalahan, hal itu aman untuk dilakukan. [Pelajari selengkapnya tentang menghapus dependensi Efek.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 * Perubahan *state* yang ditandai sebagai transisi akan terganggu oleh perubahan *state* lainnya. Contohnya, jika anda mengubah komponen chart di dalam transisi, namun kemudian memulai mengetik dalam input ketika chart sedang di tengah me*render* ulang, React akan me*render* ulang pekerjaan pada komponen chart setelah mengerjakan perubahan pada input.
 
@@ -86,18 +119,16 @@ function TabContainer() {
 
 * Apabila terdapat beberapa transisi yang berjalan, React saat ini akan mengelompokkan mereka bersama. Ini adalah limitasi yang mungkin akan dihapus pada rilis yang akan datang.
 
----
-
 ## Kegunaan {/*usage*/}
 
-### Menandai perubahan state sebagai transisi non-blocking {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Melakukan pembaruan non-blocking dengan Aksi {/*perform-non-blocking-updates-with-actions*/}
 
-Panggil `useTransition` pada level teratas komponen Anda untuk menandai perubahan *state* sebagai *transisi* non-blocking.
+Panggil `useTransition` pada level teratas komponen Anda untuk membuat Aksi, dan akses *state* tertunda:
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
-import { useState, useTransition } from 'react';
+import {useState, useTransition} from 'react';
 
-function TabContainer() {
+function CheckoutForm() {
   const [isPending, startTransition] = useTransition();
   // ...
 }
@@ -106,302 +137,443 @@ function TabContainer() {
 `useTransition` mengembalikan sebuah senarai dengan tepat dua item:
 
 1. Penanda <CodeStep step={1}>`isPending`</CodeStep> yang memberitahukan Anda apakah terdapat transisi tertunda.
-2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda menandai perubahan *state* sebagai transisi.
+2. Fungsi <CodeStep step={2}>`startTransition`</CodeStep> yang memungkinkan Anda membuat Aksi.
 
-Kemudian Anda dapat menandai perubahan *state* sebagai transisi seperti berikut:
+Untuk memulai Transisi, oper sebuah fungsi ke `startTransition` seperti berikut:
 
-```js {6,8}
-function TabContainer() {
+```js
+import {useState, useTransition} from 'react';
+import {updateQuantity} from './api';
+
+function CheckoutForm() {
   const [isPending, startTransition] = useTransition();
-  const [tab, setTab] = useState('about');
+  const [quantity, setQuantity] = useState(1);
 
-  function selectTab(nextTab) {
-    startTransition(() => {
-      setTab(nextTab);
+  function onSubmit(newQuantity) {
+    startTransition(async function () {
+      const savedQuantity = await updateQuantity(newQuantity);
+      startTransition(() => {
+        setQuantity(savedQuantity);
+      });
     });
   }
   // ...
 }
 ```
 
-Transisi akan memungkinkan Anda untuk mempertahankan perubahan tampilan pengguna secara responsif bahkan untuk perangkat lambat.
+Fungsi yang diteruskan ke `startTransition` disebut "Aksi". Anda dapat memperbarui status dan (opsional) melakukan efek samping dalam sebuah Aksi, dan pekerjaan akan dilakukan di latar belakang tanpa menghalangi interaksi pengguna di halaman. Transisi dapat mencakup beberapa Aksi, dan saat Transisi sedang berlangsung, UI Anda tetap responsif. Misalnya, jika pengguna mengklik tab tetapi kemudian berubah pikiran dan mengklik tab lain, klik kedua akan segera ditangani tanpa menunggu pembaruan pertama selesai.
 
-Dengan transisi, UI Anda akan tetap responsif di tengah-tengah me-*render* ulang. Contohnya, jika pengguna menekan tab namun mereka berubah pikiran dan menekan tab lain, mereka dapat melakukan itu tanpa menunggu muat ulang pertama selesai.
+Untuk memberikan umpan balik kepada pengguna tentang Transisi yang sedang berlangsung, status `isPending` beralih ke `true` pada panggilan pertama ke `startTransition`, dan tetap `true` hingga semua Aksi selesai dan status akhir ditampilkan kepada pengguna. Transisi memastikan efek samping dalam Aksi selesai untuk [mencegah indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators), dan Anda dapat memberikan umpan balik langsung saat Transisi sedang berlangsung dengan `useOptimistic`.
 
-<Recipes titleText="Perbedaan antara useTransition dan perubahan state biasa" titleId="examples">
+<Recipes titleText="Perbedaan antara Aksi dan penanganan event reguler">
 
-#### Merubah tab saat ini dalam transisi {/*updating-the-current-tab-in-a-transition*/}
+#### Memperbarui kuantitas dalam suatu Aksi {/*updating-the-quantity-in-an-action*/}
 
-Pada contoh berikut ini, tab "Posts" ini **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*.
+Dalam contoh ini, fungsi `updateQuantity` mensimulasikan permintaan ke server untuk memperbarui jumlah barang di keranjang. Fungsi ini *diperlambat secara artifisial* sehingga butuh setidaknya satu detik untuk menyelesaikan permintaan.
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa ini akan mengganggu muatan "Posts" yang lambat. Tab "Contact" akan tampil segera. Karena perubahan *state* ini ditandai sebagai transisi, me*render* ulang yang lambat tidak akan membekukan tampilan pengguna.
+Perbarui jumlah beberapa kali dengan cepat. Perhatikan bahwa status "Total" yang tertunda ditampilkan saat permintaan sedang berlangsung, dan "Total" diperbarui hanya setelah permintaan akhir selesai. Karena pembaruan berada dalam Aksi, "jumlah" dapat terus diperbarui saat permintaan sedang berlangsung.
 
 <Sandpack>
 
-```js
-import { useState, useTransition } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
-
-export default function TabContainer() {
-  const [isPending, startTransition] = useTransition();
-  const [tab, setTab] = useState('about');
-
-  function selectTab(nextTab) {
-    startTransition(() => {
-      setTab(nextTab);
-    });
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
+}
+```
+
+```js src/App.js
+import { useState, useTransition } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  const [quantity, setQuantity] = useState(1);
+  const [isPending, startTransition] = useTransition();
+
+  const updateQuantityAction = async newQuantity => {
+    // To access the pending state of a transition,
+    // call startTransition again.
+    startTransition(async () => {
+      const savedQuantity = await updateQuantity(newQuantity);
+      startTransition(() => {
+        setQuantity(savedQuantity);
+      });
+    });
+  };
 
   return (
-    <>
-      <TabButton
-        isActive={tab === 'about'}
-        onClick={() => selectTab('about')}
-      >
-        About
-      </TabButton>
-      <TabButton
-        isActive={tab === 'posts'}
-        onClick={() => selectTab('posts')}
-      >
-        Posts (slow)
-      </TabButton>
-      <TabButton
-        isActive={tab === 'contact'}
-        onClick={() => selectTab('contact')}
-      >
-        Contact
-      </TabButton>
+    <div>
+      <h1>Checkout</h1>
+      <Item action={updateQuantityAction}/>
       <hr />
-      {tab === 'about' && <AboutTab />}
-      {tab === 'posts' && <PostsTab />}
-      {tab === 'contact' && <ContactTab />}
-    </>
+      <Total quantity={quantity} isPending={isPending} />
+    </div>
   );
 }
 ```
 
-```js TabButton.js
-import { useTransition } from 'react';
+```js src/Item.js
+import { startTransition } from "react";
 
-export default function TabButton({ children, isActive, onClick }) {
-  if (isActive) {
-    return <b>{children}</b>
+export default function Item({action}) {
+  function handleChange(event) {
+    // To expose an action prop, await the callback in startTransition.
+    startTransition(async () => {
+      await action(event.target.value);
+    })
   }
   return (
-    <button onClick={() => {
-      onClick();
-    }}>
-      {children}
-    </button>
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
   )
 }
-
 ```
 
-```js AboutTab.js
-export default function AboutTab() {
-  return (
-    <p>Welcome to my profile!</p>
-  );
-}
-```
-
-```js PostsTab.js
-import { memo } from 'react';
-
-const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
-
-  let items = [];
-  for (let i = 0; i < 500; i++) {
-    items.push(<SlowPost key={i} index={i} />);
-  }
-  return (
-    <ul className="items">
-      {items}
-    </ul>
-  );
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
 });
 
-function SlowPost({ index }) {
-  let startTime = performance.now();
-  while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
-  }
-
+export default function Total({quantity, isPending}) {
   return (
-    <li className="item">
-      Post #{index + 1}
-    </li>
-  );
+    <div className="total">
+      <span>Total:</span>
+      <span>
+        {isPending ? "🌀 Updating..." : `${intl.format(quantity * 9999)}`}
+      </span>
+    </div>
+  )
 }
-
-export default PostsTab;
 ```
 
-```js ContactTab.js
-export default function ContactTab() {
-  return (
-    <>
-      <p>
-        You can find me online here:
-      </p>
-      <ul>
-        <li>admin@mysite.com</li>
-        <li>+123456789</li>
-      </ul>
-    </>
-  );
+```js src/api.js
+export async function updateQuantity(newQuantity) {
+  return new Promise((resolve, reject) => {
+    // Simulate a slow network request.
+    setTimeout(() => {
+      resolve(newQuantity);
+    }, 2000);
+  });
 }
 ```
 
 ```css
-button { margin-right: 10px }
-b { display: inline-block; margin-right: 10px; }
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
 ```
 
 </Sandpack>
+
+This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-transitions-are-out-of-order) below).
+
+For common use cases, React provides built-in abstractions such as:
+- [`useActionState`](/reference/react/useActionState)
+- [`<form>` actions](/reference/react-dom/components/form)
+- [Server Functions](/reference/rsc/server-functions)
+
+These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
 
 <Solution />
 
-#### Merubah tab saat ini tanpa transisi {/*updating-the-current-tab-without-a-transition*/}
+#### Memperbarui kuantitas tanpa Aksi {/*updating-the-users-name-without-an-action*/}
 
-Pada contoh berikut, tab "Posts" juga **Dipelankan secara artifisial** sehingga akan memakan waktu setidaknya satu detik untuk *render*. Berbeda dengan contoh sebelumnya, perubahan *state* ini **bukanlah sebuah transisi.**
+Dalam contoh ini, fungsi `updateQuantity` juga mensimulasikan permintaan ke server untuk memperbarui kuantitas item dalam keranjang. Fungsi ini *diperlambat secara artifisial* sehingga memerlukan waktu setidaknya satu detik untuk menyelesaikan permintaan.
 
-Tekan "Posts" kemudian segera tekan "Contact". Perhatikan bahwa aplikasi membeku ketika render tab yang lambat, dan UI menjadi tidak responsive. Perubahan *state* ini bukanlah sebuah transisi, sehingga me-*render* ulang yang lambat membekukan tampilan pengguna.
+Perbarui kuantitas beberapa kali dengan cepat. Perhatikan bahwa status "Total" yang tertunda ditampilkan saat permintaan sedang berlangsung, tetapi "Total" diperbarui beberapa kali untuk setiap kali "kuantitas" diklik:
 
 <Sandpack>
 
-```js
-import { useState } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
-
-export default function TabContainer() {
-  const [tab, setTab] = useState('about');
-
-  function selectTab(nextTab) {
-    setTab(nextTab);
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
-
-  return (
-    <>
-      <TabButton
-        isActive={tab === 'about'}
-        onClick={() => selectTab('about')}
-      >
-        About
-      </TabButton>
-      <TabButton
-        isActive={tab === 'posts'}
-        onClick={() => selectTab('posts')}
-      >
-        Posts (slow)
-      </TabButton>
-      <TabButton
-        isActive={tab === 'contact'}
-        onClick={() => selectTab('contact')}
-      >
-        Contact
-      </TabButton>
-      <hr />
-      {tab === 'about' && <AboutTab />}
-      {tab === 'posts' && <PostsTab />}
-      {tab === 'contact' && <ContactTab />}
-    </>
-  );
 }
 ```
 
-```js TabButton.js
-import { useTransition } from 'react';
+```js src/App.js
+import { useState } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
 
-export default function TabButton({ children, isActive, onClick }) {
-  if (isActive) {
-    return <b>{children}</b>
+export default function App({}) {
+  const [quantity, setQuantity] = useState(1);
+  const [isPending, setIsPending] = useState(false);
+
+  const onUpdateQuantity = async newQuantity => {
+    // Manually set the isPending State.
+    setIsPending(true);
+    const savedQuantity = await updateQuantity(newQuantity);
+    setIsPending(false);
+    setQuantity(savedQuantity);
+  };
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item onUpdateQuantity={onUpdateQuantity}/>
+      <hr />
+      <Total quantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+export default function Item({onUpdateQuantity}) {
+  function handleChange(event) {
+    onUpdateQuantity(event.target.value);
   }
   return (
-    <button onClick={() => {
-      onClick();
-    }}>
-      {children}
-    </button>
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
   )
 }
-
 ```
 
-```js AboutTab.js
-export default function AboutTab() {
-  return (
-    <p>Welcome to my profile!</p>
-  );
-}
-```
-
-```js PostsTab.js
-import { memo } from 'react';
-
-const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
-
-  let items = [];
-  for (let i = 0; i < 500; i++) {
-    items.push(<SlowPost key={i} index={i} />);
-  }
-  return (
-    <ul className="items">
-      {items}
-    </ul>
-  );
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
 });
 
-function SlowPost({ index }) {
-  let startTime = performance.now();
-  while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
-  }
-
+export default function Total({quantity, isPending}) {
   return (
-    <li className="item">
-      Post #{index + 1}
-    </li>
-  );
+    <div className="total">
+      <span>Total:</span>
+      <span>
+        {isPending ? "🌀 Updating..." : `${intl.format(quantity * 9999)}`}
+      </span>
+    </div>
+  )
 }
-
-export default PostsTab;
 ```
 
-```js ContactTab.js
-export default function ContactTab() {
-  return (
-    <>
-      <p>
-        You can find me online here:
-      </p>
-      <ul>
-        <li>admin@mysite.com</li>
-        <li>+123456789</li>
-      </ul>
-    </>
-  );
+```js src/api.js
+export async function updateQuantity(newQuantity) {
+  return new Promise((resolve, reject) => {
+    // Simulate a slow network request.
+    setTimeout(() => {
+      resolve(newQuantity);
+    }, 2000);
+  });
 }
 ```
 
 ```css
-button { margin-right: 10px }
-b { display: inline-block; margin-right: 10px; }
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
 ```
 
 </Sandpack>
+
+Solusi umum untuk masalah ini adalah mencegah pengguna membuat perubahan saat kuantitas diperbarui:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+import { useState, useTransition } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  const [quantity, setQuantity] = useState(1);
+  const [isPending, setIsPending] = useState(false);
+
+  const onUpdateQuantity = async event => {
+    const newQuantity = event.target.value;
+    // Manually set the isPending state.
+    setIsPending(true);
+    const savedQuantity = await updateQuantity(newQuantity);
+    setIsPending(false);
+    setQuantity(savedQuantity);
+  };
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item isPending={isPending} onUpdateQuantity={onUpdateQuantity}/>
+      <hr />
+      <Total quantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+export default function Item({isPending, onUpdateQuantity}) {
+  return (
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        disabled={isPending}
+        onChange={onUpdateQuantity}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
+  )
+}
+```
+
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+});
+
+export default function Total({quantity, isPending}) {
+  return (
+    <div className="total">
+      <span>Total:</span>
+      <span>
+        {isPending ? "🌀 Updating..." : `${intl.format(quantity * 9999)}`}
+      </span>
+    </div>
+  )
+}
+```
+
+```js src/api.js
+export async function updateQuantity(newQuantity) {
+  return new Promise((resolve, reject) => {
+    // Simulate a slow network request.
+    setTimeout(() => {
+      resolve(newQuantity);
+    }, 2000);
+  });
+}
+```
+
+```css
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+```
+
+</Sandpack>
+
+Solusi ini membuat aplikasi terasa lambat, karena pengguna harus menunggu setiap kali memperbarui kuantitas. Penanganan yang lebih rumit dapat ditambahkan secara manual untuk memungkinkan pengguna berinteraksi dengan UI saat kuantitas diperbarui, tetapi Actions menangani kasus ini dengan API bawaan yang mudah.
 
 <Solution />
 
@@ -409,20 +581,24 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Merubah komponen induk dalam transisi {/*updating-the-parent-component-in-a-transition*/}
+### Mengekspos prop `action` dari komponen {/*exposing-action-props-from-components*/}
 
-Anda dapat mengubah *state* komponen induk dari panggilan `useTransition` juga. Contohnya, komponen `TabButton` ini membungkus logika komponen `onClick` dalam sebuah transisi:
+Anda dapat mengekspos prop `action` dari sebuah komponen untuk memungkinkan komponen induk untuk memanggil Aksi.
 
-```js {8-10}
-export default function TabButton({ children, isActive, onClick }) {
+Contohnya, komponen `TabButton` ini membungkus logika `onClick` di dalam prop `action`:
+
+```js {8-12}
+export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        onClick();
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async. 
+        await action();
       });
     }}>
       {children}
@@ -431,7 +607,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Karena komponen induk merubah *state*nya di dalam event handler `onClick`, perubahan *state* tersebut akan ditandai sebagai transisi. Inilah mengapa, seperti pada contoh di awal, Anda dapat menekan pada "Posts" dan kemudian segera menekan "Contact". Mengubah tab yang dipilih akan ditandai sebagai transisi, sehingga itu tidak memblokir tampilan pengguna.
+Karena komponen induk merubah *state*-nya di dalam `action`, perubahan *state* tersebut akan ditandai sebagai Transisi. Ini berarti Anda dapat menekan "Posts" dan kemudian segera menekan "Contact" dan ia tidak memblokir interaksi pengguna:
 
 <Sandpack>
 
@@ -448,19 +624,19 @@ export default function TabContainer() {
     <>
       <TabButton
         isActive={tab === 'about'}
-        onClick={() => setTab('about')}
+        action={() => setTab('about')}
       >
         About
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
-        onClick={() => setTab('posts')}
+        action={() => setTab('posts')}
       >
         Posts (slow)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
-        onClick={() => setTab('contact')}
+        action={() => setTab('contact')}
       >
         Contact
       </TabButton>
@@ -473,18 +649,23 @@ export default function TabContainer() {
 }
 ```
 
-```js TabButton.js active
+```js src/TabButton.js active
 import { useTransition } from 'react';
 
-export default function TabButton({ children, isActive, onClick }) {
+export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
   }
+  if (isPending) {
+    return <b className="pending">{children}</b>;
+  }
   return (
-    <button onClick={() => {
-      startTransition(() => {
-        onClick();
+    <button onClick={async () => {
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async. 
+        await action();
       });
     }}>
       {children}
@@ -493,7 +674,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-```js AboutTab.js
+```js src/AboutTab.js
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -501,7 +682,7 @@ export default function AboutTab() {
 }
 ```
 
-```js PostsTab.js
+```js src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -535,7 +716,7 @@ function SlowPost({ index }) {
 export default PostsTab;
 ```
 
-```js ContactTab.js
+```js src/ContactTab.js
 export default function ContactTab() {
   return (
     <>
@@ -554,18 +735,27 @@ export default function ContactTab() {
 ```css
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
+.pending { color: #777; }
 ```
 
 </Sandpack>
 
+<Note>
+
+When exposing an `action` prop from a component, you should `await` it inside the transition. 
+
+This allows the `action` callback to be either synchronous or asynchronous without requiring an additional `startTransition` to wrap the `await` in the action.
+
+</Note>
+
 ---
 
-### Menampilan state visual tertunda saat transisi {/*displaying-a-pending-visual-state-during-the-transition*/}
+### Menampilan state visual tertunda {/*displaying-a-pending-visual-state*/}
 
 Anda dapat menggunakan nilai boolean `isPending` yang dikembalikan oleh `useTransition` untuk menandai ke pengguna bahwa transisi sedang berjalan. Contohnya, tombol tab dapat memiliki *state* visual special "pending":
 
 ```js {4-6}
-function TabButton({ children, isActive, onClick }) {
+function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   // ...
   if (isPending) {
@@ -591,19 +781,19 @@ export default function TabContainer() {
     <>
       <TabButton
         isActive={tab === 'about'}
-        onClick={() => setTab('about')}
+        action={() => setTab('about')}
       >
         About
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
-        onClick={() => setTab('posts')}
+        action={() => setTab('posts')}
       >
         Posts (slow)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
-        onClick={() => setTab('contact')}
+        action={() => setTab('contact')}
       >
         Contact
       </TabButton>
@@ -616,10 +806,10 @@ export default function TabContainer() {
 }
 ```
 
-```js TabButton.js active
+```js src/TabButton.js active
 import { useTransition } from 'react';
 
-export default function TabButton({ children, isActive, onClick }) {
+export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
@@ -629,8 +819,8 @@ export default function TabButton({ children, isActive, onClick }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        onClick();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -639,7 +829,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-```js AboutTab.js
+```js src/AboutTab.js
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -647,7 +837,7 @@ export default function AboutTab() {
 }
 ```
 
-```js PostsTab.js
+```js src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -681,7 +871,7 @@ function SlowPost({ index }) {
 export default PostsTab;
 ```
 
-```js ContactTab.js
+```js src/ContactTab.js
 export default function ContactTab() {
   return (
     <>
@@ -709,7 +899,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Mencegah indikator loading yang tidak diinginkan {/*preventing-unwanted-loading-indicators*/}
 
-Pada contoh berikut ini, komponen `PostsTab` mengambil beberapa data menggunakan [Suspense-enabled](/reference/react/Suspense) data source. Ketika Anda menekan tab "Posts", komponen `PostsTab` akan di*suspends*, menyebabkan *fallback* loading terdekat untuk muncul:
+Pada contoh berikut ini, komponen `PostsTab` mengambil beberapa data menggunakan [use](/reference/react/use). Ketika Anda menekan tab "Posts", komponen `PostsTab` akan *ditangguhkan*, menyebabkan *fallback* loading terdekat untuk muncul:
 
 <Sandpack>
 
@@ -726,19 +916,19 @@ export default function TabContainer() {
     <Suspense fallback={<h1>🌀 Loading...</h1>}>
       <TabButton
         isActive={tab === 'about'}
-        onClick={() => setTab('about')}
+        action={() => setTab('about')}
       >
         About
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
-        onClick={() => setTab('posts')}
+        action={() => setTab('posts')}
       >
         Posts
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
-        onClick={() => setTab('contact')}
+        action={() => setTab('contact')}
       >
         Contact
       </TabButton>
@@ -751,14 +941,14 @@ export default function TabContainer() {
 }
 ```
 
-```js TabButton.js
-export default function TabButton({ children, isActive, onClick }) {
+```js src/TabButton.js
+export default function TabButton({ action, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
   }
   return (
     <button onClick={() => {
-      onClick();
+      action();
     }}>
       {children}
     </button>
@@ -766,7 +956,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-```js AboutTab.js hidden
+```js src/AboutTab.js hidden
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -774,14 +964,9 @@ export default function AboutTab() {
 }
 ```
 
-```js PostsTab.js hidden
+```js src/PostsTab.js hidden
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 function PostsTab() {
   const posts = use(fetchData('/posts'));
@@ -803,34 +988,9 @@ function Post({ title }) {
 }
 
 export default PostsTab;
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js ContactTab.js hidden
+```js src/ContactTab.js hidden
 export default function ContactTab() {
   return (
     <>
@@ -847,7 +1007,7 @@ export default function ContactTab() {
 ```
 
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -893,9 +1053,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Menyembunyikan seluruh tab container untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan *state* pending di tombol tab sebagai gantinya.
+Menyembunyikan seluruh kontainer tab untuk menampilkan indikator loading akan mengarahkan ke pengalaman pengguna yang gemuruh. Jika Anda menambahkan `useTransition` ke `TabButton`, Anda bisa sebagai gantinya mengindikasi tampilan *state* pending di tombol tab sebagai gantinya.
 
-Perhatikan bahwa menekan "Posts" tidak menjadikan seluruh tab container dengan spinner:
+Perhatikan bahwa menekan "Posts" tidak menjadikan seluruh kontainer tab dengan spinner:
 
 <Sandpack>
 
@@ -912,19 +1072,19 @@ export default function TabContainer() {
     <Suspense fallback={<h1>🌀 Loading...</h1>}>
       <TabButton
         isActive={tab === 'about'}
-        onClick={() => setTab('about')}
+        action={() => setTab('about')}
       >
         About
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
-        onClick={() => setTab('posts')}
+        action={() => setTab('posts')}
       >
         Posts
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
-        onClick={() => setTab('contact')}
+        action={() => setTab('contact')}
       >
         Contact
       </TabButton>
@@ -937,10 +1097,10 @@ export default function TabContainer() {
 }
 ```
 
-```js TabButton.js active
+```js src/TabButton.js active
 import { useTransition } from 'react';
 
-export default function TabButton({ children, isActive, onClick }) {
+export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
@@ -950,8 +1110,8 @@ export default function TabButton({ children, isActive, onClick }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        onClick();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -960,7 +1120,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-```js AboutTab.js hidden
+```js src/AboutTab.js hidden
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -968,14 +1128,9 @@ export default function AboutTab() {
 }
 ```
 
-```js PostsTab.js hidden
+```js src/PostsTab.js hidden
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 function PostsTab() {
   const posts = use(fetchData('/posts'));
@@ -997,34 +1152,9 @@ function Post({ title }) {
 }
 
 export default PostsTab;
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js ContactTab.js hidden
+```js src/ContactTab.js hidden
 export default function ContactTab() {
   return (
     <>
@@ -1041,7 +1171,7 @@ export default function ContactTab() {
 ```
 
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -1091,7 +1221,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-Transisi hanya akan "menunggu" cukup lama untuk menghindari konten *already revealed* (seperti tab container). Jika tab Posts memiliki [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) transisi tidak akan "menunggu" untuk itu.
+Transisi hanya akan "menunggu" cukup lama untuk menghindari konten *yang telah ditampilkan* (seperti kontainer tab). Jika tab Posts memiliki [batasan `<Suspense>` bersarang,](/reference/react/Suspense#revealing-nested-content-as-it-loads) Transisi tidak akan "menunggu" untuk itu.
 
 </Note>
 
@@ -1099,7 +1229,7 @@ Transisi hanya akan "menunggu" cukup lama untuk menghindari konten *already reve
 
 ### Membangun router Suspense-enabled {/*building-a-suspense-enabled-router*/}
 
-Jika Anda membangun React framework atau router, kami merekomendasikan menandai navigasi halaman sebagai transisi.
+Jika Anda membangun *framework* atau *router* React, kami merekomendasikan menandai navigasi halaman sebagai transisi.
 
 ```js {3,6,8}
 function Router() {
@@ -1114,31 +1244,17 @@ function Router() {
   // ...
 ```
 
-Ini direkomendasikan karena dua alasan:
+Ini direkomendasikan karena tiga alasan:
 
-- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu me-*render* ulang selesai.
+- [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu perenderan ulang selesai.
 - [Transisi mencegah indikator loading yang tidak diinginkan,](#preventing-unwanted-loading-indicators) yang memungkinkan pengguna menghindari lompatan menggelegar pada navigasi.
+- [Transisi menunggu semua tindakan yang tertunda](#perform-non-blocking-updates-with-actions) yang memungkinkan pengguna menunggu efek samping selesai sebelum halaman baru ditampilkan.
 
-Berikut adalah contoh router kecil sederhana menggunakan transisi untuk navigasi.
+Berikut adalah contoh *router* kecil sederhana menggunakan Transisi untuk navigasi.
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-```js App.js
+```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -1189,7 +1305,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children, isPending }) {
   return (
     <div className="layout">
@@ -1206,7 +1322,7 @@ export default function Layout({ children, isPending }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1216,7 +1332,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -1247,14 +1363,9 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1268,41 +1379,11 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1312,34 +1393,9 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1349,7 +1405,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -1501,6 +1557,88 @@ Secara default, router [Suspense-enabled](/reference/react/Suspense) diharapkan 
 
 ---
 
+### Menampilkan *error* ke pengguna dengan *error boundary* {/*displaying-an-error-to-users-with-error-boundary*/}
+
+If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+
+<Sandpack>
+
+```js src/AddCommentContainer.js active
+import { useTransition } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function AddCommentContainer() {
+  return (
+    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+      <AddCommentButton />
+    </ErrorBoundary>
+  );
+}
+
+function addComment(comment) {
+  // Untuk tujuan demonstrasi untuk menunjukkan ErrorBoundary
+  if (comment == null) {
+    throw new Error("Example Error: An error thrown to trigger error boundary");
+  }
+}
+
+function AddCommentButton() {
+  const [pending, startTransition] = useTransition();
+
+  return (
+    <button
+      disabled={pending}
+      onClick={() => {
+        startTransition(() => {
+          // Secara sengaja tidak menambahkan komentar
+          // agar error ditampilkan
+          addComment();
+        });
+      }}
+    >
+      Add comment
+    </button>
+  );
+}
+```
+
+```js src/App.js hidden
+import { AddCommentContainer } from "./AddCommentContainer.js";
+
+export default function App() {
+  return <AddCommentContainer />;
+}
+```
+
+```js src/index.js hidden
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+import App from './App';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+</Sandpack>
+
+---
+
 ## Pemecahan Masalah {/*troubleshooting*/}
 
 ### Merubah input dalam transisi tidak bekerja {/*updating-an-input-in-a-transition-doesnt-work*/}
@@ -1511,7 +1649,7 @@ Anda tidak dapat menggunakan transisi unttuk variabel state yang mengendalikan i
 const [text, setText] = useState('');
 // ...
 function handleChange(e) {
-  // ❌ Can't use transitions for controlled input state
+  // ❌ Tidak dapat menggunakan transisi untuk state input terkontrol
   startTransition(() => {
     setText(e.target.value);
   });
@@ -1533,18 +1671,16 @@ Ketika Anda membungkus perubahan *state* di dalam transisi, pastikan bahwa itu t
 
 ```js
 startTransition(() => {
-  // ✅ Setting state *during* startTransition call
+  // ✅ Mengatur state *saat* startTransition dipanggil
   setPage('/about');
 });
 ```
 
-Fungsi yang Anda kirimkan ke `startTransition` harus sinkron.
-
-Anda tidak dapat menandakan perubahan sebagai transisi seperti berikut:
+Fungsi yang Anda kirimkan ke `startTransition` harus sinkron. Anda tidak dapat menandakan perubahan sebagai transisi seperti berikut:
 
 ```js
 startTransition(() => {
-  // ❌ Setting state *after* startTransition call
+  // ❌ Mengatur state *setelah* startTransition dipanggil
   setTimeout(() => {
     setPage('/about');
   }, 1000);
@@ -1556,18 +1692,22 @@ Sebaiknya, anda dapat melakukan hal berikut:
 ```js
 setTimeout(() => {
   startTransition(() => {
-    // ✅ Setting state *during* startTransition call
+    // ✅ Mengatur state *saat* startTransition dipanggil
     setPage('/about');
   });
 }, 1000);
 ```
 
-Demikian pula, Anda tidak dapat menandai perubahan sebagai transisi seperti berikut:
+---
+
+### React tidak memperlakukan pembaruan status saya setelah `await` sebagai Transisi {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
+
+Bila Anda menggunakan `await` di dalam fungsi `startTransition`, pembaruan status yang terjadi setelah `await` tidak ditandai sebagai Transisi. Anda harus membungkus pembaruan status setelah setiap `await` dalam panggilan `startTransition`:
 
 ```js
 startTransition(async () => {
   await someAsyncFunction();
-  // ❌ Setting state *after* startTransition call
+  // ❌ Tidak menggunakan startTransition setelah await
   setPage('/about');
 });
 ```
@@ -1575,12 +1715,16 @@ startTransition(async () => {
 Namun, ini bekerja sebagai gantinya:
 
 ```js
-await someAsyncFunction();
-startTransition(() => {
-  // ✅ Setting state *during* startTransition call
-  setPage('/about');
+startTransition(async () => {
+  await someAsyncFunction();
+  // ✅ Menggunakan startTransition *setelah* await
+  startTransition(() => {
+    setPage('/about');
+  });
 });
 ```
+
+Ini adalah batasan JavaScript karena React kehilangan cakupan konteks async. Di masa mendatang, saat [AsyncContext](https://github.com/tc39/proposal-async-context) tersedia, batasan ini akan dihapus.
 
 ---
 
@@ -1618,9 +1762,348 @@ function startTransition(scope) {
 
 function setState() {
   if (isInsideTransition) {
-    // ... schedule a transition state update ...
+    // ... schedule a Transition state update ...
   } else {
     // ... schedule an urgent state update ...
   }
 }
 ```
+
+### My state updates in Transitions are out of order {/*my-state-updates-in-transitions-are-out-of-order*/}
+
+If you `await` inside `startTransition`, you might see the updates happen out of order.
+
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns the every other request after the previous* to simulate race conditions for network requests.
+
+Try updating the quantity once, then update it quickly multiple times. You might see the incorrect total:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+import { useState, useTransition } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  const [quantity, setQuantity] = useState(1);
+  const [isPending, startTransition] = useTransition();
+  // Store the actual quantity in separate state to show the mismatch.
+  const [clientQuantity, setClientQuantity] = useState(1);
+  
+  const updateQuantityAction = newQuantity => {
+    setClientQuantity(newQuantity);
+
+    // Access the pending state of the transition,
+    // by wrapping in startTransition again.
+    startTransition(async () => {
+      const savedQuantity = await updateQuantity(newQuantity);
+      startTransition(() => {
+        setQuantity(savedQuantity);
+      });
+    });
+  };
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item action={updateQuantityAction}/>
+      <hr />
+      <Total clientQuantity={clientQuantity} savedQuantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+import {startTransition} from 'react';
+
+export default function Item({action}) {
+  function handleChange(e) {
+    // Update the quantity in an Action.
+    startTransition(async () => {
+      await action(e.target.value);
+    });
+  }  
+  return (
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
+  )
+}
+```
+
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+});
+
+export default function Total({ clientQuantity, savedQuantity, isPending }) {
+  return (
+    <div className="total">
+      <span>Total:</span>
+      <div>
+        <div>
+          {isPending
+            ? "🌀 Updating..."
+            : `${intl.format(savedQuantity * 9999)}`}
+        </div>
+        <div className="error">
+          {!isPending &&
+            clientQuantity !== savedQuantity &&
+            `Wrong total, expected: ${intl.format(clientQuantity * 9999)}`}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js src/api.js
+let firstRequest = true;
+export async function updateQuantity(newName) {
+  return new Promise((resolve, reject) => {
+    if (firstRequest === true) {
+      firstRequest = false;
+      setTimeout(() => {
+        firstRequest = true;
+        resolve(newName);
+        // Simulate every other request being slower
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        resolve(newName);
+      }, 50);
+    }
+  });
+}
+```
+
+```css
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.total div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.error {
+  color: red;
+}
+```
+
+</Sandpack>
+
+
+When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
+
+This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
+
+
+Example of `useActionState` handling execution order:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+import { useState, useActionState } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  // Store the actual quantity in separate state to show the mismatch.
+  const [clientQuantity, setClientQuantity] = useState(1);
+  const [quantity, updateQuantityAction, isPending] = useActionState(
+    async (prevState, payload) => {
+      setClientQuantity(payload);
+      const savedQuantity = await updateQuantity(payload);
+      return savedQuantity; // Return the new quantity to update the state
+    },
+    1 // Initial quantity
+  );
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item action={updateQuantityAction}/>
+      <hr />
+      <Total clientQuantity={clientQuantity} savedQuantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+import {startTransition} from 'react';
+
+export default function Item({action}) {
+  function handleChange(e) {
+    // Update the quantity in an Action.
+    startTransition(() => {
+      action(e.target.value);
+    });
+  }  
+  return (
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
+  )
+}
+```
+
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+});
+
+export default function Total({ clientQuantity, savedQuantity, isPending }) {
+  return (
+    <div className="total">
+      <span>Total:</span>
+      <div>
+        <div>
+          {isPending
+            ? "🌀 Updating..."
+            : `${intl.format(savedQuantity * 9999)}`}
+        </div>
+        <div className="error">
+          {!isPending &&
+            clientQuantity !== savedQuantity &&
+            `Wrong total, expected: ${intl.format(clientQuantity * 9999)}`}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js src/api.js
+let firstRequest = true;
+export async function updateQuantity(newName) {
+  return new Promise((resolve, reject) => {
+    if (firstRequest === true) {
+      firstRequest = false;
+      setTimeout(() => {
+        firstRequest = true;
+        resolve(newName);
+        // Simulate every other request being slower
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        resolve(newName);
+      }, 50);
+    }
+  });
+}
+```
+
+```css
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.total div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.error {
+  color: red;
+}
+```
+
+</Sandpack>

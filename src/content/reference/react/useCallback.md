@@ -252,7 +252,7 @@ Selanjutnya, coba ubah tema. **Berkat `useCallback` bersama dengan [`memo`](/ref
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -279,7 +279,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import { useCallback } from 'react';
 import ShippingForm from './ShippingForm.js';
 
@@ -305,7 +305,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -392,7 +392,7 @@ Berbeda dengan contoh sebelumnya, mengubah tema menjadi lambat juga pada contoh 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -419,7 +419,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import ShippingForm from './ShippingForm.js';
 
 export default function ProductPage({ productId, referrer, theme }) {
@@ -444,7 +444,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -526,7 +526,7 @@ Namun, ini adalah kode yang sama **tanpa perlambatan buatan.** Apakah kurangnya 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -553,7 +553,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import ShippingForm from './ShippingForm.js';
 
 export default function ProductPage({ productId, referrer, theme }) {
@@ -578,7 +578,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -712,7 +712,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     // ...
 ```
@@ -723,7 +723,7 @@ Hal ini menimbulkan masalah. [ Setiap nilai reaktif harus dideklarasikan sebagai
 ```js {6}
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // 🔴 Masalah: dependensi ini akan berubah setiap render
@@ -745,7 +745,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // ✅ hanya berubah ketika createOptions berubah
@@ -767,7 +767,7 @@ function ChatRoom({ roomId }) {
     }
 
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]); // ✅ hanya berubah ketika roomId berubah

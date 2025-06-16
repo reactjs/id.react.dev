@@ -67,6 +67,8 @@ function Tooltip() {
 
 * Kode di dalam `useLayoutEffect` serta semua pembaruan *state* yang telah dijadwalkan akan **memblokir peramban untuk melukis ulang layar.** Penggunaan berlebihan dapat menyebabkan aplikasi Anda lambat. Jika memungkinkan, gunakan [`useEffect`](/reference/react/useEffect).
 
+* If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
+
 ---
 
 ## Penggunaan {/*usage*/}
@@ -149,7 +151,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -185,7 +187,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -220,7 +222,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -299,7 +301,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -335,7 +337,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -369,7 +371,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -446,7 +448,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -482,7 +484,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -516,7 +518,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -589,7 +591,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -625,7 +627,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -665,7 +667,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div

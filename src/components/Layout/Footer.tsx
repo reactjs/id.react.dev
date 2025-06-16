@@ -8,6 +8,7 @@ import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';
+import {IconBsky} from 'components/Icon/IconBsky';
 import {IconGitHub} from 'components/Icon/IconGitHub';
 
 export function Footer() {
@@ -15,7 +16,7 @@ export function Footer() {
   return (
     <footer className={cn('text-secondary dark:text-secondary-dark')}>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
-        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
+        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5">
           <ExternalLink
             href="https://opensource.fb.com/"
             aria-label="Meta Open Source">
@@ -280,72 +281,104 @@ export function Footer() {
             </div>
           </ExternalLink>
 
-          <div className="text-xs text-left mt-2 pr-0.5">
-            &copy;{new Date().getFullYear()}
+          <div
+            className="text-xs text-left rtl:text-right mt-2 pe-0.5"
+            dir="ltr">
+            Copyright &copy; Meta Platforms, Inc
+          </div>
+          <div
+            className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(false);
+            }}>
+            no uwu plz
+          </div>
+          <div
+            className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(true);
+            }}>
+            uwu?
+          </div>
+          <div className="uwu-visible text-xs">
+            Logo by
+            <ExternalLink
+              className="ms-1"
+              href="https://twitter.com/sawaratsuki1004">
+              @sawaratsuki1004
+            </ExternalLink>
           </div>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>
-            Learn React
+            Belajar React
           </FooterLink>
-          <FooterLink href="/learn/">Quick Start</FooterLink>
-          <FooterLink href="/learn/installation">Installation</FooterLink>
+          <FooterLink href="/learn/">Mulai Cepat</FooterLink>
+          <FooterLink href="/learn/installation">Pemasangan</FooterLink>
           <FooterLink href="/learn/describing-the-ui">
-            Describing the UI
+            Menggambarkan Antarmuka Pengguna (UI)
           </FooterLink>
           <FooterLink href="/learn/adding-interactivity">
-            Adding Interactivity
+            Menambahkan Interaktivitas
           </FooterLink>
-          <FooterLink href="/learn/managing-state">Managing State</FooterLink>
-          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
+          <FooterLink href="/learn/managing-state">Mengelola State</FooterLink>
+          <FooterLink href="/learn/escape-hatches">Jalan Keluar</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
-            API Reference
+            Referensi API
           </FooterLink>
-          <FooterLink href="/reference/react">React APIs</FooterLink>
-          <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
+          <FooterLink href="/reference/react">API React</FooterLink>
+          <FooterLink href="/reference/react-dom">API React DOM</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
           <FooterLink href="/community" isHeader={true}>
-            Community
+            Komunitas
           </FooterLink>
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
-            Code of Conduct
+            Kode Etik
           </FooterLink>
-          <FooterLink href="/community/team">Meet the Team</FooterLink>
+          <FooterLink href="/community/team">Mengenal Anggota Tim</FooterLink>
           <FooterLink href="/community/docs-contributors">
-            Docs Contributors
+            Kontributor Dokumentasi
           </FooterLink>
           <FooterLink href="/community/acknowledgements">
-            Acknowledgements
+            Ucapan Terima Kasih
           </FooterLink>
         </div>
         <div className="flex flex-col">
-          <FooterLink isHeader={true}>More</FooterLink>
+          <FooterLink isHeader={true}>Lebih Lengkap</FooterLink>
           <FooterLink href="/blog">Blog</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
-            Privacy
+            Privasi
           </FooterLink>
           <FooterLink href="https://opensource.fb.com/legal/terms/">
-            Terms
+            Persyaratan
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
-              aria-label="React on Facebook"
+              aria-label="React di Facebook"
               href="https://www.facebook.com/react"
               className={socialLinkClasses}>
               <IconFacebookCircle />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Twitter"
+              aria-label="React di Twitter"
               href="https://twitter.com/reactjs"
               className={socialLinkClasses}>
               <IconTwitter />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Github"
+              aria-label="React di Bluesky"
+              href="https://bsky.app/profile/react.dev"
+              className={socialLinkClasses}>
+              <IconBsky />
+            </ExternalLink>
+            <ExternalLink
+              aria-label="React di Github"
               href="https://github.com/facebook/react"
               className={socialLinkClasses}>
               <IconGitHub />

@@ -1,121 +1,42 @@
 ---
-title: "Built-in React Hooks"
+title: "Pengantar Referensi React"
 ---
 
 <Intro>
 
-*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
+Bagian ini menyediakan dokumentasi referensi yang mendetail untuk bekerja dengan React. Untuk pengenalan tentang React, Silahkan kunjungi bagian [Learn](/learn).
 
 </Intro>
 
----
+Dokumentasi referensi React dibagi menjadi beberapa sub-bagian fungsional:
 
-## State Hooks {/*state-hooks*/}
+## React {/*react*/}
 
-*State* lets a component ["remember" information like user input.](/learn/state-a-components-memory) For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+Fitur-fitur React yang diprogram:
 
-To add state to a component, use one of these Hooks:
+* [Hooks](/reference/react/hooks) — Gunakan bermacam-macam fitur React dari komponen Anda.
+* [Komponen](/reference/react/components) — Komponen bawaan yang dapat digunakan di JSX Anda.
+* [API](/reference/react/apis) — API yang berguna untuk mendefinisikan komponen.
+* [Direktif](/reference/rsc/directives) — Menyediakan instruksi ke *bundler* yang kompatibel dengan Komponen Server React.
 
-* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
-* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+## React DOM {/*react-dom*/}
 
-```js
-function ImageGallery() {
-  const [index, setIndex] = useState(0);
-  // ...
-```
+React-dom berisi fitur-fitur yang hanya didukung untuk aplikasi web (yang berjalan di lingkungan peramban DOM). Bagian ini dibagi menjadi beberapa bagian berikut ini:
 
----
+* [Hooks](/reference/react-dom/hooks) — Hooks untuk aplikasi web yang berjalan di lingkungan peramban DOM.
+* [Komponen](/reference/react-dom/components) — React mendukung semua komponen HTML dan SVG bawaan peramban.
+* [API](/reference/react-dom) — Paket `react-dom` berisi metode-metode yang hanya didukung dalam aplikasi web.
+* [API Klien](/reference/react-dom/client) — API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
+* [API Server](/reference/react-dom/server) — API `react-dom/server` memungkinkan Anda untuk me-*render* komponen React ke HTML di server.
 
-## Context Hooks {/*context-hooks*/}
+## Aturan React {/*rules-of-react*/}
 
-*Context* lets a component [receive information from distant parents without passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
+React memiliki idiom — atau aturan — tentang cara mengekspresikan pola dengan cara yang mudah dimengerti dan menghasilkan aplikasi berkualitas tinggi:
 
-* [`useContext`](/reference/react/useContext) reads and subscribes to a context.
+* [Komponen dan *Hooks* harus murni](/reference/rules/components-and-hooks-must-be-pure) — Kemurnian membuat kode Anda lebih mudah dipahami, di-*debug*, dan memungkinkan React untuk secara otomatis mengoptimalkan komponen dan *Hook* Anda dengan benar.
+* [React memanggil Komponen dan *Hooks*](/reference/rules/react-calls-components-and-hooks) — React bertanggung jawab untuk me-*render* komponen dan *Hooks* ketika diperlukan untuk mengoptimalkan pengalaman pengguna.
+* [Peraturan *Hooks*](/reference/rules/rules-of-hooks) — *Hooks* didefinisikan menggunakan fungsi JavaScript, tetapi *Hooks* merepresentasikan tipe khusus dari logika UI yang dapat digunakan kembali dengan batasan di mana *Hooks* tersebut dapat dipanggil.
 
-```js
-function Button() {
-  const theme = useContext(ThemeContext);
-  // ...
-```
+## API Lama {/*legacy-apis*/}
 
----
-
-## Ref Hooks {/*ref-hooks*/}
-
-*Refs* let a component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
-
-* [`useRef`](/reference/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
-
-```js
-function Form() {
-  const inputRef = useRef(null);
-  // ...
-```
-
----
-
-## Effect Hooks {/*effect-hooks*/}
-
-*Effects* let a component [connect to and synchronize with external systems.](/learn/synchronizing-with-effects) This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.
-
-* [`useEffect`](/reference/react/useEffect) connects a component to an external system.
-
-```js
-function ChatRoom({ roomId }) {
-  useEffect(() => {
-    const connection = createConnection(roomId);
-    connection.connect();
-    return () => connection.disconnect();
-  }, [roomId]);
-  // ...
-```
-
-Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
-
-There are two rarely used variations of `useEffect` with differences in timing:
-
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
-
----
-
-## Performance Hooks {/*performance-hooks*/}
-
-A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
-
-To skip calculations and unnecessary re-rendering, use one of these Hooks:
-
-- [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
-- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
-
-```js
-function TodoList({ todos, tab, theme }) {
-  const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
-  // ...
-}
-```
-
-Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating blocking updates that must be synchronous (like typing into an input) from non-blocking updates which don't need to block the user interface (like updating a chart).
-
-To prioritize rendering, use one of these Hooks:
-
-- [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
-- [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
-
----
-
-## Other Hooks {/*other-hooks*/}
-
-These Hooks are mostly useful to library authors and aren't commonly used in the application code.
-
-- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
-- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
-
----
-
-## Your own Hooks {/*your-own-hooks*/}
-
-You can also [define your own custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) as JavaScript functions.
+* [API Lama](/reference/react/legacy) — Diekspor dari paket `react`, tetapi tidak direkomendasikan untuk digunakan pada kode yang baru ditulis.

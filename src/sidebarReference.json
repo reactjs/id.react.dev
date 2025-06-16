@@ -1,15 +1,23 @@
 {
-  "title": "API Reference",
+  "title": "Referensi API",
   "path": "/reference/react",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
+      "sectionHeader": "react@{{version}}"
     },
     {
-      "title": "Hooks",
-      "path": "/reference/react",
+      "title": "Pengantar",
+      "path": "/reference/react"
+    },
+    {
+      "title": "Hook",
+      "path": "/reference/react/hooks",
       "routes": [
+        {
+          "title": "useActionState",
+          "path": "/reference/react/useActionState"
+        },
         {
           "title": "useCallback",
           "path": "/reference/react/useCallback"
@@ -51,6 +59,10 @@
           "path": "/reference/react/useMemo"
         },
         {
+          "title": "useOptimistic",
+          "path": "/reference/react/useOptimistic"
+        },
+        {
           "title": "useReducer",
           "path": "/reference/react/useReducer"
         },
@@ -73,7 +85,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Komponen",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -91,20 +103,37 @@
         {
           "title": "<Suspense>",
           "path": "/reference/react/Suspense"
+        },
+        {
+          "title": "<Activity>",
+          "path": "/reference/react/Activity",
+          "version": "experimental"
+        },
+        {
+          "title": "<ViewTransition>",
+          "path": "/reference/react/ViewTransition",
+          "version": "experimental"
         }
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
         {
-          "title": "createContext",
-          "path": "/reference/react/createContext"
+          "title": "act",
+          "path": "/reference/react/act"
         },
         {
-          "title": "forwardRef",
-          "path": "/reference/react/forwardRef"
+          "title": "cache",
+          "path": "/reference/react/cache"
+        },        {
+          "title": "captureOwnerStack",
+          "path": "/reference/react/captureOwnerStack"
+        },
+        {
+          "title": "createContext",
+          "path": "/reference/react/createContext"
         },
         {
           "title": "lazy",
@@ -117,20 +146,53 @@
         {
           "title": "startTransition",
           "path": "/reference/react/startTransition"
+        },
+        {
+          "title": "use",
+          "path": "/reference/react/use"
+        },
+        {
+          "title": "experimental_taintObjectReference",
+          "path": "/reference/react/experimental_taintObjectReference",
+          "version": "experimental"
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue",
+          "version": "experimental"
+        },
+        {
+          "title": "unstable_addTransitionType",
+          "path": "/reference/react/addTransitionType",
+          "version": "experimental"
         }
       ]
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-dom@18.2.0"
+      "sectionHeader": "react-dom@{{version}}"
     },
     {
-      "title": "Components",
+      "title": "Hook",
+      "path": "/reference/react-dom/hooks",
+      "routes": [
+        {
+          "title": "useFormStatus",
+          "path": "/reference/react-dom/hooks/useFormStatus"
+        }
+      ]
+    },
+    {
+      "title": "Komponen",
       "path": "/reference/react-dom/components",
       "routes": [
         {
-          "title": "Common (e.g. <div>)",
+          "title": "Umum (e.g. <div>)",
           "path": "/reference/react-dom/components/common"
+        },
+        {
+          "title": "<form>",
+          "path": "/reference/react-dom/components/form"
         },
         {
           "title": "<input>",
@@ -151,11 +213,31 @@
         {
           "title": "<textarea>",
           "path": "/reference/react-dom/components/textarea"
+        },
+        {
+          "title": "<link>",
+          "path": "/reference/react-dom/components/link"
+        },
+        {
+          "title": "<meta>",
+          "path": "/reference/react-dom/components/meta"
+        },
+        {
+          "title": "<script>",
+          "path": "/reference/react-dom/components/script"
+        },
+        {
+          "title": "<style>",
+          "path": "/reference/react-dom/components/style"
+        },
+        {
+          "title": "<title>",
+          "path": "/reference/react-dom/components/title"
         }
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -167,25 +249,33 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
-          "title": "findDOMNode",
-          "path": "/reference/react-dom/findDOMNode"
+          "title": "preconnect",
+          "path": "/reference/react-dom/preconnect"
         },
         {
-          "title": "hydrate",
-          "path": "/reference/react-dom/hydrate"
+          "title": "prefetchDNS",
+          "path": "/reference/react-dom/prefetchDNS"
         },
         {
-          "title": "render",
-          "path": "/reference/react-dom/render"
+          "title": "preinit",
+          "path": "/reference/react-dom/preinit"
         },
         {
-          "title": "unmountComponentAtNode",
-          "path": "/reference/react-dom/unmountComponentAtNode"
+          "title": "preinitModule",
+          "path": "/reference/react-dom/preinitModule"
+        },
+        {
+          "title": "preload",
+          "path": "/reference/react-dom/preload"
+        },
+        {
+          "title": "preloadModule",
+          "path": "/reference/react-dom/preloadModule"
         }
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "API Klien",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -199,13 +289,9 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "API Server",
       "path": "/reference/react-dom/server",
       "routes": [
-        {
-          "title": "renderToNodeStream",
-          "path": "/reference/react-dom/server/renderToNodeStream"
-        },
         {
           "title": "renderToPipeableStream",
           "path": "/reference/react-dom/server/renderToPipeableStream"
@@ -219,21 +305,79 @@
           "path": "/reference/react-dom/server/renderToStaticMarkup"
         },
         {
-          "title": "renderToStaticNodeStream",
-          "path": "/reference/react-dom/server/renderToStaticNodeStream"
-        },
-        {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
         }
       ]
     },
     {
-      "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "title": "API Statis",
+      "path": "/reference/react-dom/static",
+      "routes": [
+        {
+          "title": "prerender",
+          "path": "/reference/react-dom/static/prerender"
+        },
+        {
+          "title": "prerenderToNodeStream",
+          "path": "/reference/react-dom/static/prerenderToNodeStream"
+        }
+      ]
     },
     {
-      "title": "Legacy React APIs",
+      "hasSectionHeader": true,
+      "sectionHeader": "Peraturan React"
+    },
+    {
+      "title": "Pengantar",
+      "path": "/reference/rules",
+      "routes": [
+        {
+          "title": "Komponen dan Hooks harus murni",
+          "path": "/reference/rules/components-and-hooks-must-be-pure"
+        },
+        {
+          "title": "React memanggil Komponen dan Hooks",
+          "path": "/reference/rules/react-calls-components-and-hooks"
+        },
+        {
+          "title": "Peraturan Hooks",
+          "path": "/reference/rules/rules-of-hooks"
+        }
+      ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Komponen Server React"
+    },
+    {
+      "title": "Komponen Server",
+      "path": "/reference/rsc/server-components"
+    },
+    {
+      "title": "Fungsi Server",
+      "path": "/reference/rsc/server-functions"
+    },
+    {
+      "title": "Direktif",
+      "path": "/reference/rsc/directives",
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/rsc/use-client"
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/rsc/use-server"
+        }
+      ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "API Lama"
+    },
+    {
+      "title": "API React Lama",
       "path": "/reference/react/legacy",
       "routes": [
         {
@@ -253,12 +397,12 @@
           "path": "/reference/react/createElement"
         },
         {
-          "title": "createFactory",
-          "path": "/reference/react/createFactory"
-        },
-        {
           "title": "createRef",
           "path": "/reference/react/createRef"
+        },
+        {
+          "title": "forwardRef",
+          "path": "/reference/react/forwardRef"
         },
         {
           "title": "isValidElement",

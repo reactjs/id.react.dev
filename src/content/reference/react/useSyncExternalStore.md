@@ -57,6 +57,26 @@ function TodosApp() {
 
 * Jika fungsi `subscribe` yang berbeda diberikan saat *render* ulang, React akan berlangganan ulang ke tempat penyimpanan menggunakan fungsi `subscribe` yang baru. Anda bisa menghindari ini dengan mendeklarasi `subscribe` di luar komponen.
 
+* If the store is mutated during a [non-blocking Transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every Transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking Transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+
+  For example, the following are discouraged:
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Calling `use` with a Promise dependent on `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Conditionally rendering a lazy component based on `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
+
 ---
 
 ## Penggunaan {/*usage*/}
@@ -111,7 +131,7 @@ export default function TodosApp() {
 }
 ```
 
-```js todoStore.js
+```js src/todoStore.js
 // Ini adalah contoh dari sebuah tempat penyimpanan
 // dari pihak ketiga yang Anda perlu integrasikan
 // dengan React.
@@ -281,7 +301,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useSyncExternalStore } from 'react';
 
 export function useOnlineStatus() {
@@ -342,7 +362,7 @@ Fungsi `getServerSnapshot` cukup mirip dengan `getSnapshot`, tetapi hanya berjal
 - Fungsi tersebut berjalan di server saat membuat HTML.
 - Fungsi tersebut berjalan di klien saat [hidrasi](/reference/react-dom/client/hydrateRoot), misalnya saat React mengambil HTML dari server dan membuatnya interaktif.
 
-Hal ini membiarkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
+Hal ini memungkinkan Anda untuk menyediakan nilai *snapshot* awal yang akan digunakan sebelum aplikasi menjadi interaktif. Jika tidak ada nilai awal yang cukup bermakna untuk proses *render* di server, Anda bisa mengabaikan argumen ini untuk [memaksa proses *render* terjadi di klien](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
@@ -386,14 +406,14 @@ Jika tempat penyimpanan Anda dapat dimutasi, fungsi `getSnapshot` Anda harus men
 
 Fungsi `subscribe` ini ditulis *di dalam* komponen sehingga fungsi tersebut selalu berbeda di setiap *render*:
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // 🚩 Selalu fungsi berbeda sehingga React akan berlangganan ulang setiap render
   function subscribe() {
     // ...
   }
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
@@ -401,28 +421,28 @@ function ChatIndicator() {
   
 React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
+function subscribe() {
   // ...
 }
 
-// ✅ Selalu fungsi yang sama sehingga React tidak perlu berlangganan ulang
-function subscribe() {
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   // ...
 }
 ```
 
 Cara alternatif adalah dengan membungkus `subscribe` ke dalam [`useCallback`](/reference/react/useCallback) untuk berlangganan ulang hanya jika beberapa argumen berubah:
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // ✅ Fungsi yang sama selama userId tidak berubah
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }

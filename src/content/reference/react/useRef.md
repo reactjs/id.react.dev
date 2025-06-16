@@ -47,11 +47,10 @@ Pada render berikutnya, `useRef` akan mengembalikan objek yang sama.
 
 #### Perhatian {/*caveats*/}
 
-* Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini tidak dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
+* Anda dapat mengubah properti `ref.current`. Tidak seperti state, properti ini dapat diubah. Namun, jika properti ini menyimpan objek yang digunakan untuk rendering (misalnya, sebuah bagian dari state Anda), maka Anda tidak boleh mengubah objek tersebut.
 * Ketika Anda mengubah properti `ref.current`, React tidak me-render ulang komponen Anda. React tidak mengetahui kapan Anda mengubahnya karena ref adalah objek JavaScript biasa.
 * Jangan menulis _atau membaca_ `ref.current` selama proses rendering, kecuali untuk [inisialisasi.](#avoiding-recreating-the-ref-contents) Hal ini membuat perilaku komponen Anda tidak dapat diprediksi.
 * Dalam Strict Mode, React akan **memanggil fungsi komponen Anda dua kali** untuk [membantu Anda menemukan bug yang tidak disengaja.](#my-initializer-or-updater-function-runs-twice) Ini adalah perilaku khusus development dan tidak mempengaruhi produksi. Setiap objek ref akan dibuat dua kali, tetapi salah satu versi akan dibuang. Jika fungsi komponen Anda murni (sebagaimana mestinya), hal ini seharusnya tidak mempengaruhi perilaku.
-
 ---
 
 ## Penggunaan {/*usage*/}
@@ -228,7 +227,7 @@ function MyComponent() {
 
 Jika Anda *harus* membaca [atau menulis](/reference/react/useState#storing-information-from-previous-renders) sesuatu selama rendering, [gunakan state](/reference/react/useState) sebagai gantinya.
 
-Ketika Anda melanggar beberapa aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
+Ketika Anda melanggar aturan-aturan ini, komponen Anda mungkin masih dapat berfungsi, tetapi sebagian besar fitur baru yang kami tambahkan ke React akan bergantung pada ekspektasi ini. Baca lebih lanjut tentang [menjaga komponen Anda tetap murni.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
 </Pitfall>
 
@@ -327,33 +326,33 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={() => scrollToIndex(0)}>
-          Tom
+          Neo
         </button>
         <button onClick={() => scrollToIndex(1)}>
-          Maru
+          Millie
         </button>
         <button onClick={() => scrollToIndex(2)}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul ref={listRef}>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
             />
           </li>
         </ul>
@@ -448,16 +447,16 @@ button { display: block; margin-bottom: 20px; }
 
 #### Mengekspos sebuah ref ke komponen Anda sendiri {/*exposing-a-ref-to-your-own-component*/}
 
-Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat menggunakan kombinasi `useRef` untuk menampung masukan dan [`forwardRef`](/reference/react/forwardRef) untuk mengeksposnya ke komponen induk. Baca sebuah [panduan mendetail](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
+Terkadang, Anda mungkin ingin membiarkan komponen induk memanipulasi DOM di dalam komponen Anda. Sebagai contoh, mungkin Anda menulis komponen `MyInput`, tetapi Anda ingin induknya dapat memfokuskan masukan (yang tidak dapat diakses oleh induknya). Anda dapat membuat `ref` di komponen induk dan mengoper `ref` sebagai prop ke komponen anak. Baca [panduan selengkapnya](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) di sini.
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -554,7 +553,7 @@ Anda mungkin mendapatkan error di konsol:
 
 <ConsoleBlock level="error">
 
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+TypeError: Cannot read properties of null
 
 </ConsoleBlock>
 
@@ -573,12 +572,10 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-Dan kemudian membungkusnya dengan [`forwardRef`](/reference/react/forwardRef) seperti ini:
+Dan kemudian menambahkan `ref` ke daftar *props* dari komponen Anda dan mengoper `ref` sebagai *prop* ke [komponen bawaan](/reference/react-dom/components/common) anak yang relevan seperti ini:
 
-```js {3,8}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(({ value, onChange }, ref) => {
+```js {1,6}
+function MyInput({ value, onChange, ref }) {
   return (
     <input
       value={value}
@@ -586,7 +583,7 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
       ref={ref}
     />
   );
-});
+};
 
 export default MyInput;
 ```

@@ -18,6 +18,7 @@ React adalah pustaka JavaScript untuk melakukan *render* antarmuka pengguna (*Us
 * [Cara melakukan render komponen secara kondisional](/learn/conditional-rendering)
 * [Cara melakukan render beberapa komponen sekaligus](/learn/rendering-lists)
 * [Cara menghindari bug yang membingungkan dengan menjaga komponen tetap murni](/learn/keeping-components-pure)
+* [Kegunaan memahami UI Anda seperti pohon](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
@@ -68,7 +69,7 @@ Anda dapat mendeklarasikan banyak komponen dalam satu file, tetapi file yang bes
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import Gallery from './Gallery.js';
 
 export default function App() {
@@ -78,7 +79,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js active
+```js src/Gallery.js active
 import Profile from './Profile.js';
 
 export default function Gallery() {
@@ -93,7 +94,7 @@ export default function Gallery() {
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 export default function Profile() {
   return (
     <img
@@ -278,7 +279,7 @@ function Card({ children }) {
 
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -326,7 +327,7 @@ Dalam contoh ini, operator `&&` JavaScript digunakan untuk me-*render* centang s
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -370,7 +371,7 @@ Untuk setiap *item* pada senarai, Anda perlu menentukan sebuah kunci `key`. Bias
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -397,7 +398,7 @@ export default function List() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
@@ -431,7 +432,7 @@ export const people = [{
 }];
 ```
 
-```js utils.js
+```js src/utils.js
 export function getImageUrl(person) {
   return (
     'https://i.imgur.com/' +
@@ -466,7 +467,7 @@ Baca **[Me-*render* List](/learn/rendering-lists)** untuk mempelajari cara me-*r
 
 Sebagian fungsi JavaScript adalah murni (*pure*). Sebuah fungsi murni:
 
-* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apapun yang ada sebelum fungsi dipanggil.
+* **Memperhatikan urusannya sendiri.** fungsi tidak mengubah objek atau variabel apa pun yang ada sebelum fungsi dipanggil.
 * **_Input_ sama, _output_ sama.**  Dengan *input* yang sama, sebuah fungsi murni harus selalu memiliki *output* yang sama.
 
 Dengan hanya benar-benar menulis komponen Anda sebagai fungsi murni, Anda dapat menghindari seluruh *bug* yang membingungkan dan perilaku yang tidak dapat diprediksi saat kode Anda berkembang. Berikut ini adalah contoh komponen tidak murni:
@@ -522,6 +523,37 @@ export default function TeaSet() {
 Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk mempelajari cara menulis komponen sebagai fungsi yang murni dan dapat diprediksi.
 
 </LearnMore>
+
+## UI Anda sebagai pohon {/*your-ui-as-a-tree*/}
+
+React menggunakan pohon (*tree*) untuk menggambarkan hubungan antara komponen dengan modul.
+
+Sebuah pohon *render* React adalah representasi dari hubungan induk dan anak di antara komponen.
+
+<Diagram name="generic_render_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul, dengan setiap simpul merepresentasikan komponen. Simpul root terletak di atas grafik pohon dan dilabeli 'Root Component'. Ia memiliki dua panah memanjang ke bawah menuju dua simpul yang dilabeli 'Component A' dan 'Component C'. Setiap panah dilabeli dengan 'renders'. 'Component A' memiliki satu panah 'renders' menuju simpul berlabel 'Component B'. 'Component C' memiliki satu panah 'renders' menuju simpul berlabel 'Component D'.">
+
+Sebuah contoh pohon *render* React.
+
+</Diagram>
+
+Komponen-komponen yang berada dekat dari atas pohon, dekat dengan komponen *root*, disebut sebagai komponen tingkat atas (*top-level*). Komponen tanpa komponen anak disebut komponen daun (*leaf*). Pengkategorian komponen ini berguna untuk memahami aliran data dan kinerja *rendering*.
+
+Memodel hubungan antara modul JavaScript juga cara lain yang berguna untuk memahami aplikasi Anda. Kami menyebutnya sebagai pohon dependensi (*dependency tree*).
+
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul. Setiap simpul merepresentasikan sebuah modul JavaScript. Simpul paling atas memiliki label 'RootModule.js'. Ia memiliki tiga panah yang memanjang ke simpul: 'ModuleA.js', 'ModuleB.js', dan 'ModuleC.js'. Setiap panah memiliki label 'imports'. Simpul 'ModuleC.js' memiliki satu panah 'imports' menuju simpul berlabel 'ModuleD.js'.">
+
+Sebuah contoh pohon dependensi modul.
+
+</Diagram>
+
+Pohon dependensi seringkali digunakan *build tools* untuk membundel semua kode JavaScript yang relevan untuk diunduh dan di-*render* sebuah klien. Bundel berukuran besar akan memperburuk pengalaman pengguna dalam sebuah aplikasi React. Memahami pohon dependensi modul berguna untuk men-*debug* masalah tersebut.
+
+<LearnMore path="/learn/understanding-your-ui-as-a-tree">
+
+Baca **[UI Anda sebagai pohon](/learn/understanding-your-ui-as-a-tree)** untuk mempelajari bagaimana cara membuat dan me-*render* pohon dependensi modul sebuah aplikasi React dan bagaimana ia merupakan model mental yang berguna untuk meningkatkan pengalaman pengguna dan performa aplikasi.
+
+</LearnMore>
+
 
 ## Apa selanjutnya? {/*whats-next*/}
 
