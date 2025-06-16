@@ -27,7 +27,7 @@
       "path": "/learn/adding-interactivity"
     },
     {
-      "title": "Managing State",
+      "title": "Mengelola State",
       "path": "/learn/managing-state"
     },
     {
@@ -76,18 +76,18 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "IKUT TERLIBAT"
     },
     {
-      "title": "React Community",
+      "title": "Komunitas React",
       "path": "/community"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "TETAP TERINFORMASI"
     },
     {
-      "title": "React Blog",
+      "title": "Blog React",
       "path": "/blog"
     }
   ]

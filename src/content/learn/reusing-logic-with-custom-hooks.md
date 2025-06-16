@@ -1332,7 +1332,7 @@ export function useOnlineStatus() {
 
 Dalam contoh di atas, `useOnlineStatus` diimplementasikan dengan sepasang [`useState`](/reference/react/useState) dan [`useEffect`.](/reference/react/useEffect) Namun, ini bukanlah solusi terbaik. Ada beberapa kasus tepi yang tidak dipertimbangkan. Misalnya, diasumsikan bahwa ketika komponen dipasang, `isOnline` sudah `benar`, tetapi hal ini mungkin salah jika jaringan sudah offline. Anda dapat menggunakan API browser [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) untuk memeriksanya, tetapi menggunakannya secara langsung tidak akan berhasil di server untuk menghasilkan HTML awal. Singkatnya, kode ini dapat diperbaiki.
 
-Untungnya, React 18 menyertakan API khusus yang disebut [`useSyncExternalStore`](/reference/react/useSyncExternalStore) yang menangani semua masalah ini untuk Anda. Berikut adalah bagaimana Hook `useOnlineStatus` Anda, ditulis ulang untuk memanfaatkan API baru ini:
+React menyertakan API khusus yang disebut [`useSyncExternalStore`](/reference/react/useSyncExternalStore) yang menangani semua masalah ini untuk Anda. Berikut adalah bagaimana Hook `useOnlineStatus` Anda, ditulis ulang untuk memanfaatkan API baru ini:
 
 <Sandpack>
 
@@ -2080,7 +2080,6 @@ Tulislah `useInterval` di dalam file `useInterval.js` dan impor ke dalam file `u
 <Sandpack>
 
 ```js
-import { useState } from 'react';
 import { useCounter } from './useCounter.js';
 
 export default function Counter() {

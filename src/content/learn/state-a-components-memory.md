@@ -1455,9 +1455,9 @@ Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seha
 
 #### Menghapus state yang tidak perlu {/*remove-unnecessary-state*/}
 
-Saat tombol ditekan, pada contoh di bawah, sebuah kotak dialog akan muncul untuk diisi pengguna dan akan menambilkan pesan untuk menyapa mereka. Anda sudah coba menggunakan *state* untuk namanya, namun karena suatu hal dia tetap menampilkan "Halo, !" 
+Saat tombol diklik, contoh ini akan menanyakan nama pengguna dan kemudian menampilkan peringatan yang menyapa mereka. Anda mencoba menggunakan *state* untuk menyimpan nama, tetapi karena alasan tertentu komponen pertama kali muncul "Halo, !", dan kemudian "Halo, [nama]!" dengan input sebelumnya setiap kali setelahnya.
 
-Untuk memperbaiki kode di bawah, hilangkan variabel *state* yang tidak perlu. (Kita akan bahas [mengapa hal tersebut tidak bekerja](/learn/state-as-a-snapshot) nanti.) 
+Untuk memperbaiki kode di bawah, hilangkan variabel *state* yang tidak perlu. (Kita akan bahas [mengapa hal tersebut tidak bekerja](/learn/state-as-a-snapshot) nanti.)
 
 Apakah Anda bisa menjelaskan mengapa variabel *state* ini tidak diperlukan?
 

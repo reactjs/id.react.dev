@@ -468,15 +468,15 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
 ```
 
-Ini memberitahu React: "jika ada komponen di dalam `<Section>` ini yang meminta `LevelContext`, berikan `level` ini." Komponen akan menggunakan nilai dari `<LevelContext.Provider>` terdekat di pohon UI (*tree*) di atasnya.
+Ini memberitahu React: "jika ada komponen di dalam `<Section>` ini yang meminta `LevelContext`, berikan `level` ini." Komponen akan menggunakan nilai dari `<LevelContext>` terdekat di pohon UI (*tree*) di atasnya.
 
 <Sandpack>
 
@@ -514,9 +514,9 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -567,7 +567,7 @@ export const LevelContext = createContext(1);
 Hasilnya sama dengan kode aslinya, tapi Anda tidak perlu mengoper *prop* `level` ke setiap komponen `Heading`! Sebagai gantinya, ia "mencari tahu" *level heading*-nya dengan meminta `Section` terdekat di atasnya:
 
 1. Anda mengoper *prop* `level` ke `<Section>`.
-2. `Section` membungkus anaknya dengan `<LevelContext.Provider value={level}>`.
+2. `Section` membungkus anaknya dengan `<LevelContext value={level}>`.
 3. `Heading` meminta nilai terdekat dari `LevelContext` di atasnya dengan `useContext(LevelContext)`.
 
 ## Menggunakan dan menyediakan *context* dari komponen yang sama {/*using-and-providing-context-from-the-same-component*/}
@@ -595,9 +595,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -643,9 +643,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -776,9 +776,9 @@ export default function Section({ children, isFancy }) {
       'section ' +
       (isFancy ? 'fancy' : '')
     }>
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -868,7 +868,7 @@ Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di bebe
 * Untuk mengoper *context*:
   1. Buat dan ekspor ia dengan `export const MyContext = createContext(defaultValue)`.
   2. Oper ke `useContext(MyContext)` *Hook* untuk membacanya di komponen anak manapun, tidak peduli seberapa dalam.
-  3. Bungkus anak ke `<MyContext.Provider value={...}>` untuk menyediakannya dari induk.
+  3. Bungkus anak ke `<MyContext value={...}>` untuk menyediakannya dari induk.
 * *Context* melewati komponen apa pun di tengahnya.
 * *Context* memungkinkan Anda menulis komponen yang "beradaptasi dengan sekitar mereke".
 * Sebelum Anda menggunakan *context*, coba oper *props* atau oper JSX sebagai `children`.
@@ -1022,7 +1022,7 @@ li {
 
 Hapus prop `imageSize` dari semua komponen.
 
-Buat dan ekspor `ImageSizeContext` dari `Context.js`. Lalu bungkus List ke `<ImageSizeContext.Provider value={imageSize}>` untuk mengoper nilai ke bawah, dan `useContext(ImageSizeContext)` untuk membacanya di `PlaceImage`:
+Buat dan ekspor `ImageSizeContext` dari `Context.js`. Lalu bungkus List ke `<ImageSizeContext value={imageSize}>` untuk mengoper nilai ke bawah, dan `useContext(ImageSizeContext)` untuk membacanya di `PlaceImage`:
 
 <Sandpack>
 
@@ -1036,7 +1036,7 @@ export default function App() {
   const [isLarge, setIsLarge] = useState(false);
   const imageSize = isLarge ? 150 : 100;
   return (
-    <ImageSizeContext.Provider
+    <ImageSizeContext
       value={imageSize}
     >
       <label>
@@ -1051,7 +1051,7 @@ export default function App() {
       </label>
       <hr />
       <List />
-    </ImageSizeContext.Provider>
+    </ImageSizeContext>
   )
 }
 

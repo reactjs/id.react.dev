@@ -1,13 +1,6 @@
 ---
 script: "<script>"
-canary: true
 ---
-
-<Canary>
-
-Ekstensi React untuk `<script>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Dalam rilis stabil React, `<script>` berfungsi sebagai [komponen HTML browser bawaan](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini.](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 

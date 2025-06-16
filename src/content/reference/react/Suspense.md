@@ -54,21 +54,6 @@ Pada contoh di bawah ini, komponen `Albums` *ditangguhkan* saat mengambil daftar
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
@@ -114,14 +99,9 @@ function Loading() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -134,31 +114,6 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
-}
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -287,21 +242,6 @@ Pada contoh di bawah ini, baik `Biography` dan `Album` mengambil beberapa data. 
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
@@ -362,14 +302,9 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -379,41 +314,11 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -426,31 +331,6 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
-}
-
-// Ini adalah solusi untuk _bug_ agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang benar ketika _bug_ sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -612,21 +492,6 @@ Urutan pemuatannya adalah sebagai berikut:
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
@@ -699,14 +564,9 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -716,42 +576,11 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -764,31 +593,6 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
-}
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -932,21 +736,6 @@ Dalam contoh ini, komponen `SearchResults` ditangguhkan saat sedang mengambil ha
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
@@ -967,14 +756,9 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -993,31 +777,6 @@ export default function SearchResults({ query }) {
       ))}
     </ul>
   );
-}
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -1157,21 +916,6 @@ Masukkan `"a"` didalam contoh berikut ini, tunggu hingga hasilnya dimuat, lalu u
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -1197,13 +941,8 @@ export default function App() {
 ```
 
 ```js src/SearchResults.js hidden
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -1222,31 +961,6 @@ export default function SearchResults({ query }) {
       ))}
     </ul>
   );
-}
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -1363,21 +1077,6 @@ Ketika sebuah komponen ditangguhkan, batasan Suspense induk terdekat akan berali
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1482,14 +1181,9 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1503,41 +1197,11 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1547,34 +1211,9 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1748,21 +1387,6 @@ Dengan begitu, React diberi tahu bahwa transisi *state* tidak mendesak, dan lebi
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, startTransition, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1869,14 +1493,9 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1890,41 +1509,11 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1934,34 +1523,9 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2132,21 +1696,6 @@ Pada contoh di atas, setelah Anda mengeklik tombol, tidak ada indikasi visual ba
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
@@ -2256,14 +1805,9 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -2277,41 +1821,11 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Catatan: komponen ini ditulis menggunakan API eksperimental
-// yang belum tersedia di React versi stabil.
-
-// Untuk contoh realistis yang dapat Anda ikuti saat ini, cobalah _framework_
-// yang terintegrasi dengan Suspense, seperti Relay atau Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -2321,34 +1835,9 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// Ini adalah solusi untuk bug agar demo dapat berjalan.
-// TODO: ganti dengan implementasi yang sebenarnya ketika bug sudah diperbaiki.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">

@@ -1,13 +1,6 @@
 ---
 title: preload
-canary: true
 ---
-
-<Canary>
-
-Fungsi `preload` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Note>
 

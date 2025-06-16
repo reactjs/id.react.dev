@@ -1,6 +1,5 @@
 ---
 title: preinit
-canary: true
 ---
 
 <Canary>
@@ -53,12 +52,12 @@ Fungsi `preinit` memberikan petunjuk kepada browser bahwa untuk mulai mengunduh 
 
 * `href`: sebuah string. URL sumber daya yang ingin Anda unduh dan jalankan.
 * `options`: sebuah objek. Ini berisi properti-properti berikut:
-  *  `as`: string yang diperlukan. Jenis sumber daya. Nilai yang memungkinkan adalah `script` and `style`.
+  *  `as`: sebuah string yang wajib. Jenis sumber daya. Nilai yang dapat digunakan adalah `script` and `style`.
   * `precedence`: sebuah string. Wajib diisi untuk stylesheet. Menunjukkan di mana stylesheet akan disisipkan relatif terhadap stylesheet lainnya. Stylesheet dengan prioritas lebih tinggi dapat menimpa(override) stylesheet dengan prioritas lebih rendah. Nilai yang memungkinkan adalah: `reset`, `low`, `medium`, `high`.
-  *  `crossOrigin`: sebuah string. The [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang akan digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`.
-  *  `integrity`: sebuah string. Hash kriptografi sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-  *  `nonce`: sebuah string. Sebuah kriptografi [*nonce* untuk mengizinkan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) ketika menggunakan *Content Security Policy* yang ketat.
-  *  `fetchPriority`: sebuah string. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang memungkinkan adalah `auto` (default), `high`, dan `low`.
+  *  `crossOrigin`: sebuah string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang akan digunakan. Nilai yang dapat digunakan adalah `anonymous` dan `use-credentials`.
+  *  `integrity`: sebuah string. *Hash* kriptografi sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: sebuah string. Sebuah [*nonce* kriptografi untuk mengizinkan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) ketika menggunakan *Content Security Policy* yang ketat.
+  *  `fetchPriority`: sebuah string. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang dapat digunakan adalah `auto` (default), `high`, dan `low`.
 
 #### Kembalian {/*returns*/}
 

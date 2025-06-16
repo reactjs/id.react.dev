@@ -4,13 +4,48 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "TETAP TERINFORMASI"
     },
     {
       "title": "Blog",
       "path": "/blog",
       "skipBreadcrumb": true,
       "routes": [
+        {
+          "title": "React Labs: View Transitions, Activity, and more",
+          "titleForHomepage": "View Transitions and Activity",
+          "icon": "blog",
+          "date": "April 23, 2025",
+          "path": "/blog/2025/04/23/react-labs-view-transitions-activity-and-more"
+        },
+        {
+          "title": "React Compiler RC",
+          "titleForHomepage": "React Compiler RC",
+          "icon": "blog",
+          "date": "April 21, 2025",
+          "path": "/blog/2025/04/21/react-compiler-rc"
+        },
+        {
+          "title": "Sunsetting Create React App",
+          "titleForHomepage": "Sunsetting Create React App",
+          "icon": "blog",
+          "date": "February 14, 2025",
+          "path": "/blog/2025/02/14/sunsetting-create-react-app"
+        },
+        {
+          "title": "React 19",
+          "titleForHomepage": "React 19",
+          "icon": "blog",
+          "date": "December 05, 2024",
+          "path": "/blog/2024/12/05/react-19"
+        },
+        {
+          "title": "React Compiler Beta Release and Roadmap",
+          "titleForHomepage": "React Compiler Beta Release and Roadmap",
+          "icon": "blog",
+          "date": "October 21, 2024",
+          "path": "/blog/2024/10/21/react-compiler-beta-release"
+        },
         {
           "title": "React Conf 2024 Recap",
           "titleForHomepage": "React Conf 2024 Recap",
@@ -103,7 +138,7 @@
           "path": "/blog/2020/12/21/data-fetching-with-react-server-components"
         },
         {
-          "title": "Older posts",
+          "title": "Postingan lama",
           "path": "https://reactjs.org/blog/all.html"
         }
       ]

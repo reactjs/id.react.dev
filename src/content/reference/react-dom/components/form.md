@@ -1,14 +1,6 @@
 ---
 title: "<form>"
-canary: true
 ---
-
-<Canary>
-
-Ekstensi React untuk `<form>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<form>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 
@@ -58,7 +50,7 @@ Untuk membuat kontrol interaktif untuk mengirimkan informasi, render [komponen `
 
 ### Menangani pengiriman formulir di klien {/*handle-form-submission-on-the-client*/}
 
-Lepaskan sebuah fungsi ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) akan diteruskan ke fungsi sebagai argumen sehingga Anda dapat mengakses data yang dikirimkan oleh formulir. Ini berbeda dari konvensional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), yang hanya menerima URL.
+Lepaskan sebuah fungsi ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) akan diteruskan ke fungsi sebagai argumen sehingga Anda dapat mengakses data yang dikirimkan oleh formulir. Ini berbeda dari [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) konvensional, yang hanya menerima URL.
 
 <Sandpack>
 
@@ -77,27 +69,15 @@ export default function Search() {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
-### Menangani pengiriman formulir dengan Server Action {/*handle-form-submission-with-a-server-action*/}
+### Menangani pengiriman formulir dengan Fungsi Server {/*handle-form-submission-with-a-server-action*/}
 
-Render sebuah `<form>` dengan input dan tombol kirim. Lepaskan Server Action (sebuah fungsi yang ditandai dengan [`'use server'`](/reference/rsc/use-server)) ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit.
+Render sebuah `<form>` dengan input dan tombol kirim. Lepaskan Fungsi Server (sebuah fungsi yang ditandai dengan [`'use server'`](/reference/rsc/use-server)) ke prop `action` dari formulir untuk menjalankan fungsi tersebut saat formulir disubmit.
 
-Melewatkan Server Action ke `<form action>` memungkinkan pengguna untuk mengirimkan formulir tanpa JavaScript yang diaktifkan atau sebelum kode dimuat. Ini menguntungkan bagi pengguna yang memiliki koneksi lambat, perangkat, atau yang memiliki JavaScript dinonaktifkan dan mirip dengan cara kerja formulir ketika URL diberikan ke prop `action`.
+Melewatkan Fungsi Server ke `<form action>` memungkinkan pengguna untuk mengirimkan formulir tanpa JavaScript yang diaktifkan atau sebelum kode dimuat. Ini menguntungkan bagi pengguna yang memiliki koneksi lambat, perangkat, atau yang memiliki JavaScript dinonaktifkan dan mirip dengan cara kerja formulir ketika URL diberikan ke prop `action`.
 
-Anda dapat menggunakan *field* formulir tersembunyi untuk memberikan data ke aksi `<form>`'s. Server Action akan dipanggil dengan data *field* formulir tersembunyi sebagai *instance* dari [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Anda dapat menggunakan *field* formulir tersembunyi untuk memberikan data ke aksi `<form>`. Fungsi Server akan dipanggil dengan data *field* formulir tersembunyi sebagai *instance* dari [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -136,7 +116,7 @@ function AddToCart({productId}) {
 }
 ```
 
-Ketika `<form>` dirender oleh [Server Component](/reference/rsc/use-client), dan [Server Action](/reference/rsc/use-server) diteruskan ke prop `action` `<form>`, formulir akan [ditingkatkan secara progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+Ketika `<form>` dirender oleh [Server Component](/reference/rsc/use-client), dan [Fungsi Server](/reference/rsc/server-functions) diteruskan ke prop `action` `<form>`, formulir akan [ditingkatkan secara progresif](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
 ### Menampilkan status tertunda selama pengiriman formulir {/*display-a-pending-state-during-form-submission*/}
 Untuk menampilkan status tertunda ketika formulir sedang dikirim, Anda dapat memanggil Hook `useFormStatus` dalam komponen yang dirender dalam `<form>` dan membaca properti `pending` yang dikembalikan.
@@ -177,17 +157,6 @@ export async function submitForm(query) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>
 
 Untuk mempelajari lebih lanjut tentang Hook `useFormStatus` lihat [dokumentasi referensi](/reference/react-dom/hooks/useFormStatus).
@@ -244,7 +213,7 @@ export default function App() {
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages([...messages, { text: sentMessage }]);
+    setMessages((messages) => [...messages, { text: sentMessage }]);
   }
   return <Thread messages={messages} sendMessage={sendMessage} />;
 }
@@ -254,19 +223,6 @@ export default function App() {
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;
-}
-```
-
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 
@@ -304,8 +260,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -321,10 +277,10 @@ export default function Search() {
 Menampilkan pesan kesalahan pengiriman formulir sebelum bundel JavaScript dimuat untuk peningkatan progresif mengharuskan bahwa:
 
 1. `<form>` dirender oleh [Server Component](/reference/rsc/use-client)
-1. fungsi yang diteruskan ke prop `action` `<form>` adalah [Server Action](/reference/rsc/use-server)
+1. fungsi yang diteruskan ke prop `action` `<form>` adalah [Fungsi Server](/reference/rsc/server-functions)
 1. Hook `useActionState` digunakan untuk menampilkan pesan kesalahan
 
-`useActionState` mengambil dua parameter: sebuah [Server Action](/reference/rsc/use-server) dan sebuah *state* awal. `useActionState` mengembalikan dua nilai, sebuah variabel *state* dan sebuah aksi. Aksi yang dikembalikan oleh `useActionState` harus diteruskan ke prop `action` dari formulir. Variabel *state* yang dikembalikan oleh `useActionState` dapat digunakan untuk menampilkan pesan kesalahan. Nilai yang dikembalikan oleh [Server Action](/reference/rsc/use-server) yang diteruskan ke `useActionState` akan digunakan untuk memperbarui variabel *state*.
+`useActionState` mengambil dua parameter: sebuah [Fungsi Server](/reference/rsc/server-functions) dan sebuah *state* awal. `useActionState` mengembalikan dua nilai, sebuah variabel *state* dan sebuah aksi. Aksi yang dikembalikan oleh `useActionState` harus diteruskan ke prop `action` dari formulir. Variabel *state* yang dikembalikan oleh `useActionState` dapat digunakan untuk menampilkan pesan kesalahan. Nilai yang dikembalikan oleh Fungsi Server yang diteruskan ke `useActionState` akan digunakan untuk memperbarui variabel *state*.
 
 <Sandpack>
 
@@ -370,18 +326,6 @@ export async function signUpNewUser(newEmail) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
 Pelajari lebih lanjut tentang memperbarui *state* dari aksi formulir dengan dokumen [`useActionState`](/reference/react/useActionState).
@@ -415,18 +359,6 @@ export default function Search() {
       <button formAction={save}>Simpan draf</button>
     </form>
   );
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 

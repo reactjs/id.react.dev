@@ -672,7 +672,7 @@ label {
 
 </Sandpack>
 
-*State* penghitung akan diatur ulang saat Anda mengklik *checkbox*. Meskipun Anda me-*render* `Counter`, anak pertama dari `div` berubah dari `div` menjadi `section`. Ketika anak `div` dihapus dari DOM, seluruh pohon di bawahnya (termasuk `Counter` dan *state*-nya) juga dihancurkan.
+*State* penghitung akan diatur ulang saat Anda mengklik *checkbox*. Meskipun Anda me-*render* `Counter`, anak pertama dari `div` berubah dari `section` menjadi `div`. Ketika anak `section` dihapus dari DOM, seluruh pohon di bawahnya (termasuk `Counter` dan *state*-nya) juga dihancurkan.
 
 <DiagramGroup>
 
@@ -2011,7 +2011,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
@@ -2110,7 +2110,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}

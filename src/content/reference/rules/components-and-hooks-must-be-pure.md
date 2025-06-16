@@ -189,11 +189,11 @@ Efek samping yang secara langsung terlihat oleh pengguna tidak diperbolehkan dal
 
 ```js {2}
 function ProductDetailPage({ product }) {
-  document.window.title = product.title; // 🔴 Buruk: Mengubah DOM
+  document.title = product.title; // 🔴 Buruk: Mengubah DOM
 }
 ```
 
-Salah satu cara untuk mencapai hasil yang diinginkan dengan memperbarui `window.title` di luar *render* adalah dengan [menyinkronkan komponen dengan `window`](/learn/synchronizing-with-effects).
+Salah satu cara untuk mencapai hasil yang diinginkan dengan memperbarui `document.title` di luar *render* adalah dengan [menyinkronkan komponen dengan `window`](/learn/synchronizing-with-effects).
 
 Selama pemanggilan sebuah komponen beberapa kali aman dan tidak mempengaruhi proses *render* komponen lainnya, React tidak peduli apakah komponen tersebut 100% murni dalam arti pemrograman fungsional yang ketat. Yang lebih penting adalah [komponen harus idempoten](/reference/rules/components-and-hooks-must-be-pure).
 
@@ -206,7 +206,7 @@ Sebuah *props* dan *state* dari komponen adalah [*snapshots*](learn/state-as-a-s
 Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbarui setelah di-*render*. Karena alasan ini, Anda tidak memodifikasi *props* atau variabel state secara langsung: sebagai gantinya, Anda mengoper *props* baru, atau menggunakan fungsi *setter* yang disediakan untuk memberi tahu React bahwa *state* perlu diperbarui pada saat komponen di-*render*.
 
 ### Jangan memutasi *Props* {/*props*/}
-*Props* dapat dimutasi karena karena jika anda memutasinya, maka Props tidak dapat diubah karena jika Anda mengubahnya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena mungkin bekerja atau tidak bekerja tergantung pada situasinya.
+*Props* tidak dapat dimutasi karena karena jika anda memutasinya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena aplikasi mungkin bekerja atau tidak bekerja tergantung pada situasinya.
 
 ```js {2}
 function Post({ item }) {

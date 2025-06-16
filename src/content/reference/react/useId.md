@@ -45,6 +45,8 @@ function PasswordField() {
 
 * `useId` **tidak boleh digunakan untuk menghasilkan *key*** dalam daftar. [*Key* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
 
+* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+
 ---
 
 ## Pengunaan {/*usage*/}
@@ -225,7 +227,7 @@ Jika Anda me-*render* beberapa aplikasi React independen pada satu halaman, beri
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

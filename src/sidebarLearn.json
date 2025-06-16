@@ -25,13 +25,23 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Memulai Proyek Baru dengan React",
-          "path": "/learn/start-a-new-react-project"
+          "title": "Membuat Aplikasi React",
+          "path": "/learn/creating-a-react-app"
         },
         {
-          "title": "Tambahkan React ke Proyek yang sudah Ada",
-          "path": "/learn/add-react-to-an-existing-project"
+          "title": "Membangun Aplikasi React dari Awal",
+          "path": "/learn/build-a-react-app-from-scratch"
         },
+        {
+          "title": "Tambahkan React ke Proyek yang Sudah Ada",
+          "path": "/learn/add-react-to-an-existing-project"
+        }
+      ]
+    },
+    {
+      "title": "Pengaturan",
+      "path": "/learn/setup",
+      "routes": [
         {
           "title": "Persiapan Editor",
           "path": "/learn/editor-setup"
@@ -45,7 +55,7 @@
           "path": "/learn/react-developer-tools"
         },
         {
-          "title": "Kompilator React",
+          "title": "Kompiler React",
           "path": "/learn/react-compiler",
           "canary": true
         }

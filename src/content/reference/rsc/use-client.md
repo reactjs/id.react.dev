@@ -1,18 +1,18 @@
 ---
 title: "'use client'"
 titleForTitleTag: "'use client' directive"
-canary: true
 ---
 
-<Canary>
+<RSC>
 
-`'use client'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
-</Canary>
+`'use client'` digunakan dengan [Komponen Server React](/reference/rsc/server-components).
+
+</RSC>
 
 
 <Intro>
 
-`'use client'` lets you mark what code runs on the client.
+`'use client'` menandai kode-kode yang dipanggil dari sisi klien.
 
 </Intro>
 
@@ -20,11 +20,11 @@ canary: true
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `'use client'` {/*use-client*/}
 
-Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
+Tambahkan `'use client'` di bagian atas file untuk menandai modul dan dependensi transitifnya sebagai kode klien.
 
 ```js {1}
 'use client';
@@ -40,6 +40,10 @@ export default function RichTextEditor({ timestamp, text }) {
   // ...
 }
 ```
+
+Bila file yang ditandai dengan `'use client'` diimpor dari Komponen Server, [bundler yang kompatibel](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) akan memperlakukan impor modul sebagai batas antara kode yang dijalankan server dan kode yang dijalankan klien.
+
+Sebagai dependensi `RichTextEditor`, `formatDate` dan `Button` juga akan dievaluasi pada klien terlepas dari apakah modulnya berisi arahan `'use client'`. Perhatikan bahwa satu modul dapat dievaluasi pada server saat diimpor dari kode server dan pada klien saat diimpor dari kode klien.
 
 When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
 
@@ -269,7 +273,7 @@ Serializable props include:
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Actions](/reference/rsc/use-server)
+* Functions that are [Server Functions](/reference/rsc/server-functions)
 * Client or Server Component elements (JSX)
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
