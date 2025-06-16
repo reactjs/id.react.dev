@@ -1,18 +1,18 @@
 ---
-title: Server Functions
+title: Fungsi Server
 ---
 
 <RSC>
 
-Server Functions are for use in [React Server Components](/reference/rsc/server-components).
+Fungsi Server digunakan di [Komponen Server React](/reference/rsc/server-components).
 
-**Note:** Until September 2024, we referred to all Server Functions as "Server Actions". If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
+**Catatan:** Hingga September 2024, kami menyebut semua Fungsi Server sebagai "Aksi Server". Jika Fungsi Server diteruskan ke *prop action* atau dipanggil dari dalam suatu aksi, maka itu adalah Aksi Server, tetapi tidak semua Fungsi Server adalah Aksi Server. Penamaan dalam dokumentasi ini telah diperbarui untuk mencerminkan bahwa Fungsi Server dapat digunakan untuk berbagai tujuan.
 
 </RSC>
 
 <Intro>
 
-Server Functions allow Client Components to call async functions executed on the server.
+Fungsi Server memungkinkan Komponen Klien memanggil fungsi async yang dijalankan di server.
 
 </Intro>
 
@@ -20,31 +20,31 @@ Server Functions allow Client Components to call async functions executed on the
 
 <Note>
 
-#### How do I build support for Server Functions? {/*how-do-i-build-support-for-server-functions*/}
+#### Bagaimana cara membangun dukungan untuk Fungsi Server? {/*how-do-i-build-support-for-server-functions*/}
 
-While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+Meskipun Fungsi Server di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan Fungsi Server di bundler atau framework React Server Components tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
 
-To support Server Functions as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement Server Functions in the future.
+Untuk mendukung Fungsi Server sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan Fungsi Server di masa mendatang.
 
 </Note>
 
-When a Server Function is defined with the [`"use server"`](/reference/rsc/use-server) directive, your framework will automatically create a reference to the Server Function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+Ketika sebuah Fungsi Server didefinisikan dengan direktif `"use server"`, framework Anda akan secara otomatis membuat referensi ke fungsi server, dan meneruskan referensi tersebut ke Komponen Client. Ketika fungsi itu dipanggil di client, React akan mengirim permintaan ke server untuk mengeksekusi fungsi tersebut, dan mengembalikan hasilnya.
 
-Server Functions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+Fungsi Server dapat dibuat di Komponen Server dan diteruskan sebagai prop ke Komponen Client, atau dapat diimpor dan digunakan di Komponen Client.
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Creating a Server Function from a Server Component {/*creating-a-server-function-from-a-server-component*/}
+### Membuat Fungsi Server dari Komponen Server {/*creating-a-server-function-from-a-server-component*/}
 
-Server Components can define Server Functions with the `"use server"` directive:
+Komponen Server dapat mendefinisikan Fungsi Server dengan direktif `"use server"`:
 
 ```js [[2, 7, "'use server'"], [1, 5, "createNoteAction"], [1, 12, "createNoteAction"]]
-// Server Component
+// Komponen Server
 import Button from './Button';
 
 function EmptyNote () {
   async function createNoteAction() {
-    // Server Function
+    // Fungsi Server
     'use server';
     
     await db.notes.create();
@@ -52,12 +52,8 @@ function EmptyNote () {
 
   return <Button onClick={createNoteAction}/>;
 }
-```
 
-When React renders the `EmptyNote` Server Component, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
-
-```js {5}
-"use client";
+Ketika React merender Komponen Server `EmptyNote`, ia akan membuat referensi ke fungsi `createNoteAction`, dan meneruskan referensi itu ke Komponen Client `Button`. Ketika tombol diklik, React akan mengirim permintaan ke server untuk mengeksekusi fungsi `createNoteAction` dengan referensi yang diberikan:
 
 export default function Button({onClick}) { 
   console.log(onClick); 
@@ -66,12 +62,12 @@ export default function Button({onClick}) {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+Untuk lebih jelasnya, lihat dokumen tentang [`"use server"`](/reference/rsc/use-server).
 
 
-### Importing Server Functions from Client Components {/*importing-server-functions-from-client-components*/}
+### Mengimpor Fungsi Server dari Komponen Client {/*importing-server-functions-from-client-components*/}
 
-Client Components can import Server Functions from files that use the `"use server"` directive:
+Komponen Client dapat mengimpor Fungsi Server dari file yang menggunakan direktif `"use server"`:
 
 ```js [[1, 3, "createNote"]]
 "use server";
@@ -82,7 +78,7 @@ export async function createNote() {
 
 ```
 
-When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNote` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNote` function using the reference provided:
+Ketika bundler membangun Komponen Client `EmptyNote`, ia akan membuat referensi ke fungsi `createNoteAction` dalam bundle. Ketika `button` diklik, React akan mengirim permintaan ke server untuk mengeksekusi fungsi `createNoteAction` menggunakan referensi yang diberikan:
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
@@ -95,18 +91,18 @@ function EmptyNote() {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+Untuk lebih jelasnya, lihat dokumen tentang [`"use server"`](/reference/rsc/use-server).
 
-### Server Functions with Actions {/*server-functions-with-actions*/}
+### Fungsi Server dengan Aksi {/*server-functions-with-actions*/}
 
-Server Functions can be called from Actions on the client:
+Fungsi Server dapat digabungkan dengan Aksi di klien:
 
 ```js [[1, 3, "updateName"]]
 "use server";
 
 export async function updateName(name) {
   if (!name) {
-    return {error: 'Name is required'};
+    return {error: 'Nama diperlukan'};
   }
   await db.users.updateName(name);
 }
@@ -137,21 +133,21 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {error && <span>Failed: {error}</span>}
+      {error && <span>Gagal: {error}</span>}
     </form>
   )
 }
 ```
 
-This allows you to access the `isPending` state of the Server Function by wrapping it in an Action on the client.
+Ini memungkinkan Anda mengakses status `isPending` dari Fungsi Server dengan membungkusnya dalam Aksi di klien.
 
-For more, see the docs for [Calling a Server Function outside of `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form)
+Untuk lebih jelasnya, lihat dokumen tentang [Memanggil Fungsi Server di luar `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form)
 
-### Server Functions with Form Actions {/*using-server-functions-with-form-actions*/}
+### Menggunakan Fungsi Server dengan Aksi Form {/*using-server-functions-with-form-actions*/}
 
-Server Functions work with the new Form features in React 19.
+Fungsi Server bekerja dengan fitur Formulir baru di React 19.
 
-You can pass a Server Function to a Form to automatically submit the form to the server:
+Anda dapat meneruskan Fungsi Server ke Formulir untuk secara otomatis mengirim formulir ke server:
 
 
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
@@ -168,13 +164,13 @@ function UpdateName() {
 }
 ```
 
-When the Form submission succeeds, React will automatically reset the form. You can add `useActionState` to access the pending state, last response, or to support progressive enhancement.
+Ketika pengiriman Formulir berhasil, React secara otomatis akan mereset formulir. Anda dapat menambahkan `useActionState` untuk mengakses status tertunda, respons terakhir, atau untuk mendukung peningkatan progresif.
 
-For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server#server-functions-in-forms).
+Untuk lebih jelasnya, lihat dokumen tentang [Fungsi Server dalam Formulir](/reference/rsc/use-server#server-actions-in-forms).
 
-### Server Functions with `useActionState` {/*server-functions-with-use-action-state*/}
+## Fungsi Server dengan `useActionState` {/*server-functions-with-use-action-state*/}
 
-You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
+Anda dapat menggabungkan Fungsi Server dengan `useActionState` untuk kasus umum di mana Anda hanya perlu mengakses status tertunda aksi dan respons terakhir yang dikembalikan:
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
@@ -187,19 +183,19 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {state.error && <span>Gagal: {state.error}</span>}
     </form>
   );
 }
 ```
 
-When using `useActionState` with Server Functions, React will also automatically replay form submissions entered before hydration finishes. This means users can interact with your app even before the app has hydrated.
+Saat menggunakan `useActionState` dengan Fungsi Server, React juga secara otomatis akan memutar ulang pengiriman formulir yang dimasukkan sebelum hidrasi selesai. Ini berarti pengguna dapat berinteraksi dengan aplikasi Anda bahkan sebelum aplikasi terhidrasi.
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
 
-### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
+### Peningkatan progresif dengan `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
-Server Functions also support progressive enhancement with the third argument of `useActionState`.
+Fungsi Server juga mendukung peningkatan progresif dengan argumen ketiga dari `useActionState`.
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
@@ -217,6 +213,6 @@ function UpdateName() {
 }
 ```
 
-When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, React will redirect to the provided URL if the form is submitted before the JavaScript bundle loads.
+Ketika <CodeStep step={2}>tautan permanen</CodeStep> disediakan ke `useActionState`, React akan mengalihkan ke URL yang diberikan jika formulir dikirim sebelum bundel JavaScript dimuat.
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
