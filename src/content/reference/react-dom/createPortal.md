@@ -240,11 +240,7 @@ export default function ModalContent({ onClose }) {
 
 Penting untuk memastikan bahwa aplikasi Anda dapat diakses saat menggunakan portal. Misalnya, Anda mungkin perlu mengatur fokus *keyboard* agar pengguna dapat memindahkan fokus ke dalam dan ke luar portal secara alami.
 
-<<<<<<< HEAD
-Ikuti [Praktik Penulisan Modal WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) saat membuat modal. Jika Anda menggunakan paket komunitas, pastikan paket tersebut dapat diakses dan mengikuti panduan ini.
-=======
-Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Ikuti [Praktik Penulisan Modal WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) saat membuat modal. Jika Anda menggunakan pustaka komunitas, pastikan pustaka tersebut aksesibel dan mengikuti panduan ini.
 
 </Pitfall>
 

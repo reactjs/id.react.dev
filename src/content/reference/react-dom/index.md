@@ -41,28 +41,13 @@ These APIs can be used to make apps faster by pre-loading resources such as scri
 
 ---
 
-<<<<<<< HEAD
-## API Usang {/*deprecated-apis*/}
+## API Dihapus {/*removed-apis*/}
 
-<Deprecated>
+API ini telah dihapus di React 19:
 
-API ini akan dihapus pada versi utama React yang akan datang.
-
-</Deprecated>
-
-* [`findDOMNode`](/reference/react-dom/findDOMNode) digunakan untuk mencari elemen *DOM* terdekat yang sesuai dengan instansi *class component*.
-* [`hydrate`](/reference/react-dom/hydrate) digunakan untuk menampilkan sebuah struktur *tree* pada *DOM* yang telah dibuat sebelumnya melalui server HTML. Fungsi ini sudah tidak digunakan lagi, dan diganti dengan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
-* [`render`](/reference/react-dom/render) digunakan untuk memasang sebuah struktur *tree* pada *DOM*. Fungsi ini juga sudah tidak digunakan lagi, dan diganti dengan [`createRoot`](/reference/react-dom/client/createRoot).
-* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) digunakan untuk melepaskan sebuah struktur pohon *tree* dari *DOM*. Fungsi ini sudah tidak digunakan lagi, dan diganti dengan [`root.unmount()`.](/reference/react-dom/client/createRoot#root-unmount)
-=======
-## Removed APIs {/*removed-apis*/}
-
-These APIs were removed in React 19:
-
-* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): see [alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
-* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead.
-* [`render`](https://18.react.dev/reference/react-dom/render): use [`createRoot`](/reference/react-dom/client/createRoot) instead.
-* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): use [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) instead.
-* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
-* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): lihat [alternatif](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): gunakan [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
+* [`render`](https://18.react.dev/reference/react-dom/render): gunakan [`createRoot`](/reference/react-dom/client/createRoot).
+* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): gunakan [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): gunakan API [`react-dom/server`](/reference/react-dom/server).
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): gunakan API [`react-dom/server`](/reference/react-dom/server).

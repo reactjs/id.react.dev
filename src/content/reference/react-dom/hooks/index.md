@@ -12,21 +12,9 @@ title: "Built-in React DOM Hooks"
 
 ## Form Hooks {/*form-hooks*/}
 
-<<<<<<< HEAD
-<Canary>
-
-Form Hooks saat ini hanya tersedia di canary dan kanal eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 *Forms* memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola form di komponen Anda, gunakan salah satu Hooks ini:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) memungkinkan Anda melakukan pembaruan pada UI berdasarkan status form.
-=======
-*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
-
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js
 function Form({ action }) {

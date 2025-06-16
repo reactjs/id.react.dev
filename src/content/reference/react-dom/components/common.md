@@ -247,30 +247,6 @@ Berikut *events* yang aktif pada beberapa sumber daya seperti [`<audio>`](https:
 Alih-alih menggunakan sebuah objek ref (seperti yang dikembalikan oleh [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), anda dapat mengoper sebuah fungsi ke atribut `ref`.
 
 ```js
-<<<<<<< HEAD
-<div ref={(node) => console.log(node)} />
-```
-
-[Lihat contoh dari penggunaan dari *callback* `ref`.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
-
-Saat *node* DOM `<div>` ditambahkan pada layar, React akan memanggil *callbak* dari `ref` beserta dengan `node` DOM sebagai sebuah argumen. Saat *node* DOM `<div>` tersebut dihapus, React akan memanggil *callback* `ref` dengan `null`
-
-React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *callback* `ref` yang berbeda. Pada contoh di atas, `(node) => { ... }` adalah fungsi yang berbeda pada setiap *render*. Saat komponen anda mengalami *render* ulang, fungsi sebelumnya akan dipanggil dengan `null` sebagai argumennya, dan fungsi selanjutnya akan dipanggi dengan *node* DOM.
-
-#### Parameter {/*ref-callback-parameters*/}
-
-* `node`: Sebuah *node* DOM atau `null`. React akan mengoper kepada anda *node* DOM saat ref terpasang, dan `null` saat ref dilepas. Kecuali, jika anda mengoper referensi fungsi yang sama untuk *callback* `ref` pada setiap *render*, *callback* tersebut akan secara sementara dilepaskan dan dipasang kembali pada setiap *render* ulang dari komponen tersebut.
-
-<Canary>
-
-#### Kembalian {/*returns*/}
-
-* **opsional** fungsi `cleanup`: Ketika `ref` dilepas, React akan memanggil fungsi `cleanup`. Jika fungsi tidak dikembalikan oleh *callback* `ref`, React akan memanggil ulang *callback* dengan `null` sebagai argumen ketika `ref` dilepas.
-
-```js
-
-=======
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 <div ref={(node) => {
   console.log('Attached', node);
 
@@ -280,41 +256,32 @@ React juga akan memanggi *callback* `ref` setiap kali anda mengoper sebuah *call
 }}>
 ```
 
-<<<<<<< HEAD
-#### Catatan Penting {/*caveats*/}
+[Lihat contoh penggunaan *callback* `ref`.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-* Ketika mode Strict diaktifkan, React akan **menjalankan satu siklus *setup+cleanup* khusus pengembangan tambahan** sebelum penyiapan sebenarnya yang pertama. Ini adalah *stress-test* yang memastikan bahwa logika pembersihan Anda "mencerminkan" logika pengaturan Anda dan menghentikan atau membatalkan apa pun yang sedang dilakukan pengaturan. Jika ini menyebabkan masalah, implementasikan fungsi pembersihan.
-* Ketika Anda mengoper *callback* `ref` *yang berbeda*, React akan memanggil fungsi pembersihan *callback* *sebelumnya* jika disediakan. Jika fungsi pembersihan tidak ditentukan, callback `ref` akan dipanggil dengan `null` sebagai argumennya. Fungsi *next* akan dipanggil dengan simpul DOM.
+Ketika simpul DOM `<div>` ditambahkan ke layar, React akan memanggil *callback* `ref` Anda dengan DOM `node` sebagai argumen. Ketika simpul DOM `<div>` tersebut dihapus, React akan memanggil fungsi pembersihan yang dikembalikan dari *callback*.
 
-</Canary>
-=======
-[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+React juga akan memanggil *callback* `ref` Anda setiap kali Anda meneruskan *callback* `ref` yang *berbeda*. Dalam contoh di atas, `(node) => { ... }` adalah fungsi yang berbeda pada setiap render. Ketika komponen Anda dirender ulang, fungsi *sebelumnya* akan dipanggil dengan `null` sebagai argumen, dan fungsi *berikutnya* akan dipanggil dengan simpul DOM.
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your the cleanup function returned from the callback.
+#### Parameter {/*ref-callback-parameters*/}
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
-
-#### Parameters {/*ref-callback-parameters*/}
-
-* `node`: A DOM node. React will pass you the DOM node when the ref gets attached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily cleanup and re-create during every re-render of the component.
+* `node`: Sebuah simpul DOM. React akan memberikan simpul DOM kepada Anda saat ref dilampirkan. Kecuali Anda memberikan referensi fungsi yang sama untuk *callback* `ref` pada setiap render, *callback* akan dibersihkan sementara dan dibuat ulang selama setiap render ulang komponen.
 
 <Note>
 
-#### React 19 added cleanup functions for `ref` callbacks. {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
+#### React 19 menambahkan fungsi pembersihan untuk *callback* `ref`. {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
 
 To support backwards compatibility, if a cleanup function is not returned from the `ref` callback, `node` will be called with `null` when the `ref` is detached. This behavior will be removed in a future version.
 
 </Note>
 
-#### Returns {/*returns*/}
+#### Kembalian {/*returns*/}
 
-* **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached. This behavior will be removed in a future version.
+* **opsional** `fungsi pembersihan`: Ketika `ref` dilepaskan, React akan memanggil fungsi pembersihan. Jika suatu fungsi tidak dikembalikan oleh *callback* `ref`, React akan memanggil *callback* lagi dengan `null` sebagai argumen ketika `ref` dilepaskan. Perilaku ini akan dihapus di versi mendatang.
 
-#### Caveats {/*caveats*/}
+#### Catatan Penting {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If no cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* Ketika mode Strict diaktifkan, React akan **menjalankan satu siklus *setup+cleanup* khusus pengembangan tambahan** sebelum penyiapan sebenarnya yang pertama. Ini adalah *stress-test* yang memastikan bahwa logika pembersihan Anda "mencerminkan" logika pengaturan Anda dan menghentikan atau membatalkan apa pun yang sedang dilakukan pengaturan. Jika ini menyebabkan masalah, implementasikan fungsi pembersihan.
+* Ketika Anda mengoper *callback* `ref` *yang berbeda*, React akan memanggil fungsi pembersihan *callback* *sebelumnya* jika disediakan. Jika fungsi pembersihan tidak ditentukan, callback `ref` akan dipanggil dengan `null` sebagai argumennya. Fungsi *next* akan dipanggil dengan simpul DOM.
 
 ---
 
