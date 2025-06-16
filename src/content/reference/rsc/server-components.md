@@ -1,37 +1,39 @@
 ---
-title: Server Components
+title: "Komponen Server"
 ---
 
 <RSC>
 
-Server Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </RSC>
 
 <Intro>
 
-Server Components are a new type of Component that renders ahead of time, before bundling, in an environment separate from your client app or SSR server.
+Komponen Server adalah jenis Komponen baru yang dirender terlebih dahulu, sebelum proses bundling, di lingkungan yang terpisah dari aplikasi klien atau server SSR Anda.
+
 
 </Intro>
 
-This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
+Lingkungan terpisah ini adalah "server" dalam Komponen Server React. Komponen Server dapat dijalankan sekali saat build di server CI Anda, atau dapat dijalankan untuk setiap permintaan menggunakan web server.
 
 <InlineToc />
 
 <Note>
 
-#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+#### Bagaimana cara membangun dukungan untuk Komponen Server? {/*how-do-i-build-support-for-server-components*/}
 
-To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
+Meskipun Komponen Server React di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan bundler atau framework Komponen Server React tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
+
+Untuk mendukung Komponen Server React sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan Komponen Server React di masa mendatang.
 
 </Note>
 
-### Server Components without a Server {/*server-components-without-a-server*/}
-Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required. For example, you may want to read static data from a content management system.
+### Komponen Server tanpa Server {/*server-components-without-a-server*/}
+Komponen server dapat dijalankan saat proses build untuk membaca dari filesystem atau mengambil konten statis, sehingga web server tidak diperlukan. Sebagai contoh, Anda mungkin ingin membaca data statis dari sistem manajemen konten.
 
-Without Server Components, it's common to fetch static data on the client with an Effect:
+Tanpa Komponen Server, biasanya data statis diambil di klien menggunakan Effect:
 ```js
 // bundle.js
 import marked from 'marked'; // 35.9K (11.2K gzipped)
@@ -39,7 +41,7 @@ import sanitizeHtml from 'sanitize-html'; // 206K (63.3K gzipped)
 
 function Page({page}) {
   const [content, setContent] = useState('');
-  // NOTE: loads *after* first page render.
+  // CATATAN: dimuat *setelah* render pertama halaman.
   useEffect(() => {
     fetch(`/api/content/${page}`).then((data) => {
       setContent(data.content);
@@ -58,33 +60,33 @@ app.get(`/api/content/:page`, async (req, res) => {
 });
 ```
 
-This pattern means users need to download and parse an additional 75K (gzipped) of libraries, and wait for a second request to fetch the data after the page loads, just to render static content that will not change for the lifetime of the page.
+Pola ini berarti pengguna perlu mengunduh dan mengurai tambahan pustaka sebesar 75K (gzipped), dan menunggu permintaan kedua untuk mengambil data setelah halaman dimuat, hanya untuk merender konten statis yang tidak akan berubah selama masa hidup halaman.
 
-With Server Components, you can render these components once at build time:
+Dengan Komponen Server, Anda dapat merender komponen ini sekali saat proses build:
 
 ```js
-import marked from 'marked'; // Not included in bundle
-import sanitizeHtml from 'sanitize-html'; // Not included in bundle
+import marked from 'marked'; // Tidak termasuk dalam bundel
+import sanitizeHtml from 'sanitize-html'; // Tidak termasuk dalam bundel
 
 async function Page({page}) {
-  // NOTE: loads *during* render, when the app is built.
+  // CATATAN: dimuat *saat* render, ketika aplikasi dibangun.
   const content = await file.readFile(`${page}.md`);
   
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
 
-The rendered output can then be server-side rendered (SSR) to HTML and uploaded to a CDN. When the app loads, the client will not see the original `Page` component, or the expensive libraries for rendering the markdown. The client will only see the rendered output:
+Output yang dirender kemudian dapat dirender di sisi server (SSR) ke HTML dan diunggah ke CDN. Ketika aplikasi dimuat, klien tidak akan melihat komponen `Page` yang asli, atau pustaka mahal untuk merender markdown. Klien hanya akan melihat output yang dirender:
 
 ```js
 <div><!-- html for markdown --></div>
 ```
 
-This means the content is visible during first page load, and the bundle does not include the expensive libraries needed to render the static content.
+Ini berarti konten terlihat selama pemuatan halaman pertama, dan bundel tidak menyertakan pustaka mahal yang diperlukan untuk merender konten statis.
 
 <Note>
 
-You may notice that the Server Component above is an async function:
+Anda mungkin memperhatikan bahwa Komponen Server di atas adalah fungsi async:
 
 ```js
 async function Page({page}) {
@@ -92,22 +94,22 @@ async function Page({page}) {
 }
 ```
 
-Async Components are a new feature of Server Components that allow you to `await` in render.
+Komponen Async adalah fitur baru dari Komponen Server yang memungkinkan Anda untuk `await` saat merender.
 
-See [Async components with Server Components](#async-components-with-server-components) below.
+Lihat [Komponen Async dengan Komponen Server](#async-components-with-server-components) di bawah ini.
 
 </Note>
 
-### Server Components with a Server {/*server-components-with-a-server*/}
-Server Components can also run on a web server during a request for a page, letting you access your data layer without having to build an API. They are rendered before your application is bundled, and can pass data and JSX as props to Client Components.
+### Komponen Server dengan Server {/*server-components-with-a-server*/}
+Komponen Server juga dapat dijalankan di web server saat ada permintaan untuk sebuah halaman, sehingga Anda dapat mengakses data secara langsung tanpa perlu membangun API. Komponen ini dirender sebelum aplikasi Anda dibundel, dan dapat meneruskan data serta JSX sebagai props ke Komponen Klien.
 
-Without Server Components, it's common to fetch dynamic data on the client in an Effect:
+Tanpa Komponen Server, biasanya data dinamis diambil di klien menggunakan Effect:
 
 ```js
 // bundle.js
 function Note({id}) {
   const [note, setNote] = useState('');
-  // NOTE: loads *after* first render.
+  // CATATAN: dimuat *setelah* render pertama.
   useEffect(() => {
     fetch(`/api/notes/${id}`).then(data => {
       setNote(data.note);
@@ -124,8 +126,8 @@ function Note({id}) {
 
 function Author({id}) {
   const [author, setAuthor] = useState('');
-  // NOTE: loads *after* Note renders.
-  // Causing an expensive client-server waterfall.
+  // CATATAN: dimuat *setelah* Note dirender.
+  // Menyebabkan waterfall client-server yang mahal.
   useEffect(() => {
     fetch(`/api/authors/${id}`).then(data => {
       setAuthor(data.author);
@@ -150,13 +152,13 @@ app.get(`/api/authors/:id`, async (req, res) => {
 });
 ```
 
-With Server Components, you can read the data and render it in the component:
+Dengan Komponen Server, Anda dapat membaca data dan merendernya langsung di komponen:
 
 ```js
 import db from './database';
 
 async function Note({id}) {
-  // NOTE: loads *during* render.
+  // CATATAN: dimuat *saat* render.
   const note = await db.notes.get(id);
   return (
     <div>
@@ -167,14 +169,14 @@ async function Note({id}) {
 }
 
 async function Author({id}) {
-  // NOTE: loads *after* Note,
-  // but is fast if data is co-located.
+  // CATATAN: dimuat *setelah* Note,
+  // tapi akan cepat jika data berdekatan.
   const author = await db.authors.get(id);
   return <span>By: {author.name}</span>;
 }
 ```
 
-The bundler then combines the data, rendered Server Components and dynamic Client Components into a bundle. Optionally, that bundle can then be server-side rendered (SSR) to create the initial HTML for the page. When the page loads, the browser does not see the original `Note` and `Author` components; only the rendered output is sent to the client:
+Bundler kemudian akan menggabungkan data, Komponen Server yang sudah dirender, dan Komponen Klien dinamis ke dalam satu bundel. Opsional, bundel ini bisa dirender di sisi server (SSR) untuk membuat HTML awal halaman. Saat halaman dimuat, browser tidak akan melihat komponen `Note` dan `Author` asli; hanya output yang sudah dirender yang dikirim ke klien:
 
 ```js
 <div>
@@ -183,26 +185,26 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 </div>
 ```
 
-Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
+Komponen Server dapat dibuat dinamis dengan mengambil ulang dari server, sehingga dapat mengakses data dan merender ulang. Arsitektur aplikasi baru ini menggabungkan model mental “request/response” sederhana dari Multi-Page Apps berbasis server dengan interaktivitas mulus dari Single-Page Apps berbasis klien, memberikan Anda keunggulan dari kedua dunia.
 
-### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
+### Menambahkan interaktivitas ke Komponen Server {/*adding-interactivity-to-server-components*/}
 
-Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.
+Komponen Server tidak dikirim ke browser, jadi mereka tidak dapat menggunakan API interaktif seperti `useState`. Untuk menambahkan interaktivitas ke Komponen Server, Anda dapat menggabungkannya dengan Komponen Klien menggunakan direktif `"use client"`.
 
 <Note>
 
-#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+#### Tidak ada direktif untuk Komponen Server. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+Sebuah kesalahpahaman umum adalah bahwa Komponen Server ditandai dengan `"use server"`, tetapi tidak ada direktif untuk Komponen Server. Direktif `"use server"` digunakan untuk Fungsi Server.
 
-For more info, see the docs for [Directives](/reference/rsc/directives).
+Untuk info lebih lanjut, lihat dokumen untuk [Directives](/reference/rsc/directives).
 
 </Note>
 
 
-In the following example, the `Notes` Server Component imports an `Expandable` Client Component that uses state to toggle its `expanded` state:
+Dalam contoh berikut, Komponen Server `Notes` mengimpor Komponen Klien `Expandable` yang menggunakan state untuk mengubah status `expanded`:
 ```js
-// Server Component
+// Komponen Server
 import Expandable from './Expandable';
 
 async function Notes() {
@@ -219,7 +221,7 @@ async function Notes() {
 }
 ```
 ```js
-// Client Component
+// Komponen Klien
 "use client"
 
 export default function Expandable({children}) {
@@ -237,7 +239,7 @@ export default function Expandable({children}) {
 }
 ```
 
-This works by first rendering `Notes` as a Server Component, and then instructing the bundler to create a bundle for the Client Component `Expandable`. In the browser, the Client Components will see output of the Server Components passed as props:
+Ini bekerja dengan pertama-tama merender `Notes` sebagai Komponen Server, dan kemudian menginstruksikan bundler untuk membuat bundel untuk Komponen Klien `Expandable`. Di browser, Komponen Klien akan melihat output dari Komponen Server yang diteruskan sebagai props:
 
 ```js
 <head>
@@ -257,21 +259,21 @@ This works by first rendering `Notes` as a Server Component, and then instructin
 </body>
 ```
 
-### Async components with Server Components {/*async-components-with-server-components*/}
+### Komponen Async dengan Komponen Server {/*async-components-with-server-components*/}
 
-Server Components introduce a new way to write Components using async/await. When you `await` in an async component, React will suspend and wait for the promise to resolve before resuming rendering. This works across server/client boundaries with streaming support for Suspense.
+Komponen Server memperkenalkan cara baru untuk menulis Komponen menggunakan async/await. Ketika Anda `await` di dalam komponen async, React akan suspend dan menunggu promise untuk diselesaikan sebelum melanjutkan rendering. Ini bekerja di seluruh batas server/klien dengan dukungan streaming untuk Suspense.
 
-You can even create a promise on the server, and await it on the client:
+Anda bahkan dapat membuat promise di server, dan menunggunya di klien:
 
 ```js
-// Server Component
+// Komponen Server
 import db from './database';
 
 async function Page({id}) {
-  // Will suspend the Server Component.
+  // Akan suspend Komponen Server.
   const note = await db.notes.get(id);
   
-  // NOTE: not awaited, will start here and await on the client. 
+  // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien. 
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
@@ -285,18 +287,18 @@ async function Page({id}) {
 ```
 
 ```js
-// Client Component
+// Komponen Klien
 "use client";
 import {use} from 'react';
 
 function Comments({commentsPromise}) {
-  // NOTE: this will resume the promise from the server.
-  // It will suspend until the data is available.
+  // CATATAN: ini akan melanjutkan promise dari server.
+  // Ini akan suspend sampai data tersedia.
   const comments = use(commentsPromise);
   return comments.map(commment => <p>{comment}</p>);
 }
 ```
 
-The `note` content is important data for the page to render, so we `await` it on the server. The comments are below the fold and lower-priority, so we start the promise on the server, and wait for it on the client with the `use` API. This will Suspend on the client, without blocking the `note` content from rendering.
+Konten `note` adalah data penting untuk merender halaman, jadi kami `await` di server. Komentar berada di bawah lipatan dan memiliki prioritas lebih rendah, jadi kami memulai promise di server, dan menunggunya di klien dengan API `use` tersebut. Ini akan Suspend di klien, tanpa memblokir konten `note` untuk dirender.
 
-Since async components are not supported on the client, we await the promise with `use`.
+Karena komponen async tidak didukung di klien, kita menunggu promise dengan `use`.
