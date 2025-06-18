@@ -230,59 +230,59 @@ Kesimpulannya adalah hubungan render induk-anak antara komponen tidak menjamin l
 
 </DeepDive>
 
-### When to use `'use client'` {/*when-to-use-use-client*/}
+### Kapan menggunakan `'use client'` {/*when-to-use-use-client*/}
 
-With `'use client'`, you can determine when components are Client Components. As Server Components are default, here is a brief overview of the advantages and limitations to Server Components to determine when you need to mark something as client rendered.
+Dengan `'use client'`, Anda dapat menentukan kapan komponen merupakan Komponen Klien. Karena Komponen Server adalah komponen default, berikut adalah penjelasan singkat tentang kelebihan dan keterbatasan Komponen Server untuk menentukan kapan Anda perlu menandai sebuah komponen sebagai komponen yang dirender oleh klien.
 
-For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
+Untuk menyederhanakannya, kita berbicara tentang Komponen Server, tetapi prinsip yang sama berlaku untuk semua kode di aplikasi Anda yang dijalankan oleh server.
 
-#### Advantages of Server Components {/*advantages*/}
-* Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
-* Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
+#### Keuntungan Komponen Server {/*advantages*/}
+* Komponen Server dapat mengurangi jumlah kode yang dikirim dan dijalankan oleh klien. Hanya modul Klien yang dibundel dan dievaluasi oleh klien.
+* Komponen Server diuntungkan karena berjalan di server. Komponen tersebut dapat mengakses sistem berkas lokal dan mungkin mengalami latensi rendah untuk pengambilan data dan permintaan jaringan.
 
-#### Limitations of Server Components {/*limitations*/}
-* Server Components cannot support interaction as event handlers must be registered and triggered by a client.
-	* For example, event handlers like `onClick` can only be defined in Client Components.
-* Server Components cannot use most Hooks.
-	* When Server Components are rendered, their output is essentially a list of components for the client to render. Server Components do not persist in memory after render and cannot have their own state.
+#### Batasan Komponen Server {/*limitations*/}
+* Komponen Server tidak dapat mendukung interaksi karena *event handler* harus didaftarkan dan dipicu oleh klien.
+	* Misalnya, *event handler* seperti `onClick` hanya dapat didefinisikan dalam Komponen Klien.
+* Komponen Server tidak dapat menggunakan sebagian besar Hook.
+	* Saat Komponen Server dirender, outputnya pada dasarnya adalah daftar komponen untuk dirender oleh klien. Komponen Server tidak bertahan dalam memori setelah dirender dan tidak dapat memiliki *state*-nya sendiri.
 
-### Serializable types returned by Server Components {/*serializable-types*/}
+### Tipe data yang dapat diserialisasikan yang dikembalikan oleh Komponen Server {/*serializable-types*/}
 
-As in any React app, parent components pass data to child components. As they are rendered in different environments, passing data from a Server Component to a Client Component requires extra consideration.
+Seperti dalam aplikasi React apa pun, komponen induk meneruskan data ke komponen anak. Karena komponen tersebut dirender dalam lingkungan yang berbeda, meneruskan data dari Komponen Server ke Komponen Klien memerlukan pertimbangan ekstra.
 
-Prop values passed from a Server Component to Client Component must be serializable.
+Nilai properti yang diteruskan dari Komponen Server ke Komponen Klien harus dapat diserialisasikan.
 
-Serializable props include:
-* Primitives
+Properti yang dapat diserialisasikan meliputi:
+* Nilai primitif
 	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
 	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
 	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
 	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
 	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
-* Iterables containing serializable values
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), hanya simbol yang terdaftar di registri Symbol global melalui [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Iterabel yang berisi nilai yang dapat diserialkan
 	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) dan [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Functions](/reference/rsc/server-functions)
-* Client or Server Component elements (JSX)
-* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) biasa: objek-objek yang dibuat dengan [inisialisasi objek](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), dengan properti yang dapat diserialisasikan
+* Fungsi yang merupakan [Fungsi Server](/reference/rsc/server-functions)
+* Elemen Komponen Klien ataupun Server (JSX)
+* [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-Notably, these are not supported:
-* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](/reference/rsc/use-server)
-* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
-* Symbols not registered globally, ex. `Symbol('my new symbol')`
+Perlu diperhatikan, tipe-tipe data tersebut tidak didukung:
+* [Fungsi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) yang tidak diekspor dari modul bertanda klien atau ditandai dengan [`'use server'`](/reference/rsc/use-server)
+* [Class](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Objek yang merupakan *instance* kelas mana pun (selain yang sudah disebutkan) atau objek dengan [prototipe null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Symbol yang tidak terdaftar secara global, mis. `Symbol('my new symbol')`
 
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Building with interactivity and state {/*building-with-interactivity-and-state*/}
+### Membuat komponen dengan interaktivitas dan *state* {/*building-with-interactivity-and-state*/}
 
 <Sandpack>
 
@@ -307,9 +307,9 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
-As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
+Karena `Counter` memerlukan Hook `useState` dan *event handler* untuk menambah atau mengurangi nilai, komponen ini harus menjadi Komponen Klien dan akan memerlukan direktif `'use client'` di bagian atas.
 
-In contrast, a component that renders UI without interaction will not need to be a Client Component.
+Sebaliknya, komponen yang merender UI tanpa interaksi tidak perlu menjadi Komponen Klien.
 
 ```js
 import { readFile } from 'node:fs/promises';
@@ -321,9 +321,9 @@ export default async function CounterContainer() {
 }
 ```
 
-For example, `Counter`'s parent component, `CounterContainer`, does not require `'use client'` as it is not interactive and does not use state. In addition, `CounterContainer` must be a Server Component as it reads from the local file system on the server, which is possible only in a Server Component.
+Misalnya, komponen induk `Counter`, `CounterContainer`, tidak memerlukan `'use client'` karena tidak interaktif dan tidak menggunakan *state*. Selain itu, `CounterContainer` harus menjadi Komponen Server karena komponen tersebut membaca dari sistem berkas lokal di server, yang hanya mungkin dilakukan di Komponen Server.
 
-There are also components that don't use any server or client-only features and can be agnostic to where they render. In our earlier example, `FancyText` is one such component.
+Ada juga komponen yang tidak menggunakan fitur khusus server atau klien dan dapat bersifat tidak peduli terhadap di mana komponen tersebut ditampilkan. Dalam contoh sebelumnya, `FancyText` adalah salah satu komponen tersebut.
 
 ```js
 export default function FancyText({title, text}) {
@@ -333,15 +333,15 @@ export default function FancyText({title, text}) {
 }
 ```
 
-In this case, we don't add the `'use client'` directive, resulting in `FancyText`'s _output_ (rather than its source code) to be sent to the browser when referenced from a Server Component. As demonstrated in the earlier Inspirations app example, `FancyText` is used as both a Server or Client Component, depending on where it is imported and used.
+Dalam kasus ini, kita tidak menambahkan direktif `'use client'`, yang mengakibatkan _output_ `FancyText` (bukan kode sumbernya) dikirim ke browser saat dirujuk dari Komponen Server. Seperti yang ditunjukkan dalam contoh aplikasi Inspirasi sebelumnya, `FancyText` digunakan sebagai Komponen Server atau Klien, tergantung di mana ia diimpor dan digunakan.
 
-But if `FancyText`'s HTML output was large relative to its source code (including dependencies), it might be more efficient to force it to always be a Client Component. Components that return a long SVG path string are one case where it may be more efficient to force a component to be a Client Component.
+Namun, jika output HTML `FancyText` lebih besar dibandingkan dengan kode sumbernya (termasuk dependensi), mungkin lebih efisien untuk memaksanya agar selalu menjadi Komponen Klien. Komponen yang mengembalikan string *path* SVG yang panjang adalah salah satu kasus di mana mungkin lebih efisien untuk memaksa komponen menjadi Komponen Klien.
 
-### Using client APIs {/*using-client-apis*/}
+### Menggunakan API klien {/*using-client-apis*/}
 
-Your React app may use client-specific APIs, such as the browser's APIs for web storage, audio and video manipulation, and device hardware, among [others](https://developer.mozilla.org/en-US/docs/Web/API).
+Aplikasi React Anda mungkin menggunakan API khusus klien, seperti API browser untuk penyimpanan web, manipulasi audio dan video, dan perangkat keras, di antara [lainnya](https://developer.mozilla.org/en-US/docs/Web/API).
 
-In this example, the component uses [DOM APIs](https://developer.mozilla.org/en-US/docs/Glossary/DOM) to manipulate a [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. Since those APIs are only available in the browser, it must be marked as a Client Component.
+Dalam contoh ini, komponen menggunakan [API DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM) untuk memanipulasi elemen [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). Karena API tersebut hanya tersedia di browser, komponen tersebut harus ditandai sebagai Komponen Klien.
 
 ```js
 'use client';
@@ -362,18 +362,18 @@ export default function Circle() {
 }
 ```
 
-### Using third-party libraries {/*using-third-party-libraries*/}
+### Menggunakan pustaka pihak ketiga {/*using-third-party-libraries*/}
 
-Often in a React app, you'll leverage third-party libraries to handle common UI patterns or logic.
+Sering kali dalam aplikasi React, Anda akan memanfaatkan pustaka pihak ketiga untuk menangani pola atau logika UI umum.
 
-These libraries may rely on component Hooks or client APIs. Third-party components that use any of the following React APIs must run on the client:
+Pustaka ini dapat mengandalkan Hook komponen atau API klien. Komponen pihak ketiga yang menggunakan salah satu API React berikut harus berjalan pada klien:
 * [createContext](/reference/react/createContext)
-* [`react`](/reference/react/hooks) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
+* Hook [`react`](/reference/react/hooks) dan [`react-dom`](/reference/react-dom/hooks), kecuali [`use`](/reference/react/use) dan [`useId`](/reference/react/useId)
 * [forwardRef](/reference/react/forwardRef)
 * [memo](/reference/react/memo)
 * [startTransition](/reference/react/startTransition)
-* If they use client APIs, ex. DOM insertion or native platform views
+* Jika menggunakan API klien, mis. penyisipan DOM atau *view* dari *platform native*
 
-If these libraries have been updated to be compatible with React Server Components, then they will already include `'use client'` markers of their own, allowing you to use them directly from your Server Components. If a library hasn't been updated, or if a component needs props like event handlers that can only be specified on the client, you may need to add your own Client Component file in between the third-party Client Component and your Server Component where you'd like to use it.
+Jika pustaka ini telah diperbarui agar kompatibel dengan Komponen Server React, maka pustaka tersebut akan menyertakan direktif `'use client'` sendiri, yang memungkinkan Anda untuk menggunakannya langsung dari Komponen Server Anda. Jika pustaka belum diperbarui, atau jika komponen memerlukan *props* seperti *event handler* yang hanya dapat ditentukan pada klien, Anda mungkin perlu menambahkan file Komponen Klien Anda sendiri di antara Komponen Klien pihak ketiga dan Komponen Server Anda di mana Anda ingin menggunakannya.
 
 [TODO]: <> (Troubleshooting - need use-cases)
