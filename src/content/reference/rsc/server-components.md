@@ -1,7 +1,12 @@
 ---
-title: "Komponen Server React"
-canary: true
+title: "Komponen Server"
 ---
+
+<RSC>
+
+Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 
@@ -190,7 +195,7 @@ Komponen Server tidak dikirim ke browser, jadi mereka tidak dapat menggunakan AP
 
 #### Tidak ada direktif untuk Komponen Server. {/*there-is-no-directive-for-server-components*/}
 
-Sebuah kesalahpahaman umum adalah bahwa Komponen Server ditandai dengan `"use server"`, tetapi tidak ada direktif untuk Komponen Server. Direktif `"use server"` digunakan untuk Server Actions.
+Sebuah kesalahpahaman umum adalah bahwa Komponen Server ditandai dengan `"use server"`, tetapi tidak ada direktif untuk Komponen Server. Direktif `"use server"` digunakan untuk Fungsi Server.
 
 Untuk info lebih lanjut, lihat dokumen untuk [Directives](/reference/rsc/directives).
 
@@ -296,4 +301,4 @@ function Comments({commentsPromise}) {
 
 Konten `note` adalah data penting untuk merender halaman, jadi kami `await` di server. Komentar berada di bawah lipatan dan memiliki prioritas lebih rendah, jadi kami memulai promise di server, dan menunggunya di klien dengan API `use` tersebut. Ini akan Suspend di klien, tanpa memblokir konten `note` untuk dirender.
 
-Karena komponen async [tidak didukung di klien](#why-cant-i-use-async-components-on-the-client), kami menunggu promise dengan `use`.
+Karena komponen async tidak didukung di klien, kita menunggu promise dengan `use`.

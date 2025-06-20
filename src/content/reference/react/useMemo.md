@@ -1056,7 +1056,83 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ---
 
-### Memoisasi sebuah dependency dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
+### Mencegah Effect agar tidak terlalu sering aktif {/*preventing-an-effect-from-firing-too-often*/}
+
+Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/pelajari/sinkronisasi-dengan-efek)
+
+```js {4-7,10}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: 'https://localhost:1234',
+    roomId: roomId
+  }
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    // ...
+```
+
+Hal ini menimbulkan masalah. [Setiap nilai reaktif harus dideklarasikan sebagai dependensi *Effect* Anda.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Namun, jika Anda mendeklarasikan `options` sebagai dependensi, hal itu akan menyebabkan *Effect* Anda terus-menerus terhubung kembali ke ruang obrolan:
+
+
+```js {5}
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // 🔴 Masalah: Depensi ini berubah setiap render
+  // ...
+```
+
+Untuk mengatasi hal ini, Anda dapat membungkus objek yang perlu Anda panggil dari *Effect* dalam `useMemo`:
+
+```js {4-9,16}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = useMemo(() => {
+    return {
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    };
+  }, [roomId]); // ✅ Hanya berubah ketika roomId berubah
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // ✅ Hanya berubah ketika options berubah
+  // ...
+```
+
+Ini memastikan bahwa objek `options` sama di antara *render* ulang jika `useMemo` mengembalikan objek yang di-*cache*.
+
+Namun, karena `useMemo` adalah pengoptimalan kinerja, bukan jaminan semantik, React dapat membuang nilai yang di-*cache* jika [ada alasan khusus untuk melakukannya](#caveats). Ini juga akan menyebabkan efek diaktifkan kembali, **jadi lebih baik untuk menghilangkan kebutuhan akan ketergantungan fungsi** dengan memindahkan objek Anda *di dalam* Effect:
+
+```js {5-8,13}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const options = { // ✅ Tidak perlu useMemo atau dependensi objek!
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    }
+    
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ Hanya berubah ketika roomId berubah
+  // ...
+```
+
+Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
+
+### Memoisasi sebuah dependensi dari Hook lain {/*memoizing-a-dependency-of-another-hook*/}
 
 
 Misalkan Anda mempunyai perhitungan yang bergantung pada objek yang dibuat langsung pada badan komponen:

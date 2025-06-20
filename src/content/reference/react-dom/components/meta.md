@@ -1,14 +1,6 @@
 ---
 meta: "<meta>"
-canary: true
 ---
-
-<Canary>
-
-Ekstensi React pada `<meta>` saat ini hanya tersedia di saluran eksperimental dan canary. Dalam rilis stabil React `<meta>` hanya bekerja sebagai [komponen HTML bawaan](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 

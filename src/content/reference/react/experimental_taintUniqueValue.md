@@ -1,22 +1,23 @@
 ---
 title: experimental_taintUniqueValue
+version: experimental
 ---
 
-<Wip>
+<Experimental>
 
-**This API is experimental and is not available in a stable version of React yet.**
+**API ini bersifat eksperimental dan belum tersedia dalam versi React yang stabil.**
 
-You can try it by upgrading React packages to the most recent experimental version:
+Anda dapat mencobanya dengan memperbarui *package* React ke versi eksperimental terbaru:
 
 - `react@experimental`
 - `react-dom@experimental`
 - `eslint-plugin-react-hooks@experimental`
 
-Experimental versions of React may contain bugs. Don't use them in production.
+Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam produksi.
 
-This API is only available inside [React Server Components](/reference/rsc/use-client).
+API ini hanya tersedia di dalam [Komponen Server React](/reference/rsc/use-client).
 
-</Wip>
+</Experimental>
 
 
 <Intro>
@@ -192,7 +193,7 @@ experimental_taintUniqueValue(
 );
 ```
 
-Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Action, an error will be thrown with message you defined when you called `taintUniqueValue`.
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Function, an error will be thrown with message you defined when you called `taintUniqueValue`.
 
 </DeepDive>
 

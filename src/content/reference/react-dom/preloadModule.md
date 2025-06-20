@@ -1,6 +1,5 @@
 ---
 title: preloadModule
-canary: true
 ---
 
 <Canary>

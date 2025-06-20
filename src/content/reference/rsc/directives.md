@@ -1,13 +1,12 @@
 ---
-title: "Direktif"
-canary: true
+title: Direktif
 ---
 
-<Canary>
+<RSC>
 
-Direktif ini diperlukan hanya jika Anda [menggunakan React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) atau membangun pustaka yang kompatibel dengannya.
+Direktif digunakan di [Komponen Server React](/reference/rsc/server-components).
 
-</Canary>
+</RSC>
 
 <Intro>
 

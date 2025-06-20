@@ -1,5 +1,5 @@
 ---
-title: "React Hook Bawaan"
+title: "Hook Bawaan React"
 ---
 
 <Intro>

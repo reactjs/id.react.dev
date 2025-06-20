@@ -49,7 +49,7 @@ function Greeting({ name }) {
 `createElement` mengembalikan objek elemen React dengan beberapa properti:
 
 * `type`: `type` yang telah Anda oper.
-* `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`. Jika `type` adalah komponen *legacy* `type.defaultProps`, lalu ada yang hilang atau tidak terdefinisi `props` akan mendapatkan nilai dari `type.defaultProps`.
+* `props`: `props` yang telah Anda oper kecuali untuk `ref` dan `key`.
 * `ref`: `ref` yang telah Anda oper. Jika hilang, `null`.
 * `key`: `key` yang telah Anda oper, dipaksa untuk string. Jika hilang, `null`.
 

@@ -1,5 +1,5 @@
 ---
-title: "Built-in React DOM Hooks"
+title: "Hook React DOM Bawaan"
 ---
 
 <Intro>
@@ -10,17 +10,11 @@ title: "Built-in React DOM Hooks"
 
 ---
 
-## Form Hooks {/*form-hooks*/}
+## Hook Formulir {/*form-hooks*/}
 
-<Canary>
+Formulir memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola formulir di komponen Anda, gunakan salah satu Hooks ini:
 
-Form Hooks saat ini hanya tersedia di canary dan kanal eksperimental React. Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
-*Forms* memungkinkan Anda membuat kontrol interaktif untuk mengirimkan informasi. Untuk mengelola form di komponen Anda, gunakan salah satu Hooks ini:
-
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) memungkinkan Anda melakukan pembaruan pada UI berdasarkan status form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) memungkinkan anda melakukan pembaruan UI berdasarkan status formulir.
 
 ```js
 function Form({ action }) {

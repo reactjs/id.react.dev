@@ -1,14 +1,6 @@
 ---
 title: "<title>"
-canary: true
 ---
-
-<Canary>
-
-Ekstensi React untuk `<title>` saat ini hanya tersedia di kanal *canary* dan eksperimental React. Pada rilis stabil React, `<title>` hanya berfungsi sebagai [komponen HTML bawaan peramban](https://react.dev/reference/react-dom/components#all-html-components). Pelajari lebih lanjut tentang [kanal rilis React di sini](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 

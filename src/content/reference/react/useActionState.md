@@ -1,13 +1,16 @@
 ---
 title: useActionState
-canary: true
 ---
 
-<Canary>
+<Intro>
 
-Hook `useActionState` saat ini hanya tersedia di kanal Canary dan eksperimental React. Pelajari lebih lanjut tentang [saluran rilis disini](/community/versioning-policy#all-release-channels). Selain itu, Anda perlu menggunakan framework yang mendukung [React Server Components](/reference/rsc/use-client) untuk mendapatkan manfaat penuh dari `useActionState`.
+`useActionState` adalah Hook yang memungkinkan Anda memperbarui status berdasarkan hasil aksi formulir.
 
-</Canary>
+```js
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
+```
+
+</Intro>
 
 <Note>
 
@@ -15,15 +18,6 @@ Pada versi React Canary sebelumnya, API ini merupakan bagian dari React DOM dan 
 
 </Note>
 
-<Intro>
-
-`useActionState` adalah sebuah Hook yang memungkinkan Anda memperbarui *state* berdasarkan hasil dari aksi sebuah form.
-
-```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
-```
-
-</Intro>
 
 <InlineToc />
 
@@ -35,7 +29,7 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Panggil `useActionState` di tingkat atas komponen Anda untuk membuat *state* komponen yang diperbarui [saat aksi form dijalankan](/reference/react-dom/components/form). Anda mengoper sebuah fungsi aksi form yang sudah ada serta *state* awal ke `useActionState`, dan fungsi ini akan mengembalikan aksi baru yang Anda gunakan dalam form, bersama dengan *state* form terbaru. *State* form terbaru juga akan dioper ke fungsi yang Anda sediakan.
+Panggil `useActionState` di tingkat atas komponen Anda untuk membuat *state* komponen yang diperbarui [saat aksi formulir dijalankan](/reference/react-dom/components/form). Anda mengoper sebuah fungsi aksi form yang sudah ada serta *state* awal ke `useActionState`, dan fungsi ini akan mengembalikan aksi baru yang Anda gunakan dalam form, bersama dengan *state* form terbaru dan apakah aksi tersebut masih tertunda. *State* form terbaru juga akan dioper ke fungsi yang Anda sediakan.
 
 ```js
 import { useActionState } from "react";
@@ -57,26 +51,27 @@ function StatefulForm({}) {
 
 *State* form adalah nilai yang dikembalikan oleh aksi saat form terakhir kali disubmit. Jika form belum disubmit, itu adalah *state* awal yang Anda lewatkan.
 
-Jika digunakan dengan *Server Action*, `useActionState` memungkinkan respon dari server setelah mengirimkan form untuk ditampilkan bahkan sebelum proses hidrasi selesai.
+Jika digunakan dengan Fungsi Server, `useActionState` memungkinkan respon dari server setelah mengirimkan form untuk ditampilkan bahkan sebelum proses hidrasi selesai.
 
 [Lihat contoh lainnya di bawah ini.](#usage)
 
 #### Parameter {/*parameters*/}
 
-* `fn`: Fungsi yang akan dipanggil ketika form dikirimkan atau tombol ditekan. Ketika fungsi dipanggil, fungsi akan menerima keadaan sebelumnya dari form (awalnya `initialState` yang Anda berikan, kemudian nilai kembalinya sebelumnya) sebagai argumen awal, diikuti dengan argumen yang biasanya diterima oleh aksi form.
+* `fn`: Fungsi yang akan dipanggil ketika form dikirimkan atau tombol ditekan. Ketika fungsi dipanggil, fungsi akan menerima keadaan sebelumnya dari form (awalnya `initialState` yang Anda berikan, kemudian nilai kembalian sebelumnya) sebagai argumen awal, diikuti dengan argumen yang biasanya diterima oleh aksi form.
 * `initialState`: Nilai yang Anda inginkan untuk *state* awalnya. Nilai ini dapat berupa nilai yang dapat diurutkan. Argumen ini diabaikan setelah aksi pertama kali dipanggil.
-* **opsional** `permalink`: String yang berisi URL halaman unik yang dimodifikasi oleh form ini. Untuk digunakan pada halaman dengan konten dinamis (misalnya: feeddalam hubungannya dengan peningkatan progresif: jika `fn` adalah [aksi server](/reference/rsc/use-server) dan form dikirimkan sebelum bundel JavaScript dimuat, browser akan menavigasi ke URL permalink yang ditentukan, bukan ke URL halaman yang sekarang. Pastikan bahwa komponen form yang sama di-render di halaman tujuan (termasuk action `fn` dan `permalink` yang sama) sehingga React tahu bagaimana cara meneruskan *state*. Setelah form di-hidrasi, parameter ini tidak berpengaruh.
+* **opsional** `permalink`: String yang berisi URL halaman unik yang dimodifikasi oleh form ini. Untuk digunakan pada halaman dengan konten dinamis (misalnya: feed) dalam hubungannya dengan peningkatan progresif: jika `fn` adalah [fungsi server](/reference/rsc/server-functions) dan form dikirimkan sebelum bundel JavaScript dimuat, browser akan menavigasi ke URL permalink yang ditentukan, bukan ke URL halaman yang sekarang. Pastikan bahwa komponen form yang sama di-render di halaman tujuan (termasuk action `fn` dan `permalink` yang sama) sehingga React tahu bagaimana cara meneruskan *state*. Setelah form di-hidrasi, parameter ini tidak berpengaruh.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
 #### Kembalian {/*returns*/}
 
-`useActionState` mengembalikan sebuah array dengan tepat dua nilai:
+`useActionState` returns an array with the following values:
 
-1. Keadaan saat ini. Selama render pertama, ini akan cocok dengan `initialState` yang telah Anda berikan. Setelah aksi dipanggil, ia akan cocok dengan nilai yang dikembalikan oleh aksi.
-2. Tindakan baru yang dapat Anda berikan sebagai prop `action` ke komponent `form` Anda atau prop`formAction` ke komponen `button` mana pun di dalam form.
+1. *State* saat ini. Selama render pertama, ini akan dicocokkan dengan `initialState` yang telah Anda berikan. Setelah aksi dipanggil, ia akan dicocokkan dengan nilai yang dikembalikan oleh aksi.
+2. Aksi baru yang dapat Anda berikan sebagai prop `action` ke komponen `form` Anda atau `formAction` ke komponen `button` manapun di dalam formulir. Aksi dapat juga dipanggil secara manual dari dalam [`startTransition`](/reference/react/startTransition).
+3. Flag `isPending` yang memberitahu apakah ada Transisi yang masih tertunda.
 
-#### Perhatian {/*caveats*/}
+#### Catatan penting {/*caveats*/}
 
 * Ketika digunakan dengan *framework* yang mendukung Komponen Server React, `useActionState` memungkinkan Anda membuat form menjadi interaktif sebelum JavaScript dieksekusi di klien. Ketika digunakan tanpa Komponen Server, ini setara dengan state lokal komponen.
 * Fungsi yang dioper ke `useActionState` menerima argumen tambahan, yaitu *state* sebelumnya atau awal, sebagai argumen pertamanya. Hal ini membuat tanda tangannya berbeda dibandingkan jika digunakan secara langsung sebagai aksi form tanpa menggunakan `useActionState`.
@@ -104,10 +99,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` mengembalikan sebuah array dengan tepat dua:
+`useActionState` mengembalikan sebuah array dengan nilai berikut:
 
 1. <CodeStep step={1}>State saat ini</CodeStep> dari form, yang pada awalnya diatur ke <CodeStep step={4}>state awal</CodeStep> yang Anda berikan, dan setelah form dikirimkan, diatur ke nilai balik dari <CodeStep step={3}>aksi</CodeStep> yang Anda berikan.
-2. <CodeStep step={2}>Aksi baru</CodeStep> yang Anda oper ke`<form>` sebagai properti `action`-nya.
+2. <CodeStep step={2}>Aksi baru</CodeStep> yang Anda oper ke`<form>` sebagai properti `action`-nya atau dipanggil secara manual dari dalam `startTransition`.
+3. <CodeStep step={1}>State tertunda</CodeStep> yang dapat Anda manfaatkan saat aksi Anda sedang diproses.
 
 Ketika form dikirimkan, fungsi <CodeStep step={3}>aksi</CodeStep> yang Anda berikan akan dipanggil. Nilai baliknya akan menjadi <CodeStep step={1}>state saat ini</CodeStep> yang baru dari form.
 
@@ -124,7 +120,7 @@ function action(currentState, formData) {
 
 #### Menampilkan kesalahan form {/*display-form-errors*/}
 
-Untuk menampilkan pesan seperti pesan kesalahan atau toast yang dikembalikan oleh Aksi Server, bungkus aksi tersebut dengan panggilan ke `useActionState`.
+Untuk menampilkan pesan seperti pesan kesalahan atau *toast* yang dikembalikan oleh Fungsi Server, bungkus aksi tersebut dengan panggilan ke `useActionState`.
 
 <Sandpack>
 
@@ -133,13 +129,13 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
       <button type="submit">Add to Cart</button>
-      {message}
+      {isPending ? "Loading..." : message}
     </form>
   );
 }
@@ -162,6 +158,10 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Added to cart";
   } else {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    });
     return "Couldn't add to cart: the item is sold out.";
   }
 }
@@ -178,25 +178,13 @@ form button {
   margin-right: 12px;
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>
 
 <Solution />
 
 #### Menampilkan informasi terstruktur setelah mengirimkan form {/*display-structured-information-after-submitting-a-form*/}
 
-Nilai yang dikembalikan dari Server Action dapat berupa nilai yang dapat diserialkan. Sebagai contoh, nilai tersebut dapat berupa object yang mencakup boolean yang menunjukan apakah aksi berhasil, pesan kesalahan, atau informasi yang diperbarui.
+Nilai yang dikembalikan dari Fungsi Server dapat berupa nilai yang dapat diserialkan. Sebagai contoh, nilai tersebut dapat berupa object yang mencakup boolean yang menunjukan apakah aksi berhasil, pesan kesalahan, atau informasi yang diperbarui.
 
 <Sandpack>
 
@@ -263,18 +251,6 @@ form {
 
 form button {
   margin-right: 12px;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 </Sandpack>

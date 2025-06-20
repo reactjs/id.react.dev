@@ -464,7 +464,7 @@ export default function Toggle() {
 
 #### Perbaiki *debouncing* {/*fix-debouncing*/}
 
-Pada contoh ini, semua penangan klik tombol di-*debounce*. Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
+Pada contoh ini, semua penangan klik tombol ["di-*debounce*".](https://kettanaito.com/blog/debounce-vs-throttle) Untuk melihat apa artinya, tekan salah satu tombol. Perhatikan bagaimana pesan muncul satu detik kemudian. Jika Anda menekan tombol sambil menunggu pesan, waktu akan direset. Jadi jika Anda terus mengeklik tombol yang sama secara cepat beberapa kali, pesan tidak akan muncul sampai satu detik *setelah* Anda berhenti mengeklik. *Debouncing* memungkinkan Anda menunda beberapa tindakan sampai pengguna "berhenti melakukan sesuatu".
 
 Contoh ini berfungsi, tetapi tidak sepenuhnya seperti yang dimaksudkan. Tombol-tombolnya tidak independen. Untuk melihat masalahnya, klik salah satu tombol, lalu segera klik tombol lain. Anda akan mengharapkan bahwa setelah penundaan, Anda akan melihat pesan dari kedua tombol. Tetapi hanya pesan dari tombol terakhir yang muncul. Pesan dari tombol pertama hilang.
 

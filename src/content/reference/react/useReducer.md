@@ -52,6 +52,7 @@ function MyComponent() {
 #### Peringatan {/*caveats*/}
 
 * `useReducer` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat atas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam loop atau pengkondisian. Jika Anda perlu melakukannya, ekstrak komponen baru dan pindahkan state ke dalamnya.
+* Fungsi `dispatch` memiliki identitas yang stabil, jadi Anda akan sering melihatnya dihilangkan dari dependensi Effect, tetapi memasukkannya tidak akan menyebabkan Effect aktif. Jika linter memungkinkan Anda menghilangkan dependensi tanpa kesalahan, maka hal itu aman untuk dilakukan. [Pelajari selengkapnya tentang menghapus dependensi Effect.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 * Dalam Strict Mode, React akan **memanggil reducer dan inisialisasi Anda sebanyak dua kali** untuk [membantu Anda menemukan ketidakmurnian yang tidak disengaja.](#my-reducer-or-initializer-function-runs-twice) Ini adalah perilaku khusus untuk tahap pengembangan dan tidak mempengaruhi tahap produksi. Jika reducer dan inisialisasi Anda murni (sebagai mestinya), ini tidak akan mempengaruhi logika Anda. Hasil dari salah satu panggilan diabaikan.
 
 ---
