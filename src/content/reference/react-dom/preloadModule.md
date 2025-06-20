@@ -5,19 +5,19 @@ canary: true
 
 <Canary>
 
-The `preloadModule` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Fungsi `preloadModule` saat ini hanya tersedia di saluran Canary dan eksperimental React. Pelajari lebih lanjut tentang [saluran rilis React di sini](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Note>
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[Framework berbasis React](/learn/start-a-new-react-project) sering kali sudah menangani pemuatan resource untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
 
 </Note>
 
 <Intro>
 
-`preloadModule` lets you eagerly fetch an ESM module that you expect to use.
+`preloadModule` memungkinkan Anda mengambil modul ESM lebih awal yang Anda perkirakan akan digunakan.
 
 ```js
 preloadModule("https://example.com/module.js", {as: "script"});
@@ -29,11 +29,11 @@ preloadModule("https://example.com/module.js", {as: "script"});
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `preloadModule(href, options)` {/*preloadmodule*/}
 
-To preload an ESM module, call the `preloadModule` function from `react-dom`.
+Untuk melakukan preload modul ESM, panggil fungsi `preloadModule` dari `react-dom`.
 
 ```js
 import { preloadModule } from 'react-dom';
@@ -45,37 +45,37 @@ function AppRoot() {
 
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lainnya di bawah.](#usage)
 
-The `preloadModule` function provides the browser with a hint that it should start downloading the given module, which can save time.
+Fungsi `preloadModule` memberikan petunjuk kepada browser agar mulai mengunduh modul yang diberikan, sehingga dapat menghemat waktu.
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `href`: a string. The URL of the module you want to download.
-* `options`: an object. It contains the following properties:
-  *  `as`: a required string. It must be `'script'`.
-  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
-  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
+* `href`: string. URL dari modul yang ingin Anda unduh.
+* `options`: objek. Berisi properti berikut:
+  *  `as`: string wajib. Harus bernilai `'script'`.
+  *  `crossOrigin`: string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`.
+  *  `integrity`: string. Hash kriptografi dari modul, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: string. [Nonce kriptografi](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) untuk mengizinkan modul saat menggunakan Content Security Policy yang ketat.
 
 
-#### Returns {/*returns*/}
+#### Return {/*returns*/}
 
-`preloadModule` returns nothing.
+`preloadModule` tidak mengembalikan apa pun.
 
-#### Caveats {/*caveats*/}
+#### Catatan Khusus {/*caveats*/}
 
-* Multiple calls to `preloadModule` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preloadModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preloadModule` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* Memanggil `preloadModule` beberapa kali dengan `href` yang sama akan memberikan efek yang sama seperti satu kali pemanggilan.
+* Di browser, Anda dapat memanggil `preloadModule` dalam situasi apa pun: saat merender komponen, di Effect, di event handler, dan sebagainya.
+* Pada server-side rendering atau saat merender Server Components, `preloadModule` hanya akan berpengaruh jika Anda memanggilnya saat merender komponen atau dalam konteks async yang berasal dari proses render komponen. Pemanggilan di luar itu akan diabaikan.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### Preload saat merender {/*preloading-when-rendering*/}
 
-Call `preloadModule` when rendering a component if you know that it or its children will use a specific module.
+Panggil `preloadModule` saat merender komponen jika Anda tahu bahwa komponen tersebut atau turunannya akan menggunakan modul tertentu.
 
 ```js
 import { preloadModule } from 'react-dom';
@@ -86,11 +86,11 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to start executing the module immediately (rather than just downloading it), use [`preinitModule`](/reference/react-dom/preinitModule) instead. If you want to load a script that isn't an ESM module, use [`preload`](/reference/react-dom/preload).
+Jika Anda ingin browser langsung mengeksekusi modul (bukan hanya mengunduhnya), gunakan [`preinitModule`](/reference/react-dom/preinitModule). Jika Anda ingin memuat skrip yang bukan modul ESM, gunakan [`preload`](/reference/react-dom/preload).
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### Preload di event handler {/*preloading-in-an-event-handler*/}
 
-Call `preloadModule` in an event handler before transitioning to a page or state where the module will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+Panggil `preloadModule` di event handler sebelum berpindah ke halaman atau state di mana modul tersebut akan dibutuhkan. Ini akan memulai proses lebih awal dibandingkan jika Anda memanggilnya saat merender halaman atau state baru.
 
 ```js
 import { preloadModule } from 'react-dom';
@@ -101,7 +101,7 @@ function CallToAction() {
     startWizard();
   }
   return (
-    <button onClick={onClick}>Start Wizard</button>
+    <button onClick={onClick}>Mulai Wizard</button>
   );
 }
 ```
