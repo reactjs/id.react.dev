@@ -86,7 +86,7 @@ React akan menampilkan `<App />` dalam `root`, dan mengambil alih pengelolaan DO
 
 * Jika Anda memanggil `render` pada akar yang sama berulang kali, React akan memperbarui DOM sebisa mungkin hingga menyamai JSX terakhir yang Anda berikan. React akan memutuskan bagian mana dari DOM yang dapat digunakan kembali dan bagian mana yang perlu dibuat ulang, dengan melakukan ["pencocokan"](/learn/preserving-and-resetting-state) dengan pohon yang telah di-*render* sebelumnya. Pemanggilan kembali `render` di akar yang sama mirip dengan memanggil [fungsi `set`](/reference/react/useState#setstate) pada komponen akar: React menghindari pembaharuan DOM yang tidak diperlukan.
 
-* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](https://react.dev/reference/react-dom/client/flushSync) to ensure the initial render runs fully synchronously.
+* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](https://react.dev/reference/react-dom/flushSync) to ensure the initial render runs fully synchronously.
   
   ```js
   const root = createRoot(document.getElementById('root'));
