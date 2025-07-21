@@ -4,7 +4,11 @@ title: "Komponen Server"
 
 <RSC>
 
+<<<<<<< HEAD
 Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+=======
+Server Components are for use in [React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </RSC>
 
@@ -22,7 +26,11 @@ Lingkungan terpisah ini adalah "server" dalam Komponen Server React. Komponen Se
 <Note>
 
 
+<<<<<<< HEAD
 #### Bagaimana cara membangun dukungan untuk Komponen Server? {/*how-do-i-build-support-for-server-components*/}
+=======
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 Meskipun Komponen Server React di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan bundler atau framework Komponen Server React tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
 
@@ -47,7 +55,7 @@ function Page({page}) {
       setContent(data.content);
     });
   }, [page]);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -71,7 +79,7 @@ import sanitizeHtml from 'sanitize-html'; // Tidak termasuk dalam bundel
 async function Page({page}) {
   // CATATAN: dimuat *saat* render, ketika aplikasi dibangun.
   const content = await file.readFile(`${page}.md`);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -115,7 +123,7 @@ function Note({id}) {
       setNote(data.note);
     });
   }, [id]);
-  
+
   return (
     <div>
       <Author id={note.authorId} />
@@ -255,7 +263,7 @@ Ini bekerja dengan pertama-tama merender `Notes` sebagai Komponen Server, dan ke
       <p>this is the second note</p>
     </Expandable>
     <!--...-->
-  </div> 
+  </div>
 </body>
 ```
 
@@ -272,8 +280,13 @@ import db from './database';
 async function Page({id}) {
   // Akan suspend Komponen Server.
   const note = await db.notes.get(id);
+<<<<<<< HEAD
   
   // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien. 
+=======
+
+  // NOTE: not awaited, will start here and await on the client.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>

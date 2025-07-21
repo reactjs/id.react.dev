@@ -11,16 +11,27 @@ TypeScript adalah salah satu cara populer untuk menambahkan definisi *type* ke d
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * [TypeScript dengan Komponen React](/learn/typescript#typescript-with-react-components)
 * [Contoh menambahkan *type* dalam Hooks](/learn/typescript#example-hooks)
 * [*Types* umum dari `@types/react`](/learn/typescript/#useful-types)
 * [Tempat pembelajaran lebih lanjut](/learn/typescript/#further-learning)
+=======
+* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
+* [Examples of typing with Hooks](/learn/typescript#example-hooks)
+* [Common types from `@types/react`](/learn/typescript#useful-types)
+* [Further learning locations](/learn/typescript#further-learning)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </YouWillLearn>
 
 ## Pemasangan {/*installation*/}
 
+<<<<<<< HEAD
 Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#production-grade-react-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
+=======
+All [production-grade React frameworks](/learn/creating-a-react-app#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)

@@ -10,7 +10,11 @@ Direktif digunakan di [Komponen Server React](/reference/rsc/server-components).
 
 <Intro>
 
+<<<<<<< HEAD
 Direktif memberikan instruksi kepada [bundler yang kompatibel dengan React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+=======
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </Intro>
 

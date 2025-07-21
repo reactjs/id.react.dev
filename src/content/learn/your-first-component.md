@@ -215,7 +215,11 @@ Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat s
 
 Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti Anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
 
+<<<<<<< HEAD
 [*Framework-framework* berbasis React](/learn/start-a-new-react-project) mengambil ini selangkah lebih jauh. Daripada menggunakan sebuah *file* HTML yang kosong dan membiarkan React untuk "mengambil alih" dalam mengelola halamannya dengan JavaScript, mereka *juga* membuat HTML-nya secara otomatis dari komponen-komponen React Anda. Ini memungkinkan aplikasi Anda menampilkan beberapa konten sebelum kode JavaScript dimuat.
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 Namun, banyak *website* hanya menggunakan React untuk [menambahkan interaktivitas kepada halaman HTML yang sudah ada.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) Mereka memiliki banya komponen *root* daripada satu untuk seluruh halaman. Anda dapat menggunakan React sebanyaknya-banyaknya—atau sesedikit mungkin—sesuai dengan yang dibutuhkan.
 

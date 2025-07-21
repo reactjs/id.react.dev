@@ -4,7 +4,11 @@ title: preload
 
 <Note>
 
+<<<<<<< HEAD
 [Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </Note>
 

@@ -4,7 +4,11 @@ title: API React DOM Server
 
 <Intro>
 
+<<<<<<< HEAD
 API `react-dom/server` memungkinkan Anda me-*render* komponen React menjadi HTML di *server*. API ini hanya digunakan di *server* pada *top level* aplikasi Anda untuk menghasilkan HTML awal. Kemungkinan [*framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) akan memanggilnya untuk Anda. Sebagian besar komponen Anda tidak perlu mengimpor atau menggunakannya.
+=======
+The `react-dom/server` APIs let you server-side render React components to HTML. These APIs are only used on the server at the top level of your app to generate the initial HTML. A [framework](/learn/creating-a-react-app#full-stack-frameworks) may call them for you. Most of your components don't need to import or use them.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </Intro>
 
