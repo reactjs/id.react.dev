@@ -36,7 +36,11 @@ Untuk membuat kontrol interaktif untuk mengirimkan informasi, render [komponen `
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<form>` mendukung semua [props elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<form>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): URL atau fungsi. Ketika URL diberikan ke `action`, formulir akan berperilaku seperti komponen formulir HTML. Ketika fungsi diberikan ke `action`, fungsi tersebut akan menangani pengiriman formulir. Fungsi yang diberikan ke `action` dapat berupa *async* dan akan dipanggil dengan satu argumen yang berisi [data formulir](https://developer.mozilla.org/en-US/docs/Web/API/FormData) dari formulir yang dikirimkan. Prop `action` dapat ditimpa oleh atribut `formAction` pada komponen `<button>`, `<input type="submit">`, atau `<input type="image">`.
 
@@ -229,7 +233,7 @@ export async function deliverMessage(message) {
 </Sandpack>
 
 [//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
-[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### Menangani kesalahan pengiriman formulir {/*handling-form-submission-errors*/}
 

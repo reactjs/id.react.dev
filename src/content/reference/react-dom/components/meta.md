@@ -30,7 +30,11 @@ Untuk menambahkan metadata dokumen, *render* komponen HTML bawaan `<meta>`. Anda
 
 #### *Props* {/*props*/}
 
+<<<<<<< HEAD
 `<meta>` mendukung semua [*props* elemen pada umumnya.](/reference/react-dom/components/common#props)
+=======
+`<meta>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 Elemen ini harus memiliki *setidaknya satu* dari *props* berikut: `name`, `httpEquiv`, `charset`, `itemProp`. Komponen `<meta>` akan menghasilkan hal yang berbeda tergantung dari *props* yang diberikan.
 
