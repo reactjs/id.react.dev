@@ -321,7 +321,11 @@ Semua API yang disebutkan di atas menawarkan *memo*, tetapi perbedaannya adalah 
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
+<<<<<<< HEAD
 Secara umum, anda harus menggunakan [`useMemo`](/reference/react/useMemo) untuk melakukan *cache* untuk sebuah komputasi yang mahal pada sebuah komponen klien di seluruh *render*. Sebagai contoh, untuk me-*memo* sebuah transformasi dari sebuah data di dalam komponen.
+=======
+In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 ```jsx {4}
 'use client';

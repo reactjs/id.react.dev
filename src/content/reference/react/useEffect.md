@@ -895,7 +895,11 @@ Pada contoh ini, sebuah fungsi *cleanup* tidak diperlukan karena kelas `MapWidge
 
 ### Mengambil data dengan *Effects* {/*fetching-data-with-effects*/}
 
+<<<<<<< HEAD
 Anda dapat menggunakan sebuah *Effect* untuk mengambil data untuk komponen Anda. Perlu diingat bahwa [jika Anda menggunakan sebuah *framework*,](/learn/start-a-new-react-project#production-grade-react-frameworks) menggunakan mekanisme pengambilan data dari *framework* Anda akan jauh lebih efisien daripada menulis *Effects* secara manual.
+=======
+You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/start-a-new-react-project#full-stack-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Jika Anda ingin mengambil data dari sebuah *Effect* secara manual, kode Anda mungkin akan terlihat seperti ini:
 
@@ -1047,8 +1051,13 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara yang populer untuk men
 
 Daftar kekurangan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat *mount* dengan *library* manapun. Seperti dengan *routing*, pengambilan data tidak mudah dilakukan dengan baik, jadi kami sarankan pendekatan berikut:
 
+<<<<<<< HEAD
 - **Jika Anda menggunakan [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun cache sisi klien.** Solusi *open source* populer termasuk [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membangun solusi Anda sendiri, dalam hal ini Anda akan menggunakan *Effects* di bawah kap, tetapi juga menambahkan logika untuk mendeduplikasi permintaan, *caching respons*, dan menghindari air terjun(*waterfalls*) jaringan (dengan memuat data atau mengangkat persyaratan data ke *route*).
+=======
+- **If you use a [framework](/learn/start-a-new-react-project#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Anda dapat terus mengambil data secara langsung dalam *Effects* jika kedua pendekatan ini tidak cocok untuk Anda.
 
@@ -1731,7 +1740,11 @@ function Page({ url, shoppingCart }) {
 
 ### Menampilkan konten yang berbeda di server dan klien {/*displaying-different-content-on-the-server-and-the-client*/}
 
+<<<<<<< HEAD
 Jika aplikasi Anda menggunakan server *rendering* (baik [langsung](/reference/react-dom/server) maupun melalui [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), komponen Anda akan di*render* di dua lingkungan yang berbeda. Di server, komponen akan di*render* untuk menghasilkan HTML awal. Di klien, React akan menjalankan kode *rendering* lagi sehingga ia dapat melekatkan *event handler* Anda ke HTML tersebut. Oleh karena itu, agar [hydrasi](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) berfungsi, output *render* awal Anda harus identik di klien dan server.
+=======
+If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/start-a-new-react-project#full-stack-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Dalam kasus yang jarang terjadi, Anda mungkin perlu menampilkan konten yang berbeda di klien. Misalnya, jika aplikasi Anda membaca beberapa data dari [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), maka hal itu tidak mungkin dilakukan di server. Berikut adalah cara mengimplementasikannya:
 

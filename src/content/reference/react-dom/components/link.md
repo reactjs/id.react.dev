@@ -30,7 +30,11 @@ Untuk menautkan ke sumber daya eksternal seperti *stylesheet*, *font*, dan ikon,
 
 #### *Props* {/*props*/}
 
+<<<<<<< HEAD
 `<link>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 * `rel`: *string*, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
 

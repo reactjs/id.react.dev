@@ -26,7 +26,11 @@ Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 * **Anda tidak memerlukan *Effects* untuk melakukan transformasi data untuk *rendering*.** Sebagai contoh, katakanlah Anda ingin melakukan *filter* terhadap sebuah daftar sebelum menampiklannya. Anda mungkin merasa tergoda untuk menulis *Effect* yang memperbarui variabel *state* ketika daftar berubah. Akan tetapi, hal ini tidak efisien. Ketika Anda memperbarui *state*, React akan memanggil fungsi komponen Anda terlebih dahulu untuk menghitung apa yang seharusnya ada di layar. Kemudian React akan ["*commit*"](/learn/render-and-commit) perubahan ini ke DOM, memperbarui layar. Kemudian React akan menjalankan *Effect* Anda. Jika *Effect* Anda *juga* segera memperbarui state, ini akan mengulang seluruh proses dari awal! Untuk menghindari *render pass* yang tidak perlu, ubah semua data pada tingkat teratas komponen Anda. Kode tersebut akan secara otomatis dijalankan ulang setiap kali *props* atau *state* anda berubah.
 * **Anda tidak memerlukan Efek untuk menangani *event* dari pengguna.** Sebagai contoh, katakanlah Anda ingin mengirim *request* POST `/api/buy` dan menampilkan notifikasi ketika pengguna membeli produk. Di *event handler* klik tombol Beli, Anda tahu persis apa yang terjadi. Pada saat *Effect* berjalan, Anda tidak tahu *apa* yang dilakukan pengguna (misalnya, tombol mana yang diklik). Inilah sebabnya mengapa Anda biasanya akan menangani *event* pengguna di *event handler* yang sesuai.
 
+<<<<<<< HEAD
 Anda *memang* membutuhkan Effect untuk [melakukan sinkronisasi](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) dengan sistem eksternal. dengan sistem eksternal. Sebagai contoh, Anda dapat menulis sebuah *Effect* yang membuat *widget* jQuery tetap tersinkronisasi dengan *state* React. Anda juga dapat mengambil data dengan *Effect*: sebagai contoh, Anda dapat menyinkronkan hasil pencarian dengan kueri pencarian saat ini. Perlu diingat bahwa [kerangka kerja (*framework*)](/learn/start-a-new-react-project#production-grade-react-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada menulis *Effect* secara langsung di dalam komponen Anda.
+=======
+You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Untuk membantu Anda mendapatkan intuisi yang tepat, mari kita lihat beberapa contoh konkret yang umum!
 
@@ -94,6 +98,12 @@ function TodoList({ todos, filter }) {
 Biasanya, kode ini baik-baik saja! Namun mungkin `getFilteredTodos()` lambat atau Anda memiliki banyak `todos`. Dalam hal ini Anda tidak ingin mengkalkulasi ulang `getFilteredTodos()` jika beberapa variabel *state* yang tidak terkait seperti `newTodo` telah berubah.
 
 Anda dapat melakukan *cache* (atau ["memoisasi"](https://en.wikipedia.org/wiki/Memoization)) perhitungan yang mahal dengan membungkusnya dalam Hook [`useMemo`](/reference/react/useMemo):
+
+<Note>
+
+[React Compiler](/learn/react-compiler) can automatically memoize expensive calculations for you, eliminating the need for manual `useMemo` in many cases.
+
+</Note>
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -750,7 +760,11 @@ function SearchResults({ query }) {
 
 Hal ini memastikan bahwa saat *Effect* Anda mengambil data, semua respons kecuali yang terakhir diminta akan diabaikan.
 
+<<<<<<< HEAD
 Menangani *race condition* bukan satu-satunya kesulitan dalam mengimplementasikan pengambilan data. Anda mungkin juga ingin memikirkan tentang *cache* terhadap respons (sehingga pengguna dapat mengeklik Kembali dan langsung melihat layar sebelumnya), cara mengambil data di server (sehingga HTML awal yang di-*render* oleh server berisi konten yang diambil, bukan *spinner*), dan cara menghindari air terjun jaringan (*network waterfalls*) (sehingga komponen anak dapat mengambil data tanpa menunggu induknya).
+=======
+**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 **Masalah ini berlaku untuk semua perpustakaan UI, bukan hanya React. Menyelesaikannya bukanlah hal yang sepele, itulah sebabnya [kerangka kerja](/learn/start-a-new-react-project#production-grade-react-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada mengambil data di *Effect*.**
 

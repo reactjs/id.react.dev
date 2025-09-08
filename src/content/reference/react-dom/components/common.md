@@ -920,7 +920,11 @@ export default function Form() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Baca lebih lanjut mengenai [memanipulasi DOM dengan refs](/learn/manipulating-the-dom-with-refs) and [lihat lebih banyak contoh.](/reference/react/useRef#examples-dom)
+=======
+Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#usage)
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Untuk kasus yang lebih canggih, attribut `ref` juga menerima sebuah [fungsi *callback*.](#ref-callback)
 

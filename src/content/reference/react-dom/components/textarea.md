@@ -30,7 +30,11 @@ Untuk menampilkan sebuah area teks, me-*render* [komponen peramban bawaan `<text
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<textarea>` mendukung semua [elemen *props* yang umum.](/reference/react-dom/components/common#props)
+=======
+`<textarea>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 Anda dapat [membuat sebuah area teks yang terkendali (*controlled*)](#controlling-a-text-area-with-a-state-variable) dengan cara mengoper sebuah *prop* `value`:
 
