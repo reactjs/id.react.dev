@@ -11,16 +11,27 @@ TypeScript adalah salah satu cara populer untuk menambahkan definisi *type* ke d
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * [TypeScript dengan Komponen React](/learn/typescript#typescript-with-react-components)
 * [Contoh menambahkan *type* dalam Hooks](/learn/typescript#example-hooks)
 * [*Types* umum dari `@types/react`](/learn/typescript/#useful-types)
 * [Tempat pembelajaran lebih lanjut](/learn/typescript/#further-learning)
+=======
+* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
+* [Examples of typing with Hooks](/learn/typescript#example-hooks)
+* [Common types from `@types/react`](/learn/typescript#useful-types)
+* [Further learning locations](/learn/typescript#further-learning)
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 </YouWillLearn>
 
 ## Pemasangan {/*installation*/}
 
+<<<<<<< HEAD
 Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#production-grade-react-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
+=======
+All [production-grade React frameworks](/learn/start-a-new-react-project#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -32,14 +43,20 @@ Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#p
 Untuk memasang versi terbaru definisi *type* React:
 
 <TerminalBlock>
-npm install @types/react @types/react-dom
+npm install --save-dev @types/react @types/react-dom
 </TerminalBlock>
 
 Opsi *compiler* berikut perlu disetel dalam `tsconfig.json` Anda:
 
+<<<<<<< HEAD
 1. `dom` harus disertakan dalam [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Catatan: Jika tidak ada opsi `lib` yang disetel, `dom` disetel secara bawaan).
 1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) harus desetel ke salah satu opsi yang valid. `preserve` seharusnya cukup untuk sebagian besar aplikasi.
   Jika Anda menerbitkan pustaka (*library*), lihat [dokumentasi `jsx`](https://www.typescriptlang.org/tsconfig/#jsx) untuk mengetahui opsi yang harus dipilih.
+=======
+1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default).
+2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set to one of the valid options. `preserve` should suffice for most applications.
+  If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 ## TypeScript dengan Komponen React {/*typescript-with-react-components*/}
 
@@ -124,7 +141,11 @@ export default App = AppTSX;
 
 ## Contoh Hooks {/*example-hooks*/}
 
+<<<<<<< HEAD
 Definisi *type* dari `@types/react` menyertakan *type* untuk Hooks bawaan, sehingga Anda dapat menggunakannya dalam komponen tanpa pengaturan tambahan apa pun. Definisi tersebut dibuat untuk memperhitungkan kode yang Anda tulis dalam komponen, sehingga Anda akan memperoleh [*type* yang disimpulkan](https://www.typescriptlang.org/docs/handbook/type-inference.html) sering kali dan idealnya tidak perlu menangani hal-hal sepele dalam menyediakan *type* sendiri.
+=======
+The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Namun, kita dapat melihat beberapa contoh tentang cara menyediakan *type* untuk Hooks.
 
@@ -139,8 +160,13 @@ const [enabled, setEnabled] = useState(false);
 
 Ini akan menetapkan *type* `boolean` ke `enabled`, dan `setEnabled` akan menjadi fungsi yang menerima argumen `boolean`, atau fungsi yang mengembalikan `boolean`. Jika Anda ingin secara eksplisit memberikan *type* untuk *state*, Anda dapat melakukannya dengan memberikan argumen *type* ke panggilan `useState`:
 
+<<<<<<< HEAD
 ```ts 
 // Menyetel type ke "boolean" secara eksplisit
+=======
+```ts
+// Explicitly set the type to "boolean"
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
 
@@ -174,7 +200,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 import {useReducer} from 'react';
 
 interface State {
-   count: number 
+   count: number
 };
 
 type CounterAction =
@@ -284,7 +310,11 @@ export default App = AppTSX;
 
 </Sandpack>
 
+<<<<<<< HEAD
 Teknik ini berfungsi saat Anda memiliki nilai bawaan yang masuk akal - tetapi terkadang ada kasus saat Anda tidak memilikinya, dan dalam kasus tersebut `null` dapat terasa masuk akal sebagai nilai bawaan. Namun, untuk memungkinkan sistem *type* memahami kode Anda, Anda perlu secara eksplisit menetapkan `ContextShape | null` pada `createContext`.
+=======
+This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Hal ini menyebabkan masalah yang mengharuskan Anda menghilangkan `| ​​null` dalam *type* untuk *consumer* *Context*. Rekomendasi kami adalah agar Hook melakukan pemeriksaan *runtime* untuk keberadaannya dan memunculkan kesalahan saat tidak ada:
 
@@ -329,7 +359,17 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
+<<<<<<< HEAD
 Hook [`useMemo`](/reference/react/useMemo) akan membuat/mengakses ulang nilai yang tersimpan dari pemanggilan fungsi, dan menjalankan ulang fungsi hanya saat dependensi yang diteruskan sebagai parameter ke-2 diubah. Hasil pemanggilan Hook disimpulkan dari nilai yang dikembalikan dari fungsi di parameter pertama. Anda dapat lebih eksplisit dengan memberikan argumen *type* ke Hook.
+=======
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
+The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 ```ts
 // Type dari visibleTodos disimpulkan dari nilai kembalian filterTodos
@@ -339,7 +379,17 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
+<<<<<<< HEAD
 [`useCallback`](/reference/react/useCallback) menyediakan referensi stabil ke suatu fungsi selama dependensi yang dimasukkan ke parameter kedua sama. Seperti `useMemo`, *type* fungsi disimpulkan dari nilai kembalian fungsi di parameter pertama, dan Anda dapat lebih eksplisit dengan memberikan argumen *type* ke Hook.
+=======
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
+The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 
 ```ts
@@ -350,7 +400,11 @@ const handleClick = useCallback(() => {
 
 Saat bekerja dalam mode *strict* TypeScript, `useCallback` mengharuskan penambahan *type* untuk parameter dalam *callback* Anda. Hal ini karena *type* dari *callback* disimpulkan dari nilai pengembalian fungsi, dan tanpa parameter, *type* tersebut tidak dapat dipahami sepenuhnya.
 
+<<<<<<< HEAD
 Bergantung pada preferensi gaya kode Anda, Anda dapat menggunakan fungsi `*EventHandler` dari *type* React untuk menyediakan *type* bagi *event handler* pada saat yang sama saat mendefinisikan *callback*:
+=======
+Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback:
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 ```ts
 import { useState, useCallback } from 'react';
@@ -361,7 +415,7 @@ export default function Form() {
   const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
     setValue(event.currentTarget.value);
   }, [setValue])
-  
+
   return (
     <>
       <input value={value} onChange={handleChange} />
@@ -433,7 +487,11 @@ interface ModalRendererProps {
 }
 ```
 
+<<<<<<< HEAD
 Perlu diingat, bahwa Anda tidak dapat menggunakan TypeScript untuk menjelaskan bahwa anak dari komponen adalah tipe elemen JSX tertentu, jadi Anda tidak dapat menggunakan sistem *type* untuk menjelaskan komponen yang hanya menerima anak `<li>`.
+=======
+Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Anda dapat melihat contoh `React.ReactNode` dan `React.ReactElement` dengan pemeriksa *type* di [*playground* TypeScript ini](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 

@@ -24,7 +24,11 @@ Inilah cara kami menyarankan untuk menyiapkannya:
 2. **Tentukan `/some-app` sebagai *base path*** dalam konfigurasi *framework* Anda (begini caranya: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurasi server Anda atau Proxy** sehingga semua permintaan di rute `/some-app/` ditangani oleh aplikasi React Anda.
 
+<<<<<<< HEAD
 Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) yang dimasukkan ke dalam *framework* tersebut.
+=======
+This ensures the React part of your app can [benefit from the best practices](/learn/build-a-react-app-from-scratch#consider-using-a-framework) baked into those frameworks.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Banyak *framework* berbasis React bersifat *full-stack* dan membiarkan aplikasi React Anda memanfaatkan server. Namun, Anda dapat menggunakan pendekatan yang sama meskipun Anda tidak dapat atau tidak ingin menjalankan JavaScript di server. Dalam hal ini, sajikan HTML/CSS/JS ([`next export` output](https://nextjs.org/docs/advanced-features/static-html-export) untuk Next.js, *default* untuk Gatsby) di `/some-app/` sebagai gantinya.
 
