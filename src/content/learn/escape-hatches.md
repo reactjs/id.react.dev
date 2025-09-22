@@ -201,7 +201,7 @@ Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 
 Sebagai contoh, Anda tidak perlu menggunakan *Effect* untuk menyesuaikan beberapa *state* berdasarkan *state* lainnya:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');

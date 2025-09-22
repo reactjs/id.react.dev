@@ -196,7 +196,7 @@ React mengharapkan bahwa tubuh komponen Anda [berperilaku seperti fungsi murni](
 
 Membaca atau menulis ref **selama rendering** melanggar ekspektasi-ekspektasi ini.
 
-```js {3-4,6-7}
+```js {expectedErrors: {'react-compiler': [4]}} {3-4,6-7}
 function MyComponent() {
   // ...
   // 🚩 Don't write a ref during rendering

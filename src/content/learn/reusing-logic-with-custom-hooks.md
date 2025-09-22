@@ -1418,10 +1418,36 @@ Mirip dengan [sistem desain,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 #### Akankah React akan menyediakan solusi bawaan untuk pengambilan data? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
+<<<<<<< HEAD
 Kami masih mengerjakan detailnya, tetapi kami berharap di masa mendatang, Anda akan menulis pengambilan data seperti ini:
 
 ```js {1,4,6}
 import { use } from 'react'; // Belum tersedia!
+=======
+Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
+
+```js {1,4,11}
+import { use, Suspense } from "react";
+
+function Message({ messagePromise }) {
+  const messageContent = use(messagePromise);
+  return <p>Here is the message: {messageContent}</p>;
+}
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+```
+
+We're still working out the details, but we expect that in the future, you'll write data fetching like this:
+
+```js {1,4,6}
+import { use } from 'react';
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));

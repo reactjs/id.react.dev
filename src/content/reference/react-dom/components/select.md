@@ -36,7 +36,11 @@ Untuk menampilkan kotak pilih (*select box*), *render* komponen [`<select>` bawa
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<select>` mendukung seluruh [*props* elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 Anda dapat [membuat sebuah kotak pilih (*select box*) terkontrol](#controlling-a-select-box-with-a-state-variable) dengan memberikan *prop* `<value>`:
 

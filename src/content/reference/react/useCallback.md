@@ -12,6 +12,12 @@ const cachedFn = useCallback(fn, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -124,7 +130,7 @@ function ProductPage({ productId, referrer, theme }) {
       orderDetails,
     });
   }
-  
+
   return (
     <div className={theme}>
       {/* ... jadi prop ShippingForm tidak akan pernah sama, dan komponen tersebut akan selalu melakukan re-render setiap kali terjadi perubahan tema */}
@@ -201,8 +207,13 @@ Perbedaannya terletak pada *apa* yang Anda simpan dalam *cache*:
 
 Jika Anda sudah terbiasa dengan [`useMemo`,](/reference/react/useMemo) Anda mungkin merasa terbantu dengan `useCallback` seperti ini:
 
+<<<<<<< HEAD
 ```js
 // implementasi sederhana (didalam React)
+=======
+```js {expectedErrors: {'react-compiler': [3]}}
+// Simplified implementation (inside React)
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
 }
@@ -216,7 +227,11 @@ function useCallback(fn, dependencies) {
 
 #### Apakah Anda harus menambahkan useCallback dimana-mana? {/*should-you-add-usecallback-everywhere*/}
 
+<<<<<<< HEAD
 Jika aplikasi Anda seperti situs ini, dan sebagian besar interaksi bersifat kasar (seperti mengganti seluruh halaman atau sebagian), memoisasi biasanya tidak diperlukan. Di sisi lain, Jika aplikasi Anda seperti editor gambar, dan sebagian besar interaksi bersifat granular (seperti memindahkan bentuk), maka Anda mungkin menganggap memoisasi sangat membantu. 
+=======
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 Caching fungsi dengan `useCallback` hanya bermanfaat dalam beberapa kasus:
 
@@ -305,7 +320,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -444,7 +459,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -863,7 +878,7 @@ Ketika Anda menemukan dependensi mana yang memecah memoisasi, entah cari cara un
 
 Misalkan komponen `Chart` dibungkus dengan [`memo`](/reference/react/memo). Anda ingin melewati pengulangan setiap `Chart` dalam daftar ketika komponen `ReportList` di *render* ulang. Namun, Anda tidak dapat memanggil `useCallback` dalam sebuah perulangan:
 
-```js {5-14}
+```js {expectedErrors: {'react-compiler': [6]}} {5-14}
 function ReportList({ items }) {
   return (
     <article>

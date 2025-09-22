@@ -304,7 +304,7 @@ Menekan *linter* menyebabkan bug yang sangat tidak intuitif yang sulit ditemukan
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -794,7 +794,7 @@ Penting untuk mendeklarasikannya sebagai dependensi, Hal ini memastikan, misalny
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 

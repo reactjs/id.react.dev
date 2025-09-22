@@ -243,7 +243,11 @@ input { margin: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Pola UI alternatif yang umum adalah *menangguhkan* pembaruan daftar hasil dan terus menampilkan hasil sebelumnya hingga hasil baru siap. Panggil `useDeferredValue` untuk meneruskan versi kueri yang ditangguhkan:
+=======
+A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down:
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 ```js {3,11}
 export default function App() {
@@ -668,7 +672,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -745,7 +749,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
