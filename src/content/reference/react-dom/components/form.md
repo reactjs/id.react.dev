@@ -36,9 +36,15 @@ Untuk membuat kontrol interaktif untuk mengirimkan informasi, render [komponen `
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<form>` mendukung semua [props elemen umum.](/reference/react-dom/components/common#props)
 
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): URL atau fungsi. Ketika URL diberikan ke `action`, formulir akan berperilaku seperti komponen formulir HTML. Ketika fungsi diberikan ke `action`, fungsi tersebut akan menangani pengiriman formulir. Fungsi yang diberikan ke `action` dapat berupa *async* dan akan dipanggil dengan satu argumen yang berisi [data formulir](https://developer.mozilla.org/en-US/docs/Web/API/FormData) dari formulir yang dikirimkan. Prop `action` dapat ditimpa oleh atribut `formAction` pada komponen `<button>`, `<input type="submit">`, atau `<input type="image">`.
+=======
+`<form>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission in a Transition following [the Action prop pattern](/reference/react/useTransition#exposing-action-props-from-components). The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 #### Catatan Penting {/*caveats*/}
 
@@ -228,8 +234,8 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
-[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
-[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentation page is published'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### Menangani kesalahan pengiriman formulir {/*handling-form-submission-errors*/}
 

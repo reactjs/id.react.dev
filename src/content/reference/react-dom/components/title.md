@@ -30,7 +30,11 @@ Untuk menentukan judul dokmen, render [komponen bawaan peramban `<title>`](https
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<title>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
+=======
+`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 * `children`: `<title>` hanya menerima teks sebagai anak. Teks ini akan menjadi judul dokumen. Anda juga dapat meng-oper komponen Anda sendiri selama komponen tersebut hanya me-*render* teks.
 
