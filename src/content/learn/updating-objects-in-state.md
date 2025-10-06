@@ -56,7 +56,7 @@ Berikut adalah contoh kode yang menampung objek di dalam *state* untuk mereprese
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function MovingDot() {
@@ -209,7 +209,7 @@ Bidang isian berikut tidak bekerja karena *handler* `onChange` mengubah *state*:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -831,7 +831,7 @@ Tugas Anda adalah memperbaiki semua kesalahan tersebut. Saat Anda memperbaikinya
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -988,7 +988,7 @@ Jika sesuatu berubah secara tidak terduga, maka ada mutasi. Cari mutasi di `App.
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1293,7 +1293,7 @@ Berikut adalah contoh bermasalah yang sama dengan tantangan sebelumnya. Kali ini
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';

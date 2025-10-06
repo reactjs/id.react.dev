@@ -50,7 +50,11 @@ Sebuah portal hanya mengubah penempatan kerangka dari simpul DOM. Dalam hal lain
 
 * `domNode`: Beberapa simpul DOM, seperti yang dikembalikan oleh `document.getElementById()`. Simpul tersebut harus sudah ada. Melewatkan simpul DOM yang berbeda selama pembaruan akan menyebabkan konten portal dibuat ulang.
 
+<<<<<<< HEAD
 * **opsional** `key`: Sebuah *string* atau angka unik yang akan digunakan sebagai [kunci](/learn/rendering-lists/#keeping-list-items-in-order-with-key) portal.
+=======
+* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 #### Returns {/*returns*/}
 
@@ -398,7 +402,8 @@ Berikut ini contoh lengkap yang bisa Anda mainkan:
 }
 ```
 
-```js src/App.js
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [15]}} src/App.js
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { createMapWidget, addPopupToMapWidget } from './map-widget.js';

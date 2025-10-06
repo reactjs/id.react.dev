@@ -474,7 +474,7 @@ Dengan hanya benar-benar menulis komponen Anda sebagai fungsi murni, Anda dapat 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
