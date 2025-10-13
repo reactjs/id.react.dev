@@ -161,7 +161,11 @@ function CheckoutForm() {
 }
 ```
 
+<<<<<<< HEAD
 Fungsi yang diteruskan ke `startTransition` disebut "Aksi". Anda dapat memperbarui status dan (opsional) melakukan efek samping dalam sebuah Aksi, dan pekerjaan akan dilakukan di latar belakang tanpa menghalangi interaksi pengguna di halaman. Transisi dapat mencakup beberapa Aksi, dan saat Transisi sedang berlangsung, UI Anda tetap responsif. Misalnya, jika pengguna mengklik tab tetapi kemudian berubah pikiran dan mengklik tab lain, klik kedua akan segera ditangani tanpa menunggu pembaruan pertama selesai.
+=======
+The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish.
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 Untuk memberikan umpan balik kepada pengguna tentang Transisi yang sedang berlangsung, status `isPending` beralih ke `true` pada panggilan pertama ke `startTransition`, dan tetap `true` hingga semua Aksi selesai dan status akhir ditampilkan kepada pengguna. Transisi memastikan efek samping dalam Aksi selesai untuk [mencegah indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators), dan Anda dapat memberikan umpan balik langsung saat Transisi sedang berlangsung dengan `useOptimistic`.
 
@@ -597,7 +601,7 @@ export default function TabButton({ action, children, isActive }) {
     <button onClick={() => {
       startTransition(async () => {
         // await the action that's passed in.
-        // This allows it to be either sync or async. 
+        // This allows it to be either sync or async.
         await action();
       });
     }}>
@@ -664,7 +668,7 @@ export default function TabButton({ action, children, isActive }) {
     <button onClick={async () => {
       startTransition(async () => {
         // await the action that's passed in.
-        // This allows it to be either sync or async. 
+        // This allows it to be either sync or async.
         await action();
       });
     }}>
@@ -682,7 +686,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -742,7 +746,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-When exposing an `action` prop from a component, you should `await` it inside the transition. 
+When exposing an `action` prop from a component, you should `await` it inside the transition.
 
 This allows the `action` callback to be either synchronous or asynchronous without requiring an additional `startTransition` to wrap the `await` in the action.
 
@@ -837,7 +841,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -1773,7 +1777,7 @@ function setState() {
 
 If you `await` inside `startTransition`, you might see the updates happen out of order.
 
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns the every other request after the previous* to simulate race conditions for network requests.
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns every other request after the previous* to simulate race conditions for network requests.
 
 Try updating the quantity once, then update it quickly multiple times. You might see the incorrect total:
 
@@ -1805,7 +1809,7 @@ export default function App({}) {
   const [isPending, startTransition] = useTransition();
   // Store the actual quantity in separate state to show the mismatch.
   const [clientQuantity, setClientQuantity] = useState(1);
-  
+
   const updateQuantityAction = newQuantity => {
     setClientQuantity(newQuantity);
 
@@ -1840,7 +1844,7 @@ export default function Item({action}) {
     startTransition(async () => {
       await action(e.target.value);
     });
-  }  
+  }
   return (
     <div className="item">
       <span>Eras Tour Tickets</span>
@@ -2006,7 +2010,7 @@ export default function Item({action}) {
     startTransition(() => {
       action(e.target.value);
     });
-  }  
+  }
   return (
     <div className="item">
       <span>Eras Tour Tickets</span>
