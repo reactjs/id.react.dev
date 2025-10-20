@@ -30,7 +30,11 @@ Untuk menampilkan indikator progres, render komponen [`<progress>` bawaan peramb
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<progress>` mendukung semua [elemen umum *props*.](/reference/react-dom/components/common#props)
+=======
+`<progress>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Selain itu, `<progress>` juga mendukung *props*:
 

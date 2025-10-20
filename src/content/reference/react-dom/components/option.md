@@ -37,7 +37,11 @@ title: "<option>"
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<option>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<option>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Sebagai tambahan, `<option>` mendukung *props* berikut:
 

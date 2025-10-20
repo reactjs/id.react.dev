@@ -201,7 +201,7 @@ Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 
 Sebagai contoh, Anda tidak perlu menggunakan *Effect* untuk menyesuaikan beberapa *state* berdasarkan *state* lainnya:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -312,6 +312,7 @@ Baca **[Siklus hidup *effects* yang reaktif](/learn/lifecycle-of-reactive-effect
 
 ## Memisahkan *events* dari *Effects* {/*separating-events-from-effects*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi stabil React.
@@ -319,6 +320,9 @@ Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi
 </Wip>
 
 *Event handlers* hanya berjalan ulang ketika Anda melakukan interaksi yang sama lagi. Tidak seperti *event handlers*, *Effects* menyinkronkan ulang jika nilai apapun yang mereka baca, seperti *props* atau *state*, berbeda dari saat *render* terakhir. Kadang, Anda ingin campuran kedua perilaku tersebut: sebuah *Effect* yang berjalan ulang sebagai respon terhadap beberapa nilai tetapi tidak pada nilai lainnya.
+=======
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Semua kode di dalam *Effects* adalah *reactive.* *Effects* tersebut akan berjalan lagi jika beberapa nilai *reactive* yang dibacanya telah berubah karena *render* ulang. Misalkan, *Effect* ini akan menghubungkan kembali ke *chat* jika `roomId` atau `theme` telah berubah:
 
@@ -455,8 +459,8 @@ Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` 
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -471,7 +475,7 @@ Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` 
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
