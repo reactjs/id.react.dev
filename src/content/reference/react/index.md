@@ -29,7 +29,25 @@ React-dom berisi fitur-fitur yang hanya didukung untuk aplikasi web (yang berjal
 * [API Klien](/reference/react-dom/client) — API `react-dom/client` memungkinkan Anda untuk me-*render* komponen React pada klien (di peramban).
 * [API Server](/reference/react-dom/server) — API `react-dom/server` memungkinkan Anda untuk me-*render* komponen React ke HTML di server.
 
+<<<<<<< HEAD
 ## Aturan React {/*rules-of-react*/}
+=======
+## React Compiler {/*react-compiler*/}
+
+The React Compiler is a build-time optimization tool that automatically memoizes your React components and values:
+
+* [Configuration](/reference/react-compiler/configuration) - Configuration options for React Compiler.
+* [Directives](/reference/react-compiler/directives) - Function-level directives to control compilation.
+* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - Guide for shipping pre-compiled library code.
+
+## ESLint Plugin React Hooks {/*eslint-plugin-react-hooks*/}
+
+The [ESLint plugin for React Hooks](/reference/eslint-plugin-react-hooks) helps enforce the Rules of React:
+
+* [Lints](/reference/eslint-plugin-react-hooks) - Detailed documentation for each lint with examples.
+
+## Rules of React {/*rules-of-react*/}
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 React memiliki idiom — atau aturan — tentang cara mengekspresikan pola dengan cara yang mudah dimengerti dan menghasilkan aplikasi berkualitas tinggi:
 
