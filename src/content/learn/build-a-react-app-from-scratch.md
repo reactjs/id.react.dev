@@ -122,7 +122,11 @@ Untuk petunjuk pemisahan kode, lihat dokumen alat build Anda:
 
 ### Meningkatkan Performa Aplikasi {/*improving-application-performance*/}
 
+<<<<<<< HEAD
 Karena alat *build* yang Anda pilih hanya mendukung aplikasi *single-page* (SPA), Anda perlu menerapkan [pola rendering](https://www.patterns.dev/vanilla/rendering-patterns) lain seperti *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC). Meskipun Anda tidak memerlukan fitur-fitur ini pada awalnya, di masa mendatang mungkin ada beberapa jalur yang akan menguntungkan SSR, SSG, atau RSC.
+=======
+Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+>>>>>>> f9e2c1396769bb5da87db60f9ff03683d18711e2
 
 * **Aplikasi *single-page* (SPA)** memuat satu halaman HTML dan memperbarui halaman secara dinamis saat pengguna berinteraksi dengan aplikasi. SPA lebih mudah untuk memulai, tetapi waktu muat awal dapat lebih lambat. SPA adalah arsitektur default untuk sebagian besar alat build.
 

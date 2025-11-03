@@ -15,6 +15,14 @@
       "path": "/learn/installation"
     },
     {
+      "title": "Setup",
+      "path": "/learn/setup"
+    },
+    {
+      "title": "React Compiler",
+      "path": "/learn/react-compiler"
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "BELAJAR REACT"
     },
@@ -76,7 +84,27 @@
     },
     {
       "hasSectionHeader": true,
+<<<<<<< HEAD
       "sectionHeader": "IKUT TERLIBAT"
+=======
+      "sectionHeader": "REACT COMPILER API"
+    },
+    {
+      "title": "Configuration",
+      "path": "/reference/react-compiler/configuration"
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/react-compiler/directives"
+    },
+    {
+      "title": "Compiling Libraries",
+      "path": "/reference/react-compiler/compiling-libraries"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "GET INVOLVED"
+>>>>>>> f9e2c1396769bb5da87db60f9ff03683d18711e2
     },
     {
       "title": "Komunitas React",
