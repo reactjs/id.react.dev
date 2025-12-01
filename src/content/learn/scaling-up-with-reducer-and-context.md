@@ -685,7 +685,11 @@ Sekarang Anda tidak perlu lagi meneruskan daftar tugas atau *event handler* ke b
 </TasksContext>
 ```
 
+<<<<<<< HEAD
 Sebaliknya, komponen mana pun yang memerlukan daftar tugas dapat membacanya dari `TaskContext`:
+=======
+Instead, any component that needs the task list can read it from the `TasksContext`:
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 ```js {2}
 export default function TaskList() {
