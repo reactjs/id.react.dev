@@ -283,9 +283,15 @@ Di CodeSandbox Anda akan melihat tiga bagian utama:
 
 ![CodeSandbox dengan kode awal](../images/tutorial/react-starter-code-codesandbox.png)
 
+<<<<<<< HEAD
 1. Bagian _Files_ dengan daftar file seperti `App.js`, `index.js`, `styles.css`, dan sebuah folder bernama `public`
 1. _Editor kode_ di mana Anda akan melihat kode sumber dari berkas yang Anda pilih
 1. Bagian _browser_ di mana Anda akan melihat bagaimana kode yang Anda tulis akan ditampilkan
+=======
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` in `src` folder and a folder called `public`
+1. The _code editor_ where you'll see the source code of your selected file
+1. The _browser_ section where you'll see how the code you've written will be displayed
+>>>>>>> e22544e68d6fffda33332771efe27034739f35a4
 
 File `App.js` juga sudah terpilih di bagian _Files_. Isi dari file tersebut di dalam _code editor_ seharusnya:
 

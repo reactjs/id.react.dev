@@ -132,7 +132,11 @@ function useCSS(rule) {
 
 #### Bagaimana ini bisa lebih baik daripada menyisipkan style saat render atau useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
+<<<<<<< HEAD
 Jika kamu menambahkan *style* saat rendering dan React sedang memproses [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) peramban akan menghitung ulang *style* setiap *frame* saat me-*render* sebuah pohon (*tree*) komponen, yang dapat **sangat lambat.**
+=======
+If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+>>>>>>> e22544e68d6fffda33332771efe27034739f35a4
 
 `useInsertionEffect` lebih baik daripada menyertakan *style* saat [`useLayoutEffect`](/reference/react/useLayoutEffect) atau [`useEffect`](/reference/react/useEffect) karena `useInsertionEffect` memastikan pada saat efek lain berjalan di dalam komponen Anda, tag `<style>` sudah terpasang. Jika tidak, perhitungan tata letak pada efek biasa akan salah karena *style* yang sudah usang.
 
