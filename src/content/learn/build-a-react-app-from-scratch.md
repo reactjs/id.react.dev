@@ -34,7 +34,7 @@ Langkah pertama adalah menginstal alat bantu seperti `vite`, `parcel`, atau `rsb
 [Vite](https://vite.dev/) adalah alat pengembangan yang bertujuan untuk menyediakan pengalaman pengembangan yang lebih cepat dan ramping untuk proyek web modern.
 
 <TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
+npm create vite@latest my-app -- --template react-ts
 </TerminalBlock>
 
 Vite adalah alat pengembangan *opinionated* dan hadir dengan pengaturan bawaan yang masuk akal. Vite memiliki ekosistem plugin yang kaya untuk mendukung penyegaran cepat, JSX, Babel/SWC, dan fitur umum lainnya. Lihat [plugin React](https://vite.dev/plugins/#vitejs-plugin-react) atau [plugin React SWC](https://vite.dev/plugins/#vitejs-plugin-react-swc) dan [proyek contoh React SSR](https://vite.dev/guide/ssr.html#example-projects) Vite untuk memulai.
@@ -46,7 +46,7 @@ Vite sudah digunakan sebagai alat pembangunan di salah satu [*framework* yang ka
 [Parcel](https://parceljs.org/) menggabungkan pengalaman pengembangan *out-of-the-box* yang hebat dengan arsitektur berskala yang dapat membawa proyek Anda dari baru saja dimulai hingga aplikasi produksi besar-besaran.
 
 <TerminalBlock>
-{`npm install --save-dev parcel`}
+npm install --save-dev parcel
 </TerminalBlock>
 
 Parcel mendukung *fast refresh*, JSX, TypeScript, Flow, dan *styling* secara langsung. Lihat [resep React Parcel](https://parceljs.org/recipes/react/#getting-started) untuk memulai.
@@ -56,7 +56,7 @@ Parcel mendukung *fast refresh*, JSX, TypeScript, Flow, dan *styling* secara lan
 [Rsbuild](https://rsbuild.dev/) adalah alat pengembangan yang didukung Rspack yang menyediakan pengalaman pengembangan yang lancar untuk aplikasi React. Alat ini dilengkapi dengan pengaturan bawaan yang telah disesuaikan dengan cermat dan pengoptimalan kinerja yang siap digunakan.
 
 <TerminalBlock>
-{`npx create-rsbuild --template react`}
+npx create-rsbuild --template react
 </TerminalBlock>
 
 Rsbuild menyertakan dukungan bawaan untuk fitur React seperti *fast refresh*, JSX, TypeScript, dan *styling*. Lihat [panduan React Rsbuild](https://rsbuild.dev/guide/framework/react) untuk memulai.
@@ -97,7 +97,7 @@ Note that fetching data directly in components can lead to slower loading times 
 
 If you're fetching data from most backends or REST-style APIs, we suggest using:
 
-- [React Query](https://react-query.tanstack.com/)
+- [TanStack Query](https://tanstack.com/query/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
@@ -122,7 +122,11 @@ Untuk petunjuk pemisahan kode, lihat dokumen alat build Anda:
 
 ### Meningkatkan Performa Aplikasi {/*improving-application-performance*/}
 
+<<<<<<< HEAD
 Karena alat *build* yang Anda pilih hanya mendukung aplikasi *single-page* (SPA), Anda perlu menerapkan [pola rendering](https://www.patterns.dev/vanilla/rendering-patterns) lain seperti *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC). Meskipun Anda tidak memerlukan fitur-fitur ini pada awalnya, di masa mendatang mungkin ada beberapa jalur yang akan menguntungkan SSR, SSG, atau RSC.
+=======
+Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 * **Aplikasi *single-page* (SPA)** memuat satu halaman HTML dan memperbarui halaman secara dinamis saat pengguna berinteraksi dengan aplikasi. SPA lebih mudah untuk memulai, tetapi waktu muat awal dapat lebih lambat. SPA adalah arsitektur default untuk sebagian besar alat build.
 

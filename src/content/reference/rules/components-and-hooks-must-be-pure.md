@@ -208,7 +208,7 @@ Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbar
 ### Jangan memutasi *Props* {/*props*/}
 *Props* tidak dapat dimutasi karena karena jika anda memutasinya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena aplikasi mungkin bekerja atau tidak bekerja tergantung pada situasinya.
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Buruk: jangan pernah mengubah props secara langsung
   return <Link url={item.url}>{item.title}</Link>;
@@ -231,7 +231,7 @@ const [stateVariable, setter] = useState(0);
 
 Daripada memperbarui variabel *state* di tempat, kita perlu memperbaruinya menggunakan fungsi *setter* yang dikembalikan oleh `useState`. Mengubah nilai pada variabel *state* tidak menyebabkan komponen diperbarui, sehingga pengguna akan mendapatkan UI yang usang. Menggunakan fungsi *setter* memberi tahu React bahwa *state* telah berubah, dan kita perlu mengantri untuk melakukan *render* ulang untuk memperbarui UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -269,7 +269,7 @@ function Counter() {
 
 Sesaat sebuah nilai dioper ke sebuah *hook*, anda tidak boleh memodifikasinya. Seperti *props* di JSX, nilai akan berubah menjadi tidak dapat dimutasi saat dioper ke sebuah *hook* 
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -330,7 +330,7 @@ Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindah
 
 Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;
