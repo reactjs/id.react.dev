@@ -13,13 +13,13 @@ Anda dapat mencobanya dengan memperbarui *package* React ke versi eksperimental 
 - `react-dom@experimental`
 - `eslint-plugin-react-hooks@experimental`
 
-Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam produksi.
+Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam *production*.
 
 </Experimental>
 
 <Intro>
 
-`<Activity>` lets you hide and show part of the UI.
+`<Activity>` memungkinkan Anda untuk menyembunyikan dan menampilkan bagian dari UI.
 
 
 ```js
@@ -34,11 +34,11 @@ Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam pr
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `<Activity>` {/*activity*/}
 
-Wrap a part of the UI in `<Activity>` to manage its visibility state:
+Bungkus bagian UI dalam `<Activity>` untuk mengelola status visibilitasnya:
 
 ```js
 import {unstable_Activity as Activity} from 'react';
@@ -48,30 +48,30 @@ import {unstable_Activity as Activity} from 'react';
 </Activity>
 ```
 
-When "hidden", the `children` of `<Activity />` are not visible on the page. If a new `<Activity>` mounts as "hidden" then it pre-renders the content at lower priority without blocking the visible content on the page, but it does not mount by creating Effects. When a "visible" Activity switches to "hidden" it conceptually unmounts by destroying all the Effects, but saves its state. This allows fast switching between "visible" and "hidden" states without recreating the state for a "hidden" Activity.
+Saat "hidden" (tersembunyi), `children` dari `<Activity />` tidak terlihat di halaman. Jika `<Activity>` baru di-*mount* sebagai "hidden", ia akan melakukan pra-render konten dengan prioritas lebih rendah tanpa memblokir konten yang terlihat di halaman, tetapi tidak di-*mount* dengan membuat Efek. Saat Activity yang "visible" (terlihat) beralih ke "hidden", Activity tersebut secara konseptual di-*unmount* dengan menghancurkan semua Efek, tetapi menyimpan statusnya. Hal ini memungkinkan peralihan cepat antara status "visible" dan "hidden" tanpa membuat ulang status untuk Activity yang "hidden".
 
-In the future, "hidden" Activities may automatically destroy state based on resources like memory.
+Di masa mendatang, Activity yang "hidden" mungkin secara otomatis menghancurkan status berdasarkan sumber daya seperti memori.
 
 #### Props {/*props*/}
 
-* `children`: The actual UI you intend to render.
-* **optional** `mode`: Either "visible" or "hidden". Defaults to "visible". When "hidden", updates to the children are deferred to lower priority. The component will not create Effects until the Activity is switched to "visible". If a "visible" Activity switches to "hidden", the Effects will be destroyed. 
+* `children`: UI aktual yang ingin Anda render.
+* **opsional** `mode`: Antara "visible" atau "hidden". Default-nya adalah "visible". Saat "hidden", pembaruan pada anak-anak akan ditunda ke prioritas yang lebih rendah. Komponen tidak akan membuat Efek hingga Activity dialihkan ke "visible". Jika Activity yang "visible" beralih ke "hidden", Efek akan dihancurkan.
 
 #### Caveats {/*caveats*/}
 
-- While hidden, the `children` of `<Activity>` are hidden on the page. 
-- `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that are expected to run only once on mount will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
-- When used with `<ViewTransition>`, hidden activities that reveal in a transition will activate an "enter" animation. Visible Activities hidden in a transition will activate an "exit" animation.
-- Parts of the UI wrapped in `<Activity mode="hidden">` are not included in the SSR response.
-- Parts of the UI wrapped in `<Activity mode="visible">` will hydrate at a lower priority than other content.
+- Saat tersembunyi, `children` dari `<Activity>` disembunyikan di halaman.
+- `<Activity>` akan men-*unmount* semua Efek saat beralih dari "visible" ke "hidden" tanpa menghancurkan status React atau DOM. Ini berarti Efek yang diharapkan hanya berjalan sekali saat mount akan berjalan lagi saat beralih dari "hidden" ke "visible". Secara konseptual, Activity yang "hidden" di-*unmount*, tetapi juga tidak dihancurkan. Kami merekomendasikan penggunaan [`<StrictMode>`](/reference/react/StrictMode) untuk menangkap efek samping yang tidak terduga dari perilaku ini.
+- Saat digunakan dengan `<ViewTransition>`, aktivitas tersembunyi yang muncul dalam transisi akan mengaktifkan animasi "masuk". Activity yang terlihat yang disembunyikan dalam transisi akan mengaktifkan animasi "keluar".
+- Bagian UI yang dibungkus dalam `<Activity mode="hidden">` tidak disertakan dalam respons SSR.
+- Bagian UI yang dibungkus dalam `<Activity mode="visible">` akan melakukan hidrasi (hydrate) pada prioritas yang lebih rendah daripada konten lainnya.
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Pre-render part of the UI {/*pre-render-part-of-the-ui*/}
+### Melakukan pra-render bagian UI {/*pre-render-part-of-the-ui*/}
 
-You can pre-render part of the UI using `<Activity mode="hidden">`:
+Anda dapat melakukan pra-render bagian UI menggunakan `<Activity mode="hidden">`:
 
 ```js
 <Activity mode={tab === "posts" ? "visible" : "hidden"}>
@@ -79,11 +79,11 @@ You can pre-render part of the UI using `<Activity mode="hidden">`:
 </Activity>
 ```
 
-When an Activity is rendered with `mode="hidden"`, the `children` are not visible on the page, but are rendered at lower priority than the visible content on the page. 
+Saat Activity dirender dengan `mode="hidden"`, `children` tidak terlihat di halaman, tetapi dirender pada prioritas yang lebih rendah daripada konten yang terlihat di halaman.
 
-When the `mode` later switches to "visible", the pre-rendered children will mount and become visible. This can be used to prepare parts of the UI the user is likely to interact with next to reduce loading times.
+Saat `mode` kemudian beralih ke "visible", anak-anak yang telah dipra-render akan di-*mount* dan menjadi terlihat. Ini dapat digunakan untuk mempersiapkan bagian UI yang kemungkinan akan berinteraksi dengan pengguna selanjutnya untuk mengurangi waktu pemuatan.
 
-In the following example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `PostsTab` component fetches some data using `use`. When you click the “Posts” tab, the `PostsTab` component suspends, causing the button loading state to appear:
+Dalam contoh berikut dari [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), komponen `PostsTab` mengambil beberapa data menggunakan `use`. Saat Anda mengklik tab “Posts”, komponen `PostsTab` menangguhkan (suspends), menyebabkan status pemuatan tombol muncul:
 
 <Sandpack>
 
@@ -276,9 +276,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-In this example, the user needs to wait for the posts to load when clicking on the "Posts" tab.
+Dalam contoh ini, pengguna perlu menunggu postingan dimuat saat mengklik tab "Posts".
 
-We can reduce the delay for the "Posts" tab by pre-rendering the inactive Tabs with a hidden `<Activity>`: 
+Kita dapat mengurangi penundaan untuk tab "Posts" dengan melakukan pra-render Tab yang tidak aktif dengan `<Activity>` yang tersembunyi:
 
 <Sandpack>
 
@@ -470,10 +470,10 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Keeping state for part of the UI {/*keeping-state-for-part-of-the-ui*/}
+### Menyimpan status untuk bagian UI {/*keeping-state-for-part-of-the-ui*/}
 
 
-You can keep state for parts of the UI by switching `<Activity>` from "visible" to "hidden":
+Anda dapat menyimpan status untuk bagian UI dengan mengalihkan `<Activity>` dari "visible" ke "hidden":
 
 ```js
 <Activity mode={tab === "posts" ? "visible" : "hidden"}>
@@ -481,11 +481,11 @@ You can keep state for parts of the UI by switching `<Activity>` from "visible" 
 </Activity>
 ```
 
-When an Activity switches from `mode="visible"` to "hidden", the `children` will become hidden on the page, and unmount by destroying all Effects, but will keep their React and DOM state.
+Saat Activity beralih dari `mode="visible"` ke "hidden", `children` akan menjadi tersembunyi di halaman, dan di-*unmount* dengan menghancurkan semua Efek, tetapi akan menyimpan status React dan DOM mereka.
 
-When the `mode` later switches to "visible", the saved state will be re-used when mounting the children by creating all the Effects. This can be used to keep state in parts of the UI the user is likely to interact with again to maintain DOM or React state.
+Saat `mode` kemudian beralih ke "visible", status yang disimpan akan digunakan kembali saat me-*mount* anak-anak dengan membuat semua Efek. Ini dapat digunakan untuk menyimpan status di bagian UI yang kemungkinan akan berinteraksi dengan pengguna lagi untuk mempertahankan status DOM atau React.
 
-In the following example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `ContactTab` includes a `<textarea>` with a draft message to send. If you enter some text and change to a different tab, then when you click the “Contact” tab again, the draft message is lost:
+Dalam contoh berikut dari [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), `ContactTab` menyertakan `<textarea>` dengan pesan draf untuk dikirim. Jika Anda memasukkan beberapa teks dan beralih ke tab lain, maka saat Anda mengklik tab “Contact” lagi, pesan draf akan hilang:
 
 
 <Sandpack>
@@ -679,7 +679,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-This results in losing DOM state the user has input. We can keep the state for the Contact tab by hiding the inactive Tabs with `<Activity>`:
+Hal ini mengakibatkan hilangnya status DOM yang telah dimasukkan pengguna. Kita dapat mempertahankan status untuk tab Contact dengan menyembunyikan Tab yang tidak aktif dengan `<Activity>`:
 
 
 <Sandpack>
@@ -872,15 +872,15 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### Effects don't mount when an Activity is hidden {/*effects-dont-mount-when-an-activity-is-hidden*/}
+### Efek tidak di-*mount* saat Activity tersembunyi {/*effects-dont-*mount*-when-an-activity-is-hidden*/} {/*efek-tidak-di-mount-saat-activity-tersembunyi-effects-dont-mount-when-an-activity-is-hidden*/}
 
-When an `<Activity>` is "hidden", all Effects are unmounted. Conceptually, the component is unmounted, but React saves the state for later. 
+Saat `<Activity>` "hidden", semua Efek di-*unmount*. Secara konseptual, komponen di-*unmount*, tetapi React menyimpan status untuk nanti.
 
-This is a feature of Activity because it means subscriptions won't be subscribed for hidden parts of the UI, reducing the amount of work for hidden content. It also means cleanup, such as pausing a video (which would be expected if you unmounted without Activity) will fire. When an Activity switches to "visible", it will mount by creating the Effects, which will subscribe and play the video.
+Ini adalah fitur Activity karena berarti langganan tidak akan dilanggan untuk bagian UI yang tersembunyi, mengurangi jumlah pekerjaan untuk konten yang tersembunyi. Ini juga berarti pembersihan, seperti menjeda video (yang diharapkan jika Anda men-*unmount* tanpa Activity) akan aktif. Saat Activity beralih ke "visible", ia akan di-*mount* dengan membuat Efek, yang akan berlangganan dan memutar video.
 
-Consider the following example, where a different video is played for each button:
+Pertimbangkan contoh berikut, di mana video yang berbeda diputar untuk setiap tombol:
 
 
 <Sandpack>
@@ -953,7 +953,7 @@ video { width: 300px; margin-top: 10px; }
 </Sandpack>
 
 
-Whenever you change videos and come back, the video re-loads from the beginning. To maintain the state, you may try to render both videos, and hide the inactive video in `display: none`. However, this will cause both videos to play at the same time:
+Setiap kali Anda mengganti video dan kembali, video dimuat ulang dari awal. Untuk mempertahankan status, Anda dapat mencoba merender kedua video, dan menyembunyikan video yang tidak aktif dalam `display: none`. Namun, ini akan menyebabkan kedua video diputar secara bersamaan:
 
 
 <Sandpack>
@@ -1045,9 +1045,9 @@ video { width: 300px; margin-top: 10px; }
 
 </Sandpack>
 
-This is similar to what would happen if Activity mounted Effects when hidden. Similarly, if Activity didn't unmount Effects when hiding, the videos would continue to play in the background.
+Ini mirip dengan apa yang akan terjadi jika Activity *mount* Efek saat tersembunyi. Demikian pula, jika Activity tidak *unmount* Efek saat menyembunyikan, video akan terus diputar di latar belakang.
 
-Activity solves this by not creating Effects when first rendered as "hidden" and destroying all Effects when switching from "visible" to "hidden":
+Activity memecahkan masalah ini dengan tidak membuat Efek saat pertama kali dirender sebagai "hidden" dan menghancurkan semua Efek saat beralih dari "visible" ke "hidden":
 
 
 <Sandpack>
@@ -1154,8 +1154,8 @@ video { width: 300px; margin-top: 10px; }
 
 </Sandpack>
 
-For this reason, it's best to think of Activity conceptually as "unmounting" and "remounting" the component, but saving the React or DOM state for later. In practice, this works as expected if you have followed the [You Might Not Need an Effect](learn/you-might-not-need-an-effect) guide. To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects. 
+Oleh karena itu, yang terbaik adalah menganggap Activity secara konseptual sebagai "unmounting" dan "remounting" komponen, tetapi menyimpan status React atau DOM untuk nanti. Dalam praktiknya, ini berfungsi seperti yang diharapkan jika Anda telah mengikuti panduan [Anda Mungkin Tidak Memerlukan Efek](learn/you-might-not-need-an-effect). Untuk menemukan Efek yang bermasalah dengan segera, kami merekomendasikan penambahan [`<StrictMode>`](/reference/react/StrictMode) yang akan segera melakukan unmount dan mount Activity untuk menangkap efek samping yang tidak terduga.
 
-### My hidden Activity is not rendered in SSR {/*my-hidden-activity-is-not-rendered-in-ssr*/}
+### Activity saya yang tersembunyi tidak dirender di SSR {/*my-hidden-activity-is-not-rendered-in-ssr*/}
 
-When you use `<Activity mode="hidden">` during server-side rendering, the content of the Activity will not be included in the SSR response. This is because the content is not visible on the page and is not needed for the initial render. If you need to include the content in the SSR response, you can use a different approach like [`useDeferredValue`](/reference/react/useDeferredValue) to defer rendering of the content.
+Saat Anda menggunakan `<Activity mode="hidden">` selama rendering sisi server (SSR), konten Activity tidak akan disertakan dalam respons SSR. Ini karena konten tidak terlihat di halaman dan tidak diperlukan untuk render awal. Jika Anda perlu menyertakan konten dalam respons SSR, Anda dapat menggunakan pendekatan yang berbeda seperti [`useDeferredValue`](/reference/react/useDeferredValue) untuk menunda rendering konten.
