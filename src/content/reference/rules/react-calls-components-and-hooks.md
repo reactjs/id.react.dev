@@ -21,7 +21,7 @@ function BlogPost() {
 }
 ```
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function BlogPost() {
   return <Layout>{Article()}</Layout>; // 🔴 Buruk: Jangan pernah memanggil komponen secara langsung
 }
@@ -51,7 +51,7 @@ Melanggar aturan ini akan menyebabkan React untuk tidak secara langsung mengopti
 
 Sebuah *Hooks* sebagainya selalu se-"statis" mungkin. Berarti anda seharusnya tidak melakukan mutasi secara dinamis pada Hooks. Sebagai contoh, artinya anda tidak seharusnya menulis sebuah *Hooks* dengan urutan yang lebih tinggi:
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2, 3]}} {2}
 function ChatInput() {
   const useDataWithLogging = withLogging(useData); // 🔴 Buruk: jangan menulis sebuah Hooks dengan orde yang lebih tinggi
   const data = useDataWithLogging();
@@ -74,7 +74,7 @@ function useDataWithLogging() {
 
 Hooks juga seharusnya tidak digunakan secara dinamis: sebagai contoh, gunakanlah *dependency injection* pada sebuah komponen dengan cara mengopernya kedalam *Hook* sebagai sebuah nilai:
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function ChatInput() {
   return <Button useData={useDataWithLogging} /> // 🔴 Buruk: Jangan mengoper Hooks sebagai props
 }

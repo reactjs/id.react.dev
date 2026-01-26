@@ -152,7 +152,11 @@ Jangan lupa bahwa mengirimkan *events* DOM hanya berfungsi ketika kontainer DOM 
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
+<<<<<<< HEAD
 ### Saya mendapatkan error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+=======
+### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+>>>>>>> a1ddcf51a08cc161182b90a24b409ba11289f73e
 
 Menggunakan `act` memerlukan pengaturan `global.IS_REACT_ACT_ENVIRONMENT=true` di lingkungan pengujian Anda. Hal ini untuk memastikan bahwa `act` hanya digunakan di lingkungan yang tepat.
 
