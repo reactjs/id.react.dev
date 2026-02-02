@@ -196,7 +196,7 @@ React mengharapkan bahwa tubuh komponen Anda [berperilaku seperti fungsi murni](
 
 Membaca atau menulis ref **selama rendering** melanggar ekspektasi-ekspektasi ini.
 
-```js {3-4,6-7}
+```js {expectedErrors: {'react-compiler': [4]}} {3-4,6-7}
 function MyComponent() {
   // ...
   // 🚩 Don't write a ref during rendering
@@ -572,7 +572,11 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
+<<<<<<< HEAD
 Dan kemudian menambahkan `ref` ke daftar *props* dari komponen Anda dan mengoper `ref` sebagai *prop* ke [komponen bawaan](/reference/react-dom/components/common) anak yang relevan seperti ini:
+=======
+And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevant child [built-in component](/reference/react-dom/components/common) like this:
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 ```js {1,6}
 function MyInput({ value, onChange, ref }) {

@@ -191,7 +191,11 @@ function UpdateName() {
 
 Saat menggunakan `useActionState` dengan Fungsi Server, React juga secara otomatis akan memutar ulang pengiriman formulir yang dimasukkan sebelum hidrasi selesai. Ini berarti pengguna dapat berinteraksi dengan aplikasi Anda bahkan sebelum aplikasi terhidrasi.
 
+<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 ### Peningkatan progresif dengan `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
@@ -215,4 +219,8 @@ function UpdateName() {
 
 Ketika <CodeStep step={2}>tautan permanen</CodeStep> disediakan ke `useActionState`, React akan mengalihkan ke URL yang diberikan jika formulir dikirim sebelum bundel JavaScript dimuat.
 
+<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
