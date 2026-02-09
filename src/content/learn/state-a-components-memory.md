@@ -23,7 +23,7 @@ Di bawah adalah komponen yang merender sebuah gambar pahatan. Menekan tombol "Se
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { sculptureList } from './data.js';
 
 export default function Gallery() {
@@ -1232,7 +1232,7 @@ Saat Anda mengetik di dalam kolom masukan, tidak ada yang muncul. Kolom masukkan
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [6]}}
 export default function Form() {
   let firstName = '';
   let lastName = '';
@@ -1340,7 +1340,7 @@ Apakah ada batasan mengenai *di mana* Hooks bisa dipanggil? Apakah komponen ini 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [9]}}
 import { useState } from 'react';
 
 export default function FeedbackForm() {
