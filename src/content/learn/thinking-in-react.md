@@ -37,9 +37,15 @@ Mulailah dengan menggambar kotak-kotak di sekitar setiap komponen dan subkompone
 
 Tergantung pada latar belakang Anda, Anda dapat berpikir untuk membagi desain menjadi beberapa komponen dengan cara yang berbeda:
 
+<<<<<<< HEAD
 * **Pemrograman**--gunakan teknik yang sama untuk memutuskan apakah Anda harus membuat fungsi atau objek baru. Salah satu teknik tersebut adalah [*single responsibility principle*](https://en.wikipedia.org/wiki/Single_responsibility_principle), yaitu sebuah komponen idealnya hanya melakukan satu hal. Jika komponen tersebut berkembang, maka harus dipecah menjadi subkomponen yang lebih kecil.
 * **CSS**--pertimbangkan untuk apa Anda akan membuat *class selector*. (Namun, komponen tidak terlalu terperinci.)
 * **Desain**--pertimbangkan bagaimana Anda akan mengatur *layer* desain.
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 Jika JSON Anda terstruktur dengan baik, Anda akan sering menemukan bahwa JSON tersebut secara alami memetakan struktur komponen UI Anda. Hal ini karena UI dan model data sering kali memiliki arsitektur informasi yang sama--atau, bentuk yang sama. Pisahkan UI Anda menjadi beberapa komponen, di mana setiap komponen cocok dengan satu bagian dari model data Anda.
 

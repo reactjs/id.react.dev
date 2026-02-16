@@ -31,7 +31,11 @@ Untuk menambahkan *script* eksternal atau sisipan pada document, render [kompone
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<script>` mendukung segala [props elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 Seharusnya memiliki *salah satu* props `children` atau `src`.
 

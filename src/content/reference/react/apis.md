@@ -4,7 +4,11 @@ title: "API bawaan React"
 
 <Intro>
 
+<<<<<<< HEAD
 Selain [Hooks](/reference/react) dan [Components](/reference/react/components), pustaka `react` mengekspor beberapa API lain yang berguna untuk mendefinisikan komponen. Halaman ini mencantumkan semua API React modern yang tersisa.
+=======
+In addition to [Hooks](/reference/react/hooks) and [Components](/reference/react/components), the `react` package exports a few other APIs that are useful for defining components. This page lists all the remaining modern React APIs.
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 </Intro>
 

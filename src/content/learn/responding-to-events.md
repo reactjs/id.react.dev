@@ -546,7 +546,7 @@ Mengeklik tombol ini seharusnya mengganti latar belakang halaman dari putih ke h
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5, 7]}}
 export default function LightSwitch() {
   function handleClick() {
     let bodyStyle = document.body.style;
