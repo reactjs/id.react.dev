@@ -2011,7 +2011,11 @@ Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang ber
 Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan pe-*render*an pada server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan tetap melihat *spinner* pada awalnya.
 
 
+<<<<<<< HEAD
 Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
+=======
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
 Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan *fallback*:
 
