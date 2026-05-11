@@ -22,7 +22,11 @@ Fungsi Server memungkinkan Komponen Klien memanggil fungsi async yang dijalankan
 
 #### Bagaimana cara membangun dukungan untuk Fungsi Server? {/*how-do-i-build-support-for-server-functions*/}
 
+<<<<<<< HEAD
 Meskipun Fungsi Server di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan Fungsi Server di bundler atau framework React Server Components tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
+=======
+While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Untuk mendukung Fungsi Server sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan Fungsi Server di masa mendatang.
 
@@ -46,7 +50,7 @@ function EmptyNote () {
   async function createNoteAction() {
     // Fungsi Server
     'use server';
-    
+
     await db.notes.create();
   }
 
@@ -55,8 +59,8 @@ function EmptyNote () {
 
 Ketika React merender Komponen Server `EmptyNote`, ia akan membuat referensi ke fungsi `createNoteAction`, dan meneruskan referensi itu ke Komponen Client `Button`. Ketika tombol diklik, React akan mengirim permintaan ke server untuk mengeksekusi fungsi `createNoteAction` dengan referensi yang diberikan:
 
-export default function Button({onClick}) { 
-  console.log(onClick); 
+export default function Button({onClick}) {
+  console.log(onClick);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={() => onClick()}>Create Empty Note</button>
 }
@@ -129,7 +133,7 @@ function UpdateName() {
       }
     })
   }
-  
+
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
@@ -191,7 +195,11 @@ function UpdateName() {
 
 Saat menggunakan `useActionState` dengan Fungsi Server, React juga secara otomatis akan memutar ulang pengiriman formulir yang dimasukkan sebelum hidrasi selesai. Ini berarti pengguna dapat berinteraksi dengan aplikasi Anda bahkan sebelum aplikasi terhidrasi.
 
+<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ### Peningkatan progresif dengan `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
@@ -215,4 +223,8 @@ function UpdateName() {
 
 Ketika <CodeStep step={2}>tautan permanen</CodeStep> disediakan ke `useActionState`, React akan mengalihkan ke URL yang diberikan jika formulir dikirim sebelum bundel JavaScript dimuat.
 
+<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
