@@ -44,9 +44,15 @@ function ChatRoom({ roomId }) {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: Fungsi dengan logika *Effect* Anda. Fungsi *setup* Anda juga dapat secara opsional mengembalikan fungsi *cleanup*. Ketika komponen Anda pertama kali ditambahkan ke DOM, React akan menjalankan fungsi *setup* Anda. Setelah setiap re-*render* dengan dependensi yang berubah, React akan pertama-tama menjalankan fungsi *cleanup* (jika Anda menyediakannya) dengan nilai lama, dan kemudian menjalankan fungsi *setup* Anda dengan nilai baru. Setelah komponen Anda dihapus dari DOM, React akan menjalankan fungsi *cleanup* Anda untuk terakhir kalinya.
  
 * `dependensi` **opsional**: Daftar semua nilai reaktif yang direferensikan di dalam kode `setup`. Nilai reaktif meliputi *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam *body* komponen Anda. Jika *linter* Anda [dikonfigurasi untuk React](/learn/editor-setup#linting), itu akan memverifikasi bahwa setiap nilai reaktif dijelaskan dengan benar sebagai dependensi. Daftar dependensi harus memiliki jumlah item yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) . Jika Anda mengabaikan argumen ini, *Effect* Anda akan berjalan ulang setelah setiap re-*render* dari komponen. [Lihat perbedaan antara melewatkan array dependensi, array kosong, dan tidak ada dependensi sama sekali.](#examples-dependencies)
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your [component commits](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom), React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. After your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every commit of the component. [See the difference between passing an array of dependencies, an empty array, and no dependencies at all.](#examples-dependencies)
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 #### Kembalian {/*returns*/}
 
@@ -104,6 +110,7 @@ Anda perlu melewatkan dua argumen ke `useEffect`:
 
 **React memanggil fungsi *setup* dan *cleanup* Anda kapan saja diperlukan, yang mungkin terjadi beberapa kali:**
 
+<<<<<<< HEAD
 1. <CodeStep step={1}>Kode setup</CodeStep> Anda dijalankan ketika komponen Anda ditambahkan ke halaman *(mounts)*.
 2. Setelah setiap re-*render* dari komponen Anda di mana <CodeStep step={3}>dependensi</CodeStep> telah berubah:
    - Pertama, <CodeStep step={2}>kode cleanup</CodeStep> Anda dijalankan dengan *props* dan *state* yang lama.
@@ -113,6 +120,17 @@ Anda perlu melewatkan dua argumen ke `useEffect`:
 **Mari ilustrasikan urutan ini untuk contoh di atas.**
 
 Ketika komponen `ChatRoom` di atas ditambahkan ke halaman, itu akan terhubung ke ruang obrolan dengan `serverUrl` dan `roomId` awal. Jika salah satu dari `serverUrl` atau `roomId` berubah sebagai hasil dari re-*render* (misalnya, jika pengguna memilih ruang obrolan yang berbeda dalam dropdown), *Effect* Anda akan *memutuskan koneksi dari ruang sebelumnya, dan terhubung ke yang berikutnya.* Ketika komponen `ChatRoom` dihapus dari halaman, *Effect* Anda akan memutuskan koneksi satu kali terakhir.
+=======
+1. Your <CodeStep step={1}>setup code</CodeStep> runs when your component is added to the page *(mounts)*.
+2. After every commit of your component where the <CodeStep step={3}>dependencies</CodeStep> have changed:
+   - First, your <CodeStep step={2}>cleanup code</CodeStep> runs with the old props and state.
+   - Then, your <CodeStep step={1}>setup code</CodeStep> runs with the new props and state.
+3. Your <CodeStep step={2}>cleanup code</CodeStep> runs one final time after your component is removed from the page *(unmounts).*
+
+**Let's illustrate this sequence for the example above.**
+
+When the `ChatRoom` component above gets added to the page, it will connect to the chat room with the initial `serverUrl` and `roomId`. If either `serverUrl` or `roomId` change as a result of a commit (say, if the user picks a different chat room in a dropdown), your Effect will *disconnect from the previous room, and connect to the next one.* When the `ChatRoom` component is removed from the page, your Effect will disconnect one last time.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 **Untuk [membantu Anda menemukan bug,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) dalam pengembangan React menjalankan <CodeStep step={1}>setup</CodeStep> dan <CodeStep step={2}>cleanup</CodeStep> satu kali ekstra sebelum <CodeStep step={1}>setup</CodeStep>.** Ini adalah pengujian *stress-test* yang memverifikasi logika *Effect* Anda diimplementasikan dengan benar. Jika ini menyebabkan masalah yang terlihat, fungsi *cleanup* Anda kekurangan beberapa logika. Fungsi *cleanup* harus menghentikan atau membatalkan apa yang dilakukan oleh fungsi *setup*. Aturan praktisnya adalah bahwa pengguna tidak boleh dapat membedakan antara *setup* yang dipanggil sekali (seperti di produksi) dan urutan *setup* → *cleanup* → *setup* (seperti di pengembangan). [Lihat solusi umum.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
@@ -895,7 +913,11 @@ Pada contoh ini, sebuah fungsi *cleanup* tidak diperlukan karena kelas `MapWidge
 
 ### Mengambil data dengan *Effects* {/*fetching-data-with-effects*/}
 
+<<<<<<< HEAD
 Anda dapat menggunakan sebuah *Effect* untuk mengambil data untuk komponen Anda. Perlu diingat bahwa [jika Anda menggunakan sebuah *framework*,](/learn/start-a-new-react-project#production-grade-react-frameworks) menggunakan mekanisme pengambilan data dari *framework* Anda akan jauh lebih efisien daripada menulis *Effects* secara manual.
+=======
+You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/creating-a-react-app#full-stack-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Jika Anda ingin mengambil data dari sebuah *Effect* secara manual, kode Anda mungkin akan terlihat seperti ini:
 
@@ -927,7 +949,8 @@ Perhatikan variabel `ignore` yang diinisialisasi dengan nilai `false` dan diatur
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1047,8 +1070,13 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara yang populer untuk men
 
 Daftar kekurangan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat *mount* dengan *library* manapun. Seperti dengan *routing*, pengambilan data tidak mudah dilakukan dengan baik, jadi kami sarankan pendekatan berikut:
 
+<<<<<<< HEAD
 - **Jika Anda menggunakan [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun cache sisi klien.** Solusi *open source* populer termasuk [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membangun solusi Anda sendiri, dalam hal ini Anda akan menggunakan *Effects* di bawah kap, tetapi juga menambahkan logika untuk mendeduplikasi permintaan, *caching respons*, dan menghindari air terjun(*waterfalls*) jaringan (dengan memuat data atau mengangkat persyaratan data ke *route*).
+=======
+- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Anda dapat terus mengambil data secara langsung dalam *Effects* jika kedua pendekatan ini tidak cocok untuk Anda.
 
@@ -1080,7 +1108,7 @@ Jika `serverUrl` atau `roomId` berubah, *Effect* Anda akan menyambung kembali ke
 ```js {8}
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-  
+
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
@@ -1143,7 +1171,11 @@ useEffect(() => {
 
 #### Mengoper sebuah array dependensi {/*passing-a-dependency-array*/}
 
+<<<<<<< HEAD
 Jika kamu menentukan dependensi, *Effect* kamu akan dijalankan **setelah *render* pertama dan setelah re-*render* dengan dependensi yang berubah.**
+=======
+If you specify the dependencies, your Effect runs **after the initial commit _and_ after commits with changed dependencies.**
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {3}
 useEffect(() => {
@@ -1240,7 +1272,11 @@ button { margin-left: 5px; }
 
 #### Mengoper array dependensi kosong {/*passing-an-empty-dependency-array*/}
 
+<<<<<<< HEAD
 Jika **Effect** Anda benar-benar tidak menggunakan nilai reaktif apapun, maka hanya akan dijalankan **setelah *render* awal.**
+=======
+If your Effect truly doesn't use any reactive values, it will only run **after the initial commit.**
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {3}
 useEffect(() => {
@@ -1316,7 +1352,11 @@ export function createConnection(serverUrl, roomId) {
 
 #### Tidak Mengoper Array Dependensi Sama Sekali {/*passing-no-dependency-array-at-all*/}
 
+<<<<<<< HEAD
 Jika Anda tidak mengoper array dependensi sama sekali, *Effect* Anda akan berjalan **setelah setiap *render* (dan re-*render*)** dari komponen Anda.
+=======
+If you pass no dependency array at all, your Effect runs **after every single commit** of your component.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {3}
 useEffect(() => {
@@ -1433,7 +1473,11 @@ function Counter() {
 }
 ```
 
+<<<<<<< HEAD
 Karena `count` adalah nilai reaktif, ia harus disebutkan dalam daftar dependensi. Namun, hal ini menyebabkan *Effect* *cleanup* dan mengatur ulang setiap kali `count` berubah. Ini tidak ideal.
+=======
+Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Untuk mengatasinya, [oper pembaruan status `c => c + 1`](/reference/react/useState#updating-state-based-on-the-previous-state) ke `setCount`:
 
@@ -1477,7 +1521,11 @@ Sekarang bahwa Anda mengoper `c => c + 1` bukan `count + 1`, [*Effect* Anda tida
 
 ### Menghapus dependensi objek yang tidak diperlukan {/*removing-unnecessary-object-dependencies*/}
 
+<<<<<<< HEAD
 Jika *Effect* Anda bergantung pada objek atau fungsi yang dibuat selama *rendering*, mungkin berjalan terlalu sering. Misalnya, *Effect* ini terhubung kembali setelah setiap *render* karena objek `opsi` [berbeda untuk setiap render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+=======
+If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every commit because the `options` object is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1494,7 +1542,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options); // It's used inside the Effect
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
@@ -1580,7 +1628,11 @@ Dengan perbaikan ini, mengetik ke dalam input tidak akan menyambungkan kembali k
 
 ### Menghapus dependensi fungsi yang tidak perlu {/*removing-unnecessary-function-dependencies*/}
 
+<<<<<<< HEAD
 Jika *Effect* Anda bergantung pada objek atau fungsi yang dibuat selama *rendering*, maka *Effect* tersebut mungkin akan berjalan terlalu sering. Misalnya, *Effect* ini akan terhubung kembali setelah setiap *rendering* karena fungsi `createOptions` [berbeda untuk setiap rendering:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+=======
+If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every commit because the `createOptions` function is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
@@ -1598,11 +1650,15 @@ function ChatRoom({ roomId }) {
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
+<<<<<<< HEAD
 Jika hanya membuat sebuah fungsi dari awal pada setiap re-*render*, itu bukan masalah yang perlu dioptimalkan. Namun, jika Anda menggunakannya sebagai dependensi dari *Effect* Anda, maka akan menyebabkan *Effect* Anda berjalan kembali setelah setiap re-*render*.
+=======
+By itself, creating a function from scratch on every re-render is not a problem. You don't need to optimize that. However, if you use it as a dependency of your Effect, it will cause your Effect to re-run after every commit.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Hindari menggunakan sebuah fungsi yang dibuat selama *rendering* sebagai dependensi. Sebaiknya, deklarasikan fungsi tersebut di dalam *Effect*:
 
@@ -1688,6 +1744,7 @@ Sekarang, Anda mendefinisikan fungsi `createOptions` di dalam *Effect*, sehingga
 
 ### Membaca *props* dan *state* terbaru dari sebuah *Effect* {/*reading-the-latest-props-and-state-from-an-effect*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Bagian ini menjelaskan sebuah **API eksperimental yang belum dirilis** dalam versi stabil React.
@@ -1695,6 +1752,9 @@ Bagian ini menjelaskan sebuah **API eksperimental yang belum dirilis** dalam ver
 </Wip>
 
 Secara *default*, ketika Anda membaca sebuah nilai reaktif dari sebuah *Effect*, Anda harus menambahkannya sebagai sebuah dependensi. Hal ini memastikan bahwa *Effect Anda "bereaksi" terhadap setiap perubahan dari nilai tersebut. Untuk sebagian besar dependensi, itulah perilaku yang Anda inginkan.
+=======
+By default, when you read a reactive value from an Effect, you have to add it as a dependency. This ensures that your Effect "reacts" to every change of that value. For most dependencies, that's the behavior you want.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 **Namun, terkadang Anda akan ingin membaca *props* dan *state* terbaru dari sebuah *Effect* tanpa "bereaksi" terhadapnya.** Sebagai contoh, bayangkan Anda ingin mencatat jumlah item dalam keranjang belanja untuk setiap kunjungan halaman:
 
@@ -1707,7 +1767,11 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
+<<<<<<< HEAD
 **Bagaimana jika Anda ingin mencatat kunjungan halaman baru setelah setiap perubahan `url`, tetapi *tidak* jika hanya `shoppingCart` yang berubah?** Anda tidak dapat mengabaikan `shoppingCart` dari dependensi tanpa melanggar [aturan reaktivitas.](#specifying-reactive-dependencies) Namun, Anda dapat menyatakan bahwa Anda "tidak ingin" suatu kode "bereaksi" terhadap perubahan meskipun itu dipanggil dari dalam sebuah *Effect*. [Deklarasikan sebuah *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) dengan [`useEffectEvent`](/reference/react/experimental_useEffectEvent) Hook, dan pindahkan kode yang membaca `shoppingCart` ke dalamnya:
+=======
+**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1731,11 +1795,17 @@ function Page({ url, shoppingCart }) {
 
 ### Menampilkan konten yang berbeda di server dan klien {/*displaying-different-content-on-the-server-and-the-client*/}
 
+<<<<<<< HEAD
 Jika aplikasi Anda menggunakan server *rendering* (baik [langsung](/reference/react-dom/server) maupun melalui [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), komponen Anda akan di*render* di dua lingkungan yang berbeda. Di server, komponen akan di*render* untuk menghasilkan HTML awal. Di klien, React akan menjalankan kode *rendering* lagi sehingga ia dapat melekatkan *event handler* Anda ke HTML tersebut. Oleh karena itu, agar [hydrasi](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) berfungsi, output *render* awal Anda harus identik di klien dan server.
+=======
+If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/creating-a-react-app#full-stack-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Dalam kasus yang jarang terjadi, Anda mungkin perlu menampilkan konten yang berbeda di klien. Misalnya, jika aplikasi Anda membaca beberapa data dari [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), maka hal itu tidak mungkin dilakukan di server. Berikut adalah cara mengimplementasikannya:
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 
@@ -1776,7 +1846,7 @@ Pertama, periksa apakah Anda telah lupa untuk menentukan *array* dependensi:
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 No dependency array: re-runs after every commit!
 ```
 
 Jika Anda telah menentukan *array* dependensi tetapi *Effect* Anda masih berjalan dalam *loop*, itu karena salah satu dependensi Anda berbeda pada setiap re-*render*.

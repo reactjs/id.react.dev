@@ -20,7 +20,11 @@ React, dan banyak library antarmuka pengguna (UI) lainnya, memodelkan antarmuka 
 
 ## UI Anda sebagai pohon {/*your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 Pohon adalah model hubungan antara setiap bagian (*item*) dan UI yang sering direpresentasikan dengan menggunakan struktur pohon. Sebagai contoh, Peramban (*browser*) menggunakan struktur pohon untuk memodelkan HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) dan CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Platform seluler (*mobile*) juga menggunakan pohon untuk merepresentasikan hierarki tampilan mereka.
+=======
+Trees are a relationship model between items. The UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram dengan tiga bagian yang disusun secara horizontal. Pada bagian pertama, terdapat tiga persegi panjang yang ditumpuk secara vertikal, dengan label 'Komponen A', 'Komponen B', dan 'Komponen C'. Transisi ke panel berikutnya adalah sebuah panah dengan logo React di bagian atas yang berlabel 'React'. Bagian tengah berisi sebuah pohon komponen, dengan akar berlabel 'A' dan dua komponen anak berlabel 'B' dan 'C'. Bagian selanjutnya ditransisikan lagi menggunakan panah dengan logo React di bagian atas berlabel 'React DOM'. Bagian ketiga dan terakhir adalah *wireframe* dari sebuah peramban, yang berisi sebuah pohon dengan 8 *node*, yang hanya memiliki sebuah bagian yang disorot (mengindikasikan subpohon dari bagian tengah).">
 

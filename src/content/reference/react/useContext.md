@@ -60,7 +60,7 @@ import { useContext } from 'react';
 
 function Button() {
   const theme = useContext(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `useContext` mengembalikan <CodeStep step={2}>nilai konteks</CodeStep> untuk <CodeStep step={1}>konteks</CodeStep> yang telah Anda oper. Untuk menentukan nilai konteks, React mencari di pohon komponen dan menemukan **penyedia konteks terdekat di atas** untuk konteks tertentu.
@@ -846,7 +846,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Add</button>
     </>
   );
@@ -1293,7 +1293,7 @@ export const LevelContext = createContext(0);
 
 Anda dapat mengoper nilai apa pun melalui konteks, termasuk objek dan fungsi.
 
-```js [[2, 10, "{ currentUser, login }"]] 
+```js [[2, 10, "{ currentUser, login }"]]
 function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
 

@@ -213,7 +213,13 @@ async function getAlbums() {
 
 Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event handler*.
 
+<<<<<<< HEAD
 Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
+=======
+The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* dogmatis belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang.
  
@@ -364,10 +370,17 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
+<<<<<<< HEAD
   return `The Beatles adalah sebuah band rock asal Inggris, 
     yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
     dan Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 }
 
 async function getAlbums() {
@@ -626,10 +639,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `The Beatles adalah sebuah band rock asal Inggris, 
     yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
     dan Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 }
 
 async function getAlbums() {
@@ -879,7 +899,11 @@ input { margin: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Pola UI alternatif yang umum adalah dengan *menangguhkan* pembaruan daftar dan tetap menampilkan hasil sebelumnya hingga hasil yang baru siap. Hook [`useDeferredValue`](/reference/react/useDeferredValue) memungkinkan Anda untuk memberikan versi yang ditangguhkan dari kueri:
+=======
+A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down:
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 ```js {3,11}
 export default function App() {
@@ -905,7 +929,7 @@ Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visua
 
 ```js {2}
 <div style={{
-  opacity: query !== deferredQuery ? 0.5 : 1 
+  opacity: query !== deferredQuery ? 0.5 : 1
 }}>
   <SearchResults query={deferredQuery} />
 </div>
@@ -1253,10 +1277,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `The Beatles adalah sebuah band rock asal Inggris, 
     yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
     dan Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 }
 
 async function getAlbums() {
@@ -1377,7 +1408,7 @@ function Router() {
 
   function navigate(url) {
     startTransition(() => {
-      setPage(url);      
+      setPage(url);
     });
   }
   // ...
@@ -1565,10 +1596,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `The Beatles adalah sebuah band rock asal Inggris, 
     yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
     dan Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 }
 
 async function getAlbums() {
@@ -1877,10 +1915,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `The Beatles adalah sebuah band rock asal Inggris, 
     yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
     John Lennon, Paul McCartney, George Harrison 
     dan Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 }
 
 async function getAlbums() {
@@ -2011,7 +2056,11 @@ Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang ber
 Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan pe-*render*an pada server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan tetap melihat *spinner* pada awalnya.
 
 
+<<<<<<< HEAD
 Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
+=======
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan *fallback*:
 
