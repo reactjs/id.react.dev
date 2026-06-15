@@ -10,7 +10,11 @@ Fungsi `preinit` saat ini hanya tersedia di kanal Canary dan eksperimental React
 
 <Note>
 
+<<<<<<< HEAD
 [Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 </Note>
 
@@ -50,6 +54,7 @@ Fungsi `preinit` memberikan petunjuk kepada browser bahwa untuk mulai mengunduh 
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: sebuah string. URL sumber daya yang ingin Anda unduh dan jalankan.
 * `options`: sebuah objek. Ini berisi properti-properti berikut:
   *  `as`: sebuah string yang wajib. Jenis sumber daya. Nilai yang dapat digunakan adalah `script` and `style`.
@@ -58,6 +63,16 @@ Fungsi `preinit` memberikan petunjuk kepada browser bahwa untuk mulai mengunduh 
   *  `integrity`: sebuah string. *Hash* kriptografi sumber daya, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: sebuah string. Sebuah [*nonce* kriptografi untuk mengizinkan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) ketika menggunakan *Content Security Policy* yang ketat.
   *  `fetchPriority`: sebuah string. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang dapat digunakan adalah `auto` (default), `high`, dan `low`.
+=======
+* `href`: a string. The URL of the resource you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. The type of resource. Its possible values are `script` and `style`.
+  * `precedence`: a string. Required with stylesheets. Says where to insert the stylesheet relative to others. Stylesheets with higher precedence can override those with lower precedence. The possible values are `reset`, `low`, `medium`, `high`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 #### Kembalian {/*returns*/}
 

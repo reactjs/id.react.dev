@@ -43,7 +43,13 @@ function PasswordField() {
 
 * `useId` adalah sebuah Hook, jadi Anda hanya dapat memanggilnya **di tingkat teratas komponen Anda** atau Hook Anda sendiri. Anda tidak dapat memanggilnya di dalam perulangan (*loops*) atau kondisi (*conditions*). Jika Anda membutuhkannya, ekstrak komponen baru dan pindahkan *state* ke dalamnya.
 
+<<<<<<< HEAD
 * `useId` **tidak boleh digunakan untuk menghasilkan *key*** dalam daftar. [*Key* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
+=======
+* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+
+* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 * `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
 
@@ -190,7 +196,11 @@ Di dalam React, `useId` dihasilkan dari “jalur induk” dari komponen pemanggi
 
 ### Menghasilkan ID untuk beberapa elemen terkait {/*generating-ids-for-several-related-elements*/}
 
+<<<<<<< HEAD
 Jika Anda perlu memberikan ID ke beberapa elemen terkait, Anda dapat memanggil `useId` untuk menghasilkan awalan bersama untuk mereka:
+=======
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 <Sandpack>
 

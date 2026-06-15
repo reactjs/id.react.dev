@@ -27,6 +27,7 @@ Anda mungkin sudah akrab dengan salah satu contoh fungsi murni, yaitu rumus-rumu
 
 Perhatikan rumus ini: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
+<<<<<<< HEAD
 Jika <Math><MathI>x</MathI> = 2</Math>, <Math><MathI>y</MathI> = 4</Math>. Selalu. 
 
 Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selalu. 
@@ -34,6 +35,15 @@ Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selal
 Jika <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> tidak mungkin bernilai <Math>9</Math> ataupun <Math>–1</Math> ataupun <Math>2.5</Math> hanya karena ada pergantian hari atau pergerakan bursa saham. 
 
 Jika <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dan <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> akan *selalu* bernilai <Math>6</Math>. 
+=======
+If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market.
+
+If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Jika kita mengonversi rumus ini menjadi fungsi JavaScript, fungsi tersebut akan terlihat seperti ini:
 
@@ -52,7 +62,7 @@ React dibuat berdasarkan konsep ini. **React berasumsi kalau setiap komponen yan
 ```js src/App.js
 function Recipe({ drinkers }) {
   return (
-    <ol>    
+    <ol>
       <li>Boil {drinkers} cups of water.</li>
       <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
       <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
@@ -75,11 +85,19 @@ export default function App() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Jika Anda memberikan `drinkers={2}` ke `Recipe`, komponen tersebut akan mengembalikan JSX yang berisi `2 cups of water`. Selalu. 
+=======
+When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Jika Anda memberikan `drinkers={4}`, komponen tersebut akan mengembalikan JSX yang berisi `4 cups of water`. Selalu.
 
+<<<<<<< HEAD
 Seperti rumus matematika. 
+=======
+Just like a math formula.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apa pun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
 
@@ -93,7 +111,7 @@ Ini contoh komponen yang tidak mengikuti aturan tersebut:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
@@ -215,6 +233,7 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 
 <Recap>
 
+<<<<<<< HEAD
 * Sebuah komponen harus murni, berarti:
   * **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
   * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama. 
@@ -222,11 +241,20 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 * Anda sebaiknya tidak memutasi masukan yang digunakan komponen Anda dalam proses *render*, termasuk *prop*, *state*, dan *context*. Untuk memperbarui layar, ["ubah" *state*](/learn/state-a-components-memory) daripada memutasi objek yang sudah ada sebelumnya.
 * Anda sebaiknya berusaha untuk menuliskan logika komponen di JSX yang akan dihasilkan komponen. Saat Anda ingin "mengubah sesuatu", Anda sebaiknya melakukannya di dalam *event handler*. Sebagai pilihan terakhir, Anda juga bisa menggunakan `useEffect`.
 * Menulis fungsi murni akan membutuhkan waktu, tetapi ini membuka jalan untuk memanfaatkan potensi paradigma React secara maksimal.
+=======
+* A component must be pure, meaning:
+  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
+  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
+* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 </Recap>
 
 
-  
+
 <Challenges>
 
 #### Memperbaiki jam rusak {/*fix-a-broken-clock*/}
@@ -380,7 +408,7 @@ Kode yang bermasalah ada di `Profile.js`. Pastikan Anda membaca seluruh kode ter
 
 <Sandpack>
 
-```js src/Profile.js
+```js {expectedErrors: {'react-compiler': [7]}} src/Profile.js
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -451,7 +479,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -549,7 +577,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -602,7 +630,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -698,7 +726,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -790,7 +818,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
