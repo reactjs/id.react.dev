@@ -37,7 +37,11 @@ title: "<option>"
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<option>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<option>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 Sebagai tambahan, `<option>` mendukung *props* berikut:
 
@@ -80,4 +84,9 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
+<<<<<<< HEAD
 </Sandpack>  
+=======
+</Sandpack>
+
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a

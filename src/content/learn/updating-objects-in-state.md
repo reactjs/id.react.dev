@@ -56,7 +56,7 @@ Berikut adalah contoh kode yang menampung objek di dalam *state* untuk mereprese
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function MovingDot() {
@@ -209,7 +209,7 @@ Bidang isian berikut tidak bekerja karena *handler* `onChange` mengubah *state*:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -296,7 +296,11 @@ setPerson({
 });
 ```
 
+<<<<<<< HEAD
 Sekarang formulirnya berfungsi!
+=======
+Now the form works!
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 Perhatikan bagaimana Anda tidak mendeklarasikan variabel *state* yang terpisah untuk setiap bidang isian. Untuk formulir yang besar, menyimpan semua data dalam sebuah objek sebagai satu kelompok merupakan hal yang mudah--selama objek tersebut diperbarui dengan benar!
 
@@ -373,7 +377,11 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Perhatikan bahwa `...` sintaksis *spread* sebenarnya adalah "dangkal"--benda-benda yang disalin hanya sedalam satu level. Hal ini membuatnya cepat, tetapi itu juga berarti bahwa jika Anda ingin memperbarui properti yang bersarang, Anda harus menggunakannya lebih dari sekali.
+=======
+Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 <DeepDive>
 
@@ -457,7 +465,7 @@ const [person, setPerson] = useState({
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   }
 });
 ```
@@ -501,7 +509,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
     }
   });
 
@@ -608,7 +616,7 @@ let obj = {
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   }
 };
 ```
@@ -619,7 +627,7 @@ Tetapi, "bersarang" adalah cara yang tidak akurat untuk memikirkan perilaku obje
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -634,7 +642,7 @@ Objek `obj1` tidak berada "di dalam" `obj2`. Sebagai contoh, `obj3` bisa "menunj
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -689,7 +697,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
     }
   });
 
@@ -831,7 +839,7 @@ Tugas Anda adalah memperbaiki semua kesalahan tersebut. Saat Anda memperbaikinya
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -988,7 +996,7 @@ Jika sesuatu berubah secara tidak terduga, maka ada mutasi. Cari mutasi di `App.
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1293,7 +1301,7 @@ Berikut adalah contoh bermasalah yang sama dengan tantangan sebelumnya. Kali ini
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
