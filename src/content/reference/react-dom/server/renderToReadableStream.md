@@ -293,7 +293,11 @@ Dalam contoh ini, React dapat memulai *streaming* halaman lebih awal. Hanya `Pro
 
 Cara persis Anda memuat data dalam komponen `Posts` di atas bergantung pada *framework* Anda. Jika Anda menggunakan *framework* dengan dukungan *Suspense*, Anda akan menemukan detailnya dalam dokumentasi pengambilan datanya.
 
+<<<<<<< HEAD
 Pengambilan data dengan dukungan *suspense* tanpa menggunakan *opinionated framework* belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung *Suspense* tidak stabil dan tidak terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan *Suspense* akan dirilis dalam versi React yang akan datang.
+=======
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 </Note>
 

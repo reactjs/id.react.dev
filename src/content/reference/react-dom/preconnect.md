@@ -34,7 +34,11 @@ function AppRoot() {
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
+<<<<<<< HEAD
 Fungsi `preconnect` memberikan petunjuk kepada browser untuk membuka koneksi ke server yang diberikan. Jika browser memilih untuk melakukannya, hal ini dapat mempercepat pemuatan sumber daya dari server tersebut.
+=======
+The `preconnect` function provides the browser with a hint that it should open a connection to the given server. If the browser chooses to do so, this can speed up the loading of resources from that server.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 #### Parameter {/*parameters*/}
 

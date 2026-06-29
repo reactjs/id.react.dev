@@ -4,7 +4,11 @@ title: preload
 
 <Note>
 
+<<<<<<< HEAD
 [Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 </Note>
 
@@ -44,6 +48,7 @@ Fungsi `preload` memberikan petunjuk kepada browser untuk mulai mengunduh sumber
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: sebuah string. URL sumber daya yang ingin Anda unduh.
 * `options`: sebuah objek. Ini berisi properti-properti berikut:
   *  `as`: string yang diperlukan. Jenis sumber daya. Nilai [yang memungkinkan](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) adalah `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
@@ -55,6 +60,19 @@ Fungsi `preload` memberikan petunjuk kepada browser untuk mulai mengunduh sumber
   *  `fetchPriority`: sebuah string. Menyarankan prioritas relatif untuk mengambil sumber daya. Nilai yang memungkinkan adalah `auto` (default), `high`, dan `low`.
   *  `imageSrcSet`: sebuah string. Hanya untuk digunakan dengan `as: “image"`. Menentukan [kumpulan sumber gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
   *  `imageSizes`: sebuah string. Hanya untuk digunakan dengan `as: “image"`. Menentukan [ukuran gambar](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+=======
+* `href`: a string. The URL of the resource you want to download.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. The type of resource. Its [possible values](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) are `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`. It is required when `as` is set to `"fetch"`.
+  *  `referrerPolicy`: a string. The [Referrer header](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) to send when fetching. Its possible values are `no-referrer-when-downgrade` (the default), `no-referrer`, `origin`, `origin-when-cross-origin`, and `unsafe-url`.
+  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `type`: a string. The MIME type of the resource.
+  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+  *  `imageSrcSet`: a string. For use only with `as: "image"`. Specifies the [source set of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+  *  `imageSizes`: a string. For use only with `as: "image"`. Specifies the [sizes of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 #### Kembalian {/*returns*/}
 

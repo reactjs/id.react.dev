@@ -283,9 +283,15 @@ Di CodeSandbox Anda akan melihat tiga bagian utama:
 
 ![CodeSandbox dengan kode awal](../images/tutorial/react-starter-code-codesandbox.png)
 
+<<<<<<< HEAD
 1. Bagian _Files_ dengan daftar file seperti `App.js`, `index.js`, `styles.css`, dan sebuah folder bernama `public`
 1. _Editor kode_ di mana Anda akan melihat kode sumber dari berkas yang Anda pilih
 1. Bagian _browser_ di mana Anda akan melihat bagaimana kode yang Anda tulis akan ditampilkan
+=======
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` in `src` folder and a folder called `public`
+1. The _code editor_ where you'll see the source code of your selected file
+1. The _browser_ section where you'll see how the code you've written will be displayed
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 File `App.js` juga sudah terpilih di bagian _Files_. Isi dari file tersebut di dalam _code editor_ seharusnya:
 
@@ -337,7 +343,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Baris 1-5 menyatukan semua bagian yang diperlukan:
+=======
+Lines 1-5 bring all the necessary pieces together:
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 * React
 * *Library* React untuk berkomunikasi dengan peramban web (React DOM)
@@ -551,7 +561,11 @@ export default function Board() {
 }
 ```
 
+<<<<<<< HEAD
 Perhatikan bagaimana tidak seperti `div` yang merupakan elemen untuk peramban, komponen Anda sendiri seperti `Board` dan `Square` harus dimulai dengan huruf kapital.
+=======
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 Mari kita lihat:
 
@@ -1094,7 +1108,11 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
+<<<<<<< HEAD
 Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama: 
+=======
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 ```js {7}
 export default function Board() {
@@ -2073,13 +2091,21 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan:
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
 </ConsoleBlock>
 
+<<<<<<< HEAD
 Anda akan memperbaiki error ini di bagian selanjutnya.
+=======
+You'll fix this error in the next section.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 <Sandpack>
 

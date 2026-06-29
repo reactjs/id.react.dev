@@ -304,7 +304,7 @@ Menekan *linter* menyebabkan bug yang sangat tidak intuitif yang sulit ditemukan
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -412,7 +412,7 @@ function Form() {
 
   function handleSubmit() {
     setSubmitted(true);
-  }  
+  }
 
   // ...
 }
@@ -429,8 +429,13 @@ function Form() {
   function handleSubmit() {
     // ✅ Baik: Logika Event-specific dipanggil dari event handler
     post('/api/register');
+<<<<<<< HEAD
     showNotification('Berhasil mendaftar!', theme);
   }  
+=======
+    showNotification('Successfully registered!', theme);
+  }
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
   // ...
 }
@@ -609,6 +614,7 @@ function ChatRoom({ roomId }) {
 
 ### Apakah Anda ingin membaca nilai tanpa "bereaksi" terhadap perubahannya? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Bagian ini menjelaskan **API experimental yang belum dirilis** dalam versi stabil React.
@@ -616,6 +622,9 @@ Bagian ini menjelaskan **API experimental yang belum dirilis** dalam versi stabi
 </Wip>
 
 Misalkan Anda ingin memainkan bunyi saat pengguna menerima pesan baru kecuali `isMuted` bernilai `true`:
+=======
+Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 ```js {3,10-12}
 function ChatRoom({ roomId }) {
@@ -794,7 +803,7 @@ Penting untuk mendeklarasikannya sebagai dependensi, Hal ini memastikan, misalny
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -884,7 +893,11 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ```
 
+<<<<<<< HEAD
 **Dependensi objek dan fungsi dapat membuat *Effect* Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
+=======
+**Object and function dependencies can make your Effect re-synchronize more often than you need.**
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi *Effect* Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam *Effect*, atau mengekstrak nilai primitif dari komponen tersebut.
 
@@ -1259,25 +1272,9 @@ Apakah ada baris kode di dalam *Effect* yang tidak boleh reaktif? Bagaimana cara
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useState, useEffect, useRef } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { FadeInAnimation } from './animation.js';
 
 function Welcome({ duration }) {
@@ -1386,26 +1383,10 @@ html, body { min-height: 300px; }
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
@@ -1826,8 +1807,8 @@ Fungsi lain dari fungsi ini hanya ada untuk mengoper beberapa *state* ke metode 
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1908,7 +1889,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
   useEffect(() => {
@@ -2121,8 +2102,8 @@ Hasilnya, obrolan akan tersambung kembali hanya jika ada sesuatu yang berarti (`
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -2190,7 +2171,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
