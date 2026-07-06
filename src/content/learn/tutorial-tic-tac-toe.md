@@ -283,9 +283,15 @@ Di CodeSandbox Anda akan melihat tiga bagian utama:
 
 ![CodeSandbox dengan kode awal](../images/tutorial/react-starter-code-codesandbox.png)
 
+<<<<<<< HEAD
 1. Bagian _Files_ dengan daftar file seperti `App.js`, `index.js`, `styles.css`, dan sebuah folder bernama `public`
 1. _Editor kode_ di mana Anda akan melihat kode sumber dari berkas yang Anda pilih
 1. Bagian _browser_ di mana Anda akan melihat bagaimana kode yang Anda tulis akan ditampilkan
+=======
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` in `src` folder and a folder called `public`
+1. The _code editor_ where you'll see the source code of your selected file
+1. The _browser_ section where you'll see how the code you've written will be displayed
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 File `App.js` juga sudah terpilih di bagian _Files_. Isi dari file tersebut di dalam _code editor_ seharusnya:
 
@@ -337,7 +343,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Baris 1-5 menyatukan semua bagian yang diperlukan:
+=======
+Lines 1-5 bring all the necessary pieces together:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 * React
 * *Library* React untuk berkomunikasi dengan peramban web (React DOM)
@@ -551,7 +561,11 @@ export default function Board() {
 }
 ```
 
+<<<<<<< HEAD
 Perhatikan bagaimana tidak seperti `div` yang merupakan elemen untuk peramban, komponen Anda sendiri seperti `Board` dan `Square` harus dimulai dengan huruf kapital.
+=======
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Mari kita lihat:
 
@@ -899,6 +913,7 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
+<<<<<<< HEAD
 React DevTools memungkinkan Anda untuk memeriksa props dan state dari komponen React Anda. Anda dapat menemukan tab React DevTools di bagian bawah bagian _browser_ di CodeSandbox:
 
 ![React DevTools dalam CodeSandbox](../images/tutorial/codesandbox-devtools.png)
@@ -906,12 +921,26 @@ React DevTools memungkinkan Anda untuk memeriksa props dan state dari komponen R
 Untuk memeriksa komponen tertentu di layar, gunakan tombol di sudut kiri atas React DevTools:
 
 ![Memilih komponen dalam halaman dengan React DevTools](../images/tutorial/devtools-select.gif)
+=======
+React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension.
 
-<Note>
+After you install it, a new *Components* tab will appear in your browser Developer Tools for sites using React. If you're following along in CodeSandbox, you'd need to first open your sandbox preview in a new tab:
 
+![opening in new tab](../images/tutorial/sandbox-new-tab.png)
+
+Then, on the preview page, open your browser's DevTools and find the *Components* tab:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
+![components tab](../images/tutorial/components-tab.png)
+
+<<<<<<< HEAD
 Untuk pengembangan lokal, React DevTools tersedia sebagai ekstensi peramban [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), dan [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil). Instal, dan tab *Components* akan muncul di tab Developer Tools peramban Anda untuk situs yang menggunakan React.
+=======
+To inspect a particular component on the screen, use the button in the top left corner of the Components tab:
 
-</Note>
+![inspecting with devtools](../images/tutorial/devtools-inspect.gif)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
 
 ## Menyelesaikan gim {/*completing-the-game*/}
 
@@ -1094,7 +1123,11 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
+<<<<<<< HEAD
 Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama: 
+=======
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ```js {7}
 export default function Board() {
@@ -2073,13 +2106,21 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 Anda dapat melihat tampilan kode Anda di bawah ini. Perhatikan bahwa Anda akan melihat error pada konsol *developer tools* yang bertuliskan:
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
 </ConsoleBlock>
 
+<<<<<<< HEAD
 Anda akan memperbaiki error ini di bagian selanjutnya.
+=======
+You'll fix this error in the next section.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <Sandpack>
 

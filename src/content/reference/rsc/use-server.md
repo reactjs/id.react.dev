@@ -96,7 +96,14 @@ Yang tidak didukung, antara lain:
 
 Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
 
+<<<<<<< HEAD
 ## Penggunaan {/*usage*/}
+=======
+Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#serializable-types) for a boundary Client Component.
+
+
+## Usage {/*usage*/}
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ### Server Functions in forms {/*server-functions-in-forms*/}
 

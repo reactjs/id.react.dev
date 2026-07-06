@@ -37,9 +37,15 @@ Mulailah dengan menggambar kotak-kotak di sekitar setiap komponen dan subkompone
 
 Tergantung pada latar belakang Anda, Anda dapat berpikir untuk membagi desain menjadi beberapa komponen dengan cara yang berbeda:
 
+<<<<<<< HEAD
 * **Pemrograman**--gunakan teknik yang sama untuk memutuskan apakah Anda harus membuat fungsi atau objek baru. Salah satu teknik tersebut adalah [*single responsibility principle*](https://en.wikipedia.org/wiki/Single_responsibility_principle), yaitu sebuah komponen idealnya hanya melakukan satu hal. Jika komponen tersebut berkembang, maka harus dipecah menjadi subkomponen yang lebih kecil.
 * **CSS**--pertimbangkan untuk apa Anda akan membuat *class selector*. (Namun, komponen tidak terlalu terperinci.)
 * **Desain**--pertimbangkan bagaimana Anda akan mengatur *layer* desain.
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Jika JSON Anda terstruktur dengan baik, Anda akan sering menemukan bahwa JSON tersebut secara alami memetakan struktur komponen UI Anda. Hal ini karena UI dan model data sering kali memiliki arsitektur informasi yang sama--atau, bentuk yang sama. Pisahkan UI Anda menjadi beberapa komponen, di mana setiap komponen cocok dengan satu bagian dari model data Anda.
 
@@ -228,10 +234,17 @@ Yang tersisa mungkin adalah state.
 
 Mari kita lihat satu per satu lagi:
 
+<<<<<<< HEAD
 1. Daftar produk asli **dioper sebagai props, jadi bukan merupakan state**.
 2. Teks pencarian tampaknya adalah state karena berubah dari waktu ke waktu dan tidak dapat dihitung dari apa pun.
 3. Nilai kotak centang tampaknya adalah state karena berubah dari waktu ke waktu dan tidak dapat dihitung dari apa pun.
 4. Daftar produk yang difilter **bukan state karena dapat dihitung** dengan mengambil daftar produk asli dan memfilternya sesuai dengan teks pencarian dan nilai kotak centang.
+=======
+1. The original list of products is **passed in as props, so it's not state.**
+2. The search text seems to be state since it changes over time and can't be computed from anything.
+3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
+4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Ini berarti, hanya teks pencarian dan nilai kotak centang yang merupakan state! Bagus sekali!
 
@@ -265,6 +278,7 @@ Pada langkah sebelumnya, Anda menemukan dua bagian *state* dalam aplikasi ini: t
 
 Sekarang mari kita bahas strateginya:
 
+<<<<<<< HEAD
 1. **Identifikasi komponen yang menggunakan state:**
     * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang). 
     * `SearchBar` perlu menampilkan *state* tersebut (teks pencarian dan nilai kotak centang).
@@ -272,23 +286,32 @@ Sekarang mari kita bahas strateginya:
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
 
 Jadi nilai state akan berada di dalam `FilterableProductTable`. 
+=======
+1. **Identify components that use state:**
+    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value).
+    * `SearchBar` needs to display that state (search text and checkbox value).
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+
+So the state values will live in `FilterableProductTable`.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Tambahkan state ke komponen menggunakan [Hook `useState()`.](/reference/react/useState) Hook adalah fungsi khusus yang memungkinkan Anda "mengaitkan ke dalam" React. Tambahkan dua variabel state di bagian atas `FilterableProductTable` dan tentukan state awalnya:
 
 ```js
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
-  const [inStockOnly, setInStockOnly] = useState(false);  
+  const [inStockOnly, setInStockOnly] = useState(false);
 ```
 
 Kemudian, berikan `filterText` dan `inStockOnly` ke `ProductTable` dan `SearchBar` sebagai props:
 
 ```js
 <div>
-  <SearchBar 
-    filterText={filterText} 
+  <SearchBar
+    filterText={filterText}
     inStockOnly={inStockOnly} />
-  <ProductTable 
+  <ProductTable
     products={products}
     filterText={filterText}
     inStockOnly={inStockOnly} />
@@ -308,10 +331,10 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly} />
-      <ProductTable 
+      <ProductTable
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
@@ -389,13 +412,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
       <label>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={inStockOnly} />
         {' '}
         Only show products in stock
@@ -451,9 +474,9 @@ Pada *sandbox* di atas, `ProductTable` dan `SearchBar` membaca props `filterText
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
 ```
 
@@ -462,7 +485,11 @@ Namun, Anda belum menambahkan kode apa pun untuk merespons tindakan pengguna sep
 
 ## Langkah 5: Tambahkan aliran data sebaliknya {/*step-5-add-inverse-data-flow*/}
 
+<<<<<<< HEAD
 Saat ini aplikasi Anda di-*render* dengan benar dengan props dan state yang mengalir ke bawah hirarki. Namun untuk mengubah state sesuai dengan masukan pengguna, Anda perlu mendukung pengaliran data ke arah sebaliknya: komponen form yang berada jauh di dalam hirarki perlu memperbarui state di `FilterableProductTable`.
+=======
+Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 React membuat aliran data ini menjadi eksplisit, tetapi membutuhkan pengetikan yang lebih banyak dibandingkan dengan pengikatan data dua arah. Jika Anda mencoba mengetik atau mencentang kotak pada contoh di atas, Anda akan melihat bahwa React mengabaikan masukan Anda. Hal ini memang disengaja. Dengan menulis `<input value={filterText} />`, Anda telah mengatur prop `value` dari `input` untuk selalu sama dengan state `filterText` yang dioperkan dari `FilterableProductTable`. Karena state `filterText` tidak pernah disetel, input tidak pernah berubah.
 
@@ -475,8 +502,8 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
@@ -519,13 +546,13 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
-        inStockOnly={inStockOnly} 
-        onFilterTextChange={setFilterText} 
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
-      <ProductTable 
-        products={products} 
+      <ProductTable
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
     </div>
@@ -607,14 +634,14 @@ function SearchBar({
 }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
+      <input
+        type="text"
+        value={filterText} placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
-        <input 
-          type="checkbox" 
-          checked={inStockOnly} 
+        <input
+          type="checkbox"
+          checked={inStockOnly}
           onChange={(e) => onInStockOnlyChange(e.target.checked)} />
         {' '}
         Only show products in stock
