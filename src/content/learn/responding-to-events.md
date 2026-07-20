@@ -169,7 +169,11 @@ Ini membuat kedua tombol tersebut menampilkan dua pesan yang berbeda. Coba untuk
 
 ### Mengoper *event handler* sebagai *prop* {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 Seringnya, Anda akan ingin komponen induk untuk menentukan *event handler* anaknya. Misalnya pada tombol: bergantung kepada tempat Anda menggunakan komponen `Button`, Anda mungkin ingin untuk menjalankan fungsi berbeda—mungkin satu memutar film dan satu lagi menggungah gambar.
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Untuk melakukan ini, oper *prop* yang diterima komponen dari induknya sebagai *event handler* seperti ini:
 
@@ -312,11 +316,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Perhatikan bagaimana komponen `App` tidak perlu tahu *apa* yang `Toolbar` akan lakukan dengan `onPlayMovie` atau `onUploadImage`. Itu adalah detail implementasi dari `Toolbar`. Di sini, `Toolbar` mengoper mereka sebagai *handler* `onClick` kepada `Button`-nya, tetapi itu bisa saja memicu mereka dengan *keyboard shortcut*. Memberi nama *prop* berdasarkan interaksi spesifik aplikasi seperti `onPlayMovie` memberikan Anda fleksibilitas untuk mengganti bagaimana mereka digunakan nanti.
   
 <Note>
 
 Pastikan bahwa Anda menggunakan *tag* HTML yang sesuai untuk *event handler* Anda. Misalnya, untuk meng-*handle* klik, gunakan [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) alih-alih `<div onClick={handleClick}>`. Menggunakan `<button>` asli milik peramban memungkinkan perilaku peramban *built-in* seperti navigasi *keyboard*. Jika Anda tidak suka *styling* bawaan peramban dari sebuah tombol dan ingin membuatnya tampil lebih seperti tautan atau elemen UI lainnya, Anda dapat mengubahnya dengan CSS. [Pelajari lebih lanjut tentang menulis *markup* yang aksesibel.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 </Note>
 
@@ -411,12 +423,21 @@ button { margin: 5px; }
 
 Saat Anda mengeklik pada sebuah tombol:
 
+<<<<<<< HEAD
 1. React memanggil *handler* `onClick` yang dioper ke `<button>`. 
 2. *Handler* tersebut, didefinisikan di dalam `Button`, melakukan hal berikut:
    * Memanggil `e.stopPropagation()`, mencegah *event*-nya untuk menggelembung lebih lanjut.
    * Memanggil fungsi `onClick`, yang merupakan *prop* yang dioper dari komponen `Toolbar`.
 3. Fungsi tersebut, didefinisikan di dalam komponen `Toolbar`, menampilkan *alert* dari tombol tersebut.
 4. Karena propagasinya dihentikan, *handler* `onClick` milik `<div>` induknya *tidak* berjalan.
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Sebagai hasil dari `e.stopPropagation()`, mengeklik pada tombolnya sekarang hanya akan menampilkan satu *alert* (dari `<button>`) alih-alih keduanya (dari `<button>` dan `<div>` *toolbar* induk). Mengeklik tombol tidak sama dengan mengeklik *toolbar* di sekitarnya, maka menghentikan propagasi masuk akal untuk UI ini.
 
@@ -433,11 +454,19 @@ Dalam kasus yang jarang terjadi, Anda mungkin butuh untuk menangkap semua *event
 </div>
 ```
 
+<<<<<<< HEAD
 Setiap *event* berpropagasi dalam tiga fase: 
 
 1. Bergerak ke atas, meamnggil semua *handler* `onClickCapture`.
 2. Menjalankan *handler* `onClick` milik elemen yang diklik. 
 3. Bergerak ke atas, memanggil semua *handler* `onClick`.
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 *Event capture* berguna untuk kode seperti perute atau analitik, tetapi Anda mungkin tidak akan menggunakannya dalam kode aplikasi.
 
@@ -546,7 +575,7 @@ Mengeklik tombol ini seharusnya mengganti latar belakang halaman dari putih ke h
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5, 7]}}
 export default function LightSwitch() {
   function handleClick() {
     let bodyStyle = document.body.style;

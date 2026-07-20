@@ -4,7 +4,11 @@ title: preinitModule
 
 <Note>
 
+<<<<<<< HEAD
 [Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 </Note>
 
@@ -44,12 +48,21 @@ Fungsi `preinitModule` memberikan petunjuk kepada browser bahwa untuk mulai meng
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: sebuah string. URL modul yang ingin Anda unduh dan jalankan.
 * `options`: sebuah objek. Ini berisi properti-properti berikut:
   *  `as`: sebuah string yang wajib. Harus berupa `'script'`.
   *  `crossOrigin`: sebuah string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang akan digunakan. Nilai yang dapat digunakan adalah `anonymous` dan `use-credentials`.
   *  `integrity`: sebuah string. *Hash* kriptografi modul, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: sebuah string. Sebuah [*nonce* kriptografi untuk mengizinkan modul](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) ketika menggunakan *Content Security Policy* yang ketat.
+=======
+* `href`: a string. The URL of the module you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. It must be `'script'`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 #### Kembalian {/*returns*/}
 

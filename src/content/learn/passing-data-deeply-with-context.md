@@ -853,12 +853,21 @@ Jika tidak satu pun dari pendekatan ini yang cocok untuk Anda, pertimbangkan *co
 
 ## Kasus penggunakan untuk *context* {/*use-cases-for-context*/}
 
+<<<<<<< HEAD
 * **Tema:** Jika aplikasi Anda memungkinkan pengguna mengganti penampilannya (misalnya mode gelap), Anda dapat menempatkan penyedia *context* di paling atas aplikasi Anda, dan menggunakan konteksnya di komponen yang membutuhkan  untuk menyesuaikan tampilan visual mereka.
 * **Akun saat ini:** Banyak komponen yang mungkin perlu mengetahui pengguna yang sedang masuk. Menempatkannya dalam konteks akan memudahkan untuk membacanya di mana saja di dalam pohon (*tree*). Beberapa aplikasi memungkinkan Anda mengoperasikan beberapa akun pada saat yang sama (misalnya untuk memberikan komentar sebagai pengguna yang berbeda). Dalam kasus tersebut, akan lebih mudah untuk membungkus bagian dari UI ke dalam penyedia bersarang dengan nilai akun saat ini yang berbeda.
 * **Routing:** Sebagian besar solusi *routing* menggunakan *context* secara internal untuk menyimpan rute saat ini. Dengan cara inilah setiap link "mengetahui" apakah ia aktif atau tidak. Jika Anda membuat *router* anda sendiri, Anda mungkin ingin melakukannya juga.
 * **Mengelola _state_:** Seiring pertumbuhan aplikasi Anda, Anda mungkin akan menempatkan banyak *state* yang lebih dekat ke bagian atas aplikasi Anda. Banyak komponen yang jauh di bawahnya mungkin ingin untuk mengubahnya. Ini adalah hal yang umum untuk [menggunakan reducer bersama dengan *context*](/learn/scaling-up-with-reducer-and-context) untuk mengelola *state* yang kompleks dan mengopernya ke komponen yang jauh ke bawah tanpa terlalu banyak kerumitan.
   
 *Context* tidak terbatas pada nilai statis. Jika anda memberikan nilai yang berbeda pada render berikutnya, React akan memperbarui semua komponen yang membacanya di bawahnya! Inilah sebabnya mengapa *context* sering digunakan bersama degan *state*.
+=======
+* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
+* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
+* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
+* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+
+Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di beberapa bagian pohon (*tree*), ini adalah indikasi yang bagus bahwa *context* akan membantu Anda.
 
@@ -963,6 +972,7 @@ export const places = [{
   description: 'Tradisi memilih warna-warna cerah untuk rumah dimulai pada akhir abad ke-20.',
   imageId: 'K9HVAGH'
 }, {
+<<<<<<< HEAD
   id: 1, 
   name: 'Desa Pelangi di Taichung, Taiwan',
   description: 'Untuk menyelamatkan rumah-rumah tersebut dari pembongkaran, Huang Yung-Fu, seorang penduduk setempat, mengecat 1.200 rumah tersebut pada tahun 1924.',
@@ -976,16 +986,37 @@ export const places = [{
   id: 3, 
   name: 'Selarón Staircase di Rio de Janeiro, Brasil',
   description: 'Tengara ini diciptakan oleh Jorge Selarón, seorang seniman kelahiran Chili, sebagai "penghormatan kepada rakyat Brasil."',
+=======
+  id: 1,
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2,
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3,
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italy',
   description: 'Rumah-rumahnya dicat mengikuti sistem warna tertentu yang berasal dari abad ke-16.',
   imageId: 'kxsph5C'
 }, {
+<<<<<<< HEAD
   id: 5, 
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
+=======
+  id: 5,
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -998,7 +1029,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
@@ -1007,9 +1038,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
@@ -1102,6 +1133,7 @@ export const places = [{
   description: 'Tradisi memilih warna-warna cerah untuk rumah dimulai pada akhir abad ke-20.',
   imageId: 'K9HVAGH'
 }, {
+<<<<<<< HEAD
   id: 1, 
   name: 'Desa Pelangi di Taichung, Taiwan',
   description: 'Untuk menyelamatkan rumah-rumah tersebut dari pembongkaran, Huang Yung-Fu, seorang penduduk setempat, mengecat 1.200 rumah tersebut pada tahun 1924.',
@@ -1115,16 +1147,37 @@ export const places = [{
   id: 3, 
   name: 'Selarón Staircase di Rio de Janeiro, Brasil',
   description: 'Tengara ini diciptakan oleh Jorge Selarón, seorang seniman kelahiran Chili, sebagai "penghormatan kepada rakyat Brasil."',
+=======
+  id: 1,
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2,
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3,
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italy',
   description: 'Rumah-rumahnya dicat mengikuti sistem warna tertentu yang berasal dari abad ke-16.',
   imageId: 'kxsph5C'
 }, {
+<<<<<<< HEAD
   id: 5, 
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
+=======
+  id: 5,
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -1137,7 +1190,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
@@ -1146,9 +1199,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;

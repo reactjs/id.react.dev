@@ -38,9 +38,15 @@ function MyComponent() {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `reducer`: Fungsi reducer yang menentukan bagaimana *state* diperbarui. Itu harus murni, harus mengambil *state* dan *action* sebagai argumen, dan harus mengembalikan *state* berikutnya. *State* dan *action* bisa dari tipe apa saja.
 * `initialArg`: Nilai dari mana *initial state* dihitung. Bisa menjadi nilai dari tipe apapun. Bagaimana *initial state* dihitung darinya bergantung pada argumen `init` berikutnya.
 * **opsional** `init`: Fungsi penginisialisasi yang harus mengembalikan *initial state*. Jika tidak ditentukan, *initial state* disetel ke `initialArg`. Jika tidak, *initial state* disetel ke hasil pemanggilan `init(initialArg)`.
+=======
+* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types.
+* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
+* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 #### Pengembalian {/*returns*/}
 
@@ -199,7 +205,7 @@ Action dapat berbentuk apa saja. Menurut konvensi, meneruskan objek dengan prope
 ```js {5,9-12}
 function Form() {
   const [state, dispatch] = useReducer(reducer, { name: 'Taylor', age: 42 });
-  
+
   function handleButtonClick() {
     dispatch({ type: 'incremented_age' });
   }
@@ -291,7 +297,7 @@ export default function Form() {
     dispatch({
       type: 'changed_name',
       nextName: e.target.value
-    }); 
+    });
   }
 
   return (
