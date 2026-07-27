@@ -334,7 +334,11 @@ Untuk mengetahui bagaimana penerapannya dalam praktik dengan beberapa komponen l
 
 #### Masukan yang disinkronkan {/*synced-inputs*/}
 
+<<<<<<< HEAD
 Berikut ini dua masukan yang independen. Buat mereka tetap disinkronkan: mengedit satu masukan harus memperbarui masukan lain dengan teks yang sama, dan sebaliknya.
+=======
+These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 <Hint>
 
@@ -583,7 +587,7 @@ function SearchBar({ query, onChange }) {
 function List({ items }) {
   return (
     <table>
-      <tbody> 
+      <tbody>
         {items.map(food => (
           <tr key={food.id}>
             <td>{food.name}</td>

@@ -30,7 +30,11 @@ Untuk menampilkan sebuah masukan, *render* komponen [bawaan peramban `<input>`](
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<input>` mendukung semua [element props yang umum.](/reference/react-dom/components/common#props)
+=======
+`<input>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 - [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Sebuah *string* atau fungsi. Menimpa `<form action>` induk untuk `type="submit"` dan `type="image"`. Ketika URL dioper ke `action` form akan memiliki perilaku sebagai form standar HTML. Ketika fungsi dioper ke `formAction` fungsi akan menangani kiriman form. Lihat [`<form action>`](/reference/react-dom/components/form#props).
 
@@ -212,7 +216,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Pilihan 2
         </label>

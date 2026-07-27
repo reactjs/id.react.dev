@@ -12,7 +12,11 @@ Jika aplikasi Anda memiliki kendala yang tidak dapat diatasi dengan baik oleh *f
 
 #### Pertimbangkan untuk menggunakan *framework* {/*consider-using-a-framework*/}
 
+<<<<<<< HEAD
 Memulai dari awal adalah cara mudah untuk mulai menggunakan React, tetapi ada satu hal yang perlu diperhatikan, yaitu bahwa mengikuti cara ini sering kali sama dengan membangun *framework ad hoc* Anda sendiri. Seiring dengan perkembangan kebutuhan Anda, Anda mungkin perlu memecahkan lebih banyak masalah seperti *framework* yang solusinya telah dikembangkan dan didukung dengan baik oleh *framework* yang kami rekomendasikan.
+=======
+Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Misalnya, jika di masa mendatang aplikasi Anda memerlukan dukungan untuk *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC), Anda harus mengimplementasikannya sendiri. Demikian pula, fitur React mendatang yang memerlukan integrasi pada tingkat *framework* harus diimplementasikan sendiri jika Anda ingin menggunakannya.
 
@@ -34,7 +38,7 @@ Langkah pertama adalah menginstal alat bantu seperti `vite`, `parcel`, atau `rsb
 [Vite](https://vite.dev/) adalah alat pengembangan yang bertujuan untuk menyediakan pengalaman pengembangan yang lebih cepat dan ramping untuk proyek web modern.
 
 <TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
+npm create vite@latest my-app -- --template react-ts
 </TerminalBlock>
 
 Vite adalah alat pengembangan *opinionated* dan hadir dengan pengaturan bawaan yang masuk akal. Vite memiliki ekosistem plugin yang kaya untuk mendukung penyegaran cepat, JSX, Babel/SWC, dan fitur umum lainnya. Lihat [plugin React](https://vite.dev/plugins/#vitejs-plugin-react) atau [plugin React SWC](https://vite.dev/plugins/#vitejs-plugin-react-swc) dan [proyek contoh React SSR](https://vite.dev/guide/ssr.html#example-projects) Vite untuk memulai.
@@ -46,7 +50,7 @@ Vite sudah digunakan sebagai alat pembangunan di salah satu [*framework* yang ka
 [Parcel](https://parceljs.org/) menggabungkan pengalaman pengembangan *out-of-the-box* yang hebat dengan arsitektur berskala yang dapat membawa proyek Anda dari baru saja dimulai hingga aplikasi produksi besar-besaran.
 
 <TerminalBlock>
-{`npm install --save-dev parcel`}
+npm install --save-dev parcel
 </TerminalBlock>
 
 Parcel mendukung *fast refresh*, JSX, TypeScript, Flow, dan *styling* secara langsung. Lihat [resep React Parcel](https://parceljs.org/recipes/react/#getting-started) untuk memulai.
@@ -56,7 +60,7 @@ Parcel mendukung *fast refresh*, JSX, TypeScript, Flow, dan *styling* secara lan
 [Rsbuild](https://rsbuild.dev/) adalah alat pengembangan yang didukung Rspack yang menyediakan pengalaman pengembangan yang lancar untuk aplikasi React. Alat ini dilengkapi dengan pengaturan bawaan yang telah disesuaikan dengan cermat dan pengoptimalan kinerja yang siap digunakan.
 
 <TerminalBlock>
-{`npx create-rsbuild --template react`}
+npx create-rsbuild --template react
 </TerminalBlock>
 
 Rsbuild menyertakan dukungan bawaan untuk fitur React seperti *fast refresh*, JSX, TypeScript, dan *styling*. Lihat [panduan React Rsbuild](https://rsbuild.dev/guide/framework/react) untuk memulai.
@@ -97,7 +101,7 @@ Note that fetching data directly in components can lead to slower loading times 
 
 If you're fetching data from most backends or REST-style APIs, we suggest using:
 
-- [React Query](https://react-query.tanstack.com/)
+- [TanStack Query](https://tanstack.com/query/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
@@ -122,7 +126,11 @@ Untuk petunjuk pemisahan kode, lihat dokumen alat build Anda:
 
 ### Meningkatkan Performa Aplikasi {/*improving-application-performance*/}
 
+<<<<<<< HEAD
 Karena alat *build* yang Anda pilih hanya mendukung aplikasi *single-page* (SPA), Anda perlu menerapkan [pola rendering](https://www.patterns.dev/vanilla/rendering-patterns) lain seperti *server-side rendering* (SSR), *static site generation* (SSG), dan/atau Komponen Server React (RSC). Meskipun Anda tidak memerlukan fitur-fitur ini pada awalnya, di masa mendatang mungkin ada beberapa jalur yang akan menguntungkan SSR, SSG, atau RSC.
+=======
+Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 * **Aplikasi *single-page* (SPA)** memuat satu halaman HTML dan memperbarui halaman secara dinamis saat pengguna berinteraksi dengan aplikasi. SPA lebih mudah untuk memulai, tetapi waktu muat awal dapat lebih lambat. SPA adalah arsitektur default untuk sebagian besar alat build.
 
@@ -132,12 +140,22 @@ Karena alat *build* yang Anda pilih hanya mendukung aplikasi *single-page* (SPA)
 
 * **Komponen Server React (RSC)** memungkinkan Anda mencampur komponen waktu pembuatan, khusus server, dan interaktif dalam satu pohon React. RSC dapat meningkatkan kinerja, tetapi saat ini memerlukan keahlian mendalam untuk menyiapkan dan memeliharanya. Lihat [contoh RSC Parcel](https://github.com/parcel-bundler/rsc-examples).
 
+<<<<<<< HEAD
 Strategi rendering Anda perlu diintegrasikan dengan *router* Anda sehingga aplikasi yang dibangun dengan *framework* Anda dapat memilih strategi rendering pada tingkat per *route*. Ini akan memungkinkan strategi rendering yang berbeda tanpa harus menulis ulang seluruh aplikasi Anda. Misalnya, halaman landing untuk aplikasi Anda mungkin lebih baik jika dibuat secara statis (SSG), sementara halaman dengan umpan konten mungkin berkinerja terbaik dengan rendering sisi server.
+=======
+Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Menggunakan strategi rendering yang tepat untuk *route* yang tepat dapat mengurangi waktu yang diperlukan untuk memuat byte konten pertama ([Time to First Byte](https://web.dev/articles/ttfb)), bagian konten pertama yang dirender ([First Contentful Paint](https://web.dev/articles/fcp)), dan konten aplikasi yang paling besar yang terlihat ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
 ### Dan masih banyak lagi... {/*and-more*/}
 
+<<<<<<< HEAD
 Ini hanyalah beberapa contoh fitur yang perlu dipertimbangkan aplikasi baru saat membangun dari awal. Banyak keterbatasan yang akan Anda hadapi yang mungkin sulit dipecahkan karena setiap masalah saling terkait satu sama lain dan dapat memerlukan keahlian mendalam di area masalah yang mungkin tidak Anda pahami.
 
 Jika Anda tidak ingin memecahkan masalah ini sendiri, Anda dapat [memulai dengan *framework*](/learn/creating-a-react-app) yang menyediakan fitur-fitur ini secara langsung.
+=======
+These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with.
+
+If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
