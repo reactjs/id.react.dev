@@ -44,8 +44,14 @@ function useCSS(rule) {
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi *pembersihan* (*cleanup*). Ketika komponen ditambahkan ke DOM, dan sebelum efek *layout* apa pun aktif, React akan menjalankan fungsi *setup*. Setelah setiap *render* ulang dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (*cleanup*) (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan (*cleanup*).
 * **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika linter Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan algoritma perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika Anda tidak menentukan sebuah dependensi sama sekali, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout Effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 #### Returns {/*returns*/}
 
@@ -132,7 +138,11 @@ function useCSS(rule) {
 
 #### Bagaimana ini bisa lebih baik daripada menyisipkan style saat render atau useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
+<<<<<<< HEAD
 Jika kamu menambahkan *style* saat rendering dan React sedang memproses [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) peramban akan menghitung ulang *style* setiap *frame* saat me-*render* sebuah pohon (*tree*) komponen, yang dapat **sangat lambat.**
+=======
+If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 `useInsertionEffect` lebih baik daripada menyertakan *style* saat [`useLayoutEffect`](/reference/react/useLayoutEffect) atau [`useEffect`](/reference/react/useEffect) karena `useInsertionEffect` memastikan pada saat efek lain berjalan di dalam komponen Anda, tag `<style>` sudah terpasang. Jika tidak, perhitungan tata letak pada efek biasa akan salah karena *style* yang sudah usang.
 

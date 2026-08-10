@@ -27,7 +27,13 @@ Secara konkrit, hal ini berarti logika me-*render* akan dijalankan berkali-kali 
 
 React bersifat deklaratif: anda memberi tahu *apa* kepata React untuk di-*render*, dan React akan mencari tahu *bagaimana* cara terbaik untuk menampilkannya kepada pengguna anda. Untuk melakukan ini, React memiliki beberapa fase untuk menjalankan kode anda. Anda tidak perlu untuk mengetahu tentang semua fase yang digunakan React dengan baik. Akan tetapi pada level yang lebih tinggi, anda harus paham tentang kode apa yang dijalankan saat *render*, dan apa yang berjalan diluar itu.  
 
+<<<<<<< HEAD
 pe-*renderan* mengacu pada perhitungan seperti apa tampilan UI anda nantinya. Setelah me-*render*, [*Effect*](/reference/react/useEffect) di *flush* (artinya mereka akan dijalankan hingga tidak ada lagi yang tersisa) dan dapat memperbarui kalkulasi jika *Effect* berdampak pada *layout*. React akan mengambil kalkulasi ini dan membandingkannya dengan kalkulasi yang digunakannya pada versi sebelumnya dari UI anda, lalu *commits* hanya perubahan minim yang diperlukan ke [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (apa yang sebenarnya pengguna lihat) untuk menyesuaikan dengan versi terbaru.
+=======
+React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
+
+_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](/learn/synchronizing-with-effects) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](/learn/render-and-commit) and [Commit and Effect Hooks](/reference/react/hooks#effect-hooks).
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 <DeepDive>
 
@@ -208,7 +214,7 @@ Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbar
 ### Jangan memutasi *Props* {/*props*/}
 *Props* tidak dapat dimutasi karena karena jika anda memutasinya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena aplikasi mungkin bekerja atau tidak bekerja tergantung pada situasinya.
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Buruk: jangan pernah mengubah props secara langsung
   return <Link url={item.url}>{item.title}</Link>;
@@ -231,7 +237,7 @@ const [stateVariable, setter] = useState(0);
 
 Daripada memperbarui variabel *state* di tempat, kita perlu memperbaruinya menggunakan fungsi *setter* yang dikembalikan oleh `useState`. Mengubah nilai pada variabel *state* tidak menyebabkan komponen diperbarui, sehingga pengguna akan mendapatkan UI yang usang. Menggunakan fungsi *setter* memberi tahu React bahwa *state* telah berubah, dan kita perlu mengantri untuk melakukan *render* ulang untuk memperbarui UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -269,7 +275,7 @@ function Counter() {
 
 Sesaat sebuah nilai dioper ke sebuah *hook*, anda tidak boleh memodifikasinya. Seperti *props* di JSX, nilai akan berubah menjadi tidak dapat dimutasi saat dioper ke sebuah *hook* 
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -330,7 +336,7 @@ Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindah
 
 Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;

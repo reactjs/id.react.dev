@@ -224,7 +224,11 @@ li {
 
 Ada kesalahan pada kode di atas. Namun, mudah untuk terlewatkan karena hasil awal terlih benar.
 
+<<<<<<< HEAD
 Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` di-*render* ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
+=======
+This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it:
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 <Sandpack>
 
@@ -859,12 +863,12 @@ root.render(<App />);
 ```js src/App.js active
 import { useRef, useState } from "react";
 
-export default function AnimalFriends() {
+export default function CatFriends() {
   const itemsRef = useRef([]);
-  const [animalList, setAnimalList] = useState(setupAnimalList);
-  const [animal, setAnimal] = useState('cat');
+  const [catList, setCatList] = useState(setupCatList);
+  const [cat, setCat] = useState('neo');
 
-  function scrollToAnimal(index) {
+  function scrollToCat(index) {
     const list = itemsRef.current;
     const {node} = list[index];
     node.scrollIntoView({
@@ -873,12 +877,13 @@ export default function AnimalFriends() {
       inline: "center",
     });
   }
-  
-  const animals = animalList.filter(a => a.type === animal)
-  
+
+  const cats = catList.filter(c => c.type === cat)
+
   return (
     <>
       <nav>
+<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -886,12 +891,22 @@ export default function AnimalFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+=======
+        <button onClick={() => setCat('neo')}>Neo</button>
+        <button onClick={() => setCat('millie')}>Millie</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{cats.map((cat, index) => (
+          <button key={cat.src} onClick={() => scrollToCat(index)}>
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
             {index}
           </button>
         ))}
       </nav>
       <div>
         <ul>
+<<<<<<< HEAD
           {animals.map((animal) => (
               <li
                 key={animal.src}
@@ -912,22 +927,43 @@ export default function AnimalFriends() {
               </li>
             ))}
           
+=======
+          {cats.map((cat) => (
+            <li
+              key={cat.src}
+              ref={(node) => {
+                const list = itemsRef.current;
+                const item = {cat: cat, node};
+                list.push(item);
+                console.log(`✅ Adding cat to the map. Total cats: ${list.length}`);
+                if (list.length > 10) {
+                  console.log('❌ Too many cats in the list!');
+                }
+                return () => {
+                  // 🚩 No cleanup, this is a bug!
+                }
+              }}
+            >
+              <img src={cat.src} />
+            </li>
+          ))}
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         </ul>
       </div>
     </>
   );
 }
 
-function setupAnimalList() {
-  const animalList = [];
+function setupCatList() {
+  const catList = [];
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+    catList.push({type: 'neo', src: "https://placecats.com/neo/320/240?" + i});
   }
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+    catList.push({type: 'millie', src: "https://placecats.com/millie/320/240?" + i});
   }
 
-  return animalList;
+  return catList;
 }
 
 ```
@@ -1001,12 +1037,12 @@ root.render(
 ```js src/App.js active
 import { useRef, useState } from "react";
 
-export default function AnimalFriends() {
+export default function CatFriends() {
   const itemsRef = useRef([]);
-  const [animalList, setAnimalList] = useState(setupAnimalList);
-  const [animal, setAnimal] = useState('cat');
+  const [catList, setCatList] = useState(setupCatList);
+  const [cat, setCat] = useState('neo');
 
-  function scrollToAnimal(index) {
+  function scrollToCat(index) {
     const list = itemsRef.current;
     const {node} = list[index];
     node.scrollIntoView({
@@ -1015,12 +1051,13 @@ export default function AnimalFriends() {
       inline: "center",
     });
   }
-  
-  const animals = animalList.filter(a => a.type === animal)
-  
+
+  const cats = catList.filter(c => c.type === cat)
+
   return (
     <>
       <nav>
+<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -1028,12 +1065,22 @@ export default function AnimalFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+=======
+        <button onClick={() => setCat('neo')}>Neo</button>
+        <button onClick={() => setCat('millie')}>Millie</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{cats.map((cat, index) => (
+          <button key={cat.src} onClick={() => scrollToCat(index)}>
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
             {index}
           </button>
         ))}
       </nav>
       <div>
         <ul>
+<<<<<<< HEAD
           {animals.map((animal) => (
               <li
                 key={animal.src}
@@ -1054,22 +1101,43 @@ export default function AnimalFriends() {
               </li>
             ))}
           
+=======
+          {cats.map((cat) => (
+            <li
+              key={cat.src}
+              ref={(node) => {
+                const list = itemsRef.current;
+                const item = {cat: cat, node};
+                list.push(item);
+                console.log(`✅ Adding cat to the map. Total cats: ${list.length}`);
+                if (list.length > 10) {
+                  console.log('❌ Too many cats in the list!');
+                }
+                return () => {
+                  // 🚩 No cleanup, this is a bug!
+                }
+              }}
+            >
+              <img src={cat.src} />
+            </li>
+          ))}
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         </ul>
       </div>
     </>
   );
 }
 
-function setupAnimalList() {
-  const animalList = [];
+function setupCatList() {
+  const catList = [];
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+    catList.push({type: 'neo', src: "https://placecats.com/neo/320/240?" + i});
   }
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+    catList.push({type: 'millie', src: "https://placecats.com/millie/320/240?" + i});
   }
 
-  return animalList;
+  return catList;
 }
 
 ```
@@ -1127,12 +1195,12 @@ root.render(
 ```js src/App.js active
 import { useRef, useState } from "react";
 
-export default function AnimalFriends() {
+export default function CatFriends() {
   const itemsRef = useRef([]);
-  const [animalList, setAnimalList] = useState(setupAnimalList);
-  const [animal, setAnimal] = useState('cat');
+  const [catList, setCatList] = useState(setupCatList);
+  const [cat, setCat] = useState('neo');
 
-  function scrollToAnimal(index) {
+  function scrollToCat(index) {
     const list = itemsRef.current;
     const {node} = list[index];
     node.scrollIntoView({
@@ -1141,12 +1209,13 @@ export default function AnimalFriends() {
       inline: "center",
     });
   }
-  
-  const animals = animalList.filter(a => a.type === animal)
-  
+
+  const cats = catList.filter(c => c.type === cat)
+
   return (
     <>
       <nav>
+<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -1154,49 +1223,57 @@ export default function AnimalFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+=======
+        <button onClick={() => setCat('neo')}>Neo</button>
+        <button onClick={() => setCat('millie')}>Millie</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{cats.map((cat, index) => (
+          <button key={cat.src} onClick={() => scrollToCat(index)}>
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
             {index}
           </button>
         ))}
       </nav>
       <div>
         <ul>
-          {animals.map((animal) => (
-              <li
-                key={animal.src}
-                ref={(node) => {
-                  const list = itemsRef.current;
-                  const item = {animal, node};
-                  list.push({animal: animal, node});
-                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
-                  if (list.length > 10) {
-                    console.log('❌ Too many animals in the list!');
-                  }
-                  return () => {
-                    list.splice(list.indexOf(item));
-                    console.log(`❌ Removing animal from the map. Total animals: ${itemsRef.current.length}`);
-                  }
-                }}
-              >
-                <img src={animal.src} />
-              </li>
-            ))}
-          
+          {cats.map((cat) => (
+            <li
+              key={cat.src}
+              ref={(node) => {
+                const list = itemsRef.current;
+                const item = {cat: cat, node};
+                list.push(item);
+                console.log(`✅ Adding cat to the map. Total cats: ${list.length}`);
+                if (list.length > 10) {
+                  console.log('❌ Too many cats in the list!');
+                }
+                return () => {
+                  list.splice(list.indexOf(item), 1);
+                  console.log(`❌ Removing cat from the map. Total cats: ${itemsRef.current.length}`);
+                }
+              }}
+            >
+              <img src={cat.src} />
+            </li>
+          ))}
         </ul>
       </div>
     </>
   );
 }
 
-function setupAnimalList() {
-  const animalList = [];
+function setupCatList() {
+  const catList = [];
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+    catList.push({type: 'neo', src: "https://placecats.com/neo/320/240?" + i});
   }
   for (let i = 0; i < 10; i++) {
-    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+    catList.push({type: 'millie', src: "https://placecats.com/millie/320/240?" + i});
   }
 
-  return animalList;
+  return catList;
 }
 
 ```
@@ -1245,7 +1322,11 @@ Sekarang pada pemasangan awal di StrictMode, semua *callback* ref sudah disiapka
 Tanpa Strict Mode, bug mudah terlewatkan hingga Anda mengeklik aplikasi untuk melihat fitur yang rusak. Strict Mode membuat bug segera muncul, sebelum Anda mengirimkannya ke produksi.
 
 ---
+<<<<<<< HEAD
 ### Fixing peringatan deprecation yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+=======
+### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 
