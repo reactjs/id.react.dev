@@ -96,7 +96,14 @@ Yang tidak didukung, antara lain:
 
 Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
 
+<<<<<<< HEAD
 ## Penggunaan {/*usage*/}
+=======
+Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#serializable-types) for a boundary Client Component.
+
+
+## Usage {/*usage*/}
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 ### Server Functions in forms {/*server-functions-in-forms*/}
 
@@ -177,7 +184,7 @@ Fungsi Server adalah *endpoint* di sisi server dan bisa dipanggil dari mana saja
 
 Jika Anda menggunakan Fungsi Server di luar [formulir](/reference/react-dom/components/form), panggillah Fungsi Server tersebut di dalam sebuah [Transisi](/reference/react/useTransition), yang memungkinkan Anda menampilkan indikator pemuatan, melakukan [pembaruan status optimistis](/reference/react/useOptimistic), dan menangani error yang tidak terduga. Formulir akan secara otomatis membungkus Fungsi Server di dalam transisi.
 
-```js {9-12}
+```js {9-14}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
@@ -188,7 +195,9 @@ function LikeButton() {
   const onClick = () => {
     startTransition(async () => {
       const currentCount = await incrementLike();
-      setLikeCount(currentCount);
+      startTransition(() => {
+        setLikeCount(currentCount);
+      });
     });
   };
 

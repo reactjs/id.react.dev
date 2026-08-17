@@ -46,7 +46,11 @@ function MyInput({ ref }) {
 
 <Note>
 
+<<<<<<< HEAD
 Mulai dari React 19, [`ref` tersedia sebagai prop.](/blog/2024/12/05/react-19#ref-as-a-prop) Di React 18 dan sebelumnya, perlu untuk mendapatkan `ref` dari [`forwardRef`.](/reference/react/forwardRef)
+=======
+Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 </Note>
 

@@ -96,12 +96,12 @@ import Counter from './Counter';
 it('dapat me-render dan memperbarui penghitung', async () => {
   container = document.createElement('div');
   document.body.appendChild(container);
-  
+
   // ✅ Render the component inside act().
   await act(() => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
-  
+
   const button = container.querySelector('button');
   const label = container.querySelector('p');
   expect(label.textContent).toBe('Anda mengklik 0 kali');
@@ -125,11 +125,11 @@ import Counter from './Counter';
 it.only('dapat me-render dan memperbarui penghitung', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
-  
+
   await act( async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
-  
+
   // ✅ Dispatch the event inside act().
   await act(async () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -152,7 +152,11 @@ Jangan lupa bahwa mengirimkan *events* DOM hanya berfungsi ketika kontainer DOM 
 
 ## Pemecahan Masalah {/*troubleshooting*/}
 
+<<<<<<< HEAD
 ### Saya mendapatkan error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+=======
+### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Menggunakan `act` memerlukan pengaturan `global.IS_REACT_ACT_ENVIRONMENT=true` di lingkungan pengujian Anda. Hal ini untuk memastikan bahwa `act` hanya digunakan di lingkungan yang tepat.
 

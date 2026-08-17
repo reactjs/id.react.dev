@@ -177,7 +177,11 @@ Selama *render* berikutnya, React melewati antrean *state*:
 | "ganti dengan `5`" | `0` (tak terpakai) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
+<<<<<<< HEAD
 React menyimpan `6` sebagai hasil akhir dan mengembalikannya dari `useState`.
+=======
+React stores `6` as the final result and returns it from `useState`.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 <Note>
 
@@ -305,7 +309,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );
@@ -349,7 +353,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );

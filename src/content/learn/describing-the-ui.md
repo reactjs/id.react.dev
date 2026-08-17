@@ -32,7 +32,7 @@ Aplikasi React dibangun dari potongan-potongan antarmuka pengguna (UI) yang teri
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -98,7 +98,7 @@ export default function Gallery() {
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -131,7 +131,7 @@ export default function TodoList() {
     // Ini tidak cukup berhasil
     <h1>Hedy Lamarr's Todos</h1>
     <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -160,7 +160,7 @@ export default function TodoList() {
     <>
       <h1>Hedy Lamarr's Todos</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
         className="photo"
       />
@@ -207,7 +207,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -282,7 +282,7 @@ function Card({ children }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -435,7 +435,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -474,7 +474,7 @@ Dengan hanya benar-benar menulis komponen Anda sebagai fungsi murni, Anda dapat 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
@@ -526,9 +526,15 @@ Baca **[Menjaga Komponen Tetap Murni](/learn/keeping-components-pure)** untuk me
 
 ## UI Anda sebagai pohon {/*your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 React menggunakan pohon (*tree*) untuk menggambarkan hubungan antara komponen dengan modul.
 
 Sebuah pohon *render* React adalah representasi dari hubungan induk dan anak di antara komponen.
+=======
+React uses trees to model the relationships between components and modules.
+
+A React render tree is a representation of the parent and child relationship between components.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul, dengan setiap simpul merepresentasikan komponen. Simpul root terletak di atas grafik pohon dan dilabeli 'Root Component'. Ia memiliki dua panah memanjang ke bawah menuju dua simpul yang dilabeli 'Component A' dan 'Component C'. Setiap panah dilabeli dengan 'renders'. 'Component A' memiliki satu panah 'renders' menuju simpul berlabel 'Component B'. 'Component C' memiliki satu panah 'renders' menuju simpul berlabel 'Component D'.">
 
@@ -538,7 +544,11 @@ Sebuah contoh pohon *render* React.
 
 Komponen-komponen yang berada dekat dari atas pohon, dekat dengan komponen *root*, disebut sebagai komponen tingkat atas (*top-level*). Komponen tanpa komponen anak disebut komponen daun (*leaf*). Pengkategorian komponen ini berguna untuk memahami aliran data dan kinerja *rendering*.
 
+<<<<<<< HEAD
 Memodel hubungan antara modul JavaScript juga cara lain yang berguna untuk memahami aplikasi Anda. Kami menyebutnya sebagai pohon dependensi (*dependency tree*).
+=======
+Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul. Setiap simpul merepresentasikan sebuah modul JavaScript. Simpul paling atas memiliki label 'RootModule.js'. Ia memiliki tiga panah yang memanjang ke simpul: 'ModuleA.js', 'ModuleB.js', dan 'ModuleC.js'. Setiap panah memiliki label 'imports'. Simpul 'ModuleC.js' memiliki satu panah 'imports' menuju simpul berlabel 'ModuleD.js'.">
 
@@ -546,7 +556,11 @@ Sebuah contoh pohon dependensi modul.
 
 </Diagram>
 
+<<<<<<< HEAD
 Pohon dependensi seringkali digunakan *build tools* untuk membundel semua kode JavaScript yang relevan untuk diunduh dan di-*render* sebuah klien. Bundel berukuran besar akan memperburuk pengalaman pengguna dalam sebuah aplikasi React. Memahami pohon dependensi modul berguna untuk men-*debug* masalah tersebut.
+=======
+A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 

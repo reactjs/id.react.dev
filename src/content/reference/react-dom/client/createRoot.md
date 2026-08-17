@@ -86,8 +86,8 @@ React akan menampilkan `<App />` dalam `root`, dan mengambil alih pengelolaan DO
 
 * Jika Anda memanggil `render` pada akar yang sama berulang kali, React akan memperbarui DOM sebisa mungkin hingga menyamai JSX terakhir yang Anda berikan. React akan memutuskan bagian mana dari DOM yang dapat digunakan kembali dan bagian mana yang perlu dibuat ulang, dengan melakukan ["pencocokan"](/learn/preserving-and-resetting-state) dengan pohon yang telah di-*render* sebelumnya. Pemanggilan kembali `render` di akar yang sama mirip dengan memanggil [fungsi `set`](/reference/react/useState#setstate) pada komponen akar: React menghindari pembaharuan DOM yang tidak diperlukan.
 
-* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](https://react.dev/reference/react-dom/client/flushSync) to ensure the initial render runs fully synchronously.
-  
+* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](https://react.dev/reference/react-dom/flushSync) to ensure the initial render runs fully synchronously.
+
   ```js
   const root = createRoot(document.getElementById('root'));
   root.render(<App />);
@@ -109,7 +109,11 @@ Sebuah aplikasi yang dibuat sepenuhnya dengan React biasanya tidak perlu memangg
 
 Fungsi ini biasanya berguna saat node DOM pada akar React (atau turunan lainnya) mungkin dapat terhapus dari DOM oleh kode lain. Sebagai contoh, bayangkan sebuah panel tab jQuery yang menghapus tab nonaktif dari DOM. Jika tab tersebut terhapus, seluruh isi dari DOM tersebut (termasuk akar React) juga akan ikut terhapus. Pada kasus ini, Anda perlu memberitahukan React untuk "stop" mengelola konten DOM akar yang terhapus dengan memanggil `root.unmount`. Jika tidak, komponen yang ada di dalam akar tersebut tidak tahu kalau mereka harus membersihkan dan membebaskan *resources* global seperti *subscriptions*.
 
+<<<<<<< HEAD
 Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan "melepaskan" React dari dalam node DOM akar, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
+=======
+Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 
 #### Parameter {/*root-unmount-parameters*/}
@@ -193,7 +197,11 @@ function Counter() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 **Jika aplikasi Anda dibuat sepenuhnya dengan React, Anda seharusnya tidak perlu membuat akar-akar lainnya, atau memanggil [`root.render`](#root-render) kembali.**
+=======
+**If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.**
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Kedepannya, React akan mengelola DOM tersebut untuk seluruh aplikasi Anda. Untuk menambahkan komponen-komponen lain, [pasangkan mereka di dalam komponen `App`.](/learn/importing-and-exporting-components) Saat Anda perlu memperbarui UI tersebut, Anda dapat melakukannya [dengan menggunakan *state*.](/reference/react/useState) Saat Anda ingin menampilkan konten ekstra seperti *modal* atau *tooltip* diluar dari node DOM, [*render* komponen tersebut dengan sebuah portal.](/reference/react-dom/createPortal)
 
@@ -205,7 +213,11 @@ Saat HTML Anda kosong, pengguna akan melihat sebuah halaman kosong sampai kode J
 <div id="root"></div>
 ```
 
+<<<<<<< HEAD
 Ini dapat terasa sangat lambat! Untuk mengatasi masalah ini, Anda dapat membuat HTML awal dari komponen Anda [pada server atau saat proses *build*](/reference/react-dom/server) Sehingga pengunjung dapat membaca teks, melihat gambar dan mengklik tautan sebelum kode JavaScript apapun selesai dimuat. Kami merekomendasikan untuk [menggunakan sebuah *framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) yang telah melakukan optimisasi ini sejak awal. Bergantung dari kapan proses ini berjalan, ini dapat dipanggil sebagai *server-side rendering (SSR)* atau *static site generation (SSG).*
+=======
+This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend [using a framework](/learn/creating-a-react-app#full-stack-frameworks) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 </Note>
 
@@ -245,11 +257,11 @@ import { createRoot } from 'react-dom/client';
 import { Comments, Navigation } from './Components.js';
 
 const navDomNode = document.getElementById('navigation');
-const navRoot = createRoot(navDomNode); 
+const navRoot = createRoot(navDomNode);
 navRoot.render(<Navigation />);
 
 const commentDomNode = document.getElementById('comments');
-const commentRoot = createRoot(commentDomNode); 
+const commentRoot = createRoot(commentDomNode);
 commentRoot.render(<Comments />);
 ```
 
@@ -299,7 +311,7 @@ Anda dapat juga membuat node DOM baru dengan [`document.createElement()`](https:
 
 ```js
 const domNode = document.createElement('div');
-const root = createRoot(domNode); 
+const root = createRoot(domNode);
 root.render(<Comment />);
 document.body.appendChild(domNode); // Anda dapat menambahkan kode ini di manapun dalam dokumen
 ```
@@ -503,7 +515,7 @@ Untuk memperbaikinya, oper opsi akar ke `createRoot(...)`, bukan `root.render(..
 root.render(App, {onUncaughtError});
 
 // ✅ Correct: pass options to createRoot.
-const root = createRoot(container, {onUncaughtError}); 
+const root = createRoot(container, {onUncaughtError});
 root.render(<App />);
 ```
 

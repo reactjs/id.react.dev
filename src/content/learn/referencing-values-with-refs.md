@@ -34,8 +34,13 @@ const ref = useRef(0);
 `useRef` mengembalikan sebuah objek seperti ini:
 
 ```js
+<<<<<<< HEAD
 { 
   current: 0 // Nilai yang Anda berikan ke useRef
+=======
+{
+  current: 0 // The value you passed to useRef
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 }
 ```
 
@@ -210,7 +215,7 @@ Jika Anda mencoba mengimplementasikan ini dengan menggunakan *ref*, React tidak 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [13]}}
 import { useRef } from 'react';
 
 export default function Counter() {
@@ -313,7 +318,7 @@ Variabel biasa seperti `let timeoutID` tidak "bertahan" antara *render* ulang ka
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState } from 'react';
 
 export default function Chat() {
@@ -418,7 +423,7 @@ Tombol ini seharusnya beralih antara menunjukkan "Nyala" dan "Mati". Namun, sela
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useRef } from 'react';
 
 export default function Toggle() {

@@ -36,7 +36,11 @@ Untuk menampilkan kotak pilih (*select box*), *render* komponen [`<select>` bawa
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<select>` mendukung seluruh [*props* elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Anda dapat [membuat sebuah kotak pilih (*select box*) terkontrol](#controlling-a-select-box-with-a-state-variable) dengan memberikan *prop* `<value>`:
 
@@ -103,7 +107,7 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
-</Sandpack>  
+</Sandpack>
 
 ---
 
@@ -178,7 +182,7 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
