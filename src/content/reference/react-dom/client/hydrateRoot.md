@@ -273,7 +273,13 @@ Ini hanya berfungsi satu tingkat, dan dimaksudkan sebagai jalan keluar. Jangan t
 
 ---
 
+<<<<<<< HEAD
 ### Menangani konten klien dan *server* yang berbeda {/*handling-different-client-and-server-content*/}
+=======
+{/* TODO: Remove this subsection when browser is available in Stable. */}
+
+### Handling different client and server content {/*handling-different-client-and-server-content*/}
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Jika Anda secara sengaja ingin me-render sesuatu yang berbeda di *server* dan klien, Anda dapat melakukan *rendering* dua kali. Komponen yang me-render sesuatu yang berbeda di klien dapat membaca [variabel *state*](/reference/react/useState) seperti `isClient`, yang dapat Anda setel menjadi `true` di dalam [*Effect*](/reference/react/useEffect):
 
@@ -295,7 +301,8 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js src/App.js active
+{/* kind of an edge case, seems fine to use this hack here */}
+```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -316,6 +323,10 @@ export default function App() {
 </Sandpack>
 
 Dengan cara ini proses render awal akan me-render konten yang sama seperti *server*, sehingga menghindari ketidakcocokan, tetapi proses tambahan akan terjadi secara serempak setelah *hydration*.
+
+Use this approach when you want the client-rendered content to be different from the initial server-rendered HTML.
+
+<Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use#use-browser) instead of waiting for an Effect.</Canary>
 
 <Pitfall>
 

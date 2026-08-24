@@ -31,7 +31,11 @@ Beberapa editor telah memiliki fitur-fitur ini secara *built-in*, tetapi yang la
 
 ### Linting {/*linting*/}
 
+<<<<<<< HEAD
 *Linter* kode dapat menemukan masalah dalam kode Anda saat Anda menulis, membantu Anda memperbaikinya lebih awal. [ESLint](https://eslint.org/) adalah *linter open source* yang populer untuk JavaScript.
+=======
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 * [Menginstal ESLint dengan konfigurasi yang direkomendasikan untuk React](https://www.npmjs.com/package/eslint-config-react-app) (pastikan Anda telah [menginstal Node!](https://nodejs.org/en/download/current/))
 * [Integrasi ESLint di VSCode dengan ekstensi resmi](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

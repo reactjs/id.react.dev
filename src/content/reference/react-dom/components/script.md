@@ -31,7 +31,11 @@ Untuk menambahkan *script* eksternal atau sisipan pada document, render [kompone
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<script>` mendukung segala [props elemen umum.](/reference/react-dom/components/common#props)
+=======
+`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Seharusnya memiliki *salah satu* props `children` atau `src`.
 
@@ -40,6 +44,7 @@ Seharusnya memiliki *salah satu* props `children` atau `src`.
 
 Props lain yang didukung:
 
+<<<<<<< HEAD
 * `async`: sebuah boolean. Mengizinkan browser menunda eksekusi *script* hingga seluruh dokumen telah diproses — perilaku yang lebih baik untuk performa.
 *  `crossOrigin`: sebuah string. [Aturan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang memungkinkan adalah `anonymous` dan `use-credentials`.
 * `fetchPriority`: sebuah string. Memungkinkan browser memberikan peringkat *script* pada prioritas saat mengambil beberapa *script* secara bersamaan. Dapat berupa `"high"`, `"low"`, atau `"auto"` (nilai bawaan).
@@ -48,6 +53,16 @@ Props lain yang didukung:
 * `nonce`: sebuah string. Kriptografi [nonce untuk mengizinkan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) saat menggunakan sebuah aturan yang ketat mengenai Content Security.
 * `referrer`: sebuah string. Mengatakan [apa kepala Referer yang mau dikirim](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) saat mengambil *script* dan sumber daya apa pun yang diambil oleh *script* secara bergantian.
 * `type`: sebuah string. Apakah script ini merupakan[*script* klasik, modul ES, or *import map*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+=======
+* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
+*  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+* `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
+* `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
+* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn.
+* `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Props yang menonaktifkan [perlakuan khusus pada *script*](#special-rendering-behavior) React:
 

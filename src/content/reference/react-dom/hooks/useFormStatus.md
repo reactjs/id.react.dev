@@ -40,7 +40,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 Untuk mendapatkan informasi state, komponen `Submit` harus di-_render_ dalam `<form>`. Hook mengembalikan informasi seperti properti <CodeStep step={1}>`pending`</CodeStep> yang memberi tahu Anda apakah form sedang aktif dikirimkan. 
+=======
+To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Pada contoh di atas, `Submit` menggunakan informasi ini untuk menonaktifkan penekanan `<button>` ketika form dikirimkan.
 
@@ -65,8 +69,13 @@ Objek `status` dengan properti berikut:
 
 #### Catatan Penting {/*caveats*/}
 
+<<<<<<< HEAD
 * Hook `useFormStatus` harus dipanggil dari komponen yang di-_render_ di dalam `<form>`. 
 * `useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. Ini tidak akan mengembalikan informasi status untuk `<form>` apapun yang di-_render_ dalam komponen yang sama atau komponen anak.
+=======
+* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`.
+* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 ---
 
@@ -75,7 +84,11 @@ Objek `status` dengan properti berikut:
 ### Menampilkan state tertunda selama pengiriman form {/*display-a-pending-state-during-form-submission*/}
 Untuk menampilkan state tertunda saat form dikirimkan, Anda dapat memanggil Hook `useFormStatus` dalam komponen yang di-_render_ dalam `<form>` dan membaca properti `pending` yang dikembalikan.
 
+<<<<<<< HEAD
 Di sini, kami menggunakan properti `pending` untuk menunjukkan bahwa form sedang dikirimkan. 
+=======
+Here, we use the `pending` property to indicate the form is submitting.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 <Sandpack>
 
@@ -110,7 +123,7 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
@@ -131,8 +144,13 @@ Seharusnya panggil `useFormStatus` dari dalam komponen yang terletak di dalam `<
 
 ```js
 function Submit() {
+<<<<<<< HEAD
   // ✅ `pending` akan diturunkan dari form yang membungkus komponen Submit
   const { pending } = useFormStatus(); 
+=======
+  // ✅ `pending` will be derived from the form that wraps the Submit component
+  const { pending } = useFormStatus();
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
   return <button disabled={pending}>...</button>;
 }
 
@@ -215,7 +233,7 @@ button {
 
 ```
 
-</Sandpack>  
+</Sandpack>
 
 ---
 
@@ -223,7 +241,11 @@ button {
 
 ### `status.pending` tidak pernah `true` {/*pending-is-never-true*/}
 
+<<<<<<< HEAD
 `useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. 
+=======
+`useFormStatus` will only return status information for a parent `<form>`.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Jika komponen yang memanggil `useFormStatus` tidak disarangkan dalam `<form>`, `status.pending` akan selalu mengembalikan `false`. Pastikan `useFormStatus` dipanggil dalam komponen yang merupakan turunan dari elemen `<form>`.
 
