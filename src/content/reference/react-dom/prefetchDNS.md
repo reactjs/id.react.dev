@@ -34,7 +34,11 @@ function AppRoot() {
 
 [Lihat lebih banyak contoh di bawah ini.](#usage)
 
+<<<<<<< HEAD
 Fungsi prefetchDNS memberikan petunjuk kepada browser untuk mencari alamat IP dari server tertentu. Jika browser memilih untuk melakukannya, hal ini dapat mempercepat pemuatan sumber daya dari server tersebut.
+=======
+The prefetchDNS function provides the browser with a hint that it should look up the IP address of a given server. If the browser chooses to do so, this can speed up the loading of resources from that server.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 #### Parameter {/*parameters*/}
 

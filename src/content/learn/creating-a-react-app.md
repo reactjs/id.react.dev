@@ -63,8 +63,13 @@ Expo dikelola oleh [Expo (perusahaan)](https://expo.dev/about). Membangun aplika
 
 Ada beberapa framework baru yang sedang berkembang yang berupaya mewujudkan visi React *full stack* kami:
 
+<<<<<<< HEAD
 - [TanStack Start (Beta)](https://tanstack.com/): TanStack Start adalah *framework* React *full-stack* yang ditenagai oleh TanStack Router. Ia menyediakan SSR di keseluruhan dokumen, *streaming*, fungsi *server*, *bundling*, dan lebih banyak lagi menggunakan perangkat seperti Nitro dan Vite.
 - [RedwoodJS](https://redwoodjs.com/): Redwood adalah *framework* React *full stack* dengan berbagai macam *packages* dan konfigurasi yang sudah terpasang secara bawaan yang memudahkan pembangunan aplikasi web *full-stack*.
+=======
+- [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
+- [RedwoodSDK](https://rwsdk.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 <DeepDive>
 
@@ -104,7 +109,11 @@ Komponen Server dan Suspense adalah fitur React dan bukan fitur Next.js. Namun, 
 
 Jika aplikasi Anda memiliki kendala yang tidak dapat diatasi dengan baik oleh *framework* yang ada, Anda lebih suka membangun *framework* Anda sendiri, atau Anda hanya ingin mempelajari dasar-dasar aplikasi React, ada pilihan lain yang tersedia untuk memulai proyek React dari awal.
 
+<<<<<<< HEAD
 Memulai dari awal memberi Anda lebih banyak fleksibilitas, tetapi mengharuskan Anda membuat pilihan tentang alat mana yang akan digunakan untuk perutean, pengambilan data, dan pola penggunaan umum lainnya. Ini sangat mirip dengan membangun *framework* Anda sendiri, alih-alih menggunakan *framework* yang sudah ada. [*Framework* yang kami rekomendasikan](#full-stack-frameworks) memiliki solusi bawaan untuk masalah ini.
+=======
+Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 Jika Anda ingin membangun solusi Anda sendiri, lihat panduan kami untuk [membangun aplikasi React dari awal](/learn/build-a-react-app-from-scratch) untuk petunjuk tentang cara menyiapkan proyek React baru yang dimulai dengan alat pembangunan seperti [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), atau [RSbuild](https://rsbuild.dev/).
 
