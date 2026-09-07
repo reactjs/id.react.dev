@@ -836,6 +836,7 @@ Setiap kali komponen `ChatRoom` Anda di-*render* ulang, komponen `roomId` dan `s
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Bagian ini menjelaskan **API eksperimental yang belum dirilis** di versi stabil React.
@@ -843,6 +844,9 @@ Bagian ini menjelaskan **API eksperimental yang belum dirilis** di versi stabil 
 </Wip>
 
 Saat Anda mulai menggunakan `useChatRoom` di lebih banyak komponen, Anda mungkin ingin membiarkan komponen menyesuaikan perilakunya. Sebagai contoh, saat ini, logika tentang apa yang harus dilakukan ketika sebuah pesan datang di-hardcode di dalam Hook:
+=======
+As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js {9-11}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -984,7 +988,7 @@ export default function ChatRoom({ roomId }) {
 
 ```js src/useChatRoom.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection } from './chat.js';
 
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -1069,8 +1073,8 @@ export function showNotification(message, theme = 'dark') {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1418,10 +1422,36 @@ Mirip dengan [sistem desain,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 #### Akankah React akan menyediakan solusi bawaan untuk pengambilan data? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
+<<<<<<< HEAD
 Kami masih mengerjakan detailnya, tetapi kami berharap di masa mendatang, Anda akan menulis pengambilan data seperti ini:
 
 ```js {1,4,6}
 import { use } from 'react'; // Belum tersedia!
+=======
+Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
+
+```js {1,4,11}
+import { use, Suspense } from "react";
+
+function Message({ messagePromise }) {
+  const messageContent = use(messagePromise);
+  return <p>Here is the message: {messageContent}</p>;
+}
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+```
+
+We're still working out the details, but we expect that in the future, you'll write data fetching like this:
+
+```js {1,4,6}
+import { use } from 'react';
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));
@@ -1646,7 +1676,7 @@ export default function App() {
 
 ```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useFadeIn(ref, duration) {
   const [isRunning, setIsRunning] = useState(true);
@@ -1693,22 +1723,6 @@ html, body { min-height: 300px; }
   text-align: center;
   font-size: 50px;
   background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
 }
 ```
 
@@ -2185,22 +2199,6 @@ Sepertinya custom Hook `useInterval` Anda menerima sebuah event listener sebagai
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useCounter } from './useCounter.js';
 import { useInterval } from './useInterval.js';
@@ -2232,7 +2230,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(onTick, delay) {
   useEffect(() => {
@@ -2255,22 +2253,6 @@ Ini akan memungkinkan Anda menghilangkan `onTick` dari *dependensi* Effect Anda.
 Dengan perubahan ini, kedua interval akan berfungsi seperti yang diharapkan dan tidak saling mengganggu:
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 
 ```js
@@ -2304,7 +2286,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js active
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(callback, delay) {
   const onTick = useEffectEvent(callback);

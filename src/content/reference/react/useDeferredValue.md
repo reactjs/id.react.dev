@@ -85,6 +85,7 @@ Selama pembaruan, <CodeStep step={2}>nilai yang ditangguhkan</CodeStep> akan "te
 
 <Note>
 
+<<<<<<< HEAD
 Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan Suspense:
 
 - Pengambilan data yang menggunakan Suspense dengan framework seperti [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) dan [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
@@ -92,6 +93,11 @@ Contoh ini menganggap Anda menggunakan salah satu sumber data yang menggunakan S
 - Membaca nilai sebuah Promise dengan [`use`](/reference/react/use)
 
 [Pelajari lebih lanjut tentang Suspense dan batasannya.](/reference/react/Suspense)
+=======
+This example assumes you use a data source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](/reference/react/use).
+
+[Learn more about Suspense.](/reference/react/Suspense)
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Note>
 
@@ -243,7 +249,11 @@ input { margin: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Pola UI alternatif yang umum adalah *menangguhkan* pembaruan daftar hasil dan terus menampilkan hasil sebelumnya hingga hasil baru siap. Panggil `useDeferredValue` untuk meneruskan versi kueri yang ditangguhkan:
+=======
+A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down:
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js {3,11}
 export default function App() {
@@ -419,7 +429,11 @@ input { margin: 10px; }
 
 Anda dapat menganggapnya terjadi dalam dua langkah:
 
+<<<<<<< HEAD
 1. **Pertama, React me-*render* ulang dengan `query` (`"ab"` baru) tetapi dengan `deferredQuery` lama (masih `"a"`).** Nilai `deferredQuery`, yang Anda berikan ke daftar hasil, adalah *ditangguhkan:* itu "tertinggal" dari nilai `query`.
+=======
+1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a"`).** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 2. **Di latar belakang, React mencoba me-*render* ulang dengan baik `query` *dan* `deferredQuery` diperbarui ke `"ab"`.** Jika render ulang ini selesai, React akan menampilkannya di layar. Namun, jika ditangguhkan (hasil untuk `"ab"` belum dimuat), React akan mengabaikan upaya *rendering* ini, dan mencoba lagi render ulang ini setelah data dimuat. Pengguna akan terus melihat nilai yang ditangguhkan hingga data siap.
 
@@ -668,7 +682,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -705,6 +719,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {
@@ -745,7 +761,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -782,6 +798,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {
