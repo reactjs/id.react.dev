@@ -163,7 +163,7 @@ Komponen `ProfilePage` ini menerima *prop* `userId`. Halaman tersebut berisi *in
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
-  // 🔴 Hindari: menyetel ulanh state setiap prop berubah di dalam Effect
+  // 🔴 Hindari: menyetel ulang state setiap prop berubah di dalam Effect
   useEffect(() => {
     setComment('');
   }, [userId]);
