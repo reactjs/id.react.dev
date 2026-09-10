@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` adalah API React yang memungkinkan Anda membaca nilai dari sumber daya seperti [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau [context](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -16,11 +16,11 @@ const value = use(resource);
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `use(resource)` {/*use*/}
 
-Call `use` in your component to read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+Panggil `use` di komponen Anda untuk membaca nilai dari sumber daya seperti [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau [context](/learn/passing-data-deeply-with-context).
 
 ```jsx
 import { use } from 'react';
@@ -31,33 +31,33 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-Unlike React Hooks, `use` can be called within loops and conditional statements like `if`. Like React Hooks, the function that calls `use` must be a Component or Hook.
+Tidak seperti React Hooks, `use` dapat dipanggil di dalam loop dan pernyataan kondisional seperti `if`. Seperti React Hooks, fungsi yang memanggil `use` harus berupa Komponen atau Hook.
 
-When called with a Promise, the `use` API integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` API. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+Saat dipanggil dengan Promise, API `use` terintegrasi dengan [`Suspense`](/reference/react/Suspense) dan [batas kesalahan](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Komponen yang memanggil `use` akan *tersuspensi* selama Promise yang diberikan ke `use` masih tertunda. Jika komponen yang memanggil `use` dibungkus dalam batas Suspense, tampilan cadangan akan ditampilkan. Setelah Promise diselesaikan, tampilan cadangan Suspense digantikan oleh komponen yang dirender menggunakan data yang dikembalikan oleh API `use`. Jika Promise yang diberikan ke `use` ditolak, tampilan cadangan dari batas kesalahan terdekat akan ditampilkan.
 
-[See more examples below.](#usage)
+[Lihat lebih banyak contoh di bawah ini.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
+* `resource`: ini adalah sumber data tempat Anda ingin membaca nilai. Sumber daya bisa berupa [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau [context](/learn/passing-data-deeply-with-context).
 
-#### Returns {/*returns*/}
+#### Nilai kembali {/*returns*/}
 
-The `use` API returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+API `use` mengembalikan nilai yang dibaca dari sumber daya seperti nilai hasil penyelesaian dari [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) atau [context](/learn/passing-data-deeply-with-context).
 
-#### Caveats {/*caveats*/}
+#### Catatan {/*caveats*/}
 
-* The `use` API must be called inside a Component or a Hook.
-* When fetching data in a [Server Component](/reference/rsc/server-components), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
-* Prefer creating Promises in [Server Components](/reference/rsc/server-components) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+* API `use` harus dipanggil di dalam Komponen atau Hook.
+* Saat mengambil data di [Server Component](/reference/rsc/server-components), gunakan `async` dan `await` sebagai pilihan utama dibanding `use`. `async` dan `await` melanjutkan perenderan dari titik ketika `await` dipanggil, sedangkan `use` merender ulang komponen setelah data terselesaikan.
+* Lebih disarankan membuat Promise di [Server Components](/reference/rsc/server-components) dan meneruskannya ke [Client Components](/reference/rsc/use-client) daripada membuat Promise di Client Components. Promise yang dibuat di Client Components dibuat ulang pada setiap perenderan. Promise yang diteruskan dari Server Component ke Client Component stabil di seluruh perenderan ulang. [Lihat contoh ini](#streaming-data-from-server-to-client).
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### Membaca context dengan `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
+Saat [context](/learn/passing-data-deeply-with-context) diberikan ke `use`, perilakunya mirip dengan [`useContext`](/reference/react/useContext). Sementara `useContext` harus dipanggil di level teratas komponen Anda, `use` dapat dipanggil di dalam kondisional seperti `if` dan loop seperti `for`. `use` lebih disarankan daripada `useContext` karena lebih fleksibel.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -67,9 +67,9 @@ function Button() {
   // ... 
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` mengembalikan <CodeStep step={2}>nilai context</CodeStep> untuk <CodeStep step={1}>context</CodeStep> yang Anda berikan. Untuk menentukan nilai context, React menelusuri pohon komponen dan menemukan **penyedia context terdekat di atasnya** untuk context tersebut.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+Untuk memberikan context ke `Button`, bungkus `Button` atau salah satu komponen induknya ke dalam penyedia context yang sesuai.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -81,13 +81,13 @@ function MyPage() {
 }
 
 function Form() {
-  // ... renders buttons inside ...
+  // ... tampilkan buttons di dalam ...
 }
 ```
 
-It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
+Tidak masalah berapa banyak lapisan komponen di antara penyedia dan `Button`. Saat `Button` *di mana pun* di dalam `Form` memanggil `use(ThemeContext)`, nilai yang diterima adalah `"dark"`.
 
-Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
+Tidak seperti [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> dapat dipanggil di dalam kondisional dan loop seperti <CodeStep step={1}>`if`</CodeStep>.
 
 ```js [[1, 2, "if"], [2, 3, "use"]]
 function HorizontalRule({ show }) {
@@ -99,11 +99,11 @@ function HorizontalRule({ show }) {
 }
 ```
 
-<CodeStep step={2}>`use`</CodeStep> is called from inside a <CodeStep step={1}>`if`</CodeStep> statement, allowing you to conditionally read values from a Context.
+<CodeStep step={2}>`use`</CodeStep> dipanggil dari dalam pernyataan <CodeStep step={1}>`if`</CodeStep>, sehingga Anda bisa membaca nilai dari Context secara kondisional.
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+Seperti `useContext`, `use(context)` selalu mencari penyedia context terdekat *di atas* komponen yang memanggilnya. React menelusuri ke atas dan **tidak** mempertimbangkan penyedia context di dalam komponen tempat Anda memanggil `use(context)`.
 
 </Pitfall>
 
@@ -124,9 +124,9 @@ export default function MyApp() {
 
 function Form() {
   return (
-    <Panel title="Welcome">
-      <Button show={true}>Sign up</Button>
-      <Button show={false}>Log in</Button>
+    <Panel title="Selamat Datang">
+      <Button show={true}>Daftar</Button>
+      <Button show={false}>Masuk</Button>
     </Panel>
   );
 }
@@ -194,9 +194,9 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
+### Men-stream data dari server ke klien {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a <CodeStep step={1}>Server Component</CodeStep> to a <CodeStep step={2}>Client Component</CodeStep>.
+Data dapat di-stream dari server ke klien dengan meneruskan Promise sebagai prop dari <CodeStep step={1}>Server Component</CodeStep> ke <CodeStep step={2}>Client Component</CodeStep>.
 
 ```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]
 import { fetchMessage } from './lib.js';
@@ -205,14 +205,14 @@ import { Message } from './message.js';
 export default function App() {
   const messagePromise = fetchMessage();
   return (
-    <Suspense fallback={<p>waiting for message...</p>}>
+    <Suspense fallback={<p>menunggu pesan...</p>}>
       <Message messagePromise={messagePromise} />
     </Suspense>
   );
 }
 ```
 
-The <CodeStep step={2}>Client Component</CodeStep> then takes <CodeStep step={4}>the Promise it received as a prop</CodeStep> and passes it to the <CodeStep step={5}>`use`</CodeStep> API. This allows the <CodeStep step={2}>Client Component</CodeStep> to read the value from <CodeStep step={4}>the Promise</CodeStep> that was initially created by the Server Component.
+<CodeStep step={2}>Client Component</CodeStep> kemudian mengambil <CodeStep step={4}>Promise yang diterima sebagai prop</CodeStep> dan meneruskannya ke API <CodeStep step={5}>`use`</CodeStep>. Ini memungkinkan <CodeStep step={2}>Client Component</CodeStep> membaca nilai dari <CodeStep step={4}>Promise</CodeStep> yang awalnya dibuat oleh Server Component.
 
 ```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
@@ -222,10 +222,10 @@ import { use } from 'react';
 
 export function Message({ messagePromise }) {
   const messageContent = use(messagePromise);
-  return <p>Here is the message: {messageContent}</p>;
+  return <p>Berikut adalah pesannya: {messageContent}</p>;
 }
 ```
-Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the <CodeStep step={5}>`use`</CodeStep> API and the <CodeStep step={2}>`Message`</CodeStep> component will replace the Suspense fallback.
+Karena <CodeStep step={2}>`Message`</CodeStep> dibungkus dalam <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, tampilan cadangan akan ditampilkan sampai Promise terselesaikan. Ketika Promise terselesaikan, nilai akan dibaca oleh API <CodeStep step={5}>`use`</CodeStep> dan komponen <CodeStep step={2}>`Message`</CodeStep> akan menggantikan tampilan cadangan Suspense.
 
 <Sandpack>
 
@@ -236,12 +236,12 @@ import { use, Suspense } from "react";
 
 function Message({ messagePromise }) {
   const messageContent = use(messagePromise);
-  return <p>Here is the message: {messageContent}</p>;
+  return <p>Berikut adalah pesannya: {messageContent}</p>;
 }
 
 export function MessageContainer({ messagePromise }) {
   return (
-    <Suspense fallback={<p>⌛Downloading message...</p>}>
+    <Suspense fallback={<p>⌛Mengunduh pesan...</p>}>
       <Message messagePromise={messagePromise} />
     </Suspense>
   );
@@ -267,7 +267,7 @@ export default function App() {
   if (show) {
     return <MessageContainer messagePromise={messagePromise} />;
   } else {
-    return <button onClick={download}>Download message</button>;
+    return <button onClick={download}>Unduh pesan</button>;
   }
 }
 ```
@@ -294,16 +294,16 @@ root.render(
 
 <Note>
 
-When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
+Saat meneruskan Promise dari Server Component ke Client Component, nilai hasil penyelesaian harus dapat diserialisasi agar bisa dikirim antara server dan klien. Tipe data seperti fungsi tidak dapat diserialisasi dan tidak bisa menjadi nilai hasil penyelesaian dari Promise tersebut.
 
 </Note>
 
 
 <DeepDive>
 
-#### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
+#### Haruskah saya menyelesaikan Promise di Server atau Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` API. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+Promise dapat diteruskan dari Server Component ke Client Component dan diselesaikan di Client Component dengan API `use`. Anda juga dapat menyelesaikan Promise di Server Component dengan `await` dan meneruskan data yang dibutuhkan ke Client Component sebagai prop.
 
 ```js
 export default async function App() {
@@ -312,24 +312,24 @@ export default async function App() {
 }
 ```
 
-But using `await` in a [Server Component](/reference/react/components#server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+Namun menggunakan `await` di [Server Component](/reference/react/components#server-components) akan memblokir perenderan sampai pernyataan `await` selesai. Meneruskan Promise dari Server Component ke Client Component mencegah Promise tersebut memblokir perenderan Server Component.
 
 </DeepDive>
 
-### Dealing with rejected Promises {/*dealing-with-rejected-promises*/}
+### Menangani Promise yang ditolak {/*dealing-with-rejected-promises*/}
 
-In some cases a Promise passed to `use` could be rejected. You can handle rejected Promises by either:
+Dalam beberapa kasus Promise yang diberikan ke `use` bisa ditolak. Anda dapat menangani Promise yang ditolak dengan salah satu cara berikut:
 
-1. [Displaying an error to users with an error boundary.](#displaying-an-error-to-users-with-error-boundary)
-2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+1. [Menampilkan kesalahan kepada pengguna dengan batas kesalahan.](#displaying-an-error-to-users-with-error-boundary)
+2. [Memberikan nilai alternatif dengan `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
 
 <Pitfall>
-`use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-error-boundary), or [provide an alternative value to use with the Promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
+`use` tidak dapat dipanggil di dalam blok try-catch. Alih-alih menggunakan try-catch, [bungkus komponen Anda dengan batas kesalahan](#displaying-an-error-to-users-with-error-boundary), atau [berikan nilai alternatif untuk digunakan melalui metode `.catch` pada Promise](#providing-an-alternative-value-with-promise-catch).
 </Pitfall>
 
-#### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+#### Menampilkan kesalahan kepada pengguna dengan batas kesalahan {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` API in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
+Jika Anda ingin menampilkan kesalahan kepada pengguna saat Promise ditolak, Anda bisa menggunakan [batas kesalahan](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Untuk menggunakan batas kesalahan, bungkus komponen tempat Anda memanggil API `use` dengan batas kesalahan. Jika Promise yang diberikan ke `use` ditolak, tampilan cadangan untuk batas kesalahan akan ditampilkan.
 
 <Sandpack>
 
@@ -341,8 +341,8 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export function MessageContainer({ messagePromise }) {
   return (
-    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-      <Suspense fallback={<p>⌛Downloading message...</p>}>
+    <ErrorBoundary fallback={<p>⚠️Terjadi kesalahan</p>}>
+      <Suspense fallback={<p>⌛Mengunduh pesan...</p>}>
         <Message messagePromise={messagePromise} />
       </Suspense>
     </ErrorBoundary>
@@ -351,7 +351,7 @@ export function MessageContainer({ messagePromise }) {
 
 function Message({ messagePromise }) {
   const content = use(messagePromise);
-  return <p>Here is the message: {content}</p>;
+  return <p>Berikut adalah pesannya: {content}</p>;
 }
 ```
 
@@ -374,7 +374,7 @@ export default function App() {
   if (show) {
     return <MessageContainer messagePromise={messagePromise} />;
   } else {
-    return <button onClick={download}>Download message</button>;
+    return <button onClick={download}>Unduh pesan</button>;
   }
 }
 ```
@@ -410,9 +410,9 @@ root.render(
 ```
 </Sandpack>
 
-#### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
+#### Memberikan nilai alternatif dengan `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
 
-If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method.
+Jika Anda ingin memberikan nilai alternatif ketika Promise yang diberikan ke `use` ditolak, Anda dapat menggunakan metode <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> pada Promise.
 
 ```js [[1, 6, "catch"],[2, 7, "return"]]
 import { Message } from './message.js';
@@ -421,42 +421,42 @@ export default function App() {
   const messagePromise = new Promise((resolve, reject) => {
     reject();
   }).catch(() => {
-    return "no new message found.";
+    return "tidak ada pesan baru yang ditemukan.";
   });
 
   return (
-    <Suspense fallback={<p>waiting for message...</p>}>
+    <Suspense fallback={<p>menunggu pesan...</p>}>
       <Message messagePromise={messagePromise} />
     </Suspense>
   );
 }
 ```
 
-To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeStep step={1}>`catch`</CodeStep> on the Promise object. <CodeStep step={1}>`catch`</CodeStep> takes a single argument: a function that takes an error message as an argument. Whatever is <CodeStep step={2}>returned</CodeStep> by the function passed to <CodeStep step={1}>`catch`</CodeStep> will be used as the resolved value of the Promise.
+Untuk menggunakan metode <CodeStep step={1}>`catch`</CodeStep> pada Promise, panggil <CodeStep step={1}>`catch`</CodeStep> pada objek Promise. <CodeStep step={1}>`catch`</CodeStep> menerima satu argumen: sebuah fungsi yang menerima pesan kesalahan sebagai argumen. Apa pun yang <CodeStep step={2}>dikembalikan</CodeStep> oleh fungsi yang diberikan ke <CodeStep step={1}>`catch`</CodeStep> akan digunakan sebagai nilai hasil penyelesaian dari Promise.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan masalah {/*troubleshooting*/}
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
-You are either calling `use` outside of a React Component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an error boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
+Anda memanggil `use` di luar Komponen React atau fungsi Hook, atau memanggil `use` di dalam blok try-catch. Jika Anda memanggil `use` di dalam blok try-catch, bungkus komponen Anda dengan batas kesalahan, atau panggil `catch` pada Promise untuk menangkap kesalahan dan menyelesaikan Promise dengan nilai lain. [Lihat contoh ini](#dealing-with-rejected-promises).
 
-If you are calling `use` outside a React Component or Hook function, move the `use` call to a React Component or Hook function.
+Jika Anda memanggil `use` di luar Komponen React atau fungsi Hook, pindahkan pemanggilan `use` ke Komponen React atau fungsi Hook.
 
 ```jsx
 function MessageComponent({messagePromise}) {
   function download() {
-    // ❌ the function calling `use` is not a Component or Hook
+    // ❌ Fungsi yang memanggil `use` bukan Komponen atau Hook.
     const message = use(messagePromise);
     // ...
 ```
 
-Instead, call `use` outside any component closures, where the function that calls `use` is a Component or Hook.
+Sebagai gantinya, panggil `use` di dalam komponen, yaitu ketika fungsi yang memanggil `use` adalah Komponen atau Hook.
 
 ```jsx
 function MessageComponent({messagePromise}) {
-  // ✅ `use` is being called from a component. 
+  // ✅ `use` dipanggil di dalam Komponen.
   const message = use(messagePromise);
   // ...
 ```
