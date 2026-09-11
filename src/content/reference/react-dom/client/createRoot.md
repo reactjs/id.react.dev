@@ -109,11 +109,7 @@ Sebuah aplikasi yang dibuat sepenuhnya dengan React biasanya tidak perlu memangg
 
 Fungsi ini biasanya berguna saat node DOM pada akar React (atau turunan lainnya) mungkin dapat terhapus dari DOM oleh kode lain. Sebagai contoh, bayangkan sebuah panel tab jQuery yang menghapus tab nonaktif dari DOM. Jika tab tersebut terhapus, seluruh isi dari DOM tersebut (termasuk akar React) juga akan ikut terhapus. Pada kasus ini, Anda perlu memberitahukan React untuk "stop" mengelola konten DOM akar yang terhapus dengan memanggil `root.unmount`. Jika tidak, komponen yang ada di dalam akar tersebut tidak tahu kalau mereka harus membersihkan dan membebaskan *resources* global seperti *subscriptions*.
 
-<<<<<<< HEAD
 Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan "melepaskan" React dari dalam node DOM akar, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
-=======
-Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 
 #### Parameter {/*root-unmount-parameters*/}
@@ -197,11 +193,7 @@ function Counter() {
 
 </Sandpack>
 
-<<<<<<< HEAD
 **Jika aplikasi Anda dibuat sepenuhnya dengan React, Anda seharusnya tidak perlu membuat akar-akar lainnya, atau memanggil [`root.render`](#root-render) kembali.**
-=======
-**If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.**
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Kedepannya, React akan mengelola DOM tersebut untuk seluruh aplikasi Anda. Untuk menambahkan komponen-komponen lain, [pasangkan mereka di dalam komponen `App`.](/learn/importing-and-exporting-components) Saat Anda perlu memperbarui UI tersebut, Anda dapat melakukannya [dengan menggunakan *state*.](/reference/react/useState) Saat Anda ingin menampilkan konten ekstra seperti *modal* atau *tooltip* diluar dari node DOM, [*render* komponen tersebut dengan sebuah portal.](/reference/react-dom/createPortal)
 
@@ -213,11 +205,7 @@ Saat HTML Anda kosong, pengguna akan melihat sebuah halaman kosong sampai kode J
 <div id="root"></div>
 ```
 
-<<<<<<< HEAD
 Ini dapat terasa sangat lambat! Untuk mengatasi masalah ini, Anda dapat membuat HTML awal dari komponen Anda [pada server atau saat proses *build*](/reference/react-dom/server) Sehingga pengunjung dapat membaca teks, melihat gambar dan mengklik tautan sebelum kode JavaScript apapun selesai dimuat. Kami merekomendasikan untuk [menggunakan sebuah *framework*](/learn/start-a-new-react-project#production-grade-react-frameworks) yang telah melakukan optimisasi ini sejak awal. Bergantung dari kapan proses ini berjalan, ini dapat dipanggil sebagai *server-side rendering (SSR)* atau *static site generation (SSG).*
-=======
-This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend [using a framework](/learn/creating-a-react-app#full-stack-frameworks) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Note>
 

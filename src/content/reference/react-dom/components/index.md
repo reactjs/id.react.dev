@@ -160,16 +160,12 @@ Serupa dengan [standar panduan DOM,](https://developer.mozilla.org/en-US/docs/We
 
 ### Elemen HTML *Custom* {/*custom-html-elements*/}
 
-<<<<<<< HEAD
 Jika Anda *render* sebuah *tag* menggunakan tanda hubung, seperti `<my-element>`, React akan mengasumsikan Anda untuk *render* [elemen HTML *custom*.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) Pada React, cara kerja *rendering* pada elemen *custom* akan berbeda dengan *rendering* pada *tags* bawaan peramban:
 
 - Semua props dari *custom element* akan diserialisasikan menjadi *strings* dan selalu disetel menggunakan *attributes*.
 - *Custom elements* menerima `class` ketimbang `className`, dan `for` ketimbang `htmlFor`.
 
 Jika Anda `render` sebuah elemen HTML bawaan peramban dengan atribut [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is), maka itu akan diperlakukan sebagai *custom element*.
-=======
-If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 
 #### Setting values on custom elements {/*attributes-vs-properties*/}
@@ -291,7 +287,6 @@ export function App() {
 
 <Note>
 
-<<<<<<< HEAD
 [Versi React mendatang akan menambahkan lebih banyak dukungan komprehensif untuk *custom elements*.](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)
 
 Anda dapat mencobanya dengan memperbarui *packages* React ke versi eksperimental terbaru:
@@ -300,16 +295,6 @@ Anda dapat mencobanya dengan memperbarui *packages* React ke versi eksperimental
 - `react-dom@experimental`
 
 Versi eksperimental mungkin mengandung *bugs*. Jangan digunakan di *production*.
-=======
-Events are case-sensitive and support dashes (`-`). Preserve the casing of the event and include all dashes when listening for custom element's events:
-
-```jsx
-// Listens for `say-hi` events
-<my-element onsay-hi={console.log}></my-element>
-// Listens for `sayHi` events
-<my-element onsayHi={console.log}></my-element>
-```
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Note>
 ---

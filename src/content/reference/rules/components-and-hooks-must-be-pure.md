@@ -27,13 +27,7 @@ Secara konkrit, hal ini berarti logika me-*render* akan dijalankan berkali-kali 
 
 React bersifat deklaratif: anda memberi tahu *apa* kepata React untuk di-*render*, dan React akan mencari tahu *bagaimana* cara terbaik untuk menampilkannya kepada pengguna anda. Untuk melakukan ini, React memiliki beberapa fase untuk menjalankan kode anda. Anda tidak perlu untuk mengetahu tentang semua fase yang digunakan React dengan baik. Akan tetapi pada level yang lebih tinggi, anda harus paham tentang kode apa yang dijalankan saat *render*, dan apa yang berjalan diluar itu.  
 
-<<<<<<< HEAD
 pe-*renderan* mengacu pada perhitungan seperti apa tampilan UI anda nantinya. Setelah me-*render*, [*Effect*](/reference/react/useEffect) di *flush* (artinya mereka akan dijalankan hingga tidak ada lagi yang tersisa) dan dapat memperbarui kalkulasi jika *Effect* berdampak pada *layout*. React akan mengambil kalkulasi ini dan membandingkannya dengan kalkulasi yang digunakannya pada versi sebelumnya dari UI anda, lalu *commits* hanya perubahan minim yang diperlukan ke [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (apa yang sebenarnya pengguna lihat) untuk menyesuaikan dengan versi terbaru.
-=======
-React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
-
-_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](/learn/synchronizing-with-effects) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](/learn/render-and-commit) and [Commit and Effect Hooks](/reference/react/hooks#effect-hooks).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <DeepDive>
 

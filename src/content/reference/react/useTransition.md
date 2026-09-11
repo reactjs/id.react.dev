@@ -95,11 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-<<<<<<< HEAD
 * `action`: Fungsi yang memperbarui suatu *state* dengan memanggil satu atau beberapa [fungsi `set`](/reference/react/useState#setstate). React memanggil `action` segera tanpa parameter dan menandai semua pembaruan *state* yang dijadwalkan secara sinkron selama panggilan fungsi `action` sebagai Transisi. Semua panggilan asinkron yang ditunggu dalam `action` akan disertakan dalam Transisi, tetapi saat ini memerlukan pembungkusan semua fungsi `set` setelah `await` dalam `startTransition` tambahan (lihat [Pemecahan Masalah](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). Pembaruan *state* yang ditandai sebagai Transisi akan menjadi [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) dan [tidak akan menampilkan indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators).
-=======
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 #### Returns {/*starttransition-returns*/}
 
@@ -165,11 +161,7 @@ function CheckoutForm() {
 }
 ```
 
-<<<<<<< HEAD
 Fungsi yang diteruskan ke `startTransition` disebut "Aksi". Anda dapat memperbarui status dan (opsional) melakukan efek samping dalam sebuah Aksi, dan pekerjaan akan dilakukan di latar belakang tanpa menghalangi interaksi pengguna di halaman. Transisi dapat mencakup beberapa Aksi, dan saat Transisi sedang berlangsung, UI Anda tetap responsif. Misalnya, jika pengguna mengklik tab tetapi kemudian berubah pikiran dan mengklik tab lain, klik kedua akan segera ditangani tanpa menunggu pembaruan pertama selesai.
-=======
-The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Untuk memberikan umpan balik kepada pengguna tentang Transisi yang sedang berlangsung, status `isPending` beralih ke `true` pada panggilan pertama ke `startTransition`, dan tetap `true` hingga semua Aksi selesai dan status akhir ditampilkan kepada pengguna. Transisi memastikan efek samping dalam Aksi selesai untuk [mencegah indikator pemuatan yang tidak diinginkan](#preventing-unwanted-loading-indicators), dan Anda dapat memberikan umpan balik langsung saat Transisi sedang berlangsung dengan `useOptimistic`.
 
@@ -1262,15 +1254,9 @@ function Router() {
 
 Ini direkomendasikan karena tiga alasan:
 
-<<<<<<< HEAD
 - [Transisi dapat terputus,](#marking-a-state-update-as-a-non-blocking-transition) yang memungkinkan pengguna mengklik tanpa menunggu perenderan ulang selesai.
 - [Transisi mencegah indikator loading yang tidak diinginkan,](#preventing-unwanted-loading-indicators) yang memungkinkan pengguna menghindari lompatan menggelegar pada navigasi.
 - [Transisi menunggu semua tindakan yang tertunda](#perform-non-blocking-updates-with-actions) yang memungkinkan pengguna menunggu efek samping selesai sebelum halaman baru ditampilkan.
-=======
-- [Transitions are interruptible,](#perform-non-blocking-updates-with-actions) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
-- [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Berikut adalah contoh *router* kecil sederhana menggunakan Transisi untuk navigasi.
 

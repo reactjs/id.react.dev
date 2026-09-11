@@ -40,19 +40,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <img
         src={sculpture.url}
@@ -229,19 +221,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <img
         src={sculpture.url}
@@ -377,10 +361,6 @@ Dalam penamaan pasangan variabel dari `useState`, kesepakatannya yang diikuti ad
 
 </Note>
 
-<<<<<<< HEAD
-=======
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Nilai yang dimasukan ke `useState` adalah **nilai awal** dari variabel state. Dalam kasus ini, nilai awal `index` disetel ke 0 dengan `useState(0)`.
 
@@ -428,19 +408,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
@@ -804,19 +776,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
@@ -983,19 +947,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
@@ -1153,19 +1109,11 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-<<<<<<< HEAD
         <i>{sculpture.name} </i> 
         oleh {sculpture.artist}
       </h2>
       <h3>  
         ({index + 1} dari {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sembunyikan' : 'Tampilkan'} Detail
@@ -1501,11 +1449,7 @@ export default function FeedbackForm() {
 
 Coba pindahkan pemanggilan `useState` kedua ke bawah kondisi `if` dan perhatikan kodenya berhenti bekerja lagi. 
 
-<<<<<<< HEAD
 Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seharusnya melihat pesan galat saat melakukan kesalahan seperti ini. Jika Anda tidak melihatnya, Anda perlu memasang *linter* untuk proyek Anda.
-=======
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Solution>
 

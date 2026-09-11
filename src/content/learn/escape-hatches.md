@@ -227,11 +227,7 @@ function Form() {
 }
 ```
 
-<<<<<<< HEAD
 Namun, anda perlu menggunakan *Effects* untuk menyinkronkannya dengan sistem eksternal.
-=======
-However, you *do* need Effects to synchronize with external systems.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
@@ -316,7 +312,6 @@ Baca **[Siklus hidup *effects* yang reaktif](/learn/lifecycle-of-reactive-effect
 
 ## Memisahkan *events* dari *Effects* {/*separating-events-from-effects*/}
 
-<<<<<<< HEAD
 <Wip>
 
 Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi stabil React.
@@ -324,9 +319,6 @@ Bagian ini mendeskripsikan sebuah **eksperimen API yang belum dirilis** di versi
 </Wip>
 
 *Event handlers* hanya berjalan ulang ketika Anda melakukan interaksi yang sama lagi. Tidak seperti *event handlers*, *Effects* menyinkronkan ulang jika nilai apapun yang mereka baca, seperti *props* atau *state*, berbeda dari saat *render* terakhir. Kadang, Anda ingin campuran kedua perilaku tersebut: sebuah *Effect* yang berjalan ulang sebagai respon terhadap beberapa nilai tetapi tidak pada nilai lainnya.
-=======
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Semua kode di dalam *Effects* adalah *reactive.* *Effects* tersebut akan berjalan lagi jika beberapa nilai *reactive* yang dibacanya telah berubah karena *render* ulang. Misalkan, *Effect* ini akan menghubungkan kembali ke *chat* jika `roomId` atau `theme` telah berubah:
 

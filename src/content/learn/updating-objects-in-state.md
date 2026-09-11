@@ -296,11 +296,7 @@ setPerson({
 });
 ```
 
-<<<<<<< HEAD
 Sekarang formulirnya berfungsi!
-=======
-Now the form works!
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Perhatikan bagaimana Anda tidak mendeklarasikan variabel *state* yang terpisah untuk setiap bidang isian. Untuk formulir yang besar, menyimpan semua data dalam sebuah objek sebagai satu kelompok merupakan hal yang mudah--selama objek tersebut diperbarui dengan benar!
 
@@ -377,11 +373,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
 Perhatikan bahwa `...` sintaksis *spread* sebenarnya adalah "dangkal"--benda-benda yang disalin hanya sedalam satu level. Hal ini membuatnya cepat, tetapi itu juga berarti bahwa jika Anda ingin memperbarui properti yang bersarang, Anda harus menggunakannya lebih dari sekali.
-=======
-Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <DeepDive>
 

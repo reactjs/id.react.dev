@@ -453,21 +453,12 @@ export default function Gallery() {
         />
         <ul>
           <li>
-<<<<<<< HEAD
             <b>Profesi: </b> 
             Fisikawan dan kimiawan
           </li>
           <li>
             <b>Penghargaan: 4 </b> 
             (Penghargaan Nobel Fisika, Penghargaan Nobel Kimia, Medali Davy, Medali Matteucci)
-=======
-            <b>Profession: </b>
-            physicist and chemist
-          </li>
-          <li>
-            <b>Awards: 4 </b>
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
           </li>
           <li>
             <b>Telah Menemukan: </b>
@@ -486,21 +477,12 @@ export default function Gallery() {
         />
         <ul>
           <li>
-<<<<<<< HEAD
             <b>Profesi: </b> 
             Ahli Geokimia
           </li>
           <li>
             <b>Penghargaan: 2 </b> 
             (Penghargaan Miyake Geokimia, Penghargaan Tanaka)
-=======
-            <b>Profession: </b>
-            geochemist
-          </li>
-          <li>
-            <b>Awards: 2 </b>
-            (Miyake Prize for geochemistry, Tanaka Prize)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
           </li>
           <li>
             <b>Telah Menemukan: </b>

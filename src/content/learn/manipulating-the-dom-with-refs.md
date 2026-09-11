@@ -211,11 +211,7 @@ Ini dikarenakan **Hooks hanya dapat dipanggil di tingkat atas komponen Anda.** A
 
 Satu cara yang memungkinkan adalah mendapatkan *ref* tunggal dari elemen *parent*, lalu gunakan metode manipulasi DOM seperti  [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) untuk "menemukan" masing-masing *child node*. Namun, hal ini beresiko kacau jika struktur DOM Anda berubah.
 
-<<<<<<< HEAD
 Solusi lainnya adalah dengan **mengoper fungsi pada atribut `ref`.** hal ini dinamakan [`ref` callback.](/reference/react-dom/components/common#ref-callback) React akan memanggil *ref callback* Anda dengan *simpul DOM* saat menyiapkan *ref*, dan dengan `null` saat menghapusnya. hal ini memungkinkan anda mengatur *Array* Anda sendiri atau sebuah [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), dan mengakses *ref* dengan indeks atau sejenis ID.
-=======
-Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and call the cleanup function returned from the callback when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Contoh di bawah menunjukan bagaimana Anda dapat menggunakan pendekatan ini untuk menggulir simpul di dalam daftar yang panjang:
 

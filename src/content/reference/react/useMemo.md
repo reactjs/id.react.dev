@@ -149,11 +149,7 @@ Perhatikan juga bahwa mengukur kinerja dalam *development* tidak akan memberikan
 
 #### Haruskah Anda menambahkan useMemo di mana-mana? {/*should-you-add-usememo-everywhere*/}
 
-<<<<<<< HEAD
 Jika aplikasi Anda seperti situs ini, dan sebagian besar interaksinya kasar (seperti mengganti halaman atau seluruh bagian), memoisasi biasanya tidak diperlukan. Di sisi lain, jika aplikasi Anda lebih seperti editor gambar, dan sebagian besar interaksinya halus (seperti memindahkan bentuk), maka Anda mungkin akan menemukan memoisasi sangat membantu.
-=======
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Pengoptimalan dengan `useMemo` hanya bermanfaat pada beberapa kasus:
 

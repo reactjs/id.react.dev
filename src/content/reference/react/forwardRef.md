@@ -12,11 +12,7 @@ In React 19, `forwardRef` is no longer necessary. Pass `ref` as a prop instead.
 
 <Intro>
 
-<<<<<<< HEAD
 `forwardRef` memungkinkan Anda mengekspos sebuah simpul DOM sebagai sebuah [ref](/learn/manipulating-the-dom-with-refs) kepada induknya.
-=======
-`forwardRef` lets your component expose a DOM node to the parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js
 const SomeComponent = forwardRef(render)

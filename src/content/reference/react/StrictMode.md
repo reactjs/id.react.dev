@@ -224,11 +224,7 @@ li {
 
 Ada kesalahan pada kode di atas. Namun, mudah untuk terlewatkan karena hasil awal terlih benar.
 
-<<<<<<< HEAD
 Kesalahan ini akan semakin terlihat jika komponen `StoryTray` me-*render* ulang beberapa kali. Misalnya, mari buat `StoryTray` di-*render* ulang dengan warna latar berbeda setiap kali Anda mengarahkan kursor ke atasnya:
-=======
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it:
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Sandpack>
 
@@ -883,7 +879,6 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -891,22 +886,12 @@ export default function CatFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
-=======
-        <button onClick={() => setCat('neo')}>Neo</button>
-        <button onClick={() => setCat('millie')}>Millie</button>
-      </nav>
-      <hr />
-      <nav>
-        <span>Scroll to:</span>{cats.map((cat, index) => (
-          <button key={cat.src} onClick={() => scrollToCat(index)}>
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
             {index}
           </button>
         ))}
       </nav>
       <div>
         <ul>
-<<<<<<< HEAD
           {animals.map((animal) => (
               <li
                 key={animal.src}
@@ -927,27 +912,6 @@ export default function CatFriends() {
               </li>
             ))}
           
-=======
-          {cats.map((cat) => (
-            <li
-              key={cat.src}
-              ref={(node) => {
-                const list = itemsRef.current;
-                const item = {cat: cat, node};
-                list.push(item);
-                console.log(`✅ Adding cat to the map. Total cats: ${list.length}`);
-                if (list.length > 10) {
-                  console.log('❌ Too many cats in the list!');
-                }
-                return () => {
-                  // 🚩 No cleanup, this is a bug!
-                }
-              }}
-            >
-              <img src={cat.src} />
-            </li>
-          ))}
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
         </ul>
       </div>
     </>
@@ -1057,7 +1021,6 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -1065,22 +1028,12 @@ export default function CatFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
-=======
-        <button onClick={() => setCat('neo')}>Neo</button>
-        <button onClick={() => setCat('millie')}>Millie</button>
-      </nav>
-      <hr />
-      <nav>
-        <span>Scroll to:</span>{cats.map((cat, index) => (
-          <button key={cat.src} onClick={() => scrollToCat(index)}>
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
             {index}
           </button>
         ))}
       </nav>
       <div>
         <ul>
-<<<<<<< HEAD
           {animals.map((animal) => (
               <li
                 key={animal.src}
@@ -1101,27 +1054,6 @@ export default function CatFriends() {
               </li>
             ))}
           
-=======
-          {cats.map((cat) => (
-            <li
-              key={cat.src}
-              ref={(node) => {
-                const list = itemsRef.current;
-                const item = {cat: cat, node};
-                list.push(item);
-                console.log(`✅ Adding cat to the map. Total cats: ${list.length}`);
-                if (list.length > 10) {
-                  console.log('❌ Too many cats in the list!');
-                }
-                return () => {
-                  // 🚩 No cleanup, this is a bug!
-                }
-              }}
-            >
-              <img src={cat.src} />
-            </li>
-          ))}
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
         </ul>
       </div>
     </>
@@ -1215,7 +1147,6 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-<<<<<<< HEAD
         <button onClick={() => setAnimal('cat')}>Kucing</button>
         <button onClick={() => setAnimal('dog')}>Anjing</button>
       </nav>
@@ -1223,15 +1154,6 @@ export default function CatFriends() {
       <nav>
         <span>Gulir ke:</span>{animals.map((animal, index) => (
           <button key={animal.src} onClick={() => scrollToAnimal(index)}>
-=======
-        <button onClick={() => setCat('neo')}>Neo</button>
-        <button onClick={() => setCat('millie')}>Millie</button>
-      </nav>
-      <hr />
-      <nav>
-        <span>Scroll to:</span>{cats.map((cat, index) => (
-          <button key={cat.src} onClick={() => scrollToCat(index)}>
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
             {index}
           </button>
         ))}
@@ -1322,11 +1244,7 @@ Sekarang pada pemasangan awal di StrictMode, semua *callback* ref sudah disiapka
 Tanpa Strict Mode, bug mudah terlewatkan hingga Anda mengeklik aplikasi untuk melihat fitur yang rusak. Strict Mode membuat bug segera muncul, sebelum Anda mengirimkannya ke produksi.
 
 ---
-<<<<<<< HEAD
 ### Fixing peringatan deprecation yang diaktifkan oleh Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
-=======
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 React memperingatkan jika beberapa komponen dimana pun di dalam tree `<StrictMode>` menggunakan salah satu API yang telah usang:
 

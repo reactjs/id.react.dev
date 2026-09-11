@@ -4,11 +4,7 @@ title: useActionState
 
 <Intro>
 
-<<<<<<< HEAD
 `useActionState` adalah Hook yang memungkinkan Anda memperbarui status berdasarkan hasil aksi formulir.
-=======
-`useActionState` is a React Hook that lets you update state with side effects using [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js
 const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState, permalink?);
@@ -16,7 +12,6 @@ const [state, dispatchAction, isPending] = useActionState(reducerAction, initial
 
 </Intro>
 
-<<<<<<< HEAD
 <Note>
 
 Pada versi React Canary sebelumnya, API ini merupakan bagian dari React DOM dan disebut `useFormState`.
@@ -24,8 +19,6 @@ Pada versi React Canary sebelumnya, API ini merupakan bagian dari React DOM dan 
 </Note>
 
 
-=======
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 <InlineToc />
 
 ---
@@ -34,13 +27,9 @@ Pada versi React Canary sebelumnya, API ini merupakan bagian dari React DOM dan 
 
 ### `useActionState(reducerAction, initialState, permalink?)` {/*useactionstate*/}
 
-<<<<<<< HEAD
 {/* TODO T164397693: link to actions documentation once it exists */}
 
 Panggil `useActionState` di tingkat atas komponen Anda untuk membuat *state* komponen yang diperbarui [saat aksi formulir dijalankan](/reference/react-dom/components/form). Anda mengoper sebuah fungsi aksi form yang sudah ada serta *state* awal ke `useActionState`, dan fungsi ini akan mengembalikan aksi baru yang Anda gunakan dalam form, bersama dengan *state* form terbaru dan apakah aksi tersebut masih tertunda. *State* form terbaru juga akan dioper ke fungsi yang Anda sediakan.
-=======
-Call `useActionState` at the top level of your component to create state for the result of an Action.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js
 import { useActionState } from 'react';
@@ -55,130 +44,40 @@ function MyCart({initialState}) {
 }
 ```
 
-<<<<<<< HEAD
 *State* form adalah nilai yang dikembalikan oleh aksi saat form terakhir kali disubmit. Jika form belum disubmit, itu adalah *state* awal yang Anda lewatkan.
 
 Jika digunakan dengan Fungsi Server, `useActionState` memungkinkan respon dari server setelah mengirimkan form untuk ditampilkan bahkan sebelum proses hidrasi selesai.
 
 [Lihat contoh lainnya di bawah ini.](#usage)
-=======
-[See more examples below.](#usage)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 #### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
 * `fn`: Fungsi yang akan dipanggil ketika form dikirimkan atau tombol ditekan. Ketika fungsi dipanggil, fungsi akan menerima keadaan sebelumnya dari form (awalnya `initialState` yang Anda berikan, kemudian nilai kembalian sebelumnya) sebagai argumen awal, diikuti dengan argumen yang biasanya diterima oleh aksi form.
 * `initialState`: Nilai yang Anda inginkan untuk *state* awalnya. Nilai ini dapat berupa nilai yang dapat diurutkan. Argumen ini diabaikan setelah aksi pertama kali dipanggil.
 * **opsional** `permalink`: String yang berisi URL halaman unik yang dimodifikasi oleh form ini. Untuk digunakan pada halaman dengan konten dinamis (misalnya: feed) dalam hubungannya dengan peningkatan progresif: jika `fn` adalah [fungsi server](/reference/rsc/server-functions) dan form dikirimkan sebelum bundel JavaScript dimuat, browser akan menavigasi ke URL permalink yang ditentukan, bukan ke URL halaman yang sekarang. Pastikan bahwa komponen form yang sama di-render di halaman tujuan (termasuk action `fn` dan `permalink` yang sama) sehingga React tahu bagaimana cara meneruskan *state*. Setelah form di-hidrasi, parameter ini tidak berpengaruh.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
-=======
-* `reducerAction`: The function to be called when the Action is triggered. When called, it receives the previous state (initially the `initialState` you provided, then its previous return value) as its first argument, followed by the `actionPayload` passed to `dispatchAction`.
-* `initialState`: The value you want the state to be initially. React ignores this argument after `dispatchAction` is invoked for the first time.
-* **optional** `permalink`: A string containing the unique page URL that this form modifies.
-  * For use on pages with [React Server Components](/reference/rsc/server-components) with progressive enhancement.
-  * If `reducerAction` is a [Server Function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL rather than the current page's URL.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 #### Kembalian {/*returns*/}
 
 `useActionState` returns an array with exactly three values:
 
-<<<<<<< HEAD
 1. *State* saat ini. Selama render pertama, ini akan dicocokkan dengan `initialState` yang telah Anda berikan. Setelah aksi dipanggil, ia akan dicocokkan dengan nilai yang dikembalikan oleh aksi.
 2. Aksi baru yang dapat Anda berikan sebagai prop `action` ke komponen `form` Anda atau `formAction` ke komponen `button` manapun di dalam formulir. Aksi dapat juga dipanggil secara manual dari dalam [`startTransition`](/reference/react/startTransition).
 3. Flag `isPending` yang memberitahu apakah ada Transisi yang masih tertunda.
-=======
-1. The current state. During the first render, it will match the `initialState` you passed. After `dispatchAction` is invoked, it will match the value returned by the `reducerAction`.
-2. A `dispatchAction` function that you call inside [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
-3. The `isPending` flag that tells you if any dispatched Actions for this Hook are pending.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 #### Catatan penting {/*caveats*/}
 
-<<<<<<< HEAD
 * Ketika digunakan dengan *framework* yang mendukung Komponen Server React, `useActionState` memungkinkan Anda membuat form menjadi interaktif sebelum JavaScript dieksekusi di klien. Ketika digunakan tanpa Komponen Server, ini setara dengan state lokal komponen.
 * Fungsi yang dioper ke `useActionState` menerima argumen tambahan, yaitu *state* sebelumnya atau awal, sebagai argumen pertamanya. Hal ini membuat tanda tangannya berbeda dibandingkan jika digunakan secara langsung sebagai aksi form tanpa menggunakan `useActionState`.
-=======
-* `useActionState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React queues and executes multiple calls to `dispatchAction` sequentially. Each call to `reducerAction` receives the result of the previous call.
-* The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
-* When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
-* When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
-* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
-* If there are multiple ongoing Actions, React batches them together. This is a limitation that may be removed in a future release.
-
-<Note>
-
-`dispatchAction` must be called from an Action.
-
-You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#async-function-outside-transition) on development mode.
-
-</Note>
-
----
-
-### `reducerAction` function {/*reduceraction*/}
-
-The `reducerAction` function passed to `useActionState` receives the previous state and returns a new state.
-
-Unlike reducers in `useReducer`, the `reducerAction` can be async and perform side effects:
-
-```js
-async function reducerAction(previousState, actionPayload) {
-  const newState = await post(actionPayload);
-  return newState;
-}
-```
-
-Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is passed as `previousState` for the current call.
-
-#### Parameters {/*reduceraction-parameters*/}
-
-* `previousState`: The last state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
-
-* **optional** `actionPayload`: The argument passed to `dispatchAction`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
-
-#### Returns {/*reduceraction-returns*/}
-
-`reducerAction` returns the new state, and triggers a Transition to re-render with that state.
-
-#### Caveats {/*reduceraction-caveats*/}
-
-* `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server.
-* `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
-* The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
-* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
-* When using Server Functions, `actionPayload` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
-
-<DeepDive>
-
-#### Why is it called `reducerAction`? {/*why-is-it-called-reduceraction*/}
-
-The function passed to `useActionState` is called a *reducer action* because:
-
-- It *reduces* the previous state into a new state, like `useReducer`.
-- It's an *Action* because it's called inside a Transition and can perform side effects.
-
-Conceptually, `useActionState` is like `useReducer`, but you can do side effects in the reducer.
-
-</DeepDive>
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ---
 
 ## Penggunaan {/*usage*/}
 
-<<<<<<< HEAD
 ### Menggunakan informasi yang dikembalikan oleh tindakan form {/*using-information-returned-by-a-form-action*/}
 
 Panggil `useActionState` di tingkat atas komponen Anda untuk mengakses nilai balik dari suatu tindakan dari saat terakhir kali form dikirimkan.
-=======
-### Adding state to an Action {/*adding-state-to-an-action*/}
-
-Call `useActionState` at the top level of your component to create state for the result of an Action.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js [[1, 7, "count"], [2, 7, "dispatchAction"], [3, 7, "isPending"]]
 import { useActionState } from 'react';
@@ -193,7 +92,6 @@ function Counter() {
 }
 ```
 
-<<<<<<< HEAD
 `useActionState` mengembalikan sebuah array dengan nilai berikut:
 
 1. <CodeStep step={1}>State saat ini</CodeStep> dari form, yang pada awalnya diatur ke <CodeStep step={4}>state awal</CodeStep> yang Anda berikan, dan setelah form dikirimkan, diatur ke nilai balik dari <CodeStep step={3}>aksi</CodeStep> yang Anda berikan.
@@ -216,15 +114,6 @@ function action(currentState, formData) {
 #### Menampilkan kesalahan form {/*display-form-errors*/}
 
 Untuk menampilkan pesan seperti pesan kesalahan atau *toast* yang dikembalikan oleh Fungsi Server, bungkus aksi tersebut dengan panggilan ke `useActionState`.
-=======
-`useActionState` returns an array with exactly three items:
-
-1. The <CodeStep step={1}>current state</CodeStep>, initially set to the initial state you provided.
-2. The <CodeStep step={2}>action dispatcher</CodeStep> that lets you trigger `reducerAction`.
-3. A <CodeStep step={3}>pending state</CodeStep> that tells you whether the Action is in progress.
-
-To call `addToCartAction`, call the <CodeStep step={2}>action dispatcher</CodeStep>. React will queue calls to `addToCartAction` with the previous count.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Sandpack>
 
@@ -337,33 +226,9 @@ button {
 
 Every time you click "Add Ticket," React queues a call to `addToCartAction`. React shows the pending state until all the tickets are added, and then re-renders with the final state.
 
-<<<<<<< HEAD
 #### Menampilkan informasi terstruktur setelah mengirimkan form {/*display-structured-information-after-submitting-a-form*/}
 
 Nilai yang dikembalikan dari Fungsi Server dapat berupa nilai yang dapat diserialkan. Sebagai contoh, nilai tersebut dapat berupa object yang mencakup boolean yang menunjukan apakah aksi berhasil, pesan kesalahan, atau informasi yang diperbarui.
-=======
-<DeepDive>
-
-#### How `useActionState` queuing works {/*how-useactionstate-queuing-works*/}
-
-Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCartAction` is queued. Since there's an artificial 1 second delay, that means 4 clicks will take ~4 seconds to complete.
-
-**This is intentional in the design of `useActionState`.**
-
-We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action.
-
-You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
-
-</DeepDive>
-
----
-
-### Using multiple Action types {/*using-multiple-action-types*/}
-
-To handle multiple types, you can pass an argument to `dispatchAction`.
-
-By convention, it is common to write it as a switch statement. For each case in the switch, calculate and return some next state. The argument can have any shape, but it is common to pass objects with a `type` property identifying the action.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Sandpack>
 
@@ -1464,15 +1329,9 @@ In this example, "Add 10" simulates an API that returns a validation error, whic
 
 ## Pemecahan masalah {/*troubleshooting*/}
 
-<<<<<<< HEAD
 ### Aksi saya tidak lagi dapat membaca data form yang dikirimkan {/*my-action-can-no-longer-read-the-submitted-form-data*/}
 
 Ketika Anda membungkus sebuah aksi dengan `useActionState`, ia mendapatkan argumen tambahan *sebagai argumen pertama*. Oleh karena itu, data form yang dikirimkan menjadi argumen *kedua* alih-alih argumen pertama seperti biasanya. Argumen pertama baru yang ditambahkan adalah state saat ini dari form.
-=======
-### My `isPending` flag is not updating {/*ispending-not-updating*/}
-
-If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js
 import { useActionState, startTransition } from 'react';

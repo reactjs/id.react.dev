@@ -41,13 +41,9 @@ export default function Avatar() {
 
 </Sandpack>
 
-<<<<<<< HEAD
 Di sini, `"https://i.imgur.com/7vQD0fPs.jpg"` dan `"Gregorio Y. Zara"` sedang dioper sebagai *string*.
 
 Namun bagaimana jika Anda ingin secara dinamis menentukan teks `src` atau `alt? Anda dapat **menggunakan nilai dari JavaScript dengan mengganti `"` dan `"` dengan `{` dan `}`**:
-=======
-Here, `"https://react.dev/images/docs/scientists/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 
 <Sandpack>
@@ -436,11 +432,7 @@ body > div > div { padding: 20px; }
 
 Pada objek di bawah ini, URL lengkap gambar dibagi menjadi empat bagian: URL dasar, `imageId`, `imageSize`, dan ekstensi file.
 
-<<<<<<< HEAD
 Kita ingin URL gambar menggabungkan atribut-atribut ini bersama-sama: URL dasar (selalu `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), dan ekstensi file (selalu `'.jpg'`). Namun, ada yang salah dengan bagaimana tag `<img>` menentukan `src`.
-=======
-We want the image URL to combine these attributes together: base URL (always `'https://react.dev/images/docs/scientists/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Bisakah anda memperbaikinya?
 

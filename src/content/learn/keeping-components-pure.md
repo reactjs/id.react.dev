@@ -27,7 +27,6 @@ Anda mungkin sudah akrab dengan salah satu contoh fungsi murni, yaitu rumus-rumu
 
 Perhatikan rumus ini: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-<<<<<<< HEAD
 Jika <Math><MathI>x</MathI> = 2</Math>, <Math><MathI>y</MathI> = 4</Math>. Selalu. 
 
 Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selalu. 
@@ -35,15 +34,6 @@ Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selal
 Jika <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> tidak mungkin bernilai <Math>9</Math> ataupun <Math>–1</Math> ataupun <Math>2.5</Math> hanya karena ada pergantian hari atau pergerakan bursa saham. 
 
 Jika <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dan <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> akan *selalu* bernilai <Math>6</Math>. 
-=======
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always.
-
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always.
-
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market.
-
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Jika kita mengonversi rumus ini menjadi fungsi JavaScript, fungsi tersebut akan terlihat seperti ini:
 
@@ -85,19 +75,11 @@ export default function App() {
 
 </Sandpack>
 
-<<<<<<< HEAD
 Jika Anda memberikan `drinkers={2}` ke `Recipe`, komponen tersebut akan mengembalikan JSX yang berisi `2 cups of water`. Selalu. 
-=======
-When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Jika Anda memberikan `drinkers={4}`, komponen tersebut akan mengembalikan JSX yang berisi `4 cups of water`. Selalu.
 
-<<<<<<< HEAD
 Seperti rumus matematika. 
-=======
-Just like a math formula.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apa pun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
 
@@ -233,7 +215,6 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 
 <Recap>
 
-<<<<<<< HEAD
 * Sebuah komponen harus murni, berarti:
   * **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
   * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama. 
@@ -241,15 +222,6 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 * Anda sebaiknya tidak memutasi masukan yang digunakan komponen Anda dalam proses *render*, termasuk *prop*, *state*, dan *context*. Untuk memperbarui layar, ["ubah" *state*](/learn/state-a-components-memory) daripada memutasi objek yang sudah ada sebelumnya.
 * Anda sebaiknya berusaha untuk menuliskan logika komponen di JSX yang akan dihasilkan komponen. Saat Anda ingin "mengubah sesuatu", Anda sebaiknya melakukannya di dalam *event handler*. Sebagai pilihan terakhir, Anda juga bisa menggunakan `useEffect`.
 * Menulis fungsi murni akan membutuhkan waktu, tetapi ini membuka jalan untuk memanfaatkan potensi paradigma React secara maksimal.
-=======
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Recap>
 

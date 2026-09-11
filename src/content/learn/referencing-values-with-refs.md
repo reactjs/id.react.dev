@@ -34,13 +34,8 @@ const ref = useRef(0);
 `useRef` mengembalikan sebuah objek seperti ini:
 
 ```js
-<<<<<<< HEAD
 { 
   current: 0 // Nilai yang Anda berikan ke useRef
-=======
-{
-  current: 0 // The value you passed to useRef
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 }
 ```
 

@@ -86,11 +86,7 @@ label {
 
 </Sandpack>
 
-<<<<<<< HEAD
 Beginilah tampilannya sebagai pohon:
-=======
-Here's how these look as a tree:
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <DiagramGroup>
 

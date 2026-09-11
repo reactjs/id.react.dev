@@ -1821,7 +1821,6 @@ Kadang-kadang, Anda juga dapat mengurangi penempelan status dengan memindahkan b
 
 <Recap>
 
-<<<<<<< HEAD
 * Jika dua variabel *state* selalu diperbarui bersama, pertimbangkan untuk menggabungkannya menjadi satu. 
 * Pilih variabel *state* dengan hati-hati untuk menghindari menciptakan keadaan yang "mustahil".
 * Strukturkan *state* Anda sedemikian rupa sehingga mengurangi kemungkinan kesalahan saat memperbarui *state*.
@@ -1829,15 +1828,6 @@ Kadang-kadang, Anda juga dapat mengurangi penempelan status dengan memindahkan b
 * Jangan memasukkan *props* ke dalam *state* kecuali Anda secara khusus ingin mencegah pembaruan.
 * Untuk pola *UI* seperti pemilihan, simpan *ID* atau indeks dalam state daripada objek itu sendiri.
 * Jika memperbarui *state* yang sangat berlapis-lapis menjadi rumit, coba datanya didatarkan.
-=======
-* If two state variables always update together, consider merging them into one.
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Recap>
 

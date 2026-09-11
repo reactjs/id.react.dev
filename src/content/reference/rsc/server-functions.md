@@ -22,11 +22,7 @@ Fungsi Server memungkinkan Komponen Klien memanggil fungsi async yang dijalankan
 
 #### Bagaimana cara membangun dukungan untuk Fungsi Server? {/*how-do-i-build-support-for-server-functions*/}
 
-<<<<<<< HEAD
 Meskipun Fungsi Server di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan Fungsi Server di bundler atau framework React Server Components tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
-=======
-While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Untuk mendukung Fungsi Server sebagai bundler atau framework, kami merekomendasikan untuk mengunci ke versi React tertentu, atau menggunakan rilis Canary. Kami akan terus bekerja sama dengan bundler dan framework untuk menstabilkan API yang digunakan untuk mengimplementasikan Fungsi Server di masa mendatang.
 
@@ -197,11 +193,7 @@ function UpdateName() {
 
 Saat menggunakan `useActionState` dengan Fungsi Server, React juga secara otomatis akan memutar ulang pengiriman formulir yang dimasukkan sebelum hidrasi selesai. Ini berarti pengguna dapat berinteraksi dengan aplikasi Anda bahkan sebelum aplikasi terhidrasi.
 
-<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
-=======
-For more, see the docs for [`useActionState`](/reference/react/useActionState).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ### Peningkatan progresif dengan `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
@@ -225,8 +217,4 @@ function UpdateName() {
 
 Ketika <CodeStep step={2}>tautan permanen</CodeStep> disediakan ke `useActionState`, React akan mengalihkan ke URL yang diberikan jika formulir dikirim sebelum bundel JavaScript dimuat.
 
-<<<<<<< HEAD
 Untuk lebih jelasnya, lihat dokumen tentang [`useActionState`](/reference/react-dom/hooks/useFormState).
-=======
-For more, see the docs for [`useActionState`](/reference/react/useActionState).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290

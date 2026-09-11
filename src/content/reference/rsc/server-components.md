@@ -2,15 +2,12 @@
 title: "Komponen Server"
 ---
 
-<<<<<<< HEAD
 <RSC>
 
 Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </RSC>
 
-=======
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 <Intro>
 
 Komponen Server adalah jenis Komponen baru yang dirender terlebih dahulu, sebelum proses bundling, di lingkungan yang terpisah dari aplikasi klien atau server SSR Anda.
@@ -25,11 +22,7 @@ Lingkungan terpisah ini adalah "server" dalam Komponen Server React. Komponen Se
 <Note>
 
 
-<<<<<<< HEAD
 #### Bagaimana cara membangun dukungan untuk Komponen Server? {/*how-do-i-build-support-for-server-components*/}
-=======
-While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Meskipun Komponen Server React di React 19 sudah stabil dan tidak akan rusak antar versi mayor, API dasar yang digunakan untuk mengimplementasikan bundler atau framework Komponen Server React tidak mengikuti semver dan dapat berubah antar versi minor di React 19.x.
 
@@ -279,13 +272,8 @@ import db from './database';
 async function Page({id}) {
   // Akan suspend Komponen Server.
   const note = await db.notes.get(id);
-<<<<<<< HEAD
   
   // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien. 
-=======
-
-  // NOTE: not awaited, will start here and await on the client.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>

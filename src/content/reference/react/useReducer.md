@@ -38,15 +38,9 @@ function MyComponent() {
 
 #### Parameter {/*parameters*/}
 
-<<<<<<< HEAD
 * `reducer`: Fungsi reducer yang menentukan bagaimana *state* diperbarui. Itu harus murni, harus mengambil *state* dan *action* sebagai argumen, dan harus mengembalikan *state* berikutnya. *State* dan *action* bisa dari tipe apa saja.
 * `initialArg`: Nilai dari mana *initial state* dihitung. Bisa menjadi nilai dari tipe apapun. Bagaimana *initial state* dihitung darinya bergantung pada argumen `init` berikutnya.
 * **opsional** `init`: Fungsi penginisialisasi yang harus mengembalikan *initial state*. Jika tidak ditentukan, *initial state* disetel ke `initialArg`. Jika tidak, *initial state* disetel ke hasil pemanggilan `init(initialArg)`.
-=======
-* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types.
-* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
-* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 #### Pengembalian {/*returns*/}
 

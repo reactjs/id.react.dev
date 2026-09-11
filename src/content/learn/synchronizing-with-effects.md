@@ -619,11 +619,7 @@ Kesalahan umum untuk mencegah *Effect* berjalan dua kali dalam pengembangan adal
 
 Hal ini membuat Anda hanya melihat `"✅ Menghubungkan..."` sekali dalam pengembangan, tetapi hal itu tidak memperbaiki bug.
 
-<<<<<<< HEAD
 Saat pengguna keluar, koneksi masih belum ditutup dan saat mereka kembali, koneksi baru dibuat. Saat pengguna keluar dari aplikasi, koneksi akan terus menumpuk, sama seperti sebelum "perbaikan".
-=======
-When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix".
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Untuk memperbaiki bug, tidak cukup hanya menjalankan Efek sekali. Efek harus berfungsi setelah dipasang ulang, yang berarti koneksi perlu dibersihkan seperti dalam solusi di atas.
 
@@ -738,13 +734,8 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara populer untuk mengambi
 
 Daftar kelemahan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat pemasangan komponen dengan pustaka apa pun. Seperti halnya dengan *routing*, pengambilan data bukanlah hal yang sepele untuk dilakukan dengan baik, jadi kami merekomendasikan pendekatan berikut ini:
 
-<<<<<<< HEAD
 - **Jika Anda menggunakan [kerangka kerja (*framework*)](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data yang sudah ada di dalamnya.** Kerangka kerja React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak mengalami kendala di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun *cache* sisi klien.** Solusi sumber terbuka (*open source*) yang populer termasuk [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membuat solusi sendiri, dalam hal ini Anda dapat menggunakan *Effects* di dalamnya, tetapi menambahkan logika untuk menduplikasi *request*, menyimpan respons dalam *cache*, dan menghindari *waterfall* jaringan (dengan melakukan pramuat data atau mengangkat kebutuhan data ke *route*).
-=======
-- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Anda dapat terus mengambil data secara langsung di *Effects* jika tidak ada satu pun dari pendekatan ini yang cocok untuk Anda.
 
@@ -1015,13 +1006,8 @@ import { useEffect, useRef } from 'react';
 export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
-<<<<<<< HEAD
   // TODO: Ini tidak bekerja. Perbaiki.
   // ref.current.focus()    
-=======
-  // TODO: This doesn't quite work. Fix it.
-  // ref.current.focus()
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
   return (
     <input

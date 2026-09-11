@@ -429,13 +429,8 @@ function Form() {
   function handleSubmit() {
     // ✅ Baik: Logika Event-specific dipanggil dari event handler
     post('/api/register');
-<<<<<<< HEAD
     showNotification('Berhasil mendaftar!', theme);
   }  
-=======
-    showNotification('Successfully registered!', theme);
-  }
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
   // ...
 }
@@ -614,7 +609,6 @@ function ChatRoom({ roomId }) {
 
 ### Apakah Anda ingin membaca nilai tanpa "bereaksi" terhadap perubahannya? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<<<<<<< HEAD
 <Wip>
 
 Bagian ini menjelaskan **API experimental yang belum dirilis** dalam versi stabil React.
@@ -622,9 +616,6 @@ Bagian ini menjelaskan **API experimental yang belum dirilis** dalam versi stabi
 </Wip>
 
 Misalkan Anda ingin memainkan bunyi saat pengguna menerima pesan baru kecuali `isMuted` bernilai `true`:
-=======
-Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js {3,10-12}
 function ChatRoom({ roomId }) {
@@ -893,11 +884,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ```
 
-<<<<<<< HEAD
 **Dependensi objek dan fungsi dapat membuat *Effect* Anda melakukan sinkronisasi ulang lebih sering daripada yang Anda perlukan.**
-=======
-**Object and function dependencies can make your Effect re-synchronize more often than you need.**
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 Inilah sebabnya mengapa, jika memungkinkan, Anda harus mencoba menghindari objek dan fungsi sebagai dependensi *Effect* Anda. Sebagai gantinya, cobalah memindahkannya di luar komponen, di dalam *Effect*, atau mengekstrak nilai primitif dari komponen tersebut.
 

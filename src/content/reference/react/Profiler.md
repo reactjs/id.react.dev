@@ -36,14 +36,10 @@ Bungkus pohon komponen dalam `<Profiler>` untuk mengukur performa *rendering*.
 * `id`: String yang mengidentifikasi bagian UI yang sedang Anda ukur.
 * `onRender`: Sebuah [`onRender` *callback*](#onrender-callback) yang dipanggil oleh React setiap kali komponen dalam pohon yang diprofilkan diperbarui. Menerima informasi tentang apa yang di-*render* dan berapa lama waktu yang dibutuhkan.
 
-<<<<<<< HEAD
 
 #### *Caveats* {/*caveats*/}
 
 * Pembuatan *profiler* akan menambah waktu komputasi, sehingga **dinonaktifkan dalam *build* produksi secara bawaan.** Untuk menggunakan *profiler* dalam produksi, Anda harus mengaktifkan sebuah [*build* produksi spesial dengan opsi pembuatan *profiler*.](https://fb.me/react-profiling)
-=======
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ---
 
@@ -87,11 +83,7 @@ Dua *props* dibutuhkan untuk ini: sebuah `id` (string) dan *callback* `onRender`
 
 <Pitfall>
 
-<<<<<<< HEAD
 Pembuatan *profiler* akan menambah waktu komputasi, sehingga **dinonaktifkan dalam *build* produksi secara *default*.** Untuk menggunakan *profiler* dalam produksi, Anda harus mengaktifkan sebuah [*build* produksi spesial dengan opsi pembuatan *profiler*.](https://fb.me/react-profiling)
-=======
-Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 </Pitfall>
 

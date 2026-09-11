@@ -246,11 +246,7 @@ Mengkloning *children* mempersulit untuk mengetahui bagaimana aliran data di apl
 
 ### Mengoper data dengan render prop {/*passing-data-with-a-render-prop*/}
 
-<<<<<<< HEAD
 Daripada menggunakan `cloneElement`, pertimbangkan untuk menerima *render prop* seperti `renderItem`. Di sini, `List` menerima `renderItem` sebagai *prop*. `List` memanggil `renderItem` untuk setiap item dan mengoper `isHighlighted` sebagai argumen:
-=======
-Instead of using `cloneElement`, consider accepting a *render prop* like `renderItem`. Here, `List` receives `renderItem` as a prop. `List` calls `renderItem` for every item and passes `isHighlighted` as an argument:
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js {1,7}
 export default function List({ items, renderItem }) {

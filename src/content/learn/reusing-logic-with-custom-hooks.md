@@ -836,7 +836,6 @@ Setiap kali komponen `ChatRoom` Anda di-*render* ulang, komponen `roomId` dan `s
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
-<<<<<<< HEAD
 <Wip>
 
 Bagian ini menjelaskan **API eksperimental yang belum dirilis** di versi stabil React.
@@ -844,9 +843,6 @@ Bagian ini menjelaskan **API eksperimental yang belum dirilis** di versi stabil 
 </Wip>
 
 Saat Anda mulai menggunakan `useChatRoom` di lebih banyak komponen, Anda mungkin ingin membiarkan komponen menyesuaikan perilakunya. Sebagai contoh, saat ini, logika tentang apa yang harus dilakukan ketika sebuah pesan datang di-hardcode di dalam Hook:
-=======
-As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ```js {9-11}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -1422,36 +1418,10 @@ Mirip dengan [sistem desain,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 #### Akankah React akan menyediakan solusi bawaan untuk pengambilan data? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
-<<<<<<< HEAD
 Kami masih mengerjakan detailnya, tetapi kami berharap di masa mendatang, Anda akan menulis pengambilan data seperti ini:
 
 ```js {1,4,6}
 import { use } from 'react'; // Belum tersedia!
-=======
-Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
-
-```js {1,4,11}
-import { use, Suspense } from "react";
-
-function Message({ messagePromise }) {
-  const messageContent = use(messagePromise);
-  return <p>Here is the message: {messageContent}</p>;
-}
-
-export function MessageContainer({ messagePromise }) {
-  return (
-    <Suspense fallback={<p>⌛Downloading message...</p>}>
-      <Message messagePromise={messagePromise} />
-    </Suspense>
-  );
-}
-```
-
-We're still working out the details, but we expect that in the future, you'll write data fetching like this:
-
-```js {1,4,6}
-import { use } from 'react';
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));

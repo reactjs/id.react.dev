@@ -30,11 +30,7 @@ Untuk menautkan ke sumber daya eksternal seperti *stylesheet*, *font*, dan ikon,
 
 #### *Props* {/*props*/}
 
-<<<<<<< HEAD
 `<link>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
-=======
-`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 * `rel`: *string*, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
 
@@ -155,11 +151,7 @@ export default function SiteMapPage() {
 
 ### Mengendalikan *precedence* *stylesheet* {/*controlling-stylesheet-precedence*/}
 
-<<<<<<< HEAD
 *Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, tiga komponen me-*render* *stylesheet*, dan yang memiliki *precedence* yang sama dikelompokan bersamaan di `<head>`. 
-=======
-Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <SandpackWithHTMLOutput>
 

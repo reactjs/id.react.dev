@@ -334,11 +334,7 @@ Untuk mengetahui bagaimana penerapannya dalam praktik dengan beberapa komponen l
 
 #### Masukan yang disinkronkan {/*synced-inputs*/}
 
-<<<<<<< HEAD
 Berikut ini dua masukan yang independen. Buat mereka tetap disinkronkan: mengedit satu masukan harus memperbarui masukan lain dengan teks yang sama, dan sebaliknya.
-=======
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Hint>
 

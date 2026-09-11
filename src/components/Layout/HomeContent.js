@@ -254,21 +254,13 @@ export function HomeContent() {
               <i>framework</i>)
             </Header>
             <Para>
-<<<<<<< HEAD
               React adalah sebuah pustaka. React memungkinkan Anda untuk
               menyatukan komponen-komponen, tetapi tidak menentukan bagaimana
               cara melakukan <i>routing</i> dan pengambilan data. Untuk
               membangun aplikasi secara keseluruhan dengan React, kami
               merekomendasikan kerangka kerja <i>full-stack</i> React seperti{' '}
               <Link href="https://nextjs.org">Next.js</Link> atau{' '}
-              <Link href="https://remix.run">Remix</Link>.
-=======
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
               <Link href="https://reactrouter.com">React Router</Link>.
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
             </Para>
           </Center>
           <FullBleed>
@@ -286,13 +278,8 @@ export function HomeContent() {
               <CTA
                 color="gray"
                 icon="framework"
-<<<<<<< HEAD
-                href="/learn/start-a-new-react-project">
-                Memulai dengan framework
-=======
                 href="/learn/creating-a-react-app">
-                Get started with a framework
->>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
+                Memulai dengan framework
               </CTA>
             </div>
           </Center>
