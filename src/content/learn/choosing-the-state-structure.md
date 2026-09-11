@@ -1821,7 +1821,7 @@ Kadang-kadang, Anda juga dapat mengurangi penempelan status dengan memindahkan b
 
 <Recap>
 
-* Jika dua variabel *state* selalu diperbarui bersama, pertimbangkan untuk menggabungkannya menjadi satu. 
+* Jika dua variabel *state* selalu diperbarui bersama, pertimbangkan untuk menggabungkannya menjadi satu.
 * Pilih variabel *state* dengan hati-hati untuk menghindari menciptakan keadaan yang "mustahil".
 * Strukturkan *state* Anda sedemikian rupa sehingga mengurangi kemungkinan kesalahan saat memperbarui *state*.
 * Hindari penggunaan *state* yang redundan dan duplikat sehingga tidak perlu menjaga sinkronisasi.

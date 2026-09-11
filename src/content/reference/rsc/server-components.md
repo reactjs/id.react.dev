@@ -272,8 +272,8 @@ import db from './database';
 async function Page({id}) {
   // Akan suspend Komponen Server.
   const note = await db.notes.get(id);
-  
-  // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien. 
+
+  // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien.
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>

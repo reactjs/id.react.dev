@@ -1201,7 +1201,7 @@ export default function ProductPage({ productId, referrer }) {
 }
 ```
 
-Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi, 
+Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi,
 Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, dengan asumsi Anda ingin melewati pe-*render*-an ulang ketika tidak ada *prop* yang berubah. Sebuah *prop* yang *selalu* berbeda akan menggagalkan poin memoisasipresumably you want to skip re-rendering it when no props have changed.
 
 Untuk memoisasi fungsi dengan `useMemo`, fungsi perhitungan Anda harus mengembalikan fungsi lain:

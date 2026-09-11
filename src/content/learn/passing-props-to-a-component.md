@@ -453,11 +453,11 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profesi: </b> 
+            <b>Profesi: </b>
             Fisikawan dan kimiawan
           </li>
           <li>
-            <b>Penghargaan: 4 </b> 
+            <b>Penghargaan: 4 </b>
             (Penghargaan Nobel Fisika, Penghargaan Nobel Kimia, Medali Davy, Medali Matteucci)
           </li>
           <li>
@@ -477,11 +477,11 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profesi: </b> 
+            <b>Profesi: </b>
             Ahli Geokimia
           </li>
           <li>
-            <b>Penghargaan: 2 </b> 
+            <b>Penghargaan: 2 </b>
             (Penghargaan Miyake Geokimia, Penghargaan Tanaka)
           </li>
           <li>

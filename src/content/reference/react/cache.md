@@ -197,7 +197,7 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` keduanya merender <CodeStep step={1}>*city*</CodeStep> yang sama, mereka akan menerima cuplikan data yang sama dari <CodeStep step={2}>fungsi yang ter-*memo*</CodeStep>. 
+Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` keduanya merender <CodeStep step={1}>*city*</CodeStep> yang sama, mereka akan menerima cuplikan data yang sama dari <CodeStep step={2}>fungsi yang ter-*memo*</CodeStep>.
 
 Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` menggunakan argument <CodeStep step={1}>*city*</CodeStep> yang berbeda pada <CodeStep step={2}>`getTemperature`</CodeStep>, maka `fetchTemperature` akan dipanggil dua kali dan setiap pemanggilan akan menerima data yang berbeda.
 
@@ -261,7 +261,7 @@ Saat me-*render* `Profile`, kita dapat memanggil <CodeStep step={2}>`getUser`</C
 
 Saat mengevaluasi sebuah [fungsi asinkron](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), ada akan menerima sebuah [*Promise*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) untuk proses tersebut. *Promise* memegang status dari proses tersebut (*pending*, *fulfilled*, *failed*) dan hasil akhirnya yang telah diselesaikan.
 
-Dalam contoh ini, fungsi asinkron <CodeStep step={1}>`fetchData`</CodeStep> mengembalikan sebuah *promise* yang menantikan proses `fetch`. 
+Dalam contoh ini, fungsi asinkron <CodeStep step={1}>`fetchData`</CodeStep> mengembalikan sebuah *promise* yang menantikan proses `fetch`.
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {

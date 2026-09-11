@@ -48,7 +48,7 @@ function Tooltip() {
 #### Parameter {/*parameters*/}
 
 * `setup`: Fungsi berisi logika Efek Anda. Fungsi *setup* juga dapat secara opsional mengembalikan fungsi pembersihan (*cleanup*). Sebelum komponen ditambahkan ke DOM, React akan menjalankan fungsi *setup*. Setelah setiap *render* ulang dengan dependensi yang berubah, React akan terlebih dahulu menjalankan fungsi pembersihan (jika Anda memberikannya) dengan nilai lama. Selanjutnya, React akan menjalankan fungsi *setup* dengan nilai baru. Sebelum komponen dihapus dari DOM, React akan menjalankan fungsi pembersihan.
- 
+
 * **opsional** `dependencies`: Daftar semua nilai reaktif yang dirujuk di dalam kode `setup`. Nilai reaktif termasuk *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam komponen. Jika *linter* Anda telah [dikonfigurasi untuk React](/learn/editor-setup#linting), maka *linter* tersebut akan memverifikasi bahwa setiap nilai reaktif sudah diatur dengan benar sebagai dependensi. Daftar dependensi ini harus memiliki jumlah *item* yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai lama menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Jika argumen ini diabaikan, efek akan dijalankan ulang setelah setiap *re-render* dari komponen.
 
 #### Returns {/*returns*/}
@@ -636,7 +636,7 @@ export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
   const [tooltipHeight, setTooltipHeight] = useState(0);
 
-  // Berikut secara artifisial memperlambat proses me-*render* 
+  // Berikut secara artifisial memperlambat proses me-*render*
   let now = performance.now();
   while (performance.now() - now < 100) {
     // Sementara tidak melakukan apa pun...
@@ -698,7 +698,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Ubah contoh berikut menjadi `useLayoutEffect` kemudian amati proses melukis layar akan terhalang meskipun proses me-*render* diperlambat. 
+Ubah contoh berikut menjadi `useLayoutEffect` kemudian amati proses melukis layar akan terhalang meskipun proses me-*render* diperlambat.
 
 <Solution />
 
@@ -722,7 +722,7 @@ Tujuan dari `useLayoutEffect` adalah memungkinkan sebuah komponen [menggunakan i
 2. Mengukur tata letak *sebelum peramban melukis ulang layar.*
 3. Me-*render* konten akhir menggunakan informasi tata letak yang telah dibaca.
 
-Ketika Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda di-*render* menjadi HTML di *server* saat awal me-*render*.   
+Ketika Anda atau *framework* Anda menggunakan [*server rendering*](/reference/react-dom/server), aplikasi React Anda di-*render* menjadi HTML di *server* saat awal me-*render*.
 
 Masalahnya, di *server* tidak tersedia informasi tentang tata letak.
 

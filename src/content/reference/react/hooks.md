@@ -16,7 +16,7 @@ title: "Hook Bawaan React"
 
 Untuk menambahkan *state* ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
 
-* [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung. 
+* [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung.
 * [`useReducer`](/reference/react/useReducer) mendeklarasikan sebuah variabel *state* dengan logika pembaruan yang tertulis di dalam sebuah [fungsi *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js

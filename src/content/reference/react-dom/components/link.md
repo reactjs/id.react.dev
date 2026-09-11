@@ -151,7 +151,7 @@ export default function SiteMapPage() {
 
 ### Mengendalikan *precedence* *stylesheet* {/*controlling-stylesheet-precedence*/}
 
-*Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, tiga komponen me-*render* *stylesheet*, dan yang memiliki *precedence* yang sama dikelompokan bersamaan di `<head>`. 
+*Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, tiga komponen me-*render* *stylesheet*, dan yang memiliki *precedence* yang sama dikelompokan bersamaan di `<head>`.
 
 <SandpackWithHTMLOutput>
 

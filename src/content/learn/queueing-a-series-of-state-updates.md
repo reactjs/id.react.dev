@@ -101,7 +101,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 Di sini, `n => n + 1` disebut fungsi *updater.* Ketika Anda mengirimkannya ke pengatur (*setter*) state:
 
-1. React mengantre fungsi ini untuk diproses setelah semua kode lain dalam *event handler* dijalankan.  
+1. React mengantre fungsi ini untuk diproses setelah semua kode lain dalam *event handler* dijalankan.
 2. Saat *render* berikutnya, React akan melewati antrean dan memberi Anda *state* terakhir yang diperbarui.
 
 ```js
@@ -181,7 +181,7 @@ React menyimpan `6` sebagai hasil akhir dan mengembalikannya dari `useState`.
 
 <Note>
 
-Anda mungkin sadar bahwa `setState(5)` sebenarnya bekerja seperti `setState(n => 5)`, tetapi `n` tidak terpakai! 
+Anda mungkin sadar bahwa `setState(5)` sebenarnya bekerja seperti `setState(n => 5)`, tetapi `n` tidak terpakai!
 
 </Note>
 

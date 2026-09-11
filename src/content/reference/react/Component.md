@@ -726,7 +726,7 @@ Mengembalikan `false` untuk memberitahu React bahwa *render* ulang dapat dilewat
 
 #### Catatan penting {/*shouldcomponentupdate-caveats*/}
 
-- Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu. 
+- Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu.
 
 - Pertimbangkan untuk menggunakan [`PureComponent`](/reference/react/PureComponent) daripada menulis `shouldComponentUpdate` secara manual. `PureComponent` secara dangkal membandingkan *props* dan *state*, dan mengurangi kemungkinan Anda melewati pembaruan yang diperlukan.
 

@@ -64,7 +64,7 @@ import { use } from 'react';
 
 function Button() {
   const theme = use(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `use` mengembalikan <CodeStep step={2}>nilai context</CodeStep> untuk <CodeStep step={1}>context</CodeStep> yang Anda berikan. Untuk menentukan nilai context, React menelusuri pohon komponen dan menemukan **penyedia context terdekat di atasnya** untuk context tersebut.

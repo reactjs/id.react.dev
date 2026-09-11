@@ -1093,7 +1093,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama: 
+Sekarang Anda akan menghubungkan prop `onSquareClick` ke sebuah fungsi di komponen `Board` yang akan Anda beri nama `handleClick`. Untuk menghubungkan `onSquareClick` ke `handleClick`, Anda akan mengoper sebuah fungsi ke prop `onSquareClick` pada komponen `Square` pertama:
 
 ```js {7}
 export default function Board() {

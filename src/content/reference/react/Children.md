@@ -861,7 +861,7 @@ export default function App() {
         return (
           <Row isHighlighted={index % 2 === 0}>
             <p>Ini adalah butir {id}.</p>
-          </Row> 
+          </Row>
         );
       }}
     />
@@ -927,7 +927,7 @@ export function Row({ children, isHighlighted }) {
 
 </Sandpack>
 
-Demikianlah contoh lain bagaimana komponen induk dan anak dapat bekerja sama tanpa memanipulasi anak-anaknya. 
+Demikianlah contoh lain bagaimana komponen induk dan anak dapat bekerja sama tanpa memanipulasi anak-anaknya.
 
 ---
 

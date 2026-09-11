@@ -45,7 +45,7 @@ function ChatRoom({ roomId }) {
 #### Parameter {/*parameters*/}
 
 * `setup`: Fungsi dengan logika *Effect* Anda. Fungsi *setup* Anda juga dapat secara opsional mengembalikan fungsi *cleanup*. Ketika komponen Anda pertama kali ditambahkan ke DOM, React akan menjalankan fungsi *setup* Anda. Setelah setiap re-*render* dengan dependensi yang berubah, React akan pertama-tama menjalankan fungsi *cleanup* (jika Anda menyediakannya) dengan nilai lama, dan kemudian menjalankan fungsi *setup* Anda dengan nilai baru. Setelah komponen Anda dihapus dari DOM, React akan menjalankan fungsi *cleanup* Anda untuk terakhir kalinya.
- 
+
 * `dependensi` **opsional**: Daftar semua nilai reaktif yang direferensikan di dalam kode `setup`. Nilai reaktif meliputi *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam *body* komponen Anda. Jika *linter* Anda [dikonfigurasi untuk React](/learn/editor-setup#linting), itu akan memverifikasi bahwa setiap nilai reaktif dijelaskan dengan benar sebagai dependensi. Daftar dependensi harus memiliki jumlah item yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) . Jika Anda mengabaikan argumen ini, *Effect* Anda akan berjalan ulang setelah setiap re-*render* dari komponen. [Lihat perbedaan antara melewatkan array dependensi, array kosong, dan tidak ada dependensi sama sekali.](#examples-dependencies)
 
 #### Kembalian {/*returns*/}

@@ -27,13 +27,13 @@ Anda mungkin sudah akrab dengan salah satu contoh fungsi murni, yaitu rumus-rumu
 
 Perhatikan rumus ini: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-Jika <Math><MathI>x</MathI> = 2</Math>, <Math><MathI>y</MathI> = 4</Math>. Selalu. 
+Jika <Math><MathI>x</MathI> = 2</Math>, <Math><MathI>y</MathI> = 4</Math>. Selalu.
 
-Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selalu. 
+Jika <Math><MathI>x</MathI> = 3</Math>, <Math><MathI>y</MathI> = 6</Math>. Selalu.
 
-Jika <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> tidak mungkin bernilai <Math>9</Math> ataupun <Math>–1</Math> ataupun <Math>2.5</Math> hanya karena ada pergantian hari atau pergerakan bursa saham. 
+Jika <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> tidak mungkin bernilai <Math>9</Math> ataupun <Math>–1</Math> ataupun <Math>2.5</Math> hanya karena ada pergantian hari atau pergerakan bursa saham.
 
-Jika <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dan <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> akan *selalu* bernilai <Math>6</Math>. 
+Jika <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dan <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> akan *selalu* bernilai <Math>6</Math>.
 
 Jika kita mengonversi rumus ini menjadi fungsi JavaScript, fungsi tersebut akan terlihat seperti ini:
 
@@ -75,11 +75,11 @@ export default function App() {
 
 </Sandpack>
 
-Jika Anda memberikan `drinkers={2}` ke `Recipe`, komponen tersebut akan mengembalikan JSX yang berisi `2 cups of water`. Selalu. 
+Jika Anda memberikan `drinkers={2}` ke `Recipe`, komponen tersebut akan mengembalikan JSX yang berisi `2 cups of water`. Selalu.
 
 Jika Anda memberikan `drinkers={4}`, komponen tersebut akan mengembalikan JSX yang berisi `4 cups of water`. Selalu.
 
-Seperti rumus matematika. 
+Seperti rumus matematika.
 
 Anda bisa menganggap komponen Anda sebagai resep: jika Anda mengikuti resep tersebut dan tidak menambahkan bahan apa pun dalam proses pemasakan, Anda akan selalu mendapatkan makanan yang sama. "Makanan" itu adalah JSX yang diserahkan sebuah komponen ke React untuk di-[*render*](/learn/render-and-commit).
 
@@ -217,7 +217,7 @@ Setiap fitur baru React yang kami bangun memanfaatkan kelebihan dari kemurnian. 
 
 * Sebuah komponen harus murni, berarti:
   * **Dia hanya mengurus dirinya sendiri.** Dia tidak mengubah objek atau variabel yang ada sebelum dia dipanggil.
-  * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama. 
+  * **Masukan yang sama, luaran yang sama.** Untuk masukan yang sama, fungsi murni akan selalu menghasilkan JSX yang sama.
 * *Render* bisa terjadi kapan saja, maka komponen sebaiknya tidak bergantung terhadap proses *render* satu sama lain.
 * Anda sebaiknya tidak memutasi masukan yang digunakan komponen Anda dalam proses *render*, termasuk *prop*, *state*, dan *context*. Untuk memperbarui layar, ["ubah" *state*](/learn/state-a-components-memory) daripada memutasi objek yang sudah ada sebelumnya.
 * Anda sebaiknya berusaha untuk menuliskan logika komponen di JSX yang akan dihasilkan komponen. Saat Anda ingin "mengubah sesuatu", Anda sebaiknya melakukannya di dalam *event handler*. Sebagai pilihan terakhir, Anda juga bisa menggunakan `useEffect`.

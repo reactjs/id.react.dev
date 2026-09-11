@@ -130,7 +130,7 @@ Ketika `<ViewTransition>` mengaktifkan animasi "enter", React akan menambahkan n
 
 ```css
 ::view-transition-group(.slide-in) {
-  
+
 }
 ::view-transition-old(.slide-in) {
 
@@ -695,7 +695,7 @@ export default function Component() {
     </>
   );
 }
-  
+
 
 ```
 
@@ -899,7 +899,7 @@ export default function Component() {
     </>
   );
 }
-  
+
 
 ```
 
@@ -1802,7 +1802,7 @@ Misalnya, untuk menyesuaikan animasi untuk semua navigasi maju dan mundur:
  }}>
   <div>...</div>
 </ViewTransition>
- 
+
 // in your router:
 startTransition(() => {
   addTransitionType('navigation-' + navigationType);
@@ -2145,7 +2145,7 @@ function Component() {
 
 Untuk memperbaiki, pastikan bahwa `<ViewTransition>` datang sebelum node DOM lainnya:
 
-```js [3, 5] 
+```js [3, 5]
 function Component() {
   return (
     <ViewTransition>

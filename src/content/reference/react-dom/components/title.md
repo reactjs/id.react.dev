@@ -36,7 +36,7 @@ Untuk menentukan judul dokmen, render [komponen bawaan peramban `<title>`](https
 
 #### Perilaku *render*-ing khusus {/*special-rendering-behavior*/}
 
-React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<title>` di dalam `<head>` dokumen, di mana pun elemen tersebut di-*render* di pohon React. `<head>` adalah satu-satunya tempat yang valid untuk `<title>` berada dalam DOM, namun tetap mudah dan membuat segala sesuatunya tetap dapat disusun jika komponen yang mewakili laman tertentu dapat me-*render* `<title>`-nya sendiri. 
+React akan selalu menempatkan elemen DOM yang sesuai dengan komponen `<title>` di dalam `<head>` dokumen, di mana pun elemen tersebut di-*render* di pohon React. `<head>` adalah satu-satunya tempat yang valid untuk `<title>` berada dalam DOM, namun tetap mudah dan membuat segala sesuatunya tetap dapat disusun jika komponen yang mewakili laman tertentu dapat me-*render* `<title>`-nya sendiri.
 
 Ada dua pengecualian untuk hal ini:
 * Jika `<title>` berada dalam komponen `<svg>`, maka tidak ada perilaku khusus, karena dalam konteks ini tidak mewakili judul dokumen melainkan merupakan [anotasi aksesibilitas untuk grafik SVG tersebut](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).

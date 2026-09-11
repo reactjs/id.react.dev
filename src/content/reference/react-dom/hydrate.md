@@ -172,7 +172,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js src/App.js active
+```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {

@@ -88,7 +88,7 @@ function ChatInput() {
 }
 
 function Button() {
-  const data = useDataWithLogging(); // ✅ Baik: Gunakan Hook secara langsung 
+  const data = useDataWithLogging(); // ✅ Baik: Gunakan Hook secara langsung
 }
 
 function useDataWithLogging() {

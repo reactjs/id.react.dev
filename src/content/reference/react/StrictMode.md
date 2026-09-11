@@ -897,7 +897,7 @@ export default function CatFriends() {
                 key={animal.src}
                 ref={(node) => {
                   const list = itemsRef.current;
-                  const item = {animal: animal, node}; 
+                  const item = {animal: animal, node};
                   list.push(item);
                   console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
                   if (list.length > 10) {
@@ -911,7 +911,7 @@ export default function CatFriends() {
                 <img src={animal.src} />
               </li>
             ))}
-          
+
         </ul>
       </div>
     </>
@@ -1039,7 +1039,7 @@ export default function CatFriends() {
                 key={animal.src}
                 ref={(node) => {
                   const list = itemsRef.current;
-                  const item = {animal: animal, node} 
+                  const item = {animal: animal, node}
                   list.push(item);
                   console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
                   if (list.length > 10) {
@@ -1053,7 +1053,7 @@ export default function CatFriends() {
                 <img src={animal.src} />
               </li>
             ))}
-          
+
         </ul>
       </div>
     </>

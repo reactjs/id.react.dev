@@ -118,7 +118,7 @@ label {
 
 #### Haruskah Anda menambahkan memo di mana-mana? {/*should-you-add-memo-everywhere*/}
 
-Jika aplikasi Anda seperti situs ini, dan sebagian besar interaksinya bersifat kasar (seperti mengganti halaman atau seluruh bagian), memoisasi biasanya tidak diperlukan. Di sisi lain, jika aplikasi Anda lebih seperti editor gambar, dan sebagian besar interaksinya bersifat granular (seperti memindahkan bentuk), maka Anda mungkin akan merasa sangat terbantu dengan adanya memoisasi. 
+Jika aplikasi Anda seperti situs ini, dan sebagian besar interaksinya bersifat kasar (seperti mengganti halaman atau seluruh bagian), memoisasi biasanya tidak diperlukan. Di sisi lain, jika aplikasi Anda lebih seperti editor gambar, dan sebagian besar interaksinya bersifat granular (seperti memindahkan bentuk), maka Anda mungkin akan merasa sangat terbantu dengan adanya memoisasi.
 
 Mengoptimalkan dengan `memo` hanya berguna ketika komponen Anda sering di-*render* ulang dengan props yang sama persis, dan logika render ulangnya mahal. Jika tidak ada jeda yang terlihat ketika komponen Anda di-*render* ulang, `memo` tidak diperlukan. Perlu diingat bahwa `memo` sama sekali tidak berguna jika props yang dioper ke komponen Anda *selalu berbeda, seperti jika Anda mengoper sebuah objek atau fungsi biasa yang didefinisikan selama rendering. Inilah sebabnya mengapa Anda akan sering membutuhkan[`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) dan [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) serta `memo`.
 

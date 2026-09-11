@@ -32,17 +32,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -80,17 +80,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -132,17 +132,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -236,17 +236,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -290,17 +290,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -371,17 +371,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -417,17 +417,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -474,17 +474,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -512,17 +512,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Pakaian luar angkasa" 
+        <Item
+          isPacked={true}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          isPacked={true} 
-          name="Helm berwarna emas" 
+        <Item
+          isPacked={true}
+          name="Helm berwarna emas"
         />
-        <Item 
-          isPacked={false} 
-          name="Foto Tam" 
+        <Item
+          isPacked={false}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -560,17 +560,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          importance={9} 
-          name="Pakaian luar angkasa" 
+        <Item
+          importance={9}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          importance={0} 
-          name="Helm berwarna emas" 
+        <Item
+          importance={0}
+          name="Helm berwarna emas"
         />
-        <Item 
-          importance={6} 
-          name="Foto Tam" 
+        <Item
+          importance={6}
+          name="Foto Tam"
         />
       </ul>
     </section>
@@ -604,17 +604,17 @@ export default function PackingList() {
     <section>
       <h1>Daftar Pengemasan Sally Ride</h1>
       <ul>
-        <Item 
-          importance={9} 
-          name="Pakaian luar angkasa" 
+        <Item
+          importance={9}
+          name="Pakaian luar angkasa"
         />
-        <Item 
-          importance={0} 
-          name="Helm berwarna emas" 
+        <Item
+          importance={0}
+          name="Helm berwarna emas"
         />
-        <Item 
-          importance={6} 
-          name="Foto Tam" 
+        <Item
+          importance={6}
+          name="Foto Tam"
         />
       </ul>
     </section>

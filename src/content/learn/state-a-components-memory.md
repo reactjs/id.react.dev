@@ -40,10 +40,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <img
@@ -168,7 +168,7 @@ Dua hal tersebut bisa dicapai dengan Hook [`useState`](/reference/react/useState
 
 ## Menambahkan variabel *state* {/*adding-a-state-variable*/}
 
-Untuk menambahkan variabel state, impor `useState` dari React di paling atas *file*: 
+Untuk menambahkan variabel state, impor `useState` dari React di paling atas *file*:
 
 ```js
 import { useState } from 'react';
@@ -221,10 +221,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <img
@@ -357,7 +357,7 @@ Dalam kasus ini, Anda ingin React untuk mengingat `index`.
 
 <Note>
 
-Dalam penamaan pasangan variabel dari `useState`, kesepakatannya yang diikuti adalah `const [something, setSomething]`. Walaupun sebenarnya Anda tidak harus mengikuti ini, pola penamaan yang konsisten membuat kode lebih mudah dimengerti. 
+Dalam penamaan pasangan variabel dari `useState`, kesepakatannya yang diikuti adalah `const [something, setSomething]`. Walaupun sebenarnya Anda tidak harus mengikuti ini, pola penamaan yang konsisten membuat kode lebih mudah dimengerti.
 
 </Note>
 
@@ -408,10 +408,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
@@ -540,14 +540,14 @@ Contoh di bawah **tidak menggunakan React** namun bisa memberi gambaran bagaiman
 let componentHooks = [];
 let currentHookIndex = 0;
 
-// Penjelasan sederhana tentang 
+// Penjelasan sederhana tentang
 // cara kerja useState di dalam React
 function useState(initialState) {
   let pair = componentHooks[currentHookIndex];
   if (pair) {
     // Karena bukan render pertama
     // pasangan variable *state* sudah ada.
-    // Langsung kembalikan dan tunggu pemanggilan Hook selanjutnya 
+    // Langsung kembalikan dan tunggu pemanggilan Hook selanjutnya
     currentHookIndex++;
     return pair;
   }
@@ -564,7 +564,7 @@ function useState(initialState) {
   }
 
   // Simpan pasangan nilai untuk render berikutnya
-  // dan tunggu pemanggilan Hook selanjutnya 
+  // dan tunggu pemanggilan Hook selanjutnya
   componentHooks[currentHookIndex] = pair;
   currentHookIndex++;
   return pair;
@@ -572,7 +572,7 @@ function useState(initialState) {
 
 function Gallery() {
   // Tiap pemanggilan useState() akan mengembalikan
-  // pasangan nilai yang berikutnya 
+  // pasangan nilai yang berikutnya
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
 
@@ -600,7 +600,7 @@ function Gallery() {
 }
 
 function updateDOM() {
-  // Setel ulang index terbaru dari Hook 
+  // Setel ulang index terbaru dari Hook
   // sebelum merender komponen
   currentHookIndex = 0;
   let output = Gallery();
@@ -776,10 +776,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
@@ -947,10 +947,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
@@ -1109,10 +1109,10 @@ export default function Gallery() {
         Selanjutnya
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         oleh {sculpture.artist}
       </h2>
-      <h3>  
+      <h3>
         ({index + 1} dari {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
@@ -1447,7 +1447,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Coba pindahkan pemanggilan `useState` kedua ke bawah kondisi `if` dan perhatikan kodenya berhenti bekerja lagi. 
+Coba pindahkan pemanggilan `useState` kedua ke bawah kondisi `if` dan perhatikan kodenya berhenti bekerja lagi.
 
 Jika *linter* Anda [disetel untuk React](/learn/editor-setup#linting), Anda seharusnya melihat pesan galat saat melakukan kesalahan seperti ini. Jika Anda tidak melihatnya, Anda perlu memasang *linter* untuk proyek Anda.
 

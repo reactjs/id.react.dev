@@ -13,7 +13,7 @@ Sebelum komponen Anda ditampilkan pada layar, komponen tersebut akan melakukan p
 * Apa definisi proses *render* pada React
 * Kapan dan Mengapa React melakukukan *render* pada komponen
 * Langkah-langkah untuk menampilkan komponen pada layar
-* Mengapa proses *render* tidak selalu menghasilkan perubahan pada DOM 
+* Mengapa proses *render* tidak selalu menghasilkan perubahan pada DOM
 
 </YouWillLearn>
 
@@ -77,7 +77,7 @@ Setelah komponen telah pertama kali di*render*, Anda dapat memicu *render* kemba
 
 ## Langkah 2: React me-render komponen Anda {/*step-2-react-renders-your-components*/}
 
-Setelah Anda memicu sebuah *render*, React memanggil komponen Anda untuk menemukan apa yang ingin ditampilkan pada layar. **"Rendering" adalah proses ketika React memanggil komponen Anda.** 
+Setelah Anda memicu sebuah *render*, React memanggil komponen Anda untuk menemukan apa yang ingin ditampilkan pada layar. **"Rendering" adalah proses ketika React memanggil komponen Anda.**
 
 * **Pada render awal,** React akan memanggil komponen *root*.
 * **Untuk render selanjutnya,** React akan memanggil komponen fungsi yang pembaruan *state*-nya memicu proses *render*.
@@ -124,8 +124,8 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag. 
-* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*. 
+* **Selama proses _render_ awal,** React akan [membuat simpul DOM](https://developer.mozilla.org/docs/Web/API/Document/createElement) untuk `<section>`, `<h1>`, dan tiga `<img>` tag.
+* **Selama proses _render_ ulang,** React akan menghitung properti mereka, jika ada yang telah berubah sejak proses *render* sebelumnya. Itu tidak akan melakukan apa pun sampai tahapan selanjutnya, yaitu fase *commit*.
 
 <Pitfall>
 

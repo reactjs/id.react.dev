@@ -74,7 +74,7 @@ Baca **[Menangani Event](/learn/responding-to-events)** untuk mempelajari cara m
 
 ## State: Ingatan dari komponen {/*state-a-components-memory*/}
 
-Komponen sering perlu mengubah apa yang ada di layar sebagai hasil dari sebuah interaksi. Mengetik kedalam form dapat mengubah sebuah kolom masukan, mengeklik "next" pada sebuah *carousel* gambar mengubah gambar yang sedang ditampilkan, mengeklik "beli" menambahkan sebuah produk kedalam keranjang belanja. Komponen perlu "mengingat" berbagai hal: nilai masukan saat ini, gambar saat ini, keranjang belanja. Di React, jenis ingatan komponen seperti ini disebut *state.* 
+Komponen sering perlu mengubah apa yang ada di layar sebagai hasil dari sebuah interaksi. Mengetik kedalam form dapat mengubah sebuah kolom masukan, mengeklik "next" pada sebuah *carousel* gambar mengubah gambar yang sedang ditampilkan, mengeklik "beli" menambahkan sebuah produk kedalam keranjang belanja. Komponen perlu "mengingat" berbagai hal: nilai masukan saat ini, gambar saat ini, keranjang belanja. Di React, jenis ingatan komponen seperti ini disebut *state.*
 
 Anda dapat menambahkan state kepada komponen dengan menggunakan Hook [`useState`](/reference/react/useState). *Hooks* adalah fungsi spesial yang memungkinkan komponen Anda untuk menggunakan fitur-fitur dari React (state adalah salah satu fitur tersebut). Hook `useState` memungkinkan Anda mendeklarasikan sebuah variabel state. Fungsi ini menerima state awal dan mengeluarkan sepasang nilai: state saat ini, dan sebuah fungsi *state setter*  yang memungkinkan Anda untuk mengubah state tersebut.
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State sebagai Snapshot](/learn/state-as-a-snapshot) menjelaskan mengapa ini terjadi. Mengubah state akan meminta *render* ulang baru, tetapi tidak akan mengubah state-nya di kode yang sudah berjalan. Jadi `score` tetap `0` setelah Anda memanggil `setScore(score + 1)`. 
+[State sebagai Snapshot](/learn/state-as-a-snapshot) menjelaskan mengapa ini terjadi. Mengubah state akan meminta *render* ulang baru, tetapi tidak akan mengubah state-nya di kode yang sudah berjalan. Jadi `score` tetap `0` setelah Anda memanggil `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0

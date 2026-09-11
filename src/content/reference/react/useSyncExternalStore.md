@@ -107,7 +107,7 @@ Fungsi ini mengembalikan <CodeStep step={3}>*snapshot*</CodeStep> dari data yang
 
 React akan menggunakan dua fungsi ini untuk menjaga status langganan komponen Anda ke tempat penyimpanan tersebut dan me-*render* ulang saat ada perubahan.
 
-Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *Hook* `useSyncExternalStore`. 
+Misalnya, di *sandbox* di bawah, `todosStore` diimplementasi sebagai tempat penyimpanan eksternal yang menyimpan data di luar React. Komponen `TodosApp` terhubung ke tempat penyimpanan eksternal tersebut melalui *Hook* `useSyncExternalStore`.
 
 <Sandpack>
 
@@ -418,7 +418,7 @@ function ChatIndicator() {
   // ...
 }
 ```
-  
+
 React akan berlangganan ulang ke tempat penyimpanan Anda jika Anda memberikan fungsi `subscribe` berbeda antar-*render*. Jika ini memberikan masalah terhadap performa dan Anda ingin menghindari proses berlangganan ulang, Anda dapat memindahkan fungsi `subscribe` keluar:
 
 ```js {1-4}

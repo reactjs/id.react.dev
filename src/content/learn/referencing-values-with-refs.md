@@ -34,7 +34,7 @@ const ref = useRef(0);
 `useRef` mengembalikan sebuah objek seperti ini:
 
 ```js
-{ 
+{
   current: 0 // Nilai yang Anda berikan ke useRef
 }
 ```

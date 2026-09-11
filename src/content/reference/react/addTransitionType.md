@@ -81,7 +81,7 @@ Saat ini, Tipe Transisi dapat digunakan untuk menyesuaikan animasi yang berbeda 
 
 - [Menyesuaikan animasi menggunakan tipe transisi tampilan browser](#customize-animations-using-browser-view-transition-types)
 - [Menyesuaikan animasi menggunakan Kelas `View Transition`](#customize-animations-using-view-transition-class)
-- [Menyesuaikan animasi menggunakan event `ViewTransition`](#customize-animations-using-viewtransition-events) 
+- [Menyesuaikan animasi menggunakan event `ViewTransition`](#customize-animations-using-viewtransition-events)
 
 Di masa mendatang, kami berencana untuk mendukung lebih banyak kasus penggunaan untuk menggunakan penyebab transisi.
 

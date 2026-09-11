@@ -216,7 +216,7 @@ Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event ha
 Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
 
 Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* dogmatis belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang.
- 
+
 </Note>
 
 ---
@@ -364,9 +364,9 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -626,9 +626,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -1253,9 +1253,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -1565,9 +1565,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -1877,9 +1877,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 

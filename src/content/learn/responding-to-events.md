@@ -313,7 +313,7 @@ button { margin-right: 10px; }
 </Sandpack>
 
 Perhatikan bagaimana komponen `App` tidak perlu tahu *apa* yang `Toolbar` akan lakukan dengan `onPlayMovie` atau `onUploadImage`. Itu adalah detail implementasi dari `Toolbar`. Di sini, `Toolbar` mengoper mereka sebagai *handler* `onClick` kepada `Button`-nya, tetapi itu bisa saja memicu mereka dengan *keyboard shortcut*. Memberi nama *prop* berdasarkan interaksi spesifik aplikasi seperti `onPlayMovie` memberikan Anda fleksibilitas untuk mengganti bagaimana mereka digunakan nanti.
-  
+
 <Note>
 
 Pastikan bahwa Anda menggunakan *tag* HTML yang sesuai untuk *event handler* Anda. Misalnya, untuk meng-*handle* klik, gunakan [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) alih-alih `<div onClick={handleClick}>`. Menggunakan `<button>` asli milik peramban memungkinkan perilaku peramban *built-in* seperti navigasi *keyboard*. Jika Anda tidak suka *styling* bawaan peramban dari sebuah tombol dan ingin membuatnya tampil lebih seperti tautan atau elemen UI lainnya, Anda dapat mengubahnya dengan CSS. [Pelajari lebih lanjut tentang menulis *markup* yang aksesibel.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
@@ -411,7 +411,7 @@ button { margin: 5px; }
 
 Saat Anda mengeklik pada sebuah tombol:
 
-1. React memanggil *handler* `onClick` yang dioper ke `<button>`. 
+1. React memanggil *handler* `onClick` yang dioper ke `<button>`.
 2. *Handler* tersebut, didefinisikan di dalam `Button`, melakukan hal berikut:
    * Memanggil `e.stopPropagation()`, mencegah *event*-nya untuk menggelembung lebih lanjut.
    * Memanggil fungsi `onClick`, yang merupakan *prop* yang dioper dari komponen `Toolbar`.
@@ -433,10 +433,10 @@ Dalam kasus yang jarang terjadi, Anda mungkin butuh untuk menangkap semua *event
 </div>
 ```
 
-Setiap *event* berpropagasi dalam tiga fase: 
+Setiap *event* berpropagasi dalam tiga fase:
 
 1. Bergerak ke atas, meamnggil semua *handler* `onClickCapture`.
-2. Menjalankan *handler* `onClick` milik elemen yang diklik. 
+2. Menjalankan *handler* `onClick` milik elemen yang diklik.
 3. Bergerak ke atas, memanggil semua *handler* `onClick`.
 
 *Event capture* berguna untuk kode seperti perute atau analitik, tetapi Anda mungkin tidak akan menggunakannya dalam kode aplikasi.

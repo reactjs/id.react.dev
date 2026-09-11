@@ -895,7 +895,7 @@ function VideoPlayer({ src, isPlaying }) {
   useEffect(() => {
     const videoRef = ref.current;
     videoRef.play();
-    
+
     return () => {
       videoRef.pause();
     }
@@ -918,7 +918,7 @@ export default function App() {
           src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" />
 
       }
-      {video === 2 && 
+      {video === 2 &&
         <VideoPlayer key={2}
           // 'Elephants Dream' by Orange Open Movie Project Studio, licensed under CC-3.0, hosted by archive.org
           src="https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"
@@ -938,7 +938,7 @@ let interval = setInterval(() => {
   if (playing.length > 1) {
     console.error(`Multiple playing videos: ${playing.length}`);
   }
-    
+
 }, 50);
 ```
 
@@ -968,7 +968,7 @@ function VideoPlayer({ src, isPlaying }) {
   useEffect(() => {
     const videoRef = ref.current;
     videoRef.play();
-    
+
     return () => {
       videoRef.pause();
     }
@@ -1024,13 +1024,13 @@ export default function VideoChecker() {
       }
 
     }, 50);
-    
+
     return () => {
       hasLogged.current = false;
       clearInterval(interval);
     }
   });
-  
+
 }
 
 ```
@@ -1062,7 +1062,7 @@ function VideoPlayer({ src, isPlaying }) {
   useEffect(() => {
     const videoRef = ref.current;
     videoRef.play();
-    
+
     return () => {
       videoRef.pause();
     }
@@ -1117,13 +1117,13 @@ export default function VideoChecker() {
       }
 
     }, 50);
-    
+
     return () => {
       hasLogged.current = false;
       clearInterval(interval);
     }
   });
-  
+
 }
 
 ```

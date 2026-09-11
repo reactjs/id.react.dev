@@ -34,7 +34,7 @@ Untuk membantu Anda mendapatkan intuisi yang tepat, mari kita lihat beberapa con
 
 Katakanlah Anda memiliki komponen dengan dua variabel *state*: `firstName` dan `lastName`. Anda ingin mendapatkan `fullName` dengan menggabungkan keduanya. Selain itu, Anda ingin `fullName` diperbarui setiap kali `firstName` atau `lastName` berubah. Naluri pertama Anda mungkin menambahkan variabel *state* `fullName` dan memperbaruinya di *Effect*:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -66,7 +66,7 @@ function Form() {
 
 Komponen ini menghitung `visibleTodos` dengan mengambil `todos` yang diterimanya berdasarkan *props* dan memfilternya berdasarkan prop `filter`. Anda mungkin tergoda untuk menyimpan hasilnya dalam keadaan dan memperbaruinya dari *Effect*:
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -159,7 +159,7 @@ Perhatikan juga bahwa mengukur kinerja dalam mode pengembangan tidak akan member
 
 Komponen `ProfilePage` ini menerima *prop* `userId`. Halaman tersebut berisi *input* komentar, dan Anda menggunakan variabel *state* `comment` untuk menyimpan nilainya. Suatu hari, Anda melihat masalah: saat Anda bernavigasi dari satu profil ke profil lainnya, *state* `comment` tidak disetel ulang. Akibatnya, Anda dapat dengan mudah mengirim komentar ke profil pengguna yang salah secara tidak sengaja. Untuk memperbaiki masalah ini, Anda ingin menghapus variabel *state* `comment` setiap kali `userId` berubah:
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -202,7 +202,7 @@ Terkadang, Anda mungkin ingin menyetel ulang atau menyesuaikan sebagian *state* 
 
 Komponen `List` ini menerima *list* `item` sebagai *prop*, dan mempertahankan item yang dipilih dalam variabel *state* `selection`. Anda ingin menyetel ulang `selection` ke `null` setiap kali prop `items` menerima senarai yang berbeda:
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -815,7 +815,7 @@ Sederhanakan komponen ini dengan menghapus semua *state* dan *Effect* yang tidak
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1018,7 +1018,7 @@ Salah satu solusinya adalah menambahkan panggilan `useMemo` untuk menyimpan *cac
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1359,7 +1359,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {

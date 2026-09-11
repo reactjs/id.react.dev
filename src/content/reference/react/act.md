@@ -115,7 +115,7 @@ Menggunakan `act` memastikan bahwa semua pembaruan telah diterapkan sebelum kita
 
 ### Mengirimkan events dalam pengujian {/*dispatching-events-in-tests*/}
 
-Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`: 
+Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`:
 
 ```js {14,16}
 import {act} from 'react';

@@ -266,12 +266,12 @@ Pada langkah sebelumnya, Anda menemukan dua bagian *state* dalam aplikasi ini: t
 Sekarang mari kita bahas strateginya:
 
 1. **Identifikasi komponen yang menggunakan state:**
-    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang). 
+    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang).
     * `SearchBar` perlu menampilkan *state* tersebut (teks pencarian dan nilai kotak centang).
 1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
 
-Jadi nilai state akan berada di dalam `FilterableProductTable`. 
+Jadi nilai state akan berada di dalam `FilterableProductTable`.
 
 Tambahkan state ke komponen menggunakan [Hook `useState()`.](/reference/react/useState) Hook adalah fungsi khusus yang memungkinkan Anda "mengaitkan ke dalam" React. Tambahkan dua variabel state di bagian atas `FilterableProductTable` dan tentukan state awalnya:
 

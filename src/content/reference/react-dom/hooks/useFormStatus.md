@@ -40,7 +40,7 @@ export default function App() {
 }
 ```
 
-Untuk mendapatkan informasi state, komponen `Submit` harus di-_render_ dalam `<form>`. Hook mengembalikan informasi seperti properti <CodeStep step={1}>`pending`</CodeStep> yang memberi tahu Anda apakah form sedang aktif dikirimkan. 
+Untuk mendapatkan informasi state, komponen `Submit` harus di-_render_ dalam `<form>`. Hook mengembalikan informasi seperti properti <CodeStep step={1}>`pending`</CodeStep> yang memberi tahu Anda apakah form sedang aktif dikirimkan.
 
 Pada contoh di atas, `Submit` menggunakan informasi ini untuk menonaktifkan penekanan `<button>` ketika form dikirimkan.
 
@@ -65,7 +65,7 @@ Objek `status` dengan properti berikut:
 
 #### Catatan Penting {/*caveats*/}
 
-* Hook `useFormStatus` harus dipanggil dari komponen yang di-_render_ di dalam `<form>`. 
+* Hook `useFormStatus` harus dipanggil dari komponen yang di-_render_ di dalam `<form>`.
 * `useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. Ini tidak akan mengembalikan informasi status untuk `<form>` apapun yang di-_render_ dalam komponen yang sama atau komponen anak.
 
 ---
@@ -75,7 +75,7 @@ Objek `status` dengan properti berikut:
 ### Menampilkan state tertunda selama pengiriman form {/*display-a-pending-state-during-form-submission*/}
 Untuk menampilkan state tertunda saat form dikirimkan, Anda dapat memanggil Hook `useFormStatus` dalam komponen yang di-_render_ dalam `<form>` dan membaca properti `pending` yang dikembalikan.
 
-Di sini, kami menggunakan properti `pending` untuk menunjukkan bahwa form sedang dikirimkan. 
+Di sini, kami menggunakan properti `pending` untuk menunjukkan bahwa form sedang dikirimkan.
 
 <Sandpack>
 
@@ -132,7 +132,7 @@ Seharusnya panggil `useFormStatus` dari dalam komponen yang terletak di dalam `<
 ```js
 function Submit() {
   // ✅ `pending` akan diturunkan dari form yang membungkus komponen Submit
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
 }
 
@@ -223,7 +223,7 @@ button {
 
 ### `status.pending` tidak pernah `true` {/*pending-is-never-true*/}
 
-`useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk. 
+`useFormStatus` hanya akan mengembalikan informasi status untuk `<form>` induk.
 
 Jika komponen yang memanggil `useFormStatus` tidak disarangkan dalam `<form>`, `status.pending` akan selalu mengembalikan `false`. Pastikan `useFormStatus` dipanggil dalam komponen yang merupakan turunan dari elemen `<form>`.
 

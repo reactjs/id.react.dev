@@ -14,7 +14,7 @@ Semua komponen bawaan peramban mendukung beberapa *props* dan *events*.
 
 * [Komponen-Komponen Umum (contoh: `<div>`)](/reference/react-dom/components/common)
 
-Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`. 
+Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`.
 
 ---
 
@@ -46,7 +46,7 @@ Komponen ini memiliki perilaku khusus di React karena React dapat merender merek
 
 ## Semua komponen HTML {/*all-html-components*/}
 
-React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
+React mendukung semua komponen HTML bawaan peramban. Ini termasuk:
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)

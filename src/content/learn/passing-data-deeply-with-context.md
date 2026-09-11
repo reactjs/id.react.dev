@@ -10,9 +10,9 @@ Biasanya, Anda akan mengoper informasi dari komponen induk ke komponen anak mela
 
 <YouWillLearn>
 
-- Apa itu "*prop drilling*" 
+- Apa itu "*prop drilling*"
 - Bagaimana cara mengganti pengiriman *props* yang berulang dengan *context*
-- Kasus umum untuk penggunaan *context* 
+- Kasus umum untuk penggunaan *context*
 - Alternatif umum untuk *context*
 
 </YouWillLearn>
@@ -857,7 +857,7 @@ Jika tidak satu pun dari pendekatan ini yang cocok untuk Anda, pertimbangkan *co
 * **Akun saat ini:** Banyak komponen yang mungkin perlu mengetahui pengguna yang sedang masuk. Menempatkannya dalam konteks akan memudahkan untuk membacanya di mana saja di dalam pohon (*tree*). Beberapa aplikasi memungkinkan Anda mengoperasikan beberapa akun pada saat yang sama (misalnya untuk memberikan komentar sebagai pengguna yang berbeda). Dalam kasus tersebut, akan lebih mudah untuk membungkus bagian dari UI ke dalam penyedia bersarang dengan nilai akun saat ini yang berbeda.
 * **Routing:** Sebagian besar solusi *routing* menggunakan *context* secara internal untuk menyimpan rute saat ini. Dengan cara inilah setiap link "mengetahui" apakah ia aktif atau tidak. Jika Anda membuat *router* anda sendiri, Anda mungkin ingin melakukannya juga.
 * **Mengelola _state_:** Seiring pertumbuhan aplikasi Anda, Anda mungkin akan menempatkan banyak *state* yang lebih dekat ke bagian atas aplikasi Anda. Banyak komponen yang jauh di bawahnya mungkin ingin untuk mengubahnya. Ini adalah hal yang umum untuk [menggunakan reducer bersama dengan *context*](/learn/scaling-up-with-reducer-and-context) untuk mengelola *state* yang kompleks dan mengopernya ke komponen yang jauh ke bawah tanpa terlalu banyak kerumitan.
-  
+
 *Context* tidak terbatas pada nilai statis. Jika anda memberikan nilai yang berbeda pada render berikutnya, React akan memperbarui semua komponen yang membacanya di bawahnya! Inilah sebabnya mengapa *context* sering digunakan bersama degan *state*.
 
 Pada umumnya, jika beberapa informasi dibutuhkan oleh komponen yang jauh di beberapa bagian pohon (*tree*), ini adalah indikasi yang bagus bahwa *context* akan membantu Anda.
@@ -963,17 +963,17 @@ export const places = [{
   description: 'Tradisi memilih warna-warna cerah untuk rumah dimulai pada akhir abad ke-20.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Desa Pelangi di Taichung, Taiwan',
   description: 'Untuk menyelamatkan rumah-rumah tersebut dari pembongkaran, Huang Yung-Fu, seorang penduduk setempat, mengecat 1.200 rumah tersebut pada tahun 1924.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Meksiko',
   description: 'Salah satu mural terbesar di dunia yang menutupi rumah-rumah di lingkungan lereng bukit.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase di Rio de Janeiro, Brasil',
   description: 'Tengara ini diciptakan oleh Jorge Selarón, seorang seniman kelahiran Chili, sebagai "penghormatan kepada rakyat Brasil."',
   imageId: 'aeO3rpI'
@@ -983,7 +983,7 @@ export const places = [{
   description: 'Rumah-rumahnya dicat mengikuti sistem warna tertentu yang berasal dari abad ke-16.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
   imageId: 'rTqKo46'
@@ -1102,17 +1102,17 @@ export const places = [{
   description: 'Tradisi memilih warna-warna cerah untuk rumah dimulai pada akhir abad ke-20.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Desa Pelangi di Taichung, Taiwan',
   description: 'Untuk menyelamatkan rumah-rumah tersebut dari pembongkaran, Huang Yung-Fu, seorang penduduk setempat, mengecat 1.200 rumah tersebut pada tahun 1924.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Meksiko',
   description: 'Salah satu mural terbesar di dunia yang menutupi rumah-rumah di lingkungan lereng bukit.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase di Rio de Janeiro, Brasil',
   description: 'Tengara ini diciptakan oleh Jorge Selarón, seorang seniman kelahiran Chili, sebagai "penghormatan kepada rakyat Brasil."',
   imageId: 'aeO3rpI'
@@ -1122,7 +1122,7 @@ export const places = [{
   description: 'Rumah-rumahnya dicat mengikuti sistem warna tertentu yang berasal dari abad ke-16.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Maroko',
   description: 'Ada beberapa teori mengapa rumah-rumah dicat biru, termasuk bahwa warna tersebut dapat mengusir nyamuk atau melambangkan langit dan surga.',
   imageId: 'rTqKo46'

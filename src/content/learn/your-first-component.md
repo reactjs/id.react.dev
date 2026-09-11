@@ -35,7 +35,7 @@ Di dalam *web*, HTML memungkinkan kita membuat dokumen-dokumen terstruktur yang 
 
 React memungkinkan Anda menggabung *markup*, CSS, dan JavaScript Anda menjadi "komponen" yang dibuat khusus, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda.** Daftar isi yang Anda lihat di atas dapat diubah menjadi sebuah komponen `<TableOfContents />` yang dapat Anda *render* pada setiap halaman. Dari belakang, itu tetap menggunakan *tag* HTML yang sama seperti `<article>`, `h1`, dll.
 
-Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang Anda baca terbuat oleh komponen-komponen React: 
+Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang Anda baca terbuat oleh komponen-komponen React:
 
 ```js
 <PageLayout>
@@ -228,9 +228,9 @@ Anda baru saja mendapatkan rasa pertama Anda dari React! Mari kita rekap beberap
 * React memungkinkan Anda untuk membuat komponen, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda**
 * Dalam suatu aplikasi React, setiap bagian dari UI adalah sebuah komponen.
 * Komponen React adalah fungsi JavaScript biasa kecuali:
-  
+
   1. Nama mereka selalu dimulai dengan huruf kapital.
-  2. Mereka selalu mengembalikan *markup* JSX.  
+  2. Mereka selalu mengembalikan *markup* JSX.
 
 </Recap>
 

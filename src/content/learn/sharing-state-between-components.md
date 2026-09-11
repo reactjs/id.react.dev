@@ -117,7 +117,7 @@ const [isActive, setIsActive] = useState(false);
 Lalu, tambahkan `isActive` ke daftar *prop* `Panel`:
 
 ```js
-function Panel({ title, children, isActive }) 
+function Panel({ title, children, isActive })
 ```
 
 Sekarang komponen induk `Panel` dapat *mengontrol* `isActive` dengan [mengoper sebagai prop.](/learn/passing-props-to-a-component) Sebaliknya, komponen `Panel` sekarang tidak memiliki *kontrol* atas nilai `isActive`--sekarang terserah komponen induk!
@@ -183,7 +183,7 @@ Coba ubah nilai `isActive` yang dituliskan langsung di dalam kode komponen `Acco
 
 ### Langkah 3: Tambahkan state ke komponen induk {/*step-3-add-state-to-the-common-parent*/}
 
-Memindahkan *state* ke atas seringkali mengubah sifat dari apa yang Anda simpan sebagai *state*. 
+Memindahkan *state* ke atas seringkali mengubah sifat dari apa yang Anda simpan sebagai *state*.
 
 
 

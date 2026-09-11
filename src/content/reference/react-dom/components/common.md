@@ -4,7 +4,7 @@ title: "Komponen umum (cth. <div>)"
 
 <Intro>
 
-Semua komponen bawaan dari sebuah peramban web (*browser*), seperti [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), mendukung beberapa *props* dan *event* umum. 
+Semua komponen bawaan dari sebuah peramban web (*browser*), seperti [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), mendukung beberapa *props* dan *event* umum.
 
 </Intro>
 
@@ -38,7 +38,7 @@ Beberapa *props* spesial React berikut didukung oleh setiap komponen bawaan:
 
 * `style`: Sebuah objek *styles* CSS, sebagai contoh `{ fontWeight: 'bold', margin: 20 }`. Seperti properti dari DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style), penamaan dari properti CSS harus ditulis dalam `camelCase`, sebagai contoh `fontWeight` bukan `font-weight`. Anda dapat mengoper string atau angka sebagai nilai. Jika anda memasukkan angka, seperti `width: 100`, React akan secara otomatis menambahkan `px` ("piksel") ke dalam nilai tersebut kecuali jika properti tersebut merupakan [properti tanpa unit.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) Kami merekomendasikan penggunaan `style` hanya untuk *styles* yang bersifat dinamis yang mana nilai dari *style* tersebut masih dapat berubah-ubah. Untuk kasus lainnya, penggunaan kelas *CSS* biasa dengan `className` lebih efisien. [Baca lebih lanjut mengenai `className` dan `style`.](#applying-css-styles)
 
-Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan: 
+Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan:
 
 * [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): Sebuah string. Menentukan pintasan (*shortcut*) keyboard untuk elemen. [Tidak direkomendasikan secara umum.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
 * [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): Atribut ARIA memungkinkan anda untuk menentukan informasi pohon aksesibilitas untuk elemen ini. Liat [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) untuk referensi yang lengkap. Dalam React, setiap atribut ARIA memiliki nama yang sama persis seperti di HTML.
@@ -49,7 +49,7 @@ Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan:
 * [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Antara `'ltr'` atau `'rtl'`. Menentukan arah teks dari elemen tersebut.
 * [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): Sebuah boolean. Menentukan apakah elemen tersebut dapat diseret. Bagian dari [API HTML *Drag and Drop*.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 * [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): Sebuah string. Menentukan aksi apa yang direpresentasikan oleh tombol enter pada keyboard *virtual*.
-* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): Sebuah string. Untuk [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) dan [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), Memungkinan anda untuk [mengasosiasikan label the beberapa kontrol.](/reference/react-dom/components/input#providing-a-label-for-an-input) Sama seperti [atribut HTML `for`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React tidak menggunakan nama dari atribut HTML melainkan menggunakan nama properti standar DOM (`htmlFor`) 
+* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): Sebuah string. Untuk [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) dan [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), Memungkinan anda untuk [mengasosiasikan label the beberapa kontrol.](/reference/react-dom/components/input#providing-a-label-for-an-input) Sama seperti [atribut HTML `for`.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React tidak menggunakan nama dari atribut HTML melainkan menggunakan nama properti standar DOM (`htmlFor`)
 * [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): Sebuah boolean atau string. Menentukan apakah sebuah elemen disembunyikan atau tidak.
 * [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): Sebuah string. Menentukan pengidentifikasi untuk untuk elemen ini, yang mana dapat digunakan untuk menemukannya kembali atau menghubungkannya dengan elemen lain. Dapatkan dengan menggunakan [`useId`](/reference/react/useId) untuk menghidari bentrokan antara beberapa *instances* pada komponen yang sama.
 * [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): Sebuah string. Jika ditentukan, maka komponen tersebut akan berperilaku seperti [elemen kustom.](/reference/react-dom/components#custom-html-elements)
@@ -84,11 +84,11 @@ Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan:
 * `onCutCapture`: Sebuah versi dari `onCut` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * `onDoubleClick`: Sebuah fungsi [*handler* `MouseEvent`](#mouseevent-handler). Aktif saat pengguna melakukan klik sebanyak dua kali. Sesuai dengan [*event* `dblclick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event) pada peramban web (*browser*).
 * `onDoubleClickCapture`: Sebuah versi dari `onDoubleClick` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif ketika user mencoba untuk menyeret sesuatu. 
+* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif ketika user mencoba untuk menyeret sesuatu.
 * `onDragCapture`: Sebuah versi dari `onDrag` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat user berhenti menyeret sesuatu. 
+* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat user berhenti menyeret sesuatu.
 * `onDragEndCapture`: Sebuah versi dari `onDragEnd` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat konten yang terseret memasuki suatu target penurunan yang valid. 
+* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif saat konten yang terseret memasuki suatu target penurunan yang valid.
 * `onDragEnterCapture`: Sebuah versi dari `onDragEnter` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): Sebuah fungsi [*handler* `DragEvent`](#dragevent-handler). Aktif pada target penurunan yang valid saat konten yang terseret sedang berada pada target tersebut. Anda perlu memanggil `e.preventDefault()` untuk memengizinkan proses penurunan.
 * `onDragOverCapture`: Sebuah versi dari `onDragOver` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
@@ -155,7 +155,7 @@ Berikut *props* DOM standar yang juga didukung oleh setiap komponen bawaan:
 * [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): Sebuah string. Menentukan teks *tooltip* untuk elemen tersebut.
 * [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Antara `'yes'` atau `'no'`. Mengoper nilai `'no'` mengecualikan konten elemen agar tidak diterjemahkan.
 
-Anda juga dapat mengoper atribut kustom sebagai *props*, sebagai contoh `custompropsaya="sebuahNilai".` Hal ini akan sangat berguna pada proses pengintegrasian dengan *libraries* pihak ketiga. Nama dari atribut kustom ini harus *lowercase* (dalam huruf non-kapital) dan tidak diawali dengan `on`. Nilai tersebut akan dikonversikan kedalam String. Jika anda mengoper nilai `null` atau `undefined`, atribut kustom tersebut akan dihapus. 
+Anda juga dapat mengoper atribut kustom sebagai *props*, sebagai contoh `custompropsaya="sebuahNilai".` Hal ini akan sangat berguna pada proses pengintegrasian dengan *libraries* pihak ketiga. Nama dari atribut kustom ini harus *lowercase* (dalam huruf non-kapital) dan tidak diawali dengan `on`. Nilai tersebut akan dikonversikan kedalam String. Jika anda mengoper nilai `null` atau `undefined`, atribut kustom tersebut akan dihapus.
 
 Berikut *events* yang hanya aktif untuk elemen [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form):
 
@@ -194,7 +194,7 @@ Berikut *events* yang aktif pada beberapa sumber daya seperti [`<audio>`](https:
 * `onCanPlayThroughCapture`: Sebuah versi dari `onCanPlayThrough` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat durasi dari media berubah/diperbarui.
 * `onDurationChangeCapture`: Sebuah versi dari `onDurationChange` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
-* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat media telah menjadi kosong. 
+* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat media telah menjadi kosong.
 * `onEmptiedCapture`: Sebuah versi dari `onEmptied` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
 * [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): Sebuah fungsi [`Event` *handler*](#event-handler). Aktif saat peramban web (*browser*) menemukan media yang terenkripsi.
 * `onEncryptedCapture`: Sebuah versi dari `onEncrypted` yang aktif pada [fase penangkapan.](/learn/responding-to-events#capture-phase-events)
@@ -297,7 +297,7 @@ To support backwards compatibility, if a cleanup function is not returned from t
 
 Itu sesuai dengan stadar yang sama dengan *events* DOM yang mendasdarinya, tetapi memperbaiki beberapa ketidakkonsistenan dari peramban web (*browser*).
 
-Beberapa *events* React tidak dipetakan secara langsung ke *events* asli dari peramban web (*browser*). Sebaagi contoh `onMouseLeave`, `e.nativeEvent` akan menunjuk ke sebuah *event* `mouseout`. Pemetaan spesifik bukan bagian dari API publik dan masih dapat berubah di masa mendatang. Jika anda memerlukan *event* peramban web (*browser*) mendasari karena alasan tertentu, bacalah dari `e.nativeEvent`. 
+Beberapa *events* React tidak dipetakan secara langsung ke *events* asli dari peramban web (*browser*). Sebaagi contoh `onMouseLeave`, `e.nativeEvent` akan menunjuk ke sebuah *event* `mouseout`. Pemetaan spesifik bukan bagian dari API publik dan masih dapat berubah di masa mendatang. Jika anda memerlukan *event* peramban web (*browser*) mendasari karena alasan tertentu, bacalah dari `e.nativeEvent`.
 
 #### Properti {/*react-event-object-properties*/}
 
@@ -332,7 +332,7 @@ Selain itu, objek *event* React juga menyediakan metode berikut:
 
 #### Peringatan {/*react-event-object-caveats*/}
 
-* Nilai dari `currentTarget`, `eventPhase`, `target`, dan `type` menunjukkan nilai yang diharapkan oleh kode React anda. Di dalamnya, React memasang *event handlers* pada akarnya, tetapi ini tidak merefleksi di objek *event* React. Sebagai contoh, `e.currentTarget` mungkin tidak sama dengan `e.nativeEvent.currentTarget`. Untuk *polyfilled events*, `e.type` (Tipe *event* React) mungkin berbeda dengan `e.nativeEvent.type` () 
+* Nilai dari `currentTarget`, `eventPhase`, `target`, dan `type` menunjukkan nilai yang diharapkan oleh kode React anda. Di dalamnya, React memasang *event handlers* pada akarnya, tetapi ini tidak merefleksi di objek *event* React. Sebagai contoh, `e.currentTarget` mungkin tidak sama dengan `e.nativeEvent.currentTarget`. Untuk *polyfilled events*, `e.type` (Tipe *event* React) mungkin berbeda dengan `e.nativeEvent.type` ()
 
  but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (tipe yang mendasari).
 
@@ -665,7 +665,7 @@ Sebuah tipe *event handler* untuk [*touch events*.](https://developer.mozilla.or
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/shiftKey)
   * [`touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches)
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
-  
+
   Ini juga termasuk properti yang diturunkan oleh [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent):
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
@@ -838,7 +838,7 @@ export default function Avatar({ pengguna }) {
 
 Untuk menerapkan kelas CSS secara kondisional, Anda perlu menghasilkan string `className` dengan JavaScript.
 
-Sebagai contoh, `className={'baris ' + (sedangDipilih ? 'dipilih': '')}` akan menghasilkan antara `className="baris"` atau `className="baris dipilih"` tergantung apakah nilai dari `sedangDipilih` adalah `true`. 
+Sebagai contoh, `className={'baris ' + (sedangDipilih ? 'dipilih': '')}` akan menghasilkan antara `className="baris"` atau `className="baris dipilih"` tergantung apakah nilai dari `sedangDipilih` adalah `true`.
 
 Untuk membuatnya lebih mudah dipaca, anda dapat menggunakan *library* bantuan seperti [`classnames`:](https://github.com/JedWatson/classnames)
 
@@ -878,7 +878,7 @@ function Baris({ sedangDipilih, ukuran }) {
 
 ### Memanipulasi node DOM dengan sebuah ref {/*manipulating-a-dom-node-with-a-ref*/}
 
-Terkadang, anda perlu untuk mengambil node DOM peramban web (*browser*) yang berasosiasi dengan tag di JSX. Sebagai contoh, jika anda ingin fokus pada sebuah `<input>` saat sebuah tombol diklik, anda harus memanggil [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) pada *node* DOM `<input>` peramban web (*browser*). 
+Terkadang, anda perlu untuk mengambil node DOM peramban web (*browser*) yang berasosiasi dengan tag di JSX. Sebagai contoh, jika anda ingin fokus pada sebuah `<input>` saat sebuah tombol diklik, anda harus memanggil [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) pada *node* DOM `<input>` peramban web (*browser*).
 
 Untuk mendapatkan *node* DOM peramban web (*browser*) untuk sebuah tag, [deklarasikan sebuah ref](/reference/react/useRef) dan oper sebagai atribut `ref` pada tag tersebut:
 
@@ -1123,7 +1123,7 @@ input { margin-left: 10px; }
 
 ### Penanganan *events* fokus {/*handling-focus-events*/}
 
-Dalam React, [*events* fokus](#focusevent-handler) menggelembung (*bubble*). Anda dapat menggunakan `currentTarget` dan `relatedTarget`  
+Dalam React, [*events* fokus](#focusevent-handler) menggelembung (*bubble*). Anda dapat menggunakan `currentTarget` dan `relatedTarget`
 In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` untuk membedakan apakah *events* pemfokusan atau pemburaman berasal dari luar elemen *parent*. Contoh tersebut menunjukkan cara mendeteksi fokus *child*, memfokuskan elemen *parent*, dan cara mendeteksi fokus masuk atau keluar dari seluruh subpohon.
 
 <Sandpack>

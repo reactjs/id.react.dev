@@ -26,7 +26,7 @@ Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *
 * Apabila permintaan jaringan gagal, sebuah pesan kesalahan **muncul,** dan formulir **menjadi aktif** kembali.
 
 
-Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
+Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan.
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Di dalam mobil yang dikemudikan oleh orang yang tampak khawatir, merepresentasikan JavaScript, seorang penumpang memerintahkan pengemudi untuk melakukan serangkaian navigasi belokan demi belokan yang rumit." />
 

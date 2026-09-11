@@ -11,7 +11,7 @@ Komponen dengan banyak pembaruan *state* yang tersebar di banyak *event handlers
 <YouWillLearn>
 
 - Apa itu fungsi *reducer*
-- Bagaimana cara untuk migrasi dari fungsi `useState` menjadi `useReducer`   
+- Bagaimana cara untuk migrasi dari fungsi `useState` menjadi `useReducer`
 - Kapan menggunakan fungsi *reducer*
 - Bagaimana cara menulis fungsi *reducer* dengan baik
 

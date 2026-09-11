@@ -139,7 +139,7 @@ const [enabled, setEnabled] = useState(false);
 
 Ini akan menetapkan *type* `boolean` ke `enabled`, dan `setEnabled` akan menjadi fungsi yang menerima argumen `boolean`, atau fungsi yang mengembalikan `boolean`. Jika Anda ingin secara eksplisit memberikan *type* untuk *state*, Anda dapat melakukannya dengan memberikan argumen *type* ke panggilan `useState`:
 
-```ts 
+```ts
 // Menyetel type ke "boolean" secara eksplisit
 const [enabled, setEnabled] = useState<boolean>(false);
 ```

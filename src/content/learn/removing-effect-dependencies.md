@@ -430,7 +430,7 @@ function Form() {
     // ✅ Baik: Logika Event-specific dipanggil dari event handler
     post('/api/register');
     showNotification('Berhasil mendaftar!', theme);
-  }  
+  }
 
   // ...
 }

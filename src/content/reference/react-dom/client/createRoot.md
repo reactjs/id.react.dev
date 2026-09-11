@@ -109,7 +109,7 @@ Sebuah aplikasi yang dibuat sepenuhnya dengan React biasanya tidak perlu memangg
 
 Fungsi ini biasanya berguna saat node DOM pada akar React (atau turunan lainnya) mungkin dapat terhapus dari DOM oleh kode lain. Sebagai contoh, bayangkan sebuah panel tab jQuery yang menghapus tab nonaktif dari DOM. Jika tab tersebut terhapus, seluruh isi dari DOM tersebut (termasuk akar React) juga akan ikut terhapus. Pada kasus ini, Anda perlu memberitahukan React untuk "stop" mengelola konten DOM akar yang terhapus dengan memanggil `root.unmount`. Jika tidak, komponen yang ada di dalam akar tersebut tidak tahu kalau mereka harus membersihkan dan membebaskan *resources* global seperti *subscriptions*.
 
-Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan "melepaskan" React dari dalam node DOM akar, termasuk menghapus *event handlers* dan *state* yang ada pada pohon. 
+Memanggil `root.unmount` akan meng-*unmount* seluruh komponen di dalam akar, dan "melepaskan" React dari dalam node DOM akar, termasuk menghapus *event handlers* dan *state* yang ada pada pohon.
 
 
 #### Parameter {/*root-unmount-parameters*/}
