@@ -203,7 +203,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-By contrast, code that fetches data outside of `use`, such as inside an Effect, does not activate the boundary:
+<Note>
 
 **Hanya sumber data yang mendukung Suspense yang akan mengaktifkan komponen Suspense.** Yaitu:
 
