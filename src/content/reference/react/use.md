@@ -312,7 +312,7 @@ export default async function App() {
 }
 ```
 
-Namun menggunakan `await` di [Server Component](/reference/react/components#server-components) akan memblokir perenderan sampai pernyataan `await` selesai. Meneruskan Promise dari Server Component ke Client Component mencegah Promise tersebut memblokir perenderan Server Component.
+Namun menggunakan `await` di [Server Component](/reference/rsc/server-components) akan memblokir perenderan sampai pernyataan `await` selesai. Meneruskan Promise dari Server Component ke Client Component mencegah Promise tersebut memblokir perenderan Server Component.
 
 </DeepDive>
 

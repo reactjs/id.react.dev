@@ -320,7 +320,7 @@ Dengan cara ini proses render awal akan me-render konten yang sama seperti *serv
 
 Use this approach when you want the client-rendered content to be different from the initial server-rendered HTML.
 
-<Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use#use-browser) instead of waiting for an Effect.</Canary>
+<Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use) instead of waiting for an Effect.</Canary>
 
 <Pitfall>
 

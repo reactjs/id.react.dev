@@ -94,7 +94,7 @@ Yang tidak didukung, antara lain:
 * Simbol yang tidak didaftarkan secara global, misalnya `Symbol('my new symbol')`
 * Event dari *event handler*
 
-Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
+Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#serializable-types) untuk Komponen Klien yang menjadi pembatas.
 
 ## Penggunaan {/*usage*/}
 

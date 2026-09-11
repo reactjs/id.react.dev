@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[Kurung kurawal membuka "jendela ke dalam JavaScript".](/learn/javascript-in-jsx-dengan-kurung-kurawal#menggunakan-kurung-kurawal-sebuah-jendela-ke-dalam-dunia-javascript) Tempelkan variabel dengan kurung kurawal pada pohon JSX yang dikembalikan, menyarangkan ekspresi yang telah dikalkulasi sebelumnya di dalam JSX:
+[Kurung kurawal membuka "jendela ke dalam JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Tempelkan variabel dengan kurung kurawal pada pohon JSX yang dikembalikan, menyarangkan ekspresi yang telah dikalkulasi sebelumnya di dalam JSX:
 
 ```js
 <li className="item">

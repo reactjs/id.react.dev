@@ -280,7 +280,7 @@ Imagine that `<Posts />` needs to load some data, which takes some time. Ideally
 
 <Note>
 
-Only data read from a source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise read with [`use`](/reference/react/use), will suspend during rendering. Suspense does not detect data fetched inside an Effect or event handler.
+Only data read from a source that [activates a Suspense boundary](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading), such as a Promise read with [`use`](/reference/react/use), will suspend during rendering. Suspense does not detect data fetched inside an Effect or event handler.
 
 </Note>
 

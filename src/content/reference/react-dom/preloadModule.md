@@ -10,7 +10,7 @@ Fungsi `preloadModule` saat ini hanya tersedia di saluran Canary dan eksperiment
 
 <Note>
 
-[Framework berbasis React](/learn/start-a-new-react-project) sering kali sudah menangani pemuatan resource untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+[Framework berbasis React](/learn/creating-a-react-app) sering kali sudah menangani pemuatan resource untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
 
 </Note>
 

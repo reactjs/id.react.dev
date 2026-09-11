@@ -13,14 +13,14 @@ TypeScript adalah salah satu cara populer untuk menambahkan definisi *type* ke d
 
 * [TypeScript dengan Komponen React](/learn/typescript#typescript-with-react-components)
 * [Contoh menambahkan *type* dalam Hooks](/learn/typescript#example-hooks)
-* [*Types* umum dari `@types/react`](/learn/typescript/#useful-types)
-* [Tempat pembelajaran lebih lanjut](/learn/typescript/#further-learning)
+* [*Types* umum dari `@types/react`](/learn/typescript#useful-types)
+* [Tempat pembelajaran lebih lanjut](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
 ## Pemasangan {/*installation*/}
 
-Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#production-grade-react-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
+Semua [kerangka kerja React tingkat produksi](/learn/creating-a-react-app#full-stack-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)

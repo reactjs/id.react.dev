@@ -4,7 +4,7 @@ title: "Komponen Server"
 
 <RSC>
 
-Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Komponen Server digunakan di [Komponen Server React](/learn/creating-a-react-app#full-stack-frameworks).
 
 </RSC>
 

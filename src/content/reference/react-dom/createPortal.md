@@ -50,7 +50,7 @@ Sebuah portal hanya mengubah penempatan kerangka dari simpul DOM. Dalam hal lain
 
 * `domNode`: Beberapa simpul DOM, seperti yang dikembalikan oleh `document.getElementById()`. Simpul tersebut harus sudah ada. Melewatkan simpul DOM yang berbeda selama pembaruan akan menyebabkan konten portal dibuat ulang.
 
-* **opsional** `key`: Sebuah *string* atau angka unik yang akan digunakan sebagai [kunci](/learn/rendering-lists/#keeping-list-items-in-order-with-key) portal.
+* **opsional** `key`: Sebuah *string* atau angka unik yang akan digunakan sebagai [kunci](/learn/rendering-lists#keeping-list-items-in-order-with-key) portal.
 
 #### Returns {/*returns*/}
 

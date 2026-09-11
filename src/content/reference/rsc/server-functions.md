@@ -143,7 +143,7 @@ function UpdateName() {
 
 Ini memungkinkan Anda mengakses status `isPending` dari Fungsi Server dengan membungkusnya dalam Aksi di klien.
 
-Untuk lebih jelasnya, lihat dokumen tentang [Memanggil Fungsi Server di luar `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form)
+Untuk lebih jelasnya, lihat dokumen tentang [Memanggil Fungsi Server di luar `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form)
 
 ### Menggunakan Fungsi Server dengan Aksi Form {/*using-server-functions-with-form-actions*/}
 
@@ -168,7 +168,7 @@ function UpdateName() {
 
 Ketika pengiriman Formulir berhasil, React secara otomatis akan mereset formulir. Anda dapat menambahkan `useActionState` untuk mengakses status tertunda, respons terakhir, atau untuk mendukung peningkatan progresif.
 
-Untuk lebih jelasnya, lihat dokumen tentang [Fungsi Server dalam Formulir](/reference/rsc/use-server#server-actions-in-forms).
+Untuk lebih jelasnya, lihat dokumen tentang [Fungsi Server dalam Formulir](/reference/rsc/use-server#server-functions-in-forms).
 
 ## Fungsi Server dengan `useActionState` {/*server-functions-with-use-action-state*/}
 

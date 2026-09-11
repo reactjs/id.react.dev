@@ -391,7 +391,7 @@ You might notice this example looks a lot like `useReducer`, but they serve diff
 
 - **Use `useActionState`** to manage state of your Actions. The reducer can perform side effects.
 
-You can think of `useActionState` as `useReducer` for side effects from user Actions. Since it computes the next Action to take based on the previous Action, it has to [order the calls sequentially](/reference/react/useActionState#how-useactionstate-queuing-works). If you want to perform Actions in parallel, use `useState` and `useTransition` directly.
+You can think of `useActionState` as `useReducer` for side effects from user Actions. Since it computes the next Action to take based on the previous Action, it has to [order the calls sequentially](/reference/react/useActionState#useactionstate-vs-usereducer). If you want to perform Actions in parallel, use `useState` and `useTransition` directly.
 
 </DeepDive>
 
@@ -1139,7 +1139,7 @@ When used with a [Server Function](/reference/rsc/server-functions), `useActionS
 
 </RSC>
 
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
+See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-action) docs for more information on using Actions with forms.
 
 ---
 

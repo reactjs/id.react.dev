@@ -10,7 +10,7 @@ Fungsi `preinit` saat ini hanya tersedia di kanal Canary dan eksperimental React
 
 <Note>
 
-[Framework berbasis React](/learn/start-a-new-react-project) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
+[Framework berbasis React](/learn/creating-a-react-app) sering kali menangani pemuatan sumber daya untuk Anda, jadi Anda mungkin tidak perlu memanggil API ini sendiri. Lihat dokumentasi framework Anda untuk detailnya.
 
 </Note>
 

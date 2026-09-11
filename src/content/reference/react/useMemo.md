@@ -1064,7 +1064,7 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ### Mencegah Effect agar tidak terlalu sering aktif {/*preventing-an-effect-from-firing-too-often*/}
 
-Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/pelajari/sinkronisasi-dengan-efek)
+Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/learn/synchronizing-with-effects)
 
 ```js {4-7,10}
 function ChatRoom({ roomId }) {
@@ -1286,7 +1286,7 @@ React memanggil fungsi Anda sebanyak dua kali, jadi Anda akan melihat bahwa todo
 
 Baca [menjaga komponen agar tetao murni](/learn/keeping-components-pure) untuk belajar lebih lanjut tentang kemurnian.
 
-Lihat juga panduan tentang [memperbarui objek](/learn/memperbarui-objek-dalam-status) dan [memperbarui senarai (*array*)](/belajar/memperbarui-array-dalam-status) tanpa mutasi.
+Lihat juga panduan tentang [memperbarui objek](/learn/updating-objects-in-state) dan [memperbarui senarai (*array*)](/learn/updating-arrays-in-state) tanpa mutasi.
 
 ---
 

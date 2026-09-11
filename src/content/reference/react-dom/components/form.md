@@ -36,7 +36,7 @@ Untuk membuat kontrol interaktif untuk mengirimkan informasi, render [komponen `
 
 #### Props {/*props*/}
 
-`<form>` mendukung semua [props elemen umum.](/reference/react-dom/components/common#props)
+`<form>` mendukung semua [props elemen umum.](/reference/react-dom/components/common#common-props)
 
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): URL atau fungsi. Ketika URL diberikan ke `action`, formulir akan berperilaku seperti komponen formulir HTML. Ketika fungsi diberikan ke `action`, fungsi tersebut akan menangani pengiriman formulir. Fungsi yang diberikan ke `action` dapat berupa *async* dan akan dipanggil dengan satu argumen yang berisi [data formulir](https://developer.mozilla.org/en-US/docs/Web/API/FormData) dari formulir yang dikirimkan. Prop `action` dapat ditimpa oleh atribut `formAction` pada komponen `<button>`, `<input type="submit">`, atau `<input type="image">`.
 
