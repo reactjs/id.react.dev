@@ -45,7 +45,7 @@ function ChatRoom({ roomId }) {
 #### Parameter {/*parameters*/}
 
 * `setup`: Fungsi dengan logika *Effect* Anda. Fungsi *setup* Anda juga dapat secara opsional mengembalikan fungsi *cleanup*. Ketika komponen Anda pertama kali ditambahkan ke DOM, React akan menjalankan fungsi *setup* Anda. Setelah setiap re-*render* dengan dependensi yang berubah, React akan pertama-tama menjalankan fungsi *cleanup* (jika Anda menyediakannya) dengan nilai lama, dan kemudian menjalankan fungsi *setup* Anda dengan nilai baru. Setelah komponen Anda dihapus dari DOM, React akan menjalankan fungsi *cleanup* Anda untuk terakhir kalinya.
- 
+
 * `dependensi` **opsional**: Daftar semua nilai reaktif yang direferensikan di dalam kode `setup`. Nilai reaktif meliputi *props*, *state*, dan semua variabel dan fungsi yang dideklarasikan langsung di dalam *body* komponen Anda. Jika *linter* Anda [dikonfigurasi untuk React](/learn/editor-setup#linting), itu akan memverifikasi bahwa setiap nilai reaktif dijelaskan dengan benar sebagai dependensi. Daftar dependensi harus memiliki jumlah item yang konstan dan ditulis secara *inline* seperti `[dep1, dep2, dep3]`. React akan membandingkan setiap dependensi dengan nilai sebelumnya menggunakan perbandingan [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) . Jika Anda mengabaikan argumen ini, *Effect* Anda akan berjalan ulang setelah setiap re-*render* dari komponen. [Lihat perbedaan antara melewatkan array dependensi, array kosong, dan tidak ada dependensi sama sekali.](#examples-dependencies)
 
 #### Kembalian {/*returns*/}
@@ -895,7 +895,7 @@ Pada contoh ini, sebuah fungsi *cleanup* tidak diperlukan karena kelas `MapWidge
 
 ### Mengambil data dengan *Effects* {/*fetching-data-with-effects*/}
 
-Anda dapat menggunakan sebuah *Effect* untuk mengambil data untuk komponen Anda. Perlu diingat bahwa [jika Anda menggunakan sebuah *framework*,](/learn/start-a-new-react-project#production-grade-react-frameworks) menggunakan mekanisme pengambilan data dari *framework* Anda akan jauh lebih efisien daripada menulis *Effects* secara manual.
+Anda dapat menggunakan sebuah *Effect* untuk mengambil data untuk komponen Anda. Perlu diingat bahwa [jika Anda menggunakan sebuah *framework*,](/learn/creating-a-react-app#full-stack-frameworks) menggunakan mekanisme pengambilan data dari *framework* Anda akan jauh lebih efisien daripada menulis *Effects* secara manual.
 
 Jika Anda ingin mengambil data dari sebuah *Effect* secara manual, kode Anda mungkin akan terlihat seperti ini:
 
@@ -927,7 +927,8 @@ Perhatikan variabel `ignore` yang diinisialisasi dengan nilai `false` dan diatur
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1047,7 +1048,7 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara yang populer untuk men
 
 Daftar kekurangan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat *mount* dengan *library* manapun. Seperti dengan *routing*, pengambilan data tidak mudah dilakukan dengan baik, jadi kami sarankan pendekatan berikut:
 
-- **Jika Anda menggunakan [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
+- **Jika Anda menggunakan [framework](/learn/creating-a-react-app#full-stack-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun cache sisi klien.** Solusi *open source* populer termasuk [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membangun solusi Anda sendiri, dalam hal ini Anda akan menggunakan *Effects* di bawah kap, tetapi juga menambahkan logika untuk mendeduplikasi permintaan, *caching respons*, dan menghindari air terjun(*waterfalls*) jaringan (dengan memuat data atau mengangkat persyaratan data ke *route*).
 
 Anda dapat terus mengambil data secara langsung dalam *Effects* jika kedua pendekatan ini tidak cocok untuk Anda.
@@ -1080,7 +1081,7 @@ Jika `serverUrl` atau `roomId` berubah, *Effect* Anda akan menyambung kembali ke
 ```js {8}
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-  
+
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
@@ -1494,7 +1495,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options); // It's used inside the Effect
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
@@ -1598,7 +1599,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
@@ -1731,11 +1732,13 @@ function Page({ url, shoppingCart }) {
 
 ### Menampilkan konten yang berbeda di server dan klien {/*displaying-different-content-on-the-server-and-the-client*/}
 
-Jika aplikasi Anda menggunakan server *rendering* (baik [langsung](/reference/react-dom/server) maupun melalui [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), komponen Anda akan di*render* di dua lingkungan yang berbeda. Di server, komponen akan di*render* untuk menghasilkan HTML awal. Di klien, React akan menjalankan kode *rendering* lagi sehingga ia dapat melekatkan *event handler* Anda ke HTML tersebut. Oleh karena itu, agar [hydrasi](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) berfungsi, output *render* awal Anda harus identik di klien dan server.
+Jika aplikasi Anda menggunakan server *rendering* (baik [langsung](/reference/react-dom/server) maupun melalui [framework](/learn/creating-a-react-app#full-stack-frameworks)), komponen Anda akan di*render* di dua lingkungan yang berbeda. Di server, komponen akan di*render* untuk menghasilkan HTML awal. Di klien, React akan menjalankan kode *rendering* lagi sehingga ia dapat melekatkan *event handler* Anda ke HTML tersebut. Oleh karena itu, agar [hydrasi](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) berfungsi, output *render* awal Anda harus identik di klien dan server.
 
 Dalam kasus yang jarang terjadi, Anda mungkin perlu menampilkan konten yang berbeda di klien. Misalnya, jika aplikasi Anda membaca beberapa data dari [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), maka hal itu tidak mungkin dilakukan di server. Berikut adalah cara mengimplementasikannya:
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 
@@ -1776,7 +1779,7 @@ Pertama, periksa apakah Anda telah lupa untuk menentukan *array* dependensi:
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 No dependency array: re-runs after every commit!
 ```
 
 Jika Anda telah menentukan *array* dependensi tetapi *Effect* Anda masih berjalan dalam *loop*, itu karena salah satu dependensi Anda berbeda pada setiap re-*render*.

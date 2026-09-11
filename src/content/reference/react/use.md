@@ -64,7 +64,7 @@ import { use } from 'react';
 
 function Button() {
   const theme = use(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `use` mengembalikan <CodeStep step={2}>nilai context</CodeStep> untuk <CodeStep step={1}>context</CodeStep> yang Anda berikan. Untuk menentukan nilai context, React menelusuri pohon komponen dan menemukan **penyedia context terdekat di atasnya** untuk context tersebut.
@@ -312,7 +312,7 @@ export default async function App() {
 }
 ```
 
-Namun menggunakan `await` di [Server Component](/reference/react/components#server-components) akan memblokir perenderan sampai pernyataan `await` selesai. Meneruskan Promise dari Server Component ke Client Component mencegah Promise tersebut memblokir perenderan Server Component.
+Namun menggunakan `await` di [Server Component](/reference/rsc/server-components) akan memblokir perenderan sampai pernyataan `await` selesai. Meneruskan Promise dari Server Component ke Client Component mencegah Promise tersebut memblokir perenderan Server Component.
 
 </DeepDive>
 

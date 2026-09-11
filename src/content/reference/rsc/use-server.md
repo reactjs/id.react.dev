@@ -94,7 +94,7 @@ Yang tidak didukung, antara lain:
 * Simbol yang tidak didaftarkan secara global, misalnya `Symbol('my new symbol')`
 * Event dari *event handler*
 
-Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#passing-props-from-server-to-client-components) untuk Komponen Klien yang menjadi pembatas.
+Nilai kembali yang dapat diserialisasi mengikuti aturan yang sama dengan [properti yang bisa diserialisasi](/reference/rsc/use-client#serializable-types) untuk Komponen Klien yang menjadi pembatas.
 
 ## Penggunaan {/*usage*/}
 
@@ -177,7 +177,7 @@ Fungsi Server adalah *endpoint* di sisi server dan bisa dipanggil dari mana saja
 
 Jika Anda menggunakan Fungsi Server di luar [formulir](/reference/react-dom/components/form), panggillah Fungsi Server tersebut di dalam sebuah [Transisi](/reference/react/useTransition), yang memungkinkan Anda menampilkan indikator pemuatan, melakukan [pembaruan status optimistis](/reference/react/useOptimistic), dan menangani error yang tidak terduga. Formulir akan secara otomatis membungkus Fungsi Server di dalam transisi.
 
-```js {9-12}
+```js {9-14}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
@@ -188,7 +188,9 @@ function LikeButton() {
   const onClick = () => {
     startTransition(async () => {
       const currentCount = await incrementLike();
-      setLikeCount(currentCount);
+      startTransition(() => {
+        setLikeCount(currentCount);
+      });
     });
   };
 

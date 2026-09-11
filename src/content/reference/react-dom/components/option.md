@@ -37,7 +37,7 @@ title: "<option>"
 
 #### Props {/*props*/}
 
-`<option>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
+`<option>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#common-props)
 
 Sebagai tambahan, `<option>` mendukung *props* berikut:
 
@@ -80,4 +80,4 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
-</Sandpack>  
+</Sandpack>

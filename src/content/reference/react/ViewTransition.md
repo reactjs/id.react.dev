@@ -130,7 +130,7 @@ Ketika `<ViewTransition>` mengaktifkan animasi "enter", React akan menambahkan n
 
 ```css
 ::view-transition-group(.slide-in) {
-  
+
 }
 ::view-transition-old(.slide-in) {
 
@@ -143,7 +143,7 @@ Di masa depan, pustaka CSS mungkin menambahkan animasi bawaan menggunakan Kelas 
 
 #### Peringatan {/*caveats*/}
 
-- Secara default, pembaruan `setState` segera dan tidak mengaktifkan `<ViewTransition>`, hanya pembaruan yang dibungkus dalam [Transisi](/reference/react/useTransition). Anda juga dapat menggunakan [`<Suspense>`](/reference/react/Suspense) untuk ikut serta dalam Transisi untuk [mengungkap konten](/link-to-suspense-below).
+- Secara default, pembaruan `setState` segera dan tidak mengaktifkan `<ViewTransition>`, hanya pembaruan yang dibungkus dalam [Transisi](/reference/react/useTransition). Anda juga dapat menggunakan [`<Suspense>`](/reference/react/Suspense) untuk ikut serta dalam Transisi untuk [mengungkap konten](/reference/react/Suspense#revealing-content-together-at-once).
 - `<ViewTransition>` membuat gambar yang dapat dipindahkan, diskalakan, dan cross-faded. Tidak seperti Animasi Tata Letak yang mungkin Anda lihat di React Native atau Motion, ini berarti bahwa tidak setiap Elemen individu di dalamnya menganimasikan posisinya. Ini dapat menghasilkan kinerja yang lebih baik dan animasi yang lebih halus dan berkelanjutan dibandingkan dengan menganimasikan setiap bagian individu. Namun, ini juga dapat kehilangan kesinambungan dalam hal-hal yang seharusnya bergerak sendiri. Jadi Anda mungkin harus menambahkan batas `<ViewTransition>` lebih banyak secara manual sebagai hasilnya.
 - Banyak pengguna mungkin lebih suka tidak memiliki animasi di halaman. React tidak secara otomatis menonaktifkan animasi untuk kasus ini. Kami merekomendasikan menggunakan query media `@media (prefers-reduced-motion)` untuk menonaktifkan animasi atau menguranginya berdasarkan preferensi pengguna. Di masa depan, pustaka CSS mungkin memiliki ini bawaan di preset mereka.
 - Saat ini, `<ViewTransition>` hanya berfungsi di DOM. Kami sedang mengerjakan menambahkan dukungan untuk React Native dan platform lainnya.
@@ -695,7 +695,7 @@ export default function Component() {
     </>
   );
 }
-  
+
 
 ```
 
@@ -899,7 +899,7 @@ export default function Component() {
     </>
   );
 }
-  
+
 
 ```
 
@@ -1802,7 +1802,7 @@ Misalnya, untuk menyesuaikan animasi untuk semua navigasi maju dan mundur:
  }}>
   <div>...</div>
 </ViewTransition>
- 
+
 // in your router:
 startTransition(() => {
   addTransitionType('navigation-' + navigationType);
@@ -2145,7 +2145,7 @@ function Component() {
 
 Untuk memperbaiki, pastikan bahwa `<ViewTransition>` datang sebelum node DOM lainnya:
 
-```js [3, 5] 
+```js [3, 5]
 function Component() {
   return (
     <ViewTransition>

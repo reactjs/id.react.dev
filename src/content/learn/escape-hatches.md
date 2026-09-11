@@ -201,7 +201,7 @@ Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 
 Sebagai contoh, Anda tidak perlu menggunakan *Effect* untuk menyesuaikan beberapa *state* berdasarkan *state* lainnya:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -455,8 +455,8 @@ Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` 
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -471,7 +471,7 @@ Ini tidak ideal. Anda ingin menghubungkan kembali ke *chat* jika hanya `roomId` 
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 

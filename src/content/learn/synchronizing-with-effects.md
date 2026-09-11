@@ -95,7 +95,7 @@ Anda mungkin tergoda untuk mencoba memanggil `play()` atau `pause()` saat pe-*re
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7, 9]}}
 import { useState, useRef, useEffect } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -734,7 +734,7 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara populer untuk mengambi
 
 Daftar kelemahan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat pemasangan komponen dengan pustaka apa pun. Seperti halnya dengan *routing*, pengambilan data bukanlah hal yang sepele untuk dilakukan dengan baik, jadi kami merekomendasikan pendekatan berikut ini:
 
-- **Jika Anda menggunakan [kerangka kerja (*framework*)](/learn/start-a-new-react-project#production-grade-react-frameworks), gunakan mekanisme pengambilan data yang sudah ada di dalamnya.** Kerangka kerja React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak mengalami kendala di atas.
+- **Jika Anda menggunakan [kerangka kerja (*framework*)](/learn/creating-a-react-app#full-stack-frameworks), gunakan mekanisme pengambilan data yang sudah ada di dalamnya.** Kerangka kerja React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak mengalami kendala di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun *cache* sisi klien.** Solusi sumber terbuka (*open source*) yang populer termasuk [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membuat solusi sendiri, dalam hal ini Anda dapat menggunakan *Effects* di dalamnya, tetapi menambahkan logika untuk menduplikasi *request*, menyimpan respons dalam *cache*, dan menghindari *waterfall* jaringan (dengan melakukan pramuat data atau mengangkat kebutuhan data ke *route*).
 
 Anda dapat terus mengambil data secara langsung di *Effects* jika tidak ada satu pun dari pendekatan ini yang cocok untuk Anda.
@@ -1007,7 +1007,7 @@ export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
   // TODO: Ini tidak bekerja. Perbaiki.
-  // ref.current.focus()    
+  // ref.current.focus()
 
   return (
     <input
@@ -1470,7 +1470,8 @@ Komponen ini menampilkan biografi orang yang dipilih. Komponen ini memuat biogra
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1543,7 +1544,8 @@ Untuk memperbaiki *race condition* ini, tambahkan fungsi pembersihan:
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1607,4 +1609,3 @@ Selain mengabaikan hasil panggilan API yang sudah usang, Anda juga dapat menggun
 </Solution>
 
 </Challenges>
-

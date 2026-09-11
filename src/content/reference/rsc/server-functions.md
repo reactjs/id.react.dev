@@ -46,7 +46,7 @@ function EmptyNote () {
   async function createNoteAction() {
     // Fungsi Server
     'use server';
-    
+
     await db.notes.create();
   }
 
@@ -55,8 +55,8 @@ function EmptyNote () {
 
 Ketika React merender Komponen Server `EmptyNote`, ia akan membuat referensi ke fungsi `createNoteAction`, dan meneruskan referensi itu ke Komponen Client `Button`. Ketika tombol diklik, React akan mengirim permintaan ke server untuk mengeksekusi fungsi `createNoteAction` dengan referensi yang diberikan:
 
-export default function Button({onClick}) { 
-  console.log(onClick); 
+export default function Button({onClick}) {
+  console.log(onClick);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={() => onClick()}>Create Empty Note</button>
 }
@@ -108,7 +108,7 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
+```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"], [2, 25, "submitAction"]]
 "use client";
 
 import {updateName} from './actions';
@@ -122,14 +122,16 @@ function UpdateName() {
   const submitAction = async () => {
     startTransition(async () => {
       const {error} = await updateName(name);
-      if (error) {
-        setError(error);
-      } else {
-        setName('');
-      }
+      startTransition(() => {
+        if (error) {
+          setError(error);
+        } else {
+          setName('');
+        }
+      });
     })
   }
-  
+
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
@@ -141,7 +143,7 @@ function UpdateName() {
 
 Ini memungkinkan Anda mengakses status `isPending` dari Fungsi Server dengan membungkusnya dalam Aksi di klien.
 
-Untuk lebih jelasnya, lihat dokumen tentang [Memanggil Fungsi Server di luar `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form)
+Untuk lebih jelasnya, lihat dokumen tentang [Memanggil Fungsi Server di luar `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form)
 
 ### Menggunakan Fungsi Server dengan Aksi Form {/*using-server-functions-with-form-actions*/}
 
@@ -166,7 +168,7 @@ function UpdateName() {
 
 Ketika pengiriman Formulir berhasil, React secara otomatis akan mereset formulir. Anda dapat menambahkan `useActionState` untuk mengakses status tertunda, respons terakhir, atau untuk mendukung peningkatan progresif.
 
-Untuk lebih jelasnya, lihat dokumen tentang [Fungsi Server dalam Formulir](/reference/rsc/use-server#server-actions-in-forms).
+Untuk lebih jelasnya, lihat dokumen tentang [Fungsi Server dalam Formulir](/reference/rsc/use-server#server-functions-in-forms).
 
 ## Fungsi Server dengan `useActionState` {/*server-functions-with-use-action-state*/}
 

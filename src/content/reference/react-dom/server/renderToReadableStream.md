@@ -92,7 +92,7 @@ async function handler(request) {
   });
 }
 ```
-  
+
 Bersamaan dengan <CodeStep step={1}>root component</CodeStep>, Anda perlu memberikan daftar <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Komponen root Anda harus mengembalikan **seluruh dokumen termasuk tag root `<html>`.
 
 Misalnya, mungkin terlihat seperti ini:

@@ -13,14 +13,14 @@ TypeScript adalah salah satu cara populer untuk menambahkan definisi *type* ke d
 
 * [TypeScript dengan Komponen React](/learn/typescript#typescript-with-react-components)
 * [Contoh menambahkan *type* dalam Hooks](/learn/typescript#example-hooks)
-* [*Types* umum dari `@types/react`](/learn/typescript/#useful-types)
-* [Tempat pembelajaran lebih lanjut](/learn/typescript/#further-learning)
+* [*Types* umum dari `@types/react`](/learn/typescript#useful-types)
+* [Tempat pembelajaran lebih lanjut](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
 ## Pemasangan {/*installation*/}
 
-Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#production-grade-react-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
+Semua [kerangka kerja React tingkat produksi](/learn/creating-a-react-app#full-stack-frameworks) menawarkan dukungan untuk menggunakan TypeScript. Ikuti panduan khusus kerangka kerja tersebut untuk pemasangan:
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -32,7 +32,7 @@ Semua [kerangka kerja React tingkat produksi](/learn/start-a-new-react-project#p
 Untuk memasang versi terbaru definisi *type* React:
 
 <TerminalBlock>
-npm install @types/react @types/react-dom
+npm install --save-dev @types/react @types/react-dom
 </TerminalBlock>
 
 Opsi *compiler* berikut perlu disetel dalam `tsconfig.json` Anda:
@@ -139,7 +139,7 @@ const [enabled, setEnabled] = useState(false);
 
 Ini akan menetapkan *type* `boolean` ke `enabled`, dan `setEnabled` akan menjadi fungsi yang menerima argumen `boolean`, atau fungsi yang mengembalikan `boolean`. Jika Anda ingin secara eksplisit memberikan *type* untuk *state*, Anda dapat melakukannya dengan memberikan argumen *type* ke panggilan `useState`:
 
-```ts 
+```ts
 // Menyetel type ke "boolean" secara eksplisit
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
@@ -174,7 +174,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 import {useReducer} from 'react';
 
 interface State {
-   count: number 
+   count: number
 };
 
 type CounterAction =
@@ -361,7 +361,7 @@ export default function Form() {
   const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
     setValue(event.currentTarget.value);
   }, [setValue])
-  
+
   return (
     <>
       <input value={value} onChange={handleChange} />

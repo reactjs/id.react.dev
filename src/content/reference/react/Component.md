@@ -117,7 +117,7 @@ class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -726,7 +726,7 @@ Mengembalikan `false` untuk memberitahu React bahwa *render* ulang dapat dilewat
 
 #### Catatan penting {/*shouldcomponentupdate-caveats*/}
 
-- Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu. 
+- Metode ini *hanya* ada sebagai pengoptimalan kinerja. Jika komponen Anda rusak tanpanya, perbaiki terlebih dahulu.
 
 - Pertimbangkan untuk menggunakan [`PureComponent`](/reference/react/PureComponent) daripada menulis `shouldComponentUpdate` secara manual. `PureComponent` secara dangkal membandingkan *props* dan *state*, dan mengurangi kemungkinan Anda melewati pembaruan yang diperlukan.
 
@@ -1100,7 +1100,7 @@ export default class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1125,7 +1125,7 @@ export default class Counter extends Component {
 button { display: block; margin-top: 10px; }
 ```
 
-</Sandpack> 
+</Sandpack>
 
 <Pitfall>
 
@@ -1209,7 +1209,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1269,7 +1269,7 @@ Kami merekomendasikan mendefinisikan komponen sebagai fungsi, bukan kelas. [Liha
 
 ---
 
-### Catching rendering errors with an error boundary {/*catching-rendering-errors-with-an-error-boundary*/}
+### Catching rendering errors with an Error Boundary {/*catching-rendering-errors-with-an-error-boundary*/}
 
 Secara default, jika aplikasi Anda menampilkan kesalahan selama *render*-ing, React akan menghapus UI-nya dari layar. Untuk mencegah hal ini, Anda dapat menggabungkan sebagian UI ke dalam *error boundary*. *Error Boundary* adalah komponen khusus yang memungkinkan Anda menampilkan beberapa UI cadangan, bukan bagian yang mengalami kesalahan misalnya, pesan kesalahan.
 
@@ -1431,7 +1431,7 @@ export default class Counter extends Component {
 
   handleAgeChange = (e) => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1598,7 +1598,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1787,7 +1787,7 @@ class Panel extends Component {
         <h1>{this.props.title}</h1>
         {this.props.children}
       </section>
-    );    
+    );
   }
 }
 

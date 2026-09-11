@@ -266,29 +266,29 @@ Pada langkah sebelumnya, Anda menemukan dua bagian *state* dalam aplikasi ini: t
 Sekarang mari kita bahas strateginya:
 
 1. **Identifikasi komponen yang menggunakan state:**
-    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang). 
+    * `ProductTable` perlu memfilter daftar produk berdasarkan *state* tersebut (teks pencarian dan nilai kotak centang).
     * `SearchBar` perlu menampilkan *state* tersebut (teks pencarian dan nilai kotak centang).
 1. **Temukan induk yang sama:** Komponen induk pertama yang dimiliki oleh kedua komponen tersebut adalah `FilterableProductTable`.
 2. **Tentukan di mana state berada**: Kita akan menyimpan teks filter dan nilai state kotak centang di `FilterableProductTable`.
 
-Jadi nilai state akan berada di dalam `FilterableProductTable`. 
+Jadi nilai state akan berada di dalam `FilterableProductTable`.
 
 Tambahkan state ke komponen menggunakan [Hook `useState()`.](/reference/react/useState) Hook adalah fungsi khusus yang memungkinkan Anda "mengaitkan ke dalam" React. Tambahkan dua variabel state di bagian atas `FilterableProductTable` dan tentukan state awalnya:
 
 ```js
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
-  const [inStockOnly, setInStockOnly] = useState(false);  
+  const [inStockOnly, setInStockOnly] = useState(false);
 ```
 
 Kemudian, berikan `filterText` dan `inStockOnly` ke `ProductTable` dan `SearchBar` sebagai props:
 
 ```js
 <div>
-  <SearchBar 
-    filterText={filterText} 
+  <SearchBar
+    filterText={filterText}
     inStockOnly={inStockOnly} />
-  <ProductTable 
+  <ProductTable
     products={products}
     filterText={filterText}
     inStockOnly={inStockOnly} />
@@ -308,10 +308,10 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly} />
-      <ProductTable 
+      <ProductTable
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
@@ -389,13 +389,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
       <label>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={inStockOnly} />
         {' '}
         Only show products in stock
@@ -451,9 +451,9 @@ Pada *sandbox* di atas, `ProductTable` dan `SearchBar` membaca props `filterText
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
 ```
 
@@ -475,8 +475,8 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
@@ -519,13 +519,13 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
-        inStockOnly={inStockOnly} 
-        onFilterTextChange={setFilterText} 
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
-      <ProductTable 
-        products={products} 
+      <ProductTable
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
     </div>
@@ -607,14 +607,14 @@ function SearchBar({
 }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
+      <input
+        type="text"
+        value={filterText} placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
-        <input 
-          type="checkbox" 
-          checked={inStockOnly} 
+        <input
+          type="checkbox"
+          checked={inStockOnly}
           onChange={(e) => onInStockOnlyChange(e.target.checked)} />
         {' '}
         Only show products in stock

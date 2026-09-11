@@ -30,7 +30,7 @@ Untuk menambahkan gaya inline ke dokumen Anda, render [komponen bawaan browser `
 
 #### Properti {/*props*/}
 
-`<style>` mendukung semua [properti elemen umum.](/reference/react-dom/components/common#props)
+`<style>` mendukung semua [properti elemen umum.](/reference/react-dom/components/common#common-props)
 
 * `children`: string, wajib. Isi stylesheet.
 * `precedence`: string. Memberi tahu React peringkat node DOM `<style>` relatif terhadap yang lain di `<head>` dokumen, yang menentukan stylesheet mana yang dapat menimpa yang lain. React akan menyimpulkan bahwa nilai precedence yang ditemukannya lebih awal lebih "rendah" dan nilai precedence yang ditemukannya lebih belakangan lebih "tinggi". Banyak sistem gaya dapat bekerja dengan baik menggunakan satu nilai precedence karena aturan gaya bersifat atomik. Stylesheet dengan precedence yang sama akan dikelompokkan bersama, baik berupa `<link>` maupun tag `<style>` inline atau dimuat menggunakan fungsi [`preinit`](/reference/react-dom/preinit).

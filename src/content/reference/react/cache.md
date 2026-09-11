@@ -1,6 +1,5 @@
 ---
 title: cache
-canary: true
 ---
 
 <RSC>
@@ -104,6 +103,8 @@ Asumsikan `Profile` di-*render* pertama kali. Ia akan memanggil <CodeStep step={
 
 Saat `TeamReport` me-*render* daftar `users`-nya dan menjangkau objek `user` yang sama, Ia akan memanggil <CodeStep step={2}>`getUserMetrics`</CodeStep> dan membaca hasilnya dari *cache*.
 
+If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](/reference/react/cacheSignal) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
+
 <Pitfall>
 
 ##### Memanggil fungsi ter-*memo* berbeda akan membaca dari *caches* yang berbeda. {/*pitfall-different-memoized-functions*/}
@@ -196,7 +197,7 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` keduanya merender <CodeStep step={1}>*city*</CodeStep> yang sama, mereka akan menerima cuplikan data yang sama dari <CodeStep step={2}>fungsi yang ter-*memo*</CodeStep>. 
+Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` keduanya merender <CodeStep step={1}>*city*</CodeStep> yang sama, mereka akan menerima cuplikan data yang sama dari <CodeStep step={2}>fungsi yang ter-*memo*</CodeStep>.
 
 Jika `AnimatedWeatherCard` dan `MinimalWeatherCard` menggunakan argument <CodeStep step={1}>*city*</CodeStep> yang berbeda pada <CodeStep step={2}>`getTemperature`</CodeStep>, maka `fetchTemperature` akan dipanggil dua kali dan setiap pemanggilan akan menerima data yang berbeda.
 
@@ -214,8 +215,8 @@ async function AnimatedWeatherCard({city}) {
 	// ...
 }
 ```
-[//]: # 'TODO: add link and mention to use documentation when merged'
-[//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+
+To render components that use asynchronous data in Client Components, see [`use()` documentation](/reference/react/use).
 
 </Note>
 
@@ -260,7 +261,7 @@ Saat me-*render* `Profile`, kita dapat memanggil <CodeStep step={2}>`getUser`</C
 
 Saat mengevaluasi sebuah [fungsi asinkron](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), ada akan menerima sebuah [*Promise*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) untuk proses tersebut. *Promise* memegang status dari proses tersebut (*pending*, *fulfilled*, *failed*) dan hasil akhirnya yang telah diselesaikan.
 
-Dalam contoh ini, fungsi asinkron <CodeStep step={1}>`fetchData`</CodeStep> mengembalikan sebuah *promise* yang menantikan proses `fetch`. 
+Dalam contoh ini, fungsi asinkron <CodeStep step={1}>`fetchData`</CodeStep> mengembalikan sebuah *promise* yang menantikan proses `fetch`.
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -323,7 +324,7 @@ Semua API yang disebutkan di atas menawarkan *memo*, tetapi perbedaannya adalah 
 
 Secara umum, anda harus menggunakan [`useMemo`](/reference/react/useMemo) untuk melakukan *cache* untuk sebuah komputasi yang mahal pada sebuah komponen klien di seluruh *render*. Sebagai contoh, untuk me-*memo* sebuah transformasi dari sebuah data di dalam komponen.
 
-```jsx {4}
+```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
 
 function WeatherReport({record}) {
@@ -379,7 +380,7 @@ Anda seharusnya menggunakan [`memo`](reference/react/memo) untuk mencegah proses
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = calculateAvg(record); 
+  const avgTemp = calculateAvg(record);
   // ...
 }
 
@@ -495,4 +496,3 @@ function App() {
   );
 }
 ```
-

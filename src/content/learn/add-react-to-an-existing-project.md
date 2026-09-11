@@ -20,11 +20,11 @@ Katakanlah Anda memiliki aplikasi web yang sudah ada di `example.com` yang dibua
 
 Inilah cara kami menyarankan untuk menyiapkannya:
 
-1. **Buat bagian React dari aplikasi Anda** menggunakan salah satu [*framework* berbasis React](/learn/start-a-new-react-project).
+1. **Buat bagian React dari aplikasi Anda** menggunakan salah satu [*framework* berbasis React](/learn/creating-a-react-app).
 2. **Tentukan `/some-app` sebagai *base path*** dalam konfigurasi *framework* Anda (begini caranya: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurasi server Anda atau Proxy** sehingga semua permintaan di rute `/some-app/` ditangani oleh aplikasi React Anda.
 
-Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) yang dimasukkan ke dalam *framework* tersebut.
+Ini memastikan bagian React dari aplikasi Anda bisa mendapatkan [keuntungan dari praktik terbaik](/learn/creating-a-react-app#start-from-scratch) yang dimasukkan ke dalam *framework* tersebut.
 
 Banyak *framework* berbasis React bersifat *full-stack* dan membiarkan aplikasi React Anda memanfaatkan server. Namun, Anda dapat menggunakan pendekatan yang sama meskipun Anda tidak dapat atau tidak ingin menjalankan JavaScript di server. Dalam hal ini, sajikan HTML/CSS/JS ([`next export` output](https://nextjs.org/docs/advanced-features/static-html-export) untuk Next.js, *default* untuk Gatsby) di `/some-app/` sebagai gantinya.
 
@@ -149,7 +149,7 @@ root.render(<NavigationBar />);
 
 Perhatikan bagaimana konten HTML asli dari `index.html` dipertahankan, tetapi komponen React `NavigationBar` Anda sekarang muncul di dalam `<nav id="navigation">` HTML Anda. Baca [dokumentasi penggunaan `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) untuk mempelajari lebih lanjut tentang me-*render* komponen React di dalam halaman HTML yang ada.
 
-Saat Anda mengadopsi React dalam proyek yang sudah ada, umumnya dimulai dengan komponen interaktif kecil (seperti tombol), dan kemudian secara bertahap terus "bergerak ke atas" hingga akhirnya seluruh halaman Anda dibuat dengan React. Jika Anda sudah mencapai titik itu, kami sarankan untuk segera bermigrasi ke [React *framework*](/learn/start-a-new-react-project) untuk mendapatkan hasil maksimal dari React.
+Saat Anda mengadopsi React dalam proyek yang sudah ada, umumnya dimulai dengan komponen interaktif kecil (seperti tombol), dan kemudian secara bertahap terus "bergerak ke atas" hingga akhirnya seluruh halaman Anda dibuat dengan React. Jika Anda sudah mencapai titik itu, kami sarankan untuk segera bermigrasi ke [React *framework*](/learn/creating-a-react-app) untuk mendapatkan hasil maksimal dari React.
 
 ## Menggunakan React Native di aplikasi seluler native yang sudah ada {/*using-react-native-in-an-existing-native-mobile-app*/}
 

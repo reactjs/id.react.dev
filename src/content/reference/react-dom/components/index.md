@@ -14,7 +14,7 @@ Semua komponen bawaan peramban mendukung beberapa *props* dan *events*.
 
 * [Komponen-Komponen Umum (contoh: `<div>`)](/reference/react-dom/components/common)
 
-Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`. 
+Ini termasuk *props* spesifik React seperti `ref` dan `dangerouslySetInnerHTML`.
 
 ---
 
@@ -46,7 +46,7 @@ Komponen ini memiliki perilaku khusus di React karena React dapat merender merek
 
 ## Semua komponen HTML {/*all-html-components*/}
 
-React mendukung semua komponen HTML bawaan peramban. Ini termasuk: 
+React mendukung semua komponen HTML bawaan peramban. Ini termasuk:
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -167,6 +167,123 @@ Jika Anda *render* sebuah *tag* menggunakan tanda hubung, seperti `<my-element>`
 
 Jika Anda `render` sebuah elemen HTML bawaan peramban dengan atribut [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is), maka itu akan diperlakukan sebagai *custom element*.
 
+
+#### Setting values on custom elements {/*attributes-vs-properties*/}
+
+Custom elements have two methods of passing data into them:
+
+1) Attributes: Which are displayed in markup and can only be set to string values
+2) Properties: Which are not displayed in markup and can be set to arbitrary JavaScript values
+
+By default, React will pass values bound in JSX as attributes:
+
+```jsx
+<my-element value="Hello, world!"></my-element>
+```
+
+Non-string JavaScript values passed to custom elements will be serialized by default:
+
+```jsx
+// Will be passed as `"1,2,3"` as the output of `[1,2,3].toString()`
+<my-element value={[1,2,3]}></my-element>
+```
+
+React will, however, recognize an custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
+
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```js src/MyElement.js active
+export class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    // The value here will be overwritten by React
+    // when initialized as an element
+    this.value = undefined;
+  }
+
+  connectedCallback() {
+    this.innerHTML = this.value.join(", ");
+  }
+}
+```
+
+```js src/App.js
+export function App() {
+  return <my-element value={[1,2,3]}></my-element>
+}
+```
+
+</Sandpack>
+
+#### Listening for events on custom elements {/*custom-element-events*/}
+
+A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur. You can listen for these events using an `on` prefix when binding to the event via JSX.
+
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```javascript src/MyElement.js
+export class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    this.test = undefined;
+    this.emitEvent = this._emitEvent.bind(this);
+  }
+
+  _emitEvent() {
+    const event = new CustomEvent('speak', {
+      detail: {
+        message: 'Hello, world!',
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  connectedCallback() {
+    this.el = document.createElement('button');
+    this.el.innerText = 'Say hi';
+    this.el.addEventListener('click', this.emitEvent);
+    this.appendChild(this.el);
+  }
+
+  disconnectedCallback() {
+    this.el.removeEventListener('click', this.emitEvent);
+  }
+}
+```
+
+```jsx src/App.js active
+export function App() {
+  return (
+    <my-element
+      onspeak={e => console.log(e.detail.message)}
+    ></my-element>
+  )
+}
+```
+
+</Sandpack>
 
 <Note>
 

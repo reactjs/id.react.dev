@@ -12,6 +12,12 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -711,7 +717,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -849,7 +855,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -1058,7 +1064,7 @@ Catat bahwa Anda perlu menjalankan React di mode *production*, non-aktifkan [Rea
 
 ### Mencegah Effect agar tidak terlalu sering aktif {/*preventing-an-effect-from-firing-too-often*/}
 
-Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/pelajari/sinkronisasi-dengan-efek)
+Terkadang, Anda mungkin ingin menggunakan nilai di dalam [Efek:](/learn/synchronizing-with-effects)
 
 ```js {4-7,10}
 function ChatRoom({ roomId }) {
@@ -1121,7 +1127,7 @@ function ChatRoom({ roomId }) {
       serverUrl: 'https://localhost:1234',
       roomId: roomId
     }
-    
+
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
@@ -1195,7 +1201,7 @@ export default function ProductPage({ productId, referrer }) {
 }
 ```
 
-Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi, 
+Seperti `{}` membuat objek yang berbeda, deklarasi fungsi seperti `function() {}` dan ekspresi seperti `() => {}` menghasilkan fungsi yang *berbeda* pada tiap *render* ulang. Dengan sendirinya, membuat fungsi baru tidak menjadi masalah. Hal ini bukan sesuatu untuk dihindari! Namun, jika komponen `Form` dimemoisasi,
 Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, dengan asumsi Anda ingin melewati pe-*render*-an ulang ketika tidak ada *prop* yang berubah. Sebuah *prop* yang *selalu* berbeda akan menggagalkan poin memoisasipresumably you want to skip re-rendering it when no props have changed.
 
 Untuk memoisasi fungsi dengan `useMemo`, fungsi perhitungan Anda harus mengembalikan fungsi lain:
@@ -1280,7 +1286,7 @@ React memanggil fungsi Anda sebanyak dua kali, jadi Anda akan melihat bahwa todo
 
 Baca [menjaga komponen agar tetao murni](/learn/keeping-components-pure) untuk belajar lebih lanjut tentang kemurnian.
 
-Lihat juga panduan tentang [memperbarui objek](/learn/memperbarui-objek-dalam-status) dan [memperbarui senarai (*array*)](/belajar/memperbarui-array-dalam-status) tanpa mutasi.
+Lihat juga panduan tentang [memperbarui objek](/learn/updating-objects-in-state) dan [memperbarui senarai (*array*)](/learn/updating-arrays-in-state) tanpa mutasi.
 
 ---
 
@@ -1367,7 +1373,7 @@ Ketika Anda menemukan *dependency* mana yang menggagalkan memoisasi, temukan car
 
 Misalkan komponen `Chart` dibungkus dalam [`memo`](/reference/react/memo). Anda ingin melewati pe-*render*-an ulang setiap `Chart` dalam daftar ketika komponen `ReportList` me-*render* ulang. Namun, Anda tidak dapat memanggil `useMemo` dalam perulangan:
 
-```js {5-11}
+```js {expectedErrors: {'react-compiler': [6]}} {5-11}
 function ReportList({ items }) {
   return (
     <article>

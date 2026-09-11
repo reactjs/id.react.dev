@@ -45,7 +45,7 @@ Sebuah aplikasi yang sepenuhnya dibangun dengan React biasanya hanya akan memili
 
 #### Parameter {/*parameters*/}
 
-* `reactNode`: Sebuah *React node* yang ingin Anda tampilkan. Ini biasanya berupa bagian dari JSX seperti `<App />`, tetapi Anda juga dapat mengoperkan sebuah elemen React yang dibangun dengan [`createElement()`](/reference/react/createElement), sebuah `string`, sebuah `number`, `null`, atau `undefined`. 
+* `reactNode`: Sebuah *React node* yang ingin Anda tampilkan. Ini biasanya berupa bagian dari JSX seperti `<App />`, tetapi Anda juga dapat mengoperkan sebuah elemen React yang dibangun dengan [`createElement()`](/reference/react/createElement), sebuah `string`, sebuah `number`, `null`, atau `undefined`.
 
 * `domNode`: Sebuah [elemen DOM.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React akan menampilkan `reactNode` yang Anda berikan di dalam elemen DOM ini. Mulai saat ini, React akan mengelola DOM di dalam `domNode` dan memperbaruinya ketika pohon React (*React tree*) Anda berubah.
 

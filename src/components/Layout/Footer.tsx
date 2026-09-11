@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -337,7 +344,7 @@ export function Footer() {
           <FooterLink href="/community" isHeader={true}>
             Komunitas
           </FooterLink>
-          <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
+          <FooterLink href="https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md">
             Kode Etik
           </FooterLink>
           <FooterLink href="/community/team">Mengenal Anggota Tim</FooterLink>
@@ -379,7 +386,7 @@ export function Footer() {
             </ExternalLink>
             <ExternalLink
               aria-label="React di Github"
-              href="https://github.com/facebook/react"
+              href="https://github.com/react/react"
               className={socialLinkClasses}>
               <IconGitHub />
             </ExternalLink>

@@ -216,7 +216,7 @@ Suspense **tidak** mendeteksi ketika data diambil di dalam Effect atau *event ha
 Cara yang tepat untuk memuat data dalam komponen `Albums` di atas tergantung pada *framework* Anda. Jika Anda menggunakan *framework* yang mendukung Suspense, Anda akan menemukan detailnya dalam dokumentasi pengambilan data.
 
 Pengambilan data yang mendukung Suspense tanpa menggunakan *framework* dogmatis belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung Suspense masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan Suspense akan dirilis pada versi React yang akan datang.
- 
+
 </Note>
 
 ---
@@ -364,9 +364,9 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -626,9 +626,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -905,7 +905,7 @@ Untuk membuatnya lebih jelas bagi pengguna, Anda bisa menambahkan indikasi visua
 
 ```js {2}
 <div style={{
-  opacity: query !== deferredQuery ? 0.5 : 1 
+  opacity: query !== deferredQuery ? 0.5 : 1
 }}>
   <SearchResults query={deferredQuery} />
 </div>
@@ -1253,9 +1253,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -1377,7 +1377,7 @@ function Router() {
 
   function navigate(url) {
     startTransition(() => {
-      setPage(url);      
+      setPage(url);
     });
   }
   // ...
@@ -1565,9 +1565,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -1877,9 +1877,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles adalah sebuah band rock asal Inggris, 
-    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles adalah sebuah band rock asal Inggris,
+    yang dibentuk di Liverpool pada tahun 1960, yang terdiri dari
+    John Lennon, Paul McCartney, George Harrison
     dan Ringo Starr.`;
 }
 
@@ -2011,7 +2011,7 @@ Namun, sekarang bayangkan Anda menavigasi di antara dua profil pengguna yang ber
 Jika Anda menggunakan salah satu dari [API *streaming* untuk pe-*render*-an di server](/reference/react-dom/server) (atau *framework* yang bergantung pada mereka), React juga akan menggunakan `<Suspense>` untuk menangani kesalahan pada server. Jika sebuah komponen menimbulkan kesalahan pada server, React tidak akan membatalkan pe-*render*an pada server. Sebagai gantinya, React akan mencari komponen `<Suspense>` terdekat di atasnya dan menyertakan *fallback*-nya (seperti *spinner*) ke dalam HTML yang dihasilkan server. Pengguna akan tetap melihat *spinner* pada awalnya.
 
 
-Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
+Pada klien, React akan mencoba me-*render* komponen yang sama kembali. Jika terjadi kesalahan pada klien juga, React akan melemparkan kesalahan dan menampilkan [batasan error](/reference/react/Component#static-getderivedstatefromerror) terdekat. Namun, jika tidak terjadi kesalahan pada klien, React tidak akan menampilkan kesalahan pada pengguna karena konten pada akhirnya berhasil ditampilkan.
 
 Anda dapat menggunakan ini untuk mengecualikan beberapa komponen dari perenderan di server. Untuk melakukan hal ini, lemparkan kesalahan pada lingkungan server dan kemudian bungkus dengan batas `<Suspense>` untuk mengganti HTML-nya dengan *fallback*:
 

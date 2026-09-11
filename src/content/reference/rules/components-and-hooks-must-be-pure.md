@@ -15,7 +15,7 @@ Halaman referensi ini mencakup topik-topik tingkat lanjut dan memerlukan pemaham
 
 ### Mengapa kemurnian itu penting? {/*why-does-purity-matter*/}
 
-Salah satu konsep utama dari React adalah kemurnian. Sebuah komponen atau *hook* disebut murni jika: 
+Salah satu konsep utama dari React adalah kemurnian. Sebuah komponen atau *hook* disebut murni jika:
 * **Idempotent** - Anda [selalu mendapatkan hasil yang sama setiap saat](/learn/keeping-components-pure#purity-components-as-formulas) anda menjalankannya dengan masukkan, *props*, *state*, *context* sebagai masukkan komponen;
 * **Tidak mempunyai efek samping saat *render*** - Kode yang memiliki efek samping seharusnya menjalankannya [**secara terpisah dari proses me-*render***](#how-does-react-run-your-code). Contohnya adalah sebagai [*event handler*](/learn/responding-to-events) - dimana pengguna berinteraksi dengan UI dan mengakibatkan adanya perubahan; atau sebagai sebuah [Efek](/reference/react/useEffect) - yang dijalankan setelah *render*.
 
@@ -25,7 +25,7 @@ Secara konkrit, hal ini berarti logika me-*render* akan dijalankan berkali-kali 
 
 #### Bagaimana React menjalankan kode anda? {/*how-does-react-run-your-code*/}
 
-React bersifat deklaratif: anda memberi tahu *apa* kepata React untuk di-*render*, dan React akan mencari tahu *bagaimana* cara terbaik untuk menampilkannya kepada pengguna anda. Untuk melakukan ini, React memiliki beberapa fase untuk menjalankan kode anda. Anda tidak perlu untuk mengetahu tentang semua fase yang digunakan React dengan baik. Akan tetapi pada level yang lebih tinggi, anda harus paham tentang kode apa yang dijalankan saat *render*, dan apa yang berjalan diluar itu.  
+React bersifat deklaratif: anda memberi tahu *apa* kepata React untuk di-*render*, dan React akan mencari tahu *bagaimana* cara terbaik untuk menampilkannya kepada pengguna anda. Untuk melakukan ini, React memiliki beberapa fase untuk menjalankan kode anda. Anda tidak perlu untuk mengetahu tentang semua fase yang digunakan React dengan baik. Akan tetapi pada level yang lebih tinggi, anda harus paham tentang kode apa yang dijalankan saat *render*, dan apa yang berjalan diluar itu.
 
 pe-*renderan* mengacu pada perhitungan seperti apa tampilan UI anda nantinya. Setelah me-*render*, [*Effect*](/reference/react/useEffect) di *flush* (artinya mereka akan dijalankan hingga tidak ada lagi yang tersisa) dan dapat memperbarui kalkulasi jika *Effect* berdampak pada *layout*. React akan mengambil kalkulasi ini dan membandingkannya dengan kalkulasi yang digunakannya pada versi sebelumnya dari UI anda, lalu *commits* hanya perubahan minim yang diperlukan ke [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (apa yang sebenarnya pengguna lihat) untuk menyesuaikan dengan versi terbaru.
 
@@ -69,9 +69,9 @@ function Dropdown() {
 
 ## Komponen-komponen dan *Hooks* harus idempoten {/*components-and-hooks-must-be-idempotent*/}
 
-Komponen-komponen harus selalu mengembalikan keluaran yang sama berdasarkan masukan - *props*, *state*, dan *context*. Hal ini dikenal sebagai *idempoten*. [Idempoten](https://id.wikipedia.org/wiki/Idempoten) adalah istilah yang dipopulerkan pada pemrograman fungsional. Istilah ini mengacu pada gagasan bahwa anda [selalu mendapatkan hasil yang sama setiap kali](learn/keeping-components-pure) anda menjalankan kode dengan masukan yang sama. 
+Komponen-komponen harus selalu mengembalikan keluaran yang sama berdasarkan masukan - *props*, *state*, dan *context*. Hal ini dikenal sebagai *idempoten*. [Idempoten](https://id.wikipedia.org/wiki/Idempoten) adalah istilah yang dipopulerkan pada pemrograman fungsional. Istilah ini mengacu pada gagasan bahwa anda [selalu mendapatkan hasil yang sama setiap kali](learn/keeping-components-pure) anda menjalankan kode dengan masukan yang sama.
 
-Hal ini berarti *semua* kode yang dijalankan [saat *render*](#how-does-react-run-your-code) juga akan bersifat idempoten agar aturan ini dapat diterapkan. Sebagai contoh, barisa kode ini tidak idempoten (dan oleh karena itu, komponennya juga tidak): 
+Hal ini berarti *semua* kode yang dijalankan [saat *render*](#how-does-react-run-your-code) juga akan bersifat idempoten agar aturan ini dapat diterapkan. Sebagai contoh, barisa kode ini tidak idempoten (dan oleh karena itu, komponennya juga tidak):
 
 ```js {2}
 function Clock() {
@@ -117,7 +117,7 @@ export default function Clock() {
 
 Dengan membungkus pemanggilan `new Date()` yang tidak idempoten di dalam sebuah *Effect*, ini akan memindahkan kalkulasi tersebut [di luar pe-*render*-an](#how-does-react-run-your-code).
 
-Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, Anda juga bisa mempertimbangkan untuk menggunakan [event handler](/learn/responing-to-events) jika *state* tersebut hanya perlu diperbarui sebagai respons terhadap interaksi pengguna.
+Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, Anda juga bisa mempertimbangkan untuk menggunakan [event handler](/learn/responding-to-events) jika *state* tersebut hanya perlu diperbarui sebagai respons terhadap interaksi pengguna.
 
 ---
 
@@ -128,7 +128,7 @@ Jika Anda tidak perlu menyinkronkan beberapa *state* eksternal dengan React, And
 <Note>
 Efek samping adalah istilah yang lebih luas dari *Effect*. *Effect* secara khusus merujuk pada kode yang dibungkus dengan `useEffect`, sedangkan efek samping adalah istilah umum untuk kode yang memiliki efek yang dapat diamati selain dari hasil utamanya yaitu mengembalikan sebuah nilai kepada pemanggil.
 
-Efek samping biasanya ditulis di dalam [*event handler*](/learn/responing-to-events) atau *Effect*. Tetapi tidak pernah selama *render*.
+Efek samping biasanya ditulis di dalam [*event handler*](/learn/responding-to-events) atau *Effect*. Tetapi tidak pernah selama *render*.
 </Note>
 
 Meskipun render harus dijaga agar tetap murni, efek samping diperlukan di beberapa titik agar aplikasi Anda dapat melakukan sesuatu yang menarik, seperti menampilkan sesuatu di layar! Poin penting dari aturan ini adalah efek samping tidak boleh dijalankan [pada saat *render*](#how-does-react-run-your-code), karena React dapat me-*render* komponen beberapa kali. Pada kebanyakan kasus, Anda akan menggunakan [*event handler*](learn/responing-to-events) untuk menangani efek samping. Menggunakan *event handler* secara eksplisit memberi tahu React bahwa kode ini tidak perlu dijalankan saat *render*, sehingga *render* tetap murni. Jika Anda sudah kehabisan semua opsi - dan hanya sebagai pilihan terakhir - Anda juga bisa menangani efek samping menggunakan `useEffect`.
@@ -201,14 +201,14 @@ Selama pemanggilan sebuah komponen beberapa kali aman dan tidak mempengaruhi pro
 
 ## *Props* dan *state* adalah tidak dapat dimutasi {/*props-and-state-are-immutable*/}
 
-Sebuah *props* dan *state* dari komponen adalah [*snapshots*](learn/state-as-a-snapshot) yang tidak dapat dimutasi. Jangan pernah memutasinya secara langsung. Sebagai gantinya, oper *props* baru kebawah, dan gunakan fungsi *setter* dari `useState`. 
+Sebuah *props* dan *state* dari komponen adalah [*snapshots*](learn/state-as-a-snapshot) yang tidak dapat dimutasi. Jangan pernah memutasinya secara langsung. Sebagai gantinya, oper *props* baru kebawah, dan gunakan fungsi *setter* dari `useState`.
 
 Anda dapat menganggap *props* dan nilai *state* sebagai *snapshot* yang diperbarui setelah di-*render*. Karena alasan ini, Anda tidak memodifikasi *props* atau variabel state secara langsung: sebagai gantinya, Anda mengoper *props* baru, atau menggunakan fungsi *setter* yang disediakan untuk memberi tahu React bahwa *state* perlu diperbarui pada saat komponen di-*render*.
 
 ### Jangan memutasi *Props* {/*props*/}
 *Props* tidak dapat dimutasi karena karena jika anda memutasinya, aplikasi akan menghasilkan output yang tidak konsisten, yang bisa jadi sulit untuk di-*debug* karena aplikasi mungkin bekerja atau tidak bekerja tergantung pada situasinya.
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Buruk: jangan pernah mengubah props secara langsung
   return <Link url={item.url}>{item.title}</Link>;
@@ -231,7 +231,7 @@ const [stateVariable, setter] = useState(0);
 
 Daripada memperbarui variabel *state* di tempat, kita perlu memperbaruinya menggunakan fungsi *setter* yang dikembalikan oleh `useState`. Mengubah nilai pada variabel *state* tidak menyebabkan komponen diperbarui, sehingga pengguna akan mendapatkan UI yang usang. Menggunakan fungsi *setter* memberi tahu React bahwa *state* telah berubah, dan kita perlu mengantri untuk melakukan *render* ulang untuk memperbarui UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -267,9 +267,9 @@ function Counter() {
 
 ## Kembaliakan nilai dan argumen ke *Hooks* yang tidak dapat dimutasi {/*return-values-and-arguments-to-hooks-are-immutable*/}
 
-Sesaat sebuah nilai dioper ke sebuah *hook*, anda tidak boleh memodifikasinya. Seperti *props* di JSX, nilai akan berubah menjadi tidak dapat dimutasi saat dioper ke sebuah *hook* 
+Sesaat sebuah nilai dioper ke sebuah *hook*, anda tidak boleh memodifikasinya. Seperti *props* di JSX, nilai akan berubah menjadi tidak dapat dimutasi saat dioper ke sebuah *hook*
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -330,7 +330,7 @@ Jangan melakukan mutasi nilai setelah nilai tersebut digunakan dalam JSX. Pindah
 
 Ketika Anda menggunakan JSX dalam sebuah ekspresi, React mungkin akan mengevaluasi JSX sebelum komponen selesai di-*render*. Ini berarti bahwa mengubah nilai setelah nilai tersebut dioper ke JSX dapat menyebabkan UI yang sudah usang, karena React tidak akan tahu untuk memperbarui keluaran komponen.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;

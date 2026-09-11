@@ -24,7 +24,7 @@ Kami sangat merekomendasikan penggunaan [Strict Mode](/reference/react/StrictMod
 
 ## Komponen dan *Hooks* harus murni {/*components-and-hooks-must-be-pure*/}
 
-[Kemurnian dalam Komponen dan *Hooks*](/reference/rules/components-and-hooks-must-be-pure) adalah peraturan utama React yang membuat aplikasi Anda dapat diprediksi, mudah di-*debug*, dan memungkinkan React mengoptimalkan kode Anda secara otomatis. 
+[Kemurnian dalam Komponen dan *Hooks*](/reference/rules/components-and-hooks-must-be-pure) adalah peraturan utama React yang membuat aplikasi Anda dapat diprediksi, mudah di-*debug*, dan memungkinkan React mengoptimalkan kode Anda secara otomatis.
 
 * [Komponen harus *idempotent*](/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent) – Komponen React diasumsikan selalu mengembalikan output yang sama terkait dengan inputnya – *props*, *state*, dan *context*.
 * [Efek samping harus dijalankan di luar *render*](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render) – Efek samping tidak boleh dijalankan dalam *render*, karena React dapat me-*render* komponen beberapa kali untuk menciptakan pengalaman pengguna sebaik mungkin.

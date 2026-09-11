@@ -16,7 +16,7 @@ title: "Hook Bawaan React"
 
 Untuk menambahkan *state* ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
 
-* [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung. 
+* [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung.
 * [`useReducer`](/reference/react/useReducer) mendeklarasikan sebuah variabel *state* dengan logika pembaruan yang tertulis di dalam sebuah [fungsi *reducer*.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
@@ -79,6 +79,9 @@ Terdapat dua variasi dari `useEffect` yang jarang digunakan dengan perbedaan pad
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) dipanggil sebelum peramban melukis ulang (*repaint*) layar. Anda dapat menggunakannya untuk mengukur tata letak (*layout*) pada tahap ini.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) dipanggil sebelum React melakukan perubahan ke DOM. Pustaka-pustaka (*libraries*) lainnya dapat memasukkan CSS dinamik di sini.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Hook Kinerja {/*performance-hooks*/}

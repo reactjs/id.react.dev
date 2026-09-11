@@ -35,7 +35,7 @@ Di dalam *web*, HTML memungkinkan kita membuat dokumen-dokumen terstruktur yang 
 
 React memungkinkan Anda menggabung *markup*, CSS, dan JavaScript Anda menjadi "komponen" yang dibuat khusus, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda.** Daftar isi yang Anda lihat di atas dapat diubah menjadi sebuah komponen `<TableOfContents />` yang dapat Anda *render* pada setiap halaman. Dari belakang, itu tetap menggunakan *tag* HTML yang sama seperti `<article>`, `h1`, dll.
 
-Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang Anda baca terbuat oleh komponen-komponen React: 
+Sama seperti *tag* HTML, Anda dapat menggabung, mengurut, dan menyusun bertingkat komponen untuk mendesain halaman penuh. Misalnya, halaman dokumentasi ini yang Anda baca terbuat oleh komponen-komponen React:
 
 ```js
 <PageLayout>
@@ -63,7 +63,7 @@ Secara tradisional saat menciptakan halaman *web*, para pengembang *web* me-*mar
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3Am.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
       alt="Katherine Johnson"
     />
   )
@@ -99,7 +99,7 @@ Komponen itu mengembalikan *tag* `<img />` dengan atribut `src` dan `alt`. `<img
 Pernyataan-pernyataan yang dikembalikan bisa ditulis semua pada satu baris, seperti dalam komponen ini.
 
 ```js
-return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+return <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
 Tetapi jika *markup* Anda tidak semua ada di baris yang sama dengan *keyword* `return`, Anda harus membungkus itu dalam tanda kurung:
@@ -107,7 +107,7 @@ Tetapi jika *markup* Anda tidak semua ada di baris yang sama dengan *keyword* `r
 ```js
 return (
   <div>
-    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
   </div>
 );
 ```
@@ -128,7 +128,7 @@ Sekarang setelah Anda mendefinisikan komponen `Profile` Anda, Anda bisa meletakk
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -215,7 +215,7 @@ Aplikasi React Anda dimulai dari suatu komponen "*root*". Biasanya, itu dibuat s
 
 Sebagian besar aplikasi React menggunakan komponen sampai ke bawah. Ini berarti Anda tidak akan hanya menggunakan komponen untuk bagian-bagian yang dapat digunakan kembali seperti tombol, tetapi juga bagian-bagian yang lebih besar seperti *sidebar*, daftar, dan juga, halaman lengkap! Komponen adalah sebuah cara yang praktis untuk mengorganisir kode UI dan *markup*, bahkan jika beberapa darinya hanya digunakan sekali.
 
-[*Framework-framework* berbasis React](/learn/start-a-new-react-project) mengambil ini selangkah lebih jauh. Daripada menggunakan sebuah *file* HTML yang kosong dan membiarkan React untuk "mengambil alih" dalam mengelola halamannya dengan JavaScript, mereka *juga* membuat HTML-nya secara otomatis dari komponen-komponen React Anda. Ini memungkinkan aplikasi Anda menampilkan beberapa konten sebelum kode JavaScript dimuat.
+[*Framework-framework* berbasis React](/learn/creating-a-react-app) mengambil ini selangkah lebih jauh. Daripada menggunakan sebuah *file* HTML yang kosong dan membiarkan React untuk "mengambil alih" dalam mengelola halamannya dengan JavaScript, mereka *juga* membuat HTML-nya secara otomatis dari komponen-komponen React Anda. Ini memungkinkan aplikasi Anda menampilkan beberapa konten sebelum kode JavaScript dimuat.
 
 Namun, banyak *website* hanya menggunakan React untuk [menambahkan interaktivitas kepada halaman HTML yang sudah ada.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) Mereka memiliki banya komponen *root* daripada satu untuk seluruh halaman. Anda dapat menggunakan React sebanyaknya-banyaknya—atau sesedikit mungkin—sesuai dengan yang dibutuhkan.
 
@@ -228,9 +228,9 @@ Anda baru saja mendapatkan rasa pertama Anda dari React! Mari kita rekap beberap
 * React memungkinkan Anda untuk membuat komponen, **elemen UI yang dapat digunakan kembali untuk aplikasi Anda**
 * Dalam suatu aplikasi React, setiap bagian dari UI adalah sebuah komponen.
 * Komponen React adalah fungsi JavaScript biasa kecuali:
-  
+
   1. Nama mereka selalu dimulai dengan huruf kapital.
-  2. Mereka selalu mengembalikan *markup* JSX.  
+  2. Mereka selalu mengembalikan *markup* JSX.
 
 </Recap>
 
@@ -248,7 +248,7 @@ Anda baru saja mendapatkan rasa pertama Anda dari React! Mari kita rekap beberap
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -273,7 +273,7 @@ Tambahkan `export default` sebelum definisi fungsi seperti ini:
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -306,7 +306,7 @@ Anda mungkin mendapatkan sebuah kesalahan "*Unexpected Token*" saat mencoba memp
 ```js
 export default function Profile() {
   return
-    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+    <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -324,7 +324,7 @@ Anda dapat memperbaiki komponen ini dengan memindahkan penyataan pengembalian ke
 
 ```js
 export default function Profile() {
-  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+  return <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -341,9 +341,9 @@ Atau dengan membungkus *markup* JSX yang dikembalikan di dalam tanda kurung yang
 ```js
 export default function Profile() {
   return (
-    <img 
-      src="https://i.imgur.com/jA8hHMpm.jpg" 
-      alt="Katsuko Saruhashi" 
+    <img
+      src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg"
+      alt="Katsuko Saruhashi"
     />
   );
 }
@@ -367,7 +367,7 @@ Ada yang salah dengan bagaimana komponen `Profile` dideklarasi dan digunakan. Da
 function profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -403,7 +403,7 @@ Ubahlah `function profile()` menjadi `function Profile()`, kemudian ubah setiap 
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );

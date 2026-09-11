@@ -91,6 +91,9 @@ Pembuatan *profiler* akan menambah waktu komputasi, sehingga **dinonaktifkan dal
 
 `<Profiler>` memungkinkan Anda mengumpulkan pengukuran secara terprogram. Jika Anda mencari *profiler* interaktif, cobalah tab *Profiler* di [React Developer Tools](/learn/react-developer-tools). Alat ini memiliki fungsionalitas yang serupa sebagai ekstensi peramban.
 
+Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
+In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
+
 </Note>
 
 ---

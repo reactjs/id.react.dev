@@ -26,7 +26,7 @@ Ada dua kasus umum di mana Anda tidak memerlukan *Effects*:
 * **Anda tidak memerlukan *Effects* untuk melakukan transformasi data untuk *rendering*.** Sebagai contoh, katakanlah Anda ingin melakukan *filter* terhadap sebuah daftar sebelum menampiklannya. Anda mungkin merasa tergoda untuk menulis *Effect* yang memperbarui variabel *state* ketika daftar berubah. Akan tetapi, hal ini tidak efisien. Ketika Anda memperbarui *state*, React akan memanggil fungsi komponen Anda terlebih dahulu untuk menghitung apa yang seharusnya ada di layar. Kemudian React akan ["*commit*"](/learn/render-and-commit) perubahan ini ke DOM, memperbarui layar. Kemudian React akan menjalankan *Effect* Anda. Jika *Effect* Anda *juga* segera memperbarui state, ini akan mengulang seluruh proses dari awal! Untuk menghindari *render pass* yang tidak perlu, ubah semua data pada tingkat teratas komponen Anda. Kode tersebut akan secara otomatis dijalankan ulang setiap kali *props* atau *state* anda berubah.
 * **Anda tidak memerlukan Efek untuk menangani *event* dari pengguna.** Sebagai contoh, katakanlah Anda ingin mengirim *request* POST `/api/buy` dan menampilkan notifikasi ketika pengguna membeli produk. Di *event handler* klik tombol Beli, Anda tahu persis apa yang terjadi. Pada saat *Effect* berjalan, Anda tidak tahu *apa* yang dilakukan pengguna (misalnya, tombol mana yang diklik). Inilah sebabnya mengapa Anda biasanya akan menangani *event* pengguna di *event handler* yang sesuai.
 
-Anda *memang* membutuhkan Effect untuk [melakukan sinkronisasi](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) dengan sistem eksternal. dengan sistem eksternal. Sebagai contoh, Anda dapat menulis sebuah *Effect* yang membuat *widget* jQuery tetap tersinkronisasi dengan *state* React. Anda juga dapat mengambil data dengan *Effect*: sebagai contoh, Anda dapat menyinkronkan hasil pencarian dengan kueri pencarian saat ini. Perlu diingat bahwa [kerangka kerja (*framework*)](/learn/start-a-new-react-project#production-grade-react-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada menulis *Effect* secara langsung di dalam komponen Anda.
+Anda *memang* membutuhkan Effect untuk [melakukan sinkronisasi](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) dengan sistem eksternal. dengan sistem eksternal. Sebagai contoh, Anda dapat menulis sebuah *Effect* yang membuat *widget* jQuery tetap tersinkronisasi dengan *state* React. Anda juga dapat mengambil data dengan *Effect*: sebagai contoh, Anda dapat menyinkronkan hasil pencarian dengan kueri pencarian saat ini. Perlu diingat bahwa [kerangka kerja (*framework*)](/learn/creating-a-react-app#full-stack-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada menulis *Effect* secara langsung di dalam komponen Anda.
 
 Untuk membantu Anda mendapatkan intuisi yang tepat, mari kita lihat beberapa contoh konkret yang umum!
 
@@ -34,7 +34,7 @@ Untuk membantu Anda mendapatkan intuisi yang tepat, mari kita lihat beberapa con
 
 Katakanlah Anda memiliki komponen dengan dua variabel *state*: `firstName` dan `lastName`. Anda ingin mendapatkan `fullName` dengan menggabungkan keduanya. Selain itu, Anda ingin `fullName` diperbarui setiap kali `firstName` atau `lastName` berubah. Naluri pertama Anda mungkin menambahkan variabel *state* `fullName` dan memperbaruinya di *Effect*:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -66,7 +66,7 @@ function Form() {
 
 Komponen ini menghitung `visibleTodos` dengan mengambil `todos` yang diterimanya berdasarkan *props* dan memfilternya berdasarkan prop `filter`. Anda mungkin tergoda untuk menyimpan hasilnya dalam keadaan dan memperbaruinya dari *Effect*:
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -159,7 +159,7 @@ Perhatikan juga bahwa mengukur kinerja dalam mode pengembangan tidak akan member
 
 Komponen `ProfilePage` ini menerima *prop* `userId`. Halaman tersebut berisi *input* komentar, dan Anda menggunakan variabel *state* `comment` untuk menyimpan nilainya. Suatu hari, Anda melihat masalah: saat Anda bernavigasi dari satu profil ke profil lainnya, *state* `comment` tidak disetel ulang. Akibatnya, Anda dapat dengan mudah mengirim komentar ke profil pengguna yang salah secara tidak sengaja. Untuk memperbaiki masalah ini, Anda ingin menghapus variabel *state* `comment` setiap kali `userId` berubah:
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -202,7 +202,7 @@ Terkadang, Anda mungkin ingin menyetel ulang atau menyesuaikan sebagian *state* 
 
 Komponen `List` ini menerima *list* `item` sebagai *prop*, dan mempertahankan item yang dipilih dalam variabel *state* `selection`. Anda ingin menyetel ulang `selection` ke `null` setiap kali prop `items` menerima senarai yang berbeda:
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -752,7 +752,7 @@ Hal ini memastikan bahwa saat *Effect* Anda mengambil data, semua respons kecual
 
 Menangani *race condition* bukan satu-satunya kesulitan dalam mengimplementasikan pengambilan data. Anda mungkin juga ingin memikirkan tentang *cache* terhadap respons (sehingga pengguna dapat mengeklik Kembali dan langsung melihat layar sebelumnya), cara mengambil data di server (sehingga HTML awal yang di-*render* oleh server berisi konten yang diambil, bukan *spinner*), dan cara menghindari air terjun jaringan (*network waterfalls*) (sehingga komponen anak dapat mengambil data tanpa menunggu induknya).
 
-**Masalah ini berlaku untuk semua perpustakaan UI, bukan hanya React. Menyelesaikannya bukanlah hal yang sepele, itulah sebabnya [kerangka kerja](/learn/start-a-new-react-project#production-grade-react-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada mengambil data di *Effect*.**
+**Masalah ini berlaku untuk semua perpustakaan UI, bukan hanya React. Menyelesaikannya bukanlah hal yang sepele, itulah sebabnya [kerangka kerja](/learn/creating-a-react-app#full-stack-frameworks) modern menyediakan mekanisme pengambilan data bawaan yang lebih efisien daripada mengambil data di *Effect*.**
 
 Jika Anda tidak menggunakan kerangka kerja (dan tidak ingin membuat kerangka kerja sendiri) namun ingin membuat pengambilan data dari *Effect* lebih ergonomis, pertimbangkan untuk mengekstrak logika pengambilan Anda ke dalam Hook khusus seperti dalam contoh ini:
 
@@ -815,7 +815,7 @@ Sederhanakan komponen ini dengan menghapus semua *state* dan *Effect* yang tidak
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1018,7 +1018,7 @@ Salah satu solusinya adalah menambahkan panggilan `useMemo` untuk menyimpan *cac
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1359,7 +1359,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {

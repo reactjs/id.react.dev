@@ -12,7 +12,7 @@ title: State Sebagai Sebuah Snapshot
 
 * Bagaimana mengubah suatu *state* memicu terjadinya *render* ulang
 * Kapan dan bagaimana *state* diperbarui
-* Mengapa *state* tidak segera diperbarui setelah Anda mengubahnya  
+* Mengapa *state* tidak segera diperbarui setelah Anda mengubahnya
 * Bagaimana *event handlers* dapat mengakses "*snapshot*" dari sebuah *state*
 
 </YouWillLearn>
@@ -65,7 +65,7 @@ Inilah yang terjadi ketika Anda menekan tombol "Kirim" pada contoh di atas:
 
 1. *Event handler* `onSubmit` dijalankan.
 2. `setIsSent(true)` mengubah nilai `isSent` menjadi `true` dan memasukkan antrian *render* baru.
-3. React melakukan *render* ulang pada komponen tersebut sesuai dengan nilai `isSent` yang baru.  
+3. React melakukan *render* ulang pada komponen tersebut sesuai dengan nilai `isSent` yang baru.
 
 Mari kita lihat lebih dekat hubungan antara *state* dan *rendering*.
 
@@ -148,7 +148,7 @@ Berikut adalah apa yang *handler* klik pada tombol tersebut beri tahu kepada Rea
 3. `setNumber(number + 1)`: `number` bernilai `0` sehingga `setNumber(0 + 1)`.
     - React mempersiapkan untuk mengubah `number` menjadi `1` pada *render* selanjutnya.
 
-Walaupun Anda memanggil `setNumber(number + 1)` sebanyak tiga kali, dalam *event handler* pada *render* ini nilai `number` selalu `0`, sehingga Anda mengubah *state* tersebut menjadi `1` sebanyak tiga kali. Inilah sebabnya, setelah *event handler* Anda selesai dijalankan, React melakukan *render* ulang pada komponen tersebut dengan `number` bernilai `1`, bukan `3`. 
+Walaupun Anda memanggil `setNumber(number + 1)` sebanyak tiga kali, dalam *event handler* pada *render* ini nilai `number` selalu `0`, sehingga Anda mengubah *state* tersebut menjadi `1` sebanyak tiga kali. Inilah sebabnya, setelah *event handler* Anda selesai dijalankan, React melakukan *render* ulang pada komponen tersebut dengan `number` bernilai `1`, bukan `3`.
 
 Anda juga dapat memvisualisasikan hal ini pada benak Anda dengan mengganti variabel *state* dengan nilai aslinya pada kode Anda. Karena variabel *state* `number` adalah `0` untuk *render* ini, *event handler*-nya terlihat seperti ini:
 
@@ -211,7 +211,7 @@ alert(0);
 ```
 
 
-Tetapi bagaimana jika Anda menaruh *timer* pada *alert*, sehingga kode *alert* tersebut hanya akan dijalankan setelah komponen di-*render* ulang? Apakah akan tertulis "0" atau "5"? Silahkan tebak! 
+Tetapi bagaimana jika Anda menaruh *timer* pada *alert*, sehingga kode *alert* tersebut hanya akan dijalankan setelah komponen di-*render* ulang? Apakah akan tertulis "0" atau "5"? Silahkan tebak!
 
 <Sandpack>
 
@@ -317,7 +317,7 @@ Tetapi bagaimana jika Anda ingin membaca *state* terakhir sebelum sebuah *render
 * Ketika Anda memanggil `useState`, React memberikan Anda *snapshot* dari *state* untuk *render* tersebut.
 * Variabel dan *event handlers* tidak "bertahan" pada saat terjadi *render* ulang. Setiap *render* memiliki *event handlers*-nya sendiri.
 * Setiap *render* (dan fungsi didalamnya) akan selalu "melihat" *snapshot* dari *state* yang diberikan oleh React pada *render* tersebut.
-* Anda dapat melakukan substitusi nilai *state* pada *event handlers* didalam benak anda, mirip dengan apa yang anda pikirkan tentang JSX yang sudah di-*render*. 
+* Anda dapat melakukan substitusi nilai *state* pada *event handlers* didalam benak anda, mirip dengan apa yang anda pikirkan tentang JSX yang sudah di-*render*.
 * *Event handlers* yang dibuat di masa lalu memiliki nilai *state* dari *render* tempat mereka dibuat.
 
 </Recap>
@@ -363,7 +363,7 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Tambahkan sebuah `alert` didalam *handler* klik. Ketika lampu menyala hijau dan tertulis "Jalan", menekan tombol harus menampilkan "Selanjutnya adalah berhenti". Ketika lampu menyala merah dan tertulis "Berhenti", menekan tombol harus menampilkan "Selanjutnya adalah berjalan." 
+Tambahkan sebuah `alert` didalam *handler* klik. Ketika lampu menyala hijau dan tertulis "Jalan", menekan tombol harus menampilkan "Selanjutnya adalah berhenti". Ketika lampu menyala merah dan tertulis "Berhenti", menekan tombol harus menampilkan "Selanjutnya adalah berjalan."
 
 Apakah terdapat perbedaan ketika anda menaruh `alert` sebelum atau sesudah `setWalk` dipanggil?
 

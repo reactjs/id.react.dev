@@ -294,7 +294,7 @@ Pada contoh di atas, React dapat memulai *streaming* halaman lebih awal. Hanya `
 
 Cara persis pemuatan data dalam komponen `Posts` di atas tergantung *framework* yang Anda gunakan. Jika Anda menggunakan *framework* yang mendukung *Suspense*, Anda dapat menemukan detailnya dalam dokumentasi *framework* tersebut tentang *data fetching.*
 
-*Data fetching* secara *Suspense-enabled* tanpa menggunakan *framework* yang *opinionated* masih belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung *Suspense* masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan *Suspense* akan dirilis dalam versi React yang akan datang. 
+*Data fetching* secara *Suspense-enabled* tanpa menggunakan *framework* yang *opinionated* masih belum didukung. Persyaratan untuk mengimplementasikan sumber data yang mendukung *Suspense* masih belum stabil dan belum terdokumentasi. API resmi untuk mengintegrasikan sumber data dengan *Suspense* akan dirilis dalam versi React yang akan datang.
 
 </Note>
 
@@ -401,7 +401,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     console.error(error);
@@ -460,7 +460,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Ada yang salah</h1>'); 
+    response.send('<h1>Ada yang salah</h1>');
   },
   onError(error) {
     console.error(error);
@@ -486,7 +486,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Ada yang salah</h1>'); 
+    response.send('<h1>Ada yang salah</h1>');
   },
   onError(error) {
     didError = true;
@@ -530,7 +530,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
    response.statusCode = getStatusCode();
    response.setHeader('content-type', 'text/html');
-   response.send('<h1>Ada yang salah</h1>'); 
+   response.send('<h1>Ada yang salah</h1>');
   },
   onError(error) {
     didError = true;
@@ -569,13 +569,13 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onAllReady() {
     if (isCrawler) {
       response.statusCode = didError ? 500 : 200;
       response.setHeader('content-type', 'text/html');
-      pipe(response);      
+      pipe(response);
     }
   },
   onError(error) {

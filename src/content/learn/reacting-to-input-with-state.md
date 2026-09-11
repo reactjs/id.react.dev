@@ -26,7 +26,7 @@ Ketika Anda mendesain interaksi UI, Anda mungkin berpikir tentang bagaimana UI *
 * Apabila permintaan jaringan gagal, sebuah pesan kesalahan **muncul,** dan formulir **menjadi aktif** kembali.
 
 
-Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan. 
+Pada **pemrograman imperatif**, yang disebutkan di atas berkaitan langsung dengan bagaimana Anda mengimplementasikan interaksi tersebut. Anda harus menulis intruksi yang spesifik untuk memanipulasi UI tergantung apa yang sedang terjadi. Cara lain untuk memikirkan hal ini adalah: bayangkan menumpang disebelah seseorang di dalam mobil dan memberitahu mereka kemana harus pergi disetiap belokan.
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Di dalam mobil yang dikemudikan oleh orang yang tampak khawatir, merepresentasikan JavaScript, seorang penumpang memerintahkan pengemudi untuk melakukan serangkaian navigasi belokan demi belokan yang rumit." />
 
@@ -333,7 +333,7 @@ Pada kedua kasus tersebut, **Anda harus mengatur [variabel *state*](/learn/state
 
 <Note>
 
-Perhatikan bahwa masukan dari manusia sering kali membutuhkan [*event handler*](/learn/respon-to-events)!
+Perhatikan bahwa masukan dari manusia sering kali membutuhkan [*event handler*](/learn/responding-to-events)!
 
 </Note>
 
@@ -563,7 +563,7 @@ Komponen ini memiliki dua status visual: apabila gambar aktif, dan apabila gamba
 * Saat gambar aktif, kelas CSS adalah `background` dan `picture picture--active`.
 * Ketika gambar tidak aktif, kelas CSS adalah `background background--active` dan `picture`.
 
-Sebuah variabel *state boolean* sudah cukup untuk menyimpan informasi, apakah gambar tersebut aktif atau tidak. Tugas awalnya adalah menghapus atau menambahkan kelas CSS. Namun, di React Anda perlu *mendeskripsikan* apa yang ingin Anda lihat dibandingkan dengan *memanipulasi* elemen UI. Jadi, Anda perlu menentukan kedua kelas CSS berdasarkan *state* saat ini. Anda juga perlu [menghentikan propagasi](/learn/responing-to-events#stopping-propagation) agar mengklik gambar tidak terdeteksi sebagai klik pada latar belakang.
+Sebuah variabel *state boolean* sudah cukup untuk menyimpan informasi, apakah gambar tersebut aktif atau tidak. Tugas awalnya adalah menghapus atau menambahkan kelas CSS. Namun, di React Anda perlu *mendeskripsikan* apa yang ingin Anda lihat dibandingkan dengan *memanipulasi* elemen UI. Jadi, Anda perlu menentukan kedua kelas CSS berdasarkan *state* saat ini. Anda juga perlu [menghentikan propagasi](/learn/responding-to-events#stopping-propagation) agar mengklik gambar tidak terdeteksi sebagai klik pada latar belakang.
 
 Pastikan bahwa versi ini berfungsi dengan baik, dengan mengeklik gambar dan kemudian klik kembali bagian di luar gambar tersebut:
 
@@ -699,7 +699,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Perlu diingat bahwa jika dua potongan JSX yang berbeda mendeskripsikan pohon yang serupa, susunannya (`<div>` pertama → `<img>` pertama) harus sama. Jika tidak, penggantian `isActive` akan menyebabkan pembuatan ulang seluruh pohon di dalamnya dan [mereset *state*-nya.](/learn/preserving-and-reset-state) Inilah sebabnya, jika pohon JSX dari kedua kasus tersebut menghasilkan pohon serupa, lebih baik penulisannya digabungkan menjadi sepotong JSX.
+Perlu diingat bahwa jika dua potongan JSX yang berbeda mendeskripsikan pohon yang serupa, susunannya (`<div>` pertama → `<img>` pertama) harus sama. Jika tidak, penggantian `isActive` akan menyebabkan pembuatan ulang seluruh pohon di dalamnya dan [mereset *state*-nya.](/learn/preserving-and-resetting-state) Inilah sebabnya, jika pohon JSX dari kedua kasus tersebut menghasilkan pohon serupa, lebih baik penulisannya digabungkan menjadi sepotong JSX.
 
 </Solution>
 

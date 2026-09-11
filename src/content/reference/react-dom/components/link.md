@@ -30,7 +30,7 @@ Untuk menautkan ke sumber daya eksternal seperti *stylesheet*, *font*, dan ikon,
 
 #### *Props* {/*props*/}
 
-`<link>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#props)
+`<link>` mendukung semua [*props* elemen umum.](/reference/react-dom/components/common#common-props)
 
 * `rel`: *string*, dibutuhkan. Menentukan [hubungan dengan sumber daya](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [memperlakukan tautan dengan rel="stylesheet" secara berbeda](#special-rendering-behavior) dari tautan lainnya.
 
@@ -151,7 +151,7 @@ export default function SiteMapPage() {
 
 ### Mengendalikan *precedence* *stylesheet* {/*controlling-stylesheet-precedence*/}
 
-*Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, tiga komponen me-*render* *stylesheet*, dan yang memiliki *precedence* yang sama dikelompokan bersamaan di `<head>`. 
+*Stylesheet* dapat bertentangan satu sama lain, dan ketika itu terjadi, peramban akan memilih yang datang kemudian dalam dokumen. React memungkinkan Anda mengendalikan urutan *stylesheet* dengan *prop* `precedence`. Dalam contoh ini, tiga komponen me-*render* *stylesheet*, dan yang memiliki *precedence* yang sama dikelompokan bersamaan di `<head>`.
 
 <SandpackWithHTMLOutput>
 

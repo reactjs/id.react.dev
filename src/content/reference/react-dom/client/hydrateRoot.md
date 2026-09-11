@@ -295,7 +295,8 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js src/App.js active
+{/* kind of an edge case, seems fine to use this hack here */}
+```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -316,6 +317,10 @@ export default function App() {
 </Sandpack>
 
 Dengan cara ini proses render awal akan me-render konten yang sama seperti *server*, sehingga menghindari ketidakcocokan, tetapi proses tambahan akan terjadi secara serempak setelah *hydration*.
+
+Use this approach when you want the client-rendered content to be different from the initial server-rendered HTML.
+
+<Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use) instead of waiting for an Effect.</Canary>
 
 <Pitfall>
 

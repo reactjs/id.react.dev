@@ -4,7 +4,7 @@ title: "Komponen Server"
 
 <RSC>
 
-Komponen Server digunakan di [Komponen Server React](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Komponen Server digunakan di [Komponen Server React](/learn/creating-a-react-app#full-stack-frameworks).
 
 </RSC>
 
@@ -47,7 +47,7 @@ function Page({page}) {
       setContent(data.content);
     });
   }, [page]);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -71,7 +71,7 @@ import sanitizeHtml from 'sanitize-html'; // Tidak termasuk dalam bundel
 async function Page({page}) {
   // CATATAN: dimuat *saat* render, ketika aplikasi dibangun.
   const content = await file.readFile(`${page}.md`);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -115,7 +115,7 @@ function Note({id}) {
       setNote(data.note);
     });
   }, [id]);
-  
+
   return (
     <div>
       <Author id={note.authorId} />
@@ -255,7 +255,7 @@ Ini bekerja dengan pertama-tama merender `Notes` sebagai Komponen Server, dan ke
       <p>this is the second note</p>
     </Expandable>
     <!--...-->
-  </div> 
+  </div>
 </body>
 ```
 
@@ -272,8 +272,8 @@ import db from './database';
 async function Page({id}) {
   // Akan suspend Komponen Server.
   const note = await db.notes.get(id);
-  
-  // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien. 
+
+  // CATATAN: tidak ditunggu, akan mulai di sini dan menunggu di klien.
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
@@ -295,7 +295,7 @@ function Comments({commentsPromise}) {
   // CATATAN: ini akan melanjutkan promise dari server.
   // Ini akan suspend sampai data tersedia.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 

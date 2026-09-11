@@ -78,7 +78,7 @@ console.log(isValidElement(createElement(MyComponent))); // true
 
 Nilai lainnya, seperti string, angka, atau objek sembarang dan *array*, bukan elemen React.
 
-Untuk nilai-nilai tersebut, `isValidElement` mengembalikan `false`: 
+Untuk nilai-nilai tersebut, `isValidElement` mengembalikan `false`:
 
 ```js
 // ❌ Berikut ini *bukan* elemen React

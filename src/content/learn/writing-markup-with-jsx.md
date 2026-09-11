@@ -60,7 +60,7 @@ Masing-masing komponen React adalah fungsi JavaScript yang bisa memiliki *markup
 
 <Note>
 
-JSX dan React adalah dua hal yang berbeda. Mereka masing-masing digunakan secara bersama, namun anda *dapat* [digunakan sendiri secara independen](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform). 
+JSX dan React adalah dua hal yang berbeda. Mereka masing-masing digunakan secara bersama, namun anda *dapat* [digunakan sendiri secara independen](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform).
 JSX merupakan ekstensi sintaks, sedangkan React adalah *library* JavaScript.
 
 </Note>
@@ -71,9 +71,9 @@ Anggap anda memiliki HTML yang alid:
 
 ```html
 <h1>Daftar Tugas Putri</h1>
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Putri" 
+<img
+  src="https://i.imgur.com/yXOvdOSs.jpg"
+  alt="Putri"
   class="photo"
 >
 <ul>
@@ -103,9 +103,9 @@ export default function TodoList() {
   return (
     // This doesn't quite work!
     <h1>Daftar Tugas Putri</h1>
-    <img 
-      src="https://i.imgur.com/yXOvdOSs.jpg" 
-      alt="Putri" 
+    <img
+      src="https://i.imgur.com/yXOvdOSs.jpg"
+      alt="Putri"
       class="photo"
     >
     <ul>
@@ -142,9 +142,9 @@ Contohnya, anda dapat menggunakan tag `<div>`:
 ```js {1,11}
 <div>
   <h1>Daftar Tugas Putri</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Putri" 
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Putri"
     class="photo"
   >
   <ul>
@@ -159,9 +159,9 @@ Jika anda tidak ingin menambahkan `<div>` pada *markup*, anda dapat `<>` dan `</
 ```js {1,11}
 <>
   <h1>Daftar Tugas Putri</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Putri" 
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Putri"
     class="photo"
   >
   <ul>
@@ -188,9 +188,9 @@ Berikut adalah gambar dan daftar tugas Putri dengan *tag* ganda:
 
 ```js {2-6,8-10}
 <>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Putri" 
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Putri"
     class="photo"
    />
   <ul>
@@ -208,9 +208,9 @@ JSX berubah menjadi JavaScript dan atribut yang dituis di JSX menjadi *key* pada
 Inilah mengapa di React, banyak atribut HTML dan SVG ditulis secara camelCase. Contohnya, `stroke-width` dapat ditulis sebagai `strokeWidth`. Dan karena `class` merupakan nama pesanan, di React kita menulisnya sebagai `className`, dinamakan sesuai dengan [versi DOM-nya](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Putri" 
+<img
+  src="https://i.imgur.com/yXOvdOSs.jpg"
+  alt="Putri"
   className="photo"
 />
 ```
@@ -237,10 +237,10 @@ export default function TodoList() {
   return (
     <>
       <h1>Daftar Tugas Putri</h1>
-      <img 
-        src="https://i.imgur.com/yXOvdOSs.jpg" 
-        alt="Putri" 
-        className="photo" 
+      <img
+        src="https://i.imgur.com/yXOvdOSs.jpg"
+        alt="Putri"
+        className="photo"
       />
       <ul>
         <li>Mengerjakan PR</li>

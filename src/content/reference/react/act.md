@@ -96,12 +96,12 @@ import Counter from './Counter';
 it('dapat me-render dan memperbarui penghitung', async () => {
   container = document.createElement('div');
   document.body.appendChild(container);
-  
+
   // ✅ Render the component inside act().
   await act(() => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
-  
+
   const button = container.querySelector('button');
   const label = container.querySelector('p');
   expect(label.textContent).toBe('Anda mengklik 0 kali');
@@ -115,7 +115,7 @@ Menggunakan `act` memastikan bahwa semua pembaruan telah diterapkan sebelum kita
 
 ### Mengirimkan events dalam pengujian {/*dispatching-events-in-tests*/}
 
-Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`: 
+Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`:
 
 ```js {14,16}
 import {act} from 'react';
@@ -125,11 +125,11 @@ import Counter from './Counter';
 it.only('dapat me-render dan memperbarui penghitung', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
-  
+
   await act( async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
-  
+
   // ✅ Dispatch the event inside act().
   await act(async () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
