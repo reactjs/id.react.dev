@@ -47,7 +47,7 @@
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.29.6",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
     "@mdx-js/mdx": "^2.1.3",
@@ -89,7 +89,7 @@
     "mdast-util-to-string": "^1.1.0",
     "metro-cache": "0.72.2",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.5",
+    "postcss": "^8.5.23",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.5.1",
