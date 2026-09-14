@@ -1567,7 +1567,7 @@ Secara default, router [Suspense-enabled](/reference/react/Suspense) diharapkan 
 
 ### Menampilkan *error* ke pengguna dengan *error boundary* {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+If a function passed to `startTransition` throws an error or returns a rejected Promise, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
 
 <Sandpack>
 
@@ -1738,7 +1738,15 @@ Ini adalah batasan JavaScript karena React kehilangan cakupan konteks async. Di 
 
 ### Saya ingin memanggil `useTransition` dari luar komponen {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
+<<<<<<< HEAD
 Anda tidak dapat memanggil `useTransition` di luar sebuah komponen karena ini adalah sebuah Hook. Dalam kasus ini, sebaiknya gunakanlah *method* [`startTransition`](/reference/react/startTransition). Itu bekerja dengan cara yang sama, namun itu tidak dapat memberikan indikator `isPending`.
+=======
+You can't call `useTransition` outside a component because it's a Hook. In this
+case, the standalone [`startTransition`](/reference/react/startTransition)
+function can mark state updates as Transitions. It does not provide the
+`isPending` flag. Because the standalone function is not associated with a
+component, an Error Boundary cannot handle errors from its Transition.
+>>>>>>> 8efce7853d0fc59e615ed1c253799cf1798b8428
 
 ---
 

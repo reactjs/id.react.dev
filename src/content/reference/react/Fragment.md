@@ -6,7 +6,7 @@ title: <Fragment> (<>...</>)
 
 `<Fragment>`, sering digunakan melalui sintaksis `<>...</>`, memungkinkan Anda mengelompokkan elemen tanpa *wrapper node*.
 
-<Canary>Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements.</Canary>
+Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements.
 
 ```js
 <>
@@ -29,17 +29,32 @@ Bungkus elemen-elemen di dalam `<Fragment>` untuk mengelompokkan mereka dalam si
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 - `key` **opsional**: *Fragment* yang dideklarasikan dengan sintaksis `<Fragment>` eksplisit mungkin memiliki [`key`.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+=======
+- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
+>>>>>>> 8efce7853d0fc59e615ed1c253799cf1798b8428
 
 #### Caveats {/*caveats*/}
 
 - Jika Anda ingin mengoper `key` ke *Fragment*, Anda tidak bisa menggunakan sintaksis `<>...</>`. Anda harus secara eksplisit mengimpor `Fragment` dari `'react'` dan me-*render* `<Fragment key={yourKey}>...</Fragment>`.
 
+<<<<<<< HEAD
 - React tidak akan [mengatur ulang *state*](/learn/preserving-and-resetting-state) ketika Anda me-*render* dari  `<><Child /></>` ke `[<Child />]` atau sebaliknya, atau ketika Anda me-*render* `<><Child /></>` ke `<Child />` dan sebaliknya. Ini hanya bekerja dalam satu tingkat kedalaman: contohnya, beralih dari `<><><Child /></></>` ke `<Child />` akan mengatur ulang *state*. Lihat semantik yang lebih jelas [di sini.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
 ## Pengunaan {/*usage*/}
+=======
+* React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+
+* If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
+
+---
+
+### `FragmentInstance` {/*fragmentinstance*/}
+>>>>>>> 8efce7853d0fc59e615ed1c253799cf1798b8428
 
 ### Menetapkan banyak elemen {/*returning-multiple-elements*/}
 
@@ -213,7 +228,7 @@ function PostBody({ body }) {
 
 ---
 
-### <CanaryBadge /> Adding event listeners without a wrapper element {/*adding-event-listeners-without-wrapper*/}
+### Adding event listeners without a wrapper element {/*adding-event-listeners-without-wrapper*/}
 
 Fragment `ref`s let you add event listeners to a group of elements without adding a wrapper DOM node. Use a [ref callback](/reference/react-dom/components/common#ref-callback) to attach and clean up listeners:
 
@@ -265,8 +280,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -302,7 +317,7 @@ Methods like `addEventListener`, `observeUsing`, and `getClientRects` operate on
 
 ---
 
-### <CanaryBadge /> Managing focus across a group of elements {/*managing-focus-across-elements*/}
+### Managing focus across a group of elements {/*managing-focus-across-elements*/}
 
 Fragment `ref`s provide `focus`, `focusLast`, and `blur` methods that operate across all DOM nodes within the Fragment:
 
@@ -374,8 +389,8 @@ label {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -387,7 +402,7 @@ Calling `focus()` focuses the `street` input—even though it is nested inside a
 
 ---
 
-### <CanaryBadge /> Scrolling a group of elements into view {/*scrolling-group-into-view*/}
+### Scrolling a group of elements into view {/*scrolling-group-into-view*/}
 
 Use `scrollIntoView` to scroll a Fragment's children into view without a wrapper element. Pass `true` (or omit the argument) to scroll the first child to the top. Pass `false` to scroll the last child to the bottom:
 
@@ -470,8 +485,8 @@ p {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -481,7 +496,7 @@ p {
 
 ---
 
-### <CanaryBadge /> Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
+### Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
 
 Use `observeUsing` to attach an `IntersectionObserver` to all first-level DOM children of a Fragment. This lets you track visibility without requiring child components to expose `ref`s or adding a wrapper element:
 
@@ -582,8 +597,8 @@ export default function Card({ title }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -593,7 +608,7 @@ export default function Card({ title }) {
 
 ---
 
-### <CanaryBadge /> Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}
+### Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}
 
 A common performance optimization for sites with many observers is to share a single IntersectionObserver per config and route its entries to the correct callbacks based on which element intersected. Fragment `ref`s support this same pattern through the `reactFragments` property.
 
@@ -772,8 +787,8 @@ export default function Card({ title, className }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
