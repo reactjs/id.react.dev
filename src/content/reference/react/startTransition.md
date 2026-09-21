@@ -92,7 +92,11 @@ Dengan sebuah transisi, antarmuka aplikasi Anda akan tetap responsif di tengah p
 
 <Note>
 
+<<<<<<< HEAD
 `startTransition` hampir serupa dengan [`useTransition`](/reference/react/useTransition), tetapi dengan perbedaan bahwa ia tidak memiliki penanda `isPending` untuk memberi tahu apakah sebuah transisi sedang berjalan atau tidak. Anda dapat memanggil `startTransition` ketika `useTransition` tidak dapat digunakan dalam kondisi tertentu. Contohnya, `startTransition` dapat digunakan di luar komponen, misalnya seperti pustaka data / *data library*.
+=======
+`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. The standalone function is also not associated with a component, so if the function passed to it throws an error or returns a rejected Promise, React reports the error with [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError). You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 [Pelajari lebih lanjut mengenai transisi dan lihat contoh pada halaman `useTransition`.](/reference/react/useTransition)
 
