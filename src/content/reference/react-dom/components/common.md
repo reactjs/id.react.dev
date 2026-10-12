@@ -28,7 +28,11 @@ Beberapa *props* spesial React berikut didukung oleh setiap komponen bawaan:
 
 * `children`: Sebuah *node* React (sebuah elemen, string, angka, [portal,](/reference/react-dom/createPortal) *node* kosong seperti `null`, `undefined` and booleans, atau senarai dari *nodes* React). Menggambarkan kontent yang berada di dalam komponen. Saat menggunakan JSX, biasanya kau akan mendefinisikan *prop* dari `children` secara implisit dengan menggunakan tag bersarang seperti `<div><span /></div>`.
 
+<<<<<<< HEAD
 * `dangerouslySetInnerHTML`: Sebuah objek dengan bentuk `{ __html: '<p>some html</p>' }` yang mengandung string HTML mentah. Objek ini menimpa [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) yang merupakan properti dari DOM *node* dan menampilkan HTML yang di-*passing* ke dalamnya. Hal ini harus digunakan dengan sangat hati-hati! Jika HTML yang berada didalamnya tidak terpercaya (sebagai contoh, jika datanya berbasis pada data pengguna), akan beresiko pada munculnya kerentanan terhadap [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). [Baca lebih lanjut mengenai penggunaan `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+=======
+* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string or [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 * `ref`: Ref adalah sebuah objek dari [`useRef`](/reference/react/useRef) atau [`createRef`](/reference/react/createRef), atau sebuah [fungsi *callback* `ref`,](#ref-callback) atau sebuah string untuk [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Ref anda akan diisi dengan elemen DOM untuk *node* tersebut. [Baca lebih lanjut mengenai memanipulasi DOM dengan refs.](#manipulating-a-dom-node-with-a-ref)
 
@@ -928,7 +932,11 @@ Untuk kasus yang lebih canggih, attribut `ref` juga menerima sebuah [fungsi *cal
 
 ### Mengatur inner HTML secara bahaya {/*dangerously-setting-the-inner-html*/}
 
+<<<<<<< HEAD
 Anda dapat mengoper string HTML mentah ke sebuah elemen seperti berikut:
+=======
+You can pass a raw HTML string or a [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value to an element like so:
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 ```js
 const markup = { __html: '<p>beberapa HTML mentah</p>' };
@@ -937,7 +945,13 @@ return <div dangerouslySetInnerHTML={markup} />;
 
 **Hal ini berbahaya. Karena dengan properti DOM mendasar [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), anda harus sangat berhati-hati! Kecuali, markup tersebut berasal dari sumber yang sepenuhnya dipercayai, Itu sepele untuk memperkenalkan kerentanan [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting).**
 
+<<<<<<< HEAD
 Sebagai contoh, jika anda menggunakan *library* Markdown untuk mengkonversi Markdown ke HTML, Anda percaya bahwa *parser* tidak mengandung bug, dan pengguna hanya melihat masukan mereka sendiri, Anda dapat menampilkan HTML yang dihasilkan seperti ini:
+=======
+If your site enforces [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API), pass a `TrustedHTML` value created by your security policy as `__html`. React passes the value to the browser without converting it to a string, allowing the browser to validate it. Your policy must still ensure that any input used to create the value is trusted and sanitized.
+
+For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 <Sandpack>
 

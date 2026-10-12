@@ -1,5 +1,6 @@
 ---
 title: <ViewTransition>
+<<<<<<< HEAD
 version: experimental
 ---
 
@@ -21,6 +22,13 @@ Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam pr
 
 `<ViewTransition>` memungkinkan Anda untuk menganimasikan elemen yang diperbarui di dalam Transisi.
 
+=======
+---
+
+<Intro>
+
+`<ViewTransition>` lets you animate a component tree with Transitions and Suspense.
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 ```js
 import {unstable_ViewTransition as ViewTransition} from 'react';
@@ -337,8 +345,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -365,7 +378,131 @@ function Component() {
 ---
 ### Menganimasikan elemen bersama {/*animating-a-shared-element*/}
 
+<<<<<<< HEAD
 Biasanya, kami tidak merekomendasikan menetapkan nama ke `<ViewTransition>` dan sebaliknya membiarkan React menetapkan nama otomatis. Alasan Anda mungkin ingin menetapkan nama adalah untuk menganimasikan antara komponen yang sepenuhnya berbeda ketika satu pohon unmount dan pohon lainnya mount pada saat yang sama. Untuk menjaga kesinambungan.
+=======
+### Animating enter/exit with Activity {/*animating-enter-exit-with-activity*/}
+
+If you want to animate a component in and out while preserving its state, or pre-rendering content for an animation, you can use [`<Activity>`](/reference/react/Activity). When a `<ViewTransition>` inside an `<Activity>` becomes visible, the `enter` animation activates. When it becomes hidden, the `exit` animation activates:
+
+```js
+<Activity mode={isVisible ? 'visible' : 'hidden'}>
+  <ViewTransition enter="auto" exit="auto">
+    <Counter />
+  </ViewTransition>
+</Activity>
+
+```
+
+In this example, `Counter` has a counter with internal state. Try incrementing the counter, hiding it, then showing it again. The counter's value is preserved while the sidebar animates in and out:
+
+<Sandpack>
+
+```js
+import { Activity, ViewTransition, useState, startTransition } from 'react';
+
+export default function App() {
+  const [show, setShow] = useState(true);
+  return (
+    <div className="layout">
+      <Toggle show={show} setShow={setShow} />
+      <Activity mode={show ? 'visible' : 'hidden'}>
+        <ViewTransition enter="auto" exit="auto" default="none">
+          <Counter />
+        </ViewTransition>
+      </Activity>
+    </div>
+  );
+}
+function Toggle({show, setShow}) {
+  return (
+    <button
+      className="toggle"
+      onClick={() => {
+        startTransition(() => {
+          setShow(s => !s);
+        });
+      }}>
+      {show ? 'Hide' : 'Show'}
+    </button>
+  )
+}
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="counter">
+      <h2>Counter</h2>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+```
+
+```css
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 200px;
+}
+.counter {
+  padding: 15px;
+  background: #f0f4f8;
+  border-radius: 8px;
+  width: 200px;
+}
+.counter h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+.counter p {
+  margin: 0 0 10px 0;
+}
+.toggle {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f0f8ff;
+  cursor: pointer;
+  font-size: 14px;
+}
+.toggle:hover {
+  background: #e0e8ff;
+}
+.counter button {
+  padding: 4px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+Without `<Activity>`, the counter would reset to `0` every time the sidebar reappears.
+
+---
+
+### Animating a shared element {/*animating-a-shared-element*/}
+
+Normally, we don't recommend assigning a name to a `<ViewTransition>` and instead let React assign it an automatic name. The reason you might want to assign a name is to animate between completely different components when one tree unmounts and another tree mounts at the same time, to preserve continuity.
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 ```js
 <ViewTransition name={UNIQUE_NAME}>
@@ -582,8 +719,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -822,8 +964,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -1026,8 +1173,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -1055,9 +1207,15 @@ Penting untuk menggunakan kunci dengan benar untuk menjaga identitas saat menyus
 
 ### Menganimasikan dari konten Suspense {/*animating-from-suspense-content*/}
 
+<<<<<<< HEAD
 Sama seperti Transisi apa pun, React menunggu data dan CSS baru (`<link rel="stylesheet" precedence="...">`) sebelum menjalankan animasi. Selain itu, ViewTransitions juga menunggu hingga 500ms untuk font baru dimuat sebelum memulai animasi untuk menghindari mereka berkedip nanti. Untuk alasan yang sama, gambar yang dibungkus dalam ViewTransition akan menunggu gambar dimuat.
 
 Jika itu di dalam instance batas Suspense baru, maka fallback ditampilkan terlebih dahulu. Setelah batas Suspense sepenuhnya dimuat, itu memicu `<ViewTransition>` untuk menganimasikan pengungkapan ke konten.
+=======
+Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts and visible images to load so they don't flicker in after the animation starts. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
+
+If the content is inside a new Suspense boundary, React first shows the fallback. After the boundary finishes loading, `<ViewTransition>` animates the reveal to the content.
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 Saat ini, ini hanya terjadi untuk Transisi sisi klien. Di masa depan, ini juga akan menganimasikan batas Suspense untuk streaming SSR ketika konten dari server menangguhkan selama pemuatan awal.
 
@@ -1118,6 +1276,7 @@ export function VideoPlaceholder() {
 ```
 
 ```js
+<<<<<<< HEAD
 import {
   unstable_ViewTransition as ViewTransition,
   useState,
@@ -1126,6 +1285,11 @@ import {
 } from 'react';
 import {Video, VideoPlaceholder} from "./Video";
 import {useLazyVideoData} from "./data"
+=======
+import { ViewTransition, Suspense, useState } from 'react';
+import {Video, VideoPlaceholder} from './Video';
+import {useLazyVideoData} from './data';
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 function LazyVideo() {
   const video = useLazyVideoData();
@@ -1138,6 +1302,7 @@ export default function Component() {
   const [showItem, setShowItem] = useState(false);
   return (
     <>
+<<<<<<< HEAD
       <button
         onClick={() => {
           startTransition(() => {
@@ -1145,6 +1310,11 @@ export default function Component() {
           });
         }}
       >{showItem ? '➖' : '➕'}</button>
+=======
+      <button onClick={() => setShowItem((prev) => !prev)}>
+        {showItem ? '➖' : '➕'}
+      </button>
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
       {showItem ? (
         <ViewTransition>
           <Suspense fallback={<VideoPlaceholder />}>
@@ -1291,8 +1461,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -1529,8 +1704,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -1781,8 +1961,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -2110,8 +2295,13 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
+<<<<<<< HEAD
     "react": "experimental",
     "react-dom": "experimental",
+=======
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
     "react-scripts": "latest"
   }
 }
@@ -2123,7 +2313,253 @@ button:hover {
 
 React menunggu Navigasi tertunda selesai untuk memastikan bahwa pemulihan gulir terjadi dalam animasi. Jika Navigasi diblokir pada React, router Anda harus membuka blokir di `useLayoutEffect` karena `useEffect` akan menyebabkan deadlock.
 
+<<<<<<< HEAD
 Jika `startTransition` dimulai dari event popstate lama, seperti selama navigasi "back", maka itu harus selesai secara sinkron untuk memastikan pemulihan gulir dan formulir bekerja dengan benar. Ini bertentangan dengan menjalankan animasi Transisi Tampilan. Oleh karena itu, React akan melewatkan animasi dari popstate. Oleh karena itu animasi tidak akan berjalan untuk tombol back. Anda dapat memperbaikinya dengan meningkatkan router Anda untuk menggunakan Navigation API.
+=======
+While [View Transition Classes](#view-transition-class) let you define animations with CSS, sometimes you need imperative control over the animation. The `onEnter`, `onExit`, `onUpdate`, and `onShare` callbacks give you direct access to the view transition pseudo-elements so you can animate them using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+
+Each callback receives an `instance` with `.old` and `.new` properties representing the view transition pseudo-elements. You can call `.animate()` on them just like you would on a DOM element:
+
+```js
+<ViewTransition
+  onEnter={(instance) => {
+    const anim = instance.new.animate(
+      [
+        {transform: 'scale(0.8)'},
+        {transform: 'scale(1)'},
+      ],
+      {duration: 300, easing: 'ease-out'}
+    );
+    return () => anim.cancel();
+  }}>
+  <div>...</div>
+</ViewTransition>
+```
+
+This allows you to combine CSS-driven animations and JavaScript-driven animations.
+
+In the following example, the default cross-fade is handled by CSS, and the slide animations are driven by JavaScript in the `onEnter` and `onExit` animations:
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({video, children}) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({video}) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
+import {SLIDE_IN, SLIDE_OUT} from './animations';
+
+function Item() {
+  return (
+    <ViewTransition
+      default="none"
+      /* CSS driven cross fade defaults */
+      enter="auto"
+      exit="auto"
+      /* JS driven slide animations */
+      onEnter={(instance) => {
+        const anim = instance.new.animate(
+          SLIDE_IN,
+          {duration: 500, easing: 'ease-out'}
+        );
+        return () => anim.cancel();
+      }}
+      onExit={(instance) => {
+        const anim = instance.old.animate(
+          SLIDE_OUT,
+          {duration: 300, easing: 'ease-in'}
+        );
+        return () => anim.cancel();
+      }}>
+      <Video video={videos[0]} />
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
+
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/animations.js
+export const SLIDE_IN = [
+  {transform: 'translateY(20px)'},
+  {transform: 'translateY(0)'},
+];
+
+export const SLIDE_OUT = [
+  {transform: 'translateY(0)'},
+  {transform: 'translateY(-20px)'},
+];
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+];
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+<Note>
+
+#### Always clean up View Transition Events {/*always-clean-up-view-transition-events*/}
+
+View Transition Events should always return a cleanup function:
+
+```js {7}
+<ViewTransition
+  onEnter={(instance) => {
+    const anim = instance.new.animate(
+      SLIDE_IN,
+      {duration: 500, easing: 'ease-out'}
+    );
+    return () => anim.cancel();
+  }}
+>
+```
+
+This allows the browser to cancel the animation when the View Transition is interrupted.
+
+</Note>
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 ---
 
@@ -2131,7 +2567,242 @@ Jika `startTransition` dimulai dari event popstate lama, seperti selama navigasi
 
 ### `<ViewTransition>` saya tidak diaktifkan {/*my-viewtransition-is-not-activating*/}
 
+<<<<<<< HEAD
 `<ViewTransition>` hanya diaktifkan jika ditempatkan sebelum node DOM apa pun:
+=======
+```js {3}
+ <ViewTransition
+  onEnter={(instance, types) => {
+    const duration = types.includes('fast') ? 150 : 2000;
+    const anim = instance.new.animate(
+      SLIDE_IN,
+      {duration: duration, easing: 'ease-out'}
+    );
+    return () => anim.cancel();
+  }}
+>
+```
+
+This example calls [`addTransitionType`](/reference/react/addTransitionType) to mark a Transition as "fast" and then adjust the animation duration:
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({video, children}) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({video}) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {ViewTransition, useState, startTransition, addTransitionType} from 'react';
+import {Video} from './Video';
+import videos from './data';
+import {SLIDE_IN, SLIDE_OUT} from './animations';
+
+function Item() {
+  return (
+    <ViewTransition
+      onEnter={(instance, types) => {
+        const duration = types.includes('fast') ? 150 : 2000;
+        const anim = instance.new.animate(
+          SLIDE_IN,
+          {duration: duration, easing: 'ease-out'}
+        );
+        return () => anim.cancel();
+      }}
+      onExit={(instance, types) => {
+        const duration = types.includes('fast') ? 150 : 500;
+        const anim = instance.old.animate(
+          SLIDE_OUT,
+          {duration: duration, easing: 'ease-in'}
+        );
+        return () => anim.cancel();
+      }}>
+      <Video video={videos[0]} />
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  const [isFast, setIsFast] = useState(false);
+  return (
+    <>
+      <div>
+        Fast: <input type="checkbox" onChange={() => {setIsFast(f => !f)}} value={isFast}></input>
+      </div><br />
+      <button
+        onClick={() => {
+          startTransition(() => {
+            if (isFast) {
+              addTransitionType('fast');
+            }
+            setShowItem((prev) => !prev);
+          });
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
+
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/animations.js
+export const SLIDE_IN = [
+  {opacity: 0, transform: 'translateY(20px)'},
+  {opacity: 1, transform: 'translateY(0)'},
+];
+
+export const SLIDE_OUT = [
+  {opacity: 1, transform: 'translateY(0)'},
+  {opacity: 0, transform: 'translateY(-20px)'},
+];
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+];
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+---
+
+### Building View Transition enabled routers {/*building-view-transition-enabled-routers*/}
+
+React waits for any pending Navigation to finish to ensure that scroll restoration happens within the animation. If the Navigation is blocked on React, your router must unblock in `useLayoutEffect` since `useEffect` would lead to a deadlock.
+
+If a `startTransition` is started from the legacy popstate event, such as during a "back"-navigation then it must finish synchronously to ensure scroll and form restoration works correctly. This is in conflict with running a View Transition animation. Therefore, React will skip animations from popstate and animations won't run for the back button. You can fix this by upgrading your router to use the Navigation API.
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### My `<ViewTransition>` is not activating {/*my-viewtransition-is-not-activating*/}
+
+`<ViewTransition>` only activates if it is placed before any DOM node:
+>>>>>>> 046f17d04295ba047bb5739026b4ac3110f17028
 
 ```js [3, 5]
 function Component() {
