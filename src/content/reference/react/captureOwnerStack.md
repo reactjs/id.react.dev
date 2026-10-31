@@ -4,7 +4,7 @@ title: captureOwnerStack
 
 <Intro>
 
-`captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.
+`captureOwnerStack` membaca *Owner Stack* saat ini dalam mode pengembangan (*development*) dan mengembalikannya sebagai *string* jika tersedia.
 
 ```js
 const stack = captureOwnerStack();
@@ -16,11 +16,11 @@ const stack = captureOwnerStack();
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*reference*/}
 
 ### `captureOwnerStack()` {/*captureownerstack*/}
 
-Call `captureOwnerStack` to get the current Owner Stack.
+Panggil `captureOwnerStack` untuk mendapatkan *Owner Stack* saat ini.
 
 ```js {5,5}
 import * as React from 'react';
@@ -33,33 +33,33 @@ function Component() {
 }
 ```
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameters*/}
 
-`captureOwnerStack` does not take any parameters.
+`captureOwnerStack` tidak menerima parameter apa pun.
 
-#### Returns {/*returns*/}
+#### Nilai Kembalian {/*returns*/}
 
-`captureOwnerStack` returns `string | null`.
+`captureOwnerStack` mengembalikan `string | null`.
 
-Owner Stacks are available in
-- Component render
-- Effects (e.g. `useEffect`)
-- React's event handlers (e.g. `<button onClick={...} />`)
-- React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
+*Owner Stack* tersedia pada:
+- *Render* Komponen
+- *Effects* (misalnya `useEffect`)
+- *Event handler* bawaan React (misalnya `<button onClick={...} />`)
+- Penangan galat React ([Opsi React Root](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, dan `onUncaughtError`)
 
-If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null)).
+Jika tidak ada *Owner Stack* yang tersedia, `null` akan dikembalikan (lihat [Pemecahan Masalah: *Owner Stack* bernilai `null`](#the-owner-stack-is-null)).
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*caveats*/}
 
-- Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
+- *Owner Stack* hanya tersedia dalam mode pengembangan (*development*). `captureOwnerStack` akan selalu mengembalikan nilai `null` di luar lingkungan pengembangan.
 
 <DeepDive>
 
 #### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
 
-The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
+*Owner Stack* berbeda dari *Component Stack* yang tersedia pada penangan galat React seperti [`errorInfo.componentStack` pada `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
 
-For example, consider the following code:
+Sebagai contoh, perhatikan kode berikut:
 
 <Sandpack>
 
@@ -105,11 +105,11 @@ import './styles.css';
 
 createRoot(document.createElement('div'), {
   onUncaughtError: (error, errorInfo) => {
-    // The stacks are logged instead of showing them in the UI directly to
-    // highlight that browsers will apply sourcemaps to the logged stacks.
-    // Note that sourcemapping is only applied in the real browser console not
-    // in the fake one displayed on this page.
-    // Press "fork" to be able to view the sourcemapped stack in a real console.
+    // Stack dicatat ke log alih-alih menampilkannya langsung di UI
+    // untuk menegaskan bahwa peramban akan menerapkan sourcemaps pada stack yang dicatat.
+    // Perhatikan bahwa sourcemapping hanya diterapkan di konsol peramban asli,
+    // bukan pada konsol tiruan yang ditampilkan di halaman ini.
+    // Tekan "fork" untuk melihat stack dengan sourcemap di konsol nyata.
     console.log(errorInfo.componentStack);
     console.log(captureOwnerStack());
   },
@@ -136,8 +136,8 @@ createRoot(document.createElement('div'), {
 
 </Sandpack>
 
-`SubComponent` would throw an error.
-The Component Stack of that error would be
+`SubComponent` akan melempar galat (*error*).
+*Component Stack* dari galat tersebut adalah:
 
 ```
 at SubComponent
@@ -148,23 +148,23 @@ at React.Suspense
 at App
 ```
 
-However, the Owner Stack would only read
+Namun, *Owner Stack* hanya akan berisi:
 
 ```
 at Component
 ```
 
-Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in this Stack since they didn't contribute to "creating" the node containing `SubComponent`. `App` and DOM components only forwarded the node. `App` just rendered the `children` node as opposed to `Component` which created a node containing `SubComponent` via `<SubComponent />`.
+Baik `App` maupun komponen DOM (misalnya `fieldset`) tidak dianggap sebagai *Owners* dalam *Stack* ini karena mereka tidak berkontribusi dalam "membuat" simpul (*node*) yang memuat `SubComponent`. `App` dan komponen DOM hanya meneruskan simpul tersebut. `App` hanya me-*render* simpul `children`, berbeda dengan `Component` yang membuat simpul berisi `SubComponent` melalui `<SubComponent />`.
 
-Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
+Baik `Navigation` maupun `legend` sama sekali tidak berada di dalam *stack* karena keduanya hanya merupakan saudara kandung (*sibling*) dari simpul yang berisi `<SubComponent />`.
 
-`SubComponent` is omitted because it's already part of the callstack.
+`SubComponent` dihilangkan karena sudah menjadi bagian dari *callstack*.
 
 </DeepDive>
 
-## Usage {/*usage*/}
+## Penggunaan {/*usage*/}
 
-### Enhance a custom error overlay {/*enhance-a-custom-error-overlay*/}
+### Meningkatkan overlay galat kustom {/*enhance-a-custom-error-overlay*/}
 
 ```js [[1, 5, "console.error"], [4, 7, "captureOwnerStack"]]
 import { captureOwnerStack } from "react";
@@ -175,15 +175,15 @@ console.error = function patchedConsoleError(...args) {
   originalConsoleError.apply(console, args);
   const ownerStack = captureOwnerStack();
   onConsoleError({
-    // Keep in mind that in a real application, console.error can be
-    // called with multiple arguments which you should account for.
+    // Perlu diingat bahwa pada aplikasi nyata, console.error dapat
+    // dipanggil dengan beberapa argumen yang perlu Anda perhitungkan.
     consoleMessage: args[0],
     ownerStack,
   });
 };
 ```
 
-If you intercept <CodeStep step={1}>`console.error`</CodeStep> calls to highlight them in an error overlay, you can call <CodeStep step={2}>`captureOwnerStack`</CodeStep> to include the Owner Stack.
+Jika Anda mencegat pemanggilan <CodeStep step={1}>`console.error`</CodeStep> untuk menyorotnya pada *overlay* galat, Anda dapat memanggil <CodeStep step={2}>`captureOwnerStack`</CodeStep> untuk menyertakan *Owner Stack*.
 
 <Sandpack>
 
@@ -301,13 +301,13 @@ export function onConsoleError({ consoleMessage, ownerStack }) {
   const errorBody = document.getElementById("error-body");
   const errorOwnerStack = document.getElementById("error-owner-stack");
 
-  // Display console.error() message
+  // Tampilkan pesan console.error()
   errorBody.innerText = consoleMessage;
 
-  // Display owner stack
+  // Tampilkan owner stack
   errorOwnerStack.innerText = ownerStack;
 
-  // Show the dialog
+  // Tampilkan dialog
   errorDialog.classList.remove("hidden");
 }
 ```
@@ -324,8 +324,8 @@ console.error = function patchedConsoleError(...args) {
   originalConsoleError.apply(console, args);
   const ownerStack = captureOwnerStack();
   onConsoleError({
-    // Keep in mind that in a real application, console.error can be
-    // called with multiple arguments which you should account for.
+    // Perlu diingat bahwa pada aplikasi nyata, console.error dapat
+    // dipanggil dengan beberapa argumen yang perlu Anda perhitungkan.
     consoleMessage: args[0],
     ownerStack,
   });
@@ -347,13 +347,13 @@ export default function App() {
 
 </Sandpack>
 
-## Troubleshooting {/*troubleshooting*/}
+## Pemecahan Masalah {/*troubleshooting*/}
 
-### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
+### *Owner Stack* bernilai `null` {/*the-owner-stack-is-null*/}
 
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a `fetch` call or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+Pemanggilan `captureOwnerStack` terjadi di luar fungsi yang dikendalikan oleh React, misalnya di dalam *callback* `setTimeout`, setelah pemanggilan `fetch`, atau di dalam penangan *event* DOM kustom. Selama proses *render*, *Effects*, penangan *event* React, dan penangan galat React (misalnya `hydrateRoot#options.onCaughtError`), *Owner Stack* seharusnya tersedia.
 
-In the example below, clicking the button will log an empty Owner Stack because `captureOwnerStack` was called during a custom DOM event handler. The Owner Stack must be captured earlier e.g. by moving the call of `captureOwnerStack` into the Effect body.
+Pada contoh di bawah ini, mengklik tombol akan mencatat *Owner Stack* yang kosong karena `captureOwnerStack` dipanggil di dalam penangan *event* DOM kustom. *Owner Stack* harus ditangkap lebih awal, misalnya dengan memindahkan pemanggilan `captureOwnerStack` ke dalam badan *Effect*.
 <Sandpack>
 
 ```js
@@ -361,10 +361,10 @@ import {captureOwnerStack, useEffect} from 'react';
 
 export default function App() {
   useEffect(() => {
-    // Should call `captureOwnerStack` here.
+    // Seharusnya memanggil `captureOwnerStack` di sini.
     function handleEvent() {
-      // Calling it in a custom DOM event handler is too late.
-      // The Owner Stack will be `null` at this point.
+      // Memanggilnya di dalam event handler DOM kustom sudah terlambat.
+      // Owner Stack akan bernilai `null` pada titik ini.
       console.log('Owner Stack: ', captureOwnerStack());
     }
 
@@ -381,14 +381,14 @@ export default function App() {
 
 </Sandpack>
 
-### `captureOwnerStack` is not available {/*captureownerstack-is-not-available*/}
+### `captureOwnerStack` tidak tersedia {/*captureownerstack-is-not-available*/}
 
-`captureOwnerStack` is only exported in development builds. It will be `undefined` in production builds. If `captureOwnerStack` is used in files that are bundled for production and development, you should conditionally access it from a namespace import.
+`captureOwnerStack` hanya diekspor pada *build* pengembangan (*development*). Fungsi ini akan bernilai `undefined` pada *build* produksi. Jika `captureOwnerStack` digunakan pada berkas yang di-*bundle* untuk produksi dan pengembangan, Anda sebaiknya mengaksesnya secara kondisional melalui *namespace import*.
 
 ```js
-// Don't use named imports of `captureOwnerStack` in files that are bundled for development and production.
+// Jangan gunakan named imports untuk `captureOwnerStack` pada berkas yang di-bundle untuk produksi dan pengembangan.
 import {captureOwnerStack} from 'react';
-// Use a namespace import instead and access `captureOwnerStack` conditionally.
+// Gunakan namespace import dan akses `captureOwnerStack` secara kondisional.
 import * as React from 'react';
 
 if (process.env.NODE_ENV !== 'production') {
