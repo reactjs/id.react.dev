@@ -44,12 +44,22 @@ Fungsi `preinitModule` memberikan petunjuk kepada browser bahwa untuk mulai meng
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: sebuah string. URL modul yang ingin Anda unduh dan jalankan.
 * `options`: sebuah objek. Ini berisi properti-properti berikut:
   *  `as`: sebuah string yang wajib. Harus berupa `'script'`.
   *  `crossOrigin`: sebuah string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang akan digunakan. Nilai yang dapat digunakan adalah `anonymous` dan `use-credentials`.
   *  `integrity`: sebuah string. *Hash* kriptografi modul, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: sebuah string. Sebuah [*nonce* kriptografi untuk mengizinkan modul](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) ketika menggunakan *Content Security Policy* yang ketat.
+=======
+* `href`: a string. The URL of the module you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. It must be `'script'`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+  *  `fetchPriority`: a string. Suggests a [relative priority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority) for fetching the resource; possible values are `auto` (default), `high`, and `low`.
+>>>>>>> 0821e7d9428a6c58c922765b891bbffba9ed6249
 
 #### Kembalian {/*returns*/}
 
