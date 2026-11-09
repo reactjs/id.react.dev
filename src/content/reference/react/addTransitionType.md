@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: unstable_addTransitionType
 version: experimental
 ---
@@ -17,6 +18,11 @@ Versi eksperimental React mungkin mengandung bug. Jangan menggunakannya dalam pr
 
 </Experimental>
 
+=======
+title: addTransitionType
+---
+
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 <Intro>
 
 `unstable_addTransitionType` memungkinkan Anda untuk menentukan penyebab dari suatu transisi.

@@ -1048,8 +1048,13 @@ Menulis panggilan `fetch` di dalam *Effects* adalah [cara yang populer untuk men
 
 Daftar kekurangan ini tidak spesifik untuk React. Ini berlaku untuk mengambil data saat *mount* dengan *library* manapun. Seperti dengan *routing*, pengambilan data tidak mudah dilakukan dengan baik, jadi kami sarankan pendekatan berikut:
 
+<<<<<<< HEAD
 - **Jika Anda menggunakan [framework](/learn/creating-a-react-app#full-stack-frameworks), gunakan mekanisme pengambilan data bawaannya.** *Framework* React modern memiliki mekanisme pengambilan data terintegrasi yang efisien dan tidak menderita dari masalah di atas.
 - **Jika tidak, pertimbangkan untuk menggunakan atau membangun cache sisi klien.** Solusi *open source* populer termasuk [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), dan [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Anda juga dapat membangun solusi Anda sendiri, dalam hal ini Anda akan menggunakan *Effects* di bawah kap, tetapi juga menambahkan logika untuk mendeduplikasi permintaan, *caching respons*, dan menghindari air terjun(*waterfalls*) jaringan (dengan memuat data atau mengangkat persyaratan data ke *route*).
+=======
+- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router](https://reactrouter.com/). You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Anda dapat terus mengambil data secara langsung dalam *Effects* jika kedua pendekatan ini tidak cocok untuk Anda.
 
@@ -1596,7 +1601,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions(); // It's used inside the Effect
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit

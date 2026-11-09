@@ -18,7 +18,11 @@ title: Mempertahankan dan Mengatur Ulang State
 
 ## *State* terikat dengan posisi di dalam pohon {/*state-is-tied-to-a-position-in-the-tree*/}
 
+<<<<<<< HEAD
 React membangun [pohon render](learn/understanding-your-ui-as-a-tree#the-render-tree) untuk struktur komponen di dalam UI Anda.
+=======
+React builds [render trees](/learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Ketika Anda memberikan *state* pada sebuah komponen, Anda mungkin berpikir bahwa state tersebut "hidup" di dalam komponen. Tetapi *state* sebenarnya disimpan di dalam React. React mengasosiasikan setiap bagian dari *state* yang dipegangnya dengan komponen yang benar berdasarkan posisi komponen tersebut di dalam pohon UI.
 

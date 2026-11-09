@@ -329,7 +329,17 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
+<<<<<<< HEAD
 Hook [`useMemo`](/reference/react/useMemo) akan membuat/mengakses ulang nilai yang tersimpan dari pemanggilan fungsi, dan menjalankan ulang fungsi hanya saat dependensi yang diteruskan sebagai parameter ke-2 diubah. Hasil pemanggilan Hook disimpulkan dari nilai yang dikembalikan dari fungsi di parameter pertama. Anda dapat lebih eksplisit dengan memberikan argumen *type* ke Hook.
+=======
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
+The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memoized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```ts
 // Type dari visibleTodos disimpulkan dari nilai kembalian filterTodos
