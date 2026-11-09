@@ -874,7 +874,11 @@ Logika komponen akan dapat lebih mudah dibaca ketika Anda memisahkan aspek seper
 - **Testing:** Sebuah *reducer* adalah fungsi murni yang tidak bergantung pada komponen kamu. Ini berarti kamu dapat mengekspor dan mengujinya secara terpisah secara isolasi. Meskipun secara umum lebih baik untuk menguji komponen dalam lingkungan yang lebih realistis, untuk logika pembaruan *state* yang kompleks dapat berguna untuk menegaskan bahwa *reducer* kamu mengembalikan *state* tertentu untuk *state* awal dan aksi tertentu.
 - **Preferensi pribadi:** Beberapa orang suka *reducers*, yang lain tidak. Itu tidak apa-apa. Ini hanya masalah preferensi. Kamu selalu dapat mengonversi antara fungsi `useState` dan `useReducer` bolak-balik: mereka setara!
 
+<<<<<<< HEAD
 Kami merekomendasikan menggunakan reducer jika kamu sering menghadapi *bug* karena pembaruan state yang salah dibeberapa komponen, dan ingin memperkenalkan lebih banyak struktur pada kode-nya. Kamu tidak harus menggunakan fungsi *reducers* untuk semuanya: bebas untuk mencampur dan mencocokkan! Kamu bahkan dapat menggunakan `useState` dan `useReducer` di komponen yang sama.
+=======
+We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even use `useState` and `useReducer` in the same component.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ## Menulis fungsi reduksi dengan baik {/*writing-reducers-well*/}
 

@@ -135,7 +135,11 @@ Simpul akar (*root node*) dalam pohon *render* React adalah [komponen akar](/lea
 
 #### Di mana letak dari tag HTML dalam pohon *render*? {/*where-are-the-html-elements-in-the-render-tree*/}
 
+<<<<<<< HEAD
 Anda akan melihat pada pohon *render* di atas, tidak disebutkan tag HTML yang di-*render* oleh setiap komponen. Hal ini dikarenakan pohon *render* hanya terdiri dari React [components](learn/your-first-component#components-ui-building-blocks).
+=======
+You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](/learn/your-first-component#components-ui-building-blocks).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 React, sebagai sebuah framework UI, bersifat agnostik terhadap platform. Di react.dev, kami menampilkan contoh-contoh yang di-*render* ke web, yang menggunakan markup HTML sebagai primitif UI-nya. Tetapi aplikasi React bisa saja merender ke platform mobile atau desktop, yang mungkin menggunakan primitif UI yang berbeda seperti [UIView](https://developer.apple.com/documentation/uikit/uiview) atau [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 

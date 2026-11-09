@@ -530,7 +530,11 @@ React menggunakan pohon (*tree*) untuk menggambarkan hubungan antara komponen de
 
 Sebuah pohon *render* React adalah representasi dari hubungan induk dan anak di antara komponen.
 
+<<<<<<< HEAD
 <Diagram name="generic_render_tree" height={250} width={500} alt="Grafik pohon dengan lima simpul, dengan setiap simpul merepresentasikan komponen. Simpul root terletak di atas grafik pohon dan dilabeli 'Root Component'. Ia memiliki dua panah memanjang ke bawah menuju dua simpul yang dilabeli 'Component A' dan 'Component C'. Setiap panah dilabeli dengan 'renders'. 'Component A' memiliki satu panah 'renders' menuju simpul berlabel 'Component B'. 'Component C' memiliki satu panah 'renders' menuju simpul berlabel 'Component D'.">
+=======
+<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top of the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Sebuah contoh pohon *render* React.
 

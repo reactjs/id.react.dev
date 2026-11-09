@@ -5,7 +5,11 @@ titleForTitleTag: "Direktif 'use server'"
 
 <RSC>
 
+<<<<<<< HEAD
 `'use server'` digunakan dengan [Komponen Server React](/reference/rsc/server-components).
+=======
+`'use server'` is for use with [React Server Components](/reference/rsc/server-components).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 </RSC>
 
@@ -137,7 +141,7 @@ Untuk memperbarui antarmuka pengguna berdasarkan hasil dari Fungsi Server sambil
 // requestUsername.js
 'use server';
 
-export default async function requestUsername(formData) {
+export default async function requestUsername(prevState, formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
@@ -196,8 +200,13 @@ function LikeButton() {
 
   return (
     <>
+<<<<<<< HEAD
       <p>Total Suka: {likeCount}</p>
       <button onClick={onClick} disabled={isPending}>Suka</button>;
+=======
+      <p>Total Likes: {likeCount}</p>
+      <button onClick={onClick} disabled={isPending}>Like</button>
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
     </>
   );
 }

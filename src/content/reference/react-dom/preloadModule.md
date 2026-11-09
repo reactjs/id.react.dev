@@ -50,12 +50,22 @@ Fungsi `preloadModule` memberikan petunjuk kepada browser agar mulai mengunduh m
 
 #### Parameter {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: string. URL dari modul yang ingin Anda unduh.
 * `options`: objek. Berisi properti berikut:
   *  `as`: string wajib. Harus bernilai `'script'`.
   *  `crossOrigin`: string. [Kebijakan CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) yang digunakan. Nilai yang mungkin adalah `anonymous` dan `use-credentials`.
   *  `integrity`: string. Hash kriptografi dari modul, untuk [memverifikasi keasliannya](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: string. [Nonce kriptografi](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) untuk mengizinkan modul saat menggunakan Content Security Policy yang ketat.
+=======
+* `href`: a string. The URL of the module you want to download.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. It must be `'script'`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+  *  `fetchPriority`: a string. Suggests a [relative priority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority) for fetching the resource; possible values are `auto` (default), `high`, and `low`.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 
 #### Return {/*returns*/}

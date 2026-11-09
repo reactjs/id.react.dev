@@ -117,28 +117,40 @@ Menggunakan `act` memastikan bahwa semua pembaruan telah diterapkan sebelum kita
 
 Untuk menguji *events*, bungkus pengiriman *events* di dalam `act()`:
 
-```js {14,16}
+```js {17-19}
 import {act} from 'react';
 import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
+<<<<<<< HEAD
 it.only('dapat me-render dan memperbarui penghitung', async () => {
+=======
+it('can render and update a counter', async () => {
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
   const container = document.createElement('div');
   document.body.appendChild(container);
 
-  await act( async () => {
+  await act(async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
+
+  const button = container.querySelector('button');
+  const label = container.querySelector('p');
 
   // ✅ Dispatch the event inside act().
   await act(async () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
 
+<<<<<<< HEAD
   const button = container.querySelector('button');
   const label = container.querySelector('p');
   expect(label.textContent).toBe('Anda mengklik 1 kali');
   expect(document.title).toBe('Anda mengklik 1 kali');
+=======
+  expect(label.textContent).toBe('You clicked 1 times');
+  expect(document.title).toBe('You clicked 1 times');
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 });
 ```
 
