@@ -1,17 +1,8 @@
 ---
 title: browser
-version: canary
 ---
 
 <Intro>
-
-<Canary>
-
-**The `browser` API is currently only available in React’s Canary and Experimental channels.**
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 `browser` lets you mark a component as browser-only during server rendering.
 
@@ -56,7 +47,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 #### Caveats {/*caveats*/}
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
 * Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---
@@ -198,8 +189,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -215,7 +206,7 @@ iframe {
 
 <Note>
 
-In a React Server Components app, `use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
+`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
 
 ```js {1}
 'use client';
@@ -365,8 +356,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
