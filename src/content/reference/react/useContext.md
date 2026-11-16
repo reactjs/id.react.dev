@@ -1367,7 +1367,11 @@ Anda mungkin memiliki penyedia tanpa `value` di dalam pohon:
 
 Jika Anda lupa menentukan `value`, ini sama saja dengan mengoper `value={undefined}`.
 
+<<<<<<< HEAD
 Anda mungkin juga tidak sengaja menggunakan nama *prop* yang berbeda:
+=======
+You may have also used a different prop name by mistake:
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"

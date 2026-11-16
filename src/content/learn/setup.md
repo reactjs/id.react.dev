@@ -17,7 +17,11 @@ TypeScript adalah cara populer untuk menambahkan definisi *type* ke basis kode J
 
 ## React Developer Tools {/*react-developer-tools*/}
 
+<<<<<<< HEAD
 React Developer Tools adalah pengaya browser (browser extension) yang dapat memeriksa komponen React, mengubah *props* dan *state*, serta mengidentifikasi masalah performa. Pelajari cara memasangnya [di sini](learn/react-developer-tools).
+=======
+React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](/learn/react-developer-tools).
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ## Kompiler React {/*react-compiler*/}
 

@@ -16,8 +16,14 @@ title: "Hook Bawaan React"
 
 Untuk menambahkan *state* ke sebuah komponen, gunakan salah satu Hooks dibawah ini:
 
+<<<<<<< HEAD
 * [`useState`](/reference/react/useState) mendeklarasikan sebuah variabel *state* yang dapat Anda perbarui secara langsung.
 * [`useReducer`](/reference/react/useReducer) mendeklarasikan sebuah variabel *state* dengan logika pembaruan yang tertulis di dalam sebuah [fungsi *reducer*.](/learn/extracting-state-logic-into-a-reducer)
+=======
+* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ```js
 function ImageGallery() {
